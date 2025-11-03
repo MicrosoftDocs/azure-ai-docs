@@ -13,11 +13,11 @@ items:
 - name: How-to guides
   expanded: true
   items:
-  - name: Use Native Chat Completions
+  - name: Use native chat completions API
     href: how-to/how-to-use-native-chat-completions.md
   - name: Transcribe recorded audio files
     href: how-to/how-to-transcribe-audio.md
-  - name: Integrate with Inferencing SDKs
+  - name: Integrate with 3rd party SDKs
     href: how-to/how-to-integrate-with-inference-sdks.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
