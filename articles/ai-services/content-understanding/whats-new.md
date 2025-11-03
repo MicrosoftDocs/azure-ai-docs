@@ -25,14 +25,14 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 
 - Connect Content Understanding to an Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost.
 - Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
-- Model selection give you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md)
-- Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly leverage your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](overview/pricing-explainer.md).
+- Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md)
+- Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly use your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](overview/pricing-explainer.md).
 
 ### Manage analyzers with more precision
 
 - **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` setting. This selective approach reduces response payload sizes and lowers processing costs by computing confidence metrics only when required. Confidence scores are now consistently available across all extraction methods—whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
 - **Simplify analyzer development** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
-- **Classification is now integrated** with the analyzer api now supporting classification with the `categorization` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse file types within a single analyzer — no separate classifier required. 
+- **Classification is now integrated** with the analyzer API now supporting classification with the `categorization` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse file types within a single analyzer—no separate classifier required. 
 - **Analyzer lifecycle APIs** extend to support copy, delete, replace, and explicit result deletion give you complete control over analyzer versions and data retention for compliance and privacy requirements. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
 
 ### RAG analyzers
@@ -75,7 +75,7 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 ### Region expansion and availability
 
 - Content Understanding is now supported in 14 regions worldwide, providing greater geographic coverage and improved data residency options. See the [language and region support documentation](language-region-support.md) for the detailed list of available regions.
-- Content Understanding is available in [Content Understanding Studio](https://aka.ms/cu-studio), as well as through the REST API for programmatic access.
+- Content Understanding is available in [Content Understanding Studio](https://aka.ms/cu-studio) and through the REST API for programmatic access.
 
 ### Breaking changes
 
