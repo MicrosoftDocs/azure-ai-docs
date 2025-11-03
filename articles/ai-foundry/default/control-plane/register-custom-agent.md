@@ -2,9 +2,10 @@
 title: "Register and manage custom agents in Azure AI Foundry Control Hub"
 description: "Learn how to register a custom agent in Azure AI Foundry Control Hub for management and observability."
 author: santiagxf
-ms.author: fasantia
+ms.author: scottpolly
+ms.reviewer: fasantia
 ms.date: 10/30/2025
-ms.manager: nitinme
+ms.manager: mcleans
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -20,10 +21,11 @@ In this article, you learn how to register a custom agent in Azure AI Foundry Co
 
 Before getting started, make sure:
 
-* An Azure AI Foundry resource and project.
-* The **New AI Foundry** feature enabled.
-* Azure AI Foundry uses Azure API Management to register custom APIs as agents. [Configure AI Gateway in your Azure AI Foundry resource]().
-* To use observability capabilities, [configure Azure Application Insights]() in your project. Review the section [Enable telemetry for your agent](#enable-telemetry-for-your-agent) for more details and requirements.
+-  [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- An Azure AI Foundry project. If you don't have one, [create a project](../../how-to/create-projects.md).
+- This capability is available only in the Azure AI Foundry (new) portal. Look for :::image type="icon" source="../media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+- Azure AI Foundry uses Azure API Management to register custom APIs as agents. [Configure AI Gateway in your Azure AI Foundry resource]().
+- To use observability capabilities, [configure Azure Application Insights]() in your project. Review the section [Enable telemetry for your agent](#enable-telemetry-for-your-agent) for more details and requirements.
 
     > [!IMPORTANT]
     > Viewing statistics, runs, and traces for custom agents requires observability configured.
