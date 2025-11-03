@@ -85,18 +85,6 @@ Specify one the provisioned options as the **Deployment type**, for example **Gl
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs). 
-
-Insert NextGen content
-
-> [!TIP]
-> * To enable spillover, your account must have at least one active pay-as-you-go deployment that matches the model and version of your current provisioned deployment.
-> * To see how to enable spillover for select inference requests, click the **REST API** tab above.
-
-
-::: moniker-end
 
 # [REST API](#tab/rest-api)
 
