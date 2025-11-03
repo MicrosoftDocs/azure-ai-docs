@@ -42,7 +42,8 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 > [!NOTE]
 > * Supported document types: text data in the following format: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
-> * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents. 
+> * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents.
+> * SharePoint Tool supports only user identity authentication. Service principal name (SPN) authentication is not supported.
 
 1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
 
