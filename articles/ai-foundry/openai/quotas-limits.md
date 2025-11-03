@@ -271,10 +271,24 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-image-1-mini` |Medium | N/A | 108 |
 |`gpt-image-1-mini` |High | N/A | 360 |
 
-
 ## Usage tiers
 
 Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer's inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
+
+Azure OpenAI usage tiers are designed to provide consistent performance for most customers with low to medium levels of traffic. Each usage tier defines the maximum throughput (tokens per minute) you can expect with predictable latency. When your usage stays within your assigned tier, latency remains stable and response times are consistent.
+
+### What happens if you exceed your usage tier?
+
+- If your request throughput exceeds your usage tier—especially during periods of high demand—your response latency may increase significantly.
+- Latency can vary and, in some cases, may be more than 2 times higher than when operating within your usage tier.
+- This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
+
+### Recommended Actions If You Exceed Your Usage Tier
+If you encounter 429 errors or notice increased latency variability, here’s what you should do:
+
+- Request a Quota Increase: visit the Azure portal to request a higher quota for your subscription.
+- Consider Upgrading to a Premium Offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
+- Monitor Your Usage: regularly review your usage metrics in the Azure portal to ensure you are operating within your tier limits. Adjust your workload or deployment strategy as needed.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
@@ -285,6 +299,10 @@ The usage limit determines the level of usage above which customers might see la
 
 |Model| Usage tiers per month |
 |----|:----|
+| `gpt-5` | 32 billion tokens |
+| `gpt-5-mini` | 160 billion tokens |
+| `gpt-5-nano` | 800 billion tokens |
+| `gpt-5-chat` | 32 billion tokens |
 | `gpt-4` + `gpt-4-32k`  (all versions) | 6 billion tokens |
 | `gpt-4o` | 12 billion tokens |
 | `gpt-4o-mini` | 85 billion tokens |
