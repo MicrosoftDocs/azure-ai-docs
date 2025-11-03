@@ -374,7 +374,7 @@ Agent memory typically falls into two categories:
 
 Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
 ## Understand `Scope`
-Scope defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
+`Scope` defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
 As a developer, you decide the “key” used to store and retrieve these memory items—such as a UUID or an email address (provided it is unique and permanent in your system).
 
