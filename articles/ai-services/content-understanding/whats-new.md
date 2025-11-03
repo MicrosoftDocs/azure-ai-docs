@@ -24,14 +24,15 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 ### Choose the right generative model for every workload
 
 - Connect Content Understanding to an Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost.
-- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. Learn how to [configure your LLM deployment](quickstart/use-ai-foundry.md).
-- Select a deployment type—Global, DataZone, or Regional—or use Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For Global and DataZone, data at rest remains in your customer-designated geography; only the processing location differs.
+- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
+- Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md)
+- Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly use your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](overview/pricing-explainer.md).
 
 ### Manage analyzers with more precision
 
 - **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` setting. This selective approach reduces response payload sizes and lowers processing costs by computing confidence metrics only when required. Confidence scores are now consistently available across all extraction methods—whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
 - **Simplify analyzer development** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
-- **Categorization expands support** with `categorization` property now supports up to 200 categories up from 50, enabling precise classification and routing of diverse document types within a single analyzer—no separate classifier required. 
+- **Classification is now integrated** with the analyzer API now supporting classification with the `categorization` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse file types within a single analyzer—no separate classifier required. 
 - **Analyzer lifecycle APIs** extend to support copy, delete, replace, and explicit result deletion give you complete control over analyzer versions and data retention for compliance and privacy requirements. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
 
 ### RAG analyzers
@@ -53,12 +54,12 @@ Domain-specific prebuilt analyzers are tailored for industry scenarios, enabling
 - **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run.
 - **Utilities, billing, and more**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data.
 
-Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#vertical-analyzers).
+Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
 
 ### Enterprise security and governance
 
 - General availability includes Microsoft Entra ID, managed identities, customer-managed keys, virtual networks, and private endpoints.
-- These controls keep sensitive content in your Azure boundary and help you meet compliance requirements. Learn more in [Secure access to Content Understanding](concepts/managed-identities-entra-id.md).
+- These controls keep sensitive content in your Azure boundary and help you meet compliance requirements. Learn more in [Secure access to Content Understanding](concepts/secure-communications.md).
 
 ### Other improvements
 
@@ -74,7 +75,7 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 ### Region expansion and availability
 
 - Content Understanding is now supported in 14 regions worldwide, providing greater geographic coverage and improved data residency options. See the [language and region support documentation](language-region-support.md) for the detailed list of available regions.
-- Content Understanding is available in [Content Understanding Studio](https://aka.ms/cu-studio), as well as through the REST API for programmatic access.
+- Content Understanding is available in [Content Understanding Studio](https://aka.ms/cu-studio) and through the REST API for programmatic access.
 
 ### Breaking changes
 
