@@ -100,7 +100,7 @@ Follow these steps to create a new connection that's only available for the curr
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
 1. Select **Operate** in the upper-right navigation.
-1. Select **Admin Console** in the left pane.
+1. Select **Admin** in the left pane.
 1. Select your project name in the **Manage all projects** list.
 1. Select **Add connection** in the upper-right corner.
 1. Select the service you want to connect to from the list of available external resources. For example, select __Azure AI Search__.
