@@ -40,14 +40,16 @@ When you submit input text to be processed, you can specify which of [the suppor
 With version `2024-11-15-preview`, you're able to define the `redactionPolicies` parameter to reflect the redaction policy to be used when redacting text. The policy field supports four policy types:
 
 > [!div class="checklist"]
-> * `CharacterMaskPolicyType` (default)
-> * `NoMaskPolicyType`
-> * `EntityMaskPolicyType`
-> * `SyntheticReplacementPolicyType 🆕`
+> * [`CharacterMaskPolicyType` (default)](#charactermaskpolicytype)
+> * [`NoMaskPolicyType`](#nomaskpolicytype)
+> * [`EntityMaskPolicyType`](#entitymaskpolicytype)
+> * [`SyntheticReplacementPolicyType 🆕`](#syntheticreplacementpolicytype-)
 
 For more information, *see* [REST API PII task parameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
-* **CharacterMaskPolicyType** enables you to mask **redactedText** using a specified character (for example, "*****") while preserving the length and offset of the original text. For instance, "******** received a call from ************"
+##### CharacterMaskPolicyType
+
+**CharacterMaskPolicyType** enables you to mask **redactedText** using a specified character (for example, "*****") while preserving the length and offset of the original text. For instance, "******** received a call from ************"
 
    ***Sample request***
 
@@ -69,7 +71,9 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
    ```
 
 
-* **NoMaskPolicyType** enables you to return the response without including the `redactedText` field. For example, "John Doe received a call from 424-878-919."
+##### NoMaskPolicyType
+
+**NoMaskPolicyType** enables you to return the response without including the `redactedText` field. For example, "John Doe received a call from 424-878-919."
 
 
     Additionally, there's also an optional field named `redactionCharacter` that allows you to specify the character used for redaction when applying the `CharacterMask` policy.
@@ -94,7 +98,9 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
    ```
 
 
-* **EntityMaskPolicyType** enables you to mask the detected PII entity text its corresponding entity type. For example, "[PERSON_1] received a call from [PHONENUMBER_1]."
+##### EntityMaskPolicyType
+
+**EntityMaskPolicyType** enables you to mask the detected PII entity text its corresponding entity type. For example, "[PERSON_1] received a call from [PHONENUMBER_1]."
 
    ```bash
 
@@ -115,7 +121,9 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
    ```
 
 
-* **SyntheticReplacementPolicyType 🆕** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
+##### SyntheticReplacementPolicyType 🆕
+
+**SyntheticReplacementPolicyType** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
 
    ```bash
 

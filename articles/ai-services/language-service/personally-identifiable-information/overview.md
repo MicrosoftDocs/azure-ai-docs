@@ -22,7 +22,11 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 
 **The 2025-11-15-preview version introduces the following new PII task parameters**:
 
-* [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request, including the option for synthetic replacement.
+* [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request:
+    * [CharacterMaskPolicyType (default)](how-to/redact-text-pii.md#charactermaskpolicytype)
+    * [NoMaskPolicyType](how-to/redact-text-pii.md#nomaskpolicytype)
+    * [EntityMaskPolicyType](how-to/redact-text-pii.md#entitymaskpolicytype)
+    * [SyntheticReplacementPolicyType 🆕](how-to/redact-text-pii.md#syntheticreplacementpolicytype-)
 
 * [**Configurable confidence threshold**](how-to/redact-text-pii.md#confidencescorethreshold-) enables you to set a minimum confidence score. Entities are only included in the output if their confidence score meets or exceeds the specified threshold.
 
