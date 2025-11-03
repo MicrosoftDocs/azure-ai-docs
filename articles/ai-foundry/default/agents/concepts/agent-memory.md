@@ -48,8 +48,7 @@ from azure.identity import DefaultAzureCredential
 # Initialize the client
 client = AIProjectClient(
     endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-    api_version="2025-11-15-preview",
+    credential=DefaultAzureCredential()
 )
 
 # Create memory store
