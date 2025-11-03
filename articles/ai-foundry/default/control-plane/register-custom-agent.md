@@ -117,7 +117,6 @@ async def stream_run():
 
 **Expected output**: The agent processes the message and streams back responses as chunks. Each chunk contains partial results from the agent's execution, which might include tool calls to the weather function and the final response about Los Angeles weather.
 
-**Reference**: [LangGraph SDK Client](https://langchain-ai.github.io/langgraph/cloud/reference/sdk/python_sdk_ref/) | [get_client](https://langchain-ai.github.io/langgraph/cloud/reference/sdk/python_sdk_ref/#get_client) | [Client.runs.stream](https://langchain-ai.github.io/langgraph/cloud/reference/sdk/python_sdk_ref/#stream)
 
 ## Control the agent
 
@@ -186,7 +185,6 @@ agent = create_agent(
 
 **Expected output**: The agent runs normally while automatically emitting OpenTelemetry traces to Azure Application Insights. Traces include operation names, durations, model calls, tool invocations, and token usage. You can view these traces in the Azure AI Foundry portal under the Traces section.
 
-**Reference**: [AzureAIOpenTelemetryTracer](/python/api/langchain-azure-ai/langchain_azure_ai.callbacks.tracers.azureaiOpenTelemetrytracer) | [create_agent](https://python.langchain.com/docs/how_to/agent_executor/) | [OpenTelemetry Semantic Conventions for GenAI](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
 
 > [!TIP]
 > You can pass the connection string to Azure Application Insights by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`. 
