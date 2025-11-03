@@ -15,6 +15,7 @@ ai-usage: ai-assisted
 # Manage memory in Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 This article shows you how to create memory stores, attach them to agents, add and search memories, and implement best practices for security and privacy. With these capabilities, your agents can maintain context across multistep interactions and provide more reliable, personalized responses.
 
