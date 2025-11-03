@@ -106,7 +106,7 @@ Currently, Azure portal support for agentic retrieval is limited to the 2025-08-
 
 + [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md)
   + This quickstart supports C#, Java, JavaScript, Python, TypeScript, and REST.
-+ [Quickstart: Use agentic retrieval in the Azure portal](search-get-started-portal-agentic-retrieval.md)
++ [Quickstart: Use agentic retrieval in the Azure portal](get-started-portal-agentic-retrieval.md)
   + The portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. Breaking changes apply to objects created in this quickstart.
 
 ### [**How-to guides**](#tab/how-to-guides)

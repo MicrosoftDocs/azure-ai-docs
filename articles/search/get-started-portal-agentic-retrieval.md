@@ -145,7 +145,7 @@ To create the knowledge source for this quickstart:
 
 1. Create the knowledge source.
 
-   :::image type="content" source="media/search-get-started-portal-agentic-retrieval/create-knowledge-source.png" alt-text="Screenshot of the knowledge source configuration for this quickstart." lightbox="media/search-get-started-portal-agentic-retrieval/create-knowledge-source.png" :::
+   :::image type="content" source="media/get-started-portal-agentic-retrieval/create-knowledge-source.png" alt-text="Screenshot of the knowledge source configuration for this quickstart." lightbox="media/get-started-portal-agentic-retrieval/create-knowledge-source.png" :::
 
 ## Create a knowledge base
 
@@ -176,7 +176,7 @@ To create the knowledge base for this quickstart:
 
 1. Create the knowledge base.
 
-   :::image type="content" source="media/search-get-started-portal-agentic-retrieval/create-knowledge-base.png" alt-text="Screenshot of the knowledge base configuration for this quickstart." lightbox="media/search-get-started-portal-agentic-retrieval/create-knowledge-base.png" :::
+   :::image type="content" source="media/get-started-portal-agentic-retrieval/create-knowledge-base.png" alt-text="Screenshot of the knowledge base configuration for this quickstart." lightbox="media/get-started-portal-agentic-retrieval/create-knowledge-base.png" :::
 
 ## Test agentic retrieval
 

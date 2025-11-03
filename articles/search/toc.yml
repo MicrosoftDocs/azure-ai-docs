@@ -79,7 +79,7 @@ items:
   - name: Azure portal
     items:
     - name: Create an agentic search pipeline
-      href: search-get-started-portal-agentic-retrieval.md
+      href: get-started-portal-agentic-retrieval.md
     - name: Create a search index
       href: search-get-started-portal.md
     - name: Create a vector index
