@@ -336,6 +336,7 @@ Authorization: Bearer <your-token>
 ```
 
 ---
+
 ## Use memory with prompt agent
 
 Attach the memory store to your agent to enable memory capabilities. Start with one memory store per agent to maximize memory protection and ensure optimization for your specific use case.
@@ -362,6 +363,11 @@ agent = project_client.agents.create_version(
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
+
+# [REST](#tab/rest)
+
+Use Python to attach a memory store to an agent. This capability is not yet available in the REST API.
+
 ---
 
 ## Understand memory types
