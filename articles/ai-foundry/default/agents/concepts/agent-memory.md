@@ -21,7 +21,6 @@ This article shows you how to create memory stores, attach them to agents, add a
 
 Memory stores act as persistent storage boundaries that define what types of information are relevant to each agent. You control access through the `scope` parameter, which ensures secure and isolated experiences by segmenting memory across users.
 
-Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 ## Prerequisites
 
