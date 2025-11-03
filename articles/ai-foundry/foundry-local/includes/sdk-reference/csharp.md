@@ -57,11 +57,30 @@ Version `0.4.0` and later provides a more object-orientated and composable API. 
 | **Start service**   | `mgr.StartServiceAsync();`                 | `mgr.StartWebServerAsync();` |
 | **Stop Service**    | `mgr.StopServiceAsync();`                | `mgr.StopWebServerAsync();`      |
 | **Cache Location**  | `mgr.GetCacheLocationAsync();`        | `config.ModelCacheDir`                           |
-| **List Cached Models** | `mgr.ListCachedModelsAsync();`     | `catalog.GetCachedModelsAsync();`                                                         |
+| **List Cached Models** | `mgr.ListCachedModelsAsync();`     | `catalog.GetCachedModelsAsync();`               |
+
+The API allows more configurability over the web server, logging, cache location, and model variant selection. For example, the `Configuration` class allows you to set up the application name, logging level, web server URLs, and directories for application data, model cache, and logs:
+
+```csharp
+var config = new Configuration
+{
+    AppName = "my-app-name",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+    Web = new Configuration.WebService
+    {
+        Urls = "http://127.0.0.1:55588"
+    },
+    AppDataDir = "./foundry_local_data",
+    ModelCacheDir = "{AppDataDir}/model_cache",
+    LogsDir = "{AppDataDir}/logs"
+};
+```
+
+In the previous version of the Foundry Local C# SDK, you could not configure these settings directly through the SDK, which limited your ability to customize the behavior of the service.
 
 ##### Side-by-side basic usage
 
-## [Version <= 0.3.0](#tab/previous)
+## [Versions <= 0.3.0](#tab/previous)
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
@@ -85,18 +104,21 @@ var loaded = await manager.ListLoadedModelsAsync();
 await manager.UnloadModelAsync(alias);
 ```
 
-## [Version >= 0.4.0](#tab/vNext)
+## [Versions >= 0.4.0](#tab/vNext)
+
+The biggest change in the new SDK version is the introduction of the `Configuration` class for setting up the Foundry Local environment and theneed to define a `ILogger` instance for logging.
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
 using Microsoft.Extensions.Logging;
 
-
+// Create configuration
 var config = new Configuration
 {
     AppName = "my-app-name"
 };
 
+// Set up application logging
 using var loggerFactory = LoggerFactory.Create(builder =>
 {
     builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
@@ -120,7 +142,7 @@ var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("
 await model.DownloadAsync();
 await model.LoadAsync();
 
-// List loaded models
+// List loaded models (in memory) from the catalog
 var loaded = await catalog.GetLoadedModelsAsync();
 
 // Unload the model
