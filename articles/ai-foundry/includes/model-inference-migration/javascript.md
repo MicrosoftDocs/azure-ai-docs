@@ -40,7 +40,7 @@ const client = ModelClient(
 );
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```javascript
 import { OpenAI } from "openai";
@@ -74,7 +74,7 @@ const client = ModelClient(
 );
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```javascript
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
@@ -101,7 +101,7 @@ Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI mod
 
 Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```javascript
 const result = await client.responses.stream({
@@ -132,7 +132,7 @@ const response = await client.path("/chat/completions").post({
 console.log(response.body.choices[0].message.content);
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```javascript
 const completion = await client.chat.completions.create({
@@ -171,7 +171,7 @@ for await (const chunk of response) {
 }
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```javascript
 const stream = await client.chat.completions.create({
@@ -215,9 +215,9 @@ const response = await client.path("/embeddings").post({
 const embedding = response.body.data[0].embedding;
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support embeddings models.
+OpenAI SDK doesn't support embeddings models.
 
 
 ---
@@ -228,8 +228,8 @@ OpenAI v1 SDK doesn't support embeddings models.
 
 Azure AI Inference SDK doesn't support image generation models.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support image generation models.
+OpenAI SDK doesn't support image generation models.
 
 ---

@@ -32,7 +32,7 @@ With API key authentication:
 
 Azure AI Inference SDK for Go uses Azure SDK patterns.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```go
 import (
@@ -54,7 +54,7 @@ With Microsoft Entra ID authentication:
 
 Azure AI Inference SDK for Go supports Microsoft Entra ID through Azure SDK.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```go
 import (
@@ -85,7 +85,7 @@ Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI mod
 
 Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```go
 import (
@@ -117,7 +117,7 @@ println(resp.OutputText())
 
 Azure AI Inference SDK for Go uses Azure SDK patterns for chat completions.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```go
 import (
@@ -149,7 +149,7 @@ fmt.Println(chatCompletion.Choices[0].Message.Content)
 
 Azure AI Inference SDK for Go supports streaming through Azure SDK patterns.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```go
 import (
@@ -186,9 +186,9 @@ if err := stream.Err(); err != nil {
 
 Azure AI Inference SDK for Go uses Azure SDK patterns for embeddings.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support embeddings models.
+OpenAI SDK doesn't support embeddings models.
 
 ---
 
@@ -198,7 +198,7 @@ OpenAI v1 SDK doesn't support embeddings models.
 
 Azure AI Inference SDK doesn't support image generation models.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 OpenAI v1 operations don't yet fully support image generation models.
 

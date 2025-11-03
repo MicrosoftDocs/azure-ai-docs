@@ -41,7 +41,7 @@ client = ChatCompletionsClient(
 )
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```python
 import os
@@ -70,7 +70,7 @@ client = ChatCompletionsClient(
 )
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```python
 from openai import OpenAI
@@ -97,7 +97,7 @@ Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI mod
 
 Azure AI Inference SDK doesn't support the Responses API.  Use chat completions instead.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```python
 response = client.responses.create(   
@@ -128,7 +128,7 @@ response = client.complete(
 print(response.choices[0].message.content)
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```python
 completion = client.chat.completions.create(
@@ -165,7 +165,7 @@ for update in response:
         print(update.choices[0].delta.content or "", end="")
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```python
 stream = client.chat.completions.create(
@@ -205,9 +205,9 @@ response = client.embed(
 embedding = response.data[0].embedding
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support embeddings models.
+OpenAI SDK doesn't support embeddings models.
 
 ---
 
@@ -217,8 +217,8 @@ OpenAI v1 SDK doesn't support embeddings models.
 
 Azure AI Inference SDK doesn't support image generation models.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support image generation models.
+OpenAI SDK doesn't support image generation models.
 
 ---

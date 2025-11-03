@@ -41,7 +41,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .buildClient();
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```java
 import com.openai.client.OpenAIClient;
@@ -73,7 +73,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .buildClient();
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```java
 import com.openai.client.OpenAIClient;
@@ -104,7 +104,7 @@ Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI mod
 
 Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```java
 import com.openai.models.responses.ResponseCreateParams;
@@ -144,7 +144,7 @@ ChatCompletions response = client.complete(options);
 System.out.println(response.getChoices().get(0).getMessage().getContent());
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```java
 import com.openai.models.chat.completions.*;
@@ -188,7 +188,7 @@ response.forEach(update -> {
 });
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```java
 import com.openai.models.chat.completions.*;
@@ -237,7 +237,7 @@ EmbeddingsResult response = client.embed(embeddingsOptions);
 List<Float> embedding = response.getData().get(0).getEmbedding();
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```java
 package com.openai.example;
@@ -276,9 +276,9 @@ public final class EmbeddingsExample {
 
 Azure AI Inference SDK doesn't support image generation models.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support image generation models.
+OpenAI SDK doesn't support image generation models.
 
 ---
 

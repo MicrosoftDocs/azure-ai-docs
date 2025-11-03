@@ -40,7 +40,7 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 );
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```csharp
 using OpenAI;
@@ -73,7 +73,7 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 );
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```csharp
 using Azure.Identity;
@@ -109,7 +109,7 @@ To perform chat completions with Azure OpenAI models, use the Responses API as s
 
 Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```csharp
 using OpenAI;
@@ -156,7 +156,7 @@ Response<ChatCompletions> response = client.Complete(requestOptions);
 Console.WriteLine(response.Value.Choices[0].Message.Content);
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```csharp
 using OpenAI.Chat;
@@ -198,7 +198,7 @@ await foreach (StreamingChatCompletionsUpdate update in response)
 }
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```csharp
 using OpenAI.Chat;
@@ -242,7 +242,7 @@ Response<EmbeddingsResult> response = client.Embed(embeddingsOptions);
 ReadOnlyMemory<float> embedding = response.Value.Data[0].Embedding;
 ```
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
 ```csharp
 using NUnit.Framework;
@@ -283,8 +283,8 @@ public partial class EmbeddingExamples
 
 Azure AI Inference SDK doesn't support image generation models.
 
-# [OpenAI v1 SDK](#tab/openai)
+# [OpenAI SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support image generation models.
+OpenAI SDK doesn't support image generation models.
 
 ---

@@ -1,7 +1,7 @@
 ---
-title: Migrate from Azure AI Inference SDK to OpenAI v1 SDK
+title: Migrate from Azure AI Inference SDK to OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: Learn about migrating from the Azure AI Inference SDK to OpenAI v1 SDK for Azure AI Foundry Models
+description: Learn about migrating from the Azure AI Inference SDK to OpenAI SDK for Azure AI Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -15,13 +15,16 @@ zone_pivot_groups: openai-supported-languages
 ai-usage: ai-assisted
 ---
 
-# Migrate from Azure AI Inference SDK to OpenAI v1 SDK
+# Migrate from Azure AI Inference SDK to OpenAI SDK
 
-This article provides guidance on migrating your applications from the Azure AI Inference SDK to the OpenAI v1 SDK. The OpenAI v1 SDK offers broader compatibility, access to the latest OpenAI features, and simplified code with unified patterns across Azure OpenAI and Foundry Models.
+This article provides guidance on migrating your applications from the Azure AI Inference SDK to the OpenAI SDK. The OpenAI SDK offers broader compatibility, access to the latest OpenAI features, and simplified code with unified patterns across Azure OpenAI and Foundry Models.
+
+> [!NOTE]
+> The OpenAI SDK refers to the client libraries (such as the Python `openai` package or JavaScript `openai` npm package) that connect to OpenAI v1 API endpoints. These SDKs have their own versioning separate from the API version - for example, the Go OpenAI SDK is currently at v3, but it still connects to the OpenAI v1 API endpoints with `/openai/v1/` in the URL path.
 
 ## Benefits of migrating
 
-Migrating to the OpenAI v1 SDK provides several advantages:
+Migrating to the OpenAI SDK provides several advantages:
 
 - **Unified API**: Use the same SDK libraries and clients for both OpenAI and Azure OpenAI endpoints
 - **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
@@ -33,11 +36,11 @@ Migrating to the OpenAI v1 SDK provides several advantages:
 
 The following table shows the main differences between the two SDKs:
 
-| Aspect | Azure AI Inference SDK | OpenAI v1 SDK |
-|--------|------------------------|---------------|
+| Aspect | Azure AI Inference SDK | OpenAI SDK |
+|--------|------------------------|-------------|
 | Client class | `ChatCompletionsClient` | `OpenAI` |
 | Endpoint format | `https://<resource>.services.ai.azure.com/models` | `https://<resource>.openai.azure.com/openai/v1/` |
-| API version | Required in URL or parameter | Not required |
+| API version | Required in URL or parameter | Not required (uses v1 API) |
 | Model parameter | Optional (for multi-model endpoints) | Required (deployment name) |
 | Authentication | Azure credentials only | API key or Azure credentials |
 
@@ -78,19 +81,19 @@ The following table shows the main differences between the two SDKs:
 ### Model parameter handling
 
 - **Azure AI Inference SDK**: The `model` parameter is optional for single-model endpoints but required for multi-model endpoints
-- **OpenAI v1 SDK**: The `model` parameter is always required and should be set to your deployment name
+- **OpenAI SDK**: The `model` parameter is always required and should be set to your deployment name
 
 ### Endpoint URL format
 
 - **Azure AI Inference SDK**: Uses `https://<resource>.services.ai.azure.com/models`
-- **OpenAI v1 SDK**: Uses `https://<resource>.openai.azure.com/openai/v1`
+- **OpenAI SDK**: Uses `https://<resource>.openai.azure.com/openai/v1` (connects to the OpenAI v1 API)
 
 ### Response structure
 
 The response structure is similar but has some differences:
 
 - **Azure AI Inference SDK**: Returns `ChatCompletions` object with `choices[].message.content`
-- **OpenAI v1 SDK**: Returns `ChatCompletion` object with `choices[].message.content`
+- **OpenAI SDK**: Returns `ChatCompletion` object with `choices[].message.content`
 
 Both SDKs provide similar access patterns to response data, including:
 - Message content
@@ -103,7 +106,7 @@ Both SDKs provide similar access patterns to response data, including:
 Use this checklist to ensure a smooth migration:
 
 > [!div class="checklist"]
-> * Install the OpenAI v1 SDK for your programming language
+> * Install the OpenAI SDK for your programming language
 > * Update authentication code (API key or Microsoft Entra ID)
 > * Change endpoint URLs from `.services.ai.azure.com/models` to `.openai.azure.com/openai/v1/`
 > * Update client initialization code
