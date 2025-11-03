@@ -4,7 +4,7 @@ description: Learn how to do function calling scenarios in a voice session using
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
-ms.topic: how-to
+ms.topic: quickstart
 ms.date: 10/06/2025
 ---
 
@@ -22,7 +22,7 @@ The code sample below does these basic steps to set up function calling.
 
 1. **Describe tools for Voice Live**: Create **FunctionTool** definitions with names, parameter schemas, and text descriptions, and bundle them into the session configuration so the model understands the available actions.
 
-1. **Initialize the session**: Connect using `azure.ai.voicelive.aio.connect`, provide credentials, choose your target model/voice, and enable audio modalities, transcription, and turn detection.
+1. **Initialize the session**: Connect using `azure.ai.voicelive.aio.connect`, provide credentials, pass in the defined **FunctionTool**, choose your target model/voice, and enable audio modalities, transcription, and turn detection.
 
 1. **Start audio processing**: Spin up **AudioProcessor** to capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
 
