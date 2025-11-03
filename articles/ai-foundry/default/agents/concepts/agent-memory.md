@@ -408,7 +408,16 @@ Agent memory typically falls into two categories:
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
 Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
+## Understand Scope
+Scope defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
+As a developer, you decide the “key” used to store and retrieve these memory items—such as a UUID or an email address (provided it is unique and permanent in your system).
+
+The memory store supports the {{$userId}} variable, which is replaced at runtime with the actual user OID. This allows you to leverage the memory store for scoping when using Microsoft Entra for authenticating your end users. If you manage your own user identities, you are responsible for setting this value for every end user interacting with your agent.
+
+## Pricing 
+
+In this public preview, the use of memory features is free. However, you’re billed for use of the chat completion model and embedding model. 
 ## Best practices
 
 When you implement memory in your agents, consider the following practices:
