@@ -1,4 +1,3 @@
-
 ---
 title: 'Generate synthetic data with Azure AI Foundry'
 titleSuffix: Azure AI Foundry
@@ -84,18 +83,18 @@ You can find example reference files for each generator in the following GitHub 
 ### Generate synthetic data in the portal
 
 1. Navigate to Azure AI Foundry (new) Synthetic Data Generation from the left menu under Data 
-![alt text](./assets/image.png)
-2. Click on "Generate data" button 
-![alt text](./assets/image3.png)
+:::image type="content" source="../media/data-generation/generate-data.png" alt-text="Screenshot shows location of generate data button in the synthetic data generation tab in AI Foundry.":::
+2. Select "Generate data" button 
+:::image type="content" source="../media/data-generation/data-tab.png" alt-text="Screenshot shows location of data tab in the fine-tuning section of AI Foundry.":::
 3. Use the synthetic data generation wizard to create a new data generation job:
-![alt text](./assets/image2.png)
+:::image type="content" source="../media/data-generation/upload-data.png" alt-text="Screenshot shows location of the upload data button in the wizard for uploading data to the fine-tuning feature in AI Foundry.":::
    1. Select a generator
    2. Define the generation parameters 
    3. Upload your reference file
    4. (Optional) Provide a custom output naming text that will be attached to the end of the data generation job ID to identify it more easily
    5. Submit your generation job by clocking on the "Generate data" button in the wizard
-4. Review generated data by clicking on it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
-5. Download the generated synthetic data for post-processing or use it directly in fine-tuning by clicking on the "use this dataset" button inside the right preview panel 
+4. Review generated data by selecting on it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
+5. Download the generated synthetic data for post-processing or use it directly in fine-tuning by selecting on the "use this dataset" button inside the right preview panel 
 
 ## Best practices with using synthetic data for fine-tuning 
 
