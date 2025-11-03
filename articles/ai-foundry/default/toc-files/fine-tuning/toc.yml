@@ -1,1 +1,33 @@
 items:
+    - name: Fine-tune Azure OpenAI models
+      href: ../../../openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning 
+    - name: When to use Azure OpenAI fine-tuning
+      href: ../../../openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning 
+    - name: Deploy for testing
+      href: ../../../openai/how-to/fine-tune-test.md
+    - name: Deploy your Azure OpenAI fine-tuned model
+      href: ../../../openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning     
+    - name: Synthetic Data Generation
+      href: ../../fine-tuning/data-generation.md
+      displayName: finetuning, fine-tuning         
+    - name: Vision fine-tuning
+      href: ../../../openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning 
+    - name: Reinforcement fine-tuning
+      href: ../../../openai/how-to/reinforcement-fine-tuning.md?context=/azure/ai-foundry/context/context
+    - name: Preference fine-tuning
+      href: ../../../openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning 
+    - name: Safety evaluation
+      href: ../../../openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning 
+    - name: Tool calling
+      href: ../../../openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+      displayName: finetuning, fine-tuning       
+    - name: Fine-tuning cost management
+      href: ../../../openai/how-to/fine-tuning-cost-management.md
+    - name: Troubleshooting guidance
+      href: ../../../openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
