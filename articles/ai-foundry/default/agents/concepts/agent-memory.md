@@ -362,6 +362,7 @@ agent = project_client.agents.create_version(
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
+---
 
 ## Understand memory types
 
