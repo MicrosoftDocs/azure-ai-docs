@@ -348,6 +348,9 @@ Use the `limit` parameter to control pagination and efficiently manage large num
 
 ## Delete memories
 
+> [!WARNING]
+> Before you delete a memory store, consider the impact on dependent agents. Agents with attached memory stores might lose access to historical context.
+
 Memories are organized by scope within a memory store. You can delete memories for a specific scope to remove user-specific data, or delete the entire memory store to remove all memories across all scopes.
 
 ### Delete memories by scope
@@ -395,8 +398,6 @@ Authorization: Bearer <your-token>
 ```
 
 ---
-
-Before you delete a memory store, consider the impact on dependent agents. Agents with attached memory stores might lose access to historical context.
 
 ## Understand memory types
 
