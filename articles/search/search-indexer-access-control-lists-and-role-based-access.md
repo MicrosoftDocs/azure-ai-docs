@@ -42,7 +42,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-how-to-index-az
 
 + [Limits on Azure role assignments and ACL entries](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) in ADLS Gen2 impose a maximum number of role assignments and ACL entries.
 
-+ The `owning users`, `owning groups` and `Other` [ACL identities categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) are not supported during public preview. Use `named users` and `named groups` assignments instead.
++ The `owning users`, `owning groups`, `Other` (`all`),  [ACL identities categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) are not supported during public preview. Use `named users` and `named groups` assignments instead.
   
 + The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you're using any of these features in a skillset or indexer, document-level permissions won't be present in the indexed content:
 
