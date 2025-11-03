@@ -48,8 +48,7 @@ from azure.identity import DefaultAzureCredential
 # Initialize the client
 client = AIProjectClient(
     endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-    api_version="2025-11-15-preview",
+    credential=DefaultAzureCredential()
 )
 
 # Create memory store
@@ -379,8 +378,8 @@ Agent memory typically falls into two categories:
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
 Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
-## Understand Scope
-Scope defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
+## Understand `Scope`
+`Scope` defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
 As a developer, you decide the “key” used to store and retrieve these memory items—such as a UUID or an email address (provided it is unique and permanent in your system).
 
