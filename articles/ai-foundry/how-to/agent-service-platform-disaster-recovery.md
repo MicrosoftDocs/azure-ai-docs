@@ -69,6 +69,8 @@ For *each project* you choose to recover, follow these steps:
 
 1. Update clients to use the new AI Foundry account fully qualified domain name (FQDN) and new agent IDs.
 
+   If an AI gateway pattern is used, then clients will continue to use the gateway's FQDN. The gateway configuration will instead need to be updated to route requests to the newly created project on behalf of it clients.
+
       > [!IMPORTANT]
    > If clients support in-product messaging, notify users they're in a standby environment. Prior conversation history is unavailable, and new conversations *are lost* after failback.
 
