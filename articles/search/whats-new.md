@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 10/30/2025
+ms.date: 11/3/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,26 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## November 2025
+
+| Item | Type | Description |
+|--|--|--|
+| [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | REST | New preview REST API version providing programmatic access to the data plane operations described in this table. |
+| [Knowledge agents renamed to knowledge bases](agentic-retrieval-overview.md) | Agentic search | Knowledge agents are now known as knowledge bases. Knowledge sources remain unchanged. This rename introduces breaking changes to REST API routes and properties. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
+| [Knowledge bases (preview)](agentic-retrieval-overview.md) | Agentic search | After being renamed from knowledge agents, knowledge bases now support new `retrievalInstructions` and `outputConfiguration` properties for improved query planning and execution control. |
+| [Knowledge sources (preview)](agentic-knowledge-source-overview.md) | Agentic search | New types of knowledge sources: [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), indexed SharePoint, [remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md), and [web](agentic-knowledge-source-how-to-web.md). For indexed knowledge sources, the new `ingestionParameters` object provides properties to control content ingestion and processing, including `contentExtractionMode` for use of the Azure Content Understanding skill and `ingestionPermissionOptions` for use of ACLs in the generated indexer. |
+| [Knowledge retrieval (preview)](agentic-retrieval-how-to-retrieve.md) | Agentic search | Execute retrieval operations with support for reasoning effort, zero-model-call mode for efficiency, partial responses, and HTTP streaming for real-time result delivery. |
+| [Portal support for knowledge sources and knowledge bases (preview)](search-get-started-portal-agentic-retrieval.md) | Agentic search | Use the Azure portal to create and manage knowledge sources and knowledge bases, with a new chat playground for sending retrieval requests. These portal-generated objects use the 2025-08-01-preview schema and have breaking changes with the 2025-11-01-preview. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
+| [Azure Content Understanding skill (preview)](cognitive-search-skill-content-understanding.md) | Skills | New skill that wraps Azure Content Understanding in Foundry Tools to extract structured Markdown from text, images, PDFs, Microsoft PowerPoint, Microsoft Word, and more. This skill provides advanced document parsing with better table extraction (including cross-page tables), image descriptions, and semantic chunking. For indexed knowledge sources, this skill is also available through the `contentExtractionMode` property within `ingestionParameters`. |
+| [Service-level CMKs (preview)](search-security-manage-encryption-keys.md) | Security | Set a default customer-managed key at the service level. Afterwards, all objects created on the search service automatically use the specified key. |
+| [SharePoint support for ACLs (preview)](search-document-level-access-overview.md#sharepoint-support) | Security | Extended ACL support to flow SharePoint permissions directly to indexed documents, enabling document-level access control. |
+| [Elevated read permissions for ACLs (preview)](search-document-level-access-overview.md) | Security | New capability to assign elevated read permissions to specific users or groups within ACL configurations for fine-grained access control. |
+| [Purview index configuration (preview)](search-security-manage-encryption-keys.md) | Security | New integration with Azure Purview to apply data governance classifications and sensitivity labels to indexed content based on source metadata. |
+| [SharePoint indexing updates (preview)](search-how-to-index-sharepoint-online.md) | Indexing | New SharePoint indexer capabilities, including multi-site indexing, improved authentication options, incremental updates, and better handling of document permissions and metadata. |
+| [Scoring function aggregation (preview)](hybrid-search-ranking.md#scoring-profiles) | Relevance | New capability to combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. |
+| [Facet aggregations (preview)](search-faceted-navigation.md) | Relevance | New facet aggregation operations including sum, count, and other aggregate functions to provide enhanced analytics in faceted search experiences. |
+| [Semantic ranker and agentic retrieval support on free tiers](semantic-search-overview.md) | Relevance | Both semantic ranker and agentic retrieval are now available on free and standard tiers with shared billing control via the `semanticSearch` property. |
 
 ## September 2025
 

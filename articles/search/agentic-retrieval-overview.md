@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 10/28/2025
+ms.date: 11/03/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -98,34 +98,51 @@ Your application drives the pipeline by calling the knowledge base and handling 
 
 ## How to get started
 
-You must use the preview REST APIs or a prerelease Azure SDK package that provides the functionality. At this time, there's no Azure portal or Azure AI Foundry portal support.
+To create an agentic retrieval solution, you must use a preview REST API version or a prerelease Azure SDK package that provides the functionality.
 
-Choose any of these options for your next step.
+Currently, Azure portal support for agentic retrieval is limited to the 2025-08-01-preview. We recommend using a programmatic approach to access the latest features.
 
-+ [Quickstart article: Run agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md). Learn the basic workflow using sample data and a prepared index and queries.
+### [**Quickstarts**](#tab/quickstarts)
 
-+ Sample code:
++ [Quickstart: Use agentic retrieval in Azure AI Search](search-get-started-agentic-retrieval.md)
+  + This quickstart supports C#, Java, JavaScript, Python, TypeScript, and REST.
++ [Quickstart: Use agentic retrieval in the Azure portal](search-get-started-portal-agentic-retrieval.md)
+  + The portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. Breaking changes apply to objects created in this quickstart.
 
-  + [Quickstart-Agentic-Retrieval: Python](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval)
-  + [Quickstart-Agentic-Retrieval: .NET](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-agentic-retrieval)
-  + [Quickstart-Agentic-Retrieval: REST](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval)
-  + [End-to-end with Azure AI Search and Azure AI Agent Service](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example)
+### [**How-to guides**](#tab/how-to-guides)
 
-+ How-to guides for a focused look at development tasks:
++ Create a knowledge source:
+  + [Blob](agentic-knowledge-source-how-to-blob.md)
+  + [OneLake](agentic-knowledge-source-how-to-onelake.md)
+  + [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)
+  + [Search index](agentic-knowledge-source-how-to-search-index.md)
+  + [Web](agentic-knowledge-source-how-to-web.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
++ [Use a knowledge base to retrieve data](agentic-retrieval-how-to-retrieve.md)
 
-  + [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md)
-  + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-  + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
-  + [Use a knowledge base to retrieve data](agentic-retrieval-how-to-retrieve.md)
-  + [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
+### [**Tutorials**](#tab/tutorials)
 
-+ REST API reference:
++ [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
 
-  + [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-  + [Knowledge Bases](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-  + [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+### [**Code samples**](#tab/sample-code)
 
-+ [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
++ [Quickstart-Agentic-Retrieval: Python](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval)
++ [Quickstart-Agentic-Retrieval: .NET](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-agentic-retrieval)
++ [Quickstart-Agentic-Retrieval: REST](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-agentic-retrieval)
++ [End-to-end with Azure AI Search and Azure AI Agent Service](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example)
+
+### [**REST API references**](#tab/rest-api-references)
+
++ [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
++ [Knowledge Bases](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
++ [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+### [**Demos**](#tab/demos)
+
++ [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo) has been updated to use agentic retrieval.
+
+---
 
 ## Availability and pricing
 
