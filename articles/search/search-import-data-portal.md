@@ -71,12 +71,12 @@ The wizards support the following data sources, most of which use [built-in inde
 | [OneDrive for Business](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
 | [OneLake](search-how-to-index-onelake-files.md) | ✅ | ✅ |
 | [Service Bus](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
-| [SharePoint Online](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
+| [SharePoint](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
 | [SQL Server on virtual machines](search-how-to-index-sql-server.md) | ✅ | ✅ |
 
 <sup>1</sup> This data source uses an [Azure Logic Apps connector (preview)](search-how-to-index-logic-apps.md#supported-connectors) instead of a built-in indexer.
 
-<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-how-to-index-sharepoint-online.md).
+<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint](search-how-to-index-sharepoint-online.md).
 
 ### Sample data
 
