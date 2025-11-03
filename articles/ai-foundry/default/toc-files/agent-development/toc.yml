@@ -1,16 +1,20 @@
 items:
 - name: Agent development overview
   href: ../../../agents/overview.md
+- name: FAQ
+  href: ../../../agents/faq.yml
 - name: Model and region support
   href: ../../../agents/concepts/model-region-support.md 
+- name: Quotas and limits
+  href: ../../../agents/quotas-limits.md
 - name: Development lifecycle
   href: ../../agents/concepts/development-lifecycle.md
 - name: Agent runtime components
-  href: ../../../agents/concepts/threads-runs-messages.md
+  href: ../../agents/concepts/runtime-components.md
 - name: Use the Visual Studio Code extension
-  href: ../../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+  href: ../../../how-to/develop/vs-code-agents.md
 - name: Use MCP Tools in the Visual Studio Code extension
-  href: ../../../how-to/develop/vs-code-agents-mcp.md?context=/azure/ai-services/agents/context/context
+  href: ../../../how-to/develop/vs-code-agents-mcp.md
 - name: Setup and configuration
   items:
   - name: Set up your development environment
@@ -21,9 +25,17 @@ items:
     href: ../../../agents/concepts/standard-agent-setup.md
   - name: Capability hosts
     href: ../../../agents/concepts/capability-hosts.md
+  - name: Virtual networks
+    href: ../../../agents/how-to/virtual-networks.md
 - name: Interact with models
   items:
   - name: Work with chat models
     href: ../../../foundry-models/how-to/use-chat-completions.md
+- name: Observability
+  items:
+  - name: Service monitoring
+    href: ../../../agents/how-to/metrics.md
+  - name: Trace and observe agents
+    href: ../../../how-to/develop/trace-agents-sdk.md
 - name: Create a workflow
   href: ../../agents/concepts/workflow.md

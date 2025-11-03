@@ -529,6 +529,8 @@ items:
     href: migrate-to-batch-synthesis.md
   - name: Migrate to custom voice API
     href: migrate-to-custom-voice-api.md
+  - name: Migrate from retired intent recognition
+    href: migrate-intent-recognition.md    
 - name: Responsible AI
   items:
     - name: Speech to text

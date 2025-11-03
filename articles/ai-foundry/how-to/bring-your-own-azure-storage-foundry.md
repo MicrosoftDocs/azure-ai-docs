@@ -11,7 +11,7 @@ ms.custom: ignite-2024, build-2025
 ms.topic: how-to
 ms.date: 10/27/2025
 ai-usage: ai-assisted
- monikerRange: 'foundry-classic || foundry'
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Connect to your own storage
@@ -100,6 +100,20 @@ The connection is now available to Agents (when not overridden), Evaluations, Da
 1. In the **Select a tool** dialog that appears, select the **Catalog** tab, and find Azure Blob Storage from the list of available tools.
 1. Select **Create**.
 ::: moniker-end
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+2. Open your Azure AI Foundry resource or project.
+3. In the left navigation, select **Connections** (or **Connected resources**).
+4. Select **+ New connection**.
+5. Choose **Azure Blob Storage**.
+6. Provide:
+   - Name
+   - Subscription
+   - Storage account
+   - Authentication method (system-assigned managed identity recommended)
+7. Select **Create**.
+::: moniker-end
+
+The connection is now available to Agents (when not overridden), Evaluations, Datasets, and Content Understanding.
 
 ## Configure capability host for Agents (combined resource + project steps)
 
@@ -214,6 +228,9 @@ Create the role assignment on the Azure Storage account for the Foundry resource
 > [!NOTE]
 > Programmatic configuration options for Content Understanding are under evaluation.
 ::: moniker-end
+
+> [!NOTE]
+> Programmatic configuration options for Content Understanding are under evaluation.
 
 ## End-to-end customer-managed storage checklist
 

@@ -10,15 +10,19 @@ ms.date: 10/29/2025
 ms.reviewer: jburchel
 reviewer: jonburchel
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Create custom policies for Azure AI Foundry
 
-Learn how to use custom Azure policies to enable teams to self-manage AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+Learn how to use custom Azure policies to enable teams to self-manage Azure AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements. (Source: foundry-branding.instructions.md)
 
 Custom policies allow you to:
 
-- **Enforce governance**: Prevent unauthorized creation of AI Foundry hubs, projects, connections, or capability hosts.
+- **Enforce governance**: Prevent unauthorized creation of Azure AI Foundry hubs, projects, connections, or capability hosts.
 - **Control resource behavior**: Ensure security configurations, enforce tagging, or allow only approved integrations.
 - **Ensure compliance**: Apply enterprise security and operational standards consistently across environments.
 
@@ -26,6 +30,7 @@ Custom policies allow you to:
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - Permissions to create and assign policies. You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the subscription or resource group level.
+For more, see [What is Azure Policy?](/azure/governance/policy/overview).
 
 ## Steps to create a custom policy
 
