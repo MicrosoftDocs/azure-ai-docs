@@ -140,7 +140,7 @@ To create a OneLake knowledge source:
 
 You can pass the following properties to create a OneLake knowledge source.
 
-| Name | Description | Type | Mutable | Required |
+| Name | Description | Type | Changeable | Required |
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
 | `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | No | Yes |
