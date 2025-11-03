@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 10/16/2025
+ms.date: 11/03/2025
 author: aahill
 ms.author: aahi
 ---
@@ -48,7 +48,17 @@ From the Code tab in the agent playground chat pane, you can take a code snippet
 The agent building experience offers integrated experiences for each core step of the agent development lifecycle. We recommend utilizing these core capabilities as you develop your production-ready agent application. Each capability has in depth documentation you can dive into to learn more.
 
 ### Saving and versioning
-After you create the first version of a prompt-based agent or a workflow, you can then save subsequent changes as new versions. You can test unsaved changes in the agent playground, but if you want to view conversation history, monitor your agents performance or run full evaluations, you'll be prompted to save your changes. <!--Learn more about versioning [here](versioning-doc-page).-->
+After you create the first version of a prompt-based agent or a workflow, you can then save subsequent changes as new versions. You can test unsaved changes in the agent playground, but if you want to view conversation history, monitor your agents performance or run full evaluations, you'll be prompted to save your changes.
+
+The agent versioning provides version control capabilities for managing agent configurations and iterations. This system ensures that all changes are tracked, testable, and comparable across different versions.
+
+* **Version immutability**: Each version of an agent is immutable once saved. Any modifications to an existing version require saving and creating a new version. This ensures version integrity and prevents accidental overwrites
+* **Draft state management**: Agents can be tested in an unsaved state for experimentation. Unsaved changes will be lost if you exit the screen in the AI Foundry portal, so save frequently to preserve important modifications.
+* **Version control operations**: You can direct requests to specific agent versions, enables controlled deployment and rollback capabilities.
+* **Version history navigation**: Access the version history for any agent and navigate to any specific version, and perform the following comparision modes. 
+    * Agent setup comparison: Compare configuration settings between versions
+    * Chat output comparison: Analyze response differences between agent versions using identical inputs
+    * YAML definition comparison: Review differences in agent definitions
 
 ### Adding tools
 You can make your agent more powerful by giving it knowledge (specific files or indexes), or allowing it to take actions (like searching the web or calling external APIs). There are tools available for most use cases, from simple file uploads to custom MCP server connections. For more complicated tools, you may need to configure authentication or add connections as part of attaching it to an agent. You must successfully configure a tool to be able to save an agent with it attached. You can reuse configured tools across agents. See the [tools overview](../../../agents/how-to/tools/overview.md) for more about available tools.
