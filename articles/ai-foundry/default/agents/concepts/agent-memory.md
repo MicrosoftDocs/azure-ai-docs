@@ -28,8 +28,8 @@ Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution
 - Access to Azure AI Foundry with appropriate permissions to create and manage resources.
 - An [Azure AI Foundry project](../../../how-to/create-projects.md).
 - An [agent created in Azure AI Foundry](../../../agents/quickstart.md).
-- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4o`) in your project.
-- [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-ada-002`) in your project.
+- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
+- [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - Python 3.8 or later with the Azure AI Agent SDK installed, or access to the REST API.
 
 ## Create a memory store
@@ -53,15 +53,14 @@ client = AIProjectClient.from_connection_string(
 
 # Create memory store
 definition = MemoryStoreDefaultDefinition(
-    chat_model="gpt-4",  # Your chat model deployment name
-    embedding_model="text-embedding-ada-002"  # Your embedding model deployment name
+    chat_model="gpt-4.1",  # Your chat model deployment name
+    embedding_model="text-embedding-3-small"  # Your embedding model deployment name
 )
 
 memory_store = client.memory_stores.create_memory_store(
     name="my_memory_store",
     definition=definition,
     description="Memory store for customer support agent",
-    metadata={"project": "customer-service", "environment": "production"}
 )
 
 print(f"Created memory store: {memory_store.id}")
@@ -79,12 +78,8 @@ Authorization: Bearer <your-token>
   "description": "Memory store for customer support agent",
   "definition": {
     "type": "default",
-    "chatModel": "gpt-4",
-    "embeddingModel": "text-embedding-ada-002"
-  },
-  "metadata": {
-    "project": "customer-service",
-    "environment": "production"
+    "chatModel": "gpt-4.1",
+    "embeddingModel": "text-embedding-3-small"
   }
 }
 ```
@@ -106,7 +101,7 @@ updated_agent = client.agents.update(
    agent_name="my_agent",
    description="Agent with updated memory configuration"
    definition=PromptAgentDefinition(
-   model="gpt-4o-mini",
+   model="gpt-4.1",
    instructions="You are a helpful assistant with memory capabilities.",
    tools=[
          MemorySearchTool(
@@ -124,14 +119,33 @@ print(f"Attached memory store to agent: {updated_agent.id}")
 
 # [REST API](#tab/rest)
 
-```http
-PATCH https://<your-resource>.api.azureml.ms/agents/v1.0/agents/<agent-id>
-Content-Type: application/json
-Authorization: Bearer <your-token>
-
+```bash
+echo -e "\n\n6. Creating Agent with Memory Store Tool..."
+curl -X POST "${ENDPOINT}/agents?api-version=${API_VERSION}"
+-H "Authorization: Bearer ${ACCESS_TOKEN}"
+-H "Content-Type: application/json"
+-d '{
+"model": "gpt-4.1",
+"name": "customer-support-agent",
+"description": "Customer support agent with memory capabilities",
+"instructions": "You are a helpful customer support agent. Use your memory to recall user preferences and past interactions.",
+"tools": [
 {
-  "memoryStoreId": "<memory-store-id>"
+"type": "memory",
+"memory": {
+"memory_store_name": "user-conversation-memory"
 }
+},
+{
+"type": "code_interpreter"
+}
+],
+"tool_resources": {
+"memory": {
+"memory_store_name": "user-conversation-memory"
+}
+}
+}'
 ```
 
 ---
@@ -274,7 +288,7 @@ Search operations return a search ID that you can use for incremental searches, 
 
 ## Update a memory store
 
-Update memory store properties, such as `name`, `description`, or `metadata`, to reflect changes in your application or organizational requirements.
+Update memory store properties, such as `name` or `description`, to reflect changes in your application or organizational requirements.
 
 # [Python](#tab/python)
 
@@ -283,12 +297,7 @@ Update memory store properties, such as `name`, `description`, or `metadata`, to
 updated_store = client.memory_stores.update_memory_store(
     memory_store_id=memory_store.id,
     name="updated_memory_store",
-    description="Updated description for production use",
-    metadata={
-        "project": "customer-service",
-        "environment": "production",
-        "version": "2.0"
-    }
+    description="Updated description for production use"
 )
 
 print(f"Updated: {updated_store.name}")
@@ -303,12 +312,7 @@ Authorization: Bearer <your-token>
 
 {
   "name": "updated_memory_store",
-  "description": "Updated description for production use",
-  "metadata": {
-    "project": "customer-service",
-    "environment": "production",
-    "version": "2.0"
-  }
+  "description": "Updated description for production use"
 }
 ```
 
