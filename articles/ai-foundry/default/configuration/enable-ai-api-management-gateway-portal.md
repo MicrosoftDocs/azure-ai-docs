@@ -65,6 +65,18 @@ Expected result: Subsequent requests that exceed the TPM threshold receive rate-
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Project settings panel showing input fields for tokens-per-minute and total token quota limits." lightbox="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png":::
 
+## Quota window behavior
+
+Token limits have two complementary enforcement dimensions:
+
+- Tokens per minute (TPM) rate limit: Evaluated on a rolling 60‑second window. Each request's token usage is aggregated, and once the rolling window total exceeds the configured TPM value, subsequent requests within that window receive `429 Too Many Requests` responses until usage falls below the threshold. 
+- 
+- Total token quota: Aggregates tokens consumed across the defined quota window (for example, daily or monthly allocation). When cumulative usage reaches the configured quota, further requests receive `403 Forbidden` until the window resets. The quota counter automatically resets at the start of the next window boundary.
+
+Adjusting a quota or TPM value mid-window affects only subsequent enforcement decisions; it does not retroactively clear already consumed tokens. To effectively "reset" a quota before the natural window boundary, temporarily increase the quota value or remove and recreate the limit.
+
+Refer to [AI Gateway capabilities in APIM](/azure/api-management/genai-gateway-capabilities) and [API Management access restriction policies](/azure/api-management/api-management-access-restriction-policies) for more details on how these policies function.
+
 ## Verify enforcement
 
 1. Send test requests to a model deployment endpoint by using the project’s gateway URL and key.
@@ -95,19 +107,17 @@ Use AI Gateway for:
 
 | Issue | Possible cause | Action |
 |-------|----------------|--------|
-| APIM instance doesn't appear | Provisioning delay | Refresh after a few minutes. [TO VERIFY: Typical delay] |
-| Limits aren't enforced | Misconfiguration or project not linked | Reopen settings; confirm enforcement toggle is on. |
-| Unexpected quota resets | Misaligned time window definition | Verify quota window configuration. [TO VERIFY] |
-| High latency after enablement | APIM cold start or region mismatch | Check APIM region vs resource region. [TO VERIFY] |
+| APIM instance doesn't appear | Provisioning delay | Refresh after a few minutes. |
+| Limits aren't enforced | Misconfiguration or project not linked | Reopen settings; confirm enforcement toggle is on. Confirm that the AI Gateway is enabled for the project and if correct limits are configured. |
+| High latency after enablement | APIM cold start or region mismatch | Check APIM region vs resource region. Call the model directly and compare the result with the call proxied through the AI Gateway to identify if performance issues are related to the gateway. |
 
-If the Admin console is slow, retry after a brief interval. [TO VERIFY: Official status page link]
+If the Admin console is slow, retry after a brief interval.
 
 ## Limitations
 
 - You can configure settings only through the UI; no support yet for CLI, ARM, or API.
-- Basic v2 APIM SKU is free for the first 30 days (confirm official pricing and legal text). After that, [standard charges](https://azure.microsoft.com/pricing/details/api-management/) apply.
 - Dedicated APIM isolates governance, while shared APIM centralizes operations.
-- Enforcement is project-scoped; resource-level global limits aren't in scope. [TO VERIFY]
+- Enforcement of token quotas is project-scoped; resource-level global limits aren't managed by the AI gateway.
 
 ## Clean up resources
 
