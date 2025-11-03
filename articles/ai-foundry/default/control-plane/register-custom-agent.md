@@ -30,14 +30,9 @@ Before getting started, make sure you have:
 - To use observability capabilities, [configure Azure Application Insights]() in your project. Review the section [Enable telemetry for your agent](#enable-telemetry-for-your-agent) for more details and requirements.
 
     > [!IMPORTANT]
-    > Viewing statistics, runs, and traces for custom agents requires observability configured.
+    > Viewing statistics, runs, and traces for custom agents requires observability to be configured.
 
 - An agent deployed and exposed through a reachable endpoint (either a public endpoint or reachable from the network where the Azure AI Foundry resource is deployed).
-- Your agent is exposed through an exclusive endpoint.
-- The agent is reachable from within the network where the Azure AI Foundry resource is deployed.
-- The agent communicates using one of the supported protocols: either general HTTP, or specifically, A2A.
-- Your agent emits telemetry using the OpenTelemetry semantic conventions for GenAI solutions (or you don't need this capability).
-- Appropriate Azure role (Contributor or Owner) for the Azure AI Foundry resource to configure AI Gateway and register agents.
 
 ## Add a custom agent
 
