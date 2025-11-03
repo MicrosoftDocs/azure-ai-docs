@@ -61,7 +61,7 @@ Version `0.4.0` and later provides a more object-orientated and composable API. 
 
 ##### Side-by-side basic usage
 
-# [<=0.3.0](#tab/0.3.0)
+## [Version <= 0.3.0](#tab/previous)
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
@@ -85,7 +85,7 @@ var loaded = await manager.ListLoadedModelsAsync();
 await manager.UnloadModelAsync(alias);
 ```
 
-# [<=0.4.0](#tab/0.4.0)
+## [Version >= 0.4.0](#tab/vNext)
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
