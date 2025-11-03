@@ -67,5 +67,5 @@ items:
       href: ../../how-to/access-on-premises-resources.md
     - name: Troubleshoot secure project connectivity
       href: ../../how-to/troubleshoot-secure-connection-project.md
-  - name: High availability and disaster recovery
+  - name: High availability and disaster recovery for hubs
     href: ../../how-to/hub-disaster-recovery.md
