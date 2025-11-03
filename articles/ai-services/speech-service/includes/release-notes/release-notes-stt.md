@@ -215,7 +215,7 @@ The Speech to text REST API version 3.2 is now generally available. For more inf
 
 #### Video translation (Preview)
 
-Video translation is now available in public preview. Video translation is a feature in Azure AI Speech that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
+Video translation is now available in public preview. Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
 
 #### Pronunciation Assessment
 
@@ -258,9 +258,9 @@ You can create speech to text applications that use diarization to distinguish b
 
 #### Whisper general availability (GA)
 
-The Whisper speech to text model with Azure AI Speech is now generally available.
+The Whisper speech to text model with Azure Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Azure AI Foundry Models.
 
 ### February 2024 release
 
@@ -316,12 +316,12 @@ We encourage you to explore these improvements and consider potential issues for
 
 #### Whisper public preview
 
-Azure AI Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
+Azure Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
 
 > [!NOTE]
 > Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI.
 
 #### Speech to text REST API v3.2 public preview
 

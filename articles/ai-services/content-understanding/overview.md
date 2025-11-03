@@ -1,7 +1,7 @@
 ﻿---
-title: What is Azure AI Content Understanding?
+title: What is Azure Content Understanding in Foundry Tools?
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
+description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,15 +14,15 @@ ms.custom:
 # customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding (preview)?
+# What is Azure Content Understanding in Foundry Tools (preview)?
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format.
+Azure Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format.
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
@@ -30,7 +30,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 ## Why use Content Understanding?
 
-* **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction and classification of content, structure, and insights from various content types into a unified process.
+* **Simplify and streamline workflows**. Azure Content Understanding standardizes the extraction and classification of content, structure, and insights from various content types into a unified process.
 
 * **Simplify field extraction**. Content Understanding's field extraction makes it easier to generate structured output from unstructured content. Define a schema to extract, classify, or generate field values with no complex prompt engineering
 
@@ -75,7 +75,7 @@ Common applications for Content Understanding include:
 
 ## Responsible AI
 
-Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
+Azure Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified content filtering
 

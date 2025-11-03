@@ -45,15 +45,15 @@ The `LanguageIdentificationMode` is added to `LanguageIdentificationProperties` 
 
 ### Whisper models
 
-Azure AI Speech now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
+Azure Speech in Foundry Tools now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
 
 > [!NOTE]
-> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../ai-foundry/openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models. 
+> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../ai-foundry/openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Azure AI Foundry Models. 
 
 ## Custom speech
 
 > [!IMPORTANT]
-> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 > 
 > To programmatically determine whether a model was created before or after October 1, 2023, use the `chargedForAdaptation` property that's [new in version 3.2](#charge-for-adaptation).
 
@@ -128,7 +128,7 @@ The `supportedOutputFormat` property is added to `BaseModelFeatures`. This prope
 The `chargeForAdaptation` property is added to `BaseModelProperties`. This property is within the `BaseModel` definition.
 
 > [!IMPORTANT]
-> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 If the value of `chargeForAdaptation` is `true`, you're charged for training the model. If the value is `false`, you're charged for training the model. Use the `chargeForAdaptation` property instead of the created date to programmatically determine whether you're charged for training a model. 
 

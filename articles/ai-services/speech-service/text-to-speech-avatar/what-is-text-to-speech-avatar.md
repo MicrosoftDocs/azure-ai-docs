@@ -39,7 +39,7 @@ With text to speech avatar's advanced neural network models, the feature empower
 
 You can choose from a range of standard voices for the avatar. The language support for text to speech avatar is the same as the language support for text to speech. For details, see [Language and voice support for the Speech service](../language-support.md?tabs=tts). Standard text to speech avatars can be accessed through the [Speech Studio portal](https://speech.microsoft.com/portal/talkingavatar) or via API.
 
-The voice in the synthetic video could be an Azure AI Speech standard voice or the [custom voice](../custom-neural-voice.md) of voice talent selected by you.
+The voice in the synthetic video could be an Azure Speech in Foundry Tools standard voice or the [custom voice](../custom-neural-voice.md) of voice talent selected by you.
 
 ## Avatar video output
 

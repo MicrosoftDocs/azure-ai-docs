@@ -14,7 +14,7 @@ ms.custom:
 
 # Document analysis: Markdown representation
 
-Azure AI Content Understanding converts unstructured documents into [GitHub Flavored Markdown](https://github.github.com/gfm), while maintaining content and layout for accurate downstream use. This article describes how each content and layout element is represented in Markdown.
+Azure Content Understanding in Foundry Tools converts unstructured documents into [GitHub Flavored Markdown](https://github.github.com/gfm), while maintaining content and layout for accurate downstream use. This article describes how each content and layout element is represented in Markdown.
 
 ## Words and selection marks
 

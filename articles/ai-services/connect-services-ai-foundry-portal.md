@@ -32,7 +32,7 @@ Depending on the AI service and model you want to use, you can use them in Azure
 - 
 - ### Connect Azure AI Foundry Tools after you create a project
 
-You can connect Azure AI Foundry Tools resources to an Azure AI Foundry project after you create a project. To use your existing Azure AI Foundry Tools resources (such as Azure AI Speech) in an Azure AI Foundry project, you need to create a connection to the resource.
+You can connect Azure AI Foundry Tools resources to an Azure AI Foundry project after you create a project. To use your existing Azure AI Foundry Tools resources (such as Azure Speech in Foundry Tools) in an Azure AI Foundry project, you need to create a connection to the resource.
 
 1. Create an Azure AI Foundry project. For detailed instructions, see [Create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md).
 1. Go to your Azure AI Foundry project.
@@ -42,7 +42,7 @@ You can connect Azure AI Foundry Tools resources to an Azure AI Foundry project 
 
     :::image type="content" source="./media/ai-foundry/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="./media/ai-foundry/connections-add.png":::
 
-1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure AI Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Azure AI Foundry Models, Azure AI Content Safety, Azure AI Speech, Azure AI Language, and other AI services.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure AI Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Azure AI Foundry Models, Azure AI Content Safety, Azure Speech, Azure AI Language, and other AI services.
 
     :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of AI service that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
 
@@ -96,7 +96,7 @@ Once you have a project, several Azure AI Foundry Tools are already deployed and
 
     :::image type="content" source="./media/ai-foundry/models-endpoints-ai-services-deployments.png" alt-text="Screenshot of the models and endpoints page to view Azure AI Foundry Tools endpoints." lightbox="./media/ai-foundry/models-endpoints-ai-services-deployments.png":::
 
-    In this example, we see six Azure AI Foundry Tools deployments (such as Azure AI Speech and Azure AI Language) via the default connection. These models were already available for use when you created the project.
+    In this example, we see six Azure AI Foundry Tools deployments (such as Azure Speech and Azure AI Language) via the default connection. These models were already available for use when you created the project.
 
 You don't deploy Azure AI Foundry Tools from the **Models + endpoints** page. Azure AI Foundry Tools models are already deployed and ready to use.
 

@@ -14,7 +14,7 @@ ms.author: lajanuar
 
 Azure Translator Custom Translator is a feature of the Azure Translator service. Azure Translator Custom Translator allows users to customize Azure Translator's advanced neural machine translation when translating text using Translator (version 3 only).
 
-The feature can also be used to customize speech translation when used with [Azure AI Foundry Tools Speech](../../../speech-service/index.yml).
+The feature can also be used to customize speech translation when used with [Azure Speech in Foundry Tools](../../../speech-service/index.yml).
 
 ## Azure Translator Custom Translator
 

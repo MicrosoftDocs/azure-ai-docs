@@ -2,7 +2,7 @@
 metadata:
   title: Voice live frequently asked questions (FAQ)
   titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the Voice live API in Azure AI Speech.
+  description: Get answers to frequently asked questions about the Voice live API in Azure Speech in Foundry Tools.
   author: goergenj
   reviewers: pafarley
   manager: nitinme
@@ -75,7 +75,7 @@ sections:
       - question: |
           What voices does Voice live support?
         answer: |
-          Native audio output with preferred model, Azure AI Speech TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
+          Native audio output with preferred model, Azure Speech in Foundry Tools TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
       - question: |
           How do I pick a voice?
         answer: |

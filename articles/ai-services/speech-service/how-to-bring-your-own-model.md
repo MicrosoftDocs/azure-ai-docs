@@ -1,6 +1,6 @@
 ---
 title: Bring Your Own Model (BYOM) with Voice Live API (Preview)
-description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure AI Speech Service.
+description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure Speech in Foundry Tools Service.
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/26/2025

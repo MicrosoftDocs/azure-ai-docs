@@ -9,7 +9,7 @@ ms.date: 7/31/2025
 ms.custom: references_regions
 ---
 
-In this article, you learn how to use voice live with generative AI and Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+In this article, you learn how to use voice live with generative AI and Azure Speech in Foundry Tools in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 [!INCLUDE [Introduction](intro.md)]
 

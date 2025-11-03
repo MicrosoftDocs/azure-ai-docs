@@ -26,11 +26,11 @@ For a table of supported models and regions, see the [Voice live API overview](.
 
 ## Authentication
 
-An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure AI Speech Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
+An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
 
 > [!NOTE]
 > Using Voice Live API is optimized for Azure AI Foundry resources. We recommend using Azure AI Foundry resources for full feature availability and best Azure AI Foundry integration experience.        
-> **Azure AI Speech Services resources** don't support Azure AI Foundry Agent Service integration and bring-your-own-model (BYOM).
+> **Azure Speech Services resources** don't support Azure AI Foundry Agent Service integration and bring-your-own-model (BYOM).
 
 ### WebSocket endpoint
 
@@ -233,7 +233,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
+For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2

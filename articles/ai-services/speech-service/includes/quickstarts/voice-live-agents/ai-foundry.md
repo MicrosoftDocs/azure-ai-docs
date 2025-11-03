@@ -9,7 +9,7 @@ ms.date: 7/31/2025
 ms.custom: references_regions
 ---
 
-In this article, you learn how to use voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure AI Speech](/azure/ai-services/speech-service/overview) in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+In this article, you learn how to use voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview) in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 [!INCLUDE [Introduction](intro.md)]
 

@@ -61,7 +61,7 @@ If you can't find an answer to your problem using search, submit a new question 
 
 **Speech**
 
-* [Azure AI Speech](/answers/topics/azure-speech.html)
+* [Azure Speech in Foundry Tools](/answers/topics/azure-speech.html)
 
 ## Post a question to Stack Overflow
 
@@ -94,7 +94,7 @@ If you submit a new question to Stack Overflow, use one or more of the following
 
 **Speech**
 
-* [Azure AI Speech service](https://stackoverflow.com/search?q=azure+speech)
+* [Azure Speech service](https://stackoverflow.com/search?q=azure+speech)
 
 ## Other support options
 You can also use the following forums to ask questions and get help:
@@ -125,7 +125,7 @@ To request new features, post them on `https://feedback.azure.com`. Share your i
 
 **Speech**
 
-* [Azure AI Speech service](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=21041fae-0b25-ec11-b6e6-000d3a4f0858)
+* [Azure Speech service](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858?c=21041fae-0b25-ec11-b6e6-000d3a4f0858)
 
 **Decision**
 

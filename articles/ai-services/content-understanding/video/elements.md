@@ -1,7 +1,7 @@
 ---
-title: "AudioVisual analysis: extracting structured content with Azure AI Content Understanding"
+title: "AudioVisual analysis: extracting structured content with Azure Content Understanding in Foundry Tools"
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding's audiovisual analysis and content extraction capabilities for both audio and video inputs
+description: Learn about Azure Content Understanding in Foundry Tools's audiovisual analysis and content extraction capabilities for both audio and video inputs
 author: laujan
 ms.author: paulhsu
 manager: nitinme
@@ -16,13 +16,13 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
-Azure AI Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
+Azure Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
 
 The `contents` object with `kind: "audioVisual"` supports both audio-only and video inputs, with different capabilities available depending on the input type.
 

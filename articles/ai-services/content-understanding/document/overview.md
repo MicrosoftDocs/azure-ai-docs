@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Document Overview
+title: Azure Content Understanding in Foundry Tools Document Overview
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document solutions.
+description: Learn about Azure Content Understanding in Foundry Tools document solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -12,10 +12,10 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding document solutions (preview)
+# Azure Content Understanding in Foundry Tools document solutions (preview)
 
 > [!IMPORTANT]
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Content Understanding offers sophisticated document analysis capabilities. Organizations can use these capabilities to convert unstructured content into actionable and organized data. Content Understanding can use [customizable analyzers](../concepts/prebuilt-analyzers.md) to expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
 
