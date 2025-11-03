@@ -1547,6 +1547,10 @@ groups:
   pivots:
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
   title: Programming languages
