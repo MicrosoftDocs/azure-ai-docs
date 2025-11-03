@@ -1,8 +1,8 @@
 ---
-title: Create and manage memory for AI agents
+title: Create and manage memory in Foundry Agent Service
 ms.reviewer: liulewis
 titleSuffix: Azure AI Foundry
-description: Learn how to create and manage memory stores to enable AI agents to retain context across sessions and personalize user interactions.
+description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
 author: jonburchel
 ms.author: jburchel
@@ -12,7 +12,7 @@ ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
 
-# Manage memory for AI agents
+# Manage memory in Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
