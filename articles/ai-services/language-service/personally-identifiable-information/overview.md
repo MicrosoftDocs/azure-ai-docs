@@ -20,7 +20,20 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 
 ## What's new
 
-* **2025-08-01-preview** introduces several new entities:
+**The 2025-11-15-preview version introduces the following new PII task parameters**:
+
+* [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request:
+    * [CharacterMaskPolicyType (default)](how-to/redact-text-pii.md#charactermaskpolicytype)
+    * [NoMaskPolicyType](how-to/redact-text-pii.md#nomaskpolicytype)
+    * [EntityMaskPolicyType](how-to/redact-text-pii.md#entitymaskpolicytype)
+    * [SyntheticReplacementPolicyType 🆕](how-to/redact-text-pii.md#syntheticreplacementpolicytype-)
+
+* [**Configurable confidence threshold**](how-to/redact-text-pii.md#confidencescorethreshold-) enables you to set a minimum confidence score. Entities are only included in the output if their confidence score meets or exceeds the specified threshold.
+
+* [**Disable type validation enforcement**](how-to/redact-text-pii.md#disableentityvalidation) enables you to bypass the entity type validation. By default, the service enforces validation across multiple entity types to ensure data integrity and minimize false positives. Disabling this enforcement can enhance operational efficiency in cases where strict validation isn't required.
+
+
+**The 2025-08-01-preview version introduces several new entities**:
 
    > [!div class="checklist"]
    > * [**DateOfBirth**](concepts/entity-categories.md#type-date-of-birth-preview) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.

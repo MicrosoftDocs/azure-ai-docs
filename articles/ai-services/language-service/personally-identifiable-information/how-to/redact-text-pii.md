@@ -1,19 +1,19 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from text
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This article shows you how to identify, extract, and redact Personally Identifying Information (PII) from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
 # Detect and redact Personally Identifying Information in text
 
-Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](../concepts/entity-categories.md).
+Azure Language in Foundry Tools is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](../concepts/entity-categories.md).
 
 
 ## Development options
@@ -26,22 +26,190 @@ By default, this feature uses the latest available AI model on your text. You ca
 
 ## Input languages
 
-When you submit input text to be processed, you can specify which of [the supported languages](../language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md). 
+When you submit input text to be processed, you can specify which of [the supported languages](../language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md).
 
-## Redaction Policy (version 2024-11-5-preview only)
-In version `2024-11-5-preview`, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports three policy types:
+##  2025-11-15-preview only
 
-- `DoNotRedact` 
-- `MaskWithCharacter` (default) 
-- `MaskWithEntityType` 
+> [!IMPORTANT]
+>
+> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 
-The `DoNotRedact` policy allows the user to return the response without the `redactedText` field, that is, "John Doe received a call from 424-878-919." 
+### Redaction policies
 
-The `MaskWithRedactionCharacter` policy allows the `redactedText` to be masked with a character (such as "*"), preserving the length and offset of the original text, that is, "******** received a call from ************." This result is the existing behavior.
+With version `2024-11-15-preview`, you're able to define the `redactionPolicies` parameter to reflect the redaction policy to be used when redacting text. The policy field supports four policy types:
 
-There's also an optional field called `redactionCharacter` where you can input the character to be used in redaction if you're using the `MaskWithCharacter` policy 
+> [!div class="checklist"]
+> * [`CharacterMaskPolicyType` (default)](#charactermaskpolicytype)
+> * [`NoMaskPolicyType`](#nomaskpolicytype)
+> * [`EntityMaskPolicyType`](#entitymaskpolicytype)
+> * [`SyntheticReplacementPolicyType 🆕`](#syntheticreplacementpolicytype-)
 
-The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, that is, "[PERSON_1] received a call from [PHONENUMBER_1]." 
+For more information, *see* [REST API PII task parameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
+
+##### CharacterMaskPolicyType
+
+**CharacterMaskPolicyType** enables you to mask **redactedText** using a specified character (for example, "*****") while preserving the length and offset of the original text. For instance, "******** received a call from ************"
+
+   ***Sample request***
+
+   ```bash
+      POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+              {
+          "kind": "PiiEntityRecognition",
+          "parameters": {
+          "modelVersion": "latest",
+              "redactionPolicies": [
+                {
+                  "policyKind": "characterMask",
+                  "redactionCharacter": "-"
+                }
+              ]
+            }
+        }
+
+   ```
+
+
+##### NoMaskPolicyType
+
+**NoMaskPolicyType** enables you to return the response without including the `redactedText` field. For example, "John Doe received a call from 424-878-919."
+
+
+> Additionally, there's also an optional field named `redactionCharacter` that allows you to specify the character used for redaction when applying the `CharacterMask` policy.
+
+   ***Sample request***
+
+   ```bash
+      POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+
+        {
+       "kind": "PiiEntityRecognition",
+       "parameters": {
+         "modelVersion": "latest",
+         "redactionPolicies": [
+           {
+             "policyKind": "noMask"
+           }
+         ]
+       }
+     }
+
+   ```
+
+
+##### EntityMaskPolicyType
+
+**EntityMaskPolicyType** enables you to mask the detected PII entity text its corresponding entity type. For example, "[PERSON_1] received a call from [PHONENUMBER_1]."
+
+   ```bash
+
+      POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+
+         {
+        "kind": "PiiEntityRecognition",
+        "parameters": {
+          "modelVersion": "latest",
+          "redactionPolicies": [
+            {
+              "policyKind": "entityMask"
+            }
+          ]
+        }
+      }
+
+   ```
+
+
+##### SyntheticReplacementPolicyType 🆕
+
+**SyntheticReplacementPolicyType** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
+
+   ```bash
+
+   POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+
+         {
+        "kind": "PiiEntityRecognition",
+        "parameters": {
+          "modelVersion": "latest",
+          "redactionPolicies": [
+            {
+              "policyKind": "syntheticReplacement",
+              "entityTypes": [
+                       "Person",
+                       "PhoneNumber"
+                   ]
+            }
+          ]
+        }
+      }
+   ```
+
+To learn more, *see* [Transparency Note for Personally Identifiable Information (PII)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information).
+
+### ConfidenceScoreThreshold 🆕
+
+The PII feature currently redacts all detected entities, regardless of their confidence scores. Thus, entities with low confidence scores are also removed, even if retaining them is preferred. To enhance flexibility, you can configure a confidence threshold that determines the minimum confidence score an entity must have to remain in the output.
+
+
+***Sample request***
+
+```bash
+
+    POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+
+         {
+           "kind":"PiiEntityRecognition",
+           "parameters":{
+              "modelVersion":"latest",
+              "confidenceScoreThreshold":{
+                 "default":0.9,
+                 "overrides":[
+                    {
+                       "value":0.8,
+                       "entity":"USSocialSecurityNumber"
+                    },
+                    {
+                       "value":0.6,
+                       "entity":"Person",
+                       "language":"en"
+                    }
+                 ]
+              }
+           }
+        }
+   ```
+To learn more, *see* [REST API reference: ConfidenceScoreThreshold](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#confidencescorethreshold)
+
+### DisableEntityValidation
+
+When you use the PII service, it validates multiple entity types to ensure data integrity and minimize false positives. However, this strict validation can sometimes slow down workflows where validation isn't necessary. To give you more flexibility, we're introducing a parameter that lets you disable entity validation if you choose. By default, this parameter is set to false, which means strict entity validation remains in place. If you want to bypass entity validation for your requests, you can set the parameter to true.
+
+***Sample request***
+
+```bash
+
+
+ POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+
+     {
+        "kind":"PiiEntityRecognition",
+        "parameters":{
+           "modelVersion":"latest",
+           "disableEntityValidation":"true | false"
+        },
+        "analysisInput":{
+           "documents":[
+              {
+                 "id":"id01",
+                 "text":"blah"
+              }
+           ]
+        }
+     }
+```
+To learn more, *see* [REST API reference: PiiTaskParameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters)
 
 ## Select which entities to be returned
 
@@ -79,12 +247,12 @@ The API attempts to detect the [defined entity categories](../concepts/entity-ca
             }
         ]
     },
-    "kind": "PiiEntityRecognition", 
-    "parameters": { 
-        "redactionPolicy": { 
-            "policyKind": "MaskWithCharacter"  
-             //MaskWithCharacter|MaskWithEntityType|DoNotRedact 
-            "redactionCharacter": "*"  
+    "kind": "PiiEntityRecognition",
+    "parameters": {
+        "redactionPolicies": {
+            "policyKind": "characterMask"
+             //MaskWithCharacter|MaskWithEntityType|DoNotRedact
+            "redactionCharacter": "*"
 }
 
 ```
@@ -120,13 +288,15 @@ The API attempts to detect the [defined entity categories](../concepts/entity-ca
 
 ## Adapting PII to your domain
 
-To accommodate and adapt to a customer's custom vocabulary used to identify entities (also known as the "context"), the `entitySynonyms` feature allows customers to define their own synonyms for specific entity types. The goal of this feature is to help detect entities in contexts that the model isn't familiar with but are used in the customer's inputs by ensuring that the customer's unique terms are recognized and correctly associated during the detection process. 
+To accommodate and adapt to a customer's custom vocabulary used to identify entities (also known as the "context"), the `entitySynonyms` feature allows customers to define their own synonyms for specific entity types.
 
-The `valueExclusionPolicy` option allows customers to adapt the PII service for scenarios where customers prefer certain terms not to be detected and redacted even if those terms fall into a PII category they're interested in detected. For example, a police department might want personal identifiers redacted in most cases except for terms like "police officer," "suspect," and "witness." 
+This feature is designed to identify entities within contexts that may be unfamiliar to the model, especially terms specific to the customer's input. By doing so, it ensures that the customer's unique terminology is accurately recognized and properly linked during the detection process.
 
-Customers can now adapt the PII service's detecting by specifying their own regex using a regex recognition configuration file. See our [container how-to guides](use-containers.md) for a tutorial on how to install and run Personally Identifiable Information (PII) Detection containers. 
+The `valueExclusionPolicy` option allows customers to adapt the PII service for scenarios where customers prefer certain terms not to be detected and redacted even if those terms fall into a PII category they're interested in detected. For example, a police department might want personal identifiers redacted in most cases except for terms like "police officer," "suspect," and "witness."
 
-A more detailed tutorial can be found in the "[Adapting PII to your domain](adapt-to-domain-pii.md)" how-to guide. 
+Customers can now adapt the PII service's detecting by specifying their own regex using a regex recognition configuration file. See our [container how-to guides](use-containers.md) for a tutorial on how to install and run Personally Identifiable Information (PII) Detection containers.
+
+A more detailed tutorial can be found in the "[Adapting PII to your domain](adapt-to-domain-pii.md)" how-to guide.
 
 
 ## Submitting data
