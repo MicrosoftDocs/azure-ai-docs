@@ -76,7 +76,7 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
 **NoMaskPolicyType** enables you to return the response without including the `redactedText` field. For example, "John Doe received a call from 424-878-919."
 
 
-    Additionally, there's also an optional field named `redactionCharacter` that allows you to specify the character used for redaction when applying the `CharacterMask` policy.
+> Additionally, there's also an optional field named `redactionCharacter` that allows you to specify the character used for redaction when applying the `CharacterMask` policy.
 
    ***Sample request***
 
