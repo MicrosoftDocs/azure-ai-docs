@@ -118,7 +118,7 @@ Utility analyzers provide specialized functionality for schema generation and fi
 #### `prebuilt-documentFields`
 
 * Extracts key-value pairs from documents
-* Used internally by vertical analyzers when the input doesn't match any of the predefined schemas (for example, `prebuilt-idDocument`)
+* Used internally by domain-specific analyzers when the input doesn't match any of the predefined schemas (for example, `prebuilt-idDocument`)
 
 ## Use prebuilt analyzers
 

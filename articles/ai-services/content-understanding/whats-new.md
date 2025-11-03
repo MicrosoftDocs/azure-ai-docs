@@ -24,7 +24,7 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 ### Choose the right generative model for every workload
 
 - Connect Content Understanding to an Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost.
-- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md).
+- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
 - Model selection give you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md)
 - Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly leverage your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](overview/pricing-explainer.md).
 
@@ -54,7 +54,7 @@ Domain-specific prebuilt analyzers are tailored for industry scenarios, enabling
 - **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run.
 - **Utilities, billing, and more**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data.
 
-Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#vertical-analyzers).
+Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
 
 ### Enterprise security and governance
 
