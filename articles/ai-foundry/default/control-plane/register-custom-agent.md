@@ -56,7 +56,7 @@ To register the agent, follow these steps:
 
 1. Select **Operate** from the upper-right navigation.
 
-1. On the **Overview** pane, select the option **Register agent**.
+1. On the **Overview** pane, select **Register agent**.
 
     :::image type="content" source="../media/register-custom-agent/register-custom-agent.png" alt-text="Screenshot of the Register agent button in the Azure AI Foundry portal Overview pane." lightbox="../media/register-custom-agent/register-custom-agent.png":::
 
