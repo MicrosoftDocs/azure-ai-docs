@@ -14,8 +14,6 @@ ai-usage: ai-assisted
 
 # Manage compliance and security in Azure AI Foundry
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
-
 Learn how Azure AI Foundry Control Plane helps you manage the compliance and security of your assets across subscriptions. You can use guardrail policies and guardrail management, integrate with Microsoft Defender for Cloud, and integrate with Microsoft Purview.
 
 ## Prerequisites
@@ -24,7 +22,7 @@ Learn how Azure AI Foundry Control Plane helps you manage the compliance and sec
 
 - An Azure AI Foundry project. If you don't have one, [create a project](../../how-to/create-projects.md).
 
-- This capability is available only in the Azure AI Foundry (new) portal. Look for :::image type="icon" source="../default/media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+- This capability is available only in the Azure AI Foundry (new) portal. Look for :::image type="icon" source="../media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
 
 - If you use agents, you need Agents v2 or later for full compliance feature support. <!--need to verify this and expand>
 
