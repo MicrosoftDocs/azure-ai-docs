@@ -8,7 +8,7 @@ ms.topic: quickstart
 ms.date: 10/06/2025
 ---
 
-# Quickstart: Use function calling in a voice lLive session
+# Quickstart: Use function calling in a Voice Live session
 
 The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information and include that information in their spoken responses.
 
