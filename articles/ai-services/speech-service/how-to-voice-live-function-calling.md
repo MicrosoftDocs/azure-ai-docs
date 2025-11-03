@@ -8,7 +8,7 @@ ms.topic: quickstart
 ms.date: 10/06/2025
 ---
 
-# Use Function Calling in a Voice Live Session
+# Quickstart: Use function calling in a voice lLive session
 
 The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information and include that information in their spoken responses.
 
@@ -818,3 +818,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 
 ```
+
+## Related content
+
+- Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- See the [Voice live API reference](./voice-live-api-reference.md)
