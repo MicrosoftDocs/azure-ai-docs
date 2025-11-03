@@ -270,6 +270,7 @@ This instance is not to be confused with any AI Search indexes that are connecte
 
    - Use the *exact same* resource group and service name it was before.
    - Redeploy all of the associated projects' role assignments on this Azure AI Search service.
+   - Ensure Azure Diagnostics configuration is restored.
 
    > [!TIP]
    > Your service name was released to the public the moment your service was deleted, you need to be expeditious in this restoration because if your service name is taken by another customer before you restore, you'll experience complete data loss as you'll need to [perform a destructive reset of the Azure AI Agent Service capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
