@@ -23,7 +23,7 @@ You can find the solution template on GitHub: [Call Center Voice Agent Accelerat
 
 This solution provides an end-to-end framework for creating scalable, efficient, and low-latency call center voice agent experiences using the Azure Voice Live API and Azure Communication Services APIs.  
 
-The Azure Voice Live API provides  a single, unified interface that integrates speech recognition, generative AI, and text-to-speech functionalities. 
+The Azure Voice Live API provides a single, unified interface that integrates speech recognition, generative AI, and text-to-speech functionalities. 
 
 Additionally, the Azure Communication Services Call Automation APIs provide the telephony integration. You can use either an [ACS provided number](/azure/communication-services/quickstarts/telephony/get-trial-phone-number) or direct routing using Session Initiation Protocol (SIP) with your existing PSTN carrier or third-party PBX (see [Use direct routing to connect existing telephony service](/azure/communication-services/concepts/telephony/direct-routing-provisioning)). 
 
