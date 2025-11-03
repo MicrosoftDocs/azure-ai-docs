@@ -109,7 +109,7 @@ Before you start, make sure you have these prerequisites:
 
 # [Python SDK](#tab/python)
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by the hub when creating private endpoints for the managed virtual network.
 
@@ -814,6 +814,8 @@ To use Hugging Face models with the hub, add outbound FQDN rules to allow traffi
 * `*.docker.com`
 * `production.cloudflare.docker.com`
 * `cdn.auth0.com`
+* `huggingface.co`
+* `cas-bridge.xethub.hf.co`
 * `cdn-lfs.huggingface.co`
 
 ### Scenario: Models sold directly by Azure

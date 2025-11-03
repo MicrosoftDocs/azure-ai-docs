@@ -5,11 +5,12 @@ description: Learn how to use voice live with agents for real-time voice agents 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 7/31/2025
-author: PatrickFarley
-ms.author: pafarley
-zone_pivot_groups: voice-live-quickstart
-ms.custom: build-2025
+ms.date: 10/28/2025
+author: goergenj
+reviewer: PatrickFarley
+ms.author: jagoerge
+ms.reviewer: pafarley
+zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
 ---
 
@@ -25,8 +26,12 @@ recommendations: false
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-agents/python.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
+::: zone-end
+
 ## Related content
 
 - Try the [Voice live quickstart](./voice-live-quickstart.md)
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
-- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- See the [Voice live API reference](./voice-live-api-reference.md)

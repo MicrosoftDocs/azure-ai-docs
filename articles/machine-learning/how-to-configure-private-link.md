@@ -374,6 +374,8 @@ The following restrictions apply to IP address ranges:
 
 - You can only set the IP addresses for the workspace after the workspace has been created.
 
+- Managed online endpoint deployments will fail if the workspace managed virtual network is not enabled on the workspace, alongside enable from selected IPs workspace. Training compute targets, including compute clusters, comptue instance, and serverless compute, in the workspace without end-to-end network isolation will not work alongside enable from selected IPs workspace. Network isolated training the previously mentioned computes require a private endpoint from compute network to the workspace with the enable from selected IPs workspace. 
+
 ## Securely connect to your workspace
 
 [!INCLUDE [machine-learning-connect-secure-workspace](includes/machine-learning-connect-secure-workspace.md)]

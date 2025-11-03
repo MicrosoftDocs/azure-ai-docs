@@ -1,32 +1,39 @@
 ﻿---
-title: "Azure AI Services docs: What's new for September 2025"
-description: Discover key changes and updates in Azure AI Services documentation for September 2025.
+title: "Azure AI Services docs: What's new for October 2025"
+description: Discover key changes and updates in Azure AI Services documentation for October 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: September-2025
-ms.date: 09/02/2025
+ms.custom: October-2025
+ms.date: 10/06/2025
 ---
 
 # What's new in Azure AI Services documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Services documentation for September 2025.
+Welcome! This article highlights key changes and updates in Azure AI Services documentation for October 2025.
 
 ## New articles
-- [Improve document output quality with confidence, grounding, and in-context learning](../ai-services/content-understanding/document/enrichments.md)
-- [Use liveness detection with network isolation (preview)](../ai-services/computer-vision/how-to/liveness-use-network-isolation.md)
-- [Voice live API supported languages (Preview)](../ai-services/speech-service/voice-live-language-support.md)
+- [Azure AI Translator 2025-05-01-preview](../ai-services/translator/text-translation/preview/overview.md)
+- [Bring Your Own Model (BYOM) with Voice Live API (Preview)](../ai-services/speech-service/how-to-bring-your-own-model.md)
+- [Create and deploy a CQA agent](../ai-services/language-service/question-answering/how-to/deploy-agent.md)
+- [How to customize voice live input and output](../ai-services/speech-service/voice-live-how-to-customize.md)
+- [Languages (2025-05-01-preview)](../ai-services/translator/text-translation/preview/get-languages.md)
+- [Migrate from Azure AI Vision - Image Analysis](../ai-services/computer-vision/migration-options.md)
+- [Migrate from Custom Vision Service](../ai-services/custom-vision-service/migration-options.md)
+- [Security guidelines for Azure AI Translator](../ai-services/translator/secure-deployment.md)
+- [Text translation 2025-05-01-preview migration](../ai-services/translator/text-translation/how-to/migrate-to-preview.md)
+- [Text translation REST API (preview)](../ai-services/translator/text-translation/preview/rest-api-guide.md)
+- [Translate (2025-05-01-preview)](../ai-services/translator/text-translation/preview/translate-api.md)
+- [Translator usage and data metrics](../ai-services/translator/text-translation/reference/metrics.md)
+- [Transliterate (2025-05-01-preview)](../ai-services/translator/text-translation/preview/transliterate-api.md)
+- [Voice live API Reference](../ai-services/speech-service/voice-live-api-reference.md)
+
 
 ## Updated articles
-- [Adapt Personally Identifying Information (PII) to your domain](../ai-services/language-service/personally-identifiable-information/how-to/adapt-to-domain-pii.md) - 
-- [Document analysis: Extract structured content](../ai-services/content-understanding/document/elements.md)
-- [Document processing models](../ai-services/document-intelligence/model-overview.md)
-- [Entity Metadata](../ai-services/language-service/named-entity-recognition/concepts/entity-metadata.md)
-- [Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)](../ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md)
-- [Named entity categories and types](../ai-services/language-service/named-entity-recognition/concepts/named-entity-categories.md) 
-- [Prebuilt API](../ai-services/language-service/question-answering/how-to/prebuilt.md)
-- [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
-- [Tutorial: Detect liveness in faces](../ai-services/computer-vision/tutorials/liveness.md)
-- [What is Azure AI Document Intelligence?](../ai-services/document-intelligence/overview.md)
-- [What is the Document Intelligence layout model?](../ai-services/document-intelligence/prebuilt/layout.md)
+
+- [Azure resources for Azure AI translation](../ai-services/translator/how-to/create-translator-resource.md)
+- [Create, test, and deploy: CQA knowledge base](../ai-services/language-service/question-answering/how-to/create-test-deploy.md)
+- [Language service supported regions](../ai-services/language-service/concepts/regional-support.md)
+- [Translator language support](../ai-services/translator/language-support.md)
+- [Transliterate (2025-05-01-preview)](../ai-services/translator/text-translation/preview/transliterate-api.md)

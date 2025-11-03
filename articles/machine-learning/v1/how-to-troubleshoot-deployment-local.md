@@ -23,7 +23,7 @@ Try a local model deployment as a first step in troubleshooting deployment to Az
 
 ## Prerequisites
 
-* An **Azure subscription**. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An **Azure subscription**. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Option A (**Recommended**) - Debug locally on Azure Machine Learning Compute Instance
    * An Azure Machine Learning Workspace with [compute instance](how-to-deploy-local-container-notebook-vm.md) running
 * Option B - Debug locally on your compute

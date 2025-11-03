@@ -3,7 +3,8 @@ title: 'Quickstart: Generate video with Sora'
 titleSuffix: Azure OpenAI
 description: Learn how to get started generating video clips with Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
@@ -38,5 +39,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md).
+* Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).

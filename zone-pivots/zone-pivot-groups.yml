@@ -1431,6 +1431,19 @@ groups:
     title: Foundry portal
   - id: programming-language-python
     title: Python
+  - id: programming-language-csharp
+    title: C#
+- id: voice-live-quickstart-agents
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1611,7 +1624,7 @@ groups:
   - id: rest
     title: REST
  # Owner: laujan
-- id: language-clu-quickstart
+- id: foundry-rest-api
   title: API methods and platforms
   prompt: Choose an API
   pivots:
@@ -1637,3 +1650,12 @@ groups:
     title: Import data (new)
   - id: import-data
     title: Import data
+# Owner: johalexander / ms-johnalex
+- id: ai-foundry-vsc-extension-languages
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#

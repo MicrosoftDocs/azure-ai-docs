@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn about the regions where each model is available for deployment in serverless APIs via Azure AI Foundry.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 07/24/2025
+ms.date: 10/24/2025
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
