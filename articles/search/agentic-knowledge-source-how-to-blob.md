@@ -143,7 +143,7 @@ To create a blob knowledge source:
 
 You can pass the following properties to create a blob knowledge source.
 
-| Name | Description | Type | Changeable | Required |
+| Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
 | `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | No | Yes |
