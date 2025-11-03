@@ -25,7 +25,7 @@ Use AI Gateway in Azure AI Foundry to apply governance controls, such as tokens-
 
 ## Understand AI Gateway scope
 
-AI Gateway sits between clients and model deployments. All requests flow through the APIM instance once associated. Limits apply at the project level (each project can have its own TPM and quota settings). Supported features for this release are TPM rate limits and token quotas only. No other policy types are enforced.
+An AI Gateway sits between clients and model deployments. All requests flow through the APIM instance once associated. Limits apply at the project level (each project can have its own TPM and quota settings). Supported features for this release are TPM rate limits and token quotas only. No other policy types are enforced.
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\gateway-architecture-diagram.png" alt-text="Logical flow showing client requests passing through AI Gateway (APIM) before reaching model deployments within a project.":::
 
