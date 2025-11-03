@@ -4,7 +4,7 @@ description: "Learn how to register a custom agent in Azure AI Foundry Control H
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.date: 10/30/2025
+ms.date: 11/18/2025
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -15,9 +15,9 @@ ai-usage: ai-assisted
 
 # Register and manage custom agents
 
-Azure AI Foundry can operate agents across multiple platforms, including custom agents running in compute services in Azure or even on a different cloud.
+The Azure AI Foundry control plane provides centralized management and observability for agents running across different platforms and infrastructures. You can register custom agents—whether they run in Azure compute services or other cloud environments—to gain visibility into their operations and control their behavior.
 
-In this article, you learn how to register a custom agent in Azure AI Foundry Control Hub to gain management and observability capabilities on it.
+This article shows you how to register a custom agent in the Foundry control plane. You'll learn how to configure your agent for registration, set up telemetry collection, and use the control plane's management capabilities.
 
 ## Prerequisites
 
@@ -63,11 +63,11 @@ To register the agent, follow these steps:
 
 1. On the **Overview** pane, select the option **Register agent**.
 
-    :::image type="content" source="../media/register-custom-agent/register-custom-agent.png" alt-text="Screenshot showing the Register agent button in the Azure AI Foundry portal Overview pane." lightbox="../media/register-custom-agent/register-custom-agent.png":::
+    :::image type="content" source="../media/register-custom-agent/register-custom-agent.png" alt-text="Screenshot of the Register agent button in the Azure AI Foundry portal Overview pane." lightbox="../media/register-custom-agent/register-custom-agent.png":::
 
 1. The registration wizard appears. First, complete the details about the agent you want to register. The following properties describe the agent as it runs on its platform:
 
-    :::image type="content" source="../media/register-custom-agent/register-custom-agent-wizard.png" alt-text="Screenshot showing the agent registration wizard with fields for Agent URL, Protocol, and other configuration options." lightbox="../media/register-custom-agent/register-custom-agent-wizard.png":::
+    :::image type="content" source="../media/register-custom-agent/register-custom-agent-wizard.png" alt-text="Screenshot of the agent registration wizard with fields for Agent URL, Protocol, and other configuration options." lightbox="../media/register-custom-agent/register-custom-agent-wizard.png":::
 
     | Property  | Description | Required |
     |-----------|-------------|----------|
@@ -186,7 +186,7 @@ agent = create_agent(
 
 **Expected output**: The agent runs normally while automatically emitting OpenTelemetry traces to Azure Application Insights. Traces include operation names, durations, model calls, tool invocations, and token usage. You can view these traces in the Azure AI Foundry portal under the Traces section.
 
-**Reference**: [AzureAIOpenTelemetryTracer](https://learn.microsoft.com/python/api/langchain-azure-ai/langchain_azure_ai.callbacks.tracers.azureaiOpenTelemetrytracer) | [create_agent](https://python.langchain.com/docs/how_to/agent_executor/) | [OpenTelemetry Semantic Conventions for GenAI](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
+**Reference**: [AzureAIOpenTelemetryTracer](/python/api/langchain-azure-ai/langchain_azure_ai.callbacks.tracers.azureaiOpenTelemetrytracer) | [create_agent](https://python.langchain.com/docs/how_to/agent_executor/) | [OpenTelemetry Semantic Conventions for GenAI](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
 
 > [!TIP]
 > You can pass the connection string to Azure Application Insights by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`. 
