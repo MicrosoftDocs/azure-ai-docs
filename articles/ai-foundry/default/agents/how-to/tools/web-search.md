@@ -19,7 +19,7 @@ zone_pivot_groups: selection-web-search
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations.
 > [!IMPORTANT]
 > * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
-> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When using Grounding with Bing Search and/or Grounding with Bing Custom Search, data will transferred outside compliance and geographic boundaries.
+> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When using Grounding with Bing Search and/or Grounding with Bing Custom Search, data will be transferred outside compliance and geographic boundaries.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > * See the [Bing Search tool documentation](../../concepts/bing-tools.md#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
 
@@ -91,15 +91,16 @@ curl --request POST \
 
 Web search supports two primary modes. Choose the mode based on the depth and speed you need. 
 
-1. Non reasoning web search
-   1. The model forwards the user query directly to the web search tool and uses top-ranked sources to ground the response. There is no multi-step planning. This mode is fast and best for quick lookups and timely facts.
-1. Reasoning web search
-   1. You can use the reasoning models like `gpt-5` to actively manages the search process. It uses web search results as part of the chain of thoughts.
-1. Deep Research
-   1. Deep Research is an agent-driven mode designed for extended investigations. The model performs multi-step reasoning, might open and read many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research` when you need:
-      1. Legal or scientific research
-      2. Market and competitive analysis
-      3. Reporting over large bodies of internal or public data 
+- Non reasoning web search
+   - The model forwards the user query directly to the web search tool and uses top-ranked sources to ground the response. There is no multi-step planning. This mode is fast and best for quick lookups and timely facts.
+- Reasoning web search
+   - You can use the reasoning models like `gpt-5` to actively manage the search process. It uses web search results as part of the chain of thoughts.
+- Deep Research
+   - Deep Research is an agent-driven mode designed for extended investigations. The model performs multi-step reasoning, might open and read many pages, and synthesizes findings into a comprehensive, citation-rich response. Use this mode with `o3-deep-research` when you need:
+      - Legal or scientific research
+      - Market and competitive analysis
+      - Reporting over large bodies of internal or public data 
+
 Deep Research can run for several minutes and is best for background-style workloads that prioritize completeness over speed.
 
 ### Usage support
