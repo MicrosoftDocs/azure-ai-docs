@@ -51,7 +51,7 @@ You can add Document translation to your applications using the using the follow
 |---------|---------|
 |[**Azure AI Foundry (new)**](https://ai.azure.com/) portal| Azure AI Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.|
 |[**Azure AI Foundry (classic)**](https://ai.azure.com/) portal| Azure AI Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types.|
-|[**REST API or Client library (Azure SDK)**](quickstart/client-library-sdk.md)| Integrate translation into your applications using the [**REST API**](reference/rest-api-guide.md), or the [**client-library SDKs**](./quickstarts/client-library-sdks.md). Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/) |
+|**REST API or Client library (Azure SDK)**| Integrate translation into your applications using the [**REST API**](reference/rest-api-guide.md), or the [**client-library SDKs**](./quickstarts/client-library-sdks.md). Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/) |
 
 ### Batch supported document formats
 
