@@ -18,7 +18,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local has a native chat completions API that allows you to use the inference capabilities without needing to rely on the optional Web Server or separate SDKs (such as the OpenAI chat completions API). This article shows you how to use the native chat completions API in Foundry Local.
+The native chat completions API allows you to interact directly with Foundry Local's inference capabilities without needing to start a REST web server. The native API streamlines your application architecture by reducing dependencies and complexity. To faciliate familiarity the native chat completions API uses the same input (request) and output (response) as the OpenAI SDK.
+
+This article explains how to use the native chat completions API in the Foundry Local SDK. 
 
 ## Prerequisites
 

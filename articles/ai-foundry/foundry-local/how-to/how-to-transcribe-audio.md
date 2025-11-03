@@ -18,12 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local has a native audio transcription API that allows you to transcribe audio files in the following formats:
-
-- WAV
-- MP3
-- FLAC
-
+In this article, you learn how to use Foundry Local's native audio transcription API to convert recorded audio files into text. You'll create a C# console application that downloads a transcription model called Whisper, loads it, and transcribes an audio file using the Whisper model. By the end of this article, you'll understand how to integrate audio transcription capabilities into your local applications without requiring cloud connectivity.
 
 ## Prerequisites
 
@@ -100,7 +95,11 @@ await model.UnloadAsync();
 ```
 
 > [!NOTE]
-> You will need to replace `"Recording.mp3"` with the path to your audio file that you want to transcribe.
+> You will need to replace `"Recording.mp3"` with the path to your audio file that you want to transcribe. Foundry Local has a native audio transcription API that allows you to transcribe audio files in the following formats:
+>
+> - WAV
+> - MP3
+> - FLAC
 
 Run the code using the following command:
 
