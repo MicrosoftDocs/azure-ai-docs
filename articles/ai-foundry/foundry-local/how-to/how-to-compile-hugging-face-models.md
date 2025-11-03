@@ -304,4 +304,4 @@ foundry cache cd ./foundry/cache/models
 ## Related content
 
 - [Olive documentation](https://microsoft.github.io/Olive/)
-- [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)
+- [Integrate Foundry Local with other tools and frameworks](how-to-integrate-with-inference-sdks.md)

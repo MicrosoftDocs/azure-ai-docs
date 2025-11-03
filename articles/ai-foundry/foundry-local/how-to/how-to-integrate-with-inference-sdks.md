@@ -15,7 +15,7 @@ reviewer: samuel100
 ai-usage: ai-assisted
 ---
 
-# Integrate 3rd party SDKs with Foundry Local
+# Integrate Foundry Local with other tools and frameworks
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 

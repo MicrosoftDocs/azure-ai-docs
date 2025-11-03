@@ -1,7 +1,7 @@
 ---
 title: Use Native Chat Completions
 titleSuffix: Foundry Local
-description: This article provides instructions on how to leverage native chat completions API in Foundry Local.
+description: This article provides instructions on how to use native chat completions API in Foundry Local.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-The native chat completions API allows you to interact directly with Foundry Local's inference capabilities without needing to start a REST web server. The native API streamlines your application architecture by reducing dependencies and complexity. To faciliate familiarity the native chat completions API uses the same input (request) and output (response) as the OpenAI SDK.
+The native chat completions API allows you to interact directly with Foundry Local's inference capabilities without needing to start a REST web server. The native API streamlines your application architecture by reducing dependencies and complexity. The native chat completions API uses the same input (request) and output (response) as the OpenAI SDK to ensure compatibility with existing applications and familiarity for developers.
 
 This article explains how to use the native chat completions API in the Foundry Local SDK. 
 
@@ -48,7 +48,7 @@ dotnet add package Microsoft.AI.Foundry.Local
 The following example demonstrates how to use the native chat completions API in Foundry Local. The code includes the following steps:
 
 1. Initializes a `FoundryLocalManager` instance with a `Configuration`.
-1. Gets a `Model` object from the model catalog using an alias. Note: Foundry Local will select the best variant for the model automatically based on the available hardware of the host machine.
+1. Gets a `Model` object from the model catalog using an alias. Note: Foundry Local selects the best variant for the model automatically based on the available hardware of the host machine.
 1. Downloads and loads the model variant.
 1. Uses the native chat completions API to generate a response.
 1. Unloads the model.
@@ -115,7 +115,7 @@ dotnet run
 
 ## Related content
 
-- [Integrate Foundry Local with 3rd party SDKs](how-to-integrate-with-inference-sdks.md)
+- [Integrate Foundry Local with other tools and frameworks](how-to-integrate-with-inference-sdks.md)
 - [Use Foundry Local with LangChain](how-to-use-langchain-with-foundry-local.md)
 - [Compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)
