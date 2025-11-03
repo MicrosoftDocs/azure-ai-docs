@@ -28,12 +28,6 @@ Foundry Local has a native audio transcription API that allows you to transcribe
 
 This article shows you how to use the native audio transcription API in Foundry Local.
 
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python](../includes/audio-transcription/python.md)]
-::: zone-end
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript](../includes/audio-transcription/javascript.md)]
-::: zone-end
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/audio-transcription/csharp.md)]
 ::: zone-end

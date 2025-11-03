@@ -1545,10 +1545,6 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: programming-language-javascript
-    title: JavaScript
-  - id: programming-language-python
-    title: Python
   - id: programming-language-csharp
     title: C#
 # Owner: haileytapia
