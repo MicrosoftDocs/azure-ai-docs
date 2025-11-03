@@ -54,7 +54,7 @@ To register the agent, follow these steps:
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** from the upper-right navigation.
+1. In the upper right navigation, select **Operate**.
 
 1. On the **Overview** pane, select **Register agent**.
 
@@ -84,7 +84,7 @@ To register the agent, follow these steps:
 
 1. Save the changes.
 
-1. Azure AI Foundry adds the new agent. You can check the list of agents on the **Assets** tab at the left navigation.
+1. Azure AI Foundry adds the new agent. You can check the list of agents by selecting the **Assets** tab from the left navigation.
 
 ### Use the agent
 
@@ -123,7 +123,7 @@ To block incoming requests to your agent:
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. On the top navigation bar, select **Operate**.
+1. In the upper right navigation, select **Operate**.
 
 1. On the left navigation, select **Assets**.
 
@@ -196,7 +196,7 @@ You can view traces and logs sent to Azure AI Foundry. To view them:
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. On the top navigation bar, select **Operate**.
+1. In the upper right navigation, select **Operate**.
 
 1. On the left navigation, select **Assets**.
 
