@@ -12,6 +12,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: openai-fine-tuning
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Customize a model with fine-tuning
