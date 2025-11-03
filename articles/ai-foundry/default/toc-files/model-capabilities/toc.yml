@@ -12,7 +12,7 @@ items:
       - name: Text to speech (preview)
         href: ../../../openai/text-to-speech-quickstart.md
       - name: Voice Live Agents quickstart (preview)
-        href: ../../../../ai-services/speech-service/voice-live-agents-quickstart.md?context=/azure/ai-foundry/context/context
+        href: ../../../../ai-services/speech-service/voice-live-agents-quickstart.md?toc=/azure/ai-foundry/context/context.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Concepts
     items:
       - name: Model router concepts
@@ -21,7 +21,7 @@ items:
       - name: Video generation (preview)
         href: ../../../openai/concepts/video-generation.md
       - name: Video translation (preview)
-        href: ../../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
+        href: ../../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/context/context.json&bc=/azure/ai-foundry/breadcrumb/toc.json
       - name: Image prompt engineering techniques
         href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
   - name: Codex
