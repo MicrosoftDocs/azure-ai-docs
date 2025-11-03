@@ -11,9 +11,12 @@ ms.custom: ignite-2024, build-2025
 ms.topic: how-to
 ms.date: 10/27/2025
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Connect to your own storage
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -74,6 +77,29 @@ If strict data isolation is required between Speech and Language scenarios, crea
 
 ## Create a storage connection
 
+::: moniker range="foundry-classic"
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. Open your Azure AI Foundry resource or project.
+1. In the left pane, select **Connections** (or **Connected resources**).
+1. Select **+ New connection**.
+1. Choose **Azure Blob Storage**.
+1. Provide:
+  - Name
+  - Subscription
+  - Storage account
+  - Authentication method (system-assigned managed identity recommended)
+1. Select **Create**.
+
+The connection is now available to Agents (when not overridden), Evaluations, Datasets, Content Understanding, Speech, and Language. (Source: .vscode/settings.json)
+::: moniker-end
+
+::: moniker range="foundry"
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. Select the **Build** tab from the top right menu bar.
+1. Then choose the **Tools** blade on the left hand pane, and select the **Connect a tool** button that appears at the top right of the Tools pane.
+1. In the **Select a tool** dialog that appears, select the **Catalog** tab, and find Azure Blob Storage from the list of available tools.
+1. Select **Create**.
+::: moniker-end
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 2. Open your Azure AI Foundry resource or project.
 3. In the left navigation, select **Connections** (or **Connected resources**).
@@ -85,6 +111,7 @@ If strict data isolation is required between Speech and Language scenarios, crea
    - Storage account
    - Authentication method (system-assigned managed identity recommended)
 7. Select **Create**.
+::: moniker-end
 
 The connection is now available to Agents (when not overridden), Evaluations, Datasets, and Content Understanding.
 
@@ -189,12 +216,18 @@ resource "azurerm_cognitive_account" "foundry" {
 
 Create the role assignment on the Azure Storage account for the Foundry resource (account) managed identity—not the project managed identity. Assign `Storage Blob Data Contributor`.
 
+
+::: moniker range="foundry-classic"
 ## Configure Content Understanding
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-2. Open the resource.
-3. Select **Content Understanding**.
-4. Choose the existing storage connection.
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. Open the resource.
+1. In the left pane, select **Content Understanding**.
+1. Choose the existing storage connection.
+
+> [!NOTE]
+> Programmatic configuration options for Content Understanding are under evaluation.
+::: moniker-end
 
 > [!NOTE]
 > Programmatic configuration options for Content Understanding are under evaluation.
