@@ -7,9 +7,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 07/25/2025
+ms.date: 10/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Deploy a fine-tuned model for inferencing
@@ -22,6 +23,16 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 
 ## Deploy your fine-tuned model
 
+::: moniker range="foundry"
+
+## [Portal](#tab/portal)
+
+::: moniker-end
+
+
+
+::: moniker range="foundry-classic"
+
 ## [Portal](#tab/portal)
 
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
@@ -33,6 +44,8 @@ The **Deploy model** dialog box opens. In the dialog box, enter your **Deploymen
 You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
 
 The UI does not support cross region deployment, while Python SDK or REST supports.
+
+::: moniker-end
 
 ## [Python](#tab/python)
 
