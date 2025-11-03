@@ -5,10 +5,11 @@ description: Explore how Azure AI Foundry automates Agent Identity management, s
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 10/23/2025
+ms.date: 11/03/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
+ai-usage: ai-assisted
 ---
 
 # Agent identity concepts in Azure AI Foundry
@@ -23,48 +24,80 @@ Agent identities integrate seamlessly with Azure AI Foundry, automatically provi
 * Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)
 * Basic knowledge of AI agents and their runtime requirements
 
+## Key concepts
+
+The Agent ID platform framework introduces formal **agent identity blueprints** and **agent identities** in Microsoft Entra ID to represent AI agents. This framework allows you to securely communicate with AI agents and enables those AI agents to securely communicate with web services, other AI agents, and various systems.
+
 ## Agent identity
 
-An Agent Identity (AID) is the primary account an AI agent uses to authenticate to systems. Each agent identity has unique identifiers—the object ID and app ID, which always share the same value—that enable reliable authentication and authorization decisions.
+Agent identities are first-class accounts within Microsoft Entra ID that provide unique identification and authentication capabilities for AI agents. Agent identities enable scalable deployment of autonomous AI systems that function securely in your enterprise.
+
+### Security benefits
+
+Agent identities help address specific security challenges posed by AI agents:
+
+* Distinguish operations performed by AI agents from operations performed by workforce, customer, or workload identities
+* Enable AI agents to gain right-sized access across systems
+* Prevent AI agents from gaining access to critical security roles and systems
+* Scale identity management to large numbers of AI agents that can be quickly created and destroyed
+
+### Authentication capabilities
 
 Agent identities support three key authentication scenarios:
 
-* **Request agent tokens**: Agents can request access tokens from Entra ID with the agent identity as the subject
-* **Receive incoming tokens**: Agents can receive access tokens issued by Entra ID with the agent identity as the audience
-* **Request user tokens**: Agents can request tokens for authenticated users, where the subject is the user and the actor (azp or appId claim) is the agent identity
+* **Autonomous access**: Agents can act independently using access rights assigned directly to the agent identity, including Microsoft Graph permissions, Azure RBAC roles, Microsoft Entra ID directory roles, and app roles
+* **Delegated access**: Agents can act on behalf of human users, using access rights delegated by the user to the agent identity
+* **Authenticate incoming messages**: Agents can accept requests from other clients, users, and agents secured using access tokens issued by Microsoft Entra ID
 
-Unlike traditional service principals, agent identities don't use passwords, certificates, or client secrets. Instead, they authenticate by presenting access tokens issued to the service or platform hosting the agent. Agent identities operate within a single Entra tenant and cannot access resources in other tenants.
+Unlike traditional service principals, agent identities don't use passwords, certificates, or client secrets. Instead, they authenticate by presenting access tokens issued to the service or platform hosting the agent. Agent identities operate within a single Microsoft Entra tenant and can't access resources in other tenants.
 
 ## Agent identity blueprint
 
-An Agent identity blueprint serves as the "parent" of agent identities and fulfills three essential purposes:
+An agent identity blueprint serves as the reusable, governing template from which all agent identities are created. It defines the "kind" or "type" of agent, records metadata shared across all instances of that kind, and establishes consistent security and management across an organization's AI agents.
 
-**Type classification**: The blueprint establishes the category of agent identity, such as "Contoso Sales Agent" or "DataDog Cloud Monitoring Agent." This classification enables administrators to manage multiple individual agents of the same type as a collection and apply security policies like "block all requests from all Contoso Sales Agent IDs." The blueprint also stores common attributes, metadata, and settings across all its agent identities, including role definitions.
+### Blueprint functions
 
-**Identity creation authority**: Services creating agent identities use the blueprint to authenticate. Blueprints have an OAuth client ID and credentials including client secrets, certificates, and federated identity credentials like managed identities. Services use these credentials to request access tokens from Entra ID, then present those tokens to create, update, or delete agent identities.
+Agent identity blueprints serve three essential purposes:
 
-**Runtime authentication platform**: The hosting service or platform uses the blueprint during runtime authentication. The service requests an access token using the blueprint's OAuth credentials, then presents that token to Entra ID to obtain a token for one of its agent identities.
+**Type classification**: The blueprint establishes the category of agent, such as "Contoso Sales Agent." This classification enables administrators to:
+- Apply conditional access policies to all agents of that type
+- Disable or revoke permissions for all agents of that kind
+- Audit and govern agents at scale through consistent, blueprint-based controls
 
-## Azure AI Foundry identity management
+**Identity creation authority**: Services creating agent identities use the blueprint to authenticate. Blueprints have OAuth credentials (client secrets, certificates, or federated credentials like managed identities) that services use to request tokens from Microsoft Entra ID for creating, updating, or deleting agent identities.
 
-Azure AI Foundry automatically integrates with Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default Agent identity blueprint and a default Agent Identity for your project.
+**Runtime authentication platform**: The hosting service uses the blueprint during runtime authentication. The service requests an access token using the blueprint's OAuth credentials, then presents that token to Microsoft Entra ID to obtain a token for one of its agent identities.
+
+### Blueprint metadata
+
+For example, an organization might use an AI agent called the "Contoso Sales Agent." The blueprint defines information such as:
+
+* The name of the agent type: "Contoso Sales Agent"
+* The publisher or organization responsible for the blueprint: "Contoso"
+* The roles the agent might perform: "sales manager" or "sales rep"
+* Microsoft Graph permissions or delegated scopes: "read the signed-in user's calendar"
+
+When multiple teams deploy versions of the Contoso Sales Agent for different regions or segments, each deployment receives its own agent identity, all derived from the same blueprint. This shared blueprint enables consistent management and governance across all agent instances.
+
+## Azure AI Foundry integration
+
+Azure AI Foundry automatically integrates with Microsoft Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default agent identity blueprint and a default agent identity for your project.
 
 ### Shared project identity
 
-All unpublished or in-development agents within the same project share a common identity. This design simplifies permission management because unpublished agents typically require the same access patterns and permission configurations. The shared identity approach:
+All unpublished or in-development agents within the same project share a common identity. This design simplifies permission management because unpublished agents typically require the same access patterns and permission configurations. The shared identity approach provides several benefits:
 
-* Reduces administrative overhead by controlling all development agents through a single identity
-* Minimizes agent sprawl in the tenant
-* Enables developers to build agents independently once project permissions are established
-* Eliminates the need for new permission requests for each development agent
+* **Simplified administration**: Administrators can centrally manage permissions for all in-development agents within a project
+* **Reduced identity sprawl**: Using a single identity per project prevents unnecessary identity creation during early experimentation
+* **Developer autonomy**: Once the shared identity is configured, developers can independently build and test agents without repeatedly configuring new permissions
 
-To find your shared Agent identity blueprint and Agent Identity, navigate to your Foundry project in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
+To find your shared agent identity blueprint and agent identity, navigate to your Foundry project in the Azure portal. On the **Overview** page, select **JSON View** and choose the latest API version to view and copy the identities.
 
-:::image type="content" source="../../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in Azure Portal displaying Agent identity blueprint and Agent Identity details for a Foundry project." lightbox="../../media/agent-identity/azure-agent-identity-json-view.png":::
+:::image type="content" source="../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in Azure portal displaying agent identity blueprint and agent identity details for a Foundry project." lightbox="../../media/agent-identity/azure-agent-identity-json-view.png":::
 
 ### Distinct agent identity
 
-When an agent's permissions, auditability, or lifecycle requirements diverge from the project defaults, you should upgrade to a distinct identity. Publishing an agent automatically creates a dedicated Agent identity blueprint and Agent Identity, both bound to the Agent Application resource. This distinct identity represents the agent's system authority for accessing its own resources.
+When an agent's permissions, auditability, or lifecycle requirements diverge from the project defaults, you should upgrade to a distinct identity. Publishing an agent automatically creates a dedicated agent identity blueprint and agent identity, both bound to the Agent Application resource. This distinct identity represents the agent's system authority for accessing its own resources.
 
 Common scenarios requiring distinct identities include:
 
@@ -73,26 +106,100 @@ Common scenarios requiring distinct identities include:
 * Agents requiring unique permission sets
 * Agents needing independent audit trails
 
-To find the distinct Agent identity blueprint and Agent Identity, navigate to your Agent Application resource in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
+To find the distinct agent identity blueprint and agent identity, navigate to your Agent Application resource in the Azure portal. On the **Overview** page, select **JSON View** and choose the latest API version to view and copy the identities.
 
 ## Tool authentication
 
-Agents access remote resources and tools using Agent Identity for authentication. The authentication mechanism differs based on the agent's publication status:
+Agents access remote resources and tools using agent identity for authentication. The authentication mechanism differs based on the agent's publication status:
 
-* **Unpublished agents**: Authenticate using the shared project's Agent Identity
-* **Published agents**: Authenticate using their unique Agent Identity associated with the Agent Application
+* **Unpublished agents**: Authenticate using the shared project's agent identity
+* **Published agents**: Authenticate using their unique agent identity associated with the Agent Application
 
-When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC permissions to the new Agent Identity for any resources the agent needs to access. This ensures the published agent maintains appropriate access while operating under its distinct identity.
+When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC permissions to the new agent identity for any resources the agent needs to access. This ensures the published agent maintains appropriate access while operating under its distinct identity.
 
-### MCP server authentication
+### Supported tools
 
-Agent identities support authentication with Model Context Protocol (MCP) servers that accept Agent Identity credentials. To configure MCP server authentication:
+Currently, the tools that support authentication with agent identity are:
 
-1. Assign your Agent Identity the proper RBAC role for the underlying service powering the MCP server (refer to specific MCP server documentation for required roles)
-2. Specify the scope URI of the service when connecting the MCP server to your agent (for example, `http://ai.azure.com` for Azure AI Foundry MCP server)
+* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication
+* **Agent-to-Agent (A2A)**: Enable secure communication between agents using agent identities
 
-When the agent invokes the MCP server, it uses the available Agent Identity to obtain an authorization token from the scope URI and passes it to the MCP server for authentication.
+### Configure MCP tool authentication
 
-## Next step
+To configure an MCP tool to authenticate using agent identity:
 
-[Publish agents in Azure AI Foundry](../how-to/publish-agent.md)
+1. **Gather prerequisites**: Ensure you have an MCP server that you want to configure as a tool for your agent.
+
+1. **Get the agent identity ID**: In Azure portal, navigate to your Foundry project. On the **Overview** page, select **JSON View** and choose the latest API version. Copy the `agentIdentityId`.
+
+1. **Create the connection**: Create a connection to your remote MCP server that uses `AgenticIdentityToken` as the authentication type. The audience field specifies which service or API the token is intended to access. For example:
+   - For an MCP server listing blobs in your storage account: set audience as `https://storage.azure.com`
+   - For an Azure Logic App MCP server: set audience as `https://logic.azure.com`
+
+   You can create the connection using either the REST API or the Foundry portal:
+
+   #### [REST API](#tab/rest-api)
+
+   To get an access token, run the commands `az login` and then `az account get-access-token`.
+
+   ```http
+   PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/connections/{{mcp_connection_name}}?api-version={{api_version}}
+   Authorization: Bearer {{token}}
+   Content-Type: application/json
+
+   {
+     "tags": null,
+     "location": null,
+     "name": "{YOUR_CONNECTION_NAME}",
+     "type": "CognitiveServices/accounts/projects/connections",
+     "properties": {
+       "authType": "AgenticIdentityToken",
+       "group": "ServicesAndApps",
+       "category": "RemoteTool",
+       "expiryTime": null,
+       "target": "{YOUR_MCP_REMOTE_URL}",
+       "isSharedToAll": true,
+       "sharedUserList": [],
+       "audience": "{YOUR_AUDIENCE}",
+       "Credentials": {},
+       "metadata": {
+         "ApiType": "Azure"
+       }
+     }
+   }
+   ```
+
+   #### [Foundry portal](#tab/foundry-portal)
+
+   In Agent Playground, under tools select **+ Add**. On the **Custom** tab, select **Model Context Protocol (MCP)**. Under authentication choose **Microsoft Entra** and then under type select **Agent identity**. Fill in the endpoint and audience fields then select **Connect**.
+
+   ---
+
+1. **Assign permissions**: Assign the agent identity the required permissions for its actions using the `agentIdentityId` you copied. For example:
+   - For an MCP server listing blob containers: assign the Storage Blob Data Contributor role at the Azure Storage Account scope
+   - For an Azure Logic Apps MCP server: assign the Logic Apps Standard Reader role on the Logic App resource
+
+1. **Connect the tool**: If using code, create an agent with the MCP tool (see the MCP documentation for details). If using the Foundry portal, the MCP tool automatically gets added to the agent.
+
+When the agent invokes the MCP server, it uses the available agent identity to obtain an authorization token from the scope URI and passes it to the MCP server for authentication.
+
+## Manage agent identities
+
+You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Navigate to the [agent identities tab](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Azure AI Foundry agents, Copilot Studio agents, and others.
+
+:::image type="content" source="../media/agent-identity/entra-admin-center-agent-identities.png" alt-text="Screenshot of the Microsoft Entra admin center showing the agent identities tab with an inventory of all agents in the tenant.":::
+
+In this experience, you can enable built-in security controls including:
+
+* **Conditional Access**: Apply access policies to agent identities
+* **Identity Protection**: Monitor and protect agent identities from threats
+* **Network Access**: Control network-based access for agents
+* **Governance**: Manage expiration, owners, and sponsors for agent identities
+
+For more information about Microsoft Entra Agent ID features, see the [Microsoft Entra documentation](/entra/identity/app-provisioning/what-is-provisioning).
+
+## Next steps
+
+* [Publish agents in Azure AI Foundry](../how-to/publish-agent.md)
+* [Create and configure agents](../how-to/create-agent.md)
+* [Microsoft Entra ID documentation](/entra/)
