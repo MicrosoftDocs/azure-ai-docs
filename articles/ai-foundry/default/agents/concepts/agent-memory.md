@@ -34,7 +34,7 @@ Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution
 
 ## Create a memory store
 
-Create a dedicated memory store for each agent to establish clear boundaries for memory access and optimization. When you create a memory store, specify the chat model and embedding model deployments that process and store memory content.
+Create a dedicated memory store for each agent to establish clear boundaries for memory access and optimization. When you create a memory store, specify the chat model and embedding model deployments that process and store your memory content.
 
 You must decide how to segment memory across users by specifying the `scope` parameter. By default, the system uses the end user's sign-in ID. To enable shared memory across users or groups, override this value with a team name, organization name, or other identifier that fits your use case.
 
