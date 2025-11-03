@@ -211,7 +211,7 @@ response = openai_client.chat.completions.create(
             "content": GROUNDED_PROMPT.format(query=query, sources=sources_formatted)
         }
     ],
-    model="gpt-35"
+    model="gpt-4.1-mini"
 )
 
 print(response.choices[0].message.content)

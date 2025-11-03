@@ -497,4 +497,4 @@ The error message will also include the SharePoint site ID, drive ID, and drive 
 + [YouTube video: SharePoint in Microsoft 365 indexer](https://www.youtube.com/watch?v=QmG65Vgl0JI)
 + [Indexers in Azure AI Search](search-indexer-overview.md)
 + [Content metadata properties used in Azure AI Search](search-blob-metadata-properties.md)
-+ [Index SharePoint Online content and other sources in Azure AI Search using Azure Logic App connectors](search-how-to-index-logic-apps.md)
++ [Index SharePoint content and other sources in Azure AI Search using Azure Logic App connectors](search-how-to-index-logic-apps.md)

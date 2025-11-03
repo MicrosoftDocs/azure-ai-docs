@@ -92,7 +92,7 @@ To learn more about data location and privacy, see [Data residency](search-secur
 
 Semantic ranker is free for the first 1,000 requests per month. It's enabled by default on newer search services.
 
-To enable semantic ranker in the portal, select **Settings** > **Semantic ranker** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
+To enable semantic ranker in the portal, select **Settings** > **Premium features** from the left pane, and then select the **Free** plan. For more information, see [Enable semantic ranker](semantic-how-to-enable-disable.md).
 
 ## Provide connection information to developers
 
