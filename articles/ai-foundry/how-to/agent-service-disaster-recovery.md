@@ -54,7 +54,7 @@ Configure your resources to support recovery before an incident happens. Enable 
 
 ## Recover from Azure outages
 
-The Azure AI Foundry Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and capability host. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these services depend on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery focuses on getting another instance running in a region that isn't experiencing an outage.
+In the standard deployment model, the Azure AI Foundry Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and capability host. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these services depend on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery focuses on getting another instance running in a region that isn't experiencing an outage.
 
 > [!div class="nextstepaction"]
 > [Agent Service platform outage recovery strategies](agent-service-platform-disaster-recovery.md)
