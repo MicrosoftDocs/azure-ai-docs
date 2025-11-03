@@ -71,7 +71,7 @@ For *each project* you choose to recover, follow these steps:
 
    If an AI gateway pattern is used, then clients will continue to use the gateway's FQDN. The gateway configuration will instead need to be updated to route requests to the newly created project on behalf of it clients.
 
-      > [!IMPORTANT]
+   > [!IMPORTANT]
    > If clients support in-product messaging, notify users they're in a standby environment. Prior conversation history is unavailable, and new conversations *are lost* after failback.
 
 **Results:**
