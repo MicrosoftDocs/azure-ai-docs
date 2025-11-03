@@ -42,23 +42,23 @@ Guardrail policies let you mandate minimum guardrail controls for your model dep
 To learn more about guardrail policies, visit \[Link to Understanding Guardrail Policies doc\]. <!-- link to be added when doc is created -->
 
 > [!NOTE]
-> Most users don't have permission to create policies because they need the appropriate Azure RBAC roles for Azure Policy. See [Overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac). Most users in Azure AI Foundry can still view the compliance status of individual policies and model deployments.
+> Most users don't have permission to create guardrail policies because they need the appropriate Azure RBAC roles for Azure Policy. See [Overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac). Most users in Azure AI Foundry can still view the compliance status of individual guardrail policies and model deployments.
 
 ### View and fix compliance violations
 
-Determine whether any model deployments are non-compliant with organizational policies. To assess compliance status and address issues, follow these steps:
+Determine whether any model deployments are non-compliant with organizational guardrail policies. To assess compliance status and address issues, follow these steps:
 
 1. Navigate to **Operate** > **Compliance**.
 
-1. On the **Policies** tab, review all applicable policies within your subscription and project. To expand the scope beyond a single project, adjust the project filter to **All projects** for an overview of the entire subscription. You can also switch the subscription being viewed.
+1. On the **Policies** tab, review all applicable guardrail policies within your subscription and project. To expand the scope beyond a single project, adjust the project filter to **All projects** for an overview of the entire subscription. You can also switch the subscription being viewed.
 
-1. Identify any non-compliant policy by locating those with a **Violations detected** value in the **Policy Compliance** column.
+1. Identify any non-compliant guardrail policy by locating those with a **Violations detected** value in the **Policy Compliance** column.
 
-1. When a policy is selected, refer to the right-hand side panel and select an asset to compare its guardrail settings with the requirements specified in the policy.
+1. When a guardrail policy is selected, refer to the right-hand side panel and select an asset to compare its guardrail settings with the requirements specified in the guardrail policy.
 
-1. To update the guardrail configuration of a non-compliant asset, select **Fix now**. This opens the model deployment's guardrail configuration page where you can adjust settings to meet the policy requirements. After saving your changes, the compliance status updates within a few minutes.
+1. To update the guardrail configuration of a non-compliant asset, select **Fix now**. This opens the model deployment's guardrail configuration page where you can adjust settings to meet the guardrail policy requirements. After saving your changes, the compliance status updates within a few minutes.
 
-Additionally, compliance status can be reviewed by asset rather than by policy:
+Additionally, compliance status can be reviewed by asset rather than by guardrail policy:
 
 1. Navigate to **Operate** > **Compliance**.
 
@@ -66,15 +66,15 @@ Additionally, compliance status can be reviewed by asset rather than by policy:
 
 1. Review model deployments within the chosen subscription and project.
 
-1. In the **Policy Compliance** column, examine any assets marked as **Violation detected**. Select these rows to access further details. Note that assets may appear multiple times if subject to several policies.
+1. In the **Policy Compliance** column, examine any assets marked as **Violation detected**. Select these rows to access further details. Note that assets may appear multiple times if subject to several guardrail policies.
 
-1. In the right-hand panel displayed when an asset is selected, review the governing policies and the specifics of any non-compliant policy.
+1. In the right-hand panel displayed when an asset is selected, review the governing guardrail policies and the specifics of any non-compliant guardrail policy.
 
-1. Select **View in Build** to modify the guardrail configuration and bring the model deployment into compliance. Review all relevant policies for each asset to ensure all necessary adjustments are made to achieve full compliance.
+1. Select **View in Build** to modify the guardrail configuration and bring the model deployment into compliance. Review all relevant guardrail policies for each asset to ensure all necessary adjustments are made to achieve full compliance.
 
-### Create a policy
+### Create a guardrail policy
 
-To create a policy, follow these steps:
+To create a guardrail policy, follow these steps:
 
 1. Select **Operate** > **Compliance**.
 
@@ -90,15 +90,15 @@ To create a policy, follow these steps:
 
 1. Enter a descriptive policy name. This name appears in the compliance dashboard.
 
-1. Select **Create** to finalize your policy.
+1. Select **Create** to finalize your guardrail policy.
 
-1. Allow up to 30 minutes for the policy to appear in the Azure AI Foundry portal. Compliance results show once Azure Policy scans, timing varies by scope size and resources.
+1. Allow up to 30 minutes for the guardrail policy to appear in the Azure AI Foundry portal. Compliance results show once Azure Policy scans, timing varies by scope size and resources.
 
-After creating the policy, you see it listed in the **Policies** tab. The compliance status updates automatically as Azure Policy evaluates your resources.
+After creating the guardrail policy, you see it listed in the **Policies** tab. The compliance status updates automatically as Azure Policy evaluates your resources.
 
-### Edit a policy
+### Edit a guardrail policy
 
-To edit an existing policy, follow these steps:
+To edit an existing guardrail policy, follow these steps:
 
 1. Select **Operate** > **Compliance**.
 
