@@ -6,10 +6,12 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/02/2025
+ms.date: 10/30/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
+
+[!INCLUDE [Header](../../common/voice-live-python.md)]
 
 [!INCLUDE [Introduction](intro.md)]
 
@@ -69,22 +71,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
     ```txt
-    aiohttp==3.11.18
-    azure-core==1.35.0
-    azure-identity==1.22.0
-    certifi==2025.4.26
-    cffi==1.17.1
-    cryptography==44.0.3
-    numpy==2.2.5
-    pycparser==2.22
-    python-dotenv==1.1.0
+    azure-ai-voicelive[aiohttp]
     pyaudio
-    requests==2.32.3
-    sounddevice==0.5.1
-    typing_extensions==4.13.2
-    urllib3==2.4.0
-    websocket-client==1.8.0
-    azure-ai-voicelive
+    python-dotenv
+    azure-identity
     ```
 
 1. Install the packages:
@@ -96,7 +86,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
-
 
 ## Start a conversation
 
@@ -504,7 +493,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             else:
                 logger.debug("Unhandled event type: %s", event.type)
     
-    
     def parse_arguments():
         """Parse command line arguments."""
         parser = argparse.ArgumentParser(
@@ -558,7 +546,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
     
         return parser.parse_args()
-    
     
     def main():
         """Main function."""
@@ -657,7 +644,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     python voice-live-quickstart.py
     ```
 
-1. The Voice Live API starts to return audio with the model's initial response. You can interrupt the model by speaking. Enter "q" to quit the conversation.
+1. The Voice Live API starts to return audio with the model's initial response. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
 
 ## Output
 
@@ -695,8 +682,9 @@ The default loglevel is set to **INFO** but you can change it by running the qui
 logging.basicConfig(
     filename=f'logs/{timestamp}_voicelive.log',
     filemode="w",
-    level=logging.DEBUG,
-    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
+    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+    level=logging.INFO
+)
 ```
 
 The log file contains information about the connection to the Voice Live API, including the request and response data. You can view the log file to see the details of the conversation.
