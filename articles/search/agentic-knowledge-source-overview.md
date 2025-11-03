@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 10/30/2025
+ms.date: 11/03/2025
 ---
 
 # What is a knowledge source?
@@ -49,7 +49,7 @@ A platform-specific knowledge source like the blob knowledge source or OneLake k
 
 You must have [**Search Service Contributor** permissions](search-security-rbac.md) to create objects on a search service.  You also need **Search Index Data Contributor** permissions to load an index if you're using a knowledge source that creates an indexer pipeline. Alternatively, you can [use an API admin key](search-security-api-keys.md) instead of roles.
 
-You must use the REST API or an Azure SDK preview package to create a knowledge source. There's no portal support at this time. The following links provide instructions for creating a knowledge source:
+You must use the REST API or an Azure SDK preview package to create a knowledge source. Azure portal support is available for select knowledge sources. The following links provide instructions for creating a knowledge source:
 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)

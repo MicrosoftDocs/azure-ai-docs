@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/22/2025
+ms.date: 11/03/2025
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
@@ -30,7 +30,10 @@ You can enable answer synthesis in two ways:
 
 + A knowledge base that uses the [2025-11-01-preview syntax](agentic-retrieval-how-to-migrate.md).
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a prerelease package of an Azure SDK that provides the knowledge base REST APIs. Currently, there's no portal support.
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a prerelease package of an Azure SDK that provides the knowledge base REST APIs.
+
+> [!NOTE]
+> Although you can use the Azure portal to configure answer synthesis, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ## Enable answer synthesis on a knowledge base
 

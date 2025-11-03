@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 10/24/2025
+ms.date: 11/03/2025
 ---
 
 # Quickstart: Use agentic retrieval in the Azure portal
@@ -39,9 +39,9 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
-+ For text-to-vector conversion, an embedding model [deployed to your Azure AI Foundry project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any `text-embedding` model, such as `text-embedding-3-large`.
++ For text-to-vector conversion, an embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ For query planning and answer generation, an LLM [deployed to your Azure AI Foundry project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any [portal-supported LLM](#supported-llms).
++ For query planning and answer generation, an LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any [portal-supported LLM](#supported-llms).
 
 ### Supported LLMs
 
@@ -129,21 +129,23 @@ To create the knowledge source for this quickstart:
 
 1. From the left pane, select **Knowledge retrieval** > **Knowledge sources**.
 
-1. Select **Add knowledge source**.
+1. Select **Add knowledge source** > **Add knowledge source**.
 
 1. Enter **earth-at-night-ks** for the name.
 
-1. Select **Azure blob knowledge source**, and then select your subscription, storage account, and container with the sample data.
+1. Select **Azure blob**, and then select your subscription, storage account, and container with the sample data.
 
 1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
 
 1. Select **Add vectorizer**.
 
-1. Select **Azure AI Foundry Models** for the kind, and then select your subscription, project, and embedding model deployment.
+1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
 1. Select **System managed identity** for the authentication type.
 
 1. Create the knowledge source.
+
+   :::image type="content" source="media/get-started-portal-agentic-retrieval/create-knowledge-source.png" alt-text="Screenshot of the knowledge source configuration for this quickstart." lightbox="media/get-started-portal-agentic-retrieval/create-knowledge-source.png" :::
 
 ## Create a knowledge base
 
@@ -152,45 +154,97 @@ To create the knowledge source for this quickstart:
 
 A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, the LLM generates subqueries that are sent simultaneously to your knowledge source. Azure AI Search then semantically ranks the results for relevance and combines the best results into a single, unified response.
 
-By default, the knowledge base outputs raw content from your knowledge source, but you can enable the answer synthesis output mode for natural-language answer generation.
+The output mode determines how the knowledge base formulates answers. You can either use extractive data for verbatim content or answer synthesis for natural-language answer generation. By default, the portal uses answer synthesis.
 
 To create the knowledge base for this quickstart:
 
 1. From the left pane, select **Knowledge retrieval** > **Knowledge bases**.
 
-1. Select **Add knowledge base**.
+1. Select **Add knowledge base** > **Add knowledge base**.
 
 1. Enter **earth-at-night-kb** for the name.
 
-1. Under **Add model deployment**, select **Select a deployment**.
+1. Under **Model deployment**, select **Add model deployment**.
 
-1. Select **Azure AI Foundry Models** for the kind, and then select your subscription, project, and model deployment.
+1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and LLM deployment.
 
-1. Select **System managed identity** for the authentication type.
+1. Select **System assigned identity** for the authentication type.
 
 1. Save the model deployment.
 
-1. Under **Add knowledge**, select **earth-at-night-ks**.
-
-1. Under **Advanced configurations**, select **Answer synthesis** for the output mode.
+1. Under **Knowledge sources**, select **earth-at-night-ks**.
 
 1. Create the knowledge base.
 
+   :::image type="content" source="media/get-started-portal-agentic-retrieval/create-knowledge-base.png" alt-text="Screenshot of the knowledge base configuration for this quickstart." lightbox="media/get-started-portal-agentic-retrieval/create-knowledge-base.png" :::
+
 ## Test agentic retrieval
 
-The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base, whose responses include references to source documents and debug information about the retrieval process.
+The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base, whose responses include references to your knowledge sources and debug information about the retrieval process.
 
 To query the knowledge base:
 
 1. Use the chat box to send the following query.
 
-    ```plaintext
+    ```
     Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     ```
 
-1. Review the response, references, and debug information.
+1. Review the synthesized, citation-backed answer, which should be similar to the following example.
 
-   <!-- Add more details -->
+    ```
+    The suburban belts exhibit larger December brightening compared to urban cores due to the increased use of decorative and festive lighting in residential areas, which are more prevalent in suburban regions. In contrast, urban cores, despite having higher absolute light levels, experience less seasonal variation in lighting. The Phoenix nighttime street grid is sharply visible from space because of its regular grid layout and the extensive use of street lighting, which creates a consistent and bright pattern. Conversely, large stretches of interstate highways between Midwestern cities are less illuminated, as they primarily serve as transit routes with minimal lighting infrastructure, resulting in comparatively dim visibility from space.
+    ```
+
+1. Select the debug icon to review the activity log, which should be similar to the following example.
+
+    ```
+    [
+      {
+        "type": "modelQueryPlanning",
+        "id": 0,
+        "inputTokens": 2081,
+        "outputTokens": 128,
+        "elapsedMs": 1577
+      },
+      {
+        "type": "azureBlob",
+        "id": 1,
+        "knowledgeSourceName": "earth-at-night-ks",
+        "queryTime": "2025-11-03T15:09:28.172Z",
+        "count": 0,
+        "elapsedMs": 731,
+        "azureBlobArguments": {
+          "search": "Why do suburban belts display larger December brightening than urban cores despite higher downtown light levels?"
+        }
+      },
+      {
+        "type": "azureBlob",
+        "id": 2,
+        "knowledgeSourceName": "earth-at-night-ks",
+        "queryTime": "2025-11-03T15:09:28.669Z",
+        "count": 3,
+        "elapsedMs": 497,
+        "azureBlobArguments": {
+          "search": "Why is the Phoenix nighttime street grid sharply visible from space compared to dim interstates in the Midwest?"
+        }
+      },
+      {
+        "type": "semanticReranker",
+        "id": 3,
+        "inputTokens": 0
+      },
+      {
+        "type": "modelAnswerSynthesis",
+        "id": 4,
+        "inputTokens": 3938,
+        "outputTokens": 136,
+        "elapsedMs": 1963
+      }
+    ]   
+    ```
+
+   The activity log offers insight into the steps taken during retrieval, including query planning and execution, semantic ranking, and answer synthesis. For more information, see [Review the activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array).
 
 ## Review the created objects
 
