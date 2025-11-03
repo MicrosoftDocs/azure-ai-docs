@@ -192,13 +192,13 @@ To query the knowledge base:
 
 1. Review the synthesized, citation-backed answer, which should be similar to the following example.
 
-    ```output
+    ```
     The suburban belts exhibit larger December brightening compared to urban cores due to the increased use of decorative and festive lighting in residential areas, which are more prevalent in suburban regions. In contrast, urban cores, despite having higher absolute light levels, experience less seasonal variation in lighting. The Phoenix nighttime street grid is sharply visible from space because of its regular grid layout and the extensive use of street lighting, which creates a consistent and bright pattern. Conversely, large stretches of interstate highways between Midwestern cities are less illuminated, as they primarily serve as transit routes with minimal lighting infrastructure, resulting in comparatively dim visibility from space.
     ```
 
 1. Select the debug icon to review the activity log, which should be similar to the following example.
 
-    ```output
+    ```
     [
       {
         "type": "modelQueryPlanning",
