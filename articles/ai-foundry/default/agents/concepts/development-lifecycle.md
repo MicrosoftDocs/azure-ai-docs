@@ -14,7 +14,7 @@ ms.author: aahi
 
 # Understanding the agent development lifecycle
 
-The agent building experience in Azure AI Foundry brings many development and observability features, from agent creation all the way to embedding your agent into your applications. You can use the Azure AI Foundry portal, or code, to build, customize, and test your agent's behavior, and then iterate with capabilities like tracing, evaluation and monitoring to improve your agent's performance. When you're ready, you can publish your agent to preview, share, and see your agent in action within your applications.
+The agent building experience in Azure AI Foundry brings many development and observability features, from agent creation all the way to embedding your agent into your applications. You can use the Azure AI Foundry portal, or code, to build, customize, and test your agent's behavior, and then iterate with capabilities like tracing, evaluation, and monitoring to improve your agent's performance. When you're ready, you can publish your agent to preview, share, and see your agent in action within your applications.
 
 ## Types of agents
 
@@ -22,7 +22,7 @@ The agent building experience in Azure AI Foundry brings many development and ob
 * Workflows
 * Hosted
 
-You can create prompt-based agents and workflows in the Azure AI Foundry portal or your own development environment using the CLI, SDK, or REST API. See the quickstart for more information.
+You can create prompt-based agents and workflows in the Azure AI Foundry portal or your own development environment using the CLI, SDK, or REST API. See the [quickstart](../../../quickstarts/get-started-code.md) for more information.
 
 A **prompt-based agent** is a declaratively defined single agent that combines model configuration, instruction, tools, and natural language prompts to drive behavior. You can also make your agent even more powerful by attaching knowledge and memory capabilities. Prompt-based agents can be edited, versioned, tested, evaluated, monitored and published from the agent building interface. <!-- Learn more about the playground interface [here](link-to-appropriate-playground-platform-doc).-->
 
@@ -33,16 +33,16 @@ If you want to develop a more advanced agentic workflow, for example you want to
 
 ## Creating a prompt-based agent
 
-If you already know what kind of agent you want to create, you can name it and then quickly start configuring your model instructions and tools. If you don't already have a model deployed, an available model will be deployed for you. If you'd like to start with some examples, pick a manifest (a pre-defined agent definition to help you get started) from the agent catalog that most closely matches your use case, and expand your agent capabilities from there. <!--See more details about agent manifests [here](agent-manifest-doc).-->
+If you already know what kind of agent you want to create, you can name it and then quickly start configuring your model instructions and tools. If you don't already have a model deployed, an available model will be deployed for you. If you'd like to start with some examples, pick a manifest (a predefined agent definition to help you get started) from the agent catalog that most closely matches your use case, and expand your agent capabilities from there. <!--See more details about agent manifests [here](agent-manifest-doc).-->
 
 > [!NOTE]
-> Once you name your agent, the name cannot be changed. In code, you will refer to your agent by `<agent_name>:<version>`. You will be able to set the display name of your agent in your published application scenarios.
+> Once you name your agent, the name can't be changed. In code, you will refer to your agent by `<agent_name>:<version>`. You will be able to set the display name of your agent in your published application scenarios.
 
 ## Developing in code
 
 If you prefer to work in code, there are a couple supported ways to bring your agent code into a development environment from which you can test locally and then deploy to Azure.
 
-From the Code tab in the agent playground chat pane, you can take a code snippet that references your agent to a dedicated VS Code for the Web cloud environment, which comes preconfigured with the packages and extensions you need, as well as instructions to efficiently develop and deploy your Foundry agent to Azure. You can also copy the code snippet directly to your preferred development environment. <!--Learn more about the VS Code capability here [here](/azure/ai-foundry/concepts/concept-playgrounds#open-in-vs-code-capability).-->
+From the Code tab in the agent playground chat pane, you can take a code snippet that references your agent to a dedicated Visual Studio Code for the Web cloud environment, which comes preconfigured with the packages and extensions you need, as well as instructions to efficiently develop and deploy your Foundry agent to Azure. You can also copy the code snippet directly to your preferred development environment. <!--Learn more about the VS Code capability here [here](/azure/ai-foundry/concepts/concept-playgrounds#open-in-vs-code-capability).-->
 
 ## The agent development lifecycle
 The agent building experience offers integrated experiences for each core step of the agent development lifecycle. We recommend utilizing these core capabilities as you develop your production-ready agent application. Each capability has in depth documentation you can dive into to learn more.
@@ -55,7 +55,7 @@ The agent versioning provides version control capabilities for managing agent co
 * **Version immutability**: Each version of an agent is immutable once saved. Any modifications to an existing version require saving and creating a new version. This ensures version integrity and prevents accidental overwrites
 * **Draft state management**: Agents can be tested in an unsaved state for experimentation. Unsaved changes will be lost if you exit the screen in the AI Foundry portal, so save frequently to preserve important modifications.
 * **Version control operations**: You can direct requests to specific agent versions, enables controlled deployment and rollback capabilities.
-* **Version history navigation**: Access the version history for any agent and navigate to any specific version, and perform the following comparision modes. 
+* **Version history navigation**: Access the version history for any agent and navigate to any specific version, and perform the following comparison modes. 
     * Agent setup comparison: Compare configuration settings between versions
     * Chat output comparison: Analyze response differences between agent versions using identical inputs
     * YAML definition comparison: Review differences in agent definitions
@@ -65,5 +65,5 @@ You can make your agent more powerful by giving it knowledge (specific files or 
 
 ### Publishing your agent or workflow
 
-Once you have an agent or workflow version you're happy with, publish it to get a stable endpoint that you can easily see in action in a web app, share, manage, or embed in your existing applications. You and your collaborators can validate performance, and identify what needs refinement. You can make any necessary updates, and re-publish a new version at any time. The Foundry portal also offers a streamlined way to publish your agent or workflow to Microsoft 365 Copilot and Microsoft Teams. <!--Learn more about publishing [here](publishing-agent-doc-page).-->
+Once you have an agent or workflow version you're happy with, publish it to get a stable endpoint that you can easily see in action in a web app, share, manage, or embed in your existing applications. You and your collaborators can validate performance, and identify what needs refinement. You can make any necessary updates, and republish a new version at any time. The Foundry portal also offers a streamlined way to publish your agent or workflow to Microsoft 365 Copilot and Microsoft Teams. <!--Learn more about publishing [here](publishing-agent-doc-page).-->
 
