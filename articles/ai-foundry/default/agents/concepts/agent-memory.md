@@ -398,7 +398,31 @@ Authorization: Bearer <your-token>
 ```
 
 ---
+## Use memory with prompt agent
 
+Attach the memory store to your agent to enable memory capabilities. Start with one memory store per agent to maximize memory protection and ensure optimization for your specific use case.
+
+# [Python](#tab/python)
+
+```python
+# Attach memory store to agent
+
+agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_AGENT_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful assistant that answers general questions",
+        ),
+        tools=[
+            MemorySearchTool(
+                memory_store_name=memory_store.name, 
+                scope="{{$userId}}", 
+                update_delay=10  # Wait 5 seconds of inactivity before updating memories
+                                 # In a real application, set this to a higher value like 300 (5 minutes, default)
+            )
+        ]
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ## Understand memory types
 
 Agent memory typically falls into two categories:
