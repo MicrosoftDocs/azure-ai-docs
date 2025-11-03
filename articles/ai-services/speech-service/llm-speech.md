@@ -159,7 +159,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of fast transcription](fast-transcription-create.md#request-configuration-options). 
 
 
-#### Sample Response
+#### Sample response
 
 In the JSON response, the `combinedPhrases` property contains the full transcribed or translated text, and the `phrases` property contains segment-level and word-level details.
 
@@ -267,6 +267,5 @@ The response format is consistent with other existing speech-to-text outputs, su
 
 ## Related content
 
-- [Speech to text REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
-- [Speech to text supported languages](./language-support.md?tabs=stt)
+- [LLM speech REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
 - [Fast transcription](fast-transcription-create.md)
