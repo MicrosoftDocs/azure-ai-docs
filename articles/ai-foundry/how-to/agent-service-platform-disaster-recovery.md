@@ -32,7 +32,7 @@ Establish and maintain a warm standby environment in a paired or otherwise accep
 
 - Create a virtual network in the failover region that mirrors the primary region's subnet topology and all required cross-premises connectivity. Keep egress controls and firewall rules synchronized while this environment is idle.
 - Create an Azure AI Foundry account with agent capability enabled in that network. Don't create projects, project-specific connections, or model deployments.
-- Enable Azure diagnostics, Defender for Cloud, and Purview integration on the standby account.
+- Enable Azure diagnostics, Defender for Cloud, and Purview integration on the standby account, matching the configuration of your production instance.
 
 Maintain this low-idle-cost, fully networked warm standby account. It hosts no projects during normal operations. Re-create only needed projects during failover based on business criticality and during failover drills.
 
