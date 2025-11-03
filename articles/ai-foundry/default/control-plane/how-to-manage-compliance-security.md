@@ -102,19 +102,19 @@ To edit an existing guardrail policy, follow these steps:
 
 1. Select **Operate** > **Compliance**.
 
-1. On the **Policies** tab, locate and select the policy you want to edit.
+1. On the **Policies** tab, locate and select the guardrail policy you want to edit.
 
-1. Select **Edit policy** from the policy details panel.
+1. Select **Edit policy** from the guardrail policy details panel.
 
 1. Modify the controls, scope, or exceptions as needed.
 
 1. Select **Save** to apply your changes.
 
-1. Allow up to 30 minutes for the updated policy to take effect. Compliance results update once Azure Policy reevaluates your resources.
+1. Allow up to 30 minutes for the updated guardrail policy to take effect. Compliance results update once Azure Policy reevaluates your resources.
 
 ## Review guardrails across your subscription
 
-When monitoring your model deployments for compliance, it's useful to review and compare the different guardrail controls set up for your assets throughout a project or subscription, even if they're not directly linked to policy compliance. This process helps you spot gaps in policy assignments, like missing controls. You can also uncover potential risks that may have gone unnoticed—such as subscriptions lacking content filtering entirely.
+When monitoring your model deployments for compliance, it's useful to review and compare the different guardrail controls set up for your assets throughout a project or subscription, even if they're not directly linked to guardrail policy compliance. This process helps you spot gaps in guardrail policy assignments, like missing controls. You can also uncover potential risks that may have gone unnoticed—such as subscriptions lacking content filtering entirely.
 
 Here's how you can do this:
 
@@ -133,10 +133,10 @@ Here's how you can do this:
    1. Select **Build** > **Guardrails** in the relevant project.
    1. Update existing guardrail settings or add new ones for your model deployments.
    
-   **Option 2: Create a policy for enforcement**
+   **Option 2: Create a guardrail policy for enforcement**
    
    1. Select **Operate** > **Compliance** > **Policy**.
-   1. Create a new policy to enforce guardrail requirements across all deployments.
+   1. Create a new guardrail policy to enforce guardrail requirements across all deployments.
 
 ## Set up security recommendations and alerts
 
