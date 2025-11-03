@@ -34,7 +34,7 @@ Establish and maintain a warm standby environment in a paired or otherwise accep
 - Create an Azure AI Foundry account with agent capability enabled in that network. Don't create projects, project-specific connections, or model deployments.
 - Enable Azure diagnostics, Defender for Cloud, and Purview integration on the standby account, matching the configuration of your production instance.
 
-Maintain this low-idle-cost, fully networked warm standby account. It hosts no projects during normal operations. Re-create only needed projects during failover based on business criticality and during failover drills.
+Maintain this low-idle-cost, fully networked warm standby account. It hosts no projects during normal operations. Re-create only needed projects (and their dependencies) during failover based on business criticality and during failover drills.
 
 ### Gateway routing
 
