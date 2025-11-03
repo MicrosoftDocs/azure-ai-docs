@@ -46,9 +46,10 @@ from azure.ai.projects.models import MemoryStoreDefaultDefinition
 from azure.identity import DefaultAzureCredential
 
 # Initialize the client
-client = AIProjectClient.from_connection_string(
+client = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    conn_str="<your-connection-string>"
+    api_version="2025-11-15-preview",
 )
 
 # Create memory store
