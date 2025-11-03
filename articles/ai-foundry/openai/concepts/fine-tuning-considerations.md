@@ -9,7 +9,8 @@ ms.date: 09/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-ms.custom:
+ms.custom: ignite2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
