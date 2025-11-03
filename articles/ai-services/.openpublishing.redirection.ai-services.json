@@ -2854,7 +2854,11 @@
       "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
       "redirect_url": "/azure/ai-services/language-service/concepts/configure-azure-resources",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/multi-services-resource-search-skills.md",
+      "redirect_url": "/azure/ai-services/multi-service-resource",
+      "redirect_document_id": true
     }
-
   ]
 }
