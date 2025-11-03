@@ -26,7 +26,7 @@ The code sample below does these basic steps to set up function calling.
 
 1. **Start audio processing**: Spin up **AudioProcessor** to capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
 
-1. **Run the event loop**: Await Voice Live events, updating session state, reacting to user speech boundaries, and streaming assistant audio/text back to the user interface. When a **ResponseFunctionCallItem** arrives, locate the callable, execute it with parsed arguments, package the result into a **FunctionCallOutputItem**, and send it back so the assistant can finalize its reply.
+1. **Run the event loop**: Await Voice Live events, updating session state, reacting to user speech boundaries, and streaming the assistant's audio/text back to the user interface. When a **ResponseFunctionCallItem** arrives, the application locates the callable, executes it with parsed arguments, packages the result into a **FunctionCallOutputItem**, and sends it back so the assistant can finalize its reply.
 
 ## Sample code
 
