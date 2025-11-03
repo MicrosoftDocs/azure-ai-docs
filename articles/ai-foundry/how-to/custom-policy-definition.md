@@ -6,7 +6,7 @@ ms.author: deeikele
 author: compliance
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 10/30/2025
+ms.date: 10/29/2025
 ms.reviewer: jburchel
 reviewer: jonburchel
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
@@ -49,7 +49,7 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
 3. **Add policy rule**
    - Enter the rule in JSON format. For example, to allow only approved connection categories:
 
-     :::code language="json" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json":::
+     :::code language="json" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json"
 
 4. **Assign the policy**
    - After saving, assign the policy to the desired scope (subscription, resource group, or hub).

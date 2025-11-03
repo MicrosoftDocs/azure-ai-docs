@@ -4,12 +4,10 @@ titleSuffix: Azure AI services
 description: Learn how to use Azure AI Speech for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
 author: goergenj
-reviewer: patrickfarley
 ms.author: jagoerge
-ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 10/31/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -372,7 +370,7 @@ The transcription result can be stored in an Azure container. If you don't speci
 
 You can store the results of a batch transcription to a writable Azure Blob storage container using option `destinationContainerUrl` in the [batch transcription creation request](#create-a-transcription-job). This option uses only an [ad hoc SAS](batch-transcription-audio-data.md#sas-url-for-batch-transcription) URI and doesn't support [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). This option also doesn't support Access policy based SAS. **The Storage account resource of the destination container must allow all external traffic.**
 
-If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring-your-own-storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Azure AI Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
+If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring your own storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Azure AI Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
 
 ## Related content
 
