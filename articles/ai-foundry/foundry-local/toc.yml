@@ -15,10 +15,10 @@ items:
   items:
   - name: Use native chat completions API
     href: how-to/how-to-use-native-chat-completions.md
+  - name: Use chat completions via REST server
+    href: how-to/how-to-integrate-with-inference-sdks.md
   - name: Transcribe recorded audio files
     href: how-to/how-to-transcribe-audio.md
-  - name: Integrate with 3rd party SDKs
-    href: how-to/how-to-integrate-with-inference-sdks.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
   - name: Integrate with Open WebUI

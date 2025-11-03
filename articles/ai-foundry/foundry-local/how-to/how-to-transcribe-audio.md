@@ -110,7 +110,8 @@ dotnet run
 
 ## Related content
 
-- [Integrate Foundry Local with other tools and frameworks](how-to-integrate-with-inference-sdks.md)
+- [Use native chat completions API with Foundry Local](how-to-use-native-chat-completions.md)
+- [Use chat completions via REST server with Foundry Local](how-to-integrate-with-inference-sdks.md)
 - [Use Foundry Local with LangChain](how-to-use-langchain-with-foundry-local.md)
 - [Compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)
