@@ -5,7 +5,6 @@ description: Learn how to use the Voice live API with telephony systems.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 09/26/2025
