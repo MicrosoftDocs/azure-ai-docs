@@ -84,7 +84,7 @@ To register the agent, follow these steps:
 
 1. Save the changes.
 
-1. Azure AI Foundry adds the new agent. You can check the list of agents by selecting the **Assets** tab from the left navigation.
+1. Azure AI Foundry adds the new agent. You can check the list of agents on the **Assets** tab in the left navigation
 
 ### Use the agent
 
