@@ -10,4 +10,4 @@ ms.date: 11/04/2025
 ms.custom: include
 ---
 
-The code in this article uses the Agents v2 API (preview). 
+ℹ️ Code uses **Agents v2 API (preview)**.
