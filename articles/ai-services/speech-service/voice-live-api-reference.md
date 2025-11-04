@@ -2107,7 +2107,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeAzureSemanticVadMultilingual
+##### RealtimeAzureSemanticVADMultilingual
 
 Azure semantic VAD (default variant).
 
