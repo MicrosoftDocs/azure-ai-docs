@@ -203,7 +203,7 @@ In this experience, you can enable built-in security controls including:
 * **Network Access**: Control network-based access for agents
 * **Governance**: Manage expiration, owners, and sponsors for agent identities
 
-For more information about Microsoft Entra Agent ID features, see the [Microsoft Entra documentation](/entra/identity/app-provisioning/what-is-provisioning).
+For more information about Microsoft Entra Agent ID features, see the [Microsoft Entra documentation](/entra/fundamentals/what-is-entra).
 
 ## Next steps
 
