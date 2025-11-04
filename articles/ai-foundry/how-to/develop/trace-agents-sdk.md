@@ -14,8 +14,6 @@ ms.custom: references_regions
 
 # Trace and Observe AI Agents in Azure AI Foundry (preview)
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
-
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to:
@@ -53,7 +51,7 @@ Here's a brief overview of key concepts before getting started:
 - Use consistent span attributes.
 - Correlate evaluation run IDs for quality + performance analysis.
 - Redact sensitive content; avoid storing secrets in attributes.
-                                                                          
+
 ## Extending OpenTelemetry with multi-agent observability
 
 Microsoft is enhancing multi-agent observability by introducing new semantic conventions to [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/), developed collaboratively with Outshift, Cisco's incubation engine. These additions—built upon OpenTelemetry and W3C Trace Context—establish standardized practices for tracing and telemetry within multi-agent systems, facilitating consistent logging of key metrics for quality, performance, safety, and cost. This systematic approach enables more comprehensive visibility into multi-agent workflows, including tool invocations and collaboration.
@@ -71,7 +69,6 @@ These advancements have been integrated into Azure AI Foundry, Microsoft Agent F
 | Attribute    | execute_tool         | tool.call.arguments           | Logs the arguments passed during tool invocation. |
 | Attribute    | execute_tool         | tool.call.results             | Records the results returned by the tool. |
 | Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
-                                                                          
 
 ## Set up tracing in Azure AI Foundry SDK
 
@@ -268,8 +265,7 @@ Azure AI Foundry makes it easy to log traces with minimal changes by using our t
 
 Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Observability.
 
-- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability).
-
+- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](/agent-framework/user-guide/workflows/observability).
 
 ### Enable tracing for Agents built on LangChain & LangGraph
 

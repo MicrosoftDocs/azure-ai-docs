@@ -6,7 +6,7 @@ items:
    - name: General purpose evaluators 
      href: ../../../concepts/evaluation-evaluators/general-purpose-evaluators.md
    - name: Textual similarity evaluators 
-     href: ../../../../concepts/evaluation-evaluators/textual-similarity-evaluators.md
+     href: ../../../concepts/evaluation-evaluators/textual-similarity-evaluators.md
    - name: Retrieval Augmented Generation (RAG) evaluators 
      href: ../../../concepts/evaluation-evaluators/rag-evaluators.md
    - name: Risk and safety evaluators
@@ -53,7 +53,7 @@ items:
      href: ../../concepts/trace-agent-concept.md
    - name: Tracing integrations
      href: ../../how-to/trace-agent-framework.md
-   - name: Agent Conversation and Responses
+   - name: Agent conversation and responses
      href: ../../how-to/agent-conversations.md
 - name: Transparency Note for safety evaluations
   href: ../../../concepts/safety-evaluations-transparency-note.md

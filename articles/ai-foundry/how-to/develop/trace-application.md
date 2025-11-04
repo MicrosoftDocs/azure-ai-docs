@@ -13,8 +13,6 @@ ai-usage: ai-assisted
 
 # View trace results for AI applications using OpenAI SDK
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
-
 Learn how to view trace results that provide visibility into AI application execution. Use traces to diagnose inaccurate tool calls, misleading prompts, latency bottlenecks, and low-quality evaluation scores.
 
 In this article, you learn how to:
