@@ -31,7 +31,7 @@ Here's what it does:
 
 This high-performance pipeline helps you generate high quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a new [Knowledge Bases object](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a new [Knowledge Base object](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -57,7 +57,7 @@ Agentic retrieval adds latency to query processing, but it makes up for it by ad
 Agentic retrieval invokes the entire query processing pipeline multiple times for each subquery, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
 
 > [!NOTE]
-> Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. Nonetheless, you should expect longer query times with this pipeline.
+> Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. You can minimize latency and costs by setting properties that limit LLM processing. You can also exclude LLM processing altogether for just text and hybrid search and your own query planning logic.
 
 ## Architecture and workflow
 
