@@ -135,7 +135,7 @@ Follow along below or get the code:
 ::: moniker-end
 ::: moniker range="foundry"
 
-1. Install packages, including the preview version of `Azure.AI.Projects`:
+1. Install packages:
 
     [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
 
@@ -296,7 +296,16 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [C#](#tab/csharp)
 
+:::moniker range="foundry-classic"
+
 :::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+:::moniker-end
+
+:::moniker range="foundry"
+
+[!INCLUDE [quickstart-csharp](../agents/includes/quickstart-csharp.md)]
+
+:::moniker-end
 
 # [TypeScript](#tab/typescript)
 

@@ -13,6 +13,8 @@ ms.custom:
   - build-aifnd
 ---
 
+:::moniker range="foundry-classic"
+
 To work with Azure AI services in your .NET project, you'll need to install several NuGet packages. Add NuGet packages using the .NET CLI in the integrated terminal:
     
 ```bash
@@ -22,3 +24,14 @@ dotnet add package Azure.AI.Projects
 dotnet add package Azure.AI.Agents.Persistent
 dotnet add package Azure.AI.Inference
 ```
+:::moniker-end
+
+:::moniker range="foundry-classic"
+
+To work with Azure AI services in your .NET project, you'll need to install several NuGet packages. Add NuGet packages using the .NET CLI in the integrated terminal:
+    
+```bash
+# Add Azure AI SDK packages
+dotnet add package Azure.AI.Agents --prerelease
+```
+:::moniker-end
