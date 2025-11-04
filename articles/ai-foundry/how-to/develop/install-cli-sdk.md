@@ -68,7 +68,7 @@ Install [Node.js](https://nodejs.org/)
 
 [!INCLUDE [Install the Azure CLI](../../includes/install-cli.md)]
 
-Keep this terminal window open to run your scripts from here as well, now that you've signed in.
+Keep this terminal open to run scripts after signing in.
 
 ## Install the Azure Developer CLI
 
