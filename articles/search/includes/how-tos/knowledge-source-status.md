@@ -1,4 +1,6 @@
 ---
+title: Create ingestion status
+titleSuffix: Azure AI Search
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
