@@ -20,10 +20,9 @@ ai.usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
+::: moniker range="foundry-classic"
 > [!TIP]
 > An alternate hub-focused RBAC article is available: [Role-based access control for Azure AI Foundry (Hubs and Projects)](hub-rbac-azure-ai-foundry.md).
-
-::: moniker range="foundry-classic"
 
 In this article, you learn how to manage access to your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources, like creating new resources or using existing ones. In Microsoft Entra ID, assign users roles that grant access to resources. Azure provides built-in roles and lets you create custom roles.
 
