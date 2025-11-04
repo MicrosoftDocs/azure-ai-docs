@@ -31,7 +31,11 @@ First demonstrate a toy function call that can check the time in three hardcoded
 # [Microsoft Entra ID](#tab/python-secure)
 
 ```python
+import os
+import json
 from openai import OpenAI
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
@@ -327,7 +331,11 @@ Now we demonstrate another toy function calling example this time with two diffe
 # [Microsoft Entra ID](#tab/python-secure)
 
 ```python
+import os
+import json
 from openai import OpenAI
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
