@@ -11,7 +11,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ---
 
-# Publish agents in Azure AI Foundry
+# Publish and share agents in Azure AI Foundry
 
 Publishing transforms an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. This article shows you how to publish an agent, configure its authentication and permissions, update published versions, and consume the agent through its stable endpoint.
 
