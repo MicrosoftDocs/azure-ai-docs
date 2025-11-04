@@ -68,20 +68,24 @@ print(f"Created memory store: {memory_store.id}")
 
 # [REST API](#tab/rest)
 
-```http
-POST https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores
-Content-Type: application/json
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
 
-{
-  "name": "my_memory_store",
-  "description": "Memory store for customer support agent",
-  "definition": {
-    "type": "default",
-    "chatModel": "gpt-4.1",
-    "embeddingModel": "text-embedding-3-small"
-  }
-}
+curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my_memory_store",
+    "description": "Memory store for customer support agent",
+    "definition": {
+      "kind": "default",
+      "chat_model": "gpt-4.1",
+      "embedding_model": "text-embedding-3-small"
+    }
+  }'
 ```
 
 ---
@@ -149,21 +153,31 @@ print(f"✓ Incremental update completed")```
 
 # [REST API](#tab/rest)
 
-```http
-POST https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores/<memory-store-id>/memories
-Content-Type: application/json
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
 
-{
-  "scope": "user_123",
-  "items": [
-    {
-      "type": "userMessage",
-      "content": "I prefer dark roast coffee and usually drink it in the morning"
-    }
-  ],
-  "updateDelay": 0
-}
+curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:update_memories?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scope": "user_123",
+    "items": [
+      {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "I prefer dark roast coffee and usually drink it in the morning"
+          }
+        ]
+      }
+    ],
+    "update_delay": 0
+  }'
 ```
 
 ---
@@ -205,18 +219,33 @@ print(f"  Found {len(search_response.memories)} memories")
 
 # [REST API](#tab/rest)
 
-```http
-POST https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores/<memory-store-id>/search
-Content-Type: application/json
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
 
-{
-  "scope": "user_123",
-  "conversationId": "conv_456",
-  "options": {
-    "limit": 5
-  }
-}
+curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scope": "user_123",
+    "items": [
+      {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "What are my coffee preferences?"
+          }
+        ]
+      }
+    ],
+    "options": {
+      "max_memories": 10
+    }
+  }'
 ```
 
 ---
@@ -242,15 +271,18 @@ print(f"Updated: {updated_store.name}")
 
 # [REST API](#tab/rest)
 
-```http
-PATCH https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores/<memory-store-id>
-Content-Type: application/json
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
 
-{
-  "name": "updated_memory_store",
-  "description": "Updated description for production use"
-}
+curl -X POST "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "description": "Updated: Memory store for customer interactions with enhanced tracking"
+  }'
 ```
 
 ---
@@ -274,9 +306,14 @@ for store in stores_list.data:
 
 # [REST API](#tab/rest)
 
-```http
-GET https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores?limit=10
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}&limit=10&order=desc" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
 ---
@@ -308,9 +345,18 @@ print(f"Deleted memories for scope: user_123")
 
 # [REST API](#tab/rest)
 
-```http
-DELETE https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores/<memory-store-id>/scopes/user_123
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:delete_scope?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scope": "user-123"
+  }'
 ```
 
 ---
@@ -329,9 +375,14 @@ print(f"Deleted memory store: {delete_response.deleted}")
 
 # [REST API](#tab/rest)
 
-```http
-DELETE https://<your-resource>.api.azureml.ms/agents/v1.0/memoryStores/<memory-store-id>
-Authorization: Bearer <your-token>
+```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
+curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
 ---
@@ -366,6 +417,11 @@ agent = project_client.agents.create_version(
 # [REST](#tab/rest)
 
 ```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
+
 curl -X POST "${ENDPOINT}/agents?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
