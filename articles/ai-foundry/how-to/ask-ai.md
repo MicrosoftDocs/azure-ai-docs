@@ -29,7 +29,7 @@ Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To st
 
 **What This AI Can Do** - The Ask AI experience is designed to provide assistance by answering questions based on:
 
-- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
+- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-tos or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
 - **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI in Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, and models trained by Microsoft. The agent can provide information about the models available in the Azure AI Foundry catalog.
 
 **What This AI Cannot Do** - While the agent is a powerful tool, it has some limitations:
@@ -54,7 +54,7 @@ Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To st
 
 **What This AI Can Do** - The Ask AI experience is designed to provide assistance by answering questions based on:
 
-- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos, or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
+- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-tos, or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
 - **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI in Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, as well as models trained by Microsoft. The agent can provide information about the models available in the Azure AI Foundry catalog.
 - **Quota and Model Operations**: The agent can look for existing quota in your subscription, and can manage your model deployments for you.
 
