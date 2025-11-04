@@ -56,7 +56,7 @@ The Python extension for Visual Studio Code supports Python with IntelliSense, d
 
 ### Install the Visual Studio Code Extension Pack for Java
 
-The Extension Pack for Java is a collection of popular extensions that can help write, test and debug Java applications in Visual Studio Code. 
+The Extension Pack for Java is a collection of popular extensions that can help write, test, and debug Java applications in Visual Studio Code. 
 
 [Install the Visual Studio Code Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
 
