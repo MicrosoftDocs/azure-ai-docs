@@ -86,8 +86,7 @@ pip install azure-monitor-opentelemetry opentelemetry-sdk
 
 To view traces in Azure AI Foundry, you need to connect an Application Insights resource to your Azure AI Foundry project.
 
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-1. Navigate to **Tracing** in the left navigation pane.
+1. Navigate to **Tracing** in the left navigation pane of the Azure AI Foundry portal.
 1. Create a new Application Insights resource if you don't already have one.
 1. Connect the resource to your AI Foundry project.
 
