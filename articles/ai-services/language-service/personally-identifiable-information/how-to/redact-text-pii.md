@@ -37,7 +37,7 @@ When you submit input text to be processed, you can specify which of [the suppor
 
 ### Redaction policies
 
-With version `2024-11-15-preview`, you're able to define the `redactionPolicies` parameter to reflect the redaction policy to be used when redacting text. The policy field supports four policy types:
+With version `2025-11-15-preview`, you're able to define the `redactionPolicies` parameter to reflect the redaction policy to be used when redacting text. The policy field supports four policy types:
 
 > [!div class="checklist"]
 > * [`CharacterMaskPolicyType` (default)](#charactermaskpolicytype)
