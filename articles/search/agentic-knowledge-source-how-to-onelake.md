@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 11/04/2025
 ---
 
 # Create a OneLake knowledge source
@@ -154,6 +154,10 @@ You can pass the following properties to create a OneLake knowledge source.
 ### `ingestionParameters` properties
 
 [!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
+
+## Check knowledge source status
+
+[!INCLUDE [Knowledge source status](./includes/how-tos/includes\how-tos\knowledge-source-status.md)]
 
 ## Review the created objects
 
