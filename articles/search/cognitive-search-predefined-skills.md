@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 10/24/2025
+ms.date: 11/04/2025
 ms.update-cycle: 365-days
 ---
 
@@ -66,6 +66,7 @@ These skills are billed at the Standard rate.
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
 | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) | Connects to a deployed Azure OpenAI embedding model for integrated vectorization. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
+| [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with an AI Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
 <!-- | Content Understanding skill |  |  | -->
 
 ## Custom skills
@@ -78,7 +79,6 @@ For guidance on creating a custom skill, see [Define a custom interface](cogniti
 |-------|-------------|-------------|
 | [AML](cognitive-search-aml-skill.md) | Extends an AI enrichment pipeline with an Azure AI Foundry or Azure Machine Learning model. | None, unless your solution uses a metered Azure service. |
 | [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Extends an AI enrichment pipeline by detecting user-defined entities. | None, unless your solution uses a metered Azure service. |
-| [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with a chat completion model. | None, unless your solution uses a metered Azure service. |
 | [Web API](cognitive-search-custom-skill-web-api.md) | Extends an AI enrichment pipeline by making an HTTP call into a custom Web API. | None, unless your solution uses a metered Azure service. |
 
 ## Utility skills
