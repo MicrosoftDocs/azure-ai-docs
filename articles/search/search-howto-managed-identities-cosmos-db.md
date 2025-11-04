@@ -18,7 +18,7 @@ ms.custom:
 
 This article explains how to set up an indexer connection to an Azure Cosmos DB database using a managed identity instead of providing credentials in the connection string.'
 
-You can use a system-assigned managed identity or a user-assigned managed identity. Managed identities are Microsoft Entra logins and require Azure role assignments to access data in Azure Cosmos DB. You can optionally [enforce role-based access as the 2025-11-01-preview authentication method](/azure/cosmos-db/how-to-setup-rbac#disable-local-auth) for data connections by setting `disableLocalAuth` to `true` for your Azure Cosmos DB for NoSQL account.
+You can use a system-assigned managed identity or a user-assigned managed identity. Managed identities are Microsoft Entra logins and require Azure role assignments to access data in Azure Cosmos DB. You can optionally [enforce role-based access as the only authentication method](/azure/cosmos-db/how-to-setup-rbac#disable-local-auth) for data connections by setting `disableLocalAuth` to `true` for your Azure Cosmos DB for NoSQL account.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 ## Limitations
 
-* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) 2025-11-01-preview support the _legacy_ approach.
+* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) only support the _legacy_ approach.
 
 ## Supported approaches for managed identity authentication
 
@@ -66,7 +66,7 @@ For more information, see [Use control plane role-based access control with Azur
 
 The managed identity needs to assigned a role to read from the Cosmos DB account's data plane. 
 The Object (principal) ID for the search service's system/user assigned identity can be found from the search service's "Identity" tab.
-This step can 2025-11-01-preview be performed via Azure CLI at the moment. 
+This step can only be performed via Azure CLI at the moment. 
 
 Set variables:
 
@@ -75,14 +75,14 @@ $cosmosdb_acc_name = <cosmos db account name>
 $resource_group = <resource group name>
 $subsciption = <subscription ID>
 $system_assigned_principal = <Object (principal) ID for the search service's system/user assigned identity>
-$read2025-11-01-previewRoleDefinitionId = "00000000-0000-0000-0000-000000000001"
+$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000001"
 $scope=$(az cosmosdb show --name $cosmosdb_acc_name --resource-group $resource_group --query id --output tsv)
 ```
 
 Define a role assignment for the system-assigned identity:
 
 ```azurecli
-az cosmosdb sql role assignment create --account-name $cosmosdb_acc_name --resource-group $resource_group --role-definition-id $read2025-11-01-previewRoleDefinitionId --principal-id $system_assigned_principal --scope $scope
+az cosmosdb sql role assignment create --account-name $cosmosdb_acc_name --resource-group $resource_group --role-definition-id $readOnlyRoleDefinitionId --principal-id $system_assigned_principal --scope $scope
 ```
 
 For more information, see [Use data plane role-based access control with Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/security/how-to-grant-data-plane-role-based-access)
@@ -100,7 +100,7 @@ The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and t
 
 #### Connect through system-assigned identity
 
-When you're connecting with a system-assigned managed identity, the 2025-11-01-preview change to the data source definition is the format of the "credentials" property. Provide a database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure Cosmos DB, the resource group, and the Azure Cosmos DB account name.
+When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. Provide a database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure Cosmos DB, the resource group, and the Azure Cosmos DB account name.
 
 Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _modern_ approach.
 
@@ -153,7 +153,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 
 * For MongoDB collections, add "ApiKind=MongoDb" to the connection string and use a preview REST API.
 * For Gremlin graphs, add "ApiKind=Gremlin" to the connection string and use a preview REST API.
-* For either kinds, 2025-11-01-preview the __legacy__ approach is supported - that is, `IdentityAuthType=AccountKey` or omitting it entirely is the 2025-11-01-preview valid connection string.
+* For either kinds, only the __legacy__ approach is supported - that is, `IdentityAuthType=AccountKey` or omitting it entirely is the only valid connection string.
 
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
