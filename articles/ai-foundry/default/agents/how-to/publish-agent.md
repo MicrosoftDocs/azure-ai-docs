@@ -23,7 +23,6 @@ Publishing enables you to share agents with teammates, your organization, or cus
 
 - An [Azure AI Foundry project](../../../how-to/create-projects.md) with at least one agent version created
 - [Azure AI Project Manager role](../../../concepts/rbac-azure-ai-foundry.md) on the Foundry project scope to publish agents
-- 
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - For tool authentication: Knowledge of which Azure resources your agent accesses
 
@@ -39,11 +38,11 @@ An Azure AI Foundry **project** is an organizational container that groups relat
 
 An **Agent Application** is the durable interface you use to expose agents. It acts as a SaaS application with authentication, identity, and a stable entry point. A **deployment** is a running instance of an agent version inside an application that can be started, stopped, and updated to reference new agent versions.
 
-During development, all unpublished agents in a project share a default Agent Identity. Once published, an agent receives its own Agent Identity and becomes a nested Azure resource visible in the Azure Portal, enabling independent governance and RBAC configuration.
+During development, all unpublished agents in a project share a default Agent Identity. Once published, an agent receives its own Agent Identity and becomes a nested Azure resource visible in the Azure portal, enabling independent governance and RBAC configuration.
 
 ### Routing and version management
 
-Each Agent Application acts as a routing table to specific agent deployments. Currently, an Agent Application supports one active deployment, directing 100% of traffic to that deployment. When you publish a new agent version to an existing application, the deployment updates to reference the new version. Future updates will introduce traffic splitting across multiple deployments for gradual rollouts.
+Each Agent Application acts as a routing table to specific agent deployments. Currently, an Agent Application supports one active deployment, directing 100% of traffic to that deployment. When you publish a new agent version to an existing application, the deployment updates to reference the new version. 
 
 :::image type="content" source="../../media/publish-agent/agent-application-routing-diagram.png" alt-text="Diagram of an Agent Application routing traffic to a deployment running a specific agent version, showing a stable entry point and traffic flow.":::
 

@@ -136,51 +136,51 @@ To configure an MCP tool to authenticate using agent identity:
    - For an MCP server listing blobs in your storage account: set audience as `https://storage.azure.com`
    - For an Azure Logic App MCP server: set audience as `https://logic.azure.com`
 
-   You can create the connection using either the REST API or the Foundry portal:
-
-   #### [REST API](#tab/rest-api)
-
-   To get an access token, run the commands `az login` and then `az account get-access-token`.
-
-   ```http
-   PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/connections/{{mcp_connection_name}}?api-version={{api_version}}
-   Authorization: Bearer {{token}}
-   Content-Type: application/json
-
-   {
-     "tags": null,
-     "location": null,
-     "name": "{YOUR_CONNECTION_NAME}",
-     "type": "CognitiveServices/accounts/projects/connections",
-     "properties": {
-       "authType": "AgenticIdentityToken",
-       "group": "ServicesAndApps",
-       "category": "RemoteTool",
-       "expiryTime": null,
-       "target": "{YOUR_MCP_REMOTE_URL}",
-       "isSharedToAll": true,
-       "sharedUserList": [],
-       "audience": "{YOUR_AUDIENCE}",
-       "Credentials": {},
-       "metadata": {
-         "ApiType": "Azure"
-       }
-     }
-   }
-   ```
-
-   #### [Foundry portal](#tab/foundry-portal)
-
-   1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
-   1. Select **Build** in the upper-right navigation.
-   1. Select **Agents**.
-   1. Select the agent you want to use. 
-   1. Under tools select **+ Add**. 
-   1. On the **Custom** tab, select **Model Context Protocol (MCP)**. 
-   1. Under authentication choose **Microsoft Entra** and then under  **Type** select **Agent identity**. 
-   1. Fill in the endpoint and audience fields then select **Connect**.
-
-   ---
+    You can create the connection using either the REST API or the Foundry portal:
+    
+    #### [REST API](#tab/rest-api)
+    
+    To get an access token, run the commands `az login` and then `az account get-access-token`.
+    
+    ```http
+    PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/connections/{{mcp_connection_name}}?api-version={{api_version}}
+    Authorization: Bearer {{token}}
+    Content-Type: application/json
+    
+    {
+        "tags": null,
+        "location": null,
+        "name": "{YOUR_CONNECTION_NAME}",
+        "type": "CognitiveServices/accounts/projects/connections",
+        "properties": {
+        "authType": "AgenticIdentityToken",
+        "group": "ServicesAndApps",
+        "category": "RemoteTool",
+        "expiryTime": null,
+        "target": "{YOUR_MCP_REMOTE_URL}",
+        "isSharedToAll": true,
+        "sharedUserList": [],
+        "audience": "{YOUR_AUDIENCE}",
+        "Credentials": {},
+        "metadata": {
+            "ApiType": "Azure"
+        }
+        }
+    }
+    ```
+    
+    #### [Foundry portal](#tab/foundry-portal)
+    
+    1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
+    1. Select **Build** in the upper-right navigation.
+    1. Select **Agents**.
+    1. Select the agent you want to use. 
+    1. Under tools select **+ Add**. 
+    1. On the **Custom** tab, select **Model Context Protocol (MCP)**. 
+    1. Under authentication choose **Microsoft Entra** and then under  **Type** select **Agent identity**. 
+    1. Fill in the endpoint and audience fields then select **Connect**.
+    
+    ---
 
 1. **Assign permissions**: Assign the agent identity the required permissions for its actions using the `agentIdentityId` you copied. For example:
    - For an MCP server listing blob containers: assign the **Storage Blob Data Contributor** role at the **Azure Storage Account** scope
