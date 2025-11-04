@@ -268,19 +268,4 @@ public final class EmbeddingsExample {
 }
 ```
 
-
-
 ---
-
-## Image generation
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK doesn't support image generation models.
-
-# [OpenAI SDK](#tab/openai)
-
-OpenAI SDK doesn't support image generation models.
-
----
-
