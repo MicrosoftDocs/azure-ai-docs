@@ -9,8 +9,7 @@ ms.date: 09/30/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.custom: ignite2025
-monikerRange: 'foundry-classic || foundry'
+ms.custom: build-2025
 ---
 
 # Deploy a fine-tuned model for testing
