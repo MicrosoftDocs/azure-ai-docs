@@ -6,11 +6,9 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 09/22/2025
+ms.date: 10/31/2025
 author: goergenj
-reviewer: PatrickFarley
 ms.author: jagoerge
-ms.reviewer: pafarley
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource
@@ -23,29 +21,29 @@ There's one exception: if you use Text to speech, and your Speech resource and t
 
 BYOS can be used with several Azure AI services. For Speech, it can be used in the following scenarios:
 
-> [!NOTE]
-> Speech services BYOS is currently only supported with resource kind `SpeechServices`.
-
 **Speech to text**
 
 - [Batch transcription](batch-transcription.md)
 - Real-time transcription with [audio and transcription result logging](logging-audio-transcription.md) enabled
-- [Custom speech](custom-speech-overview.md) - Fine-tuning of speech to text models with custom data.
+- [Custom speech](custom-speech-overview.md) - Fine-tuning of speech to text models with custom data
 
 **Text to speech**
 
 - [Audio Content Creation](how-to-audio-content-creation.md)
-- [Custom voice](custom-neural-voice.md) - Fine-tuning of text to speech models with custom data.
+- [Custom voice](custom-neural-voice.md) - Fine-tuning of text to speech models with custom data
 
-One Speech resource – Storage account combination can be used for all four scenarios simultaneously in all combinations.
+One Speech / AI Services resource – Storage account combination can be used for all scenarios simultaneously in all combinations.
 
-This article describes how to create and maintain BYOS-enabled Speech resource and applicable to all mentioned scenarios. See the scenario-specific information in the [corresponding articles](#next-steps).
+This article describes how to create and maintain BYOS-enabled Speech resource and is applicable to all mentioned scenarios. See the scenario-specific information in the [corresponding articles](#next-steps).
+
+> [!NOTE]
+> For instruction on how to set up a BYOS-enabled AI Services resource go to **[Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)** in AI Foundry.
 
 ## BYOS-enabled Speech resource: Basic rules
 
 Consider the following rules when planning BYOS-enabled Speech resource configuration:
 
-- Speech resource can be BYOS-enabled only during creation. Existing Speech resource can't be converted to BYOS-enabled. BYOS-enabled Speech resource can't be converted to the “conventional” (non-BYOS) one.
+- Speech resource can be BYOS-enabled only during creation. Existing Speech resource can't be converted to BYOS-enabled. BYOS-enabled Speech resource can't be converted to the "conventional" (non-BYOS) one.
 - Storage account association with the Speech resource is declared during the Speech resource creation. It can't be changed later. That is, you can't change what Storage account is associated with the existing BYOS-enabled Speech resource. To use another Storage account, you have to create another BYOS-enabled Speech resource.
 - When creating a BYOS-enabled Speech resource, you can use an existing Storage account or create one automatically during Speech resource provisioning (the latter is valid only when using Azure portal).
 - One Storage account can be associated with many Speech resources. We recommend using one Storage account per one Speech resource.
@@ -65,7 +63,7 @@ If you want to use existing Storage account and don't intend to use Azure portal
 - To fully configure BYOS, you need at least *Resource Owner* right for the selected Storage account.
 
 > [!NOTE]
-> Storage account *Resource Owner* right or higher is not required to use a BYOS-enabled Speech resource. However it is required during the one-time initial configuration of the Storage account for the usage in BYOS scenario. See details in [this section](#configure-byos-associated-storage-account).
+> Storage account *Resource Owner* right or higher isn't required to use a BYOS-enabled Speech resource. However it's required during the one-time initial configuration of the Storage account for the usage in BYOS scenario. See details in [this section](#configure-byos-associated-storage-account).
 
 ### Create BYOS-enabled Speech resource
 
@@ -391,3 +389,5 @@ You need to allow access for the machine, where you run the browser using Speech
 ## Next steps
 
 - [Use the Bring your own storage (BYOS) Speech resource for Speech to text](bring-your-own-storage-speech-resource-speech-to-text.md)
+- AI Foundry [Connect to your own storage](../../ai-foundry/how-to/bring-your-own-azure-storage-foundry.md)
+- AI Foundry [Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)**

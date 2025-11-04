@@ -24,18 +24,27 @@ items:
 - name: Function calling
   href: ../../../agents/how-to/tools/function-calling.md
 - name: Grounding with Bing Search
-  href: ../../../agents/how-to/tools/bing-grounding.md
-- name: Grounding with Bing Custom Search
-  href: ../../../agents/how-to/tools/bing-custom-search.md
+  href: ../../agents/concepts/bing-tools.md
+- name: Image generation (preview)
+  href: ../../agents/how-to/tools/image-generation.md
 - name: Logic apps
   href: ../../../agents/how-to/tools/logic-apps.md
 - name: Microsoft Fabric (preview)
   href: ../../../agents/how-to/tools/fabric.md
-- name: Model Context Protocol (preview)
-  href: ../../../agents/how-to/tools/model-context-protocol.md
+- name: Model Context Protocol(MCP) servers
+  items:
+    - name: Tool catalog (preview)
+      href: ../../agents/concepts/tool-catalog.md
+    - name: Create a private tool catalog (preview)
+      href: ../../agents/how-to/private-tool-catalog.md
+    - name: MCP tool
+      href: ../../../agents/how-to/tools/model-context-protocol.md
+    - name: MCP authentication
+      href: ../../agents/how-to/mcp-authentication.md
 - name: OpenAPI defined tools
   href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint
-  href: ../../../agents/how-to/tools/sharepoint.md
-
+  href: ../../../agents/how-to/tools/sharepoint.md 
+- name: Web search (preview)
+  href: ../../agents/how-to/tools/web-search.md
 
