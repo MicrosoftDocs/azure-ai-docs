@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 11/04/2025
 ---
 
-Use [Knowledge Sources - Status (REST API)](/rest/api/searchservice/knowledge-sources/status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to monitor an ingestion progress and health, including indexer status for knowledge sources that generate an indexer pipeline and populate a search index. 
+Use [Knowledge Sources - Status (REST API)](/rest/api/searchservice/knowledge-sources/status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to monitor ingestion progress and health, including indexer status for knowledge sources that generate an indexer pipeline and populate a search index. 
 
 ```http
 ### List knowledge sources by name and type
