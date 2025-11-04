@@ -61,7 +61,7 @@ Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To st
 **What This AI Cannot Do** - While the agent is a powerful tool, it has some limitations and constraints:
 
 - **Call External APIs**: This AI experience can only call for a specific subset of Azure AI Foundry APIs. It cannot access the web or APIs external to Microsoft.
-- **Bypass Permissions**: This AI experience can execute actions on your behalf. Tt requires you to have the right permissions for those actions. This agent cannot perform an action that you would not be able to do yourself.
+- **Bypass Permissions**: This AI experience can execute actions on your behalf. It requires you to have the right permissions for those actions. This agent cannot perform an action that you would not be able to do yourself.
 
 Use the agent to make the most of the Azure AI Foundry experience but keep its scope and limitations in mind when asking questions.
 
