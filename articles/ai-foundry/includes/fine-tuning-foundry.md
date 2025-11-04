@@ -8,7 +8,7 @@
 
 - ### Supported models
 
-Consult the [models page](../openai/includes/models-azure-direct-openai.md#fine-tuning-models) to check which regions currently support fine-tuning.
+Consult the [models page](../openai/includes/fine-tune-models.md) to check which regions currently support fine-tuning.
 
 Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
