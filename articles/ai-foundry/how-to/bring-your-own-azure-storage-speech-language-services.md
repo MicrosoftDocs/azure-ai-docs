@@ -11,9 +11,12 @@ ms.custom: ignite-2024, build-2025
 ms.topic: how-to
 ms.date: 10/27/2025
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Connect your own storage for Speech and Language services
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -21,11 +24,25 @@ Azure AI Foundry unifies Agents, Azure OpenAI, Speech, and Language capabilities
 
 Use this article when you specifically need Speech and Language data to land in an Azure Storage account you own. For the broader approaches (connections, capability hosts, and when to use them for other features), see [Connect to your own storage](bring-your-own-azure-storage-foundry.md).
 
+::: moniker range="foundry-classic"
+## (Optional) Configure via Azure AI Foundry portal
+
+This article focuses on infrastructure-as-code and Azure role assignments, which are version-agnostic. If a portal (UI) workflow for setting `userOwnedStorage` at creation becomes available, add validated steps below. (Source: settings.json versioningGuidelines)
+
+
+[TO VERIFY] Add classic portal steps for configuring `userOwnedStorage` during Azure AI Foundry resource creation. For example: 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 1. Navigate to resource creation. 1. Provide storage account selection. 1. Review and create.
+::: moniker-end
+
+::: moniker range="foundry"
+
+::: moniker-end
+
 ## Prerequisites
 
 Before you begin:
 
-- An Azure subscription.
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+
 - An Azure Storage account (Blob) in a region supported by your Azure AI Foundry resource.
 - Permissions: Owner or Contributor on both the Azure AI Foundry resource (or resource group) and the Storage account.
 - Decision to use customer-managed keys (CMK) encryption (optional) on the storage account.
