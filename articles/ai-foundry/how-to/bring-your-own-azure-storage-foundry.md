@@ -86,10 +86,10 @@ If strict data isolation is required between Speech and Language scenarios, crea
 1. Select **+ New connection**.
 1. Choose **Azure Blob Storage**.
 1. Provide:
-  - Name
-  - Subscription
-  - Storage account
-  - Authentication method (system-assigned managed identity recommended)
+   - Name
+   - Subscription
+   - Storage account
+   - Authentication method (system-assigned managed identity recommended)
 1. Select **Create**.
 
 The connection is now available to Agents (when not overridden), Evaluations, Datasets, Content Understanding, Speech, and Language.

@@ -24,18 +24,6 @@ Azure AI Foundry unifies Agents, Azure OpenAI, Speech, and Language capabilities
 
 Use this article when you specifically need Speech and Language data to land in an Azure Storage account you own. For the broader approaches (connections, capability hosts, and when to use them for other features), see [Connect to your own storage](bring-your-own-azure-storage-foundry.md).
 
-::: moniker range="foundry-classic"
-## (Optional) Configure via Azure AI Foundry portal
-
-This article focuses on infrastructure-as-code and Azure role assignments, which are version-agnostic. If a portal (UI) workflow for setting `userOwnedStorage` at creation becomes available, add validated steps below. (Source: settings.json versioningGuidelines)
-
-
-[TO VERIFY] Add classic portal steps for configuring `userOwnedStorage` during Azure AI Foundry resource creation. For example: 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 1. Navigate to resource creation. 1. Provide storage account selection. 1. Review and create.
-::: moniker-end
-
-::: moniker range="foundry"
-
-::: moniker-end
 
 ## Prerequisites
 
