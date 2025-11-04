@@ -78,7 +78,9 @@ Keep this terminal window open to run your scripts from here as well, now that y
 
 [Install The AI Foundry VS Code Extension](https://marketplace.visualstudio.com/items?itemName=AzureAIFoundry.azure-ai-foundry-vscode)
 
-- [!INCLUDE [install-git](../../includes/install-git.md)]
+## Install Git
+
+Many of the Azure AI Foundry SDK samples use Git for version control. If you don't have Git installed, [follow the instructions for your platform](https://git-scm.com/downloads) and select your operating system.
 
 ## Next step
 
