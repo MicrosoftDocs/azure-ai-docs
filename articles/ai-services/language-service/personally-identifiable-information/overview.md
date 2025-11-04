@@ -23,6 +23,7 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 **The 2025-11-15-preview version introduces the following new PII task parameters**:
 
 * [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request:
+
     * [CharacterMaskPolicyType (default)](how-to/redact-text-pii.md#charactermaskpolicytype)
     * [NoMaskPolicyType](how-to/redact-text-pii.md#nomaskpolicytype)
     * [EntityMaskPolicyType](how-to/redact-text-pii.md#entitymaskpolicytype)
@@ -32,23 +33,29 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 
 * [**Disable type validation enforcement**](how-to/redact-text-pii.md#disableentityvalidation) enables you to bypass the entity type validation. By default, the service enforces validation across multiple entity types to ensure data integrity and minimize false positives. Disabling this enforcement can enhance operational efficiency in cases where strict validation isn't required.
 
+* The following entities are available in preview:
 
-**The 2025-08-01-preview version introduces several new entities**:
-
-   > [!div class="checklist"]
-   > * [**DateOfBirth**](concepts/entity-categories.md#type-date-of-birth-preview) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
-   > * [**LicensePlate**](concepts/entity-categories.md#type-license-plate-preview) with English language support.
-   > * [**SortCode**](concepts/entity-categories.md#type-sort-code-preview) with English language support.
-
-
-
-
-* **Text PII and Conversational PII detection preview API (version `2024-11-15-preview`)** supports the following:
-
-   > [!div class="checklist"]
-   > * The option to mask detected sensitive entities with a label rather than just redaction characters.
-   > * Customers can specify how personal data content, such as names and phone numbers, is masked.
-   > * To learn more about how to specify the redaction policy style for your outputs *see* our [how-to guides](how-to-call.md).
+    * [Airport](concepts/entity-categories.md#type-airport-preview)
+    * [DateOfBirth](concepts/entity-categories.md#type-date-of-birth-preview)
+    * [BankAccountNumber](concepts/entity-categories.md#type-bank-account-number-preview)
+    * [CASocialIdentificationNumber](concepts/entity-categories.md#type-canada-social-identification-number-preview)
+    * [CVV (Card Verification Value )](concepts/entity-categories.md#type-card-verification-value-cvv-preview)
+    * [City](concepts/entity-categories.md#type-city-preview)
+    * [PassportNumber](concepts/entity-categories.md#type-passport-number-preview)
+    * [DriversLicenseNumber](concepts/entity-categories.md#type-drivers-license-number-preview)
+    * [ExpirationDate](concepts/entity-categories.md#type-expiration-date-preview)
+    * [Geopolitical Entity](concepts/entity-categories.md#type-geopolitical-entity-gpe-preview)
+    * [KRDriversLicenseNumber](concepts/entity-categories.md#type-south-korea-drivers-license-number-preview)
+    * [KRPassportNumber ](concepts/entity-categories.md#type-south-korea-passport-number-preview)
+    * [KRSocialSecurityNumber ](concepts/entity-categories.md#type-south-korea-social-security-number-preview)
+    * [LicensePlate](concepts/entity-categories.md#type-license-plate-preview)
+    * [Location](concepts/entity-categories.md#type-location-preview)
+    * [Password](concepts/entity-categories.md#type-password-preview)
+    * [SortCode](concepts/entity-categories.md#type-sort-code-preview)
+    * [State](concepts/entity-categories.md#type-state-preview)
+    * [USMedicareBeneficiaryId](concepts/entity-categories.md#type-united-states-medicare-beneficiary-identification-preview)
+    * [VIN (vehicle identification number)](concepts/entity-categories.md#type-vin-preview)
+    * [ZipCode](concepts/entity-categories.md#type-zipcode-preview)
 
 * **Conversational PII detection models (both version `2024-11-01-preview` and `GA`)** are updated to provide enhanced AI quality and accuracy. The numeric identifier entity type now also includes Drivers License and Medicare Beneficiary Identifier.
 
