@@ -4,7 +4,7 @@ items:
 - name: Agent2Agent (preview)
   items:
     - name: Agent2Agent (A2A) tool
-      href: ../../agents/how-to/agent-to-agent.md
+      href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication
       href: ../../agents/concepts/agent-to-agent-authentication.md
 - name: Retrieval Augmented Generation (RAG) overview
