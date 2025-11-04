@@ -464,6 +464,7 @@ The memory store supports the {{$userId}} variable, which is replaced at runtime
 ## Pricing 
 
 In this public preview, the use of memory features is free. However, you’re billed for use of the chat completion model and embedding model. 
+
 ## Best practices
 
 When you implement memory in your agents, consider the following practices:
@@ -474,6 +475,15 @@ When you implement memory in your agents, consider the following practices:
 - **Segment data and isolate memory**: In multitenant or multiagent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
 - **Monitor memory usage**: Track token usage and memory operations to understand costs and optimize performance. Set appropriate limits for memory storage and retrieval.
 - **Version your memory stores**: Use metadata to track versions and configurations of memory stores, making it easier to manage updates and troubleshoot issues.
+- 
+- ## Security risks of prompt injection
+ 
+When working with memory in Foundry Agent Service, it’s essential to safeguard memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing future decisions and actions.
+ 
+To strengthen memory security, you can consider the following:
+ 
+- **Use Azure AI Content Safety**: Validate all prompts entering or leaving the memory system to prevent malicious content.
+- **Perform attack and adversarial testing**: Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
 
 ## Related content
 
