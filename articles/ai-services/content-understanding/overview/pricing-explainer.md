@@ -309,7 +309,7 @@ Here are detailed examples showing how pricing works across different scenarios:
 1. **Content extraction**: 1,000 pages
    - Cost: (1,000 / 1,000) × $5.00 = **$5.00**
  
-2. **Field extraction** with source estimation + confidence enabled the token usage will by ~2x more per page:
+2. **Field extraction** with source estimation + confidence enabled, the token usage will by ~2x more per page:
    - Base input tokens: 1,000 pages × 5,200 tokens/page = 5,200,000 tokens
    - Cost: (5,200,000 / 1,000,000) × $0.40 = **$2.08** (mini pricing)
    - Base output tokens: 1,000 pages × 180 tokens/page = 180,000 tokens
