@@ -3,10 +3,16 @@ items:
   href: ../../../agents/how-to/tools/overview.md
 - name: Memory
   href: ../../agents/concepts/agent-memory.md
+- name: Agent2Agent (A2A) tool
+  href: ../../agents/how-to/tools/agent-to-agent.md
+- name: Agent2Agent (A2A) authentication
+  href: ../../agents/concepts/agent-to-agent-authentication.md
 - name: Retrieval Augmented Generation (RAG) overview
   href: ../../../concepts/retrieval-augmented-generation.md
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
+- name: Enable token limits with API gateways
+  href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Azure Functions
   href: ../../../agents/how-to/tools/azure-functions.md
 - name: Browser automation (preview)
