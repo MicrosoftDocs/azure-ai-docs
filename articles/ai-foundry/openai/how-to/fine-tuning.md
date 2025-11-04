@@ -49,6 +49,12 @@ In this article, you will learn how to:
 
 ::: zone-end
 
+::: zone pivot="rest-api"
+
+[!INCLUDE [REST API fine-tuning](../includes/fine-tuning-rest.md)]
+
+::: zone-end
+
 ::: moniker-end
 
 ::: moniker range="foundry-classic"
@@ -56,8 +62,6 @@ In this article, you will learn how to:
 ::: zone pivot="programming-language-studio"
 
 [!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
-
-::: zone-end
 
 ::: moniker-end
 
@@ -72,6 +76,8 @@ In this article, you will learn how to:
 [!INCLUDE [REST API fine-tuning](../includes/fine-tuning-rest.md)]
 
 ::: zone-end
+
+::: moniker-end
 
 ## Related content
 
