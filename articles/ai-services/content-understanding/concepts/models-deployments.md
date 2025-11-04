@@ -99,11 +99,16 @@ Submit an analyze request for the analyzer and validate that the response is acc
 ``` JSON
 {
   "usage": {
-    "documentPages": 2,
+    "documentPagesMinimal": 3, // The number of document pages processed at the minimal level (txt, xlsx, html, and other digital file types)
+    "documentPagesBasic": 2, // The number of document pages processed at the basic level (read)
+    "documentPagesStandard": 1, // The number of document pages processed at the standard level (layout)
+    "audioHours": 0.234,
+    "videoHours": 0.123,
+    "contextualizationToken": 1000,
     "tokens": {
-      "contextualization": 2000,
-      "input": 10400,
-      "output": 360
+      "gpt-4.1-input": 1234,
+      "gpt-4.1-output": 2345,
+      "text-embedding-3-large": 3456
     }
   }
 }

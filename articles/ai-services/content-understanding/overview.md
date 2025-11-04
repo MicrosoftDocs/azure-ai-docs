@@ -18,7 +18,7 @@ ms.custom:
 
 Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-As of November 17, 2025, Content Understanding is a Generally Available (GA) service, and is now available in a broader range of regions. Customers now have the ability to create their own deployments to support Content Understanding in a wider range of available regions. See [region and language support]() for more information on using Content Understanding. 
+Content Understanding is now a Generally Available (GA) service with the release of the `11-1-2025` API version. It is now available in a broader range of [regions](/articles/ai-services/content-understanding/language-region-support.md). For details on the updates in the GA release see the Content Understanding [What's New](/articles/ai-services/content-understanding/whats-new.md) page. 
 
 :::image type="content" source="media/overview/content-understanding-framework-2025.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/content-understanding-framework-2025.png" :::
 
@@ -93,7 +93,10 @@ Content Understanding supports modified content filtering for approved customers
 
 ## Face capabilities
 
-The Face capabilities feature in Content Understanding is a limited Access service and registration is required for access. Face grouping and identification feature in Content Understanding is limited based on eligibility and usage criteria. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see [Microsoft's Limited Access Policy](../../ai-services/cognitive-services-limited-access.md).
+> [!NOTE]
+> Face description capabilities are available in the GA API version (`2025-11-01`). This feature is limited access and requires registration at [Face Recognition](https://aka.ms/facerecognition). Face identification and grouping features from the preview API are only available in the preview API.
+
+Content Understanding provides face description capabilities that can generate detailed textual descriptions of faces in video and image content. When enabled, the generative model describes facial attributes such as facial hair, facial expression, and can identify prominent people or celebrities. Learn more about [face description in video processing](video/overview.md#face-description-fields).
 
 
 ## Data privacy and security
