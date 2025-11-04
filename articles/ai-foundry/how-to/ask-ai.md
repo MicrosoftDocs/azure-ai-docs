@@ -30,7 +30,7 @@ Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To st
 **What This AI Can Do** - The Ask AI experience is designed to provide assistance by answering questions based on:
 
 - **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
-- **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI in Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, as well as models trained by Microsoft. The agent can provide information about the models available in the Azure AI Foundry catalog.
+- **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI in Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, and models trained by Microsoft. The agent can provide information about the models available in the Azure AI Foundry catalog.
 
 **What This AI Cannot Do** - While the agent is a powerful tool, it has some limitations:
 
@@ -54,14 +54,14 @@ Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To st
 
 **What This AI Can Do** - The Ask AI experience is designed to provide assistance by answering questions based on:
 
-- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
+- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos, or reference documentation of the Azure AI Foundry SDK. The agent can help you navigate the documentation, or find answers for you.
 - **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI in Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, as well as models trained by Microsoft. The agent can provide information about the models available in the Azure AI Foundry catalog.
 - **Quota and Model Operations**: The agent can look for existing quota in your subscription, and can manage your model deployments for you.
 
 **What This AI Cannot Do** - While the agent is a powerful tool, it has some limitations and constraints:
 
 - **Call External APIs**: This AI experience can only call for a specific subset of Azure AI Foundry APIs. It cannot access the web or APIs external to Microsoft.
-- **Bypass Permissions**: This AI experience can execute actions on your behalf, but it will require you to have the right permissions for those actions. This agent cannot perform an action that you would not be able to do yourself.
+- **Bypass Permissions**: This AI experience can execute actions on your behalf. Tt requires you to have the right permissions for those actions. This agent cannot perform an action that you would not be able to do yourself.
 
 Use the agent to make the most of the Azure AI Foundry experience but keep its scope and limitations in mind when asking questions.
 
@@ -71,7 +71,7 @@ Use the agent to make the most of the Azure AI Foundry experience but keep its s
 
 ### What is Ask AI in Azure AI Foundry?
 
-It is an AI agent that enables users of Azure AI Foundry to navigate its capabilities, identify models, and understand how to use its resources to build generative AI applications. For an overview of how the agent works and a summary of its capabilities, see the overview above.
+It's an AI agent that enables users of Azure AI Foundry to navigate its capabilities, identify models, and understand how to use its resources to build generative AI applications. For an overview of how the agent works and a summary of its capabilities, see the overview above.
 
 ### What is the current status of the Ask AI feature?
 
