@@ -39,13 +39,13 @@ In this article, you will learn how to:
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-foundry.md)]
+[!INCLUDE [Azure AI Foundry portal fine-tuning](../../includes/fine-tuning-foundry.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-foundry-python.md)]
+[!INCLUDE [Azure AI Foundry portal fine-tuning](../../includes/fine-tune-foundry-python.md)]
 
 ::: zone-end
 
