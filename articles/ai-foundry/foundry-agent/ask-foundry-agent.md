@@ -21,7 +21,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To start using AI to ask questions, simply click on its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
 
-:::image type="content" source="../media/ask-ai/ask-ai-classic.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Azure AI Foundry classic portal.":::
+:::image type="content" source="../media/ask-foundry-agent/ask-ai-classic.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Azure AI Foundry classic portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -46,7 +46,7 @@ Use the agent to make the most of the Azure AI Foundry experience but keep its s
 
 Our portal offers the ability to ask AI to assist you in Azure AI Foundry. To start using AI to ask questions or complete tasks, simply click on its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
 
-:::image type="content" source="../media/ask-ai/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Azure AI Foundry portal.":::
+:::image type="content" source="../media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Azure AI Foundry portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
