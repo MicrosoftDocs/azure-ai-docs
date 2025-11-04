@@ -482,7 +482,7 @@
      },
      {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/analyzer-templates.md",
-       "redirect_url": "/azure/ai-services/content-understanding/concepts/prebuilt-analyzers.md",
+       "redirect_url": "/azure/ai-services/content-understanding/concepts/prebuilt-analyzers",
        "redirect_document_id": false
      },
      {
