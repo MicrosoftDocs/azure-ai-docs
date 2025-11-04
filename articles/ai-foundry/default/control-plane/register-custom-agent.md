@@ -1,6 +1,6 @@
 ---
-title: "Register and manage custom agents in Azure AI Foundry Control Hub"
-description: "Learn how to register a custom agent in Azure AI Foundry Control Hub for management and observability."
+title: "Register and manage custom agents in Azure AI Foundry control plane"
+description: "Learn how to register a custom agent in Azure AI Foundry control plane for management and observability."
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 The Azure AI Foundry control plane provides centralized management and observability for agents running across different platforms and infrastructures. You can register custom agents—whether they run in Azure compute services or other cloud environments—to gain visibility into their operations and control their behavior.
 
-This article shows you how to register a custom agent in the Foundry control plane. You'll learn how to configure your agent for registration, set up telemetry collection, and use the control plane's management capabilities.
+This article shows you how to register a custom agent in the Azure AI Foundry control plane. You'll learn how to configure your agent for registration, set up telemetry collection, and use the control plane's management capabilities.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ Before getting started, make sure you have:
 
 ## Add a custom agent
 
-You can register a custom agent in Azure AI Foundry Control Hub. You can develop the agent in the technology of your choice, both platform and infrastructure solutions. 
+You can register a custom agent in Azure AI Foundry control plane. You can develop the agent in the technology of your choice, both platform and infrastructure solutions. 
 
 ### Before you start
 
@@ -72,7 +72,7 @@ To register the agent, follow these steps:
     | **OpenTelemetry Agent ID** | The Agent ID used to emit traces according to OpenTelemetry Generative AI semantic conventions. Traces indicate it in attribute `gen_ai.agents.id` for spans with operation name `create_agent`. If not indicated, **Agent name** value is used to find traces and logs reported by this new agent. | No |
     | **Admin portal URL** | The administration portal URL where you can perform further administration operations for this agent. Azure AI Foundry can store this value for easy access convenience. Azure AI Foundry doesn't have any access to perform operations directly to such management portal. | No |
 
-1. Then, configure how you want the agent to show up in Azure AI Foundry Control Hub:
+1. Then, configure how you want the agent to show up in Azure AI Foundry control plane:
 
     | Property  | Description | Required |
     |-----------|-------------|----------|
