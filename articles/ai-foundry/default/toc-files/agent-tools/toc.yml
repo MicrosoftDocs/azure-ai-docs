@@ -1,6 +1,6 @@
 items:
-- name: Agent tools overview
-  href: ../../../agents/how-to/tools/overview.md
+- name: Agent2Agent
+  href: ../../../agents/how-to/agent-to-agent.md
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
 - name: Azure Functions
