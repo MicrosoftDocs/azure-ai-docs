@@ -39,11 +39,11 @@ To access the management center, sign in to [Azure AI Foundry](https://ai.azure.
 
 ## Manage Foundry projects
 
-Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use __All resources__ to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the __Project__ section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the AI Foundry resource.
+Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the AI Foundry resource.
 
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
-For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md)
+For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md).
 
 
 ### Manage Azure AI Foundry hubs and hub-based projects
