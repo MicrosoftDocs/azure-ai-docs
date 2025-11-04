@@ -53,7 +53,5 @@ items:
      href: ../../concepts/trace-agent-concept.md
    - name: Tracing integrations
      href: ../../how-to/trace-agent-framework.md
-   - name: Agent conversation and responses
-     href: ../../how-to/agent-conversations.md
 - name: Transparency Note for safety evaluations
   href: ../../../concepts/safety-evaluations-transparency-note.md

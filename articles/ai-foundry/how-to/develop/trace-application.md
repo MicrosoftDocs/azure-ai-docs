@@ -5,7 +5,7 @@ description: View trace results for AI applications using OpenAI SDK with OpenTe
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 09/22/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -158,9 +158,9 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
 6. Return to **Tracing** in the portal to view new traces.
 
-:::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="Screenshot that shows a trace view of a chat completion request showing spans and latency." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
+    :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="Screenshot that shows a trace view of a chat completion request showing spans and latency." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
-1. It might be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
+7. It might be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
 
     ```python
     from opentelemetry import trace
@@ -168,7 +168,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     tracer = trace.get_tracer(__name__)
     ```
 
-1. Then, use decorators in your method to capture specific scenarios in your code that you're interested in. These decorators generate spans automatically. The following code example instruments a method called `assess_claims_with_context` that iterates over a list of claims and verifies if the claim is supported by the context using an LLM. All the calls made in this method are captured within the same span:
+8. Then, use decorators in your method to capture specific scenarios in your code that you're interested in. These decorators generate spans automatically. The following code example instruments a method called `assess_claims_with_context` that iterates over a list of claims and verifies if the claim is supported by the context using an LLM. All the calls made in this method are captured within the same span:
 
     ```python
     def build_prompt_with_context(claim: str, context: str) -> str:
@@ -197,11 +197,11 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         return responses
     ```
 
-1. Trace results look as follows:
+9. Trace results look as follows:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-decorator.png" alt-text="A screenshot showing how a method using a decorator is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-decorator.png":::
 
-1. You might also want to add extra information to the current span. OpenTelemetry uses the concept of **attributes** for that. Use the `trace` object to access them and include extra information. See how the `assess_claims_with_context` method has been modified to include an attribute:
+10. You might also want to add extra information to the current span. OpenTelemetry uses the concept of **attributes** for that. Use the `trace` object to access them and include extra information. See how the `assess_claims_with_context` method has been modified to include an attribute:
 
     ```python
     @tracer.start_as_current_span("assess_claims_with_context")
