@@ -96,36 +96,6 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 
 ---
 
-## Responses API
-
-Currently, responses API supports Azure OpenAI in Foundry Models but doesn't support other [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md). 
-
-To perform chat completions with Azure OpenAI models, use the Responses API  with the OpenAI SDK.
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
-
-# [OpenAI SDK](#tab/openai)
-
-```java
-import com.openai.models.responses.ResponseCreateParams;
-
-ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
-    .model("gpt-4o-mini") // Your deployment name
-    .input("This is a test.");
-
-ResponseCreateParams createParams = paramsBuilder.build();
-
-client.responses().create(createParams).output().stream()
-    .flatMap(item -> item.message().stream())
-    .flatMap(message -> message.content().stream())
-    .flatMap(content -> content.outputText().stream())
-    .forEach(outputText -> System.out.println(outputText.text()));
-```
-
----
-
 ## Chat completions
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)

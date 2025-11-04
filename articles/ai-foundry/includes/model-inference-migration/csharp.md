@@ -99,43 +99,6 @@ ChatClient client = new(
 
 ---
 
-## Responses API
-
-Currently, responses API supports Azure OpenAI in Foundry Models but doesn't support other [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md). 
-
-To perform chat completions with Azure OpenAI models, use the Responses API  with the OpenAI SDK.
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
-
-# [OpenAI SDK](#tab/openai)
-
-```csharp
-using OpenAI;
-using OpenAI.Responses;
-
-#pragma warning disable OPENAI001
-
-string deploymentName = "gpt-4o-mini"; // Your deployment name
-OpenAIResponseClient client = new(
-    model: deploymentName,
-    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")),
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new Uri("https://<resource>.openai.azure.com/openai/v1/")
-    }
-);
-
-OpenAIResponse response = client.CreateResponse(
-    userInputText: "This is a test."
-);
-
-Console.WriteLine($"[ASSISTANT]: {response.GetOutputText()}");
-```
-
----
-
 ## Chat completions
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
