@@ -42,11 +42,23 @@ In Visual Studio Code, create a new folder for your project. Open a terminal win
 
 [!INCLUDE [Install Python](../../includes/install-python.md)]
 
+### Install the Python extension for Visual Studio Code
+
+The Python extension for Visual Studio Code supports Python with IntelliSense, debugging, formatting, linting, code navigation, refactoring, variable explorer, test explorer, and environment management.
+
+[Install the Python Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
 [!INCLUDE [Install Java](../../includes/install-java.md)]
+
+### Install the Visual Studio Code Extension Pack for Java
+
+The Extension Pack for Java is a collection of popular extensions that can help write, test and debug Java applications in Visual Studio Code. 
+
+[Install the Visual Studio Code Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
 
 ::: zone-end
 
@@ -60,6 +72,12 @@ Install [Node.js](https://nodejs.org/)
 
 [!INCLUDE [install-csharp](../../includes/install-csharp.md)]
 
+### Install the C# Dev Kit extension for Visual Studio Code
+
+The C# Dev Kit extension for Visual Studio Code improves C# development with tools for writing, debugging, and maintaining code. It also installs the C# extension and the .NET install tool to enhance your development environment.
+
+[Install the C# Dev Kit Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+
 ::: zone-end
 
 <a name="installs"></a>
@@ -72,11 +90,14 @@ Keep this terminal open to run scripts after signing in.
 
 ## Install the Azure Developer CLI
 
+The Azure Developer CLI (azd) is an open-source tool that helps you set up and deploy app resources on Azure. It provides simple commands for key stages of development, whether you use a terminal, IDE, or CI/CD pipelines.
 [Install the Azure Developer CLI for your platform](/azure/developer/azure-developer-cli/install-azd?tabs=winget-windows%2Cbrew-mac%2Cscript-linux&pivots=os-windows)
 
 ## Install The AI Foundry VS Code Extension
 
-[Install The AI Foundry VS Code Extension](https://marketplace.visualstudio.com/items?itemName=AzureAIFoundry.azure-ai-foundry-vscode)
+The Azure AI Foundry extension for Visual Studio Code lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface.
+
+[Install The AI Foundry VS Code Extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry)
 
 ## Install Git
 
