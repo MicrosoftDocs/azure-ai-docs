@@ -47,6 +47,8 @@ This article describes how to set up the Azure AI Search tool, including creatin
   
 + An Azure AI Foundry resource with basic agent deployments do not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
++ Your Azure AI Search resource and Azure AI Foundry Agent need to be in the same tenant.
+
 ## Setup
 
 In this section, you create a connection between the Azure AI Foundry project that contains your agent and the Azure AI Search service that contains your index.
