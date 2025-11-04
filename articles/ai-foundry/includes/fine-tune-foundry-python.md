@@ -1,15 +1,15 @@
 ## Prerequisites
 
-- Read the [When to use AI Foundry fine-tuning guide](../../../openai/concepts/fine-tuning-considerations.md).
+- Read the [When to use AI Foundry fine-tuning guide](../openai/concepts/fine-tuning-considerations.md).
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - Fine-tuning access requires the **Azure AI User** role.
-- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../../../openai/how-to/role-based-access-control.md).
+- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../openai/how-to/role-based-access-control.md).
 
-- ### Supported models
+### Supported models
 
-Consult the [models page](../../../openai/includes/models-azure-direct-openai.md#fine-tuning-models) to check which regions currently support fine-tuning.
+Consult the [models page](../openai/includes/models-azure-direct-openai.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
@@ -17,11 +17,11 @@ Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-
 
 Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../openai/how-to/chatgpt.md) API.
 
 It's generally recommended to use the instructions and prompts that you found worked best in every training example. This will help you get the best results, especially if you have fewer than a hundred examples.
 
-If you don't have an existing dataset prepared, you can leverage the [data generation](./data-generation.md) capabilities create a new one.
+If you don't have an existing dataset prepared, you can leverage the [data generation](../default/fine-tuning/data-generation.md) capabilities create a new one.
 
 ### Example file format
 
