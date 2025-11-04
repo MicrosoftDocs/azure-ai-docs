@@ -63,6 +63,8 @@ In this article, you will learn how to:
 
 [!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
 
+::: zone-end
+
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK fine-tuning](../includes/fine-tuning-python.md)]
