@@ -20,8 +20,7 @@ _repo.*/
 .github/prompts/*.md
 .github/prompts/*.zip
 .github/patterns/*.md
-.github/chatmodes/*.md
-.github/instructions/*.md
+.github/chatmodes/*.*
 
 
 articles/ai-foundry/includes/get-started-fdp.md

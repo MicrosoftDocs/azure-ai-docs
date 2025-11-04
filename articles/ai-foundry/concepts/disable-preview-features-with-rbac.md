@@ -42,12 +42,8 @@ definition are the following:
 The associated data actions to allow or disallow in your custom role
 definition are the following:
 
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/\*` (include
-  _read_, _write_, and _delete_ and all child resources)
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/files/\*`
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/threads/\*`
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/threads/messages/\*`
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/vector_stores/\*`
+- `Microsoft.CognitiveServices/accounts/OpenAI/fine-tunes/*`, includes `/files/*`, `/uploads/*`, `/stored-completions/*`, `/evals/*`, `/models/*`
+- (optional, if you run RLHF jobs) `Microsoft.CognitiveServices/accounts/OpenAI/1p-jobs/*`
 
 ## Tracing
 

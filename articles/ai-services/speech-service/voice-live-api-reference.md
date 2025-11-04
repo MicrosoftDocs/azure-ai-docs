@@ -2074,8 +2074,8 @@ Base VAD-based turn detection.
 | prefix_padding_ms | integer | Optional. Audio padding before speech starts |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
-| create_response | boolean | Optional. Whether to create a response when speech stops, the default is `true` |
-| interrupt_response | boolean | Optional. Whether to interrupt the response when VAD is triggered, the default is `true` |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeOpenAISemanticVAD
@@ -2085,9 +2085,9 @@ OpenAI semantic VAD configuration which uses a model to determine when the user 
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"semantic_vad"` |
-| eagerness | string | Optional. Eagerness level (`low`, `medium`, `high`, `auto`), `low` will wait longer for user speech to finish, the default is `auto` |
-| create_response | boolean | Optional. Whether to create a response when speech stops, the default is `true` |
-| interrupt_response | boolean | Optional. Whether to interrupt the response when VAD is triggered, the default is `true` |
+| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 
 ##### RealtimeAzureSemanticVAD
 
@@ -2102,9 +2102,30 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supported languages |
-| create_response | boolean | Optional. Whether to create a response when speech stops, the default is `true` |
-| interrupt_response | boolean | Optional. Whether to interrupt the response when VAD is triggered, the default is `true` |
+| languages | string[] | Optional. Supports English. Other languages will be ignored. |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
+
+##### RealtimeAzureSemanticVadMultilingual
+
+Azure semantic VAD (default variant).
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"azure_semantic_vad_multilingual"` |
+| threshold | number | Optional. Activation threshold |
+| prefix_padding_ms | integer | Optional. Audio padding before speech |
+| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
+| neg_threshold | number | Optional. Negative threshold |
+| speech_duration_ms | integer | Optional. Minimum speech duration |
+| window_size | integer | Optional. Analysis window size |
+| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
+| remove_filler_words | boolean | Optional. Remove filler words (default: false). |
+| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ### RealtimeEOUDetection
@@ -2114,8 +2135,8 @@ Azure End-of-Utterance (EOU) could indicate when the end-user stopped speaking w
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | Could be `semantic_detection_v1` supporting English or `semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi |
-| threshold_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default is `default` |
-| timeout_ms | number | Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
+| threshold_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default equals `medium` setting. With a lower setting the probability the sentence is complete will be higher. |
+| timeout_ms | number | Optional. Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
 
 ### Avatar Configuration
 
