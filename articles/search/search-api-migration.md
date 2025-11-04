@@ -40,7 +40,7 @@ We recommend upgrading API versions in succession, working through each version 
 
 Azure AI Search breaks backward compatibility as a last resort. Upgrade is necessary when:
 
-+ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-11-01-preview`](#breaking-changes-for-knowledge-sources-and-retrieval) for agentic retrieval, [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
++ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-11-01-preview`](#breaking-changes-for-agentic-retrieval) for agentic retrieval, [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
 
 + Your code fails when unrecognized properties are returned in an API response. As a best practice, your application should ignore properties that it doesn't understand.
 
@@ -105,7 +105,7 @@ Upgrade guidance assumes upgrade from the most recent previous version. If your 
 + Replaces `agents` with `knowledgebases`. Several properties related to knowledge sources moved out of the knowledge base definition and to the retrieve action.
 + Knowledge source properties are refactored, implementing a new `ingestionParameters` object for knowledge sources that generate an indexer pipeline.
 
-For more information on changes and code migration, see [breaking changes in 2025-11-01-preview](agentic-retrieval-how-to-migrate.md#breaking-changes) and [How to migrate](agentic-retrieval-how-to-migrate.md#how-to-migrate).
+For more information on changes and code migration, see [breaking changes in 2025-11-01-preview](agentic-retrieval-how-to-migrate.md#version-specific-changes) and [How to migrate](agentic-retrieval-how-to-migrate.md#how-to-migrate).
 
 For all other existing APIs, there are no behavior changes. You can swap in the new API version and your code runs the same as before.
 
