@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text and image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/29/2025
+ms.date: 11/04/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -41,9 +41,7 @@ To simplify the creation of a multimodal pipeline, Azure AI Search offers the **
 
 The wizard follows these steps to create a multimodal pipeline:
 
-1. **Extract content:** The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)  obtains page text, inline images, and structural metadata. The Document Extraction skill doesn't extract polygons or page numbers, and the supported file types vary. For more information, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
-
-   These built-in skills don't support table extraction or preservation of table structure. To use these capabilities, you must build a [custom Web API skill](cognitive-search-custom-skill-web-api.md) that calls [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/tutorial/build-rag-solution).
+1. **Extract content:** Choose from the [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), or [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) to obtain page text, inline images, and structural metadata. Each skill offers different capabilities for metadata extraction, table handling, and file format support. For detailed comparisons, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
 
 1. **Chunk text:** The [Text Split skill](cognitive-search-skill-textsplit.md) breaks the extracted text into manageable chunks for use in the remaining pipeline, such as the embedding skill.
 
@@ -60,17 +58,22 @@ The wizard follows these steps to create a multimodal pipeline:
 
 ## Options for multimodal content extraction
 
-A multimodal pipeline begins by cracking each source document into chunks of text, inline images, and associated metadata. For this step, Azure AI Search provides two built-in skills: the [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). Both skills enable text and image extraction, but they differ in layout detail, returned metadata, and billing.
+A multimodal pipeline begins by cracking each source document into chunks of text, inline images, and associated metadata. For this step, Azure AI Search provides three built-in skills:
 
-| Characteristic | Document Extraction skill | Document Layout skill |
-|--|--|--|
-| Text location metadata extraction (pages and bounding polygons) | No | Yes |
-| Image location metadata extraction (pages and bounding polygons) | Yes | Yes |
-| Location metadata extraction based on file type | PDFs only. | Multiple supported file types according to the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/prebuilt/layout#supported-file-types). |
-| Billing for data extraction | Image extraction is billed according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). | Billed according to [Document Layout pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). |
-| Recommended scenarios | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. |
++ [Document Extraction skill](cognitive-search-skill-document-extraction.md)
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
++ [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md)
 
-You can also use a [custom skill](cognitive-search-custom-skill-web-api.md) to call [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/concepts/retrieval-augmented-generation), which Azure AI Search doesn't natively support, for multimodal content extraction.
+| Characteristic | Document Extraction skill | Document Layout skill | Azure Content Understanding skill |
+|--|--|--|--|
+| Text location metadata extraction (pages and bounding polygons) | No | Yes | Yes |
+| Image location metadata extraction (pages and bounding polygons) | Yes | Yes | Yes |
+| Table extraction and preservation | No | No | Yes (including cross-page tables) |
+| Cross-page semantic units | Not applicable | Single page only | Yes (spans page boundaries) |
+| Location metadata extraction based on file type | PDFs only. | Multiple supported file types according to the [Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/prebuilt/layout#supported-file-types). | [Multiple supported file types](/azure/ai-services/content-understanding/language-region-support), including PDF, DOCX, XLSX, and PPTX. |
+| Billing for data extraction | Image extraction is billed according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). | Billed according to [Document Layout pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). | Billed according to [Azure Content Understanding pricing](https://azure.microsoft.com/pricing/details/content-understanding/). |
+| Built-in chunking | No (use Text Split skill) | Yes (based on paragraph boundaries) | Yes (semantic chunking) |
+| Recommended scenarios | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Advanced document analysis requiring cross-page table extraction, semantic chunking, or consistent handling across document formats (PDF, DOCX, XLSX, PPTX). |
 
 ## Options for multimodal content embedding
 

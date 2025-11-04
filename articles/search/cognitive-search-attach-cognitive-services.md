@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 11/04/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -18,7 +18,7 @@ ms.custom:
 
 If you're using built-in skills for [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents for free, up to 20 transactions per index per day. For larger or more frequent workloads, you should attach a billable Azure AI Foundry resource to your [skillset](/rest/api/searchservice/skillsets/create).
 
-Azure AI Search uses dedicated, internally hosted resources to execute built-in skills backed by Azure AI Foundry Tools and requires an Azure AI Foundry resource solely for billing purposes. <!-- The exception is the [Azure Content Understanding skill](SKILL), which uses your resource for both billing and processing. -->
+Azure AI Search uses dedicated, internally hosted resources to execute built-in skills backed by Azure AI Foundry Tools and requires an Azure AI Foundry resource solely for billing purposes. The exception is the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), which uses your resource for both billing and processing.
 
 An Azure AI Foundry resource provides access to multiple services within Azure AI Foundry Tools. When you specify it in a skillset, Microsoft is able to charge you for using the following services:
 
