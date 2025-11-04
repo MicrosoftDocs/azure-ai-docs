@@ -11,6 +11,6 @@ ms.custom: include
 ---
 
 > [!IMPORTANT]
-> Support for the Azure AI model inference SDK ends in MM-YYYY. Although the Azure AI model inference SDK is still supported, we recommend that you transition to the next generation [v1 Azure OpenAI APIs](../openai/api-version-lifecycle.md#api-evolution) for your inferencing tasks by using the v1 chat completions API with Foundry Models and the v1 responses API with Azure OpenAI in Foundry Models. Non-chat models like embedding models or image generation models aren't currently supported in the v1 Azure OpenAI APIs. For these models, you can continue to use the Azure AI model inference SDK.
+> If you're currently using an Azure AI Inference beta SDK with Azure AI Foundry Models or Azure OpenAI service, we strongly recommend that you transition to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1), which uses an OpenAI stable SDK.
 >
-> For more information on how to migrate to the v1 Azure OpenAI APIs, see [Migrate from Azure AI Inference SDK to OpenAI v1 SDK](../how-to/model-inference-to-openai-migration.md).
+> For more information on how to migrate to the OpenAI/v1 API by using an SDK in your programming language of choice, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../how-to/model-inference-to-openai-migration.md).
