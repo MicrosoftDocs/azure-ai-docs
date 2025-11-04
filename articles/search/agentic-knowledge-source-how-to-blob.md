@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/03/2025
+ms.date: 11/04/2025
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
@@ -161,6 +161,10 @@ You can pass the following properties to create a blob knowledge source.
 ### `ingestionParameters` properties
 
 [!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
+
+## Check ingestion status
+
+[!INCLUDE [Knowledge source status](./includes/how-tos/knowledge-source-status.md)]
 
 ## Review the created objects
 
