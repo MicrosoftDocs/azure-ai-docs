@@ -3,6 +3,10 @@ items:
   href: ../../../agents/overview.md
 - name: FAQ
   href: ../../../agents/faq.yml
+- name: Agent identity
+  href: ../../agents/concepts/agent-identity.md
+- name: Publish and share agents
+  href: ../../agents/how-to/publish-agent.md
 - name: Model and region support
   href: ../../../agents/concepts/model-region-support.md 
 - name: Quotas and limits
