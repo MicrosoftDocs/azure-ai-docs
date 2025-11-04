@@ -208,5 +208,3 @@ For more information about Microsoft Entra Agent ID features, see the [Microsoft
 ## Next steps
 
 * [Publish agents in Azure AI Foundry](../how-to/publish-agent.md)
-* [Create and configure agents](../how-to/create-agent.md)
-* [Microsoft Entra ID documentation](/entra/)

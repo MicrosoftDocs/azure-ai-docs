@@ -26,6 +26,8 @@ Publishing enables you to share agents with teammates, your organization, or cus
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - For tool authentication: Knowledge of which Azure resources your agent accesses
 
+[!INCLUDE [code-preview](../../includes/code-preview.md)]
+
 ## Understand Agent Applications and deployments
 
 Before publishing, it's important to understand the relationship between projects, agent versions, applications, and deployments.
@@ -57,7 +59,7 @@ Publish an agent when it's ready to be shared and consumed outside your project.
 
 Publishing provides a stable endpoint, unique Agent Identity with audit trails, cross-team sharing capabilities, integration with Entra Agent Registry, and the ability to publish your application to Teams and Microsoft 365 Copilot or preview it as a web application.
 
-## Publish an agent from Foundry UI
+## Publish an agent from Azure AI Foundry portal
 
 This section shows you how to publish an agent using the Azure AI Foundry portal interface.
 
@@ -124,6 +126,8 @@ openai.responses.create(
 
 ### Use Project Client with Agent Applications endpoint
 
+The following code uses the preview version of `azure.ai.projects`.
+
 ```python
 # filepath: Using Azure AI Projects client
 from azure.ai.projects import ProjectClient
@@ -157,5 +161,4 @@ Your middle tier should:
 ## Related content
 
 - Learn about [Agent identity concepts in Azure AI Foundry](../concepts/agent-identity.md)
-- Explore [authentication options for Agent Applications](#)
-- Review [best practices for middle tier implementation](#)
+
