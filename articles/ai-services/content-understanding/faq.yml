@@ -65,7 +65,7 @@ sections:
          What base models does Azure AI Content Understanding use?
         answer: |
           Content Understanding uses a combination of models to process your content:
-          * **Azure AI Foundry models**: You bring your own deployments of large language models (LLMs) and embeddings from Azure AI Foundry. Content Understanding supports the GPT-4o and GPT-4.1 model family, and embedding models like text-embedding-3-large. See the [Model deployments article](concepts/models-deployments.md#Supported-models) for the complete list of supported models.
+          * **Azure AI Foundry models**: You bring your own deployments of large language models (LLMs) and embeddings from Azure AI Foundry. Content Understanding supports the GPT-4o and GPT-4.1 model family, and embedding models like text-embedding-3-large. See the [Model deployments article](concepts/models-deployments.md#supported-models) for the complete list of supported models.
           * **Other base models**: Content Understanding also uses various Azure AI capabilities including Speech, Vision, and Language services to support content extraction and processing across different modalities.
       - question: |
          What are the pricing tier options for Content Understanding?
