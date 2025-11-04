@@ -90,17 +90,17 @@ To create a search index knowledge source:
 
 You can pass the following properties to create a search index knowledge source.
 
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `kind` | The kind of knowledge source, which is `searchIndex` in this case. | String | Yes |
-| `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
-| `searchIndexParameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, and `searchFields`. | Object | No |
-| `searchIndexName` | The name of the existing search index. | String | Yes |
-| `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | No |
-| `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | No |
-| `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | No |
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `searchIndex` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `searchIndexParameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, and `searchFields`. | Object | Yes | Yes |
+| `searchIndexName` | The name of the existing search index. | String | Yes | Yes |
+| `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
+| `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
+| `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
 
 ## Assign to a knowledge base
 
