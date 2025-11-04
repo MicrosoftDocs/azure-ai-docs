@@ -67,7 +67,7 @@ Use the agent to make the most of the Azure AI Foundry experience but keep its s
 
 ::: moniker-end
 
-## Responsible AI FAQ for the Foundry agent
+## Responsible AI FAQ for Ask AI
 
 ### What is Ask AI in Azure AI Foundry?
 
