@@ -129,16 +129,16 @@ To create a remote SharePoint knowledge source:
 
 You can pass the following properties to create a remote SharePoint knowledge source.
 
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `kind` | The kind of knowledge source, which is `remoteSharePoint` in this case. | String | Yes |
-| `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
-| `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No |
-| `filterExpression` | An expression written in the SharePoint in [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), used to specify sites and paths to content. | String | No |
-| `resourceMetadata` | A comma-delimited list of the standard metadata fields: author, file name, creation date, content type, and file type. | Array | No |
-| `containerTypeId` | Ignored for now. | String| No |
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `remoteSharePoint` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No | No |
+| `filterExpression` | An expression written in the SharePoint in [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), used to specify sites and paths to content. | String | Yes |No |
+| `resourceMetadata` | A comma-delimited list of the standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
+| `containerTypeId` | Ignored for now. | String | Yes | No |
 
 <!-- SharePoint embedded is containers. Many moving parts. Defer for now. -->
 <!-- containerTypeId is used to configure a remoteSharePoint that uses the SharePoint team's new "SharePointEmbedded" container. It's being actively validated so we're not ready to support it yet. -->

@@ -148,7 +148,7 @@ You can pass the following properties to create a blob knowledge source.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | No | Yes |
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
