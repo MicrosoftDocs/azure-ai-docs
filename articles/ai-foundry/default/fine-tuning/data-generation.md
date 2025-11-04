@@ -36,7 +36,7 @@ In this article, you will learn how to:
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
-- An Azure AI Foundry resource. For more information, see [Create a resource and deploy a model with Azure AI Foundry](../how-to/create-resource.md)
+- An Azure AI Foundry resource. For more information, see [Create a resource and deploy a model with Azure AI Foundry](../../foundry-models/how-to/quickstart-create-resources.md)
 - A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Azure AI Foundry resource. For more information, see [Manage access with role-based access control (RBAC)]()
 
 
