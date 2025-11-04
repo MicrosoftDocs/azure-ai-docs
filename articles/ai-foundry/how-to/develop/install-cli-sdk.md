@@ -21,7 +21,7 @@ monikerRange: 'foundry-classic || foundry'
 Set up your development environment to use the Azure AI Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 
-> **Important**  
+> [!IMPORTANT]  
 > This article covers **general prerequisites** only—language runtimes, global tools, VS Code and extension setup.  
 > It does **not** include scenario-specific steps like SDK installation or authentication.  
 > When your environment is ready, continue to the [quickstart](../../quickstarts/get-started-code.md) for those instructions.
