@@ -42,7 +42,7 @@ items:
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-    - name: Create Content Understanding Task in AI Foundry Classic (Preview)
+    - name: Create CU Task in AI Foundry Classic (Preview)
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: how-to/content-understanding-foundry-classic.md
   - name: Concepts
