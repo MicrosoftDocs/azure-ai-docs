@@ -70,7 +70,7 @@ Expected result: Subsequent requests that exceed the TPM threshold receive rate-
 Token limits have two complementary enforcement dimensions:
 
 - Tokens per minute (TPM) rate limit: Evaluated on a rolling 60‑second window. Each request's token usage is aggregated, and once the rolling window total exceeds the configured TPM value, subsequent requests within that window receive `429 Too Many Requests` responses until usage falls below the threshold. 
-- 
+
 - Total token quota: Aggregates tokens consumed across the defined quota window (for example, daily or monthly allocation). When cumulative usage reaches the configured quota, further requests receive `403 Forbidden` until the window resets. The quota counter automatically resets at the start of the next window boundary.
 
 Adjusting a quota or TPM value mid-window affects only subsequent enforcement decisions; it does not retroactively clear already consumed tokens. To effectively "reset" a quota before the natural window boundary, temporarily increase the quota value or remove and recreate the limit.
@@ -132,7 +132,3 @@ If you created a dedicated APIM instance for this purpose:
 
 - [AI Gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
 - [Azure API Management overview](/azure/api-management/api-management-key-concepts)
-
-## TODO placeholders
-
-- Replace [TO VERIFY] items with confirmed links, labels, and wording.
