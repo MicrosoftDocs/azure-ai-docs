@@ -33,8 +33,6 @@ items:
         href: ../../../openai/how-to/provisioned-get-started.md
       - name: Provisioned spillover
         href: ../../../openai/how-to/spillover-traffic-management.md
-      - name: Azure OpenAI PTU updates
-        href: ../../../openai/concepts/provisioned-migration.md
   - name: Priority processing deployment offer
     href:
   - name: Batch deployment offer
