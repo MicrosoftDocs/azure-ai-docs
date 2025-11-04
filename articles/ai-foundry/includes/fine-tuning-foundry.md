@@ -63,7 +63,7 @@ To fine-tune an model in an existing Azure AI Foundry project, follow these step
 
 1. From the top navigation, select **Build** followed by **Fine-tune** on the left navigation.
 
-1. Click the **Fine-tune** button on the top right of the page. You should now see the **Fine-tune a model** experience.
+1. Select the **Fine-tune** button on the top right of the page. You should now see the **Fine-tune a model** experience.
 
 ### Base model selection
 
