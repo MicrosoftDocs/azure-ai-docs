@@ -4,6 +4,8 @@ description: Article outlining how to use the spillover feature to manage traffi
 author: msakande
 ms.author: mopeakande
 ms.service: azure-ai-foundry
+ms.reviewer: seramasu
+reviewer: rsethur
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 10/02/2025

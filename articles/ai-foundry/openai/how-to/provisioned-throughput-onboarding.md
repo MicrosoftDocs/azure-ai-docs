@@ -10,6 +10,8 @@ ms.date: 11/03/2025
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
+ms.reviewer: seramasu
+reviewer: rsethur
 recommendations: false
 #customerIntent: As a developer, I want to understand PTU costs and billing so I can plan and manage my Azure AI Foundry provisioned throughput deployments efficiently.
 ---

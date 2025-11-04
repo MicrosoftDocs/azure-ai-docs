@@ -11,6 +11,8 @@ ms.custom: openai
 ms.topic: how-to
 author: msakande
 ms.author: mopeakande
+ms.reviewer: seramasu
+reviewer: rsethur
 ms.date: 09/03/2025
 recommendations: false
 #customerIntent: As a developer, I want to create and configure provisioned deployments so I can optimize performance and throughput for my AI applications.
