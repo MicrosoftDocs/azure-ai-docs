@@ -1,30 +1,28 @@
 ---
-title: tracing integrations
+title: Agent Tracing Integrations
 titleSuffix: Azure AI Foundry
-description: 
-monikerRange: 'foundry'
+description: "Discover how Azure AI Foundry simplifies agent tracing with integrations for Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 
+ms.date: 11/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
-
-# Tracing Integrations
+# Tracing integrations
 
 Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
 ## Microsoft Agent Framework
 
-Azure AI Foundry has native integrations with Microsoft Agent Framework. Agents built on Microsoft Agent frameworks get out-of-the-box tracing in Azure AI Foundry Observability. 
+Azure AI Foundry has native integrations with Microsoft Agent Framework. Agents built on Microsoft Agent frameworks get out-of-the-box tracing in Observability.
 
-Learn more about tracing and observability in [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability). 
+To learn more about tracing and observability in the Microsoft Agent Framework see, [Microsoft Agent Framework Workflows - Observability](/agent-framework/user-guide/workflows/observability).
 
-## Semantic Kernel 
+## Semantic Kernel
 
-Azure AI Foundry has native integrations with Microsoft Semantic Kernel. Agents built on Microsoft Semantic Kernel get out-of-the-box tracing in Azure AI Foundry Observability. 
+Azure AI Foundry has native integrations with Microsoft Semantic Kernel. Agents built on Microsoft Semantic Kernel get out-of-the-box tracing in Observability.
 
 Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) 
 
@@ -36,12 +34,11 @@ Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel
 
 You can enable tracing for LangChain that follows [OpenTelemetry standards](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/) per [opentelemetry-instrumentation-langchain](https://pypi.org/project/langchain-azure-ai/). Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
 
-
 ### Sample: LangChain v1 agent with Azure AI tracing
 
-Use this end-to-end sample to instrument a LangChain v1 agent using the `langchain-azure-ai` tracer, which implements the latest OpenTelemetry (OTel) spec so you can view rich traces in Azure AI Foundry Observability.
+Use this end-to-end sample to instrument a LangChain v1 agent using the `langchain-azure-ai` tracer, which implements the latest OpenTelemetry (OTel) spec so you can view rich traces in Observability.
 
-#### Install packages
+#### LangChain v1: Install packages
 
 ```bash
 pip install \
@@ -54,7 +51,7 @@ pip install \
   rich
 ```
 
-#### Configure environment
+#### LangChain v1: Configure environment
 
 - `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing.
 - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL.
@@ -64,7 +61,7 @@ pip install \
 
 You can store these in a `.env` file for local development.
 
-#### Tracer setup
+#### LangChain v1: Tracer setup
 
 ```python
 from dotenv import load_dotenv
@@ -83,7 +80,7 @@ azure_tracer = AzureAIOpenTelemetryTracer(
 tracers = [azure_tracer]
 ```
 
-#### Model setup (Azure OpenAI)
+#### LangChain v1: Model setup (Azure OpenAI)
 
 ```python
 import os
@@ -103,7 +100,7 @@ model = AzureChatOpenAI(
 )
 ```
 
-#### Define tools and prompt
+#### LangChain v1: Define tools and prompt
 
 ```python
 from dataclasses import dataclass
@@ -138,7 +135,7 @@ def get_weather(city: str) -> str:
     return f"It's always sunny in {city}!"
 ```
 
-#### Use runtime context and define a user-info tool
+#### LangChain v1: Use runtime context and define a user-info tool
 
 ```python
 from langgraph.runtime import get_runtime
@@ -152,7 +149,7 @@ def get_user_info(config: RunnableConfig) -> str:
     return USER_LOCATION[user_id]
 ```
 
-#### Create the agent
+#### LangChain v1: Create the agent
 
 ```python
 from langchain.agents import create_agent
@@ -177,7 +174,7 @@ agent = create_agent(
 )
 ```
 
-#### Run the agent with tracing
+#### LangChain v1: Run the agent with tracing
 
 ```python
 from rich import print
@@ -205,13 +202,13 @@ if __name__ == "__main__":
     main()
 ```
 
-With `langchain-azure-ai` enabled, all LangChain v1 operations (LLM calls, tool invocations, agent steps) are traced using the latest OpenTelemetry semantic conventions and appear in Azure AI Foundry Observability, linked to your Application Insights resource.
+With `langchain-azure-ai` enabled, all LangChain v1 operations (LLM calls, tool invocations, agent steps) are traced using the latest OpenTelemetry semantic conventions and appear in Observability, linked to your Application Insights resource.
 
 ### Sample: LangGraph agent with Azure AI tracing
 
 This sample shows a simple LangGraph agent instrumented with `langchain-azure-ai` to emit OpenTelemetry-compliant traces for graph steps, tool calls, and model invocations.
 
-#### Install packages
+#### LangGraph: Install packages
 
 ```bash
 pip install \
@@ -223,7 +220,7 @@ pip install \
   python-dotenv
 ```
 
-#### Configure environment
+#### LangGraph: Configure environment
 
 - `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing.
 - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL.
@@ -232,7 +229,7 @@ pip install \
 
 You can store these in a `.env` file for local development.
 
-#### Tracer setup
+#### LangGraph tracer setup
 
 ```python
 import os
@@ -248,7 +245,7 @@ azure_tracer = AzureAIOpenTelemetryTracer(
 )
 ```
 
-#### Tools
+#### LangGraph: Tools
 
 ```python
 from langchain_core.tools import tool
@@ -270,7 +267,7 @@ def play_song_on_apple(song: str):
 tools = [play_song_on_apple, play_song_on_spotify]
 ```
 
-#### Model setup (Azure OpenAI)
+#### LangGraph: Model setup (Azure OpenAI)
 
 ```python
 import os
@@ -330,7 +327,7 @@ memory = MemorySaver()
 app = workflow.compile(checkpointer=memory)
 ```
 
-#### Run with tracing
+#### LangGraph: Run with tracing
 
 ```python
 from langchain_core.messages import HumanMessage
@@ -342,13 +339,13 @@ for event in app.stream({"messages": [input_message]}, config, stream_mode="valu
     event["messages"][-1].pretty_print()
 ```
 
-With `langchain-azure-ai` enabled, your LangGraph execution emits OpenTelemetry-compliant spans for model calls, tool invocations, and graph transitions. These traces flow to Application Insights and surface in Azure AI Foundry Observability.
+With `langchain-azure-ai` enabled, your LangGraph execution emits OpenTelemetry-compliant spans for model calls, tool invocations, and graph transitions. These traces flow to Application Insights and surface in Observability.
 
 ### Sample: LangChain 0.3 setup with Azure AI tracing
 
 This minimal setup shows how to enable Azure AI tracing in a LangChain 0.3 application using the `langchain-azure-ai` tracer and `AzureChatOpenAI`.
 
-#### Install packages
+#### LangChain 0.3: Install packages
 
 ```bash
 pip install \
@@ -358,7 +355,7 @@ pip install \
   python-dotenv
 ```
 
-#### Configure environment
+#### LangChain 0.3: Configure environment
 
 - `APPLICATION_INSIGHTS_CONNECTION_STRING`: Application Insights connection string for tracing.
 - `AZURE_OPENAI_ENDPOINT`: Azure OpenAI endpoint URL.
@@ -366,7 +363,7 @@ pip install \
 - `AZURE_OPENAI_VERSION`: API version, for example `2024-08-01-preview`.
 - `AZURE_OPENAI_API_KEY`: Azure OpenAI API key.
 
-#### Tracer and model setup
+#### LangChain 0.3: Tracer and model setup
 
 ```python
 import os
@@ -396,7 +393,7 @@ llm = AzureChatOpenAI(
 )
 ```
 
-Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Azure AI Foundry Observability.
+Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Observability.
 
 ## OpenAI Agents SDK
 
@@ -437,3 +434,6 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
     pass
 ```
 
+## Related content
+
+- [View conversation results](agent-conversations.md)

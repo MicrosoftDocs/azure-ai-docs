@@ -1,20 +1,18 @@
 ---
-title: 
+title: Agent Tracing Overview
 titleSuffix: Azure AI Foundry
-description: 
-monikerRange: 'foundry'
+description: "Discover how Azure AI Foundry's tracing tools simplify debugging AI agents by capturing inputs, outputs, and tool usage for better observability."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 
+ms.date: 11/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
-
 # Why Tracing?
 
-Azure AI Foundry provides a observability platform for monitoring and tracing AI agents. It captures everything happening during an agent run: inputs, outputs, tool usage, retries, latencies and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
+Azure AI Foundry provides an observability platform for monitoring and tracing AI agents. It captures everything happening during an agent run: inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
 - There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
 - The sequence of steps might vary based on user input.
@@ -23,7 +21,8 @@ Azure AI Foundry provides a observability platform for monitoring and tracing AI
 
 Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-# OpenTelemetry in AI Foundry
+## OpenTelemetry in AI Foundry
+
 OpenTelemetry (OTel) provides standardized protocols for collecting and routing telemetry data. Azure AI Foundry supports multiple ways to collect and analyze tracing data from OpenTelemetry-instrumented agents, whether you’re using AI Foundry infrastructure or a vendor-neutral setup.
 
 ## Trace key concepts overview
@@ -38,7 +37,6 @@ Here's a brief overview of key concepts before getting started:
 | Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
 | Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.   |
 
-                                                                         
 ## Extending OpenTelemetry with multi-agent observability
 
 Microsoft, in collaboration with Cisco Outshift, has introduced new semantic conventions for multi-agent systems, built on [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/) and W3C Trace Context-establish standardized practices. These conventions standardize telemetry for multi-agent workflows, enabling consistent logging of metrics for quality, performance, safety, and cost, including tool invocations and collaboration.
@@ -52,7 +50,7 @@ These enhancements are integrated into:
 - LangGraph
 - OpenAI Agents SDK
 
-Learn more about [tracing integrations](#integrations).
+To learn more, see [tracing integrations](../how-to/trace-agent-framework.md).
 
 | Type         | Context/Parent Span   | Name/Attribute/Event           | Purpose |
 |--------------|----------------------|-------------------------------|---------------|
@@ -72,3 +70,8 @@ Learn more about [tracing integrations](#integrations).
 - Use consistent span attributes.
 - Correlate evaluation run IDs for quality + performance analysis.
 - Redact sensitive content; avoid storing secrets in attributes.
+
+## Related content
+
+- [Tracing integrations](../how-to/trace-agent-framework.md)
+- [View conversation results](../how-to/agent-conversations.md)

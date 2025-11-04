@@ -9,7 +9,6 @@ ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # View trace results for AI applications using OpenAI SDK
@@ -41,8 +40,6 @@ You need the following to complete this tutorial:
 Azure AI Foundry stores traces in Azure Application Insights using OpenTelemetry. New resources don't provision Application Insights automatically. Associate (or create) a resource once per Azure AI Foundry resource.
 
 The following steps show how to configure your resource:
-
-::: moniker range="foundry-classic"
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your project.
 
@@ -80,21 +77,13 @@ The following steps show how to configure your resource:
     > [!IMPORTANT]
     > Using a project's endpoint requires configuring Microsoft Entra ID in your application. If you don't have Entra ID configured, use the Azure Application Insights connection string as indicated in step 3 of the tutorial.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
 1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) and navigate to your project.
 
 1. Insert NextGen content
 
-::: moniker-end
-
 ## View trace results in Azure AI Foundry portal
 
 Once you have tracing configured and your application is instrumented, you can view trace results in the Azure AI Foundry portal:
-
-::: moniker range="foundry-classic"
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your project.
 
@@ -114,15 +103,11 @@ Once you have tracing configured and your application is instrumented, you can v
    - Error details if any occurred
    - Custom attributes and metadata
 
-::: moniker-end
-
-::: moniker range="foundry"
 
 1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) and navigate to your project.
 
 1. Insert NextGen content
 
-::: moniker-end
 
 ## Instrument the OpenAI SDK
 
@@ -173,17 +158,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     print(response.choices[0].message.content)
     ```
 
-::: moniker range="foundry-classic"
-
 6. Return to **Tracing** in the portal to view new traces.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-6. Return to **Tracing** in the portal to view new traces.
-
-::: moniker-end
 
 :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="Screenshot that shows a trace view of a chat completion request showing spans and latency." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
@@ -336,7 +311,6 @@ The toolkit supports the OpenAI SDK and other AI frameworks through OpenTelemetr
 
 For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
-
 ## Related content
 
-* [Trace agents using Azure AI Foundry SDK](trace-agents-sdk.md)
+- [Trace agents using Azure AI Foundry SDK](trace-agents-sdk.md)
