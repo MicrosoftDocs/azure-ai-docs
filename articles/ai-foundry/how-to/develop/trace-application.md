@@ -75,10 +75,6 @@ The following steps show how to configure your resource:
     > [!IMPORTANT]
     > Using a project's endpoint requires configuring Microsoft Entra ID in your application. If you don't have Entra ID configured, use the Azure Application Insights connection string as indicated in step 3 of the tutorial.
 
-1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) and navigate to your project.
-
-1. Insert NextGen content
-
 ## View trace results in Azure AI Foundry portal
 
 Once you have tracing configured and your application is instrumented, you can view trace results in the Azure AI Foundry portal:
@@ -100,12 +96,6 @@ Once you have tracing configured and your application is instrumented, you can v
    - Performance metrics and timing
    - Error details if any occurred
    - Custom attributes and metadata
-
-
-1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) and navigate to your project.
-
-1. Insert NextGen content
-
 
 ## Instrument the OpenAI SDK
 
