@@ -30,7 +30,7 @@ In this article, you will learn how to:
 - Configure data generation parameters and constraints
 - Monitor and review generated datasets
 - Integrate synthetic data into your fine-tuning workflows
-- [Best practices](#best-practices-for-generating-synthetic-data) for generating synthetic data
+- [Best practices](#best-practices-with-using-synthetic-data-for-fine-tuning)
 
 
 ## Prerequisites
