@@ -14,11 +14,28 @@ ms.custom:
   - ignite-2025
 ---
 
-# Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal
+# Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal (Preview)
 
 Suppose you have files—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
 
-This guide shows you how to utilize  Content Understanding Standard and Pro modes in the Azure AI Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data. 
+This guide shows you how to utilize Content Understanding Standard and Pro modes in the Azure AI Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data.
+
+> [!NOTE]
+> Azure AI Foundry Classic portal uses the a Preview API (`2025-05-01-preview`). Pro mode is a preview feature available only in the this preview API version. It is not available in the GA API version (`2025-11-01`).
+
+## Choosing between Standard and Pro modes (Preview)
+
+Content Understanding offers two modes for different scenarios:
+
+* **Standard mode** - Ideal for processing single files with straightforward field extraction. Use standard mode when you need to extract structured data from individual documents, images, audio, or video files without cross-file analysis or complex reasoning requirements.
+
+* **Pro mode** - Designed for advanced scenarios requiring multi-step reasoning and cross-file analysis. Use pro mode when you need to:
+  - Process multiple input files in a single request
+  - Apply reasoning across different documents to validate, enrich, or aggregate data
+  - Use reference data (knowledge base) to guide extraction and validation
+  - Perform complex multi-step analysis that goes beyond simple field extraction
+
+For detailed guidance on which mode to choose for your scenario, see [Azure AI Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
 
 ## Prerequisites
 

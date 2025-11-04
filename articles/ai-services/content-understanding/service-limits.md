@@ -85,7 +85,7 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
 | Direct upload | ≤ 200 MB | ≤ 30 minutes | When uploading a file via the API directly by including a file in the request. This is the path used by the Azure AI Foundry UX.  |
-| File reference | ≤ 20 GB | ≤ 4 hours | When referencing a video file via a URL stored in Azure Blob Storage or similar |
+| File reference | ≤ 5 GB | ≤ 2 hours | When referencing a video file via a URL stored in Azure Blob Storage or similar |
 
 > [!NOTE]
 > Video analysis has the following limitations:
