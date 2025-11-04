@@ -24,7 +24,7 @@ Here are some examples of how the GenAI prompt skill can help you create content
 - Simplify complex content
 - Perform any other task that you can articulate in a prompt
 
-The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as a PDF that contains text and images.
+The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as a PDF that contains text and images.
 
 > [!TIP]
 > It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate image verbalization with two different data chunking techniques:

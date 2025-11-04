@@ -270,7 +270,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resetdocs (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-08-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-11-01-preview 
    { 
      "documentKeys": [ 
        "1001", 
@@ -282,7 +282,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resync (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-08-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-11-01-preview 
    { 
      "options": [ 
        "permissions" 
