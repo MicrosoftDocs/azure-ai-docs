@@ -188,8 +188,6 @@ curl https://REPLACE-WITH-YOUR-RESOURCE-NAME.cognitiveservices.azure.com/qnamake
 
 The response status is 204 with no results. Use the `-v` command-line parameter to see verbose output for the cURL command. This will include the HTTP status.
 
-## Additional resources
+## Additional resource
 
-* [Authoring](/rest/api/qnamaker/knowledgebase) Reference documentation
-* [Runtime](/rest/api/qnamaker/runtime) Reference documentation
 * [Sample BASH scripts using cURL](https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/curl/QnAMaker)
