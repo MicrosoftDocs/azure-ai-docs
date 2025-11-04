@@ -22,7 +22,7 @@ This article explains how to set up a retrieve action. It also covers the three 
 + *referenced results*
 + *query activity*
 
-A retrieve request can include instructions for query processing that override the defaults set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
+A retrieve request can include instructions for query processing that override the default instructions set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
 
 ## Prerequisites
 

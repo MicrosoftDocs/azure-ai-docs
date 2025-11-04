@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 11/03/2025
 ---
 
-# Create a blob knowledge source
+# Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
