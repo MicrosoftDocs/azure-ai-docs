@@ -98,7 +98,9 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 
 ## Responses API
 
-Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI models, use the Responses API for chat completions:
+Currently, responses API supports Azure OpenAI in Foundry Models but doesn't support other [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md). 
+
+To perform chat completions with Azure OpenAI models, use the Responses API  with the OpenAI SDK.
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
