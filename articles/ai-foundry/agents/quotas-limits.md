@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 07/03/2025
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Foundry Agent Service quotas and limits

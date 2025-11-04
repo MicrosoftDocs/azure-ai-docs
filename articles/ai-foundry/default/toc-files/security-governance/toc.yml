@@ -1,5 +1,6 @@
 items:
 - name: Role-based access control
+  displayName: RBAC, roles, permissions
   href: ../../../concepts/rbac-azure-ai-foundry.md
 - name: Network security
   items:
@@ -15,14 +16,14 @@ items:
   - name: Disable shared key access to storage
     href: ../../../how-to/disable-local-auth.md
   - name: Rotate API access keys
-    href: /azure/ai-services/rotate-key?context=/azure/ai-foundry/context/context
+    href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Azure policies
   items:
-  - name: Built-in policy for model deployment (Preview)
+  - name: Built-in policy for model deployment (preview)
     href: ../../../how-to/model-deployment-policy.md
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
-    href: ../../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context&view=foundry&preserve-view=true
+    href: ../../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
   - name: Create custom policy definitions
     href: ../../../how-to/custom-policy-definition.md
 - name: Disaster recovery

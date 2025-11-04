@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 10/17/2025
+ms.date: 11/02/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -46,6 +46,8 @@ This article describes how to create a Foundry project in [Azure AI Foundry](htt
 * See [Types of projects](../what-is-azure-ai-foundry.md#project-types) for more information on the different project types.
 
 ::: moniker-end
+
+If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
 
 ## Prerequisites
 
@@ -128,11 +130,6 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 
 These steps provide a way to create a new Azure resource with basic, default settings. 
 
-> [!TIP]
-> If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, use one of these methods instead to comply with your organization's Azure Policy compliance:
-> * [Create your first AI Foundry resource](../../ai-services/multi-service-resource.md)
-> * [Create an Azure AI Foundry resource using a Bicep file](./create-resource-template.md) 
-
 To create a Foundry project, follow these steps:
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
@@ -147,11 +144,6 @@ To create a Foundry project, follow these steps:
 ::: moniker range="foundry"
 
 These steps provide a way to create a new Azure resource with basic, defaulted, settings. 
-
-> [!TIP]
-> If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, use one of these methods instead to comply with your organization's Azure Policy compliance:
-> * [Create your first AI Foundry resource](../../ai-services/multi-service-resource.md) 
-> * [Create an Azure AI Foundry resource using a Bicep file](./create-resource-template.md) 
 
 To create a Foundry project, follow these steps:
 

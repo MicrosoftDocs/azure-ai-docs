@@ -39,7 +39,7 @@ For quick and reliable answers on your technical product questions from Microsof
 
 If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use one of the following tags when you ask your question:
 
-* [Azure AI services](/answers/topics/azure-cognitive-services.html)
+* [Azure AI services](/answers/tags/441/ai-services)
 
 
 **Azure OpenAI**
@@ -51,7 +51,7 @@ If you can't find an answer to your problem using search, submit a new question 
 * [Azure AI Vision](/answers/topics/azure-computer-vision.html)
 * [Azure AI Custom Vision](/answers/topics/azure-custom-vision.html)
 * [Azure Face](/answers/topics/azure-face.html)
-* [Azure AI Document Intelligence](/answers/topics/azure-form-recognizer.html)
+* [Azure AI Document Intelligence](/answers/tags/440/document-intelligence)
 
 **Language**
 

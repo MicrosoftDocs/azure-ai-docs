@@ -57,10 +57,10 @@ items:
     href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure AI Services SDKs
     displayName: client library libraries development kit
-    href: ../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
+    href: ../../../../ai-services/reference/sdk-package-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Azure AI Services REST APIs
     displayName: swagger http
-    href: ../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
+    href: ../../../../ai-services/reference/rest-api-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Resource Management
     items:
       - name: Azure Resource Manager/Bicep/Terraform
