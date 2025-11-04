@@ -475,7 +475,6 @@ When you implement memory in your agents, consider the following practices:
 - **Segment data and isolate memory**: In multitenant or multiagent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
 - **Monitor memory usage**: Track token usage and memory operations to understand costs and optimize performance. Set appropriate limits for memory storage and retrieval.
 - **Version your memory stores**: Use metadata to track versions and configurations of memory stores, making it easier to manage updates and troubleshoot issues.
-- 
 - ## Security risks of prompt injection
  
 When working with memory in Foundry Agent Service, it’s essential to safeguard memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing future decisions and actions.
