@@ -1798,7 +1798,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/deployment-types.md",
       "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/dotnet-migration.md",
