@@ -73,7 +73,11 @@ In the Azure AI Foundry (new) portal, the project you're working with appears in
 1. To switch to another recently used project, select the project name in the upper-left corner, then select the other project. 
 1. To see all of your Foundry projects, select **View all projects**. Then select one of them to switch to that project.
 
-Projects in Azure AI Foundry (new) refer only to Foundry projects, not other resources or hub-based projects you might have created in [!INCLUDE [classic-link](../includes/classic-link.md)]. To find these other resources, select **View all resources**.  A new browser tab opens the Azure AI Foundry (classic) portal.  Switch to [Azure AI Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources.
+## Find other resources
+
+The Azure AI Foundry (new) portal displays only Foundry projects, not other resources or hub-based projects you might have created in [!INCLUDE [classic-link](../includes/classic-link.md)]. 
+
+To find these other resources, select **View all resources**.  A new browser tab opens the Azure AI Foundry (classic) portal.  [Switch to Azure AI Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources in the Azure AI Foundry (classic) portal.
 
 ## Manage projects
 
