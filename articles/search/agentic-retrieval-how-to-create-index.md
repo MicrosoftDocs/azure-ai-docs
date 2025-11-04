@@ -7,25 +7,29 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 11/03/2025
 ---
 
 # Create an index for agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* uses context and user questions to generate a range of subqueries that can execute against your content in a knowledge source. For most knowledge sources, the physical data structure is a *search index*.
+In Azure AI Search, agentic retrieval uses context and user questions to generate a range of subqueries that can execute against your content in a knowledge source. For most knowledge sources, the physical data structure is a *search index*. The search index is specified as a [knowledge source](agentic-knowledge-source-overview.md) and referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and is either:
+
++ An *existing index* containing searchable content. You can make an existing index available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
+
++ A *generated index* created from a [knowledge source](agentic-knowledge-source-overview.md). Multiple knowledge sources can generate an indexer pipeline that results in a searchable index. These include:
+
+  + [Azure blobs](agentic-knowledge-source-how-to-blob.md)
+  + [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md)
+  + SharePoint (Indexed)
+
+A generated index is based on a template that meets all of the criteria for knowledge bases and agentic retrieval.
 
 This article explains which index elements affect agentic retrieval query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
-A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge base*, and is either:
-
-+ An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
-
-+ A generated index created from a [knowledge source](agentic-knowledge-source-overview.md). Multiple knowledge sources are capable of generating an indexer pipeline that results in a searchable index. These include [Azure blobs](agentic-knowledge-source-how-to-blob.md) and [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md). The resulting index is based on a template that meets all of the criteria for knowledge bases and agentic retrieval.
-
 > [!IMPORTANT]
-> You can now configure agentic retrieval to bypass a search index and access an external data source directly using its native query APIs. Results from external sources are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified response string. The following knowledge sources bypass a search index and access external sources directly: [web knowledge source (Bing)](agentic-knowledge-source-how-to-web.md) and SharePoint (Remote).
+> You can now configure agentic retrieval to bypass a search index and access external content directly using native query APIs. Results from external sources are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified response string. The following knowledge sources access external sources directly: [web knowledge source (Bing)](agentic-knowledge-source-how-to-web.md) and [SharePoint (Remote)](agentic-knowledge-source-how-to-sharepoint-remote.md).
 
 ## Criteria for agentic retrieval
 

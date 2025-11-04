@@ -225,6 +225,29 @@ GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01
    Authorization: Bearer {{accessToken}}
 ```
 
+A response might look like the following example:
+
+```json
+{
+
+  "name": "simple-kb",
+  "description": "This knowledge source uses a search index and omits a completion model for query planning and answer generation.",
+  "retrievalInstructions": null,
+  "answerInstructions": null,
+  "outputMode": null,
+  "knowledgeSources": [
+    {
+      "name": "hotels-sample-ks"
+    }
+  ],
+  "models": [],
+  "encryptionKey": null,
+  "retrievalReasoningEffort": {
+    "kind": "minimal"
+  }
+}
+```
+
 ---
 
 ## Create a knowledge base
@@ -329,7 +352,7 @@ To create a knowledge base:
 
 1. Select **Send Request**.
 
-### Source-specific properties
+### Knowledge base properties
 
 You can pass the following properties to create a knowledge base.
 
