@@ -2,7 +2,7 @@ items:
 - name: Agent tools overview
   href: ../../../agents/how-to/tools/overview.md
 - name: Agent2Agent
-  href: ../../../agents/how-to/agent-to-agent.md
+  href: ../../agents/how-to/agent-to-agent.md
 - name: Retrieval Augmented Generation (RAG) overview
   href: ../../../concepts/retrieval-augmented-generation.md
 - name: Azure AI Search
