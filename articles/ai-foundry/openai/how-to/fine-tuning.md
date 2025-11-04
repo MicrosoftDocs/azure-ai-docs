@@ -26,14 +26,13 @@ Learn how to fine-tune models in Azure AI Foundry for your datasets and use case
 
 In contrast to few-shot learning, fine-tuning improves the model by training on more examples than fit in a prompt. Because weights adapt to your task, you include fewer examples or instructions, reducing tokens per call and potentially lowering cost and latency.
 
-We use LoRA, or low rank adaptation, to fine-tune models in a way that reduces their complexity without significantly affecting their performance. This method works by approximating the original high-rank matrix with a lower rank one, thus only fine-tuning a smaller subset of *important* parameters during the supervised training phase, making the model more manageable and efficient. For users, this makes training faster and more affordable than other techniques.
+We use LoRA, or low rank adaptation, to fine-tune models in a way that reduces their complexity without significantly affecting their performance. This method works by approximating the original high-rank matrix with a lower rank one, thus only fine-tuning a smaller subset of important parameters during the supervised training phase, making the model more manageable and efficient. For users, this makes training faster and more affordable than other techniques.
 
-In this article, you learn how to:
+In this article, you will learn how to:
 
-- Fine-tune via portal, Python SDK, and REST.
-- Choose appropriate datasets and formats.
-- Monitor job status and fetch results.
-- Deploy and evaluate a tuned model.
+- Choose appropriate datasets and formats for fine-tuning
+- Trigger a fine-tuning job, monitor the status, and fetch results.
+- Deploy and evaluate a fine-tuned model.
 - Iterate based on evaluation feedback.
 
 ::: moniker range="foundry"
