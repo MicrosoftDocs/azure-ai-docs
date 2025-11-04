@@ -1,6 +1,8 @@
 items:
 - name: Agent tools overview
   href: ../../../agents/how-to/tools/overview.md
+- name: Retrieval Augmented Generation (RAG) overview
+  href: ../../../concepts/retrieval-augmented-generation.md
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
 - name: Azure Functions
