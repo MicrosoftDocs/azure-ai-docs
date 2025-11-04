@@ -266,7 +266,7 @@ To delete the AI Foundry resource and all its projects:
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
 1. In the upper-right navigation, select **Operate**.
-1. In the left pane, select **Admin Console**.
+1. In the left pane, select **Admin**.
 1. Select your project.
 1. In the upper right, select the trash can icon to delete the project.
 
