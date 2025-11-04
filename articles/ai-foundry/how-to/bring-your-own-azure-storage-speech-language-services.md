@@ -1,5 +1,5 @@
 ---
-title: Connect your own storage to Speech/Language
+title: Connect your own storage to Speech/Language (Preview)
 titleSuffix: Azure AI Foundry
 description: Configure customer-managed storage for Speech and Language capabilities in an Azure AI Foundry resource at creation time.
 #customer intent: As a developer, I want to use my own storage account for Speech and Language so I can apply security and compliance policies.
@@ -13,7 +13,7 @@ ms.date: 10/27/2025
 ai-usage: ai-assisted
 ---
 
-# Connect your own storage for Speech and Language services
+# Connect your own storage for Speech and Language services (Preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
