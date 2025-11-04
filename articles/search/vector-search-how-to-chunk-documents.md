@@ -89,7 +89,7 @@ The `pages` parameter adds extra parameters:
 
 <sup>1</sup> Characters don't align to the definition of a [token](/azure/ai-services/openai/concepts/prompt-engineering#space-efficiency). The number of tokens measured by the LLM might be different than the character size measured by the Text Split skill with the character fixed-size.
 
-<sup>2</sup> Token chunking is available in the [2025-08-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) and includes extra parameters for specifying a tokenizer and any tokens that shouldn't be split up during chunking.
+<sup>2</sup> Token chunking is available in the [2025-11-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and includes extra parameters for specifying a tokenizer and any tokens that shouldn't be split up during chunking.
 
 The following table shows how the choice of parameters affects the total chunk count from the Earth at Night e-book:
 

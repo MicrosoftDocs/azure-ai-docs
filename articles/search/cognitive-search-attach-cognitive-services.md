@@ -57,7 +57,7 @@ To bill through a keyless connection:
 
 1. On your Azure AI Foundry resource, [assign the **Cognitive Services User** role](/azure/role-based-access-control/role-assignments-portal) to the managed identity of your search service.
 
-1. Configure a skillset to use the managed identity. You can use the Azure portal, the latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true), or an Azure SDK beta package that provides the syntax.
+1. Configure a skillset to use the managed identity. You can use the Azure portal, the latest preview version of [Skillsets - Create Or Update (REST API)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true), or an Azure SDK beta package that provides the syntax.
 
     + `@odata.type` is always `#Microsoft.Azure.Search.AIServicesByIdentity`.
 
@@ -70,7 +70,7 @@ To bill through a keyless connection:
         Here's a sample skillset configuration for a system-assigned managed identity. In this scenario, you must set `identity` to `null`.
 
         ```http
-        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-08-01-preview
+        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-11-01-preview
         api-key: [admin-key]
         Content-Type: application/json
     
@@ -95,7 +95,7 @@ To bill through a keyless connection:
         You must also set the `identity.@odata.type` and `identity.userAssignedIdentity` properties.
 
         ```http
-        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-08-01-preview
+        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-11-01-preview
         api-key: [admin-key]
         Content-Type: application/json
     

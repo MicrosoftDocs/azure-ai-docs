@@ -104,7 +104,7 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
    ```http
    ### List existing indexes by name (verify the connection)
-    GET  {{searchUrl}}/indexes?api-version=2025-08-01-preview&$select=name  HTTP/1.1
+    GET  {{searchUrl}}/indexes?api-version=2025-11-01-preview&$select=name  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
    ```
 

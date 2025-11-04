@@ -82,7 +82,7 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
   
 ## Skill parameters
 
-Parameters are case sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-08-01-preview) for full access to all parameters.
+Parameters are case sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-11-01-preview) for full access to all parameters.
 
 | Parameter name     | Allowed Values | Description |
 |--------------------|----------------|-------------|
