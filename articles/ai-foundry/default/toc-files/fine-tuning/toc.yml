@@ -18,6 +18,8 @@ items:
       displayName: finetuning, fine-tuning 
     - name: Preference fine-tuning
       href: ../../../openai/how-to/fine-tuning-direct-preference-optimization.md
+    - name: Reinforcement fine-tuning
+      href: ../../../openai/how-to/reinforcement-fine-tuning.md
       displayName: finetuning, fine-tuning 
     - name: Safety evaluation
       href: ../../../openai/how-to/fine-tuning-safety-evaluation.md
