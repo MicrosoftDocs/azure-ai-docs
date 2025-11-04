@@ -207,7 +207,24 @@ embedding = response.data[0].embedding
 
 # [OpenAI SDK](#tab/openai)
 
-OpenAI SDK doesn't support embeddings models.
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+
+client = OpenAI(
+    base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key = token_provider,
+)
+
+response = client.embeddings.create(
+    input = "How do I use Python in VS Code?",
+    model = "text-embedding-3-large" // Use the name of your deployment
+)
+print(response.data[0].embedding)
+```
+
 
 ---
 
