@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 11/04/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -74,7 +74,8 @@ Checks the contract against internal standards or uploaded guidelines to identif
 ## Limitations
 
 * Connected agents cannot call local functions using the function calling tool. We recommend using the [OpenAPI tool](tools\openapi-spec.md) or [Azure Functions](tools\azure-functions.md) instead.
-* It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability. 
+*  It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability.
+* Connected agents have a maximum depth of 2. A parent agent can have multiple sub-agent siblings, but sub-agents cannot have their own sub-agents. Exceeding this depth results in an `Assistant Tool Call Depth Error`. 
 
 :::zone pivot="portal"
 
