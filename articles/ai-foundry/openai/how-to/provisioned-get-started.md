@@ -29,7 +29,7 @@ The following guide walks you through key steps in creating a provisioned deploy
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Azure Contributor or Cognitive Services Contributor role 
 
-## Obtain/verify PTU quota availability.
+## Obtain/verify PTU quota availability
 
 Provisioned throughput deployments are sized in units called Provisioned Throughput Units (PTUs). PTU quota for each provisioned deployment type is granted to a subscription regionally and limits the total number of PTUs that can be deployed in that region across all models and versions. 
 

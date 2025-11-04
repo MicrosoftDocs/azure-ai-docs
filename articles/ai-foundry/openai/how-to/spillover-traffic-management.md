@@ -85,6 +85,11 @@ Specify one the provisioned options as the **Deployment type**, for example **Gl
 
 ::: moniker-end
 
+::: moniker range="foundry-classic"
+
+See the REST API tab to learn how to enable spillover.
+
+::: moniker-end
 
 # [REST API](#tab/rest-api)
 

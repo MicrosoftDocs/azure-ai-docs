@@ -307,7 +307,7 @@ To assist customers with purchasing the correct reservation amounts. The total n
 ::: moniker-end
 
 
-Managing Azure Reservations 
+### Managing Azure Reservations 
 
 After a reservation is created, monitor it via the Azure Reservation Portal or Azure Monitor to ensure that the reservation is receiving the usage you expect. To learn more about managing and monitoring Azure reservations, see these articles:
 
