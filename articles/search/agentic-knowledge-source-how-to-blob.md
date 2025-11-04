@@ -162,7 +162,7 @@ You can pass the following properties to create a blob knowledge source.
 
 [!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
 
-## Check knowledge source status
+## Check ingestion status
 
 [!INCLUDE [Knowledge source status](./includes/how-tos/includes\how-tos\knowledge-source-status.md)]
 
