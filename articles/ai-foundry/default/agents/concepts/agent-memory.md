@@ -482,7 +482,7 @@ When working with memory in Foundry Agent Service, it’s essential to safeguard
  
 To strengthen memory security, you can consider the following:
  
-- **Use Azure AI Content Safety**: Validate all prompts entering or leaving the memory system to prevent malicious content.
+- **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety)**: Validate all prompts entering or leaving the memory system to prevent malicious content.
 - **Perform attack and adversarial testing**: Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
 
 ## Related content
