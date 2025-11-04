@@ -15,7 +15,7 @@ items:
   - name: Disable shared key access to storage
     href: ../../../how-to/disable-local-auth.md
   - name: Rotate API access keys
-    href: /azure/ai-services/rotate-key?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Azure policies
   items:
   - name: Built-in policy for model deployment (Preview)
