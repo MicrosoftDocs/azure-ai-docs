@@ -23,17 +23,16 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 
 ### Choose the right generative model for every workload
 
-- Connect Content Understanding to an Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost.
-- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
-- Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md)
+- Connect Content Understanding to an Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost. Use your Azure AI Foundry PTUs with Content Understanding. See what models are [currently supported](concepts/models-deployments.md#supported-models). To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
+- Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md).
 - Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly use your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](overview/pricing-explainer.md).
 
-### Manage analyzers with more precision
+### Analyzer updates
 
-- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` setting. This selective approach reduces response payload sizes and lowers processing costs by computing confidence metrics only when required. Confidence scores are now consistently available across all extraction methods—whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
-- **Simplify analyzer development** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
-- **Classification is now integrated** with the analyzer API now supporting classification with the `categorization` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse file types within a single analyzer—no separate classifier required. 
-- **Analyzer lifecycle APIs** extend to support copy, delete, replace, and explicit result deletion give you complete control over analyzer versions and data retention for compliance and privacy requirements. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
+- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` configuration setting. This selective approach reduces response payload sizes and lowers processing costs and latency by computing confidence metrics only when required. 
+- **Classification is now integrated** with the analyzer API now supporting classification with the `categorization` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse file types within a single analyzer—no separate classifier required. See [build a robotic process automation solution](tutorial/robotic-process-automation.md) for an example.
+- **Analyzer lifecycle APIs** extend to support copy, delete, and replace to give you complete control over analyzer versions. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
+- **Delete Analyze Results** - You can now explicitly delete the analyzer results once successfully retrieved,giving you full control over the data retention for compliance and privacy requirements. See [delete analyze response](/rest/api/contentunderstanding/content-analyzers/get-result-file?view=rest-contentunderstanding-2025-11-01).
 
 ### RAG analyzers
 
@@ -48,13 +47,27 @@ Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Unde
 
 Domain-specific prebuilt analyzers are tailored for industry scenarios, enabling automated extraction of structured data from specialized document types without custom training.
 
-- **Finance and tax**: Extract key data from financial statements, tax forms, W-2s, 1099s, and other tax documents with tuned schemas that capture amounts, dates, tax identifiers, and financial entities.
-- **Procurement and contracts**: Process purchase orders, contracts, and procurement documents to extract vendor information, line items, pricing, terms, and contractual obligations.
-- **Mortgage and lending**: Automate extraction from mortgage applications, loan documents, and lending forms, capturing borrower details, property information, loan terms, and financial disclosures.
-- **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run.
+- **Finance and tax**: Extract key data from financial statements, tax forms, W-2s, 1099s, and other tax documents with tuned schemas that capture amounts, dates, tax identifiers, and financial entities. See [finance and tax](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
+- **Procurement and contracts**: Process purchase orders, contracts, and procurement documents to extract vendor information, line items, pricing, terms, and contractual obligations. See [ legal and business documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
+- **Mortgage and lending**: Automate extraction from mortgage applications, loan documents, and lending forms, capturing borrower details, property information, loan terms, and financial disclosures. See [mortgage and lending](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
+- **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run. See [identity documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
 - **Utilities, billing, and more**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data.
 
 Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
+
+### Content extraction
+
+- **Content annotations** - Annotations are supported in `digital PDF` inputs to provide additional metadata on the document, such as identifying spans of content that have annotations like highlight, underline, strikethrough, etc. 
+- **Multi-page tables and output formats** - Table output format can be chosen between HTML or Markdown to aign with your application needs. Tables are also multi-page by default and multi-page tables are returned as a single table object.
+- **Hyperlink extraction** - Hyperlinks embedded within documents are now extracted as an url.
+- **Figure extraction** - Figures and charts can now be extracted as either chart.js or mermaid.js syntax depending on the types, along with its description.
+
+### Field extraction
+
+- **Confidence scores are now consistently available across all extraction methods** —whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
+- **Simplified schema definition** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
+- **Added support for complex types like objects** - Define an object, for example a customer object with contained fileds of name, address and phone.
+
 
 ### Enterprise security and governance
 
@@ -63,13 +76,9 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 ### Other improvements
 
-- `prebuilt-read` and `prebuilt-layout` analyzers now expose key Document Intelligence capabilities inside Content Understanding.
-- `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting charts, diagrams, and images with their context.
-- Layout for documents adds improvements including identifying hyperlinks and create a single table output for tables that span pages.
-- When analyzing documents, you can now provide an **input range** to only analyze a section of the input document.
-- Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
-- Use the `range` parameter to analyze specific pages or segments and reduce token consumption.
-- Choose HTML or Markdown table output to match downstream processing requirements.
+- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See[prebuilt analyzers](concepts/prebuilt-analyzers.md)
+- `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting and summarizing charts, diagrams, and images with their context. See[prebuilt analyzers](concepts/prebuilt-analyzers.md)
+- When analyzing content, you can now provide an **input range** to only analyze a section of the input document.
 - Categorization lets you send sections—such as passport pages within `prebuilt-idDocument`—to purpose-built analyzers during a single run.
 
 ### Region expansion and availability

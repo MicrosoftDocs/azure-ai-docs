@@ -65,7 +65,13 @@ Before running the following cURL command, make the following changes to the HTT
 curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
+  -d "{
+    "inputs":[
+      {
+        "url": "{fileURL}"
+      }
+    ]
+}"
 ```
 
 #### POST response
