@@ -173,8 +173,7 @@ Follow along below or get the code:
 ::: moniker range="foundry"
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
-1. Install packages with `npm install`, including the preview version of `@azure/ai-projects`.
+1. Install packages with `npm install @azure/ai-projects@2.0.0-beta.1`
 1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
