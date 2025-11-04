@@ -10,7 +10,7 @@ items:
     - name: Azure AI Foundry client libraries
       href: how-to/develop/sdk-overview.md
     - name: Ask AI
-      href: how-to/ask-ai.md
+      href: foundry-agent/ask-foundry-agent.md
 - name: Models
   href: toc-files/models/toc.yml
 - name: AI services
