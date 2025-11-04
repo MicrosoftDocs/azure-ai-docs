@@ -45,13 +45,13 @@ items:
     - name: Responsible use of AI
       items:
       - name: Transparency note for CLU
-        href: /legal/cognitive-services/language-service/clu-transparency-note?context=/azure/ai-services/language-service/context/context
+        href: /azure/ai-foundry/responsible-ai/clu/clu-transparency-note?context=/azure/ai-services/language-service/context/context
       - name: Integration and responsible use
-        href: /legal/cognitive-services/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context
+        href: /azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context
       - name: Characteristics and limitations
-        href: /legal/cognitive-services/language-service/clu-characteristics-and-limitations?context=/azure/ai-services/language-service/context/context
+        href: /azure/ai-foundry/responsible-ai/clu/clu-characteristics-and-limitations?context=/azure/ai-services/language-service/context/context
       - name: Data, privacy, and security
-        href: /legal/cognitive-services/language-service/data-privacy?context=/azure/ai-services/language-service/context/context
+        href: /azure/ai-foundry/responsible-ai/clu/clu-data-privacy-security?context=/azure/ai-services/language-service/context/context
     - name: How-to guides
       items:
         - name: Use containers
