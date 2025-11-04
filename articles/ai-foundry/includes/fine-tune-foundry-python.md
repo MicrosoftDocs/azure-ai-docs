@@ -7,12 +7,6 @@
 - Fine-tuning access requires the **Azure AI User** role.
 - If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../openai/how-to/role-based-access-control.md).
 
-### Supported models
-
-Consult the [models page](../openai/includes/fine-tune-models.md) to check which regions currently support fine-tuning.
-
-Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
-
 ## Prepare your data
 
 Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
