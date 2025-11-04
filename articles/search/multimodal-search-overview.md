@@ -43,7 +43,7 @@ The wizard follows these steps to create a multimodal pipeline:
 
 1. **Extract content:** The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)  obtains page text, inline images, and structural metadata. The Document Extraction skill doesn't extract polygons or page numbers, and the supported file types vary. For more information, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
 
-   These built-in skills don't support table extraction or preservation of table structure. To use these capabilities, integrate the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) into a skillset.
+   These built-in skills don't support table extraction or preservation of table structure. To use these capabilities, add the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) to a skillset.
 
 1. **Chunk text:** The [Text Split skill](cognitive-search-skill-textsplit.md) breaks the extracted text into manageable chunks for use in the remaining pipeline, such as the embedding skill.
 

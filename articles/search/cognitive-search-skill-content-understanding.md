@@ -29,7 +29,7 @@ You can use the Azure Content Understanding skill for both content extraction an
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
 
 The Azure Content Understanding skill is bound to a [billable Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other
-Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/en-us/pricing/details/content-understanding/).
+Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
 
 > [!TIP]
 > You can use the Azure Content Understanding skill in a skillset that also performs image verbalization and chunk vectorization. In the following tutorials, replace the Document Layout skill with the Azure Content Understanding skill.
@@ -47,7 +47,7 @@ The Azure Content Understanding skill has the following limitations:
 
 ## Supported regions
 
-The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview). Your Azure AI Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support).
+The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true). Your Azure AI Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support).
 
 Your search service can be in any [supported Azure AI Search region](search-region-support.md). When your Azure AI Foundry resource and Azure AI Search service aren't in the same region, cross-region network latency impacts your indexer's performance.
 

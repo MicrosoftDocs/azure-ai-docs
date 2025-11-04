@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 11/04/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023

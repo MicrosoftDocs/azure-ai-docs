@@ -65,7 +65,7 @@ These skills are billed at the Standard rate.
 
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
-| [Azure Content Understanding](cognitive-search-skill-content-understanding.md) | Connects to Azure Content Understanding for advanced document analysis and semantic chunking. | Azure Content Understanding ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-understanding/)) |
+| [Azure Content Understanding](cognitive-search-skill-content-understanding.md) | Connects to Azure Content Understanding for advanced document analysis and semantic chunking. | Azure Content Understanding ([pricing](https://azure.microsoft.com/pricing/details/content-understanding/)) |
 | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) | Connects to a deployed Azure OpenAI embedding model for integrated vectorization. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
 | [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with an Azure AI Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
 
