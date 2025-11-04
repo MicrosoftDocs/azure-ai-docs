@@ -27,5 +27,3 @@ items:
       displayName: finetuning, fine-tuning       
     - name: Fine-tuning cost management
       href: ../../../openai/how-to/fine-tuning-cost-management.md
-    - name: Troubleshooting guidance
-      href: ../../../openai/how-to/fine-tuning-troubleshoot.md
