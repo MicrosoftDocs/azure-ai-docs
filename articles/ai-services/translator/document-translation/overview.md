@@ -45,7 +45,7 @@ Use asynchronous document processing to translate multiple documents and large f
 
 ### Batch development options
 
-You can add Document translation to your applications using the using the following resources:
+You can add Document translation to your applications using the following resources:
 
 |Development option  |Description  |
 |---------|---------|
