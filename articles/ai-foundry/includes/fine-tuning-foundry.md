@@ -59,7 +59,7 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 To fine-tune an model in an existing Azure AI Foundry project, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/) and select your project. If you don't have a project already, first [create a project](../ai-foundry/how-to/create-projects.md).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/) and select your project. If you don't have a project already, first [create a project](../how-to/create-projects.md).
 
 1. From the top navigation, select **Build** followed by **Fine-tune** on the left navigation.
 
