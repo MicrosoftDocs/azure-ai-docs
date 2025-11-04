@@ -135,7 +135,7 @@ def tiktoken_len(text):
     disallowed_special=()
 )
     return len(tokens)
-tiktoken.encoding_for_model('gpt-3.5-turbo')
+tiktoken.encoding_for_model('gpt-4.1-mini')
 
 # create the length function
 token_counts = []
