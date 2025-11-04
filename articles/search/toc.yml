@@ -749,9 +749,9 @@ items:
       items:
         - name: Azure AI Foundry resource
           items:
-          - name: AI Vision multimodal embeddings
+          - name: Azure Vision multimodal embeddings
             href: cognitive-search-skill-vision-vectorize.md
-          - name: Document Layout skill
+          - name: Document Layout
             href: cognitive-search-skill-document-intelligence-layout.md
           - name: Entity Linking (v3)
             href: cognitive-search-skill-entity-linking-v3.md
@@ -775,6 +775,8 @@ items:
           items:
           - name: Azure OpenAI Embedding
             href: cognitive-search-skill-azure-openai-embedding.md
+          - name: GenAI Prompt
+            href: cognitive-search-skill-genai-prompt.md
     - name: Custom skills
       items:
       - name: Azure Machine Learning (AML)
@@ -783,8 +785,6 @@ items:
         href: cognitive-search-skill-custom-entity-lookup.md
       - name: Custom Web API
         href: cognitive-search-custom-skill-web-api.md 
-      - name: GenAI Prompt
-        href: cognitive-search-skill-genai-prompt.md
     - name: Utility skills (nonbillable)
       items:
       - name: Conditional
@@ -808,12 +808,12 @@ items:
         href: cognitive-search-skill-sentiment.md
   - name: Vectorizers reference
     items:
-    - name: Azure OpenAI
-      href: vector-search-vectorizer-azure-open-ai.md
-    - name: Azure AI Vision
-      href: vector-search-vectorizer-ai-services-vision.md
     - name: Azure AI Foundry model catalog
       href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
+    - name: Azure OpenAI
+      href: vector-search-vectorizer-azure-open-ai.md
+    - name: Azure Vision
+      href: vector-search-vectorizer-ai-services-vision.md
     - name: Custom Web API
       href: vector-search-vectorizer-custom-web-api.md
 - name: Resources

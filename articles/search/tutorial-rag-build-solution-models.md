@@ -37,7 +37,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - An **Owner** or **User Access Administrator** role on your Azure subscription, necessary for creating role assignments. You use at least three Azure resources in this tutorial. The connections are authenticated using Microsoft Entra ID, which requires the ability to create roles. Role assignments for connecting to models are documented in this article. If you can't create roles, you can use [API keys](search-security-api-keys.md) instead.
 
-- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI Foundry resource](/azure/ai-services/multi-service-resource), or [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For Azure AI Vision, ensure that your Azure AI Foundry resource is in the same region as [Azure AI Search](search-region-support.md) and the [Azure AI Vision multimodal APIs](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability).
+- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure Vision via an [Azure AI Foundry resource](/azure/ai-services/multi-service-resource), or [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For Azure Vision, ensure that your Azure AI Foundry resource is in the same region as [Azure AI Search](search-region-support.md) and the [Azure Vision multimodal APIs](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability).
 
   We use Azure OpenAI in this tutorial. Other providers are listed so that you know your options for integrated vectorization.
 
@@ -56,7 +56,7 @@ Azure AI Search provides skill and vectorizer support for the following embeddin
 | Client | Embedding models | Skill | Vectorizer |
 |--------|------------------|-------|------------|
 | Azure OpenAI | text-embedding-ada-002<br>text-embedding-3-large<br>text-embedding-3-small | [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) | [AzureOpenAIEmbedding](vector-search-vectorizer-azure-open-ai.md) |
-| Azure AI Vision | multimodal 4.0 <sup>1</sup> | [AzureAIVision](cognitive-search-skill-vision-vectorize.md) | [AzureAIVision](vector-search-vectorizer-ai-services-vision.md) |
+| Azure Vision | multimodal 4.0 <sup>1</sup> | [AzureAIVision](cognitive-search-skill-vision-vectorize.md) | [AzureAIVision](vector-search-vectorizer-ai-services-vision.md) |
 | Azure AI Foundry model catalog | Cohere-embed-v3-english <sup>1</sup><br>Cohere-embed-v3-multilingual <sup>1</sup><br>Cohere-embed-v4 <sup>1, 2</sup> | [AML](cognitive-search-aml-skill.md) <sup>3</sup> | [Azure AI Foundry model catalog](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 <sup>1</sup> Supports text and image vectorization.
@@ -137,7 +137,7 @@ Assign yourself and the search service identity permissions on Azure OpenAI. The
 
 1. Select **Review and Assign** to create the role assignments.
 
-For access to models on Azure AI Vision, assign **Cognitive Services OpenAI User**. For Azure AI Foundry, assign **Azure AI Developer**.
+For access to models on Azure Vision, assign **Cognitive Services OpenAI User**. For Azure AI Foundry, assign **Azure AI Developer**.
 
 ## Use non-Azure models for embeddings
 
@@ -156,11 +156,11 @@ Objective:
 Key points:
 
 - Built-in integration for models hosted in the Azure cloud.
-- For chunking, use the native Text Split skill with overlapping text -- or -- for semantic chunking, use Document Intelligence.
-- For embedding during indexing, use a skill that points to Azure OpenAI, Azure AI Vision, or the model catalog. Alternatively, use custom skill with HTTP endpoint to external model.
+- For chunking, use the native Text Split skill with overlapping text -- or -- for semantic chunking, use Azure Document Intelligence in Foundry Tools.
+- For embedding during indexing, use a skill that points to Azure OpenAI, Azure Vision, or the model catalog. Alternatively, use custom skill with HTTP endpoint to external model.
 - For queries, same embedding models as above, but you're wrapping it in a "vectorizer" instead of a "skill".
 - Use the same embedding model for indexing and text-to-vector queries. If you want to try a different model, it's a rebuild. An indexer pipeline like the one used in this tutorial makes this step easy.
-- For chat, same location requirements and providers, except no Azure AI Vision. You specify a chat model in your query logic. Unlike embedding, you can swap these around at query time to see what they do.
+- For chat, same location requirements and providers, except no Azure Vision. You specify a chat model in your query logic. Unlike embedding, you can swap these around at query time to see what they do.
 
 Tasks:
 

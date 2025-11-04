@@ -18,7 +18,7 @@ ms.custom:
 
 If you're using built-in skills for [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents for free, up to 20 transactions per index per day. For larger or more frequent workloads, you should attach a billable Azure AI Foundry resource to your [skillset](/rest/api/searchservice/skillsets/create).
 
-Azure AI Search uses dedicated, internally hosted resources to execute built-in skills backed by Azure AI Foundry Tools and requires an Azure AI Foundry resource solely for billing purposes. <!-- The exception is the [Content Understanding skill](SKILL), which uses your resource for both billing and processing. -->
+Azure AI Search uses dedicated, internally hosted resources to execute built-in skills backed by Azure AI Foundry Tools and requires an Azure AI Foundry resource solely for billing purposes. <!-- The exception is the [Azure Content Understanding skill](SKILL), which uses your resource for both billing and processing. -->
 
 An Azure AI Foundry resource provides access to multiple services within Azure AI Foundry Tools. When you specify it in a skillset, Microsoft is able to charge you for using the following services:
 
@@ -304,7 +304,7 @@ Some enrichments are always free:
 
 ## Billable enrichments
 
-During AI enrichment, Azure AI Search calls APIs for [built-in skills](cognitive-search-predefined-skills.md) that are based on Azure AI Vision, Azure AI Translator, and Azure AI Language.
+During AI enrichment, Azure AI Search calls APIs for [built-in skills](cognitive-search-predefined-skills.md) that are based on Azure Vision, Azure Language, and Azure Translator.
 
 Billable built-in skills that make backend calls to external services include:
 
@@ -317,9 +317,9 @@ Billable built-in skills that make backend calls to external services include:
 + [Personally Identifiable Information (PII) Detection](cognitive-search-skill-pii-detection.md)
 + [Sentiment](cognitive-search-skill-sentiment-v3.md)
 + [Text Translation](cognitive-search-skill-text-translation.md)
-+ [Azure AI Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md)
++ [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md)
 
-A [query-time vectorizer](vector-search-how-to-configure-vectorizer.md) backed by the Azure AI Vision multimodal embedding model is also a billable enrichment.
+A [query-time vectorizer](vector-search-how-to-configure-vectorizer.md) backed by the Azure Vision multimodal embedding model is also a billable enrichment.
 
 Image extraction is an Azure AI Search operation that occurs when documents are cracked prior to enrichment. Image extraction is billable on all pricing tiers, except for 20 free daily extractions on the free tier. Image extraction costs apply to image files inside blobs, embedded images in other files (PDF and other app files), and images extracted using [Document Extraction](cognitive-search-skill-document-extraction.md). For image extraction pricing, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
 

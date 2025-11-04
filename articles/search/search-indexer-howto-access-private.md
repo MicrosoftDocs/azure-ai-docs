@@ -30,10 +30,10 @@ Shared private link is a premium feature that's billed by usage. When you set up
 Azure AI Search makes outbound calls to other Azure resources in the following scenarios:
 
 + Knowledge base connections to Azure OpenAI for agentic retrieval workflows
-+ Indexer or query connections to Azure OpenAI or Azure AI Vision for vectorization
++ Indexer or query connections to Azure OpenAI or Azure Vision for vectorization
 + Indexer connections to supported data sources
 + Indexer (skillset) connections to Azure Storage for caching enrichments, debug session sate, or writing to a knowledge store
-+ Indexer (skillset) connections to Azure AI services for billing purposes
++ Indexer (skillset) connections to Azure AI Foundry Tools for billing purposes
 + Encryption key requests to Azure Key Vault
 + Custom skill requests to Azure Functions or similar resource
 
@@ -128,7 +128,7 @@ You can create a shared private link for the following resources.
 
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
-<sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI embedding models when implementing [integrated vectorization](vector-search-integrated-vectorization.md). There's support for shared private link to support the Azure AI Vision multimodal embeddings via [Azure AI Foundry resources](/azure/ai-services/multi-service-resource).
+<sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI embedding models when implementing [integrated vectorization](vector-search-integrated-vectorization.md). There's support for shared private link to support the Azure Vision multimodal embeddings via [Azure AI Foundry resources](/azure/ai-services/multi-service-resource).
 
 <sup>7</sup> Shared private link for Azure OpenAI is only supported in public cloud and [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/). Other cloud offerings don't have support for shared private links for `openai_account` Group ID.
 

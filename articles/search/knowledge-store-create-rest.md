@@ -417,7 +417,7 @@ You can find and manage resources in the Azure portal, using the **All resources
 
 ## Next steps
 
-Now that you've enriched your data by using Azure AI services and projected the results to a knowledge store, you can use Storage Explorer or other apps to explore your enriched data set.
+Now that you've enriched your data by using Azure AI Foundry Tools and projected the results to a knowledge store, you can use Storage Explorer or other apps to explore your enriched data set.
 
 > [!div class="nextstepaction"]
 > [Get started with Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer)

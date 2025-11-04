@@ -41,7 +41,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Azure Storage](/azure/storage/common/storage-account-create) general purpose account. This exercise uploads PDF files into blob storage for automated indexing.
 
-- [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure AI services.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure AI Foundry Tools.
 
 - [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-large. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
 
@@ -387,7 +387,7 @@ Key points:
 - Indexer pulls from the data source, pushes to the index.
 - Large PDF files can't be chunked. Indexer shows success, but doesn't even attempt to chunk/ingest the docs. Individual files have to be less than 16 MB.
 - Skillset (example 1) has two skills: text split and embedding. Embedding model is also be used for vectorization at query time (assume text-to-vector conversion).
-- Skillset (example 2) add a custom skill that points to external embedding model, or document intelligence.
+- Skillset (example 2) add a custom skill that points to external embedding model, or Azure Document Intelligence.
 - Skillset (example 3) add an entity recognition skill to lift locations from raw content into the index?
 - Duplicated content is expected due to overlap and repetition of parent info. It won't affect your LLM.
 
