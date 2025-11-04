@@ -20,13 +20,13 @@ With sensitivity label indexing, Azure AI Search can extract, store, and enforce
 
 This functionality is available for the following data sources:
 
-+ [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction)
-+ [Azure Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction)
-+ [SharePoint Online](/sharepoint/overview)
-+ [OneLake (Microsoft Fabric)](/fabric/onelake/overview)
++ [Azure Blob Storage](search-how-to-index-azure-blob-storage.md)
++ [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
++ [SharePoint in Microsoft 365 (Preview)](search-how-to-index-sharepoint-online.md)
++ [Microsoft OneLake](search-how-to-index-onelake-files.md)
 
 > [!IMPORTANT]
-> The feature is available in **limited regions** and **only through the REST API or supported SDKs** during public preview.  
+> The feature is available in **limited regions** and **only through the REST API version 2025-11-01-preview or supported beta SDKs** during public preview.  
 > Portal configuration and debug mode for administrators are not supported at this time.
 
 
@@ -38,7 +38,7 @@ Extracted labels are stored as metadata fields within the search index, alongsid
 
 ### Policy enforcement
 
-At query time, Azure AI Search evaluates sensitivity labels and enforces **document-level access control** in accordance with the user’s Microsoft Entra ID token and Purview label policies.  
+At query time, Azure AI Search evaluates sensitivity labels and enforces [document-level access control](search-document-level-access-overview.md) in accordance with the user’s Microsoft Entra ID token and Purview label policies.  
 
 Only users authorized to access content under a given label can retrieve corresponding documents in search results. Note that there is a delay in how often the labels are pulled from a document after changed. When configured on a schedule, the indexer will pull the new documents and associated sensitivity labels and any changes in document content and its associated sensitivity labels if changed since the last run.
 
@@ -52,11 +52,7 @@ Only users authorized to access content under a given label can retrieve corresp
 
 + **Global Administrator permissions** in your Microsoft Entra tenant are required to grant the search service access to Purview APIs and sensitivity labels.
 
-+ Both the **Azure AI Search service** and end users querying the content must belong to the same **Microsoft Entra tenant**.  
-  Guest users and multi-tenant scenarios are not supported during preview.
-
-+ Access to this capability is restricted to **approved preview participants**.  
-  Provide your search service name to your Microsoft program contact to enable the feature for your instance.
++ Both the **Azure AI Search service** and end users querying the content must belong to the same **Microsoft Entra tenant**. Guest users and multi-tenant scenarios are not supported during preview.
 
 + File types must be included in the [Purview sensitivity labels WXP supported formats list](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and also be recognized as [Office supported file types](search-how-to-index-azure-blob-storage.md#supported-document-formats) by Azure AI Search indexers.
 
@@ -65,8 +61,7 @@ Only users authorized to access content under a given label can retrieve corresp
 ## Limitations
 
 + Initial release supports **REST API and SDKs only**. There’s **no portal experience** for configuration or management.  
-+ May have **undesired results when used simultaneously with ACL-based security filters** (currently also in preview).  
-  It’s recommended to **test each feature independently** until official coexistence support is announced.  
++ May have **undesired results when used simultaneously with ACL-based security filters** (currently also in preview). It’s recommended to **test each feature independently** until official coexistence support is announced.  
 + **Autocomplete** and **Suggest** APIs are disabled for Purview-enabled indexes, as they cannot yet enforce label-based access control.  
 + **Incremental indexing** of sensitivity labels occurs automatically when a document’s label or metadata changes and is detected in a subsequent indexer run.  
 + **Guest accounts and cross-tenant queries** are not supported.
