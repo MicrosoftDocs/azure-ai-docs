@@ -8,6 +8,7 @@ ms.date: 08/29/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
 ms.custom:
   - build-2025
 ---
