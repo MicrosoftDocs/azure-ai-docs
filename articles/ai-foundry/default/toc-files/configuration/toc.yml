@@ -3,6 +3,8 @@ items:
   href: ../../../concepts/planning.md
 - name: Create a project
   href: ../../../how-to/create-projects.md
+- name: Manage projects and resources
+  href: ../../../concepts/management-center.md
 - name: Choose a resource
   href: ../../../concepts/resource-types.md
 - name: Create resources using Bicep template
@@ -19,6 +21,8 @@ items:
   href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
 - name: Foundry Models deployment offers
   items:
+  - name: Deployment offers and types
+    href: ../../../foundry-models/concepts/deployment-types.md
   - name: Standard deployment offer
     href:
   - name: Provisioned deployment offer
@@ -31,11 +35,15 @@ items:
         href: ../../../openai/how-to/provisioned-get-started.md
       - name: Provisioned spillover
         href: ../../../openai/how-to/spillover-traffic-management.md
-      - name: Azure OpenAI PTU updates
-        href: ../../../openai/concepts/provisioned-migration.md
   - name: Priority processing deployment offer
     href:
   - name: Batch deployment offer
     href:
+- name: Manage quotas for AI Foundry resources
+  href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
+- name: Connect to your own storage in Foundry
+  href: ../../../how-to/bring-your-own-azure-storage-foundry.md
+- name: Connect to your own storage for Speech/Language
+  href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md  

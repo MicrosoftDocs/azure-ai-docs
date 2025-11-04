@@ -43,7 +43,7 @@ The second image shows a typical pattern for integrated vectorization. Skills fo
 
 Debug Sessions work with all generally available [indexer data sources](search-data-sources-gallery.md) and most preview data sources, with the following exceptions:
 
-+ SharePoint Online indexer.
++ SharePoint indexer.
 
 + Azure Cosmos DB for MongoDB indexer.
 

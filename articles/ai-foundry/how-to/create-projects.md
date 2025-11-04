@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 10/17/2025
+ms.date: 11/02/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -33,8 +33,8 @@ This article describes how to create a Foundry project in [Azure AI Foundry](htt
 
     * Agents 
     * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure—Azure OpenAI, Mistral, xAI, DeepSeek, and others
-    * Partner and Community Models sold through Marketplace—Stability, Bria, Cohere, and others
+    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
+    * Partner & Community Models sold through Marketplace - Stability, Cohere, etc. 
     * Content understanding 
     * Evaluations
     * Fine-tuning
@@ -47,6 +47,8 @@ This article describes how to create a Foundry project in [Azure AI Foundry](htt
 
 ::: moniker-end
 
+If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
+
 ## Prerequisites
 
 
@@ -55,8 +57,14 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
 
+:::moniker range="foundry-classic"
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
+:::moniker-end
+
+:::moniker range="foundry"
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator create a project for you.
+:::moniker-end
 
 # [Python SDK](#tab/python)
 
@@ -122,11 +130,6 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 
 These steps provide a way to create a new Azure resource with basic, default settings. 
 
-> [!TIP]
-> If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, use one of these methods instead to comply with your organization's Azure Policy compliance:
-> * [Create your first AI Foundry resource](../../ai-services/multi-service-resource.md)
-> * [Create an Azure AI Foundry resource using a Bicep file](./create-resource-template.md) 
-
 To create a Foundry project, follow these steps:
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
@@ -141,11 +144,6 @@ To create a Foundry project, follow these steps:
 ::: moniker range="foundry"
 
 These steps provide a way to create a new Azure resource with basic, defaulted, settings. 
-
-> [!TIP]
-> If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, use one of these methods instead to comply with your organization's Azure Policy compliance:
-> * [Create your first AI Foundry resource](../../ai-services/multi-service-resource.md) 
-> * [Create an Azure AI Foundry resource using a Bicep file](./create-resource-template.md) 
 
 To create a Foundry project, follow these steps:
 
@@ -205,9 +203,12 @@ CLI commands not currently available for creating a Foundry project.
 
 ---
 
+::: moniker range="foundry-classic"
 ## <a name="create-multiple"></a> Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
+
+::: moniker-end
 
 ## View project settings
 
@@ -225,7 +226,7 @@ On the project **Home** page, you find information about the project.
 
 ::: moniker range="foundry"
 
-On the **Home** page, select **Keys** to find the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
+On the **Home** page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
 
 ::: moniker-end
 
@@ -247,7 +248,8 @@ az cognitiveservices account connection show --name <my_project_name> --resource
 
 ::: moniker range="foundry-classic"
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] and open your project.
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. Open your project.
 1. Select **Management center**.
 1. Under **Resource**, select **Overview**.
 1. Select any projects you no longer want to keep.
@@ -262,8 +264,9 @@ To delete the AI Foundry resource and all its projects:
 
 ::: moniker range="foundry"
 
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
 1. In the upper-right navigation, select **Operate**.
-1. In the left pane, select **Admin Console**.
+1. In the left pane, select **Admin**.
 1. Select your project.
 1. In the upper right, select the trash can icon to delete the project.
 
