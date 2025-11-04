@@ -41,9 +41,7 @@ items:
   href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
-- name: Connect to your own storage
-  items:
-  - name: Overview
-    href: ../../../how-to/bring-your-own-azure-storage-foundry.md
-  - name: For Speech/Language
-    href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md  
+- name: Connect to your own storage in Foundry
+  href: ../../../how-to/bring-your-own-azure-storage-foundry.md
+- name: Connect to your own storage for Speech/Language
+  href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md  
