@@ -1,5 +1,5 @@
 ---
-title: "MCP servers in the Azure AI Foundry tool catalog"
+title: "Discover tools in the Azure AI Foundry tool catalog"
 description: "Learn about the tool catalog in Azure AI Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
@@ -11,9 +11,9 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# MCP servers in the Azure AI Foundry tool catalog (preview)
+# Discover tools in the Azure AI Foundry tool catalog (preview)
 
-The Azure AI Foundry tool catalog is a central hub for discovering MCP servers to extend your AI agents and workflows.
+The Azure AI Foundry tool catalog is a central hub for discovering tools to extend your AI agents
 
 The tool catalog enables you to: 
 
@@ -21,11 +21,23 @@ The tool catalog enables you to:
 * Streamline integration between tool configuration and adding to an agent or workflow. 
 * Filter, search, and sort by your desired outcome 
 
+## Considerations for using non-Microsoft services and servers 
+
+Your use of connected non-Microsoft services and servers ("Non-Microsoft services") is subject to the terms between you and the service provider. Non-Microsoft services are Non-Microsoft products under your agreement governing use of Microsoft online services. When you connect to a Non-Microsoft services, some of your data (such as prompt content) is passed to the Non-Microsoft services, or your application might receive data from the Non-Microsoft Services. You're responsible for your use of Non-Microsoft services and data, along with any charges associated with that use. 
+
+The Non-Microsoft services, including remote MCP servers, that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any Non-Microsoft services.  
+
+We recommend that you carefully review and track the MCP servers you add to Foundry Agent Service. We also recommend that you rely on servers hosted by trusted service providers themselves rather than proxies. 
+
+The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with Non-Microsoft services, including remote MCP servers, and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data. 
+
 ## Public and private tool catalogs
 
-The Azure AI Foundry provides both public and private tool catalogs. The public tool catalog is an enterprise-ready curated list of MCP servers available to all AI Foundry developers for building AI agents. You can also restrict the tools that appear in your organization by creating a [private tool catalog](../how-to/private-tool-catalog.md). 
+The Azure AI Foundry provides both public and private tool catalogs. The public tool catalog is an enterprise-ready curated list of MCP servers available to all AI Foundry developers for building AI agents. You can also build an organizational tool catalog with tools that appear only in your organization by creating a [private tool catalog](../how-to/private-tool-catalog.md). 
 
-## Remote MCP server types
+## Find the right tools from the tool catalog
+
+### Tool types
 
 There are three types of MCP tool servers in the public tool catalog:
 
@@ -33,7 +45,88 @@ There are three types of MCP tool servers in the public tool catalog:
 
 **Local MCP server**: The MCP server publisher doesn't host the server and require AI Foundry developers to self-host and bring the self-hosted remote MCP server endpoint back to AI Foundry to use it with AI agents. For information about self-hosting a local MCP server here, see the [custom MCP Server documentation](https://aka.ms/FoundryCustomMCP)  
 
-**Custom MCP Server**: These MCP servers are converted from Azure Logic App Connectors. AI Foundry developers need additional [configuration](https://aka.ms/FoundryCustomTool) to convert to remote MCP servers.
+**Custom**: These MCP servers are converted from Azure Logic App Connectors. AI Foundry developers need additional [configuration](https://aka.ms/FoundryCustomTool) to convert to remote MCP servers.
+
+
+### Filter and search
+
+The AI Foundry tool catalog provides the following filters to help you find the right tools for your agents:
+
+| Filter | Description |
+|--------|-------------|
+| Publisher | Microsoft and Partner: non-Microsoft service |
+| Category | Categorize tools by different industries and use cases, such as databases, analytics, web, and more |
+| Registry | **Public**: This is the registry for all public remote MCP servers and local MCP servers in the catalog<br>**Logic app connectors**: This is the registry for all Azure Logic App Connectors that need to be converted to remote MCP servers to use a private tool catalog you built. You can have multiple private tool catalogs in your Foundry Tool Catalog. |
+| Supported Authentication | You can also filter by the authentication method a MCP server supports. For more information see [Authentication methods](https://aka.ms/FoundryMCPAuth). |
+
+When you select a specific tool you are interested, you can see the details page like this one:
+
+:::image type="content" source="../media/tool-catalog/tool-example.png" alt-text="An example tool in the AI Foundry portal.":::
+
+The destils page contains the following information: 
+
+- **Basic information**: Name, logo and description
+- **MCP server endpoint**: The endpoint for the tool. Only available for remote MCP servers. Some MCP servers such as Elasticsearch have dynamic endpoint that require you to provide configurations to complete the endpoint. You will later be prompted to enter more information.
+- **Supported authentication**: The [authentication](https://aka.ms/FoundryMCPAuth) method this MCP server supports.
+- **Documentation link**: The hyperlink to view the specific documentation for this tool.
+- **Use cases**: In addition to category of this tool, you can also see more detailed explanation of use cases, an supported capabilities of this tool
+- **Warning and license**: Before using the tool, make sure you have reviewed the warning and license for this tool.
+- **Support Contact**: If you have questions about using this tool or setting up the account, reach out to the support contact of the tool.
+
+## Mini Foundry Tool Catalog
+### Mini tool catalog in your tools list
+In [your tools list](https://ai.azure.com/nextgen/build/tools), you can find the list of tools you have configured. You can see the tools by its name, type and last modified time. You can delete the tool and note that deleting this tool will impact all agents currently using this tool. If you click this configured tool, you can see the details of your configuration, such as the complete MCP server endpoint, your authentication, which agents are currently using this tool. You can also click to add this tool to an existing agent. 
+
+If you click the button to connect another tool, you will see the mini tool catalog. This mini tool catalog includes three tabs:
+
+- **Configured**: Configured tools are ready to use with your configured authentication, configuration or set up. You can also find built-in tools here:
+
+|Tool  |Description  |
+|---------|---------|
+|[Azure AI Search](../how-to/tools/azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
+|[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
+|[Grounding with Bing Search](../how-to/tools/bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
+| [Grounding with Bing Custom Search (preview)](../how-to/tools/bing-custom-search.md) | Enhance your Agent response with selected web domains |
+| [Fabric Data Agent (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
+| [SharePoint (preview)](../how-to/tools/shareppoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
+- **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
+- **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, functions, or Azure Functions.
+
+|Tool  |Description  |
+|---------|---------|
+|[Azure Functions](../how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
+|[Function calling](../how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
+| [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
+| [OpenAPI 3.0 Specified tool ](../how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
+
+### Mini tool catalog in agent builder
+In agent builder, you can directly add tools to your agent. When you click to add tools, you can firstly a list of recently used tools and you can also click to open the mini tool catalog to add more tools. 
+If you click the button to connect another tool, you will see the mini tool catalog. This mini tool catalog includes three tabs:
+
+- **Configured**: Configured tools are ready to use with your configured authentication, configuration or set up. You can also find built-in tools here:
+
+|Tool  |Description  |
+|---------|---------|
+|[Azure AI Search](../how-to/tools/azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
+|[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
+|[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+|[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
+|[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
+|[Grounding with Bing Search](../how-to/tools/bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
+| [Grounding with Bing Custom Search (preview)](../how-to/tools/bing-custom-search.md) | Enhance your Agent response with selected web domains |
+| [Image Generation (preview)](../how-to/tools/image-generation.md) | Enables image generation as part of conversations and multi-step workflows |
+| [Microsoft Fabric (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
+| [SharePoint (preview)](../how-to/tools/shareppoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
+|[Web Search (preview)](../how-to/tools/web-search.md)     | Enables models to retrieve and ground responses with real-time information from the public web before generating output.         |
+- **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
+- **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, functions, or Azure Functions.
+
+|Tool  |Description  |
+|---------|---------|
+|[Azure Functions](../how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
+|[Function calling](../how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
+| [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
+| [OpenAPI 3.0 Specified tool ](../how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
 ## Next steps
 
