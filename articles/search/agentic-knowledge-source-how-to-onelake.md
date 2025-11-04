@@ -157,7 +157,7 @@ You can pass the following properties to create a OneLake knowledge source.
 
 ## Check ingestion status
 
-[!INCLUDE [Knowledge source status](./includes/how-tos/includes\how-tos\knowledge-source-status.md)]
+[!INCLUDE [Knowledge source status](./includes/how-tos/knowledge-source-status.md)]
 
 ## Review the created objects
 
