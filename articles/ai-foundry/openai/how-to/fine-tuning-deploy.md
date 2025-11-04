@@ -23,16 +23,6 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 
 ## Deploy your fine-tuned model
 
-::: moniker range="foundry"
-
-## [Portal](#tab/portal)
-
-::: moniker-end
-
-
-
-::: moniker range="foundry-classic"
-
 ## [Portal](#tab/portal)
 
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
@@ -45,7 +35,6 @@ You can monitor the progress of your deployment on the **Deployments** pane in A
 
 The UI does not support cross region deployment, while Python SDK or REST supports.
 
-::: moniker-end
 
 ## [Python](#tab/python)
 
