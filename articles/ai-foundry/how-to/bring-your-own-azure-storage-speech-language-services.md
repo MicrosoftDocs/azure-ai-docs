@@ -9,11 +9,14 @@ ms.reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to
-ms.date: 10/27/2025
+ms.date: 11/18/2025
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Connect your own storage for Speech and Language services (Preview)
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -21,11 +24,13 @@ Azure AI Foundry unifies Agents, Azure OpenAI, Speech, and Language capabilities
 
 Use this article when you specifically need Speech and Language data to land in an Azure Storage account you own. For the broader approaches (connections, capability hosts, and when to use them for other features), see [Connect to your own storage](bring-your-own-azure-storage-foundry.md).
 
+
 ## Prerequisites
 
 Before you begin:
 
-- An Azure subscription.
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+
 - An Azure Storage account (Blob) in a region supported by your Azure AI Foundry resource.
 - Permissions: Owner or Contributor on both the Azure AI Foundry resource (or resource group) and the Storage account.
 - Decision to use customer-managed keys (CMK) encryption (optional) on the storage account.

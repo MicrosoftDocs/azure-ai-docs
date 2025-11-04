@@ -3,13 +3,13 @@ title: Connect to your own storage
 titleSuffix: Azure AI Foundry
 ms.reviewer: andyaviles
 description: Learn how to bring your own storage to Azure AI Foundry for agents, evaluations, datasets, and other capabilities.
-#customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
+# customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
 author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to
-ms.date: 10/27/2025
+ms.date: 11/18/2025
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -33,11 +33,12 @@ Connections provide the shared data pointer; capability hosts optionally overrid
 
 Before connecting your storage, ensure you have:
 
-- An Azure subscription with an active Azure AI Foundry resource
-- An Azure Storage account in the same subscription (Blob Storage supported)
-- Contributor or Owner permissions on both the Azure AI Foundry resource and the storage account
-- Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language)
-- (Optional) A plan for customer-managed keys (CMK) encryption on the storage account
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+
+1. An Azure Storage account in the same subscription (Blob Storage supported).
+1. Contributor or Owner permissions on both the Azure AI Foundry resource and the storage account.
+1. Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language).
+1. (Optional) A plan for customer-managed keys (CMK) encryption on the storage account.
 
 > [!TIP]
 > See [Azure Storage documentation](/azure/storage/) for guidance on security, networking, and encryption options.
@@ -78,42 +79,35 @@ If strict data isolation is required between Speech and Language scenarios, crea
 ## Create a storage connection
 
 ::: moniker range="foundry-classic"
+
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 1. Open your Azure AI Foundry resource or project.
 1. In the left pane, select **Connections** (or **Connected resources**).
 1. Select **+ New connection**.
 1. Choose **Azure Blob Storage**.
 1. Provide:
-  - Name
-  - Subscription
-  - Storage account
-  - Authentication method (system-assigned managed identity recommended)
-1. Select **Create**.
-
-The connection is now available to Agents (when not overridden), Evaluations, Datasets, Content Understanding, Speech, and Language. (Source: .vscode/settings.json)
-::: moniker-end
-
-::: moniker range="foundry"
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
-1. Select the **Build** tab from the top right menu bar.
-1. Then choose the **Tools** blade on the left hand pane, and select the **Connect a tool** button that appears at the top right of the Tools pane.
-1. In the **Select a tool** dialog that appears, select the **Catalog** tab, and find Azure Blob Storage from the list of available tools.
-1. Select **Create**.
-::: moniker-end
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-2. Open your Azure AI Foundry resource or project.
-3. In the left navigation, select **Connections** (or **Connected resources**).
-4. Select **+ New connection**.
-5. Choose **Azure Blob Storage**.
-6. Provide:
    - Name
    - Subscription
    - Storage account
    - Authentication method (system-assigned managed identity recommended)
-7. Select **Create**.
+1. Select **Create**.
+
+The connection is now available to Agents (when not overridden), Evaluations, Datasets, Content Understanding, Speech, and Language.
+
 ::: moniker-end
 
-The connection is now available to Agents (when not overridden), Evaluations, Datasets, and Content Understanding.
+::: moniker range="foundry"
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. In the upper right, select **Build**.
+1. In the left pane, select **Tools** and then **Connect a tool** in the upper right of the pane.
+1. In the **Select a tool** dialog, select the **Catalog** tab and find **Azure Blob Storage**.
+1. Select **Create**.
+
+::: moniker-end
+
+> [!NOTE]
+> Azure portal (portal.azure.com) steps are version-agnostic and intentionally not wrapped in moniker blocks (Source: .vscode/settings.json).
 
 ## Configure capability host for Agents (combined resource + project steps)
 
@@ -229,8 +223,9 @@ Create the role assignment on the Azure Storage account for the Foundry resource
 > Programmatic configuration options for Content Understanding are under evaluation.
 ::: moniker-end
 
-> [!NOTE]
-> Programmatic configuration options for Content Understanding are under evaluation.
+::: moniker range="foundry"
+
+::: moniker-end
 
 ## End-to-end customer-managed storage checklist
 
