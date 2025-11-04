@@ -171,13 +171,20 @@ To configure an MCP tool to authenticate using agent identity:
 
    #### [Foundry portal](#tab/foundry-portal)
 
-   In Agent Playground, under tools select **+ Add**. On the **Custom** tab, select **Model Context Protocol (MCP)**. Under authentication choose **Microsoft Entra** and then under type select **Agent identity**. Fill in the endpoint and audience fields then select **Connect**.
+   1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
+   1. Select **Build** in the upper-right navigation.
+   1. Select **Agents**.
+   1. Select the agent you want to use. 
+   1. Under tools select **+ Add**. 
+   1. On the **Custom** tab, select **Model Context Protocol (MCP)**. 
+   1. Under authentication choose **Microsoft Entra** and then under  **Type** select **Agent identity**. 
+   1. Fill in the endpoint and audience fields then select **Connect**.
 
    ---
 
 1. **Assign permissions**: Assign the agent identity the required permissions for its actions using the `agentIdentityId` you copied. For example:
-   - For an MCP server listing blob containers: assign the Storage Blob Data Contributor role at the Azure Storage Account scope
-   - For an Azure Logic Apps MCP server: assign the Logic Apps Standard Reader role on the Logic App resource
+   - For an MCP server listing blob containers: assign the **Storage Blob Data Contributor** role at the **Azure Storage Account** scope
+   - For an Azure Logic Apps MCP server: assign the **Logic Apps Standard Reader** role on the **Logic App** resource
 
 1. **Connect the tool**: If using code, create an agent with the MCP tool (see the MCP documentation for details). If using the Foundry portal, the MCP tool automatically gets added to the agent.
 
@@ -187,7 +194,7 @@ When the agent invokes the MCP server, it uses the available agent identity to o
 
 You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Navigate to the [agent identities tab](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Azure AI Foundry agents, Copilot Studio agents, and others.
 
-:::image type="content" source="../media/agent-identity/entra-admin-center-agent-identities.png" alt-text="Screenshot of the Microsoft Entra admin center showing the agent identities tab with an inventory of all agents in the tenant.":::
+:::image type="content" source="../media/agent-identity/entra-admin-center-agent-identities.png" alt-text="Screenshot of the Microsoft Entra admin center showing the agent identities tab with an inventory of all agents in the tenant." lightbox="../media/agent-identity/entra-admin-center-agent-identities.png":::
 
 In this experience, you can enable built-in security controls including:
 
