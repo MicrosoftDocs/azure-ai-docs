@@ -7,7 +7,7 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 09/01/2025
+ms.date: 11/04/2025
 manager: nitinme
 keywords: ChatGPT
 
@@ -15,8 +15,40 @@ keywords: ChatGPT
 
 ## Work with chat completion models
 
-The following code snippet shows the most basic way to interact with models that use the Chat Completion API. If this is your first time using these models programmatically, we recommend that you start with the [chat completions quickstart](../chatgpt-quickstart.md).
+The following code snippet shows the most basic way to interact with models that use the Chat Completion API.
 
+> [!NOTE]
+>  The [responses API](../how-to/responses.md) uses the same chat style of interaction, but supports the latest features which are not supported with the older chat completions API.
+
+# [Microsoft Entra ID](#tab/python-secure)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o", # model = "deployment_name".
+    messages=[
+        {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
+        {"role": "user", "content": "Who were the founders of Microsoft?"}
+    ]
+)
+
+#print(response)
+print(response.model_dump_json(indent=2))
+print(response.choices[0].message.content)
+```
+
+# [API Key)](#tab/python-key)
 
 ```python
 import os
@@ -39,6 +71,8 @@ response = client.chat.completions.create(
 print(response.model_dump_json(indent=2))
 print(response.choices[0].message.content)
 ```
+
+---
 
 ```output
 {
@@ -236,6 +270,38 @@ The examples so far show the basic mechanics of interacting with the Chat Comple
 
 Every time a new question is asked, a running transcript of the conversation so far is sent along with the latest question. Because the model has no memory, you need to send an updated transcript with each new question or the model will lose the context of the previous questions and answers.
 
+# [Microsoft Entra ID](#tab/python-secure)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+conversation=[{"role": "system", "content": "You are a helpful assistant."}]
+
+while True:
+    user_input = input("Q:")      
+    conversation.append({"role": "user", "content": user_input})
+
+    response = client.chat.completions.create(
+        model="gpt-4o", # model = "deployment_name".
+        messages=conversation
+    )
+
+    conversation.append({"role": "assistant", "content": response.choices[0].message.content})
+    print("\n" + response.choices[0].message.content + "\n")
+```
+
+# [API Key)](#tab/python-key)
+
 ```python
 import os
 from openai import OpenAI
@@ -260,6 +326,8 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
+---
+
 When you run the preceding code, you get a blank console window. Enter your first question in the window and then select the `Enter` key. After the response is returned, you can repeat the process and keep asking questions.
 
 ## Manage conversations
@@ -274,6 +342,89 @@ It's your responsibility to ensure that the prompt and completion fall within th
 The following code sample shows a simple chat loop example with a technique for handling a 4,096-token count by using OpenAI's tiktoken library.
 
 The code uses tiktoken `0.5.1`. If you have an older version, run `pip install tiktoken --upgrade`.
+
+# [Microsoft Entra ID](#tab/python-secure)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+system_message = {"role": "system", "content": "You are a helpful assistant."}
+max_response_tokens = 250
+token_limit = 4096
+conversation = []
+conversation.append(system_message)
+
+def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
+    """Return the number of tokens used by a list of messages."""
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        print("Warning: model not found. Using cl100k_base encoding.")
+        encoding = tiktoken.get_encoding("cl100k_base")
+    if model in {
+        "gpt-3.5-turbo-0613",
+        "gpt-3.5-turbo-16k-0613",
+        "gpt-4-0314",
+        "gpt-4-32k-0314",
+        "gpt-4-0613",
+        "gpt-4-32k-0613",
+        }:
+        tokens_per_message = 3
+        tokens_per_name = 1
+    elif model == "gpt-3.5-turbo-0301":
+        tokens_per_message = 4  # every message follows <|start|>{role/name}\n{content}<|end|>\n
+        tokens_per_name = -1  # if there's a name, the role is omitted
+    elif "gpt-3.5-turbo" in model:
+        print("Warning: gpt-3.5-turbo may update over time. Returning num tokens assuming gpt-3.5-turbo-0613.")
+        return num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613")
+    elif "gpt-4" in model:
+        print("Warning: gpt-4 may update over time. Returning num tokens assuming gpt-4-0613.")
+        return num_tokens_from_messages(messages, model="gpt-4-0613")
+    else:
+        raise NotImplementedError(
+            f"""num_tokens_from_messages() is not implemented for model {model}."""
+        )
+    num_tokens = 0
+    for message in messages:
+        num_tokens += tokens_per_message
+        for key, value in message.items():
+            num_tokens += len(encoding.encode(value))
+            if key == "name":
+                num_tokens += tokens_per_name
+    num_tokens += 3  # every reply is primed with <|start|>assistant<|message|>
+    return num_tokens
+while True:
+    user_input = input("Q:")      
+    conversation.append({"role": "user", "content": user_input})
+    conv_history_tokens = num_tokens_from_messages(conversation)
+
+    while conv_history_tokens + max_response_tokens >= token_limit:
+        del conversation[1] 
+        conv_history_tokens = num_tokens_from_messages(conversation)
+
+    response = client.chat.completions.create(
+        model="gpt-35-turbo", # model = "deployment_name".
+        messages=conversation,
+        temperature=0.7,
+        max_tokens=max_response_tokens
+    )
+
+
+    conversation.append({"role": "assistant", "content": response.choices[0].message.content})
+    print("\n" + response.choices[0].message.content + "\n")
+```
+
+# [API Key)](#tab/python-key)
 
 ```python
 import tiktoken
@@ -350,6 +501,8 @@ while True:
     conversation.append({"role": "assistant", "content": response.choices[0].message.content})
     print("\n" + response.choices[0].message.content + "\n")
 ```
+
+---
 
 In this example, after the token count is reached, the oldest messages in the conversation transcript are removed. For efficiency, `del` is used instead of `pop()`. We start at index 1 to always preserve the system message and only remove user or assistant messages. Over time, this method of managing the conversation can cause the conversation quality to degrade as the model gradually loses the context of the earlier portions of the conversation.
 
