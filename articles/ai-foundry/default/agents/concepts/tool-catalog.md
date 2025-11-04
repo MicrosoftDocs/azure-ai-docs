@@ -17,15 +17,15 @@ The Azure AI Foundry tool catalog is a central hub for discovering tools to exte
 
 The tool catalog enables you to: 
 
-* Browse and use MCP tool servers created by Microsoft and non-Microsoft services, for various use cases such as data integration, productivity and more. 
+* Browse and use Model Context Protocol (MCP) tool servers created by Microsoft and non-Microsoft services, for various use cases such as data integration, productivity and more. 
 * Streamline integration between tool configuration and adding to an agent or workflow. 
 * Filter, search, and sort by your desired outcome 
 
 ## Considerations for using non-Microsoft services and servers 
 
-Your use of connected non-Microsoft services and servers ("Non-Microsoft services") is subject to the terms between you and the service provider. Non-Microsoft services are Non-Microsoft products under your agreement governing use of Microsoft online services. When you connect to a Non-Microsoft services, some of your data (such as prompt content) is passed to the Non-Microsoft services, or your application might receive data from the Non-Microsoft Services. You're responsible for your use of Non-Microsoft services and data, along with any charges associated with that use. 
+Your use of connected non-Microsoft services and servers ("non-Microsoft services") is subject to the terms between you and the service provider. Non-Microsoft services are non-Microsoft products under your agreement governing use of Microsoft online services. When you connect to non-Microsoft services, some of your data (such as prompt content) is passed to the non-Microsoft services, or your application might receive data from the non-Microsoft Services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use. 
 
-The Non-Microsoft services, including remote MCP servers, that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any Non-Microsoft services.  
+The non-Microsoft services, including remote MCP servers, that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any non-Microsoft services.  
 
 We recommend that you carefully review and track the MCP servers you add to Foundry Agent Service. We also recommend that you rely on servers hosted by trusted service providers themselves rather than proxies. 
 
@@ -61,7 +61,7 @@ The AI Foundry tool catalog provides the following filters to help you find the 
 
 When you select a specific tool you are interested, you can see the details page like this one:
 
-:::image type="content" source="../media/tool-catalog/tool-example.png" alt-text="An example tool in the AI Foundry portal.":::
+:::image type="content" source="../media/tool-catalog/tool-example.png" alt-text="An example tool in the AI Foundry portal." lightbox="../media/tool-catalog/tool-example.png":::
 
 The destils page contains the following information: 
 
