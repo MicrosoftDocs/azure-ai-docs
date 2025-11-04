@@ -24,7 +24,7 @@ Azure AI Search supports blob indexing and SharePoint document indexing for the 
 
 ## Document format properties
 
-The following table summarizes processing for each document format, and describes the metadata properties extracted by a blob indexer and the SharePoint Online indexer.
+The following table summarizes processing for each document format, and describes the metadata properties extracted by a blob indexer and the SharePoint indexer.
 
 | Document format / content type | Extracted metadata | Processing details |
 | --- | --- | --- |

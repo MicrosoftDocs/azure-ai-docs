@@ -24,6 +24,9 @@ items:
 - name: Integration & orchestration
   href: toc-files/integrations-orchestration/toc.yml
 
+- name: Manage agents, models, and tools
+  href: toc-files/manage-agents-models-tools/toc.yml
+
 - name: Observability, evaluation, & tracing
   href: toc-files/observability-evaluation-tracing/toc.yml
 
