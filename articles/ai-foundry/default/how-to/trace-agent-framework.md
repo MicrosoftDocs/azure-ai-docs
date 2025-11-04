@@ -436,4 +436,4 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
 
 ## Related content
 
-- [View conversation results](agent-conversations.md)
+- [Agent tracing overview](../concepts/trace-agent-concept.md)

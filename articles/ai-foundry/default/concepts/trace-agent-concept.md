@@ -74,4 +74,3 @@ To learn more, see [tracing integrations](../how-to/trace-agent-framework.md).
 ## Related content
 
 - [Tracing integrations](../how-to/trace-agent-framework.md)
-- [View conversation results](../how-to/agent-conversations.md)
