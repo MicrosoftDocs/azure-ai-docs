@@ -45,7 +45,7 @@ These skills are billed at the Standard rate.
 
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
-| [AI Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Looks for text from a custom, user-defined list of words and phrases.| Azure AI Search ([pricing](https://azure.microsoft.com/pricing/details/search/)) |
 | [Entity Linking](cognitive-search-skill-entity-linking-v3.md) | This skill uses a pretrained model to generate links for recognized entities to articles in Wikipedia. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | This skill uses a pretrained model to establish entities for a fixed set of categories: `"Person"`, `"Location"`, `"Organization"`, `"Quantity"`, `"DateTime"`, `"URL"`, `"Email"`, `"PersonType"`, `"Event"`, `"Product"`, `"Skill"`, `"Address"`, `"Phone Number"` and `"IP Address"` fields. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
@@ -66,7 +66,7 @@ These skills are billed at the Standard rate.
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
 | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) | Connects to a deployed Azure OpenAI embedding model for integrated vectorization. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
-| [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with an AI Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
+| [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with an Azure AI Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
 <!-- | Azure Content Understanding skill |  |  | -->
 
 ## Custom skills

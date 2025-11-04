@@ -714,7 +714,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
-* [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
+* [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 * [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
