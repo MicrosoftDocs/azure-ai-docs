@@ -365,7 +365,27 @@ agent = project_client.agents.create_version(
 
 # [REST](#tab/rest)
 
-Use Python to attach a memory store to an agent. This capability is not yet available in the REST API.
+```bash
+curl -X POST "${ENDPOINT}/agents?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "customer-support-agent",
+    "description": "Customer support agent with memory capabilities",
+    "definition": {
+      "kind": "prompt",
+      "model": "gpt-4o",
+      "instructions": "You are a helpful customer support agent. Use your memory to recall user preferences and past interactions.",
+      "tools": [
+        {
+          "type": "memory_search",
+          "memory_store_id": "user-conversation-memory",
+          "scope": "user-12345"
+        }
+      ]
+    }
+  }'
+```
 
 ---
 
