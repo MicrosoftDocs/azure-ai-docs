@@ -2118,10 +2118,7 @@ Azure semantic VAD (default variant).
 | prefix_padding_ms | integer | Optional. Audio padding before speech |
 | silence_duration_ms | integer | Optional. Silence duration for speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| neg_threshold | number | Optional. Negative threshold |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
-| window_size | integer | Optional. Analysis window size |
-| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false). |
 | languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
