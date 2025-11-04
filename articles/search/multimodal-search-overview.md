@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text and image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/29/2025
+ms.date: 11/04/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -43,7 +43,7 @@ The wizard follows these steps to create a multimodal pipeline:
 
 1. **Extract content:** The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)  obtains page text, inline images, and structural metadata. The Document Extraction skill doesn't extract polygons or page numbers, and the supported file types vary. For more information, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
 
-   These built-in skills don't support table extraction or preservation of table structure. To use these capabilities, you must build a [custom Web API skill](cognitive-search-custom-skill-web-api.md) that calls [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/tutorial/build-rag-solution).
+   These built-in skills don't support table extraction or preservation of table structure. To use these capabilities, integrate the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) into a skillset.
 
 1. **Chunk text:** The [Text Split skill](cognitive-search-skill-textsplit.md) breaks the extracted text into manageable chunks for use in the remaining pipeline, such as the embedding skill.
 
@@ -70,7 +70,7 @@ A multimodal pipeline begins by cracking each source document into chunks of tex
 | Billing for data extraction | Image extraction is billed according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). | Billed according to [Document Layout pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). |
 | Recommended scenarios | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. |
 
-You can also use a [custom skill](cognitive-search-custom-skill-web-api.md) to call [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/concepts/retrieval-augmented-generation), which Azure AI Search doesn't natively support, for multimodal content extraction.
+You can also use the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) for table and multimodal content extraction.
 
 ## Options for multimodal content embedding
 

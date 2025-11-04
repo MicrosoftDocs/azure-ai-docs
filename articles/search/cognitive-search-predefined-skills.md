@@ -59,15 +59,15 @@ These skills are billed at the Standard rate.
 
 ### Azure-hosted model or resource
 
-Skills in this category call Azure-hosted models or resources that you own for both billing and processing. <!-- Although the Azure Content Understanding skill is part of Azure AI Foundry Tools, it connects to your deployed resource for processing, not just billing. -->
+Skills in this category call Azure-hosted models or resources that you own for both billing and processing. Although Azure Content Understanding is part of Azure AI Foundry Tools, the Azure Content Understanding skill connects to your deployed resource for processing, not just billing.
 
 These skills are billed at the Standard rate.
 
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
+| [Azure Content Understanding](cognitive-search-skill-content-understanding.md) | Connects to Azure Content Understanding for advanced document analysis and semantic chunking. | Azure Content Understanding ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-understanding/)) |
 | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) | Connects to a deployed Azure OpenAI embedding model for integrated vectorization. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
 | [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with an Azure AI Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
-<!-- | Azure Content Understanding skill |  |  | -->
 
 ## Custom skills
 

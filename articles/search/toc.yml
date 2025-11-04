@@ -773,6 +773,8 @@ items:
             href: cognitive-search-skill-text-translation.md
         - name: Azure-hosted model or resource
           items:
+          - name: Azure Content Understanding
+            href: cognitive-search-skill-content-understanding.md
           - name: Azure OpenAI Embedding
             href: cognitive-search-skill-azure-openai-embedding.md
           - name: GenAI Prompt
