@@ -67,9 +67,9 @@ Start with the basic structure. In the [Create Skillset REST API](/rest/api/sear
 
 After the name and description, a skillset has four main properties:
 
-+ `skills` array, an unordered [collection of skills](cognitive-search-predefined-skills.md). Skills are either standalone or chained together through input-output associations, where the output of one transform becomes input to another. Skills can be utilitarian (like splitting text), transformational (based on AI from Azure OpenAI or Azure AI services), or custom skills that you provide. An example of a skills array is provided in the next section.
++ `skills` array, an unordered [collection of skills](cognitive-search-predefined-skills.md). Skills are either standalone or chained together through input-output associations, where the output of one transform becomes input to another. Skills can be utilitarian (like splitting text), transformational (based on AI from Azure OpenAI or Azure AI Foundry Tools), or custom skills that you provide. An example of a skills array is provided in the next section.
 
-+ `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Azure AI services APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md).
++ `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Azure AI Foundry Tools APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md).
 
 + `knowledgeStore` (optional) specifies an Azure Storage account and settings for projecting skillset output into tables, blobs, and files in Azure Storage. Remove this section if you don't need it, otherwise [specify a knowledge store](knowledge-store-create-rest.md).
 

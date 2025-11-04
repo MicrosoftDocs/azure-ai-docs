@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Vectorize from a structured document layout'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
+description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure Vision for embeddings.
 manager: arjagann
 author: rawan
 ms.author: rawan
@@ -15,7 +15,7 @@ ms.date: 09/27/2025
 
 # Tutorial: Vectorize from a structured document layout
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and *uses multimodal embeddings* to vectorize text and images from the same document. Cropped images are stored in a knowledge store, and both text and visual content are vectorized and ingested in a searchable index. Chunking is based on the Azure AI Document Intelligence Layout model that recognizes document structure.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and *uses multimodal embeddings* to vectorize text and images from the same document. Cropped images are stored in a knowledge store, and both text and visual content are vectorized and ingested in a searchable index. Chunking is based on the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) that recognizes document structure.
 
 In this tutorial, you use:
 
@@ -25,13 +25,13 @@ In this tutorial, you use:
 
 + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its `locationMetadata` from various documents, such as page numbers or bounding regions.
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
++ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
 
 + A search index configured to store extracted text and image content. Some content is vectorized for vector-based similarity search.
 
 ## Prerequisites
 
-+ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to both the Azure AI Vision multimodal embedding model and the Document Intelligence Layout model used by the skills in this tutorial. You must use an Azure AI Foundry resource for skillset access to these resources.
++ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to both the Azure Vision multimodal embedding model and the Azure Document Intelligence Layout model used by the skills in this tutorial. You must use an Azure AI Foundry resource for skillset access to these resources.
 
 + [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
@@ -43,7 +43,7 @@ In this tutorial, you use:
 
 + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. When you create the Azure AI Foundry resource, choose a region that provides multimodal embeddings. For a list of supported regions, see [Document Layout skill supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 ## Prepare data
 
@@ -81,11 +81,11 @@ The following instructions apply to Azure Storage which provides the sample data
 
 ## Prepare models
 
-This tutorial assumes you have an existing Azure AI Foundry resource through which the skill calls the Azure AI Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+This tutorial assumes you have an existing Azure AI Foundry resource through which the skill calls the Azure Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
-The same role assignment is also used for accessing the Document Intelligence Layout model via an Azure AI Foundry resource.
+The same role assignment is also used for accessing the Azure Document Intelligence layout model via an Azure AI Foundry resource.
 
-1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and the [Document Intelligence Layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
+1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and the [Azure Document Intelligence layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 1. Select **Access control (IAM)**.
 
@@ -342,7 +342,7 @@ Key points:
 
 ## Create a skillset
 
-[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the Document Layout skill to extract text and images, preserving location metadata which is useful for citations in RAG applications. It uses Azure AI Vision multimodal embeddings skill to vectorize image and text content.
+[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the Document Layout skill to extract text and images, preserving location metadata which is useful for citations in RAG applications. It uses Azure Vision multimodal embeddings skill to vectorize image and text content.
 
 ```http
 ### Create a skillset
@@ -357,7 +357,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
     {
       "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
       "name": "document-layout-skill",
-      "description": "Document Intelligence skill for document cracking",
+      "description": "Azure Document Intelligence skill for document cracking",
       "context": "/document",
       "outputMode": "oneToMany",
       "outputFormat": "text",
@@ -529,7 +529,7 @@ Key points:
 
 + `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from documents when `extractOption` is set to `["images", "locationMetadata"]` or `["images"]`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
-+ The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
++ The Azure Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 ## Create and run an indexer
 

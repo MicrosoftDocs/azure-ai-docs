@@ -79,7 +79,7 @@ Because the data is multiple rows in one CSV file, set the *parsing mode* to get
 
 In this wizard step, add skills for AI enrichment. The source data consists of customer reviews in English and French. Skills that are relevant for this data set include key phrase extraction, sentiment detection, and text translation. In a later step, these enrichments are "projected" into a knowledge store as Azure tables.
 
-1. Expand **Attach Azure AI services**. **Free (Limited enrichments)** is selected by default. You can use this resource because the number of records in HotelReviews-Free.csv is 19 and this free resource allows up to 20 transactions a day.
+1. Expand **Attach Azure AI Foundry Tools**. **Free (Limited enrichments)** is selected by default. You can use this resource because the number of records in HotelReviews-Free.csv is 19 and this free resource allows up to 20 transactions a day.
 
 1. Expand **Add enrichments**.
 

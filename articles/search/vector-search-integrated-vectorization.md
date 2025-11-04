@@ -42,8 +42,8 @@ For integrated data chunking and vector conversions, you're taking a dependency 
     + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md), attached to text-embedding-ada-002,text-embedding-3-small, text-embedding-3-large on Azure OpenAI.
 
     + [Custom skill](cognitive-search-custom-skill-web-api.md) that points to another embedding model on Azure or on another site.
- 
-    + [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure AI Vision.
+
+    + [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure Vision.
 
     + [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) that points to selected models in the model catalog.
 
@@ -61,7 +61,7 @@ For text-to-vector conversion during queries, you take a dependency on these com
     |-----------------|------------|
     | [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) | [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) |
     | [Custom skill](cognitive-search-custom-skill-web-api.md) | [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) |
-    | [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
+    | [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
     | [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) | [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 ## Component diagram
@@ -70,7 +70,7 @@ The following diagram shows the components of integrated vectorization.
 
 :::image type="content" source="media/vector-search-integrated-vectorization/integrated-vectorization-architecture.png" alt-text="Diagram of components in an integrated vectorization workflow." border="false" lightbox="media/vector-search-integrated-vectorization/integrated-vectorization-architecture.png":::
 
-The workflow is an indexer pipeline. Indexers retrieve data from supported data sources and initiate data enrichment (or applied AI) by calling Azure OpenAI or Azure AI services or custom code for text-to-vector conversions or other processing.
+The workflow is an indexer pipeline. Indexers retrieve data from supported data sources and initiate data enrichment (or applied AI) by calling Azure OpenAI or Azure AI Foundry Tools or custom code for text-to-vector conversions or other processing.
 
 The diagram focuses on integrated vectorization, but your solution isn't limited to this list. You can add more skills for AI enrichment, create a knowledge store, add semantic ranking, add relevance tuning, and other query features.
 
@@ -80,7 +80,7 @@ Integrated vectorization is available in all regions and tiers. However, if you'
 
 If you're using a custom skill and an Azure hosting mechanism (such as an Azure function app, Azure Web App, and Azure Kubernetes), check the [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search) for feature availability. 
 
-Data chunking (Text Split skill) is free and available on all Azure AI services in all regions.
+Data chunking (Text Split skill) is free and available on all Azure AI Foundry Tools in all regions.
 
 > [!NOTE]
 > Some older search services created before January 1, 2019 are deployed on infrastructure that doesn't support vector workloads. If you try to add a vector field to a schema and get an error, it's a result of outdated services. In this situation, you must create a new search service to try out the vector feature.

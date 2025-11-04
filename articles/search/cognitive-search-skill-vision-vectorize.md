@@ -1,7 +1,7 @@
 ---
-title: Azure AI Vision multimodal embeddings skill
+title: Azure Vision multimodal embeddings skill
 titleSuffix: Azure AI Search
-description: Vectorize images or text using the Azure AI Vision multimodal embeddings API.
+description: Vectorize images or text using the Azure Vision multimodal embeddings API.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
@@ -12,14 +12,14 @@ ms.topic: reference
 ms.date: 10/23/2025
 ---
 
-# Azure AI Vision multimodal embeddings skill
+# Azure Vision multimodal embeddings skill
 
 > [!IMPORTANT]
 > This skill is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-05-01-Preview&preserve-view=true) and newer preview APIs support this feature.
 
-The **Azure AI Vision multimodal embeddings** skill uses Azure AI Vision's [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) to generate embeddings for image or text input.
+The **Azure Vision multimodal embeddings** skill uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) from Azure Vision in Foundry Tools to generate embeddings for image or text input.
 
-For transactions that exceed 20 documents per indexer per day, this skill requires that you [attach a billable Azure AI Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
+For transactions that exceed 20 documents per indexer per day, this skill requires that you [attach a billable Azure AI Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Execution of built-in skills is charged at the existing [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 
 Location of resources is a consideration for billing. Because you're using a preview REST API version to create a skillset that contains preview skills, you can use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to bypass the same-region requirement. However, for key-based connections, Azure AI Search and Azure AI Foundry must be in the same region. To ensure region compatibility:
 
@@ -34,7 +34,7 @@ Microsoft.Skills.Vision.VectorizeSkill
 
 ## Data limits
 
-The input limits for the skill can be found in the [Azure AI Vision documentation](/azure/ai-services/computer-vision/concept-image-retrieval#input-requirements) for images and text. Consider using the [Text Split skill](cognitive-search-skill-textsplit.md) if you need data chunking for text inputs.
+The input limits for the skill can be found in the [Azure Vision documentation](/azure/ai-services/computer-vision/concept-image-retrieval#input-requirements) for images and text. Consider using the [Text Split skill](cognitive-search-skill-textsplit.md) if you need data chunking for text inputs.
 
 Applicable inputs include:
 
@@ -47,7 +47,7 @@ Parameters are case sensitive.
 
 | Inputs | Description |
 |---------------------|-------------|
-| `modelVersion` | (Required) The model version (`2023-04-15`) to be passed to the Azure AI Vision multimodal embeddings API for generating embeddings. Vector embeddings can only be compared and matched if they're from the same model type. Images vectorized by one model won't be searchable through a different model. The latest Image Analysis API offers two models:<br><ul><li>The `2023-04-15` version, which supports text search in many languages.  Azure AI Search uses this version.</li><li> The legacy `2022-04-11` model, which supports only English.</li></ul> |
+| `modelVersion` | (Required) The model version (`2023-04-15`) to be passed to the Azure Vision multimodal embeddings API for generating embeddings. Vector embeddings can only be compared and matched if they're from the same model type. Images vectorized by one model won't be searchable through a different model. The latest Image Analysis API offers two models:<br><ul><li>The `2023-04-15` version, which supports text search in many languages.  Azure AI Search uses this version.</li><li> The legacy `2022-04-11` model, which supports only English.</li></ul> |
 
 ## Skill inputs
 
@@ -151,7 +151,7 @@ If you want to vectorize images directly from your blob storage data source rath
 
 ## Sample output
 
-For the given input, a vectorized embedding output is produced. Output is 1,024 dimensions, which is the number of dimensions supported by the Azure AI Vision multimodal API.
+For the given input, a vectorized embedding output is produced. Output is 1,024 dimensions, which is the number of dimensions supported by the Azure Vision multimodal API.
 
 ```json
 {
@@ -202,4 +202,4 @@ For mapping image embeddings to the index, you use [index projections](index-pro
 + [Extract text and information from images](cognitive-search-concept-image-scenarios.md)
 + [How to define output fields mappings](cognitive-search-output-field-mapping.md)
 + [Index Projections](index-projections-concept-intro.md)
-+ [Azure AI Vision multi-model embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval)
++ [Azure Vision multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval)

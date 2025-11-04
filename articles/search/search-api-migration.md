@@ -383,7 +383,7 @@ Features that became generally available in this API version include:
 + [Autocomplete](index-add-suggesters.md) is a typeahead feature that completes a partially specified term input.
 + [Complex types](search-howto-complex-data-types.md) provides native support for structured object data in search index.
 + [JsonLines parsing modes](search-how-to-index-azure-blob-json.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
-+ [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Azure AI services.
++ [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Azure AI Foundry Tools.
 
 #### Breaking changes
 

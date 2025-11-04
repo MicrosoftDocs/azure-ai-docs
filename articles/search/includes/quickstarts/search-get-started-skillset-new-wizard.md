@@ -111,7 +111,7 @@ To add the skills:
 
 1. Leave the **Use a free AI service (limited enrichments)** checkbox selected.
 
-   The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient.
+   The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI Foundry Tools is sufficient.
 
 1. Select **Next**.
 

@@ -121,7 +121,7 @@ In most cases, choose a region near you, unless any of the following apply:
 
    + Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Azure AI Foundry are in the same region.
 
-   + Check [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure AI Vision and accessed through an Azure AI Foundry resource. However, they're generally available in fewer regions than the Azure AI Foundry resource itself.
+   + Check [Azure Vision regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure Vision and accessed through an Azure AI Foundry resource. However, they're generally available in fewer regions than the Azure AI Foundry resource itself.
 
 ## Choose a tier
 
