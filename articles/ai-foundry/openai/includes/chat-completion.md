@@ -48,7 +48,7 @@ print(response.model_dump_json(indent=2))
 print(response.choices[0].message.content)
 ```
 
-# [API Key)](#tab/python-key)
+# [API Key](#tab/python-key)
 
 ```python
 import os
@@ -300,7 +300,7 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
-# [API Key)](#tab/python-key)
+# [API Key](#tab/python-key)
 
 ```python
 import os
@@ -424,7 +424,7 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
-# [API Key)](#tab/python-key)
+# [API Key](#tab/python-key)
 
 ```python
 import tiktoken
