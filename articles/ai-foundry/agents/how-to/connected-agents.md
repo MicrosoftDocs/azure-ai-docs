@@ -16,7 +16,7 @@ zone_pivot_groups: selection-connected-agents
 
 # Build collaborative, multi-agent systems with Connected Agents
 
-Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built sub-agents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
 Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
 
@@ -75,7 +75,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
 * Connected agents cannot call local functions using the function calling tool. We recommend using the [OpenAPI tool](tools\openapi-spec.md) or [Azure Functions](tools\azure-functions.md) instead.
 *  It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability.
-* Connected agents have a maximum depth of 2. A parent agent can have multiple sub-agent siblings, but sub-agents cannot have their own sub-agents. Exceeding this depth results in an `Assistant Tool Call Depth Error`. 
+* Connected agents have a maximum depth of 2. A parent agent can have multiple subagent siblings, but subagents cannot have their own subagents. Exceeding this depth results in an `Assistant Tool Call Depth Error`. 
 
 :::zone pivot="portal"
 
@@ -84,7 +84,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
 1. Navigate to the **Agents** page in the portal
 2. Select an existing agent from the list or create a new one.
-3. Scroll down to the **Connected agents** section in the agent's setup panel and select **Add +**.
+3. Scroll down to the **Connected agents** section in the agent's set up panel and select **Add +**.
 
 :::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
 
@@ -94,7 +94,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
    - Add a clear **description** of when and why the connected agent should be invoked. This helps guide the main agent’s decision-making on when to hand off tasks to connected agents during runtime.
 5. Select **Add +**
 6. Repeat steps 3–5 to add additional specialized agents to the main agent.
-7. Once the connected agent(s) appear in the setup panel, scroll up and select **Try in Playground**
+7. Once the connected agents appear in the setup panel, scroll up and select **Try in Playground**
 8. Use test prompts in the Agent Playground to validate that the main agent correctly routes tasks to the connected agents when applicable. For example, if you’ve created a main agent called `research_agent`, which doesn't have any tools configured, and connected an agent named `stock_price_bot`, try a prompt like:
 
     **"What is the current stock price of Microsoft?"**
