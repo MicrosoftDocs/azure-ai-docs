@@ -37,7 +37,7 @@ Set up your development environment to use the Azure AI Foundry SDK. You also ne
 ## Install your programming language and VS Code extension
 
 ::: zone pivot="programming-language-python"
-`
+
 In Visual Studio Code, create a new folder for your project. Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../../includes/install-python.md)]
