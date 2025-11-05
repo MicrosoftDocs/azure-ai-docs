@@ -194,7 +194,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. Use the sections below to monitor costs.
 
 > [!NOTE]
-> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
+> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. They also cover only standard deployment costs, not [provisioned throughput offerings](../openai/concepts/provisioned-throughput.md).
 
 ### Agent costs
 
