@@ -7,7 +7,7 @@ ms.author: pafarley
 ---
 
 
-Try out the text to speech avatar feature in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+Try out the text to speech avatar feature in the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
 
 ## Prerequisites
 
