@@ -35,7 +35,7 @@ Before connecting your storage, ensure you have:
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-1. An Azure Storage account in the same subscription (Blob Storage supported).
+1. An [Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) in the same subscription (Blob Storage supported).
 1. Contributor or Owner permissions on both the Azure AI Foundry resource and the storage account.
 1. Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language).
 1. (Optional) A plan for customer-managed keys (CMK) encryption on the storage account.
