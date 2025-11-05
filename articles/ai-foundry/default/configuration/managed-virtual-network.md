@@ -83,7 +83,7 @@ This section deploys the managed virtual network by using the Bicep template.
 1. Wait for deployment success; review outputs for managed virtual network resource IDs.
 1. Confirm private endpoints created for hub, storage account, container registry, and key vault when applicable.
 
-:::image type="content" source="media/managed-virtual-network/image1.png" alt-text="Architecture diagram showing managed virtual network, hub, storage, container registry, key vault, and private endpoints.":::
+:::image type="content" source="media/managed-virtual-network/managed-virtual-network-architecture.png" alt-text="Architecture diagram showing managed virtual network, hub, storage, container registry, key vault, and private endpoints." lightbox="media/managed-virtual-network/managed-virtual-network-architecture.png":::
 
 ## Configure allow internet outbound mode
 
@@ -96,7 +96,7 @@ Use this mode for unrestricted outbound access.
    1. Test DNS resolution and external HTTP access from Agent workload [TO VERIFY].
    1. Confirm required private endpoint outbound rules still present for private resources.
 
-:::image type="content" source="media/managed-virtual-network/image2.png" alt-text="Diagram of managed virtual network configured for allow internet outbound mode with broad outbound access.":::
+:::image type="content" source="media/managed-virtual-network/allow-internet-outbound-diagram.png" alt-text="Diagram of managed virtual network configured for allow internet outbound mode with broad outbound access." lightbox="media/managed-virtual-network/allow-internet-outbound-diagram.png":::
 
 ## Configure allow only approved outbound mode
 
@@ -111,7 +111,7 @@ Use this mode to restrict outbound traffic.
    1. Attempt connection to an allowed FQDN.
    1. Confirm blocked access to an unlisted external domain.
 
-:::image type="content" source="media/managed-virtual-network/image3.png" alt-text="Diagram of managed virtual network in allow only approved outbound mode with Azure Firewall enforcing rules.":::
+:::image type="content" source="media/managed-virtual-network/allow-only-approved-outbound-diagram.png" alt-text="Diagram of managed virtual network in allow only approved outbound mode with Azure Firewall enforcing rules." lightbox="media/managed-virtual-network/allow-only-approved-outbound-diagram.png":::
 
 ## Manage outbound rules
 
