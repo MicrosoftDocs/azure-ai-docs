@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 11/05/2025
 ms.custom: include
 ---
-[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
+[!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
 # [Python](#tab/python)
 
