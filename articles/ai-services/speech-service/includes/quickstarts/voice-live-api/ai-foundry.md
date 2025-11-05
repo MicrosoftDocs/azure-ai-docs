@@ -23,7 +23,7 @@ In this article, you learn how to use voice live with generative AI and Azure AI
 
 ## Try out voice live in the Speech playground
 
-#### [Foundry (new) portal](#tab/foundry-classic)
+#### [Foundry (new) portal](#tab/foundry-new)
 
 
 To try out the voice live demo, follow these steps:
@@ -36,7 +36,7 @@ To try out the voice live demo, follow these steps:
 1. When you're ready, select **Start** to start chatting with the voice agent using your device's microphone and speakers.
 1. Select **End** to end the chat session.
 
-#### [Foundry (classic) portal](#tab/new-foundry)
+#### [Foundry (classic) portal](#tab/foundry-classic)
 
 To try out the voice live demo, follow these steps:
 
