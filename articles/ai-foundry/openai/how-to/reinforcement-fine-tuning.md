@@ -414,7 +414,7 @@ The `train_reasoning_tokens_mean` and `valid_reasoning_tokens_mean` metrics to s
 
 By the time your fine-tuning job finishes, you should have a decent idea of how well the model is performing based on the mean reward value on the validation set. However, it's possible that the model has either overfit to the training data or has learned to reward hack your grader, which allows it to produce high scores without actually being correct.
 
-Understanding the model's behavior can be done quickly by inspecting the evals associated with the fine-tuning job. Specifically, pay close attention to the run made for the final training step to see the end model's behavior. You can also use the evals product to compare the final run to earlier runs and see how the model's behavior has changed over the course of training.
+Understanding the model's behavior can be done quickly by inspecting the evaluations associated with the fine-tuning job. Specifically, pay close attention to the run made for the final training step to see the end model's behavior. You can also use the evaluations product to compare the final run to earlier runs and see how the model's behavior has changed over the course of training.
 
 ## Deploying and using your o4-mini RFT model
 
@@ -426,7 +426,7 @@ When using your model, make sure to use the same instructions and structure as u
 
 ## REST API
 
-### Create a RFT job
+### Create an RFT job
 
 #### With Score model grader
 
@@ -592,7 +592,7 @@ Some basic rules for grader selection:
 
 - If you have **short, specific answers** like numbers, Boolean responses, or multiple choice then choose a **string matching grader**.
 
-- If you have **complex responses that can be scored on multiple criteria, use multi graders**. This allows you to score different aspects of the response and combine it into an aggregate.
+- If you have **complex responses that can be scored on multiple criteria, use multi graders**. This allows you to score different aspects of the response and combine them into an aggregate.
 
 - **Consider breaking the grader down into multiple steps**, and giving partial credit, to nudge the models reasoning in the right direction, grading is stable and aligned with preference. Provide few-shot examples of great, fair, and poor answers in the prompt.
 
