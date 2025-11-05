@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 08/28/2025
+ms.date: 11/05/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The JavaScript version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the C#, Python, or REST version.
+> The JavaScript version of this quickstart uses the 2025-05-01-preview REST API version, which uses the previous "knowledge agent" terminology and doesn't support the latest features available in the 2025-11-01-preview. To use these features, see the C#, Python, or REST version.
 
 ## Prerequisites
 
