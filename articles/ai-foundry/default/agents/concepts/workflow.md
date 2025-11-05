@@ -102,12 +102,12 @@ Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to c
 
 To use a variable in a Power Fx formula, you must add a prefix to its name to indicate the variable's scope:
 
-- For [system variables](microsoft-copilot-studio/authoring-variables-about), use `System.`
+- For [system variables](/microsoft-copilot-studio/authoring-variables-about?tabs=webApp), use `System.`
 - For local variables, use `Local.`
 
 ### Use literal values in a formula
 
-In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](microsoft-copilot-studio/authoring-variables-about). The following table lists the data types and the format of their corresponding literal values.
+In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](microsoft-copilot-studio/authoring-variables-about?tabs=webApp). The following table lists the data types and the format of their corresponding literal values.
 
 | Type             | Format examples                                                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
