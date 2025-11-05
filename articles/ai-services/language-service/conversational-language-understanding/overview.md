@@ -15,7 +15,7 @@ ms.custom: language-service-clu
 
 Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
 
-Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. By creating a CLU project, developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Azure AI Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
+Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. Developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption by creating a CLU project. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Azure AI Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
 This documentation contains the following article types:
 
@@ -30,7 +30,7 @@ CLU can be used in multiple scenarios across various industries. Some examples a
 
 ### Multi-turn conversations 🆕
 
-Use CLU with entity slot filling to enable natural, progressive information gathering across multiple conversation turns. Instead of overwhelming users with complex forms, your application can maintain conversation context and collect required details as they emerge naturally in dialogue. The system remembers what users have shared and intelligently prompts for missing information, creating fluid interactions that feel more human-like. This approach is ideal for scenarios like booking systems, customer service workflows, or any application where complete information needs to be gathered through conversational exchanges.
+Use CLU with entity slot filling to enable natural, progressive information gathering across multiple conversation turns. Instead of overwhelming users with complex forms, your application can maintain conversation context and collect required details as they emerge naturally in dialogue. The system remembers what users shared and intelligently prompts for missing information, creating fluid interactions that feel more realistic and natural. This approach is ideal for scenarios like booking systems, customer service workflows, or any application where complete information needs to be gathered through conversational exchanges.
 
 * For more information, *see* [Multi-turn conversations](concepts/multi-turn-conversations.md).
 
@@ -38,9 +38,9 @@ Use CLU with entity slot filling to enable natural, progressive information gath
 
 ### End-to-end conversational bot
 
-Use CLU to build and train a custom natural language understanding model based on a specific domain and the expected users' utterances.You can connect this solution with any end-to-end conversational bot, enabling it to handle and interpret incoming messages in real time. This integration allows the bot to determine the user's intent and extract key information from the conversation as it happens. The bot performs the desired action based on the intention and extracted information. An example would be a customized retail bot for online shopping or food ordering.
+Use CLU to build and train a custom natural language understanding model tailored to a specific domain and the expected users' utterances. You can then connect this solution with any end-to-end conversational bot. This process enables the bot to handle and interpret incoming messages in real time. This integration allows the bot to determine the user's intent and extract key information from the conversation as it happens. The bot performs the desired action based on the intention and extracted information. An example would be a customized retail bot for online shopping or food ordering.
 
-By combining it with a comprehensive conversational bot framework, the system will be able to analyze text instantaneously, accurately identify user intentions, and pull out relevant details for further processing.
+By combining it with a comprehensive conversational bot framework, the system is able to analyze text instantaneously, accurately identify user intentions, and pull out relevant details for further processing.
 
 ### Human assistant bots
 
@@ -52,7 +52,7 @@ When you integrate a client application with a speech to text component, users c
 
 ### Enterprise chat bot
 
-In a large corporation, an enterprise chat bot may handle various employee affairs. It might handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill served by CLU. Use Orchestration workflow to connect all these skills together and appropriately route the incoming requests to the correct service.
+Within a large corporation, the enterprise chatbot actively handles a wide range of employee matters. Employees rely on the chatbot to address frequently asked questions, drawing on a custom question-answering knowledge base. When users interact with their calendars, the chatbot uses a calendar-specific skill powered by conversational language understanding. Employees also benefit from an interview feedback skill, which operates through CLU. The Orchestration workflow seamlessly connects these skills, ensuring each request routes directly to the appropriate service.
 
 ## Project development lifecycle
 
@@ -61,7 +61,7 @@ Creating a CLU project typically involves several different steps.
 :::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path." lightbox="media/llm-quick-deploy.png":::
 
 > [!NOTE]
-> In the Azure AI Foundry, you'll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
+> In the Azure AI Foundry, you create a fine-tuning task as your workspace for customizing your CLU model. Previously, a CLU fine-tuning task was referred to as a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
 
 CLU offers two paths for you to get the most out of your implementation.
 
