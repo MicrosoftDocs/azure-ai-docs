@@ -75,7 +75,7 @@ The details page contains the following information:
 
 ## Tool catalog in the AI Foundry
 
-In your tools list <!--(https://ai.azure.com/nextgen/build/tools)-->, you can find the list of tools you have configured, along with details such as MCP server endpoints, and authentication information. You can also delete or add your tools to existing agents. If you delete a tool, affect agents currently using them.
+In your tools list <!--(https://ai.azure.com/nextgen/build/tools)--> you can find the list of tools you have configured, along with details such as MCP server endpoints, and authentication information. You can also delete or add your tools to existing agents. If you delete a tool, affect agents currently using them.
 
 <!--
 :::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the AI Foundry portal."lightbox="../media/tool-catalog/tool-view.png" :::
