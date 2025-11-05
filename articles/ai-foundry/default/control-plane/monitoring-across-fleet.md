@@ -12,7 +12,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Monitor AI Agents Across Your Fleet
+# Monitor Agent Health and Performance Across Your Fleet
 
 As organizations scale from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. The Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
 
@@ -60,6 +60,8 @@ The Overview page displays common metrics and insights for all registered agents
 ## View all assets
 
 :::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of the Agents tab showing all registered agents with top-level metrics.":::You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
+
+You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
 
 1. Select **Operate** > **Assets** > **Agents**.
 
