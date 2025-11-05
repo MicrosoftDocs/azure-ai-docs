@@ -24,11 +24,11 @@ items:
   href: toc-files/optimizations/toc.yml
 - name: Setup and management
   href: toc-files/setup-management/toc.yml
-- name: Security & Governance
+- name: Security & governance
   href: toc-files/security-governance/toc.yml
 - name: Trustworthy AI
   href: toc-files/trustworthy-ai/toc.yml
-- name: SDK + API Reference
+- name: SDK + API reference
   href: toc-files/sdk-api-reference/toc.yml
 - name: Other resources
   href: toc-files/other-resources/toc.yml
