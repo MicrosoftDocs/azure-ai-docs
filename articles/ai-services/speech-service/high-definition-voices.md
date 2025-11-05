@@ -149,7 +149,7 @@ For detailed information on the supported and unsupported SSML elements for Azur
 
 ## HD Flash voices
 
-HD voices are currently supported in East US, West Europe, and Southeast Asia regions. To provide similar capabilities for customers in China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`), we offer Flash versions of selected HD voices. These Flash voices deliver enhanced naturalness compared to standard voices.
+HD voices are currently supported in `eastus`, `westeurope`, and `southeastasia` regions, to provide similar capabilities for customers in China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`), we offer HDFlash versions of selected HD voices. These HDFlash voices deliver enhanced naturalness compared to standard voices. You also can find those HDFlash voices in `eastus`, `westeurope`, and `southeastasia`.
 
 Below is the complete list of available HD Flash voices:
 
@@ -164,8 +164,7 @@ Below is the complete list of available HD Flash voices:
 | zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
 
 > [!NOTE]
-> HD Flash only support `zh-CN` and `en-US`.
-> Beside China cloud regions, HD Flash voices are also available in global regions `eastus`, `westeurope`, and `southeastasia`
+> HD Flash only support text in `zh-CN` and `en-US`.
 
 ## Related content
 
