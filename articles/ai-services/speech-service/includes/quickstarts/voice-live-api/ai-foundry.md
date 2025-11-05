@@ -28,7 +28,7 @@ In this article, you learn how to use voice live with generative AI and Azure AI
 
 To try out the voice live demo, follow these steps:
 
-1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+1. In the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
 1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. **Select Azure Speech - Voice Live** to open the Voice Live playground.
