@@ -153,7 +153,6 @@ Or you can create the following custom rules:
 
 > [!NOTE]
 > You need the **Owner** role at the subscription or resource group scope to create custom roles in that scope.
-have a custom role at either subscription or resource group scope with the following actions:
 > 
 
 To create a custom role, use one of the following articles:
