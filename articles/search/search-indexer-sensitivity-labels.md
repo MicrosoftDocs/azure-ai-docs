@@ -56,15 +56,15 @@ Only users authorized to access content under a given label can retrieve corresp
 
 + File types must be included in the [Purview sensitivity labels WXP supported formats list](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and also be recognized as [Office supported file types](search-how-to-index-azure-blob-storage.md#supported-document-formats) by Azure AI Search indexers.
 
----
 
 ## Limitations
 
 + Initial release supports **REST API and SDKs only**. There’s **no portal experience** for configuration or management.  
 + May have **undesired results when used simultaneously with ACL-based security filters** (currently also in preview). It’s recommended to **test each feature independently** until official coexistence support is announced.  
 + **Autocomplete** and **Suggest** APIs are disabled for Purview-enabled indexes, as they cannot yet enforce label-based access control.  
-+ **Incremental indexing** of sensitivity labels occurs automatically when a document’s label or metadata changes and is detected in a subsequent indexer run.  
-+ **Guest accounts and cross-tenant queries** are not supported.
++ Incremental indexing of sensitivity labels occurs automatically when a document’s label, content or metadata changes and is detected in a subsequent indexer run. Maintain the indexer on a schedule.  
++ Guest accounts and cross-tenant queries are not supported.
++ Unlabeled documents are not supported in a sensitivity label-enabled index in the initial release. Announcement and documentation will follow as soon as there is coexistence with unlabeled documents. Unlabeled documents are not retrieved at this time.
 
 
 ## Enable AI Search managed identity
@@ -134,6 +134,8 @@ New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $managedIdentityO
 $ARMSResourceSP = Get-EntraServicePrincipal -Filter "appID eq '00000012-0000-0000-c000-000000000000'"
 New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $managedIdentityObjectId -Principal $managedIdentityObjectId -ResourceId $ARMSResourceSP.Id -Id "7347eb49-7a1a-43c5-8eac-a5cd1d1c7cf0"
 
+```
+
 The appID roles above are associated to the following Azure roles:
 
 | AppID                                  | Service Principal                      | 
@@ -151,6 +153,7 @@ These elevated permissions are necessary for the indexer to extract and synchron
 When sensitivity label support is required, set the purviewEnabled property to true in your index definition.
 This setting cannot be changed after index creation.
 
+```
 PUT https://{service}.search.windows.net/indexes('{indexName}')?api-version=2025-11-01-preview
 {
   "purviewEnabled": true,
@@ -160,21 +163,21 @@ PUT https://{service}.search.windows.net/indexes('{indexName}')?api-version=2025
       "type": "Edm.String",
       "filterable": true,
       "sensitivityLabel": true,
-      "retrievable": false
+      "retrievable": true
     }
   ]
 }
-
+```
 
 [!IMPORTANT]
 When purviewEnabled is set to true, only RBAC authentication is supported for all document operations APIs.
 API key access is limited to index schema retrieval (list and get).
-Autocomplete and Suggest APIs are unavailable for Purview-enabled indexes.
 
 ## Configure the data source
 
 To enable sensitivity label ingestion, configure the data source with the indexerPermissionOptions property set to ["sensitivityLabel"]. 
 
+```
 {
   "name": "purview-sensitivity-datasource",
   "type": "azureblob", // < adjust type value according to the data source you are enabling this for: sharepoint, onelake, adlsgen2.
@@ -186,7 +189,7 @@ To enable sensitivity label ingestion, configure the data source with the indexe
     "name": "<container-name>"
   }
 }
-
+```
 
 This property instructs the indexer to extract sensitivity label metadata during ingestion and attach it to the indexed document.
 
@@ -195,6 +198,7 @@ This property instructs the indexer to extract sensitivity label metadata during
 Define field mappings to route extracted label metadata to the index fields.
 If your data source emits label metadata under a different field name (for example, metadata_sensitivity_label), map it explicitly.
 
+```
 {
   "fieldMappings": [
     {
@@ -203,11 +207,44 @@ If your data source emits label metadata under a different field name (for examp
     }
   ]
 }
-
+```
 - If your indexer has a skillset and you're implementing data chunking through split skill, you must ensure you also map the property to each chunk via index projections:
 
-<ADD INDEX PROJECTIONS CODE>
+```
+PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-11-01-preview
+{
+  "name": "my-skillset",
+  "skills": [
+    {
+      "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
+      "name": "#split",
+      "context": "/document",
+      "inputs": [{ "name": "text", "source": "/document/content" }],
+      "outputs": [{ "name": "textItems", "targetName": "chunks" }]
+    }
+    // ... (other skills such as embeddings, entity recognition, etc.)
+  ],
+  "indexProjections": {
+    "selectors": [
+      {
+        "targetIndexName": "chunks-index",
+        "parentKeyFieldName": "parentId",          // must exist in target index
+        "sourceContext": "/document/chunks/*",     // match your split output path
+        "mappings": [
+          { "name": "chunkId",           "source": "/document/chunks/*/id" },     // if you create an id per chunk
+          { "name": "content",           "source": "/document/chunks/*/text" },   // chunk text
+          { "name": "parentId",          "source": "/document/id" },              // parent doc id
+          { "name": "sensitivityLabel",  "source": "/document/metadata_sensitivity_label" } // <-- parent → child
+        ]
+      }
+    ],
+    "parameters": {
+      "projectionMode": "skipIndexingParentDocuments"
+    }
+  }
+}
 
+```
 - Put your indexer on a schedule the indexer to crawl your data source and extract labels.
 
 - Changes to document sensitivity labels are picked up automatically by the indexer when the document’s LastModified timestamp changes due to a sensitivity label change and the next scheduled indexer run occurs.
@@ -215,17 +252,14 @@ If your data source emits label metadata under a different field name (for examp
 
 ## Recommendations and best practices
 
-- Test the sensitivity label feature and ACL permission filters separately until coexistence support is officially announced.
+- Test the sensitivity label feature and ACL permission features separately until coexistence support is officially announced. This is not supported at this time.
 
-- Always use managed identities for connections; API keys are not supported for Purview-enabled indexes.
+- Use RBAC-based query authorization for all search operations. API keys are not supported for Purview-enabled indexes, except for list/get index schema operations.
 
-- Use RBAC-based query authorization for all search operations.
+- Schedule regular indexer runs (minimum supported time is every 5 minutes) to keep sensitivity label metadata synchronized with your data sources.
 
-- Schedule regular indexer runs to keep sensitivity label metadata synchronized with your data sources.
-
-- Avoid enabling retrievable on the sensitivityLabel field in production environments.
 
 ## Next steps
 
-[How to query a sensitivity labels-enabled index](Add article.md)
-[Document-level security in Azure AI Search](Add article.md)
+[How to query a sensitivity labels-enabled index](search-query-sensitivity-labels.md)
+[Document-level security in Azure AI Search](search-document-level-access-overview.md)
