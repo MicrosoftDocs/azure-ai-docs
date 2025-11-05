@@ -57,7 +57,7 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 ## Create your fine-tuned model
 
-To fine-tune an model in an existing Azure AI Foundry project, follow these steps:
+To fine-tune a model in an existing Azure AI Foundry project, follow these steps:
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/) and select your project. If you don't have a project already, first [create a project](../how-to/create-projects.md).
 
@@ -93,9 +93,9 @@ Select the training tier based on your use case and budget.
 
 ### Training and validation data
 
-If you have an existing datasets in the Foundry project, choose **Existing dataset** for the **data source** and then select your dataset.
+If you have existing datasets in the Foundry project, choose **Existing dataset** for the **data source** and then select your dataset.
 
-To upload a newly prepared datasets, choose **Upload new dataset** for the **data source** and then upload your *.jsonl* file.
+To upload newly prepared datasets, choose **Upload new dataset** for the **data source** and then upload your *.jsonl* file.
 
 On your data files are selected or uploaded, validation check will automatically occur to confirm they are in the right format.
 
@@ -124,7 +124,7 @@ The following hyper parameters are available:
 | `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If set to -1, the number of epochs is determined dynamically based on the input data. |
 |`seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
-| `Beta`| integer | Temperature parameter for the dpo loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
+| `Beta`| integer | Temperature parameter for the DPO loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
 
 #### Enable auto-deployment
 
