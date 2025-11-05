@@ -14,7 +14,7 @@ ms.custom: include
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart-responses.py":::
+:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-responses.py":::
 
 # [C#](#tab/csharp)
 

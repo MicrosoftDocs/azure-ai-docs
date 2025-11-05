@@ -10,7 +10,7 @@ ms.date: 08/27/2025
 ms.custom: include
 ---
 
-## Create an agent 
+## Create resources
 
 
 ::: moniker range="foundry-classic"
