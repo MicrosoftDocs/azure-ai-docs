@@ -104,8 +104,8 @@ You can use a personal voice for audio output. For information about how to crea
 ```
 
 > [!NOTE]
-> In order to use a personal voice model with Voice live API, the personal voice must be available on the same Azure AI Foundry resource you're using to call the Voice live API. If you trained the personal voice on a different Azure AI Foundry or Azure AI Speech resource, you have to copy it to the resource you're using to call the Voice live API.
-> You pay separately for personal voice training and hosting. 
+> In order to use a personal voice model with Voice live API, the personal voice must be available on the same Azure AI Foundry resource you're using to call the Voice live API.
+> You pay separately for personal voice training and hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=tts).
 
 ### Azure custom voices
