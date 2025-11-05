@@ -4,15 +4,16 @@ titleSuffix: Azure AI Search
 description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 11/04/2025  
+ms.date: 11/05/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
 
 # Query-Time Microsoft Purview Sensitivity Label Enforcement in Azure AI Search  
 
-Query-time sensitivity label enforcement ensures that users only retrieve documents they're authorized to view, based on Microsoft Purview sensitivity label policies associated with each document.  
-This capability extends **document-level access control** to align with your organization’s **information protection and compliance requirements** managed in Microsoft Purview.
+Query-time sensitivity label enforcement ensures that users only retrieve documents they're authorized to view, based on [Microsoft Purview sensitivity label policies](/purview/create-sensitivity-labels) with [extract usage rights](/purview/rights-management-usage-rights), associated with each document.  
+
+This capability extends [document-level access control](search-document-level-access-overview.md) to align with your organization’s [information protection and compliance requirements](/purview/create-sensitivity-labels) managed in Microsoft Purview.
 
 When Purview sensitivity label indexing is enabled, Azure AI Search evaluates label metadata at query time and applies access filters to return only results that the requesting user is permitted to access under Purview policy evaluation.
 
@@ -23,24 +24,21 @@ This article explains how query-time sensitivity label enforcement works and how
 
 Before you can query a sensitivity-label-enabled index, the following conditions must be met:
 
-- Your search index must have **Purview sensitivity label support enabled** (`purviewEnabled: true`) at creation time and a unique field for sensitivity labels with "sensitivityLabel" value of true.
-
 - You must follow all steps for [Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-how-to-index-purview-sensitivity-labels.md).
 
-- Both the **Azure AI Search service** and the **user issuing the query** must belong to the **same Microsoft Entra tenant**.
+- Both the Azure AI Search service and the user issuing the query must belong to the same Microsoft Entra tenant.
 
-- The **latest preview API (2025-11-01-preview)** or a compatible SDK must be used to query the index.  This version introduces internal evaluation of Microsoft Purview label-based access filters.
+- The latest [preview API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview) or a compatible beta SDK must be used to query the index.  
 
-- Queries must be authenticated using **Azure RBAC**, not API keys.  API key access is restricted to index schema retrieval only when Purview is enabled.
+- Queries must be authenticated using [Azure role-based access control (RBAC)](search-security-rbac.md), not API keys.  API key access is restricted to index schema retrieval only when Purview sensitivity labels functionality is enabled.
 
 
 ## Limitations
 
-- **Guest accounts** and **cross-tenant queries** are not supported.  
-- **Autocomplete** and **Suggest** APIs are unavailable for Purview-enabled indexes.  
+- [Microsoft Entra Guest users](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries are not supported.  
+- [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs are unsupported for Purview-enabled indexes.  
 - If label evaluation fails (for example, Purview APIs are temporarily unavailable), the service returns **5xx** and does **not** return a partial or unfiltered result set.  
-- **Coexistence with ACL-based filters** is currently in preview and should be tested separately.  Do **not** enable or test Access Control Lists (ACLs) together with Purview sensitivity labels in the same index.  
-  Once combined usage is supported, it will be documented accordingly. 
+- [ACL-based security filters](search-query-access-control-rbac-enforcement.md) is unsupported in coexistence with sensitivity labels functionality at this time.  Don't enable both at the same time.  Once combined usage is supported, it will be documented accordingly. 
 - The system evaluates labels only as they existed at the time of the last indexer run; recent label changes may not be reflected until the next scheduled reindex.
 
 
@@ -69,7 +67,7 @@ When a query request is received, Azure AI Search evaluates:
 1. The **sensitivityLabel** field in each indexed document (extracted from Microsoft Purview during ingestion).  
 2. The **user’s effective Purview permissions**, as defined by Microsoft Entra ID and Purview label policy.  
 
-If the user is **not authorized** for a document’s sensitivity label, that document is excluded from the query results.
+If the user is **not authorized** for a document’s sensitivity label with extraction permissions, that document is excluded from the query results.
 
 > [!NOTE]
 > Internally, the service builds dynamic access filters similar to RBAC enforcement.  
@@ -103,5 +101,14 @@ Content-Type: application/json
     "select": "title,summary,sensitivityLabel",
     "orderby": "title asc"
 }
+```
 
-Note that the service returns the sensitivity label GUID. This is because there are other properties that must be provided by the application interface and call the respective MIP endpoint to get the label name and display, printing permissions, etc.
+## Sensitivity label handling in Azure AI Search
+
+When Azure AI Search indexes document content with sensitivity labels from sources like SharePoint, Azure Blob and others, if the user has data extract access, the query returns the associated indexed content and GUID associated with the sensitivity label applied to the document. This GUID uniquely identifies the label but doesn't include human-readable properties such as the label name or associated permissions.
+
+The GUID alone is insufficient for user interface scenarios because sensitivity labels often carry additional policy controls enforced by [Microsoft Purview Information Protection (MIP)](/purview/sensitivity-labels), such as: print permissions or screenshot and screen capture restrictions.
+
+These capabilities are not surfaced by Azure AI Search. To display label names or enforce UI-specific restrictions, your application must call the Microsoft Purview Information Protection endpoint to retrieve full label metadata and associated permissions.
+
+You can use the GUID returned by Azure AI Search to resolve the label properties and call the [MIP SDK](/information-protection/develop/setup-configure-mip) to fetch the label name, description and policy settings. Here is an [end-to-end demo sample](https://aka.ms/azs-sensitivity-labels) that includes code on how to call the endpoint from the user interface so you can extract the label name and expose as part of the citations for your RAG applications or agents.
