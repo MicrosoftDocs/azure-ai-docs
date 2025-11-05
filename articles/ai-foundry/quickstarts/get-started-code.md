@@ -216,7 +216,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/csharp/quickstart)
 
 # [TypeScript](#tab/typescript)
 
@@ -229,17 +229,17 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/typescript/quickstart)
 
 # [Java](#tab/java)
 
 1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE. This includes the preview version of `azure-ai-projects`.
+1. Simple install???
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/java/quickstart)
 
 # [REST API](#tab/rest)
 
