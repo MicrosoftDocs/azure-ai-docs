@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 Use Azure AI Foundry MCP Server (preview) tools to automate read and write operations across Azure AI Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
 
+[!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
+
 ## Impact of write operations
 
 Write operations have a critical impact on Azure AI Foundry resources. Proceed with caution and proper planning when you interact with Azure AI Foundry MCP Server (preview), just as you would when using the portal, SDKs, or REST APIs. For example:

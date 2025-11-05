@@ -21,6 +21,8 @@ In this article, you learn how to:
 - Connect to Azure AI Foundry MCP Server with GitHub Copilot in Visual Studio Code
 - Run prompts to test Azure AI Foundry MCP Server tools and interact with Azure resources
 
+[!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
+
 ## Prerequisites
 
 - Azure account with an active subscription. If you don't have one, [create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
