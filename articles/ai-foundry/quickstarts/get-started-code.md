@@ -63,7 +63,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
-- 
+
 > [!IMPORTANT]
 > Before starting, make sure your development environment is ready.  
 > This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
@@ -233,10 +233,9 @@ Follow along below or get the code:
 
 # [Java](#tab/java)
 
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 1. Simple install???
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
-1. 
+
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/java/quickstart)
