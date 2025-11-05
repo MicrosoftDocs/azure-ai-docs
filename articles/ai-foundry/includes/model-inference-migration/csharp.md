@@ -27,18 +27,6 @@ dotnet add package Azure.Identity
 
 With API key authentication:
 
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```csharp
-using Azure;
-using Azure.AI.Inference;
-
-ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri("https://<resource>.services.ai.azure.com/models"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
-);
-```
-
 # [OpenAI SDK](#tab/openai)
 
 ```csharp
@@ -55,22 +43,21 @@ ChatClient client = new(
 );
 ```
 
----
-
-With Microsoft Entra ID authentication:
-
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
 ```csharp
 using Azure;
-using Azure.Identity;
 using Azure.AI.Inference;
 
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new DefaultAzureCredential()
+    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
 ```
+
+---
+
+With Microsoft Entra ID authentication:
 
 # [OpenAI SDK](#tab/openai)
 
@@ -96,9 +83,35 @@ ChatClient client = new(
 );
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.AI.Inference;
+
+ChatCompletionsClient client = new ChatCompletionsClient(
+    new Uri("https://<resource>.services.ai.azure.com/models"),
+    new DefaultAzureCredential()
+);
+```
+
 ---
 
 ## Chat completions
+
+# [OpenAI SDK](#tab/openai)
+
+```csharp
+using OpenAI.Chat;
+
+ChatCompletion completion = client.CompleteChat(
+    new SystemChatMessage("You are a helpful assistant."),
+    new UserChatMessage("What is Azure AI?")
+);
+
+Console.WriteLine(completion.Content[0].Text);
+```
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -118,22 +131,28 @@ Response<ChatCompletions> response = client.Complete(requestOptions);
 Console.WriteLine(response.Value.Choices[0].Message.Content);
 ```
 
+---
+
+### Streaming
+
 # [OpenAI SDK](#tab/openai)
 
 ```csharp
 using OpenAI.Chat;
 
-ChatCompletion completion = client.CompleteChat(
+CollectionResult<StreamingChatCompletionUpdate> updates = client.CompleteChatStreaming(
     new SystemChatMessage("You are a helpful assistant."),
-    new UserChatMessage("What is Azure AI?")
+    new UserChatMessage("Write a poem about Azure.")
 );
 
-Console.WriteLine(completion.Content[0].Text);
+foreach (StreamingChatCompletionUpdate update in updates)
+{
+    foreach (ChatMessageContentPart part in update.ContentUpdate)
+    {
+        Console.Write(part.Text);
+    }
+}
 ```
-
----
-
-### Streaming
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -160,49 +179,9 @@ await foreach (StreamingChatCompletionsUpdate update in response)
 }
 ```
 
-# [OpenAI SDK](#tab/openai)
-
-```csharp
-using OpenAI.Chat;
-
-CollectionResult<StreamingChatCompletionUpdate> updates = client.CompleteChatStreaming(
-    new SystemChatMessage("You are a helpful assistant."),
-    new UserChatMessage("Write a poem about Azure.")
-);
-
-foreach (StreamingChatCompletionUpdate update in updates)
-{
-    foreach (ChatMessageContentPart part in update.ContentUpdate)
-    {
-        Console.Write(part.Text);
-    }
-}
-```
-
 ---
 
 ## Embeddings
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```csharp
-using Azure;
-using Azure.AI.Inference;
-
-EmbeddingsClient client = new EmbeddingsClient(
-    new Uri("https://<resource>.services.ai.azure.com/models"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
-);
-
-EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions()
-{
-    Input = { "Your text string goes here" },
-    Model = "text-embedding-3-small"
-};
-
-Response<EmbeddingsResult> response = client.Embed(embeddingsOptions);
-ReadOnlyMemory<float> embedding = response.Value.Data[0].Embedding;
-```
 
 # [OpenAI SDK](#tab/openai)
 
@@ -226,6 +205,27 @@ string input = "This is a test";
 OpenAIEmbedding embedding = client.GenerateEmbedding(input);
 ReadOnlyMemory<float> vector = embedding.ToFloats();
 Console.WriteLine($"Embeddings: [{string.Join(", ", vector.ToArray())}]");
+```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+```csharp
+using Azure;
+using Azure.AI.Inference;
+
+EmbeddingsClient client = new EmbeddingsClient(
+    new Uri("https://<resource>.services.ai.azure.com/models"),
+    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
+);
+
+EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions()
+{
+    Input = { "Your text string goes here" },
+    Model = "text-embedding-3-small"
+};
+
+Response<EmbeddingsResult> response = client.Embed(embeddingsOptions);
+ReadOnlyMemory<float> embedding = response.Value.Data[0].Embedding;
 ```
 
 ---

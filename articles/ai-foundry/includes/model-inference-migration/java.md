@@ -27,6 +27,18 @@ For Microsoft Entra ID authentication, also add:
 
 With API key authentication:
 
+# [OpenAI SDK](#tab/openai)
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+
+OpenAIClient client = OpenAIOkHttpClient.builder()
+    .baseUrl("https://<resource>.openai.azure.com/openai/v1/")
+    .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+    .build();
+```
+
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
 ```java
@@ -40,37 +52,9 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .buildClient();
 ```
 
-# [OpenAI SDK](#tab/openai)
-
-```java
-import com.openai.client.OpenAIClient;
-import com.openai.client.okhttp.OpenAIOkHttpClient;
-
-OpenAIClient client = OpenAIOkHttpClient.builder()
-    .baseUrl("https://<resource>.openai.azure.com/openai/v1/")
-    .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
-    .build();
-```
-
 ---
 
 With Microsoft Entra ID authentication:
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```java
-import com.azure.ai.inference.ChatCompletionsClient;
-import com.azure.ai.inference.ChatCompletionsClientBuilder;
-import com.azure.identity.DefaultAzureCredential;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.azure.core.credential.TokenCredential;
-
-TokenCredential credential = new DefaultAzureCredentialBuilder().build();
-ChatCompletionsClient client = new ChatCompletionsClientBuilder()
-    .credential(credential)
-    .endpoint("https://<resource>.services.ai.azure.com/models")
-    .buildClient();
-```
 
 # [OpenAI SDK](#tab/openai)
 
@@ -93,9 +77,40 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
     .build();
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+```java
+import com.azure.ai.inference.ChatCompletionsClient;
+import com.azure.ai.inference.ChatCompletionsClientBuilder;
+import com.azure.identity.DefaultAzureCredential;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.core.credential.TokenCredential;
+
+TokenCredential credential = new DefaultAzureCredentialBuilder().build();
+ChatCompletionsClient client = new ChatCompletionsClientBuilder()
+    .credential(credential)
+    .endpoint("https://<resource>.services.ai.azure.com/models")
+    .buildClient();
+```
+
 ---
 
 ## Chat completions
+
+# [OpenAI SDK](#tab/openai)
+
+```java
+import com.openai.models.chat.completions.*;
+
+ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
+    .addSystemMessage("You are a helpful assistant.")
+    .addUserMessage("What is Azure AI?")
+    .model("DeepSeek-V3.1") // Required: your deployment name
+    .build();
+
+ChatCompletion completion = client.chat().completions().create(params);
+System.out.println(completion.choices().get(0).message().content());
+```
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -115,24 +130,33 @@ ChatCompletions response = client.complete(options);
 System.out.println(response.getChoices().get(0).getMessage().getContent());
 ```
 
+---
+
+### Streaming
+
 # [OpenAI SDK](#tab/openai)
 
 ```java
 import com.openai.models.chat.completions.*;
+import java.util.stream.Stream;
 
 ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
     .addSystemMessage("You are a helpful assistant.")
-    .addUserMessage("What is Azure AI?")
+    .addUserMessage("Write a poem about Azure.")
     .model("DeepSeek-V3.1") // Required: your deployment name
     .build();
 
-ChatCompletion completion = client.chat().completions().create(params);
-System.out.println(completion.choices().get(0).message().content());
+Stream<ChatCompletionChunk> stream = client.chat().completions().createStreaming(params);
+
+stream.forEach(chunk -> {
+    if (chunk.choices() != null && !chunk.choices().isEmpty()) {
+        String content = chunk.choices().get(0).delta().content();
+        if (content != null) {
+            System.out.print(content);
+        }
+    }
+});
 ```
-
----
-
-### Streaming
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -159,54 +183,9 @@ response.forEach(update -> {
 });
 ```
 
-# [OpenAI SDK](#tab/openai)
-
-```java
-import com.openai.models.chat.completions.*;
-import java.util.stream.Stream;
-
-ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-    .addSystemMessage("You are a helpful assistant.")
-    .addUserMessage("Write a poem about Azure.")
-    .model("DeepSeek-V3.1") // Required: your deployment name
-    .build();
-
-Stream<ChatCompletionChunk> stream = client.chat().completions().createStreaming(params);
-
-stream.forEach(chunk -> {
-    if (chunk.choices() != null && !chunk.choices().isEmpty()) {
-        String content = chunk.choices().get(0).delta().content();
-        if (content != null) {
-            System.out.print(content);
-        }
-    }
-});
-```
-
 ---
 
 ## Embeddings
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```java
-import com.azure.ai.inference.EmbeddingsClient;
-import com.azure.ai.inference.EmbeddingsClientBuilder;
-import com.azure.core.credential.AzureKeyCredential;
-
-EmbeddingsClient client = new EmbeddingsClientBuilder()
-    .credential(new AzureKeyCredential(System.getenv("AZURE_INFERENCE_CREDENTIAL")))
-    .endpoint("https://<resource>.services.ai.azure.com/models")
-    .buildClient();
-
-EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(
-    List.of("Your text string goes here")
-);
-embeddingsOptions.setModel("text-embedding-3-small");
-
-EmbeddingsResult response = client.embed(embeddingsOptions);
-List<Float> embedding = response.getData().get(0).getEmbedding();
-```
 
 # [OpenAI SDK](#tab/openai)
 
@@ -235,6 +214,27 @@ public final class EmbeddingsExample {
         System.out.println(client.embeddings().create(createParams));
     }
 }
+```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+```java
+import com.azure.ai.inference.EmbeddingsClient;
+import com.azure.ai.inference.EmbeddingsClientBuilder;
+import com.azure.core.credential.AzureKeyCredential;
+
+EmbeddingsClient client = new EmbeddingsClientBuilder()
+    .credential(new AzureKeyCredential(System.getenv("AZURE_INFERENCE_CREDENTIAL")))
+    .endpoint("https://<resource>.services.ai.azure.com/models")
+    .buildClient();
+
+EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(
+    List.of("Your text string goes here")
+);
+embeddingsOptions.setModel("text-embedding-3-small");
+
+EmbeddingsResult response = client.embed(embeddingsOptions);
+List<Float> embedding = response.getData().get(0).getEmbedding();
 ```
 
 ---

@@ -25,9 +25,21 @@ pip install azure-identity
 
 ## Client configuration
 
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
+# [OpenAI SDK](#tab/openai)
 
 With API key authentication:
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://<resource>.openai.azure.com/openai/v1/",
+)
+```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
 
 ```python
 import os
@@ -40,34 +52,9 @@ client = ChatCompletionsClient(
 )
 ```
 
-# [OpenAI SDK](#tab/openai)
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://<resource>.openai.azure.com/openai/v1/",
-)
-```
-
 ---
 
 With Microsoft Entra ID authentication:
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```python
-from azure.ai.inference import ChatCompletionsClient
-from azure.identity import DefaultAzureCredential
-
-client = ChatCompletionsClient(
-    endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=DefaultAzureCredential(),
-    credential_scopes=["https://cognitiveservices.azure.com/.default"],
-)
-```
 
 # [OpenAI SDK](#tab/openai)
 
@@ -86,9 +73,36 @@ client = OpenAI(
 )
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+```python
+from azure.ai.inference import ChatCompletionsClient
+from azure.identity import DefaultAzureCredential
+
+client = ChatCompletionsClient(
+    endpoint="https://<resource>.services.ai.azure.com/models",
+    credential=DefaultAzureCredential(),
+    credential_scopes=["https://cognitiveservices.azure.com/.default"],
+)
+```
+
 ---
 
 ## Chat completions
+
+# [OpenAI SDK](#tab/openai)
+
+```python
+completion = client.chat.completions.create(
+    model="DeepSeek-V3.1",  # Required: your deployment name
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "What is Azure AI?"}
+    ]
+)
+
+print(completion.choices[0].message.content)
+```
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -106,23 +120,26 @@ response = client.complete(
 print(response.choices[0].message.content)
 ```
 
-# [OpenAI SDK](#tab/openai)
-
-```python
-completion = client.chat.completions.create(
-    model="DeepSeek-V3.1",  # Required: your deployment name
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is Azure AI?"}
-    ]
-)
-
-print(completion.choices[0].message.content)
-```
-
 ---
 
 ### Streaming
+
+# [OpenAI SDK](#tab/openai)
+
+```python
+stream = client.chat.completions.create(
+    model="DeepSeek-V3.1",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Write a poem about Azure."}
+    ],
+    stream=True
+)
+
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="")
+```
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -143,45 +160,9 @@ for update in response:
         print(update.choices[0].delta.content or "", end="")
 ```
 
-# [OpenAI SDK](#tab/openai)
-
-```python
-stream = client.chat.completions.create(
-    model="DeepSeek-V3.1",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Write a poem about Azure."}
-    ],
-    stream=True
-)
-
-for chunk in stream:
-    if chunk.choices[0].delta.content:
-        print(chunk.choices[0].delta.content, end="")
-```
-
 ---
 
 ## Embeddings
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```python
-from azure.ai.inference import EmbeddingsClient
-from azure.core.credentials import AzureKeyCredential
-
-client = EmbeddingsClient(
-    endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
-)
-
-response = client.embed(
-    input=["Your text string goes here"],
-    model="text-embedding-3-small"
-)
-
-embedding = response.data[0].embedding
-```
 
 # [OpenAI SDK](#tab/openai)
 
@@ -202,6 +183,25 @@ response = client.embeddings.create(
     model = "text-embedding-3-large" // Use the name of your deployment
 )
 print(response.data[0].embedding)
+```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+```python
+from azure.ai.inference import EmbeddingsClient
+from azure.core.credentials import AzureKeyCredential
+
+client = EmbeddingsClient(
+    endpoint="https://<resource>.services.ai.azure.com/models",
+    credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+)
+
+response = client.embed(
+    input=["Your text string goes here"],
+    model="text-embedding-3-small"
+)
+
+embedding = response.data[0].embedding
 ```
 
 ---

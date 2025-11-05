@@ -27,10 +27,6 @@ go get -u github.com/Azure/azure-sdk-for-go/sdk/azidentity
 
 With API key authentication:
 
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK for Go uses Azure SDK patterns.
-
 # [OpenAI SDK](#tab/openai)
 
 ```go
@@ -45,13 +41,13 @@ client := openai.NewClient(
 )
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+Azure AI Inference SDK for Go uses Azure SDK patterns.
+
 ---
 
 With Microsoft Entra ID authentication:
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK for Go supports Microsoft Entra ID through Azure SDK.
 
 # [OpenAI SDK](#tab/openai)
 
@@ -74,13 +70,13 @@ client := openai.NewClient(
 )
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+Azure AI Inference SDK for Go supports Microsoft Entra ID through Azure SDK.
+
 ---
 
 ## Chat completions
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK for Go uses Azure SDK patterns for chat completions.
 
 # [OpenAI SDK](#tab/openai)
 
@@ -106,13 +102,13 @@ if err != nil {
 fmt.Println(chatCompletion.Choices[0].Message.Content)
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+Azure AI Inference SDK for Go uses Azure SDK patterns for chat completions.
+
 ---
 
 ### Streaming
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK for Go supports streaming through Azure SDK patterns.
 
 # [OpenAI SDK](#tab/openai)
 
@@ -143,13 +139,13 @@ if err := stream.Err(); err != nil {
 }
 ```
 
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+Azure AI Inference SDK for Go supports streaming through Azure SDK patterns.
+
 ---
 
 ## Embeddings
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK for Go uses Azure SDK patterns for embeddings.
 
 # [OpenAI SDK](#tab/openai)
 
@@ -209,6 +205,10 @@ func main() {
 }
 
 ```
+
+# [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+Azure AI Inference SDK for Go uses Azure SDK patterns for embeddings.
 
 ---
 
