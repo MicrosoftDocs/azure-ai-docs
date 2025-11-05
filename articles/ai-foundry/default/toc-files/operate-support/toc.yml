@@ -15,11 +15,9 @@ items:
       items:
       - name: High availability and resiliency
         href: ../../../how-to/high-availability-resiliency.md
-      - name: Disaster recovery
-        items:
-        - name: Disaster recovery for agent services
-          href: ../../../how-to/agent-service-disaster-recovery.md
-        - name: Recover from a platform outage
-          href: ../../../how-to/agent-service-platform-disaster-recovery.md
-        - name: Recover from resource and data loss
-          href: ../../../how-to/agent-service-operator-disaster-recovery.md
+      - name: Disaster recovery for agent services
+        href: ../../../how-to/agent-service-disaster-recovery.md
+      - name: Disaster recovery from a platform outage
+        href: ../../../how-to/agent-service-platform-disaster-recovery.md
+      - name: Disaster recovery from resource and data loss
+        href: ../../../how-to/agent-service-operator-disaster-recovery.md
