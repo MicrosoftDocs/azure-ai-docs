@@ -13,8 +13,8 @@ items:
         href: ../../../openai/gpt-v-quickstart.md
       - name: Text to speech (preview)
         href: ../../../openai/text-to-speech-quickstart.md
-      - name: Voice Live Agents quickstart (preview)
-        href: ../../../../ai-services/speech-service/voice-live-agents-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Voice Live (preview)
+        href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Concepts
     items:
       - name: Model router concepts
