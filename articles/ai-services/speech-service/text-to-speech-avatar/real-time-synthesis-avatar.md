@@ -249,6 +249,18 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
 
 For a full sample, see our [code example](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js) and search for `crop`.
 
+## Set video resolution
+A 4K resolution avatar ‘s default output resolution is 3840x2160. However, you may adjust the output resolution while maintaining the original aspect ratio to suit your requirements. For instance, setting the output resolution to 1920x1080 during streaming can reduce network bandwidth consumption. 
+
+```JavaScript
+const videoFormat = new SpeechSDK.AvatarVideoFormat();
+videoFormat.width = 1920;
+videoFormat.height = 1080;
+```
+
+For further details, please read [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1)
+
+
 ## Code samples
 
 Find text to speech avatar code samples in the Speech SDK GitHub repository. These samples show how to use real-time avatars in web and mobile apps:
