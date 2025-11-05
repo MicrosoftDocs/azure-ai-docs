@@ -51,12 +51,9 @@ The Agents tab displays all registered agents in your selected project. From her
 
 - Select **Include all agent types** to view every agent in your fleet.
 
-## Next steps
 
-> [!div class="nextstepaction"]
-> [Register an agent](../register-agent.md)
 
 ## Related content
-
-- [Configure agent policies](../configure-policies.md)
-- [Troubleshoot agent issues](../troubleshoot-agents.md)
+- [Register an agent]()
+- [Configure agent policies]()
+- [Troubleshoot agent issues]()
