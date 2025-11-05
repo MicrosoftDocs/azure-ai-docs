@@ -2,8 +2,6 @@
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
-reviewer: patrickfarley
-ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 11/05/2025
