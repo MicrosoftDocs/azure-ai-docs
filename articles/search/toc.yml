@@ -422,6 +422,8 @@ items:
         href: agentic-retrieval-how-to-create-knowledge-base.md
       - name: Enable answer synthesis
         href: agentic-retrieval-how-to-answer-synthesis.md
+      - name: Set retrieval reasoning effort
+        href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
       - name: Retrieve data
         href: agentic-retrieval-how-to-retrieve.md
       - name: Migrate agentic retrieval code
