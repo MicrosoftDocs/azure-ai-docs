@@ -35,8 +35,6 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 | Quota | Standard (S0) |
 | --- | --- |
 | Max analyzers | 100k |
-| Max classifiers | 100k |
-| Max person directories | 100k |
 | Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
 | Max operations/min | 3000 |
 
@@ -120,22 +118,21 @@ Content Understanding supports both basic field value types and nested structure
 | Type | Limits |
 | -----| ------ |
 | Training data | Documents only <br/> 1 GB total <br/> 50k pages/images total |
-| Reference data | Documents only <br/> 100 MB total <br/> 5k pages total |
 
 ---
 
-## Classifier
+## Segmentation/Classification
 
 ### General limits
 
    > [!NOTE]
-   > This limit is for [Content Understanding classifier](concepts/classifier.md) itself, not classify fields within the extraction capability.
+   > This limit is for [Content Understanding segmentation/classification](concepts/classifier.md) itself, not classify fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |
 | Category name | Can't start with a dollar sign (`$`)|
 | Category name and description | Maximum 120 characters for combined name and description in each category |
-| Number of categories | 1 to 50 per classifier |
+| Number of categories | 200 per analyzer |
 
 ### Input file limits
 
@@ -145,22 +142,5 @@ Content Understanding supports both basic field value types and nested structure
 | ✓ `.txt`  | ≤ 1 MB | ≤ 1M characters |
 
 ---
-
-## Face / Person Directories
-
-### General limits
-| Property | Value |
-| --- | --- |
-| Max faces per person directory | 1,000,000 |
-| Max persons per person directory | 1,000,000 |
-| Max detected faces per image | 100 |
-| Max identified person candidates per search | 10 |
-| Max similar faces returned per search | 1000 |
-
-### Input file limits
-
-| Supported File Types | File Size | Length |
-| --- | --- |  --- |
-| ✓ `.jpg`, `.png`, `.bmp`, `.webp`, `.gif`, `.ico` | ≤ 200 MB | Max: 15k x 15k pixels |
 
 
