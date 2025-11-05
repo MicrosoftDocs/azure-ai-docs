@@ -38,7 +38,7 @@ This ultra-minimal sample demonstrates enterprise-ready patterns with realistic 
 
 - Azure subscription and CLI authentication (`az login`)
 - Azure CLI 2.67.0 or later (check with `az version`)
-- An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then [deploy a model](../../agents/overview.md#deploy-models) (see model overview: [Model catalog](../../foundry-models-overview.md)).
+- An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)).
 - Python 3.10 or later, .NET 7 SDK, or Java 17 SDK installed (depending on your chosen language)
 - SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
 - (Optional) Git installed for cloning the sample repository
@@ -209,6 +209,8 @@ cd samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype
 cp .env.template .env
 mvn clean compile
 ```
+
+---
 
 ### Configure `.env`
 
