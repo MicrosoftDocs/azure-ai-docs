@@ -20,7 +20,7 @@ This article shows you how to use the Foundry Control Plane's capabilities to tr
 
 ## What is fleet monitoring in the Foundry Control Plane?
 
-Fleet monitoring in the Foundry Control Plane gives you real-time visibility into your entire AI estate. Instead of monitoring agents individually, you gain a unified view across all agents in your projects, whether they're Foundry-native, Microsoft services, or third-party integrations.
+The Foundry Control Plane gives you real-time visibility into your entire AI estate. Instead of monitoring agents individually, you gain a unified view across all agents in your projects, whether they're Foundry-native, Microsoft services, or third-party integrations.
 
 Key monitoring capabilities include:
 
