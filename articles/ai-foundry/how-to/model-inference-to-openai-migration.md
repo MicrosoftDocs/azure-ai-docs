@@ -5,7 +5,7 @@ description: Learn how to migrate to OpenAI SDK from Azure AI Inference SDK for 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 10/27/2025
+ms.date: 11/05/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand

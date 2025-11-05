@@ -1,12 +1,11 @@
 ---
-title: Include file
+title: Migration alert from AI inference SDK to OpenAI SDK
 description: Include file
 author: msakande
-ms.reviewer: mopeakande
 ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 11/05/2025
 ms.custom: include
 ---
 
