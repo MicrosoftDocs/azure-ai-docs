@@ -11,8 +11,10 @@ items:
         href: ../../../openai/audio-completions-quickstart.md
       - name: Vision-enabled chats
         href: ../../../openai/gpt-v-quickstart.md
-      - name: Text to speech (preview)
-        href: ../../../openai/text-to-speech-quickstart.md
+      - name: Speech to text
+        href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Text to speech
+        href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
       - name: Voice Live (preview)
         href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Concepts
