@@ -94,7 +94,7 @@ After the policy is in place, designated users and groups can't obtain the Entra
 
 ### Network isolation
 
-Azure AI Foundry MCP Server (preview) currently doesn't support network isolation. Its exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, the server can't reach them and operations fail.
+Azure AI Foundry MCP Server (preview) currently doesn't support network isolation. It exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, the server can't reach them and operations fail.
 
 ### Data Residency
 
