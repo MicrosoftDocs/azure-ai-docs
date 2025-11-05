@@ -63,13 +63,13 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 
 [!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
-The following JSON is an example response for a remote SharePoint knowledge source. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
+The following JSON is an example response for a remote SharePoint knowledge source.
 
 ```json
 {
   "name": "my-sharepoint-ks",
   "kind": "remoteSharePoint",
-  "description": "A sample remote sharepoint knowledge source",
+  "description": "A sample remote SharePoint knowledge source",
   "encryptionKey": null,
   "remoteSharePointParameters": {
     "filterExpression": "filetype:docx",
@@ -162,8 +162,6 @@ Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-servi
 
 If you're satisfied with the knowledge source, continue to the next step: specifying a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that references the knowledge source you created.
 
-Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
-
 <!-- Deviating from pattern here. SharePoint remote needs answerSynthesis-->
 Here's an example of a knowledge base that specifies a remote SharePoint knowledge source, with some key points:
 
@@ -205,7 +203,7 @@ Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 ## Retrieve content
 
-The retrieve action on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
+The [retrieve action](agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
 
 Azure AI Search uses the Microsoft Graph API to exchange the access token for an on-behalf of (OBO) token, which is then used to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as an HTTP header `x-ms-query-source-authorization`.
 

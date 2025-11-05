@@ -48,7 +48,6 @@ The following JSON is an example response for a blob knowledge source.
   "kind": "azureBlob",
   "description": "A sample blob knowledge source.",
   "encryptionKey": null,
-  "searchIndexParameters": null,
   "azureBlobParameters": {
     "connectionString": "<REDACTED>",
     "containerName": "blobcontainer",
@@ -183,9 +182,7 @@ We recommend using the Azure portal to validate output creation. The workflow is
 
 If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
-
-After the knowledge base is configured, use the retrieve action to query the knowledge source.
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source
 
