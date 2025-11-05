@@ -34,11 +34,11 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 1. Go to [Foundry Portal](https://eastus2euap.ai.azure.com/nextgen/r/LThb9AdWSnaqlSi_ntO2JQ,rg-vkintali-5609,,vkintali-prod-westus2-resource,vkintali-prod-westus2/Build/workflows?flight=ignite_preview%3Dfalse%2Cnextgen_canary).
 2. Select **Create new workflow** and **Sequential**.
-3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#adding-existing) or [create a new one](#create-new-agents).
+3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing) or [create a new one](#create-new-agents).
 4. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
 5. Select **Run Workflow**.
 6. Interact with the workflow in the chat window.
-7. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#adding-nodes-to-your-workflow) section.
+7. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#add-nodes-to-your-workflow) section.
 
 > [!IMPORTANT]
 > Workflows aren't saved automatically. Select **Save** every time you want to save changes to your workflow.
@@ -107,7 +107,7 @@ To use a variable in a Power Fx formula, you must add a prefix to its name to in
 
 ### Use literal values in a formula
 
-In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](authoring-variables-about.md#variable-types). The following table lists the data types and the format of their corresponding literal values.
+In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](microsoft-copilot-studio/authoring-variables-about). The following table lists the data types and the format of their corresponding literal values.
 
 | Type             | Format examples                                                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
