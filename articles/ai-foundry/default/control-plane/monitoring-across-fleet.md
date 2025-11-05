@@ -1,6 +1,6 @@
 ---
 title: Monitor AI Agent Fleets with Azure AI Foundry
-description: Monitor and manage your AI agents at scale with Azure AI Foundry. Learn how to track health, compliance, and performance trends using a centralized dashboard.
+description: "Monitor and manage AI agents at scale with Azure AI Foundry. Track health, compliance, and performance trends using a centralized dashboard. Get started today."
 #customer intent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.
 author: sonalim-0
 ms.author: scottpolly
@@ -12,13 +12,13 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Monitor Agent Health and Performance Across Your Fleet
+# Monitor agent health and performance across your fleet
 
 As organizations scale from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. The Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
 
 This article shows you how to use the Foundry Control Plane's capabilities to track agent health, performance, compliance, and cost efficiency at scale. With centralized monitoring, you can identify issues early, optimize resource consumption, and ensure your AI systems operate safely and reliably.
 
-## What is fleet monitoring in the Control Plane?
+## What is fleet monitoring in the Foundry Control Plane?
 
 Fleet monitoring in the Foundry Control Plane gives you real-time visibility into your entire AI estate. Instead of monitoring agents individually, you gain a unified view across all agents in your projects, whether they're Foundry-native, Microsoft services, or third-party integrations.
 
@@ -41,11 +41,11 @@ Fleet monitoring serves multiple roles:
 [!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 - Read access to the project & subscription you'd like to view data for.
 
-## View Metrics
+## View metrics
 
 You can view aggregated metrics for all agents within a selected project using Azure AI Foundry. The Overview pane provides insights into fleet health, compliance, and performance trends.
 
-:::image type="content" source="media/monitoring-across-fleet/agent-metrics-overview-page.png" alt-text="Screenshot of the Overview page displaying aggregated metrics for all agents.":::
+:::image type="content" source="media/monitoring-across-fleet/agent-metrics-overview-page.png" alt-text="Screenshot of Azure AI Foundry Overview page displaying aggregated metrics for all agents.":::
 
 1. Go to **Azure AI Foundry Portal**.
 
@@ -59,7 +59,7 @@ The Overview page displays common metrics and insights for all registered agents
 
 ## View all assets
 
-:::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of the Agents tab showing all registered agents with top-level metrics.":::You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
+:::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of Azure AI Foundry Agents tab showing all registered agents with top-level metrics.":::You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
 
 You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
 
