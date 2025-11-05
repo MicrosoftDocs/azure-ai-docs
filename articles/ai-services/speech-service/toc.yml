@@ -232,6 +232,12 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: LLM speech
+  items:
+    - name: Use LLM speech
+      href: llm-speech.md
+    - name: LLM speech REST API reference
+      href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice live
   items:
     - name: Voice live overview
