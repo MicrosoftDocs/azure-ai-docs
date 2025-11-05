@@ -110,7 +110,7 @@ List<ChatRequestMessage> messages = List.of(
 );
 
 ChatCompletionsOptions options = new ChatCompletionsOptions(messages);
-options.setModel("gpt-4o-mini"); // Optional for single-model endpoints
+options.setModel("DeepSeek-V3.1"); // Optional for single-model endpoints
 
 ChatCompletions response = client.complete(options);
 System.out.println(response.getChoices().get(0).getMessage().getContent());
@@ -124,7 +124,7 @@ import com.openai.models.chat.completions.*;
 ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
     .addSystemMessage("You are a helpful assistant.")
     .addUserMessage("What is Azure AI?")
-    .model("gpt-4o-mini") // Required: your deployment name
+    .model("DeepSeek-V3.1") // Required: your deployment name
     .build();
 
 ChatCompletion completion = client.chat().completions().create(params);
@@ -146,7 +146,7 @@ List<ChatRequestMessage> messages = List.of(
 );
 
 ChatCompletionsOptions options = new ChatCompletionsOptions(messages);
-options.setModel("gpt-4o-mini");
+options.setModel("DeepSeek-V3.1");
 
 IterableStream<ChatCompletions> response = client.completeStream(options);
 
@@ -169,7 +169,7 @@ import java.util.stream.Stream;
 ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
     .addSystemMessage("You are a helpful assistant.")
     .addUserMessage("Write a poem about Azure.")
-    .model("gpt-4o-mini")
+    .model("DeepSeek-V3.1") // Required: your deployment name
     .build();
 
 Stream<ChatCompletionChunk> stream = client.chat().completions().createStreaming(params);

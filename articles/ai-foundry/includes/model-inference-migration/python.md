@@ -78,7 +78,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), 
-    "https://ai.azure.com/.default"
+    "https://cognitiveservices.azure.com/.default"
 )
 
 client = OpenAI(
@@ -101,7 +101,7 @@ response = client.complete(
         SystemMessage(content="You are a helpful assistant."),
         UserMessage(content="What is Azure AI?"),
     ],
-    model="gpt-4o-mini"  # Optional for single-model endpoints
+    model="DeepSeek-V3.1"  # Optional for single-model endpoints
 )
 
 print(response.choices[0].message.content)
@@ -111,7 +111,7 @@ print(response.choices[0].message.content)
 
 ```python
 completion = client.chat.completions.create(
-    model="gpt-4o-mini",  # Required: your deployment name
+    model="DeepSeek-V3.1",  # Required: your deployment name
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "What is Azure AI?"}
@@ -136,7 +136,7 @@ response = client.complete(
         SystemMessage(content="You are a helpful assistant."),
         UserMessage(content="Write a poem about Azure."),
     ],
-    model="gpt-4o-mini"
+    model="DeepSeek-V3.1"
 )
 
 for update in response:
@@ -148,7 +148,7 @@ for update in response:
 
 ```python
 stream = client.chat.completions.create(
-    model="gpt-4o-mini",
+    model="DeepSeek-V3.1",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Write a poem about Azure."}
@@ -190,7 +190,8 @@ embedding = response.data[0].embedding
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+token_provider = get_bearer_token_provider(DefaultAzureCredential(), 
+"https://cognitiveservices.azure.com/.default")
 
 client = OpenAI(
     base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",

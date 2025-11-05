@@ -112,7 +112,7 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
         new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("What is Azure AI?")
     },
-    Model = "gpt-4o-mini", // Optional for single-model endpoints
+    Model = "DeepSeek-V3.1", // Optional for single-model endpoints
 };
 
 Response<ChatCompletions> response = client.Complete(requestOptions);

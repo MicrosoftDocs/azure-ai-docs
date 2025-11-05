@@ -104,7 +104,7 @@ const response = await client.path("/chat/completions").post({
             { role: "system", content: "You are a helpful assistant." },
             { role: "user", content: "What is Azure AI?" }
         ],
-        model: "gpt-4o-mini" // Optional for single-model endpoints
+        model: "DeepSeek-V3.1" // Optional for single-model endpoints
     }
 });
 
@@ -115,7 +115,7 @@ console.log(response.body.choices[0].message.content);
 
 ```javascript
 const completion = await client.chat.completions.create({
-    model: "gpt-4o-mini", // Required: your deployment name
+    model: "DeepSeek-V3.1", // Required: your deployment name
     messages: [
         { role: "system", content: "You are a helpful assistant." },
         { role: "user", content: "What is Azure AI?" }
@@ -138,7 +138,7 @@ const response = await client.path("/chat/completions").post({
             { role: "system", content: "You are a helpful assistant." },
             { role: "user", content: "Write a poem about Azure." }
         ],
-        model: "gpt-4o-mini",
+        model: "DeepSeek-V3.1",
         stream: true
     }
 }).asNodeStream();
@@ -154,7 +154,7 @@ for await (const chunk of response) {
 
 ```javascript
 const stream = await client.chat.completions.create({
-    model: "gpt-4o-mini",
+    model: "DeepSeek-V3.1",
     messages: [
         { role: "system", content: "You are a helpful assistant." },
         { role: "user", content: "Write a poem about Azure." }
@@ -196,7 +196,27 @@ const embedding = response.body.data[0].embedding;
 
 # [OpenAI SDK](#tab/openai)
 
-OpenAI SDK doesn't support embeddings models.
+```javascript
+import OpenAI from "openai";
+import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://<resource>.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const embedding = await client.embeddings.create({
+  model: "text-embedding-3-large", // Required: your deployment name
+  input: "The quick brown fox jumped over the lazy dog",
+  encoding_format: "float",
+});
+
+console.log(embedding);
+```
+
 
 
 ---

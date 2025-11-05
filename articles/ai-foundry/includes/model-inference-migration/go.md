@@ -97,7 +97,7 @@ chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCo
         openai.SystemMessage("You are a helpful assistant."),
         openai.UserMessage("What is Azure AI?"),
     },
-    Model: "gpt-4o-mini", // Required: your deployment name
+    Model: "DeepSeek-V3.1", // Required: your deployment name
 })
 
 if err != nil {
@@ -129,7 +129,7 @@ stream := client.Chat.Completions.NewStreaming(context.TODO(), openai.ChatComple
         openai.SystemMessage("You are a helpful assistant."),
         openai.UserMessage("Write a poem about Azure."),
     },
-    Model: "gpt-4o-mini",
+    Model: "DeepSeek-V3.1", // Required: your deployment name
 })
 
 for stream.Next() {
