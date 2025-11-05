@@ -18,6 +18,17 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 
 ## Try real-time speech to text
 
+#### [Foundry (new) portal](#tab/new-foundry)
+
+1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+1. Select **Build** from the top right menu.
+1. Select **Models** on the left pane. 
+1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground. <!-- TBD: incomplete -->
+1. When you're ready, select **Start** to start inputting audio from your device's microphone. View the real-time transcription output at the bottom of the page.
+1. Select **End** to end the transcription session.
+
+#### [Foundry (classic) portal](#tab/classic-foundry)
+
 1. Go to your Azure AI Foundry project. 
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
