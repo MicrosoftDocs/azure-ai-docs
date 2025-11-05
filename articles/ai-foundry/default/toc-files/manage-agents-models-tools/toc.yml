@@ -1,1 +1,3 @@
 items:
+  - name: Monitor fleet health and performance
+    href: ../../control-plane/monitoring-across-fleet.md
