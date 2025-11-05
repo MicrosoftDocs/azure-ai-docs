@@ -34,6 +34,10 @@ Voice live provides two options to initialize a pro-active greeting:
 
 Option 1 applies the LLMs instructions to generate an appropriate response. To ensure the response is generated in the default language of your voice agent, you need to include a specific instruction as part of the session's `instructions` configuration. Example: `Always start the conversation in English.`
 
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/ai-foundry.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python quickstart](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/python1.md)]
 ::: zone-end
