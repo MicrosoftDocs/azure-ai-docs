@@ -12,23 +12,23 @@ ai-usage: ai-assisted
 
 # Azure AI Foundry MCP Server best practices and security guidance
 
-Use Azure AI Foundry MCP Server (preview) tools to automate read and write operations across Azure AI Foundry resources for deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
+Use Azure AI Foundry MCP Server (preview) tools to automate read and write operations across Azure AI Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
 
 ## Impact of write operations
 
-Write operations have a critical impact on Azure AI Foundry resources. Always proceed with caution and proper planning when you interact with Azure AI Foundry MCP Server (preview), just like you would when you interact with Azure AI Foundry using UI, SDK, and/or REST APIs. For example: 
+Write operations have a critical impact on Azure AI Foundry resources. Proceed with caution and proper planning when you interact with Azure AI Foundry MCP Server (preview), just as you would when using the portal, SDKs, or REST APIs. For example:
 
-- Deployments: Immediately affect live apps and billing 
-- Deletions: Permanently remove resources, may break dependent services 
-- Evaluations: Consume compute quota and incur costs 
-- Datasets: May overwrite existing versions 
+- Deployments: Immediately affect live apps and billing.
+- Deletions: Permanently remove resources and can break dependent services.
+- Evaluations: Consume compute quota and incur costs.
+- Datasets: Can overwrite existing versions.
 
-Several examples of resource impact are presented below for reference. 
+Examples of resource impact:
 
-- Deleting a deployment breaks all applications using that endpoint 
-- Large evaluations can consume significant quota allocation 
-- New deployments start billing immediately 
-- Overwriting a dataset affects evaluation reproducibility 
+- Deleting a deployment breaks all applications using that endpoint.
+- Large evaluations can consume significant quota allocation.
+- New deployments start billing immediately.
+- Overwriting a dataset affects evaluation reproducibility.
 
 ## Best practices for safe executions 
 
@@ -36,45 +36,45 @@ Follow these practices to make sure write operations run as you intend:
 
 ### Tool execution verification
 
-- **Verify Tool Selection**: Confirm the correct MCP tool and parameters match your intention before execution 
-- Check parameters: Review all tool parameters (resource IDs, deployment names, dataset paths) for accuracy.
-- Check environment targeting: Make sure resource endpoints and project URLs point to the intended environment.
+- **Verify tool selection**: Confirm the correct MCP tool and parameters match your intention before execution.
+- **Check parameters**: Review all tool parameters (resource IDs, deployment names, dataset paths) for accuracy.
+- **Check environment targeting**: Make sure resource endpoints and project URLs point to the intended environment.
 
 ### Resource management via MCP server
 
-- Check dependencies: Use monitoring tools to make sure no app depends on a resource before you delete it.
-- Check quota: Query quota status before you create new deployments or run large evaluations.
-- **Resource Discovery**: List existing deployments and datasets before making changes 
-- Plan capacity: Check available quota and usage metrics before resource-intensive operations.
+- **Check dependencies**: Use monitoring tools to make sure no app depends on a resource before you delete it.
+- **Check quota**: Query quota status before you create new deployments or run large evaluations.
+- **Resource discovery**: List existing deployments and datasets before making changes.
+- **Plan capacity**: Check available quota and usage metrics before resource-intensive operations.
 
 ### Safe MCP operation practices
 
-- Test in nonproduction: Use development project endpoints first to test MCP operations.
-- Make incremental changes: Change one resource at a time with MCP tools instead of doing bulk operations.
-- Validate changes: Use read-only MCP tools to check changes take effect as expected.
-- Handle errors: Monitor MCP operation responses for errors or unexpected results.
+- **Test in nonproduction**: Use development project endpoints first.
+- **Make incremental changes**: Change one resource at a time instead of making bulk updates.
+- **Validate changes**: Use read-only tools to confirm changes take effect.
+- **Handle errors**: Monitor responses for errors or unexpected results.
 
 ### Documentation and tracking
 
-- Log operations: Check Azure resource Activity Logs to track which resources are affected.
-- Back up configuration: Export current deployment and dataset configurations before you modify them.
-- Track changes: Record MCP operation details for troubleshooting and rollback. 
+- **Log operations**: Use Azure resource Activity Logs to track affected resources.
+- **Back up configuration**: Export current deployment and dataset configurations before you modify them.
+- **Track changes**: Record MCP operation details for troubleshooting and rollback.
 
 ## Security and governance 
 
-This provides identity, access control, policy, network isolation, and data residency considerations to help you apply governance before running MCP operations.
+This section summarizes identity, access control, policy, network isolation, and data residency considerations to help you apply governance before MCP operations.
 
 ### Identity and access management
 
-You authenticate to Azure AI Foundry MCP Server (preview) using a Microsoft Entra token scoped to *https://mcp.ai.azure.com*.
+Authenticate to Azure AI Foundry MCP Server (preview) using a Microsoft Entra token scoped to `https://mcp.ai.azure.com`.
 
 Azure role-based access control (RBAC) applies to all operations on Azure AI Foundry resources supported by Azure AI Foundry MCP Server (preview). Operations run according to the authenticated user's permissions.
 
 ### Allow tenant admin control via Azure Policy
 
-A tenant admin can create an Azure Policy to grant or block access to Azure AI Foundry MCP Server (preview) for selected users or workload identities.
+Tenant admins can use Azure Policy to grant or block access to Azure AI Foundry MCP Server (preview) for selected users or workload identities.
 
-1. Materialize the service principal for the Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id <application-ID>`. Replace `<application-ID>` with the Azure AI Foundry MCP Server (preview) application ID.
+1. Materialize the service principal for the Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id <application-ID>`. Replace `<application-ID>` with the application ID.
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
@@ -86,17 +86,17 @@ A tenant admin can create an Azure Policy to grant or block access to Azure AI F
 
     :::image type="content" source="../media/mcp/foundry-block-access.png" alt-text="A screenshot showing how to block app access.":::
 
-1. Select Grant, then choose Block access.
+1. Select **Grant**, then choose **Block access**.
 
-When the policy is in place, designated users and groups can't get the Entra token needed to connect to Azure AI Foundry MCP Server (preview).
+After the policy is in place, designated users and groups can't obtain the Entra token needed to connect.
 
 ### Network isolation
 
-Azure AI Foundry MCP Server (preview) exposes the public endpoint https://mcp.ai.azure.com that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, Azure AI Foundry MCP Server (preview) can't reach them, so operations on the resource fail.
+Azure AI Foundry MCP Server (preview) exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, the server can't reach them and operations fail.
 
 ### Data Residency
 
-Azure AI Foundry MCP Server (preview) uses a global stateless proxy architecture. Data created by the backend services it interacts with stays encrypted at rest in the region you select. The server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.
+Azure AI Foundry MCP Server (preview) uses a global stateless proxy architecture. Data created by backend services stays encrypted at rest in the region you select. The server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.
 
 > [!IMPORTANT]
 > By using this preview feature, you acknowledge and consent that transient cross-region processing can occur (for example, an EU resource accessed by a US user could be routed through US infrastructure). If your organization requires strict in-region processing, don't use Azure AI Foundry MCP Server (preview) or restrict its use to scenarios that stay within your selected region. 
