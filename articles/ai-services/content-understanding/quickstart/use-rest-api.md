@@ -65,11 +65,17 @@ Before running the following cURL command, make the following changes to the HTT
 curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
+  -d "{
+    "inputs":[
+      {
+        "url": "{fileURL}"
+      }
+    ]
+}"
 ```
 
 #### POST response
-The response includes a `request-id`, which you use to retrieve the results of the asynchronous analysis operation. Additionally, the `Operation-Location` header provides the direct URL to access the analysis result.
+The response `header` includes a ```Operation-Location```, which you use to retrieve the results of the asynchronous analysis operation. 
 
 ```
 HTTP/1.1 202 Accepted
