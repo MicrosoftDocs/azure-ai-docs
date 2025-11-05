@@ -7,6 +7,7 @@ ms.author: alexwolf
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.custom: build-2025
+ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
@@ -142,4 +143,5 @@ Install Azure AI Foundry MCP Server for a specific workspace to scope it to that
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Explore Azure AI Foundry MCP Server tools](../../tools/index.md)
+> [Azure AI Foundry MCP Server security and best practices](available-tools.md)
+> [Azure AI Foundry MCP Server tools and example prompts](available-tools.md)

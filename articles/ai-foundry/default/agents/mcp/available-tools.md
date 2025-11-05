@@ -7,6 +7,7 @@ ms.author: alexwolf
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.custom: build-2025
+ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
