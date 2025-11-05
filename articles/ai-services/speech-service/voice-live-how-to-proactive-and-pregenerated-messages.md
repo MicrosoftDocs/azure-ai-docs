@@ -39,7 +39,11 @@ Option 1 applies the LLMs instructions to generate an appropriate response. To e
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [Python quickstart](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/python1.md)]
+[!INCLUDE [Python option1](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/python1.md)]
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp option1](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/csharp1.md)]
 ::: zone-end
 
 ### Option 2 Requesting a pregenerated assistant greeting
@@ -47,8 +51,13 @@ Option 1 applies the LLMs instructions to generate an appropriate response. To e
 Option 2 uses a pregenerated greeting message to generate the greeting response. This option applies the same feature used for other pregenerated messages too.
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [Python quickstart](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/python2.md)]
+[!INCLUDE [Python option2](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/python2.md)]
 ::: zone-end
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp option2](./includes/how-to/voice-live-how-to-proactive-and-pregenerated-messages/csharp2.md)]
+::: zone-end
+
 
 ### General advice
 
@@ -85,6 +94,10 @@ try:
 except Exception:
     logger.exception("Failed to send proactive greeting event")
 ```
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
 ::: zone-end
 
 ## Related content
