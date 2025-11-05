@@ -107,17 +107,17 @@ The connection is now available to Agents (when not overridden), Evaluations, Da
 ::: moniker-end
 
 > [!NOTE]
-> Azure portal (portal.azure.com) steps are version-agnostic and intentionally not wrapped in moniker blocks (Source: .vscode/settings.json).
+> Azure portal (portal.azure.com) steps are version-agnostic and intentionally not wrapped in moniker blocks.
 
 ## Configure capability host for Agents (combined resource + project steps)
 
 You create two capability hosts—one at the resource level and one at the project level—each referencing the same connection chain so Agents route to your storage.
 
 1. Create a resource-level connection (as above) if not already present.
-2. Create a resource-level capability host referencing that connection.
-3. Create (or open) a project under the resource.
-4. Create a project-level capability host referencing the resource-level capability host.
-5. Verify Agents data now writes to the bound storage account.
+1. Create a resource-level capability host referencing that connection.
+1. Create (or open) a project under the resource.
+1. Create a project-level capability host referencing the resource-level capability host.
+1. Verify Agents data now writes to the bound storage account.
 
 ### Example (Azure CLI) *(illustrative)*
 ```bash
