@@ -14,6 +14,8 @@ author: PatrickFarley
 
 This guide shows you how to use text to speech avatar with real-time synthesis. The avatar video is generated almost instantly after you enter text.
 
+Text to speech avatar can be used in the Voice live API to create a more personalized voice conversation, check [Voice live API overview](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/voice-live) and [Avatar in Voice Live sample code](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/voice-live-how-to#azure-text-to-speech-avatar) to learn more
+
 ## Prerequisites
 
 You need:
@@ -63,7 +65,7 @@ Default voice selection:
 
 ## Select avatar character and style
 
-See [supported avatar characters and styles](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
+See [supported standard avatars](standard-avatars.md).
 
 Set avatar character and style:
 
