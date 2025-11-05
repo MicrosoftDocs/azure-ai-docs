@@ -44,34 +44,23 @@ If the built-in Azure AI Developer role doesn't meet your needs, you can create 
 In the Azure AI Foundry portal, there are two levels of access:
 
 - **Account**: The account is home to the infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies) for your Azure AI Foundry resource.
+- **Project**: The project is where you build and develop AI applications, manage connections, deployments, and collaborate with team members.
+
 The Azure AI Foundry resource has built-in roles that are available by default for both the account and project. Here's a table of the built-in roles and their permissions.
 
-| Role                     | Description                                                                                                                                                                                                 |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Azure AI User**            | Grants reader access to AI projects, reader access to AI accounts, and data actions for an AI project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. |
-| **Azure AI Project Manager** | Lets you perform management actions on Azure AI Foundry projects, build and develop with projects, and conditionally assign the Azure AI User role to other user principals.          |
+| Role                     | Description                                                                                                                                                                |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Azure AI User**            | Grants reader access to AI projects, reader access to AI accounts, and data actions for an AI project. If you can assign roles, this role is assigned to you automatically. |
+| **Azure AI Project Manager** | Lets you perform management actions on Azure AI Foundry projects, build and develop with projects, and conditionally assign the Azure AI User role to other user principals. |
 | **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts, and lets you conditionally assign the Azure AI User role to other user principals.      |
 
 >[!NOTE]
 >To view and purge deleted AI Foundry accounts, you must have Contributor role assigned at the subscription scope.
 
-The key differences between **Azure AI Project Manager** and **Azure AI Account Owner** are the abilities to:
+The key differences between **Azure AI Project Manager** and **Azure AI Account Owner** are:
 
-- Create new Azure AI Foundry account resources. Only the **Azure AI Account Owner** can do this.
-The second difference appears in the role definitions: the data action `Microsoft.CognitiveServices/*`. This data action lets the user complete any read, write, or delete data actions within a project. The **Azure AI Project Manager** can perform this action, but the **Azure AI Account Owner** can't. Only **Azure AI User** and **Azure AI Project Manager** get data actions for an AI project. Think of **Azure AI Project Manager** as an elevated **Azure AI User**.
- 
-In addition to these built-in role assignments, there are Azure privileged administrator roles like Owner, Contributor, and Reader. These roles aren't specific to Azure AI Foundry resource permissions, so use the previously described built-in roles for least privilege access.
- 
-Use the following table to see the privileges for each built-in role, including the Azure privileged administrator roles:
-
-| Built-in role                         | Create Foundry projects | Create Foundry accounts | Build and develop in a project (data actions) | Complete role assignments                          | Reader access to projects and accounts | Manage models |
-|--------------------------|-------------------------|--------------------------|-----------------------------------------------|---------------------------------------------------|-----------------------------------------|-----------------------------------------|
-| **Azure AI User**        |                         |                          | ✔                                             |                                                 | ✔                                       |                                                 |
-| **Azure AI Project Manager** | ✔                     |                          | ✔                                             | ✔ (only assign Azure AI User role)               | ✔                                       |                                                 |
-| **Azure AI Account Owner**   | ✔                     | ✔                        |                                               | ✔ (only assign Azure AI User role)               | ✔                                       | ✔                                               |
-| **Owner**                | ✔                     | ✔                        |                                               | ✔ (assign any role to any user)                  | ✔                                       | ✔                                               |
-| **Contributor**          | ✔                     | ✔                        |                                               |                                                 | ✔                                       | ✔                                               |
-| **Reader**               |                         |                          |                                               |                                                 | ✔                                       |                                                 |
+- **Creating new Azure AI Foundry account resources**: Only the **Azure AI Account Owner** can create new Azure AI Foundry account resources. The Azure AI Project Manager can only create projects within existing accounts.
+- **Data actions within projects**: The **Azure AI Project Manager** has the data action `Microsoft.CognitiveServices/*` in their role definition, which lets the user complete any read, write, or delete data actions within a project. The **Azure AI Account Owner** does not have these data actions, as their role focuses on account-level management rather than project-level development work.
 
 ## Default roles for the project
 
