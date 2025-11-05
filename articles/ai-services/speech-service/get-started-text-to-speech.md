@@ -18,7 +18,7 @@ keywords: text to speech
 
 # Quickstart: Convert text to speech
 
-::: zone pivot="ai-foundry-portal"
+::: zone pivot="ai-foundry"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/text-to-speech-basics/ai-foundry.md)]
 ::: zone-end
 
