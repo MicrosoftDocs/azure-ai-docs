@@ -127,7 +127,7 @@ New-EntraServicePrincipalAppRoleAssignment -ServicePrincipalId $managedIdentityO
 
 ```
 
-The appID roles above are associated to the following Azure roles:
+The appID roles in the provided PowerShell script are associated to the following Azure roles:
 
 | AppID                                  | Service Principal                      | 
 | -------------------------------------- | -------------------------------------- | 
