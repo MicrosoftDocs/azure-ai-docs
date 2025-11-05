@@ -17,11 +17,11 @@ ms.update-cycle: 365-days
 
 The **Document Layout** skill analyzes a document to detect structure and characteristics, and produces a syntactical representation of the document in Markdown or Text format. You can use it to extract text and images, where image extraction includes location metadata that preserves image position within the document. Image proximity to related content is beneficial in Retrieval Augmented Generation (RAG) workloads and [multimodal search](multimodal-search-overview.md) scenarios.
 
-This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md). 
+This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md).
 
-This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
+This skill uses the [layout model](/azure/ai-services/document-intelligence/concept-layout) from [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview).
 
-This skill is bound to a [billable Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+This skill is bound to a [billable Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 > [!TIP]
 > It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate image verbalization with two different data chunking techniques:
@@ -34,15 +34,15 @@ This skill is bound to a [billable Azure AI Foundry resource](cognitive-search-a
 
 This skill has the following limitations:
 
-+ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the Azure AI Foundry resource if it's attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the Azure Document Intelligence layout model. The skill times out, but charges still apply to the Azure AI Foundry resource if it's attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
-+ Since this skill calls the Azure AI Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
++ Since this skill calls the Azure Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
 
 ## Supported regions
 
-The Document Layout skill calls the [Document Intelligence 2024-11-30 API](/rest/api/aiservices/operation-groups). 
+The Document Layout skill calls the [Azure Document Intelligence 2024-11-30 API](/rest/api/aiservices/operation-groups).
 
-Supported regions vary by modality and how the skill connects to the Document Intelligence layout model.
+Supported regions vary by modality and how the skill connects to the Azure Document Intelligence layout model.
 
 | Approach | Requirement |
 |----------|-------------|
@@ -67,7 +67,7 @@ This skill recognizes the following file formats.
 
 ## Supported languages
 
-Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
+Refer to [Azure Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
 
 ## @odata.type
 
@@ -76,7 +76,7 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 ## Data limits
 
 + For PDF and TIFF, up to 2,000 pages can be processed (with a free tier subscription, only the first two pages are processed).
-+ Even if the file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), indexing is subject to the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) of your search service tier.
++ Even if the file size for analyzing documents is 500 MB for [Azure Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), indexing is subject to the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) of your search service tier.
 + Image dimensions must be between 50 pixels x 50 pixels or 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, remove the lock before running the indexer.
   
@@ -288,13 +288,13 @@ This example demonstrates how to output text content in fixed-sized chunks and e
 ```
 Note that the `“sections”` in the sample output above appear blank. To populate them, you’ll need to add an additional skill configured with `outputFormat` set to `markdown`to ensure the sections are properly filled.
 
-The skill uses [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
+The skill uses [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
 
 The `imagePath` represents the relative path of a stored image. If the knowledge store file projection is configured in the skillset, this path matches the relative path of the image stored in the knowledge store.
 
 ## See also
 
-+ [What is document intelligence layout model](/azure/ai-services/document-intelligence/concept-layout)
++ [What is the Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout)
 + [Built-in skills](cognitive-search-predefined-skills.md)
 + [How to define a skill set](cognitive-search-defining-skillset.md)
 + [Create Indexer (REST API)](/rest/api/searchservice/indexers/create)

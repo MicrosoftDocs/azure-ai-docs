@@ -38,7 +38,7 @@ When you create a search service, you work with the following capabilities:
 + Extensive query syntax for agents, vectors, text, hybrid, and multimodal queries.
 + Smart results through semantic ranking, scoring profiles, and parameterized queries.
 + Azure scale, security, and reach.
-+ Azure integration at the data layer, machine learning layer, Azure AI services, and Azure OpenAI.
++ Azure integration at the data layer, machine learning layer, Azure AI Foundry Tools, and Azure OpenAI.
 
 > [!div class="nextstepaction"]
 > [Create a search service](search-create-service-portal.md)

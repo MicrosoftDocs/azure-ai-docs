@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/03/2025
+ms.date: 11/04/2025
 ---
 
 # Retrieve data using a knowledge base in Azure AI Search
@@ -22,7 +22,7 @@ This article explains how to set up a retrieve action. It also covers the three 
 + *referenced results*
 + *query activity*
 
-A retrieve request can include instructions for query processing that override the defaults set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
+A retrieve request can include instructions for query processing that override the default instructions set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
 
 ## Prerequisites
 
@@ -236,68 +236,79 @@ The body of the response is also structured in the chat message style format. Cu
 
 The activity array outputs the query plan, which helps you track the operations performed when executing the request. It also provides operational transparency so you can understand the billing implications and frequency of resource invocations.
 
-The output includes:
+The output includes the following components.
 
-+ Token counts used for the input and output.
+| Section | Description |
+|---------|-------------|
+| modelQueryPlanning | For knowledge bases that use an LLM for query planning, this section reports on the token counts used for input, and the token count for the subqueries. |
+| source-specific activity | For each knowledge source included in the query, report on elapsed time and which arguments were used in the query, including the semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
+| agenticReasoningEffort | For each retrieve action, you can specify the degree of LLM support. Use minimal to bypass an LLM, low for constrained LLM processing, and medium for full LLM processing. | 
+| modelAnswerSynthesis | For knowledge bases that specify answer formulation, this section reports on the token count for formulating the answer, and the token count of the answer output. |
+
+Output also includes the following information:
+
 + Subqueries sent to the retrieval pipeline.
-+ Result counts per subquery.
-+ Filters on the subquery, if applicable.
-+ Token counts used for ranking and extraction.
 + Errors for any retrieval failures, such as inaccessible knowledge sources.
 
 Here's an example of an activity array.
 
 ```json
-"activity": [
+  "activity": [
     {
-      "type": "ModelQueryPlanning",
+      "type": "modelQueryPlanning",
       "id": 0,
-      "inputTokens": 1261,
-      "outputTokens": 270
+      "inputTokens": 2302,
+      "outputTokens": 109,
+      "elapsedMs": 2396
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 1,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "suburban belts December brightening urban cores comparison",
-        "filter": null
-      },
-      "queryTime": "2025-05-30T21:23:25.944Z",
-      "count": 0,
-      "elapsedMs": 600
+      "knowledgeSourceName": "sec-gics-financials",
+      "queryTime": "2025-11-04T19:25:23.683Z",
+      "count": 26,
+      "elapsedMs": 1137,
+      "searchIndexArguments": {
+        "search": "List of companies in the financial sector according to SEC GICS classification",
+        "filter": null,
+        "sourceDataFields": [ ],
+        "searchFields": [ ],
+        "semanticConfigurationName": "en-semantic-config"
+      }
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 2,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "Phoenix nighttime street grid visibility from space",
-        "filter": null
-      },
-      "queryTime": "2025-05-30T21:23:26.128Z",
-      "count": 2,
-      "elapsedMs": 161
+      "knowledgeSourceName": "sec-gics-healthcare",
+      "queryTime": "2025-11-04T19:25:24.186Z",
+      "count": 17,
+      "elapsedMs": 494,
+      "searchIndexArguments": {
+        "search": "List of companies in the financial sector according to SEC GICS classification",
+        "filter": null,
+        "sourceDataFields": [ ],
+        "searchFields": [ ],
+        "semanticConfigurationName": "en-semantic-config"
+      }
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "agenticReasoning",
       "id": 3,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "interstate visibility from space midwestern cities",
-        "filter": null
+      "retrievalReasoningEffort": {
+        "kind": "low"
       },
-      "queryTime": "2025-05-30T21:23:26.277Z",
-      "count": 0,
-      "elapsedMs": 147
+      "reasoningTokens": 103368
     },
     {
-      "type": "AzureSearchSemanticRanker",
+      "type": "modelAnswerSynthesis",
       "id": 4,
-      "inputTokens": 2622
+      "inputTokens": 5821,
+      "outputTokens": 344,
+      "elapsedMs": 3837
     }
-  ],
+  ]
 ```
+
 
 ## Review the references array
 

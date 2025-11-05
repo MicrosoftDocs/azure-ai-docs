@@ -15,7 +15,7 @@ ms.date: 09/27/2025
 
 # Tutorial: Verbalize images from a structured document layout
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and uses *image verbalization* to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index. Chunking is based on the Azure AI Document Intelligence Layout model that recognizes document structure.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and uses *image verbalization* to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index. Chunking is based on the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) that recognizes document structure.
 
 To get image verbalizations, each extracted image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing searchable content from both modalities: text and verbalized images.
 
@@ -33,7 +33,7 @@ In this tutorial, you use:
 
 ## Prerequisites
 
-+ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to the Document Intelligence Layout model used in this tutorial. You must use an Azure AI Foundry resource for skillset access to this resource.
++ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to the Azure Document Intelligence Layout model used in this tutorial. You must use an Azure AI Foundry resource for skillset access to this resource.
 
 + [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
@@ -89,11 +89,11 @@ The following instructions apply to Azure Storage which provides the sample data
 
 This tutorial assumes you have an existing Azure OpenAI resource through which the skills a chat completion model for GenAI Prompt and also a text embedding model for vectorization. The search service connects to the models during skillset processing and during query execution using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
-You also need a role assignment for accessing the Document Intelligence Layout model via an Azure AI Foundry resource.
+You also need a role assignment for accessing the Azure Document Intelligence layout model via an Azure AI Foundry resource.
 
 ### Assign roles in Azure AI Foundry
 
-1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI Foundry resource. Make sure it's in a region that provides the [Document Intelligence Layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
+1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI Foundry resource. Make sure it's in a region that provides the [Azure Document Intelligence layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 1. Select **Access control (IAM)**.
 

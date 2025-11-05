@@ -686,7 +686,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Adds knowledge sources for OneLake, SharePoint (local), SharePoint (remote) that retrieves content directly from Sharepoint, Web (Bing) that pulls from the Bing indexes.
 
-+ All knowledge sources that pull from a search index have new ingestion options: `ingestionPermissionOptions` to support source-specific access models, `contentExtractionMode` that enables Content Understanding integration, `aiServices` endpoint for Content Understanding.
++ All knowledge sources that pull from a search index have new ingestion options: `ingestionPermissionOptions` to support source-specific access models, `contentExtractionMode` that enables Azure Content Understanding in Foundry Tools integration, `aiServices` endpoint for Azure Content Understanding when `"contentExtractionMode": "minimal"`.
 
 + All knowledge sources that pull from a search index have a `status` operation, which returns the synchronization status of the knowledge source with its data source.
 

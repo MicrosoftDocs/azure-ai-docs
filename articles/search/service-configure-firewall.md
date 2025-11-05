@@ -77,7 +77,7 @@ Network rules are scoped to data plane operations against the search service's p
 
    The trusted service list includes:
 
-   + `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI services
+   + `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI Foundry Tools
    + `Microsoft.MachineLearningServices` for Azure Machine Learning
 
    When you enable this exception, you take a dependency on Microsoft Entra ID authentication, managed identities, and role assignments. Any Azure AI service or AML feature that has a valid role assignment on your search service can bypass the firewall. See [Grant access to trusted services](#grant-access-to-trusted-azure-services) for more details.
@@ -135,7 +135,7 @@ Did you select the trusted services exception? If yes, your search service admit
 
 The trusted service list for Azure AI Search includes:
 
-+ `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI services
++ `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI Foundry Tools
 + `Microsoft.MachineLearningServices` for Azure Machine Learning
 
 Workflows for this network exception are requests originating from Azure AI Foundry or other AML features to Azure AI Search. The trusted services exception is typically for [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) scenarios for retrieval augmented generation (RAG) and playground environments.

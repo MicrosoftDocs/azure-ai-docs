@@ -36,7 +36,7 @@ You can add a search service to a network security perimeter in the Azure portal
 
 * Supported indexer data sources are currently limited to [Azure Blob Storage](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-how-to-index-cosmosdb-sql.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
 
-* Currently, within the perimeter, indexer connections to Azure PaaS for data retrieval is the primary use case. For outbound skills-driven API calls to Azure AI services, Azure OpenAI, or the Azure AI Foundry model catalog, or for inbound calls from Azure AI Foundry for "chat with your data" scenarios, you must [configure inbound and outbound rules](#add-an-inbound-access-rule) to allow the requests through the perimeter. If you require private connections for [structure-aware chunking](search-how-to-semantic-chunking.md) and vectorization, you should [create a shared private link](search-indexer-howto-access-private.md) and a private network.
+* Currently, within the perimeter, indexer connections to Azure PaaS for data retrieval is the primary use case. For outbound skills-driven API calls to Azure AI Foundry Tools, Azure OpenAI, or the Azure AI Foundry model catalog, or for inbound calls from Azure AI Foundry for "chat with your data" scenarios, you must [configure inbound and outbound rules](#add-an-inbound-access-rule) to allow the requests through the perimeter. If you require private connections for [structure-aware chunking](search-how-to-semantic-chunking.md) and vectorization, you should [create a shared private link](search-indexer-howto-access-private.md) and a private network.
 
 ## Assign a search service to a network security perimeter
 
@@ -212,7 +212,7 @@ To add an inbound access rule in the Azure portal:
 
 ### Add an outbound access rule
 
-A search service makes outbound calls during indexer-based indexing and skillset execution. If your indexer data sources, Azure AI services, or custom skill logic is outside of the network security perimeter, you should create an outbound access rule that allows your search service to make the connection.
+A search service makes outbound calls during indexer-based indexing and skillset execution. If your indexer data sources, Azure AI Foundry Tools, or custom skill logic is outside of the network security perimeter, you should create an outbound access rule that allows your search service to make the connection.
 
 Recall that in public preview, Azure AI Search can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If your indexers use other data sources, you need an outbound access rule to support that connection.
 
