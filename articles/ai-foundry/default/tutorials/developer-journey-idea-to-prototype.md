@@ -1,9 +1,9 @@
 ---
-title: "Developer journey stage 1: Idea to prototype - Build and evaluate an enterprise agent"
+title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Azure AI Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 11/11/2025
+ms.date: 11/18/2025
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
@@ -480,27 +480,28 @@ The evaluation tests:
 
 ## Next steps
 
-This ultra-minimal sample provides the foundation for enterprise AI development:
+This ultra-minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
 
-> [!div class="nextstepaction"] 
-> [Stage 2: Governance and monitoring]()
-- Implement content filtering and safety guardrails.
-- Add comprehensive evaluation metrics and monitoring.
-- Set up continuous evaluation pipelines.
-- Apply governance policies and compliance controls.
-
-> [!div class="nextstepaction"] 
-> [Stage 3: Production deployment]()
-- Deploy agents to Azure AI Foundry with proper scaling.
-- Implement AI Gateway for cost and usage monitoring.
-- Add advanced observability and performance tracking.
-- Set up production-ready security and access controls.
-
-### Suggested enhancements
+### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](), [databases]()).
 - Implement advanced evaluation methods ([AI-assisted evaluation]()).
 - Create [custom tools]() for business-specific operations.
 - Add [conversation memory and personalization]().
+
+### Stage 2: Prototype to production
+
+- [Implement safety assessment with red-team testing]().
+- [Create comprehensive evaluation datasets with quality metrics]().
+- [Apply organization-wide governance policies and model comparison]().
+- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints]().
+
+### Stage 3: Production to adoption
+
+- [Collect trace data and user feedback from production deployments]().
+- [Fine-tune models and generate evaluation insights for continuous improvement]().
+- [Integrate Azure API Management gateway with continuous quality monitoring]().
+- [Implement fleet governance, compliance controls, and cost optimization]().
+
 
 ## Related content
 
