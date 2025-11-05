@@ -116,11 +116,11 @@ You don't select a tier. You choose a generative AI model and the corresponding 
 | Voice live basic | `gpt-realtime-mini`, `gpt-4o-mini`, `gpt-4.1-mini`, `gpt-5-mini` |
 | Voice live lite | `gpt-5-nano`,`phi4-mm-realtime`, `phi4-mini` |
 
-If you choose to use custom voice for your speech output, you're charged separately for custom voice model training and hosting. Refer to the [Text to Speech – Custom Voice – Professional](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services) pricing for details. Custom voice is a limited access feature. [Learn more about how to create custom voices.](https://aka.ms/CNVPro)
+If you choose to use custom speech, personal voice or custom voice for your speech input and/or output, you're charged separately for model training and hosting. Refer to the [Speech Services Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services) for details.
 
-Avatars are charged separately with [the interactive avatar pricing published here.](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services)
+Custom voice is a limited access feature. [Learn more about how to create custom voices.](https://aka.ms/CNVPro).
 
-For more information regarding custom voice and avatar training charges, [refer to this pricing note.](/azure/ai-services/speech-service/text-to-speech#model-training-and-hosting-time-for-custom-voice)
+Further Avatars are charged separately with [the interactive avatar pricing published here.](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
 ### Example pricing scenarios
 

@@ -192,17 +192,17 @@ In order to explicitly configure it, you can set the `model` to `azure-speech` i
 
 ## Audio output through Azure text to speech
 
-You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output.
+You can use the `voice` parameter to specify a standard, personal or custom voice. The voice is used for audio output.
 
 The `voice` object has the following properties:
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
 | `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
-| `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
+| `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard`, `azure-personal` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
-See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
+See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech output customization configuration.
 
 ### Azure standard voices
 

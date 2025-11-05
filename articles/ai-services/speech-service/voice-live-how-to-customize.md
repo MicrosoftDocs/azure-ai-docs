@@ -103,8 +103,27 @@ You can use a custom voice for audio output. For information about how to create
 ```
 
 > [!NOTE]
-> In order to use a custom voice model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the Voice live API.
+> In order to use a custom voice model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy it to the resource you are using to call the Voice live API.
 > You pay separately for custom voice training and model hosting. 
+
+### Azure personal voices
+
+You can use a personal voice for audio output. For information about how to create a persoanl voice, see [What is personal voice for text to speech](./personal-voice-overview.md).
+
+```json
+{
+  "voice": {
+    "type": "azure-personal",    
+    "name": "your-personal-voice-name",
+    "model": "DragonHDOmniLatestNeural", // Underlying neural model to use for personal voice. This can be either "DragonLatestNeural" or "DragonHDOmniLatestNeural".
+    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
+  }
+}
+```
+
+> [!NOTE]
+> In order to use a personal voice model with Voice live API, the personal voice must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the personal voice on a different Azure AI Foundry or Azure AI Speech resource you have to copy it to the resource you are using to call the Voice live API.
+> You pay separately for personal voice training and hosting. 
 
 ### Azure custom avatar
 
