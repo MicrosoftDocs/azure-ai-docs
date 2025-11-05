@@ -1,19 +1,19 @@
 ---
 title: Conversational Language Understanding - Azure AI services
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Customize an AI model to predict the intentions of utterances, and extract important information from them.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 05/01/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
 # What is conversational language understanding?
 
-Conversational language understanding is one of the custom features offered by [Azure AI Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
+Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
 
 Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. By creating a CLU project, developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Azure AI Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
@@ -93,7 +93,7 @@ Follow these steps to get the most out of your trained model:
 
 ## Reference documentation and code samples
 
-As you use CLU, see the following reference documentation and samples for Azure AI Language:
+As you use CLU, see the following reference documentation and samples for Azure Language:
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|
