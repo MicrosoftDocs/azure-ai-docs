@@ -94,6 +94,24 @@ Download repository ZIP, extract, and navigate to the tutorial folder.
 > [!IMPORTANT]
 > A standalone repository is recommended for production adoption. This tutorial uses the shared samples repo for now. Sparse checkout minimizes local noise.
 
+# [Python](#tab/python)
+
+> [!div class="nextstepaction"] 
+> [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
+
+# [C#](#tab/csharp)
+
+> [!div class="nextstepaction"] 
+> [Download the C# code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
+
+# [Java](#tab/java)
+
+> [!div class="nextstepaction"] 
+> [Download the Java code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype)
+
+---
+
+
 The ultra-minimal structure contains only essential files:
 
 # [Python](#tab/python)
