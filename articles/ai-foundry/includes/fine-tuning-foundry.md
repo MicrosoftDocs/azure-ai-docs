@@ -75,11 +75,11 @@ When selecting the model, you can also select a previously fine-tuned model.
 
 Different customization methods may be supported based on the selected model:
 
-- **Supervised (SFT)**: Trains the model on labeled input-output pairs. Best for most scenarios, including task specialization. This is supported by all non-reasoning models.
+- **Supervised (SFT)**: Trains the model on labeled input-output pairs. Best for most scenarios, including task specialization.
 
-- **Direct Preference Optimization (DPO)**: Aligns model with human-preferred responses. Ideal for improving response quality. This is supported only by GPT-4o.
+- **Direct Preference Optimization (DPO)**: Aligns model with human-preferred responses. Ideal for improving response quality. 
 
-- **Reinforcement (RFT)**: Uses reward signals from model graders to optimize complex behaviors. This is supported only by GPT-5 and o4-mini.
+- **Reinforcement (RFT)**: Uses reward signals from model graders to optimize complex behaviors. 
 
 > [!NOTE]
 > This rest of this document will cover steps for supervised fine-tuning method. For instructions specific to other customization methods, see articles for [DPO](../openai/how-to/fine-tuning-direct-preference-optimization.md) or [RFT](../openai/how-to/reinforcement-fine-tuning.md).
@@ -101,7 +101,7 @@ If you have existing datasets in the Foundry project, choose **Existing dataset*
 
 To upload newly prepared datasets, choose **Upload new dataset** for the **data source** and then upload your JSONL file.
 
-On your data files that are selected or uploaded, validation checks automatically occur to confirm they are in the right format.
+Once your data files are selected or uploaded, validation checks automatically occur to confirm they are in the right format.
 
 > [!NOTE]
 > Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size. While 10 is the minimum number of required samples in a dataset, at least 100s of training samples are recommended to teach the model a new skill.
