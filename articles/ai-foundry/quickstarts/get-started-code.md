@@ -58,14 +58,16 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Prerequisites
 
-> [!IMPORTANT]
-> Before starting, make sure your development environment is ready.  
-> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
->
+
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+- 
+> [!IMPORTANT]
+> Before starting, make sure your development environment is ready.  
+> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
+>
 
 [!INCLUDE [first-run](../includes/first-run-experience.md)]
 
