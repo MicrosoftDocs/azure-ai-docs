@@ -1,6 +1,6 @@
 ---
-title: Get started using the Azure AI Foundry MCP Server with Visual Studio Code
-description: Learn how to connect to and consume Azure AI Foundry MCP Server operations with Visual Studio Code
+title: Explore Azure AI Foundry MCP Server best practices and security guidance
+description: Learn about Azure AI Foundry MCP Server best practices and security guidance
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
