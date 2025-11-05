@@ -517,12 +517,21 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-objectivec
+  - id: programming-language-python
     title: Python
   - id: programming-language-swift
     title: Swift
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech-avatar
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-rest
     title: REST
 - id: programming-languages-set-thirteen
