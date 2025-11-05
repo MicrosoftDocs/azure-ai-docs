@@ -35,11 +35,9 @@ ms.custom: include
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-Now create an agent and interact with it.
-1. Still in the **Build** section, select **Agents** in the left pane.
-1. Select **Create agent** and give it a name.
+Interact with your agent.
 1. Add instructions, such as, "You are a helpful writing assistant."
-1. Start chatting with your agent, for example, "What is the size of France in square miles?" 
-1. Follow up with "And what is the capital city?"
+1. Start chatting with your agent, for example, "Write a poem about the sun." 
+1. Follow up with "How about a haiku?"
 
 ---

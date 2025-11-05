@@ -10,6 +10,9 @@ ms.date: 11/05/2025
 ms.custom: include
 ---
 
+
+Generating responses from a model is the basic building block of AI applications.  Send an input and receive a response from the model:
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
 # [Python](#tab/python)
@@ -38,6 +41,6 @@ Not yet available
 
 1. After the model deploys, you're automatically moved from **Home** to the **Build** section. Your new model is selected and ready for you to try out.
 
-1. Ask the model a question, for example: "What is the size of France in square miles?"
+1. Start chatting with your model, for example, "Write me a poem about flowers."
 
 ---

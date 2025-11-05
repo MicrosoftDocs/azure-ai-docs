@@ -36,8 +36,8 @@ Not yet available
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. After the model deploys, you're automatically moved from **Home** to the **Build** section. Your new model is selected and ready for you to try out.
-
-1. Ask the model a question, for example: "What is the size of France in square miles?"
+Now create an agent and interact with it.
+1. Still in the **Build** section, select **Agents** in the left pane.
+1. Select **Create agent** and give it a name.
 
 ---

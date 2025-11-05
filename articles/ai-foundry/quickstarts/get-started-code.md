@@ -266,11 +266,11 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 
 
-## Run a chat completion
-
-Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
+## Chat with a model
 
 ::: moniker range="foundry-classic"
+
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
 # [Python](#tab/python)
 
