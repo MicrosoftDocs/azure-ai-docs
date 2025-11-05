@@ -46,7 +46,7 @@ items:
   - name: Supported programming languages and SDKs
     href: ../../openai/supported-languages.md
   - name: Migrate from Azure AI Inference SDK to OpenAI SDK
-    href: ../../how-to/model-inference-to-openai-migration.md
+    href: ../../how-to/model-inference-to-openai-migration.md?tabs=openai&pivots=programming-language-python
   - name: Azure AI Inference SDK
     href: ../../foundry-models/supported-languages.md
   - name: Work with chat models
