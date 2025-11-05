@@ -69,7 +69,7 @@ Some common industry-specific applications for Content Understanding include:
 
 The Content Understanding framework processes unstructured content through multiple stages, transforming inputs into structured, actionable outputs. The following table describes each component from left to right as shown in the diagram:
 
-:::image type="content" source="/media/overview/content-understanding-framework-2025.png" lightbox="media/overview/pro-components.png"alt-text="Diagram showing the Content Understanding framework with inputs flowing through analyzers to structured output.":::
+:::image type="content" source="media/overview/content-understanding-framework-2025.png" alt-text="Diagram showing the Content Understanding framework with inputs flowing through analyzers to structured output." lightbox="media/overview/content-understanding-framework-2025.png" :::
 
 |Component|Description|
 |:---------|:----------|
