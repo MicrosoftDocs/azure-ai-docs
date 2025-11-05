@@ -1,5 +1,7 @@
 items:
   - name: Azure AI Foundry architecture
     href: ../../../concepts/architecture.md
+  - name: Choose a resource
+    href: ../../../concepts/resource-types.md
   - name: Model lifecycle and retirement
     href: ../../../concepts/model-lifecycle-retirement.md
