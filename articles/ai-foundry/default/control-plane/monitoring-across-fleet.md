@@ -47,11 +47,11 @@ You can view aggregated metrics for all agents within a selected project using A
 
 :::image type="content" source="media/monitoring-across-fleet/agent-metrics-overview-page.png" alt-text="Screenshot of Azure AI Foundry Overview page displaying aggregated metrics for all agents." lightbox="media/monitoring-across-fleet/agent-metrics-overview-page.png":::
 
-1. Go to **Azure AI Foundry Portal**.
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** > **Overview**.
+1. Select **Operate**  from the upper-right navigation to view the **Overview** pane.
 
-The Overview page displays common metrics and insights for all registered agents in your selected project:
+The **Overview** pane displays common metrics and insights for all registered agents in your selected project:
 
 - Monitor compliance alerts and track fleet health, including active versus inactive agents, success rates, and error trends.
 
@@ -63,11 +63,13 @@ The Overview page displays common metrics and insights for all registered agents
 
 You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
 
-1. Select **Operate** > **Assets** > **Agents**.
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+
+1. Select **Operate**  from the upper-right navigation. Select **Assets**, then the  **Agents** tab.
 
 1. Review the overview of common metrics.
 
-The Agents tab displays all registered agents in your selected project. From here, you can:
+The **Agents** tab displays all registered agents in your selected project. From here, you can:
 
 - Filter by metrics including platform, status, and cost.
 
