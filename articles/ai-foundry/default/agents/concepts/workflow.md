@@ -17,13 +17,13 @@ author: ssalgadodev
 
 # Build a workflow in Azure AI Foundry
 
-Workflows are a UI-based tool in Foundry to create declarative workflows, a predefined sequence of actions including agents, as in Microsoft Agent Framework Workflows.
+Workflows is a UI-based tool in Foundry to create declarative, predefined sequences of actions including agents, as in Microsoft Agent Framework Workflows.
 
-Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes, in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multi-faceted tasks. By orchestrating multiple agents, each with specialized skills or roles, we can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
+Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes, in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multi-faceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
 * A [project in Azure AI Foundry](/azure/ai-foundry/how-to/create-projects) in the westus2 region.
 
 ## Create a workflow
@@ -32,13 +32,13 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 ### Create a sequential workflow
 
-1. Go to [Foundry Portal](https://eastus2euap.ai.azure.com/nextgen/r/LThb9AdWSnaqlSi_ntO2JQ,rg-vkintali-5609,,vkintali-prod-westus2-resource,vkintali-prod-westus2/Build/workflows?flight=ignite_preview%3Dfalse%2Cnextgen_canary).
+1. Go to [Foundry Portal](https://eastus2euap.ai.azure.com/nextgen).
 2. Select **Create new workflow** and **Sequential**.
-3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#adding-existing) or [create a new one](#create-new-agents).
+3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agents).
 4. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
 5. Select **Run Workflow**.
 6. Interact with the workflow in the chat window.
-7. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#adding-nodes-to-your-workflow) section.
+7. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#add-nodes-to-your-workflow) section.
 
 > [!IMPORTANT]
 > Workflows aren't saved automatically. Select **Save** every time you want to save changes to your workflow.
@@ -52,7 +52,7 @@ To start creating a new workflow, you can begin with a blank workflow or select 
 | Concurrent | Broadcasts a task to all agents, collects results independently.   | Parallel analysis, independent subtasks, ensemble decision making. |
 | Sequential | Passes the result from one agent to the next in a defined order.   | Step-by-step workflows, pipelines, multi-stage processing. |
 | Handoff    | Dynamically passes control between agents based on context or rules.| Dynamic workflows, escalation, fallback, or expert handoff scenarios. |
-| Magentic   | Inspired by MagenticOne.                                           | Complex, generalist multi-agent collaboration.           |
+| Magentic   | Inspired by [MagenticOne](https://microsoft.github.io/autogen/stable//user-guide/agentchat-user-guide/magentic-one.html).                                           | Complex, generalist multi-agent collaboration.           |
 
 ## Add nodes to your workflow
 
@@ -70,7 +70,7 @@ Nodes define the building blocks of your workflow. Common node types include:
 You can add any Foundry agent from your project to the workflow. Agent nodes also allow you to create new agents, configure their model, prompt, and tools, giving them customized capabilities.
 For more advanced options and comprehensive agent creation, visit the Foundry Agent tab in the AI Foundry portal.
 
-### Add existing
+### Add existing agent
 
 1. Select the '+' sign in the workflow visualizer.
 2. In the pop-up dropdown, select **Invoke agent**.
