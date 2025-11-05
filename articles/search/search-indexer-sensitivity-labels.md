@@ -74,10 +74,21 @@ Accessing Microsoft Purview sensitivity label metadata involves highly privilege
 
 If you need to determine who can authorize permissions for the search service, you can locate active or eligible Global Administrators in your Microsoft Entra tenant.
 
-1. In the [Azure portal](https://portal.azure.com), search for **Microsoft Entra ID**.  
-1. In the left navigation pane, select **Manage > Roles and administrators**.  
-1. Search for the **Global Administrator** or **Privileged Role Administrator**  role and select it.  
+1. In the [Azure portal](https://portal.azure.com), search for **Microsoft Entra ID**.
+
+   ::image type="content" source="media/search-indexer-sensitivity-labels/search-microsoft-entra-id.png" alt-text="Screenshot of the search action for Microsoft Entra product." lightbox="media/search-indexer-sensitivity-labels/search-microsoft-entra-id.png":::
+   
+1. In the left navigation pane, select **Manage > Roles and administrators**.
+
+   ::image type="content" source="media/search-indexer-sensitivity-labels/entra-id-roles-and-administrators.png" alt-text="Screenshot of the Entra roles and administrators page." lightbox="media/search-indexer-sensitivity-labels/entra-id-roles-and-administrators.png":::
+   
+1. Search for the **Global Administrator** or **Privileged Role Administrator**  role and select it.
+
+   ::image type="content" source="media/search-indexer-sensitivity-labels/global-administrator-role.png" alt-text="Screenshot of the selection of global administrator role." lightbox="media/search-indexer-sensitivity-labels/global-administrator-role.png":::
+   
 1. Under **Eligible assignments** and **Active assignments**, review the list of administrators authorized to run the permissions setup process.
+
+   ::image type="content" source="media/search-indexer-sensitivity-labels/role-eligible-assignments-and-active-assignments.png" alt-text="Screenshot of role eligible and active assignments." lightbox="media/search-indexer-sensitivity-labels/role-eligible-assignments-and-active-assignments.png":::
 
 ### Secure Governance Approval
 Engage your internal security or compliance teams to review the request. Microsoft recommends following your company’s standard governance and security review process before proceeding with any role assignments.
