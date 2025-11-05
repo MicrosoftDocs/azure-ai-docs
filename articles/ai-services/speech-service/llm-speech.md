@@ -125,7 +125,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Here are some best practices for prompts:
 - Prompts are subject to a maximum length of 4,096 characters.
-- The prompt should match the audio language.
+- Prompts should preferably be written in English.
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 - Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit the number of phrases per prompt.
 - Prompts that aren’t related to speech tasks (e.g., `Tell me a story.`) are typically disregarded.
