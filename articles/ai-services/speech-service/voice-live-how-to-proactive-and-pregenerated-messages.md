@@ -11,6 +11,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 11/05/2025
 ms.custom: references_regions
+zone_pivot_groups: voice-live-how-to-proactive-and-pregenerated-messages
 # Customer intent: As a developer, I want to learn invoke a proactive greeting or generate pre-generated messages with the Voice live API.
 ---
 
