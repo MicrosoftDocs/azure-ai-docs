@@ -1,0 +1,122 @@
+---
+title: Get started using the Azure AI Foundry MCP Server with Visual Studio Code
+description: Learn how to connect to and consume Azure AI Foundry MCP Server operations with Visual Studio Code
+keywords: azure developer cli, azd
+author: alexwolfmsft
+ms.author: alexwolf
+ms.date: 11/04/2025
+ms.topic: get-started
+ms.custom: build-2025
+ai-usage: ai-assisted
+---
+
+# Azure AI Foundry MCP Server best practices and security guidance
+
+Use Azure AI Foundry MCP Server (preview) tools to automate read and write operations across Azure AI Foundry resources for deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
+
+## Impact of write operations
+
+Write operations have a critical impact on Azure AI Foundry resources. Always proceed with caution and proper planning when you interact with Azure AI Foundry MCP Server (preview), just like you would when you interact with Azure AI Foundry using UI, SDK, and/or REST APIs. For example: 
+
+- Deployments: Immediately affect live apps and billing 
+- Deletions: Permanently remove resources, may break dependent services 
+- Evaluations: Consume compute quota and incur costs 
+- Datasets: May overwrite existing versions 
+
+Several examples of resource impact are presented below for reference. 
+
+- Deleting a deployment breaks all applications using that endpoint 
+- Large evaluations can consume significant quota allocation 
+- New deployments start billing immediately 
+- Overwriting a dataset affects evaluation reproducibility 
+
+## Best practices for safe executions 
+
+Follow these practices to make sure write operations run as you intend:
+
+### Tool execution verification
+
+- **Verify Tool Selection**: Confirm the correct MCP tool and parameters match your intention before execution 
+- Check parameters: Review all tool parameters (resource IDs, deployment names, dataset paths) for accuracy.
+- Check environment targeting: Make sure resource endpoints and project URLs point to the intended environment.
+
+### Resource management via MCP server
+
+- Check dependencies: Use monitoring tools to make sure no app depends on a resource before you delete it.
+- Check quota: Query quota status before you create new deployments or run large evaluations.
+- **Resource Discovery**: List existing deployments and datasets before making changes 
+- Plan capacity: Check available quota and usage metrics before resource-intensive operations.
+
+### Safe MCP operation practices
+
+- Test in nonproduction: Use development project endpoints first to test MCP operations.
+- Make incremental changes: Change one resource at a time with MCP tools instead of doing bulk operations.
+- Validate changes: Use read-only MCP tools to check changes take effect as expected.
+- Handle errors: Monitor MCP operation responses for errors or unexpected results.
+
+### Documentation and tracking
+
+- Log operations: Check Azure resource Activity Logs to track which resources are affected.
+- Back up configuration: Export current deployment and dataset configurations before you modify them.
+- Track changes: Record MCP operation details for troubleshooting and rollback. 
+
+## Security and governance 
+
+This provides identity, access control, policy, network isolation, and data residency considerations to help you apply governance before running MCP operations.
+
+### Identity and access management
+
+You authenticate to Azure AI Foundry MCP Server (preview) using a Microsoft Entra token scoped to *https://mcp.ai.azure.com*.
+
+Azure role-based access control (RBAC) applies to all operations on Azure AI Foundry resources supported by Azure AI Foundry MCP Server (preview). Operations run according to the authenticated user's permissions.
+
+### Allow tenant admin control via Azure Policy
+
+A tenant admin can create an Azure Policy to grant or block access to Azure AI Foundry MCP Server (preview) for selected users or workload identities.
+
+1. Materialize the service principal for the Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id <application-ID>`. Replace `<application-ID>` with the Azure AI Foundry MCP Server (preview) application ID.
+
+    :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
+
+1. Find the enterprise application for Azure AI Foundry MCP Server (preview) using the application ID.
+
+    :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
+
+1. Add a conditional access policy that targets Azure AI Foundry MCP Server (preview) and specifies the users or workload identities.
+
+    :::image type="content" source="../media/mcp/foundry-block-access.png" alt-text="A screenshot showing how to block app access.":::
+
+1. Select Grant, then choose Block access.
+
+When the policy is in place, designated users and groups can't get the Entra token needed to connect to Azure AI Foundry MCP Server (preview).
+
+### Network isolation
+
+Azure AI Foundry MCP Server (preview) exposes the public endpoint https://mcp.ai.azure.com that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, Azure AI Foundry MCP Server (preview) can't reach them, so operations on the resource fail.
+
+### Data Residency
+
+Azure AI Foundry MCP Server (preview) uses a global stateless proxy architecture. Data created by the backend services it interacts with stays encrypted at rest in the region you select. The server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.
+
+> [!IMPORTANT]
+> By using this preview feature, you acknowledge and consent that transient cross-region processing can occur (for example, an EU resource accessed by a US user could be routed through US infrastructure). If your organization requires strict in-region processing, don't use Azure AI Foundry MCP Server (preview) or restrict its use to scenarios that stay within your selected region. 
+
+## Troubleshooting and FAQs
+
+Use this section to quickly diagnose common MCP Server issues.
+
+### Authentication failures
+
+Check your permissions in Entra ID and confirm your access token is valid. Sign out, then sign back in to your Azure account in Visual Studio Code. For more information, see Manage users and authentication in Entra ID. 
+
+### Permission errors
+
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see Role-based access control for Azure AI Foundry.
+
+### Server connectivity issues
+
+Make sure your network allows outbound HTTPS connections to Azure services and no firewall rules block the MCP Server endpoint. See Azure connectivity troubleshooting for more help.
+
+### Tool discovery problems
+
+Make sure the MCP server is running and tools are loaded by checking the Output view in Visual Studio Code. Restart VS Code or reload your workspace to fix discovery issues. 
