@@ -1,17 +1,22 @@
 ---
 title: Content Streaming in Azure OpenAI
 description: Learn about content streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and performance.
-author: PatrickFarley
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 
 # Content streaming
+
 
 This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
 

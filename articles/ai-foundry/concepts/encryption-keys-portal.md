@@ -12,13 +12,13 @@ ms.custom:
   - ignite-2023
   - build-aifnd
   - build-2025
-ai-usage: ai-assisted
+ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
-# Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)
+# Customer-managed keys for encryption with Azure AI Foundry
 
-> [!NOTE]
+> [!TIP]
 > An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
 
 Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.

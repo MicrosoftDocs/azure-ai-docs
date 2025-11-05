@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/29/2024
+ai-usage: ai-assisted
 ---
 
 [Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) | [Reference](../../latest.md) |
@@ -32,10 +33,23 @@ pip install openai --upgrade
 
 ## Authentication
 
-Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry](https://ai.azure.com):
+::: moniker range="foundry-classic"
 
-- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**
-- Sign in to [AI Foundry portal](https://ai.azure.com) > select your resource
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+
+- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
+- Sign in to [AI Foundry portal](https://ai.azure.com/?cid=learnDocs) > select your resource.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs):
+
+- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
+- Sign in to [AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) > select your resource.
+
+::: moniker-end
 
 # [Microsoft Entra ID](#tab/python-entra)
 
@@ -370,7 +384,7 @@ See quickstarts for all languages: [Getting started with Azure Functions](https:
 - [Supported languages](https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages)
 - [Triggers and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
 
-Let me know if you’re looking for step-by-step tutorials, specific language samples, or deeper technical details!
+Let me know if you're looking for step-by-step tutorials, specific language samples, or deeper technical details!
 ```
 
 ---

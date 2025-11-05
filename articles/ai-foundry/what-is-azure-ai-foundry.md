@@ -8,6 +8,7 @@ ms.reviewer: sgilley
 ms.date: 09/19/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
+monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
@@ -23,11 +24,24 @@ keywords:
 
 # What is Azure AI Foundry?
 
-[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+[!INCLUDE [version-banner](includes/version-banner.md)]
+
+::: moniker range="foundry-classic"
+
+[!INCLUDE [classic-link](includes/classic-link.md)] is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+[!INCLUDE [foundry-link](default/includes/foundry-link.md)] is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+
+::: moniker-end
 
 Azure AI Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
-[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is designed for developers to:
+:::moniker range="foundry-classic"
+[!INCLUDE [classic-link](includes/classic-link.md)] is designed for developers to:
 
 - Build generative AI applications and AI agents on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
@@ -35,12 +49,34 @@ Azure AI Foundry unifies agents, models, and tools under a single management gro
 - Work across model providers with a consistent API contract.
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
+:::moniker-end
+
+::: moniker range="foundry"
+[!INCLUDE [foundry-link](default/includes/foundry-link.md)] delivers a modernized experience with powerful enhancements designed for flexibility and scale:
+
+* **Streamlined Navigation** – A redesigned interface places key controls where you need them, improving workflow efficiency.
+* **Multi-Agent Orchestration and Workflows** – Build advanced automation with SDKs for C# and Python, enabling collaborative agent behavior and complex workflow execution.
+* **Expanded Integration Options** – Publish agents to Microsoft 365, Teams, and BizChat, and leverage containerized deployments for greater portability.
+* **Real-Time Observability** – Monitor performance and governance with built-in metrics and model tracking tools.
+* **Optimized Developer Experience** – Faster load times and dynamic prefetching ensure smooth development and deployment.
+
+## Streamlined navigation
+
+Azure AI Foundry has been reimagined as the AI app and agent factory for AI development teams, ushering in a true code shift for modern builders. The new version of Azure AI Foundry portal delivers speed, simplicity, and modularity as development teams access models, integrate knowledge, and continuously monitor the AI development lifecycle. ​
+
+The new user experience surfaces relevant models, agents, and tools contextually. Seamless transitions from playground to deployment reduce friction and empower teams to move from experimentation to production with ease. Advanced features like memory toggles, knowledge source federation, and embedded evaluation dashboards give development teams the power to design, customize, and manage AI apps and agents with confidence. ​
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
 
 ## Work in an Azure AI Foundry project
 
 An Azure AI Foundry project is where you do most of your development work. You can work with your project in the Azure AI Foundry portal, or use the SDK in your preferred development environment.
 
 Azure AI Foundry projects provide developers with self-serve capabilities to independently create new environments for exploring ideas and building prototypes, while managing data in isolation. Projects act as secure units of isolation and collaboration where agents share file storage, thread storage (conversation history), and search indexes. You can also bring your own Azure resources for compliance and control over sensitive data.
+
+::: moniker-end
 
 ## Azure AI Foundry API and SDKs
 
@@ -53,6 +89,8 @@ The [Azure AI Foundry API](/rest/api/aifoundry/) is designed specifically for bu
 
 The [Azure AI Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
+::: moniker range="foundry-classic"
+
 ## <a name="project-types"></a> Types of projects
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
@@ -61,7 +99,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hu
 
 - [!INCLUDE [hub-description](includes/hub-description.md)]
 
-- To understand the how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
+- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
 
 
 ### Which type of project do I need?
@@ -79,7 +117,7 @@ This table summarizes features available in the two project types:
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
-| Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
+| Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
 | Models deployed on managed compute (e.g. HuggingFace) |  | ✅ |
 | AI Foundry SDK and API | ✅ | Limited* |
 | OpenAI SDK and API | ✅ | Available via connections |
@@ -157,6 +195,8 @@ The management center is a part of the Azure AI Foundry portal that streamlines 
 - Govern access and permissions
 
 For more information, see [Management center overview](./concepts/management-center.md).
+
+::: moniker-end
 
 ## Pricing and billing
 

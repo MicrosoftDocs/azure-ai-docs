@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 10/23/2025
 ms.custom: azure-ai-agents, references_regions
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Models supported by Azure AI Foundry Agent Service
@@ -25,6 +26,7 @@ All deployments can perform the exact same inference operations, however the bil
 
 Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
 
+::: moniker range="foundry-classic"
 > [!NOTE]
 > * [Hub-based projects](../../what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
 > * [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents
@@ -32,8 +34,20 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 > * The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the following regions:
 >     * Italy north
 >     * Brazil south 
+> * The gpt-5 models can only use the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools 
+>    * [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access will be granted according to Microsoft's eligibility criteria.
+::: moniker-end
+
+::: moniker range="foundry"
+> [!NOTE]
+> * [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents
+> * For information on class A subnet support, see the setup guide on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+> * The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the following regions:
+>     * Italy north
+>     * Brazil south 
 > * The gpt-5 models are available for the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools 
 >    * [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access will be granted according to Microsoft's eligibility criteria.
+::: moniker-end
 
 # [Global standard](#tab/global-standard)
 

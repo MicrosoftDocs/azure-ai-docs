@@ -2,13 +2,13 @@
 title: Trace and Observe AI Agents in Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Trace and Observe AI Agents in Azure AI Foundry using OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
+ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 09/29/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ai-usage: ai-assisted
 ms.custom: references_regions
 ---
 
@@ -51,7 +51,7 @@ Here's a brief overview of key concepts before getting started:
 - Use consistent span attributes.
 - Correlate evaluation run IDs for quality + performance analysis.
 - Redact sensitive content; avoid storing secrets in attributes.
-                                                                          
+
 ## Extending OpenTelemetry with multi-agent observability
 
 Microsoft is enhancing multi-agent observability by introducing new semantic conventions to [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/), developed collaboratively with Outshift, Cisco's incubation engine. These additions—built upon OpenTelemetry and W3C Trace Context—establish standardized practices for tracing and telemetry within multi-agent systems, facilitating consistent logging of key metrics for quality, performance, safety, and cost. This systematic approach enables more comprehensive visibility into multi-agent workflows, including tool invocations and collaboration.
@@ -69,7 +69,6 @@ These advancements have been integrated into Azure AI Foundry, Microsoft Agent F
 | Attribute    | execute_tool         | tool.call.arguments           | Logs the arguments passed during tool invocation. |
 | Attribute    | execute_tool         | tool.call.results             | Records the results returned by the tool. |
 | Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
-                                                                          
 
 ## Set up tracing in Azure AI Foundry SDK
 
@@ -88,8 +87,8 @@ pip install azure-monitor-opentelemetry opentelemetry-sdk
 To view traces in Azure AI Foundry, you need to connect an Application Insights resource to your Azure AI Foundry project.
 
 1. Navigate to **Tracing** in the left navigation pane of the Azure AI Foundry portal.
-2. Create a new Application Insights resource if you don't already have one.
-3. Connect the resource to your AI Foundry project.
+1. Create a new Application Insights resource if you don't already have one.
+1. Connect the resource to your AI Foundry project.
 
 ## Instrument tracing in your code
 
@@ -263,10 +262,9 @@ Azure AI Foundry makes it easy to log traces with minimal changes by using our t
 
 ### Tracing agents built on Microsoft Agent Framework and Semantic Kernel
 
-Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Azure AI Foundry Observability.
+Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Observability.
 
-- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability).
-
+- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](/agent-framework/user-guide/workflows/observability).
 
 ### Enable tracing for Agents built on LangChain & LangGraph
 
@@ -282,7 +280,7 @@ Once necessary packages are installed, you can easily begin to [Instrument traci
 
 #### Sample: LangChain v1 agent with Azure AI tracing
 
-Use this end-to-end sample to instrument a LangChain v1 agent using the `langchain-azure-ai` tracer, which implements the latest OpenTelemetry (OTel) spec so you can view rich traces in Azure AI Foundry Observability.
+Use this end-to-end sample to instrument a LangChain v1 agent using the `langchain-azure-ai` tracer, which implements the latest OpenTelemetry (OTel) spec so you can view rich traces in Observability.
 
 ##### Install packages
 
@@ -448,7 +446,7 @@ if __name__ == "__main__":
     main()
 ```
 
-With `langchain-azure-ai` enabled, all LangChain v1 operations (LLM calls, tool invocations, agent steps) are traced using the latest OpenTelemetry semantic conventions and appear in Azure AI Foundry Observability, linked to your Application Insights resource.
+With `langchain-azure-ai` enabled, all LangChain v1 operations (LLM calls, tool invocations, agent steps) are traced using the latest OpenTelemetry semantic conventions and appear in Observability, linked to your Application Insights resource.
 
 #### Sample: LangGraph agent with Azure AI tracing
 
@@ -585,7 +583,7 @@ for event in app.stream({"messages": [input_message]}, config, stream_mode="valu
     event["messages"][-1].pretty_print()
 ```
 
-With `langchain-azure-ai` enabled, your LangGraph execution emits OpenTelemetry-compliant spans for model calls, tool invocations, and graph transitions. These traces flow to Application Insights and surface in Azure AI Foundry Observability.
+With `langchain-azure-ai` enabled, your LangGraph execution emits OpenTelemetry-compliant spans for model calls, tool invocations, and graph transitions. These traces flow to Application Insights and surface in Observability.
 
 #### Sample: LangChain 0.3 setup with Azure AI tracing
 
@@ -639,7 +637,7 @@ llm = AzureChatOpenAI(
 )
 ```
 
-Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Azure AI Foundry Observability.
+Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Observability.
 
 ### Enable tracing for Agents built on OpenAI Agents SDK
 
@@ -697,7 +695,7 @@ For more information on how to send Azure AI Inference traces to Azure Monitor a
 The Agents playground in the Azure AI Foundry portal lets you view results for threads and runs that your agents produce. To see thread results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
-> Evaluation in the playground is billed as outlined under Trust and Azure AI Foundry Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42). Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+> Evaluation in the playground is billed as outlined under Trust and Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42). Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
 > - Evaluations aren't available in the following regions.
 >     - `australiaeast`
 >     - `japaneast`
@@ -719,7 +717,7 @@ After selecting **Thread logs**, review:
 > [!TIP]
 > If you want to view thread results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 > :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
-> You'll be able to see the **Thread logs** button at the top of the screen to view the thread results.
+> You'll be able to see the **Thread logs** button at the top of the screen to view the trace results.
 
 > [!NOTE]
 > Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).

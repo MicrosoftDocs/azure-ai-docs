@@ -8,9 +8,13 @@ ms.date: 09/22/2025
 ms.reviewer: gregharen
 ms.author: lagayhar
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to create and configure your storage account for use in Azure AI Foundry Projects
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!IMPORTANT]
 > This guidance only applies to the new Foundry resource based projects, not hub-based projects. These steps aren't required for hub-based projects.
@@ -47,6 +51,8 @@ Azure AI Foundry evaluations use the user's blob storage account to store datase
 
 Now that the storage account has been created, it's time to connect the blob storage account to the Azure AI Foundry resource. If you have already completed this step, you can skip to the next section.
 
+::: moniker range="foundry-classic"
+
 1. Navigate to your project at ai.azure.com. Ensure you are in the project you're trying to run evaluations for.
 1. In the lower left corner at the bottom of the menu, select **Management Center**.
 1. Select **Connected Resources** under "Resource (your resource name here)", NOT Project.
@@ -58,28 +64,47 @@ Now that the storage account has been created, it's time to connect the blob sto
 1. Select **Add Connection**.
 1. The connection is now created. Continue to the next section to provision permissions for Azure AI Foundry resource to the blob storage account.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 ## Give Azure AI Foundry resource permission to read/write to the storage account
 
 The final step to setting up this storage account to store your datasets for evaluation runs in Azure AI Foundry, you must provide the project permissions to access the storage account. To do so, follow the below steps:
 
+::: moniker range="foundry-classic"
+
 1. Navigate to your project in Azure AI Foundry.
 1. In the top left corner, select your project name dropdown.
 1. Select the Resource Group link, which will take you to Azure portal for the resource group.
-1. Select the storage account you created under the *Resources* table.
-1. On the right hand side, select **Access Control (IAM)**.
-1. Select +Add -> Add role assignment.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
+4. Select the storage account you created under the *Resources* table.
+5. On the right hand side, select **Access Control (IAM)**.
+6. Select +Add -> Add role assignment.
     > [!NOTE]
     > If this is disabled, go to **Role assignments** and under *All*, ask an owner to take the next steps.
 
     :::image type="content" source="../media/evaluations/storage/access-control.png" alt-text="A screenshot of access control in the storage account settings highlighting add role assignment. " lightbox="../media/evaluations/storage/access-control.png":::
-1. In the *Job function roles* table, search for "Storage Blob Data Contributor" and select that option. Then select **Next** at the bottom of the screen.
-1. In the "Assign access to" option, select **Managed identity**.
-1. Select **+ Select members**.
+7. In the *Job function roles* table, search for "Storage Blob Data Contributor" and select that option. Then select **Next** at the bottom of the screen.
+8. In the "Assign access to" option, select **Managed identity**.
+9. Select **+ Select members**.
     1. *Subscription*: Your subscription
     1. *Managed identity*: All system-assigned managed identities.
     1. Select: Search for your project name. Select your project, not the resource. It should be formatted [ResourceName]/[ProjectName]. Don't select the resource name, which doesn't have the "/[ProjectName] after it.
     1. Select **Select** button at the bottom.
-1. Select **Review + assign** twice.
+10. Select **Review + assign** twice.
 
 You have now provided your project with write access to your blob storage account. After a few minutes, you'll be able to add data during an evaluation in AI Foundry.
 

@@ -2,6 +2,8 @@
 title: Deprecation for Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the lifecycle stages, deprecation, and retirement for Azure AI Foundry Models.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 09/17/2025
@@ -15,6 +17,7 @@ reviewer: fkriti
 ---
 
 # Model deprecation and retirement for Azure AI Foundry Models
+
 
 Azure AI Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
@@ -87,6 +90,12 @@ The following tables list the timelines for models that are on track for retirem
 | Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | N/A |
 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21/?cid=learnDocs) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
 | [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21/?cid=learnDocs) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
+
+#### Bria
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Bria-2.3-Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria/?cid=learnDocs) | N/A | August 31, 2025 |October 31, 2025 | N/A |
 
 #### Cohere
 

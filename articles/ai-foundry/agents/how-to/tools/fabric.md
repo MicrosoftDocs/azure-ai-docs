@@ -12,6 +12,7 @@ ms.topic: how-to
 ms.custom:
   - build-2025
 zone_pivot_groups: selection-fabric-data-agent
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Use the Microsoft Fabric data agent (preview)
@@ -21,6 +22,9 @@ Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**]
 You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## Usage support
+
+> [!NOTE] 
+> The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|

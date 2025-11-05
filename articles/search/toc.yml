@@ -346,7 +346,7 @@ items:
           href: search-how-to-index-sql-server.md
       - name: Microsoft OneLake
         href: search-how-to-index-onelake-files.md
-      - name: SharePoint Online
+      - name: SharePoint in Microsoft 365
         href: search-how-to-index-sharepoint-online.md
     - name: Skillsets (indexers)
       items:

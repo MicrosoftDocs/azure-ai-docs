@@ -1,5 +1,6 @@
+monikerRange: 'foundry-classic'
 items:
-- name: What is Azure AI Foundry?
+- name: What is Azure AI Foundry (classic)?
   href: what-is-azure-ai-foundry.md
 - name: Get started
   expanded: true
@@ -8,7 +9,7 @@ items:
       href: quickstarts/get-started-code.md  
     - name: Azure AI Foundry client libraries
       href: how-to/develop/sdk-overview.md
-    - name: Ask the Foundry agent
+    - name: Ask AI
       href: foundry-agent/ask-foundry-agent.md
 - name: Models
   href: toc-files/models/toc.yml
