@@ -1,16 +1,15 @@
 ---
-title: 'How to use an existing AI Search index with the Azure AI Search tool'
+title: 'How to connect the Azure Speech tool to an agent'
 titleSuffix: Azure AI Foundry
-description: Learn how to use Agents Azure AI Search tool.
-services: azure-ai-agent-service
+description: Learn how to use Agents Azure AI Speech tool.
+services: azure-ai-speech
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 09/12/2025
-author: haileytap
-ms.author: haileytapia
-ms.reviewer: aahi
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -45,7 +44,7 @@ Generate a SAS URL for your storage container, with read and write permissions. 
 1. On the setup page, fill in the following fields:  
 
     - Parameters -> `foundry-resource-name`: Enter the name of the Azure AI Foundry resource you created in the Prerequisites section. 
-    - Authorization -> `Bearer` (API Key): Enter the API key from your Azure AI Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure Portal. 
+    - Authorization -> `Bearer` (API Key): Enter the API key from your Azure AI Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure portal. 
     - Authorization -> `X-Blob-Container-Url`:  Enter the SAS URL for your Azure Blob Storage container that you generated previously.
     
 1. Select **Connect** to add the remote Speech MCP server as a tool for your agent.
@@ -57,7 +56,7 @@ Stay in the agent playground, and in the agent chat window, type `What can you d
 > [!TIP]
 > Select gpt-4.1 as the agent's base model for best results. 
 
-The agent will list its available capabilities, including the newly added Speech Capabilities such as speech-to-text and text-to-speech. This confirms that the remote Speech MCP server is successfully connected.
+The agent lists its available capabilities, including the newly added Speech Capabilities such as speech-to-text and text-to-speech. This confirms that the remote Speech MCP server is successfully connected.
 
 ### Test the speech to text capability
 
