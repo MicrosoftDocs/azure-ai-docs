@@ -14,7 +14,7 @@ ms.custom:
   - ignite-2025
 ---
 
-# Feature comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio
+# Comparing Content Understanding in Azure AI Foundry vs Content Understanding Studio
 
 ## Overview
 Azure AI Content Understanding is an Azure AI Foundry service that transforms unstructured content- documents, images, audio and video- into structured, searchable data. The Azure AI Foundry experience is complemented by the Content Understanding Studio for customers that need advanced capabilities. This document describes the capabilities available and planned in each of these experiences.
