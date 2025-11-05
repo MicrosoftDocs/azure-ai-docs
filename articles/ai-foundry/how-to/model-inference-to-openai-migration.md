@@ -1,7 +1,7 @@
 ---
-title: Migrate from Azure AI Inference SDK to OpenAI SDK
+title: How to migrate from Azure AI Inference SDK to OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: Learn about migrating from the Azure AI Inference SDK to OpenAI SDK for Azure AI Foundry Models
+description: Learn how to migrate to OpenAI SDK from Azure AI Inference SDK for enhanced compatibility and unified APIs when working with Azure AI Foundry Models.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,6 +13,7 @@ reviewer: achandmsft
 ms.custom: migration
 zone_pivot_groups: openai-supported-languages
 ai-usage: ai-assisted
+#CustomerIntent: As a developer using Azure AI Inference SDK, I want to migrate my applications to the OpenAI SDK so that I can access broader model support, unified APIs, the latest OpenAI features, simplified authentication, and eliminate the need to frequently update API version parameters.
 ---
 
 # Migrate from Azure AI Inference SDK to OpenAI SDK
@@ -80,20 +81,20 @@ The following table shows the main differences between the two SDKs:
 
 ### Model parameter handling
 
-- **Azure AI Inference SDK**: The `model` parameter is optional for single-model endpoints but required for multi-model endpoints
-- **OpenAI SDK**: The `model` parameter is always required and should be set to your deployment name
+- **Azure AI Inference SDK**: The `model` parameter is optional for single-model endpoints but required for multmodel endpoints.
+- **OpenAI SDK**: The `model` parameter is always required and should be set to your deployment name.
 
 ### Endpoint URL format
 
-- **Azure AI Inference SDK**: Uses `https://<resource>.services.ai.azure.com/models`
-- **OpenAI SDK**: Uses `https://<resource>.openai.azure.com/openai/v1` (connects to the OpenAI v1 API)
+- **Azure AI Inference SDK**: Uses `https://<resource>.services.ai.azure.com/models`.
+- **OpenAI SDK**: Uses `https://<resource>.openai.azure.com/openai/v1` (connects to the OpenAI v1 API).
 
 ### Response structure
 
 The response structure is similar but has some differences:
 
-- **Azure AI Inference SDK**: Returns `ChatCompletions` object with `choices[].message.content`
-- **OpenAI SDK**: Returns `ChatCompletion` object with `choices[].message.content`
+- **Azure AI Inference SDK**: Returns `ChatCompletions` object with `choices[].message.content`.
+- **OpenAI SDK**: Returns `ChatCompletion` object with `choices[].message.content`.
 
 Both SDKs provide similar access patterns to response data, including:
 - Message content
@@ -123,7 +124,7 @@ Use this checklist to ensure a smooth migration:
 
 If you experience authentication failures:
 
-- Verify your API key is correct and hasn't expired
+- Verify your API key is correct and isn't expired
 - For Microsoft Entra ID, ensure your application has the correct permissions
 - Check that the credential scope is set to `https://cognitiveservices.azure.com/.default`
 
@@ -131,21 +132,22 @@ If you experience authentication failures:
 
 If you receive endpoint errors:
 
-- Verify the endpoint URL format includes `/openai/v1/` at the end
-- Ensure your resource name is correct
-- Check that the model deployment exists and is active
+- Verify the endpoint URL format includes `/openai/v1/` at the end.
+- Ensure your resource name is correct.
+- Check that the model deployment exists and is active.
 
 ### Model not found errors
 
 If you receive "model not found" errors:
 
-- Verify you're using your deployment name, not the model name
-- Check that the deployment is active in your Azure AI Foundry resource
-- Ensure the deployment name matches exactly (case-sensitive)
+- Verify you're using your deployment name, not the model name.
+- Check that the deployment is active in your Azure AI Foundry resource.
+- Ensure the deployment name matches exactly (case-sensitive).
 
 ## Related content
 
-- [How to generate chat completions with Azure AI Foundry Models](../foundry-models/how-to/use-chat-completions.md)
 - [Azure OpenAI supported programming languages](../openai/supported-languages.md)
-- [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
+- [How to generate chat completions with Azure AI Foundry Models](../foundry-models/how-to/use-chat-completions.md)
 - [API evolution and version lifecycle](../openai/api-version-lifecycle.md)
+- [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
+

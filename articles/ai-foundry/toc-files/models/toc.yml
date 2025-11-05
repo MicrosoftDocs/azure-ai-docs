@@ -45,10 +45,10 @@ items:
     href: ../../foundry-models/concepts/endpoints.md
   - name: Supported programming languages and SDKs
     href: ../../openai/supported-languages.md
+  - name: Migrate from Azure AI Inference SDK to OpenAI SDK
+    href: ../../how-to/model-inference-to-openai-migration.md
   - name: Azure AI Inference SDK
     href: ../../foundry-models/supported-languages.md
-  - name: Migrate from AI Inference SDK to OpenAI v1 
-    href: ../../how-to/model-inference-to-openai-migration.md
   - name: Work with chat models
     items:
     - name: Work with chat models
