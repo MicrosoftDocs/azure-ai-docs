@@ -12,7 +12,9 @@ ai-usage: ai-assisted
 ---
  
 
-# Monitoring Dashboard Insights in Azure AI Foundry with Foundry Agent
+# Monitoring Dashboard Insights in Azure AI Foundry with Foundry Agent (preview)
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Once your agent is in production, you can set up and view various metrics in the monitoring dashboard or control plane dashboard. You can use **Azure AI Foundry Agent** - the built-in chat assistant to get a summary on your dashboard data and recommend next steps without leaving the Foundry portal.
 
