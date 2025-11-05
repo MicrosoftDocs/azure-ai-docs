@@ -266,7 +266,25 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
   -d @categorize.json
 ```
 
-# [Image/Video/Audio](#tab/rest)
+# [Image](#tab/image)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+# [Audio](#tab/audio)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+# [Video](#tab/video)
 
 ```bash
 curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
