@@ -15,6 +15,7 @@ zone_pivot_groups: programming-languages-set-two-with-js-spx
 # Improve recognition accuracy with phrase list
 
 A phrase list is a list of words or phrases provided ahead of time to help improve their recognition. Adding a phrase to a phrase list increases its importance, thus making it more likely to be recognized.
+You can add phrase list in real-time transcription and fast transcription.
 
 Examples of phrases include:
 * Names
@@ -70,7 +71,7 @@ Now try Speech Studio to see how phrase list can improve recognition accuracy.
     :::image type="content" source="./media/custom-speech/phrase-list-after-zoom.png" alt-text="Screenshot of a phrase list applied in Speech Studio." lightbox="./media/custom-speech/phrase-list-after-full.png":::
 1. Use the microphone to test recognition again. Otherwise you can select the retry arrow next to your audio file to rerun your audio. The terms "Rehaan", "Jessie", or "Contoso" should be recognized. 
 
-## Implement phrase list
+## Implement phrase list in real-time transcription
 
 ::: zone pivot="programming-language-csharp"
 With the [Speech SDK](speech-sdk.md) you can add phrases individually and then run speech recognition. 
@@ -135,6 +136,7 @@ phraseList.setWeight(weight)
 ::: zone pivot="programmer-tool-spx"
 With the [Speech CLI](spx-overview.md) you can include a phrase list in-line or with a text file along with the recognize command.
 
+
 # [Terminal](#tab/terminal)
 
 Try recognition from a microphone or an audio file. 
@@ -172,6 +174,21 @@ spx --% recognize --file "your\path\to\audio.wav" --phrases @phrases.txt
 ::: zone-end
 
 Allowed characters include locale-specific letters and digits, white space characters, and special characters such as +, \-, $, :, (, ), {, }, \_, ., ?, @, \\, ’, &, \#, %, \^, \*, \`, \<, \>, ;, \/. Other special characters are removed internally from the phrase.
+
+## Implement phrase list in fast transcription
+You can add a list of phrases in fast transcription via [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe)
+
+```azurecli-interactive
+curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+--header 'Ocp-Apim-Subscription-Key: YourSpeechResourceKey' \
+--form 'audio=@"YourAudioFile"' \
+--form 'definition={
+  "locales": ["en-US"],
+  "phraseList": {
+    "phrases": ["Contoso", "Jessie", "Rehaan"]
+  }
+}'
+```
 
 ## Next steps
 
