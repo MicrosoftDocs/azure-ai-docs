@@ -32,6 +32,8 @@ In this article, you will learn how to:
 - Integrate synthetic data into your fine-tuning workflows
 - [Best practices](#best-practices-with-using-synthetic-data-for-fine-tuning)
 
+> [!NOTE]
+> Prices shown are examples only.
 
 ## Prerequisites
 
