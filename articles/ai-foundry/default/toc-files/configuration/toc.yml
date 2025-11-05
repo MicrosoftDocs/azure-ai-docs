@@ -1,28 +1,29 @@
 items:
+# Getting Started
 - name: Plan rollout
   href: ../../../concepts/planning.md
 - name: Create a project
   href: ../../../how-to/create-projects.md
-- name: Manage projects and resources
-  href: ../../../concepts/management-center.md
-- name: Choose a resource
-  href: ../../../concepts/resource-types.md
-- name: Create resources using Bicep template
-  href: ../../../how-to/create-resource-template.md
-- name: Create resources using Terraform
-  href: ../../../how-to/create-resource-terraform.md
-- name: Status dashboard
-  href: ../../../azure-ai-foundry-status-dashboard-documentation.md
-- name: Feature availability by region
-  href: ../../../reference/region-support.md
-- name: Region support
-  href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
+
+# Resources and Infrastructure
+- name: Resources and infrastructure
+  items:
+  - name: Choose a resource
+    href: ../../../concepts/resource-types.md
+  - name: Create resources using Bicep template
+    href: ../../../how-to/create-resource-template.md
+  - name: Create resources using Terraform
+    href: ../../../how-to/create-resource-terraform.md
+  - name: Manage projects and resources
+    href: ../../../concepts/management-center.md
+
+# Model Deployment
 - name: Foundry Models deployment offers
   items:
   - name: Deployment offers and types
     href: ../../../foundry-models/concepts/deployment-types.md
   - name: Standard deployment offer
-    href:
+    href: ../../../foundry-models/concepts/standard-deployment.md # [TO VERIFY]
   - name: Provisioned deployment offer
     items:
       - name: Provisioned Throughput offering (PTU)
@@ -34,16 +35,42 @@ items:
       - name: Provisioned spillover
         href: ../../../openai/how-to/spillover-traffic-management.md
   - name: Priority processing deployment offer
-    href:
+    href: ../../../foundry-models/concepts/priority-deployment.md # [TO VERIFY]
   - name: Batch deployment offer
-    href:
+    href: ../../../foundry-models/concepts/batch-deployment.md # [TO VERIFY]
+
+# Quotas and Limits
+- name: Quotas and limits
+  items:
+  - name: Choose a resource
+    href: ../../../concepts/resource-types.md
+  - name: Create resources using Bicep template
+    href: ../../../how-to/create-resource-template.md
+  - name: Create resources using Terraform
+    href: ../../../how-to/create-resource-terraform.md
+  - name: Manage projects and resources
+    href: ../../../concepts/management-center.md
 - name: Manage quotas for AI Foundry resources
   href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
-- name: Create a connection
-  href: ../../../how-to/connections-add.md
-- name: Connect to your own storage in Foundry
-  href: ../../../how-to/bring-your-own-azure-storage-foundry.md
-- name: Connect to your own storage for Speech/Language
-  href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md  
+
+# Connections and Storage
+- name: Connections and storage
+  items:
+  - name: Create a connection
+    href: ../../../how-to/connections-add.md
+  - name: Connect to your own storage in Foundry
+    href: ../../../how-to/bring-your-own-azure-storage-foundry.md
+  - name: Connect to your own storage for Speech/Language
+    href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md
+
+# Reference and Status
+- name: Reference and status
+  items:
+  - name: Status dashboard
+    href: ../../../azure-ai-foundry-status-dashboard-documentation.md
+  - name: Feature availability by region
+    href: ../../../reference/region-support.md
+  - name: Region support
+    href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
