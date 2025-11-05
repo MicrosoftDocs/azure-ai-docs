@@ -24,11 +24,43 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
-| `westus`        | West US        | United States   | United States    |
-| `swedencentral` | Sweden Central | Sweden          | European Union   |
-| `australiaeast` | Australia East | Australia       | N/A †            |
+| `australiaeast` | Australia East | Australia | Australia |
+| `brazilsouth` | Brazil South | Brazil | Brazil |
+| `canadacentral` | Canada Central | Canada | Canada |
+| `centralindia` | Central India | India | India |
+| `centralus` | Central US | United States | US |
+| `centraluseuap` | Central US EUAP | United States | US |
+| `eastasia` | East Asia | Asia Pacific | Asia |
+| `eastus` | East US | United States | US |
+| `eastus2` | East US 2 | United States | US |
+| `eastus2euap` | East US 2 EAUP | United States | US |
+| `francecentral` | France Central | France | Europe |
+| `germanywestcentral` | Germany West Central | Germany | Europe |
+| `italynorth` | Italy North | Italy | Europe |
+| `japaneast` | Japan East | Japan | Japan |
+| `japanwest` | Japan West | Japan | Japan |
+| `jioindiacentral` | Jio India Central | India | India |
+| `jioindiawest` | Jio India West | India | India |
+| `koreacentral` | Korea Central | Korea | Korea |
+| `northcentralus` | North Central US | United States | US |
+| `northeurope` | North Europe | Europe | Europe |
+| `norwayeast` | Norway East | Europe | Europe |
+| `qatarcentral` | Qatar Central | Qatar | Qatar |
+| `southafricanorth` | South Africa North | South Africa | South Africa |
+| `southcentralus` | South Central US | United States | US |
+| `swedencentral` | Sweden Central | Sweden | Europe |
+| `southeastasia` | Southeast Asia | Asia Pacific | Asia |
+| `switzerlandnorth` | Switzerland North | Switzerland | Switzerland |
+| `switzerlandwest` | Switzerland West | Switzerland | Switzerland |
+| `uaenorth` | UAE North | UAE | UAE |
+| `uknorth` | UK North | United Kingdom | UK |
+| `uksouth` | UK South | United Kingdom | UK |
+| `westcentralus` | West Central US | United States | US |
+| `westeurope` | West Europe | Europe | Europe |
+| `westus` | West US | United States | US |
+| `westus2` | West US 2 | United States | US |
+| `westus3` | West US 3 | United States | US |
 
-† Australia East doesn't support data zone as a processing location.
 
 > [!NOTE]
 >
@@ -238,7 +270,7 @@ The following table lists all supported languages/locales.
 | Greek (Greece) | `el-GR` | Uzbek (Latin, Uzbekistan) | `uz-UZ` |
 | Gujarati (India) | `gu-IN` | Vietnamese (Vietnam) | `vi-VN` |
 | Hebrew (Israel) | `he-IL` | Welsh (United Kingdom) | `cy-GB` |
-| Hindi (India) | `hi-IN` |||
+| Hindi (India) | `hi-IN` |  |  |
 
 
 ### Field value normalization

@@ -92,11 +92,19 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 * Supports scene splitting and comprehensive video content analysis
 * Provides transcript extraction along with contextual segment descriptions
 
-### Vertical analyzers
+### Domain-specific analyzers
 
-Vertical analyzers are preconfigured for common document categories in popular industries. These analyzers provide specialized field extraction for specific document types and formats.
+Domain-specific analyzers are preconfigured for common document categories in popular industries. These analyzers provide specialized field extraction for specific document types and formats, powered by rich knowledge bases of real-world examples. 
 
-See the [complete list of vertical analyzers](#vertical-analyzer-reference) at the end of this article.
+Key categories include:
+
+* **Finance and tax**: Extract structured data from invoices, receipts, bank statements, credit card statements, and comprehensive US tax forms including 1040, W-2, 1099 variants, and 1098 series. Tuned schemas capture amounts, dates, tax identifiers, and financial entities. See the [financial documents](#financial-documents) and [tax documents](#tax-documents-us) sections below.
+* **Identity verification**: Process passports, driver's licenses, ID cards, health insurance cards, and identity documents from multiple countries/regions with `prebuilt-idDocument` and related analyzers. Extract personal information, document numbers, and verification details with support for worldwide formats. See the [identity documents](#identity-documents) section below.
+* **Mortgage and lending**: Automate extraction from US mortgage applications (Form 1003), appraisal reports (Form 1004), verification of employment (Form 1005), and closing disclosures. Capture borrower details, property information, loan terms, and financial disclosures. See the [mortgage documents](#mortgage-documents-us) section below.
+* **Procurement and contracts**: Process purchase orders, contracts, procurement documents, and credit memos to extract vendor information, line items, pricing, terms, and contractual obligations. See the [procurement documents](#procurement-documents) and [legal and business documents](#legal-and-business-documents) sections below.
+* **Utilities and billing**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data. See the [financial documents](#financial-documents) and [other specialized analyzers](#other-specialized-analyzers) sections below.
+
+See the [complete list of domain-specific analyzers](#domain-specific-analyzer-reference) at the end of this article.
 
 ### Utility analyzers
 
@@ -110,7 +118,7 @@ Utility analyzers provide specialized functionality for schema generation and fi
 #### `prebuilt-documentFields`
 
 * Extracts key-value pairs from documents
-* Used internally by vertical analyzers when the input doesn't match any of the predefined schemas (for example, `prebuilt-idDocument`)
+* Used internally by domain-specific analyzers when the input doesn't match any of the predefined schemas (for example, `prebuilt-idDocument`)
 
 ## Use prebuilt analyzers
 
@@ -162,9 +170,9 @@ POST /analyzers/myIdDocument:copy
 
 This operation creates a new analyzer with a fixed definition copied from the prebuilt analyzer at the time of the copy operation.
 
-## Vertical analyzer reference
+## Domain-specific analyzer reference
 
-The following sections list all available vertical analyzers for specialized document processing. These prebuilt models enable you to add intelligent domain-specific document processing to your apps and flows without having to train and build your own models.
+The following sections list all available domain-specific analyzers for specialized document processing. These prebuilt models enable you to add intelligent domain-specific document processing to your apps and flows without having to train and build your own models.
 
 For information about supported file formats and input requirements, see [Service limits](../service-limits.md).
 
