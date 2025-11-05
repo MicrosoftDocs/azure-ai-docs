@@ -42,9 +42,6 @@ keywords: text to speech
 [!INCLUDE [JavaScript include](includes/quickstarts/text-to-speech-basics/javascript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-objectivec"
-[!INCLUDE [ObjectiveC include](includes/quickstarts/text-to-speech-basics/objectivec.md)]
-::: zone-end
 
 ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](includes/quickstarts/text-to-speech-basics/swift.md)]
