@@ -1,7 +1,7 @@
 ---
 title: Set the retrieval reasoning effort
 titleSuffix: Azure AI Search
-description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
+description: Learn how to set the level of LLM processing for agentic retrieval in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -65,8 +65,8 @@ A retrieve request might look similar to the following example.
 | Level | Description | Limits | 
 |-|-|-|-|
 | `minimal` | Doesn't take a model definition. Doesn't have retrieval instructions or answer generation. Fails if the knowledge source can't be queried with simple text or vectors. Ignores the `alwaysQueryKnowledgeSource` property on a retrieve request because all knowledge sources listed in the knowledge base are in scope for the query. Recommended if you need to minimize latency and cost.  | `outputMode` must be set to `extractiveData`. |
-| `low` | Makes minimal calls to the LLM.  | 5,000 answer tokens. Maximum 3 subqueries from a maximum of 3 knowledge sources. Maximum of 50 documents for semantic ranking, and 10 documents if the semantic ranker uses L3 classification. |
-| `medium `| Balanced approach that provides the LLM with more inputs.  | 10,000 answer tokens. Maximum of 5 subqueries from a maximum of 5 knowledge sources. Maximum of 50 documents for semantic ranking, and 20 documents if the semantic ranker uses L3 classification. |
+| `low` | Makes minimal calls to the LLM.  | 5,000 answer tokens. Maximum three subqueries from a maximum of three knowledge sources. Maximum of 50 documents for semantic ranking, and 10 documents if the semantic ranker uses L3 classification. |
+| `medium `| Balanced approach that provides the LLM with more inputs.  | 10,000 answer tokens. Maximum of five subqueries from a maximum of five knowledge sources. Maximum of 50 documents for semantic ranking, and 20 documents if the semantic ranker uses L3 classification. |
 
 ---
 
