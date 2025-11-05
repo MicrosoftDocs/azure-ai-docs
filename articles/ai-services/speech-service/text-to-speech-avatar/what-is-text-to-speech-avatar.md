@@ -52,6 +52,7 @@ For video avatar, both batch synthesis and real-time synthesis resolution are 19
 Photo avatar 's resolution is 512x512 for both batch synthesis and real-timne synthesis.
 
 Video Avatar
+
 |                  | Batch synthesis   | Real-time synthesis |
 |------------------|-------------------|----------------------|
 | **Resolution**   | 1920 x 1080/3840 x 2160    | 1920 x 1080/3840 x 2160          |
@@ -60,6 +61,7 @@ Video Avatar
 
 
 Photo Avatar
+
 |                  | Batch synthesis   | Real-time synthesis |
 |------------------|-------------------|----------------------|
 | **Resolution**   | 512x512      | 512x512    |
