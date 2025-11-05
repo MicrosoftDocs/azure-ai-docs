@@ -67,9 +67,11 @@ Foundry connections act as shared data pointers across AI Foundry capabilities (
 
 See [Capability hosts](../agents/concepts/capability-hosts.md) for conceptual details.
 
-The userOwnedStorage field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account for these capabilities with backwards compatibility to the approach used for Azure Speech and Azure Language resource types.
+### userOwnedStorage (resource storage binding)
 
-The `userOwnedStorage` field is set during resource creation to bind one storage account for Speech and Language capabilities. Speech and Language share the account (different containers) and the setting applies to all projects in the resource. You cannot change or remove it later.
+The `userOwnedStorage` field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account.
+
+Speech and Language capabilities share the storage account but use different containers within it. The setting applies at the resource level and cannot be changed after creation without recreating the resource.
 
 If strict data isolation is required between Speech and Language scenarios, create separate Azure AI Foundry resources with different storage accounts.
 
