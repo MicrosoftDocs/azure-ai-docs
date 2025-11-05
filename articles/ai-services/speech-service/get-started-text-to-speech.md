@@ -18,6 +18,10 @@ keywords: text to speech
 
 # Quickstart: Convert text to speech
 
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/quickstarts/text-to-speech-basics/ai-foundry.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/text-to-speech-basics/csharp.md)]
 ::: zone-end

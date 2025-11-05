@@ -505,6 +505,8 @@ groups:
   title: Programming languages
   prompt: Choose a programming language or tool
   pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
