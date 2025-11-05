@@ -354,32 +354,25 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 # [Python](#tab/python)
 
-```python
-NEED CODE
-```
+:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart.py":::
 
 # [C#](#tab/csharp)
 
-[!INCLUDE [quickstart-csharp](../default/includes/quickstart-csharp.md)]
+:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/Samples/AgentService.cs":::
+
 
 # [TypeScript](#tab/typescript)
 
-```typescript
-NEED CODE
-```
+:::code language="typescript" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/typescript/quickstart/src/quickstart.ts":::
     
 # [Java](#tab/java)
 
-```java
-NEED CODE
-```
+:::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
     
 
 # [REST API](#tab/rest)
 
-```console
-NEED CODE
-```
+:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh":::
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
