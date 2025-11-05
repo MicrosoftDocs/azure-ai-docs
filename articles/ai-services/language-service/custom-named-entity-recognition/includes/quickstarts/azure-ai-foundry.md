@@ -9,7 +9,6 @@ ms.author: lajanuar
 
 > [!NOTE]
 >
-> * This project requires that you have an **Azure AI Foundry hub-based project with an Azure storage account** (not a Foundry project). For more information, *see* [How to create and manage an Azure AI Foundry hub](/azure/ai-foundry/how-to/create-azure-ai-resource)
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. For more information, see [How to use Azure AI services in the Azure AI Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
 
 ## Prerequisites
@@ -18,7 +17,7 @@ ms.author: lajanuar
 
 * The **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control).
 
-*  An [**Azure AI Language resource with a storage account**](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics). On the **select additional features** page, select the **Custom text classification, Custom named entity recognition, Custom sentiment analysis & Custom Text Analytics for health** box to link a required storage account with this resource:
+*  An [**Azure AI Language resource with a storage account**](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics). On the **select additional features** page, select the **Custom text classification, Custom named entity recognition, Custom sentiment analysis & Custom Text Analytics for health** box to link a required storage account to this resource:
 
     :::image type="content" source="../../media/foundry-next/select-additional-features.png" alt-text="Screenshot of the select additional features option in the Azure AI Foundry.":::
 
@@ -28,7 +27,7 @@ ms.author: lajanuar
   >  * Don't move the storage account to a different resource group or subscription once linked with the Language resource.
 
 
-* **An Azure AI Foundry hub-based project**. For more information about Foundry hub-based project, *see* [Create a hub project for Azure AI Foundry](/azure/ai-foundry/how-to/hub-create-projects).
+* **A Foundry project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 * **A custom NER dataset uploaded to your storage container**. A custom named entity recognition (NER) dataset is the collection of labeled text documents used to train your custom NER model. You can [download our sample dataset](https://go.microsoft.com/fwlink/?linkid=2175226) for this quickstart. The source language is English.
 
@@ -40,7 +39,7 @@ Let's begin by configuring your resources.
 
 Make sure the **Custom text classification / Custom Named Entity Recognition** feature is enabled in the [Azure portal](https://portal.azure.com/).
 
-1. Go to your Language resource in the [Azure portal](https://portal.azure.com).
+1. Navigate to your Language resource in the [Azure portal](https://portal.azure.com).
 1. From the left side menu, under **Resource Management** section, select **Features**.
 1. Make sure the **Custom text classification / Custom Named Entity Recognition** feature is enabled.
 1. If your storage account isn't assigned, select and connect your storage account.
@@ -48,12 +47,8 @@ Make sure the **Custom text classification / Custom Named Entity Recognition** f
 
 ### Add required roles for your Azure AI Language resource
 
-1. Go to your storage account or Language resource in the [Azure portal](https://portal.azure.com/).
-1. Select **Access Control (IAM)** in the left pane.
-1. Select **Add** to **Add Role Assignments**, and choose the appropriate role for your account.
-
-    * You should have the **Cognitive Services Language Owner** or **Cognitive Services Contributor** role assignment for your Language resource.
-
+1. From the Language resource page in the [Azure portal](https://portal.azure.com/), select **Access Control (IAM)** in the left pane.
+1. Select **Add** to **Add Role Assignments**, and add **Cognitive Services Language Owner** or **Cognitive Services Contributor** role assignment for your Language resource.
 1. Within **Assign access to**, select **User, group, or service principal**.
 1. Select **Select members**.
 1. Select ***your user name***. You can search for user names in the **Select** field. Repeat this step for all roles.
