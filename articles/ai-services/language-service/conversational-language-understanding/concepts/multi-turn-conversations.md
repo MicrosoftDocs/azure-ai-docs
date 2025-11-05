@@ -5,8 +5,8 @@ description: Learn how CLU handles entity slot-filling across multi-turn convers
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: concept
-ms.date: 11/052025
+ms.topic: conceptual
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
