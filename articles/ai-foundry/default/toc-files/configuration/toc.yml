@@ -1,26 +1,19 @@
 items:
 - name: Plan rollout
   href: ../../../concepts/planning.md
-
-# manage resources
-- name: Manage AI Foundry resources
-  items:
-
-  - name: Create resources using Bicep template
-    href: ../../../how-to/create-resource-template.md
-  - name: Create resources using Terraform
-    href: ../../../how-to/create-resource-terraform.md
-  - name: Create a project
-    href: ../../../how-to/create-projects.md
-  # multi-service
-  # recover-purge-resources
+- name: Create a project
+  href: ../../../how-to/create-projects.md
+- name: Manage projects and resources
+  href: ../../../concepts/management-center.md
+- name: Create resources using Bicep template
+  href: ../../../how-to/create-resource-template.md
+- name: Create resources using Terraform
+  href: ../../../how-to/create-resource-terraform.md
 
 - name: Foundry Models deployment offers
   items:
   - name: Deployment offers and types
     href: ../../../foundry-models/concepts/deployment-types.md
-  - name: Standard deployment offer
-    href:
   - name: Provisioned deployment offer
     items:
       - name: Provisioned Throughput offering (PTU)
@@ -31,18 +24,11 @@ items:
         href: ../../../openai/how-to/provisioned-get-started.md
       - name: Provisioned spillover
         href: ../../../openai/how-to/spillover-traffic-management.md
-  - name: Priority processing deployment offer
-    href:
-  - name: Batch deployment offer
-    href:
+
 - name: Manage quotas for AI Foundry resources
   href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
-
-# CONNECTIONS 
-- name: Manage projects and resources
-  href: ../../../concepts/management-center.md
 - name: Create a connection
   href: ../../../how-to/connections-add.md
 - name: Connect to your own storage in Foundry
