@@ -33,6 +33,10 @@ items:
      displayName: accuracy,metrics
    - name: Create and configure storage account for evaluation
      href: ../../../how-to/evaluations-storage-account.md
+   - name: Human evaluation for agents
+     href: ../../how-to/human-evaluation.md
+   - name: Evaluation Cluster Analysis
+     href: ../../how-to/observability-optimization-cluster-analysis.md
 - name: AI red teaming
   items:
    - name: AI red teaming agent overview
@@ -47,6 +51,8 @@ items:
      href: ../../../how-to/continuous-evaluation-agents.md
    - name: Monitor model deployments
      href: ../../../foundry-models/how-to/monitor-models.md
+   - name: Monitoring dashboard insights with Foundry agent
+     href: ../../how-to/observability-optimization-dashboard.md
 - name: Tracing
   items:
    - name: Trace agent overview
