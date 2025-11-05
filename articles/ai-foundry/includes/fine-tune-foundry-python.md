@@ -72,9 +72,9 @@ Take a moment to review the fine-tuning workflow for using the Python SDK with A
 
 Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../openai/how-to/chatgpt.md) API.
 
-If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024-07-18` please refer to the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md)
+If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024-07-18` please refer to the [Azure OpenAI fine-tuning tutorial](../openai/tutorials/fine-tune.md)
 
 ### Example file format
 
@@ -185,7 +185,7 @@ print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
-If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument:
+If you are fine tuning a model that supports [Global Training](../openai/concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument:
 
 ```python
 response = client.fine_tuning.jobs.create(
@@ -238,7 +238,7 @@ client.fine_tuning.jobs.create(
 ```
 
 > [!NOTE]
-> See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
+> See the guides for [Direct Preference Optimization](../openai/how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../openai/how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
 
 ## Check fine-tuning job status
@@ -317,7 +317,7 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 Once you're satisfied with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
 
-If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=python) using a Developer deployment.
+If you're deploying for further validation, consider deploying for [testing](../openai/how-to/fine-tune-test.md?tabs=python) using a Developer deployment.
 
 Unlike the previous SDK commands, deployment must be done using the control plane API which requires separate authorization, a different API path, and a different API version.
 
@@ -368,9 +368,9 @@ print(r.json())
 
 ```
 
-Learn more about cross region deployment and use the deployed model [here](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
+Learn more about cross region deployment and use the deployed model [here](../openai/how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
 
-If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
+If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../openai/how-to/fine-tuning-deploy.md?tabs=python).
 
 ## Continuous fine-tuning
 
@@ -418,14 +418,14 @@ When you're done with your customized model, you can delete the deployment and m
 
 You can use various methods to delete the deployment for your customized model:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
+- [Azure AI Foundry](../openai/how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
 - The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
 Similarly, you can use various methods to delete your customized model:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
+- [Azure AI Foundry](../openai/how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
 
 > [!NOTE]
 > You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
@@ -434,7 +434,7 @@ Similarly, you can use various methods to delete your customized model:
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
+- [Azure AI Foundry](../openai/how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
 - The [REST APIs](/rest/api/azureopenai/files/delete)
 - The Python SDK
 
