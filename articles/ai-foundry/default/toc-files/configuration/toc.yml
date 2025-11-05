@@ -11,8 +11,6 @@ items:
   href: ../../../how-to/create-resource-template.md
 - name: Create resources using Terraform
   href: ../../../how-to/create-resource-terraform.md
-- name: Create a connection
-  href: ../../../how-to/connections-add.md
 - name: Status dashboard
   href: ../../../azure-ai-foundry-status-dashboard-documentation.md
 - name: Feature availability by region
@@ -43,6 +41,8 @@ items:
   href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
+- name: Create a connection
+  href: ../../../how-to/connections-add.md
 - name: Connect to your own storage in Foundry
   href: ../../../how-to/bring-your-own-azure-storage-foundry.md
 - name: Connect to your own storage for Speech/Language
