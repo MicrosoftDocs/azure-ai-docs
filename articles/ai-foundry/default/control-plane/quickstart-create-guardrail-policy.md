@@ -7,6 +7,7 @@ ms.author: scottpolly
 ms.reviewer: gregharen
 ms.date: 11/05/2025
 ms.topic: quickstart
+ms.service: azure-ai-foundry
 ---
 
 # Quickstart: Create a guardrail policy
