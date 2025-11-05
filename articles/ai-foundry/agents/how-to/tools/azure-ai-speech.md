@@ -1,0 +1,85 @@
+---
+title: 'How to use an existing AI Search index with the Azure AI Search tool'
+titleSuffix: Azure AI Foundry
+description: Learn how to use Agents Azure AI Search tool.
+services: azure-ai-agent-service
+manager: nitinme
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: how-to
+ms.date: 09/12/2025
+author: haileytap
+ms.author: haileytapia
+ms.reviewer: aahi
+ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
+---
+
+# Azure AI Speech tool
+
+The Azure AI Speech tool allows agents to interact with users through speech. By integrating this model context protocol (MCP), AI agents can convert text responses into spoken words and process spoken user inputs into text.
+
+## Prerequisites
+
+- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in the `westus2` region. Your Azure AI Foundry resource includes speech capabilities and will be used by the Speech MCP server
+
+## Set up storage
+
+You need an Azure Storage location to store input audio files for speech-to-text processing and receive output audio files from text-to-speech processing. [Create an Azure blob storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) to store your audio files.
+
+Generate a SAS URL for your storage container, with read and write permissions. Save it to a secure temporary location.
+
+## Create an agent
+
+1. Go to the [New Foundry portal](https://ai.azure.com?view=foundry).
+1. In the top right menu, go to **Build**
+1. On the left pane, select **Agents**, and select the **Create agent** button.  
+1. Create a new agent by providing a name and description, then select **Create**. You don't need to configure your agent any further for this scenario.
+
+
+## Connect the Azure Speech tool to your agent
+
+1. Go on to the Agent playground. Under the **Tools** section in the playground, select **Add** -> **Add a new tool**.
+1. In the **Select a tool** dialog, go to the **Catalog** tab. Search for and select Azure Speech MCP Server, then select **Create**.
+1. On the setup page, fill in the following fields:  
+
+    - Parameters -> `foundry-resource-name`: Enter the name of the Azure AI Foundry resource you created in the Prerequisites section. 
+    - Authorization -> `Bearer` (API Key): Enter the API key from your Azure AI Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure Portal. 
+    - Authorization -> `X-Blob-Container-Url`:  Enter the SAS URL for your Azure Blob Storage container that you generated previously.
+    
+1. Select **Connect** to add the remote Speech MCP server as a tool for your agent.
+
+## Test the Azure Speech tool
+
+Stay in the agent playground, and in the agent chat window, type `What can you do?`
+
+> [!TIP]
+> Select gpt-4.1 as the agent's base model for best results. 
+
+The agent will list its available capabilities, including the newly added Speech Capabilities such as speech-to-text and text-to-speech. This confirms that the remote Speech MCP server is successfully connected.
+
+### Test the speech to text capability
+
+The Speech tool supports converting an audio file (stored in Azure blob storage and accessible with a SAS URL) into text. Follow these steps to test it:
+
+1. Upload your audio file to your Azure blob storage container.  
+1. Generate a SAS URL for the specific file: Select your uploaded audio file and go to the **Properties** section. Select **Generate SAS**. Adjust the URL's expiration time if necessary. Select **Generate SAS token and URL**. 
+1. Copy the SAS URL. Then use it in one of the following example prompts in the agent chat window: 
+    - `Recognize this English audio file located in <blob SAS URL>` 
+    - `Recognize the audio file located in <blob SAS URL> with these phrase hints: "Azure, OpenAI, Cognitive Services, Lucy" to improve accuracy.` 
+    - `Convert this audio file located in <blob SAS URL> into text and summarize it for me.` 
+    - `Recognize this French audio file located in <blob SAS URL> with detailed output format.` 
+    - `Recognize this Hindi audio file located in <blob SAS URL> and remove profanity.` 
+1. View the output text in the chat window.
+
+### Test text to speech capability 
+
+Start a new chat in the agent playground, and use one of the following example prompts in the agent chat window, adding your own sample text where indicated: 
+- `Convert text to speech: <your text to speak>` 
+- `Synthesize speech from "<your text to speak>"`
+- `Generate speech audio from text "<your text to speak>"` 
+- `Convert text to speech with Chinese language: <your text to speak>` 
+- `Synthesize speech with voice en-US-JennyNeural from text <your text to speak>` 
+
+An audio link is displayed in the chat window (its source is in your blob storage container). Select it to listen to the output.
