@@ -66,6 +66,10 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] provides project management capabilities that streamline how you work with Foundry projects. You can switch between projects, manage project settings, and govern access to resources. 
 
+## Prerequisites
+
+* One or more [Foundry projects](../how-to/create-projects.md).
+
 ## Switch projects
 
 In the Azure AI Foundry (new) portal, the project you're working with appears in the upper-left corner.  
@@ -83,11 +87,26 @@ To find these other resources, select **View all resources**.  A new browser tab
 
 Most of your work in the Azure AI Foundry (new) portal is performed in the context of the project shown in the upper-left corner. But when you navigate to the **Operate** section, the project name disappears. This section allows you to view and manage all of your Foundry projects.
 
-Select **Build** in the upper-right navigation, then **Admin** in the left pane. Here you can:
+1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
+1. Select **Operate** in the upper-right navigation.
+1. Select **Admin** in the left pane.
 
-* View more information about a project by selecting the radio button next to a row in the table.  
-* Add users or connected resources to a project by selecting the project link. 
-* Add users or connected resources to a parent resource by selecting the parent resource link. 
+The **All projects** tab lists all of your Foundry projects.  From here you can:
+
+* View quick information about a project by selecting the radio button next to a row in the table.  
+* Add users or connected resources to a project by selecting the project link in the first column. 
+* Add users or connected resources to a parent resource by selecting the parent resource link in the second column. 
+
+## Manage in Azure portal
+
+To delete a resource or project, or for more management activities, open the Azure portal from the parent resource:
+
+1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
+1. Select **Operate** in the upper-right navigation.
+1. Select **Admin** in the left pane.
+1. Select the parent resource link for your project in the second column.
+1. Select the link **Manage this resource in the Azure portal** to open the Azure portal for the resource.
+
 
 ::: moniker-end
 
