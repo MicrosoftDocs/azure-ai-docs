@@ -5,7 +5,7 @@
 - An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - Fine-tuning access requires the **Azure AI User** role.
-- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../openai/how-to/role-based-access-control.md).
+- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you require [more permissions](../openai/how-to/role-based-access-control.md).
 
 ## Prepare your data
 
@@ -13,7 +13,7 @@ Your training data and validation data sets consist of input and output examples
 
 The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../openai/how-to/chatgpt.md) API.
 
-It's generally recommended to use the instructions and prompts that you found worked best in every training example. This will help you get the best results, especially if you have fewer than a hundred examples.
+It's recommended to use the instructions and prompts that you found worked best in every training example. This helps you get the best results, especially if you have fewer than a hundred examples.
 
 If you don't have an existing dataset prepared, you can leverage the [data generation](../default/fine-tuning/data-generation.md) capabilities create a new one.
 
