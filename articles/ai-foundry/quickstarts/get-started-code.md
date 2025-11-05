@@ -204,7 +204,11 @@ Follow along below or get the code:
 
 1. Install packages:
 
-    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages-v2.md)
+    Add NuGet packages using the .NET CLI in the integrated terminal:
+        
+    ```bash
+    dotnet add package Azure.AI.Agents --prerelease
+    ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
@@ -216,6 +220,7 @@ Follow along below or get the code:
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Install packages:
+
     ```bash
     npm install @azure/ai-projects@2.0.0-beta.1'
     ```
@@ -347,9 +352,9 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 # [Python](#tab/python)
 
-    ```python
-    NEED CODE
-    ```
+```python
+NEED CODE
+```
 
 # [C#](#tab/csharp)
 
@@ -357,22 +362,22 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 # [TypeScript](#tab/typescript)
 
-    ```typescript
-    NEED CODE
-    ```
+```typescript
+NEED CODE
+```
     
 # [Java (preview)](#tab/java)
 
-    ```java
-    NEED CODE
-    ```
+```java
+NEED CODE
+```
     
 
 # [REST API](#tab/rest)
 
-    ```console
-    NEED CODE
-    ```
+```console
+NEED CODE
+```
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
