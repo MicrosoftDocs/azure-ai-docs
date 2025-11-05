@@ -275,6 +275,8 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
   -d @request_body.json
 ```
 
+---
+
 ### PUT response
 
 The 201 `Created` response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyzer creation operation.
@@ -636,6 +638,8 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   }
 }
 ```
+
+---
 
 ## Next steps
 
