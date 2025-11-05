@@ -8,7 +8,7 @@ ms.date: 11/05/2025
 ms.author: pafarley
 ---
 
-In this quickstart, try out the text to speech model from Azure AI Speech in Foundry Tools, using the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+In this quickstart, try out the text to speech model from Azure AI Speech in Foundry Tools, using the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
 
 ## Prerequisites
 
