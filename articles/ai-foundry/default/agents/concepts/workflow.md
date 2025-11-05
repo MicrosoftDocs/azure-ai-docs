@@ -135,50 +135,16 @@ The following table lists data types and Power Fx formulas you can use with each
 
 In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
 
-1. Create a topic and add a **Question** node.
+1. Create a workflow and add a **Ask a question** node.
 
-1. For **Enter a message**, enter "What is your name?".
+1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for examble `Var01`. Select **Done**
 
-1. Under **Identify**, select the entity **Person name**.
+1. Add a **Send message** action. Then in in the side settings panel enter `{Upper(Local.Var01)}`. Select **Done**.
 
-1. Select the box under **Save user response as**, and then select the variable `Var1` and name it `customerName`.
+1. Select **Preview**
 
-1. Under the **Question** node, select **+** and then select **Set a variable value**.
+1. Send a message to the agent in the side panel to invoke the workflow. 
 
-1. Select the box under **Set variable**, and then select **Create new** and name it `capsName`.
 
-1. In the **To value** box, select the **>** arrow, and then select the **Formula** tab.
-
-1. In the **fx** box, enter `Upper(Text(Topic.customerName))`, and then select **Insert**.
-
-1. Under the **Question** node, select **+** and then select **Send a message**.
-
-1. Enter "HELLO ", select **{x}**, and then select `capsName`.
-
-## Use a Power Fx formula as a condition
-
-To evaluate more complex expressions, set up **Condition** nodes to use Power Fx formulas.
-
-In this example, the agent determines if a booking date qualifies for a discount. To do that, it checks whether the booking date provided by the customer is 14 days or more from the current date.
-
-1. Create a topic and add a **Question** node.
-
-1. For **Enter a message**, enter "Booking date?".
-
-1. Under **Identify**, select the entity **Date and time**.
-
-1. Select the box under **Save user response as**, and then select the variable `Var1` and name it `bookingDate`.
-
-1. Select the **Add node** icon :::image type="icon" source="media/advanced-power-fx/icon-add-node-20px.png"::: below the **Question** node, and then select **Add a condition**.
-
-1. Select the **More** icon (**&hellip;**) of the **Condition** node, and then select **Change to formula**.
-
-1. In the **Function** box, select the **>** arrow, and then select the **Formula** tab.
-
-1. Replace the contents of the **fx** box with the formula `Topic.bookingDate > (DateAdd (Now(), 14))`, and then select **Insert**.
-
-1. Under the **Condition** node, add a **Message** node and enter the message "You qualify for a discount."
-
-1. Under the **All Other Conditions** node, add a **Message** node and enter the message, "Sorry, you don't qualify for a discount."
 
  
