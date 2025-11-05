@@ -116,7 +116,7 @@ You can pass the following properties to create a web knowledge source.
 
 If you're satisfied with the web knowledge source, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source
 
