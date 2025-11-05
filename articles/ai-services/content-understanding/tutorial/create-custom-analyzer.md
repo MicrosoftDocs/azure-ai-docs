@@ -244,7 +244,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 ---
 
-## Build analyzer
+## Create analyzer
 
 ### PUT request
 

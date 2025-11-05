@@ -68,7 +68,7 @@ For information on supported input document formats and classifier limits, see [
 
 ## Best practices
 
-To improve classification and splitting quality, use a good category name and description so that the model can understand the categories with some context. For more information on category names and descriptions, see [Best practices](../concepts/best-practices.md#classifier-category-names-and-descriptions).
+To improve classification and splitting quality, use a good category name and description so that the model can understand the categories with some context. For more information on category names and descriptions, see [Best practices](../concepts/best-practices.md#optimize-classification-and-categorization).
 
 ## Key benefits
 
