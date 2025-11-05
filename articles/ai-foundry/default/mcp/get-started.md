@@ -1,5 +1,5 @@
 ---
-title: Get started using the Azure AI Foundry MCP Server with Visual Studio Code
+title: Get started using Azure AI Foundry MCP Server with Visual Studio Code
 description: Learn how to connect to and consume Azure AI Foundry MCP Server operations with Visual Studio Code
 keywords: azure developer cli, azd
 author: alexwolfmsft
@@ -19,7 +19,7 @@ Use an MCP-compliant client such as Visual Studio Code to connect to the public 
 
 In this article, you learn how to:
 
-- Connect to the Azure AI Foundry MCP Server with GitHub Copilot in Visual Studio Code
+- Connect to Azure AI Foundry MCP Server with GitHub Copilot in Visual Studio Code
 - Run prompts to test Azure AI Foundry MCP Server tools and interact with Azure resources
 
 ## Prerequisites
@@ -63,7 +63,7 @@ Install Azure AI Foundry MCP Server in your user profile so it's available to al
 
 1. Open the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 1. Search for and select **MCP:List Servers**.
-1. Select the Azure AI Foundry MCP Server you added and choose **Start Server**.
+1. Select Azure AI Foundry MCP Server you added and choose **Start Server**.
 1. When prompted, sign in to Azure so the MCP server can interact with services in your subscription.
 1. Open GitHub Copilot and select **Agent Mode**.
 1. Select the tools icon, search for *Foundry* to filter the list, and confirm the server appears.
@@ -103,7 +103,7 @@ Install Azure AI Foundry MCP Server for a specific workspace to scope it to that
 
 ---
 
-## Use prompts to test the Azure AI Foundry MCP Server
+## Use prompts to test Azure AI Foundry MCP Server
 
 1. Open the GitHub Copilot chat panel and confirm **Agent Mode** is selected.
 1. Enter a prompt that uses Azure AI Foundry MCP Server tools—for example *Tell me about the latest models on Azure AI Foundry*.

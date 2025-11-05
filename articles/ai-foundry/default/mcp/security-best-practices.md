@@ -75,7 +75,7 @@ Azure role-based access control (RBAC) applies to all operations on Azure AI Fou
 
 Tenant admins can use Azure Policy to grant or block access to Azure AI Foundry MCP Server (preview) for selected users or workload identities.
 
-1. Materialize the service principal for the Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id <application-ID>`. Replace `<application-ID>` with the application ID.
+1. Materialize the service principal for Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id <application-ID>`. Replace `<application-ID>` with the application ID.
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
