@@ -408,6 +408,8 @@ items:
           href: agentic-knowledge-source-how-to-blob.md
         - name: OneLake
           href: agentic-knowledge-source-how-to-onelake.md
+        - name: Indexed SharePoint
+          href: agentic-knowledge-source-how-to-sharepoint-indexed.md
         - name: Remote SharePoint
           href: agentic-knowledge-source-how-to-sharepoint-remote.md
         - name: Search index
