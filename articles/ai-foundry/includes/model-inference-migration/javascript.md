@@ -1,5 +1,5 @@
 ---
-title: Javascript file for model inference SDK to OpenAI SDK migration
+title: JavaScript file for model inference SDK to OpenAI SDK migration
 description: Include file
 author: msakande
 ms.author: mopeakande

@@ -81,7 +81,7 @@ The following table shows the main differences between the two SDKs:
 
 ### Model parameter handling
 
-- **Azure AI Inference SDK**: The `model` parameter is optional for single-model endpoints but required for multmodel endpoints.
+- **Azure AI Inference SDK**: The `model` parameter is optional for single-model endpoints but required for multimodel endpoints.
 - **OpenAI SDK**: The `model` parameter is always required and should be set to your deployment name.
 
 ### Endpoint URL format
