@@ -63,7 +63,7 @@ When you select a specific tool you are interested, you can see the details page
 
 :::image type="content" source="../media/tool-catalog/tool-example.png" alt-text="An example tool in the AI Foundry portal." lightbox="../media/tool-catalog/tool-example.png":::
 
-The destils page contains the following information: 
+The details page contains the following information: 
 
 - **Basic information**: Name, logo and description
 - **MCP server endpoint**: The endpoint for the tool. Only available for remote MCP servers. Some MCP servers such as Elasticsearch have dynamic endpoint that require you to provide configurations to complete the endpoint. You will later be prompted to enter more information.
@@ -73,61 +73,46 @@ The destils page contains the following information:
 - **Warning and license**: Before using the tool, make sure you have reviewed the warning and license for this tool.
 - **Support Contact**: If you have questions about using this tool or setting up the account, reach out to the support contact of the tool.
 
-## Mini Foundry Tool Catalog
-### Mini tool catalog in your tools list
-In [your tools list](https://ai.azure.com/nextgen/build/tools), you can find the list of tools you have configured. You can see the tools by its name, type and last modified time. You can delete the tool and note that deleting this tool will impact all agents currently using this tool. If you click this configured tool, you can see the details of your configuration, such as the complete MCP server endpoint, your authentication, which agents are currently using this tool. You can also click to add this tool to an existing agent. 
+## Tool catalog in the AI Foundry
 
-If you click the button to connect another tool, you will see the mini tool catalog. This mini tool catalog includes three tabs:
+In [your tools list](https://ai.azure.com/nextgen/build/tools), you can find the list of tools you have configured, along with details such as MCP server endpoints, and authentication information. You can also delete or add your tools to existing agents. If you delete a tool, affect agents currently using them.
 
-- **Configured**: Configured tools are ready to use with your configured authentication, configuration or set up. You can also find built-in tools here:
+<!--
+:::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the AI Foundry portal."lightbox="../media/tool-catalog/tool-view.png" :::
+-->
 
-|Tool  |Description  |
-|---------|---------|
-|[Azure AI Search](../how-to/tools/azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
-|[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
-|[Grounding with Bing Search](../how-to/tools/bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
-| [Grounding with Bing Custom Search (preview)](../how-to/tools/bing-custom-search.md) | Enhance your Agent response with selected web domains |
-| [Fabric Data Agent (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
-| [SharePoint (preview)](../how-to/tools/shareppoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
+To see a full list of available tools, you can use the Agent playground. You can view recently used tools, as well as add new ones.
+
+The tool catalog contains three sections:
+
+- **Configured**: Configured tools are ready to use with your configured authentication, configuration or setup. You can also find built-in tools:
+
+    |Tool  |Description  |
+    |---------|---------|
+    |[Azure AI Search](../../../agents/how-to/tools/azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
+    |[Browser Automation (preview)](../../../agents/how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
+    |[Code Interpreter](../../../agents/how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+    |[Computer Use (preview)](../../../agents/how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
+    |[File Search](../../../agents/how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
+    |[Grounding with Bing Search](../../../agents/how-to/tools/bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
+    | [Grounding with Bing Custom Search (preview)](../../../agents/how-to/tools/bing-custom-search.md) | Enhance your Agent response with selected web domains |
+    | [Image Generation (preview)](../how-to/tools/image-generation.md) | Enables image generation as part of conversations and multi-step workflows |
+    | [Microsoft Fabric (preview)](../../../agents/how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
+    | [SharePoint (preview)](../../../agents/how-to/tools/shareppoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
+    |[Web Search (preview)](../how-to/tools/web-search.md)     | Enables models to retrieve and ground responses with real-time information from the public web before generating output.         |
+
+
 - **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
+
 - **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, functions, or Azure Functions.
-
-|Tool  |Description  |
-|---------|---------|
-|[Azure Functions](../how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
-|[Function calling](../how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
-| [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
-| [OpenAPI 3.0 Specified tool ](../how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
-
-### Mini tool catalog in agent builder
-In agent builder, you can directly add tools to your agent. When you click to add tools, you can firstly a list of recently used tools and you can also click to open the mini tool catalog to add more tools. 
-If you click the button to connect another tool, you will see the mini tool catalog. This mini tool catalog includes three tabs:
-
-- **Configured**: Configured tools are ready to use with your configured authentication, configuration or set up. You can also find built-in tools here:
-
-|Tool  |Description  |
-|---------|---------|
-|[Azure AI Search](../how-to/tools/azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
-|[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
-|[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
-|[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
-|[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
-|[Grounding with Bing Search](../how-to/tools/bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
-| [Grounding with Bing Custom Search (preview)](../how-to/tools/bing-custom-search.md) | Enhance your Agent response with selected web domains |
-| [Image Generation (preview)](../how-to/tools/image-generation.md) | Enables image generation as part of conversations and multi-step workflows |
-| [Microsoft Fabric (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
-| [SharePoint (preview)](../how-to/tools/shareppoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
-|[Web Search (preview)](../how-to/tools/web-search.md)     | Enables models to retrieve and ground responses with real-time information from the public web before generating output.         |
-- **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
-- **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, functions, or Azure Functions.
-
-|Tool  |Description  |
-|---------|---------|
-|[Azure Functions](../how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
-|[Function calling](../how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
-| [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
-| [OpenAPI 3.0 Specified tool ](../how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
-
+    
+    |Tool  |Description  |
+    |---------|---------|
+    |[Azure Functions](../../../agents/how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
+    |[Function calling](../../../agents/how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
+    | [Model Context Protocol (preview)](../../../agents/how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
+    | [OpenAPI 3.0 Specified tool ](../../../agents/how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
+    
 ## Next steps
 
 * [Create a private tool catalog](../how-to/private-tool-catalog.md)
