@@ -14,7 +14,27 @@ ai-usage: ai-assisted
 
 # Monitor AI Agents Across Your Fleet
 
-Managing and monitoring a large fleet of AI agents is critical for ensuring reliability, compliance, and cost efficiency. Azure AI Foundry provides a centralized dashboard to track agent health, performance, and policy adherence. This guide walks you through the key steps and best practices for monitoring agents at scale.
+As organizations scale from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. The Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
+
+This article shows you how to use the Foundry Control Plane's capabilities to track agent health, performance, compliance, and cost efficiency at scale. With centralized monitoring, you can identify issues early, optimize resource consumption, and ensure your AI systems operate safely and reliably.
+
+## What is fleet monitoring in the Control Plane?
+
+Fleet monitoring in the Foundry Control Plane gives you real-time visibility into your entire AI estate. Instead of monitoring agents individually, you gain a unified view across all agents in your projects, whether they're Foundry-native, Microsoft services, or third-party integrations.
+
+Key monitoring capabilities include:
+
+- **Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet
+- **Compliance monitoring**: View compliance posture, policy adherence, and prevented behaviors in real time
+- **Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents
+- **Anomaly detection**: Identify cost spikes, performance degradation, and emerging issues through trend analysis
+- **Drill-down analysis**: Navigate from fleet-level metrics to individual agent traces and logs for detailed investigation
+
+Fleet monitoring serves multiple roles:
+- **Team managers** gain oversight of agent operations and team productivity
+- **Administrators** enforce governance policies and track compliance posture
+- **Cost managers** optimize spending and identify resource inefficiencies
+- **Security teams** monitor for prohibited behaviors and policy violations
 
 ## Prerequisites
 
@@ -23,7 +43,7 @@ Managing and monitoring a large fleet of AI agents is critical for ensuring reli
 
 ## View Metrics
 
-You can view aggregated metrics for all agents within a selected project using Azure AI Foundry. The Overview page provides insights into fleet health, compliance, and performance trends.
+You can view aggregated metrics for all agents within a selected project using Azure AI Foundry. The Overview pane provides insights into fleet health, compliance, and performance trends.
 
 :::image type="content" source="media/monitoring-across-fleet/agent-metrics-overview-page.png" alt-text="Screenshot of the Overview page displaying aggregated metrics for all agents.":::
 
