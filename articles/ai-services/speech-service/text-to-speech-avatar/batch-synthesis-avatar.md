@@ -22,11 +22,11 @@ This diagram provides a high-level overview of the workflow.
 :::image type="content" source="./media/batch-synthesis-workflow.png" alt-text="Screenshot that shows a high-level overview of the batch synthesis workflow." lightbox="./media/batch-synthesis-workflow.png":::
 
 ::: zone pivot="ai-foundry"
-[!INCLUDE [Foundry portal include](./includes/quickstarts/text-to-speech-basics/ai-foundry.md)]
+[!INCLUDE [Foundry portal include](../includes/how-to/text-to-speech-avatar/ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/text-to-speech-basics/rest.md)]
+[!INCLUDE [REST include](../includes/how-to/text-to-speech-avatar/cli.md)]
 ::: zone-end
 
 ## Next steps
