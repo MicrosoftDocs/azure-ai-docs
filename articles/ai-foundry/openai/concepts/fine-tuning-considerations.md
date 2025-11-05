@@ -47,7 +47,7 @@ Fine-tuning is suited for times when you have a small amount of data and want to
 
 * **Generating outputs in specific formats or schemas**: Models can be fine-tuned to produce outputs in specific formats or schemas, making them ideal for structured data generation, reports, or formatted responses.
 
-* **Enhancing tool usage**: While the chat completions API supports tool calling, listing many tools increases token usage and may lead to hallucinations. Fine-tuning with tool examples enhances accuracy and consistency, even without full tool definitions.
+* **Enhancing tool usage**: While the chat completions API supports tool calling, listing many tools increases token usage and may lead to incorrect information. Fine-tuning with tool examples enhances accuracy and consistency, even without full tool definitions.
 
 * **Enhancing retrieval-based performance**: Combining fine-tuning with retrieval methods improves a model’s ability to integrate external knowledge, perform complex tasks, and provide more accurate, context-aware responses. Fine-tuning trains the model to effectively use retrieved data while filtering out irrelevant information.
 
