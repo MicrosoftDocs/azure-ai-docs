@@ -1,0 +1,45 @@
+---
+title: Include file
+description: Include file
+author: sdgilley
+ms.reviewer: sgilley
+ms.author: sgilley
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 11/05/2025
+ms.custom: include
+---
+[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
+
+# [Python](#tab/python)
+
+:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-chat-with-agent.py":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/AgentService.cs":::
+
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/typescript/quickstart/src/quickstart.ts":::
+    
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+    
+
+# [REST API](#tab/rest)
+
+:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh":::
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+Now create an agent and interact with it.
+1. Still in the **Build** section, select **Agents** in the left pane.
+1. Select **Create agent** and give it a name.
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. Start chatting with your agent, for example, "What is the size of France in square miles?" 
+1. Follow up with "And what is the capital city?"
+
+---

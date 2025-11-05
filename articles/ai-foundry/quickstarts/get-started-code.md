@@ -264,12 +264,13 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ::: moniker-end
 
-::: moniker range="foundry-classic"
+
 
 ## Run a chat completion
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
+::: moniker range="foundry-classic"
 
 # [Python](#tab/python)
 
@@ -303,6 +304,12 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 ---
 
 ::: moniker-end
+
+:::moniker range="foundry"
+
+[!INCLUDE [quickstart-v2-chat](../default/includes/quickstart-v2-chat.md)]
+
+:::moniker-end
 
 ## Chat with an agent
 
@@ -349,38 +356,7 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 ::: moniker range="foundry"
 
-[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
-
-# [Python](#tab/python)
-
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart.py":::
-
-# [C#](#tab/csharp)
-
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/AgentService.cs":::
-
-
-# [TypeScript](#tab/typescript)
-
-:::code language="typescript" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/typescript/quickstart/src/quickstart.ts":::
-    
-# [Java](#tab/java)
-
-:::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
-    
-
-# [REST API](#tab/rest)
-
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh":::
-
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
-
-After you create the agent, you're automatically moved from **Home** to the **Build** section. Your new agent is selected and ready for you to try out in the Agent pane.
-
-1. Add instructions, such as, "You are a helpful writing assistant."
-1. Start chatting with your agent, for example, "Write me a poem about flowers." 
-
----
+[!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)]
 
 ::: moniker-end
 
