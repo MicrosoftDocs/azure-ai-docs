@@ -30,8 +30,6 @@ The LLM speech API currently supports the following speech tasks:
 
 ## Use the LLM speech API
 
-> [!TIP]
-> Try out LLM speech in the [Azure AI Foundry portal](https://aka.ms/LLM-speech-playground).
 
 ### Supported languages
 
