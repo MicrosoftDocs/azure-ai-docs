@@ -39,7 +39,7 @@ Example prompts include:
 
 ## Evaluation operations 
 
-**evaluation_create (write)** - 
+**evaluation_create (write)**
 
 Create an evaluation run for a dataset using one or more evaluators.
 
@@ -81,7 +81,7 @@ Example prompts include:
 
 ## Model catalog and details 
 
-**model_catalog_list (read)** - 
+**model_catalog_list (read)**
 
 List models from the Azure AI Foundry Model Catalog.
 
