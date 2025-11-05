@@ -1,18 +1,13 @@
-**Title:** Quickstart: Create a guardrail policy
-
-**Description:** These instructions will guide you in creating a guardrail policy for your model deployments in Azure AI Foundry. This policy will allow you to govern the usage of guardrail controls across your subscription.
-
-**Author:** \[\]
-
-**ms.author:** \[your Microsoft alias or a team alias\]
-
-**ms.service:** \[the approved service name\]
-
-**ms.topic:** quickstart (Don't change)
-
-**ms.date:** \[mm/dd/yyyy\]
-
-**Customer intent:** As a , I want so that .
+---
+title: "Quickstart: Create a guardrail policy"
+description: These instructions will guide you in creating a guardrail policy for your model deployments in Azure AI Foundry. This policy will allow you to govern the usage of guardrail controls across your subscription.
+#customer intent: As a subscription owner, I want to manage guardrail policies in Azure AI Foundry so that I can monitor compliance status in the Foundry Control Plane.
+author: gregharen
+ms.author: scottpolly
+ms.reviewer: gregharen
+ms.date: 11/05/2025
+ms.topic: quickstart
+---
 
 # Quickstart: Create a guardrail policy
 
