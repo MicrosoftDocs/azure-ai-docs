@@ -193,67 +193,6 @@ If you're satisfied with the index, continue to the next step: specify the knowl
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-## Retrieve content
-
-The retrieve action on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
-
-Azure AI Search uses the Microsoft Graph API to exchange the access token for an on-behalf of (OBO) token, which is then used to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as an HTTP header `x-ms-query-source-authorization`.
-
-Make sure that you [generate the access token](search-get-started-rbac.md?pivots=rest#get-token) for the Azure tenant, not the Microsoft 365 tenant.
-
-```http
-POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
-api-key: {{api-key}}
-Content-Type: application/json
-x-ms-query-source-authorization: {{access-token}}
-
-{
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                { "type": "text", "text": "what was covered in the keynote doc for Ignite 2024" }
-            ]
-        }
-    ],
-    "includeActivity": true,
-    "knowledgeSourceParams": [
-        {
-            "filterExpressionAddOn": "ModifiedBy:\"Adele Vance\"",
-            "knowledgeSourceName": "remote-sp-kb",
-            "kind": "remoteSharePoint",
-            "includeReferences": true,
-            "includeReferenceSourceData": true
-        }
-    ]
-}
-```
-
-The retrieve request also takes a KQL filter (`filterExpressionAddOn`) in case you want to apply constraints at query time. If you specify filters for both Copilot retrieval and agentic retrieval, the filters are AND'd together.
-
-Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
-
-A better question to ask is "what is the keynote doc for Ignite 2024". The response includes the synthesized answer, query activity and token counts, plus the URL and other metadata.
-
-```json
-{
-    "resourceMetadata": {
-        "Author": "Nuwan Amarathunga;Nurul Izzati",
-        "Title": "Ignite 2024 Keynote Address"
-    }
-},
-"rerankerScore": 2.489522,
-"webUrl": "https://contoso-my.sharepoint.com/keynotes/nuamarth_contoso_com/Documents/Keynote-Ignite-2024.docx",
-"searchSensitivityLabelInfo": {
-        "displayName": "Confidential\\Contoso Extended",
-        "sensitivityLabelId": "aaaaaaaa-0b0b-1c1c-2d2d-333333333333",
-        "tooltip": "Data is classified and protected. Contoso Full Time Employees (FTE) and non-employees can edit, reply, forward and print. Recipient can unprotect content with the right justification.",
-        "priority": 5,
-        "color": "#FF8C00",
-        "isEncrypted": true
-    }
-```
-
 ## Delete a knowledge source
 
 [!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]

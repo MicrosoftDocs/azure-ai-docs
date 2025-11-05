@@ -358,14 +358,14 @@ You can pass the following properties to create a knowledge base.
 
 | Name | Description | Type | Required |
 |--|--|--|--|
-| `name` | The name of the knowledge base, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
 | `retrievalInstructions` | A prompt to the LLM to determine whether a knowledge source should be in scope for a query, recommended for query planning when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). If you set `retrievalInstructions`, make sure `alwaysQuerySource` is set to false on the [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action, otherwise instructions are ignored. | String | Yes |
 | `answerInstructions` | Use for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null. | String | Yes |
 | `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer, or `extractedData` if you want full search results that you can pass to an LLM as a downstream step. | String | Yes |
 | `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
 | `models` | A connection to a [supported chat completion model](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
 | `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal` (none), `low` (allows answer synthesis), and `medium`. | Object | No |
 
 ---
