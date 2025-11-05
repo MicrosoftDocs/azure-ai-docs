@@ -142,5 +142,5 @@ Install Azure AI Foundry MCP Server for a specific workspace to scope it to that
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Azure AI Foundry MCP Server security and best practices](available-tools.md)
+> [Azure AI Foundry MCP Server security and best practices](security-best-practices.md)
 > [Azure AI Foundry MCP Server tools and example prompts](available-tools.md)

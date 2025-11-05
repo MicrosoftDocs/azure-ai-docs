@@ -74,32 +74,32 @@ Azure role-based access control (RBAC) applies to all operations on Azure AI Fou
 
 Tenant admins can use Azure Policy to grant or block access to Azure AI Foundry MCP Server (preview) for selected users or workload identities.
 
-1. Materialize the service principal for Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id <application-ID>`. Replace `<application-ID>` with the application ID.
-
-    :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
+1. Materialize the service principal for Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`. The application ID used in this command represents Azure AI Foundry MCP Server (preview).
 
 1. Find the enterprise application for Azure AI Foundry MCP Server (preview) using the application ID.
 
-    :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
+    :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
 1. Add a conditional access policy that targets Azure AI Foundry MCP Server (preview) and specifies the users or workload identities.
 
-    :::image type="content" source="../media/mcp/foundry-block-access.png" alt-text="A screenshot showing how to block app access.":::
+    :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
 
 1. Select **Grant**, then choose **Block access**.
+
+    :::image type="content" source="../media/mcp/foundry-block-access.png" alt-text="A screenshot showing how to block app access.":::
 
 After the policy is in place, designated users and groups can't obtain the Entra token needed to connect.
 
 ### Network isolation
 
-Azure AI Foundry MCP Server (preview) exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, the server can't reach them and operations fail.
+Azure AI Foundry MCP Server (preview) currently doesn't support network isolation. Its exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, the server can't reach them and operations fail.
 
 ### Data Residency
 
 Azure AI Foundry MCP Server (preview) uses a global stateless proxy architecture. Data created by backend services stays encrypted at rest in the region you select. The server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.
 
 > [!IMPORTANT]
-> By using this preview feature, you acknowledge and consent that transient cross-region processing can occur (for example, an EU resource accessed by a US user could be routed through US infrastructure). If your organization requires strict in-region processing, don't use Azure AI Foundry MCP Server (preview) or restrict its use to scenarios that stay within your selected region. 
+> By using this preview feature, you are acknowledging and consenting to any cross-region processing that may occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, do not use the Azure AI Foundry MCP Server (preview) or restrict its use to scenarios that remain within your selected region.
 
 ## Troubleshooting and FAQs
 
