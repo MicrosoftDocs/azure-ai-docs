@@ -95,7 +95,7 @@ Select the training tier based on your use case and budget.
 
 If you have existing datasets in the Foundry project, choose **Existing dataset** for the **data source** and then select your dataset.
 
-To upload newly prepared datasets, choose **Upload new dataset** for the **data source** and then upload your *.jsonl* file.
+To upload newly prepared datasets, choose **Upload new dataset** for the **data source** and then upload your JSONL file.
 
 On your data files that are selected or uploaded, validation checks automatically occur to confirm they are in the right format.
 
@@ -110,7 +110,7 @@ It is recommended to fill in the **suffix** field to make it easier to distingui
 
 #### Seed
 
-Controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one is randomly generated for you.
+Controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If a seed isn't specified, one is randomly generated for you.
 
 #### Hyperparameters
 
@@ -121,9 +121,9 @@ The following hyper parameters are available:
 |**Name**| **Type**| **Description**|
 |---|---|---|
 |`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256. |
-| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
+| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate might be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If set to -1, the number of epochs is determined dynamically based on the input data. |
-|`seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
+|`seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If a seed isn't specified, one will be generated for you. |
 | `Beta`| integer | Temperature parameter for the DPO loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
 
 #### Enable auto-deployment
