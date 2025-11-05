@@ -14,19 +14,13 @@ ms.custom:
 # customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding (preview)?
+# What is Azure AI Content Understanding?
 
-> [!IMPORTANT]
->
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format.
+As of November 17, 2025, Content Understanding is a Generally Available (GA) service, and is now available in a broader range of regions. Customers now have the ability to create their own deployments to support Content Understanding in a wider range of available regions. See [region and language support]() for more information on using Content Understanding. 
 
-Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
-
-:::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
+:::image type="content" source="media/overview/content-understanding-framework-2025.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/content-understanding-framework-2025.png" :::
 
 ## Why use Content Understanding?
 
@@ -38,19 +32,23 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 * **Confidence scores & grounding**. Content Understanding ensures the accuracy of extracted values while minimizing the cost of human review.
 
+* **Classify content types**. Content Understanding enables you to classify your document types to streamline your ability to process content, now available in a unified approach in the Analyze API.
+
+* **Industry-specific prebuilt analyzers**. The Content Understanding service offers a variety of out-of-box prebuilt analyzers that are built specifically to address industry-specific needs such as invoice analysis, tax document processing, call center analytics, media analysis, and many more.
+
 ## Content Understanding use cases
 
 * **Automation**. Content Understanding supports automation scenarios by converting unstructured content into structured data, which can be integrated into various workflows and applications. Confidence scores minimize human review and lower costs. For example, automate procurement and payment processes by extracting fields from invoices.
 
-* **Search and retrieval-augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into the search index. The structured output representation improves the relevance for RAG scenarios.
+* **Search and retrieval-augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into a search index, with extensive support for figure description and analysis to make your data more accessible. The Content Understanding service offers multiple prebuilt analyzers that are fine-tuned to give you the best outputs for your RAG search scenarios.
 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
 * **Optimize workflow through classification**: Content Understanding's classification feature enables you to categorize the documents first, before routing it to the associated analyzer for extraction.
 
-## Applications
+## Industry-specific applications
 
-Common applications for Content Understanding include:
+Some common industry-specific applications for Content Understanding include:
 
 |Application|Description|
 |:---------|:----------|
@@ -60,8 +58,9 @@ Common applications for Content Understanding include:
 |Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.|
 |Mortgage application processing|Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provided all the necessary documentation to secure a mortgage.|
 |Invoice contract verification|Review invoices and contractual agreements with clients carefully. Apply a multi-step reasoning process to analyze the data. Ensure that conclusions, such as validating the consistency between the invoice and the contract, are accurate and thorough.|
+|Enhanced customer support| Businesses with support channels can utilize Content Understanding for RAG search to enhance the quality of responses based on data from prior customer issues and feedback.|
 
-## Components
+## Key components of Content Understanding
 
 :::image type="content" source="media/overview/pro-components.png" lightbox="media/overview/pro-components.png"alt-text="Screenshot of Content Understanding pro components.":::
 
@@ -69,9 +68,15 @@ Common applications for Content Understanding include:
 |:---------|:----------|
 |Analyzer|The analyzer is the core component of Content Understanding. It allows customers to configure content extraction settings and field extraction schema. Once configured, the analyzer consistently applies these settings to process all incoming data.|
 |Content extraction|With content extraction, you specify the types of information to identify and extract from incoming content. You can target text (such as optical character recognition (OCR) results), selection marks, barcodes, formulas, and layout elements like paragraphs, sections, and tables. This approach lets you focus on extracting the most relevant information for your needs.|
-|Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
+|Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify & route**: Classify content from a predefined set of categories, such as call sentiment or chart type, and route it to the correct analyzer for analysis.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
 |Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
+
+## Content Understanding experiences
+Azure AI Content Understanding is an Azure AI Foundry service that transforms unstructured content- documents, images, audio and video- into structured, searchable data. The Azure AI Foundry experience is complemented by the Content Understanding Studio for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio](overview/foundry-vs-content-understanding-studio.md)
+
+* **Content Understanding in Azure AI Foundry NextGen portal (coming soon)**: The Azure AI Foundry NextGen portal will offer the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
+* **Content Understanding Studio**: A complementary UX experience, Content Understanding Studio is optimized for analyzer performance improvement and offers the ability to improve custom analyzers using data labeling techniques. It also supports building classification-based custom analyzers.
 
 ## Responsible AI
 
@@ -101,6 +106,6 @@ Developers using the Content Understanding service should review Microsoft's pol
 
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
+* [**Content Understanding Studio quickstart**](quickstart/content-understanding-studio.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 

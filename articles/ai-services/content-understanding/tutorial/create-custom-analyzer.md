@@ -24,11 +24,16 @@ In this guide, we use the cURL command line tool. If it isn't installed, you can
 
 To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt document analyzer](../concepts/prebuilt-analyzers.md) for processing a receipt.
 
-Create a JSON file named `request_body.json` with the following content:
+Create a JSON file named `receipt.json` with the following content:
 ```json
 {
   "description": "Sample receipt analyzer",
-  "baseAnalyzerId": "prebuilt-documentAnalyzer",
+  "baseAnalyzerId": "prebuilt-document",
+  "models": {
+      "completion": "gpt-4.1",
+      "embedding": "text-embedding-ada-002"
+
+    },
   "config": {
     "returnDetails": true,
     "enableFormula": false,
@@ -67,6 +72,55 @@ Create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+Now imagine you have various types of documents you need to process, but want to categorize and analyze only the receipts. You can create an analyzer that categorizes the document first, and route it to the analyzer you have just created above as well with the following schema.
+
+Create a JSON file named `categorize.json` with the following content:
+```json
+{
+  "baseAnalyzerId": "prebuilt-document",
+  // Use the base analyzer to invoke the document specific capabilities.
+
+  //Specify the model the analyzer should use. This is one of the suported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
+  "models": {
+      "completion": "gpt-4.1",
+      "embedding": "text-embedding-ada-002"
+
+    },
+  "config": {
+    // Enable splitting of the input into segments. Set this property to false if you only expect a single document within the input file. When specified and enableSegment=false, the whole content will be classified into one of the categories.
+    "enableSegment": false,
+
+    "contentCategories": {
+      // Category name.
+      "receipt": {
+        // Description to help with classification and splitting.
+        "description": "Any images or documents of receipts",
+
+        // Define the analyzer that any content classified as a receipt should be routed to
+        "analyzerId": "receipt"
+      },
+
+      "invoice": {
+        "description": "Any images or documents of invoice",
+        "analyzerId": "prebuilt-invoice"
+      },
+      "policeReport": {
+        "description": "A police or law enforcement report detailing the events that lead to the loss."
+        // Don't perform analysis for this category.
+      }
+
+    },
+
+    // Omit original content object and only return content objects from additional analysis.
+    "omitContent": true
+  }
+
+  //You can use fieldSchema here to define fields that are needed from the entire input content.
+
+}
+```
+
+
 # [Image](#tab/image)
 
 To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt image analyzer](../concepts/prebuilt-analyzers.md) for processing images of charts and graphs.
@@ -75,7 +129,10 @@ Create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample image analyzer for charts and graphs",
-  "baseAnalyzerId": "prebuilt-imageAnalyzer",
+  "baseAnalyzerId": "prebuilt-image",
+  "models": {
+      "completion": "gpt-4.1"
+    },
   "config": {
     "disableContentFiltering": false
  },
@@ -143,7 +200,10 @@ Create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample product demo video analyzer",
-  "baseAnalyzerId": "prebuilt-videoAnalyzer",
+  "baseAnalyzerId": "prebuilt-video",
+  "models": {
+      "completion": "gpt-4.1"
+    },
   "config": {
     "locales": ["en-US", "fr-FR"],
     "returnDetails": true,
@@ -188,8 +248,28 @@ Create a JSON file named `request_body.json` with the following content:
 
 ### PUT request
 
+# [Document](#tab/document)
+
+Create a receipt analyzer first and then create the categorize analyzer.
+
 ```bash
-curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-05-01-preview" \
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @receipt.json
+```
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @categorize.json
+```
+
+# [Image/Video/Audio](#tab/rest)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d @request_body.json
@@ -207,7 +287,7 @@ Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/opera
 Upon completion, performing an HTTP GET on the operation location URL returns `"status": "succeeded"`.
 
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -222,7 +302,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created with the `categorize.json` file.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png`.
 
 # [Image](#tab/image)
@@ -247,7 +327,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 #### POST Request
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d "{\"url\":\"{fileUrl}\"}"
@@ -263,7 +343,7 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
   "status": "Running",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": []
@@ -273,12 +353,11 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
 
 ### Get Analyze Result
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-2. Replace `{resultId}` with the `resultId` in `POST` response.
+Use the `Operation-Location` from the `POST` response and retrieve the result of the analysis.
 
 #### GET Request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -298,11 +377,13 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
+        "path": "input1/segment1",
+        "category": "receipt",
         "markdown": "Contoso\n\n123 Main Street\nRedmond, WA 98052\n\n987-654-3210\n\n6/10/2019 13:59\nSales Associate: Paul\n\n\n<table>\n<tr>\n<td>2 Surface Pro 6</td>\n<td>$1,998.00</td>\n</tr>\n<tr>\n<td>3 Surface Pen</td>\n<td>$299.97</td>\n</tr>\n</table> ...",
         "fields": {
           "VendorName": {
@@ -345,72 +426,23 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         "pages": [
           {
             "pageNumber": 1,
-            "angle": -0.0848,
+            "angle": -0.0944,
             "width": 1743,
-            "height": 878,
-            "spans": [
-              {
-                "offset": 0,
-                "length": 375
-              }
-            ],
-            "words": [
-              {
-                "content": "Contoso",
-                "span": {"offset": 0,"length": 7 },
-                "confidence": 0.995,
-                "source": "D(1,774,72,974,70,974,111,774,113)"
-              }, ...
-
-            ],
-            "lines": [
-              {
-                "content": "Contoso",
-                "source": "D(1,774,71,973,70,974,111,774,113)",
-                "span": {"offset": 0,"length": 7}
-              }, ...
-            ]
+            "height": 878
           }
         ],
-        "paragraphs": [
-          {
-            "content": "Contoso",
-            "source": "D(1,774,71,973,70,974,111,774,113)",
-            "span": {"offset": 0,"length": 7}
-          }, ...
-        ],
-        "sectios": [
-          {
-            "span": {"offset": 0,"length": 374 },
-            "elements": ["/paragraphs/0","/paragraphs/1", ...]
-          }
-        ],
-        "tables": [
-          {
-            "rowCount": 2,
-            "columnCount": 2,
-            "cells": [
-              {
-                "kind": "content",
-                "rowIndex": 0,
-                "columnIndex": 0,
-                "rowSpan": 1,
-                "columnSpan": 1,
-                "content": "2 Surface Pro 6",
-                "source": "D(1,691,471,911,470,911,514,691,515)",
-                "span": {"offset": 115,"length": 15},
-                "elements": ["/paragraphs/4"]
-              }, ...
-            ],
-            "source": "D(1,759,593,1056,592,1057,741,760,742)",
-            "span": {"offset": 223,"length": 151}
-          }
-        ]
+        "analyzerId": "{analyzerId}",
+        "mimeType": "image/png"
       }
     ]
+  },
+  "usage": {
+    "documentPages": 1,
+    "tokens": {
+      "contextualization": 1000
+    }
   }
 }
-
 ```
 
 # [Image](#tab/image)
@@ -421,7 +453,7 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
@@ -437,18 +469,24 @@ A `200 OK` response includes a `status` field that shows the operation's progres
             "valueString": "pie"
           }
         },
-        "kind": "document",
+       "kind": "document",
         "startPageNumber": 1,
         "endPageNumber": 1,
         "unit": "pixel",
         "pages": [
           {
-            "pageNumber": 1,
-            "spans": []
+            "pageNumber": 1
           }
-        ]
+        ],
+        "analyzerId": "{analyzerId}",
+        "mimeType": "image/jpeg"
       }
     ]
+  },
+  "usage": {
+    "tokens": {
+      "contextualization": 1000
+    }
   }
 }
 ```
@@ -461,9 +499,8 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
-    "stringEncoding": "utf8",
     "warnings": [],
     "contents": [
       {
@@ -512,6 +549,12 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         ]
       }
     ]
+  },
+  "usage": {
+    "audioHours": 0.032,
+    "tokens": {
+      "contextualization": 3194.445
+    }
   }
 }
 
@@ -526,7 +569,7 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SS",
     "warnings": [],
     "contents": [
@@ -540,17 +583,18 @@ A `200 OK` response includes a `status` field that shows the operation's progres
               {
                 "type": "object",
                 "valueObject": {
-                  "Sentiment": {
-                    "type": "string",
-                    "valueString": "Positive"
-                  },
+                  
                   "SegmentId": {
                     "type": "string",
-                    "valueString": "1"
+                    "valueString": "00:00:00.000-00:00:01.467"
                   },
                   "Description": {
                     "type": "string",
-                    "valueString": "The video begins with a scenic aerial view of an island, showcasing the collaboration between Flight Simulator and Microsoft Azure AI."
+                    "valueString": "The video opens with a dramatic aerial shot of a small airplane flying over a tropical island surrounded by turquoise waters. The logos for 'Flight Simulator' and 'Microsoft Azure AI' are prominently displayed, indicating a collaboration or feature integration between the two."
+                  },
+                  "Sentiment": {
+                    "type": "string",
+                    "valueString": "Positive"
                   }
                 }
               }, ...
@@ -562,12 +606,12 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         "endTimeMs": 43866,
         "width": 1080,
         "height": 608,
-        "KeyFrameTimesMs": [726, ... , 43230],
+        "KeyFrameTimesMs": [733, ... , 43233],
         "transcriptPhrases": [
           {
             "speaker": "Speaker 1",
-            "startTimeMs": 1400,
-            "endTimeMs": 6560,
+            "startTimeMs": 1360,
+            "endTimeMs": 6640,
             "text": "When it comes to the neural TTS, in order to get a good voice, it's better to have good data.",
             "words": []
           }, ...
@@ -583,6 +627,12 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         ]
       }
     ]
+  },
+  "usage": {
+    "videoHours": 0.013,
+    "tokens": {
+      "contextualization": 12222.223
+    }
   }
 }
 ```
