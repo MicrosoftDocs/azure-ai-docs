@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 Use the following sections to find available tools and example prompts for Azure AI Foundry MCP Server (preview). Azure AI Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Azure AI Foundry services. 
 
+[!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
+
 ## Dataset management
 
 **evaluation_dataset_create (write)**
