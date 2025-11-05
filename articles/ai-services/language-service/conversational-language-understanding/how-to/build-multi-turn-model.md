@@ -137,18 +137,20 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 1. In the main window, select **Add Intent**.
 
 1. The **Add Intent** window contains two required fields:
-   * Intent name
+   * Intent name(Pascal case)
    * Intent description (required for Quick Deploy)
 
 1. After completing these fields, select **+ Add** to create your intents.
 
 1. Add the following intents:
 
-    |Intent name (Pascal case)|Intent description|
+    |Intent name|Intent description|
     |---|---|
     |BookFlight|Make a travel reservation for an airline flight.|
     |FlightTime|The scheduled departure and/or arrival time for an airline flight.|
     |FlightStatus|The current status of a scheduled flight.|
+
+    :::image type="content" source="../media/multi-turn/add-intent.png" alt-text="Screenshot of the Add Intent fields.":::
 
 1. After defining all intents, select **Add Intent**.
 
@@ -157,16 +159,19 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 1. Select the **Entities** tab, then select **Add entity**.
 
 1. The **Add an entity** window contains two required fields:
-   * Entity name
+   * Entity name (Pascal case)|
+   * Entity description
 1. After completing the entity fields, select **Add an entity**.
 
 1. Add the following entities:
 
-    |Entity name (Pascal case)|Entity description|
+    |Entity name |Entity description|
     |---|---|
-    |TravelDate|Desired travel date.|
-    |FlightDepartureTime|Departure time for scheduled flight.|
     |FlightNumber|Flight number for scheduled flight.|
+    |FlightDepartureTime|Departure time for scheduled flight.|
+    |TravelDate|Desired travel date.|
+
+    :::image type="content" source="../media/multi-turn/add-entity.png" alt-text="Screenshot of the Add Entities fields.":::
 
 1. For common data types, add prebuilt entity components:
 
@@ -177,6 +182,8 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
    * Select your **FlightDepartureTime** entity:
      * Under the **Prebuilt** section, select **Add prebuilt**.
      * Select **DateTime** from the dropdown list, then select **Add**.
+
+    :::image type="content" source="../media/multi-turn/add-prebuilt.png" alt-text="Screenshot of the Add Prebuilt components section.":::
 
 ### Associate intents with entities
 
@@ -238,7 +245,11 @@ Now that all entities have associations, you can proceed with Quick Deploy using
 
 1. The model returns a response in both **Text** and **JSON** formats.
 
+    :::image type="content" source="../media/multi-turn/model-response.png" alt-text="Screenshot of the model response in test and json formats.":::
+
 1. In the **Details** panel on the right, review the **Top Intent** and detected **Entities**.
+
+    :::image type="content" source="../media/multi-turn/details.png" alt-text="Screenshot of the Details response window.":::
 
 You successfully created a multi-turn CLU model with entity slot filling capabilities. Your model can maintain conversation context and progressively collect required information across multiple dialog turns.
 
