@@ -24,7 +24,10 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 ## Prerequisites
 
 * [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
-* A [project in Azure AI Foundry](/azure/ai-foundry/how-to/create-projects) in the westus2 region.
+* A **project in Azure AI Foundry** in one of the following 3 regions:
+  * South Central US
+  * France Central
+  * Norway East
 
 ## Create a workflow
 
@@ -32,7 +35,7 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 ### Create a sequential workflow
 
-1. Go to [Foundry Portal](https://eastus2euap.ai.azure.com/nextgen).
+1. Go to [Foundry Portal](http://aka.ms/nextgen-workflow)
 2. Select **Create new workflow** and **Sequential**.
 3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agents).
 4. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
