@@ -309,6 +309,12 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 [!INCLUDE [quickstart-v2-chat](../default/includes/quickstart-v2-chat.md)]
 
+## Create an agent
+
+Create an agent using your deployed model.
+
+[!INCLUDE [quickstart-v2-create-agent](../default/includes/quickstart-v2-create-agent.md)]
+
 :::moniker-end
 
 ## Chat with an agent
