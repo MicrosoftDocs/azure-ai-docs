@@ -358,7 +358,7 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/Samples/AgentService.cs":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/samples/AgentService.cs":::
 
 
 # [TypeScript](#tab/typescript)
