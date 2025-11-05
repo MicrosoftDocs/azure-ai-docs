@@ -5,7 +5,7 @@
 - An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - Fine-tuning access requires the **Azure AI User** role.
-- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you require [more permissions](../openai/how-to/role-based-access-control.md).
+- If you don't already have access to view quota and deploy models in Azure AI Foundry portal, you require [more permissions](../openai/how-to/role-based-access-control.md).
 
 ## Prepare your data
 
@@ -15,7 +15,7 @@ The training and validation data you use **must** be formatted as a JSON Lines (
 
 It's recommended to use the instructions and prompts that you found worked best in every training example. This helps you get the best results, especially if you have fewer than a hundred examples.
 
-If you don't have an existing dataset prepared, you can leverage the [data generation](../default/fine-tuning/data-generation.md) capabilities create a new one.
+If you don't have an existing dataset prepared, you can leverage the [data generation](../default/fine-tuning/data-generation.md) capabilities to create a new one.
 
 ### Example file format
 
@@ -51,7 +51,7 @@ In addition to the JSONL format, training and validation data files must be enco
 
 ### Datasets size consideration
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful. It's recommended to start with 50 well-crafted training data.
+The more training examples you have, the better. Fine tuning jobs don't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. It's a best practice to provide hundreds, if not thousands, of training examples to be successful. It's recommended to start with 50 well-crafted training data.
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 

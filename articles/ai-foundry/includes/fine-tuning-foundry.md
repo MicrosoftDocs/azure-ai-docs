@@ -67,9 +67,9 @@ To fine-tune a model in an existing Azure AI Foundry project, follow these steps
 
 ### Base model selection
 
-Available models may be limited by the project region. Your choice of model will influence both the performance and the cost of your model. 
+Available models might be limited by the project region. Your choice of model influences both the performance and the cost of your model. 
 
-When selecting the model, you may also select a previously fine-tuned model.
+When selecting the model, you can also select a previously fine-tuned model.
 
 ### Customization method
 
@@ -87,7 +87,7 @@ Select the training tier based on your use case and budget.
 
 - **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
 
-- **Global**: Provides more affordable pricing compared to Standard by leverage capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+- **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
 - **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
@@ -97,7 +97,7 @@ If you have existing datasets in the Foundry project, choose **Existing dataset*
 
 To upload newly prepared datasets, choose **Upload new dataset** for the **data source** and then upload your *.jsonl* file.
 
-On your data files are selected or uploaded, validation check will automatically occur to confirm they are in the right format.
+On your data files that are selected or uploaded, validation checks automatically occur to confirm they are in the right format.
 
 > [!NOTE]
 > Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
@@ -110,7 +110,7 @@ It is recommended to fill in the **suffix** field to make it easier to distingui
 
 #### Seed
 
-Controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be randomly generated for you.
+Controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one is randomly generated for you.
 
 #### Hyperparameters
 
@@ -120,7 +120,7 @@ The following hyper parameters are available:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
-|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256. |
+|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When set to -1, batch_size is calculated as 0.2% of examples in training set and the max is 256. |
 | `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If set to -1, the number of epochs is determined dynamically based on the input data. |
 |`seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
@@ -128,4 +128,4 @@ The following hyper parameters are available:
 
 #### Enable auto-deployment
 
-To save time, you can enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected deployment type. The deployment will be named based on the unique name generated for your custom model and the optional suffix you may have provided earlier.
+To save time, you can enable auto-deployment for your resulting model. If training finishes successfully, the model is deployed by using the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix you might have provided earlier.

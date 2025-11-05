@@ -94,7 +94,7 @@ You can find example reference files for each generator in the following GitHub 
    2. Define the generation parameters 
    3. Upload your reference file
    4. (Optional) Provide a custom output naming text that will be attached to the end of the data generation job ID to identify it more easily
-   5. Submit your generation job by clocking on the "Generate data" button in the wizard
+   5. Submit your generation job by selecting the "Generate data" button in the wizard
 4. Review generated data by selecting on it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
 5. Download the generated synthetic data for post-processing or use it directly in fine-tuning by selecting on the "use this dataset" button inside the right preview panel 
 
