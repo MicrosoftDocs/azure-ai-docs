@@ -57,7 +57,7 @@ The AI Foundry tool catalog provides the following filters to help you find the 
 | Publisher | Microsoft and Partner: non-Microsoft service |
 | Category | Categorize tools by different industries and use cases, such as databases, analytics, web, and more |
 | Registry | **Public**: This is the registry for all public remote MCP servers and local MCP servers in the catalog<br>**Logic app connectors**: This is the registry for all Azure Logic App Connectors that need to be converted to remote MCP servers to use a private tool catalog you built. You can have multiple private tool catalogs in your Foundry Tool Catalog. |
-| Supported Authentication | You can also filter by the authentication method a MCP server supports. For more information see [Authentication methods](https://aka.ms/FoundryMCPAuth). |
+| Supported Authentication | You can also filter by the authentication method an MCP server supports. For more information see [Authentication methods](https://aka.ms/FoundryMCPAuth). |
 
 When you select a specific tool you are interested, you can see the details page like this one:
 
@@ -65,13 +65,13 @@ When you select a specific tool you are interested, you can see the details page
 
 The details page contains the following information: 
 
-- **Basic information**: Name, logo and description
-- **MCP server endpoint**: The endpoint for the tool. Only available for remote MCP servers. Some MCP servers such as Elasticsearch have dynamic endpoint that require you to provide configurations to complete the endpoint. You will later be prompted to enter more information.
-- **Supported authentication**: The [authentication](https://aka.ms/FoundryMCPAuth) method this MCP server supports.
-- **Documentation link**: The hyperlink to view the specific documentation for this tool.
-- **Use cases**: In addition to category of this tool, you can also see more detailed explanation of use cases, an supported capabilities of this tool
-- **Warning and license**: Before using the tool, make sure you have reviewed the warning and license for this tool.
-- **Support Contact**: If you have questions about using this tool or setting up the account, reach out to the support contact of the tool.
+- **Basic information**: Name, logo, and description
+- **MCP server endpoint**: The endpoint for the tool. Only available for remote MCP servers. Some MCP servers such as Elasticsearch have dynamic endpoint that requires you to provide configurations to complete the endpoint. You will later be prompted to enter more information.
+- **Supported authentication**: The [authentication](https://aka.ms/FoundryMCPAuth) method the MCP server supports.
+- **Documentation link**: The hyperlink to view the specific documentation for the tool.
+- **Use cases**: In addition to category of the tool, you can also see more detailed explanation of use cases, and supported capabilities.
+- **Warning and license**: Before using the tool, make sure you have reviewed the warning and license for the tool.
+- **Support Contact**: If you have questions about using or setting up the tool, reach out to a support contact.
 
 ## Tool catalog in the AI Foundry
 
@@ -81,7 +81,7 @@ In [your tools list](https://ai.azure.com/nextgen/build/tools), you can find the
 :::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the AI Foundry portal."lightbox="../media/tool-catalog/tool-view.png" :::
 -->
 
-To see a full list of available tools, you can use the Agent playground. You can view recently used tools, as well as add new ones.
+To see a full list of available tools, you can use the Agent playground. You can view recently used tools, and add new ones.
 
 The tool catalog contains three sections:
 
@@ -111,7 +111,7 @@ The tool catalog contains three sections:
     |[Azure Functions](../../../agents/how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
     |[Function calling](../../../agents/how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
     | [Model Context Protocol (preview)](../../../agents/how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
-    | [OpenAPI 3.0 Specified tool ](../../../agents/how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
+    | [OpenAPI 3.0 Specified tool](../../../agents/how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
     
 ## Next steps
 
