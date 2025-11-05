@@ -12,5 +12,6 @@ In this article, you learn how to use Azure AI Speech voice live with Azure AI F
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 
     ```csharp
-
+    // Copyright (c) Microsoft Corporation. All rights reserved.
+    // Licensed under the MIT License.
     ```
