@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.date: 11/04/2025
+ms.date: 11/05/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -22,7 +22,7 @@ Azure AI Search supports document-level access control, enabling organizations t
 |----------|-------------|
 | Security filters | String comparison. Your application passes in a user or group identity as a string, which populates a filter on a query, excluding any documents that don't match on the string. <br><br>Security filters are a technique for achieving document-level access control. This approach isn't bound to an API so you can use any version or package. |
 | POSIX-like ACL  / RBAC scopes (preview) | Microsoft Entra ID security principal behind the query token is compared to the permission metadata of documents returned in search results, excluding any documents that don't match on permissions. Access Control Lists (ACL) permissions apply to Azure Data Lake Storage (ADLS) Gen2 directories and files. Role-based access control (RBAC) scopes apply to ADLS Gen2 content and to Azure blobs. <br><br>Built-in support for identity-based access at the document level is in preview, available in REST APIs and preview Azure SDK packages that provide the feature. Be sure to check the [SDK package change log](#retrieve-permissions-metadata-during-data-ingestion-process) for evidence of feature support.|
-| Microsoft Purview sensitivity labels (preview) | Indexer extracts sensitivity labels defined in Microsoft Purview from supported data sources (Azure Blob Storage, ADLS Gen2, SharePoint Online, OneLake). These labels are stored as metadata and evaluated at query time to enforce user access based on Microsoft Entra ID tokens and Purview policy assignments. This approach aligns Azure AI Search authorization with your enterprise’s Microsoft Information Protection model.|
+| Microsoft Purview sensitivity labels (preview) | Indexer extracts sensitivity labels defined in Microsoft Purview from supported data sources (Azure Blob Storage, ADLS Gen2, SharePoint in Microsoft 365, OneLake). These labels are stored as metadata and evaluated at query time to enforce user access based on Microsoft Entra ID tokens and Purview policy assignments. This approach aligns Azure AI Search authorization with your enterprise’s Microsoft Information Protection model.|
 | SharePoint in Microsoft 365 ACLs (preview) | When configured, Azure AI Search indexers extract SharePoint document permissions directly from in Microsoft 365 ACLs during initial ingestion. Access checks use Microsoft Entra ID user and group memberships. Supported group types include Microsoft Entra security groups, Microsoft 365 groups, and mail-enabled security groups. SharePoint groups are not yet supported in preview. |
 
 ## Pattern for security trimming using filters  
@@ -95,9 +95,9 @@ SharePoint ACL support is available in preview through the SharePoint indexer us
 
 The pattern includes the following components:
 
-- Use the SharePoint in Microsoft 365 indexer with **Microsoft Entra ID–based authentication** and a managed identity that has application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL setup instructions](search-how-to-index-sharepoint-online.md) in full for enablement.
+- Use the SharePoint in Microsoft 365 indexer with **Microsoft Entra ID–based authentication** and a managed identity that has application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL setup instructions](https://aka.ms/azs-sharepoint-indexer-acls) in full for enablement.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
-- For incremental indexing of ACLs, review the [SharePoint ACL resync mechanisms](search-how-to-index-sharepoint-online.md) available during public preview.
+- For incremental indexing of ACLs, review the [SharePoint ACL resync mechanisms](https://aka.ms/azs-sharepoint-indexer-acls) available during public preview.
 - At query time, Azure AI Search compares the Microsoft Entra principal behind the query token to the stored SharePoint ACL metadata in the index, trimming results to exclude any documents the caller isn't authorized to access.
 
 During preview, the following principal types are supported in SharePoint ACLs:
@@ -109,7 +109,7 @@ During preview, the following principal types are supported in SharePoint ACLs:
 
 SharePoint groups are not supported in the preview release.
 
-For configuration details, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](search-indexer-sharepoint-acl.md).
+For configuration details, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](https://aka.ms/azs-sharepoint-indexer-acls).
 
 
 ## Pattern for Microsoft Purview sensitivity labels (preview)
@@ -160,5 +160,6 @@ Take a closer look at document-level access control in Azure AI Search with more
 
 - [How to index document-level permissions using push API](search-index-access-control-lists-and-rbac-push-api.md)
 - [How to index document-level permissions using the ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md)
+- [How to index document-level permissions using the SharePoint in Microsoft 365 indexer](https://aka.ms/azs-sharepoint-indexer-acls)
 - [How to index sensitivity labels using indexers](search-indexer-sensitivity-labels.md)
 - [How to query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions)
