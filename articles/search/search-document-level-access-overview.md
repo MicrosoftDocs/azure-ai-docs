@@ -91,7 +91,7 @@ For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-li
 
 For SharePoint in Microsoft 365 content, Azure AI Search can apply document-level permissions based on SharePoint ACLs. This integration helps with enabling that only users or groups with access to the original document in SharePoint can retrieve it in search results, as soon as the permissions are synchronized to the index, at initial document ingestion or using the documented incremental choices available during preview(search-how-to-index-sharepoint-online.md).
 
-SharePoint ACL support is available in preview through the SharePoint indexer using the [2025-11-01-preview REST API](/rest/api/searchservice/datasources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or supported SDKs. The indexer extracts file and list item permission metadata and preserves it in the search index, where it’s used to enforce access control at query time.
+SharePoint ACL support is available in preview through the SharePoint indexer using the [2025-11-01-preview REST API](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or supported SDKs. The indexer extracts file and list item permission metadata and preserves it in the search index, where it’s used to enforce access control at query time.
 
 The pattern includes the following components:
 
@@ -122,7 +122,7 @@ At query time, Azure AI Search evaluates the sensitivity label for each document
 
 The pattern includes the following components:
 
-- Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [data source](/rest/api/searchservice/datasources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (for scheduling purposes) using the 2025-11-01-preview REST API or a corresponding SDK that supports Purview label ingestion.
+- Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [data source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (for scheduling purposes) using the 2025-11-01-preview REST API or a corresponding SDK that supports Purview label ingestion.
 - Enable a [system-assigned managed identity](search-how-to-managed-identities.md) to your search service and have your Global administrator [providing required access](search-indexer-sensitivity-labels.md), so it can securely access Microsoft Purview and extract label metadata.
 - Apply sensitivity labels to documents before indexing so they can be recognized and preserved during ingestion.
 - At query time, attach a valid Microsoft Entra ID token via the respective header to each query request. Azure AI Search evaluates the token and the associated label metadata to enforce label-based access control.
