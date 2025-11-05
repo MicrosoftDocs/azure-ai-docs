@@ -25,6 +25,19 @@ In this article, you learn how to use voice live with generative AI and Azure AI
 
 #### [Foundry (new) portal](#tab/foundry-classic)
 
+
+To try out the voice live demo, follow these steps:
+
+1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+1. Select **Build** from the top right menu.
+1. Select **Models** on the left pane. 
+1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. **Select Azure Speech - Voice Live** to open the Voice Live playground.
+1. Select a scenario and a voice using the dropdown menus. Optionally configure other parameters of the voice agent's behavior.
+1. When you're ready, select **Start** to start chatting with the voice agent using your device's microphone and speakers.
+1. Select **End** to end the chat session.
+
+#### [Foundry (classic) portal](#tab/new-foundry)
+
 To try out the voice live demo, follow these steps:
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
@@ -53,16 +66,5 @@ To try out the voice live demo, follow these steps:
 
 1. Select **Start** to start speaking again and select **End** to end the chat session.
 
-#### [Foundry (classic) portal](#tab/new-foundry)
-
-To try out the voice live demo, follow these steps:
-
-1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
-1. Select **Build** from the top right menu.
-1. Select **Models** on the left pane. 
-1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. **Select Azure Speech - Voice Live** to open the Voice Live playground.
-1. Select a scenario and a voice using the dropdown menus. Optionally configure other parameters of the voice agent's behavior.
-1. When you're ready, select **Start** to start chatting with the voice agent using your device's microphone and speakers.
-1. Select **End** to end the chat session.
 
 ---
