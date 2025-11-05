@@ -29,7 +29,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ## Prerequisites
 
-+ Familiarity with [agentic retrieval concepts and use cases](agentic-retrieval-overview.md).
++ Familiarity with [agentic retrieval concepts and workflow](agentic-retrieval-overview.md).
 
 + Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher for managed identity support. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
 

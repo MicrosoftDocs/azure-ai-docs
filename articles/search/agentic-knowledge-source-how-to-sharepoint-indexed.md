@@ -14,7 +14,7 @@ ms.date: 11/05/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-An *indexed SharePoint knowledge source* ingests content from SharePoint sites into a searchable index on Azure AI Search. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
+Use a *indexed SharePoint knowledge source* to index and query SharePoint content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 When you create an indexed SharePoint knowledge source, you specify a SharePoint connection string, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -25,17 +25,13 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 ## Prerequisites
 
-+ Azure AI Search in an Azure tenant, configured for Microsoft Entra ID authentication.
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md).
 
-+ SharePoint in a Microsoft 365 tenant, under the same Microsoft Entra ID tenant as Azure.
++ Completion of the [SharePoint indexer prerequisites](search-how-to-index-sharepoint-online.md#prerequisites).
 
-+ A personal access token for local development or a user's identity from a client application. 
++ Completion of the [application registration step for Microsoft Entra ID authentication](search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration).
 
-For local development, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
-
-To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
-
-The generated indexer conforms to the *SharePoint indexer*, whose prerequisites, supported tasks, supported document formats, supported shortcuts, and limitations also apply to indexed SharePoint knowledge sources. For more information, see the [SharePoint indexer documentation](search-how-to-index-sharepoint-online.md).
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support for this knowledge source.
 
 ## Check for existing knowledge sources
 
