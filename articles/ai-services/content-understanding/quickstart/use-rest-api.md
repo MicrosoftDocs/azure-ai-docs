@@ -75,7 +75,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
 ```
 
 #### POST response
-The response includes a `request-id`, which you use to retrieve the results of the asynchronous analysis operation. Additionally, the `Operation-Location` header provides the direct URL to access the analysis result.
+The response `header` includes a ```Operation-Location```, which you use to retrieve the results of the asynchronous analysis operation. 
 
 ```
 HTTP/1.1 202 Accepted
