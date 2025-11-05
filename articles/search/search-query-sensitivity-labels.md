@@ -24,11 +24,11 @@ This article explains how query-time sensitivity label enforcement works and how
 
 Before you can query a sensitivity-label-enabled index, the following conditions must be met:
 
-- You must follow all steps for [Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-how-to-index-purview-sensitivity-labels.md).
+- You must follow all steps for [Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
 - Both the Azure AI Search service and the user issuing the query must belong to the same Microsoft Entra tenant.
 
-- The latest [preview API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview) or a compatible beta SDK must be used to query the index.  
+- The latest [preview API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a compatible beta SDK must be used to query the index.  
 
 - Queries must be authenticated using [Azure role-based access control (RBAC)](search-security-rbac.md), not API keys.  API key access is restricted to index schema retrieval only when Purview sensitivity labels functionality is enabled.
 
@@ -49,8 +49,8 @@ When you query an index that includes Microsoft Purview sensitivity label metada
 ### 1. User identity and application role input
 
 At query time, Azure AI Search validates both:
-- The **calling application’s RBAC role**, provided in the **`Authorization`** header.  
-- The **user identity**, provided in the **`x-ms-query-source-authorization`** header.  
+- The calling application’s RBAC role, provided in the `Authorization` header.  
+- The user identity via token, provided in the `x-ms-query-source-authorization` header.  
 
 Both are required to authorize label-based visibility.
 
@@ -64,10 +64,10 @@ Both are required to authorize label-based visibility.
 ### 2. Sensitivity label evaluation
 
 When a query request is received, Azure AI Search evaluates:
-1. The **sensitivityLabel** field in each indexed document (extracted from Microsoft Purview during ingestion).  
-2. The **user’s effective Purview permissions**, as defined by Microsoft Entra ID and Purview label policy.  
+1. The sensitivityLabel field in each indexed document (extracted from Microsoft Purview during ingestion).  
+2. The user’s effective Purview permissions, as defined by Microsoft Entra ID and Purview label policy.  
 
-If the user is **not authorized** for a document’s sensitivity label with extraction permissions, that document is excluded from the query results.
+If the user is not authorized for a document’s sensitivity label with extract permissions, that document is excluded from the query results.
 
 > [!NOTE]
 > Internally, the service builds dynamic access filters similar to RBAC enforcement.  
@@ -79,8 +79,8 @@ If the user is **not authorized** for a document’s sensitivity label with extr
 Azure AI Search applies the security filter after all user-defined filters and scoring steps.  
 A document is included in the final result set only if:
 
-- The **calling application** has a valid role assignment (via RBAC), **and**  
-- The **user identity** represented by `x-ms-query-source-authorization` is permitted to view content with the document’s sensitivity label.
+- The calling application has a valid role assignment (via RBAC), and
+- The user identity token represented by `x-ms-query-source-authorization` is valid and permitted to view content with the document’s sensitivity label.
 
 If either condition fails, the document is omitted from the results.
 
