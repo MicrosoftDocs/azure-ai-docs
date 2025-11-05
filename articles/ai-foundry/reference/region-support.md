@@ -99,7 +99,6 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - Quatar Central
 - South Africa North
 - South Central US
-- South East Asia
 - South India
 - Southeast Asia
     :::column-end:::
@@ -195,7 +194,7 @@ Available to US government entities and their partners only. For more informatio
 
 ## Use AI to find the best region
 
-Use AI to help you find the right region for your needs.  Open the [Foundry agent](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case:
+Use AI to help you find the right region for your needs.  Open the [Ask AI](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case:
 
 ```copilot-prompt
    Based on the features I need for my Azure AI Foundry project, which regions would you recommend to create the project? 
