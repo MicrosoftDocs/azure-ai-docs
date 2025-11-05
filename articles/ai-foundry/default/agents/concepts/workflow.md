@@ -92,3 +92,93 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 - **YAML Visualizer View toggle**: The workflow will be stored in a YAML file, it can be modified in the visualizer and the YAML view. Saving will create a new version; you have access to the version history. The visualizer and the YAML are editable. You can edit the YAML file and any changes to the file will be reflected in the visualizer.
 - **Versioning**: Each time you save your workflow, a new, unchangeable version is created. To view the version history or delete older versions, open the Version dropdown located to the left of the Save button.
 - **Add Notes to your workflow visualizer**: You can add notes on the workflow visualizer to add additional context or information regarding your workflow. In the upper left corner of the workflow visualizer, select **Add note**.
+
+
+## Create expressions using Power Fx
+
+Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to create complex logic that allows your agents to manipulate data. For instance, a Power Fx formula can set the value of a variable, parse a string, or use an expression in a condition. For more information, see the [Power Fx overview](/power-platform/power-fx/overview) and [formula reference](/power-platform/power-fx/formula-reference-copilot-studio).
+
+## Use variables in a formula
+
+To use a variable in a Power Fx formula, you must add a prefix to its name to indicate the variable's scope:
+
+- For [system variables](authoring-variables-about.md#system-variables), use `System.`
+- For [local variables](authoring-variables-about.md), use `Local.`
+
+### Use literal values in a formula
+
+In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](authoring-variables-about.md#variable-types). The following table lists the data types and the format of their corresponding literal values.
+
+| Type             | Format examples                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| String           | `"hi"`, `"hello world!"`, `"copilot"`                                                                                            |
+| Boolean          | Only `true` or `false`                                                                                                           |
+| Number           | `1`, `532`, `5.258`,`-9201`                                                                                                      |
+| Record and Table | `[1]`, `[45, 8, 2]`, `["cats", "dogs"]`, `{ id: 1 }`, `{ message: "hello" }`, `{ name: "John", info: { age: 25, weight: 175 } }` |
+| DateTime         | `Time(5,0,23)`, `Date(2022,5,24)`, `DateTimeValue("May 10, 2022 5:00:00 PM")`                                                    |
+| Choice           | Not supported                                                                                                                    |
+| Blank            | Only `Blank()`                                                                                                                   |
+
+### Common Power Fx formulas
+
+The following table lists data types and Power Fx formulas you can use with each data type.
+
+| Type             | Power Fx formulas                                                                                                                                                                                                                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| String           | [Text function][1]<br>[Concat and Concatenate functions][2]<br>[Len function][3]<br>[Lower, Upper, and Proper functions][4]<br>[IsMatch, Match, and MatchAll functions][5]<br>[EndsWith and StartsWith functions][6]<br>[Find function][7]<br>[Replace and Substitute function][8]                                              |
+| Boolean          | [Boolean function][9]<br>[And, Or, and Not functions][10]<br>[If and Switch functions][11]                                                                                                                                                                                                                                      |
+| Number           | [Decimal, Float, and Value functions][12]<br>[Int, Round, RoundDown, RoundUp, and Trunc functions][13]                                                                                                                                                                                                                          |
+| Record and Table | [Concat and Concatenate functions][14]<br>[Count, CountA, CountIf, and CountRows functions][15]<br>[ForAll function][16]<br>[First, FirstN, Index, Last, and LastN functions][17]<br>[Filter, Search, and LookUp functions][18]<br>[JSON function][19]<br>[ParseJSON function][20]                                              |
+| DateTime         | [Date, DateTime, and Time functions][21]<br>[DateValue, TimeValue, and DateTimeValue functions][22]<br>[Day, Month, Year, Hour, Minute, Second, and Weekday functions][23]<br>[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions][24]<br>[DateAdd, DateDiff, and TimeZoneOffset functions][25]<br>[Text function][26] |
+| Blank            | [Blank, Coalesce, IsBlank, and IsEmpty functions][27]<br>[Error, IfError, IsError, IsBlankOrError functions][28]                                                                                                                                                                                                                |
+## Use Power Fx to set a variable
+
+In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
+
+1. Create a topic and add a **Question** node.
+
+1. For **Enter a message**, enter "What is your name?".
+
+1. Under **Identify**, select the entity **Person name**.
+
+1. Select the box under **Save user response as**, and then select the variable `Var1` and name it `customerName`.
+
+1. Under the **Question** node, select **+** and then select **Set a variable value**.
+
+1. Select the box under **Set variable**, and then select **Create new** and name it `capsName`.
+
+1. In the **To value** box, select the **>** arrow, and then select the **Formula** tab.
+
+1. In the **fx** box, enter `Upper(Text(Topic.customerName))`, and then select **Insert**.
+
+1. Under the **Question** node, select **+** and then select **Send a message**.
+
+1. Enter "HELLO ", select **{x}**, and then select `capsName`.
+
+## Use a Power Fx formula as a condition
+
+To evaluate more complex expressions, set up **Condition** nodes to use Power Fx formulas.
+
+In this example, the agent determines if a booking date qualifies for a discount. To do that, it checks whether the booking date provided by the customer is 14 days or more from the current date.
+
+1. Create a topic and add a **Question** node.
+
+1. For **Enter a message**, enter "Booking date?".
+
+1. Under **Identify**, select the entity **Date and time**.
+
+1. Select the box under **Save user response as**, and then select the variable `Var1` and name it `bookingDate`.
+
+1. Select the **Add node** icon :::image type="icon" source="media/advanced-power-fx/icon-add-node-20px.png"::: below the **Question** node, and then select **Add a condition**.
+
+1. Select the **More** icon (**&hellip;**) of the **Condition** node, and then select **Change to formula**.
+
+1. In the **Function** box, select the **>** arrow, and then select the **Formula** tab.
+
+1. Replace the contents of the **fx** box with the formula `Topic.bookingDate > (DateAdd (Now(), 14))`, and then select **Insert**.
+
+1. Under the **Condition** node, add a **Message** node and enter the message "You qualify for a discount."
+
+1. Under the **All Other Conditions** node, add a **Message** node and enter the message, "Sorry, you don't qualify for a discount."
+
+ 
