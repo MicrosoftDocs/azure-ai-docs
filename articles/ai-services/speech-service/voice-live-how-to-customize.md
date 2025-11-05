@@ -88,26 +88,6 @@ Use the `custom_lexicon_url` string property to customize pronunciation for bo
 }
 ```
 
-### Azure personal voices
-
-You can use a personal voice for audio output. For information about how to create a personal voice, see [What is personal voice for text to speech](./personal-voice-overview.md).
-
-```json
-{
-  "voice": {
-    "type": "azure-personal",    
-    "name": "your-personal-voice-name",
-    "model": "DragonHDOmniLatestNeural", // Underlying neural model to use for personal voice. This can be either "DragonLatestNeural" or "DragonHDOmniLatestNeural".
-    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
-  }
-}
-```
-
-> [!NOTE]
-> In order to use a personal voice model with Voice live API, the personal voice must be available on the same Azure AI Foundry resource you're using to call the Voice live API.
-> You pay separately for personal voice training and hosting.
-> For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=tts).
-
 ### Azure custom voices
 
 You can use a custom voice for audio output. For information about how to create a custom voice, see [What is custom voice](./custom-neural-voice.md).
