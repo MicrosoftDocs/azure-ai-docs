@@ -17,8 +17,5 @@ To work with Azure AI services in your .NET project, you'll need to install seve
     
 ```bash
 # Add Azure AI SDK packages
-dotnet add package Azure.Identity
-dotnet add package Azure.AI.Projects 
-dotnet add package Azure.AI.Agents.Persistent
-dotnet add package Azure.AI.Inference
+dotnet add package Azure.AI.Agents --prerelease
 ```

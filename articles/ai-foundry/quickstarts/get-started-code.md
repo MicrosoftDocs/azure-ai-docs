@@ -56,8 +56,6 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ::: moniker-end
 
 
-
-
 ## Prerequisites
 
 > [!IMPORTANT]
@@ -73,16 +71,9 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## <a name="install"></a> Get ready to code
 
-::: moniker range="foundry"
-[!INCLUDE [code-preview](../default/includes/code-preview.md)] 
-
-[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
-
-::: moniker-end
+::: moniker range="foundry-classic"
 
 # [Python](#tab/python)
-
-::: moniker range="foundry-classic"
 
 1. Install these packages:
 
@@ -93,29 +84,11 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
-::: moniker-end
-::: moniker range="foundry"
-
-
-1. Install these packages, including the preview version of `azure-ai-projects`:
-
-    ```
-    pip install azure-identity
-    pip install azure-ai-projects --pre
-    ```
-
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
-
-::: moniker-end
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart)
 
-
 # [C#](#tab/csharp)
-
-::: moniker range="foundry-classic"
 
 1. Install packages:
 
@@ -132,34 +105,11 @@ Follow along below or get the code:
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
-::: moniker-end
-::: moniker range="foundry"
-
-1. Install packages:
-
-    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
-
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-
-1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
-
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
-
-    > [!TIP]
-    > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
-
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
-
-::: moniker-end
-
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart)
 
-
 # [TypeScript](#tab/typescript)
-
-::: moniker range="foundry-classic"
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
@@ -169,25 +119,12 @@ Follow along below or get the code:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
 
-::: moniker-end
-::: moniker range="foundry"
-
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-1. Install packages with `npm install @azure/ai-projects@2.0.0-beta.1`
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-1. Set these environment variables to use in your scripts:
-
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
-
-::: moniker-end
-
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart)
 
 # [Java](#tab/java)
 
-::: moniker range="foundry-classic"
 [!INCLUDE [code-preview](../default/includes/code-preview.md)]
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
@@ -200,25 +137,10 @@ Follow along below or get the code:
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
-::: moniker-end
-::: moniker range="foundry"
-
-1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
-1. Set these environment variables to use in your scripts:
-
-    ```txt
-    MODEL_DEPLOYMENT_NAME=gpt-4o
-    PROJECT_ENDPOINT=https://<your-foundry-resource-name>.services.ai.azure.com/api/projects/<your-foundry-project-name>
-    ```
-
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
-1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE. This includes the preview version of `azure-ai-projects`.
-::: moniker-end
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart)
-
 
 # [REST API](#tab/rest)
 
@@ -241,6 +163,100 @@ Follow along below or get the code:
 No installation is necessary to use the Azure AI Foundry portal.
 
 ---
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+[!INCLUDE [code-preview](../default/includes/code-preview.md)] 
+
+### Set environment variables
+
+Use environment variables for the endpoint and model name. 
+
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    ```plaintext
+    AZURE_AI_PROJECT_ENDPOINT=<endpoint copied from welcome screen>
+    MODEL_DEPLOYMENT_NAME=gpt-4o
+    ```
+### Install and authenticate
+
+[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
+
+# [Python](#tab/python)
+
+1. Install these packages, including the preview version of `azure-ai-projects`:
+
+    ```
+    pip install azure-identity
+    pip install azure-ai-projects --pre
+    ```
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart)
+
+# [C#](#tab/csharp)
+
+1. Install packages:
+
+    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages-v2.md]
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart)
+
+# [TypeScript](#tab/typescript)
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
+1. Install packages:
+    ```bash
+    npm install @azure/ai-projects@2.0.0-beta.1'
+    ```
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart)
+
+# [Java](#tab/java)
+
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE. This includes the preview version of `azure-ai-projects`.
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+1. 
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart)
+
+# [REST API](#tab/rest)
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
+
+    ```azurecli
+    az account get-access-token --scope https://ai.azure.com/.default
+    ```
+    
+1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
+
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+No installation is necessary to use the Azure AI Foundry portal.
+
+---
+
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 
@@ -285,7 +301,8 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 ## Chat with an agent
 
 Create an agent and chat with it.
- 
+
+::: moniker range="foundry-classic"
 
 # [Python](#tab/python)
 
@@ -295,16 +312,7 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [C#](#tab/csharp)
 
-:::moniker range="foundry-classic"
-
 :::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
-:::moniker-end
-
-:::moniker range="foundry"
-
-[!INCLUDE [quickstart-csharp](../agents/includes/quickstart-csharp.md)]
-
-:::moniker-end
 
 # [TypeScript](#tab/typescript)
 
@@ -322,8 +330,6 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-::: moniker range="foundry-classic"
-
 When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
 1. In the left pane, select **Playgrounds**.
@@ -331,14 +337,49 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
 
+---
+
 ::: moniker-end
 
 ::: moniker range="foundry"
+
+# [Python](#tab/python)
+
+    ```python
+    NEED CODE
+    ```
+
+# [C#](#tab/csharp)
+
+[!INCLUDE [quickstart-csharp](../agents/includes/quickstart-csharp.md)]
+
+# [TypeScript](#tab/typescript)
+
+    ```typescript
+    NEED CODE
+    ```
+    
+# [Java (preview)](#tab/java)
+
+    ```java
+    NEED CODE
+    ```
+    
+
+# [REST API](#tab/rest)
+
+    ```console
+    NEED CODE
+    ```
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 After you create the agent, you're automatically moved from **Home** to the **Build** section. Your new agent is selected and ready for you to try out in the Agent pane.
 
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers." 
+
+---
 
 ::: moniker-end
 
