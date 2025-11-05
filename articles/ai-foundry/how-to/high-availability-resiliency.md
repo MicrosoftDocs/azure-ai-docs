@@ -144,7 +144,7 @@ User‑uploaded files attached within conversation threads generally can't be re
 
 ## Backup and restoration guidance
 
-Conversation thread history durability depends on the underlying Standard mode state stores (Cosmos DB `enterprise_memory` database, Azure AI Search indexes, Storage blobs for attachments). There is currently no built-in one-click export/import of complete conversation histories for later bulk restoration. Use service APIs to periodically snapshot critical agent definitions, tool bindings, and knowledge source references. (QUESTION: Confirm if any preview export/import capability for conversation threads should be linked here.)
+Conversation thread history durability depends on the underlying Standard mode state stores (Cosmos DB `enterprise_memory` database, Azure AI Search indexes, Storage blobs for attachments). There is currently no built-in one-click export/import of complete conversation histories for later bulk restoration. Use service APIs to periodically snapshot critical agent definitions, tool bindings, and knowledge source references.
 
 For compliance continuity, connect to Microsoft Purview to preserve lineage and classification metadata even if operational thread data is lost.
 
@@ -175,7 +175,7 @@ Azure AI Foundry builds on other services. Some services replicate to other regi
 
 Use these development practices to enable fast recovery and restart in the secondary region:
 
-* Use Azure Resource Manager templates. Templates are infrastructure as code, and they let you quickly deploy services in both regions. (QUESTION: Provide reference ARM/Bicep samples for Foundry + Standard Agent topology?)
+* Use Azure Resource Manager templates. Templates are infrastructure as code, and they let you quickly deploy services in both regions.
 * To avoid drift between the two regions, update your continuous integration and deployment pipelines to deploy to both regions.
 * Create role assignments for users in both regions.
 * Create network resources such as Azure virtual networks and private endpoints for both regions. Ensure users can access both network environments. For example, configure VPN and DNS for both virtual networks.
@@ -213,7 +213,7 @@ When the primary project is unavailable, switch to the secondary project to cont
 Azure AI Foundry doesn't sync or recover artifacts or metadata between projects. Depending on your deployment strategy, you might need to move or recreate artifacts in the failover project. If you configure the primary and secondary projects to share associated resources with geo-replication enabled, some objects are available in the failover project. For example, both projects share the same Docker images, configured datastores, and Azure Key Vault resources.
 
 > [!NOTE]
-> Jobs that run during a service outage don't automatically transition to the secondary project. They also don't typically resume and finish successfully in the primary project after the outage. Resubmit these jobs in the secondary project or in the primary project after the outage. (QUESTION: Add gateway routing pattern actions here if adopting front-door/gateway failover?)
+> Jobs that run during a service outage don't automatically transition to the secondary project. They also don't typically resume and finish successfully in the primary project after the outage. Resubmit these jobs in the secondary project or in the primary project after the outage.
 
 ## Recovery options
 
@@ -227,7 +227,7 @@ If you delete a project and its resources, some resources support soft delete an
 | Azure Storage | See [Recover a deleted storage account](/azure/storage/common/storage-account-recover#recover-a-deleted-account-from-the-azure-portal) |
 | Azure Key Vault | Yes |
 
-For recovery of other Azure AI Foundry resources (accounts, projects) after deletion or purge scenarios, see [Recover or purge deleted Azure AI Foundry resources](/azure/ai-services/recover-purge-resources). (QUESTION: Confirm correct link scope and placement; rename row previously labeled "Azure AI Services resource"?)
+For recovery of other Azure AI Foundry resources (accounts, projects) after deletion or purge scenarios, see [Recover or purge deleted Azure AI Foundry resources](/azure/ai-services/recover-purge-resources).
 
 ## Related content
 

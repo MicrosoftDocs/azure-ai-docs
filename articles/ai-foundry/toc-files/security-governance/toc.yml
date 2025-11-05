@@ -35,7 +35,7 @@ items:
       href: ../../how-to/agent-service-disaster-recovery.md
     - name: Recover from a platform outage
       href: ../../how-to/agent-service-platform-disaster-recovery.md
-    - name: Recover from an resource and data loss
+    - name: Recover from resource and data loss
       href: ../../how-to/agent-service-operator-disaster-recovery.md
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md

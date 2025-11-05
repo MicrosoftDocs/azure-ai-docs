@@ -57,7 +57,7 @@ For *each project* you choose to recover, follow these steps:
 1. Deploy the project's capability host dependencies (Azure Cosmos DB, Azure AI Search, Azure Storage) in the recovery region using your infrastructure as code (IaC) assets. Match topology and configuration. If multiple projects share the same dependencies, do this step only once.
 
       > [!TIP]
-   > Preprovisioning these resources reduces recovery time but increases cost and operational overhead. A hybrid approach is possible. For example, Azure Storage is already deployed because it's inexpensive when idle; Azure AI Search isn't.
+   > Pre-provisioning these resources reduces recovery time but increases cost and operational overhead. A hybrid approach is possible. For example, Azure Storage is already deployed because it's inexpensive when idle; Azure AI Search isn't.
 
 1. Create the project's user-assigned managed identity. Give it access to the new regional dependencies.
 

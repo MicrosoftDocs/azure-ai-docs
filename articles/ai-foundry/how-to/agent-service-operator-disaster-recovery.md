@@ -86,14 +86,12 @@ The following sections describe recovery strategies for incidents that affect an
 > - Thread text and files
 > - File-based knowledge defined at the agent level
 >
-> This data resides in the currently associated Azure Cosmos DB, Azure AI Search, and Azure Storage account resources. That data will no longer be associated with this project. The data is 1. Recreate the project by using infrastructure as code so configuration matches the prior state.
+> This data resides in the currently associated Azure Cosmos DB, Azure AI Search, and Azure Storage account resources. That data will no longer be associated with this project. Recreate the project by using infrastructure as code so configuration matches the prior state.
 
    - Reassign the same user-assigned managed identity.
    - Deploy the same capability host configuration referencing the same downstream dependencies.
 
 1. Redeploy agents (definitions, knowledge files, and tools) from source control or application code. They become new agents with new IDs and have **no access** to prior threads or files.
-
-1. Apply a *delete* resource lock on the AI Foundry account.cess** to prior threads or files.
 
 1. Apply a *delete* resource lock on the AI Foundry account.
 
@@ -220,9 +218,9 @@ The following sections describe recovery strategies for incidents that are local
 
 **Recovery steps:**
 
-1. Use the Azure portal, Azure CLI, or Azure PowerShell cmdlet to initiate a point-in-time restore to the same account.
+Use the Azure portal, Azure CLI, or Azure PowerShell cmdlet to initiate a point-in-time restore to the same account.
 
-   - Select the `enterprise_memory` database
+   - Select the `enterprise_memory` database.
    - Choose the latest restore point for the deleted container.
    - No role assignments need to be reapplied, they're preserved with this restoration.
    - Azure Cosmos DB charges a nominal fee for this restoration action.
@@ -313,21 +311,6 @@ If the index was tied to knowledge uploaded as part of a thread, there's no reco
 - Recovery time: Minutes.
 
 - Recovery point: Complete and unrecoverable loss of state for any directly affected threads. File-based state for agent knowledge is reconstructed.
-
-### Azure Storage account is deleted
-
-> [!WARNING]
-> **TODO: Content to be added, based on this scenario.**
-
-### Azure Storage blob container is deleted
-
-> [!WARNING]
-> **TODO: Content to be added, based on this scenario.**
-
-### Azure Storage blob data is deleted or corrupted
-
-> [!WARNING]
-> **TODO: Content to be added, based on this scenario.**
 
 ## Perform a destructive reset of the Azure AI Agent Service capability host
 
