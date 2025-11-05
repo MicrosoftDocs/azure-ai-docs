@@ -102,8 +102,8 @@ Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to c
 
 To use a variable in a Power Fx formula, you must add a prefix to its name to indicate the variable's scope:
 
-- For [system variables](authoring-variables-about.md#system-variables), use `System.`
-- For [local variables](authoring-variables-about.md), use `Local.`
+- For [system variables](microsoft-copilot-studio/authoring-variables-about), use `System.`
+- For local variables, use `Local.`
 
 ### Use literal values in a formula
 
