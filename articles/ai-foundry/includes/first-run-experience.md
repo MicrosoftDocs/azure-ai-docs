@@ -42,9 +42,10 @@ You'll start in Azure AI Foundry portal to create a project and deploy a model.
 1. To create a new project, select the project name, then  **Create new project**.
 1. Give your project a name and select **Create project**.
 1. Now deploy a model into the project:
-    1. Select **Build** in the upper-right navigation.
+    1. Select **Discover** in the upper-right navigation.
     1. Select **Models**.
-    1. Search for the **gpt4.1-mini** model and deploy it.
+    1. Search for the **gpt-4.1-mini** model.
+    1. Select **Deploy** > **Quick deploy** to add it to your project.
 
 You're now ready to move on to interacting with your model and creating an agent.
 
