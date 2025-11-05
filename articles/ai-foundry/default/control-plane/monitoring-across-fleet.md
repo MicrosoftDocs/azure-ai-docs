@@ -18,8 +18,7 @@ Managing and monitoring a large fleet of AI agents is critical for ensuring reli
 
 ## Prerequisites
 
-- At least one registered agent.
-
+[!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 - Read access to the project & subscription you'd like to view data for.
 
 ## View Metrics
