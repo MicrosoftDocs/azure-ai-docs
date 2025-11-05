@@ -176,3 +176,20 @@ After your fine-tuned model deploys, you can use it like any other deployed mode
 Once you have created a fine-tuned model you may wish to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [creating a fine-tuned model](#creating-a-fine-tuned-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
+
+## Clean up your resources
+
+When you're done with your fine-tuned model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if needed. 
+
+### Delete your fine-tuned model deployment
+
+[!INCLUDE [Fine-tuning deletion](../openai/includes/fine-tune.md)]
+
+You can delete the deployment for your fine-tuned model on the **Build > Models** page in Azure AI Foundry portal.
+
+### Delete your fine-tuned model
+
+You can delete a fine-tuned model on the **Fine-tuning** page in Azure AI Foundry portal. Select the fine-tuned model to delete and then select **Delete** to delete the fine-tuned model.
+
+> [!NOTE]
+> You can't delete a fine-tuned model if it has an existing deployment. You must first [delete your model deployment](#delete-your-fine-tuned-model-deployment) before you can delete your fine-tuned model.

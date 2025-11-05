@@ -414,7 +414,7 @@ When you're done with your customized model, you can delete the deployment and m
 
 ### Delete your model deployment
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](../openai/includes/fine-tune.md)]
 
 You can use various methods to delete the deployment for your customized model:
 
