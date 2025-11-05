@@ -118,7 +118,7 @@ items:
         href: how-to/migration-preview-to-ga.md
       - name: Copy and back up analyzers
         href: how-to/copy-analyzers.md
-      - name: Build a retrieval-augmented solution
+      - name: Build a retrieval-augmented generation solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
       - name: Build a robotic process automation solution
