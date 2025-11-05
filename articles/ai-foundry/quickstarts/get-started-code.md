@@ -52,13 +52,22 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md). if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 ::: moniker-end
+
+
+
 
 ## Prerequisites
 
+> [!IMPORTANT]
+> Before starting, make sure your development environment is ready.  
+> This Quickstart focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
+>
+
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
+- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
 [!INCLUDE [first-run](../includes/first-run-experience.md)]
 
@@ -66,14 +75,15 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ::: moniker range="foundry"
 [!INCLUDE [code-preview](../default/includes/code-preview.md)] 
+
+[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
+
 ::: moniker-end
 
 # [Python](#tab/python)
 
 ::: moniker range="foundry-classic"
 
-1. [Install Python](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python#installs)
 1. Install these packages:
 
     ```
@@ -85,12 +95,12 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ::: moniker-end
 ::: moniker range="foundry"
-1. [Install Python](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python#installs)
+
+
 1. Install these packages, including the preview version of `azure-ai-projects`:
 
     ```
-    pip install openai azure-identity
+    pip install azure-identity
     pip install azure-ai-projects --pre
     ```
 
@@ -106,8 +116,7 @@ Follow along below or get the code:
 # [C#](#tab/csharp)
 
 ::: moniker range="foundry-classic"
-1. [Install C# ](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp)
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp#installs)
+
 1. Install packages:
 
     [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
@@ -125,8 +134,7 @@ Follow along below or get the code:
 
 ::: moniker-end
 ::: moniker range="foundry"
-1. [Install C# ](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp)
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp#installs)
+
 1. Install packages, including the preview version of `Azure.AI.Projects`:
 
     [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
@@ -153,8 +161,6 @@ Follow along below or get the code:
 
 ::: moniker range="foundry-classic"
 
-1. [Install Node.js](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript#installs)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
@@ -166,8 +172,6 @@ Follow along below or get the code:
 ::: moniker-end
 ::: moniker range="foundry"
 
-1. [Install Node.js](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript#installs)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`, including the preview version of `@azure/ai-projects`.
@@ -187,9 +191,6 @@ Follow along below or get the code:
 ::: moniker range="foundry-classic"
 [!INCLUDE [code-preview](../default/includes/code-preview.md)]
 
-
-1. [Install Java](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java#installs).
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
@@ -203,8 +204,6 @@ Follow along below or get the code:
 ::: moniker-end
 ::: moniker range="foundry"
 
-1. [Install Java](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java#installs).
 1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
@@ -224,7 +223,6 @@ Follow along below or get the code:
 
 # [REST API](#tab/rest)
 
-1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md#installs)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
 1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
 
@@ -287,7 +285,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 ## Chat with an agent
 
-Start by chatting with an agent.
+Create an agent and chat with it.
  
 
 # [Python](#tab/python)
@@ -338,7 +336,7 @@ After you create the agent, you're automatically moved from **Home** to the **Bu
 
 ---
 
-
+::: moniker range="foundry-classic"
 ## Add files to the agent
 
 Agents have powerful capabilities through the use of tools. Let's add a file search tool that enables us to do knowledge retrieval.
@@ -371,7 +369,6 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-::: moniker range="foundry-classic"
 1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
 1. Select **Add**.
 1. Select **Files** to upload the product_info_1.md file.
@@ -380,19 +377,9 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
 1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
-::: moniker-end
-
-::: moniker range="foundry"
-1. In the left section of the Agent pane, under **Tools**, select **Add**.
-1. Select **File search**, then **Add tool**.
-1. Provide a name to create a vector index. Then choose to upload the product_info_1.md file.
-1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
-1. Ask a question, such as, "Hello, what Contoso products do you know?"
-1. To add more files, select the index name under **Tools**. Choose the additional files and select **Attach**.
-::: moniker-end
 
 ---
-
+::: moniker-end
 
 ## Clean up resources
 

@@ -49,9 +49,9 @@ Available templates:
 |----------|---------------------------|
 | [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat) | Build interactive chat applications |
 | [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents) | Create autonomous AI agents |
-| [Build agentic apps to unify data](https://github.com/[TO VERIFY]) | Embed analytics across applications with instant data visualization for:<br>• Sales performance analysis<br>• Customer insights and reporting<br>• Natural language analysis on structured data |
-| [Create a multi-agent release manager assistant](https://github.com/[TO VERIFY]) | Enable AI-powered release planning for:<br>• Cross-system release coordination<br>• Real-time dependency mapping and release health assessment<br>• Advanced visualization for retrieved insights<br>• Safe update mechanisms built into AI agents |
-| [Create a call center voice agent](https://github.com/[TO VERIFY]) | Develop interactive voice agents for:<br>• Customer support<br>• Product catalog navigation<br>• Self-service solutions |
+| [Build agentic apps to unify data](https://github.com/microsoft/agentic-applications-for-unified-data-foundation-solution-accelerator/tree/main) | Embed analytics across applications with instant data visualization for:<br>• Sales performance analysis<br>• Customer insights and reporting<br>• Natural language analysis on structured data |
+| [Create a multi-agent release manager assistant](https://github.com/Azure-Samples/openai/tree/main/Agent_Based_Samples/release_manager) | Enable AI-powered release planning for:<br>• Cross-system release coordination<br>• Real-time dependency mapping and release health assessment<br>• Advanced visualization for retrieved insights<br>• Safe update mechanisms built into AI agents |
+| [Create a call center voice agent](https://github.com/Azure-Samples/call-center-voice-agent-accelerator) | Develop interactive voice agents for:<br>• Customer support<br>• Product catalog navigation<br>• Self-service solutions |
 | [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator) | Extract knowledge from conversations |
 | [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | Automate complex workflows |
 | [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator) | Process diverse content types |
