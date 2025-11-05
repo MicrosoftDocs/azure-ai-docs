@@ -343,6 +343,8 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 ::: moniker range="foundry"
 
+[!INCLUDE [agent-v2-switch](../default/includes/agent-v2-switch.md)]
+
 # [Python](#tab/python)
 
     ```python
