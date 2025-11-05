@@ -204,7 +204,7 @@ Follow along below or get the code:
 
 1. Install packages:
 
-    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages-v2.md]
+    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages-v2.md)
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
@@ -353,7 +353,7 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 # [C#](#tab/csharp)
 
-[!INCLUDE [quickstart-csharp](../agents/includes/quickstart-csharp.md)]
+[!INCLUDE [quickstart-csharp](../default/includes/quickstart-csharp.md)]
 
 # [TypeScript](#tab/typescript)
 
