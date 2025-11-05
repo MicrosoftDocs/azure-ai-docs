@@ -22,8 +22,10 @@ This tutorial covers the first stage of the Azure AI Foundry developer journey: 
 - **Complete solutions** (combining both sources for business implementation)
 - **Batch evaluation** to validate agent performance on realistic business scenarios
 
+**Tutorial outcome**: By the end you will have a running Modern Workplace Assistant that can answer policy, technical, and combined implementation questions; a repeatable batch evaluation script; and clear extension points (additional tools, multi‑agent patterns, richer evaluation).
+
 > [!div class="checklist"]
->
+> **You will achieve:**
 > - Build a Modern Workplace Assistant with SharePoint and MCP integration.
 > - Demonstrate real business scenarios combining internal and external knowledge.
 > - Implement robust error handling and graceful degradation.
@@ -34,17 +36,65 @@ This ultra-minimal sample demonstrates enterprise-ready patterns with realistic 
 
 ## Prerequisites 
 
-- Azure CLI authentication (`az login`)
-- An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`)
+- Azure subscription and CLI authentication (`az login`)
+- Azure CLI 2.67.0 or later (check with `az version`)
+- An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then [deploy a model](../../agents/overview.md#deploy-models) (see model overview: [Model catalog](../../foundry-models-overview.md)).
 - Python 3.10 or later, .NET 7 SDK, or Java 17 SDK installed (depending on your chosen language)
-- SharePoint connection configured in your project
+- SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
+- (Optional) Git installed for cloning the sample repository
 
 > [!NOTE]
 > To configure your Azure AI Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
 
-## Step 1: Download and configure the sample code
+> [!TIP]
+> Get your tenant ID quickly:
+> ```bash
+> az account show --query tenantId -o tsv
+> ```
 
-You can find the complete sample in the Azure AI Foundry samples repository. The ultra-minimal structure contains only essential files:
+### Understanding portal endpoints
+
+In the Azure AI Foundry portal you might see multiple endpoints (for example: resource endpoint, project endpoint, model endpoint). For this sample:
+- Use the **Project endpoint** in `PROJECT_ENDPOINT`.
+- Do NOT use the parent resource endpoint (for example the cognitive services account endpoint).
+- Use the model deployment name (for example `gpt-4o-mini`) rather than a raw base model name.
+
+If unsure, in the portal open your project, select **Deployments**, choose the deployment, and copy the **Endpoint** and **Deployment name**.
+
+---
+
+## Step 1: Obtain the sample code
+
+Instead of navigating a large repository tree, use one of these approaches:
+
+#### Option A (clone entire samples repo)
+
+```bash
+git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
+cd foundry-samples/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+```
+
+#### Option B (sparse checkout only this tutorial - reduced download)
+
+```bash
+git clone --no-checkout https://github.com/azure-ai-foundry/foundry-samples.git
+cd foundry-samples
+git sparse-checkout init --cone
+git sparse-checkout set samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+git checkout
+cd samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+```
+
+Repeat the path for `csharp` or `java` variants as needed.
+
+#### Option C (Download ZIP of repository)
+
+Download repository ZIP, extract, and navigate to the tutorial folder.
+
+> [!IMPORTANT]
+> A standalone repository is recommended for production adoption. This tutorial uses the shared samples repo for now. Sparse checkout minimizes local noise.
+
+The ultra-minimal structure contains only essential files:
 
 # [Python](#tab/python)
 
@@ -56,14 +106,11 @@ enterprise-agent-tutorial/
     ├── questions.jsonl                # Business test scenarios (4 questions)
     ├── requirements.txt               # Python dependencies
     ├── .env.template                  # Environment variables template
-    ├── SAMPLE_SHAREPOINT_CONTENT.md   # Business documents to upload
+    ├── SAMPLE_SHAREPOINT_CONTENT.md   # Business documents (markdown source)
     ├── README.md                      # Complete setup instructions
     ├── MCP_SERVERS.md                 # MCP server configuration guide
     └── setup_sharepoint.py            # SharePoint diagnostic tool
 ```
-
-> [!div class="nextstepaction"] 
-> [Download the code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
 # [C#](#tab/csharp)
 
@@ -79,14 +126,11 @@ enterprise-agent-tutorial/
     ├── shared/
     │   ├── .env.template              # Environment variables template
     │   ├── questions.jsonl            # Business test scenarios (4 questions)
-    │   ├── SAMPLE_SHAREPOINT_CONTENT.md # Business documents to upload
+    │   ├── SAMPLE_SHAREPOINT_CONTENT.md # Business documents (markdown source)
     │   ├── MCP_SERVERS.md             # MCP server configuration guide
     │   └── README.md                  # SharePoint setup instructions
     └── README.md                      # Complete setup instructions
 ```
-
-> [!div class="nextstepaction"] 
-> [Download the code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
 
 # [Java](#tab/java)
 
@@ -99,56 +143,157 @@ enterprise-agent-tutorial/
     ├── pom.xml                        # Maven project configuration
     ├── .env.template                  # Environment variables template
     ├── questions.jsonl                # Business test scenarios (4 questions)
-    ├── SAMPLE_SHAREPOINT_CONTENT.md   # Business documents to upload
+    ├── SAMPLE_SHAREPOINT_CONTENT.md   # Business documents (markdown source)
     ├── MCP_SERVERS.md                 # MCP server configuration guide
     └── README.md                      # Complete setup instructions
 ```
 
-> [!div class="nextstepaction"] 
-> [Download the code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype)
-
 ---
 
-### Environment setup
+## Step 2: Run the sample immediately (quick win)
 
-Copy `.env.template` to `.env` and configure your settings:
+Start by running the agent so you see working functionality before diving into implementation details.
+
+### Environment setup and virtual environment
+
+# [Python](#tab/python)
+
+```bash
+cd samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+
+# Create virtual environment (recommended)
+python -m venv .venv
+# Windows
+.\.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+
+# Copy environment template
+cp .env.template .env
+
+# Populate .env (see section below)
+# Install dependencies
+pip install -r requirements.txt
+```
+
+# [C#](#tab/csharp)
+
+```bash
+cd samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype
+cp shared/.env.template .env
+dotnet restore
+```
+
+# [Java](#tab/java)
+
+```bash
+cd samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype
+cp .env.template .env
+mvn clean compile
+```
+
+### Configure `.env`
+
+Copy `.env.template` to `.env` and configure:
 
 ```bash
 # Azure AI Foundry Configuration  
 PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
 MODEL_DEPLOYMENT_NAME=gpt-4o-mini
-AI_FOUNDRY_TENANT_ID=<your-ai-foundry-tenant-id>
+AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
 
-# The Microsoft Learn MCP Server
-# (This public MCP server indexes the latest up-to-date Microsoft documentation so your AI can give authoritative answers to questions about Microsoft products, including reference links.)
+# The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
-# SharePoint Integration (Optional - requires additional setup)
+# SharePoint Integration (Optional - requires connection setup)
 SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
 SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
 ```
 
-#### Set up SharePoint business documents for the sample
+> [!NOTE]
+> If you are unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
 
-To demonstrate the complete business scenario, upload sample documents to your SharePoint site using the provided `SAMPLE_SHAREPOINT_CONTENT.md` file:
+### Run agent and evaluation
 
-##### Create business documents
+# [Python](#tab/python)
 
-1. **Navigate to your SharePoint site** (configured in your connection)
+```bash
+python main.py
+python evaluate.py
+```
 
-1. **Create document library** called "Company Policies" (or use existing "Documents")
+# [C#](#tab/csharp)
 
-1. **Upload sample documents** from `SAMPLE_SHAREPOINT_CONTENT.md`:
-   - `remote-work-policy.docx` - Remote work security requirements
-   - `security-guidelines.docx` - Azure security standards  
-   - `collaboration-standards.docx` - Teams and communication policies
-   - `data-governance-policy.docx` - Data handling requirements
+```bash
+dotnet run --project ModernWorkplaceAssistant
+dotnet run --project Evaluate
+```
 
-1. **Copy content** from each section in `SAMPLE_SHAREPOINT_CONTENT.md` into the corresponding Word documents
+# [Java](#tab/java)
 
-##### Sample document structure
+```bash
+mvn exec:java -Dexec.mainClass="com.microsoft.azure.samples.ModernWorkplaceAssistant"
+mvn exec:java -Dexec.mainClass="com.microsoft.azure.samples.EvaluateAgent"
+```
 
-The sample includes realistic Contoso Corp policies that demonstrate:
+### Expected output (agent first run)
+
+Successful run with SharePoint:
+
+```text
+🤖 Creating Modern Workplace Assistant...
+✅ SharePoint connected: YourConnection
+✅ Agent created: asst_abc123
+```
+
+Graceful degradation without SharePoint:
+
+```text
+⚠️  SharePoint connection not found: Connection 'YourConnection' not found
+✅ Agent created: asst_abc123
+```
+
+Now that you have a working agent, the next sections explain how it is built. No additional action is required while reading—these are explanatory.
+
+---
+
+## Step 3: (Optional reading) Set up sample SharePoint business documents
+
+You can create documents manually or generate them automatically.
+
+### Option A: Manual upload (existing method)
+
+1. Navigate to your SharePoint site (configured in the connection).
+2. Create document library "Company Policies" (or use existing "Documents").
+3. Create four Word documents:
+   - `remote-work-policy.docx`
+   - `security-guidelines.docx`  
+   - `collaboration-standards.docx`
+   - `data-governance-policy.docx`
+4. Copy content from corresponding sections in `SAMPLE_SHAREPOINT_CONTENT.md`.
+
+### Option B: Auto-generate documents (PowerShell)
+
+```powershell
+# Generates four markdown files from SAMPLE_SHAREPOINT_CONTENT.md
+$src = "SAMPLE_SHAREPOINT_CONTENT.md"
+$map = @{
+  "remote-work-policy.md"      = "## Remote Work Policy"
+  "security-guidelines.md"     = "## Security Guidelines"
+  "collaboration-standards.md" = "## Collaboration Standards"
+  "data-governance-policy.md"  = "## Data Governance Policy"
+}
+$md = Get-Content $src -Raw
+foreach ($kv in $map.GetEnumerator()) {
+  $file = $kv.Key; $header = $kv.Value
+  $section = ($md -split "`n(?=## )") | Where-Object { $_.StartsWith($header) }
+  $content = $section.Trim()
+  Set-Content -Path $file -Value $content
+}
+Write-Host "Generated markdown policy documents. Upload these to SharePoint (open in Word and Save As .docx if required)."
+```
+
+### Sample structure
 
 ```text
 📁 Company Policies/
@@ -158,27 +303,24 @@ The sample includes realistic Contoso Corp policies that demonstrate:
 └── 📊 data-governance-policy.docx  # Data classification, retention
 ```
 
-These documents reference Azure and Microsoft 365 technologies, creating realistic scenarios where employees need both internal policy information and external implementation guidance.
+---
 
-## Step 2: Build a modern workplace assistant
+## Step 4: Understand the assistant implementation
 
-This sample implementation of a modern workplace assistant shows you how to:
-
-- **Integrate multiple agent tools** (SharePoint and MCP) for comprehensive knowledge access.
-- **Simplify connection handling** - Use only the connection name, and let Azure AI Foundry handle URL configuration.
-- **Use dynamic agent instructions** based on available tools.
-- **Combine business-focused scenarios** with internal and external knowledge.
-- **Provide clear diagnostic messages** for troubleshooting.
-- **Implement graceful degradation** when services are unavailable.
+This section explains the core code in `main.py` / `Program.cs` / `ModernWorkplaceAssistant.java`. You already ran the agent; this is conceptual and requires no changes. After reading you will be able to:
+- Add new internal/external data tools.
+- Extend dynamic instructions.
+- Introduce multi-agent orchestration later.
+- Enhance observability and diagnostics.
 
 The code breaks down into the following main sections, ordered as they appear in the full sample code:
 
-1. [Configure imports and authentication](#imports-and-authentication-setup).
-1. [Configure authentication to Azure](#configure-authentication-in-azure).
-1. [Configure the SharePoint tool](#create-the-sharepoint-tool-for-the-agent).
-1. [Configure MCP tool](#create-the-mcp-tool-for-the-agent).
-1. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools).
-1. [Converse with the agent](#converse-with-the-agent).
+1. [Configure imports and authentication](#imports-and-authentication-setup)
+2. [Configure authentication to Azure](#configure-authentication-in-azure)
+3. [Configure the SharePoint tool](#create-the-sharepoint-tool-for-the-agent)
+4. [Configure MCP tool](#create-the-mcp-tool-for-the-agent)
+5. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools)
+6. [Converse with the agent](#converse-with-the-agent)
 
 ### Imports and authentication setup
 
@@ -286,9 +428,9 @@ Finally, implement an interactive loop to converse with the agent.
 
 ---
 
-## Step 3: Evaluate the assistant in a batch
+## Step 5: Evaluate the assistant in a batch
 
-The evaluation framework code in this sample tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
+The evaluation framework code tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
 
 This evaluation framework tests:
 
@@ -297,11 +439,11 @@ This evaluation framework tests:
 - **Combined scenarios** that require both internal and external knowledge
 - **Response quality** by using keyword matching and length analysis
 
-The code breaks down into the following main sections, ordered as they appear in the full sample code:
+The code breaks down into the following main sections:
 
-1. [Load evaluation data](#load-evaluation-data).
-1. [Run batch evaluation](#run-batch-evaluation).
-1. [Compile evaluation results](#compile-evaluation-results).
+1. [Load evaluation data](#load-evaluation-data)
+2. [Run batch evaluation](#run-batch-evaluation)
+3. [Compile evaluation results](#compile-evaluation-results)
 
 ### Load evaluation data
 
@@ -325,8 +467,6 @@ In this section, the evaluation framework loads test questions from `questions.j
 
 ### Run batch evaluation
 
-In this section, the evaluation framework runs the agent against each test question in a batch and evaluates the responses.
-
 # [Python](#tab/python)
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
@@ -343,8 +483,6 @@ In this section, the evaluation framework runs the agent against each test quest
 
 ### Compile evaluation results
 
-Finally, the evaluation framework compiles and outputs the results of the batch evaluation.
-
 # [Python](#tab/python)
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
@@ -359,124 +497,25 @@ Finally, the evaluation framework compiles and outputs the results of the batch 
 
 ---
 
-## Step 4: Run the complete sample
+### Additional evaluation assets
 
-After you set up the environment, dependencies, and code, you can run the complete sample.
-
-### Set up and run
-
-# [Python](#tab/python)
-
-1. **Configure environment**:
-
-   ```bash
-   cp .env.template .env
-   # Edit .env with your Azure AI Foundry project details
-   pip install -r requirements.txt
-   ```
-
-2. **Run the Modern Workplace Assistant**:
-
-   ```bash
-   python main.py
-   ```
-
-3. **Run business evaluation**:
-
-   ```bash
-   python evaluate.py
-   ```
-
-# [C#](#tab/csharp)
-
-1. **Configure environment**:
-
-   ```bash
-   cp .env.template .env
-   # Edit .env with your Azure AI Foundry project details
-   dotnet restore
-   ```
-
-2. **Run the Modern Workplace Assistant**:
-
-   ```bash
-   dotnet run
-   ```
-   
-3. **Run business evaluation**:
-
-   ```bash
-   dotnet run --project Evaluate
-   ```
-
-# [Java](#tab/java)
-
-1. **Configure environment**:
-
-   ```bash
-   cp .env.template .env
-   # Edit .env with your Azure AI Foundry project details
-   mvn clean compile
-   ```
-
-2. **Run the Modern Workplace Assistant**:
-
-   ```bash
-   mvn exec:java -Dexec.mainClass="Main"
-   ```
-
-3. **Run business evaluation**:
-
-   ```bash
-   mvn exec:java -Dexec.mainClass="Evaluate"
-   ```
+The evaluation generates `evaluation_results.json` with metrics for each question (keyword hits, length heuristic). You can extend this to:
+- Use model-based scoring prompts.
+- Introduce structured output validation.
+- Record latency and token usage.
 
 ---
 
-This example demonstrates:
-- SharePoint connection diagnostics  
-- Agent creation with dynamic instructions
-- Three business scenarios (policy, technical, combined)
-- Interactive mode for testing
+## Summary (So what?)
 
-The evaluation tests:
-- Policy questions (SharePoint integration)
-- Technical questions (MCP integration)  
-- Combined scenarios (both sources)
-- Generates `evaluation_results.json` with detailed metrics
+You now have:
+- A working single-agent prototype grounded in internal and external knowledge.
+- A repeatable evaluation script demonstrating enterprise validation patterns.
+- Clear upgrade path: more tools, multi-agent orchestration, richer evaluation, deployment.
 
-### Expected output
+These patterns reduce prototype-to-production friction: you can add data sources, enforce governance, and integrate monitoring without rewriting core logic.
 
-**Successful run with SharePoint**:
-
-```text
-🤖 Creating Modern Workplace Assistant...
-✅ SharePoint connected: YourConnection
-✅ Agent created: asst_abc123
-
-📋 Policy Question 1/3
-❓ What is our remote work policy regarding security requirements?
-🤖 According to our remote work policy, security requirements include...
-
-🔧 Technical Question 2/3  
-❓ How do I set up Azure Active Directory conditional access?
-🤖 To set up Azure AD Conditional Access, follow these steps...
-
-🔄 Implementation Question 3/3
-❓ Our security policy requires MFA - how do I implement this in Azure AD?
-🤖 Based on our security policy requirements and Azure documentation...
-```
-
-**Graceful degradation without SharePoint**:
-
-```text
-⚠️  SharePoint connection not found: Connection 'YourConnection' not found
-✅ Agent created: asst_abc123
-
-📋 Policy Question 1/3
-❓ What is our remote work policy regarding security requirements?
-🤖 I don't have access to your company's specific policies. SharePoint integration needs to be configured...
-```
+---
 
 ## Next steps
 
@@ -501,7 +540,6 @@ This ultra-minimal sample provides the foundation for enterprise AI development.
 - [Fine-tune models and generate evaluation insights for continuous improvement]().
 - [Integrate Azure API Management gateway with continuous quality monitoring]().
 - [Implement fleet governance, compliance controls, and cost optimization]().
-
 
 ## Related content
 
