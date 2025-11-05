@@ -80,7 +80,7 @@ Create a JSON file named `categorize.json` with the following content:
   "baseAnalyzerId": "prebuilt-document",
   // Use the base analyzer to invoke the document specific capabilities.
 
-  //Specify the model the analyzer should use. This is one of the suported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
+  //Specify the model the analyzer should use. This is one of the supported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
   "models": {
       "completion": "gpt-4.1",
       "embedding": "text-embedding-ada-002"

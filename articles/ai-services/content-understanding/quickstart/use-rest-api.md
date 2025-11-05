@@ -287,4 +287,4 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next step
 
-Now that you know how to invoke the analysis operation, learn more about building custom analyzers[custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.
+Now that you know how to invoke the analysis operation, learn more about building [custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.
