@@ -25,7 +25,7 @@ This functionality is available for the following data sources:
 + [Microsoft OneLake](search-how-to-index-onelake-files.md)
 
 > [!IMPORTANT]
-> The feature is available in **limited regions** and only through the [REST API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview) or supported beta SDKs during public preview.  
+> The feature is available in **limited regions** and only through the [REST API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or supported beta SDKs during public preview.  
 > Portal configuration and debug mode for administrators are not supported at this time.
 
 
