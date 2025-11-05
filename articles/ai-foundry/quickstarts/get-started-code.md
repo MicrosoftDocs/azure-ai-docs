@@ -43,9 +43,9 @@ In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry
 
 > [!div class="checklist"]
 > * Create a project
-> * Deploy a model
-> * Create and run an agent
-> * Upload files to the agent
+> * Create an agent
+> * Get ready to code - install necessary packages and authenticate
+> * Chat with an agent
 ::: moniker-end
 
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
