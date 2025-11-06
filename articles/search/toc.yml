@@ -575,6 +575,12 @@ items:
           href: search-blob-indexer-role-based-access.md
         - name: Query with permission filters
           href: search-query-access-control-rbac-enforcement.md
+      - name: Preserve sensitivity labels
+        items:
+        - name: Pull Purview sensitivity labels into an index
+          href: search-indexer-sensitivity-labels.md
+        - name: Query honoring sensitivity labels
+          href: search-query-sensitivity-labels.md
     - name: Data encryption
       items:
       - name: Customer-managed keys (CMK)
