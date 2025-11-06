@@ -7,9 +7,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 07/25/2025
+ms.date: 10/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Deploy a fine-tuned model for inferencing
@@ -33,6 +34,7 @@ The **Deploy model** dialog box opens. In the dialog box, enter your **Deploymen
 You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
 
 The UI does not support cross region deployment, while Python SDK or REST supports.
+
 
 ## [Python](#tab/python)
 
