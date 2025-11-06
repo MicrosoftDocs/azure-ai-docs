@@ -39,10 +39,6 @@ items:
     href: ../../../agents/concepts/capability-hosts.md
   - name: Virtual networks
     href: ../../../agents/how-to/virtual-networks.md
-- name: Interact with models
-  items:
-  - name: Work with chat models
-    href: ../../../foundry-models/how-to/use-chat-completions.md
 - name: Observability
   items:
   - name: Service monitoring
@@ -51,5 +47,3 @@ items:
     href: ../../../how-to/develop/trace-agents-sdk.md
 - name: Create a workflow
   href: ../../agents/concepts/workflow.md
-- name: Playgrounds and quick evaluation
-  href: ../../../concepts/concept-playgrounds.md
