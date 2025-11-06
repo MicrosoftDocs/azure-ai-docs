@@ -548,7 +548,7 @@ This ultra-minimal sample provides the foundation for enterprise AI development.
 ### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](../../agents/how-to/tools/azure-ai-search.md), [other sources](../../how-to/connections-add.md)).
 - Implement advanced evaluation methods ([AI-assisted evaluation](../../how-to/develop/evaluate-sdk.md)).
-- Create [custom tools](../../agents/how-to/private-tool-catalog.md) for business-specific operations.
+- Create [custom tools](../agents/how-to/private-tool-catalog.md) for business-specific operations.
 - Add [conversation memory and personalization](/azure/cosmos-db/gen-ai/azure-agent-service).
 
 ### Stage 2: Prototype to production
