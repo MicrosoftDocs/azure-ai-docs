@@ -41,6 +41,21 @@ Supported embedding models from the Azure AI Foundry model catalog vary by usage
 
 ## Deploy an embedding model from the model catalog
 
+1. Open the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
+
+1. Deploy a supported model to your project using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
+
+1. Make a note of the target URI, key, and model name. You need these values for the vectorizer definition in a search index and for the skillset that calls the model endpoints during indexing.
+
+    If you'd rather to use token authentication than key authentication, you only need to copy the URI and model name. However, make a note of the region to which the model is deployed.
+
+1. Configure a search index and indexer to use the deployed model.
+
+   + To use the model during indexing, see [steps to enable integrated vectorization](vector-search-integrated-vectorization.md#how-to-use-integrated-vectorization). Be sure to use the [AML skill](cognitive-search-aml-skill.md), not the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md). The next section describes the skill configuration.
+
+   + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
+
+<!--
 1. Open the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models). Create a project if you don't have one already.
 
 1. From the left pane, select **Model catalog**.
@@ -68,6 +83,7 @@ Supported embedding models from the Azure AI Foundry model catalog vary by usage
    + To use the model during indexing, see [steps to enable integrated vectorization](vector-search-integrated-vectorization.md#how-to-use-integrated-vectorization). Be sure to use the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md), and not the [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md). The next section describes the skill configuration.
 
    + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
+-->
 
 ## Sample AML skill payloads
 
