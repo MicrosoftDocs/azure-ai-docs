@@ -49,15 +49,11 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 
 1. Pick the desired subscription or resource group to apply to the policy and select the **Select** button.
 
-    :::image type="content" source="media/quickstart-create-a-guardrail-policy/subscription-selection.png" alt-text="Screenshot of the subscription or resource group selection dialog." lightbox="media/quickstart-create-a-guardrail-policy/subscription-selection.png":::
-
 1. Select **Next** to add exceptions to the policy. The exception options depend on your scope selection:
    - If you scoped to a **subscription**, you can create exceptions for entire resource groups or individual model deployments within that subscription.
    - If you scoped to a **resource group**, you can only create exceptions for individual model deployments.
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/select-exception.png" alt-text="Screenshot of the exceptions configuration page." lightbox="media/quickstart-create-a-guardrail-policy/select-exception.png":::
-
-    :::image type="content" source="media/quickstart-create-a-guardrail-policy/resource-group-exception.png" alt-text="Screenshot of the exceptions interface showing resource group and model deployment options." lightbox="media/quickstart-create-a-guardrail-policy/resource-group-exception.png":::
 
 1. Once all exceptions have been added, select **Next** to move to the review stage. Here, you name your policy and review the scope, exceptions, and controls that define the policy. Once ready, select **Submit** to create the policy.
 
