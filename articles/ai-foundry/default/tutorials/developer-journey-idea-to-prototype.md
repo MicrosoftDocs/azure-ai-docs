@@ -546,24 +546,24 @@ These patterns reduce prototype-to-production friction: you can add data sources
 This ultra-minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
 
 ### Suggested additional enhancements
-- Add more data sources ([Azure AI Search](), [databases]()).
-- Implement advanced evaluation methods ([AI-assisted evaluation]()).
-- Create [custom tools]() for business-specific operations.
-- Add [conversation memory and personalization]().
+- Add more data sources ([Azure AI Search](../../agents/how-to/tools/azure-ai-search.md), [other sources](../how-to/connections-add.md)).
+- Implement advanced evaluation methods ([AI-assisted evaluation](../how-to/develop/evaluate-sdk.md)).
+- Create [custom tools](../../agents/how-to/private-tool-catalog.md) for business-specific operations.
+- Add [conversation memory and personalization](/azure/cosmos-db/gen-ai/azure-agent-service).
 
 ### Stage 2: Prototype to production
 
-- [Implement safety assessment with red-team testing]().
-- [Create comprehensive evaluation datasets with quality metrics]().
-- [Apply organization-wide governance policies and model comparison]().
-- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints]().
+- [Implement safety assessment with red-team testing](../how-to/develop/run-scans-ai-red-teaming-agent.md).
+- [Create comprehensive evaluation datasets with quality metrics](../fine-tuning/data-generation.md).
+- [Apply organization-wide governance policies and model comparison](../how-to/built-in-policy-model-deployment.md).
+- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](../concepts/deployments-overview.md).
 
 ### Stage 3: Production to adoption
 
-- [Collect trace data and user feedback from production deployments]().
-- [Fine-tune models and generate evaluation insights for continuous improvement]().
-- [Integrate Azure API Management gateway with continuous quality monitoring]().
-- [Implement fleet governance, compliance controls, and cost optimization]().
+- [Collect trace data and user feedback from production deployments](../how-to/trace-agent-framework.md).
+- [Fine-tune models and generate evaluation insights for continuous improvement](../openai/how-to/fine-tuning.md).
+- [Integrate Azure API Management gateway with continuous quality monitoring](../configuration/enable-ai-api-management-gateway-portal.md).
+- [Implement fleet governance, compliance controls, and cost optimization](/azure/cloud-adoption-framework/scenarios/ai/platform/governance).
 
 ## Related content
 
