@@ -16,6 +16,8 @@ items:
     href: ../../../concepts/encryption-keys-portal.md
   - name: Rotate API access keys
     href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+- name: Plan and manage costs
+  href: ../../../concepts/manage-costs.md
 - name: Policy management
   items:
   - name: Built-in policy definitions
