@@ -119,8 +119,6 @@ The source for pregenerated messages in voice agents can be manifold. Reasons fo
 
 To request a Voice live output based on a pregenerated message, you need to send a `response.create` event including the `pre_generated_assistant_message` configuration.
 
-::: zone pivot="programming-language-python"
-
 The following example shows the required code for sending the correct event using the python SDK.
 
 ```csharp
