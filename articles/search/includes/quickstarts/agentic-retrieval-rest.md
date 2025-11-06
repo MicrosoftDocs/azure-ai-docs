@@ -56,13 +56,15 @@ To connect from your local system:
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
+1. Make a note of the token for use in the next section.
+
 ## Run the code
 
 To create and run the agentic retrieval pipeline:
 
 1. Create a file named `agentic-retrieval.rest` in the `quickstart-agentic-retrieval` folder.
 
-1. Add the following variables and requests to the file.
+1. Paste the following variables and requests into the file.
 
     ```HTTP
     @aoai-embedding-model = text-embedding-3-large
@@ -272,7 +274,7 @@ To create and run the agentic retrieval pipeline:
 
 1. Set `@token` to the value you obtained in [Connect from your local system](#connect-from-your-local-system).
 
-1. Send each request in succession, starting with `### List existing indexes by name`.
+1. Send each request in succession, starting with `### Create an index`.
 
    Each request should return a `200 OK`, `201 Created`, or `204 No Content` status code. If you receive an error, check the request for typos and ensure that your token is valid.
 
@@ -527,7 +529,7 @@ POST {{search-url}}/knowledgesources?api-version={{api-version}}  HTTP/1.1
 
 To target your `earth-knowledge-source` and `gpt-5-mini` deployment at query time, you need a knowledge base. The following code uses [Knowledge Bases - Create (REST API)](/rest/api/searchservice/knowledge-bases/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to define a base named `earth-knowledge-base`, which you previously specified using the `@knowledge-base-name` variable.
 
-`outputMode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and adhere to the provided `answerInstructions`.
+`outputMode` is set to `answerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `answerInstructions`.
 
 ```HTTP
 ### Create a knowledge base

@@ -76,7 +76,7 @@ To create and run the agentic retrieval pipeline:
 
 1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
 
-1. Add the following environment variables to the `.env` file.
+1. Paste the following environment variables into the `.env` file.
 
     ```
     SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
@@ -265,7 +265,7 @@ To create and run the agentic retrieval pipeline:
                 // Run agentic retrieval
                 var baseClient = new KnowledgeBaseRetrievalClient(
                     endpoint: new Uri(searchEndpoint),
-                    knowledgeBaseName: knowledgeBaseName,
+                    agentName: knowledgeBaseName,
                     tokenCredential: new DefaultAzureCredential()
                 );
     
@@ -697,7 +697,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated 
 
 To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`, which you previously specified using the `knowledgeBaseName` variable.
 
-`OutputMode` is set to `AnswerSynthesis`, enabling natural-language answers that cite the retrieved documents and adhere to the provided `AnswerInstructions`.
+`OutputMode` is set to `AnswerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `AnswerInstructions`.
 
 ```csharp
 // Create a knowledge base
@@ -760,7 +760,7 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 // Run agentic retrieval
 var baseClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri(searchEndpoint),
-    knowledgeBaseName: knowledgeBaseName,
+    agentName: knowledgeBaseName,
     tokenCredential: new DefaultAzureCredential()
 );
 
