@@ -174,8 +174,8 @@ additionalContent:
           links:
             - text: What are Azure AI services?
               url: ../ai-services/what-are-ai-services.md
-            - text: Semantic Kernel
-              url: /semantic-kernel/
+            - text: Microsoft Agent Framework
+              url: /agent-framework/
             - text: Document Intelligence
               url: ../ai-services/document-intelligence/index.yml
             - text: Face
