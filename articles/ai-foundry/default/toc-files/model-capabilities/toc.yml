@@ -30,3 +30,6 @@ items:
     href: ../../../openai/how-to/codex.md
   - name: Playgrounds and quick evaluation
     href: ../../../concepts/concept-playgrounds.md
+  - name:  Upgrade/Switch Models with Ask AI
+    href: ../../how-to/observability-optimization-model-upgrade.md
+

@@ -1,11 +1,11 @@
 items:
-    - name: Fine-tune AI Foundry models
+    - name: Fine-tune models
       href: ../../../openai/how-to/fine-tuning.md
       displayName: finetuning, fine-tuning 
-    - name: When to use AI Foundry fine-tuning
+    - name: When to use fine-tuning
       href: ../../../openai/concepts/fine-tuning-considerations.md
       displayName: finetuning, fine-tuning 
-    - name: Deploy your AI Foundry fine-tuned model
+    - name: Deploy your fine-tuned model
       href: ../../../openai/how-to/fine-tuning-deploy.md
       displayName: finetuning, fine-tuning     
     - name: Synthetic Data Generation
