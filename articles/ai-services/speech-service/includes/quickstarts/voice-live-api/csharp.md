@@ -48,6 +48,10 @@ Follow these steps to create a console application and install the Speech SDK.
     dotnet add package Azure.AI.VoiceLive
     dotnet add package Azure.Identity
     dotnet add package NAudio
+    dotnet add package System.CommandLine --version 2.0.0-beta4.22272.1
+    dotnet add package Microsoft.Extensions.Configuration.Json
+    dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
+    dotnet add package Microsoft.Extensions.Logging.Console
     ```
 
 1. Create a new file named `appsettings.json` in the folder where you want to run the code. In that file, add the following JSON content:
@@ -76,6 +80,15 @@ Follow these steps to create a console application and install the Speech SDK.
     Replace the `ApiKey` value (optional) with your AI Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
   
     Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
+
+1. In the file `csharp.csproj` add the following information to connect the appsettings.json:
+   ```text
+   <ItemGroup>
+   <None Update="appsettings.json">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+   </None>
+   </ItemGroup>
+   ``` 
 
 1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
 

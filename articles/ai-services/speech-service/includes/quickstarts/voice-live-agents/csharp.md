@@ -439,14 +439,14 @@ Follow these steps to create a console application and install the Speech SDK.
             private VoiceLiveSession? _session;
             private AudioProcessor? _audioProcessor;
             private bool _disposed;
-        // Tracks whether an assistant response is currently active (created and not yet completed)
-        private bool _responseActive;
-        // Tracks whether we've already sent the initial proactive greeting to start the conversation
-        private bool _conversationStarted;
-        // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
-        private bool _canCancelResponse;
-        // Tracks whether audio playback for the current response is in progress (receiving audio deltas)
-        private bool _playbackInProgress;
+            // Tracks whether an assistant response is currently active (created and not yet completed)
+            private bool _responseActive;
+            // Tracks whether we've already sent the initial proactive greeting to start the conversation
+            private bool _conversationStarted;
+            // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
+            private bool _canCancelResponse;
+            // Tracks whether audio playback for the current response is in progress (receiving audio deltas)
+            private bool _playbackInProgress;
     
             /// <summary>
             /// Initializes a new instance of the BasicVoiceAssistant class.
