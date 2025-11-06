@@ -16,15 +16,17 @@ ms.custom:
 
 # Create and improve your custom analyzer in Content Understanding Studio
 
-Content Understanding Studio enables you to build powerful content analyzers that extract content and fields tailored to the specific needs of your scenario. Follow the steps below to create your own custom analyzer in Content Understanding Studio.
+Content Understanding Studio lets you build powerful content analyzers that extract content and fields tailored to your specific needs. Follow the steps below to create your own custom analyzer in Content Understanding Studio.
 
 ## Prerequisites
+
 To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Log in to Content Understanding Studio
-Navigate to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You may recognize the classic Azure AI Document Intelligence Studio experience; Content Understanding extends the same content and field extraction that you are familiar with in Document Intelligence across all modalities - document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
+
+Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You might recognize the classic Azure AI Document Intelligence Studio experience; Content Understanding extends the same content and field extraction that you're familiar with in Document Intelligence across all modalities—document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
 
 ## Create your custom analyzer
 

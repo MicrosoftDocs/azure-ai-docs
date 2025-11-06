@@ -14,11 +14,11 @@ ms.custom:
   - build-2025
 ---
 
-# Copy Analyzers
+# Copy custom analyzers
 
-All prebuilt analyzers in Content Understanding are available in every resource by default. Find the complete list of all [prebuilt analyzers here](/azure/)<!--TBD-->. Custom analyzers are analyzers you define to process a specific content where you define the content type, schema, and any other processing logic. For more information on defining a custom analyzer, see [defining a custom analyzer](/azure/)<!--TBD-->.
+Every Content Understanding resource provides access to all prebuilt analyzers by default. For a complete list, see [prebuilt analyzers](../concepts/prebuilt-analyzers.md). Custom analyzers are analyzers you define to process specific content where you can define the content type, schema, and any other processing logic. For more information on defining a custom analyzer, see [defining a custom analyzer](./customize-analyzer-content-understanding-studio.md).
 
-The copy operation on analyzers supports a few scenarios:
+The copy operation on analyzers supports a few different scenarios:
 * **Copy within resource** to create a copy of an existing analyzer in the same resource as a backup or a version you can iteratively make changes from. 
 * **Copy across resources** copy an analyzer from one AI Foundry resource to another. This supports failover scenarios and sharing of analyzers across teams.
 
@@ -43,11 +43,11 @@ Ocp-Apim-Subscription-Key: {Auth key}
 
 ## Copy across AI Foundry resources
 
-Copying the analyzer across AI Foundry resources is a multi-step process because a service principal will likely not have permissions on both resources:
+Copying the analyzer across AI Foundry resources is a multi-step process because a service principal likely doesn't have permissions on both resources:
 
-1. Start by obtaining a copy authorization on the source analyzer by providing the fully qualified resource ID for the copy target and the target region. 
-2. Copy the resulting response and use it as the body of the next request.
-3. Issue a copy request on the target resource providing the fully qualified source resource, the source analyzer ID, and the region.
+1. Get a copy authorization on the source analyzer by providing the fully qualified resource ID for the copy target and the target region. 
+1. Copy the resulting response and use it as the body of the next request.
+1. Issue a copy request on the target resource by providing the fully qualified source resource, the source analyzer ID, and the region.
 
 ```
 POST https://{source resource}.services.ai.azure.com/contentunderstanding/analyzers/{source analyzer id}:grantCopyAuthorization?api-version=2025-11-01
@@ -73,9 +73,9 @@ Ocp-Apim-Subscription-Key: {Auth key}
 
  > [!NOTE]
 >
-> Analyzers now support classification/segmentation and analysis of each of the identified classes/segments in a single request. When copying an analyzer that uses this feature, you need to copy any analyzers referenced as well.
+> Analyzers now support classification/segmentation and analysis of each of the identified classes and segments in a single request. When copying an analyzer that uses this feature, you need to copy any referenced analyzers as well.
 
-You can then validate that the analyzer was copied by calling the GET analyzer on the resource if this was a copy within the resource, or on the target resource, if this was a copy across resources.
+You can then validate that the analyzer was copied by calling the GET analyzer on the resource if this copy was within the resource, or on the target resource if this copy was across resources.
 
 ```
 GET https://mmi-usw3-eft-foundry.services.ai.azure.com/contentunderstanding/analyzers/{target analyzer id}?api-version=2025-11-01

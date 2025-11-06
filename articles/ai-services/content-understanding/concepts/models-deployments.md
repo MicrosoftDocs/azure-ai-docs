@@ -14,13 +14,15 @@ ms.custom:
 
 # Connect your Content Understanding analyzer to Foundry model deployments
 
-Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. This approach enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario the best for price and latency. You're billed for all tokens (input and output) on the deployment connected and Content Understanding only bills you for the Content Understanding specific meters. See [pricing explainer](../overview/pricing-explainer.md) to learn more about the billing model.
+Content Understanding uses your Foundry model deployments for all operations that require a Generative AI model. This approach enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario best for price and latency. 
 
-The service requires a `chat completion` model and `embeddings` model and supports a few different options for each. Some analyzers also have a dependency on a specific model.
+You're billed for all tokens (input and output) processed by the connected deployment, and Content Understanding only bills you for the Content-Understanding-specific meters. See [pricing explainer](../overview/pricing-explainer.md) to learn more about the billing model.
+
+The service requires a `chat completion` model and `embeddings` model and supports a few different options for each. Some analyzers have a dependency on a specific model.
 
 ## Supported models
 
-The service is periodically updated to add support for models. The currently supported models are
+The service is periodically updated to add support for more models. The currently supported models are:
 
 | Model Type | Model | Version |
 |--|--|--|
@@ -34,65 +36,64 @@ The service is periodically updated to add support for models. The currently sup
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |
 
-## Configuring models and deployments
+## Configure models and deployments
 
 Content Understanding analyzers that utilize Generative AI (Gen AI) models now require explicit specification of both the model and deployment details. These details can be configured at the resource level, applying to all operations by default, or can be overridden for individual analyze operations as needed. This approach provides organizations with the flexibility to support multiple business teams, enabling each team to use the same analyzer with different Gen AI models or deployments according to their specific requirements.
 
 The model and deployment definition is a multi-step process.
 
-* **Step 1** You can specify the deployments to use on the resource via a ```PATCH``` request. We recommend that you set this default model and deployment to ensure your analyzers always have a valid model deployment to use. To set the default deployment, update the Content Understanding resource with the deployments. GPT4.1 is a recommended model for use with the Foundry and the Studio. You can experiment or use any of the supported chat completion models in addition to GPT4.1. The embeddings models are used when you use labeled samples or in-context learning to improve the quality of your analyzer.
-
-``` JSON
-PATCH /contentunderstanding/defaults
-{
-  // Specify the default model deployments for each LLM/embedding model. The format is "model name": "deployment name"
-  "modelDeployments": {
-    "gpt-4.1": "gpt-4.1-deployment",
-    "gpt-4.1-mini": "gpt-4.1-mini",
-    "text-embedding-ada-002":  "text-embedding-ada-002"
-  }
-}
-
-```
-
-* **Step 2** Define the models that a specific analyzer should use when building the analyzer. At build time, associate each analyzer with a specific chat completion model and an embeddings model. This configuration provides the flexibility of picking a model that provides the best results at the lowest cost. The analyzer definition only associates a model with the analyzer and not the deployment. 
-
-``` JSON
-
-{
-"analyzerId": "myReceipt",
-    // Specify the LLM/embedding models used by this analyzer. 
-    "models": {
-      "completion": "gpt-4.1",
-      "embedding": "text-embedding-ada-002"
-    }
-  "config": {
+1. You can specify the deployments to use on the resource via a ```PATCH``` request. We recommend that you set this default model and deployment to ensure your analyzers always have a valid model deployment to use. To set the default deployment, update the Content Understanding resource with the deployments. GPT4.1 is a recommended model for use with the Foundry and the Studio. You can experiment or use any of the supported chat completion models in addition to GPT4.1. The embeddings models are used when you use labeled samples or in-context learning to improve the quality of your analyzer.
     
-  },
-  // Complete analyzer definition
-}
+    ``` JSON
+    PATCH /contentunderstanding/defaults
+    {
+      // Specify the default model deployments for each LLM/embedding model. The format is "model name": "deployment name"
+      "modelDeployments": {
+        "gpt-4.1": "gpt-4.1-deployment",
+        "gpt-4.1-mini": "gpt-4.1-mini",
+        "text-embedding-ada-002":  "text-embedding-ada-002"
+      }
+    }
+    
+    ```
 
-```
+1. Define the models that a specific analyzer should use when building the analyzer. At build time, associate each analyzer with a specific chat completion model and an embeddings model. This configuration provides the flexibility of picking a model that provides the best results at the lowest cost. The analyzer definition only associates a model with the analyzer and not the deployment. 
+    
+    ``` JSON
+    {
+    "analyzerId": "myReceipt",
+        // Specify the LLM/embedding models used by this analyzer. 
+        "models": {
+          "completion": "gpt-4.1",
+          "embedding": "text-embedding-ada-002"
+        }
+      "config": {
+        
+      },
+      // Complete analyzer definition
+    }
+    
+    ```
 
-* **Step 3** At analyze time, connect the model that the analyzer should use with the deployment. If you have defaults defined on the resource, no `modelDeplyments` are needed, if no defaults are defined on the resource, or you want to override the defaults, provide the `modelDeployments` to use.
+1. At analyze time, connect the model that the analyzer should use with the deployment. If you have defaults defined on the resource, no `modelDeplyments` are needed, if no defaults are defined on the resource, or you want to override the defaults, provide the `modelDeployments` to use.
+    
+    ``` JSON
+    POST /myReceipt:analyze
+    {
+    
+      "modelDeployments": {
+        "gpt-4.1": "myGpt41Deployment"
+      }
+    }
+    
+    ```
 
-``` JSON
-POST /myReceipt:analyze
-{
+    > [!NOTE]
+    > [Prebuilt analyzers](../concepts/prebuilt-analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
 
-  "modelDeployments": {
-    "gpt-4.1": "myGpt41Deployment"
-  }
-}
+Your analyzer is now connected to a Foundry model deployment and ready for use.
 
-```
-
-> [!NOTE]
-> [Prebuilt analyzers](../concepts/prebuilt-analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
-
-Your analyzer is now connected to a Foundry model deployment and ready for use. 
-
-## Testing the analyzer
+## Test the analyzer
 
 Submit an analyze request for the analyzer and validate that the response is accurate. In addition to the content and fields in the response, the response object contains a `usage` property that includes information on tokens consumed on your deployment. You can validate this data against your usage data on the deployment to correlate the usage from Content Understanding with the model deployment.
 
@@ -115,7 +116,7 @@ Submit an analyze request for the analyzer and validate that the response is acc
 ```
 
 
-## Next steps
+## Related content
 
 * [Learn more about Content Understanding pricing](../overview/pricing-explainer.md)
 
