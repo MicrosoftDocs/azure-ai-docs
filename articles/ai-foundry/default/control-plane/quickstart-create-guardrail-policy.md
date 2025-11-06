@@ -33,7 +33,7 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 
 ## Create the guardrail policy
 
-1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)].
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 1. Select **Operate** from the upper-right navigation.
 1. Select the **Compliance** tab in the left navigation. Select **Create new policy**.
 
