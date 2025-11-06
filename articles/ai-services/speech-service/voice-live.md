@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 11/05/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about the Voice live API for real-time voice agents.
 ---

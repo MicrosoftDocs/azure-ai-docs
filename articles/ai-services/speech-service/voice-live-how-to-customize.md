@@ -7,7 +7,7 @@ author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/26/2025
+ms.date: 10/05/2025
 ms.custom: custom speech, custom voice, custom avatar, fine-tuning
 # Customer intent: As a developer, I want to learn how to use custom models with the Voice live API for real-time voice agents.
 ---
