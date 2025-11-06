@@ -443,6 +443,10 @@ Follow these steps to create a console application and install the Speech SDK.
         private bool _responseActive;
         // Tracks whether we've already sent the initial proactive greeting to start the conversation
         private bool _conversationStarted;
+        // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
+        private bool _canCancelResponse;
+        // Tracks whether audio playback for the current response is in progress (receiving audio deltas)
+        private bool _playbackInProgress;
     
             /// <summary>
             /// Initializes a new instance of the BasicVoiceAssistant class.
@@ -636,9 +640,9 @@ Follow these steps to create a console application and install the Speech SDK.
                         }
     
                         // Only attempt cancellation / clearing if a response is actually active
-                        if (_responseActive)
+                        if (_responseActive && _canCancelResponse)
                         {
-                            // Cancel any ongoing response
+                            // Cancel any ongoing response (only if server may still be generating)
                             try
                             {
                                 await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
@@ -646,10 +650,18 @@ Follow these steps to create a console application and install the Speech SDK.
                             }
                             catch (Exception ex)
                             {
-                                _logger.LogWarning(ex, "Response cancellation failed during barge-in");
+                                // Treat known benign message as debug-level (server already finished response)
+                                if (ex.Message.Contains("no active response", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    _logger.LogDebug("Cancellation benign: response already completed");
+                                }
+                                else
+                                {
+                                    _logger.LogWarning(ex, "Response cancellation failed during barge-in");
+                                }
                             }
     
-                            // Clear any streaming audio that might still be in transit
+                            // Clear any streaming audio still in transit only if response still marked active
                             try
                             {
                                 await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
@@ -680,11 +692,13 @@ Follow these steps to create a console application and install the Speech SDK.
                     case SessionUpdateResponseCreated responseCreated:
                         _logger.LogInformation("🤖 Assistant response created");
                         _responseActive = true;
+                        _canCancelResponse = true; // Response can be cancelled until completion
                         break;
     
                     case SessionUpdateResponseAudioDelta audioDelta:
                         // Stream audio response to speakers
                         _logger.LogDebug("Received audio delta");
+                        _playbackInProgress = true;
     
                         if (audioDelta.Delta != null && _audioProcessor != null)
                         {
@@ -696,18 +710,22 @@ Follow these steps to create a console application and install the Speech SDK.
                     case SessionUpdateResponseAudioDone audioDone:
                         _logger.LogInformation("🤖 Assistant finished speaking");
                         Console.WriteLine("🎤 Ready for next input...");
-                        _responseActive = false; // Audio portion done; mark response inactive
+                        _playbackInProgress = false; // Playback concluded
+                        // Do NOT mark _responseActive false yet; ResponseDone may still arrive
                         break;
     
                     case SessionUpdateResponseDone responseDone:
                         _logger.LogInformation("✅ Response complete");
-                        _responseActive = false; // Explicit completion event
+                        _responseActive = false; // Response fully complete
+                        _canCancelResponse = false; // No longer cancellable
                         break;
     
                     case SessionUpdateError errorEvent:
                         _logger.LogError("❌ VoiceLive error: {ErrorMessage}", errorEvent.Error?.Message);
                         Console.WriteLine($"Error: {errorEvent.Error?.Message}");
-                        _responseActive = false; // Ensure we reset on error to avoid stale state
+                        _responseActive = false;
+                        _canCancelResponse = false;
+                        _playbackInProgress = false; // Reset all state on error to avoid stale conditions
                         break;
     
                     default:
@@ -908,7 +926,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     _playbackBuffer = new BufferedWaveProvider(new WaveFormat(SampleRate, BitsPerSample, Channels))
                     {
-                        BufferDuration = TimeSpan.FromSeconds(5), // 5 second buffer
+                        BufferDuration = TimeSpan.FromSeconds(10), // 10 second buffer
                         DiscardOnBufferOverflow = true
                     };
     
