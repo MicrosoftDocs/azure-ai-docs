@@ -32,7 +32,7 @@ Not yet available
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-Not yet available
+:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="create_agent":::
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 

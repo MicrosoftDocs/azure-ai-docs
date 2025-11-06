@@ -233,7 +233,6 @@ Follow along below or get the code:
 
 # [Java](#tab/java)
 
-1. Simple install???
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 Follow along below or get the code:

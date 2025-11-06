@@ -38,7 +38,7 @@ Now that you have an agent, you can interact with it either in code or in the po
 You'll start in Azure AI Foundry portal to create a project and deploy a model.
 
 1. [!INCLUDE [version-sign-in](version-sign-in.md)]
-1. Projects help organize your work. The project you'e working on appears in the upper-left corner. 
+1. Projects help organize your work. The project you're working on appears in the upper-left corner. 
 1. To create a new project, select the project name, then  **Create new project**.
 1. Give your project a name and select **Create project**.
 1. Now deploy a model into the project:

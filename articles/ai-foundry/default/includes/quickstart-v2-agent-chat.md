@@ -17,21 +17,24 @@ ms.custom: include
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/AgentService.cs":::
-
+<!-- :::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/AgentService.cs"::: -->
+Not yet available.
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/typescript/quickstart/src/quickstart.ts":::
+<!-- :::code language="typescript" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/typescript/quickstart/src/quickstart.ts"::: -->
+Not yet available.
     
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
-    
+<!-- :::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" ::: -->
+Not yet available.
 
 # [REST API](#tab/rest)
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh":::
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="chat_with_agent":::
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
