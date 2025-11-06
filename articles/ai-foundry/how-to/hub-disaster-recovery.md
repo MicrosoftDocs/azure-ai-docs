@@ -1,7 +1,7 @@
 ---
-title: Customer enabled disaster recovery for AI hub projects
+title: High availability and disaster recovery for hub projects
 titleSuffix: Azure AI Foundry
-description: Learn how to plan for disaster recovery for Azure AI Foundry hub projects.
+description: Learn how to plan for high availability and disaster recovery for Azure AI Foundry hub projects.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.custom:
@@ -14,7 +14,7 @@ ms.date: 09/29/2025
 ai-usage: ai-assisted
 ---
 
-# Customer-enabled disaster recovery
+# High availability and disaster recovery for hub projects
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
@@ -43,7 +43,7 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Azure AI Foundry itself doesn't provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> The information in this article only applies to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** isn't supported. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+> The information in this article only applies to **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For disaster recovery for **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**, see [Disaster recovery for Azure AI Foundry projects and Agent Service](agent-service-disaster-recovery.md).
 
 ## Understand Azure services for Azure AI Foundry
 
@@ -167,7 +167,7 @@ If you delete a hub and its resources, some resources support soft delete and ca
 | Azure Storage | See [Recover a deleted storage account](/azure/storage/common/storage-account-recover#recover-a-deleted-account-from-the-azure-portal). |
 | Azure Key Vault | Yes |
 
-## Next steps
+## Related content
 
 * See [Create a secure hub](create-secure-ai-hub.md) to learn about secure infrastructure deployments in Azure AI Foundry.
 * Review the [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1).

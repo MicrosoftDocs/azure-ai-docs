@@ -35,7 +35,7 @@ Before connecting your storage, ensure you have:
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-1. An Azure Storage account in the same subscription (Blob Storage supported).
+1. An [Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) in the same subscription (Blob Storage supported).
 1. Contributor or Owner permissions on both the Azure AI Foundry resource and the storage account.
 1. Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language).
 1. (Optional) A plan for customer-managed keys (CMK) encryption on the storage account.
@@ -67,9 +67,11 @@ Foundry connections act as shared data pointers across AI Foundry capabilities (
 
 See [Capability hosts](../agents/concepts/capability-hosts.md) for conceptual details.
 
-The userOwnedStorage field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account for these capabilities with backwards compatibility to the approach used for Azure Speech and Azure Language resource types.
+### userOwnedStorage (resource storage binding)
 
-The `userOwnedStorage` field is set during resource creation to bind one storage account for Speech and Language capabilities. Speech and Language share the account (different containers) and the setting applies to all projects in the resource. You cannot change or remove it later.
+The `userOwnedStorage` field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account.
+
+Speech and Language capabilities share the storage account but use different containers within it. The setting applies at the resource level and cannot be changed after creation without recreating the resource.
 
 If strict data isolation is required between Speech and Language scenarios, create separate Azure AI Foundry resources with different storage accounts.
 
@@ -107,17 +109,17 @@ The connection is now available to Agents (when not overridden), Evaluations, Da
 ::: moniker-end
 
 > [!NOTE]
-> Azure portal (portal.azure.com) steps are version-agnostic and intentionally not wrapped in moniker blocks (Source: .vscode/settings.json).
+> Azure portal (portal.azure.com) steps are version-agnostic and intentionally not wrapped in moniker blocks.
 
 ## Configure capability host for Agents (combined resource + project steps)
 
 You create two capability hosts—one at the resource level and one at the project level—each referencing the same connection chain so Agents route to your storage.
 
 1. Create a resource-level connection (as above) if not already present.
-2. Create a resource-level capability host referencing that connection.
-3. Create (or open) a project under the resource.
-4. Create a project-level capability host referencing the resource-level capability host.
-5. Verify Agents data now writes to the bound storage account.
+1. Create a resource-level capability host referencing that connection.
+1. Create (or open) a project under the resource.
+1. Create a project-level capability host referencing the resource-level capability host.
+1. Verify Agents data now writes to the bound storage account.
 
 ### Example (Azure CLI) *(illustrative)*
 ```bash

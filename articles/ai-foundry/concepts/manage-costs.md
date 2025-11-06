@@ -142,7 +142,9 @@ You can access cost information from either the [!INCLUDE [foundry-link](../defa
 
 ### Configure permissions to view costs
 
-To view costs, you need the **Owner** role or have a custom role at either subscription or resource group scope with the following actions:
+You need the [AI User role](rbac-azure-ai-foundry.md#azure-ai-user) and [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group of subscription level to view the costs.
+
+Or you can create the following custom rules:
 
 * `Microsoft.Consumption/*/read`
 * `Microsoft.CostManagement/*/read`
@@ -151,6 +153,7 @@ To view costs, you need the **Owner** role or have a custom role at either subsc
 
 > [!NOTE]
 > You need the **Owner** role at the subscription or resource group scope to create custom roles in that scope.
+> 
 
 To create a custom role, use one of the following articles:
 
@@ -191,7 +194,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. Use the sections below to monitor costs.
 
 > [!NOTE]
-> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
+> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. They also cover only standard deployment costs, not [provisioned throughput offerings](../openai/concepts/provisioned-throughput.md).
 
 ### Agent costs
 
