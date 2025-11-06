@@ -11,7 +11,11 @@ ai.usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
 ---
 
-# Idea to prototype
+# Tutorial: Idea to prototype - Build and evaluate an enterprise agent
+
+[!INCLUDE [code-preview](../includes/code-preview.md)] 
+
+[!INCLUDE [agent-v2-switch](../includes/agent-v2-switch.md)]
 
 This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
 
