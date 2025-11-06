@@ -2,13 +2,13 @@
 title: Supported standard text to speech avatar
 titleSuffix: Azure AI services
 description: Supported standard avatars, avatar styles and gestures
-author: melindabb
+author: melindam
 reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 11/5/2025
-ms.author: melindabb
+ms.author: melindam
 ms.reviewer: pafarley
 ---
 
