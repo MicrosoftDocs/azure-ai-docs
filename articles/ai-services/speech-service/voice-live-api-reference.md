@@ -1938,13 +1938,28 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model. Supported: `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `azure-speech` |
+| model | string | The transcription model. Supported: `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `azure-speech` |
 | language | string | Optional language code in BCP-47 (e.g., `en-US`), or ISO-639-1 (e.g., `en`), or multi languages with auto detection, (e.g., `en,zh`). |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
-| prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe` models. |
+| prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
 
 #### RealtimeInputAudioNoiseReductionSettings
+
+This can be:
+
+- An [RealtimeOpenAINoiseReduction](#realtimeopenainoisereduction) object
+- An [RealtimeAzureDeepNoiseSuppression](#realtimeazuredeepnoisesuppression) object
+
+#### RealtimeOpenAINoiseReduction
+
+OpenAI noise reduction configuration with explicit type field, only available for `gpt-realtime` and `gpt-realtime-mini` models.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | `near_field` or `far_field` |
+
+#### RealtimeAzureDeepNoiseSuppression
 
 Configuration for input audio noise reduction.
 
@@ -1978,7 +1993,7 @@ OpenAI voice configuration with explicit type field.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"openai"` |
-| name | string | OpenAI voice name: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse` |
+| name | string | OpenAI voice name: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`, `marin`, `cedar` |
 
 #### RealtimeAzureVoice
 
@@ -2048,7 +2063,7 @@ Azure personal voice configuration.
 
 Configuration for turn detection. This is a discriminated union supporting multiple VAD types.
 
-##### RealtimeServerVad
+##### RealtimeServerVAD
 
 Base VAD-based turn detection.
 
@@ -2063,9 +2078,9 @@ Base VAD-based turn detection.
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeSemanticVad
+##### RealtimeOpenAISemanticVAD
 
-Semantic VAD (default variant).
+OpenAI semantic VAD configuration which uses a model to determine when the user has finished speaking. Only available for `gpt-realtime` and `gpt-realtime-mini` models.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -2073,11 +2088,10 @@ Semantic VAD (default variant).
 | eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
-| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeAzureSemanticVad
+##### RealtimeAzureSemanticVAD
 
-Azure semantic VAD (default variant).
+Azure semantic VAD, which determines when the user starts and speaking using a semantic speech model, providing more robust detection in noisy environments.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -2086,18 +2100,14 @@ Azure semantic VAD (default variant).
 | prefix_padding_ms | integer | Optional. Audio padding before speech |
 | silence_duration_ms | integer | Optional. Silence duration for speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| neg_threshold | number | Optional. Negative threshold |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
-| window_size | integer | Optional. Analysis window size |
-| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
-| require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supports English. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeAzureSemanticVadMultilingual
+##### RealtimeAzureSemanticVADMultilingual
 
 Azure semantic VAD (default variant).
 
@@ -2108,10 +2118,7 @@ Azure semantic VAD (default variant).
 | prefix_padding_ms | integer | Optional. Audio padding before speech |
 | silence_duration_ms | integer | Optional. Silence duration for speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| neg_threshold | number | Optional. Negative threshold |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
-| window_size | integer | Optional. Analysis window size |
-| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false). |
 | languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
@@ -2219,7 +2226,7 @@ Session configuration object used in `session.update` events.
 | input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br><br>This property is nullable.|
 | input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation. This can be set to null to turn off. This service side echo cancellation can help improve the quality of the input audio by reducing the impact of echo and reverberation.<br><br>This property is nullable. |
 | input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br><br>This property is nullable. |
-| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. <br><br>This property is nullable. |
+| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
