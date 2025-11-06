@@ -22,9 +22,6 @@ highlightedContent:
     - title: What is Azure AI Foundry (new)?
       itemType: overview
       url: ./what-is-azure-ai-foundry.md?view=foundry
-    - title: What is Azure AI Foundry (classic)?
-      itemType: overview
-      url: ./what-is-azure-ai-foundry.md?view=foudry-classic
     - title: Explore Azure AI Foundry Models
       itemType: concept
       url: ./how-to/model-catalog-overview.md
