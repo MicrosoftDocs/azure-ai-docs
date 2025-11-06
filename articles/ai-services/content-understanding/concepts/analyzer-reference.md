@@ -314,7 +314,7 @@ The `config` object contains all processing options that control how content is 
 - **Default:** Not set
 - **Description:** Defines categories or content types for automatic classification and routing to specialized handlers. When used with `enableSegment set to false` is currently only supported for documents. It classifies the entire file. When used with `enableSegment=true`, the file is broken into chunks based on these categories, with each segment classified and optionally processed by a category-specific analyzer. Always selects a single option from the list of available categories. 
 - **Structure:** Each category contains:
-  - `description` - Detailed description of the category/document type. This description acts as a prompt that guides the AI model in determining segment boundaries and classification. Include distinguishing characteristics to help identify where one category ends and another begins.
+  - `description` - (Required) Detailed description of the category/document type. This description acts as a prompt that guides the AI model in determining segment boundaries and classification. Include distinguishing characteristics to help identify where one category ends and another begins.
   - `analyzerId` - (Optional) Reference to another analyzer to use for this category. The referenced analyzer is linked, not copied, ensuring consistent behavior. If omitted, only categorization is performed without more processing (split-only scenario).
 - **Model usage:** The models specified in the parent analyzer's `models` property are used only for segmentation and classification. Each subanalyzer uses its own model configuration for extraction.
 - **Behavior with `enableSegment`:**
