@@ -16,15 +16,15 @@ items:
     href: ../../how-to/configure-private-link.md
   - name: Network security perimeter (preview)
     href: ../../how-to/add-foundry-to-network-security-perimeter.md
-- name: Configure customer-managed encryption keys
+- name: Use customer-managed encryption keys
   href: ../../concepts/encryption-keys-portal.md
-- name: Azure policies
+- name: Policy management
   items:
-  - name: Built-in policy for model deployment (Preview)
-    href: ../../how-to/model-deployment-policy.md
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+  - name: Built-in policy for model deployment (Preview)
+    href: ../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
 - name: High availability and disaster recovery
@@ -33,8 +33,6 @@ items:
     href: ../../how-to/high-availability-resiliency.md
   - name: Disaster recovery
     items:
-    - name: Disaster recovery overview
-      href: ../../how-to/disaster-recovery.md
     - name: Disaster recovery for agent services
       href: ../../how-to/agent-service-disaster-recovery.md
     - name: Recover from a platform outage
