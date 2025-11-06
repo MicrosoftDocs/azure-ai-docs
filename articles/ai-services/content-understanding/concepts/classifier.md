@@ -36,7 +36,7 @@ Content Understanding classification can analyze single or multi-file documents 
 * A single file that contains one document type, such as a loan application form.
 * A single file that contains multiple document types. An example is a loan application package that contains a loan application form, pay slip, and bank statement.
 * A single file that contains multiple instances of the same document. An example is a collection of scanned invoices.
-* Starting with the GA version,the `$OTHER` class isn't included as default. To filter out the data, add the `$OTHER` class explicitly.
+* Starting with the GA version, the `$OTHER` class isn't included as default. To filter out the data, add the `$OTHER` class explicitly.
 
 ### Create classification categories
 
