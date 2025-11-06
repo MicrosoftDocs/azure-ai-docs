@@ -9,6 +9,9 @@ ms.topic: include
 ms.date: 11/05/2025
 ms.custom: include
 ---
+
+Connect to the previously created agent named "MyAgent" and chat with it.
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
 # [Python](#tab/python)

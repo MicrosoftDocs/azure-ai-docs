@@ -42,9 +42,11 @@ In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md
 In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to:
 
 > [!div class="checklist"]
-> * Create a project
-> * Create an agent
+> * Create a project 
+> * Deploy a model
 > * Get ready to code - install necessary packages and authenticate
+> * Chat with a model
+> * Create an agent
 > * Chat with an agent
 ::: moniker-end
 
@@ -57,8 +59,6 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 
 ## Prerequisites
-
-
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
@@ -361,8 +361,6 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 ::: moniker range="foundry"
 
-Connect to an agent named "MyAgent" and chat with it.
-
 [!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)]
 
 ::: moniker-end
@@ -420,5 +418,8 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ## Related content
 
+::: moniker range="foundry-classic"
 * [Quickstart: Create a new agent](../agents/quickstart.md)
+::: moniker-end
+
 * [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
