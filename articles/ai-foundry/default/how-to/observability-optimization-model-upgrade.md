@@ -50,7 +50,7 @@ It gives responses and different options on what models are recommended. You can
 
 ## Evaluate the new model and compare the performance
 
-Once a new model is deployed, you can ask Ask AI to start an evaluation of the new model with the same agent instructions and configurations. You can either do it via the link provided by Ask AI and follow the steps of [creating a new evaluation](../../how-to/evaluate-generative-ai-app.md?view=foundry), or ask Ask AI to create it on your behalf.
+Once a new model is deployed, you can ask Ask AI to start an evaluation of the new model with the same agent instructions and configurations. You can either do it via the link provided by Ask AI and follow the steps of [creating a new evaluation](../../how-to/evaluate-generative-ai-app.md?view=foundry&preserve-view=true), or ask Ask AI to create it on your behalf.
 
 Once the evaluation is complete, you can view the result in the evaluation group detail page and check if the new model is performing better than the current model. You can also use [compare](../../how-to/evaluate-results.md?view=foundry&preserve-view=true#compare-the-evaluation-results) or [cluster analysis](observability-optimization-cluster-analysis.md) to have a deeper understanding of the evaluation result.
 
