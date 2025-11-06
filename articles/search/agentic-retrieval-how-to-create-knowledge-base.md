@@ -31,7 +31,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 + Familiarity with [agentic retrieval concepts and workflow](agentic-retrieval-overview.md).
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher for managed identity support. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). Your search service must be basic pricing tier or higher if you're using [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models.
 
 + A [supported chat completion model](#supported-models) on Azure OpenAI.
 

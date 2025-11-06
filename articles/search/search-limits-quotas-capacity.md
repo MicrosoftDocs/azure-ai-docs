@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/28/2025
+ms.date: 11/06/2025
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions

@@ -28,7 +28,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 ## Prerequisites
 
-+ Azure AI Search in an Azure tenant, configured for Microsoft Entra ID authentication.
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). 
 
 + SharePoint in a Microsoft 365 tenant, under the same Microsoft Entra ID tenant as Azure.
 

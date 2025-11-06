@@ -25,6 +25,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Description |
 |--|--|
 | [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the data plane operations described in this table. |
+| [Semantic ranker and agentic retrieval on free tiers](semantic-search-overview.md) | Both semantic ranker and agentic retrieval are now available on free tiers in [selected regions](search-region-support.md), subject to limits on query volume. |
 | [Knowledge agents renamed to knowledge bases](agentic-retrieval-overview.md) | Knowledge agents are now known as knowledge bases. Knowledge sources remain unchanged. This rename introduces breaking changes to REST API routes and properties. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
 | [Knowledge bases (preview)](agentic-retrieval-overview.md) | After being renamed from knowledge agents, knowledge bases now support new `retrievalInstructions` and `outputConfiguration` properties for improved query planning and execution control. It also provides a new [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) for control over LLM processing. |
 | [Knowledge sources (preview)](agentic-knowledge-source-overview.md) | New types of knowledge sources: [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md), [remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md), and [web](agentic-knowledge-source-how-to-web.md). For indexed knowledge sources, the new `ingestionParameters` object provides properties to control content ingestion and processing, including `contentExtractionMode` for use of the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) and `ingestionPermissionOptions` for use of ACLs in the generated indexer. |
@@ -37,7 +38,6 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [SharePoint indexing updates (preview)](search-how-to-index-sharepoint-online.md) | New SharePoint indexer capabilities, including multi-site indexing, improved authentication options, incremental updates, and better handling of document permissions and metadata. |
 | Scoring function aggregation (preview) | New capability to combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. |
 | [Facet aggregations (preview)](search-faceted-navigation-examples.md#facet-aggregation-example) | New facet aggregation operations including minimum, maximum, average, and cardinality provide enhanced analytics in faceted search experiences. |
-| [Semantic ranker and agentic retrieval on free tiers](semantic-search-overview.md) | Both semantic ranker and agentic retrieval are now available on free tiers in selected regions, subject to limits on query volume. |
 
 ## September 2025
 
