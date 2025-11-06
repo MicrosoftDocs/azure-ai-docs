@@ -1,16 +1,22 @@
 items:
 - name: Plan rollout
   href: ../../../concepts/planning.md
-- name: Create a project
-  href: ../../../how-to/create-projects.md
-- name: Manage projects and resources
-  href: ../../../concepts/management-center.md
-- name: Create resources using Bicep template
-  href: ../../../how-to/create-resource-template.md
-- name: Create resources using Terraform
-  href: ../../../how-to/create-resource-terraform.md
 
-- name: Foundry Models deployment offers
+- name: Manage AI Foundry resources
+  items:
+  - name: Create your first resource
+    href: ../../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+  - name: Create resources using Bicep template
+    href: ../../../how-to/create-resource-template.md
+  - name: Manage resources using Terraform
+    href: ../../../how-to/create-resource-terraform.md
+  - name: Recover or purge deleted resources
+    href: ../../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+
+- name: Manage projects
+  href: ../../../how-to/create-projects.md
+
+- name: Manage deployments
   items:
   - name: Deployment offers and types
     href: ../../../foundry-models/concepts/deployment-types.md
@@ -25,13 +31,23 @@ items:
       - name: Provisioned spillover
         href: ../../../openai/how-to/spillover-traffic-management.md
 
-- name: Manage quotas for AI Foundry resources
-  href: ../../../how-to/quota.md
-- name: Foundry Models quotas and limits
-  href: ../../../foundry-models/quotas-limits.md
-- name: Create a connection
-  href: ../../../how-to/connections-add.md
-- name: Connect to your own storage in Foundry
-  href: ../../../how-to/bring-your-own-azure-storage-foundry.md
-- name: Connect to your own storage for Speech/Language
-  href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md  
+- name: Connect services and tools
+  items: 
+  - name: Create a connection
+    href: ../../../how-to/connections-add.md
+  - name: Connect to your own storage in Foundry
+    href: ../../../how-to/bring-your-own-azure-storage-foundry.md
+  - name: Connect to your own storage for Speech/Language
+    href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md 
+  # Can we move MC content under above articles? It doesn't add value to the user journey?
+  # - name: Management center
+  #   href: ../../../concepts/management-center.md
+
+- name: Quota and service limits
+  items: 
+  - name: Manage quotas for AI Foundry resources
+    href: ../../../how-to/quota.md
+  - name: Foundry Models quotas and limits
+    href: ../../../foundry-models/quotas-limits.md
+  
+# where the cost management articles?

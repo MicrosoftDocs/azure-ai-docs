@@ -123,16 +123,11 @@ az keyvault key delete  \
 
 Revoking access to an active CMK while CMK encryption is still enabled prevents downloading training data, fine-tuning new models, and deploying fine-tuned models. Existing deployments continue until deleted.
 
-## Added Azure cost when you use CMKs
-
-Using CMKs may incur extra subline cost items due to dedicated hosting of certain encrypted back-end services.
-
 ## Limitations
 
 * Projects can be updated from Microsoft-managed keys to CMKs but not reverted.
 * Project CMK can be updated only to keys in the same Key Vault instance.
 * Request form required for some services: [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) for Speech and Content Safety.
-* Storage-related charges for CMK encryption continue during soft-deleted retention.
 
 ## Related content
 
