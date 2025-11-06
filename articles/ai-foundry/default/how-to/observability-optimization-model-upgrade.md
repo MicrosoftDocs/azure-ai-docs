@@ -52,7 +52,7 @@ It gives responses and different options on what models are recommended. You can
 
 Once a new model is deployed, you can ask Ask AI to start an evaluation of the new model with the same agent instructions and configurations. You can either do it via the link provided by Ask AI and follow the steps of [creating a new evaluation](../../how-to/evaluate-generative-ai-app.md?view=foundry), or ask Ask AI to create it on your behalf.
 
-Once the evaluation is complete, you can view the result in the evaluation group detail page and check if the new model is performing better than the current model. You can also use [compare](../../how-to/evaluate-results.md?view=foundry#compare-the-evaluation-results) or [cluster analysis](observability-optimization-cluster-analysis.md) to have a deeper understanding of the evaluation result.
+Once the evaluation is complete, you can view the result in the evaluation group detail page and check if the new model is performing better than the current model. You can also use [compare](../../how-to/evaluate-results.md?view=foundry&preserve-view=true#compare-the-evaluation-results) or [cluster analysis](observability-optimization-cluster-analysis.md) to have a deeper understanding of the evaluation result.
 
 If you aren't satisfied with the new model, you can test other models and repeat the previous steps to create new evaluation runs. The new run is added to the evaluation group when you create the evaluation for the first time.
 
@@ -64,4 +64,4 @@ You can also chat with Ask AI to scan your project and find agents in similar si
 
 ## Related content
 
-- [Model versions in Azure AI Foundry Models](../../foundry-models/concepts/model-versions.md?view=foundry)
+- [Model versions in Azure AI Foundry Models](../../foundry-models/concepts/model-versions.md?view=foundry&preserve-view=true)

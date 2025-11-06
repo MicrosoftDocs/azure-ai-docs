@@ -124,4 +124,4 @@ Use the insights discovered here to:
 
 ## Related content
 
-- [See evaluation results in the Azure AI Foundry portal](../../ai-foundry/how-to/evaluate-results.md?view=foundry)
+- [See evaluation results in the Azure AI Foundry portal](../../../ai-foundry/how-to/evaluate-results.md?view=foundry&preserve-view=true)
