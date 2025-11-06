@@ -5,7 +5,7 @@ description: Learn about the regions that offer Azure AI Search and the features
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 10/09/2025
+ms.date: 10/30/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -65,7 +65,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Norway East​​ | ✅ | ✅ |  | ✅ |  |  |
 | North Europe​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Poland Central​​ |  |  | ✅ |  | ✅ |  |
-| Spain Central <sup>1</sup> |  | ✅ |  | ✅ |  |  |
+| Spain Central <sup>1</sup> |  | ✅ |  | ✅ | ✅ | ✅ |
 | Sweden Central​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Switzerland North​ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |  | ✅ |  |

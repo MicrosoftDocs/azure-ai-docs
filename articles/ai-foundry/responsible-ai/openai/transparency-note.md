@@ -578,9 +578,7 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 - The 4.1-series models introduce the ability to create inference requests with up to 1M context tokens, including images. Due to the extended length, there may be differences in system behavior and risks when compared to other models.
 - Users should thoroughly evaluate and test their applications and use cases that leverage this longer context capability and should account for this additional effort when developing applications.
 
-### GPT-image-1 limitations
 
-- GPT-image-1 currently doesn't support custom policies, such as content filter configurability.
 
 ### Risk and limitations of Computer Use (Preview) 
 

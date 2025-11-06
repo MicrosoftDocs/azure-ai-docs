@@ -31,7 +31,7 @@ Semantic ranker might not be enabled on older services. Follow these steps to en
 
 1. Navigate to your search service. On the **Overview** page, make sure the pricing tier is set to **Basic** or higher.
 
-1. On the left-navigation pane, select **Settings** > **Semantic ranker**.
+1. On the left-navigation pane, select **Settings** > **Premium features**.
 
 1. Select either the **Free plan** (default) or the **Standard plan**. You can switch between the free plan and the standard plan at any time.
 

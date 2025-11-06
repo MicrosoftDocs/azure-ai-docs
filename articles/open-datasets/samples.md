@@ -5,7 +5,7 @@ ms.service: azure-open-datasets
 ms.topic: sample
 author: fbsolo-ms1
 ms.author: scottpolly
-ms.date: 07/29/2024
+ms.date: 10/28/2025
 ---
 
 # Example Jupyter notebooks show how to enrich data with Open Datasets 

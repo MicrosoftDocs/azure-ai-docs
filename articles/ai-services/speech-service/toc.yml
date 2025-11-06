@@ -232,6 +232,12 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: LLM speech
+  items:
+    - name: Use LLM speech
+      href: llm-speech.md
+    - name: LLM speech REST API reference
+      href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice live
   items:
     - name: Voice live overview
@@ -241,10 +247,12 @@ items:
     - name: Quickstarts
       expanded: true
       items:
-      - name: Voice live with Foundry models quickstart
+      - name: Voice Live with Foundry models
         href: voice-live-quickstart.md
-      - name: Voice live with Foundry agents quickstart
+      - name: Voice Live with Foundry agents
         href: voice-live-agents-quickstart.md
+      - name: Function calling in Voice Live
+        href: how-to-voice-live-function-calling.md
       - name: Bring your own model with Voice live (preview)
         href: how-to-bring-your-own-model.md
     - name: How-to guides
@@ -529,6 +537,8 @@ items:
     href: migrate-to-batch-synthesis.md
   - name: Migrate to custom voice API
     href: migrate-to-custom-voice-api.md
+  - name: Migrate from retired intent recognition
+    href: migrate-intent-recognition.md    
 - name: Responsible AI
   items:
     - name: Speech to text

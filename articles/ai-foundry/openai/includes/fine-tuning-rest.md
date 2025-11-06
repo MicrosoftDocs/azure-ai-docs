@@ -204,7 +204,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
-### Copy model (preview)
+## Copy model (preview)
 
 You can now copy a fine-tuned checkpointed model from one region to another, across different subscriptions but within the same tenant. The process uses dedicated APIs to ensure efficient and secure transfers. This feature is currently available only with the API and not through the Foundry portal.
 Once the model is copied from region A to region B, you can continually fine-tune the model in region B and deploy the model from this location.
@@ -250,6 +250,8 @@ curl --request GET \
   --header 'aoai-copy-ft-checkpoints: preview' 
 ```
 
+> [!NOTE]
+> When you copy a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure that you use this exact same name for fine-tuning, deployment, or for any other operation in the destination account. This checkpoint doesn't appear in the UI or in the `list checkpoints` API.
 
 ## Checkpoints
 
