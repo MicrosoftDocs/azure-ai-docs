@@ -53,7 +53,7 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
    - If you scoped to a **subscription**, you can create exceptions for entire resource groups or individual model deployments within that subscription.
    - If you scoped to a **resource group**, you can only create exceptions for individual model deployments.
 
-    :::image type="content" source="media/quickstart-create-a-guardrail-policy/select-exception.png" alt-text="Screenshot of the exceptions configuration page." lightbox="media/quickstart-create-a-guardrail-policy/select-exception.png":::
+        :::image type="content" source="media/quickstart-create-a-guardrail-policy/select-exception.png" alt-text="Screenshot of the exceptions configuration page." lightbox="media/quickstart-create-a-guardrail-policy/select-exception.png":::
 
 1. Once all exceptions have been added, select **Next** to move to the review stage. Here, you name your policy and review the scope, exceptions, and controls that define the policy. Once ready, select **Submit** to create the policy.
 
@@ -73,9 +73,7 @@ After you submit your policy, verify that it was created successfully:
 
 Now that you've created your guardrail policy, explore these next steps:
 
-- [Monitor compliance status for your guardrails](../../how-to/monitor-compliance.md)
-- [Edit or update existing guardrail policies](../../how-to/manage-guardrail-policies.md)
-- [Deploy agents with guardrail controls](../../how-to/deploy-agents-with-guardrails.md)
+- [Register and manage custom agents](register-custom-agent.md)
 
 > [!NOTE]
 > When you create a policy assignment in Azure AI Foundry, the system creates a series of individual policies and associates them to a policy initiative. In the Foundry portal, you view the status of the policy initiative rather than individual policies. You can also review and manage these policies directly in Azure Policy via the Azure portal.
