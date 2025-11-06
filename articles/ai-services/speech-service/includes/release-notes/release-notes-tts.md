@@ -23,19 +23,9 @@ ms.custom: references_regions
 | `ko-KR`             | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male)          |
 | `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
 
-#### Version updated for HD voices below to v2.0 with quality improved and bugs fixed
+#### 33 previous voices have version updated to v2.0 with quality improved and bugs fixed
 | **Locale (BCP-47)** | **Voice name**                                      |
-| -------------------- | ---------------------------------------------------- |
-| `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
-| `en-GB`             | `en-GB-Ollie:DragonHDLatestNeural` (Male)           |
-| `en-US`             | `en-US-Andrew4:DragonHDLatestNeural` (Male)         |
-| `en-US`             | `en-US-Ava2:DragonHDLatestNeural` (Female)          |
-| `es-MX`             | `es-MX-Tristan:DragonHDLatestNeural` (Male)         |
-| `es-MX`             | `es-MX-Ximena:DragonHDLatestNeural` (Female)        |
-| `fr-CA`             | `fr-CA-Sylvie:DragonHDLatestNeural` (Female)        |
-| `fr-CA`             | `fr-CA-Thierry:DragonHDLatestNeural` (Male)         |
-| `ko-KR`             | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male)          |
-| `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
+| ------------------- | ----------------------------------------------------|
 | `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
 | `de-DE`             | `de-DE-Seraphina:DragonHDLatestNeural` (Female)     |
 | `en-US`             | `en-US-Adam:DragonHDLatestNeural` (Male)            |
