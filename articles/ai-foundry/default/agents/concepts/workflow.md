@@ -34,7 +34,7 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 1. Go to [Foundry Portal](https://aka.ms/nextgen-workflow)
 2. Select **Create new workflow** and **Sequential**.
-3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agents).
+3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agent).
 4. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
 5. Select **Run Workflow**.
 6. Interact with the workflow in the chat window.
@@ -78,7 +78,7 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 4. Type the agent name to search for existing agents in your Foundry project.
 5. Select the desired agent to add it into your workflow.
 
-### Create new agents
+### Create new agent
 
 1. Select the '+' sign in the workflow visualizer.
 2. In the pop-up dropdown, select **Invoke agent**.
@@ -92,3 +92,59 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 - **YAML Visualizer View toggle**: The workflow will be stored in a YAML file, it can be modified in the visualizer and the YAML view. Saving will create a new version; you have access to the version history. The visualizer and the YAML are editable. You can edit the YAML file and any changes to the file will be reflected in the visualizer.
 - **Versioning**: Each time you save your workflow, a new, unchangeable version is created. To view the version history or delete older versions, open the Version dropdown located to the left of the Save button.
 - **Add Notes to your workflow visualizer**: You can add notes on the workflow visualizer to add additional context or information regarding your workflow. In the upper left corner of the workflow visualizer, select **Add note**.
+
+
+## Create expressions using Power Fx
+
+Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to create complex logic that allows your agents to manipulate data. For instance, a Power Fx formula can set the value of a variable, parse a string, or use an expression in a condition. For more information, see the [Power Fx overview](/power-platform/power-fx/overview) and [formula reference](/power-platform/power-fx/formula-reference-copilot-studio).
+
+## Use variables in a formula
+
+To use a variable in a Power Fx formula, you must add a prefix to its name to indicate the variable's scope:
+
+- For [system variables](/microsoft-copilot-studio/authoring-variables-about?tabs=webApp), use `System.`
+- For local variables, use `Local.`
+
+### Use literal values in a formula
+
+In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](/microsoft-copilot-studio/authoring-variables-about?tabs=webApp). The following table lists the data types and the format of their corresponding literal values.
+
+| Type             | Format examples                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| String           | `"hi"`, `"hello world!"`, `"copilot"`                                                                                            |
+| Boolean          | Only `true` or `false`                                                                                                           |
+| Number           | `1`, `532`, `5.258`,`-9201`                                                                                                      |
+| Record and Table | `[1]`, `[45, 8, 2]`, `["cats", "dogs"]`, `{ id: 1 }`, `{ message: "hello" }`, `{ name: "John", info: { age: 25, weight: 175 } }` |
+| DateTime         | `Time(5,0,23)`, `Date(2022,5,24)`, `DateTimeValue("May 10, 2022 5:00:00 PM")`                                                    |
+| Choice           | Not supported                                                                                                                    |
+| Blank            | Only `Blank()`                                                                                                                   |
+
+### Common Power Fx formulas
+
+The following table lists data types and Power Fx formulas you can use with each data type.
+
+| Type             | Power Fx formulas                                                                                                                                                                                                                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| String           | [Text function][1]<br>[Concat and Concatenate functions][2]<br>[Len function][3]<br>[Lower, Upper, and Proper functions][4]<br>[IsMatch, Match, and MatchAll functions][5]<br>[EndsWith and StartsWith functions][6]<br>[Find function][7]<br>[Replace and Substitute function][8]                                              |
+| Boolean          | [Boolean function][9]<br>[And, Or, and Not functions][10]<br>[If and Switch functions][11]                                                                                                                                                                                                                                      |
+| Number           | [Decimal, Float, and Value functions][12]<br>[Int, Round, RoundDown, RoundUp, and Trunc functions][13]                                                                                                                                                                                                                          |
+| Record and Table | [Concat and Concatenate functions][14]<br>[Count, CountA, CountIf, and CountRows functions][15]<br>[ForAll function][16]<br>[First, FirstN, Index, Last, and LastN functions][17]<br>[Filter, Search, and LookUp functions][18]<br>[JSON function][19]<br>[ParseJSON function][20]                                              |
+| DateTime         | [Date, DateTime, and Time functions][21]<br>[DateValue, TimeValue, and DateTimeValue functions][22]<br>[Day, Month, Year, Hour, Minute, Second, and Weekday functions][23]<br>[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions][24]<br>[DateAdd, DateDiff, and TimeZoneOffset functions][25]<br>[Text function][26] |
+| Blank            | [Blank, Coalesce, IsBlank, and IsEmpty functions][27]<br>[Error, IfError, IsError, IsBlankOrError functions][28]                                                                                                                                                                                                                |
+## Use Power Fx to set a variable
+
+In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
+
+1. Create a workflow and add an **Ask a question** node.
+
+1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for example `Var01`. Select **Done**
+
+1. Add a **Send message** action. Then in the side settings panel enter `{Upper(Local.Var01)}`. Select **Done**.
+
+1. Select **Preview**
+
+1. Send a message to the agent in the side panel to invoke the workflow. 
+
+
+
+ 
