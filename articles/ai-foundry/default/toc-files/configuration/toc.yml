@@ -13,7 +13,7 @@ items:
   - name: Recover or purge deleted resources
     href: ../../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
 
-- name: Create a project
+- name: Manage projects
   href: ../../../how-to/create-projects.md
 
 - name: Manage deployments
