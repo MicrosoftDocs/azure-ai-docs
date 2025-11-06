@@ -135,7 +135,7 @@ The following table lists data types and Power Fx formulas you can use with each
 
 In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
 
-1. Create a workflow and add a **Ask a question** node.
+1. Create a workflow and add an **Ask a question** node.
 
 1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for example `Var01`. Select **Done**
 
