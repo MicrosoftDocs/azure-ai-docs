@@ -194,7 +194,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. Use the sections below to monitor costs.
 
 > [!NOTE]
-> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
+> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. They also cover only standard deployment costs, not [provisioned throughput offerings](../openai/concepts/provisioned-throughput.md).
 
 ### Agent costs
 
@@ -252,7 +252,7 @@ Here's an example of how to monitor costs in the Azure portal. The costs are use
 
 1. Select **Costs by resource** > **Resources** to open the Cost analysis page.
 
-1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource,
+1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource.
 
    :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
 
