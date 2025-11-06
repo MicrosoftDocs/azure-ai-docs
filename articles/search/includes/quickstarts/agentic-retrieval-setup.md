@@ -17,9 +17,7 @@ To configure access for this quickstart, select both of the following tabs.
 
 Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with Azure AI Foundry, and run the pipeline.
 
-To configure access for Azure AI Search:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+On your Azure AI Search service:
 
 1. [Enable role-based access](../../search-security-enable-roles.md).
 
@@ -37,11 +35,9 @@ To configure access for Azure AI Search:
 
 Azure AI Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
-To configure access for Azure AI Foundry:
+On your Azure AI Foundry resource:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Foundry resource.
-
-1. Assign **Cognitive Services User** to the managed identity of your search service.
++ Assign **Cognitive Services User** to the managed identity of your search service.
 
 ---
 
