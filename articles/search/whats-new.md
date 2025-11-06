@@ -36,7 +36,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Elevated read permissions for ACLs (preview) | New capability to assign elevated read permissions to specific users or groups within ACL configurations for fine-grained access control. |
 | [Purview index configuration (preview)](search-indexer-sensitivity-labels.md) | New integration with Azure Purview to apply data governance classifications and sensitivity labels to indexed content based on source metadata. |
 | [SharePoint indexing updates (preview)](search-how-to-index-sharepoint-online.md) | New SharePoint indexer capabilities, including multi-site indexing, improved authentication options, incremental updates, and better handling of document permissions and metadata. |
-| Scoring function aggregation (preview) | New capability to combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. |
+| [Scoring function aggregation (preview)](index-add-scoring-profiles.md#example-function-aggregation) | New capability to combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. |
 | [Facet aggregations (preview)](search-faceted-navigation-examples.md#facet-aggregation-example) | New facet aggregation operations including minimum, maximum, average, and cardinality provide enhanced analytics in faceted search experiences. |
 
 ## September 2025
