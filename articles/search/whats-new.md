@@ -36,8 +36,8 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Purview index configuration (preview) | New integration with Azure Purview to apply data governance classifications and sensitivity labels to indexed content based on source metadata. |
 | [SharePoint indexing updates (preview)](search-how-to-index-sharepoint-online.md) | New SharePoint indexer capabilities, including multi-site indexing, improved authentication options, incremental updates, and better handling of document permissions and metadata. |
 | Scoring function aggregation (preview) | New capability to combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. |
-| Facet aggregations (preview) | New facet aggregation operations including sum, count, and other aggregate functions to provide enhanced analytics in faceted search experiences. |
-| [Semantic ranker and agentic retrieval on free tiers](semantic-search-overview.md) | Both semantic ranker and agentic retrieval are now available on free and standard tiers with shared billing control via the `semanticSearch` property. |
+| [Facet aggregations (preview)](search-faceted-navigation-examples.md#facet-aggregation-example) | New facet aggregation operations including minimum, maximum, average, and cardinality provide enhanced analytics in faceted search experiences. |
+| [Semantic ranker and agentic retrieval on free tiers](semantic-search-overview.md) | Both semantic ranker and agentic retrieval are now available on free tiers in selected regions, subject to limits on query volume. |
 
 ## September 2025
 
