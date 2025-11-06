@@ -1,5 +1,5 @@
 ---
-title: Azure Azure AI Foundry fine-tuning considerations
+title: Azure AI Foundry fine-tuning considerations
 description: Learn more about what you should take into consideration before fine-tuning with Azure AI Foundry
 manager: nitinme
 ms.service: azure-ai-foundry

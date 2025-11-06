@@ -61,9 +61,9 @@ To fine-tune a model in an existing Azure AI Foundry project, follow these steps
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/) and select your project. If you don't have a project already, first [create a project](../how-to/create-projects.md).
 
-1. Navigate to **Build > Fine-tune** page and click on the **Fine-tune** button at the top right.
+1. Navigate to **Build > Fine-tune** page and select the **Fine-tune** button at the top right.
 
-1. You should now see the **Fine-tune a model** experience for creating a new fine-tuning job. Use the sections below to help with configuring the job and click **Submit** to start training your new fine-tuned model.
+1. You should now see the **Fine-tune a model** experience for creating a new fine-tuning job. Use the sections below to help with configuring the job and select **Submit** to start training your new fine-tuned model.
 
 ### Base model selection
 
@@ -160,7 +160,7 @@ A checkpoint is a fully functional version of a model which can both be deployed
 
 ## Deploy the fine-tuned model
 
-Once you're satisified with the metrics from your fine-tuning job, you can deploy the model by clicking on the **Deploy** button at the top right of the details page and configuring your deployment settings.
+Once you're satisfied with the metrics from your fine-tuning job, you can deploy the model by clicking on the **Deploy** button at the top right of the details page and configuring your deployment settings.
 
 See the [fine-tune deployment guide](../openai/how-to/fine-tuning-deploy.md?tabs=portal) for more details.
 
