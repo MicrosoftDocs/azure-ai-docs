@@ -30,7 +30,7 @@ In this article, you learn how to manage access to your [Azure AI Foundry](https
 
 ::: moniker range="foundry"
 
-In this article, you learn how to manage access to your [Azure AI Foundry](https://aka.ms/nextgen-canary) resources. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources, like creating new resources or using existing ones. In Microsoft Entra ID, assign users roles that grant access to resources. Azure provides built-in roles and lets you create custom roles.
+In this article, you learn how to manage access to your [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] resources. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources, like creating new resources or using existing ones. In Microsoft Entra ID, assign users roles that grant access to resources. Azure provides built-in roles and lets you create custom roles.
 
 ::: moniker-end
 

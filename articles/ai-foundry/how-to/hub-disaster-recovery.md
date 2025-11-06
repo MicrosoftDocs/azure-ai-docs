@@ -28,7 +28,7 @@ Plan ahead to maintain business continuity and prepare for disaster recovery wit
 
 ::: moniker range="foundry"
 
-Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs). Because Azure AI Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
+Plan ahead to maintain business continuity and prepare for disaster recovery with [!INCLUDE [foundry-link](../default/includes/foundry-link.md)]. Because Azure AI Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
 
 ::: moniker-end
 

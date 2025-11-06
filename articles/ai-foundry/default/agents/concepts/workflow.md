@@ -32,13 +32,14 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 ### Create a sequential workflow
 
-1. Go to [Foundry Portal](https://aka.ms/nextgen-workflow)
-2. Select **Create new workflow** and **Sequential**.
-3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agent).
-4. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
-5. Select **Run Workflow**.
-6. Interact with the workflow in the chat window.
-7. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#add-nodes-to-your-workflow) section.
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
+1. Select **Build** in the upper-right navigation.
+1. Select **Create new workflow** and **Sequential**.
+1. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agent).
+1. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
+1. Select **Run Workflow**.
+1. Interact with the workflow in the chat window.
+1. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#add-nodes-to-your-workflow) section.
 
 > [!IMPORTANT]
 > Workflows aren't saved automatically. Select **Save** every time you want to save changes to your workflow.
