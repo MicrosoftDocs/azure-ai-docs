@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 11/05/2025
+ms.date: 11/06/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: tgokal
@@ -28,11 +28,16 @@ As you build with state-of-the-art models and create agents and apps with them, 
 
 Some highlights of the Azure AI Foundry playgrounds experience include:
 
-- **AgentOps support** for Evaluations and Tracing in the **Agents playground.**
+- **AgentOps support** for evaluations and tracing in the **Agents playground.**
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Azure AI Foundry to VS Code for multilingual code samples.
 - **Images Playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
-- **Audio playground** for models such as [gpt-4o-audio-preview](https://ai.azure.com/resource/models/gpt-4o-audio-preview/version/2024-12-17/registry/azure-openai/?cid=learnDocs), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai/?cid=learnDocs), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai/?cid=learnDocs) models.
 - **Video playground** for Azure OpenAI Sora-2.
+
+::: moniker range="foundry-classic"
+
+- **Audio playground** for models such as [gpt-4o-audio-preview](https://ai.azure.com/resource/models/gpt-4o-audio-preview/version/2024-12-17/registry/azure-openai/?cid=learnDocs), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai/?cid=learnDocs), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai/?cid=learnDocs) models.
+
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 
@@ -90,7 +95,7 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 The **Model playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code for the Web** button. You can find this button from the **Code** tab in the chat pane of the model playground.
 
-Available on the multilingual sample code samples, **Open in VS Code for the Web*** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
+Available on the multilingual sample code samples, **Open in VS Code for the Web** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
 
 ::: moniker-end
 
@@ -107,7 +112,7 @@ To get started with the agents playground, see the [Quickstart: Create a new age
 
 ::: moniker range="foundry"
 
-To get started with the agents playground, see [Agent playground in Azure AI Foundry portal](../default/agents/concepts/development-lifecycle.md).
+To get started with the agents playground, see [Understanding the agent development lifecycle](../default/agents/concepts/development-lifecycle.md).
 
 ::: moniker-end
 
@@ -125,26 +130,26 @@ To learn more about the chat playground, see the [Quickstart: Get answers in the
 
 ## Model playground
 
-Once you deploy a model in the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs), you immediately land on its playground. The model playground is an interactive experience designed for developers to test and experiment with the latest models from providers like Azure Open AI, DeepSeek, xAI, and Meta. The playground gives you full control over model behavior, safety, and deployment so that you can tune system prompts, compare model outputs in real time, or integrate tools like web search and code execution.
+When you deploy a model in the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal, you immediately land on its playground. The model playground is an interactive experience designed for developers to test and experiment with the latest models from providers like Azure Open AI, DeepSeek, xAI, and Meta. The playground gives you full control over model behavior, safety, and deployment so that you can tune system prompts, compare model outputs in real time, or integrate tools like web search and code execution.
 
-The playground is designed for fast iteration and production readiness and supports everything from prototyping to performance benchmarking. The playground prepares you to use your model in a production workflow, easily upgrade your model as an agent, and continue to prototype in the agent playground with additional tools, knowledge, and memory before deploying as an agentic web application. 
+The playground is designed for fast iteration and production readiness. It supports everything from prototyping to performance benchmarking. The playground prepares you to use your model in a production workflow, easily upgrade your model as an agent, and continue to prototype in the agent playground with additional tools, knowledge, and memory before deploying as an agentic web application. 
 
 ### Benefits of using the model playground
 
-- **Full-stack experimentation and control**: Configure parameters (such as temperature, top_p, max_tokens), inject system prompts, and enable advanced tools like web search, file search, and code interpreter, all within a single environment. This allows you to precisely tune model behavior and rapidly iterate on prompt engineering, grounding, and RAG workflows, upgrading your model into an agent.
+- **Full-stack experimentation and control**: Configure parameters (such as temperature, top_p, max_tokens), inject system prompts, and enable advanced tools like web search, file search, and code interpreter, all within a single environment. This setup allows you to precisely tune model behavior and rapidly iterate on prompt engineering, grounding, and RAG workflows, upgrading your model into an agent.
 
 - **Built-in safety and governance**: Assign or create guardrails to protect against jailbreaks, indirect prompt injections, and unsafe outputs. This integrated safety layer ensures you can validate compliance and responsible AI behaviors in a controlled, testable sandbox, without needing to wire external moderation logic.
 
-- **Comparative and deployable by design**: Compare up to three models in parallel with synced input/output to benchmark response quality. Export multilingual code samples, grab endpoints and keys, and Open in VS Code for immediate integration, bridging experimentation to production in one streamlined developer workflow.
+- **Comparative and deployable by design**: Compare up to three models in parallel with synced input/output to benchmark response quality. Export multilingual code samples, grab endpoints and keys, and open in VS Code for immediate integration, bridging experimentation to production in one streamlined developer workflow.
 
 ### Compare models
 
-Compare mode enables developers to run controlled, parallel evaluations across up to three models simultaneously, using a synchronized input stream. Each model receives the exact same prompt context, system message, and parameter configuration, ensuring consistent test conditions for output benchmarking. Responses are streamed in real time, allowing developers to measure and visualize differences in latency, token throughput, and response fidelity side-by-side.
+Compare mode enables developers to run controlled, parallel evaluations across up to three models simultaneously, using a synchronized input stream. Each model receives the exact same prompt context, system message, and parameter configuration, ensuring consistent test conditions for output benchmarking. Responses stream in real time, allowing developers to measure and visualize differences in latency, token throughput, and response fidelity side-by-side.
 
 To use compare mode from the playground of a deployed model:
 
 1. Select **Compare models** in the upper-right corner.
-1. Select up to 2 more models from existing or new deployments. Chat windows for the selected models open up side-by-side in the playground with synced prompt bars ands setup. You can switch off sync from the **Setup** pane for each model, if needed.
+1. Select up to two more models from existing or new deployments. Chat windows for the selected models open up side-by-side in the playground with synced prompt bars and setup. You can switch off sync from the **Setup** pane for each model, if needed.
 1. Enter your prompt in any of the prompt bars and see the prompt simultaneously appear in the others.
 1. Submit the prompt to see the output from each model simultaneously and compare the quality of the responses.
 1. Switch to the **Code** tab in the chat pane of each model to see multilingual code samples.
@@ -152,17 +157,17 @@ To use compare mode from the playground of a deployed model:
 
 ### Generate and interpret code
 
-With code interpreter, developers can extend model capabilities beyond text generation by enabling in-line code execution within the playground. When activated, supported models can write, run, and debug code directly in a secure, sandboxed environment, ideal for performing calculations, data transformations, plotting visualizations, or validating logic.
+With code interpreter, you can extend model capabilities beyond text generation by enabling in-line code execution within the playground. When activated, supported models can write, run, and debug code directly in a secure, sandboxed environment. This environment is ideal for performing calculations, data transformations, plotting visualizations, or validating logic.
 
 To use code interpreter from the playground of a deployed model:
 
 1. Expand the **Tools** section in the deployed model's playground. 
 
     > [!TIP]
-    > The **Tools** section isn't visible in the playground if you're using compare mode to run parallel evaluations on models. You first have to close the other models that you're using for comparison before you can see the detailed playground that includes tools and other options for your deployed model.
+    > The **Tools** section isn't visible in the playground if you use compare mode to run parallel evaluations on models. You first have to close the other models that you're using for comparison before you can see the detailed playground that includes tools and other options for your deployed model.
 
 1. Select **Add** > **Code interpreter**, and attach your code files for the code interpreter.
-1. Use the playground to ask questions, interpret, or streamline your code. For example "How should I make the attached code files more efficient?"
+1. Use the playground to ask questions, interpret, or streamline your code. For example, "How should I make the attached code files more efficient?"
 
 ::: moniker-end
 
@@ -338,9 +343,9 @@ Follow these steps to use the images playground:
 
 You can use the images playground with these models:
 
-- [gpt-image-1](https://aka.ms/nextgen-canary/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [gpt-image-1-mini](https://aka.ms/nextgen-canary/explore/models/gpt-image-1-mini/version/2025-10-06/registry/azure-openai/?cid=learnDocs), and [dall-e-3](https://aka.ms/nextgen-canary/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://aka.ms/nextgen-canary/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://aka.ms/nextgen-canary/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://aka.ms/nextgen-canary/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
-- [FLUX.1-Kontext-pro](https://aka.ms/nextgen-canary/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://aka.ms/nextgen-canary/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) and [dall-e-3](https://ai.azure.com/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
+- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
+- [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
 
 Follow these steps to use the images playground:
 
