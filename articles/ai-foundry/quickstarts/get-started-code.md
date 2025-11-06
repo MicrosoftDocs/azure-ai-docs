@@ -361,8 +361,6 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 ::: moniker range="foundry"
 
-Connect to an agent named "MyAgent" and chat with it.
-
 [!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)]
 
 ::: moniker-end
@@ -420,5 +418,8 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ## Related content
 
+::: moniker range="foundry-classic"
 * [Quickstart: Create a new agent](../agents/quickstart.md)
+::: moniker-end
+
 * [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)

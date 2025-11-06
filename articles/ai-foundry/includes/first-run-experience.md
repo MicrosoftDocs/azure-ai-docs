@@ -35,7 +35,7 @@ Now that you have an agent, you can interact with it either in code or in the po
 ::: moniker-end
 
 ::: moniker range="foundry"
-You'll start in Azure AI Foundry portal to create a project and deploy a model.
+You'll start in Azure AI Foundry portal to create a project and deploy a model. This quickstart uses the **gpt-4-1-mini** model, but you can use any supported model. 
 
 1. [!INCLUDE [version-sign-in](version-sign-in.md)]
 1. Projects help organize your work. The project you're working on appears in the upper-left corner. 
