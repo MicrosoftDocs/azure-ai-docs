@@ -29,7 +29,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
 
 + Completion of the [OneLake indexer prerequisites](search-how-to-index-onelake-files.md#prerequisites).
 

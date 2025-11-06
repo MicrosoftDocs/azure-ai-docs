@@ -25,7 +25,7 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md).
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
 
 + Completion of the [SharePoint indexer prerequisites](search-how-to-index-sharepoint-online.md#prerequisites).
 

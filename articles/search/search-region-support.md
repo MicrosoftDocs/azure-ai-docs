@@ -41,75 +41,85 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| Brazil South​​ ​| ✅ |  | ✅ | ✅ | ✅ | ✅ |
-| Canada Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Canada East​​ ​|  |  | ✅ |  | ✅ |  |
+| Brazil South​​ <sup>1</sup> ​| ✅ |  | ✅ | ✅ | ✅ | ✅ |
+| Canada Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Canada East​​ ​<sup>1</sup> |  |  | ✅ |  | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| East US​ | ✅ | ✅ | ✅ |  | ✅ |  |
-| East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| East US​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ |  |
+| East US 2 <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |  |
-| North Central US​ ​| ✅ |  | ✅ |  | ✅ | ✅ |
-| South Central US​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| West US​​ | ✅ |  | ✅ |  | ✅ | ✅ |
+| North Central US​ <sup>1</sup> ​| ✅ |  | ✅ |  | ✅ | ✅ |
+| South Central US​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| West US​​ <sup>1</sup> | ✅ |  | ✅ |  | ✅ | ✅ |
 | West US 2​ ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| West Central US​ ​ | ✅ |  | ✅ |  | ✅ |  |
+| West Central US​ ​<sup>1</sup>| ✅ |  | ✅ |  | ✅ |  |
+
+<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 ### Europe
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| France Central​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Germany West Central​ ​| ✅ | ✅ | ✅ |  | ✅ |  |
+| France Central​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| Germany West Central​ <sup>1</sup> ​| ✅ | ✅ | ✅ |  | ✅ |  |
 | Italy North​​ |  | ✅ | ✅ | ✅ | ✅ |  |
 | Norway East​​ | ✅ | ✅ |  | ✅ |  |  |
 | North Europe​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Poland Central​​ |  |  | ✅ |  | ✅ |  |
-| Spain Central <sup>1</sup> |  | ✅ |  | ✅ | ✅ | ✅ |
-| Sweden Central​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| Switzerland North​ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Poland Central​​ <sup>1</sup> |  |  | ✅ |  | ✅ |  |
+| Spain Central <sup>2</sup> |  | ✅ |  | ✅ | ✅ | ✅ |
+| Sweden Central​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| Switzerland North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |  | ✅ |  |
-| UK South​ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| UK South​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | UK West​ ​|  |  | ✅ |  | ✅ |  |
-| West Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| West Europe​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+
+<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ### Middle East
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |  |
-| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  | ✅ |  |
-| UAE North​​ | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+| Israel Central​ <sup>2</sup> |  | ✅ |  |  |  |  |
+| Qatar Central​ <sup>2</sup> |  | ✅ | ✅ |  | ✅ |  |
+| UAE North​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 
-<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+
+<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ### Africa
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| South Africa North​ | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+| South Africa North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+
+<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 ### Asia Pacific
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
-| Australia East​ ​| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Australia East​ <sup>1</sup> ​| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Australia Southeast​​​ |  |  | ✅ |  | ✅ |  |
 | Central India | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | East Asia​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Indonesia Central |  | ✅ |  |  |  |  |
 | Jio India West​​ | ✅ |  | ✅ |  | ✅ | ✅ |
 | Jio India Central​​ |  |  |  |  |  |  |
-| Japan East | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| Japan East <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Japan West​ | ✅ |  | ✅ |  | ✅ |  |
-| Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Korea Central <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ |  | ✅ |  |
 | Malaysia West |  | ✅ |  |  |  |  |
 | New Zealand North |  | ✅ |  |  |  |  |
 | South India |  | ✅ |  |  |  |  |
 | Southeast Asia​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+
+<sup>1</sup> Supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
 ## Azure Government regions
 

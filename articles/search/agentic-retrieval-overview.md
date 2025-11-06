@@ -146,7 +146,14 @@ Currently, Azure portal support for agentic retrieval is limited to the 2025-08-
 
 ## Availability and pricing
 
-Agentic retrieval is available in [all regions that provide semantic ranker](search-region-support.md), on all tiers except the free tier. Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by service tier.
+Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by service tier.
+
+You can disable semantic ranker for your search service, use it on a limited basis for free, or use it more expansively with pay-as-you-go billing:
+
+| Plan | Description |
+|------|-------------|
+| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic retrieval tokens per month. Higher tiers can also use the free plan. |
+| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you are charged for each additional 1,000 requests. After the first 50 million agentic retrieval tokens per month, you are charged a nominal fee for each one million agentic retrieval tokens. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
 
 Billing for agentic retrieval has two parts:
 
