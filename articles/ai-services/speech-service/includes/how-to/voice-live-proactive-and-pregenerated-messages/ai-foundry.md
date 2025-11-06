@@ -9,7 +9,7 @@ ms.date: 11/05/2025
 ms.custom: references_regions
 ---
 
-In this article, you learn how to use voice live with generative AI and Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and how to configure proactive greetings. .
+In this article, you learn how to use voice live with generative AI and Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and how to configure proactive greetings.
 
 ## Proactive greetings
 
