@@ -1,5 +1,5 @@
 items:
-- name: Ask the Foundry agent
+- name: Ask AI
   href: ../../../foundry-agent/ask-foundry-agent.md
 - name: Set up your developer environment
   href: ../../../how-to/develop/install-cli-sdk.md

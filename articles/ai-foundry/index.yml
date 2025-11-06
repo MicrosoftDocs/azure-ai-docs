@@ -19,9 +19,12 @@ metadata:
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
-    - title: What is Azure AI Foundry?
+    - title: What is Azure AI Foundry (new)?
       itemType: overview
-      url: ./what-is-azure-ai-foundry.md
+      url: ./what-is-azure-ai-foundry.md?view=foundry
+    - title: What is Azure AI Foundry (classic)?
+      itemType: overview
+      url: ./what-is-azure-ai-foundry.md?view=foudry-classic
     - title: Explore Azure AI Foundry Models
       itemType: concept
       url: ./how-to/model-catalog-overview.md
@@ -42,10 +45,12 @@ productDirectory:
     - title: Create apps with code
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
       links:
+        - url: ./how-to/develop/ai-template-get-started.md?view=foundry
+          text: Quickstart for Azure AI Foundry (new)
+        - url: ./how-to/develop/ai-template-get-started.md?view=foundry-classic
+          text: Quickstart for Azure AI Foundry (classic)
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
-        - url: ./how-to/develop/ai-template-get-started.md
-          text: Quickstart for Azure AI Foundry
     # Card
     - title: Azure AI Foundry Models
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
