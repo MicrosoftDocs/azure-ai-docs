@@ -32,9 +32,7 @@ An Azure AI Foundry resource can organize the work for multiple use cases, and i
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
 
-Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
-
-Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
+Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md).
 
 ## Create your first resource
 

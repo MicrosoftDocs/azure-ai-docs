@@ -33,7 +33,7 @@ You should be familiar with setting up indexers and skillsets. Start with [index
 ## Limitations
 
 > [!CAUTION]
-> If you're using the [SharePoint Online indexer (Preview)](search-how-to-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and full rebuild](search-howto-run-reset-indexers.md), should you choose to reload it.
+> If you're using the [SharePoint indexer (Preview)](search-how-to-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and full rebuild](search-howto-run-reset-indexers.md), should you choose to reload it.
 
 ## Permissions
 

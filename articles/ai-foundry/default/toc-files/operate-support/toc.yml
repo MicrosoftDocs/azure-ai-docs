@@ -1,4 +1,10 @@
 items:
+    - name: Status dashboard
+      href: ../../../azure-ai-foundry-status-dashboard-documentation.md
+    - name: Feature availability by region
+      href: ../../../reference/region-support.md
+    - name: Region support
+      href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/ 
     - name: Use Azure AI Foundry with a screen reader
       href: ../../../tutorials/screen-reader.md
     - name: Code of conduct
@@ -11,3 +17,13 @@ items:
       href: https://aka.ms/AzureCompliance
     - name: Service Level Agreement (SLA)
       href: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+    - name: High availability and disaster recovery
+      items:
+      - name: High availability and resiliency
+        href: ../../../how-to/high-availability-resiliency.md
+      - name: Disaster recovery for agent services
+        href: ../../../how-to/agent-service-disaster-recovery.md
+      - name: Disaster recovery from a platform outage
+        href: ../../../how-to/agent-service-platform-disaster-recovery.md
+      - name: Disaster recovery from resource and data loss
+        href: ../../../how-to/agent-service-operator-disaster-recovery.md

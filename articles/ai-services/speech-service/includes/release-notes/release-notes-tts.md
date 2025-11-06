@@ -8,6 +8,17 @@ ms.author: jagoerge
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+### August 2025 release
+
+#### Public preview of new HD voices
+| **Locale (BCP-47)** | **Voice name**                                 |
+| ------------------- | ---------------------------------------------- |
+| `it-IT`             | `it-IT-Alessio:DragonHDLatestNeural` (Male)    |
+| `it-IT`             | `it-IT-Isabella:DragonHDLatestNeural` (Female) |
+| `pt-BR`             | `pt-BR-Macerio:DragonHDLatestNeural` (Male)    |
+| `pt-BR`             | `pt-BR-Thalita:DragonHDLatestNeural` (Female)  |
+| `en-US`             | `en-US-Jane:DragonHDLatestNeural` (Female)     |
+
 ### July 2025 release
 
 #### Public preview Personal Voice upgraded to v2.1
