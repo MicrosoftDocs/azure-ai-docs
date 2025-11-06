@@ -100,11 +100,11 @@ To deploy a model, follow these steps:
 1. Find and select your resource.
 
     > [!IMPORTANT]
-    > At this step you're offered to upgrade your Azure OpenAI resource to Azure AI Foundry. See comparison between the two resource types at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next** to proceed with resource upgrade.
+    > At this step you're offered to upgrade your Azure OpenAI resource to Azure AI Foundry. See comparison between the two resource types and details on resource upgrade and rollback at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next**.
     > 
     > See additional information about Azure AI Foundry in [this article](../../../ai-services/multi-service-resource.md).
 
-1. Select **Deployments** from under **Shared resources** in the left pane. In case you upgraded to Azure OpenAI in the previous step, select **Models + endpoints** from under **My assets** in the left pane.
+1. Select **Deployments** from under **Shared resources** in the left pane. In case you upgraded to Azure AI Foundry in the previous step, select **Models + endpoints** from under **My assets** in the left pane.
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
 1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../concepts/models.md#model-summary-table-and-region-availability).
 1. In the next window configure the following fields:
