@@ -3,7 +3,7 @@ title: Azure OpenAI Global Batch Studio
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Studio
 manager: nitinme
-ms.date: 07/23/2024
+ms.date: 11/06/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
@@ -14,13 +14,51 @@ ms.custom:
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* An Azure OpenAI resource with a model of the deployment type `Global-Batch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process.
+* An Azure OpenAI resource with a model of the deployment type `GlobalBatch` or `DataZoneBatch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process.
 
 ## Preparing your batch file
 
-Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON lines (`.jsonl`) format. Below are some example files with different types of supported content:
+Like [fine-tuning](../../how-to/fine-tuning.md), batch uses files in JSON lines (`.jsonl`) format. Below are some example files with different types of supported content:
 
 ### Input format
+
+#### Responses API
+
+# [Standard input](#tab/standard-input)
+
+```jsonl
+{"custom_id": "task-0", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": "When was Microsoft founded, and by whom?"}}
+{"custom_id": "task-1", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": "When was XBOX merged into Microsoft?"}}
+{"custom_id": "task-2", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": "What is Visual Basic?"}}
+```
+
+# [Base64 encoded image](#tab/base64)
+
+**Input with base64 encoded image:**
+
+```jsonl
+{"custom_id": "task-3", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type":"input_text","text":"Describe this picture:"},{"type":"input_image","image_url":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVEiJtZZPbBtFFMZ/M7ubXdtdb1xSFyeilBapySVU8h8OoFaooFSqiihIVIpQBKci6KEg9Q6H9kovIHoCIVQJJCKE1ENFjnAgcaSGC6rEnxBwA04Tx43t2FnvDAfjkNibxgHxnWb2e/u992bee7tCa00YFsffekFY+nUzFtjW0LrvjRXrCDIAaPLlW0nHL0SsZtVoaF98mLrx3pdhOqLtYPHChahZcYYO7KvPFxvRl5XPp1sN3adWiD1ZAqD6XYK1b/dvE5IWryTt2udLFedwc1+9kLp+vbbpoDh+6TklxBeAi9TL0taeWpdmZzQDry0AcO+jQ12RyohqqoYoo8RDwJrU+qXkjWtfi8Xxt58BdQuwQs9qC/afLwCw8tnQbqYAPsgxE1S6F3EAIXux2oQFKm0ihMsOF71dHYx+f3NND68ghCu1YIoePPQN1pGRABkJ6Bus96CutRZMydTl+TvuiRW1m3n0eDl0vRPcEysqdXn+jsQPsrHMquGeXEaY4Yk4wxWcY5V/9scqOMOVUFthatyTy8QyqwZ+kDURKoMWxNKr2EeqVKcTNOajqKoBgOE28U4tdQl5p5bwCw7BWquaZSzAPlwjlithJtp3pTImSqQRrb2Z8PHGigD4RZuNX6JYj6wj7O4TFLbCO/Mn/m8R+h6rYSUb3ekokRY6f/YukArN979jcW+V/S8g0eT/N3VN3kTqWbQ428m9/8k0P/1aIhF36PccEl6EhOcAUCrXKZXXWS3XKd2vc/TRBG9O5ELC17MmWubD2nKhUKZa26Ba2+D3P+4/MNCFwg59oWVeYhkzgN/JDR8deKBoD7Y+ljEjGZ0sosXVTvbc6RHirr2reNy1OXd6pJsQ+gqjk8VWFYmHrwBzW/n+uMPFiRwHB2I7ih8ciHFxIkd/3Omk5tCDV1t+2nNu5sxxpDFNx+huNhVT3/zMDz8usXC3ddaHBj1GHj/As08fwTS7Kt1HBTmyN29vdwAw+/wbwLVOJ3uAD1wi/dUH7Qei66PfyuRj4Ik9is+hglfbkbfR3cnZm7chlUWLdwmprtCohX4HUtlOcQjLYCu+fzGJH2QRKvP3UNz8bWk1qMxjGTOMThZ3kvgLI5AzFfo379UAAAAASUVORK5CYII=","detail":"auto"}]}],"max_output_tokens": 1000}}
+```
+
+# [Image url](#tab/image-url)
+
+**Input with image url:**
+
+```jsonl
+{"custom_id": "task-3", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "input_text", "text": "What’s in this image?"},{"type": "input_image","image_url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png", "detail": "low"}]}],"max_output_tokens": 1000}}
+{"custom_id": "task-4", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "input_text", "text": "What’s in this image?"},{"type": "input_image","image_url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png", "detail": "high"}]}],"max_output_tokens": 1000}}
+{"custom_id": "task-5", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "input_text", "text": "What’s in this image?"},{"type": "input_image","image_url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png", "detail": "auto"}]}],"max_output_tokens": 1000}}
+```
+
+# [Structured outputs](#tab/structured-outputs)
+
+```jsonl
+{"custom_id": "task-4", "method": "POST", "url": "/v1/responses", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "input": [{"role": "system", "content": "Extract the event information."}, {"role": "user", "content": "Alice and Bob are going to a science fair on Friday."}], "text": {"format": {"type": "json_schema", "name": "CalendarEventResponse", "schema": {"type": "object", "properties": {"name": {"type": "string"}, "date": {"type": "string"}, "participants": {"type": "array", "items": {"type": "string"}}}, "required": ["name", "date", "participants"], "additionalProperties": false}, "strict": true}}}}
+```
+
+---
+
+#### Chat completions API
 
 # [Standard input](#tab/standard-input)
 
@@ -33,7 +71,7 @@ Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON
 
 # [Base64 encoded image](#tab/base64)
 
-### Input with base64 encoded image
+**Input with base64 encoded image:**
 
 ```json
 {"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type":"text","text":"Describe this picture:"},{"type":"image_url","image_url":{"url":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVEiJtZZPbBtFFMZ/M7ubXdtdb1xSFyeilBapySVU8h8OoFaooFSqiihIVIpQBKci6KEg9Q6H9kovIHoCIVQJJCKE1ENFjnAgcaSGC6rEnxBwA04Tx43t2FnvDAfjkNibxgHxnWb2e/u992bee7tCa00YFsffekFY+nUzFtjW0LrvjRXrCDIAaPLlW0nHL0SsZtVoaF98mLrx3pdhOqLtYPHChahZcYYO7KvPFxvRl5XPp1sN3adWiD1ZAqD6XYK1b/dvE5IWryTt2udLFedwc1+9kLp+vbbpoDh+6TklxBeAi9TL0taeWpdmZzQDry0AcO+jQ12RyohqqoYoo8RDwJrU+qXkjWtfi8Xxt58BdQuwQs9qC/afLwCw8tnQbqYAPsgxE1S6F3EAIXux2oQFKm0ihMsOF71dHYx+f3NND68ghCu1YIoePPQN1pGRABkJ6Bus96CutRZMydTl+TvuiRW1m3n0eDl0vRPcEysqdXn+jsQPsrHMquGeXEaY4Yk4wxWcY5V/9scqOMOVUFthatyTy8QyqwZ+kDURKoMWxNKr2EeqVKcTNOajqKoBgOE28U4tdQl5p5bwCw7BWquaZSzAPlwjlithJtp3pTImSqQRrb2Z8PHGigD4RZuNX6JYj6wj7O4TFLbCO/Mn/m8R+h6rYSUb3ekokRY6f/YukArN979jcW+V/S8g0eT/N3VN3kTqWbQ428m9/8k0P/1aIhF36PccEl6EhOcAUCrXKZXXWS3XKd2vc/TRBG9O5ELC17MmWubD2nKhUKZa26Ba2+D3P+4/MNCFwg59oWVeYhkzgN/JDR8deKBoD7Y+ljEjGZ0sosXVTvbc6RHirr2reNy1OXd6pJsQ+gqjk8VWFYmHrwBzW/n+uMPFiRwHB2I7ih8ciHFxIkd/3Omk5tCDV1t+2nNu5sxxpDFNx+huNhVT3/zMDz8usXC3ddaHBj1GHj/As08fwTS7Kt1HBTmyN29vdwAw+/wbwLVOJ3uAD1wi/dUH7Qei66PfyuRj4Ik9is+hglfbkbfR3cnZm7chlUWLdwmprtCohX4HUtlOcQjLYCu+fzGJH2QRKvP3UNz8bWk1qMxjGTOMThZ3kvgLI5AzFfo379UAAAAASUVORK5CYII="}}]}],"max_tokens": 1000}}
@@ -41,10 +79,10 @@ Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON
 
 # [Image url](#tab/image-url)
 
-### Input with image url
+**Input with image url:**
 
 ```json
-{"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png", "detail": "high"}}]}],"max_tokens": 1000}}
+{"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png", "detail": "high"}}]}],"max_tokens": 1000}}
 ```
 The `detail` parameter tells the model what level of detail to use when processing and understanding the image (`low`, `high`, or `auto` to let the model decide). If you skip the parameter, the model will use `auto`.
 
@@ -53,7 +91,6 @@ The `detail` parameter tells the model what level of detail to use when processi
 ```json
 {"custom_id": "task-0", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "Extract the event information."}, {"role": "user", "content": "Alice and Bob are going to a science fair on Friday."}], "response_format": {"type": "json_schema", "json_schema": {"name": "CalendarEventResponse", "strict": true, "schema": {"type": "object", "properties": {"name": {"type": "string"}, "date": {"type": "string"}, "participants": {"type": "array", "items": {"type": "string"}}}, "required": ["name", "date", "participants"], "additionalProperties": false}}}}}
 ```
-
 
 ---
 
