@@ -6,7 +6,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/30/2025
+ms.date: 11/06/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python. 
@@ -90,7 +90,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Start a conversation
 
-The sample code in this quickstart uses either Microsoft Entra ID or an API key for authentication. You can set the script argument to be either your API key or your access token. Please note that the agent connection always requires a token for authenticating voice live with the Foundry agent service.
+The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
@@ -358,6 +358,8 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             self.audio_processor: Optional[AudioProcessor] = None
             self.session_ready = False
             self.conversation_started = False
+            # Track whether a response is currently active for minimal barge-in cancel logic
+            self._active_response = False
     
         async def start(self):
             """Start the voice assistant session."""
@@ -468,23 +470,30 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                 await write_conversation_log(f"")
                 self.session_ready = True
     
+                # Invoke Proactive greeting
+                if not self.conversation_started:
+                    self.conversation_started = True
+                    logger.info("Sending proactive greeting request")
+                    try:
+                        await conn.response.create()
+    
+                    except Exception:
+                        logger.exception("Failed to send proactive greeting request")
+    
                 # Start audio capture once session is ready
                 ap.start_capture()
     
             elif event.type == ServerEventType.CONVERSATION_ITEM_INPUT_AUDIO_TRANSCRIPTION_COMPLETED:
-                user_transcript = f'User Input:\t{event.get("transcript", "")}'
-                print("👤 You said: ", user_transcript)
-                await write_conversation_log(user_transcript)
+                print(f'👤 You said:\t{event.get("transcript", "")}')
+                await write_conversation_log(f'User Input:\t{event.get("transcript", "")}')
     
             elif event.type == ServerEventType.RESPONSE_TEXT_DONE:
-                agent_text = f'Agent Text Response:\t{event.get("text", "")}'
-                print("🤖 Agent responded with text: ", agent_text)
-                await write_conversation_log(agent_text)
+                print(f'🤖 Agent responded with text:\t{event.get("text", "")}')
+                await write_conversation_log(f'Agent Text Response:\t{event.get("text", "")}')
     
             elif event.type == ServerEventType.RESPONSE_AUDIO_TRANSCRIPT_DONE:
-                agent_audio = f'Agent Audio Response:\t{event.get("transcript", "")}'
-                print("🤖 Agent responded with audio transcript: ", agent_audio)
-                await write_conversation_log(agent_audio)
+                print(f'🤖 Agent responded with audio transcript:\t{event.get("transcript", "")}')
+                await write_conversation_log(f'Agent Audio Response:\t{event.get("transcript", "")}')
     
             elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STARTED:
                 logger.info("User started speaking - stopping playback")
@@ -493,11 +502,19 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                 # skip queued audio
                 ap.skip_pending_audio()
     
-                # Cancel any ongoing response
-                try:
-                    await conn.response.cancel()
-                except Exception:
-                    logger.exception("No response to cancel")
+                # Minimal, idempotent barge-in cancellation
+                if self._active_response:
+                    try:
+                        await conn.response.cancel()
+                        logger.debug("Active response cancelled due to barge-in")
+                    except Exception as e:
+                        # Suppress noisy 'no active response' errors only
+                        if "no active response" in str(e).lower():
+                            logger.debug("Cancel ignored (already inactive): %s", e)
+                        else:
+                            logger.warning("Cancel failed: %s", e)
+                    finally:
+                        self._active_response = False
     
             elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STOPPED:
                 logger.info("🎤 User stopped speaking")
@@ -505,6 +522,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
             elif event.type == ServerEventType.RESPONSE_CREATED:
                 logger.info("🤖 Assistant response created")
+                self._active_response = True
     
             elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
                 # Stream audio response to speakers
@@ -517,6 +535,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
             elif event.type == ServerEventType.RESPONSE_DONE:
                 logger.info("✅ Response complete")
+                self._active_response = False
     
             elif event.type == ServerEventType.ERROR:
                 logger.error("❌ VoiceLive error: %s", event.error.message)
