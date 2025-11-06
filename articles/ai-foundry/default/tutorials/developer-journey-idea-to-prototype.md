@@ -452,6 +452,97 @@ Finally, implement an interactive loop to converse with the agent.
 
 ---
 
+### Expected output
+
+When you run the agent you will see output similar to the following, demonstrating successful tool configuration and agent responses to business scenarios:
+
+```bash
+$ python main.py
+✅ Connected to Azure AI Foundry: https://foundry-nextgen.services.ai.azure.com/api/projects/developer-journey
+🚀 Azure AI Foundry - Modern Workplace Assistant
+Tutorial 1: Building Enterprise Agents with Agent SDK v2
+======================================================================
+🤖 Creating Modern Workplace Assistant...
+📁 Configuring SharePoint integration...
+   Connection name: ContosoCorpPoliciesProcedures
+   🔍 Resolving connection name to ARM resource ID...
+   ✅ Resolved to: /subscriptions/277fee7f-4d64-4661-a824-2b87b56c23e3/resourceGroups/rg-jburchel/providers/Microsoft.CognitiveServices/accounts/foundry-nextgen/projects/developer-journey/connections/ContosoCorpPoliciesProcedures
+✅ SharePoint tool configured successfully
+📚 Configuring Microsoft Learn MCP integration...
+   Server URL: https://learn.microsoft.com/api/mcp
+✅ MCP tool configured successfully
+🛠️  Creating agent with model: gpt-4o-mini
+   ✓ SharePoint tool added
+   ✓ MCP tool added
+   Total tools: 2
+✅ Agent created successfully: asst_PvzWlBKtKx0JRpst2XJaGYzD
+
+======================================================================
+🏢 MODERN WORKPLACE ASSISTANT - BUSINESS SCENARIO DEMONSTRATION
+======================================================================
+This demonstration shows how AI agents solve real business problems
+using the Azure AI Agents SDK v2.
+======================================================================
+
+📊 SCENARIO 1/3: 📋 Company Policy Question (SharePoint Only)
+--------------------------------------------------
+❓ QUESTION: What is Contoso's remote work policy?
+🎯 BUSINESS CONTEXT: Employee needs to understand company-specific remote work requirements
+🎓 LEARNING POINT: SharePoint tool retrieves internal company policies
+--------------------------------------------------
+🤖 ASSISTANT RESPONSE:
+✅ SUCCESS: Contoso's remote work policy, effective January 2024, outlines the following key points:
+
+### Overview
+Contoso Corp supports flexible work arrangements, including remote work, to enhance employee productivity and work-life balance.
+
+### Eligibility
+- **Full-time Employees**: Must have completed a 90...
+   📏 Full response: 1530 characters
+📈 STATUS: completed
+--------------------------------------------------
+
+📊 SCENARIO 2/3: 📚 Technical Documentation Question (MCP Only)
+--------------------------------------------------
+❓ QUESTION: According to Microsoft Learn, what is the correct way to implement Azure AD Conditional Access policies? Please include reference links to the official documentation.
+🎯 BUSINESS CONTEXT: IT administrator needs authoritative Microsoft technical guidance
+🎓 LEARNING POINT: MCP tool accesses Microsoft Learn for official documentation with links
+--------------------------------------------------
+🤖 ASSISTANT RESPONSE:
+✅ SUCCESS: To implement Azure AD Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
+
+### 1. Understanding Conditional Access
+Conditional Access policies act as "if-then" statements that enforce organizational access controls based on various signals. Th...
+   📏 Full response: 2459 characters
+📈 STATUS: completed
+--------------------------------------------------
+
+📊 SCENARIO 3/3: 🔄 Combined Implementation Question (SharePoint + MCP)
+--------------------------------------------------
+❓ QUESTION: Based on our company's remote work security policy, how should I configure my Azure environment to comply? Please include links to Microsoft documentation showing how to implement each requirement.
+🎯 BUSINESS CONTEXT: Need to map company policy to technical implementation with official guidance
+🎓 LEARNING POINT: Both tools work together: SharePoint for policy + MCP for implementation docs
+--------------------------------------------------
+🤖 ASSISTANT RESPONSE:
+✅ SUCCESS: To configure your Azure environment in compliance with Contoso Corp's remote work security policy, you need to focus on several key areas, including enabling Multi-Factor Authentication (MFA), utilizing Azure Security Center, and implementing proper access management. Below are specific steps and li...
+   📏 Full response: 3436 characters
+📈 STATUS: completed
+--------------------------------------------------
+
+✅ DEMONSTRATION COMPLETED!
+🎓 Key Learning Outcomes:
+   • Agent SDK v2 usage for enterprise AI
+   • Proper thread and message management
+   • Real business value through AI assistance
+   • Foundation for governance and monitoring (Tutorials 2-3)
+
+🎯 Try interactive mode? (y/n): n
+
+🎉 Sample completed successfully!
+📚 This foundation supports Tutorial 2 (Governance) and Tutorial 3 (Production)
+🔗 Next: Add evaluation metrics, monitoring, and production deployment
+```
+
 ## Step 5: Evaluate the assistant in a batch
 
 The evaluation framework code tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
