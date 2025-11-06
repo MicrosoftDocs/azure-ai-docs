@@ -34,26 +34,24 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 ## Create the guardrail policy
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)].
-1. Select **Operate** from the upper-right navigation menu.
-1. Navigate to the Compliance page under the Operate tab in the left navigation.
+1. Select **Operate** from the upper-right navigation.
+1. Select the **Compliance** tab in the left navigation. Select **Create new policy**.
 
      :::image type="content" source="media/quickstart-create-a-guardrail-policy/compliance-tab.png" alt-text="Screenshot of the Compliance pane of the Foundry Control Plane." lightbox="media/quickstart-create-a-guardrail-policy/compliance-tab.png":::
 
-1. Once there, select "Create new policy".
-
-1. Select and add the controls to be added to the policy. Guardrail controls include content safety filters, prompt shields, and groundedness checks that help ensure your AI models operate safely and responsibly. These controls represent the minimum settings required for a model deployment to be considered compliant with the policy. As you configure each control, select "Add control" to add it to the policy.
+1. Select the controls to be added to the policy. Guardrail controls include content safety filters, prompt shields, and groundedness checks that help ensure your AI models operate safely and responsibly. These controls represent the minimum settings required for a model deployment to be considered compliant with the policy. As you configure each control, select **Add control** to add it to the policy.
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/create-new-policy.png" alt-text="A screenshot of the Create Policy dialog." lightbox="media/quickstart-create-a-guardrail-policy/create-new-policy.png":::
 
-1. Select "Next" to move to scope selection. You can scope your policy to a single subscription or a resource group. Select the desired scope and select the "select" button to pick a subscription or resource group from a list of resources that you have access to.
+1. Select **Next** to move to scope selection. You can scope your policy to a single subscription or a resource group. Select the desired scope and then select a subscription or resource group from a list of resources that you have access to.
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/select-scope.png" alt-text="Screenshot of the scope selection page showing subscription and resource group options." lightbox="media/quickstart-create-a-guardrail-policy/select-scope.png":::
 
-1. Pick the desired subscription or resource group to apply to the policy and select the "select" button.
+1. Pick the desired subscription or resource group to apply to the policy and select the **Select** button.
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/subscription-selection.png" alt-text="Screenshot of the subscription or resource group selection dialog." lightbox="media/quickstart-create-a-guardrail-policy/subscription-selection.png":::
 
-1. Select the "Next" button to add exceptions to the policy. The exception options depend on your scope selection:
+1. Select **Next** to add exceptions to the policy. The exception options depend on your scope selection:
    - If you scoped to a **subscription**, you can create exceptions for entire resource groups or individual model deployments within that subscription.
    - If you scoped to a **resource group**, you can only create exceptions for individual model deployments.
 
@@ -61,7 +59,7 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/resource-group-exception.png" alt-text="Screenshot of the exceptions interface showing resource group and model deployment options." lightbox="media/quickstart-create-a-guardrail-policy/resource-group-exception.png":::
 
-1. Once all exceptions have been added, select "Next" to move to the review stage. Here, you name your policy and review the scope, exceptions, and controls that define the policy. Once ready, select submit to create the policy.
+1. Once all exceptions have been added, select **Next** to move to the review stage. Here, you name your policy and review the scope, exceptions, and controls that define the policy. Once ready, select **Submit** to create the policy.
 
     :::image type="content" source="media/quickstart-create-a-guardrail-policy/submit-policy.png" alt-text="Screenshot of the review and submit page for the guardrail policy." lightbox="media/quickstart-create-a-guardrail-policy/submit-policy.png":::
 
@@ -69,7 +67,7 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 
 After you submit your policy, verify that it was created successfully:
 
-1. In the Compliance tab, locate your newly created policy in the policy list.
+1. In the **Compliance** tab, locate your newly created policy in the policy list.
 1. Check that the policy name, scope, and status are displayed correctly.
 
 > [!NOTE]
