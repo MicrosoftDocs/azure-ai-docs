@@ -28,7 +28,9 @@ items:
 - name: High availability and disaster recovery
   items:
   - name: High availability and resiliency
-    href: ../../../how-to/high-availability-resiliency.md
+    href: ../../../how-to/high-availability-resiliency.md  
+  - name: Disaster recovery overview
+    href: ../../../how-to/disaster-recovery.md
   - name: Disaster recovery for agent services
     href: ../../../how-to/agent-service-disaster-recovery.md
   - name: Disaster recovery from a platform outage
