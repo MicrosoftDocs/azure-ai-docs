@@ -48,34 +48,34 @@ All styles except lisa-graceful-sitting, lisa-graceful-standing, lisa-technical-
 
 | Characters | Preview Image|
 |------------|----------------------------|
-|**Sakura**|:::image type="content" source="media/sakura.png" alt-text="Image of the Sakura Avatar.":::|
+|**Sakura**|:::image type="content" source="media/sakura-avatar.png" alt-text="Image of the Sakura Avatar.":::|
 |**Clara**|:::image type="content" source="media/clara.png" alt-text="Image of the Clara Avatar.":::|
-|**Liwei**|:::image type="content" source="media/liwei.png" alt-text="Image of the Liwei Avatar.":::|
+|**Liwei**|:::image type="content" source="media/liwei-avatar.png" alt-text="Image of the Liwei Avatar.":::|
 |**Matteo**|:::image type="content" source="media/matteo.png" alt-text="Image of the Matteo Avatar.":::|
-|**Hyejin**|:::image type="content" source="media/hyejin.png" alt-text="Image of the Hyejin Avatar.":::|
+|**Hyejin**|:::image type="content" source="media/hyejin-avatar.png" alt-text="Image of the Hyejin Avatar.":::|
 |**Adrian**|:::image type="content" source="media/adrian.png" alt-text="Image of the Adrian Avatar.":::|
-|**Ren**|:::image type="content" source="media/ren.png" alt-text="Image of the Ren Avatar.":::|
+|**Ren**|:::image type="content" source="media/ren-avatar.png" alt-text="Image of the Ren Avatar.":::|
 |**Elise**|:::image type="content" source="media/elise.png" alt-text="Image of the Elise Avatar.":::|
 |**Ling**|:::image type="content" source="media/ling.png" alt-text="Image of the Ling Avatar.":::|
 |**Zoe**|:::image type="content" source="media/zoe.png" alt-text="Image of the Zoe Avatar.":::|
 |**Amara**|:::image type="content" source="media/amara.png" alt-text="Image of the Amara Avatar.":::|
-|**Anika**|:::image type="content" source="media/anika.png" alt-text="Image of the Anika Avatar.":::|
+|**Anika**|:::image type="content" source="media/anika-avatar.png" alt-text="Image of the Anika Avatar.":::|
 |**Darius**|:::image type="content" source="media/darius.png" alt-text="Image of the Darius Avatar.":::|
-|**Imran**|:::image type="content" source="media/imran.png" alt-text="Image of the Imran Avatar.":::|
+|**Imran**|:::image type="content" source="media/imran-avatar.png" alt-text="Image of the Imran Avatar.":::|
 |**Simone**|:::image type="content" source="media/simone.png" alt-text="Image of the Simone Avatar.":::|
-|**Farhan**|:::image type="content" source="media/farhan.png" alt-text="Image of the Farhan Avatar.":::|
+|**Farhan**|:::image type="content" source="media/farhan-avatar.png" alt-text="Image of the Farhan Avatar.":::|
 |**Marcus**|:::image type="content" source="media/marcus.png" alt-text="Image of the Marcus Avatar.":::|
-|**Rahul**|:::image type="content" source="media/rahul.png" alt-text="Image of the Rahul Avatar.":::|
+|**Rahul**|:::image type="content" source="media/rahul-avatar.png" alt-text="Image of the Rahul Avatar.":::|
 |**Gabrielle**|:::image type="content" source="media/gabrielle.png" alt-text="Image of the Gabrielle Avatar.":::|
-|**Riya**|:::image type="content" source="media/riya.png" alt-text="Image of the Riya Avatar.":::|
+|**Riya**|:::image type="content" source="media/riya-avatar.png" alt-text="Image of the Riya Avatar.":::|
 |**Layla**|:::image type="content" source="media/layla.png" alt-text="Image of the Layla Avatar.":::|
 |**Camila**|:::image type="content" source="media/camila.png" alt-text="Image of the Camila Avatar.":::|
-|**Faris**|:::image type="content" source="media/faris.png" alt-text="Image of the Faris Avatar.":::|
+|**Faris**|:::image type="content" source="media/faris-avatar.png" alt-text="Image of the Faris Avatar.":::|
 |**Diego**|:::image type="content" source="media/diego.png" alt-text="Image of the Diego Avatar.":::|
 |**Rana**|:::image type="content" source="media/rana.png" alt-text="Image of the Rana Avatar.":::|
 |**Isabella**|:::image type="content" source="media/isabella.png" alt-text="Image of the Isabella Avatar.":::|
-|**Zayd**|:::image type="content" source="media/zayd.png" alt-text="Image of the Zayd Avatar.":::|
+|**Zayd**|:::image type="content" source="media/zayd-avatar.png" alt-text="Image of the Zayd Avatar.":::|
 |**Bianca**|:::image type="content" source="media/bianca.png" alt-text="Image of the Bianca Avatar.":::|
-|**Amira**|:::image type="content" source="media/amira.png" alt-text="Image of the Amira Avatar.":::|
+|**Amira**|:::image type="content" source="media/amira-avatar.png" alt-text="Image of the Amira Avatar.":::|
 |**Carlos**|:::image type="content" source="media/carlos.png" alt-text="Image of the Carlos Avatar.":::|
 FooterMicrosoft Open Source
