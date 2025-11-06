@@ -23,7 +23,7 @@ ms.custom: references_regions
 | `ko-KR`             | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male)          |
 | `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
 
-#### 33 previous voices have version updated to v2.0 with quality improved and bugs fixed
+#### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
 | **Locale (BCP-47)** | **Voice name**                                      |
 | ------------------- | ----------------------------------------------------|
 | `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
