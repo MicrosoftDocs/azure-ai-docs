@@ -34,7 +34,7 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 1. Go to [Foundry Portal](https://aka.ms/nextgen-workflow)
 2. Select **Create new workflow** and **Sequential**.
-3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agents).
+3. Assign an agent to the agent nodes by selecting each agent node in the workflow and selecting the [desired agent](#add-existing-agent) or [create a new one](#create-new-agent).
 4. When you make changes to the workflow, select **Save** in the visualizer to save any changes.
 5. Select **Run Workflow**.
 6. Interact with the workflow in the chat window.
@@ -78,7 +78,7 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 4. Type the agent name to search for existing agents in your Foundry project.
 5. Select the desired agent to add it into your workflow.
 
-### Create new agents
+### Create new agent
 
 1. Select the '+' sign in the workflow visualizer.
 2. In the pop-up dropdown, select **Invoke agent**.
