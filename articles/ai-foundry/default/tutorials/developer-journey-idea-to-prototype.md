@@ -452,13 +452,13 @@ Finally, implement an interactive loop to converse with the agent.
 
 ---
 
-### Expected output
+### Expected output from agent sample code (main.py)
 
 When you run the agent you will see output similar to the following, demonstrating successful tool configuration and agent responses to business scenarios:
 
 ```bash
 $ python main.py
-✅ Connected to Azure AI Foundry: https://foundry-nextgen.services.ai.azure.com/api/projects/developer-journey
+✅ Connected to Azure AI Foundry
 🚀 Azure AI Foundry - Modern Workplace Assistant
 Tutorial 1: Building Enterprise Agents with Agent SDK v2
 ======================================================================
@@ -466,7 +466,7 @@ Tutorial 1: Building Enterprise Agents with Agent SDK v2
 📁 Configuring SharePoint integration...
    Connection name: ContosoCorpPoliciesProcedures
    🔍 Resolving connection name to ARM resource ID...
-   ✅ Resolved to: /subscriptions/277fee7f-4d64-4661-a824-2b87b56c23e3/resourceGroups/rg-jburchel/providers/Microsoft.CognitiveServices/accounts/foundry-nextgen/projects/developer-journey/connections/ContosoCorpPoliciesProcedures
+   ✅ Resolved
 ✅ SharePoint tool configured successfully
 📚 Configuring Microsoft Learn MCP integration...
    Server URL: https://learn.microsoft.com/api/mcp
@@ -475,7 +475,7 @@ Tutorial 1: Building Enterprise Agents with Agent SDK v2
    ✓ SharePoint tool added
    ✓ MCP tool added
    Total tools: 2
-✅ Agent created successfully: asst_PvzWlBKtKx0JRpst2XJaGYzD
+✅ Agent created successfully
 
 ======================================================================
 🏢 MODERN WORKPLACE ASSISTANT - BUSINESS SCENARIO DEMONSTRATION
@@ -612,12 +612,124 @@ In this section, the evaluation framework loads test questions from `questions.j
 
 ---
 
+### Expected output from evaluation sample code (evaluate.py)
+
+When you run the evaluation script you will see output similar to the following, demonstrating successful execution of business test scenarios and generation of evaluation metrics:
+
+```bash
+python evaluate.py
+✅ Connected to Azure AI Foundry
+🧪 Modern Workplace Assistant - Evaluation (Agent SDK v2)
+======================================================================
+🤖 Creating Modern Workplace Assistant...
+📁 Configuring SharePoint integration...
+   Connection name: ContosoCorpPoliciesProcedures
+   🔍 Resolving connection name to ARM resource ID...
+   ✅ Resolved
+✅ SharePoint tool configured successfully
+📚 Configuring Microsoft Learn MCP integration...
+   Server URL: https://learn.microsoft.com/api/mcp
+✅ MCP tool configured successfully
+🛠️  Creating agent with model: gpt-4o-mini
+   ✓ SharePoint tool added
+   ✓ MCP tool added
+   Total tools: 2
+✅ Agent created successfully
+   Model: gpt-4o-mini
+   Name: Modern Workplace Assistant
+======================================================================
+🧪 Running evaluation with 12 test questions...
+======================================================================
+
+📝 Question 1/12 [SHAREPOINT_ONLY]
+   What is Contoso's remote work policy?...
+✅ Status: completed | Tool check: Contoso-specific content: True
+
+📝 Question 2/12 [SHAREPOINT_ONLY]
+   What are Contoso's security protocols for remote employees?...
+✅ Status: completed | Tool check: Contoso-specific content: True
+
+📝 Question 3/12 [SHAREPOINT_ONLY]
+   How does Contoso classify confidential business documents according to our data ...
+✅ Status: completed | Tool check: Contoso-specific content: True
+
+📝 Question 4/12 [SHAREPOINT_ONLY]
+   What collaboration tools are approved for internal use at Contoso?...
+✅ Status: completed | Tool check: Contoso-specific content: True
+
+📝 Question 5/12 [MCP_ONLY]
+   According to Microsoft Learn documentation, what is the correct way to set up Az...
+✅ Status: completed | Tool check: Microsoft Learn links: True
+
+📝 Question 6/12 [MCP_ONLY]
+   What does Microsoft Learn say about configuring Azure Security Center monitoring...
+✅ Status: completed | Tool check: Microsoft Learn links: True
+
+📝 Question 7/12 [MCP_ONLY]
+   How do I implement data loss prevention in Microsoft 365 according to Microsoft'...
+✅ Status: completed | Tool check: Microsoft Learn links: True
+
+📝 Question 8/12 [MCP_ONLY]
+   What are the steps to configure conditional access policies in Azure AD accordin...
+✅ Status: completed | Tool check: Microsoft Learn links: True
+
+📝 Question 9/12 [HYBRID]
+   Based on Contoso's remote work policy requirements, how should I implement Azure...
+✅ Status: completed | Tool check: Contoso content: True, Learn links: True
+
+📝 Question 10/12 [HYBRID]
+   What Azure services do I need to configure to meet Contoso's data governance req...
+✅ Status: completed | Tool check: Contoso content: True, Learn links: True
+
+📝 Question 11/12 [HYBRID]
+   How do I configure Microsoft Teams to comply with Contoso's collaboration standa...
+✅ Status: completed | Tool check: Contoso content: True, Learn links: True
+
+📝 Question 12/12 [HYBRID]
+   What Azure security services should I implement to align with Contoso's incident...
+✅ Status: completed | Tool check: Contoso content: True, Learn links: True
+
+======================================================================
+📊 EVALUATION SUMMARY BY TEST TYPE:
+======================================================================
+✅ SHAREPOINT_ONLY: 4/4 passed (100.0%)
+✅ MCP_ONLY: 4/4 passed (100.0%)
+✅ HYBRID: 4/4 passed (100.0%)
+
+📊 Overall Evaluation Results: 12/12 questions passed (100.0%)
+💾 Results saved to evaluation_results.json
+```
+
 ### Additional evaluation assets
 
 The evaluation generates `evaluation_results.json` with metrics for each question (keyword hits, length heuristic). You can extend this to:
 - Use model-based scoring prompts.
 - Introduce structured output validation.
 - Record latency and token usage.
+
+Here's a sample of the JSON output structure:
+
+```json
+[
+  {
+    "question": "What is Contoso's remote work policy?",
+    "response": "Contoso's remote work policy includes the following key components: <...>",
+    "status": "completed",
+    "passed": true,
+    "validation_details": "Contoso-specific content: True",
+    "test_type": "sharepoint_only",
+    "expected_source": "sharepoint",
+    "explanation": "Forces SharePoint tool usage - answer must contain Contoso-specific policy details"
+  },
+  {
+    "question": "What are Contoso's security protocols for remote employees?",
+    "response": ...
+
+    ...
+
+  }
+]
+```
 
 ---
 
