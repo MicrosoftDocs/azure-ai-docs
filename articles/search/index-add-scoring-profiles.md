@@ -206,7 +206,7 @@ Freshness and distance scoring are special cases of magnitude-based scoring, whe
 
 Interpolations set the shape of the slope used for boosting freshness and distance. 
 
-When the boost value is positive, scoring is high to low, and the slope is always decreasing. With negative boosts, the slope is increasing (newer documents get higher scores). The interpolation values determines the curve of the upward or downward slope and how aggressively the boost score changes in response to date or distance changes. The following interpolations can be used:  
+When the boost value is positive, scoring is high to low, and the slope is always decreasing. With negative boosts, the slope is increasing (newer documents get higher scores). The interpolation values determine the curve of the upward or downward slope and how aggressively the boost score changes in response to date or distance changes. The following interpolations can be used:  
 
 | Interpolation | Description |  
 |-|-|  
