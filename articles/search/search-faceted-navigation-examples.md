@@ -611,17 +611,17 @@ Facet aggregations allow you to compute metrics from facet values. The aggregati
 
 | Aggregator | Description |
 |------------|-------------|
-| Sum | Adds `metric: sum` to a numeric facet aggregates all the values of each bucket. |
+| Sum | Returns the total accumulated value from the field across all documents. Applies to numeric types only. Supported in earlier preview releases. |
 | Min | Returns the minimum value from the field across all documents. Applies to numeric types only. |
 | Max | Returns the maximum value from the field across all documents. Applies to numeric types only.|
 | Avg | Returns the average value from the field across all documents. Applies to numeric types only. |
-| Cardinality | Returns the approximate count of distinct values from the field across all documents using the [HyperLogLog algorithm](https://en.wikipedia.org/wiki/HyperLogLog). You can set `cardinality` on numeric fields, including boolean and datetime fields (along with their corresponding collection forms). |
+| Cardinality | Returns the approximate count of distinct values from the field across all documents using the [HyperLogLog algorithm](https://en.wikipedia.org/wiki/HyperLogLog). You can request `cardinality` on facetable fields, including string and datetime fields (along with their corresponding collection forms). |
 
 ### Setting precision thresholds for cardinality aggregation
 
-On a cardinality aggregation, you can set a `precisionThreshold` option to trade memory for accuracy. A precision threshold defines a unique count below which counts are expected to be close to accurate. Above this value, counts might become a bit more fuzzy. The maximum supported value is `40,000`. Thresholds above this number have the same effect as a threshold of `40,000`. The default value for precision threshold is 3,000.
+On a cardinality aggregation, you can set a `precisionThreshold` option as a demarcation between counts that are expected to be close to accurate, and counts that can be less accurate. The maximum value is 40,000. The default value is 3,000.
 
-Increasing `precisionThreshold` results in more memory consumption (`precisionThreshold` value multiplied by 8 bytes). 
+Faceting is performed in memory. Increasing `precisionThreshold` results in more memory consumption (the `precisionThreshold` value multiplied by 8 bytes).
 
 ### Example: Sum facet aggregation
 
