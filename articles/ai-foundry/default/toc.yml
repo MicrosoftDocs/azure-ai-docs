@@ -43,7 +43,7 @@ items:
   href: toc-files/best-practices/toc.yml
 
 - name: Setup and configure
-  href: toc-files/configuration/toc.yml
+  href: toc-files/setup-configure/toc.yml
 
 - name: Security & governance
   href: toc-files/security-governance/toc.yml
