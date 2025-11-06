@@ -25,6 +25,12 @@ Option 1 applies the LLMs instructions to generate an appropriate response. To e
 
 To get started with the pro-active greeting, start with one of our [quickstart samples](../../../voice-live-quickstart.md).
 
+1. Find the class 'BasicVoiceAssistant' and add the following variable declaration:
+
+    ```python
+    self.conversation_started = False
+    ```
+
 1. Find the '_handle_event_' function in class 'BasicVoiceAssistant'.
 1. Find the `SESSSION_UPDATED` event.
 1. Replace the existing code handling the `SESSSION_UPDATED` event:
@@ -54,6 +60,12 @@ Option 2 uses a pregenerated greeting message to generate the greeting response.
 
 To get started with the pro-active greeting, start with one of our [quickstart samples](../../../voice-live-quickstart.md).
 
+1. Find the class 'BasicVoiceAssistant' and add the following variable declaration:
+
+    ```python
+    self.conversation_started = False
+    ```
+    
 1. Find the '_handle_event_' function in class 'BasicVoiceAssistant'.
 1. Find the `SESSSION_UPDATED` event.
 1. Replace the existing code handling the `SESSSION_UPDATED` event:

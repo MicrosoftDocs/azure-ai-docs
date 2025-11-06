@@ -25,6 +25,13 @@ Option 1 applies the LLMs instructions to generate an appropriate response. To e
 
 To get started with the pro-active greeting, start with one of our [quickstart samples](../../../voice-live-quickstart.md).
 
+1. Find the class 'BasicVoiceAssistant' and add the following variable declaration:
+
+    ```csharp
+    private bool _conversationStarted;
+    // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
+    ```
+    
 1. Find the 'HandleSessionUpdateAsync' function in class 'BasicVoiceAssistant'.
 1. Find the `sessionUpdated` event.
 1. Replace the existing code handling the `sessionUpdated` event:
@@ -60,6 +67,13 @@ To get started with the pro-active greeting, start with one of our [quickstart s
 Option 2 uses a pregenerated greeting message to generate the greeting response. This option applies the same feature used for other pregenerated messages too.
 
 To get started with the pro-active greeting, start with one of our [quickstart samples](../../../voice-live-quickstart.md).
+
+1. Find the class 'BasicVoiceAssistant' and add the following variable declaration:
+
+    ```csharp
+    private bool _conversationStarted;
+    // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
+    ```
 
 1. Find the 'HandleSessionUpdateAsync' function in class 'BasicVoiceAssistant'.
 1. Find the `sessionUpdated` event.
