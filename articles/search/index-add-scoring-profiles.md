@@ -378,8 +378,7 @@ api-key: {{key}}
             {"name": "StreetAddress", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": true, "searchable": true},
             {"name": "City", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
             {"name": "StateProvince", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-            {"name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-            {"name": "Country", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true}
+            {"name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true}
             ]
         }
     ],
@@ -443,8 +442,7 @@ api-key: {{key}}
             "StreetAddress": "677 5th Ave",
             "City": "New York",
             "StateProvince": "NY",
-            "PostalCode": "10022",
-            "Country": "USA"
+            "PostalCode": "10022"
             } 
         },
         {
@@ -463,8 +461,7 @@ api-key: {{key}}
             "StreetAddress": "140 University Town Center Dr",
             "City": "Sarasota",
             "StateProvince": "FL",
-            "PostalCode": "34243",
-            "Country": "USA"
+            "PostalCode": "34243"
             } 
         },
         {
@@ -483,8 +480,7 @@ api-key: {{key}}
             "StreetAddress": "3393 Peachtree Rd",
             "City": "Atlanta",
             "StateProvince": "GA",
-            "PostalCode": "30326",
-            "Country": "USA"
+            "PostalCode": "30326"
             } 
         },
         {
@@ -502,8 +498,7 @@ api-key: {{key}}
             "StreetAddress": "7400 San Pedro Ave",
             "City": "San Antonio",
             "StateProvince": "TX",
-            "PostalCode": "78216",
-            "Country": "USA"
+            "PostalCode": "78216"
             }
         }
     ]
