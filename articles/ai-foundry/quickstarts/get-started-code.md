@@ -318,9 +318,9 @@ Create an agent using your deployed model.
 
 ## Chat with an agent
 
-Create an agent and chat with it.
-
 ::: moniker range="foundry-classic"
+
+Create an agent and chat with it.
 
 # [Python](#tab/python)
 
@@ -360,6 +360,8 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 ::: moniker-end
 
 ::: moniker range="foundry"
+
+Connect to an agent named "MyAgent" and chat with it.
 
 [!INCLUDE [quickstart-v2-agent-chat](../default/includes/quickstart-v2-agent-chat.md)]
 
