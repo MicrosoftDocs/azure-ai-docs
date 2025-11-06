@@ -48,8 +48,5 @@ items:
 - name: Security & governance
   href: toc-files/security-governance/toc.yml
 
-- name: Architecture & design
-  href: toc-files/architecture-design/toc.yml
-
 - name: Operate & support
   href: toc-files/operate-support/toc.yml
