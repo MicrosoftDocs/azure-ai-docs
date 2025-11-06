@@ -1,4 +1,10 @@
 items:
+    - name: Status dashboard
+      href: ../../../azure-ai-foundry-status-dashboard-documentation.md
+    - name: Feature availability by region
+      href: ../../../reference/region-support.md
+    - name: Region support
+      href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/ 
     - name: Use Azure AI Foundry with a screen reader
       href: ../../../tutorials/screen-reader.md
     - name: Code of conduct
