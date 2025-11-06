@@ -58,13 +58,13 @@ Playgrounds also *provide clarity quickly* when you have questions, by providing
 
 ## Open in VS Code capability
 
+::: moniker range="foundry-classic"
+
 The **Chat playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code** button. You can find this button through the Azure AI Foundry extension in VS Code. 
 
 Available on the multilingual sample code samples, **Open in VS Code** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
 
 To use the **Open in VS Code** functionality from the chat and agents playgrounds, follow these steps:
-
-::: moniker range="foundry-classic"
 
 1. Select **Try the Chat playground** to open it. Alternatively, you can follow these steps in the Agents playground by selecting **Let's go** on the Agents playground card.
 
@@ -88,7 +88,9 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 ::: moniker range="foundry"
 
-1. Insert NextGen content
+The **Model playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code for the Web** button. You can find this button from the **Code** tab in the chat pane of the model playground.
+
+Available on the multilingual sample code samples, **Open in VS Code for the Web*** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
 
 ::: moniker-end
 
@@ -127,8 +129,6 @@ Once you deploy a model in the [Azure AI Foundry portal](https://aka.ms/nextgen-
 
 The playground is designed for fast iteration and production readiness and supports everything from prototyping to performance benchmarking. The playground prepares you to use your model in a production workflow, easily upgrade your model as an agent, and continue to prototype in the agent playground with additional tools, knowledge, and memory before deploying as an agentic web application. 
 
-
-
 ### Benefits of using the model playground
 
 - **Full-stack experimentation and control**: Configure parameters (such as temperature, top_p, max_tokens), inject system prompts, and enable advanced tools like web search, file search, and code interpreter, all within a single environment. This allows you to precisely tune model behavior and rapidly iterate on prompt engineering, grounding, and RAG workflows, upgrading your model into an agent.
@@ -147,13 +147,22 @@ To use compare mode from the playground of a deployed model:
 1. Select up to 2 more models from existing or new deployments. Chat windows for the selected models open up side-by-side in the playground with synced prompt bars ands setup. You can switch off sync from the **Setup** pane for each model, if needed.
 1. Enter your prompt in any of the prompt bars and see the prompt simultaneously appear in the others.
 1. Submit the prompt to see the output from each model simultaneously and compare the quality of the responses.
-1. Switch to the **Code** pane of each model to see multilingual code samples.
-1. For your preferred model, select either **Open in VS Code** from the code pane to continue development work or **Save as agent** to continue prototyping in the agent playground.
+1. Switch to the **Code** tab in the chat pane of each model to see multilingual code samples.
+1. For your preferred model, select either **Open in VS Code for the Web** from the code tab to continue development work or **Save as agent** to continue prototyping in the agent playground.
 
 ### Generate and interpret code
 
 With code interpreter, developers can extend model capabilities beyond text generation by enabling in-line code execution within the playground. When activated, supported models can write, run, and debug code directly in a secure, sandboxed environment, ideal for performing calculations, data transformations, plotting visualizations, or validating logic.
 
+To use code interpreter from the playground of a deployed model:
+
+1. Expand the **Tools** section in the deployed model's playground. 
+
+    > [!TIP]
+    > The **Tools** section isn't visible in the playground if you're using compare mode to run parallel evaluations on models. You first have to close the other models that you're using for comparison before you can see the detailed playground that includes tools and other options for your deployed model.
+
+1. Select **Add** > **Code interpreter**, and attach your code files for the code interpreter.
+1. Use the playground to ask questions, interpret, or streamline your code. For example "How should I make the attached code files more efficient?"
 
 ::: moniker-end
 
@@ -199,9 +208,9 @@ The video playground (preview) is your rapid iteration environment for exploring
 
 All model endpoints are integrated with **Azure AI Content Safety**. As a result, the video playground filters out harmful and unsafe images before they appear. If content moderation policies flag your text prompt or video generation, you get a warning notification.
 
-::: moniker range="foundry-classic"
+You can use the video playground with the **Azure OpenAI Sora-2** model.
 
-You can use the video playground with the **Azure OpenAI Sora** model.
+::: moniker range="foundry-classic"
 
 > [!TIP]  
 > See the DevBlog for [Sora and video playground in Azure AI Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
@@ -213,7 +222,7 @@ Follow these steps to use the video playground:
 
 1. Select **Try the Video playground** to open it.
 
-1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora` model.
+1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora-2` model.
 
 1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt from the bottom right corner of a video to build from it.
 
@@ -241,14 +250,18 @@ Follow these steps to use the video playground:
 
 ::: moniker range="foundry"
 
-You can use the video playground with the **Azure OpenAI Sora-2** model.
-
 Follow these steps to use the video playground:
 
 > [!CAUTION]
 > Videos you generate are retained for 24 hours due to data privacy. Download videos to your local computer for longer retention.
 
-Insert NextGen content
+1. Select **Build** from the upper-right navigation.
+1. Select **Models** from the left pane.
+1. Select a video generation model, such as **sora-2** from your list of deployed models. If you don't have a deployment already, select **Deploy base model** from the top right side of the page and deploy the `sora-2` model.
+1. **Enter your text prompt**: Start with any text prompt for the video you want to generate. For models that enable image-to-video generation, upload an image attachment to the prompt bar and generate the video.
+1. **Explore the model API-specific generation controls**: Adjust key controls (for example, aspect ratio and duration) for a deeper understanding of specific model responsiveness and constraints.
+1. **Side-by-side observations in grid view**: Visually observe outputs across prompt tweaks or parameter changes.
+1. **Port to production with multi-lingual code samples**: Use multi-language code samples with **View Code**. Video playground is your launchpad to development work in VS Code.
 
 ::: moniker-end
 
@@ -301,21 +314,7 @@ You can use the images playground with these models:
 - [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
 - [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
 
-::: moniker-end
-
-::: moniker range="foundry-classic"
-
-You can use the images playground with these models: (https://aka.ms/nextgen-canary/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs)
-
-- [gpt-image-1](https://aka.ms/nextgen-canary/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [gpt-image-1-mini](https://aka.ms/nextgen-canary/explore/models/gpt-image-1-mini/version/2025-10-06/registry/azure-openai/?cid=learnDocs), and [dall-e-3](https://aka.ms/nextgen-canary/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://aka.ms/nextgen-canary/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://aka.ms/nextgen-canary/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://aka.ms/nextgen-canary/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
-- [FLUX.1-Kontext-pro](https://aka.ms/nextgen-canary/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://aka.ms/nextgen-canary/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
-
-::: moniker-end
-
 Follow these steps to use the images playground:
-
-::: moniker range="foundry-classic"
 
 1. Select **Try the Images playground** to open it.
 
@@ -337,7 +336,24 @@ Follow these steps to use the images playground:
 
 ::: moniker range="foundry"
 
-1. Insert NextGen content
+You can use the images playground with these models:
+
+- [gpt-image-1](https://aka.ms/nextgen-canary/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [gpt-image-1-mini](https://aka.ms/nextgen-canary/explore/models/gpt-image-1-mini/version/2025-10-06/registry/azure-openai/?cid=learnDocs), and [dall-e-3](https://aka.ms/nextgen-canary/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
+- [Stable Diffusion 3.5 Large](https://aka.ms/nextgen-canary/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://aka.ms/nextgen-canary/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://aka.ms/nextgen-canary/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
+- [FLUX.1-Kontext-pro](https://aka.ms/nextgen-canary/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://aka.ms/nextgen-canary/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
+
+Follow these steps to use the images playground:
+
+1. Select **Build** from the upper-right navigation.
+1. Select **Models** from the left pane.
+1. Select an image generation model, such as **gpt-image-1** from your list of deployed models. If you don't have a deployment already, select **Deploy base model** from the top right side of the page and deploy the `gpt-image-1` model.
+1. **Enter your text prompt**: Start with any text prompt for the image you want to generate. For models that enable image-to-image generation, upload an image attachment to the prompt bar and generate the image.
+1. **Explore the model API-specific generation controls**: Adjust key controls (for example, number of variations and aspect ratio) for a deeper understanding of specific model responsiveness and constraints.
+1. **Side-by-side observations in grid view**: Visually observe outputs across prompt tweaks or parameter changes.
+1. **Transform with API tooling**: Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change. 
+1. **Port to production with multi-lingual code samples**: Use multi-language code samples with **View Code**. Images playground is your launchpad to development work in VS Code.
+
+
 
 ::: moniker-end
 
