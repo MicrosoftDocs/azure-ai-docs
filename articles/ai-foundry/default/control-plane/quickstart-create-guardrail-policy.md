@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Create a guardrail policy"
-description: These instructions will guide you in creating a guardrail policy for your model deployments in Azure AI Foundry. This policy will allow you to govern the usage of guardrail controls across your subscription.
+description: These instructions guide you in creating a guardrail policy for your model deployments in Azure AI Foundry. This policy allows you to govern the usage of guardrail controls across your subscription.
 #customer intent: As a subscription owner, I want to manage guardrail policies in Azure AI Foundry so that I can monitor compliance status in the Foundry Control Plane.
 author: gregharen
 ms.author: scottpolly
@@ -43,7 +43,7 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 
 :::image type="content" source="media/quickstart-create-a-guardrail-policy/create-new-policy.png" alt-text="A screenshot of the Create Policy dialog." lightbox="media/quickstart-create-a-guardrail-policy/create-new-policy.png":::
 
-1. Select "Next" to move to scope selection. You can scope your policy to a single subscription or a resource group. Select the desired scope and select the "select" button to pick a subscription or resource group from a list of resources which you have access to.
+1. Select "Next" to move to scope selection. You can scope your policy to a single subscription or a resource group. Select the desired scope and select the "select" button to pick a subscription or resource group from a list of resources that you have access to.
 
 :::image type="content" source="media/quickstart-create-a-guardrail-policy/select-scope.png" alt-text="Screenshot of the scope selection page showing subscription and resource group options." lightbox="media/quickstart-create-a-guardrail-policy/select-scope.png":::
 
@@ -59,7 +59,7 @@ In this quickstart, you create an Azure Policy in Azure AI Foundry to govern the
 
 :::image type="content" source="media/quickstart-create-a-guardrail-policy/resource-group-exception.png" alt-text="Screenshot of the exceptions interface showing resource group and model deployment options." lightbox="media/quickstart-create-a-guardrail-policy/resource-group-exception.png":::
 
-1. Once all exceptions have been added, select "Next" to move to the review stage. Here, you'll name your policy and review the scope, exceptions, and controls that define the policy. Once ready, select submit to create the policy.
+1. Once all exceptions have been added, select "Next" to move to the review stage. Here, you name your policy and review the scope, exceptions, and controls that define the policy. Once ready, select submit to create the policy.
 
 :::image type="content" source="media/quickstart-create-a-guardrail-policy/submit-policy.png" alt-text="Screenshot of the review and submit page for the guardrail policy." lightbox="media/quickstart-create-a-guardrail-policy/submit-policy.png":::
 
@@ -71,7 +71,7 @@ After you submit your policy, verify that it was created successfully:
 1. Check that the policy name, scope, and status are displayed correctly.
 
 > [!NOTE]
-> It takes some time for Azure Policy to perform a compliance scan. Initial compliance results may not appear immediately after policy creation.
+> It takes some time for Azure Policy to perform a compliance scan. Initial compliance results might not appear immediately after policy creation.
 
 ## Related content
 
