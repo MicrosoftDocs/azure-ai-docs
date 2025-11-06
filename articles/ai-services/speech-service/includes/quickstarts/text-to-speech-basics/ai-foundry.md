@@ -8,7 +8,7 @@ ms.date: 11/05/2025
 ms.author: pafarley
 ---
 
-In this quickstart, try out the text to speech model from Azure AI Speech in Foundry Tools, using the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
+In this quickstart, try out the text to speech model from Azure AI Speech in Foundry Tools, using [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ In this quickstart, try out the text to speech model from Azure AI Speech in Fou
 
 Try text to speech in the Azure AI Foundry portal by following these steps:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
+1. Go to [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
 1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. Select **Azure Speech - Text to Speech** to open the Text to Speech playground.

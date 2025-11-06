@@ -7,7 +7,7 @@ ms.author: pafarley
 ---
 
 
-Try out the text to speech avatar feature in the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
+Try out the text to speech avatar feature in [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Try out the text to speech avatar feature in the [Azure AI Foundry portal](https
 
 Try text to speech in the Azure AI Foundry portal by following these steps:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?view=foundry). 
+1. Go to [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
 1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. Select **Azure Speech - Text to Speech Avatar** to open the Text to Speech Avatar playground.
