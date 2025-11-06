@@ -1,6 +1,6 @@
 ---
 title: include file for voice live proactive and pregenerated messages with ai foundry
-description: include file
+description: Learn how to enable a proactive greeting with the Voice live API
 author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
