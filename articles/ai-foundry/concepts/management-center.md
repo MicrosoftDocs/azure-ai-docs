@@ -91,7 +91,7 @@ Most of your work in the Azure AI Foundry (new) portal is performed in the conte
 1. Select **Operate** in the upper-right navigation.
 1. Select **Admin** in the left pane.
 
-The **All projects** tab lists all of yuour Foundry projects.  From here you can:
+The **All projects** tab lists all of your Foundry projects.  From here you can:
 
 * View quick information about a project by selecting the radio button next to a row in the table.  
 * Add users or connected resources to a project by selecting the project link in the first column. 
