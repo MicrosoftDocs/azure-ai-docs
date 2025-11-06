@@ -130,7 +130,7 @@ List only required FQDNs (principle of least privilege). Keep dependent Azure se
 1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
 2. Add or refine inbound/outbound rules.
 3. Switch to Enforced mode.
-4. Open [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs) and perform a model deployment or chat test. Success indicates required traffic is permitted.
+4. Open [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] and perform a model deployment or chat test. Success indicates required traffic is permitted.
 5. If blocked, revert to Learning or add rules and retry.
 
 ::: moniker-end

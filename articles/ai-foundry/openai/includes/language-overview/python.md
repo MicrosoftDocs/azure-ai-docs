@@ -44,10 +44,10 @@ Endpoints and API keys for your resources can be retrieved from the [Azure porta
 
 ::: moniker range="foundry"
 
-Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs):
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the[!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)] portal:
 
 - Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
-- Sign in to [AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) > select your resource.
+- Sign in to [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)] portal > select your resource.
 
 ::: moniker-end
 
