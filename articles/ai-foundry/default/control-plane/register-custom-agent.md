@@ -60,8 +60,7 @@ To register the agent, follow these steps:
 
     :::image type="content" source="../media/register-custom-agent/register-custom-agent.png" alt-text="Screenshot of the Register agent button in the Azure AI Foundry portal Overview pane." lightbox="../media/register-custom-agent/register-custom-agent.png":::
 
-1. The registration wizard appears. First, complete the details about the agent you want to register. The following properties describe the agent as it runs on its platform:
-
+1. The registration wizard appears. First, complete the details about the agent you want to register. The following properties describe the agent as it runs on its platform
 
     | Property  | Description | Required |
     |-----------|-------------|----------|
