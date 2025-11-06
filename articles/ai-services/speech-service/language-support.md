@@ -65,7 +65,7 @@ More remarks for text to speech locales are included in the [voice styles and ro
 
 ### DragonHD voices
 
-Latest LLM based neural text to speech high definition (HD) voices. The HD voices are multi-lingual, can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features.
+These are LLM-based neural high definition (HD) voices. The HD voices are multilingual, can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment. HD voices maintain a consistent voice persona with their neural (and non-HD) counterparts, and deliver more value through enhanced features.
 
 [!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
