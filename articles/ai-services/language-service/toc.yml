@@ -773,12 +773,15 @@ items:
         href: text-analytics-for-health/concepts/assertion-detection.md
       - name: Fast Healthcare Interoperability Resources structuring
         href: text-analytics-for-health/concepts/fhir.md
-        
+
 - name: Concepts
   items:
   - name: Developer guide
     href: concepts/developer-guide.md
     displayName: development, sdk guide, programming
+  - name: Azure tools and agents
+    href: concepts/azure-foundry-tools-agents.md
+    displayName: mcp, exact, question, answering, intent, routing
   - name: Role-based-access-control
     href: concepts/role-based-access-control.md
   - name: Multilingual and emoji support

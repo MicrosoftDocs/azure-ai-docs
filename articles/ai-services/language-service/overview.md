@@ -1,6 +1,6 @@
 ---
 title: What is Azure AI Language
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
 manager: nitinme
@@ -12,65 +12,33 @@ ms.author: lajanuar
 
 # What is Azure AI Language?
 
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language remote [MCP server](#azure-language-in-foundry-tools-mcp-server), which can be found in [Azure AI Foundry Tool Catalog](https://aka.ms/FoundryToolCatalog).
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language remote [MCP server](#azure-language-in-foundry-tools-mcp-server), which can be found in [Azure AI Foundry Tool Catalog](https://aka.ms/FoundryToolCatalog).
 
 ## Available tools
 
 ### Azure Language in Foundry Tools MCP server 🆕
 
-The Model Context Protocol (MCP) server provides AI agents with standardized endpoints for interacting with Azure Language Foundry Tools, delivering robust, accurate, and compliance-driven natural language processing (NLP) capabilities. Key features and workflows include:
+The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
 
-* **Standardized integration**: Enables seamless connectivity between AI agents and Azure Language Foundry Tools through MCP-compliant endpoints.
-* **Precision and explainable NLP outcomes**: Ensures highly accurate language processing with transparent reasoning behind model outputs for improved trust and traceable decision-making.
-* **Compliance-driven processing**: Incorporates mechanisms for Personally Identifiable Information (PII) detection and redaction to meet regulatory requirements.
-* **Automated language detection**: Identifies and processes multiple languages across diverse, multi-source datasets.
-* **Custom question answering**: Provides domain-specific Q&A capabilities tailored to business logic and operational needs.
-* **Extensible architecture**: Facilitates integration of additional NLP features, compliance modules, and advanced language models as requirements evolve.
-
-
-> ***MCP Server Endpoint***
-
-      ```bash
-      https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp
-
-      ```
+For more information, *see* [Azure Language MCP server](concepts/azure-foundry-tools-agents.md#azure-language-in-foundry-tools-mcp-server-).
 
 ## Available agents
 
 ### Azure Language in Foundry Tools Intent Routing agent 🆕
 
-The Intent Routing agent employs advanced language models to deliver precise intent detection and high-fidelity answering within conversational AI systems. The agent combines deterministic routing logic with controllable answer generation to maximize reliability, transparency, and operational control. Key features and workflows include:
+The Intent Routing agent intelligently manages conversation flows by understanding user intentions and delivering accurate responses in conversational AI applications. This agent uses predictable decision-making processes combined with controlled response generation to ensure consistent, reliable interactions that organizations can trust and monitor. 
 
-* **CLU intent detection**: Classifies user utterances and extracts entities with Conversational Language Understanding (CLU).
-* **Exact answers using CQA**: Serves authoritative, verbatim responses using Custom Question Answering (CQA).
-* **Deterministic routing and guardrails**: Enforces predictable paths—for example, routes to CLU for intent, directs matched intents to CQA for exact answers, and falls back on low confidence—with human‑in‑the‑loop review/override.
-* **Human oversight**: Queues, approves, and logs decisions for intent and answer validation.
-* **RAG for uncommon questions**: Uses retrieval‑augmented generation to answer less common or out‑of‑scope queries by grounding responses in approved knowledge sources.
-
-> ***Download template code with Azure Developer CLI (azd)***
-
-   ```bash
-   azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
-   ```
+For more information, *see* [Azure Language Intent Routing agent](concepts/azure-foundry-tools-agents.md#azure-language-in-foundry-tools-intent-routing-agent-).
 
 ### Azure Language in Foundry Tools Exact Question Answering agent 🆕
 
-The Exact Question Answering agent gives consistent, deterministic answers to predefined, high-value questions. It uses Azure AI services for automation and oversight. Key features and workflows include:
+The Exact Question Answering agent provides reliable, word-for-word responses to your most important business questions. This agent automates frequently asked questions while maintaining human oversight and quality control to ensure accuracy and compliance.
 
-* **Azure integration**: Integrates Azure AI Agent Service with Custom Question Answering in Azure AI Language.
-* **No‑code availability**: Provides a ready‑to‑use experience in Azure AI Foundry without requiring code.
-* **Governed responses**: Enables human review, policy controls, and escalation to human agents when needed.
-* **Deterministic automation**: Automates frequent business questions with predictable, governed behavior.
-* **RAG fallback**: Uses LLM‑powered retrieval‑augmented generation to handle less common or nuanced questions, grounding answers in approved sources.
+For more information, *see* [Azure Language Exact Question Answering agent](concepts/azure-foundry-tools-agents.md#azure-language-in-foundry-tools-exact-question-answering-agent-).
 
-> ***Download template code with Azure Developer CLI (azd)***
-
-   ```bash
-   azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
-   ```
 ## Available features
 
-This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
+This Language service unifies the following previously available Azure AI Foundry Tools: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
 
 The Language service also provides several new features as well, which can either be:
 
@@ -160,7 +128,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 ### Entity linking
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
+> Entity Linking is retiring from Azure Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
 
 
 :::row:::
@@ -266,7 +234,7 @@ This section helps you decide which Language service feature you should use for 
 
 ## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
 
-Azure AI Language unifies three individual language services in Azure AI services - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure AI Language. For instructions see [Migrating to Azure AI Language](concepts/migrate.md).
+Azure Language unifies three individual language services in Azure AI Foundry Tools - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure Language. For instructions see [Migrating to Azure Language](concepts/migrate.md).
 
 ## Tutorials
 
