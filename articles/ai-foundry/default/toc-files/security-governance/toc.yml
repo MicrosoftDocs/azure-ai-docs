@@ -14,6 +14,8 @@ items:
   items:
   - name: Configure customer-managed keys
     href: ../../../concepts/encryption-keys-portal.md
+  - name: Store secrets in your Azure Key Vault
+    href: ../../../how-to/set-up-key-vault-connection.md
   - name: Rotate API access keys
     href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Plan and manage costs
