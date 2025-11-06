@@ -7,6 +7,8 @@ items:
     href: ../../../foundry-models/concepts/model-versions.md
   - name: Marketplace configuration for partner models
     href: ../../../foundry-models/how-to/configure-marketplace.md
+  - name: Model router
+    href: ../../../openai/how-to/model-router.md
   - name: Image and video models
     items:
       - name: Image generation
@@ -36,5 +38,4 @@ items:
   - name: Use blocklists
     href: ../../../openai/how-to/use-blocklists.md
 
-  - name: Model router
-    href: ../../../openai/how-to/model-router.md
+

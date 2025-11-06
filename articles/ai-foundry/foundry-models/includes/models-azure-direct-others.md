@@ -132,6 +132,30 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://aka.ms/n
 
 ::: moniker-end
 
+
+#### Model router
+
+Model router is a large language model that intelligently selects from a set of underlying chat models to respond to a given prompt. For more information, see the [Model router overview](/azure/ai-foundry/openai/how-to/model-router).
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `model-router` (2025-08-07) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+| `model-router` (2025-05-19) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+
+*Billing for Data Zone Standard model router deployments will begin no earlier than November 1, 2025.*
+
+### Capabilities
+
+|  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `model-router` (2025-08-07) | A model that intelligently selects from a set of underlying  models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`)</br> 128,000 (`gpt-5 reasoning models`) </br> 16,384 (`gpt-5-chat`) | - |
+| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`) | May 31, 2024 |
+
+Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
+
+
 ## Mistral models sold directly by Azure
 
 ::: moniker range="foundry-classic"
