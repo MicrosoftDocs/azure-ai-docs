@@ -1127,7 +1127,7 @@ Follow these steps to create a console application and install the Speech SDK.
 1. Run your console application to start the live conversation:
 
    ```dotnetcli
-   dotnet run --use-token-credential
+   dotnet run
    ```
 
 ## Output
