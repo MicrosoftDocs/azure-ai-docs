@@ -40,16 +40,43 @@ When you submit input text to be processed, you can specify which of [the suppor
 Starting with version `2025-11-15-preview` and onward, you can specify the `redactionPolicies` parameter to define which redaction policies are applied when processing text. You can include more than one policy in a single request. The policy field accepts four policy types:
 
 > [!div class="checklist"]
-> * [`CharacterMaskPolicyType` (default)](#charactermaskpolicytype)
-> * [`NoMaskPolicyType`](#nomaskpolicytype)
-> * [`EntityMaskPolicyType`](#entitymaskpolicytype)
-> * [`SyntheticReplacementPolicyType 🆕`](#syntheticreplacementpolicytype-)
+> * [`SyntheticReplacement 🆕`](#syntheticreplacement-policy-type-)
+> * [`CharacterMask` (default)](#charactermask-policy-type)
+> * [`NoMask`](#nomask-policy-type)
+> * [`EntityMask`](#entitymask-policy-type)
 
 For more information, *see* [REST API PII task parameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
-##### CharacterMaskPolicyType
+##### syntheticReplacement policy type 🆕
 
-**CharacterMaskPolicyType** enables you to mask **redactedText** using a specified character (for example, "*****") while preserving the length and offset of the original text. For instance, "******** received a call from ************"
+The **syntheticReplacement** policy type** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
+
+   ```bash
+
+   POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
+
+         {
+        "kind": "PiiEntityRecognition",
+        "parameters": {
+          "modelVersion": "latest",
+          "redactionPolicies": [
+            {
+              "policyKind": "syntheticReplacement",
+              "entityTypes": [
+                       "Person",
+                       "PhoneNumber"
+              ]
+            }
+          ]
+        }
+      }
+   ```
+
+##### characterMask policy type
+
+The **characterMask** policy type** enables you to mask **redactedText** using a specified character (for example, "*****") while preserving the length and offset of the original text. For instance, "******** received a call from ************"
+
+> Additionally, there's also an optional field named `redactionCharacter` that allows you to specify the character used for redaction when applying the `characterMask` policy.
 
    ***Sample request***
 
@@ -71,12 +98,10 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
    ```
 
 
-##### NoMaskPolicyType
+##### noMask policy type
 
-**NoMaskPolicyType** enables you to return the response without including the `redactedText` field. For example, "John Doe received a call from 424-878-919."
+**noMask** policy type** enables you to return the response without including the `redactedText` field. For example, "John Doe received a call from 424-878-919."
 
-
-> Additionally, there's also an optional field named `redactionCharacter` that allows you to specify the character used for redaction when applying the `CharacterMask` policy.
 
    ***Sample request***
 
@@ -98,9 +123,9 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
    ```
 
 
-##### EntityMaskPolicyType
+##### entityMask policy type
 
-**EntityMaskPolicyType** enables you to mask the detected PII entity text its corresponding entity type. For example, "[PERSON_1] received a call from [PHONENUMBER_1]."
+The **entityMask** policy type** enables you to mask the detected PII entity text its corresponding entity type. For example, "[PERSON_1] received a call from [PHONENUMBER_1]."
 
    ```bash
 
@@ -121,30 +146,7 @@ For more information, *see* [REST API PII task parameters](/rest/api/language/an
    ```
 
 
-##### SyntheticReplacementPolicyType 🆕
 
-**SyntheticReplacementPolicyType** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
-
-   ```bash
-
-   POST {Endpoint}/language/:analyze-text?api-version=2025-11-15-preview
-
-         {
-        "kind": "PiiEntityRecognition",
-        "parameters": {
-          "modelVersion": "latest",
-          "redactionPolicies": [
-            {
-              "policyKind": "syntheticReplacement",
-              "entityTypes": [
-                       "Person",
-                       "PhoneNumber"
-                   ]
-            }
-          ]
-        }
-      }
-   ```
 
 To learn more, *see* [Transparency Note for Personally Identifiable Information (PII)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information).
 
