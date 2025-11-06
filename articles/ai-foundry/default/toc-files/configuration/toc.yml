@@ -41,9 +41,9 @@ items:
     href: ../../../how-to/bring-your-own-azure-storage-foundry.md
   - name: Connect to your own storage for Speech/Language
     href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md 
-  # Can we move MC content under above articles?
-  - name: Management center
-    href: ../../../concepts/management-center.md
+  # Can we move MC content under above articles? It doesn't add value to the user journey?
+  # - name: Management center
+  #   href: ../../../concepts/management-center.md
 
 - name: Quota and service limits
   items: 
