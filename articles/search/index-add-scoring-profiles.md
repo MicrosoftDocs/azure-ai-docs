@@ -349,13 +349,13 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
 ## Example: function aggregation 
 
 > [!NOTE]
-> This capability is currently in preview, available through the 2025-11-01-preview REST API and in Azure SDK preview packages that provide the feature.
+> This capability is currently in preview, available through the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
 
-Combine multiple scoring functions to boost results and have the aggregation of those boosts multiplied by each other. To achieve this outcome, set the `functionAggregation` property in the scoring profile to `product`. 
+Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
 
-In this example, create a scoring profile that includes two boosting functions that boost by `rating` and `baseRate`, and then set `functionAggregation`.
+In this example, create a scoring profile that includes two boosting functions that boost by `rating` and `baseRate`, and then set `functionAggregation` to `product`.
 
-```
+```http
 ### Create a new index
 PUT {{url}}/indexes/hotels-scoring?api-version=2025-11-01-preview
 Content-Type: application/json
@@ -519,7 +519,6 @@ api-key: {{key}}
     "select": "HotelId, HotelName, Description, Rating, BaseRate",
     "scoringProfile": "productAggregationProfile"
 }
-###
 ```
 
 The top response for this query is "Gastronimic Landscape Hotel" with a search score that is almost twice as high as next closest match. This particular hotel has both the highest rating and the highest base rate, so the compounding of both functions promotes this match to the top.
