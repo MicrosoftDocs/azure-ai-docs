@@ -16,12 +16,12 @@ ms.custom:
 
 # Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal (Preview)
 
-Suppose you have files—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
+Suppose you have files of different types—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
 
-This guide shows you how to utilize Content Understanding Standard and Pro modes in the Azure AI Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data.
+This guide shows you how to use Content Understanding Standard and Pro modes in the Azure AI Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data.
 
 > [!NOTE]
-> Azure AI Foundry Classic portal uses the a Preview API (`2025-05-01-preview`). Pro mode is a preview feature available only in the this preview API version. It is not available in the GA API version (`2025-11-01`).
+> Azure AI Foundry Classic portal uses a preview API (`2025-05-01-preview`). Pro mode is a preview feature available only in this preview API version. It's not available in the GA API version (`2025-11-01`).
 
 ## Choosing between Standard and Pro modes (Preview)
 
@@ -54,10 +54,10 @@ To get started, make sure you have the following resources and permissions:
 Follow these steps to create a custom task in the Azure AI Foundry. Use this task to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Select your hub based project. You might need to select **View all resources** to see your project.
+1. Select your hub-based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-1. Select to create a `Single-file task` utilizing Content Understanding Standard mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
+1. Select to create a `Single-file task` that uses Content Understanding Standard mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -107,13 +107,13 @@ You've successfully built your first Content Understanding analyzer and are read
 
 ## Create your multi-file task powered by Content Understanding Pro mode
 
-Follow these steps to create a custom task in the Azure AI Foundry. This task is used to build your first analyzer.
+Follow these steps to create a custom task in Azure AI Foundry. Use this task to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Select your hub based project. You might need to select **View all resources** to see your project.
+1. Select your hub-based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-2. Select to create a `Multi-file task` utilizing Content Understanding Pro mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
+1. Select to create a `Multi-file task` that uses Content Understanding Pro mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -121,13 +121,13 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task is
 
 To create a multi-file Content Understanding task, start by uploading one or more samples of data and building your field schema. The schema is the customizable framework that guides the analyzer to extract the preferred insights from your data.
 
-In this example, the schema is created to extract key fields from an invoice document, but you can bring in any document based data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+In this example, you create the schema to extract key fields from an invoice document, but you can bring in any document-based data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload one or multiple sample files of invoice documents or any other document data relevant to your scenario.
 
    :::image type="content" source="../media/quickstarts/upload-test-data.png" alt-text="Screenshot of upload step in user experience." lightbox="../media/quickstarts/upload-test-data.png":::
 
-2. Add fields to your schema:
+1. Add fields to your schema:
 
     * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
 
@@ -140,19 +140,19 @@ In this example, the schema is created to extract key fields from an invoice doc
    :::image type="content" source="../media/quickstarts/add-fields.png" alt-text="Screenshot of create schema step in user experience." lightbox="../media/quickstarts/add-fields.png":::
 
 
-3. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
+1. When your schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
    :::image type="content" source="../media/quickstarts/save-schema.png" alt-text="Screenshot of completed schema."  lightbox="../media/quickstarts/save-schema.png":::
 
-4. Upload one or more documents for reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
+1. Upload one or more documents for reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
 
    :::image type="content" source="../media/quickstarts/reference-data.png" alt-text="Screenshot of user adding reference data." lightbox="../media/quickstarts/reference-data.png":::
 
-5.  Run analysis on your data. Kicking off analysis generates an output on your test files based on the schema that you created, and applies predictions by comparing that output to your reference data.
+1.  Run analysis on your data. Kicking off analysis generates an output on your test files based on the schema that you created, and applies predictions by comparing that output to your reference data.
 
    :::image type="content" source="../media/quickstarts/prediction.png" alt-text="Screenshot of user running analysis on their data." lightbox="../media/quickstarts/prediction.png":::
 
-6.  Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
+1.  When you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
 
    :::image type="content" source="../media/quickstarts/build-analyzer.png" alt-text="Screenshot of built analyzer." lightbox="../media/quickstarts/build-analyzer.png":::
 
