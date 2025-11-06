@@ -1081,16 +1081,16 @@ groups:
   title: Programming languages
   prompt: Choose your preferred language
   pivots:
-  - id: programming-language-dotnet
-    title: C#
-  - id:  programming-language-go
-    title: Go
-  - id:  programming-language-java
-    title: Java
-  - id:  programming-language-javascript
-    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-go
+    title: Go
 # Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
