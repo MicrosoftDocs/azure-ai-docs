@@ -1,6 +1,6 @@
 ---
 title: Include file
-description: Include file
+description: Include file to standardize some pre-reqs for the Foundry Control Plane articles.
 author: s-polly
 ms.author: scottpolly   
 ms.service: azure-ai-foundry
