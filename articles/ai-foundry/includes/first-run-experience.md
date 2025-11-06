@@ -10,7 +10,7 @@ ms.date: 08/27/2025
 ms.custom: include
 ---
 
-## Create an agent 
+## Create resources
 
 
 ::: moniker range="foundry-classic"
@@ -35,20 +35,18 @@ Now that you have an agent, you can interact with it either in code or in the po
 ::: moniker-end
 
 ::: moniker range="foundry"
-Create an agent in the Azure AI Foundry portal.  Once you create the agent, you'll learn how to interact with it either in code or in the portal.
+You'll start in Azure AI Foundry portal to create a project and deploy a model. This quickstart uses the **gpt-4-1-mini** model, but you can use any supported model. 
 
 1. [!INCLUDE [version-sign-in](version-sign-in.md)]
-1. Projects help organize your work. The project you'e working on appears in the upper-left corner. This is where you'll add your agent. 
+1. Projects help organize your work. The project you're working on appears in the upper-left corner. 
 1. To create a new project, select the project name, then  **Create new project**.
 1. Give your project a name and select **Create project**.
-1. Now add an agent to your project.  Select **Build** in the middle of the page, then **Agent**.
+1. Now deploy a model into the project:
+    1. Select **Discover** in the upper-right navigation.
+    1. Select **Models**.
+    1. Search for the **gpt-4.1-mini** model.
+    1. Select **Deploy** > **Quick deploy** to add it to your project.
 
-    :::image type="content" source="../default/media/quickstarts/build-agent.png" alt-text="Screenshot showing how to start building an agent in the Azure AI Foundry portal.":::
-
-1. Give your agent a name, then select **Create**.
-1. A model is automatically deployed to your project when the agent is created.
-
-You're now ready to interact with this agent.
-
+You're now ready to move on to interacting with your model and creating an agent.
 
 ::: moniker-end

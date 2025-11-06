@@ -1,6 +1,8 @@
 items:
 - name: AI Foundry tool catalog (preview)
   href: ../../agents/concepts/tool-catalog.md
+- name: Create a private tool catalog (preview)
+  href: ../../agents/how-to/private-tool-catalog.md
 - name: Agent2Agent (A2A) tool
   href: ../../agents/how-to/tools/agent-to-agent.md
 - name: Agent2Agent (A2A) authentication
@@ -27,18 +29,14 @@ items:
   href: ../../agents/concepts/vector-stores.md
 - name: Function calling
   href: ../../../agents/how-to/tools/function-calling.md
-- name: Grounding with Bing Search
+- name: Grounding with Bing tools
   href: ../../agents/concepts/bing-tools.md
 - name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
-- name: Model Context Protocol(MCP) servers
-  items:
-    - name: Create a private tool catalog (preview)
-      href: ../../agents/how-to/private-tool-catalog.md
-    - name: MCP tool
-      href: ../../../agents/how-to/tools/model-context-protocol.md
-    - name: MCP authentication
-      href: ../../agents/how-to/mcp-authentication.md
+- name: Model Context Protocol (MCP)
+  href: ../../../agents/how-to/tools/model-context-protocol.md
+- name: MCP authentication
+  href: ../../agents/how-to/mcp-authentication.md
 - name: OpenAPI defined tools
   href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint (preview)

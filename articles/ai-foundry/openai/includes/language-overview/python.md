@@ -44,12 +44,13 @@ Endpoints and API keys for your resources can be retrieved from the [Azure porta
 
 ::: moniker range="foundry"
 
-Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs):
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)] portal:
 
 - Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
-- Sign in to [AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) > select your resource.
+- Sign in to [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)] portal > select your resource.
 
 ::: moniker-end
+
 
 # [Microsoft Entra ID](#tab/python-entra)
 
@@ -83,7 +84,7 @@ client = OpenAI(
 
 # [Environment Variables](#tab/python-env)
 
-If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they are automatically used by the client with no further configuration required.
+If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they're automatically used by the client with no further configuration required.
 
 | Environment Variable | Value |
 |----------------|-------------|
@@ -98,7 +99,7 @@ client = OpenAI()
 
 # [Response](#tab/python-output)
 
-There is no output for client instantiation.
+There's no output for client instantiation.
 
 ---
 
@@ -824,7 +825,7 @@ print(completion.model_dump_json(indent=2))
 
 # [Microsoft Entra ID](#tab/python-entra)
 
-Embeddings currently do not support Microsoft Entra ID with Azure OpenAI and the v1 API.
+Embeddings currently don't support Microsoft Entra ID with Azure OpenAI and the v1 API.
 
 # [API Key](#tab/python-key)
 
@@ -910,7 +911,7 @@ except openai.APIStatusError as e:
 
 ### Request IDs
 
-To retrieve the ID of your request you can use the `_request_id` property which corresponds to the `x-request-id` response header.
+To retrieve the ID of your request, you can use the `_request_id` property, which corresponds to the `x-request-id` response header.
 
 ```python
 print(completion._request_id) 

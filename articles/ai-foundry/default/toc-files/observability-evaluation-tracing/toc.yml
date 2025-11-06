@@ -19,11 +19,11 @@ items:
      href: ../../../concepts/evaluation-evaluators/custom-evaluators.md
 - name: Batch evaluations
   items:
+   - name: Run evaluations in the cloud (Azure AI Foundry SDK)
+     href: ../../../how-to/develop/cloud-evaluation.md
    - name: Run evaluations locally (Azure AI Evaluation SDK)
      href: ../../../how-to/develop/evaluate-sdk.md
      displayName: code,accuracy,metrics
-   - name: Run evaluations in the cloud (Azure AI Foundry SDK)
-     href: ../../../how-to/develop/cloud-evaluation.md
    - name: Run agent evaluations locally (Azure AI Evaluation SDK)
      href: ../../../how-to/develop/agent-evaluate-sdk.md
    - name: Run evaluations from the portal
@@ -33,6 +33,10 @@ items:
      displayName: accuracy,metrics
    - name: Create and configure storage account for evaluation
      href: ../../../how-to/evaluations-storage-account.md
+   - name: Human evaluation for agents
+     href: ../../how-to/human-evaluation.md
+   - name: Evaluation Cluster Analysis
+     href: ../../how-to/observability-optimization-cluster-analysis.md
 - name: AI red teaming
   items:
    - name: AI red teaming agent overview
@@ -47,6 +51,8 @@ items:
      href: ../../../how-to/continuous-evaluation-agents.md
    - name: Monitor model deployments
      href: ../../../foundry-models/how-to/monitor-models.md
+   - name: Monitoring dashboard insights with Foundry agent
+     href: ../../how-to/observability-optimization-dashboard.md
 - name: Tracing
   items:
    - name: Trace agent overview

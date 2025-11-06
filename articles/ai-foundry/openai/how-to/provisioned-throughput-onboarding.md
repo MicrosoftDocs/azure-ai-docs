@@ -74,7 +74,7 @@ You can find details about quota for provisioned deployments in the [Azure AI Fo
 
 ::: moniker range="foundry"
 
-You can find details about quota for provisioned deployments in the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) **Operate** section > **Quota** pane.
+You can find details about quota for provisioned deployments in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal **Operate** section > **Quota** pane.
 
 ::: moniker-end
 
@@ -119,7 +119,7 @@ Use these steps to delete a provisioned deployment to avoid unwanted charges.
 
 ::: moniker range="foundry"
 
-1. Delete the deployment in the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
+1. Delete the deployment in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal.
 1. If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
 1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to manage reservations. In the Azure portal, you can purchase, cancel, or exchange reservations to align with current deployments.
 
@@ -214,7 +214,7 @@ If more quotas are required, you also need to request quota via the link in the 
 
 ::: moniker range="foundry"
 
-If more quotas are required, you also need to request quota via the link in the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) **Operate** section > **Quota** pane. The form allows the customer to request an increase in the specified PTU quota for a given region. The customer receives an email at the included address once the request is approved, typically within two business days.
+If more quotas are required, you also need to request quota via the link in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] **Operate** section > **Quota** pane. The form allows the customer to request an increase in the specified PTU quota for a given region. The customer receives an email at the included address once the request is approved, typically within two business days.
 
 ::: moniker-end 
 
