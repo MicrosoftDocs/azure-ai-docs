@@ -59,7 +59,7 @@ The **Overview** pane displays common metrics and insights for all registered ag
 
 ## View all assets
 
-:::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of Azure AI Foundry Agents tab showing all registered agents with top-level metrics." lightbox="media/monitoring-across-fleet/agents-tab-overview-metrics.png":::You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
+:::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of Azure AI Foundry Agents tab showing all registered agents with top-level metrics." lightbox="media/monitoring-across-fleet/agents-tab-overview-metrics.png":::
 
 You can also view all your assets under a specific project along with top-level metrics from AI Foundry.
 
@@ -78,6 +78,5 @@ The **Agents** tab displays all registered agents in your selected project. From
 
 
 ## Related content
-- [Register an agent]()
-- [Configure agent policies]()
-- [Troubleshoot agent issues]()
+- [Register an agent](register-custom-agent.md)
+
