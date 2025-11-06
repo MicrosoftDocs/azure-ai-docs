@@ -360,6 +360,8 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             self.conversation_started = False
             # Track whether a response is currently active for minimal barge-in cancel logic
             self._active_response = False
+            # Track whether server signalled response completion (avoid futile cancels)
+            self._response_api_done = False
     
         async def start(self):
             """Start the voice assistant session."""
@@ -502,15 +504,14 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 # skip queued audio
                 ap.skip_pending_audio()
     
-                # Minimal, idempotent barge-in cancellation
-                if self._active_response:
+                # Only attempt cancel if server response not already done
+                if self._active_response and not self._response_api_done:
                     try:
                         await conn.response.cancel()
-                        logger.debug("Active response cancelled due to barge-in")
+                        logger.debug("Active in-progress response cancelled due to barge-in")
                     except Exception as e:
-                        # Suppress noisy 'no active response' errors only
                         if "no active response" in str(e).lower():
-                            logger.debug("Cancel ignored (already inactive): %s", e)
+                            logger.debug("Benign: cancel ignored (already done)")
                         else:
                             logger.warning("Cancel failed: %s", e)
                     finally:
@@ -523,6 +524,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             elif event.type == ServerEventType.RESPONSE_CREATED:
                 logger.info("🤖 Assistant response created")
                 self._active_response = True
+                self._response_api_done = False
     
             elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
                 # Stream audio response to speakers
@@ -536,10 +538,16 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             elif event.type == ServerEventType.RESPONSE_DONE:
                 logger.info("✅ Response complete")
                 self._active_response = False
+                self._response_api_done = True
     
             elif event.type == ServerEventType.ERROR:
-                logger.error("❌ VoiceLive error: %s", event.error.message)
-                print(f"Error: {event.error.message}")
+                msg = event.error.message
+                if "Cancellation failed: no active response" in msg:
+                    # Benign race when barge-in occurs after server completion while playback drains
+                    logger.debug("(benign) %s", msg)
+                else:
+                    logger.error("❌ VoiceLive error: %s", msg)
+                    print(f"Error: {msg}")
     
             elif event.type == ServerEventType.CONVERSATION_ITEM_CREATED:
                 logger.debug("Conversation item created: %s", event.item.id)
