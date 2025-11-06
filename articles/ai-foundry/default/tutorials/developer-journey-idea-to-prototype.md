@@ -486,12 +486,12 @@ using the Azure AI Agents SDK v2.
 
 📊 SCENARIO 1/3: 📋 Company Policy Question (SharePoint Only)
 --------------------------------------------------
-❓ QUESTION: What is Contoso's remote work policy?
+❓ QUESTION: What is Contoso''s remote work policy?
 🎯 BUSINESS CONTEXT: Employee needs to understand company-specific remote work requirements
 🎓 LEARNING POINT: SharePoint tool retrieves internal company policies
 --------------------------------------------------
 🤖 ASSISTANT RESPONSE:
-✅ SUCCESS: Contoso's remote work policy, effective January 2024, outlines the following key points:
+✅ SUCCESS: Contoso''s remote work policy, effective January 2024, outlines the following key points:
 
 ### Overview
 Contoso Corp supports flexible work arrangements, including remote work, to enhance employee productivity and work-life balance.
@@ -519,12 +519,12 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 
 📊 SCENARIO 3/3: 🔄 Combined Implementation Question (SharePoint + MCP)
 --------------------------------------------------
-❓ QUESTION: Based on our company's remote work security policy, how should I configure my Azure environment to comply? Please include links to Microsoft documentation showing how to implement each requirement.
+❓ QUESTION: Based on our company''s remote work security policy, how should I configure my Azure environment to comply? Please include links to Microsoft documentation showing how to implement each requirement.
 🎯 BUSINESS CONTEXT: Need to map company policy to technical implementation with official guidance
 🎓 LEARNING POINT: Both tools work together: SharePoint for policy + MCP for implementation docs
 --------------------------------------------------
 🤖 ASSISTANT RESPONSE:
-✅ SUCCESS: To configure your Azure environment in compliance with Contoso Corp's remote work security policy, you need to focus on several key areas, including enabling Multi-Factor Authentication (MFA), utilizing Azure Security Center, and implementing proper access management. Below are specific steps and li...
+✅ SUCCESS: To configure your Azure environment in compliance with Contoso Corp''s remote work security policy, you need to focus on several key areas, including enabling Multi-Factor Authentication (MFA), utilizing Azure Security Center, and implementing proper access management. Below are specific steps and li...
    📏 Full response: 3436 characters
 📈 STATUS: completed
 --------------------------------------------------
@@ -642,11 +642,11 @@ python evaluate.py
 ======================================================================
 
 📝 Question 1/12 [SHAREPOINT_ONLY]
-   What is Contoso's remote work policy?...
+   What is Contoso''s remote work policy?...
 ✅ Status: completed | Tool check: Contoso-specific content: True
 
 📝 Question 2/12 [SHAREPOINT_ONLY]
-   What are Contoso's security protocols for remote employees?...
+   What are Contoso''s security protocols for remote employees?...
 ✅ Status: completed | Tool check: Contoso-specific content: True
 
 📝 Question 3/12 [SHAREPOINT_ONLY]
@@ -666,7 +666,7 @@ python evaluate.py
 ✅ Status: completed | Tool check: Microsoft Learn links: True
 
 📝 Question 7/12 [MCP_ONLY]
-   How do I implement data loss prevention in Microsoft 365 according to Microsoft'...
+   How do I implement data loss prevention in Microsoft 365 according to Microsoft''...
 ✅ Status: completed | Tool check: Microsoft Learn links: True
 
 📝 Question 8/12 [MCP_ONLY]
@@ -674,19 +674,19 @@ python evaluate.py
 ✅ Status: completed | Tool check: Microsoft Learn links: True
 
 📝 Question 9/12 [HYBRID]
-   Based on Contoso's remote work policy requirements, how should I implement Azure...
+   Based on Contoso''s remote work policy requirements, how should I implement Azure...
 ✅ Status: completed | Tool check: Contoso content: True, Learn links: True
 
 📝 Question 10/12 [HYBRID]
-   What Azure services do I need to configure to meet Contoso's data governance req...
+   What Azure services do I need to configure to meet Contoso''s data governance req...
 ✅ Status: completed | Tool check: Contoso content: True, Learn links: True
 
 📝 Question 11/12 [HYBRID]
-   How do I configure Microsoft Teams to comply with Contoso's collaboration standa...
+   How do I configure Microsoft Teams to comply with Contoso''s collaboration standa...
 ✅ Status: completed | Tool check: Contoso content: True, Learn links: True
 
 📝 Question 12/12 [HYBRID]
-   What Azure security services should I implement to align with Contoso's incident...
+   What Azure security services should I implement to align with Contoso''s incident...
 ✅ Status: completed | Tool check: Contoso content: True, Learn links: True
 
 ======================================================================
