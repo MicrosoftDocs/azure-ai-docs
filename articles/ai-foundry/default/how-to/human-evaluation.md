@@ -21,6 +21,7 @@ Before you begin:
 
 - You have access to the **Azure AI Foundry portal**.
 - You have one or more agents built.
+- You have configured Application Insights for your project
 
 ## Create a human evaluation template
 
@@ -44,7 +45,7 @@ You can create multiple evaluation templates based on your assessment needs. The
 2. You can delete a template using the **Delete** button in the template table.  
    > [!NOTE]
    > > Once deleted, the template and its associated evaluation results cannot be retrieved from the UI.  
-3. To set a template as active, select **Set as active** in the template table. Only one template can be active at a time. Activating a new template automatically deactivates the previous one. You can also deactivate the current active template to stop capturing human evaluation results by selecting **Set as inactive**.
+3. To set a template as active, select **Set as active** in the template table. Only one template can be active at any given time. Activating a new template automatically deactivates the previous one. You can also deactivate the current active template to stop capturing human evaluation results by selecting **Set as inactive**.
 
 ## Conduct Human Evaluation
 
@@ -55,7 +56,7 @@ Once the evaluation template is configured and set as active for the target agen
 
 ### Steps to Conduct Human Evaluation
 
-1. Select **Preview agent as web app** in the top-right corner of the agent builder experience to open the agent in a web app interface.  
+1. Select **Preview** in the top-right corner of the agent builder experience to open the agent in a web app interface.  
 2. Start testing the agent by entering input and selecting **Send** to trigger an agent run.  
 3. After the agent responds, select the **Feedback** button to provide human evaluation for that response.  
    - A side panel appears, displaying the evaluation template configured by the agent builder.  
@@ -80,6 +81,9 @@ Once human reviewers have completed their evaluations, agent builders can previe
    - Questions from the evaluation template  
    - Reviewer answers  
 4. To download all evaluation results for a template, select **Download Results** after selecting the template. The results are exported as a CSV file containing all information from the JSON view for each evaluation instance.
+
+> > [!NOTE]
+> Evaluation data is stored in Application Insights and will follow its retention policy. Download and persist the data elsewhere if you need to keep it long term.
 
 ## Related content
 
