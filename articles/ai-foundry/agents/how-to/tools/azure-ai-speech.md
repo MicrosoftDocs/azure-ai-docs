@@ -21,13 +21,13 @@ The Azure AI Speech tool allows agents to interact with users through speech. By
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in the `westus2` region. Your Azure AI Foundry resource includes speech capabilities and will be used by the Speech MCP server
+- An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a supported region. Your Azure AI Foundry resource includes speech capabilities and will be used by the Speech MCP server
 
 ## Set up storage
 
-You need an Azure Storage location to store input audio files for speech-to-text processing and receive output audio files from text-to-speech processing. [Create an Azure blob storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) to store your audio files.
+You need an Azure Storage account to store input audio files for speech-to-text processing and receive output audio files from text-to-speech processing. [Create an Azure blob storage account](/azure/storage/common/storage-account-create?tabs=azure-portal).
 
-Generate a SAS URL for your storage container, with read and write permissions. Save it to a secure temporary location.
+Create one or more blob containers to store the input and output audio files.
 
 ## Create an agent
 
@@ -45,7 +45,7 @@ Generate a SAS URL for your storage container, with read and write permissions. 
 
     - Parameters -> `foundry-resource-name`: Enter the name of the Azure AI Foundry resource you created in the Prerequisites section. 
     - Authorization -> `Bearer` (API Key): Enter the API key from your Azure AI Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure portal. 
-    - Authorization -> `X-Blob-Container-Url`:  Enter the SAS URL for your Azure Blob Storage container that you generated previously.
+    - Authorization -> `X-Blob-Container-Url`: Generate a SAS URL for your storage container, with read and write permissions, and enter it here. This location is where the service will store audio output files.
     
 1. Select **Connect** to add the remote Speech MCP server as a tool for your agent.
 
