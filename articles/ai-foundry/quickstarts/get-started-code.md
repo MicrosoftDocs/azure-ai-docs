@@ -42,9 +42,11 @@ In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md
 In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to:
 
 > [!div class="checklist"]
-> * Create a project
-> * Create an agent
+> * Create a project 
+> * Deploy a model
 > * Get ready to code - install necessary packages and authenticate
+> * Chat with a model
+> * Create an agent
 > * Chat with an agent
 ::: moniker-end
 
@@ -57,8 +59,6 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 
 ## Prerequisites
-
-
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
