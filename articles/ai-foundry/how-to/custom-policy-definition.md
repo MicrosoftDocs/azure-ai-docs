@@ -5,8 +5,8 @@ description: "Learn how to use custom Azure policies to enable self-service reso
 ms.author: deeikele
 author: compliance
 ms.service: azure-ai-foundry
-ms.topic: how-to #Don't change
-ms.date: 10/30/2025
+ms.topic: how-to
+ms.date: 10/29/2025
 ms.reviewer: jburchel
 reviewer: jonburchel
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Learn how to use custom Azure policies to enable teams to self-manage Azure AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements. (Source: foundry-branding.instructions.md)
+Learn how to use custom Azure policies to enable teams to self-manage Azure AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
 
 Custom policies allow you to:
 
@@ -34,9 +34,9 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
 
 ## Steps to create a custom policy
 
-1. **Open Azure Policy in the portal**
+1. **Open policy in the Azure portal**
    - Go to [Azure portal](https://portal.azure.com).
-   - Search for your policy and select it.
+   - Search for _Policy_ and select it.
 
 2. **Define a new policy**
    - In the **Authoring** section, select **Definitions** > **+ Policy definition**.
@@ -47,9 +47,9 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
      - **Category**: Use an existing category or create one such as `AI Governance`.
 
 3. **Add policy rule**
-   - Enter the rule in JSON format. For example, to allow only approved connection categories:
+   - Enter the rule in [JSON format](/azure/governance/policy/concepts/definition-structure-policy-rule). For example, to allow only approved connection categories:
 
-     :::code language="json" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json":::
+     :::code language="json" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json"
 
 4. **Assign the policy**
    - After saving, assign the policy to the desired scope (subscription, resource group, or hub).

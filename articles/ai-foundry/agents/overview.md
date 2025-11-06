@@ -1,4 +1,4 @@
-﻿---
+---
 title: What is Azure AI Foundry Agent Service?
 titleSuffix: Azure AI Foundry
 description: Learn how to create agents that apply advanced language models for workflow automation.
@@ -35,13 +35,17 @@ By abstracting away infrastructure complexity and enforcing trust and safety by 
 
 ## What is an AI Agent?
 
-Agents make decisions, invoke tools, and participate in workflows. Sometimes independently, sometimes in collaboration with other agents or humans. What sets agents apart from assistants is autonomy: assistants support people, agents complete goals. They are foundational to real process automation.
+Agents make decisions, invoke tools, and participate in workflows. Sometimes independently, sometimes in collaboration with other agents or humans. They are foundational to real process automation.
 
 Agents created using AI Foundry are not monoliths. They are composable units. Each with a specific role, powered by the right model, and equipped with the right tools, and deployed within a secure, observable, and governable runtime.
 
 Each agent has three core components:
 - **Model (LLM)**: Powers reasoning and language understanding
-- **Instructions**: Define the agent’s goals, behavior, and constraints
+- **Instructions**: Define the agent’s goals, behavior, and constraints. These instructions can be of the following types
+  - Declarative
+    - Prompt based: Declaratively defined single agent that combines model configuration, instruction, tools, and natural language prompts to drive behavior.
+    - Workflow: An agentic workflow which can be expressed as a YAML or via code to orchestrate multiple agents together, or to trigger an action on certain criteria.
+  - Hosted: Containerized agents created and deployed in code that are hosted by Foundry.
 - **Tools**: Let the agent retrieve knowledge or take action
 
 ![Graphic that shows What is an AI Agent?.](media\what-is-an-agent.png)

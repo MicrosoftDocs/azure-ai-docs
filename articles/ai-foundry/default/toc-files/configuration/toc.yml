@@ -3,24 +3,17 @@ items:
   href: ../../../concepts/planning.md
 - name: Create a project
   href: ../../../how-to/create-projects.md
-- name: Choose a resource
-  href: ../../../concepts/resource-types.md
+- name: Manage projects and resources
+  href: ../../../concepts/management-center.md
 - name: Create resources using Bicep template
   href: ../../../how-to/create-resource-template.md
 - name: Create resources using Terraform
   href: ../../../how-to/create-resource-terraform.md
-- name: Create a connection
-  href: ../../../how-to/connections-add.md
-- name: Status dashboard
-  href: ../../../azure-ai-foundry-status-dashboard-documentation.md
-- name: Feature availability by region
-  href: ../../../reference/region-support.md
-- name: Region support
-  href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
+
 - name: Foundry Models deployment offers
   items:
-  - name: Standard deployment offer
-    href:
+  - name: Deployment offers and types
+    href: ../../../foundry-models/concepts/deployment-types.md
   - name: Provisioned deployment offer
     items:
       - name: Provisioned Throughput offering (PTU)
@@ -31,13 +24,14 @@ items:
         href: ../../../openai/how-to/provisioned-get-started.md
       - name: Provisioned spillover
         href: ../../../openai/how-to/spillover-traffic-management.md
-      - name: Azure OpenAI PTU updates
-        href: ../../../openai/concepts/provisioned-migration.md
-  - name: Priority processing deployment offer
-    href:
-  - name: Batch deployment offer
-    href:
+
 - name: Manage quotas for AI Foundry resources
   href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
+- name: Create a connection
+  href: ../../../how-to/connections-add.md
+- name: Connect to your own storage in Foundry
+  href: ../../../how-to/bring-your-own-azure-storage-foundry.md
+- name: Connect to your own storage for Speech/Language
+  href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md  

@@ -20,7 +20,7 @@ ms.reviewer: meerakurup
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!NOTE]
-> The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+> The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md?view=foundry-classic#project-types).
 
 An [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
@@ -412,7 +412,7 @@ To work with a storage account with disabled shared-key access, you need to gran
 
 | Scenario | Microsoft Entra ID | Required roles | Notes |
 | ----- | ----- | ----- | ----- |
-| Azure AI Speech | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
+| Azure Speech in Foundry Tools | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
 | Models as a service | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when you provision the hub. </br>Don't manually change this role assignment. |
 | Azure AI Search | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when you provision the hub. </br>Don't manually change this role assignment. |
 | Fine-tuning of open-source software models | User-assigned managed identity | Storage Blob Data Contributor | |

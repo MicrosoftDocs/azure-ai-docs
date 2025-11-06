@@ -1081,16 +1081,16 @@ groups:
   title: Programming languages
   prompt: Choose your preferred language
   pivots:
-  - id: programming-language-dotnet
-    title: C#
-  - id:  programming-language-go
-    title: Go
-  - id:  programming-language-java
-    title: Java
-  - id:  programming-language-javascript
-    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-go
+    title: Go
 # Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
@@ -1243,6 +1243,24 @@ groups:
     title: JavaScript
   - id: java
     title: Java 
+  - id: rest-api
+    title: REST API
+# owner: aahi
+- id: selection-web-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: rest-api
+    title: REST API
+# owner: aahi
+- id: selection-image-generation
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
   - id: rest-api
     title: REST API
 - id: selection-deep-research

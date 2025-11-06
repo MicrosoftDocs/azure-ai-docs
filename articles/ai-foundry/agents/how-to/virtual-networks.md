@@ -11,7 +11,7 @@ ms.date: 10/21/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, references_regions
 monikerRange: 'foundry-classic || foundry'
 ---
 
@@ -48,6 +48,32 @@ For customers without an existing virtual network, the Standard Setup with Priva
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 - **Private MCP Server**: using private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
+- **Grounding with Bing Search**: Only the follwing regions are supported:
+  - West Europe
+  - Canada East
+  - Switzerland North
+  - Spain Central
+  - UAE North
+  - Korea Central
+  - Poland Central
+  - Southeast Asia
+  - West US
+  - West US 2
+  - West US 3
+  - East US
+  - East US 2
+  - Central US
+  - South India
+  - Japan East
+  - UK South
+  - France Central
+  - Norway East
+  - Australia East
+  - Canada Central
+  - Sweden Central
+  - South Africa North
+  - Italy North
+  - Brazil South
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
