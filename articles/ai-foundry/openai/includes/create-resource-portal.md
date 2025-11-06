@@ -100,11 +100,11 @@ To deploy a model, follow these steps:
 1. Find and select your resource.
 
     > [!IMPORTANT]
-    > At this step you're offered to upgrade your Azure OpenAI resource to Azure AI Foundry. See comparison between the two resource types and details on resource upgrade and rollback at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next**.
+    > At this step you might be offered to upgrade your Azure OpenAI resource to Azure AI Foundry. See comparison between the two resource types and details on resource upgrade and rollback at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next**.
     > 
-    > See additional information about Azure AI Foundry in [this article](../../../ai-services/multi-service-resource.md).
+    > See additional information about Azure AI Foundry resource in [this article](../../../ai-services/multi-service-resource.md).
 
-1. Select **Deployments** from under **Shared resources** in the left pane. In case you upgraded to Azure AI Foundry in the previous step, select **Models + endpoints** from under **My assets** in the left pane.
+1. Select **Deployments** from **Shared resources** section in the left pane. In case you upgraded to Azure AI Foundry in the previous step, select **Models + endpoints** from **My assets** section in the left pane.
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
 1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../concepts/models.md#model-summary-table-and-region-availability).
 1. In the next window configure the following fields:
@@ -116,7 +116,7 @@ To deploy a model, follow these steps:
    | **Deployment details** (Optional) | You can set optional advanced settings, as needed for your resource. <br> - For the **Content Filter**, assign a content filter to your deployment.<br> - For the **Tokens per Minute Rate Limit**, adjust the Tokens per Minute (TPM) to set the effective rate limit for your deployment. You can modify this value at any time by using the [**Quotas**](../how-to/quota.md) menu. [**Dynamic Quota**](../how-to/dynamic-quota.md) allows you to take advantage of more quota when extra capacity is available. |
 
     > [!IMPORTANT]
-    > When you access the model via the API, you need to refer to the deployment name rather than the underlying model name in API calls, which is one of the [key differences](../how-to/switching-endpoints.yml) between OpenAI and Azure OpenAI. OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter. In our docs, we often have examples where deployment names are represented as identical to model names to help indicate which model works with a particular API endpoint. Ultimately your deployment names can follow whatever naming convention is best for your use case.
+    > When you access the model via the API, you need to refer to the deployment name rather than the underlying model name in API calls, which is one of the [key differences](../how-to/switching-endpoints.yml) between OpenAI and Azure OpenAI. OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter. In our documentation, we often have examples where deployment names are represented as identical to model names to help indicate which model works with a particular API endpoint. Ultimately your deployment names can follow whatever naming convention is best for your use case.
 
 1. Select **Deploy**.
 1. Deployment **Details** shows all the information of your new deployment. hen the deployment completes, your model **Provisioning** state changes to _Succeeded_.
