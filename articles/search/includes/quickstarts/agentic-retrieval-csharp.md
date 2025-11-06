@@ -36,11 +36,13 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 To set up the console application for this quickstart:
 
-1. In Visual Studio Code, open the folder where you want to save your files.
+1. Create a folder named `quickstart-agentic-retrieval` to contain the application.
+
+1. Open the folder in Visual Studio Code.
 
 1. Select **Terminal** > **New Terminal**, and then run the following command to create a console application.
 
-    ```powershell
+    ```console
     dotnet new console
     ```
 
@@ -72,7 +74,7 @@ To set up the console application for this quickstart:
 
 To create and run the agentic retrieval pipeline:
 
-1. In the same folder in Visual Studio Code, create a file named `.env`.
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
 
 1. Add the following environment variables to the `.env` file.
 

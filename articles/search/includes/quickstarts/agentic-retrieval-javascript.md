@@ -32,13 +32,13 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 1. Create a new folder `quickstart-agentic-retrieval` to contain the application and open Visual Studio Code in that folder with the following command:
 
-    ```shell
+    ```console
     mkdir quickstart-agentic-retrieval && cd quickstart-agentic-retrieval
     ```
 
 1. Create the `package.json` with the following command:
 
-    ```shell
+    ```console
     npm init -y
     ```
 
@@ -69,7 +69,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 1. Create a new file named `.env` in the `quickstart-agentic-retrieval` folder and add the following environment variables:
 
-    ```plaintext
+    ```
     AZURE_OPENAI_ENDPOINT=https://<your-ai-foundry-resource-name>.openai.azure.com/
     AZURE_OPENAI_GPT_DEPLOYMENT=gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-large
@@ -562,13 +562,13 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 1. Sign in to Azure with the following command:
 
-    ```shell
+    ```console
     az login
     ```
 
 1. Run the JavaScript code with the following command:
 
-    ```shell
+    ```console
     node index.js
     ```
 
@@ -576,7 +576,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 The output of the application should look similar to the following:
 
-```plaintext
+```
 [dotenv@17.2.0] injecting env (0) from .env (tip: ⚙️  override existing env vars with { override: true })
 🚀 Starting Azure AI Search agentic retrieval quickstart...
 

@@ -38,7 +38,9 @@ You configured role-based access to interact with Azure AI Search and Azure Open
 
 To connect from your local system:
 
-1. In Visual Studio Code, open the folder where you want to save your files.
+1. Create a folder named `quickstart-agentic-retrieval`.
+
+1. Open the folder in Visual Studio Code.
 
 1. Select **Terminal** > **New Terminal**.
 
@@ -54,15 +56,13 @@ To connect from your local system:
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
-1. Make a note of the token for use in the next section.
-
 ## Run the code
 
 To create and run the agentic retrieval pipeline:
 
-1. In the same folder in Visual Studio Code, create a file named `agentic-retrieval.rest`.
+1. Create a file named `agentic-retrieval.rest` in the `quickstart-agentic-retrieval` folder.
 
-1. Paste the following variables and requests into the file.
+1. Add the following variables and requests to the file.
 
     ```HTTP
     @aoai-embedding-model = text-embedding-3-large

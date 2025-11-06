@@ -38,7 +38,9 @@ You configured role-based access to interact with Azure AI Search and Azure Open
 
 To connect from your local system:
 
-1. In Visual Studio Code, open the folder where you want to save your files.
+1. Create a folder named `quickstart-agentic-retrieval`.
+
+1. Open the folder in Visual Studio Code.
 
 1. Select **Terminal** > **New Terminal**.
 
@@ -58,9 +60,9 @@ To create and run the agentic retrieval pipeline:
     pip install azure-identity azure-ai-evaluation openai aiohttp requests azure-search-documents --pre
     ```
 
-1. In the same folder in Visual Studio Code, create a file named `agentic-retrieval.py`.
+1. Create a file named `agentic-retrieval.py` in the `quickstart-agentic-retrieval` folder.
 
-1. Paste the following code into the file.
+1. Add the following code to the file.
 
     ```python
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
