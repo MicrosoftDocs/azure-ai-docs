@@ -25,7 +25,7 @@ Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 + An [Azure Blob Storage](/azure/storage/common/storage-account-create) or [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) account.
 

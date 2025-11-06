@@ -127,20 +127,20 @@ The following video provides an overview of the capabilities.
 
 > [!VIDEO https://www.youtube.com/embed/yOf0WfVd_V0]
 
-
 ## How semantic ranker uses synonym maps
 
 If you have already enabled support for [synonym maps associated to a field](search-synonyms.md#assign-synonyms-to-fields) in your search index, and that field is included in the [semantic ranker configuration](semantic-how-to-configure.md), the semantic ranker will automatically apply the configured synonyms during the reranking process.
 
-
 ## Availability and pricing
 
-Semantic ranker is available on search services at the Basic and higher tiers, subject to [regional availability](search-region-support.md).
+Semantic ranker is available [in selected regions](search-region-support.md). It's used as a standalone feature and as a built-in component of [agentic retrieval](agentic-retrieval-overview.md).
 
-When you configure semantic ranker, choose a pricing plan for the feature:
+You can disable semantic ranker for your search service, use it on a limited basis for free, or use it more expansively with pay-as-you-go billing:
 
-* At lower query volumes (under 1,000 monthly), semantic ranking is free.
-* At higher query volumes, choose the standard pricing plan.
+| Plan | Description |
+|------|-------------|
+| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic retrieval tokens per month. Higher tiers can also use the free plan. |
+| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you are charged for each additional 1,000 requests. After the first 50 million agentic retrieval tokens per month, you are charged a nominal fee for each one million agentic retrieval tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
 
 The [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/) shows you the billing rate for different currencies and intervals.
 

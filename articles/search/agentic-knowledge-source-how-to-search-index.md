@@ -18,7 +18,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). 
 
 + A search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge base.
 
