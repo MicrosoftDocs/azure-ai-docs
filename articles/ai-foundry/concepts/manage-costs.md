@@ -256,6 +256,9 @@ Here's an example of how to monitor costs in the Azure portal. The costs are use
 
    :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
 
+> [!TIP]
+> From the resource group, navigate to an Azure AI Foundry resource. Select **Cost analysis** from there to see costs for all projects in the resource.  If you have tags defined for the resource, you can use them to filter and/or group costs.
+
 ### Understand cost breakdown by meter
 
 To understand the breakdown of the cost, use the **Cost Analysis** tool in Azure portal. Follow these steps to understand the cost of inference:
