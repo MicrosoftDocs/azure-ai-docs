@@ -32,5 +32,6 @@ items:
         href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
   - name: Codex
     href: ../../../openai/how-to/codex.md
-
+  - name:  Upgrade/Switch Models with Ask AI
+    href: ../../how-to/observability-optimization-model-upgrade.md
 

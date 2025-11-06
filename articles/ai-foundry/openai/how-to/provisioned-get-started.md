@@ -56,7 +56,7 @@ You can view the quota available to you in a region by visiting the Quotas pane 
 
 ::: moniker range="foundry"
 
-You can view the quota available to you in a region by visiting the **Quota** pane in the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) **Operate** section. and selecting the desired subscription and region. 
+You can view the quota available to you in a region by visiting the **Quota** pane in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] **Operate** section. and selecting the desired subscription and region. 
 
 ::: moniker-end
 
@@ -75,7 +75,7 @@ Once you have verified your quota, you can create a deployment. Navigate to Azur
 
 ::: moniker range="foundry-classic"
 
-1. Sign into the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 1. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
 1. You can select models by filtering **Direct from Azure** in the model collections filter. Those are models held and served by Azure directly and support provisioned throughput deployment option. 
 1. Select the model that you want to deploy and check the model details in the model card.
@@ -84,7 +84,7 @@ Once you have verified your quota, you can create a deployment. Navigate to Azur
 
 ::: moniker range="foundry"
 
-1. Sign into the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs). 
+1. [!INCLUDE [foundry-sign-in](../../default/includes/foundry-sign-in.md)]
 1. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
 1. You can select models by filtering **Direct from Azure** in the model collections filter. Those are models held and served by Azure directly and support provisioned throughput deployment option. 
 1. Select the model that you want to deploy and check the model details in the model card.
@@ -168,7 +168,7 @@ Things to notice:
 
 Selecting a resource and clicking **Switch resource** will cause the deployment dialog to redisplay using the selected resource. You can then proceed to create your deployment in the new region.
 
-In this event, the wizard in [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs) will direct you to other regions with available quota and capacity to create a deployment of the desired model. If this happens, the deployment dialog will look like this: 
+In this event, the wizard in [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] will direct you to other regions with available quota and capacity to create a deployment of the desired model. If this happens, the deployment dialog will look like this: 
 
 :::image type="content" source="../media/provisioned/deployment-screen-2.png" alt-text="Screenshot of the Azure AI Foundry portal deployment page for a provisioned deployment with no capacity available." lightbox="../media/provisioned/deployment-screen-2.png":::
 
