@@ -11,7 +11,7 @@ author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Evaluation Cluster Analysis (preview)
+# Evaluation cluster analysis (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -50,7 +50,7 @@ Each dot represents a sample from your evaluation dataset. Dots are grouped by s
 - Color: Indicates the cluster assignment (for example, inadequate final answer, incorrect response).
 - Position: Samples closer together share similar characteristics or issues.
 
-### Detail Panel
+### Detail panel
 
 #### Cluster
 
@@ -62,12 +62,12 @@ Selecting a cluster opens a side panel that includes:
 - Description – Automatically generated diagnostic summary explaining the likely cause or characteristic pattern
 - Recommendations –suggested next steps for mitigation or agent improvement.
 
-#### Sub-Cluster
+#### Subcluster
 
 Selecting a subcluster opens a side panel that includes:
 
 - Cluster – Indicates the parent cluster this subcluster belongs to (for example, inadequate_final_answer).
-- Selected Subcluster – The specific subset being examined (for example, invalid_or_missing_api_key).
+- Selected subcluster – The specific subset being examined (for example, invalid_or_missing_api_key).
 - Entry Count – Number of individual samples grouped under this subcluster.
 - Tabs:
   - Analysis – Provides summary statistics, score averages, and qualitative insights (when available).
@@ -84,11 +84,11 @@ Selecting a dot / entry ID opens a side panel that includes:
 - Tabs
 - Conversation – Shows the full text interaction for the selected sample:
   - Context Summary (if applicable) – Any background or preceding context used in the evaluation.
-  - Query – The model prompt or user question (for example, “How do I submit an FSA reimbursement claim?”).
+  - Query – The model prompt or user question (for example, "How do I submit an FSA reimbursement claim?").
   - Response – The model’s generated output for that query.
 - Metadata – Contains additional evaluation information such as scores, evaluators, timestamps, agent IDs, and trace IDs.
 
-### Filter Panel
+### Filter panel
 
 The Filter Panel on the right side of the Cluster Analysis view allows users to customize how clusters are displayed and filtered for targeted inspection.
 
@@ -111,9 +111,9 @@ The Filter Panel on the right side of the Cluster Analysis view allows users to 
 If you want to view the analysis offline, you can select **download** to get a copy of the analysis in csv format and easily view it in other applications.  
 
 > [!NOTE]
-> The analysis result won't be stored. Once you leave the page, the analysis result will be gone.
+> The analysis result isn't stored. Once you leave the page, the analysis result is gone.
 
-## Next Steps
+## Next steps
 
 The Cluster Analysis view gives you a powerful way to move from surface-level evaluation metrics to actionable insights. By combining semantic grouping, diagnostic summaries, and per-sample context, it bridges the gap between quantitative scoring and qualitative understanding.
 

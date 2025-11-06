@@ -11,7 +11,7 @@ author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Upgrade/Switch Models in Azure AI Foundry with Ask AI (preview)
+# Upgrade/switch models in Azure AI Foundry with Ask AI (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -36,15 +36,15 @@ Before you begin:
 You can start a chat with Ask AI from any page in the Foundry portal.
 
 1. Select the **Ask AI** icon at the top of the page.
-1. Select one of the predefined prompts from the **Ask AI** banner under “Build/Model/Monitor” or “Build/Agent/Monitor” page.
+1. Select one of the predefined prompts from the **Ask AI** banner under *Build/Model/Monitor* or *Build/Agent/Monitor* page.
 
-## Get recommendation on model replacement or upgrade
+## Get recommendations on model replacement or upgrade
 
 You can ask Ask AI questions like:
 
-- “Is any model I’m using deprecated?”
-- “Should I upgrade my model?”
-- “What’s new in the latest GPT-5 version?”
+- "Is any model I’m using deprecated?"
+- "Should I upgrade my model?"
+- "What’s new in the latest GPT-5 version?"
 
 It gives responses and different options on what models are recommended. You can either select any of the models to view details in model catalog or go to model deployment page to deploy a model. To learn how to deploy a model, see [Add and configure models to Azure AI Foundry Models](../../foundry-models/how-to/create-model-deployments.md).
 

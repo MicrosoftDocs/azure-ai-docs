@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 ---
  
 
-# Monitoring Dashboard Insights in Azure AI Foundry with Ask AI (preview)
+# Monitoring dashboard insights in Azure AI Foundry with Ask AI (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -40,8 +40,8 @@ You can start a chat with Ask AI from any page in the Foundry portal.
 
 You can ask questions like:
 
-- “Give me a summary of the dashboard”
-- “Analyze the performance trend of my dashboard”
+- "Give me a summary of the dashboard"
+- "Analyze the performance trend of my dashboard"
 
 Or you can select predefined prompt under *Ask AI* banner, and the question passes to the Ask AI.
 
