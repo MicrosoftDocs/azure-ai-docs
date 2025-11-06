@@ -14,8 +14,6 @@ ms.date: 05/20/2024
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - Access permissions to [create Azure OpenAI resources and to deploy models](../how-to/role-based-access-control.md).
 
-
-
 ## Create a resource
 
 The following steps show how to create an Azure OpenAI resource in the Azure portal. 
@@ -95,11 +93,18 @@ As an option, you can add a private endpoint for access to your resource. Select
 
 Before you can generate text or inference, you need to deploy a model. You can select from one of several available models in Azure AI Foundry portal.
 
+> [!IMPORTANT]
+> Azure AI Foundry portal requires Azure AI Foundry rather than Azure OpenAI resource. See comparison between the two resource types at [this page](../../how-to/upgrade-azure-openai.md). To convert your Azure OpenAI resource to Azure AI Foundry, use [this article](../../how-to/upgrade-azure-openai.md). To create a new Azure AI Foundry resource, use [this guide](../../../ai-services/multi-service-resource.md).
+>
+> To deploy a model to Azure OpenAI resource without converting it, see either Azure CLI or PowerShell section of this article.
+
 To deploy a model, follow these steps:
 
 1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+ 
+!!! Create / use project https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/upgrade-azure-openai?tabs=portal
 
-2. Choose the subscription and the Azure OpenAI resource to work with, and select **Use resource**.
+2. Choose the subscription and the Azure OpenAI resource to work with, and select **Use resource**. !!! Upper right corner
 
 3. Under **Management** select **Deployments**.
 

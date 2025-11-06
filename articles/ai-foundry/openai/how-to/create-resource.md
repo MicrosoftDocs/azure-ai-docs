@@ -24,7 +24,10 @@ This article describes how to get started with Azure OpenAI and provides step-by
 - The REST APIs, the Azure CLI, PowerShell, or client libraries
 - Azure Resource Manager (ARM) templates
 
-In this article, you review examples for creating and deploying resources in the Azure portal and with the Azure CLI.
+In this article, you review examples for creating and deploying resources in the Azure portal, with the Azure CLI, and with PowerShell.
+
+> [!IMPORTANT]
+> If you intend to use Azure AI Foundry portal to work with your resource, you would need Azure AI Foundry rather than Azure OpenAI resource. See comparison between the two resource types at [this page](../../how-to/upgrade-azure-openai.md). To create Azure AI Foundry resource, use [this article](../../../ai-services/multi-service-resource.md). Alternately you might create an Azure OpenAI resource and later convert it to Azure AI Foundry as explained in [this article](../../how-to/upgrade-azure-openai.md).
 
 ::: zone pivot="web-portal"
 
