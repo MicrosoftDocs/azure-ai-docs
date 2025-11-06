@@ -93,17 +93,18 @@ As an option, you can add a private endpoint for access to your resource. Select
 
 Before you can generate text or inference, you need to deploy a model. You can select from one of several available models in Azure AI Foundry portal.
 
-> [!IMPORTANT]
-> Azure AI Foundry portal requires Azure AI Foundry rather than Azure OpenAI resource. See comparison between the two resource types at [this page](../../how-to/upgrade-azure-openai.md). To upgrade your Azure OpenAI resource to Azure AI Foundry, use [this article](../../how-to/upgrade-azure-openai.md). To create a new Azure AI Foundry resource, use [this guide](../../../ai-services/multi-service-resource.md).
->
-> To deploy a model to Azure OpenAI resource without upgrading it to Azure AI Foundry, see either Azure CLI or PowerShell section of this article.
-
 To deploy a model, follow these steps:
 
 1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. In **Keep building with Azure AI Foundry** section select **View all resources**.
 1. Find and select your resource.
-1. Select **Models + endpoints** from under **My assets** in the left pane.
+
+    > [!IMPORTANT]
+    > At this step you're offered to upgrade your Azure OpenAI resource to Azure AI Foundry. See comparison between the two resource types at [this page](../../how-to/upgrade-azure-openai.md). Select **Cancel** to proceed without resource type upgrade. Alternately select **Next** to proceed with resource upgrade.
+    > 
+    > See additional information about Azure AI Foundry in [this article](../../../ai-services/multi-service-resource.md).
+
+1. Select **Deployments** from under **Shared resources** in the left pane. In case you upgraded to Azure OpenAI in the previous step, select **Models + endpoints** from under **My assets** in the left pane.
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
 1. Select the desired model and then select **Confirm**. For a list of available models per region, see [Model summary table and region availability](../concepts/models.md#model-summary-table-and-region-availability).
 1. In the next window configure the following fields:
