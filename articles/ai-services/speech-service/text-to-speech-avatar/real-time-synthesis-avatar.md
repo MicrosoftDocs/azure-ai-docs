@@ -79,6 +79,13 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
     "casual-sitting", // Set avatar style here.
 );  
 ```
+Set photo avatar
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "anika", // Set photo avatar character here.
+);
+avatarConfig.photoAvatarBaseModel = "vasa-1"; // Set photo avatar base model here.
+```
 
 ## Set up connection to real-time avatar
 
