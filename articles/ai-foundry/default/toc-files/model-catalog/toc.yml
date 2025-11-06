@@ -7,6 +7,8 @@ items:
     href: ../../../foundry-models/concepts/model-versions.md
   - name: Marketplace configuration for partner models
     href: ../../../foundry-models/how-to/configure-marketplace.md
+  - name: Work with chat models
+    href: ../../../foundry-models/how-to/use-chat-completions.md
   - name: Image and video models
     items:
       - name: Image generation
