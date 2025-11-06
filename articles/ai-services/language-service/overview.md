@@ -6,14 +6,68 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
 # What is Azure AI Language?
 
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.
+Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language remote [MCP server](#azure-language-in-foundry-tools-mcp-server), which can be found in [Azure AI Foundry Tool Catalog](https://aka.ms/FoundryToolCatalog).
 
+## Available tools
+
+### Azure Language in Foundry Tools MCP server 🆕
+
+The Model Context Protocol (MCP) server provides AI agents with standardized endpoints for interacting with Azure Language Foundry Tools, delivering robust, accurate, and compliance-driven natural language processing (NLP) capabilities. Key features and workflows include:
+
+* **Standardized integration**: Enables seamless connectivity between AI agents and Azure Language Foundry Tools through MCP-compliant endpoints.
+* **Precision and explainable NLP outcomes**: Ensures highly accurate language processing with transparent reasoning behind model outputs for improved trust and traceable decision-making.
+* **Compliance-driven processing**: Incorporates mechanisms for Personally Identifiable Information (PII) detection and redaction to meet regulatory requirements.
+* **Automated language detection**: Identifies and processes multiple languages across diverse, multi-source datasets.
+* **Custom question answering**: Provides domain-specific Q&A capabilities tailored to business logic and operational needs.
+* **Extensible architecture**: Facilitates integration of additional NLP features, compliance modules, and advanced language models as requirements evolve.
+
+
+> ***MCP Server Endpoint***
+
+      ```bash
+      https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp
+
+      ```
+
+## Available agents
+
+### Azure Language in Foundry Tools Intent Routing agent 🆕
+
+The Intent Routing agent employs advanced language models to deliver precise intent detection and high-fidelity answering within conversational AI systems. The agent combines deterministic routing logic with controllable answer generation to maximize reliability, transparency, and operational control. Key features and workflows include:
+
+* **CLU intent detection**: Classifies user utterances and extracts entities with Conversational Language Understanding (CLU).
+* **Exact answers using CQA**: Serves authoritative, verbatim responses using Custom Question Answering (CQA).
+* **Deterministic routing and guardrails**: Enforces predictable paths—for example, routes to CLU for intent, directs matched intents to CQA for exact answers, and falls back on low confidence—with human‑in‑the‑loop review/override.
+* **Human oversight**: Queues, approves, and logs decisions for intent and answer validation.
+* **RAG for uncommon questions**: Uses retrieval‑augmented generation to answer less common or out‑of‑scope queries by grounding responses in approved knowledge sources.
+
+> ***Download template code with Azure Developer CLI (azd)***
+
+   ```bash
+   azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
+   ```
+
+### Azure Language in Foundry Tools Exact Question Answering agent 🆕
+
+The Exact Question Answering agent gives consistent, deterministic answers to predefined, high-value questions. It uses Azure AI services for automation and oversight. Key features and workflows include:
+
+* **Azure integration**: Integrates Azure AI Agent Service with Custom Question Answering in Azure AI Language.
+* **No‑code availability**: Provides a ready‑to‑use experience in Azure AI Foundry without requiring code.
+* **Governed responses**: Enables human review, policy controls, and escalation to human agents when needed.
+* **Deterministic automation**: Automates frequent business questions with predictable, governed behavior.
+* **RAG fallback**: Uses LLM‑powered retrieval‑augmented generation to handle less common or nuanced questions, grounding answers in approved sources.
+
+> ***Download template code with Azure Developer CLI (azd)***
+
+   ```bash
+   azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
+   ```
 ## Available features
 
 This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
