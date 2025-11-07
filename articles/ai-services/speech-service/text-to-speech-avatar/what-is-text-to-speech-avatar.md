@@ -48,7 +48,7 @@ The voice in the synthetic video could be an Azure AI Speech standard voice or t
 
 ## Avatar video output
 
-For video avatar, both batch synthesis and real-time synthesis resolution are 1920 x 1080 by default, while user can choose to train 4K resolution custom avatars, and the frames per second (FPS) are 25. Batch synthesis codec can be h264, hevc, or av1 if the format is `mp4` and can set codec as vp9 or av1 if the format is `webm`; only `vp9` can contain an alpha channel. Real-time synthesis codec is h264. Video bitrate can be configured for both batch synthesis and real-time synthesis in the request; the default value is 2000000; more detailed configurations can be found in the sample code.
+For video avatar, both batch synthesis and real-time synthesis resolution are 1920 x 1080 by default, while user can choose to train 4K resolution custom avatars, and the frames per second (FPS) rate is 25. For batch synthesis, the codec can be h264, hevc, or av1 if the format is `mp4` and can be vp9 or av1 if the format is `webm`; only `vp9` can contain an alpha channel. For real-time synthesis, the codec is h264. Video bitrate can be configured in the request for both batch synthesis and real-time synthesis; the default value is 2,000,000; more detailed configurations can be found in the sample code.
 Photo avatar 's resolution is 512x512 for both batch synthesis and real-timne synthesis.
 
 Video Avatar
