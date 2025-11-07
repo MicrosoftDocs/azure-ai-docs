@@ -283,7 +283,7 @@ Azure OpenAI usage tiers are designed to provide consistent performance for most
 - Latency can vary and, in some cases, may be more than 2 times higher than when operating within your usage tier.
 - This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
 
-### Recommended Actions If You Exceed Your Usage Tier
+### Recommended actions If you exceed your usage tier
 If you encounter 429 errors or notice increased latency variability, here’s what you should do:
 
 - Request a Quota Increase: visit the Azure portal to request a higher quota for your subscription.
