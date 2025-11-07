@@ -72,7 +72,7 @@ The following table summarizes which actions are applicable to models and agents
 ### Guardrail inheritance and override
 
 > [!IMPORTANT]
-> Risks are detected in an agent based on the guardrail it is assigned, not the guardrail of its underlying model. The agentic guardrail fully overrides the model's.
+> Risks are detected in an agent based on the guardrail it is assigned, not the guardrail of its underlying model. The agentic guardrail fully overrides the model's guardrail.
 
 **Example scenario:**
 - A model deployment has a control with Violence detection set to **High** for user input and output
