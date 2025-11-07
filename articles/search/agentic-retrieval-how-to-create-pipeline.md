@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/06/2025
+ms.date: 11/07/2025
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -142,6 +142,14 @@ For this solution, you need the following information from each resource:
 
 ---
 
+### Create the agentic retrieval objects
+
+For detailed instructions on how to create the search index, knowledge source, and knowledge base, see the following articles:
+
++ [Create a search index for agentic retrieval](agentic-retrieval-how-to-create-index.md)
++ [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
+
 ### Create a project connection
 
 Before you can use the MCP tool in an agent, you must create a project connection in Azure AI Foundry. This connection securely stores the API credentials needed for the MCP tool to authenticate and communicate with your Azure AI Search knowledge base.
@@ -188,6 +196,8 @@ list(project_client.agents.list())
 
 The next step is to create an agent configured with the MCP tool. When the agent receives a user query, it can call your knowledge base through the MCP tool to retrieve relevant content for response grounding.
 
+The agent definition includes instructions that specify its behavior and the project connection you previously created. For more information, see [Quickstart: Create a new agent](/azure/ai-foundry/agents/quickstart).
+
 ```python
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 
@@ -212,15 +222,14 @@ agent = project_client.agents.create_version(
     )
 )
 
-
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
 ## Chat with the agent
 
-Use the OpenAI conversations and responses APIs to chat with the agent. Create a conversation, and then send a message to the agent via the responses API.
+Your client app uses the OpenAI conversations and responses APIs to send user input to the agent. The client creates a conversation and passes each user message to the agent through the responses API, resembling a typical chat experience.
 
-The agent automatically determines whether to call the knowledge base through the MCP tool, returning a natural-language response with references to the retrieved content.
+The agent manages the conversation, determines when to call your knowledge base through the MCP tool, and returns a natural-language response (with references to the retrieved content) to the client app.
 
 ```python
 # Get the OpenAI client for responses and conversations
@@ -243,7 +252,7 @@ print(f"Response: {response.output_text}")
 
 ## Improve data quality
 
-By default, search results from your knowledge base are consolidated into a large unified string that you can pass to an LLM for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of the response returned during retrieval.
+By default, search results from your knowledge base are consolidated into a large unified string that you can pass to the agent for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of the response returned during retrieval.
 
 + [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which is used by the retrieval engine when queries include fields associated with that profile.
 
@@ -255,7 +264,7 @@ By default, search results from your knowledge base are consolidated into a larg
 
 ## Control the number of subqueries
 
-The LLM determines the quantity of subqueries based on the following factors:
+The LLM that powers your knowledge base determines the number of subqueries based on the following factors:
 
 + User query
 + Chat history
@@ -263,15 +272,9 @@ The LLM determines the quantity of subqueries based on the following factors:
 
 As the developer, you can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
-<!-- As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the knowledge agent definition or as an override on the retrieve action. 
-
-The semantic ranker processes up to 50 documents as an input, and the system creates subqueries to accommodate all of the inputs to semantic ranker. For example, if you only wanted two subqueries, you could set `defaultMaxDocsForReranker` to 100 to accommodate all documents in two batches.
-
-The [semantic configuration](semantic-how-to-configure.md) in the index determines whether the input is 50 or not. If the value is less, the query plan specifies however many subqueries are necessary to meet the `defaultMaxDocsForReranker` threshold. -->
-
 ## Control the number of threads in chat history
 
-A knowledge base in Azure AI Search acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, such as the last five conversation turns.
+Your knowledge base acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, such as the last five conversation turns.
 
 ## Control costs and limit operations
 
