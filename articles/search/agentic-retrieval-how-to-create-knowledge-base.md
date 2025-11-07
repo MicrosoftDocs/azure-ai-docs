@@ -127,7 +127,7 @@ Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases
 
 ### [**Python**](#tab/python-get-agents)
 
-The Python code snippets in this article assume you installed necessary libraries and have environment variables for endpoints and object names. For more information about these tasks, see [Quickstart: Use agentic retrieval](search-get-started-agentic-retrieval.md&pivots=programming-language-python).
+The Python code snippets in this article assume you installed necessary libraries and have environment variables for endpoints and object names. For more information about these tasks, see [Quickstart: Use agentic retrieval](search-get-started-agentic-retrieval.md?pivots=programming-language-python).
 
 ```python
 # List existing knowledge bases on the search service
