@@ -1,7 +1,7 @@
 ---
 title: Azure Language tools and agents
 titleSuffix: Azure AI Foundry Tools
-description: Learn about Azure Language integration with Foundry Tools, including MCP server endpoints, intent routing agents, and exact question answering agents for AI-powered conversational applications.
+description: Learn about Azure Language integration with Foundry Tools, including Model Context Protocol (MCP) server endpoints, intent routing agents, and exact question answering agents for AI-powered conversational applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -18,43 +18,59 @@ Azure Language integrates with Azure AI Foundry Tools to provide agents and endp
 
 The Azure Language MCP server in [**Azure AI Foundry**](https://ai.azure.com/) connects AI agents to Azure Language services through the Model Context Protocol. This integration enables developers to build conversational applications with natural language processing while maintaining compliance and transparency.
 
-The server transforms Azure Language services into agent-friendly endpoints that support real-time workflows. By implementing standard MCP protocols, it ensures consistent communication between AI agents and language services.
+The server transforms Azure Language services into agent-friendly endpoints that support real-time workflows. Implementing standard MCP protocols ensures consistent communication between AI agents and language services.
 
 ### Core capabilities
 
-* **Language processing**: Access to Azure Language's NLP services, including [**PII redaction**](../personally-identifiable-information/overview.md), [**Custom Question Answering**](../question-answering/overview.md), and [**Language Detection**](../language-detection/overview.md). These services process text with accuracy and support multiple languages.
-
-* **Compliance and privacy**: Built-in **PII detection and redaction** help organizations meet regulatory requirements by identifying and protecting sensitive information. The server maintains audit trails and supports privacy policies.
-
-* **Question answering**: **Custom Question Answering** integration enables domain-specific knowledge retrieval. Organizations can deploy their own knowledge bases and provide agents with access to information sources.
-
-* **Extensible architecture**: The modular design supports expansion with additional Azure Language services and custom processing modules.
+* **Language processing**: Access to Azure Language's comprehensive natural language processing (NLP) services, including [**Named Entity Recognition**](../named-entity-recognition/overview.md), [**Text Analytics for health**](../text-analytics-for-health/overview.md), [**Conversational Language Understanding**](../conversational-language-understanding/overview.md), [**Custom Question Answering**](../question-answering/overview.md), [**Language Detection**](../language-detection/overview.md), [**Sentiment Analysis**](../sentiment-opinion-mining/overview.md), [**Summarization**](../summarization/overview.md), [**Key Phrase Extraction**](../key-phrase-extraction/overview.md), and [**PII redaction**](../personally-identifiable-information/overview.md). These services process text with accuracy and support multiple languages.
 
    > ***MCP Server Endpoint***
 
    ```bash
-   https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp
+   https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
    ```
+
+* **Local deployment**: Azure Language also provides local MCP server where developers can host the server in their own environment. The local MCP server and setup instructions can be found in [ai-language-samples GitHub repo](https://github.com/Azure-Samples/ai-language-samples).
 
 ## Azure Language Intent Routing agent 🆕
 
 The Intent Routing agent [**Azure AI Foundry**](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. This agent creates a framework that ensures users receive accurate responses while maintaining operational control.
 
-Built on Azure Language's natural language understanding capabilities, the agent processes user input through layers. The system analyzes messages to understand intentions, then routes requests through appropriate channels based on confidence levels and business rules.
+The agent, which is built on Azure Language's natural language understanding capabilities, processes user input through layers. The system analyzes messages to understand intentions, then users can implement logic to route requests through appropriate channels based on confidence levels.
 
 The agent prioritizes deterministic behavior, making it suitable for enterprise applications where consistency is important.
+
+### Prerequisites
+
+Before setting up the Intent Routing agent, ensure you have the following resources and configurations in place:
+
+* **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
+
+* **Language service deployments**: Deploy both required Azure Language services:
+  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md)
+  * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md)
+
+* **Project resources**: Create your CLU and CQA projects using one of the following resource types:
+  * Azure AI Foundry resource
+  * AI hub resource  
+  * Azure AI Language resource
+
+* **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
+  * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page
+  * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value
+  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center
+  * For any resource type, you can also find the key in the Azure portal
+  * For detailed connection instructions, see [Create a connection](https://learn.microsoft.com/azure/ai-foundry/how-to/connections-add)
 
 ### Key capabilities
 
 * **Intent classification**: [**Conversational Language Understanding (CLU)**](../conversational-language-understanding/overview.md) analyzes user utterances to identify intents and extract entities. The system recognizes conversation patterns and understands context.
 
-* **Response delivery**: [**Custom Question Answering (CQA)**](../question-answering/overview.md) provides responses drawn from curated knowledge sources. This ensures users receive consistent information that aligns with organizational standards.
+* **Response delivery**: [**Custom Question Answering (CQA)**](../question-answering/overview.md) provides responses drawn from curated knowledge sources. This capability ensures users receive consistent information that aligns with organizational standards.
 
-* **Routing logic**: The agent implements decision trees that route conversations based on confidence scores, intent types, and business policies. High-confidence requests receive immediate responses, while uncertain queries trigger human review processes.
+* **Knowledge management**: Users can manage their intent definitions in CLU projects and manage pairs of question-answers in CQA projects. This capability provides oversight for the agent's knowledge base and response capabilities.
 
-* **Governance**: Built-in oversight mechanisms enable human review, approval workflows, and audit logging for routing decisions. Organizations can monitor agent performance and maintain compliance.
-
-* **Fallback processing**: Retrieval-augmented generation (RAG) handles edge cases and uncommon questions by using approved knowledge sources.
+* **Fallback processing**: Users can easily add retrieval-augmented generation (RAG) to the agent to handle edge cases and uncommon questions by using approved knowledge sources.
 
    > ***Download template code with Azure Developer CLI (azd)***
 
@@ -70,17 +86,40 @@ The agent combines Azure AI Agent Service capabilities with [**Custom Question A
 
 The agent works well for scenarios where answer accuracy is important, such as customer service, help desk operations, or compliance information delivery.
 
+In addition to creating the agent from the Exact Question Answering Agent template in Agent Catalog, users can also create the agent directly from their CQA project in the Foundry portal. More details can be found in [Create and deploy a CQA agent](../question-answering/how-to/deploy-agent.md).
+
+### Prerequisites
+
+Before setting up the Exact Question Answering agent, ensure you have the following resources and configurations in place:
+
+* **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
+
+* **Language service deployment**: Deploy the required Azure Language service:
+  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md)
+
+* **Project resources**: Create your CQA project using one of the following resource types:
+  * Azure AI Foundry resource
+  * AI hub resource
+  * Azure AI Language resource
+
+* **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
+  * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page
+  * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value
+  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center
+  * For any resource type, you can also find the key in the Azure portal
+  * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add)
+
 ### Key capabilities
 
 * **Azure integration**: The agent integrates Azure AI Agent Service with [**Custom Question Answering**](../question-answering/overview.md) capabilities within Azure Language services. This integration eliminates complex configuration requirements and provides access to enterprise security and monitoring features.
 
 * **No-code deployment**: Organizations can deploy and configure the agent through Azure AI Foundry's visual interface without writing custom code. This approach enables business stakeholders to participate in knowledge base creation and maintenance.
 
-* **Governance framework**: Oversight capabilities include human review workflows, policy-based response controls, and escalation procedures for complex queries. Organizations can implement approval processes and audit trails.
+* **Knowledge management**: Users can manage question-answer pairs in CQA projects, providing control over the agent's knowledge base and ensuring response accuracy.
 
-* **Automation**: The agent handles routine business questions through deterministic logic that ensures consistent responses regardless of query variations or timing.
+* **Deterministic answering**: The agent returns exact verbatim responses as defined in the CQA project answers, ensuring consistent and controllable responses to questions.
 
-* **Fallback processing**: For queries outside the predefined knowledge base, retrieval-augmented generation (RAG) provides responses by using approved organizational content sources.
+* **Fallback processing**: Users can easily add retrieval-augmented generation (RAG) to handle queries outside the predefined knowledge base by using approved organizational content sources.
 
    > ***Download template code with Azure Developer CLI (azd)***
 

@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # What is Azure AI Language?
 
-Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language remote [MCP server](#azure-language-mcp-server-), which can be found in the **Azure AI Foundry Tool Catalog**.
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server-), which is available both as a remote server in the **Azure AI Foundry Tool Catalog** and as a local server for self-hosted environments.
 
 ## Available tools
 
@@ -21,6 +21,10 @@ Azure Language provides specialized tools that enable seamless integration betwe
 ### Azure Language MCP server 🆕
 
 The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
+
+Azure Language provides both remote and local MCP server options:
+* **Remote server**: Available through Azure AI Foundry Tool Catalog for cloud-hosted deployments.
+* **Local server**: Available for developers who prefer to host the server in their own environment.
 
 For more information, *see* [Azure Language MCP server](concepts/azure-foundry-tools-agents.md#azure-language-mcp-server-).
 
