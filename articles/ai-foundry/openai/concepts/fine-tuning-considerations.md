@@ -1,6 +1,6 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
-description: Learn more about what you should take into consideration before fine-tuning with Azure OpenAI 
+title: Azure AI Foundry fine-tuning considerations
+description: Learn more about what you should take into consideration before fine-tuning with Azure AI Foundry
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +13,7 @@ ms.custom: ignite2025
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
+# Azure AI Foundry fine-tuning considerations
 
 Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
 
@@ -80,5 +80,5 @@ Fine-tuning large language models scan be a powerful technique to adapt them to 
 ## Next steps
 
 - Watch the [Azure AI Show episode: "To fine-tune or not to fine-tune, that is the question"](https://www.youtube.com/watch?v=0Jo-z-MFxJs)
-- Learn more about [Azure OpenAI fine-tuning](../how-to/fine-tuning.md)
+- Learn more about [Azure AI Foundry fine-tuning](../how-to/fine-tuning.md)
 - Explore our [fine-tuning tutorial](../tutorials/fine-tune.md)

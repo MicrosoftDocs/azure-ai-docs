@@ -6,6 +6,7 @@ ms.author: ssalgado
 ms.date: 07/03/2025
 ms.topic: conceptual
 ms.service: azure-ai-openai
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Personally identifiable information (PII) filter

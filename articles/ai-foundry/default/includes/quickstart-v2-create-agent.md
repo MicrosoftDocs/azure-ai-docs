@@ -10,13 +10,17 @@ ms.date: 11/05/2025
 ms.custom: include
 ---
 
+Create an agent using your deployed model.
+
+An agent defines core behavior. Once created, it ensures consistent responses in user interactions without repeating instructions each time. You can update or delete agents anytime. 
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
-# [Python](#tab/python)
+# [Python](#tab/python2)
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-create-agent.py":::
 
-# [C#](#tab/csharp)
+<!-- # [C#](#tab/csharp)
 
 Not yet available
 
@@ -26,15 +30,15 @@ Not yet available
 
 # [Java](#tab/java)
 
-Not yet available
+Not yet available -->
 
-# [REST API](#tab/rest)
+# [REST API](#tab/rest2)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="create_agent":::
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+# [Azure AI Foundry portal](#tab/portal)
 
 Now create an agent and interact with it.
 1. Still in the **Build** section, select **Agents** in the left pane.

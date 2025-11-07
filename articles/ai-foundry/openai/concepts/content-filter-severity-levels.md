@@ -7,19 +7,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 11/05/2025
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
-
-
 ---
 
-# Content filtering severity levels
+# Content filter severity levels
 
-
-<!--
-Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.
--->
+Content filters ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides content filters to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in content filters system.
 
 Content filtering ensures that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides content filtering capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in content filtering system.
 

@@ -10,15 +10,15 @@ ms.date: 11/05/2025
 ms.custom: include
 ---
 
-Connect to the previously created agent named "MyAgent" and chat with it.
+Use the previously created agent named "MyAgent" to interact by asking a question and a related follow-up. The conversation maintains history across these interactions. 
 
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
-# [Python](#tab/python)
+# [Python](#tab/python2)
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-chat-with-agent.py":::
 
-# [C#](#tab/csharp)
+<!-- # [C#](#tab/csharp)
 
 <!-- :::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/AgentService.cs"::: -->
 Not yet available.
@@ -31,15 +31,15 @@ Not yet available.
 # [Java](#tab/java)
 
 <!-- :::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" ::: -->
-Not yet available.
+Not yet available. -->
 
-# [REST API](#tab/rest)
+# [REST API](#tab/rest2)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="chat_with_agent":::
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+# [Azure AI Foundry portal](#tab/portal)
 
 Interact with your agent.
 1. Add instructions, such as, "You are a helpful writing assistant."
