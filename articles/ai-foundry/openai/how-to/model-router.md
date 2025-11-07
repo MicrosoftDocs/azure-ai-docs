@@ -46,19 +46,14 @@ In the **Create new deployment** step, find `model-router` in the **Models** lis
 
 ## Select a routing profile
 
-Use the **Routing mode** dropdown to select a routing profile. 
+Use the **Routing mode** dropdown to select a routing profile. This sets the default routing profile for your deployment, but you can still override it at request time. See the [concepts guide](../how-to/model-router.md) for more information.
+
+You can also set the routing profile programmatically. The allowed values are `balanced`, `quality`, and `cost`. If you don't specify a profile, the service defaults to `balanced`.
 
 
+#### [Azure CLI](#tab/cli)
 
-You can set the routing mode:
-* At **deployment time** (static default).
-* Per **individual request** (header override) if overrides are enabled for that deployment.
-
-### Deployment-level configuration (Control Plane / ARM)
-
-Specify the `routing.mode` property when you create or update the deployment.
-
-#### Example (Azure CLI)
+Set mode at deployment time:
 
 ```bash
 az resource create \
@@ -96,7 +91,7 @@ az resource update \
   --set properties.routing.mode=cost
 ```
 
-#### Example (ARM-style JSON body)
+#### [ARM-style JSON body](#tab/arm)
 
 ```json
 {
@@ -113,9 +108,7 @@ az resource update \
   }
 }
 ```
-
-Valid values: `balanced`, `quality`, `cost` (case-insensitive).  
-If omitted, the service defaults to `balanced`.
+---
 
 ### Per-request override (data plane)
 
@@ -136,7 +129,7 @@ model-router-mode: cost
 }
 ```
 
-#### Response headers
+### Response headers
 
 The router returns the header:
 
@@ -158,7 +151,7 @@ This echoes the effective mode after merging deployment defaults and any valid o
 
 
 
-## Troubleshooting
+### Troubleshooting
 
 | Symptom | Possible cause | Action |
 |---------|----------------|--------|
@@ -169,16 +162,11 @@ This echoes the effective mode after merging deployment defaults and any valid o
 
 ## Select your model subset
 
+The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. See the [concepts guide](../how-to/model-router.md) for more information.
 
+In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable. Selections apply to all requests to this deployment by default. 
 
-User selects "Create Deployment".
-User chooses one of the two options:
-Default: "Route to all supported models."
-Alternative: "Route to selected models."
-If Alternative option selected:
-User multi-selects the models from the models list
-User saves deployment. Selections apply to all requests for this deployment.
-New supported models are not included unless explicitly added later.
+If you're deploying programmatically, you can specify your model subset by setting the `routing.models` contents in the request body.
 
 ```json
 {
@@ -211,10 +199,7 @@ New supported models are not included unless explicitly added later.
 }
 ```
 
-If routing.models is omitted at creation, the portal snapshots all currently supported models into the deployment’s routing list.
-
 New models introduced later are excluded by default until explicitly added.
-
 
 ::: moniker-end
 
