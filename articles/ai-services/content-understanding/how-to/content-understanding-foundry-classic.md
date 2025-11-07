@@ -21,7 +21,7 @@ Suppose you have files of different types—such as documents, images, audio, or
 This guide shows you how to use Content Understanding Standard and Pro modes in the Azure AI Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data.
 
 > [!NOTE]
-> Azure AI Foundry Classic portal uses a preview API (`2025-05-01-preview`). Pro mode is a preview feature available only in this preview API version. It's not available in the GA API version (`2025-11-01`).
+> Azure AI Foundry Classic portal uses a preview API (`2025-05-01-preview`). 
 
 ## Choosing between Standard and Pro modes (Preview)
 
@@ -36,6 +36,9 @@ Content Understanding offers two modes for different scenarios:
   - Perform complex multi-step analysis that goes beyond simple field extraction
 
 For detailed guidance on which mode to choose for your scenario, see [Azure AI Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
+
+> [!NOTE]
+> Pro mode is a preview feature available only in this preview API version (`2025-05-01-preview`). For Standard Mode, you can transition to the GA API (`2025-11-01`) with minimal changes. See [GA Migration Guide](../how-to/migration-preview-to-ga.md)
 
 ## Prerequisites
 

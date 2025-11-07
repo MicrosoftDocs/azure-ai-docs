@@ -449,7 +449,7 @@ For information about writing effective field descriptions, see [Best practices 
 - **Description:** Extraction method to use for this field. When not specified, the system automatically determines the best method based on the field type and description.
 - **Method types:**
   - `"generate"` - Values are generated freely based on the content using AI models (best for complex or variable fields requiring interpretation)
-  - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations)
+  - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations). Extract requires `enableFieldSourceGroundingAndConfidence` to be set to true for this field.
   - `"classify"` - Values are classified against a predefined set of categories (best when using `enum` with a fixed set of possible values)
 
 #### `items` (for array types)
