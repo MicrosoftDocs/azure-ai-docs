@@ -128,7 +128,7 @@ For this solution, you need the following information from each resource:
 
 + The endpoint for your search service, which you can find on the **Overview** page in the Azure portal. It should look like this: `https://{your-service-name}.search.windows.net/`
 
-+ An API key for your search service, which you can find on the **Keys and Endpoint** page in the Azure portal. This key is used for MCP authentication between your knowledge base and Azure AI Foundry.
++ An API key for your search service, which you can find on the **Keys and Endpoint** page in the Azure portal. This key is used for MCP authentication between your knowledge base and the agent in Azure AI Foundry.
 
 ### [Azure OpenAI](#tab/aoai-setup)
 
@@ -144,7 +144,7 @@ For this solution, you need the following information from each resource:
 
 ### Create a project connection
 
-Before you can use the MCP tool in an agent, you must create a project connection in Azure AI Foundry that points to the `mcp_endpoint` of your knowledge base. This endpoint allows your knowledge base to be accessed through the MCP by agents in Azure AI Foundry.
+Before you can use the MCP tool in an agent, you must create a project connection in Azure AI Foundry that points to the `mcp_endpoint` of your knowledge base. This endpoint allows the agent to access your knowledge base.
 
 ```python
 from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
