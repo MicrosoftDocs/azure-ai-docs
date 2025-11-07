@@ -66,7 +66,7 @@ You need two pieces of code to make this work.
 
 More options: 
 
-* You can proxy the web browser sdp request through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
+* You can proxy the web browser's session negotiation via Session Description Protocol through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
 
 * You can filter the messages going to the web browser using a query parameter. 
 
@@ -458,9 +458,9 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 
 ### Step 3 (optional): Create a websocket observer/controller
 
-If you proxy the sdp call through your service application, you can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
+If you proxy the session negotation through your service application, you can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
-Here's an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the sdp request. It also includes a websocket connection that listens to the WebRTC session. 
+Here's an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the session initiation. It also includes a websocket connection that listens to the WebRTC session. 
 
 ```
 from flask import Flask, jsonify, request
