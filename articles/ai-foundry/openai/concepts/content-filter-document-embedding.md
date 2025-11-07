@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 # Document embedding in prompts
 
 
-Azure OpenAI's content filtering system performs better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
+Azure AI Foundry's Guardrails and controls perform better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
 
 ## Default behavior in Chat Completions API
 
