@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 11/03/2025
+ms.date: 11/07/2025
 ---
 
 # Quickstart: Use agentic retrieval in the Azure portal
@@ -18,11 +18,11 @@ ms.date: 11/03/2025
 
 In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Azure AI Foundry Models.
 
-The portal guides you through the process of configuring and creating the following objects:
+The portal guides you through the process of configuring the following objects:
 
-+ A *knowledge source* that points to a search index containing enriched content. Although agentic retrieval [supports multiple knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources), this quickstart uses Azure Blob Storage to create a blob knowledge source.
++ A *knowledge source* that references a container in Azure Blob Storage. When you create a blob knowledge source, Azure AI Search automatically generates an index and other pipeline objects to ingest and enrich your content for agentic retrieval.
 
-+ A *knowledge base* that uses an LLM to infer the underlying information need, plan and execute subqueries, and formulate a natural-language answer using the optional answer synthesis output mode.
++ A *knowledge base* that uses agentic retrieval to infer the underlying information need, plan and execute subqueries, and formulate a natural-language answer using the optional answer synthesis output mode.
 
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
@@ -33,7 +33,7 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md), in any [region that provides agentic retrieval](search-region-support.md).
++ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md).
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
@@ -83,7 +83,7 @@ Azure Blob Storage stores your source documents for indexing and retrieval. Gran
 
 On your Azure Blob Storage account:
 
-+ Assign **Storage Blob Data Contributor** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
++ Assign **Storage Blob Data Reader** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ### [Azure AI Foundry](#tab/foundry-perms)
 
@@ -119,7 +119,7 @@ To prepare the sample data for this quickstart:
 
 ## Create a knowledge source
 
-A knowledge source is a reusable reference to your source data. In this section, you create a blob knowledge source, which triggers the creation of a *data source*, *skillset*, *index*, and *indexer* to automate data indexing and enrichment. You review these objects in a later section.
+A knowledge source is a reusable reference to your source data. In this section, you create a [blob knowledge source](agentic-knowledge-source-how-to-blob.md), which triggers the creation of a *data source*, *skillset*, *index*, and *indexer* to automate data indexing and enrichment. You review these objects in a later section.
 
 You also configure a *vectorizer*, which uses your deployed embedding model to convert text into vectors and match documents based on semantic similarity. The vectorizer, vector fields, and vectors will be added to the auto-generated index.
 
@@ -154,7 +154,7 @@ To create the knowledge source for this quickstart:
 
 A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, the LLM generates subqueries that are sent simultaneously to your knowledge source. Azure AI Search then semantically ranks the results for relevance and combines the best results into a single, unified response.
 
-The output mode determines how the knowledge base formulates answers. You can either use extractive data for verbatim content or answer synthesis for natural-language answer generation. By default, the portal uses answer synthesis.
+The output mode determines how the knowledge base formulates answers. You can either use extractive data for verbatim content or [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) for natural-language answer generation. By default, the portal uses answer synthesis.
 
 To create the knowledge base for this quickstart:
 
@@ -248,7 +248,7 @@ To query the knowledge base:
 
 ## Review the created objects
 
-Azure AI Search automatically generates a data source, skillset, index, and indexer for each blob knowledge source. These objects form an end-to-end pipeline for data ingestion, enrichment, chunking, and vectorization. You should review these objects to learn how your data is processed for agentic retrieval.
+Azure AI Search automatically generates a data source, skillset, index, and indexer for each blob knowledge source. These objects form an end-to-end pipeline for data ingestion, enrichment, chunking, and vectorization. You can review these objects to learn how your data is processed for agentic retrieval.
 
 To review the auto-generated objects:
 

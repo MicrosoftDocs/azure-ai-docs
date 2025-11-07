@@ -1,3 +1,6 @@
+To enable agentic retrieval, you must create a project connection in Azure AI Foundry that points to the MCP endpoint for your knowledge base. The MCP endpoint allows your knowledge base to be accessed through the Model Context Protocol (MCP) by agents in Azure AI Foundry. The endpoint format is:
+
+`{search-endpoint}/knowledgebases/{kb}/mcp?api-version=2025-11-01-preview`
 ---
 title: 'Tutorial: Create an End-to-End Retrieval Solution'
 titleSuffix: Azure AI Search
@@ -94,7 +97,7 @@ This solution consists of the following integrated components:
 
 + Azure AI Foundry hosts the agent configured with the MCP tool, as well as the project connection that stores the MCP endpoint and API credentials for agent-to-knowledge-base communication.
 
-A user initiates query processing by interacting with a client app, such as a chatbot, that calls an agent. The agent uses the MCP tool to orchestrate requests and direct responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search, waits for the response, and sends it back to the agent and chatbot.
+A user initiates query processing by interacting with a client app, such as a chatbot, that calls an agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends it back to the agent and chatbot.
 
 ## Development tasks
 
@@ -102,13 +105,13 @@ Development tasks for this solution include:
 
 ### [Azure AI Search](#tab/search-development)
 
-+ [Create a knowledge source](agentic-knowledge-source-overview.md) that maps to a [searchable index](agentic-retrieval-how-to-create-index.md).
++ Create a [knowledge source](agentic-knowledge-source-overview.md). Agentic retrieval supports multiple types of knowledge sources, but this solution creates a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
-+ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that maps to your LLM deployment and uses the extractive data output mode. We recommend this output mode for interaction with Azure AI Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning.
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that maps to your LLM deployment and uses the extractive data output mode. We recommend this output mode for interaction with Azure AI Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning.  The agent is responsible for synthesizing answers and performing other tasks with this verbatim content.
 
 + [Call the retrieve action](agentic-retrieval-how-to-retrieve.md) on the knowledge base to process a query, conversation, and override parameters.
 
-+ Parse the response for the parts you want to include in your chat application. For many scenarios, the content portion of the response is sufficient.
++ Parse the response for the parts you want to include in your chat application. For many scenarios, the [content portion](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) of the response is sufficient.
 
 ### [Azure AI Foundry](#tab/foundry-development)
 
@@ -120,7 +123,7 @@ Development tasks for this solution include:
 
 ## Set up your environment
 
-This solution combines an agentic retrieval engine built in Azure AI Search with a custom agent built in Azure AI Foundry. An agent simplifies development by tracking conversation history, determining when to call external tools, and managing the orchestration of tool calls.
+This solution combines an agentic retrieval engine built in Azure AI Search with a custom agent built in Azure AI Foundry. An agent simplifies development by tracking conversation history and managing the orchestration of tool calls.
 
 For this solution, you need the following information from each resource:
 
@@ -128,7 +131,7 @@ For this solution, you need the following information from each resource:
 
 + The endpoint for your search service, which you can find on the **Overview** page in the Azure portal. It should look like this: `https://{your-service-name}.search.windows.net/`
 
-+ An API key for your search service, which you can find on the **Keys and Endpoint** page in the Azure portal.
++ An API key for your search service, which you can find on the **Keys and Endpoint** page in the Azure portal. This key is used for MCP authentication between your knowledge base and Azure AI Foundry.
 
 ### [Azure OpenAI](#tab/aoai-setup)
 
@@ -144,11 +147,19 @@ For this solution, you need the following information from each resource:
 
 ### Create a project connection
 
-Before you can use the MCP tool in an agent, you must create a project connection in Azure AI Foundry. This connection securely stores the API credentials needed for the MCP tool to authenticate and communicate with your Azure AI Search knowledge base.
+Before you can use the MCP tool in an agent, you must create a project connection in Azure AI Foundry that points to the `mcp_endpoint` of your knowledge base. This endpoint allows your knowledge base to be accessed through the MCP by agents in Azure AI Foundry.
 
 ```python
 from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
 from azure.mgmt.cognitiveservices.models import ConnectionPropertiesV2BasicResource, CustomKeysConnectionProperties, CustomKeys
+
+project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
+parsed = parse_resource_id(project_resource_id)
+subscription_id = parsed['subscription']
+resource_group = parsed['resource_group']
+account_name = parsed['name']
+project_name = parsed['child_name_1']
+mcp_endpoint = f"{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
 
 mgmt_client = CognitiveServicesManagementClient(credential, subscription_id)
 resource = mgmt_client.project_connections.create(
@@ -219,7 +230,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 ## Chat with the agent
 
-Your client app uses the OpenAI conversations and responses APIs to send user input to the agent. The client creates a conversation and passes each user message to the agent through the responses API, resembling a typical chat experience.
+Your client app uses the Conversations and [Responses](/azure/ai-foundry/openai/how-to/responses) APIs from Azure OpenAI to send user input to the agent. The client creates a conversation and passes each user message to the agent through the Responses API, resembling a typical chat experience.
 
 The agent manages the conversation, determines when to call your knowledge base through the MCP tool, and returns a natural-language response (with references to the retrieved content) to the client app.
 
@@ -264,9 +275,9 @@ The LLM that powers your knowledge base determines the number of subqueries base
 
 As the developer, you can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
-## Control the number of threads in chat history
+## Control the chat history
 
-Your knowledge base acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, such as the last five conversation turns.
+The Responses API controls what is sent to the agent and knowledge base. To optimize performance and relevance, adjust your agent instructions to summarize or filter the chat history before sending it to the MCP tool.
 
 ## Control costs and limit operations
 
@@ -276,7 +287,7 @@ For insights into the query plan, look at output tokens in the [activity array](
 
 + Summarize message threads.
 
-+ Use `gpt-mini` or a smaller model that performs faster.
++ Use `gpt-4.1-mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
 
