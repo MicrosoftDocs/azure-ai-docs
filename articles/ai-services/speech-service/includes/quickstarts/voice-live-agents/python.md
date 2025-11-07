@@ -95,6 +95,10 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
     ```python
+    # -------------------------------------------------------------------------
+    # Copyright (c) Microsoft Corporation. All rights reserved.
+    # Licensed under the MIT License.
+    # -------------------------------------------------------------------------
     from __future__ import annotations
     import os
     import sys
@@ -358,9 +362,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             self.audio_processor: Optional[AudioProcessor] = None
             self.session_ready = False
             self.conversation_started = False
-            # Track whether a response is currently active for minimal barge-in cancel logic
             self._active_response = False
-            # Track whether server signalled response completion (avoid futile cancels)
             self._response_api_done = False
     
         async def start(self):
@@ -412,7 +414,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             """Configure the VoiceLive session for audio conversation."""
             logger.info("Setting up voice conversation session...")
     
-            # Create strongly typed voice configuration
+            # Create voice configuration
             voice_config: Union[AzureStandardVoice, str]
             if self.voice.startswith("en-US-") or self.voice.startswith("en-CA-") or "-" in self.voice:
                 # Azure voice
@@ -421,13 +423,13 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 # OpenAI voice (alloy, echo, fable, onyx, nova, shimmer)
                 voice_config = self.voice
     
-            # Create strongly typed turn detection configuration
+            # Create turn detection configuration
             turn_detection_config = ServerVad(
                 threshold=0.5,
                 prefix_padding_ms=300,
                 silence_duration_ms=500)
     
-            # Create strongly typed session configuration
+            # Create session configuration
             session_config = RequestSession(
                 modalities=[Modality.TEXT, Modality.AUDIO],
                 voice=voice_config,
@@ -501,21 +503,18 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 logger.info("User started speaking - stopping playback")
                 print("🎤 Listening...")
     
-                # skip queued audio
                 ap.skip_pending_audio()
     
-                # Only attempt cancel if server response not already done
+                # Only cancel if response is active and not already done
                 if self._active_response and not self._response_api_done:
                     try:
                         await conn.response.cancel()
-                        logger.debug("Active in-progress response cancelled due to barge-in")
+                        logger.debug("Cancelled in-progress response due to barge-in")
                     except Exception as e:
                         if "no active response" in str(e).lower():
-                            logger.debug("Benign: cancel ignored (already done)")
+                            logger.debug("Cancel ignored - response already completed")
                         else:
                             logger.warning("Cancel failed: %s", e)
-                    finally:
-                        self._active_response = False
     
             elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STOPPED:
                 logger.info("🎤 User stopped speaking")
@@ -527,7 +526,6 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 self._response_api_done = False
     
             elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
-                # Stream audio response to speakers
                 logger.debug("Received audio delta")
                 ap.queue_audio(event.delta)
     
@@ -543,8 +541,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             elif event.type == ServerEventType.ERROR:
                 msg = event.error.message
                 if "Cancellation failed: no active response" in msg:
-                    # Benign race when barge-in occurs after server completion while playback drains
-                    logger.debug("(benign) %s", msg)
+                    logger.debug("Benign cancellation error: %s", msg)
                 else:
                     logger.error("❌ VoiceLive error: %s", msg)
                     print(f"Error: {msg}")
