@@ -319,7 +319,6 @@ For more details, see the [complete working sample.](https://github.com/Azure/az
 
 ::: moniker-end
 
-
 ## Related content
 
 - [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
