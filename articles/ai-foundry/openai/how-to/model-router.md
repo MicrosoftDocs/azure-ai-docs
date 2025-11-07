@@ -26,6 +26,11 @@ Use model router through the Completions API like you use a single base model su
 
 ## Deploy a model router model
 
+TBD add moniker zones. new foundry must include:
+Routing profile
+Model subsets
+
+
 Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
 
 > [!NOTE]
@@ -43,10 +48,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), go to you
 >
 > The parameters `stop`, `presence_penalty`, `frequency_penalty`, `logit_bias`, and `logprobs` are similarly dropped for o-series models but used otherwise.
 
-### TBD latest parameter configurations
 
-Routing profile
-Model subsets
 
 
 > [!IMPORTANT]
