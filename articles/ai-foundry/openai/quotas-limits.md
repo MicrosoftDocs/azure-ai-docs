@@ -286,7 +286,7 @@ Azure OpenAI usage tiers are designed to provide consistent performance for most
 ### Recommended actions If you exceed your usage tier
 If you encounter 429 errors or notice increased latency variability, here’s what you should do:
 
-- Request a Quota Increase: visit the Azure portal to request a higher quota for your subscription.
+- Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
 - Monitor Your Usage: regularly review your usage metrics in the Azure portal to ensure you are operating within your tier limits. Adjust your workload or deployment strategy as needed.
 
