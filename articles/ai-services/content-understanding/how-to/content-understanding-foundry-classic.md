@@ -43,9 +43,7 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. Use a project to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
-
-* An Azure AI Foundry project in a supported region. For a full list of supported regions, check out [service quotas and limits](../service-limits.md). See the instructions below to learn how to create your first project.
+* An Azure AI Foundry project in a supported region. For a full list of supported regions, check out [language and region support](../language-region-support.md). See the instructions below to learn how to create your first project.
 
 ## Create your first project
 
@@ -55,9 +53,9 @@ To get started with Content Understanding in the AI Foundry portal, follow these
 
 1. AI Foundry supports two project types: `AI Foundry resource` and `AI hub resource`. Both project types work with Content Understanding. For the most up-to-date experience, use the `AI Foundry resource`. For more context on the project types, see [Create a project for Azure AI Foundry](../../../ai-foundry/how-to/create-projects.md).
 
-    - If you're creating a **Foundry project**, select `Advanced options` and choose a [supported region](../service-limits.md).
+    - If you're creating a **Foundry project**, select `Advanced options` and choose a [supported region](../language-region-support.md).
 
-    - If you're creating a **hub-based project**, select or create a hub to proceed. Ensure that the hub is in a [supported region](../service-limits.md). If you don't have a hub or your hub isn't in a supported region, select the option at the top of the dropdown to create a new hub and fill out the required inputs.
+    - If you're creating a **hub-based project**, select or create a hub to proceed. Ensure that the hub is in a [supported region](language-region-support.md). If you don't have a hub or your hub isn't in a supported region, select the option at the top of the dropdown to create a new hub and fill out the required inputs.
     
 # [Standard mode](#tab/standard)
 
