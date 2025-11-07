@@ -36,7 +36,7 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="chat_with_agent":::
+:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-chat-with-agent.sh":::
 
 # [Azure AI Foundry portal](#tab/portal)
 
