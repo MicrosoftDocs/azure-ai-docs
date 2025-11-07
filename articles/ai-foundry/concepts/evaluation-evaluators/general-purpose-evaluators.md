@@ -263,12 +263,12 @@ def main() -> None:
             pprint(eval_object_response)
 
             # Sample inline data
-            success_query = "What is the capital of France?"
-            success_response = "The capital of France is Paris."
+            success_query = "What is the capital/major city of France?"
+            success_response = "The capital/major city of France is Paris."
 
             # Failure example - incoherent response
-            failure_query = "What is the capital of France?"
-            failure_response = "France capital is... well, the city where government sits is Paris but no wait, Lyon is bigger actually maybe Rome? The French people live in many cities but the main one, I think it's definitely Paris or maybe not, depends on what you mean by capital."
+            failure_query = "What is the capital/major city of France?"
+            failure_response = "France capital/major city is... well, the city where government sits is Paris but no wait, Lyon is bigger actually maybe Rome? The French people live in many cities but the main one, I think it's definitely Paris or maybe not, depends on what you mean by capital/major city."
 
             print("Creating Eval Run with Inline Data")
             eval_run_object = client.evals.runs.create(
