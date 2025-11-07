@@ -230,14 +230,14 @@ A response might look like the following example:
 ```json
 {
 
-  "name": "simple-kb",
+  "name": "my-knowledge-base",
   "description": "This knowledge source uses a search index and omits a completion model for query planning and answer generation.",
   "retrievalInstructions": null,
   "answerInstructions": null,
   "outputMode": null,
   "knowledgeSources": [
     {
-      "name": "hotels-sample-ks"
+      "name": "my-knowledge-source"
     }
   ],
   "models": [],

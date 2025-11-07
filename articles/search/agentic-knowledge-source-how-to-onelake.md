@@ -109,12 +109,12 @@ To create a OneLake knowledge source:
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    PUT {{search-url}}/knowledgesources/my-indexed-onelake-ks?api-version=2025-11-01-preview
+    PUT {{search-url}}/knowledgesources/my-onelake-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-        "name": "my-indexed-onelake-ks",
+        "name": "my-onelake-ks",
         "kind": "indexedOneLake",
         "description": "This knowledge source pulls content from a lakehouse.",
         "indexedOneLakeParameters": {
@@ -144,7 +144,7 @@ You can pass the following properties to create a OneLake knowledge source.
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
 | `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
+| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description.| String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `indexedOneLakeParameters` | Parameters specific to OneLake knowledge sources: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object |  | Yes |
 | `fabricWorkspaceId` | The GUID of the workspace that contains the lakehouse. | String | No | Yes |
