@@ -144,7 +144,7 @@ You can pass the following properties to create a OneLake knowledge source.
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
 | `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description.| String | Yes | No |
+| `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `indexedOneLakeParameters` | Parameters specific to OneLake knowledge sources: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object |  | Yes |
 | `fabricWorkspaceId` | The GUID of the workspace that contains the lakehouse. | String | No | Yes |
