@@ -269,7 +269,7 @@ videoFormat.width = 1920;
 videoFormat.height = 1080;
 ```
 
-For further details, please read [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1)
+For further details, see the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1)
 
 
 ## Code samples
