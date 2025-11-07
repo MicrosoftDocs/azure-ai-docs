@@ -15,19 +15,12 @@ ms.author: gimondra
 
 > [!IMPORTANT]
 > **Recommended first mechanism for full SharePoint governance**  
-> For scenarios that require the **full SharePoint permissions model**, **sensitivity labels**, and **out-of-the-box security trimming**, use **Knowledge source: Microsoft SharePoint (remote)** powered by **Azure AI Search**. This approach calls SharePoint directly via the retrieval API so governance remains in SharePoint and query results automatically respect all applied permissions and labels.  
-> See: [Azure AI Search knowledge sources — Microsoft SharePoint (remote)](search-how-to-index-sharepoint.md).
+> For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the retrieval API so governance remains in SharePoint and query results automatically respect all applied permissions and labels.  
 
-This article documents a **basic ACL ingestion** capability for **SharePoint in Microsoft 365** using an **Azure AI Search indexer**. It is **preview**, **indexer-only** (Push API not supported), and intended **only for testing and feedback**. Compared to the recommended Knowledge source approach above, this functionality has **multiple limitations** (see below), including **one-time ACL ingestion per file** unless additional steps are taken.
+This article documents basic ACL ingestion capability for SharePoint in Microsoft 365 using an Azure AI Search indexer. Compared to the recommended Knowledge source approach above, this functionality has multiple permission model limitations (see below), including one-time ACL ingestion per file, unless additional steps are taken.
 
-> [!NOTE]
-> This works **only for SharePoint in Microsoft 365**. On-premises SharePoint Server and other deployments aren’t supported.
-
----
 
 ## Prerequisites
-
-+ [Microsoft Entra ID authentication and authorization](/entra/identity/authentication/overview-authentication). Services and apps must be in the same tenant. Users can be in different Microsoft Entra tenants if trust is configured.
 
 + Azure AI Search (Basic or higher) with:
   - [Role-based access enabled](search-security-enable-roles.md)
