@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: conceptual
-ms.date: 06/11/2025
+ms.date: 11/06/2025
 ms.custom: references_regions
 ---
 
@@ -20,34 +20,26 @@ This article explains how to get the most value from your Azure free account so 
 
 ## Step one: Sign up for an Azure free account
 
-To try Azure AI Search for free, [Sign up for an Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge. 
+To try Azure AI Search for free, [sign up for an Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge.
 
-At this point in time, the credit is equivalent to USD 200. As always, the exact amount is subject to change, but you can verify the credit on the Azure sign-up page.
+Currently, the credit is equivalent to USD 200. The exact amount is subject to change, and you can verify the credit on the Azure sign-up page.
 
 > [!div class="nextstepaction"]
 > [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
-Once you sign up, you can immediately use either of these links to access Azure resources and experiences:
+After you sign up, you can immediately use either of these links to access Azure resources and experiences:
 
 + [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the Azure portal to track your credits and projected costs.
 
-+ [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
++ [Sign in to the Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
 
 ## Step two: "Day One" tasks
 
-[**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-foundry/how-to/index-add) is a great place to start.
+In the *new* Azure AI Foundry portal, you can create an end-to-end solution that integrates Azure AI Search and Azure AI Foundry Agent Service for knowledge retrieval.
 
-1. [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+The portal supports creating *knowledge sources* that map to your indexed content in Azure AI Search and *knowledge bases* that orchestrate retrieval operations, including query decomposition, hybrid search, and result reranking. You can then configure an Azure AI Foundry agent to use this knowledge base as a Model Context Protocol (MCP) tool, allowing the agent to retrieve relevant information and provide grounded, citation-backed responses.
 
-1. Create a new hub and project.
-
-1. On the left, under **Components**, select **Indexes**. The Create Index wizard guides you through the remaining tasks.
-
-   + On the **Source Data** page, if you have local files that you want to query using an LLM, upload them. 
-
-   + On the **Index Settings**, you can create a new Azure AI Search service. The wizard selects a matching region automatically, but you choose the pricing tier.
-
-     We recommend Basic for larger data files and more indexes, or Free if your files are less than 50 MB. Basic has more features and storage, but it's billable for the lifetime of the service and it might consume about one third of your available credits if you retain it for the entire trial period.
+For more information about the programmatic experience, see [Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval).
 
 ## Step three: Have a plan for next steps
 

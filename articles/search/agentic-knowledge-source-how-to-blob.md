@@ -149,7 +149,7 @@ You can pass the following properties to create a blob knowledge source.
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
+| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description.| String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object |  | No |
 | `connectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
