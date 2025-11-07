@@ -99,7 +99,7 @@ You must be a **Search Index Data Contributor** on the search service. You must 
 
 ### Add an elevated-read header to a query
 
-The following example is query request against a search index.
+The following example is a query request against a search index.
 
 ```http
 POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2025-11-01-preview
