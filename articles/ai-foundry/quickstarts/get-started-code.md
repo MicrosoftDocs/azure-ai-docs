@@ -190,8 +190,6 @@ Store the endpoint as an environment variable.  Also set these values for use in
 
 ::: moniker-end
 
-
-
 ## Chat with a model
 
 ::: moniker range="foundry-classic"
@@ -236,8 +234,6 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 [!INCLUDE [quickstart-v2-chat](../default/includes/quickstart-v2-chat.md)]
 
 ## Create an agent
-
-Create an agent using your deployed model.
 
 [!INCLUDE [quickstart-v2-create-agent](../default/includes/quickstart-v2-create-agent.md)]
 

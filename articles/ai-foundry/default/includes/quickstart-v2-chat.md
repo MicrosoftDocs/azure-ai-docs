@@ -11,7 +11,7 @@ ms.custom: include
 ---
 
 
-Generating responses from a model is the basic building block of AI applications.  Send an input and receive a response from the model:
+Interactiong with a model is the basic building block of AI applications.  Send an input and receive a response from the model:
 
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 

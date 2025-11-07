@@ -10,6 +10,10 @@ ms.date: 11/05/2025
 ms.custom: include
 ---
 
+Create an agent using your deployed model.
+
+An agent defines core behavior. Once created, it ensures consistent responses in user interactions without repeating instructions each time. You can update or delete agents anytime. 
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
 # [Python](#tab/python2)
