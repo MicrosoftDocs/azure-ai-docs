@@ -17,7 +17,7 @@ Model Context Protocol (MCP) provides a standard interface for AI agents to inte
 
 This approach enables you to securely integrate internal APIs and services into the Azure AI Foundry ecosystem, allowing agents to call your enterprise-specific tools through a standardized MCP interface.
 
-## Prerquisites
+## Prerequisites
 
 - An Azure AI Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Azure AI Foundry Agent Service](../../agents/quickstart.md).
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
