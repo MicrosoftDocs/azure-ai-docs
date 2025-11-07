@@ -23,7 +23,7 @@ You need:
 - **Azure subscription:** [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - **AI Foundry resource:** [Create an Azure AI Foundry resource](https://learn.microsoft.com/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions. For more information about region availability, see [Text to speech avatar regions](../regions.md).
 
- Or if you use Speech Studio:
+ Or, if you use Speech Studio:
 - **Speech resource:** [Create a speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Select the **Standard S0** pricing tier to access avatars.
 - **Speech resource key and region:** After deployment, select **Go to resource** to view and manage your keys.
 
@@ -79,7 +79,8 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
     "casual-sitting", // Set avatar style here.
 );  
 ```
-Set photo avatar
+Set photo avatar:
+
 ```JavaScript
 const avatarConfig = new SpeechSDK.AvatarConfig(
     "anika", // Set photo avatar character here.
@@ -269,7 +270,7 @@ videoFormat.width = 1920;
 videoFormat.height = 1080;
 ```
 
-For further details, see the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1)
+For further details, see the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1).
 
 
 ## Code samples
