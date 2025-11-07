@@ -1,29 +1,29 @@
 items:
 - name: Overview
   href: ../../guardrails/guardrails-overview.md
-- name: How to Configure Guardrails and Controls
+- name: How to configure Guardrails and Controls
   href: ../../guardrails/how-to-create-guardrails.md
 - name: Risks
   items:
-    - name: Prompt Shields
+    - name: Prompt shields
       href: ../../../openai/concepts/content-filter-prompt-shields.md
-    - name: Sensitive Data leakage 
+    - name: Sensitive data leakage 
       href: ../../../openai/concepts/content-filter-personal-information.md
     - name: Groundedness detection
       href: ../../../openai/concepts/content-filter-groundedness.md
     - name: Harm categories
       href: ../../guardrails/severity-levels.md
-    - name: Blocklists
+    - name: Block lists
       href: ../../../../ai-services/content-safety/quickstart-blocklist.md
     - name: Protected material for code
       href: ../../../../ai-services/content-safety/quickstart-protected-material-code.md
     - name: Protected material for text
       href: ../../../openai/concepts/content-filter-protected-material.md
-- name: Intervention Points
+- name: Intervention points
   href: ../../guardrails/intervention-points.md
 - name: Content streaming
   href: ../../../openai/concepts/content-streaming.md
 - name: Default safety policies
   href: ../../../openai/concepts/default-safety-policies.md
-- name: Custom Categories
+- name: Custom categories
   href: ../../../../ai-services/content-safety/concepts/custom-categories.md?context=/azure/ai-foundry/context/context&view=foundry&preserve-view=true
