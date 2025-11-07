@@ -122,7 +122,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Understanding 429 throttling errors and what to do 
 
-### Why You May See a 429 Error 
+### Why you may see a 429 Error 
 
 You may encounter a 429 error (“Too Many Requests”) when your usage exceeds the allowed limits or when the system is experiencing high demand. We have recently improved our error messaging to make these situations more transparent and actionable. 
 
