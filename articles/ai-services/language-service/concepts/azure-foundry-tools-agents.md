@@ -60,7 +60,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
   * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value
   * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center
   * For any resource type, you can also find the key in the Azure portal
-  * For detailed connection instructions, see [Create a connection](https://learn.microsoft.com/azure/ai-foundry/how-to/connections-add)
+  * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add)
 
 ### Key capabilities
 
