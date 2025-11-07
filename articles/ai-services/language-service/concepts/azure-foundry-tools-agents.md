@@ -52,7 +52,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
 * **Project resources**: Create your CLU and CQA projects using one of the following resource types:
   * Azure AI Foundry resource
-  * AI hub resource  
+  * AI hub resource
   * Azure AI Language resource
 
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
