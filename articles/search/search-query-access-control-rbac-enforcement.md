@@ -77,7 +77,7 @@ Content-Type: application/json
 ```
 
 > [!NOTE]
-> If the query token is omitted, only public documents accessible to everyone are returned in the query rest.
+> If the query token is omitted, only public documents accessible to everyone are returned in the query request.
 
 ## Elevated permissions for investigating incorrect results
 

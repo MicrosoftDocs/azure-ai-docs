@@ -468,7 +468,7 @@ api-key: {{key}}
         "@search.action": "upload",
         "HotelId": "3",
         "HotelName": "Gastronomic Landscape Hotel",
-        "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+        "Description": "The Gastronomic Landscape Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
         "Category": "Suite",
         "Tags": [ "restaurant", "bar", "continental breakfast" ],
         "ParkingIncluded": true,
@@ -521,7 +521,7 @@ api-key: {{key}}
 }
 ```
 
-The top response for this query is "Gastronomic Landscape Hotel Landscape Hotel" with a search score that is almost twice as high as next closest match. This particular hotel has both the highest rating and the highest base rate, so the compounding of both functions promotes this match to the top.
+The top response for this query is "Gastronomic Landscape Hotel" with a search score that is almost twice as high as next closest match. This particular hotel has both the highest rating and the highest base rate, so the compounding of both functions promotes this match to the top.
 
 ```json
 {
