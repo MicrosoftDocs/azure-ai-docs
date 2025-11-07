@@ -36,7 +36,7 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 + An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
-+ An Azure OpenAI resource with a [supported LLM](agentic-retrieval-how-to-create-knowledge-base.md#supported-llms) deployment. We recommend a minimum token capacity of 100,000. You can find the LLM's capacity and rate limit in the Azure AI Foundry portal. If you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries), you should also deploy a text embedding model.
++ An Azure OpenAI resource with a [supported LLM](agentic-retrieval-how-to-create-knowledge-base.md#supported-models) deployment. We recommend a minimum token capacity of 100,000. You can find the LLM's capacity and rate limit in the Azure AI Foundry portal. If you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries), you should also deploy a text embedding model.
 
 + [Authorization and permissions](#configure-access) to access each resource.
 
@@ -141,14 +141,6 @@ For this solution, you need the following information from each resource:
 + The resource ID of your project, which you can find on the **Properties** page in the Azure portal. It should look like this: `/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.CognitiveServices/accounts/{account-name}/projects/{project-name}`
 
 ---
-
-### Create the agentic retrieval objects
-
-For detailed instructions on how to create the search index, knowledge source, and knowledge base, see the following articles:
-
-+ [Create a search index for agentic retrieval](agentic-retrieval-how-to-create-index.md)
-+ [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md)
-+ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 
 ### Create a project connection
 

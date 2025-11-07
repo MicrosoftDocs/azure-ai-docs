@@ -41,8 +41,6 @@ Supported embedding models from the Azure AI Foundry model catalog vary by usage
 
 ## Deploy an embedding model from the model catalog
 
-1. Open the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
-
 1. Deploy a supported model to your project using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
 
 1. Make a note of the target URI, key, and model name. You need these values for the vectorizer definition in a search index and for the skillset that calls the model endpoints during indexing.
