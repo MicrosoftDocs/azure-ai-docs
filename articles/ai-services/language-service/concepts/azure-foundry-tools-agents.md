@@ -24,12 +24,6 @@ The server transforms Azure Language services into agent-friendly endpoints that
 
 * **Language processing**: Access to Azure Language's comprehensive natural language processing (NLP) services, including [**Named Entity Recognition**](../named-entity-recognition/overview.md), [**Text Analytics for health**](../text-analytics-for-health/overview.md), [**Conversational Language Understanding**](../conversational-language-understanding/overview.md), [**Custom Question Answering**](../question-answering/overview.md), [**Language Detection**](../language-detection/overview.md), [**Sentiment Analysis**](../sentiment-opinion-mining/overview.md), [**Summarization**](../summarization/overview.md), [**Key Phrase Extraction**](../key-phrase-extraction/overview.md), and [**PII redaction**](../personally-identifiable-information/overview.md). These services process text with accuracy and support multiple languages.
 
-   > ***MCP Server Endpoint***
-
-   ```bash
-   https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
-   ```
-
 * **Local deployment**: Azure Language also provides local MCP server where developers can host the server in their own environment. The local MCP server and setup instructions can be found in [ai-language-samples GitHub repo](https://github.com/Azure-Samples/ai-language-samples).
 
 ## Azure Language Intent Routing agent 🆕
@@ -47,20 +41,26 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 * **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
 
 * **Language service deployments**: Deploy both required Azure Language services:
-  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md)
-  * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md)
+  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
+  * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md).
 
 * **Project resources**: Create your CLU and CQA projects using one of the following resource types:
-  * Azure AI Foundry resource
-  * AI hub resource
-  * Azure AI Language resource
+  * Azure AI Foundry resource.
+  * AI hub resource.
+  * Azure AI Language resource.
 
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
-  * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page
-  * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value
-  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center
-  * For any resource type, you can also find the key in the Azure portal
-  * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add)
+  * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
+  * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value.
+  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center.
+  * For any resource type, you can also find the key in the Azure portal.
+  * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
+
+     > ***MCP Server Endpoint***
+
+      ```bash
+      https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
+      ```
 
 ### Key capabilities
 
@@ -95,19 +95,25 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 * **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
 
 * **Language service deployment**: Deploy the required Azure Language service:
-  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md)
+  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
 
 * **Project resources**: Create your CQA project using one of the following resource types:
-  * Azure AI Foundry resource
-  * AI hub resource
-  * Azure AI Language resource
+  * Azure AI Foundry resource.
+  * AI hub resource.
+  * Azure AI Language resource.
 
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
-  * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page
-  * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value
-  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center
-  * For any resource type, you can also find the key in the Azure portal
-  * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add)
+  * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
+  * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value.
+  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center.
+  * For any resource type, you can also find the key in the Azure portal.
+  * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
+
+     > ***Download template code with Azure Developer CLI (azd)***
+
+       ```bash
+       azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
+       ```
 
 ### Key capabilities
 
@@ -120,12 +126,6 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 * **Deterministic answering**: The agent returns exact verbatim responses as defined in the CQA project answers, ensuring consistent and controllable responses to questions.
 
 * **Fallback processing**: Users can easily add retrieval-augmented generation (RAG) to handle queries outside the predefined knowledge base by using approved organizational content sources.
-
-   > ***Download template code with Azure Developer CLI (azd)***
-
-   ```bash
-   azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
-   ```
 
 ## Related content
 

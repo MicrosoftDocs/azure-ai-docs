@@ -779,7 +779,7 @@ items:
   - name: Developer guide
     href: concepts/developer-guide.md
     displayName: development, sdk guide, programming
-  - name: Azure tools and agents
+  - name: Azure tools and agents 🆕
     href: concepts/azure-foundry-tools-agents.md
     displayName: mcp, exact, question, answering, intent, routing
   - name: Role-based-access-control
