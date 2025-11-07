@@ -28,7 +28,9 @@ items:
   - name: Overview
     href: ../../openai/concepts/model-router.md
     displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
-  - name: Getting started with model router
+  - name: What's new
+    href: ../model-router-whats-new.md
+  - name: Get started with model router
     href: ../../openai/how-to/model-router.md
 - name: Deploy Foundry Models
   items:

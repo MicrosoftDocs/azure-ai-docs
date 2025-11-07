@@ -114,12 +114,6 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` don't require registration.
 
 
-### New version of model-router
-
-- Model router now supports GPT-5 series models.
-
-- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
-
 
 ## July 2025 
 
