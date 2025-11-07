@@ -13,10 +13,11 @@ ms.reviewer: metang
 ai-usage: ai-assisted
 ---
 
-# Foundry Local licenses
+# Foundry Local execution providers
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
-This article shows licenses for Foundry Local.
+
+Execution providers are hardware-specific acceleration libraries that run models as efficiently as possible on device.
 
 ## Built-in execution providers
 
