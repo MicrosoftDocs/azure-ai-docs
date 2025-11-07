@@ -23,11 +23,18 @@ Model router for Azure AI Foundry is a deployable AI chat model that is trained 
 
 Model router intelligently selects the best underlying model for a given prompt to optimize costs while maintaining quality. Smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, and non-reasoning models are used otherwise. Model router provides a single deployment and chat experience that combines the best features from all of the underlying chat models.
 
+::: moniker range="foundry"
+
+With the latest version of model router, you can configure the routing behavior to better match your application's needs. You can choose a predefined routing mode and specify a subset of underlying models to use. See below for more details.
+
+::: moniker-end
+
 ## Versioning 
 
 Each version of model router is associated with a specific set of underlying models and their versions. This set is fixed&mdash;only newer versions of model router can expose new underlying models.
 
 If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
+
 
 ## Underlying models
 
@@ -36,6 +43,58 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 | `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
 |`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
 |`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`<br> `gpt-5-nano` <br>`gpt-5-mini`<br>`gpt-5`<br>`gpt-5-chat`<br>`Deepseek-v3.1`<br>`llama-33-70b-instruct`<br>`gpt-oss-120b`<br>`llama4-maverick-instruct`<br>`grok-4`<br>`grok-4-fast`<br>`gpt-4o`<br>`gpt-4o-mini` |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` , <br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07` <br> N/A <br> N/A<br> N/A<br> N/A<br> N/A<br> N/A <br> TBD <br> TBD |
+
+::: moniker range="foundry"
+
+## Routing profiles
+
+Model Router automatically chooses among a set of base models for each request, and routing profiles let you skew those choices to optimize different things while maintaining a baseline level of performance. Setting a routing profile is optional, and if you don’t set one, your deployment defaults to the `balanced` strategy.
+
+Use routing profiles if you:
+* Want a simple “set-and-go” optimization without manually benchmarking every model.
+* Need to reduce spend while retaining near-maximum quality.
+* Need consistent access to the highest-quality model for critical workloads.
+* Want to A/B test quality vs. cost trade-offs through per-request overrides.
+
+> [!NOTE]
+> Routing modes are currently in preview. APIs, thresholds, or mode semantics might change before general availability.
+
+### Available routing profiles
+
+| Mode | Objective | Selection logic (conceptual) | Typical use cases | Trade-offs |
+|------|-----------|------------------------------|-------------------|------------|
+| Balanced (default) | Maintain near-best quality with cost sensitivity | Includes any candidate model whose estimated accuracy is within ~1% of the top model’s accuracy | General-purpose applications, mixed workloads | Slightly higher cost than strict cost mode; not always the single top-quality model |
+| Quality | Always choose the highest-quality model. This is usually the largest model, but depends on internal quality scoring, which can incorporate more than just parameter count. | Equivalent to a strict selection (α = 0) picking the top model | Mission‑critical tasks, legal/risk reviews, complex reasoning | Highest cost among modes |
+| Cost | Minimize cost while staying within a broader acceptable quality band | Includes models within ~5% of best estimated accuracy, then chooses lower-cost candidate | High-volume workloads, exploratory or background processing | Possible small quality reduction vs. balanced/quality |
+
+> [!IMPORTANT]
+> The ±1% and ±5% quality deltas are internal target thresholds for in-domain evaluation sets. Actual realized differences can vary by domain, prompt style, and data distribution. Validate against your own test set.
+
+Each mode encodes a fixed optimization pattern, but you can use per-request overrides plus workload segmentation to approximate hybrid behavior.
+
+Routing profiles don't guarantee that a specific model will be chosen for a given request. If you need to route to a specific model (for regulatory reasons, for example), deploy that model directly instead of routing.
+
+### Best practices with routing profiles
+
+Consider how you can use different routing profiles in your own use cases:
+* Benchmark: Run a small evaluation set under `balanced` vs. `cost` to quantify quality delta before large-scale shift.
+* Start conservative: Move from `quality` → `balanced` → `cost` only after confirming acceptable outputs.
+* Mixed workloads: Use deployment default = `balanced` and override individual background requests with `cost`.
+* Guardrails: For safety-critical tasks, keep `quality` and add post-processing validation.
+
+
+## Model subsets
+
+Combines Routing mode and Model subsets e2e specs including the deployment section from this spec and the newly implemented Control Plane API request example completed 9/19.
+
+Several customers want to personalize their subset of models for routing based on their preferences and enterprise compliance needs. For example, some enterprise customers want to explicitly select only OpenAI (GPT) and Llama and avoid any new models until they explicitly opt in. In other cases, customers have preferences of models based on their benchmarking and preferences.
+
+## features?
+
+New models are not used unless explicitly added to a deployment’s inclusion list.
+
+::: moniker-end
+
 
 
 ## Limitations
