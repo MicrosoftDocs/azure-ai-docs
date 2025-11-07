@@ -48,7 +48,7 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 ## Routing profiles
 
-Model Router automatically chooses among a set of base models for each request, and routing profiles let you skew those choices to optimize different things while maintaining a baseline level of performance. Setting a routing profile is optional, and if you don’t set one, your deployment defaults to the `balanced` strategy.
+Model Router automatically chooses among a set of base models for each request, and routing profiles let you skew those choices to optimize for different things while maintaining a baseline level of performance. Setting a routing profile is optional, and if you don’t set one, your deployment defaults to the `balanced` strategy.
 
 Use routing profiles if you:
 * Want a simple “set-and-go” optimization without manually benchmarking every model.
@@ -85,13 +85,11 @@ Consider how you can use different routing profiles in your own use cases:
 
 ## Model subsets
 
-Combines Routing mode and Model subsets e2e specs including the deployment section from this spec and the newly implemented Control Plane API request example completed 9/19.
+The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
 
-Several customers want to personalize their subset of models for routing based on their preferences and enterprise compliance needs. For example, some enterprise customers want to explicitly select only OpenAI (GPT) and Llama and avoid any new models until they explicitly opt in. In other cases, customers have preferences of models based on their benchmarking and preferences.
+You can make this specification at deployment time, and you can override it at request time.
 
-## features?
-
-New models are not used unless explicitly added to a deployment’s inclusion list.
+When new base models become available, they're not included in your selection unless you explicitly add them to your deployment's inclusion list.
 
 ::: moniker-end
 
