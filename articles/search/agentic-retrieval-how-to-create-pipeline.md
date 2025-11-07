@@ -1,6 +1,3 @@
-To enable agentic retrieval, you must create a project connection in Azure AI Foundry that points to the MCP endpoint for your knowledge base. The MCP endpoint allows your knowledge base to be accessed through the Model Context Protocol (MCP) by agents in Azure AI Foundry. The endpoint format is:
-
-`{search-endpoint}/knowledgebases/{kb}/mcp?api-version=2025-11-01-preview`
 ---
 title: 'Tutorial: Create an End-to-End Retrieval Solution'
 titleSuffix: Azure AI Search
@@ -107,7 +104,7 @@ Development tasks for this solution include:
 
 + Create a [knowledge source](agentic-knowledge-source-overview.md). Agentic retrieval supports multiple types of knowledge sources, but this solution creates a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
-+ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that maps to your LLM deployment and uses the extractive data output mode. We recommend this output mode for interaction with Azure AI Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning.  The agent is responsible for synthesizing answers and performing other tasks with this verbatim content.
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that maps to your LLM deployment and uses the extractive data output mode. We recommend this output mode for interaction with Azure AI Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning. The agent is responsible for synthesizing answers and performing other tasks with this verbatim content.
 
 + [Call the retrieve action](agentic-retrieval-how-to-retrieve.md) on the knowledge base to process a query, conversation, and override parameters.
 
@@ -275,7 +272,7 @@ The LLM that powers your knowledge base determines the number of subqueries base
 
 As the developer, you can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
-## Control the chat history
+## Control the context sent to the agent
 
 The Responses API controls what is sent to the agent and knowledge base. To optimize performance and relevance, adjust your agent instructions to summarize or filter the chat history before sending it to the MCP tool.
 

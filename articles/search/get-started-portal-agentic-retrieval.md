@@ -18,7 +18,7 @@ ms.date: 11/07/2025
 
 In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Azure AI Foundry Models.
 
-The portal guides you through the process of configuring the following objects:
+The portal guides you through the process of creating the following objects:
 
 + A *knowledge source* that references a container in Azure Blob Storage. When you create a blob knowledge source, Azure AI Search automatically generates an index and other pipeline objects to ingest and enrich your content for agentic retrieval.
 
