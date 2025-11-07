@@ -21,8 +21,8 @@ items:
 - name: Fine-tuning
   href: toc-files-foundry/fine-tuning/toc.yml
 
-- name: Integration & orchestration
-  href: toc-files-foundry/integrations-orchestration/toc.yml
+# - name: Integration & orchestration
+#   href: toc-files-foundry/integrations-orchestration/toc.yml
 
 - name: Manage agents, models, and tools
   href: toc-files-foundry/manage-agents-models-tools/toc.yml

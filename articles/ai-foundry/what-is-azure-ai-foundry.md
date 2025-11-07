@@ -58,6 +58,7 @@ With Azure AI Foundry, you can explore a wide variety of models, services and ca
 * **Multi-Agent Orchestration and Workflows** – Build advanced automation with SDKs for C# and Python, enabling collaborative agent behavior and complex workflow execution.
 * **Expanded Integration Options** – Publish agents to Microsoft 365, Teams, and BizChat, and leverage containerized deployments for greater portability.
 * **Real-Time Observability** – Monitor performance and governance with built-in metrics and model tracking tools.
+* **Centralized AI asset management** - Observe, optimize, and manage 100% of your AI assets (agents, models, tools) in one place, the **Operate** section. Register agents from other clouds, get alerts when an agent or model requires your attention, and effectively manage your AI fleet health as that fleet scales.
 * **Optimized Developer Experience** – Faster load times and dynamic prefetching ensure smooth development and deployment.
 
 ## Streamlined navigation
