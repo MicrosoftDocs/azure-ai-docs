@@ -13,6 +13,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Azure AI Foundry rollout across my organization
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 This guide outlines key decisions for rolling out Azure AI Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Every organization is different. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
 
 ## Example organization
