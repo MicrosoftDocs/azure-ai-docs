@@ -1,22 +1,31 @@
 ---
-title: 'How to use blocklists with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use blocklists in Azure AI Foundry models'
 titleSuffix: Azure OpenAI
 description: Learn how to use blocklists with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 11/05/2025
 author: PatrickFarley
 ms.author: pafarley
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Use a blocklist with Azure OpenAI
+# How to use blocklists in Azure AI Foundry models
 
+::: moniker range="foundry"
+
+The [configurable Guardrails and Controls](/azure/ai-foundry/openai/how-to/content-filters) available in Azure AI Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
 
 The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+
+::: moniker-end
 
 ## Prerequisites
 
@@ -27,6 +36,7 @@ The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filte
 - [cURL](https://curl.haxx.se/) installed
 
 ## Use blocklists
+
 
 #### [Azure OpenAI API](#tab/api)
 
@@ -246,6 +256,6 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview). 
 
-- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry Models. 
+- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry models. 
 
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming) article. 
