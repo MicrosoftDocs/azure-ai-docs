@@ -13,7 +13,7 @@ ms.reviewer: pafarley
 ---
 
 # Supported standard text to speech avatar
-Here are full lists of standard avatars with their preview images.
+This article contains the full list of standard avatars with their preview images.
 - Standard video avatars
 - Standard photo avatars
 
