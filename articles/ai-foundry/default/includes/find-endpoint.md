@@ -9,8 +9,6 @@ ms.date: 08/21/2025
 ms.custom: include file
 ---
 
-Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
-
 Copy your endpoint from the welcome screen. You'll use it in the next step.
 
 :::image type="content" source="../media/quickstarts/project-endpoint.png" alt-text="Screenshot of Azure AI Foundry Models welcome screen showing the endpoint URL and copy button.":::
