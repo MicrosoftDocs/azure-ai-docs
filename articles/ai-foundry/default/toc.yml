@@ -36,6 +36,9 @@ items:
 - name: API & SDK
   href: toc-files-foundry/api-sdk/toc.yml
 
+- name: Guardrails and Controls
+  href: toc-files/guardrails/toc.yml
+
 - name: Responsible AI
   href: toc-files-foundry/responsible-ai/toc.yml
 
