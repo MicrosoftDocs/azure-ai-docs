@@ -120,7 +120,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Avoid sharp changes in the workload. Increase the workload gradually.
 - Test different load increase patterns.
 
-## Understanding 429 Throttling Errors and What to Do 
+## Understanding 429 throttling errors and what to do 
 
 ### Why You May See a 429 Error 
 
