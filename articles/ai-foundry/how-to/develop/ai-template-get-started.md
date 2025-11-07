@@ -25,6 +25,11 @@ AI solution templates include customizable code samples, pre-integrated Azure se
 
 These templates harness the power of multi-agent, agentic AI, enabling you to automate workflows, optimize operations, reduce costs, and make faster, data-driven decisions.
 
+> [!IMPORTANT]
+> Starter templates, manifests, code samples, and other resources made available by Microsoft or its partners (“samples”) are designed to assist in accelerating development of agents and AI solutions for specific scenarios. Review all provided resources and carefully test output behavior in the context of your use case. AI responses may be inaccurate and AI actions should be monitored with human oversight. Learn more in the transparency documents for [Agent Service](../../responsible-ai/agents/transparency-note.md) and [Agent Framework](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md).  
+>
+>Agents and AI solutions you create may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. By using any sample, you are acknowledging that Agents, AI solutions, or other output created using those samples are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct.”  
+
 ::: moniker range="foundry-classic"
 
 Available templates include:
@@ -59,6 +64,7 @@ Available templates:
 | [Improve client meetings with agents](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) | Enhance meeting productivity |
 | [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator) | Update legacy code |
 | [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) | Create conversational experiences |
+[Retrieve and summarize SharePoint data](https://github.com/microsoft/app-with-sharepoint-knowledge)  | Retrieve content from SharePoint sites |
 
 ::: moniker-end
 
