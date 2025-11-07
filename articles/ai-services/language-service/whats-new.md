@@ -16,7 +16,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## October 2025
 
-* **Summarization model 2025-06-10 generally available**. The [Summarization model](summarization/quickstart.md?tabs=text-summarization%2Cwindows&pivots=rest-api&preserve-view=true) version 2025-06-10 is now generally available. This model is fine-tuned using the Phi open model family, delivering enhanced performance for Issue and Resolution summary generation.
+* **Summarization model 2025-06-10 generally available**. The [Summarization model](summarization/overview.md) version 2025-06-10 is now generally available. This model is fine-tuned using the Phi open model family, delivering enhanced performance for Issue and Resolution summary generation.
 
 * **Expanded Azure Language MCP server capabilities**. The Model Context Protocol (MCP) server for Azure Language now provides eight additional NLP tools: [Named Entity Recognition](named-entity-recognition/overview.md), [Text Analytics for health](text-analytics-for-health/overview.md), [Conversational Language Understanding](conversational-language-understanding/overview.md), [Custom Question Answering](question-answering/overview.md), [Language Detection](language-detection/overview.md), [Sentiment Analysis](sentiment-opinion-mining/overview.md), [Summarization](summarization/overview.md), and [Key Phrase Extraction](key-phrase-extraction/overview.md). These tools complement the existing PII Detection capability.
 
