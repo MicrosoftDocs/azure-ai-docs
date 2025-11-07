@@ -126,7 +126,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 You may encounter a 429 error (“Too Many Requests”) when your usage exceeds the allowed limits or when the system is experiencing high demand. We have recently improved our error messaging to make these situations more transparent and actionable. 
 
-### Common 429 Scenarios and What to Do
+### Common 429 scenarios and what to do
 1. **Rate Limit Exceeded**. This is the most common situation when you've received 429 responses. It means your requests exeeded the rate limit for your current quota. In this case, you can request a quota increase using the provided link in the error message.
 2. **System is experiencing high demand and cannot process your request**. The system is under high demand and cannot process your request due to capacity or latency limits. In this case, you can retry after the suggested time. Please not that Standard offer has no latency SLA and may experience variable latency if you exceeds the [Usage tier](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/quotas-limits?tabs=REST#usage-tiers). If you are looking for improved reliability or lower latency, consider upgrading to the Premium offer (Provisioned throughput) for better predictability. 
 
