@@ -280,7 +280,7 @@ Azure OpenAI usage tiers are designed to provide consistent performance for most
 ### What happens if you exceed your usage tier?
 
 - If your request throughput exceeds your usage tier—especially during periods of high demand—your response latency may increase significantly.
-- Latency can vary and, in some cases, may be more than 2 times higher than when operating within your usage tier.
+- Latency can vary and, in some cases, may be more than two times higher than when operating within your usage tier.
 - This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
 
 ### Recommended actions If you exceed your usage tier
