@@ -142,7 +142,9 @@ You can access cost information from either the [!INCLUDE [foundry-link](../defa
 
 ### Configure permissions to view costs
 
-To view costs, you need the **Owner** role or have a custom role at either subscription or resource group scope with the following actions:
+You need the [AI User role](rbac-azure-ai-foundry.md#azure-ai-user) and [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the resource group of subscription level to view the costs.
+
+Or you can create the following custom rules:
 
 * `Microsoft.Consumption/*/read`
 * `Microsoft.CostManagement/*/read`
@@ -151,6 +153,7 @@ To view costs, you need the **Owner** role or have a custom role at either subsc
 
 > [!NOTE]
 > You need the **Owner** role at the subscription or resource group scope to create custom roles in that scope.
+> 
 
 To create a custom role, use one of the following articles:
 
@@ -191,7 +194,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. Use the sections below to monitor costs.
 
 > [!NOTE]
-> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
+> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. They also cover only standard deployment costs, not [provisioned throughput offerings](../openai/concepts/provisioned-throughput.md).
 
 ### Agent costs
 
@@ -232,24 +235,29 @@ You  see the total cost along with an estimated cost chart for the given range.
 
 :::image type="content" source="../default/media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="../default/media/manage-costs/model-costs.png":::
 
+When you select the **View More Details** or the **Azure Cost Management** link, you are directed to the Azure portal under the **Cost Management** section. The costs displayed there reflect the aggregated charges for the entire Cognitive Services account. These differ from the costs shown here, which are specific to the selected model only.
+
+> [!NOTE]
+> Token and request charts can sometimes show lower values than the **Estimated cost** view because late‑arrival usage events may not be included in those charts. If there’s a mismatch, rely on **Estimated cost** as the most accurate view, and note that your **Azure Cost Management invoice** remains the final source of truth.
+
 ## Monitor in Azure portal
 
 Here's an example of how to monitor costs in the Azure portal. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/)
-1. Select the resource group that contains the project you want to monitor.
+1. You can view costs for a resource group or for an individual AI Foundry resource. 
 
     [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. In the Azure portal, select **Cost analysis** under **Cost Management**.
+1. In the Azure portal, for either your resource group or AI Foundry resource, select **Cost analysis** under **Cost Management**.
 
-1. You see the cost overview. You can also add filters like the deployment level tags to see the costs based on model deployment, as shown in the following screenshot.
+1. You see the cost overview. You can also add filters such as deployment level tags and user defined tags. For example, to see the costs based on model deployment:
 
    :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview with deployment level tags." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
 
 1. Select **Costs by resource** > **Resources** to open the Cost analysis page.
 
-1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource,
+1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource.
 
    :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
 

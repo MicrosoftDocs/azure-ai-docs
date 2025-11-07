@@ -232,6 +232,12 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: LLM speech
+  items:
+    - name: Use LLM speech
+      href: llm-speech.md
+    - name: LLM speech REST API reference
+      href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice live
   items:
     - name: Voice live overview
@@ -256,6 +262,8 @@ items:
         href: voice-live-how-to.md
       - name: How to customize voice live input and output
         href: voice-live-how-to-customize.md
+      - name: How to invoke a proactive greeting and pregenerated messages
+        href: voice-live-how-to-proactive-and-pregenerated-messages.md
       - name: Voice live telephony integration
         href: voice-live-telephony.md
     - name: Voice live FAQ
@@ -518,6 +526,9 @@ items:
         href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
+    - name: From Speech to text 2024-11-15 to 2025-10-15
+      href: migrate-2025-10-15.md
+      displayName: migrate,migration,deprecate,retire,sunset
     - name: From Speech to text v3.2 to 2024-11-15
       href: migrate-2024-11-15.md
       displayName: migrate,migration,deprecate,retire,sunset

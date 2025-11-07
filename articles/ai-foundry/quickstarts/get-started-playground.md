@@ -10,7 +10,6 @@ ms.topic: quickstart
 ms.date: 08/25/2025
 ms.reviewer: zuramir
 ms.author: sgilley
-monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ai-usage: ai-assisted
 # customer intent: As a developer, I want use the chat playground in Azure AI Foundry portal so I can work with generative AI.
@@ -31,7 +30,7 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-[!INCLUDE [feature-preview](../includes/first-run-experience.md)]
+[!INCLUDE [feature-preview](../includes/first-run-experience-classic.md)]
 
 ## Get answers in the playground
 

@@ -574,6 +574,11 @@
       "source_path": "articles/machine-learning/known-issues/workspace-move-compute-instance-same-name.md",
       "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/how-to/disaster-recovery.md",
+      "redirect_url": "/azure/ai-foundry/how-to/agent-service-disaster-recovery",
+      "redirect_document_id": false
     }
   ]
 }

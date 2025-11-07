@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 08/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Vision fine-tuning
@@ -77,6 +78,6 @@ Images containing the following will be excluded from your dataset and not used 
 
 ## Next steps
 
-- [Deploy a finetuned model](fine-tuning-deploy.md).
+- [Deploy a fine-tuned model](fine-tuning-deploy.md).
 - Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
 - Learn more about [Azure OpenAI quotas](../quotas-limits.md)
