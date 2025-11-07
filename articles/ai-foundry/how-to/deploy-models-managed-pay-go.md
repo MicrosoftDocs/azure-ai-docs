@@ -5,7 +5,7 @@ description: Learn how to deploy protected AI models from partners and community
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 10/25/2025
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -198,7 +198,11 @@ NVIDIA ensures the security and reliability of NVIDIA NIM container images throu
 
 You can refer to the _last updated time_ for the NIM on the right pane of the model's overview page. You can redeploy to consume the latest version of NIM from NVIDIA on Azure AI Foundry. 
 
+### Voyage AI
 
+| Model | Task |
+|--|--|
+| [voyage-3.5](https://ai.azure.com/explore/models/voyage-3.5/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 
 ## Related content
 
