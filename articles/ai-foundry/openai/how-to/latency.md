@@ -3,7 +3,8 @@ title: Azure OpenAI in Azure AI Foundry Models performance & latency
 titleSuffix: Azure OpenAI
 description: Learn about performance and latency with Azure OpenAI
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 07/21/2025
 author: mrbullwinkle 

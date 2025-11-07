@@ -5,7 +5,8 @@ author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
 ms.date: 09/10/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: whats-new
 ms.custom:
   - ignite-2023
@@ -18,16 +19,44 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## October 2025
+
+
+### Realtime API support for SIP
+
+The Realtime API now supports SIP, enabling telephony connections to realtimeapi. For more information, see the [Realtime SIP documentation](./how-to/realtime-audio-sip.md).
+
+### GPT-4o audio model released
+
+- The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
+
+Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity, supporting automatic speech recognition. 
+
+Use this model via the `/audio` and `/realtime` APIs.  
+
+### GPT-image-1-mini 
+
+The `gpt-image-1-mini` model is now available for global deployments. It is a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
+
+### PII detection content filter
+
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
+
 ## September 2025
 
-## GPT-5-codex is now available
+### GPT-5-codex is now available
 
 - To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
-- `gpt-5-codex` is specifically designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
+- `gpt-5-codex` is designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
 
-- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5` you do not need to reapply and will automatically be granted access.
+- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5`, you do not need to reapply and will automatically be granted access.
 
-## Sora video-to-video support 
+### Sora video-to-video support 
 
 The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
 
@@ -37,7 +66,7 @@ The Sora model from OpenAI now supports video-to-video generation. You can provi
 
 The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./video-generation-quickstart.md) to get started.
 
-Sora is now available in the Sweden Central region as well as East US 2.
+This Sora model is now available in the Sweden Central region and East US 2.
 
 
 ### Realtime API audio model GA
@@ -53,7 +82,6 @@ Realtime API service improvements:
 - Image Input: Add and discuss images via voice without video requirements.
 - Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
-- SIP entry supported: public SIP URI, SIPS/SRTP, PSTN, HD Voice. 
 
 
 We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
@@ -107,7 +135,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 ## June 2025
 
 
-### codex-mini & o3-pro models released
+### New models codex-mini & o3-pro released
 
 - `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
 
@@ -115,7 +143,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 ### Sora video generation released (preview)
 
-Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+The Sora (2025-05-02) model is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
 
 Follow the [Video generation quickstart](/azure/ai-foundry/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
@@ -266,7 +294,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### GPT-4o 2024-11-20
 
-`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
+`gpt-4o-2024-11-20` is now available for [global standard deployment](../foundry-models/concepts/deployment-types.md) in:
 
 - East US
 - East US 2

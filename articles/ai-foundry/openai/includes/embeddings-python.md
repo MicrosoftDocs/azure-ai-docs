@@ -1,7 +1,8 @@
 ---
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 09/30/2025
 author: mrbullwinkle #noabenefraim
@@ -9,7 +10,7 @@ ms.author: mbullwin
 ---
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * An Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability). If you don't have a resource the process of creating one is documented in our [resource deployment guide](../how-to/create-resource.md).
 * <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>
 * The following Python libraries: `openai`, `num2words`, `matplotlib`, `plotly`, `scipy`, `scikit-learn`, `pandas`, `tiktoken`.

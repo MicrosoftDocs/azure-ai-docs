@@ -1081,16 +1081,16 @@ groups:
   title: Programming languages
   prompt: Choose your preferred language
   pivots:
-  - id: programming-language-dotnet
-    title: C#
-  - id:  programming-language-go
-    title: Go
-  - id:  programming-language-java
-    title: Java
-  - id:  programming-language-javascript
-    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-go
+    title: Go
 # Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
@@ -1442,6 +1442,19 @@ groups:
     title: Foundry portal
   - id: programming-language-python
     title: Python
+  - id: programming-language-csharp
+    title: C#
+- id: voice-live-proactive-and-pregenerated-messages
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#    
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1648,3 +1661,12 @@ groups:
     title: Import data (new)
   - id: import-data
     title: Import data
+# Owner: johalexander / ms-johnalex
+- id: ai-foundry-vsc-extension-languages
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#

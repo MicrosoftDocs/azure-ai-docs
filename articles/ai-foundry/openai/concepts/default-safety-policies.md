@@ -6,7 +6,8 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.date: 09/16/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - build-2025
@@ -52,7 +53,7 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 
 ### Image generation models
 
-#### [GPT-image-1](#tab/gpt-image-1)
+#### [GPT-image-1 series](#tab/gpt-image-1)
 
 | Risk Category   | Prompt/Completion | Severity Threshold |
 |---------------------------------------------------|------------------------|---------------------|
@@ -85,4 +86,18 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 In addition to the above safety configurations, DALL-E 3 also comes with [prompt transformation](./prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
 
 ---
+
+
+## Audio Models
+
+| Risk Category                          | Prompt/Completion | Severity Threshold |
+|----------------------------------------|--------------------|---------------------|
+| Hate and Fairness                      | Prompts and Completions | Medium |
+| Violence                               | Prompts and Completions | Medium |
+| Sexual                                 | Prompts and Completions | Medium |
+| Self-Harm                              | Prompts and Completions | Medium |
+| User prompt injection attack (Jailbreak) | Prompts           | N/A   |
+| Protected Material - Text              | Completions        | N/A    |
+| Protected Material - Code              | Completions        | N/A    |
+
 

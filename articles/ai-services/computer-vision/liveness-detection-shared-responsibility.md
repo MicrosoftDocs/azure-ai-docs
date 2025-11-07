@@ -12,7 +12,12 @@ ms.topic: conceptual
 
 # Shared responsibility for Face liveness detection
 
-It's the shared responsibility between Azure and its customers to build a secure and compliant face liveness solution. You can learn more about Azure's shared responsibility at [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility). Understanding the shared responsibility model is especially important for liveness detection solutions. This document covers three aspects of how to secure and monitor your solution.
+It's the shared responsibility between Azure and its customers to build a secure and compliant face liveness solution. You can learn more about Azure's shared responsibility at [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility). Understanding the shared responsibility model is especially important for liveness detection solutions. This document covers various aspects of how to secure and monitor your solution.
+
+> [!IMPORTANT]
+> It is important for developers to be aware of the security implications when choosing the right solution — either Web or Mobile. While both the Web and Mobile solutions conform to iBeta Level 1 and Level 2 ISO/IEC 30107-3 PAD standards, the Mobile solution includes additional Runtime Application Self-Protections (RASP) provided by [GuardSquare](https://www.guardsquare.com/blog/why-guardsquare), which are not available in the Web solution.<br><br>
+> Notably, the Web solution has limitations inherent to running in browser environments and may be more vulnerable to certain types of attacks. So we recommend using the Mobile solution whenever possible.<br><br>
+> If you do choose the Web solution, it is critical that you closely follow the guidance in this document, ensure that the camera in use is a trusted physical device, and consider implementing additional safeguards and monitoring to mitigate potential runtime attacks.<br>
 
 ## Secure the connections
 

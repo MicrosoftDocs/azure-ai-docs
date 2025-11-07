@@ -63,16 +63,12 @@ With the latest preview release, you now can optionally select either the standa
 
 Add Text translation to your projects and applications using the following resources:
 
-* Access the cloud-based Translator service via the [**REST API**](reference/rest-api-guide.md), available in Azure.
-
-* Use the REST API [translate request](../containers/translator-container-supported-parameters.md) with the [**Text translation Docker container**](../containers/translator-how-to-install-container.md).
-
-    > [!IMPORTANT]
-    >
-    > * To use the Translator container, you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.
-    >
-    > * The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.
-    >
+|Development option  |Description  |
+|---------|---------|
+|[**Azure AI Foundry (new)**](https://ai.azure.com/) portal| Azure AI Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.
+|[**Azure AI Foundry (classic)**](https://ai.azure.com/) portal| Azure AI Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types. When you sign up, you can use your own data to detect more than 100 languages in their primary script.|
+|[**REST API or Client library (Azure SDK)**](quickstart/client-library-sdk.md)| Integrate translation into your applications using the REST API, or the client library available in various languages.|
+| **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.|
 
 ## Data residency
 

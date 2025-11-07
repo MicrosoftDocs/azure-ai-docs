@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # Language and voice support for the Speech service
 
-The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), [speaker recognition](speaker-recognition-overview.md), and more service features.
+The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more service features.
 
 You can also get a list of locales and voices supported for each specific region or endpoint via:
 - [Speech SDK](speech-sdk.md)
@@ -33,7 +33,7 @@ Language support varies by Speech service functionality.
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for [real-time speech to text](speech-to-text.md#real-time-speech-to-text), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription-api) transcription.
+The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription) transcription.
 
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
@@ -62,6 +62,12 @@ More remarks for text to speech locales are included in the [voice styles and ro
 > Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
+
+### DragonHD voices
+
+These are LLM-based neural high definition (HD) voices. The HD voices are multilingual, can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment. HD voices maintain a consistent voice persona with their neural (and non-HD) counterparts, and deliver more value through enhanced features.
+
+[!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
 ### Multilingual voices
 
@@ -127,7 +133,7 @@ With the cross-lingual feature, you can transfer your custom voice model to spea
 
 ### Voice conversion
 
-[Voice conversion](voice-conversion.md) is a feature that lets you transform the voice characteristics of a given audio to a target voice speaker. The following table summarizes the locales supported for voice conversion.
+[Voice conversion](voice-conversion.md) is a feature that lets you transform the voice characteristics of a given audio to a target voice speaker. The following table summarizes the locales supported for voice conversion, and each language is available on all [voice conversion regions](regions.md#regions).
 
 [!INCLUDE [Language support include](includes/language-support/voice-conversion.md)]
 
@@ -172,11 +178,6 @@ The table in this section summarizes the locales supported for [Language identif
 
 [!INCLUDE [Language support include](includes/language-support/language-identification.md)]
 
-# [Speaker recognition](#tab/speaker-recognition)
-
-The table in this section summarizes the locales supported for Speaker recognition. Speaker recognition is mostly language agnostic. The universal model for text-independent speaker recognition combines various data sources from multiple languages. We tuned and evaluated the model on these languages and locales. For more information on speaker recognition, see the [overview](speaker-recognition-overview.md).
-
-[!INCLUDE [Language support include](includes/language-support/speaker-recognition.md)]
 
 # [Custom keyword](#tab/custom-keyword)
 
@@ -184,11 +185,6 @@ The table in this section summarizes the locales supported for custom keyword an
 
 [!INCLUDE [Language support include](includes/language-support/custom-keyword.md)]
 
-# [Intent Recognition](#tab/intent-recognizer-pattern-matcher)
-
-The table in this section summarizes the locales supported for the Intent Recognizer Pattern Matcher.
-
-[!INCLUDE [Language support include](includes/language-support/intent-recognizer-pattern-matcher.md)]
 
 ***
 

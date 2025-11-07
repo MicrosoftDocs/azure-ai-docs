@@ -211,6 +211,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/open-ai/how-to/deployment-types.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-llama.md",
             "redirect_url": "/azure/ai-foundry/concepts/models-featured#meta",
             "redirect_document_id": false
@@ -915,8 +920,13 @@
         },
         {
             "source_path_from_root": "/articles/ai-foundry/openai/how-to/manage-costs.md",
-            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/manage-costs",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-foundry/concepts/manage-costs",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/manage-costs.md",
+            "redirect_url": "/azure/ai-foundry/concepts/manage-costs",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/simulator-interaction-data.md",
@@ -1278,6 +1288,11 @@
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
           "redirect_document_id": false
         },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/chatgpt-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
      {
           "source_path_from_root": "/articles/ai-foundry/openai/how-to/work-with-code.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
@@ -1296,6 +1311,36 @@
       {
           "source_path_from_root": "/articles/ai-foundry/how-to/view-ai-red-teaming-results.md",
           "redirect_url": "/azure/ai-foundry/how-to/develop/run-scans-ai-red-teaming-agent#viewing-ai-red-teaming-results-in-azure-ai-foundry-project-preview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/a-b-experimentation.md",
+          "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false
         }
     ]

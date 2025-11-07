@@ -1,11 +1,79 @@
 ---
-author: PatrickFarley
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 4/8/2025
-ms.author: pafarley
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### November 2025 release
+
+#### Public preview of new HD voices
+| **Locale (BCP-47)** | **Voice name**                                      |
+| -------------------- | ---------------------------------------------------- |
+| `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
+| `en-GB`             | `en-GB-Ollie:DragonHDLatestNeural` (Male)           |
+| `es-MX`             | `es-MX-Tristan:DragonHDLatestNeural` (Male)         |
+| `es-MX`             | `es-MX-Ximena:DragonHDLatestNeural` (Female)        |
+| `fr-CA`             | `fr-CA-Sylvie:DragonHDLatestNeural` (Female)        |
+| `fr-CA`             | `fr-CA-Thierry:DragonHDLatestNeural` (Male)         |
+| `ko-KR`             | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male)          |
+| `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
+
+#### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+| **Locale (BCP-47)** | **Voice name**                                      |
+| ------------------- | ----------------------------------------------------|
+| `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
+| `de-DE`             | `de-DE-Seraphina:DragonHDLatestNeural` (Female)     |
+| `en-US`             | `en-US-Adam:DragonHDLatestNeural` (Male)            |
+| `en-US`             | `en-US-Alloy:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Andrew:DragonHDLatestNeural` (Male)          |
+| `en-US`             | `en-US-Andrew2:DragonHDLatestNeural` (Male)         |
+| `en-US`             | `en-US-Andrew3:DragonHDLatestNeural` (Male)         |
+| `en-US`             | `en-US-Aria:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Ava:DragonHDLatestNeural` (Female)           |
+| `en-US`             | `en-US-Ava3:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Bree:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Brian:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Davis:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Emma:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Emma2:DragonHDLatestNeural` (Female)         |
+| `en-US`             | `en-US-Jane:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Jenny:DragonHDLatestNeural` (Female)         |
+| `en-US`             | `en-US-Nova:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Phoebe:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Serena:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Steffan:DragonHDLatestNeural` (Male)         |
+| `es-ES`             | `es-ES-Tristan:DragonHDLatestNeural` (Male)         |
+| `es-ES`             | `es-ES-Ximena:DragonHDLatestNeural` (Female)        |
+| `fr-FR`             | `fr-FR-Remy:DragonHDLatestNeural` (Male)            |
+| `fr-FR`             | `fr-FR-Vivienne:DragonHDLatestNeural` (Female)      |
+| `it-IT`             | `it-IT-Alessio:DragonHDLatestNeural` (Male)         |
+| `it-IT`             | `it-IT-Isabella:DragonHDLatestNeural` (Female)      |
+| `ja-JP`             | `ja-JP-Masaru:DragonHDLatestNeural` (Male)          |
+| `ja-JP`             | `ja-JP-Nanami:DragonHDLatestNeural` (Female)        |
+| `pt-BR`             | `pt-BR-Macerio:DragonHDLatestNeural` (Male)         |
+| `pt-BR`             | `pt-BR-Thalita:DragonHDLatestNeural` (Female)       |
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female)      |
+| `zh-CN`             | `zh-CN-Yunfan:DragonHDLatestNeural` (Male)          |
+
+> [!NOTE]
+> After this update, if you encounter issue when calling `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` & `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`, please update your voice name to `en-US-MultiTalker-Ava-Andrew:DragonHDv1.2Neural` & `en-US-MultiTalker-Ava-Steffan:DragonHDv1.2Neural`
+
+### August 2025 release
+
+#### Public preview of new HD voices
+| **Locale (BCP-47)** | **Voice name**                                 |
+| ------------------- | ---------------------------------------------- |
+| `it-IT`             | `it-IT-Alessio:DragonHDLatestNeural` (Male)    |
+| `it-IT`             | `it-IT-Isabella:DragonHDLatestNeural` (Female) |
+| `pt-BR`             | `pt-BR-Macerio:DragonHDLatestNeural` (Male)    |
+| `pt-BR`             | `pt-BR-Thalita:DragonHDLatestNeural` (Female)  |
+| `en-US`             | `en-US-Jane:DragonHDLatestNeural` (Female)     |
+
 ### July 2025 release
 
 #### Public preview Personal Voice upgraded to v2.1
@@ -571,7 +639,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 #### Text to speech avatar
 
 - Removed dependency on [Azure Communication Services (ACS) TURN](/azure/communication-services/quickstarts/relay-token) for real-time avatar. The [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) has been updated accordingly to reflect this change.
-- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#regions) where the feature is available.
+- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md?tabs=ttsavatar) where the feature is available.
 
 ### February 2024 release
 

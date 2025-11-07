@@ -5,7 +5,7 @@ description: Learn how to use customer-managed keys (CMK) for enhanced encryptio
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 09/22/2025
+ms.date: 10/01/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
@@ -17,9 +17,6 @@ ai-usage: ai-assisted
 ---
 
 # Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)
-
-> [!NOTE]
-> An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
 
 Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
 

@@ -3,7 +3,8 @@ title: 'How to generate embeddings with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate embeddings with Azure OpenAI
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 08/28/2025

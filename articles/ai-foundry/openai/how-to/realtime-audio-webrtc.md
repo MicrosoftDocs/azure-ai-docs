@@ -3,7 +3,8 @@ title: 'Use the GPT Realtime API via WebRTC'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 author: PatrickFarley
@@ -17,7 +18,7 @@ recommendations: false
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
-You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
+You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
 
 In most cases, we recommend using the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
 - **Lower Latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
@@ -33,6 +34,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
+- `gpt-realtime-mini` (version 2025-10-06)
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
 
@@ -44,7 +46,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Connection and authentication
 

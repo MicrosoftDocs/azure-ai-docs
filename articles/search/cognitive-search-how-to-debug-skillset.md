@@ -30,17 +30,11 @@ For background on how a debug session works, see [Debug sessions in Azure AI Sea
 
 + An existing enrichment pipeline, including a data source, a skillset, an indexer, and an index. 
 
-## Security and permissions
-
-+ To save a debug session to Azure storage, the search service identity must have **Storage Blob Data Contributor** permissions on Azure Storage. Otherwise, plan on choosing a full access connection string for the debug session connection to Azure Storage.
-
-+ If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
-
 ## Limitations
 
 Debug sessions work with all generally available [indexer data sources](search-data-sources-gallery.md) and most preview data sources, with the following exceptions:
 
-+ SharePoint Online indexer.
++ SharePoint indexer.
 
 + Azure Cosmos DB for MongoDB indexer.
 
@@ -49,6 +43,12 @@ Debug sessions work with all generally available [indexer data sources](search-d
 + For the SQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
 
 + For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-how-to-managed-identities.md).
+
+## Security and permissions
+
++ To save a debug session to Azure storage, the search service identity must have **Storage Blob Data Contributor** permissions on Azure Storage. Otherwise, plan on choosing a full access connection string for the debug session connection to Azure Storage.
+
++ If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
 
 ## Create a debug session
 

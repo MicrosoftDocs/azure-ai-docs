@@ -30,7 +30,7 @@ For detailed information regarding Azure AI Translator Service request limits, *
 
 First, you need a Microsoft account; if you don't have one, you can sign up for free at the [**Microsoft account portal**](https://account.microsoft.com/account). Select **Create a Microsoft account** and follow the steps to create and verify your new account.
 
-Next, you need to  have an Azure account—navigate to the [**Azure sign-up page**](https://azure.microsoft.com/free/ai/), select the **Start free** button, and create a new Azure account using your Microsoft account credentials.
+Next, you need to  have an Azure account—navigate to the [**Azure sign-up page**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn), select the **Start free** button, and create a new Azure account using your Microsoft account credentials.
 
 Now, you're ready to get started! [**Create a Translator service**](create-translator-resource.md "Go to the Azure portal."), [**get your access keys and API endpoint**](create-translator-resource.md#authentication-keys-and-endpoint-url "An endpoint URL and read-only key are required for authentication."), and try our [**quickstart**](quickstart-text-rest-api.md "Learn to use Translator via REST.").
 

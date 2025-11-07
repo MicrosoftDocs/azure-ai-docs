@@ -31,7 +31,7 @@ Use a REST client to complete this tutorial and the [latest preview REST API](/r
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + Microsoft Entra ID authentication and authorization. Services and apps must be in the same tenant. Role assignments are used for each authenticated connection. Users and groups must be in the same tenant. You should have user and groups to work with. Creating tenants and security principals is out-of-scope for this tutorial.
 

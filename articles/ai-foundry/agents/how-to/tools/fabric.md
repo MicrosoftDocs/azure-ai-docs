@@ -22,6 +22,9 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 ## Usage support
 
+> [!NOTE] 
+> The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 | ✔️ | ✔️ |  |  | ✔️ | ✔️ | ✔️ |

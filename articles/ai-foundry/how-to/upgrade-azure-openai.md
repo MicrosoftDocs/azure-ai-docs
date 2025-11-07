@@ -5,7 +5,7 @@ description: Upgrade seamlessly from Azure OpenAI to Azure AI Foundry and unlock
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 09/03/2025
+ms.date: 10/01/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
@@ -23,7 +23,7 @@ Upgrading your Azure OpenAI resource to an Azure AI Foundry resource unlocks the
 |Feature|Azure OpenAI|Azure AI Foundry|
 |---|---|---|
 | Models sold directly by Azure | Azure OpenAI only | Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft  |
-| Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc.|  | ✅ |
+| Partner & Community Models sold through Marketplace - Stability, Cohere, etc.|  | ✅ |
 | Azure OpenAI API (batch, stored completions, fine-tuning, evaluation, etc.) | ✅ | ✅ |
 | Agent service | | ✅ |
 | Azure Foundry API |  | ✅ |
@@ -43,7 +43,7 @@ Your existing resource configurations and state remain preserved including:
 
 Backend limitations:
 
-* Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
+* Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [reconfiguration of private link endpoints and extra DNS configurations](#private-network-configuration) before all Foundry capabilities can be used.
 
@@ -68,9 +68,6 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 1. On the overview page, find the banner **Make the switch to AI Foundry** and select **Switch now.**
 1. Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
 1. Confirm to start the upgrade. The upgrade takes up to two minutes.
-
-> [!NOTE]
-> While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the portal for your resource. Use Azure Bicep or wait until you see the banner.
 
 # [Azure Bicep](#tab/bicep)
 
@@ -112,7 +109,7 @@ Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bic
 
 ## UX navigation differences after upgrading
 
-After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to the portal’s navigation and feature access:
+After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to the portal's navigation and feature access:
 
 1. **Updated left-side navigation**
    
@@ -147,7 +144,7 @@ AI Foundry resource is a superset of Azure OpenAI resource and its capabilities 
 
 - {custom-domain}.openai.azure.com
 - {custom-domain}.services.ai.azure.com
-- {custom-domain}.cognitive.microsoft.com
+- {custom-domain}.cognitiveservices.azure.com
 
 Your DNS configuration must be able to resolve each of the above FQDNs in order to use the full set of Foundry capabilities. 
 
@@ -158,7 +155,7 @@ Your DNS configuration must be able to resolve each of the above FQDNs in order 
 After this, delete and [re-create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint creates an IP address in your Azure Virtual Network to map to each endpoint.
 
 > [!IMPORTANT] 
-> When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "cognitive.microsoft.com" IP configurations to be created.
+> When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "{custom-domain}.cognitiveservices.azure.com" IP configurations to be created.
 
 ## Roll back to Azure OpenAI
 

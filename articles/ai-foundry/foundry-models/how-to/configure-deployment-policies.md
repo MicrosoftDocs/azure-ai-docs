@@ -5,11 +5,12 @@ description: "Learn how to use custom Azure Policies to control Azure AI Foundry
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 07/31/2025
+ms.date: 10/01/2025
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: aashishb
 reviewer: aashishb_microsoft
+ai-usage: ai-assisted
 ---
 
 # Control model deployment with custom policies
@@ -21,9 +22,9 @@ When using models from Azure AI Foundry (formerly known Azure AI Services) and A
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.
-- Familiarity with Azure Policy. To learn more, see [What is Azure Policy?](/azure/governance/policy/overview).
+- Familiarity with Azure Policy.
 
 ## Create a custom policy
 

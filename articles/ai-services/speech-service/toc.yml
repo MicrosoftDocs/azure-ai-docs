@@ -232,6 +232,12 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: LLM speech
+  items:
+    - name: Use LLM speech
+      href: llm-speech.md
+    - name: LLM speech REST API reference
+      href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice live
   items:
     - name: Voice live overview
@@ -239,19 +245,30 @@ items:
     - name: Voice live language support
       href: voice-live-language-support.md
     - name: Quickstarts
+      expanded: true
       items:
-      - name: Voice live with Foundry models quickstart
+      - name: Voice Live with Foundry models
         href: voice-live-quickstart.md
-      - name: Voice live with Foundry agents quickstart
+      - name: Voice Live with Foundry agents
         href: voice-live-agents-quickstart.md
+      - name: Function calling in Voice Live
+        href: how-to-voice-live-function-calling.md
+      - name: Bring your own model with Voice live (preview)
+        href: how-to-bring-your-own-model.md
     - name: How-to guides
+      expanded: true
       items:
       - name: How to use voice live
         href: voice-live-how-to.md
-      - name: Bring your own model with Voice live (preview)
-        href: how-to-bring-your-own-model.md
       - name: How to customize voice live input and output
         href: voice-live-how-to-customize.md
+      - name: How to invoke a proactive greeting and pregenerated messages
+        href: voice-live-how-to-proactive-and-pregenerated-messages.md
+      - name: Voice live telephony integration
+        href: voice-live-telephony.md
+    - name: Voice live FAQ
+      href: voice-live-faq.yml
+      displayName: FAQ,frequently asked questions
     - name: Reference
       items:
       - name: Voice live API reference
@@ -505,24 +522,6 @@ items:
   - name: Retiring features
     displayName: migrate,migration,deprecate,retire,sunset
     items:
-      - name: Speaker recognition
-        href: speaker-recognition-overview.md
-        displayName: migrate,migration,deprecate,retire,sunset
-      - name: Intent recognition
-        displayName: migrate,migration,deprecate,retire,sunset
-        items:
-          - name: Intent recognition overview
-            href: intent-recognition.md
-          - name: Pattern matching concepts
-            href: pattern-matching-overview.md
-          - name: Intent recognition with simple pattern matching quickstart
-            href: how-to-use-simple-language-pattern-matching.md
-          - name: Intent recognition with custom entity pattern matching
-            href: how-to-use-custom-entity-pattern-matching.md
-          - name: Intent recognition with CLU quickstart
-            href: get-started-intent-recognition-clu.md
-          - name: Recognize speech intents with LUIS (deprecated)
-            href: get-started-intent-recognition.md
       - name: Online transcription editor
         href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
@@ -540,6 +539,8 @@ items:
     href: migrate-to-batch-synthesis.md
   - name: Migrate to custom voice API
     href: migrate-to-custom-voice-api.md
+  - name: Migrate from retired intent recognition
+    href: migrate-intent-recognition.md    
 - name: Responsible AI
   items:
     - name: Speech to text
@@ -588,22 +589,6 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md
     - name: Embedded speech
       href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md
-    - name: Speaker Recognition
-      items:
-      - name: Transparency note
-        items:
-        - name: Use cases for Speaker Recognition
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md
-        - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition.md
-      - name: Integration and responsible use
-        items:
-        - name: Limited access
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition.md
-        - name: General guidelines
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition.md
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition.md
 - name: Resources
   items:
     - name: Known issues

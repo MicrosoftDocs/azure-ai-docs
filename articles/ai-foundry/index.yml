@@ -51,17 +51,15 @@ productDirectory:
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
       links:
         - url: foundry-models/concepts/models.md
-          text: Featured Foundry Models
-        - url: ./how-to/benchmark-model-in-catalog.md
-          text: Compare models in leaderboards
-        - url: concepts/deployments-overview.md
-          text: Explore deployment options
+          text: Foundry Models sold directly by Azure
+        - url: ../ai-services/openai/concepts/models.md
+          text: Azure OpenAI in Foundry Models
+        - url: foundry-models/concepts/deployment-types.md
+          text: Deployment types
+        - url: foundry-models/tutorials/get-started-deepseek-r1.md
+          text: Get started with DeepSeek-R1
         - url: ./concepts/fine-tuning-overview.md
           text: Learn how to fine-tune models
-        - url: ../ai-services/openai/concepts/models.md
-          text: Azure OpenAI
-        - url: ./model-inference/tutorials/get-started-deepseek-r1.md
-          text: DeepSeek-R1
     # Card
     - title: Azure AI Foundry Agent Service
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
@@ -176,8 +174,8 @@ additionalContent:
           links:
             - text: What are Azure AI services?
               url: ../ai-services/what-are-ai-services.md
-            - text: Semantic Kernel
-              url: /semantic-kernel/
+            - text: Microsoft Agent Framework
+              url: /agent-framework/
             - text: Document Intelligence
               url: ../ai-services/document-intelligence/index.yml
             - text: Face

@@ -16,6 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 # How to use reasoning models with Azure AI Foundry Models
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 

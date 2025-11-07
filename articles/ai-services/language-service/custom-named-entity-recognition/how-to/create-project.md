@@ -19,7 +19,7 @@ Use this article to learn how to set up the requirements for starting with custo
 
 Before you start using custom NER, you need:
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Create a Language resource 
 

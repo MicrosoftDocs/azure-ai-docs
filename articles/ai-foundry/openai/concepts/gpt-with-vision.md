@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn concepts related to using images in your AI model chats, enabled through GPT-4 Turbo with Vision and other models.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
 ms.date: 09/16/2025
 manager: nitinme

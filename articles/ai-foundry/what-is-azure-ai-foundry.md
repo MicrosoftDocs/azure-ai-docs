@@ -78,18 +78,24 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
-| Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
-| Open source models such as HuggingFace  |  | ✅ |
-| Prompt flow |  | ✅ |
+| Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
+| Models deployed on managed compute (e.g. HuggingFace) |  | ✅ |
+| AI Foundry SDK and API | ✅ | Limited* |
+| OpenAI SDK and API | ✅ | Available via connections |
 | Evaluations | ✅ (preview) | ✅ |
-| Playground | ✅ | ✅ |
+| Playgrounds | ✅ | ✅ |
 | Content understanding  | ✅ | ✅ |
 | Model router  | ✅ | ✅ |
-| Project files (directly upload files and start experimenting) | ✅ | |
-| Project-level isolation of files and outputs | ✅ | ✅|
-| Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
+| Datasets  | ✅ | ✅ |
+| Indexes  | ✅ | ✅ |
+| Project files API (Foundry-managed storage) | ✅ | Limited |
+| Project-level isolation of files and outputs | ✅ | Limited |
+| Bring-your-own Key Vault to store connection secrets | ✅ | ✅ |
+| Bring-your-own Storage for Agent service  | ✅ | ✅ |
+| Prompt flow |  | ✅ |
+
+*New feature enhancements primarily land on the [Azure AI Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
 ### <a name="how-do-i-know"></a> How do I know which type of project I have?
 
