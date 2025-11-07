@@ -10,11 +10,9 @@ ms.date: 11/07/2025
 ms.custom: include
 ---
 
-## Create resources
-
 In the portal, you can explore a rich catalog of cutting-edge models from many different providers. For this tutorial, search and then select the **gpt-4o** model.
 
-1. [!INCLUDE [version-sign-in](version-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
 1. If you're in a project, select **Azure AI Foundry** in the upper-left breadcrumb to leave the project. You'll create a new one in a moment.
 1. From the landing page or **[Model catalog](https://ai.azure.com/explore/models)**, select **gpt-4o** (or **gpt-4o-mini**).
 
