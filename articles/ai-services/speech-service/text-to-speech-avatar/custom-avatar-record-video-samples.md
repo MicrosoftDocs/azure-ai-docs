@@ -43,7 +43,7 @@ Follow these best practices when using a solid-colored background like a green s
 
 ### Equipment
 
-- Camera: Minimum 1080p resolution and 25 FPS (frames per second). To create a 4K resolution avatar, the video recording should all be in 3840x2160 resolution.
+- Camera: Minimum 1080p resolution and 25 FPS (frames per second). To create a 4K resolution avatar, the video recording should be in 3840x2160 resolution.
 - Keep lighting and camera positions fixed throughout recording.
 - You can use a teleprompter during recording, but make sure it doesn't affect the actor's gaze toward the camera. Provide seating if the avatar needs to be in a sitting position.
 - For half-length or seated avatars, provide seating for the actor. Choose an appropriate chair if you don't want it visible in the video. 
