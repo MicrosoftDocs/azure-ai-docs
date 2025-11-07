@@ -30,7 +30,7 @@ The core features of speech translation include:
 - [Speech to text translation](#speech-to-text-translation)
 - [Speech to speech translation](#speech-to-speech-translation)
 - [Multi-lingual speech translation](#multi-lingual-speech-translation)
-- [Live Interpreter](#live-interpreter-preview)
+- [Live Interpreter](#live-interpreter)
 - [Multiple target languages translation](#multiple-target-languages-translation)
 
 ## Speech to text translation
@@ -63,7 +63,7 @@ Live Interpreter continuously identifies the language being spoken without requi
 
 For a list of the supported input (source) languages, see the [speech to text languages documentation](language-support.md?tabs=stt).
 
-Please refer to the [Speech translation how-to guide](./how-to-translate-speech.md#using-live-interpreter-preview-for-real-time-speech-to-speech-translation-with-personal-voice) for the Live Interpreter sample code.
+Please refer to the [Speech translation how-to guide](./how-to-translate-speech.md#using-live-interpreter-for-real-time-speech-to-speech-translation-with-personal-voice) for the Live Interpreter sample code.
 
 ## Multiple target languages translation
 
