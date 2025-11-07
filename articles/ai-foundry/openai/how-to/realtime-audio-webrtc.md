@@ -42,8 +42,7 @@ For more information about supported models, see the [models and versions docume
 
 You can still use the beta protocol, but we recommend customers who are implementing today start with the GA Protocol and current customers plan to migrate to the GA Protocol. 
 
-This section describes how to use Web RTC using the GA Protocol. We have preserved the original beta protocol documentation 
-You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
+This section describes how to use Web RTC using the GA Protocol. We have preserved the original beta protocol documentation [here](./realtime-audio-webrtc-legacy.md)
 
 ## Prerequisites
 
@@ -72,7 +71,13 @@ Additional options:
 
 ### Step 1: Setup service to procure ephemeral token
 
-The key to generating an ephemerical token is the REST API using url = https://<your azure resource>.openai.azure.com/openai/v1/realtime/client_secrets. You use this url with either an api-key or AAD token. You use this to configure the session configuration you want the web browser to use. Sample code below illustrates using the DefaultAzureCredential to generate the token.
+The key to generating an ephemerical token is the REST API using 
+
+```
+url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
+```
+
+You use this url with either an api-key or AAD token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. Sample python code below illustrates a service that can be called by a web browser using the /token endpoint. This code uses the DefaultAzureCredential to generate a token for the client_secrets request.
 
 ```
 from flask import Flask, jsonify
@@ -135,7 +140,6 @@ def get_bearer_token(resource_scope: str) -> str:
         print(f"Failed to acquire bearer token: {e}")
         raise
 
-# Note: you should add your own authentication here to authenticate your browser application
 @app.route('/token', methods=['GET'])
 def get_token():
     """
@@ -208,7 +212,12 @@ if __name__ == '__main__':
 
 ### Step 2: Setup your browser application
 
-Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the url: https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls with the ephemeral token. The broswer application can then send and listen to text over the data channel and audio over the media channel. Here is a sample html document to get you started.
+Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the url
+
+```
+ https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
+ ```
+ using the ephemeral token for authentication. Once connected, the broswer application sends text over the data channel and audio over the media channel. Here is a sample html document to get you started.
 
 ```
 html
@@ -425,7 +434,7 @@ html
     </html>
 ```
 
-In the sample, notice that we use query parameter webrtcfilter=on. This limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages will be returned to the browser on the data channel: 
+In the sample, we use the query parameter webrtcfilter=on. This limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages will be returned to the browser on the data channel: 
 
 * input_audio_buffer.speech_started
 * input_audio_buffer.speech_stopped
@@ -441,7 +450,7 @@ In the sample, notice that we use query parameter webrtcfilter=on. This limits t
 
 ### Step 3 (optional): Create a websocket observer/controller
 
-If you proxy the sdp call through your service application, you can can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.updates and other commands directly.
+If you proxy the sdp call through your service application, you can can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
 Here is an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the sdp request. It also includes a websocket connection that listens to the WebRTC session. 
 
@@ -466,7 +475,7 @@ app = Flask(__name__)
 session_config = {
     "session": {
         "type": "realtime",
-        "model": "gpt-realtime828",
+        "model": "<YOUR MODEL DEPLOYMENT NAME>",
         "instructions": "You are a helpful assistant.",
         "audio": {
             "output": {
@@ -822,7 +831,7 @@ html
     
         <script>
            
-        const AZURE_RESOURCE = "aoai-westus2-tip"
+        const AZURE_RESOURCE = "YOUR AZURE RESOURCE NAME"
 
         async function StartSession() {
             try {

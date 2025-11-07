@@ -13,32 +13,17 @@ ms.custom: references_regions
 recommendations: false
 ---
 
-# Use the GPT Realtime API via WebRTC
+# Legacy Protocol for WebRTC
 
-
-Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
-
-You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
-
-In most cases, we recommend using the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
-- **Lower Latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
-- **Media Handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
-- **Error Correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
-- **Peer-to-Peer Communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
-
-Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to stream audio data from a server to a client, or if you need to send and receive data in real time between a client and server. WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
+This document describes legacy methods for using WebRTC. It is intended for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](realtime-audio-webrtc).
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
-- `gpt-4o-mini-realtime-preview` (2024-12-17)
-- `gpt-4o-realtime-preview` (2024-12-17)
-- `gpt-realtime` (version 2025-08-28)
-- `gpt-realtime-mini` (version 2025-10-06)
+Regardless of protocol used, the same models are available for use with webRTC. For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
+
+## Protocol
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
-
-For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
 ## Prerequisites
 
