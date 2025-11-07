@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # What is Azure AI Language?
 
-Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language remote [MCP server](#azure-language-mcp-server-), which can be found in [Azure AI Foundry Tool Catalog](https://aka.ms/FoundryToolCatalog).
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language remote [MCP server](#azure-language-mcp-server-), which can be found in the **Azure AI Foundry Tool Catalog**.
 
 ## Available tools
 
