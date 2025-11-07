@@ -120,6 +120,8 @@ To support cross-region scenarios and let you access existing model deployments,
 
 To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../../ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
 
+::: moniker range="foundry-classic"
+
 ## Access extended functionality with Azure AI Hub
 
 While an Azure AI Foundry resource alone gives you access to most AI Foundry functionality, select capabilities are currently only available in combination with an Azure AI hub resource powered by Azure Machine Learning. These are capabilities lower in the AI development stack, focused on model customization.
@@ -127,6 +129,8 @@ While an Azure AI Foundry resource alone gives you access to most AI Foundry fun
 Hub resources require their own project types that can also be accessed using the Azure Machine Learning Studio/SDK/CLI. To help plan your deployment, see [this table](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../concepts/resource-types.md), for an overview of supported capabilities.
 
 A hub resource is deployed side-by-side with your AI Foundry resource and takes a dependency on your AI Foundry resource to provide access to select tools and models.
+
+::: moniker-end
 
 ## Learn more
 
