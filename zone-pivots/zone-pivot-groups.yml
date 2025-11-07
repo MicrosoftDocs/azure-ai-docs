@@ -505,6 +505,8 @@ groups:
   title: Programming languages
   prompt: Choose a programming language or tool
   pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -515,14 +517,21 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-objectivec
-    title: Objective-C
   - id: programming-language-python
     title: Python
   - id: programming-language-swift
     title: Swift
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech-avatar
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-rest
     title: REST
 - id: programming-languages-set-thirteen
@@ -1081,16 +1090,16 @@ groups:
   title: Programming languages
   prompt: Choose your preferred language
   pivots:
-  - id: programming-language-dotnet
-    title: C#
-  - id:  programming-language-go
-    title: Go
-  - id:  programming-language-java
-    title: Java
-  - id:  programming-language-javascript
-    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-go
+    title: Go
 # Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
@@ -1460,6 +1469,17 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+- id: voice-live-proactive-and-pregenerated-messages
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#    
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API

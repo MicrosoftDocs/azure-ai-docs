@@ -48,6 +48,10 @@ Follow these steps to create a console application and install the Speech SDK.
     dotnet add package Azure.AI.VoiceLive
     dotnet add package Azure.Identity
     dotnet add package NAudio
+    dotnet add package System.CommandLine --version 2.0.0-beta4.22272.1
+    dotnet add package Microsoft.Extensions.Configuration.Json
+    dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
+    dotnet add package Microsoft.Extensions.Logging.Console
     ```
 
 1. Create a new file named `appsettings.json` in the folder where you want to run the code. In that file, add the following JSON content:
@@ -76,6 +80,15 @@ Follow these steps to create a console application and install the Speech SDK.
     Replace the `ApiKey` value (optional) with your AI Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
   
     Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
+
+1. In the file `csharp.csproj` add the following information to connect the appsettings.json:
+   ```text
+   <ItemGroup>
+   <None Update="appsettings.json">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+   </None>
+   </ItemGroup>
+   ``` 
 
 1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
 
@@ -380,6 +393,14 @@ Follow these steps to create a console application and install the Speech SDK.
             private VoiceLiveSession? _session;
             private AudioProcessor? _audioProcessor;
             private bool _disposed;
+        // Tracks whether an assistant response is currently active (created and not yet completed)
+        private bool _responseActive;
+        // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
+        private bool _canCancelResponse;
+        // Tracks whether audio playback for the current response is in progress (receiving audio deltas)
+        private bool _playbackInProgress;
+        // Tracks whether we've already sent the initial proactive greeting (not used yet but reserved)
+        private bool _conversationStarted;
     
             /// <summary>
             /// Initializes a new instance of the BasicVoiceAssistant class.
@@ -554,25 +575,41 @@ Follow these steps to create a console application and install the Speech SDK.
                             await _audioProcessor.StopPlaybackAsync().ConfigureAwait(false);
                         }
     
-                        // Cancel any ongoing response
-                        try
+                        // Only attempt cancellation / clearing if a response is active and cancellable
+                        if (_responseActive && _canCancelResponse)
                         {
-                            await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogDebug(ex, "No response to cancel");
-                        }
+                            // Cancel any ongoing response
+                            try
+                            {
+                                await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
+                                _logger.LogInformation("🛑 Active response cancelled due to user barge-in");
+                            }
+                            catch (Exception ex)
+                            {
+                                if (ex.Message.Contains("no active response", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    _logger.LogDebug("Cancellation benign: response already completed");
+                                }
+                                else
+                                {
+                                    _logger.LogWarning(ex, "Response cancellation failed during barge-in");
+                                }
+                            }
     
-                        // Demonstrate the new ClearStreamingAudio convenience method
-                        try
-                        {
-                            await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
-                            _logger.LogInformation("✨ Used ClearStreamingAudioAsync convenience method");
+                            // Clear any streaming audio still in transit
+                            try
+                            {
+                                await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
+                                _logger.LogInformation("✨ Cleared streaming audio after cancellation");
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogDebug(ex, "ClearStreamingAudio call failed (may not be supported in all scenarios)");
+                            }
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            _logger.LogDebug(ex, "ClearStreamingAudio call failed (may not be supported in all scenarios)");
+                            _logger.LogDebug("No active/cancellable response during barge-in; skipping cancellation");
                         }
                         break;
     
@@ -589,11 +626,14 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     case SessionUpdateResponseCreated responseCreated:
                         _logger.LogInformation("🤖 Assistant response created");
+                        _responseActive = true;
+                        _canCancelResponse = true;
                         break;
     
                     case SessionUpdateResponseAudioDelta audioDelta:
                         // Stream audio response to speakers
                         _logger.LogDebug("Received audio delta");
+                        _playbackInProgress = true;
     
                         if (audioDelta.Delta != null && _audioProcessor != null)
                         {
@@ -605,15 +645,21 @@ Follow these steps to create a console application and install the Speech SDK.
                     case SessionUpdateResponseAudioDone audioDone:
                         _logger.LogInformation("🤖 Assistant finished speaking");
                         Console.WriteLine("🎤 Ready for next input...");
+                        _playbackInProgress = false; // Audio portion done; response may still finalize
                         break;
     
                     case SessionUpdateResponseDone responseDone:
                         _logger.LogInformation("✅ Response complete");
+                        _responseActive = false;
+                        _canCancelResponse = false;
                         break;
     
                     case SessionUpdateError errorEvent:
                         _logger.LogError("❌ VoiceLive error: {ErrorMessage}", errorEvent.Error?.Message);
                         Console.WriteLine($"Error: {errorEvent.Error?.Message}");
+                        _responseActive = false;
+                        _canCancelResponse = false;
+                        _playbackInProgress = false;
                         break;
     
                     default:
@@ -814,7 +860,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     _playbackBuffer = new BufferedWaveProvider(new WaveFormat(SampleRate, BitsPerSample, Channels))
                     {
-                        BufferDuration = TimeSpan.FromSeconds(5), // 5 second buffer
+                        BufferDuration = TimeSpan.FromSeconds(10), // 10 second buffer
                         DiscardOnBufferOverflow = true
                     };
     

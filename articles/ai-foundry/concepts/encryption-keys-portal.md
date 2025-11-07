@@ -2,10 +2,11 @@
 title: Customer-Managed Keys for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use customer-managed keys (CMK) for enhanced encryption and data security in Azure AI Foundry. Configure Azure Key Vault integration and meet compliance requirements.
+monikerRange: 'foundry-classic || foundry'
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 10/01/2025
+ms.date: 09/29/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
@@ -16,12 +17,25 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
-# Customer-managed keys for encryption with Azure AI Foundry
+# Customer-managed keys for encryption with Azure AI Foundry 
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+::: moniker range="foundry-classic"
 
 > [!TIP]
 > An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
 
-Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+
+Customer-managed key (CMK) encryption in [!INCLUDE [classic-link](../includes/classic-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Customer-managed key (CMK) encryption in [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+
+::: moniker-end
 
 In this article, you learn how to:
 
@@ -109,16 +123,11 @@ az keyvault key delete  \
 
 Revoking access to an active CMK while CMK encryption is still enabled prevents downloading training data, fine-tuning new models, and deploying fine-tuned models. Existing deployments continue until deleted.
 
-## Added Azure cost when you use CMKs
-
-Using CMKs may incur extra subline cost items due to dedicated hosting of certain encrypted back-end services.
-
 ## Limitations
 
 * Projects can be updated from Microsoft-managed keys to CMKs but not reverted.
 * Project CMK can be updated only to keys in the same Key Vault instance.
 * Request form required for some services: [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) for Speech and Content Safety.
-* Storage-related charges for CMK encryption continue during soft-deleted retention.
 
 ## Related content
 

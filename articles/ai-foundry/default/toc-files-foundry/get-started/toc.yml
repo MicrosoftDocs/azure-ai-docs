@@ -1,0 +1,11 @@
+items:
+- name: Ask AI
+  href: ../../../foundry-agent/ask-foundry-agent.md
+- name: Set up your developer environment
+  href: ../../../how-to/develop/install-cli-sdk.md
+- name: Quickstart
+  href: ../../../quickstarts/get-started-code.md
+- name: "Tutorial: Idea to prototype"
+  href: ../../tutorials/developer-journey-idea-to-prototype.md
+- name: Start with an AI template
+  href: ../../../how-to/develop/ai-template-get-started.md
