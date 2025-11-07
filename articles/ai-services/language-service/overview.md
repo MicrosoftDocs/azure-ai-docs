@@ -16,6 +16,8 @@ Azure Language is a cloud-based service that provides Natural Language Processin
 
 ## Available tools
 
+Azure Language provides specialized tools that enable seamless integration between AI agents and language processing services through standardized protocols.
+
 ### Azure Language MCP server 🆕
 
 The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
@@ -23,6 +25,8 @@ The MCP (Model Context Protocol) server creates a standardized bridge that conne
 For more information, *see* [Azure Language MCP server](concepts/azure-foundry-tools-agents.md#azure-language-mcp-server-).
 
 ## Available agents
+
+Azure Language offers pre-built agents that handle specific conversational AI scenarios with built-in governance, routing logic, and quality control mechanisms.
 
 ### Azure Language Intent Routing agent 🆕
 
