@@ -1,7 +1,7 @@
 ---
-title: 'How to configure guardrails and controls in Azure AI Foundry'
+title: 'How-to configure guardrails and controls in Azure AI Foundry'
 titleSuffix: Azure AI Foundry
-description: step-by-step guide for creating, configuring, and managing guardrails and controls in Azure AI Foundry, including UI instructions and API configuration.
+description: How-to guide for creating, configuring, and managing guardrails and controls in Azure AI Foundry, including UI instructions and API configuration.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
