@@ -35,6 +35,8 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 |:---:|:---|:----:|
 | `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
 |`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
+|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`<br> `gpt-5-nano` <br>`gpt-5-mini`<br>`gpt-5`<br>`gpt-5-chat`<br>`Deepseek-v3.1`<br>`llama-33-70b-instruct`<br>`gpt-oss-120b`<br>`llama4-maverick-instruct`<br>`grok-4`<br>`grok-4-fast`<br>`gpt-4o`<br>`gpt-4o-mini` |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` , <br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07` <br> N/A <br> N/A<br> N/A<br> N/A<br> N/A<br> N/A <br> TBD <br> TBD |
+
 
 ## Limitations
 
