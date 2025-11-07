@@ -15,7 +15,7 @@ recommendations: false
 
 # Legacy Protocol for WebRTC
 
-This document describes legacy methods for using WebRTC. It is intended for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](./realtime-audio-webrtc).
+This document describes legacy methods for using WebRTC. It is intended for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](./realtime-audio-webrtc.md).
 
 ## Supported models
 

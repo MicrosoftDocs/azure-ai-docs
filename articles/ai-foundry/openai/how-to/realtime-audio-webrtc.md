@@ -26,7 +26,12 @@ In most cases, we recommend using the WebRTC API for real-time audio streaming. 
 - **Error Correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
 - **Peer-to-Peer Communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
 
-Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to stream audio data from a server to a client, or if you need to send and receive data in real time between a client and server. WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
+Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to 
+
+* Stream audio data from a server to a client.
+* Send and receive data in real time between a client and server. 
+
+WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
 
 ## Supported models
 
@@ -42,7 +47,7 @@ For more information about supported models, see the [models and versions docume
 
 You can still use the beta protocol, but we recommend customers who are implementing today start with the GA Protocol and current customers plan to migrate to the GA Protocol. 
 
-This section describes how to use Web RTC using the GA Protocol. We have preserved the original beta protocol documentation [here](./realtime-audio-webrtc-legacy.md)
+This section describes how to use Web RTC using the GA Protocol. We preserve the legacy protocol documentation [here](./realtime-audio-webrtc-legacy.md)
 
 ## Prerequisites
 
@@ -61,7 +66,7 @@ You need two pieces of code to make this work.
 
 Additional options: 
 
-* You can proxy the web browser sdp request through the same service retrieving the ephemeral token. This has better security since the web browser will not have access to the ephemeral token. 
+* You can proxy the web browser sdp request through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
 
 * You can filter the messages going to the web browser using a query parameter. 
 
@@ -69,15 +74,17 @@ Additional options:
 
 ## Steps
 
-### Step 1: Setup service to procure ephemeral token
+### Step 1: Set up service to procure ephemeral token
 
-The key to generating an ephemerical token is the REST API using 
+The key to generating an ephemeral token is the REST API using 
 
 ```
 url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
 ```
 
-You use this url with either an api-key or AAD token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. Sample python code below illustrates a service that can be called by a web browser using the /token endpoint. This code uses the DefaultAzureCredential to generate a token for the client_secrets request.
+You use this url with either an api-key or AAD token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
+
+Here's some sample python code for a token service. The web browser application can call this service using the /token endpoint to retrieve an ephemeral token. This sample code  uses the DefaultAzureCredential in order to authenticate to the RealtimeAPI generating ephemeral tokens.
 
 ```
 from flask import Flask, jsonify
@@ -210,14 +217,14 @@ if __name__ == '__main__':
 
 ```
 
-### Step 2: Setup your browser application
+### Step 2: Set up your browser application
 
 Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the url
 
 ```
  https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
  ```
- using the ephemeral token for authentication. Once connected, the broswer application sends text over the data channel and audio over the media channel. Here is a sample html document to get you started.
+ using the ephemeral token for authentication. Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample html document to get you started.
 
 ```
 html
@@ -434,7 +441,7 @@ html
     </html>
 ```
 
-In the sample, we use the query parameter webrtcfilter=on. This limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages will be returned to the browser on the data channel: 
+In the sample, we use the query parameter webrtcfilter=on. This limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages are returned to the browser on the data channel: 
 
 * input_audio_buffer.speech_started
 * input_audio_buffer.speech_stopped
@@ -450,7 +457,7 @@ In the sample, we use the query parameter webrtcfilter=on. This limits the data 
 
 ### Step 3 (optional): Create a websocket observer/controller
 
-If you proxy the sdp call through your service application, you can can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
+If you proxy the sdp call through your service application, you can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
 Here is an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the sdp request. It also includes a websocket connection that listens to the WebRTC session. 
 
