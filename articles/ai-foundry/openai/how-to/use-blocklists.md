@@ -1,7 +1,7 @@
 ---
-title: 'How to use blocklists in Azure AI Foundry models'
+title: 'How to use block lists in Azure AI Foundry models'
 titleSuffix: Azure OpenAI
-description: Learn how to use blocklists with Azure OpenAI
+description: Learn how to use block lists with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,17 +13,17 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# How to use blocklists in Azure AI Foundry models
+# How to use block lists in Azure AI Foundry models
 
 ::: moniker range="foundry"
 
-The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Azure AI Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Azure AI Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
 
 ::: moniker-end
 
 ::: moniker range="foundry-classic"
 
-The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
 
 ::: moniker-end
 
@@ -35,16 +35,16 @@ The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filte
 - [Azure CLI](/cli/azure/install-azure-cli) installed
 - [cURL](https://curl.haxx.se/) installed
 
-## Use blocklists
+## Use block lists
 
 
 #### [Azure OpenAI API](#tab/api)
 
-You can create blocklists with the Azure OpenAI API. The following steps help you get started. 
+You can create block lists with the Azure OpenAI API. The following steps help you get started. 
 
 ### Get your token
 
-First, you need to get a token for accessing the APIs for creating, editing, and deleting blocklists. You can get this token using the following Azure CLI command: 
+First, you need to get a token for accessing the APIs for creating, editing, and deleting block lists. You can get this token using the following Azure CLI command: 
 
 ```bash
 az account get-access-token 
