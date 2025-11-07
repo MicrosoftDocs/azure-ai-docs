@@ -158,6 +158,33 @@ await model.UnloadAsync();
 
 Run the code using the following command:
 
+### [Windows](#tab/windows)
+
+For x64 Windows, use the following command:
+
 ```bash
-dotnet run
+dotnet run -r:win-x64
 ```
+
+For arm64 Windows, use the following command:
+
+```bash
+dotnet run -r:win-arm64
+```
+
+
+### [macOS/Linux](#tab/xplatform)
+
+For macOS, use the following command:
+
+```bash
+dotnet run -r:osx-arm64
+```
+
+For Linux, use the following command:
+
+```bash
+dotnet run -r:linux-x64
+```
+
+---

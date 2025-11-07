@@ -26,22 +26,59 @@ This article explains how to use the native chat completions API in the Foundry 
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
 
-## Create project
+## Set up project
 
-Create a new C# project and navigate into it:
+To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
+
+### [Windows](#tab/windows)
+
+First, create a new C# project and navigate into it:
 
 ```bash
 dotnet new console -n hello-foundry-local
 cd hello-foundry-local
 ```
 
-### Install NuGet Packages
+Next, open the `hello-foundry-local.csproj` file and modify to the following:
 
-Install the following NuGet packages into your project folder:
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
+    <RootNamespace>hello-foundry-local</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    <PackageReference Include="OpenAI" Version="2.5.0" />
+  </ItemGroup>
+
+</Project>
+```
+
+### [macOS/Linux](#tab/xplatform)
+
+First, create a new C# project and navigate into it:
 
 ```bash
-dotnet add package Microsoft.AI.Foundry.Local
+dotnet new console -n hello-foundry-local
+cd hello-foundry-local
 ```
+
+Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
+dotnet add package OpenAI --version 2.5.0
+```
+
+---
 
 ## Use native chat completions API    
 
@@ -57,19 +94,20 @@ Copy-and-paste the following code into a C# file named `Program.cs`:
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
-using Microsoft.AI.Foundry.Local.OpenAI;
 using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
 using Microsoft.Extensions.Logging;
 
+CancellationToken ct = new CancellationToken();
+
 var config = new Configuration
 {
-    AppName = "hello-foundry-local",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+    AppName = "my-app-name",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Debug
 };
 
 using var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
 });
 var logger = loggerFactory.CreateLogger<Program>();
 
@@ -78,16 +116,48 @@ await FoundryLocalManager.CreateAsync(config, logger);
 var mgr = FoundryLocalManager.Instance;
 
 // Get the model catalog
-var catalog = mgr.GetCatalog();
+var catalog = await mgr.GetCatalogAsync();
+
+// List available models
+Console.WriteLine("Available models for your hardware:");
+var models = await catalog.ListModelsAsync();
+foreach (var availableModel in models)
+{
+    foreach (var variant in availableModel.Variants)
+    {
+        Console.WriteLine($"  - Alias: {variant.Alias} (Id: {string.Join(", ", variant.Id)})");
+    }
+}
 
 // Get a model using an alias
 var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
 
-await model.DownloadAsync();
+// is model cached
+Console.WriteLine($"Is model cached: {await model.IsCachedAsync()}");
+
+// print out cached models
+var cachedModels = await catalog.GetCachedModelsAsync();
+Console.WriteLine("Cached models:");
+foreach (var cachedModel in cachedModels)
+{
+    Console.WriteLine($"- {cachedModel.Alias} ({cachedModel.Id})");
+}
+
+// Download the model (the method skips download if already cached)
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading model: {progress:F2}%");
+    if (progress >= 100f)
+    {
+        Console.WriteLine();
+    }
+});
+
+// Load the model
 await model.LoadAsync();
 
 // Get a chat client
-ChatClient chatClient = await model.GetChatClientAsync();
+var chatClient = await model.GetChatClientAsync();
 
 // Create a chat message
 List<ChatMessage> messages = new()
@@ -95,7 +165,8 @@ List<ChatMessage> messages = new()
     new ChatMessage { Role = "user", Content = "Why is the sky blue?" }
 };
 
-var streamingResponse = chatClient.CompleteChatStreamingAsync(messages);
+
+var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
 await foreach (var chunk in streamingResponse)
 {
     Console.Write(chunk.Choices[0].Message.Content);
@@ -109,9 +180,36 @@ await model.UnloadAsync();
 
 Run the code using the following command:
 
+### [Windows](#tab/windows)
+
+For x64 Windows, use the following command:
+
 ```bash
-dotnet run
+dotnet run -r:win-x64
 ```
+
+For arm64 Windows, use the following command:
+
+```bash
+dotnet run -r:win-arm64
+```
+
+
+### [macOS/Linux](#tab/xplatform)
+
+For macOS, use the following command:
+
+```bash
+dotnet run -r:osx-arm64
+```
+
+For Linux, use the following command:
+
+```bash
+dotnet run -r:linux-x64
+```
+
+---
 
 ## Related content
 
