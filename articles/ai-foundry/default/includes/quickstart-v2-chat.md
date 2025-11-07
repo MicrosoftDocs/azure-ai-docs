@@ -11,7 +11,7 @@ ms.custom: include
 ---
 
 
-Interactiong with a model is the basic building block of AI applications.  Send an input and receive a response from the model:
+Interacting with a model is the basic building block of AI applications.  Send an input and receive a response from the model:
 
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
 
