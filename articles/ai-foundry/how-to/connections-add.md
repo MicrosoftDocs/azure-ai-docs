@@ -31,7 +31,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to add a new connection in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections). Read the table descriptions below to learn more. 
+Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections). Read the table descriptions below to learn more. 
 
 ## Prerequisites
 
@@ -93,7 +93,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ### Azure Key Vault limitations
 
-AI Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection.All Azure AI Foundry projects use a managed Azure Key Vault (not shown in your subscription). If you bring your own Azure Key Vault, note:
+AI Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection. All Azure AI Foundry projects use a managed Azure Key Vault (not shown in your subscription). If you bring your own Azure Key Vault, note:
 
 - Only one Azure Key Vault connection per AI Foundry resource at a time.
 - You can delete an Azure Key Vault connection only if there are no other existing connections on the Foundry resource or project level.
