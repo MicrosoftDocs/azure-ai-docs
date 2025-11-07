@@ -87,7 +87,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## May 2025
 
-**2025-05-15-preview release**. The [latest API preview version](/rest/api/language/operation-groups?view=rest-language-2025-05-15-preview&preserve-view=true) includes updates for named entity recognition (NER) and PII detection:
+**2025-05-15-preview release**. The latest API preview version includes updates for named entity recognition (NER) and PII detection:
 * New entity type support for `DateOfBirth`, `BankAccountNumber`, `PassportNumber`, and `DriversLicenseNumber`.
 * Improved AI quality for `PhoneNumber` entity type.
 
