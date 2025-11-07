@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/03/2025
+ms.date: 11/07/2025
 ---
 
 # Create a knowledge base in Azure AI Search
@@ -125,9 +125,9 @@ The following request lists knowledge bases by name. Within the knowledge bases 
 
 Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases collection.
 
-<!-- HEIDI TO DO -- FIX THE PYTHON CODE WHEN PREVIEW PACKAGE IS AVAILABLE -- TASK 500156-->
-
 ### [**Python**](#tab/python-get-agents)
+
+The Python code snippets in this article assume you installed necessary libraries and have environment variables for endpoints and object names. For more information about these tasks, see [Quickstart: Use agentic retrieval](search-get-started-agentic-retrieval.md?pivots=programming-language-python).
 
 ```python
 # List existing knowledge bases on the search service
@@ -136,46 +136,45 @@ from azure.search.documents.indexes import SearchIndexClient
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 
 try:
-    agents = {agent.name: agent for agent in index_client.list_agents(api_version=search_api_version)}
-    print(f"\nKnowledge agents on search service '{search_endpoint}':")
-    
-    if agents:
-        print(f"Found {len(agents)} knowledge agent(s):")
-        for i, (name, agent) in enumerate(sorted(agents.items()), 1):
+    knowledgebases = {kb.name: kb for kb in index_client.list_knowledge_bases(api_version=search_api_version)}
+    print(f"\nKnowledge bases on search service '{search_endpoint}':")
+
+    if knowledgebases:
+        print(f"Found {len(knowledgebases)} knowledge base(s):")
+        for i, (name, knowledgebases) in enumerate(sorted(knowledgebases.items()), 1):
             print(f"{i}. Name: {name}")
-            if agent.knowledge_sources:
-                ks_names = [ks.name for ks in agent.knowledge_sources]
+            if knowledgebases.knowledge_sources:
+                ks_names = [ks.name for ks in knowledgebases.knowledge_sources]
                 print(f"   Knowledge Sources: {', '.join(ks_names)}")
             print()
     else:
-        print("No knowledge agents found.")
+        print("No knowledge bases found.")
         
 except Exception as e:
-    print(f"Error listing knowledge agents: {str(e)}")
+    print(f"Error listing knowledge bases: {str(e)}")
 ```
 
 You can also return a single knowledge base by name to review its JSON definition.
 
 ```python
-# Get knowledge base definition for earth-knowledge-base-2
+# Get a specific knowledge base definition
 from azure.search.documents.indexes import SearchIndexClient
 import json
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 
 try:
-    agent_name = "earth-knowledge-agent-2"
-    agent = index_client.get_agent(agent_name, api_version=search_api_version)
+    knowledgebase = index_client.get_knowledge_base(knowledge_base_name, api_version=search_api_version)
     
-    print(f"Knowledge agent '{agent_name}':")
-    print(f"Name: {agent.name}")
+    print(f"Knowledge base: '{knowledge_base_name}'")
+    print(f"Name: {knowledgebase.name}")
     
-    if agent.description:
-        print(f"Description: {agent.description}")
+    if knowledgebase.description:
+        print(f"Description: {knowledgebase.description}")
     
-    if agent.models:
-        print(f"\nModels ({len(agent.models)}):")
-        for i, model in enumerate(agent.models, 1):
+    if knowledgebase.models:
+        print(f"\nModels ({len(knowledgebase.models)}):")
+        for i, model in enumerate(knowledgebase.models, 1):
             print(f"  {i}. {type(model).__name__}")
             if hasattr(model, 'azure_open_ai_parameters'):
                 params = model.azure_open_ai_parameters
@@ -183,28 +182,29 @@ try:
                 print(f"     Deployment: {params.deployment_name}")
                 print(f"     Model: {params.model_name}")
     
-    if agent.knowledge_sources:
-        print(f"\nKnowledge Sources ({len(agent.knowledge_sources)}):")
-        for i, ks in enumerate(agent.knowledge_sources, 1):
-            print(f"  {i}. {ks.name} (threshold: {ks.reranker_threshold})")
+    if knowledgebase.knowledge_sources:
+        print(f"\nKnowledge Sources ({len(knowledgebase.knowledge_sources)}):")
+        for i, ks in enumerate(knowledgebase.knowledge_sources, 1):
+            print(f"  {i}. {ks.name}")
     
-    if agent.output_configuration:
-        config = agent.output_configuration
-        print(f"\nOutput: {config.modality} (activity: {config.include_activity})")
+    if knowledgebase.output_mode:
+        print(f"\nOutput Mode: {knowledgebase.output_mode}")
     
     # Full JSON definition
-    print(f"\nJSON definition:")
-    print(json.dumps(agent.as_dict(), indent=2))
+    print(f"\n{'='*60}")
+    print("JSON Definition:")
+    print('='*60)
+    print(json.dumps(knowledgebase.as_dict(), indent=2))
     
 except Exception as e:
     print(f"Error: {str(e)}")
     
-    # Show available agents
+    # Show available knowledge bases
     try:
-        agents = {agent.name: agent for agent in index_client.list_agents(api_version=search_api_version)}
-        print(f"\nAvailable agents: {list(agents.keys())}")
+        knowledgebase = {kb.name: kb for kb in index_client.knowledge_bases(api_version=search_api_version)}
+        print(f"\nAvailable bases: {list(knowledgebase.keys())}")
     except Exception:
-        print("Could not list available agents.")
+        print("Could not list available bases.")
 ```
 
 ### [**REST**](#tab/rest-get-agents)
@@ -260,12 +260,10 @@ To create a knowledge base, use the 2025-11-01-preview data plane REST API or an
 
 Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to assign to the knowledge base.
 
-<!-- HEIDI TO DO -- FIX THE PYTHON CODE WHEN PREVIEW PACKAGE IS AVAILABLE -- TASK 500156-->
-
 ### [**Python**](#tab/python-create-agent)
 
 ```python
-from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeAgentOutputConfiguration, KnowledgeAgentOutputConfigurationModality
+from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
 from azure.search.documents.indexes import SearchIndexClient
 
 aoai_params = AzureOpenAIVectorizerParameters(
@@ -274,26 +272,21 @@ aoai_params = AzureOpenAIVectorizerParameters(
     model_name=aoai_gpt_model,
 )
 
-output_cfg = KnowledgeAgentOutputConfiguration(
-    modality=KnowledgeAgentOutputConfigurationModality.ANSWER_SYNTHESIS,
-    include_activity=True,
-)
-
-agent = KnowledgeAgent(
-    name=knowledge_agent_name,
-    models=[KnowledgeAgentAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
+knowledge_base = KnowledgeBase(
+    name=knowledge_base_name,
+    models=[KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
     knowledge_sources=[
         KnowledgeSourceReference(
-            name=knowledge_source_name,
-            reranker_threshold=2.5,
+            name=knowledge_source_name
         )
     ],
-    output_configuration=output_cfg,
+    output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
 )
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-index_client.create_or_update_agent(agent, api_version=search_api_version)
-print(f"Knowledge agent '{knowledge_agent_name}' created or updated successfully.")
+index_client.create_or_update_knowledge_base(knowledge_base)
+print(f"Knowledge base '{knowledge_base_name}' created or updated successfully.")
 ```
 
 ### [**REST**](#tab/rest-create-kb)
@@ -376,8 +369,6 @@ Call the **retrieve** action on the knowledge base object to confirm the model c
 
 Replace "where does the ocean look green?" with a query string that's valid for your search index.
 
-<!-- HEIDI TO DO -- FIX THE PYTHON CODE WHEN PREVIEW PACKAGE IS AVAILABLE -- TASK 500156-->
-
 ### [**Python**](#tab/python-query-agent)
 
 Start with instructions.
@@ -399,12 +390,12 @@ messages = [
 Then send the query.
 
 ```python
-from azure.search.documents.agent import KnowledgeAgentRetrievalClient
-from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, SearchIndexKnowledgeSourceParams
+from azure.search.documents.knowledgebase import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebase.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
 
-agent_client = KnowledgeAgentRetrievalClient(endpoint=search_endpoint, agent_name=knowledge_agent_name, credential=credential)
+kb_client = KnowledgeBaseRetrievalClient(endpoint=search_endpoint, knowledge_base_name=knowledge_base_name, credential=credential)
 query_1 = """
-    where does the ocean look green??
+    Where does the ocean look green?
     """
 
 messages.append({
@@ -412,22 +403,27 @@ messages.append({
     "content": query_1
 })
 
-req = KnowledgeAgentRetrievalRequest(
+req = KnowledgeBaseRetrievalRequest(
     messages=[
-        KnowledgeAgentMessage(
+        KnowledgeBaseMessage(
             role=m["role"],
-            content=[KnowledgeAgentMessageTextContent(text=m["content"])]
+            content=[KnowledgeBaseMessageTextContent(text=m["content"])]
         ) for m in messages if m["role"] != "system"
     ],
     knowledge_source_params=[
         SearchIndexKnowledgeSourceParams(
             knowledge_source_name=knowledge_source_name,
+            include_references=True,
+            include_reference_source_data=True,
+            always_query_source=True
         )
-    ]
+    ],
+    include_activity=True,
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
 )
 
-result = agent_client.retrieve(retrieval_request=req, api_version=search_api_version)
-print(f"Retrieved content from '{knowledge_source_name}' successfully.")
+result = kb_client.retrieve(retrieval_request=req)
+print(f"Retrieved content from '{knowledge_base_name}' successfully.")
 ```
 
 ### [**REST**](#tab/rest-query-kb)
@@ -499,8 +495,8 @@ If you no longer need the knowledge base, or if you need to rebuild it on the se
 from azure.search.documents.indexes import SearchIndexClient
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-index_client.delete_agent(knowledge_agent_name)
-print(f"Knowledge agent '{knowledge_agent_name}' deleted successfully.")
+index_client.delete_knowledge_base(knowledge_base_name)
+print(f"Knowledge base '{knowledge_base_name}' deleted successfully.")
 ```
 
 ### [**REST**](#tab/rest-delete-kb)
