@@ -47,7 +47,7 @@ Get started by trying out the prebuilt analyzers offered through the Content Und
 <!---[Insert photo of the prebuilt tested on sample data]--->
 
  
-4. **Try out-on your own data**: To try out Content Understanding on your data, you will need to select a deployment of both a chat completion model and an embeddings model. Learn more about bringing your own deployment in [placeholder for BYOC doc](). 
+4. **Try out-on your own data**: To try out Content Understanding on your data, you will need to select a deployment of both a chat completion model and an embeddings model. Learn more about bringing your own deployment in [Connect your Content Understanding analyzer to Foundry model deployments](../concepts/models-deployments.md). 
 
 <!---[Include screenshot of deployment selection]--->
 
