@@ -22,7 +22,7 @@ This solution uses the Model Context Protocol (MCP) to establish a standardized 
 
 The following diagram shows the high-level architecture of this agentic retrieval solution:
 
-:::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Azure AI Foundry Agent service via MCP." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
+:::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Azure AI Foundry Agent service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.png" :::
 
 > [!TIP]
 > + To run the code for this tutorial, download the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
