@@ -7,22 +7,32 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 11/05/2025
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
-
-
 ---
 
-# Prompt shields content filtering
+# Prompt shields in AI Foundry
 
+::: moniker range="foundry"
 
-
-Prompt shields are a feature of the Azure OpenAI content filtering system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
+Prompt shields are a feature of the Azure AI Foundry Guardrails and Controls system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
 
 Prompt shields analyzes LLM inputs and detects adversarial user input attacks.
 
 [!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)]
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+Prompt shields are a feature of the Azure OpenAI content filtering system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
+
+Prompt shields analyze LLM inputs and detects adversarial user input attacks.
+
+[!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)]
+
+::: moniker-end
 
 ## Spotlighting for prompt shields (preview)
 
