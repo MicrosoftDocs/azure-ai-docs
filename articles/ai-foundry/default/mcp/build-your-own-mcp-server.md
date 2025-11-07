@@ -19,7 +19,7 @@ This approach enables you to securely integrate internal APIs and services into 
 
 ## Prerquisites
 
-- An Azure AI Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Azure AI Foundry Agent Service](../agents/quickstart.md).
+- An Azure AI Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Azure AI Foundry Agent Service](../../agents/quickstart.md).
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
 - [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.
 - [Azure Developer CLI](https://aka.ms/azd) installed for deployment automation.
@@ -148,13 +148,13 @@ If you don't register your MCP server in the organizational catalog, add it dire
 
 1. Select **Add** to register the custom MCP tool.
 
-For detailed configuration steps, see [Connect to a Model Context Protocol server endpoint in Azure AI Foundry Agent Service](/agents/how-to/tools/model-context-protocol.md).
+For detailed configuration steps, see [Connect to a Model Context Protocol server endpoint in Azure AI Foundry Agent Service](../../agents/how-to/tools/model-context-protocol.md).
 
 After connecting your MCP server, agents in your Azure AI Foundry project can call the tools and functions exposed by your custom server. Test the connection by creating an agent and verifying it can successfully invoke your MCP server's capabilities.
 
 ## Related content
 
-- [Get started with Azure AI Foundry Agent Service](../agents/quickstart.md)
-- [Connect to Model Context Protocol servers](/agents/how-to/tools/model-context-protocol.md)
+- [Get started with Azure AI Foundry Agent Service](../../agents/quickstart.md)
+- [Connect to Model Context Protocol servers](../../agents/how-to/tools/model-context-protocol.md)
 - [Add environments and deployments in Azure API Center](/azure/api-center/configure-environments-deployments)
 - [Azure Functions Python developer guide](/azure/azure-functions/functions-reference-python)
