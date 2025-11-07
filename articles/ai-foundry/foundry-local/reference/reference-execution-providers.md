@@ -5,7 +5,7 @@ description: Guidance on execution providers (hardware accelerators) used by Fou
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: reference
-ms.date: 111/07/2025
+ms.date: 11/07/2025
 ms.author: nakersha
 author: nakersha
 reviewer: metang
