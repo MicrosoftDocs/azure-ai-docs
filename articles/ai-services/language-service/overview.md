@@ -30,7 +30,7 @@ For more information, *see* [Azure Language MCP server](concepts/azure-foundry-t
 
 ## Available agents
 
-Azure Language offers pre-built agents that handle specific conversational AI scenarios with built-in governance, routing logic, and quality control mechanisms.
+Azure Language offers prebuilt agents that handle specific conversational AI scenarios with built-in governance, routing logic, and quality control mechanisms.
 
 ### Azure Language Intent Routing agent 🆕
 
