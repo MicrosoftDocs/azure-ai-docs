@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry"
 
-Prompt shields are a feature of the Azure AI Foundry Guardrails and Controls system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
+Prompt shields are a feature of the Azure AI Foundry Guardrails and controls system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
 
 Prompt shields analyzes LLM inputs and detects adversarial user input attacks.
 

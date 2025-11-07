@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry"
 
-The [configurable Guardrails and Controls](/azure/ai-foundry/openai/how-to/content-filters) available in Azure AI Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Azure AI Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
 
 ::: moniker-end
 

@@ -23,7 +23,7 @@ The protected material code filter flags protected code content that large langu
 ::: moniker range="foundry"
 
 > [!IMPORTANT]
-> The Guardrails and Controls models for protected material detection, groundedness detection, and custom categories (standard) work with English only.
+> The Guardrails and controls models for protected material detection, groundedness detection, and custom categories (standard) work with English only.
 > 
 > Other content filtering models are specifically trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, Portuguese. However, these features can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 

@@ -1,7 +1,7 @@
 items:
 - name: Overview
   href: ../../guardrails/guardrails-overview.md
-- name: How to configure Guardrails and Controls
+- name: How to configure Guardrails and controls
   href: ../../guardrails/how-to-create-guardrails.md
 - name: Risks
   items:
