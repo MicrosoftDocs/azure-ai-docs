@@ -1,7 +1,7 @@
 ---
-title: 'Use the GPT Realtime API via WebRTC'
+title: 'Legacy Protocol for RealtimeAPI via WebRTC'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
-description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
+description: Documentation of legacy protocols for RealtimeAPI via WebRTC.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -15,7 +15,7 @@ recommendations: false
 
 # Legacy Protocol for WebRTC
 
-This document describes legacy methods for using WebRTC. It is intended for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](realtime-audio-webrtc).
+This document describes legacy methods for using WebRTC. It is intended for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](./realtime-audio-webrtc).
 
 ## Supported models
 
@@ -27,11 +27,7 @@ You should use API version `2025-04-01-preview` in the URL for the Realtime API.
 
 ## Prerequisites
 
-Before you can use GPT real-time audio, you need:
-
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+The pre-requistes have not changed. You will still need an azure subscription and OpenAI resource. Instructions are the same as they are for [GA Protocol usage](./realtime-audio-webrtc.md#prerequisites]
 
 ## Connection and authentication
 
