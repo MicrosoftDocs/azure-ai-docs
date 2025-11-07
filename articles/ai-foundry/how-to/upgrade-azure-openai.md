@@ -46,7 +46,7 @@ Backend limitations:
 * AI Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
-* Private network setups require [reconfiguration of private link endpoints and extra DNS configurations](#private-network-configuration) before all Foundry capabilities can be used.
+* Private network setups require [reconfiguration of private link endpoints and extra Domain Name Server (DNS) configurations](#private-network-configuration) before all Foundry capabilities can be used.
 
 Foundry portal limitations:
 
@@ -68,14 +68,14 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 1. Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
 1. Confirm to start the upgrade.
 
-# [Azure Portal](#tab/azportal)
+# [Azure portal](#tab/azportal)
 
-1. Sign in to [Azure Portal](https://portal.azure.com/)
+1. Sign in to [Azure portal](https://portal.azure.com/)
 1. Select your Azure OpenAI resource
 1. On the overview page, locate the banner "Want to try the latest industry models and Agents?" and select 'Get Started'.
 1. Confirm to start the upgrade.
 
-:::image type="content" source="../media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure Portal." lightbox = "../media/upgrade-azure-openai/azure-portal-upgrade.png":::
+:::image type="content" source="../media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure portal." lightbox = "../media/upgrade-azure-openai/azure-portal-upgrade.png":::
 
 # [Azure Bicep](#tab/bicep)
 
@@ -152,7 +152,7 @@ AI Foundry resource is a superset of Azure OpenAI resource and its capabilities 
 - {custom-domain}.services.ai.azure.com
 - {custom-domain}.cognitiveservices.azure.com
 
-Your DNS configuration must be able to resolve each of the above FQDNs in order to use the full set of Foundry capabilities. 
+Your DNS configuration must be able to resolve each of the FQDNs in order to use the full set of Foundry capabilities. 
 
 * If you're using Azure DNS, you need to create an [Azure DNS Zone](/azure/dns/dns-zones-records) for each of the above domains.
 
@@ -181,15 +181,15 @@ Then, use either AI Foundry Portal or ARM template to roll back:
 1. On your resource overview page, find the rollback option.
 1. Select **Rollback**.
 
-:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the roll back option in the Azure AI Foundry portal." lightbox = "../media/upgrade-azure-openai/rollback.png":::
+:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Azure AI Foundry portal." lightbox = "../media/upgrade-azure-openai/rollback.png":::
 
-# [Azure Portal](#tab/azportal)
+# [Azure portal](#tab/azportal)
 
-1. Sign in to [Azure Portal](https://portal.azure.com/)
+1. Sign in to [Azure portal](https://portal.azure.com/)
 1. Select your Azure AI Foundry resource
 1. On the overview page, select 'rollback upgrade'.
 
-:::image type="content" source="../media/upgrade-azure-openai/rollback-azure-portal.png" alt-text="Screenshot shows how to roll back in Azure Portal." lightbox = "../media/upgrade-azure-openai/rollback-azure-portal.png":::
+:::image type="content" source="../media/upgrade-azure-openai/rollback-azure-portal.png" alt-text="Screenshot shows how to roll back in Azure portal." lightbox = "../media/upgrade-azure-openai/rollback-azure-portal.png":::
 
 # [Azure Bicep](#tab/bicep)
 
@@ -227,8 +227,8 @@ Azure resource limits and organizational configurations may require extra steps 
 
 |Issue|Solution/mitigation|
 |---|---|
-|User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resourcee. For example Owner, Contributor, Azure AI Administrator.| 
-|Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure Portal.|
+|User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resource. For example Owner, Contributor, Azure AI Administrator.| 
+|Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure portal.|
 |No permissions to create agents, while you're the owner/contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include Azure AI User or Azure AI Project Manager role. Owner and Contributor roles only grant access to management operations in Azure such as managing deployments.|
 |An Azure Policy conflict occurred.|Your organization may put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
 |Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Azure AI Foundry. Then retry rolling back your current resource.|
@@ -248,7 +248,7 @@ The following Azure resource property is available to inspect whether a resource
 }
 ```
 
-Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure Portal](/azure/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
+Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure portal](/azure/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
 
 1. Use Azure Activity Logs (under "Monitoring") to see if an upgrade operation was performed.
 1. Filter by "Write" operations on the storage account.
