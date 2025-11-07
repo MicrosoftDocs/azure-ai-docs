@@ -57,15 +57,31 @@ Training datasets must be in `jsonl` format:
 
 Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
 
+::: moniker range="foundry"
+
 ## How to use direct preference optimization fine-tuning
 
-   :::image type="content" border="true" source="/azure/ai-foundry/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
+1. Navigate to **Build** in the top section of AI foundry.
+2. Select **Fine-tune** from the side menu.
+3. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
+4. Select a model and then select the method of customization **Direct Preference Optimization**.
+5. Upload datasets – training and validation. Preview as needed.
+6. Select hyperparameters, defaults are recommended for initial experimentation.
+7. Review the selections and create a fine tuning job.
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+## How to use direct preference optimization fine-tuning
 
 1. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
 2. Select the model and then select the method of customization **Direct Preference Optimization**.
 3. Upload datasets – training and validation. Preview as needed.
 4. Select hyperparameters, defaults are recommended for initial experimentation.
 5. Review the selections and create a fine tuning job.
+
+::: moniker-end
 
 ## Direct preference optimization - REST API
 
