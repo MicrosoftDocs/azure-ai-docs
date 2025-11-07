@@ -15,7 +15,7 @@ recommendations: false
 
 # Legacy Protocol for WebRTC
 
-This document describes legacy methods for using WebRTC. We preserve the legacy documentation for for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](./realtime-audio-webrtc.md).
+This document describes legacy methods for using WebRTC. We preserve the legacy documentation for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](./realtime-audio-webrtc.md).
 
 ## Supported models
 
@@ -27,7 +27,7 @@ You should use API version `2025-04-01-preview` in the URL for the Realtime API.
 
 ## Prerequisites
 
-The prerequisites remain unchanged. You need an azure subscription and OpenAI resource. Instructions can be found [here](./realtime-audio-webrtc.md#prerequisites]
+The prerequisites remain unchanged. You need an azure subscription and OpenAI resource. Instructions can be found [here](./realtime-audio-webrtc.md#prerequisites)
 
 ## Connection and authentication
 
