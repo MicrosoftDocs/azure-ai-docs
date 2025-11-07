@@ -27,7 +27,7 @@ You should use API version `2025-04-01-preview` in the URL for the Realtime API.
 
 ## Prerequisites
 
-The pre-requistes have not changed. You will still need an azure subscription and OpenAI resource. Instructions are the same as they are for [GA Protocol usage](./realtime-audio-webrtc.md#prerequisites]
+The prerequistes remain unchanged. You need an azure subscription and OpenAI resource. These intructions can be found [here](./realtime-audio-webrtc.md#prerequisites]
 
 ## Connection and authentication
 

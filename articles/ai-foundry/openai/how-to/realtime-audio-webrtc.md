@@ -64,7 +64,7 @@ You need two pieces of code to make this work.
 1) Your web browser application
 2) A service where your web browser can retrieve an ephemeral token
 
-Additional options: 
+More options: 
 
 * You can proxy the web browser sdp request through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
 
@@ -219,12 +219,13 @@ if __name__ == '__main__':
 
 ### Step 2: Set up your browser application
 
-Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the url
+Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following url with the ephemeral token for authentication.
 
 ```
  https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
  ```
- using the ephemeral token for authentication. Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample html document to get you started.
+
+Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample html document to get you started.
 
 ```
 html
@@ -441,7 +442,7 @@ html
     </html>
 ```
 
-In the sample, we use the query parameter webrtcfilter=on. This limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages are returned to the browser on the data channel: 
+In the sample, we use the query parameter webrtcfilter=on. This query parameter limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages are returned to the browser on the data channel: 
 
 * input_audio_buffer.speech_started
 * input_audio_buffer.speech_stopped
@@ -459,7 +460,7 @@ In the sample, we use the query parameter webrtcfilter=on. This limits the data 
 
 If you proxy the sdp call through your service application, you can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
-Here is an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the sdp request. It also includes a websocket connection that listens to the WebRTC session. 
+Here's an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the sdp request. It also includes a websocket connection that listens to the WebRTC session. 
 
 ```
 from flask import Flask, jsonify, request
