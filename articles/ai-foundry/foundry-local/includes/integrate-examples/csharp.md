@@ -10,23 +10,59 @@ author: samuel100
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
 
-## Create project
+## Set up project
 
-Create a new C# project and navigate into it:
+To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
+
+### [Windows](#tab/windows)
+
+First, create a new C# project and navigate into it:
 
 ```bash
 dotnet new console -n hello-foundry-local
 cd hello-foundry-local
 ```
 
-### Install NuGet Packages
+Next, open the `hello-foundry-local.csproj` file and modify to the following:
 
-Install the following NuGet packages into your project folder:
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
+    <RootNamespace>hello-foundry-local</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    <PackageReference Include="OpenAI" Version="2.5.0" />
+  </ItemGroup>
+
+</Project>
+```
+
+### [macOS/Linux](#tab/xplatform)
+
+First, create a new C# project and navigate into it:
 
 ```bash
-dotnet add package Microsoft.AI.Foundry.Local
+dotnet new console -n hello-foundry-local
+cd hello-foundry-local
+```
+
+Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
 dotnet add package OpenAI --version 2.5.0
 ```
+
+---
 
 ## Use OpenAI SDK with Foundry Local
 
@@ -49,12 +85,12 @@ using System.ClientModel;
 
 var config = new Configuration
 {
-    AppName = "hello-foundry-local",
+    AppName = "my-app-name",
     LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
     Web = new Configuration.WebService
     {
-        Urls = "http://127.0.0.1:5464"
-    },
+        Urls = "http://127.0.0.1:55588"
+    }
 };
 
 using var loggerFactory = LoggerFactory.Create(builder =>
@@ -69,13 +105,22 @@ await FoundryLocalManager.CreateAsync(config, logger);
 var mgr = FoundryLocalManager.Instance;
 
 // Get the model catalog
-var catalog = mgr.GetCatalog();
+var catalog = await mgr.GetCatalogAsync();
 
 // Get a model using an alias
 var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
 
-// Download and load the variant
-await model.DownloadAsync();
+// Download the model (the method skips download if already cached)
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading model: {progress:F2}%");
+    if (progress >= 100f)
+    {
+        Console.WriteLine();
+    }
+});
+
+// Load the model
 await model.LoadAsync();
 
 // Start the web service
