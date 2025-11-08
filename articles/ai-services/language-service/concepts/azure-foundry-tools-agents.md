@@ -28,7 +28,7 @@ The server transforms Azure Language services into agent-friendly endpoints that
 
 ## Azure Language Intent Routing agent 🆕
 
-The Intent Routing agent [**Azure AI Foundry**](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. This agent creates a framework that ensures users receive accurate responses while maintaining operational control.
+The Intent Routing agent in [**Azure AI Foundry**](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. This agent creates a framework that ensures users receive accurate responses while maintaining operational control.
 
 The agent, which is built on Azure Language's natural language understanding capabilities, processes user input through layers. The system analyzes messages to understand intentions, then users can implement logic to route requests through appropriate channels based on confidence levels.
 
@@ -40,14 +40,16 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
 * **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
 
-* **Language service deployments**: Deploy both required Azure Language services:
-  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
-  * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md).
-
 * **Project resources**: Create your CLU and CQA projects using one of the following resource types:
   * Azure AI Foundry resource.
   * AI hub resource.
   * Azure AI Language resource.
+
+* **Project deployments**: Deploy following required projects:
+
+  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
+  * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md).
+
 
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
   * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
@@ -56,11 +58,11 @@ Before setting up the Intent Routing agent, ensure you have the following resour
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
-     > ***MCP Server Endpoint***
+  * ***MCP Server Endpoint***
 
-      ```bash
-      https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
-      ```
+        ```bash
+        https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
+        ```
 
 ### Key capabilities
 
@@ -72,15 +74,15 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
 * **Fallback processing**: Users can easily add retrieval-augmented generation (RAG) to the agent to handle edge cases and uncommon questions by using approved knowledge sources.
 
-   > ***Download template code with Azure Developer CLI (azd)***
+* ***Download template code with Azure Developer CLI (azd)***
 
-   ```bash
-   azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
-   ```
+        ```azurecli
+           azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
+        ```
 
 ## Azure Language Exact Question Answering agent 🆕
 
-The Exact Question Answering agent [**Azure AI Foundry**](https://ai.azure.com/) delivers responses to frequently asked business questions through a fully managed, no-code solution. This agent provides consistent answers to queries while maintaining governance and quality control.
+The Exact Question Answering agent in [**Azure AI Foundry**](https://ai.azure.com/) delivers responses to frequently asked business questions through a fully managed, no-code solution. This agent provides consistent answers to queries while maintaining governance and quality control.
 
 The agent combines Azure AI Agent Service capabilities with [**Custom Question Answering**](../question-answering/overview.md) technology. This integration creates a solution with minimal setup while delivering performance and oversight.
 
@@ -94,13 +96,15 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 
 * **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
 
-* **Language service deployment**: Deploy the required Azure Language service:
-  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
-
 * **Project resources**: Create your CQA project using one of the following resource types:
   * Azure AI Foundry resource.
   * AI hub resource.
   * Azure AI Language resource.
+
+* **Project deployment**: Deploy the following required project:
+
+  * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
+
 
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
   * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
@@ -109,10 +113,10 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
-     > ***Download template code with Azure Developer CLI (azd)***
+  * ***Download template code with Azure Developer CLI (azd)***
 
-       ```bash
-       azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
+       ```azurecli
+          azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
        ```
 
 ### Key capabilities
