@@ -37,7 +37,9 @@ When you submit input text to be processed, you can specify which of [the suppor
 
 ### Redaction policies
 
-Starting with version `2025-11-15-preview` and onward, you can specify the `redactionPolicies` parameter to define which redaction policies are applied when processing text. You can include more than one policy in a single request. The policy field accepts four policy types:
+Starting with version `2025-11-15-preview` and onward, you can specify the `redactionPolicies` parameter to define which redaction policies are applied when processing text. You can include more than one policy in a single request, with one policy specified as the `defaultRedactionPolicy` and additional policy overrides for specified entities.
+
+The policy field accepts four policy types:
 
 > [!div class="checklist"]
 > * [`SyntheticReplacement 🆕`](#syntheticreplacement-policy-type-)
@@ -229,34 +231,28 @@ The API attempts to detect the [defined entity categories](../concepts/entity-ca
 
 ```bash
 {
-    "kind": "PiiEntityRecognition",
-    "parameters": 
-    {
-        "modelVersion": "latest",
-        "piiCategories" :
-        [
-            "Person"
-        ]
-    },
-    "analysisInput":
-    {
-        "documents":
-        [
-            {
-                "id":"1",
-                "language": "en",
-                "text": "We went to Contoso foodplace located at downtown Seattle last week for a dinner party, and we adore the spot! They provide marvelous food and they have a great menu. The chief cook happens to be the owner (I think his name is John Doe) and he is super nice, coming out of the kitchen and greeted us all. We enjoyed very much dining in the place! The pasta I ordered was tender and juicy, and the place was impeccably clean. You can even pre-order from their online menu at www.contosofoodplace.com, call 112-555-0176 or send email to order@contosofoodplace.com! The only complaint I have is the food didn't come fast enough. Overall I highly recommend it!"
-            }
-        ]
-    },
-    "kind": "PiiEntityRecognition",
-    "parameters": {
-        "redactionPolicies": {
-            "policyKind": "characterMask"
-             //MaskWithCharacter|MaskWithEntityType|DoNotRedact
-            "redactionCharacter": "*"
+  "kind": "PiiEntityRecognition",
+  "parameters": {
+    "modelVersion": "latest",
+    "piiCategories": [
+      "Person"
+    ],
+    "redactionPolicies": {
+      "policyKind": "characterMask",
+      "redactionCharacter": "*"
+       # MaskWithCharacter|MaskWithEntityType|DoNotRedact
+    }
+  },
+  "analysisInput": {
+    "documents": [
+      {
+        "id": "1",
+        "language": "en",
+        "text": "We went to Contoso foodplace located at downtown Seattle last week for a dinner party, and we adore the spot! They provide marvelous food and they have a great menu. The chief cook happens to be the owner (I think his name is John Doe) and he is super nice, coming out of the kitchen and greeted us all. We enjoyed very much dining in the place! The pasta I ordered was tender and juicy, and the place was impeccably clean. You can even pre-order from their online menu at www.contosofoodplace.com, call 112-555-0176 or send email to order@contosofoodplace.com! The only complaint I have is the food didn't come fast enough. Overall I highly recommend it!"
+      }
+    ]
+  }
 }
-
 ```
 
 **Output:**
