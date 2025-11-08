@@ -35,7 +35,7 @@ This article documents basic ACL ingestion capability for SharePoint in Microsof
 
 - During public preview, this functionality applies to initial ingestion only: ACLs are captured on the first ingestion of each file. Later permission changes [require explicit reingestion](#synchronize-permissions-between-indexed-and-source-content)
 - Not supported in this preview:
-  + [SharePoint Information Management policies](/office/create-and-apply-information-management-policies-eb501fe9-2ef6-4150-945a-65a6451ee9e9) propagation to index.
+  + [SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) applicable to user access.
   + Document [shareable](/sharepoint/shareable-links-anyone-specific-people-organization) "Anyone links" or "People in your organization links". Only "specific people links" sync are supported.
   + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) that can't be resolved to Microsoft Entra groups (such as Owners, Members, Visitors groups).
   + Azure portal is out of support during preview; use REST API version 2025-11-01-preview or SDK preview packages.
@@ -144,7 +144,7 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-1
 
 ### 4. Configure the indexer field mappings for ACLs
 
-Besides your required [indexer configuration](/search-how-to-index-sharepoint-online.md#step-6-create-an-indexer), map raw metadata ACL fields from SharePoint to your index fields.
+Besides your required [indexer configuration](search-how-to-index-sharepoint-online.md#step-6-create-an-indexer), map raw metadata ACL fields from SharePoint to your index fields.
 
 ```
 {
