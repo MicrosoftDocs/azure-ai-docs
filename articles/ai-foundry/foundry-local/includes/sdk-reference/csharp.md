@@ -8,13 +8,16 @@ author: samuel100
 
 ## C# SDK Reference
 
-### Version `>=0.4.0` Redesign
+### Redesign
 
-To improve your ability to ship applications using on-device AI, there are substantial changes to the architecture of the C# SDK in version `0.4.0` and with that there are breaking changes in the API from version `0.3.0` and earlier to version `0.4.0` and later.
+To improve your ability to ship applications using on-device AI, there are substantial changes to the architecture of the C# SDK in version `0.8.0` and later. In this section, we outline the key changes to help you migrate your applications to the latest version of the SDK.
+
+> [!NOTE]
+> In the SDK version `0.8.0` and later, there are breaking changes in the API from previous versions.
 
 #### Architecture changes
 
-The following diagram shows how the previous architecture - for versions `0.3.0` and earlier - relied heavily on using a REST webserver to manage models and inference like chat completions:
+The following diagram shows how the previous architecture - for versions earlier than `0.8.0` - relied heavily on using a REST webserver to manage models and inference like chat completions:
 
 ![previous architecture](../../media/architecture/current-sdk-architecture.png)
 
@@ -24,7 +27,7 @@ The SDK would use a Remote Procedural Call (RPC) to find Foundry Local CLI execu
 - Challenging deployment: End users needed to have the Foundry Local CLI installed on their machines *and* your application.
 - Version management of the CLI and SDK could lead to compatibility issues.
 
-To address these issues, the redesigned architecture in version `0.4.0` and later uses a more streamlined approach. The new architecture is as follows:
+To address these issues, the redesigned architecture in version `0.8.0` and later uses a more streamlined approach. The new architecture is as follows:
 
 ![new architecture](../../media/architecture/new-sdk-architecture.png)
 
@@ -38,9 +41,9 @@ In this new architecture:
 
 #### API changes
 
-Version `0.4.0` and later provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
+Version `0.8.0` and later provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
 
-| Primitive           | Versions <= 0.3.0 | Versions >= 0.4.0 |
+| Primitive           | Versions <= 0.7.0 | Versions >= 0.8.0 |
 |---------------------|-------------------|-------------------|
 | **Configuration**    | N/A | `config = Configuration(...)` |
 | **Get Manager**     | `mgr = FoundryLocalManager();`| `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;`  |
@@ -78,83 +81,81 @@ var config = new Configuration
 
 In the previous version of the Foundry Local C# SDK, you couldn't configure these settings directly through the SDK, which limited your ability to customize the behavior of the service.
 
-##### Side-by-side basic usage
 
-## [Versions <= 0.3.0](#tab/previous)
+### Project setup
 
-```csharp
-using Microsoft.AI.Foundry.Local;
+To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
 
-// Initialize the manager
-var manager = new FoundryLocalManager();
-await manager.StartServiceAsync();
+#### [Windows](#tab/windows)
 
-// List available models in the catalog
-var models = await manager.ListCatalogModelsAsync();
-
-// Download and load a model by alias
-var alias = "qwen2.5-0.5b";
-await manager.DownloadModelAsync(alias);
-await manager.LoadModelAsync(alias);
-
-// List loaded models
-var loaded = await manager.ListLoadedModelsAsync();
-
-// Unload the model
-await manager.UnloadModelAsync(alias);
-```
-
-## [Versions >= 0.4.0](#tab/vNext)
-
-The biggest change in the new SDK version is the introduction of the `Configuration` class for setting up the Foundry Local environment and the need to define a `ILogger` instance for logging.
-
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Microsoft.Extensions.Logging;
-
-// Create configuration
-var config = new Configuration
-{
-    AppName = "my-app-name"
-};
-
-// Set up application logging
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-});
-var logger = loggerFactory.CreateLogger<Program>();
-
-// Initialize the singleton instance.
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
-
-// Get the model catalog
-var catalog = mgr.GetCatalog();
-
-// List available models in the catalog
-var models = await catalog.ListModelsAsync();
-
-// Get a model using an alias
-var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
-
-// Download and load the model
-await model.DownloadAsync();
-await model.LoadAsync();
-
-// List loaded models (in memory) from the catalog
-var loaded = await catalog.GetLoadedModelsAsync();
-
-// Unload the model
-await model.UnloadAsync();
-```
-
----
-
-### Installation
-
-To use the Foundry Local C# SDK, you need to install the NuGet package:
+First, create a new C# project and navigate into it:
 
 ```bash
-dotnet add package Microsoft.AI.Foundry.Local
+dotnet new console -n hello-foundry-local
+cd hello-foundry-local
 ```
+
+Next, open the `hello-foundry-local.csproj` file and modify to the following:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
+    <RootNamespace>hello-foundry-local</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    <PackageReference Include="OpenAI" Version="2.5.0" />
+  </ItemGroup>
+
+</Project>
+```
+
+The Windows-specific package `Microsoft.AI.Foundry.Local.WinML` includes support for Windows ML hardware acceleration. On initialization, Foundry Local will automatically detect compatible hardware and use it for model inference. If the host machine is missing the correct runtimes and drivers for the available hardware, Foundry Local will automatically download and install them on initialization. You can also override the automatic runtime/driver download behavior and manage the download in your application logic. By keeping the runtimes and drivers separated from the Foundry Local SDK package, we ensure the package size remains small and only the necessary components are installed on the host machine, which will reduce your application's size.
+
+For an up-to-date list of supported hardware accelerators, see [Supported execution providers in Windows ML](https://learn.microsoft.com/windows/ai/new-windows-ml/supported-execution-providers).
+
+#### [macOS](#tab/macos)
+
+First, create a new C# project and navigate into it:
+
+```bash
+dotnet new console -n hello-foundry-local
+cd hello-foundry-local
+```
+
+Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
+dotnet add package OpenAI --version 2.5.0
+```
+
+On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU. In the case of GPU, Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider using a library called Dawn that converts from the WebGPU shader language to Metal.
+
+#### [Linux](#tab/linux)
+
+First, create a new C# project and navigate into it:
+
+```bash
+dotnet new console -n hello-foundry-local
+cd hello-foundry-local
+```
+
+Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
+dotnet add package OpenAI --version 2.5.0
+```
+
+On Linux, Foundry Local supports hardware acceleration for CPU and Nvidia CUDA-enabled GPUs. For Nvidia GPUs, you'll need to ensure you have installed the appropriate CUDA drivers and libraries.
+
+---
