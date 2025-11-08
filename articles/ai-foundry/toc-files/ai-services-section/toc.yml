@@ -20,7 +20,7 @@ items:
     href: ../../../ai-services/content-safety/quickstart-text.md?context=/azure/ai-foundry/context/context
 - name:  Content Understanding
   items:
-  - name: What is Azure AI Content Understanding (preview)?
+  - name: What is Azure Content Understanding in Foundry Tools (preview)?
     href: ../../../ai-services/content-understanding/overview.md?context=/azure/ai-foundry/context/context
   - name: Use Content Understanding in Azure AI Foundry portal
     href: ../../../ai-services/content-understanding/quickstart/use-ai-foundry.md?context=/azure/ai-foundry/context/context

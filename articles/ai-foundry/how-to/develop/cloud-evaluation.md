@@ -11,9 +11,14 @@ ms.date: 10/18/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer, I want to run evaluations in the cloud using the Azure AI Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Run evaluations in the cloud by using the Azure AI Foundry SDK (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -199,7 +204,17 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
+::: moniker range="foundry-classic"
+
 After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Azure AI Foundry project, select **Evaluation**, then select **Evaluator library**.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ### Prompt-based custom evaluators
 
@@ -247,8 +262,17 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
+::: moniker range="foundry-classic"
+
 After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Azure AI Foundry project, select **Evaluation**, then select **Evaluator library**.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 ### Troubleshooting: Job Stuck in Running State
 
 Your evaluation job might remain in the **Running** state for an extended period when using Azure AI Foundry Project or Hub. The Azure OpenAI model you selected might not have enough capacity.
