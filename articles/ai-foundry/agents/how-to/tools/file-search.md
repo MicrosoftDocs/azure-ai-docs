@@ -11,7 +11,6 @@ ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Foundry Agent Service file search tool

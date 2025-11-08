@@ -17,7 +17,7 @@ ms.custom:
 
 # Create and manage connections in Azure AI Foundry hubs
 
-> [!TIP]
+> [!NOTE]
 > An alternate Foundry project connections article is available: [Add a new connection to your project (Foundry projects)](connections-add.md).
 
 Connections in Azure AI Foundry hubs allow you to securely integrate external resources and services, such as Azure AI services and other Azure data services. This article covers hub-scoped connection tasks.

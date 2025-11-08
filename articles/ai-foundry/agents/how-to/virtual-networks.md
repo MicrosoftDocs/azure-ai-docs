@@ -12,7 +12,6 @@ author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
 ms.custom: azure-ai-agents, references_regions
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Create a new network-secured environment with user-managed identity

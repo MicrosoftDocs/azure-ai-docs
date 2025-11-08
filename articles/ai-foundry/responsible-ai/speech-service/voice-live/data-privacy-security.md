@@ -29,7 +29,7 @@ Voice Live API stores and processes data to provide the service and to monitor f
 > - are NOT available to other customers. 
 > - are NOT available to OpenAI or other model providers. 
 > - are NOT used to improve OpenAI models or other model providers’ models. 
-> - are NOT used to train, retrain, or improve Azure OpenAI Service or Azure Speech in Foundry Tools foundation models. 
+> - are NOT used to train, retrain, or improve Azure OpenAI Service or Azure AI Speech foundation models. 
 > - are NOT used to improve any Microsoft or third-party products or services without your permission or instruction. 
 >
 > With Voice Live API, your fine-tuned speech models are available exclusively for your use.

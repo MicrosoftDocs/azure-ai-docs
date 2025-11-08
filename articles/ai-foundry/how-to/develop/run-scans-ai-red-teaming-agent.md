@@ -10,14 +10,9 @@ ms.date: 10/20/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
-# customer intent: As a developer, I want to run AI Red Teaming Agent scans locally using the Azure AI Evaluation SDK so I can proactively find safety risks in my generative AI applications during development.
 ---
 
 # Run AI Red Teaming Agent locally (preview)
-
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -511,17 +506,7 @@ The red teaming scorecard also provides row-level data on each attack-response p
 }
 ```
 
-::: moniker range="foundry-classic"
-
 [!INCLUDE [view-ai-red-teaming-results](../../includes/view-ai-red-teaming-results.md)]
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 ## Related content
 

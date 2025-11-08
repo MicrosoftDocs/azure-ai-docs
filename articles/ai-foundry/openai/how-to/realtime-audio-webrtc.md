@@ -11,13 +11,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
-
 ---
 
 # Use the GPT Realtime API via WebRTC
-
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 

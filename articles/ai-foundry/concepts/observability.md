@@ -2,8 +2,6 @@
 title: Observability in Generative AI
 titleSuffix: Azure AI Foundry
 description: Learn how Azure AI Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
@@ -16,8 +14,6 @@ ms.custom:
 ---
 
 # Observability in generative AI
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]  
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -128,20 +124,20 @@ Before you build your application, select the right foundation. This initial eva
 
 **Tools available**: [Azure AI Foundry benchmark](model-benchmarks.md) for comparing models on public datasets or your own data, and the Azure AI Evaluation SDK for [testing specific model endpoints](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
 
-### Preproduction evaluation
+### Pre-production evaluation
 
 After you select a base model, the next step is to develop an AI application, such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. When development is complete, *pre-production evaluation* begins. Before you deploy to a production environment, thorough testing is essential to ensure that the model is ready for real-world use.
 
-Preproduction evaluation involves:
+Pre-production evaluation involves:
 
 - Testing with evaluation datasets: These datasets simulate realistic user interactions to ensure that the AI application performs as expected.
 - Identifying edge cases: Find scenarios where the AI application's response quality might degrade or produce undesirable outputs.
 - Assessing robustness: Ensure that the model can handle a range of input variations without significant drops in quality or safety.
 - Measuring key metrics: Evaluate metrics such as response groundedness, relevance, and safety to confirm readiness for production.
 
-:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of preproduction evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
+:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of pre-production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
 
-The preproduction stage acts as a final quality check, reducing the risk of deploying an AI application that doesn't meet the desired performance or safety standards.
+The pre-production stage acts as a final quality check, reducing the risk of deploying an AI application that doesn't meet the desired performance or safety standards.
 
 Evaluation Tools and Approaches:
 
@@ -170,7 +166,7 @@ After deployment, continuous monitoring ensures your AI application maintains qu
 - **Performance tracking**: Regular measurement of key metrics.
 - **Incident response**: Swift action when harmful or inappropriate outputs occur.
 
-Effective monitoring helps maintain user trust and allows for rapid issue resolution.
+Effective monitoring helps maintain user trust and allows for rapid issue resolution.  
 
 Azure AI Foundry Observability provides comprehensive monitoring capabilities essential for today's complex and rapidly evolving AI landscape. Seamlessly integrated with Azure Monitor Application Insights, this solution enables continuous monitoring of deployed AI applications to ensure optimal performance, safety, and quality in production environments.
 

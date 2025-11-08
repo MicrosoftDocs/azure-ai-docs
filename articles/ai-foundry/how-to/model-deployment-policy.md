@@ -1,20 +1,17 @@
 ---
 title: Built-in policy for model deployment (Preview)
 description: Manage AI model deployment in Azure AI Foundry Portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively.
-monikerRange: 'foundry-classic || foundry'
 #customer intent: As an IT admin, I want to control the deployment of AI models in Azure AI Foundry Portal so that I can ensure compliance with organizational policies.
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
-ms.date: 09/29/2025
+ms.date: 09/22/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
 # Built-in policy for model deployment in Azure AI Foundry portal (Preview)
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Azure AI Foundry Portal. You can use
 these policies to control what models your developers can deploy in Azure AI Foundry portal.
@@ -54,49 +51,21 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
    - **Allowed Models Publishers**: This field expects a list of **publisher's name** in quotation and separated by commas. Here's an example that shows where to find a publisher name:
 
-     ::: moniker range="foundry-classic"
-
-     1. Go to the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Azure AI Foundry Portal:
+     1. Go to [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Foundry Portal
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
         :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of Azure AI Foundry model catalog showing a model card with the publisher name highlighted.":::
-
-     ::: moniker-end
-
-     ::: moniker range="foundry"
-
-     1. Go to the[Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Azure AI Foundry Portal:
-     1. Select a model (for example, GPT-5).
-     1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
-
-        :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of Azure AI Foundry model catalog showing a model card with the publisher name highlighted.":::
-
-     ::: moniker-end
 
    - **Allowed Asset Ids**: This field expects a list of **model asset ids** in quotation and separated by commas.
 
      To get the model asset ID strings and model publishers' name use the following steps:
 
-     ::: moniker range="foundry-classic"
-
-     1. Go to the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
+     1. Go to the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview).
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]
         > The model ID value must be an exact match for the model. If the model ID isn't an exact match, policy doesn't work as expected.
-
-     ::: moniker-end
-
-     ::: moniker range="foundry"
-
-     1. Go to the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
-     1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
-
-        > [!IMPORTANT]
-        > The model ID value must be an exact match for the model. If the model ID isn't an exact match, policy doesn't work as expected.
-
-     ::: moniker-end
 
      1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
      1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't on the list of allowed models.

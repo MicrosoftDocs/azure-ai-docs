@@ -30,7 +30,7 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-[!INCLUDE [feature-preview](../includes/first-run-experience-classic.md)]
+[!INCLUDE [feature-preview](../includes/first-run-experience.md)]
 
 ## Get answers in the playground
 

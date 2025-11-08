@@ -12,8 +12,6 @@ ms.author: pafarley
 ms.custom: references_regions
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
-monikerRange: 'foundry-classic || foundry'
-
 ---
 
 # Quickstart: Get started using Azure OpenAI audio generation

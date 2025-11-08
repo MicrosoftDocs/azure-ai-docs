@@ -2,7 +2,6 @@
 title: Agent Evaluation with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
-monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.custom: 
 - build-2025
@@ -12,13 +11,9 @@ ms.date: 09/15/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to evaluate my AI agents locally using the Azure AI Evaluation SDK so I can assess the quality, safety, and efficiency of agentic workflows.
-ai-usage: ai-assisted
 ---
 
 # Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)
-
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -118,20 +113,10 @@ toolset.add(functions)
 AGENT_NAME = "Seattle Tourist Assistant"
 ```
 
-::: moniker range="foundry-classic"
-
 If you're using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry), create an agent with the toolset as follows:
 
 > [!NOTE]
 > If you're using a [Foundry Hub-based project](../hub-create-projects.md?tabs=ai-foundry) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Create an agent with the toolset as follows:
-
-::: moniker-end
 
 ```python
 import os
@@ -345,17 +330,7 @@ print(response["metrics"])
 print(f'AI Foundry URL: {response.get("studio_url")}')
 ```
 
-::: moniker range="foundry-classic"
-
 After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 With the Azure AI Evaluation SDK client library, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows.
 

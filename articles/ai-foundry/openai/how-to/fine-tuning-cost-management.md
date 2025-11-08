@@ -10,8 +10,6 @@ ms.date: 07/08/2025
 author: mrbullwinkle
 ms.author: mbullwin
 show_latex: true
-ms.custom: ignite2025
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Cost management for fine-tuning
