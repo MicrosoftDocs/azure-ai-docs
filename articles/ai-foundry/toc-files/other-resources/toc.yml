@@ -7,10 +7,6 @@ items:
   items:
   - name: Foundry known issues
     href: ../../reference/foundry-known-issues.md
-  - name: Speech known issues
-    href: ../../reference/speech-known-issues.md
-  - name: Translator known issues
-    href: ../../reference/translator-known-issues.md
 - name: Support & help options
   href: ../../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
 - name: Use Azure AI Foundry with a screen reader

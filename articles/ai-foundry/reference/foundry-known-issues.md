@@ -4,7 +4,7 @@ titlesuffix: Azure AI Foundry
 description: Known and common issues with Azure AI Foundry.
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 06/09/2025
+ms.date: 11/07/2025
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: bgilmore
@@ -42,7 +42,7 @@ No current active known issues
 
 ### AI Speech
 
-The tables below summarize the current known issues for the Speech services, including Speech to Text (STT), Text to Speech (TTS), and Speech SDK/Runtime. See [Azure AI Speech known issues](speech-known-issues.md) for more details.
+The tables below describe the current known issues for the Speech services, including Speech to Text (STT), Text to Speech (TTS), and Speech SDK/Runtime.
 
 #### Speech to Text (STT) active known issues
 This table lists the current known issues for the Speech to text feature:
@@ -84,7 +84,7 @@ This table lists the current known issues for the Speech SDK/Runtime feature.
 
 ### AI Translator
 
-The tables below summarize the current known issues for Azure AI Translator. See [Azure AI Translator known issues](translator-known-issues.md) for more details.
+The tables below describe the current known issues for Azure AI Translator. 
 
 #### Text Translation active known issues
 
@@ -121,6 +121,9 @@ No current active known issues
 
 No current active known issues
 
+## Azure Machine Learning
+
+See [Azure Machine Learning known issues](../../machine-learning/known-issues/azure-machine-learning-known-issues.md) for known issues related to Azure Machine Learning.
 
 
 ## Recently closed known issues
