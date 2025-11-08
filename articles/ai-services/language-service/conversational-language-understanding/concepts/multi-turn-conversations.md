@@ -11,7 +11,7 @@ ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
-# CLU entity slot filling in multi-turn conversations
+# CLU multi-turn conversations
 
 Entity slot filling in Conversational Language Understanding (CLU) enables multi-turn conversations where your applications gather information naturally across multiple exchanges. Instead of overwhelming users with complex forms or lengthy questions, CLU progressively extracts and organizes the details it needs as users provide them throughout these multi-turn conversations.
 
