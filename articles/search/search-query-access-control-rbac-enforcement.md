@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from Azure Data Lake Storage (ADLS) Gen2 data sources.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 08/27/2025  
+ms.date: 11/07/2025  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
@@ -23,9 +23,9 @@ This article explains how to set up queries that use permission metadata to filt
 
 - Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container in ADLS Gen2 if you're using RBAC scope.
 
-- For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. For blob data sources, your have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
+- For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. For blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
 
-- The latest preview REST API (2025-11-01-preview) or a preview package of an Azure SDK to query the index. This API version supports internal queries that filter out unauthorized results.
+- Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
 ## Limitations
 
@@ -75,6 +75,47 @@ Content-Type: application/json
     "orderby": "name asc"
 }
 ```
+
+> [!NOTE]
+> If the query token is omitted, only public documents accessible to everyone are returned in the query request.
+
+## Elevated permissions for investigating incorrect results
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+Debugging queries that include permission metadata can be problematic because search results are specific to each user. As a developer or administrator, you might need elevated permissions to return results regardless of the permission metadata so that you can investigate problems with queries returning unauthorized content.
+
+To investigate, you must be able to: 
+
+- View the set of documents that the end user is able to view based on that user's permissions.
+
+- View all documents in the index to investigate why some might not be visible to the end user.
+
+You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-read: true`, to a query.
+
+### Permissions for elevated-read requests
+
+You must be a **Search Index Data Contributor** on the search service. You must have access to the index and its data (**Search Index Data Reader**). If you're creating a custom role, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
+
+### Add an elevated-read header to a query
+
+The following example is a query request against a search index.
+
+```http
+POST {endpoint}/indexes('{indexName}')/search.post.search?api-version=2025-11-01-preview
+Authorization: Bearer {AUTH_TOKEN} 
+x-ms-query-source-authorization: Bearer {TOKEN} 
+x-ms-enable-elevated-read: true
+
+{
+    "search": "prototype tests",
+    "select": "filename, author, date",
+    "count": true
+}
+```
+
+> [!NOTE]
+> The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action.
 
 ## See also
 

@@ -109,12 +109,12 @@ To create a OneLake knowledge source:
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    PUT {{search-url}}/knowledgesources/my-indexed-onelake-ks?api-version=2025-11-01-preview
+    PUT {{search-url}}/knowledgesources/my-onelake-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-        "name": "my-indexed-onelake-ks",
+        "name": "my-onelake-ks",
         "kind": "indexedOneLake",
         "description": "This knowledge source pulls content from a lakehouse.",
         "indexedOneLakeParameters": {

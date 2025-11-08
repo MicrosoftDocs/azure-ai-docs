@@ -4,7 +4,7 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 10/31/2025
+ms.date: 11/07/2025
 ---
 
 If you no longer need the knowledge source or need to rebuild it on your search service, use this request to delete the object.
@@ -21,7 +21,6 @@ To delete a knowledge source:
     ### Get knowledge bases
     GET {{search-endpoint}}/knowledgebases?api-version=2025-11-01-preview&$select=name
     api-key: {{api-key}}
-    Content-Type: application/json
     ```
 
    An example response might look like the following:
@@ -34,7 +33,7 @@ To delete a knowledge source:
             "name": "earth-blob-kb"
         },
         {
-            "name": "hotels-sample-kb"
+            "name": "hotels-kb"
         }
         ]
     }
@@ -44,23 +43,22 @@ To delete a knowledge source:
 
     ```http
     ### Get a knowledge base definition
-    GET {{search-endpoint}}/knowledgebases/hotels-sample-kb?api-version=2025-11-01-preview
+    GET {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
     api-key: {{api-key}}
-    Content-Type: application/json
     ```
 
    An example response might look like the following:
 
    ```json
     {
-      "name": "hotels-sample-kb",
+      "name": "{{knowledge-base-name}}",
       "description": null,
       "retrievalInstructions": null,
       "answerInstructions": null,
       "outputMode": "answerSynthesis",
       "knowledgeSources": [
         {
-          "name": "hotels-sample-ks",
+          "name": "{{knowledge-source-name}}",
         }
       ],
       "models": [ TRIMMED FOR BREVITY ],
@@ -75,16 +73,14 @@ To delete a knowledge source:
 
     ```http
     ### Delete a knowledge base
-    DELETE {{search-endpoint}}/knowledgebases/hotels-sample-kb?api-version=2025-11-01-preview
+    DELETE {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
     api-key: {{api-key}}
-    Content-Type: application/json
     ```
 
 1. Delete the knowledge source.
 
     ```http
     ### Delete a knowledge source definition
-    DELETE {{search-endpoint}}/knowledgesources/hotels-sample-ks?api-version=2025-11-01-preview
+    DELETE {{search-endpoint}}/knowledgesources/{{knowledge-source-name}}?api-version=2025-11-01-preview
     api-key: {{api-key}}
-    Content-Type: application/json
     ```

@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 10/08/2025
+ms.date: 10/24/2025
 ms.custom:
   - references_regions
 ---
@@ -57,7 +57,7 @@ The following table lists the supported providers and models for each method. De
 | Provider | Models for image verbalization | Models for multimodal embeddings |
 |--|--|--|
 | [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | LLMs:<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
-| [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) | Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
+| [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) | LLMs:<br>phi-4<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large | |
 | [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | LLMs:<br>phi-4<br>gpt-4o<br>gpt-4o-mini<br>gpt-5<br>gpt-5-mini<br>gpt-5-nano<br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> | Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
 | [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) <sup>4</sup> | Embedding model: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup> | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup> |
 

@@ -23,7 +23,7 @@ Scoring profiles are used to boost or suppress the ranking of matching documents
 
 + Functions for string collections (tags). A tags function boosts a document's search score if any item in the collection is matched by the query.
 
-+ (preview) [An aggregation of distinct boosts](#example-function-aggregation). Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
++ (preview) [An aggregation of distinct boosts](#example-function-aggregation). Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product"`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
 
 You can add a scoring profile to an index by editing its JSON definition in the Azure portal or programmatically through APIs like [Create or Update Index REST](/rest/api/searchservice/indexes/create-or-update) or equivalent index update APIs in any Azure SDK. There's no index rebuild requirements so you can add, modify, or delete a scoring profile with no effect on indexed documents.
 
@@ -351,7 +351,7 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
 > [!NOTE]
 > This capability is currently in preview, available through the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
 
-Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
+Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product"`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
 
 In this example, create a scoring profile that includes two boosting functions that boost by `rating` and `baseRate`, and then set `functionAggregation` to `product`.
 
@@ -468,7 +468,7 @@ api-key: {{key}}
         "@search.action": "upload",
         "HotelId": "3",
         "HotelName": "Gastronomic Landscape Hotel",
-        "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+        "Description": "The Gastronomic Landscape Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
         "Category": "Suite",
         "Tags": [ "restaurant", "bar", "continental breakfast" ],
         "ParkingIncluded": true,
@@ -521,7 +521,7 @@ api-key: {{key}}
 }
 ```
 
-The top response for this query is "Gastronimic Landscape Hotel" with a search score that is almost twice as high as next closest match. This particular hotel has both the highest rating and the highest base rate, so the compounding of both functions promotes this match to the top.
+The top response for this query is "Gastronomic Landscape Hotel" with a search score that is almost twice as high as next closest match. This particular hotel has both the highest rating and the highest base rate, so the compounding of both functions promotes this match to the top.
 
 ```json
 {

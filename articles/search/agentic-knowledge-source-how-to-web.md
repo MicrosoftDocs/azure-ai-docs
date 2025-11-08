@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 11/07/2025
 ---
 
 # Create a web knowledge source
@@ -77,7 +77,7 @@ To create a web knowledge source:
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    POST {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
+    PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
     Content-Type: application/json
     api-key: {{api-key}}
 
@@ -105,7 +105,7 @@ You can pass the following properties to create a web knowledge source.
 |--|--|--|--|--|
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
 | `kind` | The kind of knowledge source, which is `web` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
+| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
 | `webParameters` | Parameters specific to web knowledge sources. Currently, this is only `domains`. | Object | Yes | No |
 | `domains` | Domains to allow or block from the search space. By default, the knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) to search the entire public internet. When you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to restrict results to the specified domains. In both cases, Bing Custom Search is the search provider. | Object | Yes | No |
