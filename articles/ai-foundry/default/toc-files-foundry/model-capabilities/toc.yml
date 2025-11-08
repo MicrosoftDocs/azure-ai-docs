@@ -21,9 +21,6 @@ items:
         href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Concepts
     items:
-      - name: Model router concepts
-        href: ../../../openai/concepts/model-router.md
-        displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
       - name: Video generation (preview)
         href: ../../../openai/concepts/video-generation.md
       - name: Video translation (preview)
