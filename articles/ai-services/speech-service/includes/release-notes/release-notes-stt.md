@@ -3,17 +3,13 @@ author: goergenj
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/28/2025
-ms.author: pafarley
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
 ### October 2025 release
-
-#### Speech to text REST API version 2025-10-15
-
-The speech to text REST API version 2025-10-15 is released for general availability. For more information, see the [speech to text REST API reference documentation](https://go.microsoft.com/fwlink/?linkid=2296107) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
-
 
 #### Phrase list weight control for Speech SDK
 

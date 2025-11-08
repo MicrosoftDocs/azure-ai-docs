@@ -8,15 +8,10 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 07/28/2025
 ms.custom: include
-monikerRange: 'foundry-classic || foundry'
-
 ---
 
-[!INCLUDE [version-banner](./version-banner.md)]
 
 ## Create a blocklist
-
-::: moniker range="foundry-classic"
 
 1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation and select the **Blocklists** tab.
 
@@ -38,10 +33,3 @@ monikerRange: 'foundry-classic || foundry'
     There are two types of blocklists: the custom blocklists you created, and prebuilt blocklists that Microsoft provides&mdash;in this case a Profanity blocklist (English).
 
 1. Decide which of the available blocklists you want to include in your content filtering configuration. Review and finish the content filtering configuration by selecting **Next**. You can always go back and edit your configuration. When it's ready, select **Create content filter**. You can now apply the new configuration that includes your blocklists to a deployment.
-
-::: moniker-end
-
-::: moniker range="foundry"
-Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions
-
-::: moniker-end

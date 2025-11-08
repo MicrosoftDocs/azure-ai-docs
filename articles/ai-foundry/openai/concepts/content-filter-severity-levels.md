@@ -1,20 +1,20 @@
 ---
 title: Content Filter Severity Levels
 description: Overview of risk categories for content filtering in Azure OpenAI, including hate, fairness, sexual, violence, and more.
-author: ssalgadodev
-ms.author: ssalgado
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 11/05/2025
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
+ms.date: 09/16/2025
+ms.author: pafarley
 ---
 
-# Content filter severity levels
+# Content filtering severity levels
 
-Content filters ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides content filters to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in content filters system.
+<!--
+Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.
+-->
 
 Content filtering ensures that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides content filtering capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in content filtering system.
 

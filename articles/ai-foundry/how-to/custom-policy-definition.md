@@ -5,24 +5,20 @@ description: "Learn how to use custom Azure policies to enable self-service reso
 ms.author: deeikele
 author: compliance
 ms.service: azure-ai-foundry
-ms.topic: how-to
+ms.topic: how-to #Don't change
 ms.date: 10/29/2025
 ms.reviewer: jburchel
 reviewer: jonburchel
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ---
 
 # Create custom policies for Azure AI Foundry
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
-
-Learn how to use custom Azure policies to enable teams to self-manage Azure AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
+Learn how to use custom Azure policies to enable teams to self-manage AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
 
 Custom policies allow you to:
 
-- **Enforce governance**: Prevent unauthorized creation of Azure AI Foundry hubs, projects, connections, or capability hosts.
+- **Enforce governance**: Prevent unauthorized creation of AI Foundry hubs, projects, connections, or capability hosts.
 - **Control resource behavior**: Ensure security configurations, enforce tagging, or allow only approved integrations.
 - **Ensure compliance**: Apply enterprise security and operational standards consistently across environments.
 
@@ -30,13 +26,13 @@ Custom policies allow you to:
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - Permissions to create and assign policies. You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the subscription or resource group level.
-For more, see [What is Azure Policy?](/azure/governance/policy/overview).
+n more, see [What is Azure Policy?](/azure/governance/policy/overview).
 
 ## Steps to create a custom policy
 
-1. **Open policy in the Azure portal**
+1. **Open Azure Policy in the portal**
    - Go to [Azure portal](https://portal.azure.com).
-   - Search for _Policy_ and select it.
+   - Search for your policy and select it.
 
 2. **Define a new policy**
    - In the **Authoring** section, select **Definitions** > **+ Policy definition**.
@@ -47,7 +43,7 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
      - **Category**: Use an existing category or create one such as `AI Governance`.
 
 3. **Add policy rule**
-   - Enter the rule in [JSON format](/azure/governance/policy/concepts/definition-structure-policy-rule). For example, to allow only approved connection categories:
+   - Enter the rule in JSON format. For example, to allow only approved connection categories:
 
      :::code language="json" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json"
 

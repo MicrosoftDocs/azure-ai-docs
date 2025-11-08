@@ -1,13 +1,12 @@
 ---
-title: Limited access to Azure OpenAI in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: This document details the limited access policy for Azure OpenAI
+title: Limited access to Azure OpenAI Service 
+titleSuffix: Azure AI services
+description: This document details the limited access policy for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article
-monikerRange: 'foundry-classic || foundry'
 ms.date: 11/03/2023
 ---
 # Limited access for Azure Direct Models

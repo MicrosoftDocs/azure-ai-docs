@@ -7,11 +7,10 @@ manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 09/12/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 
@@ -19,7 +18,7 @@ ai-usage: ai-assisted
 
 # How to configure a private link for Azure AI Foundry (Foundry projects)
 
-> [!TIP]
+> [!NOTE]
 > An alternate hub-focused version of this article is available: [How to configure a private link for an Azure AI Foundry hub](hub-configure-private-link.md).
 
 When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 

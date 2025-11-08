@@ -11,7 +11,6 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 06/18/2025
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Set up your environment

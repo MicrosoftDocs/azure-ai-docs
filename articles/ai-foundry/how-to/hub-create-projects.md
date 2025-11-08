@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Create a hub project for Azure AI Foundry
 
-> [!TIP]
+> [!NOTE]
 > An alternate Foundry project creation article is available: [Create a project for Azure AI Foundry (Foundry projects)](create-projects.md).
 
 This article describes how to create a hub-based project in Azure AI Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.

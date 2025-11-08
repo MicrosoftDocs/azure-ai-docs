@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 07/28/2025
 ms.author: pafarley
 author: PatrickFarley
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # How to use blocklists with Foundry Models in Azure AI Foundry services

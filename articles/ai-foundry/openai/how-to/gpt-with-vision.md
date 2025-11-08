@@ -10,10 +10,6 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 manager: nitinme
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
-
-
 ---
 
 # Use vision-enabled chat models

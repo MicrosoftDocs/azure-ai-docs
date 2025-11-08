@@ -12,7 +12,6 @@ ms.date: 09/24/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
-monikerRange: foundry-classic || foundry
 ---
 
 # Work with Azure AI Foundry Agent Service and MCP server tools in Visual Studio Code (preview)

@@ -12,7 +12,6 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Search tool

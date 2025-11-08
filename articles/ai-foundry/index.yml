@@ -42,12 +42,10 @@ productDirectory:
     - title: Create apps with code
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
       links:
-        - url: ./how-to/develop/ai-template-get-started.md?view=foundry
-          text: Quickstart for Azure AI Foundry (new)
-        - url: ./how-to/develop/ai-template-get-started.md?view=foundry-classic
-          text: Quickstart for Azure AI Foundry (classic)
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
+        - url: ./how-to/develop/ai-template-get-started.md
+          text: Quickstart for Azure AI Foundry
     # Card
     - title: Azure AI Foundry Models
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg

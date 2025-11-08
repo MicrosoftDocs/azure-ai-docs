@@ -11,7 +11,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom:
-monikerRange: foundry-classic || foundry
+
 ---
 
 # Azure OpenAI in Azure AI Foundry Models v1 REST API reference

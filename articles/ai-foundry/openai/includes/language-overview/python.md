@@ -7,7 +7,6 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/29/2024
-ai-usage: ai-assisted
 ---
 
 [Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) | [Reference](../../latest.md) |
@@ -33,24 +32,10 @@ pip install openai --upgrade
 
 ## Authentication
 
-::: moniker range="foundry-classic"
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry](https://ai.azure.com):
 
-Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
-
-- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
-- Sign in to [AI Foundry portal](https://ai.azure.com/?cid=learnDocs) > select your resource.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)] portal:
-
-- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
-- Sign in to [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)] portal > select your resource.
-
-::: moniker-end
-
+- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**
+- Sign in to [AI Foundry portal](https://ai.azure.com) > select your resource
 
 # [Microsoft Entra ID](#tab/python-entra)
 
@@ -84,7 +69,7 @@ client = OpenAI(
 
 # [Environment Variables](#tab/python-env)
 
-If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they're automatically used by the client with no further configuration required.
+If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they are automatically used by the client with no further configuration required.
 
 | Environment Variable | Value |
 |----------------|-------------|
@@ -99,7 +84,7 @@ client = OpenAI()
 
 # [Response](#tab/python-output)
 
-There's no output for client instantiation.
+There is no output for client instantiation.
 
 ---
 
@@ -385,7 +370,7 @@ See quickstarts for all languages: [Getting started with Azure Functions](https:
 - [Supported languages](https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages)
 - [Triggers and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
 
-Let me know if you're looking for step-by-step tutorials, specific language samples, or deeper technical details!
+Let me know if you’re looking for step-by-step tutorials, specific language samples, or deeper technical details!
 ```
 
 ---
@@ -825,7 +810,7 @@ print(completion.model_dump_json(indent=2))
 
 # [Microsoft Entra ID](#tab/python-entra)
 
-Embeddings currently don't support Microsoft Entra ID with Azure OpenAI and the v1 API.
+Embeddings currently do not support Microsoft Entra ID with Azure OpenAI and the v1 API.
 
 # [API Key](#tab/python-key)
 
@@ -911,7 +896,7 @@ except openai.APIStatusError as e:
 
 ### Request IDs
 
-To retrieve the ID of your request, you can use the `_request_id` property, which corresponds to the `x-request-id` response header.
+To retrieve the ID of your request you can use the `_request_id` property which corresponds to the `x-request-id` response header.
 
 ```python
 print(completion._request_id) 

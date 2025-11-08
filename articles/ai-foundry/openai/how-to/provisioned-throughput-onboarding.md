@@ -1,24 +1,17 @@
 ---
 title:  Understanding costs associated with provisioned throughput units (PTU)
 description: Learn about provisioned throughput costs and billing in Azure AI Foundry. 
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 11/03/2025
+ms.date: 09/03/2025
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
-ms.reviewer: seramasu
-reviewer: rsethur
 recommendations: false
-#customerIntent: As a developer, I want to understand PTU costs and billing so I can plan and manage my Azure AI Foundry provisioned throughput deployments efficiently.
 ---
 
 # Understanding costs associated with provisioned throughput units (PTU)
-
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Use this article to learn about calculating and understanding costs associated with PTU. For an overview of the provisioned throughput offering, see [What is provisioned throughput?](../concepts/provisioned-throughput.md). When you're ready to sign up for the provisioned throughput offering, see the [getting started guide](./provisioned-get-started.md).
 
@@ -64,19 +57,7 @@ Quota for provisioned deployments shows up in Azure AI Foundry as the following 
 |[Global Provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned)     | Global Provisioned Throughput Unit        |
 |[Data zone Provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned)    | Data Zone Provisioned Throughput Unit        |
 
-::: moniker range="foundry-classic"
-
-You can find details about quota for provisioned deployments in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) **Management center** > **Quota** page.
-
 :::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="Screenshot of quota UI for Azure AI Foundry provisioned." lightbox="../media/provisioned/ptu-quota-page.png":::
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-You can find details about quota for provisioned deployments in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal **Operate** section > **Quota** pane.
-
-::: moniker-end
 
 ## Hourly usage
 
@@ -109,34 +90,16 @@ Deleting a deployment does not cancel or change any PTU reservation. Reservation
 
 Use these steps to delete a provisioned deployment to avoid unwanted charges.
 
-::: moniker range="foundry-classic"
-
 1. Delete the deployment in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
 1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to manage reservations. In the Azure portal, you can purchase, cancel, or exchange reservations to align with current deployments.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. Delete the deployment in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal.
-1. If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
-1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to manage reservations. In the Azure portal, you can purchase, cancel, or exchange reservations to align with current deployments.
-
-::: moniker-end
-
 
 ## How much throughput per PTU you get for each model
 
-The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens. Starting with GPT 4.1 models and later, the system matches the global standard price ratio between input and output tokens. Cached tokens are deducted 100% from the utilization.
+The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens.  Starting with GPT 4.1 models and later, the system matches the global standard price ratio between input and output tokens. Cached tokens are deducted 100% from the utilization.
 
-For example, for gpt-5, 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio.
-
-::: moniker range="foundry-classic"
-
-For a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
-
-::: moniker-end
+For example, for gpt-5 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
 
 ## Latest Azure OpenAI models
 
@@ -180,23 +143,14 @@ For a deeper understanding on how different ratios of input and output tokens im
 
 \* Calculated as the average request latency on a per-minute basis across the month.
 
-::: moniker range="foundry-classic"
 
 For a full list, see the [Azure AI Foundry calculator](https://ai.azure.com/resource/calculator).
 
-::: moniker-end
-
 ## Determining the number of PTUs needed for a workload
 
-Determining the right amount of provisioned throughput units (PTUs) you require for your workload is an essential step to optimizing performance and cost. 
+Determining the right amount of provisioned throughput, or PTUs, you require for your workload is an essential step to optimizing performance and cost. 
 
-PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model will consume different amounts of underlying processing capacity. The conversion from throughput needs to PTUs can be approximated using historical token usage data or call shape estimations (input tokens, output tokens, and requests per minute) as outlined in our [performance and latency](../how-to/latency.md) documentation. 
-
-::: moniker range="foundry-classic"
-
-To simplify this process, you can use the [Azure AI Foundry calculator](https://ai.azure.com/resource/calculator) to size specific workload shapes.
-
-::: moniker-end
+PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model will consume different amounts of underlying processing capacity. The conversion from throughput needs to PTUs can be approximated using historical token usage data or call shape estimations (input tokens, output tokens, and requests per minute) as outlined in our [performance and latency](../how-to/latency.md) documentation. To simplify this process, you can use the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator) to size specific workload shapes.
 
 A few high-level considerations:
 - Generations require more capacity than prompts
@@ -204,25 +158,11 @@ A few high-level considerations:
 
 ### Obtaining PTU quota
 
-Customers need to request quota via the [Request Quota Link](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu).
-
-::: moniker range="foundry-classic"
-
-If more quotas are required, you also need to request quota via the link in the quota hub in the management center of Azure AI Foundry. The form allows the customer to request an increase in the specified PTU quota for a given region. The customer receives an email at the included address once the request is approved, typically within two business days.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-If more quotas are required, you also need to request quota via the link in the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] **Operate** section > **Quota** pane. The form allows the customer to request an increase in the specified PTU quota for a given region. The customer receives an email at the included address once the request is approved, typically within two business days.
-
-::: moniker-end 
+Customers need to request quota via the [Request Quota Link](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu). If more quotas are required, you also need to request quota via this link. This link can be found in the quota hub in management center of Azure AI Foundry. The form allows the customer to request an increase in the specified PTU quota for a given region. The customer receives an email at the included address once the request is approved, typically within two business days. 
 
 ### Per-Model PTU minimums
 
 The minimum PTU deployment, increments, and processing capacity associated with each unit varies by model type & version. See the above [table](#how-much-throughput-per-ptu-you-get-for-each-model) for more information.
-
-::: moniker range="foundry-classic"
 
 ## Estimate provisioned throughput units and cost
 
@@ -236,7 +176,7 @@ Choose a model, and click **Confirm**. Select a provision throughput deployment 
 
 :::image type="content" source="../media/provisioned/deployment-ptu-capacity-calculator.png" alt-text="A screenshot of deployment workflow PTU capacity calculator." lightbox="../media/provisioned/deployment-ptu-capacity-calculator.png":::
 
-To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The capacity calculator is under **Management Center** > **Quota** > **Provisioned Throughput**.
+To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Foundry](https://ai.azure.com?cid=learnDocs). The capacity calculator is under **Management Center** > **Quota** > **Provisioned Throughput**.
 
 The **Provisioned Throughput** option and the calculator are only available in certain regions within the Quota pane, if you don't see this option setting the quota region to *Sweden Central* will make this option available. Enter the following parameters based on your workload.
 
@@ -257,23 +197,19 @@ The values in the output column are the estimated value of PTU units required fo
 > [!NOTE]
 > The capacity calculators provide an estimate based on simple input criteria. The most accurate way to determine your capacity is to benchmark a deployment with a representational workload for your use case.
 
-::: moniker-end
-
-
-
 ## Azure Reservations for Azure AI Foundry Provisioned Throughput
 
-Discounts on top of the hourly usage price can be obtained by purchasing an Azure Reservation for Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned. An Azure Reservation is a term-discounting mechanism shared by many Azure products. For example, Compute and Cosmos DB. For Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned, the reservation provides a discount in exchange for committing to payment for fixed number of PTUs for a one-month or one-year period.  
+Discounts on top of the hourly usage price can be obtained by purchasing an Azure Reservation for Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned. An Azure Reservation is a term-discounting mechanism shared by many Azure products. For example, Compute and Cosmos DB. For Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned, the reservation provides a discount in exchange for committing to payment for fixed number of PTUs for a one-month or one-year period.  
 
-* Azure Reservations are purchased via the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
+* Azure Reservations are purchased via the Azure portal, not the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) Link to Azure reservation portal.
 
 * Reservations are purchased regionally and can be flexibly scoped to cover usage from a group of deployments. Reservation scopes include: 
 
-  * Individual resource groups or subscriptions 
+    * Individual resource groups or subscriptions 
 
-  * A group of subscriptions in a Management Group 
+    * A group of subscriptions in a Management Group 
 
-  * All subscriptions in a billing account 
+    * All subscriptions in a billing account 
 
 * Discount applies when Deployment type (Regional/Data Zone/Global), Region, and Reservation scope (subscription or resource group) match the running deployment. Matching is not by model or deployment ID. Multiple deployments within scope can consume the same reservation up to its PTU quantity.
 
@@ -300,16 +236,11 @@ The best practice is to always purchase a reservation after deployments have bee
  
 Reservations for Global, Data Zone, and Regional deployments aren't interchangeable. You need to purchase a separate reservation for each deployment type.
 
-::: moniker range="foundry-classic"
-
 To assist customers with purchasing the correct reservation amounts. The total number of PTUs in a subscription and region that can be covered by a reservation are listed on the Quotas page of the Azure AI Foundry portal. See the message "PTUs Available for reservation." 
 
 :::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="A screenshot showing available PTU quota." lightbox="../media/provisioned/available-quota.png":::
 
-::: moniker-end
-
-
-### Managing Azure Reservations 
+Managing Azure Reservations 
 
 After a reservation is created, monitor it via the Azure Reservation Portal or Azure Monitor to ensure that the reservation is receiving the usage you expect. To learn more about managing and monitoring Azure reservations, see these articles:
 

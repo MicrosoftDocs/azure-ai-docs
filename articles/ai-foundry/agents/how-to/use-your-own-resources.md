@@ -12,7 +12,6 @@ author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Use your own resources

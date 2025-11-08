@@ -1,19 +1,16 @@
 ---
 title: High availability and resiliency for Azure AI Foundry projects and Agent Services
 description: Learn how to plan for high availability and resiliency for Azure AI Foundry projects and Agent Service.
-monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: andyaviles
-ms.date: 11/18/2025
-ai-usage: ai-assisted
+ms.date: 10/07/2025
+ai.usage: ai-assisted
 ---
 
 # High availability and resiliency for Azure AI Foundry projects and Agent Services
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -205,17 +202,7 @@ For any projects that are essential to business continuity, deploy resources in 
 
 If you connect data to customize your AI application, you can use datasets in Azure AI and outside Azure AI. Dataset volume can be large, so it might be a good idea to keep this data in a separate storage account. Evaluate the data replication strategy that makes the most sense for your use case.
 
-::: moniker range="foundry-classic"
-
 In the Azure AI Foundry portal, create a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you can point to the same storage account. Connections work across regions.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-In the Azure AI Foundry portal, create a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you can point to the same storage account. Connections work across regions.
-
-::: moniker-end
 
 ## Initiate a failover
 

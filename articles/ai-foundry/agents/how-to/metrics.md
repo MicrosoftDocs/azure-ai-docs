@@ -8,7 +8,6 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Monitor Azure AI Foundry Agent Service

@@ -1,19 +1,16 @@
 ---
 title: Add Azure AI Foundry to a network security perimeter (preview)
 description: Quickly learn how to associate an Azure AI Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management.
-monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
-ms.date: 09/29/2025
+ms.date: 08/28/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
-ai-usage: ai-assisted
+ai.usage: ai-assisted
 ---
 
 # Add Azure AI Foundry to a network security perimeter (preview)
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!NOTE]
 > Azure AI Foundry support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. Review the limitations and considerations section before you start.
@@ -115,25 +112,11 @@ List only required FQDNs (principle of least privilege). Keep dependent Azure se
 
 ## Validate before enforcement
 
-::: moniker range="foundry-classic"
-
 1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
 2. Add or refine inbound/outbound rules.
 3. Switch to Enforced mode.
-4. Open [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and perform a model deployment or chat test. Success indicates required traffic is permitted.
+4. Open Azure AI Foundry (portal) and perform a model deployment or chat test. Success indicates required traffic is permitted.
 5. If blocked, revert to Learning or add rules and retry.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
-2. Add or refine inbound/outbound rules.
-3. Switch to Enforced mode.
-4. Open [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] and perform a model deployment or chat test. Success indicates required traffic is permitted.
-5. If blocked, revert to Learning or add rules and retry.
-
-::: moniker-end
 
 ## View and manage configuration
 

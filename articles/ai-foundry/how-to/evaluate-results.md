@@ -12,13 +12,10 @@ ms.date: 09/22/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
 # See evaluation results in the Azure AI Foundry portal
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Learn how to see evaluation results in the Azure AI Foundry portal. View and interpret AI model evaluation data, performance metrics, and quality assessments. Access results from flows, playground sessions, and SDK to make data-driven decisions.
 
@@ -34,8 +31,6 @@ In this article, you learn how to:
 
 ## See your evaluation results
 
-::: moniker range="foundry-classic"
-
 After you submit an evaluation, locate the run on the **Evaluation** page. Filter or adjust columns to focus on runs of interest. Review high‑level metrics at a glance before drilling in.
 
 > [!TIP]
@@ -46,14 +41,6 @@ Select **Learn more about metrics** for definitions and formulas.
 :::image type="content" source="../media/evaluations/view-results/learn-more-metrics.png" alt-text="Screenshot that shows details of the evaluation metrics." lightbox="../media/evaluations/view-results/learn-more-metrics.png":::
 
 Select a run to open details (dataset, task type, prompt, parameters) plus per-sample metrics. The metrics dashboard visualizes pass rate or aggregate score per metric.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 [!INCLUDE [FDP-backward-compatibility-azure-openai](../includes/fdp-backward-compatibility-azure-openai.md)]
 
@@ -122,21 +109,11 @@ If you're evaluating a prompt flow, you can select the **View in flow** button t
 
 ## Compare the evaluation results
 
-::: moniker range="foundry-classic"
-
 To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or, for a general detailed dashboard view, the **Switch to dashboard view** button. You're empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision-making and targeted improvements.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-list-compare.png" alt-text="Screenshot that shows the option to compare evaluations." lightbox="../media/evaluations/view-results/evaluation-list-compare.png":::
 
 In the dashboard view, you have access to two valuable components: the metric distribution comparison **Chart** and the comparison **Table**. You can use these tools to perform a side-by-side analysis of the selected evaluation runs. You can compare various aspects of each data sample with ease and precision.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 > [!NOTE]
 > By default, older evaluation runs have matching rows between columns. However, newly run evaluations have to be intentionally configured to have matching columns during evaluation creation. Ensure that the same name is used as the **Criteria Name** value across all evaluations that you want to compare.
@@ -163,8 +140,6 @@ Use comparison tools to pick the best performing configuration while avoiding re
 
 ## Measure jailbreak vulnerability
 
-::: moniker range="foundry-classic"
-
 Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure that the **Criteria Name** value is the same for each evaluation metric when you configure the runs.
 
 To understand if your application is vulnerable to jailbreak, you can specify the baseline and then turn on the **Jailbreak defect rates** toggle in the comparison table. The jailbreak defect rate is the percentage of instances in your test dataset where a jailbreak injection generated a higher severity score for *any* content risk metric with respect to a baseline over the whole dataset size. You can select multiple evaluations in your **Compare** dashboard to view the difference in defect rates.
@@ -173,14 +148,6 @@ To understand if your application is vulnerable to jailbreak, you can specify th
 
 > [!TIP]
 > Jailbreak defect rate is comparatively calculated only for datasets of the same size and only when all runs include content risk and safety metrics.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 ## Understand the built-in evaluation metrics
 

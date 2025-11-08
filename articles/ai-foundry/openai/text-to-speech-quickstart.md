@@ -11,8 +11,6 @@ ms.author: pafarley
 author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-js-cs
-monikerRange: 'foundry-classic || foundry'
-
 ---
 
 # Quickstart: Text to speech with Azure OpenAI in Azure AI Foundry Models

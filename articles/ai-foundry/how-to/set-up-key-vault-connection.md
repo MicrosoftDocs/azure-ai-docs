@@ -1,20 +1,17 @@
 ---
 title: Set up an Azure Key Vault Connection (Preview)
 description: Learn how to securely connect your Azure Key Vault to AI Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration.
-monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
 ms.date: 08/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ai-usage: ai-assisted
+ai.usage: ai-assisted
 zone_pivot_groups: set-up-key-vault
 ---
 
 # Set up an Azure Key Vault connection in Azure AI Foundry (Preview)
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 If you don't set up a Key Vault connection, Azure AI Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Azure AI Foundry.
 
@@ -32,8 +29,6 @@ If you bring your own Azure Key Vault, review these limitations:
 - AI Foundry doesn't support secret migration. Remove and recreate connections yourself.
 - Deleting the underlying Azure Key Vault breaks the AI Foundry resource. Azure Key Vault stores secrets for connections that don't use Entra ID. Any AI Foundry feature that depends on those connections stops working.
 - Deleting connection secrets that your AI Foundry resource stores in your bring your own (BYO) Azure Key Vault can break connections to other services.
-
-::: moniker range="foundry-classic"
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -59,7 +54,6 @@ Create a connection to Azure Key Vault.
 
 ::: zone-end
 ::: zone pivot="bicep"
-::: moniker-end
 
 ## Create a Key Vault connection
 
@@ -67,9 +61,7 @@ Use this template:
 
 :::code language="bicep" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/01-connections/connection-key-vault.bicep"
 
-::: moniker range="foundry-classic"
 ::: zone-end
-::: moniker-end
 
 ## Key Vault connection management
 
