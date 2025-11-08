@@ -6,6 +6,7 @@ ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
 ms.date: 09/15/2025
+monikerRange: foundry-classic || foundry
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom:

@@ -2,6 +2,8 @@
 title: Risk and Safety Evaluators for Generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
@@ -14,6 +16,8 @@ ms.custom:
 ---
 
 # Risk and safety evaluators (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -49,22 +53,39 @@ The risk and safety evaluators use hosted evaluation language models in the Azur
 
 For reference in the following code snippet, the risk and safety evaluators use the Azure AI Foundry project configuration as follows:
 
+::: moniker range="foundry-classic"
+
 ```python
 import os
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 load_dotenv()
 
-## Using Azure AI Foundry Hub
+# Using Azure AI Foundry Hub
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
     "project_name": os.environ.get("AZURE_PROJECT_NAME"),
 }
-## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+credential = DefaultAzureCredential()
+```
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+load_dotenv()
+
+# Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 credential = DefaultAzureCredential()
 ```
+
+::: moniker-end
 
 ## Hateful and unfair content
 

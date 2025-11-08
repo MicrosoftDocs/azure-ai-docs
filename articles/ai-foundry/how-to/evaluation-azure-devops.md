@@ -8,9 +8,13 @@ ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to run an evaluation in Azure DevOps (preview)
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -20,7 +24,18 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
 
 ## Prerequisites
 
+::: moniker range="foundry-classic"
+
 - Foundry project or Hubs based project. To learn more, see [Create a project](create-projects.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 - Install Azure AI evaluation extension.
   - Go to [Azure DevOps Marketplace](https://marketplace.visualstudio.com/azuredevops).
   - Search for Azure AI evaluation and install the extension into your Azure DevOps organization.
@@ -35,29 +50,28 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
       - Queries (required).
-    - Agent IDs
-      Retrieve agent identifiers from the AI Foundry portal.
+    - Agent IDs  Retrieve agent identifiers from AI Foundry.
 
-    See the following sample dataset:
+  See the following sample dataset:
 
-    ```JSON
-    { 
-      "name": "MyTestData", 
-      "evaluators": [ 
-        "FluencyEvaluator", 
-        "ViolenceEvaluator" 
-      ], 
-      "data": [ 
-    
-        { 
-          "query": "Tell me about Tokyo?", 
-        }, 
-        { 
-          "query": "Where is Italy?", 
-        } 
-      ] 
-    } 
-    ```
+  ```JSON
+  { 
+    "name": "MyTestData", 
+    "evaluators": [ 
+      "FluencyEvaluator", 
+      "ViolenceEvaluator" 
+    ], 
+    "data": [ 
+  
+      { 
+        "query": "Tell me about Tokyo?", 
+      }, 
+      { 
+        "query": "Where is Italy?", 
+      } 
+    ] 
+  } 
+  ```
 
 
 
@@ -157,7 +171,19 @@ Commit and run the pipeline in Azure DevOps.
 
 - Select the run and go to "Azure AI Evaluation" tab.
 - The results are shown in this format:
+
+::: moniker range="foundry-classic"
+
   - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Azure AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to Azure AI Foundry portal to view individual result in detail.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
   - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Evaluation results and comparisons from multiple AI agents:

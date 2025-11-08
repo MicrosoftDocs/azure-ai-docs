@@ -1,12 +1,13 @@
 ---
 title: Data, privacy, and security for Azure Direct Models in Azure AI Foundry 
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: This document details issues for data, privacy, and security for Azure Direct Models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article
+monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
 ---
 
@@ -62,7 +63,7 @@ Prompts and responses are processed within the customer-specified [geography](ht
 
 ### Understanding location of processing for "Global" and "Data zone" deployment types 
 
-In addition to standard deployments, Azure AI Foundry offers Azure Direct Model deployment options labeled as 'Global' and 'DataZone.' For any [deployment type](/azure/ai-foundry/openai/how-to/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure Direct Model is deployed (learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure AI Foundry resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure AI Foundry resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, and including the abuse monitoring data store created for Global and DataZone deployments, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure Direct Models; Azure data processing and compliance commitments remain applicable. 
+In addition to standard deployments, Azure AI Foundry offers Azure Direct Model deployment options labeled as 'Global' and 'DataZone.' For any [deployment type](/azure/ai-foundry/foundry-models/concepts/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure Direct Model is deployed (learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure AI Foundry resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure AI Foundry resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, and including the abuse monitoring data store created for Global and DataZone deployments, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure Direct Models; Azure data processing and compliance commitments remain applicable. 
 
 ### Augmenting prompts to "ground" generated results "on your data"
 

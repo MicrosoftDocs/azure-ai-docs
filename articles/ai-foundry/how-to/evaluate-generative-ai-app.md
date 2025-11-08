@@ -2,6 +2,8 @@
 title: Evaluate Generative AI Models and Apps with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications by using Azure AI Foundry.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, references_regions, build-2024, ignite-2024
 ms.topic: how-to
@@ -9,9 +11,12 @@ ms.date: 09/22/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer, I want to evaluate my generative AI models and applications using Azure AI Foundry so I can assess their performance and safety with comprehensive metrics.
 ---
 
 # Evaluate generative AI models and applications by using Azure AI Foundry
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 If you want to thoroughly assess the performance of your generative AI models and applications when applied to a substantial dataset, you can initiate an evaluation process. During this evaluation, your model or application is tested with the given dataset, and its performance is quantitatively measured with both mathematical-based metrics and AI-assisted metrics. This evaluation run provides you with comprehensive insights into the application's capabilities and limitations.
 
@@ -30,16 +35,36 @@ An evaluation run allows you to generate metric outputs for each data row in you
 
 ### From the evaluate page
 
-From the collapsible left menu, select **Evaluation** > **Create a new evaluation**.
+::: moniker range="foundry-classic"
+
+From the left pane, select **Evaluation** > **Create a new evaluation**.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ### From the model catalog page
 
-1. From the collapsible left menu, select **Model catalog**.
+::: moniker range="foundry-classic"
+
+1. From the left pane, select **Model catalog**.
 1. Go to the model.
 1. Select the **Benchmarks** tab.
 1. Select **Try with your own data**. This selection opens the model evaluation panel, where you can create an evaluation run against your selected model.  
 
    :::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.png" alt-text="Screenshot of the Try with your own data button from the model catalog page." lightbox="../media/evaluations/evaluate/try-with-your-own-data.png":::
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
 
 #### Evaluation target
 
@@ -49,6 +74,8 @@ When you start an evaluation from the **Evaluate** page, you first need to choos
 - **Dataset**: Your model-generated outputs are already in a test dataset.
 
 #### Configure test data
+
+::: moniker range="foundry-classic"
 
 When you enter the evaluation creation wizard, you can select from preexisting datasets or upload a new dataset to evaluate. The test dataset needs to have the model-generated outputs to be used for evaluation. A preview of your test data is shown on the right pane.
 
@@ -60,7 +87,17 @@ When you enter the evaluation creation wizard, you can select from preexisting d
 
     :::image type="content" source="../media/evaluations/evaluate/upload-file.png" alt-text="Screenshot of the upload file option that you can use when creating a new evaluation." lightbox="../media/evaluations/evaluate/upload-file.png":::
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 #### Configure testing criteria
+
+::: moniker range="foundry-classic"
 
 We support three types of metrics curated by Microsoft to facilitate a comprehensive evaluation of your application:  
 
@@ -91,11 +128,21 @@ For risk and safety metrics, you don't need to provide a deployment. The Azure A
 
 [!INCLUDE [FDP-backward-compatibility-azure-openai](../includes/fdp-backward-compatibility-azure-openai.md)]
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 #### Data mapping
+
+::: moniker range="foundry-classic"
 
 Data mapping for evaluation: For each metric added, you must specify which data columns in your dataset correspond with the inputs that are needed in the evaluation. Different evaluation metrics demand distinct types of data inputs for accurate calculations.
 
-During evaluation, the model’s response is assessed against key inputs such as:
+During evaluation, the model's response is assessed against key inputs such as:
 
 - **Query**: Required for all metrics.
 - **Context**: Optional.
@@ -104,6 +151,14 @@ During evaluation, the model’s response is assessed against key inputs such as
 These mappings ensure accurate alignment between your data and the evaluation criteria.
 
 :::image type="content" source="../media/evaluations/evaluate/test-criteria-data-mapping.png" alt-text="Screenshot of the query, context, and ground truth mapping to your evaluation input." lightbox="../media/evaluations/evaluate/test-criteria-data-mapping.png":::
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ##### Query and response metric requirements
 
@@ -135,9 +190,21 @@ For guidance on the specific data mapping requirements for each metric, refer to
 
 #### Review and finish
 
+::: moniker range="foundry-classic"
+
 After you complete all the necessary configurations, you can provide an optional name for your evaluation. Then you can review and select **Submit** to submit the evaluation run.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 ### Model evaluation
+
+::: moniker range="foundry-classic"
 
 To create a new evaluation for your selected model deployment, you can use a GPT model to generate sample questions, or you can select from your established dataset collection.
 
@@ -162,14 +229,24 @@ You can also select from your established dataset collection or upload a new dat
 
 #### Select evaluation metrics
 
-To configure your test criteria, select **Next**. As you select your criteria, metrics are added, and you need to map your dataset’s columns to the required fields for evaluation. These mappings ensure accurate alignment between your data and the evaluation criteria. 
+To configure your test criteria, select **Next**. As you select your criteria, metrics are added, and you need to map your dataset's columns to the required fields for evaluation. These mappings ensure accurate alignment between your data and the evaluation criteria. 
 
 After you select the test criteria you want, you can review the evaluation, optionally change the name of the evaluation, and then select **Submit**. Go to the evaluation page to see the results.
 
 > [!NOTE]
-> The generated dataset is saved to the project’s blob storage after the evaluation run is created.
+> The generated dataset is saved to the project's blob storage after the evaluation run is created.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ## View and manage the evaluators in the evaluator library
+
+::: moniker range="foundry-classic"
 
 You can see the details and status of your evaluators in one place in the evaluator library. You can view and manage Microsoft-curated evaluators.
 
@@ -181,6 +258,14 @@ You can select the evaluator name to see more details. You can see the name, des
 
 - For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case. Change the parameters or criteria according to your data and objectives in the Azure AI Evaluation SDK. For example, you can select **Groundedness-Evaluator** and check the Prompty file that shows how we calculate the metric.
 - For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select **Self-Harm-Related-Content-Evaluator** to learn what it means and understand how Microsoft determines severity levels.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ## Related content
 

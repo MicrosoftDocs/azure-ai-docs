@@ -2,6 +2,7 @@
 title: High availability and disaster recovery for hub projects
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for high availability and disaster recovery for Azure AI Foundry hub projects.
+monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -9,15 +10,27 @@ ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: andyaviles
-ms.date: 08/27/2025
-ai.usage: ai-assisted
+ms.date: 09/29/2025
+ai-usage: ai-assisted
 ---
 
 # High availability and disaster recovery for hub projects
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
+::: moniker range="foundry-classic"
+
 Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Because Azure AI Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Plan ahead to maintain business continuity and prepare for disaster recovery with [!INCLUDE [foundry-link](../default/includes/foundry-link.md)]. Because Azure AI Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
+
+::: moniker-end
 
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. Create a disaster recovery plan to handle regional service outages. In this article, you learn how to:
 
@@ -123,8 +136,11 @@ For any hubs that are essential to business continuity, deploy resources in two 
 
 If you connect data to customize your AI application, you can use those datasets in Azure AI and outside Azure AI. Dataset volume can be large, so it might be good practice to keep this data in a separate storage account. Evaluate the data replication strategy that makes the most sense for your use case.
 
+::: moniker range="foundry-classic"
+
 In the Azure AI Foundry portal, create a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you can point to the same storage account because connections work across regions.
- 
+
+::: moniker-end 
 
 ## Initiate a failover
 
