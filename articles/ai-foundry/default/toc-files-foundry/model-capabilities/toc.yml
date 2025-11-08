@@ -1,0 +1,36 @@
+items:
+  - name: Azure OpenAI in Foundry Models
+    href: ../../../openai/supported-languages.md
+  - name: Deployment offers & types
+    items:
+      - name: Deployment offers and types
+        href: ../../../foundry-models/concepts/deployment-types.md
+  - name: Quickstarts
+    items:
+      - name: Audio generation
+        href: ../../../openai/audio-completions-quickstart.md
+      - name: Vision-enabled chats
+        href: ../../../openai/gpt-v-quickstart.md
+      - name: Speech to text
+        href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Text to speech
+        href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Text to speech avatar
+        href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Voice Live (preview)
+        href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+  - name: Concepts
+    items:
+      - name: Video generation (preview)
+        href: ../../../openai/concepts/video-generation.md
+      - name: Video translation (preview)
+        href: ../../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Image prompt engineering techniques
+        href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+  - name: Codex
+    href: ../../../openai/how-to/codex.md
+  - name: Playgrounds and quick evaluation
+    href: ../../../concepts/concept-playgrounds.md
+  - name:  Upgrade/Switch Models with Ask AI
+    href: ../../how-to/observability-optimization-model-upgrade.md
+

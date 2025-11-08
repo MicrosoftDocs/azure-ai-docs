@@ -1,14 +1,14 @@
 ---
-title: 'Configure content filters (preview)'
+title: 'Configure content filters'
 titleSuffix: Azure OpenAI
 description: Learn how to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 8/29/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 10/29/2025
+author: ssalgadodev
+ms.author: ssalgado
 recommendations: false
 ms.custom: FY25Q1-Linter
 # customer intent: As a developer, I want to learn how to configure content filters with Azure AI Foundry so that I can ensure that my applications comply with our Code of Conduct.
@@ -54,7 +54,7 @@ You can configure the following filter categories in addition to the default har
 
 [!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
 
-## Specify a content filtering configuration at request time (preview)
+## Specify a content filtering configuration at request time 
 
 In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for each API call. 
 

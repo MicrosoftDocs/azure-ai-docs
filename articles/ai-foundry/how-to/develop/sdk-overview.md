@@ -13,10 +13,13 @@ ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
 zone_pivot_groups: foundry-sdk-overview-languages
+monikerRange: foundry-classic || foundry
 # customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
 
 # Azure AI Foundry SDK client libraries
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
@@ -26,14 +29,26 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 
 The Azure AI Foundry SDK is a set of client libraries and services designed to work together. 
 
+::: moniker range="foundry-classic"
+
 > [!NOTE]
 > This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
+
+::: moniker-end
 
 ## Prerequisites
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+
+::: moniker range="foundry-classic"
 * [Create a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) if you don't have one already.
 * [!INCLUDE [find-endpoint](../../includes/find-endpoint.md)]
+::: moniker-end
+
+::: moniker range="foundry"
+* [!INCLUDE [find-endpoint](../../default/includes/find-endpoint.md)]
+::: moniker-end
+
 * Sign in with the Azure CLI using the same account that you use to access your project:
 
     ```bash

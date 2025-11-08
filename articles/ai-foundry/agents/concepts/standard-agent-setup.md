@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 05/05/2025
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Built-in enterprise readiness with standard agent setup 

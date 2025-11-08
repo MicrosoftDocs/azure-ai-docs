@@ -505,6 +505,8 @@ groups:
   title: Programming languages
   prompt: Choose a programming language or tool
   pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -515,14 +517,21 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
-  - id: programming-language-objectivec
-    title: Objective-C
   - id: programming-language-python
     title: Python
   - id: programming-language-swift
     title: Swift
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech-avatar
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-rest
     title: REST
 - id: programming-languages-set-thirteen
@@ -1235,8 +1244,6 @@ groups:
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: portal
-    title: Azure AI Foundry portal
   - id: python
     title: Python
   - id: csharp
@@ -1245,6 +1252,24 @@ groups:
     title: JavaScript
   - id: java
     title: Java 
+  - id: rest-api
+    title: REST API
+# owner: aahi
+- id: selection-web-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: rest-api
+    title: REST API
+# owner: aahi
+- id: selection-image-generation
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
   - id: rest-api
     title: REST API
 - id: selection-deep-research
