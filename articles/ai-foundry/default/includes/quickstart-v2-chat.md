@@ -35,7 +35,7 @@ Not yet available -->
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="generate_response":::
+:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-responses.sh":::
 
 # [Azure AI Foundry portal](#tab/portal)
 
