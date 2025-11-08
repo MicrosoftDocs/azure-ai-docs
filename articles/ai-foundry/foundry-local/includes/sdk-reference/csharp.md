@@ -47,7 +47,7 @@ Version `0.8.0` and later provides a more object-orientated and composable API. 
 |---------------------|-------------------|-------------------|
 | **Configuration**    | N/A | `config = Configuration(...)` |
 | **Get Manager**     | `mgr = FoundryLocalManager();`| `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;`  |
-| **Get Catalog**   | N/A | `catalog = mgr.GetCatalog();` |
+| **Get Catalog**   | N/A | `catalog = await mgr.GetCatalogAsync();` |
 | **List Models**            | `mgr.ListCatalogModelsAsync();`| `catalog.ListModelsAsync();`                           |
 | **Get Model**  | `mgr.GetModelInfoAsync("aliasOrModelId");`| `catalog.GetModelAsync(alias: "alias");`     |
 | **Get Variant**| N/A  | `model.SelectedVariant;` |
@@ -254,7 +254,7 @@ To run the example, execute the following command in your project directory:
 
 ### [Windows](#tab/windows)
 
-If your architecture is x64, use the following command:
+If your architecture is `x64`, use the following command:
 
 ```bash
 dotnet run -r:win-x64
