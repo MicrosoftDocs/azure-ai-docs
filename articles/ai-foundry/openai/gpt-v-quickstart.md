@@ -12,8 +12,6 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/16/2025
 zone_pivot_groups: openai-quickstart-gpt-v
-monikerRange: 'foundry-classic || foundry'
-
 ---
 
 # Quickstart: Use images in your AI chats

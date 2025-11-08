@@ -7,27 +7,17 @@ ms.custom:
   - ignite-2024
   - update-code
 ms.topic: how-to
-ms.date: 09/09/2025
+ms.date: 08/29/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
-monikerRange: foundry-classic || foundry
-ai-usage: ai-assisted
 ---
 
 # Develop applications with LangChain and Azure AI Foundry
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
-
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, allowing you to pick and choose the pieces you need.
 
-::: moniker range="foundry-classic"
-Models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] can be used with LangChain in two ways:
-::: moniker-end
-
-::: moniker range="foundry"
-Models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] can be used with LangChain in two ways:
-::: moniker-end
+Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LangChain in two ways:
 
 - **Use the Azure AI Model Inference API:** All models deployed in Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of capabilities across most models in the catalog. Because the API is consistent, switching models is as simple as changing the deployment; no code changes are required. With LangChain, install the `langchain-azure-ai` integration.
 
@@ -57,13 +47,7 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-::: moniker range="foundry-classic"
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
-::: moniker-end
-
-::: moniker range="foundry"
-[!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
-::: moniker-end
 
 After configuration, create a client to connect to the chat model using `init_chat_model`. For Azure OpenAI models, see [Use Azure OpenAI models](#use-azure-openai-models).
 
@@ -256,10 +240,7 @@ Use the client as usual in your code.
 
 Use tracing in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or the Azure AI Foundry portal. Each AI hub has an associated Azure Application Insights instance.
 
-
 ### Get your instrumentation connection string
-
-::: moniker range="foundry-classic"
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -298,10 +279,6 @@ You can configure your application to send telemetry to Azure Application Insigh
         
         application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
-::: moniker-end
-::: moniker range="foundry"
-
-::: moniker-end
 
 ### Configure tracing for Azure AI Foundry
 
@@ -319,7 +296,7 @@ azure_tracer = AzureAIOpenTelemetryTracer(
 Pass the tracer via `config` in the `invoke` operation:
 
 ```python
-chain.invoke({"topic": "living in a foreign country/region"}, config={"callbacks": [azure_tracer]})
+chain.invoke({"topic": "living in a foreign country"}, config={"callbacks": [azure_tracer]})
 ```
 
 To configure the chain itself for tracing, use the `.with_config()` method:
@@ -338,28 +315,13 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
-::: moniker range="foundry-classic"
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. Navigate to **Tracing** section.
+2. Navigate to **Tracing** section.
 
 3. Identify the trace you created. It may take a few seconds to appear.
 
     :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
-
-::: moniker-end
-
-::: moniker range="foundry"
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-
-1. Navigate to **Tracing** section.
-
-1. Identify the trace you have created. It may take a couple of seconds for the trace to show.
-::: moniker-end
-
-
-
-
 
 Learn more about [how to visualize and manage traces](visualize-traces.md).
 

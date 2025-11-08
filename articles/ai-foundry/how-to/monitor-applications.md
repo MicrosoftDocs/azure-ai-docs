@@ -8,13 +8,9 @@ ms.date: 07/31/2025
 ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ---
 
 # Monitor your generative AI applications (preview)
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -25,21 +21,10 @@ Monitoring your generative AI applications has never been more important, due to
 
 To use monitoring capabilities in Azure AI Foundry, you need to connect an Application Insights resource to your Azure AI Foundry project.
 
-::: moniker range="foundry-classic"
-
 1. Navigate to **Monitoring** in the left navigation pane of the Azure AI Foundry portal.
 2. Select the **Application analytics** tab.
 3. Create a new Application Insights resource if you don't already have one.
 4. Connect the resource to your AI Foundry project.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. Navigate to **Monitoring** in the left navigation pane of the Azure AI Foundry portal.
-2. Insert NextGen content
-
-::: moniker-end
 
 ### Collecting production data for monitoring
 
@@ -57,23 +42,12 @@ These views are designed to bring key metrics - token consumption, latency, exce
 
 Follow these steps to access and utilize the built-in monitoring view in your AI Foundry Project:
 
-::: moniker range="foundry-classic"
-
 1. Navigate to your AI Foundry Project in the Azure AI Foundry portal.
 2. Select **Monitoring** from the left navigation pane.
 3. Under the **Application analytics** tab, review the overview of your application's health.
 4. Use filters to specify a time range, application, and/or model to extract detailed insights.
 5. If you notice issues, such as declining quality metrics, go to **Tracing**  to [debug issues in your application](./develop/trace-application.md).
 6. To further customize your monitoring experience and use advanced capabilities in Azure Monitor, scroll to the bottom and select **View in Azure Monitor Application Insights**.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. Navigate to your AI Foundry Project in the Azure AI Foundry portal.
-2. Insert NextGen content
-
-::: moniker-end
 
 > [!NOTE]
 > When you're sharing this workbook with your team members, they must have at least 'Reader' role to the connected Application Insights resource to view the displayed information.

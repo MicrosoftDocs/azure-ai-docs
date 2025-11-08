@@ -1,29 +1,25 @@
 ---
-title: Guardrail annotations 
+title: Content Filter Annotations
 description: Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models.
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-author: ssalgadodev
-ms.author: ssalgado
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
+ms.author: pafarley
 ---
 
-# Guardrail annotations
-
-Azure AI Foundry Models provide annotations to help you understand the Guardrail (previously content filtering) results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content. 
-
-## Standard guardrail annotations 
-
-When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm: 
-- risk category (hate, sexual, violence, self_harm) 
-- the severity level (safe, low, medium, or high) within each content category 
-- filtering status (true or false).
+# Content filtering annotations
 
 Azure OpenAI in Azure AI Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
+
+## Standard content filter annotations
+
+When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm:
+- content filtering category (hate, sexual, violence, self_harm)
+- the severity level (safe, low, medium, or high) within each content category
+- filtering status (true or false).
 
 ## Optional model annotations
 
@@ -39,7 +35,6 @@ When annotations are enabled as shown in the code snippets below, the following 
 |protected material code|detected (true or false), </br>filtered (true or false), </br>Example citation of public GitHub repository where code snippet was found, </br>The license of the repository|
 |Personally identifiable information (PII)|detected (true or false)</br>filtered (true or false) </br>redacted (true or false) |
 |Groundedness | detected (true or false)</br>filtered (true or false, with details) </br>(Annotate mode only) details:(`completion_end_offset`, `completion_start_offset`) |
-| Task adherence | Detected (true or false) </br> Filtered (true or false) |
 
 When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
 

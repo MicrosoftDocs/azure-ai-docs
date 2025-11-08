@@ -89,7 +89,7 @@ Azure AI Language features only process text. The fidelity and formatting of the
 
 * Speech transcription quality may affect the quality of the results. If your source data is voice, make sure you use the highest quality combination of automatic and human transcription to ensure the best performance. Consider using custom speech models for better quality results.
 
-* Lack of standard punctuation or casing may affect the quality of your results. If you are using a speech system, like Azure Speech in Foundry Tools to Text, be sure to select the option to include punctuation.
+* Lack of standard punctuation or casing may affect the quality of your results. If you are using a speech system, like Azure AI Speech to Text, be sure to select the option to include punctuation.
 
 * Optical character recognition (OCR) quality may affect the quality of the system. If your source data is images and you use OCR technology to generate the text, incorrectly generated text may affect the performance of the system. Consider using custom OCR models to help improve the quality of results.
 

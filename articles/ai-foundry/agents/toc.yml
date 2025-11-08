@@ -55,7 +55,12 @@ items:
           - name: How to use browser automation
             href: how-to/tools/browser-automation-samples.md
         - name: Code interpreter
-          href: how-to/tools/code-interpreter.md
+          items:
+            - name: Overview
+              href: how-to/tools/code-interpreter.md
+              displayName: code interpreter
+            - name: How to use code interpreter
+              href: how-to/tools/code-interpreter-samples.md
         - name: Computer Use (preview)
           items:
             - name: Overview

@@ -18,10 +18,6 @@ keywords: text to speech
 
 # Quickstart: Convert text to speech
 
-::: zone pivot="ai-foundry"
-[!INCLUDE [Foundry portal include](./includes/quickstarts/text-to-speech-basics/ai-foundry.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/text-to-speech-basics/csharp.md)]
 ::: zone-end
@@ -42,6 +38,9 @@ keywords: text to speech
 [!INCLUDE [JavaScript include](includes/quickstarts/text-to-speech-basics/javascript.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-objectivec"
+[!INCLUDE [ObjectiveC include](includes/quickstarts/text-to-speech-basics/objectivec.md)]
+::: zone-end
 
 ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](includes/quickstarts/text-to-speech-basics/swift.md)]

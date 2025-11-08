@@ -11,14 +11,9 @@ ms.topic: reference
 ms.custom:
   - build-aifnd
   - build-2025
-# customer intent: As a developer, I want to create custom evaluators so I can measure domain-specific quality metrics for my AI application's generations.
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ---
 
 # Custom evaluators
-
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 To start evaluating your application's generations, built-in evaluators are great out of the box. To cater to your evaluation needs, you can build your own code-based or prompt-based evaluator.
 

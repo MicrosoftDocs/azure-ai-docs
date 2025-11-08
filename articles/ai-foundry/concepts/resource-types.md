@@ -6,18 +6,15 @@ reviewer: deeikele
 ms.reviewer: deeikele
 author: sdgilley
 ms.author: sgilley
-ms.date: 10/06/2025
+ms.date: 10/09/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-monikerRange: 'foundry-classic || foundry'
 ms.custom:
   - build-aifnd
   - build-2025
 ---
 
 # Choose an Azure resource type for AI foundry
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 An Azure resource is required to use and manage services in Azure. It defines the scope for configuring, securing, and monitoring the tools or capabilities you want to use—like AI models, agents, or storage.
 
@@ -39,13 +36,9 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
 
   [An upgrade option from Azure OpenAI to AI Foundry](../how-to/upgrade-azure-openai.md) is available to access all Foundry capabilities and models while keeping your existing Azure OpenAI API endpoint, state of work, and security configurations.
 
-::: moniker range="foundry-classic"
-
 * **Azure AI Hub** - In June 2025, we started to move most of Hub's capabilities under "Azure AI Foundry" resource type. This change brings agents, models, and their tools together for development, management and governance, under a dedicated Azure resource type for AI Foundry.
 
   New features will primarily land on Azure AI Foundry resource type. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need), including open source model deployments, currently still require a hub resource.
-
-::: moniker-end
 
 ## References
 
@@ -53,10 +46,5 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
 * [What is Azure Resource Manager?](/azure/azure-resource-manager/management/overview)
 * [Create a first AI Foundry resource](../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context)
 * [Create AI Foundry with advanced options](../how-to/create-resource-template.md)
-
-::: moniker range="foundry-classic"
-
 * [Create a first AI Hub](../how-to/create-azure-ai-resource.md)
 * [Create AI Hub with advanced options](../how-to/create-azure-ai-hub-template.md)
-
-::: moniker-end

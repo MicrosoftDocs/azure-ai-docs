@@ -9,14 +9,10 @@ ms.custom:
 ms.topic: conceptual
 ms.date: 08/31/2025
 ms.author: mbullwin
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 zone_pivot_groups: openai-supported-languages
 ---
 
 # Azure OpenAI supported programming languages
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 ::: zone pivot="programming-language-dotnet"
 

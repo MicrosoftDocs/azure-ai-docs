@@ -231,7 +231,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         # environment variable.
-        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource: Use only the base URL, for example, https://{your-resource}.openai.azure.com
+        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        # Example: https://{your-resource}.openai.azure.com
         endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
         base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
     

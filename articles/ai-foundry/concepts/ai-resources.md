@@ -80,7 +80,7 @@ After a connection is created, model deployments are accessible via playground e
 
 Azure AI Hub is an implementation of Azure Machine Learning and requires multiple Azure services as a dependency.
 
-[!INCLUDE [Resource provider kinds](../includes/hub-resource-provider-kinds.md)]
+[!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
 If not provided by you, the following dependent resources are automatically created.
 
