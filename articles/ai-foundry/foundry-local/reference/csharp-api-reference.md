@@ -1,4 +1,4 @@
-
+---
 title: Foundry Local C# API Reference
 titleSuffix: Foundry Local
 description: Reference guide for the Foundry Local C# API.
@@ -12,7 +12,7 @@ ms.date: 10/01/2025
 reviewer: maanavdalal
 ms.reviewer: maanavd
 ai-usage: ai-assisted
-
+---
 
 # Microsoft.AI.Foundry.Local API Reference
 
