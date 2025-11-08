@@ -26,7 +26,7 @@ The server transforms Azure Language services into agent-friendly endpoints that
 
 * **Local deployment**: Azure Language also provides local MCP server where developers can host the server in their own environment. You can find the local MCP server and setup instructions in the [Quickstart for Language MCP Server](https://github.com/Azure-Samples/ai-language-samples) sample in our GitHub repository.
 
-* ***MCP Server Endpoint***
+* ***Remote MCP Server Endpoint***
 
     ```bash
     https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
