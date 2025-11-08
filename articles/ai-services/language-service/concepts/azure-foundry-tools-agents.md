@@ -60,9 +60,9 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
   * ***MCP Server Endpoint***
 
-        ```bash
-        https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
-        ```
+    ```bash
+    https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
+    ```
 
 ### Key capabilities
 
@@ -76,9 +76,9 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
 * ***Download template code with Azure Developer CLI (azd)***
 
-        ```azurecli
-           azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
-        ```
+    ```azurecli
+        azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
+    ```
 
 ## Azure Language Exact Question Answering agent 🆕
 
@@ -115,9 +115,9 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 
   * ***Download template code with Azure Developer CLI (azd)***
 
-       ```azurecli
-          azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
-       ```
+        ```azurecli
+           azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
+        ```
 
 ### Key capabilities
 
