@@ -26,6 +26,12 @@ The server transforms Azure Language services into agent-friendly endpoints that
 
 * **Local deployment**: Azure Language also provides local MCP server where developers can host the server in their own environment. You can find the local MCP server and setup instructions in the [Quickstart for Language MCP Server](https://github.com/Azure-Samples/ai-language-samples) sample in our GitHub repository.
 
+* ***MCP Server Endpoint***
+
+    ```bash
+    https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
+    ```
+
 ## Azure Language Intent Routing agent 🆕
 
 The Intent Routing agent in [**Azure AI Foundry**](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. This agent creates a framework that ensures users receive accurate responses while maintaining operational control.
@@ -50,19 +56,12 @@ Before setting up the Intent Routing agent, ensure you have the following resour
   * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
   * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md).
 
-
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
   * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
   * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value.
   * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center.
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
-
-* ***MCP Server Endpoint***
-
-    ```bash
-    https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
-    ```
 
 ### Key capabilities
 
@@ -74,7 +73,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
 * **Fallback processing**: Users can easily add retrieval-augmented generation (RAG) to the agent to handle edge cases and uncommon questions by using approved knowledge sources.
 
-* ***Download template code with Azure Developer CLI (azd)***
+* ***Download intent routing template code with Azure Developer CLI (azd)***
 
     ```azurecli
         azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/intent_routing_agent/versions/1
@@ -113,7 +112,7 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
-* ***Download template code with Azure Developer CLI (azd)***
+* ***Download exact question answering template code with Azure Developer CLI (azd)***
 
     ```azurecli
         azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
