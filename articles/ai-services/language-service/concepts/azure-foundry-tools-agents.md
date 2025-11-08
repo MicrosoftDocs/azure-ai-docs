@@ -115,9 +115,9 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 
   * ***Download template code with Azure Developer CLI (azd)***
 
-        ```azurecli
-           azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
-        ```
+    ```azurecli
+        azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
+    ```
 
 ### Key capabilities
 
