@@ -26,20 +26,57 @@ In this article, you learn how to use Foundry Local's native audio transcription
 
 ## Create project
 
-Create a new C# project and navigate into it:
+To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
+
+### [Windows](#tab/windows)
+
+First, create a new C# project and navigate into it:
 
 ```bash
-dotnet new console -n audio-transcription
-cd audio-transcription
+dotnet new console -n audio-transcription-app
+cd audio-transcription-app
 ```
 
-### Install NuGet Packages
+Next, open the `audio-transcription-app.csproj` file and modify to the following:
 
-Install the following NuGet packages into your project folder:
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
+    <RootNamespace>audio-transcription-app</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    <PackageReference Include="OpenAI" Version="2.5.0" />
+  </ItemGroup>
+
+</Project>
+```
+
+### [macOS/Linux](#tab/xplatform)
+
+First, create a new C# project and navigate into it:
 
 ```bash
-dotnet add package Microsoft.AI.Foundry.Local
+dotnet new console -n audio-transcription-app
+cd audio-transcription-app
 ```
+
+Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
+dotnet add package OpenAI --version 2.5.0
+```
+
+---
 
 ## Use audio transcription API
 
@@ -103,9 +140,36 @@ await model.UnloadAsync();
 
 Run the code using the following command:
 
+### [Windows](#tab/windows)
+
+If your architecture is `x64`, use the following command:
+
 ```bash
-dotnet run
+dotnet run -r:win-x64
 ```
+
+If your architecture is `arm64`, use the following command:
+
+```bash
+dotnet run -r:win-arm64
+```
+
+
+### [macOS/Linux](#tab/xplatform)
+
+For macOS, use the following command:
+
+```bash
+dotnet run -r:osx-arm64
+```
+
+For Linux, use the following command:
+
+```bash
+dotnet run -r:linux-x64
+```
+
+---
 
 
 ## Related content
