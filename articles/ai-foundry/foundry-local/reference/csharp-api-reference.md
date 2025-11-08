@@ -1,10 +1,18 @@
----
+
+title: Foundry Local C# API Reference
+titleSuffix: Foundry Local
+description: Reference guide for the Foundry Local C# API.
 ms.service: azure-ai-foundry
-ms.topic: include
-ms.date: 06/09/2025
-ms.author: samkemp
-author: samuel100
----
+ms.subservice: foundry-local
+ms.custom: ignite-2025
+ms.author: jburchel
+author: jonburchel
+ms.topic: concept-article
+ms.date: 10/01/2025
+reviewer: maanavdalal
+ms.reviewer: maanavd
+ai-usage: ai-assisted
+
 
 # Microsoft.AI.Foundry.Local API Reference
 
@@ -14,7 +22,6 @@ author: samuel100
 
 The Microsoft.AI.Foundry.Local namespace provides the core SDK for running AI models locally with Foundry Local.
 
----
 
 ## Classes
 
@@ -113,7 +120,7 @@ public Configuration.WebService? Web { get; init; }
 
 **Property Value:** [Configuration.WebService](#class-configurationwebservice)?
 
----
+
 
 ### Class: Configuration.WebService
 
@@ -157,7 +164,7 @@ public string? Urls { get; init; }
 
 **Property Value:** [string](https://learn.microsoft.com/dotnet/api/system.string)?
 
----
+
 
 ### Class: FoundryLocalException
 
@@ -207,7 +214,7 @@ public FoundryLocalException(string message, Exception innerException)
 - `message` [string](https://learn.microsoft.com/dotnet/api/system.string) - Error message.
 - `innerException` [Exception](https://learn.microsoft.com/dotnet/api/system.exception) - Underlying exception.
 
----
+
 
 ### Class: FoundryLocalManager
 
@@ -363,7 +370,7 @@ public Task StopWebServiceAsync(CancellationToken? ct = null)
 
 **Returns:** [Task](https://learn.microsoft.com/dotnet/api/system.threading.tasks.task) - Task completing once service stopped.
 
----
+
 
 ### Class: Model
 
@@ -591,7 +598,7 @@ public Task UnloadAsync(CancellationToken? ct = null)
 
 **Returns:** [Task](https://learn.microsoft.com/dotnet/api/system.threading.tasks.task)
 
----
+
 
 ### Class: ModelInfo
 
@@ -846,7 +853,7 @@ public int Version { get; init; }
 
 **Property Value:** [int](https://learn.microsoft.com/dotnet/api/system.int32)
 
----
+
 
 ### Class: ModelSettings
 
@@ -881,7 +888,7 @@ public Parameter[]? Parameters { get; set; }
 
 **Property Value:** [Parameter](#class-parameter)[]?
 
----
+
 
 ### Class: ModelVariant
 
@@ -1072,7 +1079,7 @@ public Task UnloadAsync(CancellationToken? ct = null)
 
 **Returns:** [Task](https://learn.microsoft.com/dotnet/api/system.threading.tasks.task) - Task representing the asynchronous operation.
 
----
+
 
 ### Class: OpenAIAudioClient
 
@@ -1123,7 +1130,7 @@ public IAsyncEnumerable<AudioCreateTranscriptionResponse> TranscribeAudioStreami
 
 **Returns:** [IAsyncEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1)<AudioCreateTranscriptionResponse> - An asynchronous enumerable of transcription responses.
 
----
+
 
 ### Class: OpenAIChatClient
 
@@ -1188,7 +1195,7 @@ public IAsyncEnumerable<ChatCompletionCreateResponse> CompleteChatStreamingAsync
 
 **Returns:** [IAsyncEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1)<ChatCompletionCreateResponse> - Async enumerable producing incremental chat completion responses.
 
----
+
 
 ### Class: OpenAIChatClient.ChatSettings
 
@@ -1292,7 +1299,7 @@ public float? TopP { get; set; }
 
 **Property Value:** [float](https://learn.microsoft.com/dotnet/api/system.single)?
 
----
+
 
 ### Class: Parameter
 
@@ -1336,7 +1343,7 @@ public string? Value { get; set; }
 
 **Property Value:** [string](https://learn.microsoft.com/dotnet/api/system.string)?
 
----
+
 
 ### Class: PromptTemplate
 
@@ -1404,7 +1411,7 @@ public string? User { get; init; }
 
 **Property Value:** [string](https://learn.microsoft.com/dotnet/api/system.string)?
 
----
+
 
 ### Class: Runtime
 
@@ -1450,7 +1457,7 @@ public string ExecutionProvider { get; init; }
 
 **Property Value:** [string](https://learn.microsoft.com/dotnet/api/system.string)
 
----
+
 
 ## Interfaces
 
@@ -1549,7 +1556,7 @@ Task<List<Model>> ListModelsAsync(CancellationToken? ct = null)
 
 **Returns:** [Task](https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1)<[List](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1)<[Model](#class-model)>> - List of Model instances.
 
----
+
 
 ### Interface: IModel
 
@@ -1713,7 +1720,7 @@ Task UnloadAsync(CancellationToken? ct = null)
 
 **Returns:** [Task](https://learn.microsoft.com/dotnet/api/system.threading.tasks.task)
 
----
+
 
 ## Enums
 
@@ -1736,7 +1743,7 @@ public enum DeviceType
 - `Invalid = 0` - Invalid / unspecified device type.
 - `NPU = 3` - Neural Processing Unit.
 
----
+
 
 ### Enum: LogLevel
 
