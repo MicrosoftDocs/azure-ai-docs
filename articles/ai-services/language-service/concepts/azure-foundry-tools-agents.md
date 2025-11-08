@@ -58,7 +58,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
-  * ***MCP Server Endpoint***
+* ***MCP Server Endpoint***
 
     ```bash
     https://{foundry-resource-name}.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
@@ -113,7 +113,7 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
-  * ***Download template code with Azure Developer CLI (azd)***
+* ***Download template code with Azure Developer CLI (azd)***
 
     ```azurecli
         azd ai agent init -m azureml://registries/azureml-staging/agentmanifests/exact_question_answering_agent/versions/1
