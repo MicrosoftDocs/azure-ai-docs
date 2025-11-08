@@ -24,7 +24,7 @@ The server transforms Azure Language services into agent-friendly endpoints that
 
 * **Language processing**: Access to Azure Language's comprehensive natural language processing (NLP) services, including [**Named Entity Recognition**](../named-entity-recognition/overview.md), [**Text Analytics for health**](../text-analytics-for-health/overview.md), [**Conversational Language Understanding**](../conversational-language-understanding/overview.md), [**Custom Question Answering**](../question-answering/overview.md), [**Language Detection**](../language-detection/overview.md), [**Sentiment Analysis**](../sentiment-opinion-mining/overview.md), [**Summarization**](../summarization/overview.md), [**Key Phrase Extraction**](../key-phrase-extraction/overview.md), and [**PII redaction**](../personally-identifiable-information/overview.md). These services process text with accuracy and support multiple languages.
 
-* **Local deployment**: Azure Language also provides local MCP server where developers can host the server in their own environment. You can find the local MCP server and setup instructions in the [Quickstart for Language Mcp Server](https://github.com/Azure-Samples/ai-language-samples) sample in our GitHub repository.
+* **Local deployment**: Azure Language also provides local MCP server where developers can host the server in their own environment. You can find the local MCP server and setup instructions in the [Quickstart for Language MCP Server](https://github.com/Azure-Samples/ai-language-samples) sample in our GitHub repository.
 
 ## Azure Language Intent Routing agent 🆕
 
