@@ -96,7 +96,7 @@ To set up the SharePoint in Microsoft 365 indexer, use a preview REST API. This 
 
 Enable a [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) to automatically detect the tenant in which the search service is provisioned. 
 
-Perform this step if the SharePoint site is in the same tenant as the search service. Skip this step if the SharePoint site is in a different tenant. The identity is used for tenant detection. You can also skip this step if you want to put the tenant ID in the [connection string](#connection-string-format). If you would like to use the system-managed identity or configure a user-assigned managed identity for secretless indexing, configure the [application permissions with secretless authentication](brokenlink)
+Perform this step if the SharePoint site is in the same tenant as the search service. Skip this step if the SharePoint site is in a different tenant. The identity is used for tenant detection. You can also skip this step if you want to put the tenant ID in the [connection string](#connection-string-format). If you would like to use the system-managed identity or configure a user-assigned managed identity for secretless indexing, configure the [application permissions with secretless authentication](#using-secretless-authentication-to-obtain-application-tokens)
 
 :::image type="content" source="media/search-howto-index-sharepoint-online/enable-managed-identity.png" alt-text="Screenshot showing how to enable system assigned managed identity.":::
 
@@ -132,9 +132,21 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
 
 1. On the navigation pane under **Manage**, select **API permissions**, then **Add a permission**, then **Microsoft Graph**.
 
-    + If the indexer is using application API permissions, select **Application permissions**, and then select `Files.Read.All` and `Sites.Read.All`. If you're configuring [basic ACL sync (preview) support](search-indexer-sharepoint-access-control-lists.md) you must select `Files.Read.All` and `Sites.FullControl.All` instead. If you don’t need to sync permissions across all sites, you can specify `Sites.Selected` instead, to index only the content and permissions of specific sites. Then, grant the application full control permissions for just those selected sites.
+    + If your indexer uses application API permissions, choose **Application** permissions.
+      - For standard indexing, select:
+        `Files.Read.All`
+        `Sites.Read.All`
 
-      <!-- RESTORE THIS SCREENSHOT -->
+      - If you’re enabling content indexing and [basic ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md), select:
+        `Files.Read.All`
+        `Sites.FullControl.All` (instead of Sites.Read.All)
+
+      - If you need to enable content indexing and limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
+        `Files.Read.All`
+        `Sites.Selected`
+         Then grant the application full control only for those selected sites.
+
+      
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
       Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
