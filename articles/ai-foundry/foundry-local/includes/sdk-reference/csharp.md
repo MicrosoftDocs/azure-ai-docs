@@ -43,7 +43,7 @@ In this new architecture:
 
 Version `0.8.0` and later provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
 
-| Primitive           | Versions <= 0.7.0 | Versions >= 0.8.0 |
+| Primitive           | Versions < 0.8.0 | Versions >= 0.8.0 |
 |---------------------|-------------------|-------------------|
 | **Configuration**    | N/A | `config = Configuration(...)` |
 | **Get Manager**     | `mgr = FoundryLocalManager();`| `await FoundryLocalManager.CreateAsync(config, logger);`<br>`var mgr = FoundryLocalManager.Instance;`  |
@@ -138,7 +138,7 @@ dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
 dotnet add package OpenAI --version 2.5.0
 ```
 
-On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU. In the case of GPU, Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider using a library called Dawn that converts from the WebGPU shader language to Metal.
+On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU. In the case of GPU, Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider uses a library called Dawn that converts from the WebGPU shader language to Metal.
 
 #### [Linux](#tab/linux)
 
@@ -159,3 +159,153 @@ dotnet add package OpenAI --version 2.5.0
 On Linux, Foundry Local supports hardware acceleration for CPU and Nvidia CUDA-enabled GPUs. For Nvidia GPUs, you'll need to ensure you have installed the appropriate CUDA drivers and libraries.
 
 ---
+
+### Example usage
+
+After [Project setup](#project-setup), you can use the following example code to get started with Foundry Local:
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
+using Microsoft.Extensions.Logging;
+
+CancellationToken ct = new CancellationToken();
+
+var config = new Configuration
+{
+    AppName = "my-app-name",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Debug
+};
+
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
+});
+var logger = loggerFactory.CreateLogger<Program>();
+
+// Initialize the singleton instance.
+await FoundryLocalManager.CreateAsync(config, logger);
+var mgr = FoundryLocalManager.Instance;
+
+// Get the model catalog
+var catalog = await mgr.GetCatalogAsync();
+
+// List available models
+Console.WriteLine("Available models for your hardware:");
+var models = await catalog.ListModelsAsync();
+foreach (var availableModel in models)
+{
+    foreach (var variant in availableModel.Variants)
+    {
+        Console.WriteLine($"  - Alias: {variant.Alias} (Id: {string.Join(", ", variant.Id)})");
+    }
+}
+
+// Get a model using an alias
+var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
+
+// is model cached
+Console.WriteLine($"Is model cached: {await model.IsCachedAsync()}");
+
+// print out cached models
+var cachedModels = await catalog.GetCachedModelsAsync();
+Console.WriteLine("Cached models:");
+foreach (var cachedModel in cachedModels)
+{
+    Console.WriteLine($"- {cachedModel.Alias} ({cachedModel.Id})");
+}
+
+// Download the model (the method skips download if already cached)
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading model: {progress:F2}%");
+    if (progress >= 100f)
+    {
+        Console.WriteLine();
+    }
+});
+
+// Load the model
+await model.LoadAsync();
+
+// Get a chat client
+var chatClient = await model.GetChatClientAsync();
+
+// Create a chat message
+List<ChatMessage> messages = new()
+{
+    new ChatMessage { Role = "user", Content = "Why is the sky blue?" }
+};
+
+
+var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
+await foreach (var chunk in streamingResponse)
+{
+    Console.Write(chunk.Choices[0].Message.Content);
+    Console.Out.Flush();
+}
+Console.WriteLine();
+
+// Tidy up - unload the model
+await model.UnloadAsync();
+```
+
+To run the example, execute the following command in your project directory:
+
+### [Windows](#tab/windows)
+
+If your architecture is x64, use the following command:
+
+```bash
+dotnet run -r:win-x64
+```
+
+If your architecture is `arm64`, use the following command:
+
+```bash
+dotnet run -r:win-arm64
+```
+
+
+### [macOS](#tab/macos)
+
+For macOS, use the following command:
+
+```bash
+dotnet run -r:osx-arm64
+```
+
+### [Linux](#tab/linux)
+
+For Linux, use the following command:
+
+```bash
+dotnet run -r:linux-x64
+```
+
+---
+
+### API reference
+
+- [Namespace: Microsoft.AI.Foundry.Local](./csharp-api-reference.md#namespace-microsoftaifoundrylocal)
+- [Classes](./csharp-api-reference.md#classes)
+  - [Configuration](./csharp-api-reference.md#class-configuration)
+  - [Configuration.WebService](./csharp-api-reference.md#class-configurationwebservice)
+  - [FoundryLocalException](./csharp-api-reference.md#class-foundrylocalexception)
+  - [FoundryLocalManager](./csharp-api-reference.md#class-foundrylocalmanager)
+  - [Model](./csharp-api-reference.md#class-model)
+  - [ModelInfo](./csharp-api-reference.md#class-modelinfo)
+  - [ModelSettings](./csharp-api-reference.md#class-modelsettings)
+  - [ModelVariant](./csharp-api-reference.md#class-modelvariant)
+  - [OpenAIAudioClient](./csharp-api-reference.md#class-openaiaudioclient)
+  - [OpenAIChatClient](./csharp-api-reference.md#class-openaichatclient)
+  - [OpenAIChatClient.ChatSettings](./csharp-api-reference.md#class-openaichatclientchatsettings)
+  - [Parameter](./csharp-api-reference.md#class-parameter)
+  - [PromptTemplate](./csharp-api-reference.md#class-prompttemplate)
+  - [Runtime](./csharp-api-reference.md#class-runtime)
+- [Interfaces](./csharp-api-reference.md#interfaces)
+  - [ICatalog](./csharp-api-reference.md#interface-icatalog)
+  - [IModel](./csharp-api-reference.md#interface-imodel)
+- [Enums](./csharp-api-reference.md#enums)
+  - [DeviceType](./csharp-api-reference.md#enum-devicetype)
+  - [LogLevel](./csharp-api-reference.md#enum-loglevel)
