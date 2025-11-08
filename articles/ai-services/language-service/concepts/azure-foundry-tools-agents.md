@@ -45,7 +45,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
   * AI hub resource.
   * Azure AI Language resource.
 
-* **Project deployments**: Deploy following required projects:
+* **Project deployments**: Deploy the following required projects:
 
   * Custom Question Answering (CQA) deployment - see [CQA Overview](../question-answering/overview.md).
   * Conversational Language Understanding (CLU) deployment - see [CLU Overview](../conversational-language-understanding/overview.md).
