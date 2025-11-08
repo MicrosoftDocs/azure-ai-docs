@@ -3,7 +3,14 @@
 Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)  
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
-Represents a logical model grouping multiple downloadable / loadable variants under a shared alias.
+Represents a family of related model variants (versions or configurations) that share a common alias.
+Acts as a façade over its variants, letting you:
+ - enumerate and select a specific variant
+ - prefer a locally cached variant automatically
+ - resolve the latest version of a given variant
+ - download, load, unload, cache removal for the currently selected variant
+ - create chat and audio clients for the currently selected variant.
+Use <xref href="Microsoft.AI.Foundry.Local.ModelVariant" data-throw-if-not-resolved="false"></xref> when you need per‑variant metadata; use <xref href="Microsoft.AI.Foundry.Local.Model" data-throw-if-not-resolved="false"></xref> when you want alias‑level orchestration.
 
 ```csharp
 public class Model : IModel

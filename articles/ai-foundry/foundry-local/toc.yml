@@ -84,8 +84,8 @@ items:
           href: reference/api-reference/cs/Microsoft.AI.Foundry.Local.LogLevel.md
     - name: REST API
       href: reference/reference-rest.md
-  - name: Catalog API
-    href: reference/reference-catalog-api.md
+    - name: Catalog API
+      href: reference/reference-catalog-api.md
   - name: Best practice and troubleshooting
     href: reference/reference-best-practice.md
  

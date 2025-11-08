@@ -21,7 +21,14 @@ and optional web service hosting.
 
  [Model](Microsoft.AI.Foundry.Local.Model.md)
 
-Represents a logical model grouping multiple downloadable / loadable variants under a shared alias.
+Represents a family of related model variants (versions or configurations) that share a common alias.
+Acts as a façade over its variants, letting you:
+ - enumerate and select a specific variant
+ - prefer a locally cached variant automatically
+ - resolve the latest version of a given variant
+ - download, load, unload, cache removal for the currently selected variant
+ - create chat and audio clients for the currently selected variant.
+Use <xref href="Microsoft.AI.Foundry.Local.ModelVariant" data-throw-if-not-resolved="false"></xref> when you need per‑variant metadata; use <xref href="Microsoft.AI.Foundry.Local.Model" data-throw-if-not-resolved="false"></xref> when you want alias‑level orchestration.
 
  [ModelInfo](Microsoft.AI.Foundry.Local.ModelInfo.md)
 
@@ -33,14 +40,26 @@ Optional settings applied to a model instance (e.g. default parameters).
 
  [ModelVariant](Microsoft.AI.Foundry.Local.ModelVariant.md)
 
+Represents a single, concrete downloadable model instance (a specific version + configuration) identified
+by a unique model Id and grouped under a broader alias shared with other versions.
+Provides:
+ - Direct access to full catalog metadata via <xref href="Microsoft.AI.Foundry.Local.ModelInfo" data-throw-if-not-resolved="false"></xref>
+ - Lifecycle operations (download, load, unload, cache removal)
+ - State queries (cached vs. loaded) independent of other variants
+ - Resolution of the local cache path
+ - Creation of OpenAI‑style chat and audio clients once loaded
+Unlike <xref href="Microsoft.AI.Foundry.Local.Model" data-throw-if-not-resolved="false"></xref>, which orchestrates multiple variants under an alias, <xref href="Microsoft.AI.Foundry.Local.ModelVariant" data-throw-if-not-resolved="false"></xref> is the
+authoritative handle for executing operations against one specific version.
+All public methods surface consistent error handling through <xref href="Microsoft.AI.Foundry.Local.FoundryLocalException" data-throw-if-not-resolved="false"></xref>.
+
  [OpenAIAudioClient](Microsoft.AI.Foundry.Local.OpenAIAudioClient.md)
 
-Audio transcription client using an OpenAI compatible API surface implemented via Foundry Local Core.
-Supports standard and streaming transcription of audio files.
+Audio transcription client using an OpenAI compatible API surface implemented using Betalgo.Ranul.OpenAI SDK types.
+Supports transcription of audio files.
 
  [OpenAIChatClient](Microsoft.AI.Foundry.Local.OpenAIChatClient.md)
 
-Chat client using an OpenAI compatible API surface implemented via Foundry Local Core.
+Chat client using an OpenAI compatible API surface implemented using Betalgo.Ranul.OpenAI SDK types.
 Provides convenience methods for standard and streaming chat completions.
 
  [Parameter](Microsoft.AI.Foundry.Local.Parameter.md)

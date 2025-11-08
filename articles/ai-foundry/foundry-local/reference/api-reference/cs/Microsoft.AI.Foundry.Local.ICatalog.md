@@ -25,7 +25,7 @@ string Name { get; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ICatalog_GetCachedModelsAsync_System_Nullable_System_Threading_CancellationToken__"></a> GetCachedModelsAsync\(CancellationToken?\)
 
-Get a list of currently downloaded models from the model cache.
+Get the list of currently downloaded models available in the local cache.
 
 ```csharp
 Task<List<ModelVariant>> GetCachedModelsAsync(CancellationToken? ct = null)

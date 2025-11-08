@@ -287,3 +287,4 @@ dotnet run -r:linux-x64
 
 ### API reference
 
+- The complete API reference for the Foundry Local C# SDK is available at [Microsoft.AI.Foundry.Local](../../reference/api-reference/cs/Microsoft.AI.Foundry.Local.md).

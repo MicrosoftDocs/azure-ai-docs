@@ -3,6 +3,18 @@
 Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)  
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
+Represents a single, concrete downloadable model instance (a specific version + configuration) identified
+by a unique model Id and grouped under a broader alias shared with other versions.
+Provides:
+ - Direct access to full catalog metadata via <xref href="Microsoft.AI.Foundry.Local.ModelInfo" data-throw-if-not-resolved="false"></xref>
+ - Lifecycle operations (download, load, unload, cache removal)
+ - State queries (cached vs. loaded) independent of other variants
+ - Resolution of the local cache path
+ - Creation of OpenAI‑style chat and audio clients once loaded
+Unlike <xref href="Microsoft.AI.Foundry.Local.Model" data-throw-if-not-resolved="false"></xref>, which orchestrates multiple variants under an alias, <xref href="Microsoft.AI.Foundry.Local.ModelVariant" data-throw-if-not-resolved="false"></xref> is the
+authoritative handle for executing operations against one specific version.
+All public methods surface consistent error handling through <xref href="Microsoft.AI.Foundry.Local.FoundryLocalException" data-throw-if-not-resolved="false"></xref>.
+
 ```csharp
 public class ModelVariant : IModel
 ```

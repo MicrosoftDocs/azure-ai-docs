@@ -3,7 +3,7 @@
 Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)  
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
-Chat client using an OpenAI compatible API surface implemented via Foundry Local Core.
+Chat client using an OpenAI compatible API surface implemented using Betalgo.Ranul.OpenAI SDK types.
 Provides convenience methods for standard and streaming chat completions.
 
 ```csharp
@@ -29,7 +29,7 @@ public class OpenAIChatClient
 
 ### <a id="Microsoft_AI_Foundry_Local_OpenAIChatClient_Settings"></a> Settings
 
-Mutable settings applied on each request.
+Settings to use for chat completions using this client.
 
 ```csharp
 public OpenAIChatClient.ChatSettings Settings { get; }

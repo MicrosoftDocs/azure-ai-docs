@@ -3,8 +3,8 @@
 Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)  
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
-Audio transcription client using an OpenAI compatible API surface implemented via Foundry Local Core.
-Supports standard and streaming transcription of audio files.
+Audio transcription client using an OpenAI compatible API surface implemented using Betalgo.Ranul.OpenAI SDK types.
+Supports transcription of audio files.
 
 ```csharp
 public class OpenAIAudioClient
@@ -40,7 +40,7 @@ public Task<AudioCreateTranscriptionResponse> TranscribeAudioAsync(string audioF
 `audioFilePath` [string](https://learn.microsoft.com/dotnet/api/system.string)
 
 Path to the file containing audio recording.
-Supported formats depend on the underlying model/runtime.
+Supported formats include mp3, wav and flac.
 
 `ct` [CancellationToken](https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken)?
 
@@ -65,7 +65,7 @@ public IAsyncEnumerable<AudioCreateTranscriptionResponse> TranscribeAudioStreami
 `audioFilePath` [string](https://learn.microsoft.com/dotnet/api/system.string)
 
 Path to the file containing audio recording.
-Supported formats depend on the underlying model/runtime.
+Supported formats depend include mp3, wav and flac.
 
 `ct` [CancellationToken](https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken)
 
