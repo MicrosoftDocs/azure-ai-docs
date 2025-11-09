@@ -66,7 +66,7 @@ wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?ap
 
 Get the `<your-model-deployment>` value from the AI Foundry portal. It corresponds to the name you gave the model at deployment time.
 
-#### [Python SDK](#tab/sdk)
+#### [Python SDK](#tab/python)
 
 [!INCLUDE [Header](./includes/common/voice-live-python.md)]
 
@@ -147,7 +147,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
 
 ---
 
-#### [C# SDK](#tab/sdk)
+#### [C# SDK](#tab/csharp)
 
 [!INCLUDE [Header](./includes/common/voice-live-csharp.md)]
 
