@@ -24,7 +24,7 @@ Text translation documentation contains the following article types:
 
 ### [Latest preview version](#tab/linux)
 
-With the latest preview release, you now can optionally select either the standard neural machine (NMT) translation or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [configure Azure resources](../how-to/create-translator-resource.md).
+With the latest preview release, you now can optionally select either the standard neural machine translation (NMT) or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [configure Azure resources](../how-to/create-translator-resource.md).
 
 * [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
 
@@ -60,15 +60,15 @@ With the latest preview release, you now can optionally select either the standa
 
 ---
 
-## Text translation deployment options
+## Text translation development options
 
 Add Text translation to your projects and applications using the following resources:
 
 |Development option  |Description  |
 |---------|---------|
-|[**Azure AI Foundry (new)**](https://ai.azure.com/) portal| Azure AI Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.
-|[**Azure AI Foundry (classic)**](https://ai.azure.com/) portal| Azure AI Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types. When you sign up, you can use your own data to detect more than 100 languages in their primary script.|
-|[**REST API or Client library (Azure SDK)**](quickstart/client-library-sdk.md)| Integrate translation into your applications using the REST API, or the client library available in various languages.|
+|**Azure AI Foundry**| &bullet; [**Azure AI Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[** Azure AI Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
+|**REST API**|Integrate translation into your applications using the [REST API (GA) version](reference/rest-api-guide.md) or [REST API (preview) version](preview/rest-api-guide.md).|
+|**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications using one of our [client libraries (SDKs)](quickstart/client-library-sdk.md) available in various programming languages.|
 | **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.|
 
 ## Data residency
