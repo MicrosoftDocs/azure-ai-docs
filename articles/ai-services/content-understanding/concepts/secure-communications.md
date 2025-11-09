@@ -13,7 +13,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Security features in Content Understanding
+# Security features in Azure Content Understanding in Foundry Tools
 
 Content Understanding is part of Azure AI Foundry and provides the same security and privacy features available to all Foundry services. These capabilities help protect your data and ensure compliance with Microsoft security standards.
 

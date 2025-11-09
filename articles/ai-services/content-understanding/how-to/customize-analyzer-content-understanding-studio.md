@@ -64,7 +64,7 @@ To get started, you will need to upload your training data to a blob storage acc
 
 ## Next steps
 * Learn how to [classify and route your data using Content Understanding Studio](./classification-content-understanding-studio.md)
-* Learn more about [Best practices for Azure AI Content Understanding](../concepts/best-practices.md) 
+* Learn more about [Best practices for Azure Content Understanding](../concepts/best-practices.md) 
 
 
 
