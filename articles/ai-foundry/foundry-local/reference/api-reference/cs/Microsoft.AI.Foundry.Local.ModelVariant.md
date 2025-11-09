@@ -4,15 +4,15 @@ Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
 Represents a single, concrete downloadable model instance (a specific version + configuration) identified
-by a unique model Id and grouped under a broader alias shared with other versions.
+by a unique model Id and grouped under a broader alias shared with other device-specific variants.
 Provides:
- - Direct access to full catalog metadata via <xref href="Microsoft.AI.Foundry.Local.ModelInfo" data-throw-if-not-resolved="false"></xref>
+ - Direct access to catalog metadata via <xref href="Microsoft.AI.Foundry.Local.ModelInfo" data-throw-if-not-resolved="false"></xref>
  - Lifecycle operations (download, load, unload, cache removal)
  - State queries (cached vs. loaded) independent of other variants
  - Resolution of the local cache path
  - Creation of OpenAI‑style chat and audio clients once loaded
 Unlike <xref href="Microsoft.AI.Foundry.Local.Model" data-throw-if-not-resolved="false"></xref>, which orchestrates multiple variants under an alias, <xref href="Microsoft.AI.Foundry.Local.ModelVariant" data-throw-if-not-resolved="false"></xref> is the
-authoritative handle for executing operations against one specific version.
+the one specific model instance.
 All public methods surface consistent error handling through <xref href="Microsoft.AI.Foundry.Local.FoundryLocalException" data-throw-if-not-resolved="false"></xref>.
 
 ```csharp
@@ -66,7 +66,7 @@ public string Id { get; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelVariant_Info"></a> Info
 
-Full metadata record for this variant.
+Metadata record for this variant.
 
 ```csharp
 public ModelInfo Info { get; }
@@ -92,7 +92,7 @@ public int Version { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelVariant_DownloadAsync_System_Action_System_Single__System_Nullable_System_Threading_CancellationToken__"></a> DownloadAsync\(Action<float\>?, CancellationToken?\)
 
-Download the model files from the server.
+Download the model files from the catalog.
 
 ```csharp
 public Task DownloadAsync(Action<float>? downloadProgress = null, CancellationToken? ct = null)
@@ -102,7 +102,9 @@ public Task DownloadAsync(Action<float>? downloadProgress = null, CancellationTo
 
 `downloadProgress` [Action](https://learn.microsoft.com/dotnet/api/system.action\-1)<[float](https://learn.microsoft.com/dotnet/api/system.single)\>?
 
-Optional progress callback.
+Optional progress callback called on a separate thread that
+    reports download progress in percent (float), with values ending in 100 (percent). When download is complete and all callbacks
+    have been made, the Task for the download completes.
 
 `ct` [CancellationToken](https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken)?
 
@@ -216,7 +218,7 @@ Task that resolves to true if the model is loaded, false otherwise.
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelVariant_LoadAsync_System_Nullable_System_Threading_CancellationToken__"></a> LoadAsync\(CancellationToken?\)
 
-Load the model into the runtime for inference.
+Load the model so it is available for inferencing.
 
 ```csharp
 public Task LoadAsync(CancellationToken? ct = null)

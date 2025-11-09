@@ -32,7 +32,7 @@ public record ModelInfo : IEquatable<ModelInfo>
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelInfo_Alias"></a> Alias
 
-Alias grouping multiple versions of the same model.
+Alias grouping multiple device-specific variants of the same underlying model.
 
 ```csharp
 [JsonPropertyName("alias")]
@@ -123,7 +123,7 @@ public string License { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelInfo_LicenseDescription"></a> LicenseDescription
 
-Human readable license description.
+The model license description.
 
 ```csharp
 [JsonPropertyName("licenseDescription")]
@@ -149,7 +149,7 @@ public long MaxOutputTokens { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelInfo_MinFLVersion"></a> MinFLVersion
 
-Minimum required Foundry Local version for this model.
+Minimum required Foundry Local CLI version for this model.
 
 ```csharp
 [JsonPropertyName("minFLVersion")]
@@ -214,7 +214,7 @@ public PromptTemplate? PromptTemplate { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelInfo_ProviderType"></a> ProviderType
 
-Provider type (e.g. onnx, openai).
+Either AzureFoundry (model from Catalog) or Local (model from local filesystem but not found in the catalog).
 
 ```csharp
 [JsonPropertyName("providerType")]
@@ -240,7 +240,7 @@ public string Publisher { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelInfo_Runtime"></a> Runtime
 
-Runtime configuration describing target device and execution provider.
+Runtime configuration describing target device and default execution provider.
 
 ```csharp
 [JsonPropertyName("runtime")]
@@ -266,7 +266,7 @@ public bool SupportsToolCalling { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_ModelInfo_Task"></a> Task
 
-Primary task supported by the model (e.g. completion, transcription).
+Primary task supported by the model (chat-completion or automatic-speech-recognition).
 
 ```csharp
 [JsonPropertyName("task")]

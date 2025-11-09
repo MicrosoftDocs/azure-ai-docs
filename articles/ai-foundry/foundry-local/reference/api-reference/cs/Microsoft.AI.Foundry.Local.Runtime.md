@@ -32,7 +32,7 @@ public record Runtime : IEquatable<Runtime>
 
 ### <a id="Microsoft_AI_Foundry_Local_Runtime_DeviceType"></a> DeviceType
 
-Device type the model will run on.
+Device type the model will run on (e.g. CPU, GPU, NPU).
 
 ```csharp
 [JsonPropertyName("deviceType")]
@@ -45,7 +45,7 @@ public DeviceType DeviceType { get; init; }
 
 ### <a id="Microsoft_AI_Foundry_Local_Runtime_ExecutionProvider"></a> ExecutionProvider
 
-Execution provider name (e.g. cuda, directml, webgpu). Open‑ended string.
+Execution provider name (e.g. QNNExecutionProvider, CUDAExecutionProvider, WebGPUExecutionProvider, etc). Open‑ended string.
 
 ```csharp
 [JsonPropertyName("executionProvider")]

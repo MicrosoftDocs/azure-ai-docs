@@ -3,7 +3,8 @@
 Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)  
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
-Logging verbosity levels used by the Foundry Local SDK. Mirrors typical structured logging levels.
+Logging verbosity levels used by the Foundry Local SDK. These levels align with Serilog (Verbose, Debug, Information, Warning, Error, Fatal)
+and differ from Microsoft.Extensions.Logging.LogLevel, which includes Trace, Critical, and None.
 
 ```csharp
 public enum LogLevel
@@ -25,7 +26,7 @@ Recoverable error events.
 
 `Fatal = 5` 
 
-Fatal errors causing operation termination.
+Critical errors indicating severe issues.
 
 
 

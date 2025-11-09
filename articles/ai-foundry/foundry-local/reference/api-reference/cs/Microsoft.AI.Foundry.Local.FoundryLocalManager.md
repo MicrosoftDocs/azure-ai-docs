@@ -122,7 +122,7 @@ public void Dispose()
 
 ### <a id="Microsoft_AI_Foundry_Local_FoundryLocalManager_EnsureEpsDownloadedAsync_System_Nullable_System_Threading_CancellationToken__"></a> EnsureEpsDownloadedAsync\(CancellationToken?\)
 
-Ensure execution providers are downloaded and registered (WinML builds only).
+Ensure execution providers are downloaded and registered (For Microsoft.AI.Foundry.Local.WinML package).
 Subsequent calls are fast after initial download.
 
 ```csharp
@@ -161,12 +161,18 @@ The model catalog.
 
 #### Remarks
 
-If using a WinML build this may trigger execution provider download if not already done. Call
-<xref href="Microsoft.AI.Foundry.Local.FoundryLocalManager.EnsureEpsDownloadedAsync(System.Nullable%7bSystem.Threading.CancellationToken%7d)" data-throw-if-not-resolved="false"></xref> first to separate these operations.
+If using Microsoft.AI.Foundry.Local.WinML this will trigger execution provider download if not already done.
+If the execution provider is already downloaded and up-to-date then this operation is fast. You can call
+<xref href="Microsoft.AI.Foundry.Local.FoundryLocalManager.EnsureEpsDownloadedAsync(System.Nullable%7bSystem.Threading.CancellationToken%7d)" data-throw-if-not-resolved="false"></xref> first to separate these operations - for example, during
+application startup.
 
 ### <a id="Microsoft_AI_Foundry_Local_FoundryLocalManager_StartWebServiceAsync_System_Nullable_System_Threading_CancellationToken__"></a> StartWebServiceAsync\(CancellationToken?\)
 
-Start the optional web service exposing OpenAI compatible endpoints.
+Start the optional web service exposing OpenAI compatible endpoints that supports:
+   /v1/chat/completions
+   /v1/audio/transcriptions
+   /v1/models
+   /v1/models/{model_id}
 
 ```csharp
 public Task StartWebServiceAsync(CancellationToken? ct = null)

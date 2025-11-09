@@ -3,7 +3,8 @@
 Namespace: [Microsoft.AI.Foundry.Local](Microsoft.AI.Foundry.Local.md)  
 Assembly: Microsoft.AI.Foundry.Local.dll  
 
-Template segments used to build a prompt for a model. Individual segments are optional.
+Template segments used to build a prompt for a model.
+For AzureFoundry model types you do NOT need to populate this; Foundry Local will handle prompt construction automatically.
 
 ```csharp
 public record PromptTemplate : IEquatable<PromptTemplate>

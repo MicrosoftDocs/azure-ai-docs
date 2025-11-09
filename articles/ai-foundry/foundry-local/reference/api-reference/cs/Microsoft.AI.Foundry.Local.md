@@ -41,15 +41,15 @@ Optional settings applied to a model instance (e.g. default parameters).
  [ModelVariant](Microsoft.AI.Foundry.Local.ModelVariant.md)
 
 Represents a single, concrete downloadable model instance (a specific version + configuration) identified
-by a unique model Id and grouped under a broader alias shared with other versions.
+by a unique model Id and grouped under a broader alias shared with other device-specific variants.
 Provides:
- - Direct access to full catalog metadata via <xref href="Microsoft.AI.Foundry.Local.ModelInfo" data-throw-if-not-resolved="false"></xref>
+ - Direct access to catalog metadata via <xref href="Microsoft.AI.Foundry.Local.ModelInfo" data-throw-if-not-resolved="false"></xref>
  - Lifecycle operations (download, load, unload, cache removal)
  - State queries (cached vs. loaded) independent of other variants
  - Resolution of the local cache path
  - Creation of OpenAI‑style chat and audio clients once loaded
 Unlike <xref href="Microsoft.AI.Foundry.Local.Model" data-throw-if-not-resolved="false"></xref>, which orchestrates multiple variants under an alias, <xref href="Microsoft.AI.Foundry.Local.ModelVariant" data-throw-if-not-resolved="false"></xref> is the
-authoritative handle for executing operations against one specific version.
+the one specific model instance.
 All public methods surface consistent error handling through <xref href="Microsoft.AI.Foundry.Local.FoundryLocalException" data-throw-if-not-resolved="false"></xref>.
 
  [OpenAIAudioClient](Microsoft.AI.Foundry.Local.OpenAIAudioClient.md)
@@ -68,7 +68,8 @@ A single configurable parameter that can influence model behavior.
 
  [PromptTemplate](Microsoft.AI.Foundry.Local.PromptTemplate.md)
 
-Template segments used to build a prompt for a model. Individual segments are optional.
+Template segments used to build a prompt for a model.
+For AzureFoundry model types you do NOT need to populate this; Foundry Local will handle prompt construction automatically.
 
  [Runtime](Microsoft.AI.Foundry.Local.Runtime.md)
 
@@ -95,5 +96,6 @@ Device types supported by the runtime for model execution.
 
  [LogLevel](Microsoft.AI.Foundry.Local.LogLevel.md)
 
-Logging verbosity levels used by the Foundry Local SDK. Mirrors typical structured logging levels.
+Logging verbosity levels used by the Foundry Local SDK. These levels align with Serilog (Verbose, Debug, Information, Warning, Error, Fatal)
+and differ from Microsoft.Extensions.Logging.LogLevel, which includes Trace, Critical, and None.
 

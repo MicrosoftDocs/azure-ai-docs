@@ -39,7 +39,7 @@ public class Model : IModel
 
 ### <a id="Microsoft_AI_Foundry_Local_Model_Alias"></a> Alias
 
-Model alias grouping multiple versions / variants.
+Model alias grouping multiple device-specific variants of the same underlying model.
 
 ```csharp
 public string Alias { get; init; }
@@ -89,7 +89,7 @@ public List<ModelVariant> Variants { get; }
 
 ### <a id="Microsoft_AI_Foundry_Local_Model_DownloadAsync_System_Action_System_Single__System_Nullable_System_Threading_CancellationToken__"></a> DownloadAsync\(Action<float\>?, CancellationToken?\)
 
-Download the model to local cache if not already present.
+Download the model files from the catalog.
 
 ```csharp
 public Task DownloadAsync(Action<float>? downloadProgress = null, CancellationToken? ct = null)
@@ -99,8 +99,9 @@ public Task DownloadAsync(Action<float>? downloadProgress = null, CancellationTo
 
 `downloadProgress` [Action](https://learn.microsoft.com/dotnet/api/system.action\-1)<[float](https://learn.microsoft.com/dotnet/api/system.single)\>?
 
-Optional progress callback for download progress.
-Percentage download (0 - 100.0) is reported.
+Optional progress callback called on a separate thread that
+    reports download progress in percent (float), with values ending in 100 (percent). When download is complete and all callbacks
+    have been made, the Task for the download completes.
 
 `ct` [CancellationToken](https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken)?
 
@@ -109,6 +110,8 @@ Optional cancellation token.
 #### Returns
 
  [Task](https://learn.microsoft.com/dotnet/api/system.threading.tasks.task)
+
+Task representing the asynchronous operation.
 
 ### <a id="Microsoft_AI_Foundry_Local_Model_GetAudioClientAsync_System_Nullable_System_Threading_CancellationToken__"></a> GetAudioClientAsync\(CancellationToken?\)
 
