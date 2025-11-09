@@ -6,7 +6,7 @@ author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/09/2025
 ---
 
 [!INCLUDE [Header](../../common/voice-live-python.md)]
