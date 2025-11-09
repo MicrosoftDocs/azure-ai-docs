@@ -18,7 +18,7 @@ ms.custom:
 
 Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that's available as part of the [Azure AI Foundry Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. It uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-Content Understanding is now a Generally Available (GA) service with the release of the `11-1-2025` API version. It's now available in a broader range of [regions](language-region-support.md). For details on the updates in the GA release see the Content Understanding [What's New](whats-new.md) page. 
+Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. It's now available in a broader range of [regions](language-region-support.md). For details on the updates in the GA release see the Content Understanding [What's New](whats-new.md) page. 
 
 :::image type="content" source="media/overview/content-understanding-framework-2025.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/content-understanding-framework-2025.png" :::
 
