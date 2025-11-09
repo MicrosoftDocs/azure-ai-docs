@@ -67,10 +67,10 @@ items:
 
   - name: Quickstarts
     items:
-    - name: Translator Text SDK
+    - name: Translate text programmatically
       displayName: get started,sdk,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-sdk.md
-    - name:  Translator Text REST APIs
+    - name:  Get started using text translation client libraries
       displayName: get started,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-rest-api.md
   - name: How-to guides
@@ -182,9 +182,9 @@ items:
     items:
       - name: Document translation operations
         href: document-translation/reference/rest-api-guide.md
-      - name: Translate a single document
+      - name: Synchronous document translation
         href: document-translation/reference/translate-document.md
-      - name: Start a batch translation
+      - name: Asynchronous batch translation
         href: document-translation/reference/start-batch-translation.md
       - name: Get status of all translation jobs
         href: document-translation/reference/get-translations-status.md

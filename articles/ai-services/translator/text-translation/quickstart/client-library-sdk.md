@@ -1,12 +1,12 @@
 ---
-title: "Quickstart: Azure AI Translator client libraries"
+title: "Quickstart: Azure AI Translator client libraries (SDKs)"
 titleSuffix: Azure AI services
 description: "Learn to translate text with the Translator service SDks in a programming language of your choice: C#, Java, JavaScript, or Python."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/19/2025
+ms.date: 11/08/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -14,13 +14,13 @@ ms.custom: mode-other, devx-track-dotnet, devx-track-extended-java, devx-track-j
 zone_pivot_groups:  programming-languages-set-translator-sdk
 ---
 
-<!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable MD001 -->
-<!-- markdownlint-disable MD024 -->
-<!-- markdownlint-disable MD036 -->
-<!-- markdownlint-disable MD049 -->
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD001 -->
+<!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD036 -->
+<!-- markdownlint-disable MD049 -->
 
-# Quickstart: Azure AI Translator text client libraries 
+# Quickstart: Azure AI Translator SDKs (text translation)
 
 In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 

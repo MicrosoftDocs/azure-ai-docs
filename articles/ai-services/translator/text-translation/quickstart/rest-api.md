@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Azure AI Translator REST APIs"
+title: "Quickstart: translate text programmatically"
 titleSuffix: Azure AI services
-description: "Learn to translate text with the Translator service REST APIs. Examples are provided in C#, Go, Java, JavaScript, and Python."
+description: "Learn to translate text programmatically with Azure AI Translator service and a programming language of your choice: C#, Java, JavaScript, or Python."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -19,9 +19,9 @@ ms.custom: devx-track-python
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 
-# Quickstart: Azure AI Translator REST APIs
+# Quickstart: translate text programmatically
 
-Try the latest version of Azure AI Translator. In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice or the REST API. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
+In this quickstart, get started using the Translator service programmatically to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
 ## Prerequisites
 

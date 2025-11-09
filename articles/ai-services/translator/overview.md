@@ -26,6 +26,9 @@ Translator service supports the following features. Use the links in this table 
 
 For detailed information regarding Azure AI Translator Service request limits, *see* [**Service and request limits**](service-limits.md#text-translation).
 
+> [!TIP]
+> Use Azure [**AI Foundry**](https://ai.azure.com/) for text and synchronous document translation operations via a no-code interface.
+
 ## Try the Azure AI Translator service for free
 
 First, you need a Microsoft account; if you don't have one, you can sign up for free at the [**Microsoft account portal**](https://account.microsoft.com/account). Select **Create a Microsoft account** and follow the steps to create and verify your new account.
