@@ -52,7 +52,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    {"Text":"fly"}
+    {"text":"fly"}
 ]
 ```
 

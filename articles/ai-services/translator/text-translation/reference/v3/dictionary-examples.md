@@ -57,7 +57,7 @@ An example is:
 
 ```json
 [
-    {"Text":"fly", "Translation":"volar"}
+    {"text":"fly", "Translation":"volar"}
 ]
 ```
 
