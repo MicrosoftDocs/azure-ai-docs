@@ -21,7 +21,7 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 
 | Property | Limit |
 | --- | --- |
-| Resource IDs | 1-64 characters (`[a-zA-Z0-9._-]{1,64}`) |
+| Analyzer ID | 1-64 characters (`[a-zA-Z0-9._]{1,64}`) |
 | URL properties | ≤ 8,192 characters |
 | Description properties | ≤ 1,024 characters |
 | Field names | ≤ 64 characters (`[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}`) |

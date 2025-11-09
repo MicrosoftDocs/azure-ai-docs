@@ -33,7 +33,7 @@ Content extraction transforms unstructured input (documents, audio, video) into 
 When you use AI-powered features that call large language models (LLMs), you incur two types of charges:
 
 - **Contextualization charges**: Prepares context, generate confidence scores, source grounding, and output formatting. For details see [Contextualization tokens](#contextualization-tokens).
-- **Generative model charges**: Token-based costs from Azure AI Foundry models (LLMs for generation, embeddings for training examples). This won't show up as Content Understanding usage, but rather as usage charges for the model deployments you attach to the analyzers. For details see [Generative model charges](#generative-model-charges-llm). 
+- **Generative model charges**: Token-based costs from Azure AI Foundry model deployments (LLMs for generation, embeddings for training examples). Content Understanding uses the Azure AI Foundry model deployment you provide for all generative AI-related calls. You won't see any LLM or embedding token usage billing in Content Understanding—that usage appears on your Azure AI Foundry model deployment. For details see [Generative model charges](#generative-model-charges-llm). 
 
 **Generative features include**: Field extraction, figure analysis, segmentation, categorization, training.
 
@@ -146,7 +146,7 @@ For documents, you're charged for the type of processing Content Understanding p
 
 The generative capabilities of Content Understanding use generative AI models to enhance the quality of the output. In the latest API version [**`2025-11-01`**], you can choose a generative model based on your use case (ex. GPT-4o or GPT-4o-mini). 
 
-When you use any generative capabilities, you incur charges from both Content Understanding and the Azure AI Foundry models that Content Understanding uses:
+When you use any generative capabilities, Content Understanding will use the  Azure AI Foundry models deployment you provide. The token usage for the completion or embeddings models will be on that deployment. 
 
 #### Contextualization tokens
 

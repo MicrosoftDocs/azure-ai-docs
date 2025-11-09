@@ -145,7 +145,26 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<s>`  | Denotes sentences in SSML documents.  | Yes  |
 
 > [!NOTE]
-> Although a [previous section in this guide](#comparison-of-azure-ai-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure AI Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure AI Speech aren't applicable to Azure OpenAI voices. 
+> Although a [previous section in this guide](#comparison-of-azure-ai-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure AI Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure AI Speech aren't applicable to Azure OpenAI voices.
+
+## HD Flash voices
+
+HD voices are currently supported in `eastus`, `westeurope`, and `southeastasia` regions, to provide similar capabilities for customers in China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`), we offer HDFlash versions of selected HD voices. These HDFlash voices deliver enhanced naturalness compared to standard voices. You also can find those HDFlash voices in `eastus`, `westeurope`, and `southeastasia`.
+
+Below is the complete list of available HD Flash voices:
+
+| Voice Name                                 | Gender |
+|-------------------------------------------|--------|
+| zh-CN-Xiaochen:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Female |
+| zh-CN-Yunxia:DragonHDFlashLatestNeural    | Male   |
+| zh-CN-Yunxiao:DragonHDFlashLatestNeural   | Male   |
+| zh-CN-Yunye:DragonHDFlashLatestNeural     | Male   |
+| zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
+
+> [!NOTE]
+> HD Flash only support text in `zh-CN` and `en-US`.
 
 ## Related content
 

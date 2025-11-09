@@ -286,7 +286,7 @@ JSON example:
 |--------------|
 | `highlight` |
 | `underline` |
-| `strkethrough` |
+| `strikethrough` |
 | `rectangle` |
 | `circle` |
 | `drawing` |

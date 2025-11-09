@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 # Supported programming languages for Azure AI Inference SDK
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
+
 All models deployed to Azure AI Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
 
 To use these SDKs, connect them to the [Azure AI model inference URI](how-to/inference.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
