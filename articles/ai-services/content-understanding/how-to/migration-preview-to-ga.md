@@ -1,7 +1,7 @@
 ---
-title: Migration from Content Understanding Preview to GA
+title: Migration from Azure Content Understanding in Foundry Tools Preview to GA
 titleSuffix: Azure AI services
-description: Migrate from Content Understanding Preview to GA, including API changes and best practices.
+description: Migrate from Azure Content Understanding in Foundry Tools Preview to GA, including API changes and best practices.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-understanding
@@ -13,7 +13,7 @@ ms.custom:
 ---
 
 
-# Migration from Content Understanding Preview to GA
+# Migration from Azure Content Understanding in Foundry Tools Preview to GA
 
 The Content Understanding GA API introduces several new capabilities and updates to features launched in earlier preview API versions. The [what's new](../whats-new.md) page provides an overview of all the changes in the GA API version. This document highlights the changes needed to analyzers built with  one of the preview API versions to use with the GA API version.
 

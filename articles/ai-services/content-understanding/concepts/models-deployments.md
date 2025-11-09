@@ -14,7 +14,7 @@ ms.custom:
 
 # Connect your Content Understanding analyzer to Foundry model deployments
 
-Content Understanding uses your Foundry model deployments for all operations that require a Generative AI model. This approach enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario best for price and latency. 
+Azure Content Understanding in Foundry Tools uses your Foundry model deployments for all operations that require a Generative AI model. This approach enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario best for price and latency. 
 
 You're billed for all tokens (input and output) processed by the connected deployment, and Content Understanding only bills you for the Content-Understanding-specific meters. See [pricing explainer](../overview/pricing-explainer.md) to learn more about the billing model.
 

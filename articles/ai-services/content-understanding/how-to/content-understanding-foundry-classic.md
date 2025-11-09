@@ -35,7 +35,7 @@ Content Understanding offers two modes for different scenarios:
   - Use reference data (knowledge base) to guide extraction and validation
   - Perform complex multi-step analysis that goes beyond simple field extraction
 
-For detailed guidance on which mode to choose for your scenario, see [Azure AI Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
+For detailed guidance on which mode to choose for your scenario, see [Azure Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
 
 ## Prerequisites
 
