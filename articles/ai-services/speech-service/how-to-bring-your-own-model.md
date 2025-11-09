@@ -145,8 +145,6 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
     python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name"
     ```
 
----
-
 #### [C# SDK](#tab/csharp)
 
 [!INCLUDE [Header](./includes/common/voice-live-csharp.md)]
