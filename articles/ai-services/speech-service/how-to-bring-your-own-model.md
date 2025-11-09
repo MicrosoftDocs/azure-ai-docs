@@ -70,7 +70,7 @@ Get the `<your-model-deployment>` value from the AI Foundry portal. It correspon
 
 [!INCLUDE [Header](./includes/common/voice-live-python.md)]
 
-Use the [Python SDK quickstart code](./voice-live-quickstart?tabs=windows%2Ckeyless&pivots=programming-language-python) to start a voice conversation, and make the following changes to enable BYOM:
+Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ckeyless&pivots=programming-language-python) to start a voice conversation, and make the following changes to enable BYOM:
 
 1. In the `parse_arguments()` function, add a new argument for the BYOM profile type:
    
@@ -151,7 +151,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart?tabs=windows%2Ckeyl
 
 [!INCLUDE [Header](./includes/common/voice-live-csharp.md)]
 
-Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart?tabs=windows%2Ckeyless&pivots=programming-language-csharp) to start a voice conversation, and make the following changes to enable BYOM:
+Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ckeyless&pivots=programming-language-csharp) to start a voice conversation, and make the following changes to enable BYOM:
 
 1. Add the `System.Web` and `System.Runtime.InteropServices` using statements at the top of the file:
 
