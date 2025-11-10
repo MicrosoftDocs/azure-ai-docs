@@ -105,7 +105,7 @@ Here, ```path``` can include:
 
 7. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify the labeled data as a type of ```knowledgeSources```. See [knowledgeSources](/rest/api/contentunderstanding/content-analyzers/create-or-replace) for more details on how to define an analyzer to use labeled data.
 
-8. For video modality analyzers, the key frames are now returned as  an array of ```keyFrames```. Learn more about the [analyzer response](https://review.learn.microsoft.com/en-us/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-11-01&branch=main&tabs=HTTP#response).
+8. For video modality analyzers, the key frames are now returned as  an array of ```keyFrames```. Learn more about the [analyzer response](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 ### Analyze operation
 
