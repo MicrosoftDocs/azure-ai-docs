@@ -28,7 +28,7 @@ Content extraction analyzers focus on optical character recognition and layout a
 
 #### `prebuilt-read`
 
-* Extracts various content elements such as words, formulas, and barcodes from documents
+* Extracts various content elements such as words, paragraphs, formulas, and barcodes from documents
 * Provides basic optical character recognition (OCR) capabilities
 * Foundational text extraction without layout analysis
 
@@ -38,10 +38,10 @@ This prebuilt doesn't require a large language model (LLM) or Embeddings model
 
 * Extracts various content and layout elements such as words, figures, paragraphs, and tables from documents
 * Identifies document structure including sections and formatting
-* Detects all figure types including charts, diagrams, pictures, icons, and other images providing location information
 * Extracts hyperlinks embedded within documents
 * Captures annotations such as highlights, underlines, and strikethroughs in digital PDFs
 * Provides detailed layout information beyond basic text extraction
+* Detects all figure types including charts, diagrams, pictures, icons, and other images providing location information (PDF files only)
 
 This prebuilt doesn't require a large language model (LLM) or Embeddings model
 

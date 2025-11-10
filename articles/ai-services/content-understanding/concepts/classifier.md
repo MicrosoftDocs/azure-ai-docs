@@ -70,7 +70,7 @@ The newly designed analyzer operation allows for hierarchical splitting and clas
 
 ## Classifier limits
 
-For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#segmentationclassification).
+For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#basic-limits).
 
 ## Best practices
 

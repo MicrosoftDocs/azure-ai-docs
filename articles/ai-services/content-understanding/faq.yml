@@ -74,7 +74,7 @@ sections:
           * **Content extraction**: Charges per unit of input processed (per 1,000 pages for documents, per minute for audio/video). 
           * **Generative features**: When using AI-powered features, you incur contextualization charges (fixed rate per content unit) plus token-based charges from your Azure AI Foundry model deployments (input/output tokens and embeddings).
           
-          For detailed pricing information, examples, and cost optimization tips, see the [Pricing explainer](overview/pricing-explainer.md) and [Content Understanding pricing page](https://azure.microsoft.com/pricing/details/content-understanding/).
+          For detailed pricing information, examples, and cost optimization tips, see the [Pricing explainer](pricing-explainer.md) and [Content Understanding pricing page](https://azure.microsoft.com/pricing/details/content-understanding/).
       - question: |
           How do the face capabilities in Content Understanding differ from the Azure AI Face service?
         answer: |

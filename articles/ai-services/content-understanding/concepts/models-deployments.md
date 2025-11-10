@@ -16,7 +16,7 @@ ms.custom:
 
 Content Understanding uses your Foundry model deployments for all operations that require a Generative AI model. This approach enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario best for price and latency. 
 
-You're billed for all tokens (input and output) processed by the connected deployment, and Content Understanding only bills you for the Content-Understanding-specific meters. See [pricing explainer](../overview/pricing-explainer.md) to learn more about the billing model.
+You're billed for all tokens (input and output) processed by the connected deployment, and Content Understanding only bills you for the Content-Understanding-specific meters. See [pricing explainer](../pricing-explainer.md) to learn more about the billing model.
 
 The service requires a `chat completion` model and `embeddings` model and supports a few different options for each. Some analyzers have a dependency on a specific model.
 
@@ -118,6 +118,6 @@ Submit an analyze request for the analyzer and validate that the response is acc
 
 ## Related content
 
-* [Learn more about Content Understanding pricing](../overview/pricing-explainer.md)
+* [Learn more about Content Understanding pricing](../pricing-explainer.md)
 
 * [Learn more Content Understanding analyzers](analyzer-reference.md)

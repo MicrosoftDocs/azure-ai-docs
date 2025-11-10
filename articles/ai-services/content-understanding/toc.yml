@@ -19,10 +19,10 @@ items:
         href: language-region-support.md
       - name: Foundry and Content Understanding Studio comparison
         displayName: studio, foundry, differences, comparison, use cases, features
-        href: overview/foundry-vs-content-understanding-studio.md
+        href: foundry-vs-content-understanding-studio.md
       - name: Pricing model details and examples
         displayName: pricing, cost, examples, billing
-        href: overview/pricing-explainer.md
+        href: pricing-explainer.md
       - name: Pricing
         href: https://azure.microsoft.com/pricing/details/content-understanding/
       - name: Security features

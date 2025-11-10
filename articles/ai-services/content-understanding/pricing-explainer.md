@@ -423,6 +423,6 @@ Here are detailed examples showing how pricing works across different scenarios:
 
 - [Azure AI Content Understanding Pricing page](https://azure.microsoft.com/pricing/details/content-understanding/)
 - [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)
-- [Content Understanding quickstart](../quickstart/use-rest-api.md)
-- [Best practices for Content Understanding](../concepts/best-practices.md)
-- [Prebuilt analyzers](../concepts/prebuilt-analyzers.md)
+- [Content Understanding quickstart](quickstart/use-rest-api.md)
+- [Best practices for Content Understanding](concepts/best-practices.md)
+- [Prebuilt analyzers](concepts/prebuilt-analyzers.md)
