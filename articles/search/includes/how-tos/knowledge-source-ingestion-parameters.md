@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/04/2025
+ms.date: 11/10/2025
 ---
 
 For indexed knowledge sources only, you can pass the following `ingestionParameters` properties to control how content is ingested and processed.
@@ -19,4 +19,4 @@ For indexed knowledge sources only, you can pass the following `ingestionParamet
 | `aiServices` | An Azure AI Foundry resource to access Azure Content Understanding in Foundry Tools. Setting this parameter requires that `contentExtractionMode` is set to `standard`. | Object | Only `apiKey` is editable | Yes |
 | `assetStore` | A blob container to store extracted images. Setting this parameter requires that `contentExtractionMode` is set to `standard`. | Object | No | No |
 | `ingestionSchedule` | Adds scheduling information to the generated indexer. You can also [add a schedule](../../search-howto-schedule-indexers.md) later to automate data refresh. | Object | Yes | No |
-| `ingestionPermissionOptions` | The document-level permissions to ingest from select knowledge sources: either ADLS Gen2 (specified when `"isADLSGen2": true` within a blob knowledge source) or indexed SharePoint. If you specify `userIds`, `groupIds`, or `rbacScope`, the generated indexer will include the ingested permissions. | Array | No | No |
+| `ingestionPermissionOptions` | The document-level permissions to ingest from select knowledge sources: either [ADLS Gen2](../../search-indexer-access-control-lists-and-role-based-access.md) (specified when `"isADLSGen2": true` within a blob knowledge source) or [indexed SharePoint](../../search-indexer-sharepoint-access-control-lists.md). If you specify `userIds`, `groupIds`, or `rbacScope`, the generated indexer will include the ingested permissions. | Array | No | No |
