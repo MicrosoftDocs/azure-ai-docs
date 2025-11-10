@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/01/2025
+ms.date: 11/10/2025
 ---
 
 # Create a remote SharePoint knowledge source
@@ -16,7 +16,7 @@ ms.date: 11/01/2025
 
 A *remote SharePoint knowledge source* uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint in Microsoft 365, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There's no search index used by this knowledge source, and only textual content is queried.
 
-At query time, the remote SharePoint knowledge source calls the Copilot Retrieval API on behalf of the user identity, so no connection strings are needed in the knowledge source definition. All content to which a user has access is in-scope for knowledge retrieval. To limit sites or constrain search, set a filter expression. Your Azure tenant and the Microsoft 365 tenant must use the same Microsoft Entra ID tenant, and the caller's identity must be recognized by both tenants.
+At query time, the remote SharePoint knowledge source calls the Copilot Retrieval API on behalf of the user identity, so no connection strings are needed in the knowledge source definition. All content to which a user has access is in-scope for knowledge retrieval. To limit sites or constrain search, set a [filter expression](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference). Your Azure tenant and the Microsoft 365 tenant must use the same Microsoft Entra ID tenant, and the caller's identity must be recognized by both tenants.
 
 + You can use filters to scope search by URLs, date ranges, file types, and other metadata.
 
@@ -138,7 +138,6 @@ You can pass the following properties to create a remote SharePoint knowledge so
 | `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No | No |
 | `filterExpression` | An expression written in the SharePoint in [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), used to specify sites and paths to content. | String | Yes |No |
 | `resourceMetadata` | A comma-delimited list of the standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
-| `containerTypeId` | Ignored for now. | String | Yes | No |
 
 <!-- SharePoint embedded is containers. Many moving parts. Defer for now. -->
 <!-- containerTypeId is used to configure a remoteSharePoint that uses the SharePoint team's new "SharePointEmbedded" container. It's being actively validated so we're not ready to support it yet. -->
@@ -153,7 +152,7 @@ Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-servi
 |---------|-------------------|
 | Filter to a single site by ID | `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\""` |
 | Filter to multiple sites by ID | `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\" OR SiteID:\"11bb11bb-cc22-dd33-ee44-55ff55ff55ff\""` |
-| Filter to files under a specific path | `"filterExpression": "Path:\"https://my-demo.sharepoint.com/sites/miml/Shared Documents/en/mydocs\""` |
+| Filter to files under a specific path | `"filterExpression": "Path:\"https://my-demo.sharepoint.com/sites/mysite/Shared Documents/en/mydocs\""` |
 | Filter to a specific date range | `"filterExpression": "LastModifiedTime >= 2024-07-22 AND LastModifiedTime <= 2025-01-08"` |
 | Filter to files of a specific file type | `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""` |
 | Filter to files of a specific information protection label | `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""` |
@@ -167,8 +166,6 @@ Here's an example of a knowledge base that specifies a remote SharePoint knowled
 
 + Make sure you set `outputMode` to `answerSynthesis`. It's a requirement.
 + Answer synthesis stipulates that you set the `retrievalReasoningEffort` to `low`.
-
-Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 ```json
 {
@@ -205,9 +202,9 @@ Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 The [retrieve action](agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
 
-Azure AI Search uses the Microsoft Graph API to exchange the access token for an on-behalf of (OBO) token, which is then used to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as an HTTP header `x-ms-query-source-authorization`.
+Azure AI Search uses the access token to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as an HTTP header `x-ms-query-source-authorization`.
 
-Make sure that you [generate the access token](search-get-started-rbac.md?pivots=rest#get-token) for the Azure tenant, not the Microsoft 365 tenant.
+Make sure that you [generate the access token](search-get-started-rbac.md?pivots=rest#get-token) for tenant that has your search service.
 
 ```http
 POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
@@ -237,7 +234,7 @@ x-ms-query-source-authorization: {{access-token}}
 }
 ```
 
-The retrieve request also takes a KQL filter (`filterExpressionAddOn`) in case you want to apply constraints at query time. If you specify filters for both Copilot retrieval and agentic retrieval, the filters are AND'd together.
+The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filterExpressionAddOn`) in case you want to apply constraints at query time. If you specify `filterExpressionAddOn` both on the knowledge source and on the knowledge base retrieval action, the filters are AND'd together.
 
 Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
 
