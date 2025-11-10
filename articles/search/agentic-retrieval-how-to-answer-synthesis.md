@@ -1,13 +1,13 @@
 ---
 title: Enable Answer Synthesis
 titleSuffix: Azure AI Search
-description: Learn how to enable answer synthesis on a knowledge base or retrieval request in Azure AI Search. At query time, the knowledge base uses your deployed chat completion model to produce natural-language answers with citations to your knowledge sources.
+description: Learn how to enable answer synthesis on a knowledge base or retrieval request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/03/2025
+ms.date: 11/10/2025
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
@@ -16,7 +16,7 @@ ms.date: 11/03/2025
 
 By default, a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information but lacks the context and reasoning necessary for complex queries.
 
-You can instead enable *answer synthesis*, which uses the chat completion model specified in your knowledge base to answer queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
+You can instead enable *answer synthesis*, which uses the LLM specified in your knowledge base to answer queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
 
 You can enable answer synthesis in two ways:
 
@@ -24,7 +24,9 @@ You can enable answer synthesis in two ways:
 + On individual retrieval requests (overrides the default)
 
 > [!IMPORTANT]
-> Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the chat completion model assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+> + The `minimal` retrieval reasoning effort disables LLM processing, so it's incompatible with answer synthesis in both knowledge base definitions and retrieval requests. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+>
+> + Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the LLM assigned to the knowledge base. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Prerequisites
 
