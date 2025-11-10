@@ -103,7 +103,7 @@ Here, ```path``` can include:
 
 6. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the files to be analyzed. Each input can contain the URL or base64 encoded data. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
-7. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify the labeled data as a type of ```knowledgeSources```. See [knowledgeSources](https://review.learn.microsoft.com/en-us/rest/api/contentunderstanding/content-analyzers/create-or-replace?view=rest-contentunderstanding-2025-11-01&branch=main&tabs=HTTP#referenceknowledgesource) for more details on how to define an analyzer to use labeled data.
+7. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify the labeled data as a type of ```knowledgeSources```. See [knowledgeSources](/rest/api/contentunderstanding/content-analyzers/create-or-replace) for more details on how to define an analyzer to use labeled data.
 
 8. For video modality analyzers, the key frames are now returned as  an array of ```keyFrames```. Learn more about the [analyzer response](https://review.learn.microsoft.com/en-us/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-11-01&branch=main&tabs=HTTP#response).
 
