@@ -73,7 +73,7 @@ The Language service also provides several new features as well, which can eithe
 ### Personal and health data information detection
 
 > [!IMPORTANT]
-> The Azure AI Language Text Personally Identifiable Information (PII) detection **anonymization feature** is currently available in `preview` and licensed to you as part of your Azure subscription. Use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+> The Azure AI Language Text Personally Identifiable Information (PII) detection **anonymization feature** is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
 
 :::row:::
    :::column span="":::
