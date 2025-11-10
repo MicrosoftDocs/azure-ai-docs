@@ -13,11 +13,11 @@ ms.author: gimondra
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-> [!IMPORTANT]
-> **Recommended first mechanism for full SharePoint governance in search results**  
-> For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the [Copilot retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) so governance remains fully in SharePoint and query results automatically respect all applicable permissions and labels.
+This article explains how to ingest an Access Control List (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
 
-This article documents basic ACL ingestion capability for SharePoint in Microsoft 365 using an Azure AI Search indexer. This functionality has multiple SharePoint permission model limitations compared to the recommended Knowledge source approach. These include one-time ACL ingestion per file, unless [extra steps are taken](#synchronize-permissions-between-indexed-and-source-content).
+
+> [!IMPORTANT]
+> For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the [Copilot retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) so governance remains fully in SharePoint and query results automatically respect all applicable permissions and labels.
 
 
 ## Prerequisites
@@ -33,13 +33,14 @@ This article documents basic ACL ingestion capability for SharePoint in Microsof
   
 ## Limitations
 
-- During public preview, this functionality applies to initial ingestion only: ACLs are captured on the first ingestion of each file. Later permission changes [require explicit reingestion](#synchronize-permissions-between-indexed-and-source-content)
+- During public preview, this functionality applies to initial ingestion only: ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
+  
 - Not supported in this preview:
   + [SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) applicable to user access.
   + Document [shareable](/sharepoint/shareable-links-anyone-specific-people-organization) "Anyone links" or "People in your organization links". Only "specific people links" sync are supported.
   + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) that can't be resolved to Microsoft Entra groups (such as Owners, Members, Visitors groups).
   + Azure portal is out of support during preview; use REST API version 2025-11-01-preview or SDK preview packages.
-  + This feature must not be tested in combination with [sensitivity labels preservation and honoring](search-indexer-sensitivity-labels.md) feature at this time. Both features must be tested on different indexers and indexes accordingly, since their coexistence is not supported at this time.
+  + This feature must not be tested in combination with [sensitivity labels preservation and honoring](search-indexer-sensitivity-labels.md) feature at this time. Both features must be tested on different indexers and indexes accordingly, since their coexistence is not supported currently.
 
 
 ## Support for the SharePoint permission model
