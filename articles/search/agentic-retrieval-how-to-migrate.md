@@ -51,7 +51,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge
 
 #### Update a searchIndex knowledge source
 
-This procedure creates a new 2025-08-01-preview `searchIndex` knowledge source at the same functional level as the previous 2025-08-01 version. The underlying index itself requires no updates.
+This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source at the same functional level as the previous 2025-08-01 version. The underlying index itself requires no updates.
 
 1. List all knowledge sources by name to find your knowledge source.
 
@@ -143,7 +143,7 @@ The response includes the full definition of the new object. For more informatio
 
 #### Update an azureBlob knowledge source
 
-This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at the same functional level as the previous 2025-08-01 version. It creates a new set of generated objects: data source, skillset, indexer, index.
+This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at the same functional level as the previous 2025-08-01 version. It creates a new set of generated objects: data source, skillset, indexer, index.
 
 1. List all knowledge sources by name to find your knowledge source.
 

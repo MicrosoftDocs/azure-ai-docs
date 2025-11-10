@@ -14,9 +14,9 @@ ms.date: 11/10/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A knowledge source specifies the content used for agentic retrieval. It can be a wrapper for search index or it can target a remote source such as Bing or SharePoint that queries the external content directly. A knowledge source is a required definition in a knowledge base.
+A knowledge source specifies the content used for agentic retrieval. It encapsulates a search index which may be populated by an external data source, or a direct connection to a remote source such as Bing or Sharepoint that is queried directly. A knowledge source is a required definition in a knowledge base.
 
-+ Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one physical data structure, either a search index that [meets the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md) or a supported external resource.
++ Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one data structure, either a search index that [meets the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md) or a supported external resource.
 
 + Reference one or more knowledge sources in a knowledge base. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in a single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
 
@@ -55,7 +55,7 @@ You can use the REST API or an Azure SDK preview package to create a knowledge s
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
-+ [How to create a Web knowledge source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
++ [How to create a Web Knowledge Source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
 After the knowledge source is created, you can reference it in a knowledge base.
 
