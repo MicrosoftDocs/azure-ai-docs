@@ -106,20 +106,20 @@ The following tables describe the current known issues for Azure AI Translator.
 
 ### AI Vision
 
-No current active known issues
+No current active known issues.
 
 ## AI Search
 
-No current active known issues
+No current active known issues.
 
 
 ## Azure OpenAI (Foundry Models)
 
-No current active known issues
+No current active known issues.
 
 ## Observability
 
-No current active known issues
+No current active known issues.
 
 ## Azure Machine Learning
 
