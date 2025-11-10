@@ -38,13 +38,13 @@ Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and si
 
 4.	**Upload sample data**: Now that your project is configured, you can get started with building your custom analyzer. Upload a sample of your data to the tool, and Content Understanding will classify your data and recommend analyzer templates to give you a starting point.
 
-:::image type="content" source="../../media/quickstarts/cu-studio-suggested-templates.png" alt-text="Screenshot of suggested Content Understanding templates." lightbox="../../media/quickstarts/cu-studio-suggested-templates.png" :::
+:::image type="content" source="../media/quickstarts/cu-studio-suggested-templates.png" alt-text="Screenshot of suggested Content Understanding templates." lightbox="../media/quickstarts/cu-studio-suggested-templates.png" :::
 
 5.	**Select a scenario template**: Select a template that best fits your scenario needs. You have the option to customize all schema fields to your specific needs in the next step. 
 
 6.	**Leverage suggested fields**: If your scenario requires custom fields, you can leverage the AI suggestion feature to analyze your data and suggest a full schema with fields that you may be interested in extracting. The tool allows you to keep the suggestions that fit and discard the ones that don't. 
 
-:::image type="content" source="../../media/quickstarts/cu-studio-schema-suggestion.png" alt-text="Screenshot of suggested schemas using AI suggestion tool." lightbox="../../media/quickstarts/cu-studio-schema-suggestion.png" :::
+:::image type="content" source="../media/quickstarts/cu-studio-schema-suggestion.png" alt-text="Screenshot of suggested schemas using AI suggestion tool." lightbox="../media/quickstarts/cu-studio-schema-suggestion.png" :::
 
 7.	**Define your schema**: Review the schema fields that were suggested or were part of the template. If there are additional fields that you want to add or change, you can utilize the edit features to refine the schema fields. Note that you can easily go back to refine your schema after testing and after you build your initial analyzer. Once you complete your changes, select `Save`.
 
