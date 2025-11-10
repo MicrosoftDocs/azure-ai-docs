@@ -6,7 +6,6 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.custom:
   - devx-track-dotnet
   - devx-track-python
@@ -27,6 +26,12 @@ zone_pivot_groups: search-get-started-semantic
 ::: zone pivot="javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/quickstarts/semantic-ranker-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="java"
+
+[!INCLUDE [Java quickstart](includes/quickstarts/semantic-ranker-java.md)]
 
 ::: zone-end
 

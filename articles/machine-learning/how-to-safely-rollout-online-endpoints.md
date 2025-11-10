@@ -69,7 +69,7 @@ In this article, you see how to:
 
 # [Studio](#tab/azure-studio)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An Azure Machine Learning workspace. For instructions for creating a workspace, see [Create the workspace](quickstart-create-resources.md#create-the-workspace).
 

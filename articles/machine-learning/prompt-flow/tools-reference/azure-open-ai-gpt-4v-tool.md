@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: reference
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 01/02/2024
+ms.update-cycle: 365-days
 ---
 
 # Azure OpenAI GPT-4 Turbo with Vision tool (preview)

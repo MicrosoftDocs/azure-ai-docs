@@ -13,11 +13,11 @@ In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchserv
 In Azure AI Search, a [vector store](../../vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
 
 > [!NOTE]
-> This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import and vectorize data wizard**](../../search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
+> This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
@@ -109,7 +109,7 @@ The index schema in this example is organized around hotel content. Sample data 
 
     ```http
     ### Create a new index
-    POST  {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST  {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -402,7 +402,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
 
     ```http
     ### Upload documents
-    POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -673,7 +673,7 @@ The vector query string is semantically similar to the search string, but it inc
 
     ```http
     ### Run a single vector query
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
         
@@ -784,7 +784,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 
     ```http
     ### Run a vector query with a filter
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -847,7 +847,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 
     ```http
     ### Run a vector query with a geo filter
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -917,7 +917,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
     ```http
     ### Run a hybrid query
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
         
@@ -1033,7 +1033,7 @@ Here's the last query in the collection. This hybrid query adds L2 semantic rank
 
     ```http
     ### Run a hybrid query with semantic reranking
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
 
@@ -1127,7 +1127,7 @@ If you want to keep the search service, but delete the index and documents, you 
 
 ```http
 ### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2024-07-01 HTTP/1.1
+DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2025-09-01 HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 ```

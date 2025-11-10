@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp

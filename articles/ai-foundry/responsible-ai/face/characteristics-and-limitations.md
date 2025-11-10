@@ -2,8 +2,8 @@
 title: Characteristics, limitations, and how to measure accuracy when using the face service
 titleSuffix: Azure AI services
 description: Characteristics, Accuracy, and limitations when using the face service. Learn how to benchmark and measure accuracy when using the face service.  
-author: wguyman
-ms.author: wguyman
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article

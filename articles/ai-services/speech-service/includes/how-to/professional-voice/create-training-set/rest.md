@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
@@ -98,12 +98,11 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type
 The response header contains the `Operation-Location` property. Use this URI to get details about the [TrainingSets_UploadData](/rest/api/aiservices/speechapi/training-sets/upload-data) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/284b7e37-f42d-4054-8fa9-08523c3de345?api-version=2024-02-01-preview
-Operation-Id: 284b7e37-f42d-4054-8fa9-08523c3de345
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 ## Next steps
 
 > [!div class="nextstepaction"]
 > [Train the professional voice](../../../../professional-voice-train-voice.md)
-

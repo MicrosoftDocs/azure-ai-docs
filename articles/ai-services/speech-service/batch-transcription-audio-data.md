@@ -3,8 +3,8 @@ title: Locate audio files for batch transcription - Speech service
 titleSuffix: Azure AI services
 description: Batch transcription is used to transcribe a large amount of audio in storage. You should provide multiple files per request or point to an Azure Blob Storage container with the audio files to transcribe.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/25/2025
@@ -167,7 +167,7 @@ Follow these steps to restrict access to the storage account.
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.
 1. In the **Settings** group in the left pane, select **Configuration**.
-1. Select **Disabled** for **Allow Blob public access**. 
+1. Select **Disabled** for **Allow Blob anonymous access**. 
 1. Select **Disabled** for **Allow storage account key access**
 1. Select **Save**.
 

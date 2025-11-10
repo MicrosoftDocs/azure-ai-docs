@@ -5,7 +5,8 @@ description: Learn about the quotas and limits for when you use Azure AI Foundry
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 07/03/2025
 ms.custom: azure-ai-agents
@@ -21,10 +22,13 @@ The following sections provide you with a guide to the default quotas and limits
 
 | Limit Name | Limit Value |
 |--|--|
-| Max files per agent/thread | 10,000 |
-| Max file size for agents & fine-tuning | 512 MB |
-| Max size for all uploaded files for agents |200 GB |  
-| agents token limit | 2,000,000 token limit |
+| Maximum number of files per agent/thread | 10,000 |
+| Maximum file size for agents & fine-tuning | 512 MB |
+| Maximum size for all uploaded files for agents | 300 GB |
+| Maximum file size in tokens for attaching to a vector store | 2,000,000 tokens |
+| Maximum number of messages per thread | 100,000 |
+| Maximum size of `text` content per message | 1,500,000 characters |
+| Maximum number of tools registered per agent | 128 |
 
 ## Quotas and limits for Azure OpenAI models
 

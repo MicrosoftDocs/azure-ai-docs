@@ -4,9 +4,10 @@ titleSuffix: Azure OpenAI
 description: Learn how to create helpful AI Assistants with Logic apps.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
 recommendations: false

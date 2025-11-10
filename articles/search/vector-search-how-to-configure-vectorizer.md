@@ -2,7 +2,6 @@
 title: Configure a vectorizer
 titleSuffix: Azure AI Search
 description: Steps for adding a vectorizer to a search index in Azure AI Search. A vectorizer calls an embedding model that generates embeddings from text.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -44,7 +43,7 @@ The following table lists the embedding models that can be used with a vectorize
 | Vectorizer kind | Model names | Model provider | Associated skill |
 |-----------------|------------|----------------|------------------|
 | [`azureOpenAI`](vector-search-vectorizer-azure-open-ai.md) | text-embedding-ada-002<br>text-embedding-3 | Azure OpenAI | [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) |
-| [`aml`](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) | Facebook-DinoV2-Image-Embeddings<br>Cohere-embed-v3<br>Cohere-embed-v4 <sup>1</sup> | [Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md)  | [AML skill](cognitive-search-aml-skill.md) |
+| [`aml`](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) | Cohere-embed-v3<br>Cohere-embed-v4 <sup>1</sup> | [Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md)  | [AML skill](cognitive-search-aml-skill.md) |
 | [`aiServicesVision`](vector-search-vectorizer-ai-services-vision.md) | [Multimodal embeddings 4.0 API](/azure/ai-services/computer-vision/concept-image-retrieval) | Azure AI Vision (through an Azure AI services multi-service account) | [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) |
 | [`customWebApi`](vector-search-vectorizer-custom-web-api.md) | Any embedding model | Hosted externally | [Custom Web API skill](cognitive-search-custom-skill-web-api.md) |
 
@@ -52,11 +51,11 @@ The following table lists the embedding models that can be used with a vectorize
 
 ## Try a vectorizer with sample data
 
-The [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) reads files from Azure Blob storage, creates an index with chunked and vectorized fields, and adds a vectorizer. By design, the vectorizer that's created by the wizard is set to the same embedding model used to index the blob content.
+The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) reads files from Azure Blob storage, creates an index with chunked and vectorized fields, and adds a vectorizer. By design, the vectorizer that's created by the wizard is set to the same embedding model used to index the blob content.
 
 1. [Upload sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal) to a container on Azure Storage. We used some [small text files from NASA's earth book](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-txt-10) to test these instructions on a free search service.
-  
-1. Run the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md), choosing the blob container for the data source.
+
+1. Run the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md), choosing the blob container for the data source.
 
    :::image type="content" source="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" lightbox="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" alt-text="Screenshot of the connect to your data page.":::
 
@@ -198,7 +197,7 @@ Use a search client to send a query through a vectorizer. This example assumes V
 
    ```http
     ### Run a query
-    POST {{baseUrl}}/indexes/vector-nasa-ebook-txt/docs/search?api-version=2024-07-01 HTTP/1.1
+    POST {{baseUrl}}/indexes/vector-nasa-ebook-txt/docs/search?api-version=2025-09-01 HTTP/1.1
         Content-Type: application/json
         api-key: {{queryApiKey}}
     

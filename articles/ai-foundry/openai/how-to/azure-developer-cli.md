@@ -3,7 +3,8 @@ title: 'Use the Azure Developer CLI to deploy resources for Azure OpenAI On Your
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Use this article to learn how to automate resource deployment for Azure OpenAI On Your Data.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
@@ -17,7 +18,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The Azure Developer CLI [installed](/azure/developer/azure-developer-cli/install-azd) on your machine.
 - Ability to assign permissions at the Subscription level (Owner or User Access Administrator).
 
@@ -55,7 +56,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
     - `Location`: The Azure region where your resources are deployed.
 
     > [!NOTE]
-    > * The sample `azd` template deploys a `gpt-4o-mini` model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the [Azure OpenAI Models](/azure/ai-services/openai/concepts/models) support page.
+    > * The sample `azd` template deploys a `gpt-4o-mini` model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the [Azure OpenAI Models](/azure/ai-foundry/openai/concepts/models) support page.
     > * If you want to deploy a different model, you can edit the variables in the `infra/main.bicep` file.
 
     The provisioning process might take several minutes. Wait for the task to finish before you proceed to the next steps.

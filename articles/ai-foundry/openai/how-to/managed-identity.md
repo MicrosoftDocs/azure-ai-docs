@@ -2,9 +2,10 @@
 title: How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication
 titleSuffix: Azure OpenAI
 description: Provides guidance on how to set managed identity with Microsoft Entra ID
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to 
-ms.date: 04/30/2025
+ms.date: 07/31/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -43,16 +44,15 @@ az login
 
 ```python
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import AzureOpenAI
+from openai import OpenAI
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
 client = AzureOpenAI(
-    api_version="2024-04-01-preview",
-    azure_endpoint="https://{your-custom-endpoint}.openai.azure.com/",
-    azure_ad_token_provider=token_provider
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider
 )
 
 response = client.chat.completions.create(

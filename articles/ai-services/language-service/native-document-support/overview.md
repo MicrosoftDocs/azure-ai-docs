@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/19/2025
+ms.date: 08/20/2025
 ms.author: lajanuar
 ---
 

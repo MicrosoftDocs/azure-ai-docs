@@ -2,7 +2,7 @@
 title: Azure AI services SDK reference
 titleSuffix: Azure AI services
 description: Provides an overview of available Azure AI client libraries and packages with links to reference documentation.
-author: eric-urban
+author: laujan
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python

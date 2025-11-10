@@ -19,13 +19,13 @@ As organizations increasingly rely on Generative AI to manage documents and unst
 ## Azure AI Document Intelligence 
 Azure AI Document Intelligence is the trusted choice for many document-centric scenarios. Customers rely on its industry leading OCR capability and structure extraction, including table recognition, figures, paragraphs, selection marks, sections, and more output in markdown format for easy integrations with LLMs for ingestion in RAG, field extraction, and document chat scenarios. Document Intelligence has the tools to build scalable and flexible IDP solutions with classification and conditional routing for high-accuracy extraction from prebuilt models like invoices, receipts, tax forms, and identification cards. For any custom template, you can label a few samples to train a custom extraction model on any document type. Document Intelligence models have some limitations like supporting only extracting results, limited generalization of custom models across many template variations, and limited semantic understanding capabilities. With confidence scores and grounded results, you can build an effective, low latency, consistent extractive document processing solution for most scenarios. Document Intelligence provides the following models:
 
-* Document digitization or [Optical Character Recognition (OCR)](/azure/ai-services/document-intelligence/prebuilt/read?view=doc-intel-4.0.0&branch=main&tabs=sample-code) to extract printed or handwritten text from documents.
+* Document digitization or [Optical Character Recognition (OCR)](/azure/ai-services/document-intelligence/prebuilt/read) to extract printed or handwritten text from documents.
 
-* Document structure extraction with [Layout](/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0&branch=main&tabs=rest%2Csample-code) to extract table, selection marks, sections, and document structure along with OCR.
+* Document structure extraction with [Layout](/azure/ai-services/document-intelligence/prebuilt/layout) to extract table, selection marks, sections, and document structure along with OCR.
 
-* Document [classification](/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0) to accurately identify, split, and classify multiple documents.
+* Document [classification](/azure/ai-services/document-intelligence/train/custom-classifier) to accurately identify, split, and classify multiple documents.
 
-* Document field extraction with [prebuilt models](/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0) for predefined schema extraction from standard document types like tax, mortgage, bank checks, forms with higher variations like invoices, receipts, and ID, and [custom models](/azure/ai-services/document-intelligence/train/custom-model?view=doc-intel-4.0.0) to label and train your own model. 
+* Document field extraction with [prebuilt models](/azure/ai-services/document-intelligence/model-overview) for predefined schema extraction from standard document types like tax, mortgage, bank checks, forms with higher variations like invoices, receipts, and ID, and [custom models](/azure/ai-services/document-intelligence/train/custom-model) to label and train your own model. 
 
 
 ## Azure AI Content Understanding 
@@ -187,7 +187,7 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 - Medical claims: Doctor notes + lab reports + phone consultations
 - Multimedia RFP submissions: Proposal PDF + product images + explainer videos
 
-:::image type="content" source="media/overview/invoice-mixed.png" alt-text="Scan of a sample invoice form." lightbox="media/overview/invoice-mixed.png":::
+:::image type="content" source="media/overview/invoice-mixed.png" alt-text="Scan of a sample tax invoice form." lightbox="media/overview/invoice-mixed.png":::
 :::image type="content" source="media/overview/receipt-mixed.png" alt-text="Scan of a sample receipt form." lightbox="media/overview/receipt-mixed.png":::
 
 **Recommendation**:

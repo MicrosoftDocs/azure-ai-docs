@@ -8,10 +8,11 @@ ms.subservice: core
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: keli19
-ms.date: 06/26/2024
+ms.date: 10/31/2025
+ms.update-cycle: 365-days
 ---
 
 # Connections in prompt flow

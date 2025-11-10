@@ -1,12 +1,12 @@
 ---
 ms.topic: include
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 2/1/2024
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.author: pafarley
+author: PatrickFarley
 ---
 
 ## Prerequisites

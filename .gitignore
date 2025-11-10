@@ -20,3 +20,8 @@ _repo.*/
 .github/prompts/*.md
 .github/prompts/*.zip
 .github/patterns/*.md
+.github/chatmodes/*.*
+
+
+articles/ai-foundry/includes/get-started-fdp.md
+articles/ai-foundry/toc-files/setup-management/toc.yml

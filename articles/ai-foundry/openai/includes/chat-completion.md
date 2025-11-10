@@ -4,9 +4,10 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API. 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 08/29/2024
+ms.date: 11/04/2025
 manager: nitinme
 keywords: ChatGPT
 
@@ -14,17 +15,24 @@ keywords: ChatGPT
 
 ## Work with chat completion models
 
-The following code snippet shows the most basic way to interact with models that use the Chat Completion API. If this is your first time using these models programmatically, we recommend that you start with the [chat completions quickstart](../chatgpt-quickstart.md).
+The following code snippet shows the most basic way to interact with models that use the Chat Completion API.
 
+> [!NOTE]
+>  The [responses API](../how-to/responses.md) uses the same chat style of interaction, but supports the latest features which are not supported with the older chat completions API.
+
+# [Microsoft Entra ID](#tab/python-secure)
 
 ```python
-import os
-from openai import AzureOpenAI
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-client = AzureOpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 response = client.chat.completions.create(
@@ -39,6 +47,32 @@ response = client.chat.completions.create(
 print(response.model_dump_json(indent=2))
 print(response.choices[0].message.content)
 ```
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o", # model = "deployment_name".
+    messages=[
+        {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
+        {"role": "user", "content": "Who were the founders of Microsoft?"}
+    ]
+)
+
+#print(response)
+print(response.model_dump_json(indent=2))
+print(response.choices[0].message.content)
+```
+
+---
 
 ```output
 {
@@ -236,14 +270,19 @@ The examples so far show the basic mechanics of interacting with the Chat Comple
 
 Every time a new question is asked, a running transcript of the conversation so far is sent along with the latest question. Because the model has no memory, you need to send an updated transcript with each new question or the model will lose the context of the previous questions and answers.
 
-```python
-import os
-from openai import AzureOpenAI
+# [Microsoft Entra ID](#tab/python-secure)
 
-client = AzureOpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 conversation=[{"role": "system", "content": "You are a helpful assistant."}]
@@ -261,6 +300,34 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+)
+
+conversation=[{"role": "system", "content": "You are a helpful assistant."}]
+
+while True:
+    user_input = input("Q:")      
+    conversation.append({"role": "user", "content": user_input})
+
+    response = client.chat.completions.create(
+        model="gpt-4o", # model = "deployment_name".
+        messages=conversation
+    )
+
+    conversation.append({"role": "assistant", "content": response.choices[0].message.content})
+    print("\n" + response.choices[0].message.content + "\n")
+```
+
+---
+
 When you run the preceding code, you get a blank console window. Enter your first question in the window and then select the `Enter` key. After the response is returned, you can repeat the process and keep asking questions.
 
 ## Manage conversations
@@ -276,15 +343,19 @@ The following code sample shows a simple chat loop example with a technique for 
 
 The code uses tiktoken `0.5.1`. If you have an older version, run `pip install tiktoken --upgrade`.
 
-```python
-import tiktoken
-import os
-from openai import AzureOpenAI
+# [Microsoft Entra ID](#tab/python-secure)
 
-client = AzureOpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 system_message = {"role": "system", "content": "You are a helpful assistant."}
@@ -353,6 +424,86 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
+# [API Key](#tab/python-key)
+
+```python
+import tiktoken
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+)
+
+system_message = {"role": "system", "content": "You are a helpful assistant."}
+max_response_tokens = 250
+token_limit = 4096
+conversation = []
+conversation.append(system_message)
+
+def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
+    """Return the number of tokens used by a list of messages."""
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        print("Warning: model not found. Using cl100k_base encoding.")
+        encoding = tiktoken.get_encoding("cl100k_base")
+    if model in {
+        "gpt-3.5-turbo-0613",
+        "gpt-3.5-turbo-16k-0613",
+        "gpt-4-0314",
+        "gpt-4-32k-0314",
+        "gpt-4-0613",
+        "gpt-4-32k-0613",
+        }:
+        tokens_per_message = 3
+        tokens_per_name = 1
+    elif model == "gpt-3.5-turbo-0301":
+        tokens_per_message = 4  # every message follows <|start|>{role/name}\n{content}<|end|>\n
+        tokens_per_name = -1  # if there's a name, the role is omitted
+    elif "gpt-3.5-turbo" in model:
+        print("Warning: gpt-3.5-turbo may update over time. Returning num tokens assuming gpt-3.5-turbo-0613.")
+        return num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613")
+    elif "gpt-4" in model:
+        print("Warning: gpt-4 may update over time. Returning num tokens assuming gpt-4-0613.")
+        return num_tokens_from_messages(messages, model="gpt-4-0613")
+    else:
+        raise NotImplementedError(
+            f"""num_tokens_from_messages() is not implemented for model {model}."""
+        )
+    num_tokens = 0
+    for message in messages:
+        num_tokens += tokens_per_message
+        for key, value in message.items():
+            num_tokens += len(encoding.encode(value))
+            if key == "name":
+                num_tokens += tokens_per_name
+    num_tokens += 3  # every reply is primed with <|start|>assistant<|message|>
+    return num_tokens
+while True:
+    user_input = input("Q:")      
+    conversation.append({"role": "user", "content": user_input})
+    conv_history_tokens = num_tokens_from_messages(conversation)
+
+    while conv_history_tokens + max_response_tokens >= token_limit:
+        del conversation[1] 
+        conv_history_tokens = num_tokens_from_messages(conversation)
+
+    response = client.chat.completions.create(
+        model="gpt-35-turbo", # model = "deployment_name".
+        messages=conversation,
+        temperature=0.7,
+        max_tokens=max_response_tokens
+    )
+
+
+    conversation.append({"role": "assistant", "content": response.choices[0].message.content})
+    print("\n" + response.choices[0].message.content + "\n")
+```
+
+---
+
 In this example, after the token count is reached, the oldest messages in the conversation transcript are removed. For efficiency, `del` is used instead of `pop()`. We start at index 1 to always preserve the system message and only remove user or assistant messages. Over time, this method of managing the conversation can cause the conversation quality to degrade as the model gradually loses the context of the earlier portions of the conversation.
 
 An alternative approach is to limit the conversation duration to the maximum token length or a specific number of turns. After the maximum token limit is reached, the model would lose context if you were to allow the conversation to continue. You can prompt the user to begin a new conversation and clear the messages list to start a new conversation with the full token limit available.
@@ -360,14 +511,6 @@ An alternative approach is to limit the conversation duration to the maximum tok
 The token counting portion of the code demonstrated previously is a simplified version of one of [OpenAI's cookbook examples](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
 
 ## Troubleshooting
-
-### Don't use ChatML syntax or special tokens with the chat completion endpoint
-
-Some customers try to use the [legacy ChatML syntax](../how-to/chat-markup-language.md) with the chat completion endpoints and newer models. ChatML was a preview capability that only worked with the legacy completions endpoint with the `gpt-35-turbo` version 0301 model. This model is [slated for retirement](../concepts/model-retirements.md). If you attempt to use ChatML syntax with newer models and the chat completion endpoint, it can result in errors and unexpected model response behavior. We don't recommend this use. This same issue can occur when using common special tokens.
-
-| Error Code | Error Message | Solution |
-|---|---|---|
-| 400 | 400 - "Failed to generate output due to special tokens in the input." | Your prompt contains special tokens or legacy ChatML tokens not recognized or supported by the model/endpoint. Ensure that your prompt/messages array doesn't contain any legacy ChatML tokens/special tokens. If you're upgrading from a legacy model, exclude all special tokens before you submit an API request to the model.|
 
 ### Failed to create completion as the model generated invalid Unicode output
 

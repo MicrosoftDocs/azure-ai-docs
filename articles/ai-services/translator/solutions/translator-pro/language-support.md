@@ -50,6 +50,7 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Danish (Denmark) | ✔️ | ✔️|
 | Dutch (Belgium) | ✔️ |  |
 | Dutch (Netherlands) | ✔️ | ✔️|
+| English (United States) | ✔️ | ✔️|
 | Estonian (Estonia) | ✔️ | ✔️|
 | Filipino (Philippines) | ✔️ |  |
 | Finnish (Finland) | ✔️ |  |

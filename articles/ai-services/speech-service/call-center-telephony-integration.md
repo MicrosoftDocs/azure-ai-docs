@@ -4,9 +4,9 @@ titleSuffix: Azure AI services
 description: A common scenario for speech to text is transcribing large volumes of telephony data that come from various systems, such as interactive voice response (IVR) in real-time. This requires an integration with the Telephony System used.
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: jagoerge
 ms.custom: template-concept
 ---

@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/16/2025
 author: aahill
@@ -46,7 +47,8 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
     > [!NOTE]
     > For your logic apps to appear in the Azure AI Foundry portal, they must:
     > * Be in the same subscription and resource group.
-    > * Follow a request trigger with a description, and end with a response action. 
+    > * Follow a request trigger with a description, and end with a response action.
+    > * Currently we only support consumption workflows.  
 
     :::image type="content" source="../../media/tools/add-logic-apps.png" alt-text="A screenshot showing the screen to add Logic Apps." lightbox="../../media/tools/add-logic-apps.png":::
 

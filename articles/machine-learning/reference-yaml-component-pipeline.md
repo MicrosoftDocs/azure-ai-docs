@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.date: 04/12/2023
 ms.reviewer: lochen
 ---

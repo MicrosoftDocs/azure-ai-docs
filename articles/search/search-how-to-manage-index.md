@@ -8,6 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 07/03/2025
+ms.update-cycle: 365-days
 zone_pivot_groups: search-how-to-manage-index
 ---
 

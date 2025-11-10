@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 04/20/2023
+ms.update-cycle: 365-days
 ---
 
 #	Text Merge cognitive skill

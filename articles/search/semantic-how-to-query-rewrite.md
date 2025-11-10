@@ -3,8 +3,8 @@ title: Rewrite queries with semantic ranker in Azure AI Search
 titleSuffix: Azure AI Search
 description: Learn how to rewrite queries with semantic ranker in Azure AI Search
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: HeidiSteen
+ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

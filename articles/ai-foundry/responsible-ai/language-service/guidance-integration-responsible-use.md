@@ -2,8 +2,8 @@
 title: Guidance for integration and responsible use with Azure AI Language
 titleSuffix: Azure AI services
 description: Guidance for how to deploy Azure AI Language features responsibly, based on the knowledge and understanding from the team that created this product.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

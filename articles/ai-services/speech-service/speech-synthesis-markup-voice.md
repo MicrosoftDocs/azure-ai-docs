@@ -2,12 +2,12 @@
 title: Voice and sound with Speech Synthesis Markup Language (SSML) - Speech service
 titleSuffix: Azure AI services
 description: Learn about how you can use Speech Synthesis Markup Language (SSML) elements to customize what your Speech service voice sounds like.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 7/9/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn how to use Speech Synthesis Markup Language (SSML) elements to customize what my Speech service voice sounds like.
 ---
@@ -37,11 +37,11 @@ For information about the supported values for attributes of the `voice` element
 
 #### Single voice example
 
-This example uses the `en-US-AvaMultilingualNeural` voice. 
+This example uses the `en-US-Ava:DragonHDLatestNeural` voice. 
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         This is the text that is spoken.
     </voice>
 </speak>
@@ -51,14 +51,14 @@ This example uses the `en-US-AvaMultilingualNeural` voice.
 
 Within the `speak` element, you can specify multiple voices for text to speech output. These voices can be in different languages. For each voice, the text must be wrapped in a `voice` element.
 
-This example alternates between the `en-US-AvaMultilingualNeural` and `en-US-AndrewMultilingualNeural` voices. The neural multilingual voices can speak different languages based on the input text.
+This example alternates between the `en-US-Ava:DragonHDLatestNeural` and `en-US-Andrew:DragonHDLatestNeural` voices. The neural multilingual voices can speak different languages based on the input text.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         Good morning!
     </voice>
-    <voice name="en-US-AndrewMultilingualNeural">
+    <voice name="en-US-Andrew:DragonHDLatestNeural">
         Good morning to you too Ava!
     </voice>
 </speak>
@@ -269,8 +269,6 @@ The following table describes the usage of the `<lang xml:lang>` element's attri
 | `xml:lang`    | The language that you want the neural voice to speak. | Required to adjust the speaking language for the neural voice. If you're using `lang xml:lang`, the locale must be provided. |
 
 > [!NOTE]
-> The `<lang xml:lang>` element is incompatible with the `prosody` and `break` elements. You can't adjust pause and prosody like pitch, contour, rate, or volume in this element.
->
 > Non-multilingual voices don't support the `<lang xml:lang>` element by design.
 
 ### Multilingual voices with the lang element
@@ -283,20 +281,17 @@ Use the [multilingual voices section](language-support.md?tabs=tts#multilingual-
 
 <sup>1</sup> Those are neural multilingual voices in Azure AI Speech. All multilingual voices can speak in the language in default locale of the input text without [using SSML](#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to adjust the speaking accent of each language to set preferred accent such as British accent (`en-GB`) for English. The prefix in each voice name indicates its primary locale; for example, the primary locale for `en-US-AndrewMultilingualNeural` is `en-US`.
 
-> [!NOTE] 
-> Multilingual voices don't fully support certain SSML elements, such as `break`, `emphasis`, `silence`, and `sub`.
-
 ### Lang examples
 
 For information about the supported values for attributes of the `lang` element, see [Adjust speaking language](#adjust-speaking-languages). 
 
-You must specify `en-US` as the default language within the `speak` element, whether or not the language is adjusted elsewhere. In this example, the primary language for `en-US-AvaMultilingualNeural` is `en-US`. 
+You must specify `en-US` as the default language within the `speak` element, whether or not the language is adjusted elsewhere. In this example, the primary language for `en-US-Ava:DragonHDLatestNeural` is `en-US`. 
 
-This SSML snippet shows how to use `<lang xml:lang>` to speak `de-DE` with the `en-US-AvaMultilingualNeural` neural voice.
+This SSML snippet shows how to use `<lang xml:lang>` to speak `de-DE` with the `en-US-Ava:DragonHDLatestNeural` neural voice.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <lang xml:lang="de-DE">
             Wir freuen uns auf die Zusammenarbeit mit Ihnen!
         </lang>
@@ -308,7 +303,7 @@ Within the `speak` element, you can specify multiple languages including `en-US`
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <lang xml:lang="es-MX">
             ¡Esperamos trabajar con usted!
         </lang>
@@ -348,7 +343,7 @@ This SSML snippet illustrates how the `rate` attribute is used to change the spe
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <prosody rate="+30.00%">
             Enjoy using text to speech.
         </prosody>
@@ -362,7 +357,7 @@ This SSML snippet illustrates how the `volume` attribute is used to change the v
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <prosody volume="+20.00%">
             Enjoy using text to speech.
         </prosody>

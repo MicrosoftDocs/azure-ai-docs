@@ -1,6 +1,6 @@
 ---
-manager: scottpolly
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 05/29/2025
 ms.reviewer: fasantia

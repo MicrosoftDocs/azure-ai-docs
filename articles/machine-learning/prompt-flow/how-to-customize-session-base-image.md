@@ -8,10 +8,11 @@ ms.subservice: prompt-flow
 ms.custom:
   - build-2024
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: lochen
 ms.date: 04/19/2024
+ms.update-cycle: 365-days
 ---
 
 # Customize base image for compute session

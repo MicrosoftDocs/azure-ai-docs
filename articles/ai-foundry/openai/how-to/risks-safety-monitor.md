@@ -4,15 +4,16 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to check statistics and insights from your Azure OpenAI content filtering activity.
 author: PatrickFarley 
 ms.author: pafarley 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 05/31/2025
+ms.date: 09/16/2025
 manager: nitinme
 ---
 
 # Use Risks & Safety monitoring in Azure AI Foundry (preview) 
 
-When you use an Azure OpenAI model deployment with a content filter, you might want to check the results of the filtering activity. You can use that information to further adjust your [filter configuration](/azure/ai-services/openai/how-to/content-filters) to serve your specific business needs and Responsible AI principles.  
+When you use an Azure OpenAI model deployment with a content filter, you might want to check the results of the filtering activity. You can use that information to further adjust your [filter configuration](/azure/ai-foundry/openai/how-to/content-filters) to serve your specific business needs and Responsible AI principles.
 
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides a Risks & Safety monitoring dashboard for each of your deployments that uses a content filter configuration.
 
@@ -48,7 +49,7 @@ The **Potentially abusive user detection** pane shows information about users wh
 
 To use Potentially abusive user detection, you need:
 - A content filter configuration applied to your deployment.
-- You must be sending user ID information in your Chat Completion requests (see the _user_ parameter of the [Completions API](/azure/ai-services/openai/reference#completions), for example).
+- You must be sending user ID information in your Chat Completion requests (see the _user_ parameter of the [Completions API](/azure/ai-foundry/openai/reference#completions), for example).
     > [!CAUTION]
     > Use GUID strings to identify individual users. Don't include sensitive personal information in the _user_ field.
 - An Azure Data Explorer database set up to store the user analysis results (instructions below).
@@ -94,4 +95,4 @@ Combine this data with enriched signals to validate whether the detected users a
 Next, create or edit a content filter configuration in Azure AI Foundry.
 
 > [!div class="nextstepaction"]
-> [Configure content filters with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters)
+> [Configure content filters with Azure OpenAI in Azure AI Foundry Models](/azure/ai-foundry/openai/how-to/content-filters)

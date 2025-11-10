@@ -9,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 09/24/2025
+ms.update-cycle: 365-days
 ---
 
 # Schedule an indexer in Azure AI Search
@@ -28,7 +29,7 @@ Once an indexer is on a schedule, it remains on the schedule until you clear the
 
 + A valid indexer configured with a data source and index.
 
-+ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-how-to-index-sql-database.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
++ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-how-to-index-sql-database.md) and [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md) must be enabled manually.
 
 ## Schedule definition
 
@@ -70,7 +71,7 @@ Switch to the **Indexer Definition (JSON)** tab at the top of the index to view 
 1. Set the schedule property in the body of the request:
 
     ```http
-    PUT /indexers/<indexer-name>?api-version=2024-07-01
+    PUT /indexers/<indexer-name>?api-version=2025-09-01
     {
         "dataSourceName" : "myazuresqldatasource",
         "targetIndexName" : "my-target-index-name",
@@ -125,6 +126,8 @@ Let’s consider an example to make this more concrete. Suppose we configure an 
 
 1. The third execution is scheduled to start at 10:00 AM UTC, but at that time the previous execution is still running. This scheduled execution is then skipped. The next execution of the indexer won't start until 11:00 AM UTC.
 
+In rare cases, such as during maintenance or when recovering from transient conditions, multiple indexer runs are queued up. When this occurs, the indexer executes pending workloads sequentially within the scheduled window. For example, if an indexer is scheduled to run hourly and several runs were delayed or triggered on-demand, those queued up jobs will execute back-to-back until the queue is drained. These are not additional runs, but represent previously scheduled or requested executions. While this behavior is uncommon in most scenarios, the indexer is designed to eventually process all queued tasks to maintain consistency and data freshness.
+
 > [!NOTE]
 > If you have strict indexer execution requirements that are time-sensitive, you should consider using the [push API model](search-what-is-data-import.md#pushing-data-to-an-index) so you can control the indexing pipeline directly.
 
@@ -138,6 +141,6 @@ If an indexer is set to a certain schedule but repeatedly fails on the same docu
 
 For indexers that run on a schedule, you can monitor operations by retrieving status from the search service, or obtain detailed information by enabling resource logging.
 
-+ [Monitor search indexer status](search-howto-monitor-indexers.md)
++ [Monitor search indexer status](search-monitor-indexers.md)
 + [Collect and analyze log data](monitor-azure-cognitive-search.md)
 + [Index large data sets](search-howto-large-index.md)

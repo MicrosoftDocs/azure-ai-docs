@@ -2,7 +2,6 @@
 title: Multi-language indexing for non-English search queries
 titleSuffix: Azure AI Search
 description: Create an index that supports multi-language content and then create queries scoped to that content.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Create an index for multiple languages in Azure AI Search
@@ -114,7 +114,7 @@ By default, a search returns all fields that are marked as retrievable. As such,
 #### Example in REST
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "animaux acceptés",
     "searchFields": "Tags, Description_fr",
@@ -167,7 +167,7 @@ Sometimes the language of the agent issuing a query isn't known, in which case t
 You would then include the scoring profile in the search request:
 
 ```http
-POST /indexes/hotels/docs/search?api-version=2024-07-01
+POST /indexes/hotels/docs/search?api-version=2025-09-01
 {
   "search": "pets allowed",
   "searchFields": "Tags, Description_fr",

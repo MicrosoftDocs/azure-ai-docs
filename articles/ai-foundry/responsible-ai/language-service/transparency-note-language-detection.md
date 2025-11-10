@@ -2,8 +2,8 @@
 title: Transparency note - Language Detection feature of Azure AI Language
 titleSuffix: Azure AI services
 description: The language detection feature of Azure AI Language detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

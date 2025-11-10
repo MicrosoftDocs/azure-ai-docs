@@ -2,12 +2,11 @@
 title: Run AI Red Teaming Agent in the cloud (Azure AI Foundry SDK)
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Azure AI Foundry SDK.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 06/03/2025
+ms.date: 09/02/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -23,18 +22,14 @@ Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
 
-If this is your first time running evaluations or AI red teaming runs on your Azure AI Foundry project, you might need to do a few additional setup steps.
-
-1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
-2. Make sure the connected storage account has access to all projects.
-3. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) permissions for Storage Blob Data Owner to both your account and Foundry project resource in Azure portal.
+[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
 ## Getting started
 
-First, install Azure AI Foundry SDK's project client which runs the AI Red Teaming Agent in the cloud
+First, install Azure AI Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```python
-uv install azure-ai-projects azure-identity
+uv install azure-ai-projects==1.1.0b3 azure-identity
 ```
 
 > [!NOTE]
@@ -46,14 +41,43 @@ Then, set your environment variables for your Azure AI Foundry resources
 import os
 
 endpoint = os.environ["PROJECT_ENDPOINT"] # Sample : https://<account_name>.services.ai.azure.com/api/projects/<project_name>
-model_endpoint = os.environ["MODEL_ENDPOINT"] # Sample : https://<account_name>.services.ai.azure.com
-model_api_key= os.environ["MODEL_API_KEY"]
-model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mini
+
 ```
 
 ## Supported targets
 
 Running the AI Red Teaming Agent in the cloud currently only supports Azure OpenAI model deployments in your Azure AI Foundry project as a target.
+
+## Configure your target
+
+You can configure your target model deployment in two ways:
+
+### Option 1: Using Foundry project deployments
+
+If you're using model deployments that are part of your Azure AI Foundry project, set up the following environment variables:
+
+```python
+import os
+
+model_endpoint = os.environ["MODEL_ENDPOINT"] # Sample : https://<account_name>.openai.azure.com
+model_api_key = os.environ["MODEL_API_KEY"]
+model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mini
+```
+
+### Option 2: Using Azure OpenAI/AI Services deployments
+
+If you want to use deployments from your Azure OpenAI or AI Services accounts, you first need to connect these resources to your Foundry project through connections.
+
+1. **Create a connection**: Follow the instructions in [Configure project connections](../../foundry-models/how-to/configure-project-connection.md?pivots=ai-foundry-portal#add-a-connection) to connect your Azure OpenAI or AI Services resource to your Foundry project.
+
+2. **Get the connection name**: After connecting the account, you'll see the connection created with a generated name in your Foundry project.
+
+3. **Configure the target**: Use the format `"connectionName/deploymentName"` for your model deployment configuration:
+
+```python
+# Format: "connectionName/deploymentName"
+model_deployment_name = "my-openai-connection/gpt-4o-mini"
+```
 
 ## Create an AI red teaming run
 
@@ -74,31 +98,40 @@ with AIProjectClient(
   credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),
 ) as project_client:
 
-# Create target configuration for testing an Azure OpenAI model
-target_config = AzureOpenAIModelConfiguration(model_deployment_name=model_deployment_name)
+  # Create target configuration for testing an Azure OpenAI model
+  target_config = AzureOpenAIModelConfiguration(model_deployment_name=model_deployment_name)
 
-# Instantiate the AI Red Teaming Agent
-red_team_agent = RedTeam(
-    attack_strategies=[AttackStrategy.BASE64],
-    risk_categories=[RiskCategory.VIOLENCE],
-    display_name="red-team-cloud-run", 
-    target=target_config,
-)
+  # Instantiate the AI Red Teaming Agent
+  red_team_agent = RedTeam(
+      attack_strategies=[AttackStrategy.BASE64],
+      risk_categories=[RiskCategory.VIOLENCE],
+      display_name="red-team-cloud-run", 
+      target=target_config,
+  )
 
-# Create and run the red teaming scan
-red_team_response = project_client.red_teams.create(red_team=red_team_agent, headers={"model-endpoint": model_endpoint, "api-key": model_api_key,})
+  # Create and run the red teaming scan
+  # If you configured target using Option 1, use:
+  # headers = {"model-endpoint": model_endpoint, "api-key": model_api_key}
+  # If you configured target using Option 2, use:
+  # headers = {}
+
+  # Choose one of the following based on your configuration option:
+  headers = {"model-endpoint": model_endpoint, "api-key": model_api_key}  # For Option 1
+  # headers = {}  # For Option 2
+
+  red_team_response = project_client.red_teams.create(red_team=red_team_agent, headers=headers)
 ```
 
 # [cURL](#tab/curl)
 
 ```bash
-curl --request POST \  --url https://{{account}}.services.ai.azure.com/api/projects/{{project}}/redteams/runs:run \  --header 'content-type: application/json' \  --header 'authorization: Bearer {{ai_token}}'  --data '{  "scanName": "sample_scan_magic_1",  "riskCategories": [    "Violence"  ],  "attackStrategy": [    "Flip"  ],  "numTurns": 1,  "target": {    "type": "AzureOpenAIModel",    "modelDeploymentName": "{{connectionName}}/{{deploymentName}}"  }}'
+curl --request POST \  --url https://{{account}}.services.ai.azure.com/api/projects/{{project}}/redteams/runs:run \  --header 'content-type: application/json' \  --header 'authorization: Bearer {{ai_token}}'  --data '{  "displayName": "Red Team Scan #1",  "riskCategories": [ "Violence" ],  "attackStrategy": [ "Flip" ],  "numTurns": 1,  "target": {    "type": "AzureOpenAIModel",    "modelDeploymentName": "{{connectionName}}/{{deploymentName}}"  }}'
 ```
 
 - Replace `{{account}}`, `{{project}}` with Foundry Project account name and project name.
 - Replace `{{ai_token}}` with Bearer token with audience "<https://ai.azure.com>"
-- Replace `"{{connectionName}}"` with the Azure OpenAI model connection name connected to the Foundry project account.
-- Replace `"{{deploymentName}}"` with the Azure OpenAI deployment name of the AOAI connection account.
+- For Option 1 (Foundry project deployments): Replace `"{{connectionName}}/{{deploymentName}}"` with just `"{{deploymentName}}"` (your model deployment name).
+- For Option 2 (Azure OpenAI/AI Services deployments): Replace `"{{connectionName}}"` with the Azure OpenAI model connection name connected to the Foundry project account, and replace `"{{deploymentName}}"` with the Azure OpenAI deployment name of the Azure OpenAI connection account.
 
 ---
 
@@ -139,7 +172,7 @@ curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https
 
 ---
 
-Once your AI red teaming run is finished running, you can [view your results](../view-ai-red-teaming-results.md) in your Azure AI Foundry project.
+[!INCLUDE [view-ai-red-teaming-results](../../includes/view-ai-red-teaming-results.md)]
 
 ## Related content
 

@@ -6,7 +6,8 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.date: 07/09/2025
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -20,6 +21,9 @@ Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**]
 You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## Usage support
+
+> [!NOTE] 
+> The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
@@ -396,7 +400,7 @@ for await (const m of messagesIterator) {
 -->
 :::zone pivot="rest"
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, make sure you are using `2025-05-15-preview`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, make sure you are using `2025-05-15-preview`.
 > [!IMPORTANT]
 > The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
 > Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`

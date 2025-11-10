@@ -2,8 +2,8 @@
 title: Characteristics and limitations for Custom Vision
 titleSuffix: Azure AI services
 description: Learn general guidelines for using this image recognition service from Azure.
-author: adinatru
-ms.author: adinatru
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: article

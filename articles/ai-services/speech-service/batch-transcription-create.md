@@ -3,11 +3,11 @@ title: Create a batch transcription - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Azure AI Speech for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: goergenj
+ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/5/2025
+ms.date: 10/31/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -263,7 +263,7 @@ Azure AI Speech supports OpenAI's Whisper model by using the batch transcription
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 
 > [!IMPORTANT]
-> Batch transcription using Whisper models is available in the following regions: Australia East, East US, Japan East, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
+> Batch transcription using Whisper models is available in a subset of regions that support batch transcription. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt). Note that Whisper model support may be limited to specific regions within those that support batch transcription.
 
 ::: zone pivot="rest-api"
 You can make a [Models - List Base Models](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
@@ -370,7 +370,7 @@ The transcription result can be stored in an Azure container. If you don't speci
 
 You can store the results of a batch transcription to a writable Azure Blob storage container using option `destinationContainerUrl` in the [batch transcription creation request](#create-a-transcription-job). This option uses only an [ad hoc SAS](batch-transcription-audio-data.md#sas-url-for-batch-transcription) URI and doesn't support [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). This option also doesn't support Access policy based SAS. **The Storage account resource of the destination container must allow all external traffic.**
 
-If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring-your-own-storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Azure AI Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
+If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring your own storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Azure AI Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
 
 ## Related content
 

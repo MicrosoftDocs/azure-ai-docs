@@ -2,7 +2,6 @@
 title: Fuzzy search
 titleSuffix: Azure AI Search
 description: Implement a fuzzy search query for a "did you mean" search experience. Fuzzy search autocorrects a misspelled term or typo on the query.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 # Fuzzy search to correct misspellings and typos
 
@@ -60,7 +60,7 @@ Fuzzy queries are constructed using the full Lucene query syntax, invoking the [
 Here's an example of a query request that invokes fuzzy search. It includes four terms, two of which are misspelled:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "seatle~ waterfront~ view~ hotle~",
     "queryType": "full",

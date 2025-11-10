@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Microsoft SharePoint content.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/09/2025
 author: aahill
@@ -41,7 +42,9 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 > [!NOTE]
 > * Supported document types: text data in the following format: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
-> * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents. 
+> > * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents.
+> * The SharePoint tool only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+> * Your SharePoint site and Azure AI Foundry agent need to be in the same tenant.
 
 1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
 

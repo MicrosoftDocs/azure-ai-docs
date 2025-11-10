@@ -2,12 +2,12 @@
 title: Custom speech overview - Speech service
 titleSuffix: Azure AI services
 description: Custom speech is allows you to evaluate and improve the speech to text accuracy for your applications, tools, and products.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/25/2025
-ms.author: eur
+ms.date: 8/13/2025
+ms.author: pafarley
 ms.custom: references_regions
 ---
 
@@ -29,7 +29,7 @@ With custom speech, you can upload your own data, test and train a custom model,
 
 Here's more information about the sequence of steps shown in the previous diagram:
 
-1. [Create a project](how-to-custom-speech-create-project.md) and choose a model. Use a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create an AI Foundry resource for Speech" target="_blank">Speech resource</a> that you create in the Azure portal. If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. For more information, see footnotes in the [regions](regions.md#regions) table.
+1. [Create a project](how-to-custom-speech-create-project.md) and choose a model. If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. For more information, see footnotes in the [regions](regions.md#regions) table.
 
 1. [Upload test data](./how-to-custom-speech-upload-data.md). Upload test data to evaluate the speech to text offering for your applications, tools, and products.
 

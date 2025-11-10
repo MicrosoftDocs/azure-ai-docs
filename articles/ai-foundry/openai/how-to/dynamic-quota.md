@@ -3,9 +3,10 @@ title: Azure OpenAI in Azure AI Foundry Models dynamic quota
 description: Learn how to use Azure OpenAI dynamic quota
 author: mrbullwinkle
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 07/31/2025
 ms.author: mbullwin
 ---
 

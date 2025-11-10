@@ -8,6 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 07/11/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023

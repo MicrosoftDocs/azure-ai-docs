@@ -2,20 +2,21 @@
 title: How to use reasoning models with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to use reasoning capabilities from models with Azure AI Foundry Models
-manager: scottpolly
-author: msakande
-reviewer: santiagxf
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 08/27/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
+author: msakande
+ms.reviewer: balapv
+reviewer: balapv
 ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
 # How to use reasoning models with Azure AI Foundry Models
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 

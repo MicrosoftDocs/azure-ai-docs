@@ -1,8 +1,9 @@
 ---
 manager: nitinme
-author: eric-urban
-ms.author: eur
-ms.service: azure-ai-openai
+author: PatrickFarley
+ms.author: pafarley
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
 ---

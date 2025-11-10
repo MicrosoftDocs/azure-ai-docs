@@ -2,7 +2,6 @@
 title: Vector index limits
 titleSuffix: Azure AI Search
 description: Explanation of the factors affecting the size of a vector index.
-
 author: robertklee
 ms.author: robertlee
 ms.service: azure-ai-search
@@ -93,7 +92,7 @@ Usage and quota are reported in bytes.
 Here's GET Service Statistics:
 
 ```http
-GET {{baseUrl}}/servicestats?api-version=2024-07-01  HTTP/1.1
+GET {{baseUrl}}/servicestats?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 ```
@@ -135,7 +134,7 @@ Response includes metrics for `storageSize`, which doesn't distinguish between v
 You can also send a GET Index Statistics to get the physical size of the index on disk, plus the in-memory size of the vector fields.
 
 ```http
-GET {{baseUrl}}/indexes/vector-healthplan-idx/stats?api-version=2024-07-01  HTTP/1.1
+GET {{baseUrl}}/indexes/vector-healthplan-idx/stats?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 ```

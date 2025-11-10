@@ -5,8 +5,8 @@ description: Learn how to retrain models by using published pipelines and pipeli
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: keli19
 ms.date: 06/11/2025
 ms.topic: how-to

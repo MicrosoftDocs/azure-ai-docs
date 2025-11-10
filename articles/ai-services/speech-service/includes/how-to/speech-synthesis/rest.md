@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/30/2023
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/rest.md)]
@@ -34,7 +34,7 @@ curl --location --request POST 'https://YOUR_RESOURCE_REGION.tts.speech.microsof
 --header 'X-Microsoft-OutputFormat: audio-16khz-128kbitrate-mono-mp3' \
 --header 'User-Agent: curl' \
 --data-raw '<speak version='\''1.0'\'' xml:lang='\''en-US'\''>
-    <voice name='\''en-US-AvaMultilingualNeural'\''>
+    <voice name='\''en-US-Ava:DragonHDLatestNeural'\''>
         I am excited to try text to speech
     </voice>
 </speak>' > output.mp3

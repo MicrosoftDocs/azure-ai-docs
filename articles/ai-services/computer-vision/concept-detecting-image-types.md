@@ -8,14 +8,12 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
 # Image type detection
 
-With the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP), Azure AI Vision can analyze the content type of images and indicate whether an image is clip art or a line drawing.
+With the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP&preserve-view=true), Azure AI Vision can analyze the content type of images and indicate whether an image is clip art or a line drawing.
 
 ## Clip art detection
 
@@ -110,7 +108,7 @@ The following JSON responses illustrates what Azure AI Vision returns when indic
 
 ## Use the API
 
-The image type detection feature is part of the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP). You can call this API through a native SDK or through REST calls. Include `ImageType` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"imageType"` section.
+The image type detection feature is part of the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image). You can call this API through a native SDK or through REST calls. Include `ImageType` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"imageType"` section.
 
 ## Next step
 

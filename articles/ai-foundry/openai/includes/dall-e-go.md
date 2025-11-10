@@ -3,7 +3,8 @@ title: 'Quickstart: Use the OpenAI Service image generation Go SDK'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI image generation using the Go SDK. 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/28/2023
 ---
@@ -16,7 +17,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Go
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - [Go 1.8+](https://go.dev/doc/install)
-- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
 ### Microsoft Entra ID prerequisites
@@ -260,4 +261,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).

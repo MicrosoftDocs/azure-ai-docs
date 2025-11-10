@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry resource in your Azure subscription.
 ms.author: sgilley
 author: sdgilley
-manager: scottpolly
 reviewer: deeikele
-ms.date: 07/22/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom:
@@ -22,7 +21,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - A copy of the files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
@@ -121,4 +120,4 @@ See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-s
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
+- [Get started with the SDK](../quickstarts//get-started-code.md)

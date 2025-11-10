@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 04/25/2022
-ms.author: eur
+ms.author: pafarley
 ---
 
 Make sure that packages of the same platform (x64 or x86) are installed. For example, if you installed the x64 package for Python, you need to install the x64 GStreamer package. The following instructions are for the x64 packages.

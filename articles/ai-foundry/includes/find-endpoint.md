@@ -9,6 +9,8 @@ ms.date: 05/13/2025
 ms.custom: include file
 ---
 
+Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
+
 Copy the **Azure AI Foundry project endpoint** in the **Overview** section of your project. You'll use it in a moment.
 
 :::image type="content" source="../media/how-to/projects/fdp-project-overview.png" alt-text="Screenshot shows the project overview for a Foundry project.":::

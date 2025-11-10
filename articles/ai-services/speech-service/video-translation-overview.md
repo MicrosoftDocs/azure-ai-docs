@@ -2,13 +2,14 @@
 title: Video translation overview - Speech service
 titleSuffix: Azure AI services
 description: With video translation, you can seamlessly integrate multi-language voice-over capabilities into your videos.
+author: goergenj
+reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 6/13/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
 ---
@@ -80,13 +81,13 @@ This diagram provides a high-level overview of the workflow.
 
 ## Supported regions and languages
 
-Currently, video translation in Azure AI Speech is only supported in the East US region.
+For the most up-to-date information about regional availability for video translation, see the [Speech service regions table](regions.md?tabs=speech-translation).
 
 We support video translation between various languages, enabling you to tailor your content to specific linguistic preferences. For the languages supported for video translation, refer to the [supported source and target languages](language-support.md?tabs=speech-translation#video-translation). 
 
 ## Pricing 
 
-For pricing details on video translation, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Video translation pricing is only visible for [service regions](#supported-regions-and-languages) where the feature is available.
+For pricing details on video translation, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Video translation pricing is only visible for service regions where the feature is available. See the [Speech service regions table](regions.md?tabs=speech-translation) for current regional availability.
 
 ## Related content
 

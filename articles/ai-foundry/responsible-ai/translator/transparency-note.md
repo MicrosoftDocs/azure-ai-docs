@@ -2,8 +2,8 @@
 title: Azure AI Translator Transparency Note
 titleSuffix: Azure AI services
 description: Azure AI Translator Responsible AI Basics, use cases, terms
-author: PatrickFarley
-ms.author: pafarley
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: article

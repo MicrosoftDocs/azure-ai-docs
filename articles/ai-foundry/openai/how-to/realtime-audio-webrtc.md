@@ -1,24 +1,24 @@
 ---
-title: 'How to use the GPT-4o Realtime API via WebRTC (Preview)'
+title: 'Use the GPT Realtime API via WebRTC'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
-description: Learn how to use the GPT-4o Realtime API for speech and audio via WebRTC.
+description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 6/7/2025
-author: eric-urban
-ms.author: eur
+ms.date: 09/16/2025
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT-4o Realtime API via WebRTC (Preview)
+# Use the GPT Realtime API via WebRTC
 
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
 
-Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
-You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
+You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
 
 In most cases, we recommend using the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
 - **Lower Latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
@@ -30,21 +30,23 @@ Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you nee
 
 ## Supported models
 
-The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
+- `gpt-realtime` (version 2025-08-28)
+- `gpt-realtime-mini` (version 2025-10-06)
 
-You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
+You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
 ## Prerequisites
 
-Before you can use GPT-4o real-time audio, you need:
+Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Connection and authentication
 
@@ -52,14 +54,14 @@ You use different URLs to get an ephemeral API key and connect to the Realtime A
 
 | URL | Description | 
 |---|---|
-| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version.<br/><br/>You should use API version `2025-04-01-preview` in the URL.<br/><br/>For an example and more information, see the [Sessions URL](#sessions-url) section in this article.|
+| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version.<br/><br/>You should use API version `2025-08-28` in the URL.<br/><br/>For an example and more information, see the [Sessions URL](#sessions-url) section in this article.|
 | WebRTC URL | The WebRTC URL is used to establish a WebRTC peer connection with the Realtime API. The WebRTC URL includes the region and the `realtimeapi-preview.ai.azure.com/v1/realtimertc` path.<br/><br/>The supported regions are `eastus2` and `swedencentral`.<br/><br/>For an example and more information, see the [Sessions URL](#webrtc-url) section in this article.|
 
 ### Sessions URL
 Here's an example of a well-constructed `realtime/sessions` URL that you use to get an ephemeral API key:
 
 ```http
-https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-04-01-preview
+https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-08-28
 ```
 ### WebRTC URL
 Make sure the region of the WebRTC URL matches the region of your Azure OpenAI resource.
@@ -77,7 +79,7 @@ the WebRTC URL should be:
 
 The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version. The Azure OpenAI resource region isn't part of the sessions URL.
 
-### Ephemeral API key
+### Get ephemeral API key
 
 You can use the ephemeral API key to authenticate a WebRTC session with the Realtime API. The ephemeral key is valid for one minute and is used to establish a secure WebRTC connection between the client and the Realtime API.
 
@@ -113,9 +115,9 @@ sequenceDiagram
 
 ## WebRTC example via HTML and JavaScript
 
-The following code sample demonstrates how to use the GPT-4o Realtime API via WebRTC. The sample uses the [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) to establish a real-time audio connection with the model.
+The following code sample demonstrates how to use the GPT Realtime API via WebRTC. The sample uses the [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) to establish a real-time audio connection with the model.
 
-The sample code is an HTML page that allows you to start a session with the GPT-4o Realtime API and send audio input to the model. The model's responses are played back in real-time.
+The sample code is an HTML page that allows you to start a session with the GPT Realtime API and send audio input to the model. The model's responses are played back in real-time.
 
 > [!WARNING]
 > The sample code includes the API key hardcoded in the JavaScript. This code isn't recommended for production use. In a production environment, you should use a secure backend service to generate an ephemeral key and return it to the client.
@@ -149,7 +151,7 @@ The sample code is an HTML page that allows you to start a session with the GPT-
             // The SESSIONS_URL includes the Azure OpenAI resource URL,
             // deployment name, the /realtime/sessions path, and the API version.
             // The Azure OpenAI resource region isn't part of the SESSIONS_URL.
-            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-04-01-preview"
+            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-08-28"
     		
             // The API key of the Azure OpenAI resource.
             const API_KEY = "YOUR_API_KEY_HERE"; 
@@ -299,7 +301,7 @@ The sample code is an HTML page that allows you to start a session with the GPT-
     </html>
     ```
 
-1. Select **Start Session** to start a session with the GPT-4o Realtime API. The session ID and ephemeral key are displayed in the log container.
+1. Select **Start Session** to start a session with the GPT Realtime API. The session ID and ephemeral key are displayed in the log container.
 1. Allow the browser to access your microphone when prompted.
 1. Confirmation messages are displayed in the log container as the session progresses. Here's an example of the log messages:
 

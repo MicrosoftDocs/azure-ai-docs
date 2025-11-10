@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: sgilley
-ms.date: 07/01/2025
+ms.date: 09/19/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
 ai-usage: ai-assisted
@@ -58,9 +57,11 @@ The [Azure AI Foundry for VS Code Extension](how-to/develop/get-started-projects
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
-* [!INCLUDE [fdp-description](includes/fdp-description.md)]
+- [!INCLUDE [fdp-description](includes/fdp-description.md)]
 
-* [!INCLUDE [hub-description](includes/hub-description.md)]
+- [!INCLUDE [hub-description](includes/hub-description.md)]
+
+- To understand the how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
 
 
 ### Which type of project do I need?
@@ -68,27 +69,33 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hu
 - In general, you should use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] if you're looking to build agents or work with models.
 - Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] when you need features that aren't available in a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)]. See the following table for more on feature availability.
 
-> [!NOTE]
-> New agents and model-centric capabilities are only available on [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)]s, including access to the Azure AI Foundry API and Azure AI Foundry Agent Service in general availability.
 
+> [!NOTE]
+> New agents and model-centric capabilities are only available on [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)]s, including access to the Azure AI Foundry API and Azure AI Foundry Agent Service in general availability. To migrate your [!INCLUDE [hub-project-name](includes/hub-project-name.md)] to a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](how-to/migrate-project.md).
 
 This table summarizes features available in the two project types:  
-
 
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
-| Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
-| Open source models such as HuggingFace  |  | ✅ |
-| Evaluations | ✅ | ✅ |
-| Playground | ✅ | ✅ |
+| Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
+| Models deployed on managed compute (e.g. HuggingFace) |  | ✅ |
+| AI Foundry SDK and API | ✅ | Limited* |
+| OpenAI SDK and API | ✅ | Available via connections |
+| Evaluations | ✅ (preview) | ✅ |
+| Playgrounds | ✅ | ✅ |
+| Content understanding  | ✅ | ✅ |
+| Model router  | ✅ | ✅ |
+| Datasets  | ✅ | ✅ |
+| Indexes  | ✅ | ✅ |
+| Project files API (Foundry-managed storage) | ✅ | Limited |
+| Project-level isolation of files and outputs | ✅ | Limited |
+| Bring-your-own Key Vault to store connection secrets | ✅ | ✅ |
+| Bring-your-own Storage for Agent service  | ✅ | ✅ |
 | Prompt flow |  | ✅ |
-| Content understanding  |  | ✅ |
-| Project files (directly upload files and start experimenting) | ✅ | |
-| Project-level isolation of files and outputs | ✅ | ✅|
-| Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
+
+*New feature enhancements primarily land on the [Azure AI Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
 ### <a name="how-do-i-know"></a> How do I know which type of project I have?
 
@@ -99,14 +106,14 @@ Here are some of the ways to identify your project type:
     * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** on the second line
     * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** on the second line
 
-    :::image type="content" source="media/how-to/projects/breadcrumb.png" alt-text="Screenshot shows both a Foundry and hub based project in the breadcrumb navigation.":::
+    :::image type="content" source="media/how-to/projects/breadcrumb.png" alt-text="Screenshot shows both a Foundry and hub-based project in the breadcrumb navigation.":::
 
 * From the **All resources** page
 
     * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** as the parent resource
     * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** as the parent resource
 
-    :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub based project in the All Resources page.":::
+    :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub-based project in the All Resources page.":::
 
 <!-- * From the **Overview** section of the project
 
@@ -116,7 +123,7 @@ Here are some of the ways to identify your project type:
 
     * If it's a [!INCLUDE [hub-project-name](includes/hub-project-name.md)], you see a **Project connection string**
 
-        :::image type="content" source="media/how-to/projects/hub-project-overview.png" alt-text="Screenshot shows a hub based project overview page." lightbox="media/how-to/projects/hub-project-overview.png"::: -->
+        :::image type="content" source="media/how-to/projects/hub-project-overview.png" alt-text="Screenshot shows a hub-based project overview page." lightbox="media/how-to/projects/hub-project-overview.png"::: -->
 
 ## Navigate in the Azure AI Foundry portal
 

@@ -5,7 +5,6 @@ services: machine-learning
 author: s-polly
 ms.service: azure-machine-learning
 ms.author: scottpolly
-manager: scottpolly
 ms.custom: "include file"
 ms.topic: "include"
 ms.date: 02/05/2024

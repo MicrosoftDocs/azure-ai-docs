@@ -3,7 +3,8 @@ title: GPT-4 Turbo general availability
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Information on GPT-4 Turbo model behavior and limitations
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 04/29/2024
 ---

@@ -7,19 +7,19 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 09/23/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
 # Call the Azure AI Vision v3.2 GA Read API
 
+[!INCLUDE [read-editions](../includes/read-editions.md)]
+
+
 This guide shows you how to call the v3.2 GA Read API to extract text from images. You'll learn the different ways you can configure the behavior of this API to meet your needs.
 
 The following steps assume that you've already created a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) and obtained a key and endpoint URL. If you haven't, see the [quickstart](../quickstarts-sdk/client-library.md) to get started.
 
-[!INCLUDE [read-editions](../includes/read-editions.md)]
 
 
 ## Determine how to process the data (optional)
@@ -95,7 +95,7 @@ It returns a JSON response that contains a **status** field with the following p
 You call this operation iteratively until it returns with the **succeeded** value. Use an interval of 1-to-2 seconds to avoid exceeding the requests per second (RPS) rate.
 
 > [!NOTE]
-> The free tier limits the request rate to 20 calls per minute. The paid tier allows 30 RPS that can be increased upon request. Note your Azure resource identfier and region, and open an Azure support ticket or contact your account team to request a higher RPS rate.
+> The free tier limits the request rate to 20 calls per minute. The paid tier allows 30 RPS that can be increased upon request. Note your Azure resource identifier and region, and open an Azure support ticket or contact your account team to request a higher RPS rate.
 
 When the **status** field has the `succeeded` value, the JSON response contains the extracted text content from your image or document. The JSON response maintains the original line groupings of recognized words. It includes the extracted text lines and their bounding box coordinates. Each text line includes all extracted words with their coordinates and confidence scores.
 

@@ -1,8 +1,8 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 When using X-SAMPA phone symbols `'` and `"`, it’s important to avoid conflicts with the wrapper symbol. If the X-SAMPA string contains phone `'`, we recommend using phone `_j` instead. If you don’t want to replace the phone `'`, you need to use double quotes `"` as a wrapper. Similarly, if the X-SAMPA string contains phone `"`, then double quotes shouldn't be used as a wrapper, and you must use the single quote `'` as a wrapper. Otherwise, it will cause an error.

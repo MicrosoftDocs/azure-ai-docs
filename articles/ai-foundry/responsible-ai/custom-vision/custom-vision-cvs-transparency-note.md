@@ -2,8 +2,8 @@
 title: Use cases for Custom Vision
 titleSuffix: Azure AI services
 description: An introduction to Azure AI Custom Vision, and what to consider to use the technology responsibly.
-author: adinatru
-ms.author: adinatru
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: article

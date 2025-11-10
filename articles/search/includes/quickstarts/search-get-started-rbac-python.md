@@ -15,7 +15,7 @@ Keyless connections provide enhanced security through granular permissions and i
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](../../search-create-service-portal.md) in any region or tier.
 
@@ -33,16 +33,24 @@ To sign in:
 
 1. On your local system, open a command-line tool.
 
-1. Sign in to Azure. If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
+1. Check for the active tenant and subscription in your local environment.
 
    ```azurecli
-   az login
+   az account show
+   ```
+
+1. If the active subscription and tenant aren't valid for your search service, change the variables. You can check for the subscription ID on the search service overview page in the Azure portal. You can check for the tenant ID by clicking through to the subscription. In the Azure portal, the tenant ID is referred to as the **Parent management group**. Make a note of the values that are valid for your search service and run the following commands to update your local environment.
+
+   ```azurecli
+    az account set --subscription <your-subscription-id>
+
+    az login --tenant <your-tenant-id>
    ```
 
 ## Connect to Azure AI Search
 
 > [!NOTE]
-> This section illustrates the basic Python pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
+> This section illustrates the basic Python pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Use agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
 
 You can use Python notebooks in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, use the `DefaultAzureCredential` class from the Azure Identity library.
 

@@ -2,13 +2,13 @@
 title: What are Azure AI services?
 titleSuffix: Azure AI services
 description: Azure AI services are cloud-based artificial intelligence (AI) services that help developers build cognitive intelligence into applications without having direct AI or data science skills or knowledge.
-author: eric-urban
+author: nitinme
 manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-services
 ms.topic: overview
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: nitinme
 ms.custom:
   - build-2023
   - build-2023-dataai
@@ -25,8 +25,6 @@ When building AI applications, use the following Azure AI services:
 
 | Service | Description |
 | --- | --- |
-| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
-| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | 
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |
 | ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. |
 | ![Bot service icon](~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg) [Bot Service](/composer/) | Create bots and connect them across channels. |

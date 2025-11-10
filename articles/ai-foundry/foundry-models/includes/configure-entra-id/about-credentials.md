@@ -2,16 +2,17 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
-ms.date: 01/23/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
+ms.date: 09/26/2025
 ms.topic: include
 ---
 
 ### Options for credential when using Microsoft Entra ID
 
-`DefaultAzureCredential` is an opinionated, ordered sequence of mechanisms for authenticating to Microsoft Entra ID. Each authentication mechanism is a class derived from the `TokenCredential` class and is known as a credential. At runtime, `DefaultAzureCredential` attempts to authenticate using the first credential. If that credential fails to acquire an access token, the next credential in the sequence is attempted, and so on, until an access token is successfully obtained. In this way, your app can use different credentials in different environments without writing environment-specific code.
+`DefaultAzureCredential` is an opinionated, ordered sequence of mechanisms for authenticating to Microsoft Entra ID. Each authentication mechanism is a class derived from the `TokenCredential` class and is known as a credential. At runtime, `DefaultAzureCredential` attempts to authenticate by using the first credential. If that credential fails to acquire an access token, the next credential in the sequence is attempted, and so on, until an access token is successfully obtained. In this way, your app can use different credentials in different environments without writing environment-specific code.
 
-When the preceding code runs on your local development workstation, it looks in the environment variables for an application service principal or at locally installed developer tools, such as Visual Studio, for a set of developer credentials. Either approach can be used to authenticate the app to Azure resources during local development.
+When the preceding code runs on your local development workstation, it looks in the environment variables for an application service principal or at locally installed developer tools, such as Visual Studio, for a set of developer credentials. You can use either approach to authenticate the app to Azure resources during local development.
 
 When deployed to Azure, this same code can also authenticate your app to other Azure resources. `DefaultAzureCredential` can retrieve environment settings and managed identity configurations to authenticate to other services automatically.
 

@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: article
-ms.date: 03/10/2025
+ms.date: 07/29/2025
 ---
 
 # Transparency note: Content Understanding
@@ -24,7 +24,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ### Introduction
 
-Azure AI Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-services/openai/overview), [Azure AI Speech](/azure/ai-services/speech-service/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
+Azure AI Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure AI Speech](/azure/ai-services/speech-service/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
 
 
 ### Key terms
@@ -69,7 +69,7 @@ Azure Content Understanding service includes a content filtering system that det
 
 >[!NOTE]
 >
-> * Disabling the content filter may prevent the service from effectively blocking harmful content, including, but not limited to, *hate and fairness-related*, *sexual*, *violence* and *self-harm* categories. For more information, *see* [Content filtering](/azure/ai-services/openai/concepts/content-filter).
+> * Disabling the content filter may prevent the service from effectively blocking harmful content, including, but not limited to, *hate and fairness-related*, *sexual*, *violence* and *self-harm* categories. For more information, *see* [Content filtering](/azure/ai-foundry/openai/concepts/content-filter).
 >
 > * Disabling Indirect Attack Prompt Shield could potentially expose the system to vulnerabilities, wherein third parties may embed malicious instructions within documents accessible to and processed by the Generative AI system. Analogous vulnerabilities may arise from jailbreak attempts that directly seek to circumvent and to override built-in safeguards through specific prompts.
 
@@ -112,7 +112,6 @@ Please consider the following factors when you choose a use case:
 - **Not suitable for scenarios where up-to-date, factually accurate information is crucial** unless you have human reviewers or are using the models to search your own documents and have verified suitability for your scenario. Content Understanding does not have information about events that occur after its training date, likely has missing knowledge about some topics, and might not always produce factually accurate information. 
 - **Conversation transcription with speaker recognition**: Content Understanding is not designed to provide diarization with speaker recognition, and it cannot be used to identify individuals. In other words, speakers will be presented as Guest1, Guest2, Guest3, and so on, in the transcription. These will be randomly assigned and may not be used to identify individual speakers in the conversation. For each conversation transcription, the assignment of Guest1, Guest2, Guest3, and so on, will be random. 
 - **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the relevant codes of conduct, including the Generative AI Code of Conduct. 
-- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Limitations
 
@@ -310,7 +309,7 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 ## Learn more about Content Understanding
 
-- [Azure OpenAI overview](/azure/ai-services/openai/overview )
+- [Azure OpenAI overview](/azure/ai-foundry/openai/overview )
 - [Azure AI Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
 - [Azure AI Speech overview](/azure/ai-services/speech-service/overview )
 - [Azure AI Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )
@@ -322,7 +321,7 @@ When you're getting ready to integrate Content Understanding to your product or 
 - [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note) 
 - [Azure AI Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
 - [Azure AI Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
-- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note) 
+- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note) 
 - [Azure AI Face](/azure/ai-foundry/responsible-ai/face/transparency-note)  
 - [Azure AI Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext ) 
 

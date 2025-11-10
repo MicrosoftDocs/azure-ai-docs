@@ -2,9 +2,9 @@
 title: Use cases for Speech to text
 titleSuffix: Azure AI services
 description: This Transparency Note discusses Speech to text and the key considerations for making use of this technology responsibly.
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
-ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 06/30/2021

@@ -2,8 +2,8 @@
 title: Transparency note and use cases for Pronunciation Assessment
 titleSuffix: Azure AI services
 description: This Transparency Note discusses Pronunciation Assessment and the key considerations for making use of this technology responsibly.
-author: eric-urban
-ms.author: eur 
+author: PatrickFarley
+ms.author: pafarley 
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

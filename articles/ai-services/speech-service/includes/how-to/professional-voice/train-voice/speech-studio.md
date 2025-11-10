@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
@@ -176,6 +176,9 @@ The following table summarizes the different preset styles according to differen
 1. Select **Neural - HD Voice (preview)** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-voice-model), [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model), or [Neural - multi lingual](?tabs=multilingual#train-your-custom-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-hd-voice.png" alt-text="Screenshot that shows how to select neural HD voice training.":::
+
+   > [!NOTE]
+   > HD voices are only available in regions that support *High performance* type. For information about regions where the *High performance* endpoint type is supported, see the *Custom voice high performance endpoint* column in the *Text to speech* tab of the [regions](../../../../regions.md#regions) table.
 
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 

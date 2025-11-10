@@ -1,8 +1,8 @@
 ---
 title: Disclosure for voice and avatar talent
 description: Disclosure for voice and avatar talent which covers background as well as best patterns and practices for deployment of this technology.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

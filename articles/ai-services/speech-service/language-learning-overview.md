@@ -2,12 +2,12 @@
 title: Language learning with Azure AI Speech
 titleSuffix: Azure AI services
 description: Learn about how Azure AI Speech can be used to learn languages.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
 ---
 

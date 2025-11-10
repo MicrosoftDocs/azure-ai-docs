@@ -2,13 +2,13 @@
 title: Text query filters
 titleSuffix: Azure AI Search
 description: Apply filter criteria to include or exclude content before text query execution in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 03/11/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -57,7 +57,7 @@ One of the limits on a filter expression is the maximum size limit of the reques
 The following examples represent prototypical filter definitions in several APIs.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
 {
     "search": "*",
     "filter": "Rooms/any(room: room/BaseRate lt 150.0)",

@@ -15,7 +15,7 @@ ms.custom: language-service-clu
 
 After you [build a schema](build-schema.md) for your fine-tuning task, you add training utterances to your project. The utterances should be similar to what your users use when they interact with the project. When you add an utterance, you have to assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities.
 
-Data labeling is a crucial step in the conversational language understanding (CLU) trained development lifecycle. This data is used in the next step when you train your model so that your model can learn from the labeled data. If you already labeled utterances, you can directly [import them into your project](create-project.md#import-a-project), if your data follows the [accepted data format](../concepts/data-formats.md). To learn more about importing labeled data, see [Create a CLU fine-tuning task](create-project.md#import-a-project). Labeled data informs the model about how to interpret text and is used for training and evaluation.
+Data labeling is a crucial step in the conversational language understanding (CLU) trained development lifecycle. This data is used in the next step when you train your model so that your model can learn from the labeled data. If you already labeled utterances, you can directly [import them into your project](create-project.md#import-an-existing-azure-ai-project), if your data follows the [accepted data format](../concepts/data-formats.md). To learn more about importing labeled data, see [Create a CLU fine-tuning task](create-project.md#import-an-existing-azure-ai-project). Labeled data informs the model about how to interpret text and is used for training and evaluation.
 
 > [!TIP]
 > Use the **Quick Deploy** option to implement custom CLU intent routing, which is powered by your own large language model deployment without adding or labeling any training data.
@@ -43,9 +43,9 @@ As you add utterances and label them, keep in mind:
 
 * For [multilingual projects](../language-support.md#multi-lingual-option), adding utterances in other languages increases the model's performance in these languages. Avoid duplicating your data across all the languages that you want to support. For example, to improve a calender bot's performance with users, a developer might add examples mostly in English and a few in Spanish or French. They might add utterances such as:
 
-  * "Set a meeting with **Matt** and **Kevin** **tomorrow** at **12 PM**." (English)
-  * "Reply as **tentative** to the **weekly update** meeting." (English)
-  * "Cancelar mi **próxima** reunión." (Spanish)
+  * `Set a meeting with **Matt** and **Kevin** **tomorrow** at **12 PM**.` (English)
+  * `Reply as **tentative** to the **weekly update** meeting.` (English)
+  * `Cancelar mi **próxima** reunión.` (Spanish)
 
 ## Label your utterances
 
@@ -111,7 +111,7 @@ Before you get started, the suggested utterances feature is available only if yo
 
 On the **Data labeling** page:
 
-1. Select **Suggest utterances**. A pane opens on the right and prompts you to select your Azure OpenAI resource and deployment.
+1. Select **Suggest utterances**. A pane opens and prompts you to select your Azure OpenAI resource and deployment.
 1. After you select an Azure OpenAI resource, select **Connect** so that your Language resource has direct access to your Azure OpenAI resource. It assigns your Language resource the **Cognitive Services User** role to your Azure OpenAI resource. Now your current Language resource has access to Azure OpenAI. If the connection fails, follow [these steps](#add-required-configurations-to-azure-openai-resource) to manually add the correct role to your Azure OpenAI resource.
 1. After the resource is connected, select the deployment. The model that we recommend for the Azure OpenAI deployment is `gpt-35-turbo-instruct`.
 1. Select the intent for which you want to get suggestions. Make sure the intent that you selected has at least five saved utterances to be enabled for utterance suggestions. The suggestions provided by Azure OpenAI are based on the most recent utterances that you added for that intent.

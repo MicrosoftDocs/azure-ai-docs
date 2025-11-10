@@ -2,8 +2,8 @@
 title: Data, privacy, and security for Azure AI Language
 titleSuffix: Azure AI services
 description: This document details issues for data and privacy for Azure AI Language.
-author: ashly1yeo
-ms.author: aliciaep
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

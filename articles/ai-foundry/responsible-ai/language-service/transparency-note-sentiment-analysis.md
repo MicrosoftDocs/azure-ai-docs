@@ -2,8 +2,8 @@
 title: Transparency note - Sentiment Analysis feature of Azure AI Language
 titleSuffix: Azure AI services
 description: The Sentiment Analysis feature of Azure AI Language evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

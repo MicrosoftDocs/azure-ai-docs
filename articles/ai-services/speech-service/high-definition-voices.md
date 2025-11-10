@@ -2,13 +2,14 @@
 title: What are neural text to speech HD voices?
 titleSuffix: Azure AI services
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
-author: eric-urban
-ms.author: eur
-ms.reviewer: eur
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/8/2025
+ms.date: 10/21/2025
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
 ---
@@ -36,7 +37,7 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 
 | Feature | Azure AI Speech HD voices  | Azure OpenAI HD voices | Azure AI Speech voices (not HD) |
 |---------|---------------|------------------------|------------------------|
-| **Region** | East US, Southeast Asia, West Europe | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
+| **Region** | See [Speech service regions](regions.md?tabs=tts) | See [Speech service regions](regions.md?tabs=tts) | Available in dozens of regions. See the [Speech service regions](regions.md?tabs=tts).|
 | **Number of voices** | 30 | 6 | More than 500 |
 | **Multilingual**  | Yes | Yes  | Yes (applicable only to multilingual voices)  |
 | **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
@@ -144,7 +145,26 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<s>`  | Denotes sentences in SSML documents.  | Yes  |
 
 > [!NOTE]
-> Although a [previous section in this guide](#comparison-of-azure-ai-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure AI Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure AI Speech aren't applicable to Azure OpenAI voices. 
+> Although a [previous section in this guide](#comparison-of-azure-ai-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure AI Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure AI Speech aren't applicable to Azure OpenAI voices.
+
+## HD Flash voices
+
+HD voices are currently supported in `eastus`, `westeurope`, and `southeastasia` regions, to provide similar capabilities for customers in China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`), we offer HDFlash versions of selected HD voices. These HDFlash voices deliver enhanced naturalness compared to standard voices. You also can find those HDFlash voices in `eastus`, `westeurope`, and `southeastasia`.
+
+Below is the complete list of available HD Flash voices:
+
+| Voice Name                                 | Gender |
+|-------------------------------------------|--------|
+| zh-CN-Xiaochen:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Female |
+| zh-CN-Yunxia:DragonHDFlashLatestNeural    | Male   |
+| zh-CN-Yunxiao:DragonHDFlashLatestNeural   | Male   |
+| zh-CN-Yunye:DragonHDFlashLatestNeural     | Male   |
+| zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
+
+> [!NOTE]
+> HD Flash only support text in `zh-CN` and `en-US`.
 
 ## Related content
 

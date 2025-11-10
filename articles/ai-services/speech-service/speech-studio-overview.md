@@ -2,12 +2,12 @@
 title: "Speech Studio overview - Speech service"
 titleSuffix: Azure AI services
 description: Speech Studio is a set of UI-based tools for building and integrating features from Speech service in your applications.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Speech Studio.
 ---
 

@@ -2,10 +2,10 @@
 title: How to use structured outputs for chat models
 titleSuffix: Azure AI Foundry
 description: Learn how to use structured outputs with chat completions with Azure AI Foundry Models
-manager: scottpolly
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 05/29/2025
 ms.author: mopeakande

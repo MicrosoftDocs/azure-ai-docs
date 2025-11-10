@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Map enriched output to fields in a search index in Azure AI Search

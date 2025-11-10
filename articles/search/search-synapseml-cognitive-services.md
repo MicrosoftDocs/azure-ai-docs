@@ -2,7 +2,6 @@
 title: 'Tutorial: Index at Scale (Spark)'
 titleSuffix: Azure AI Search
 description: Search big data from Apache Spark that's been transformed by SynapseML. Load invoices into data frames, apply machine learning, and then send output to a generated search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 365-days
 ---
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search
@@ -262,7 +262,7 @@ This particular example is searching for the word "door" (`"search": "door"`). I
 ```python
 import requests
 
-url = "https://{}.search.windows.net/indexes/{}/docs/search?api-version=2024-07-01".format(search_service, search_index)
+url = "https://{}.search.windows.net/indexes/{}/docs/search?api-version=2025-09-01".format(search_service, search_index)
 requests.post(url, json={"search": "door", "count": "true", "select": "Description, Translations"}, headers={"api-key": search_key}).json()
 ```
 

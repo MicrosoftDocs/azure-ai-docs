@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: overview
 ms.date: 11/04/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -23,7 +21,7 @@ Vision Studio lets you try several service features and sample their returned da
 
 To use Vision Studio, you need an Azure subscription and a resource for Azure AI services for authentication. You can also use this resource to call the services in the try-it-out experiences. Follow these steps to get started.
 
-1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/free/ai/).
+1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 1. Go to the [Vision Studio website](https://portal.vision.cognitive.azure.com). If it's your first visit, a popup window prompts you to sign in to Azure and then choose or create a Vision resource. You can skip this step and do it later.
 

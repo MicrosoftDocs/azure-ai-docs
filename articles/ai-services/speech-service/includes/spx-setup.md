@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/12/2022
-ms.author: eur
+ms.author: pafarley
 ---
 
 #### [Windows](#tab/windowsinstall)

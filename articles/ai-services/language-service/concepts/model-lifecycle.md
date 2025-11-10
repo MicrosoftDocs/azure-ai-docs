@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 07/22/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -24,7 +24,7 @@ By default, all API requests use the latest Generally Available (GA) model.
 
 #### Choose the model-version used on your data
 
-We recommend using the `latest` model version to utilize the latest and highest quality models. As our models improve, it's possible that some of your model results may change. Model versions may be deprecated, so we no longer accept specified GA model versions in your implementation. 
+We recommend using the `latest` model version to utilize the latest and highest quality models. As our models improve, it's possible that some of your model results may change. Model versions may be deprecated, so we no longer accept specified GA model versions in your implementation.
 
 Preview models used for preview features don't maintain a minimum retirement period and may be deprecated at any time.
 
@@ -33,27 +33,29 @@ By default, API and SDK requests use the latest Generally Available model. To us
 > [!NOTE]
 > If you're using a model version that isn't listed in the table, then it was subjected to the expiration policy.
 
+## Model versions
+
 Use the following table to find which model versions support each feature:
 
-| Feature                                             | Supported generally available (GA) version     | Latest supported preview versions           |
-|-----------------------------------------------------|------------------------------------------------|---------------------------------------------|
-| Sentiment Analysis and opinion mining               | `latest`                                      |                                              |
-| Language Detection                                  | `latest`                                      |                                              |
-| Entity Linking                                      | `latest`                                      |                                              |
-| Named Entity Recognition (NER)                      | `latest`                                      | `2025-05-15-preview`                         |
-| Personally Identifiable Information (PII) detection | `latest`                                      | `2025-05-15-preview`                         | 
-| PII detection for conversations                     | `latest`                                      | `2024-11-01-preview`                         |
-| Question answering                                  | `latest`                                      |                                              |
-| Text Analytics for health                           | `latest`                                      | `2023-04-15-preview`                         |
-| Key phrase extraction                               | `latest`                                      |                                              | 
-| Summarization                                       | `latest`                                      | `2025-06-10-preview` (only available for `issue` and `resolution` aspects in conversation summarization)  |
+| Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported verision |
+|--|--|--|--|
+| Sentiment Analysis and opinion mining | `latest` |  |  |
+| Language Detection | `latest` |  |  |
+| Entity Linking | `latest` |  |  |
+| Named Entity Recognition (NER) | `latest` | `2025-08-01-preview` | `2025-04-15-preview` |
+| Personally Identifiable Information (PII) detection | `latest` | `2025-08-01-preview` | `2025-04-15-preview` |
+| PII detection for conversations | `latest` | `2024-11-01-preview` | `2023-04-15-preview` |
+| Question answering | `latest` |  |  |
+| Text Analytics for health | `latest` | `2023-04-15-preview` |  |
+| Key phrase extraction | `latest` |  |  |
+| Summarization | `latest`. **Note**: `2025-06-10` is only available for `issue` and `resolution` aspects in conversation summarization.  | |  |
 
 
 ## Custom features
 
 ### Expiration timeline
 
-For custom features, there are two key parts of the AI implementation: training and deployment. New configurations are released regularly with regular AI improvements, so older and less accurate configurations are retired. 
+For custom features, there are two key parts of the AI implementation: training and deployment. New configurations are released regularly with regular AI improvements, so older and less accurate configurations are retired.
 
 Use the following table to find which model versions support each feature:
 
@@ -66,7 +68,7 @@ Use the following table to find which model versions support each feature:
 
 ** *For latest training configuration versions, the posted expiration dates are subject to availability of a newer model version. If no newer model versions are available, the expiration date may be extended.*
 
-Training configurations are typically available for **six months** after its release. If you assigned a trained configuration to a deployment, this deployment expires after **twelve months** from the training config expiration. If your models are about to expire, you can retrain and redeploy your models with the latest training configuration version. 
+Training configurations are typically available for **six months** after its release. If you assigned a trained configuration to a deployment, this deployment expires after **twelve months** from the training config expiration. If your models are about to expire, you can retrain and redeploy your models with the latest training configuration version.
 
 > [!TIP]
 > We recommend that you use the latest supported configuration version.
@@ -90,6 +92,9 @@ Use the following table to find which API versions support each feature:
 | Conversational language understanding| `2022-05-01`, `2022-10-01-preview`, `2023-04-01`                                    |`2023-04-01`                      |`2022-10-01-preview`  |
 | Custom named entity recognition      | `2022-05-01`, `2022-10-01-preview`, `2023-04-01`, `2023-04-15`, `2023-04-15-preview`|`2023-04-15`                      |`2023-04-15-preview`  |
 | Orchestration workflow               | `2022-05-01`, `2022-10-01-preview`, `2023-04-01`                                    |`2023-04-01`                      |`2022-10-01-preview`  |
+| Named Entity Recognition (NER) | `2025-05-15-preview`, `2024-11-01 (GA)`,`2024-11-15-preview` | `2024-11-01 (GA)` | `2025-05-15-preview` |
+| Personally Identifiable Information (PII) detection  | `2025-05-15-preview`,`2024-11-01 (GA)`,`2024-11-15-preview` | `2024-11-01 (GA)` | `2025-05-15-preview` |
+| PII detection for conversations  | `2025-05-15-preview`,`2024-11-01 (GA)`,`2024-11-15-preview` | `2024-11-01 (GA)` | `2025-05-15-preview` |
 
 ## Next steps
 

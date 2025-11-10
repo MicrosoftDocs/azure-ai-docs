@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 05/19/2025
+ms.date: 06/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -25,7 +25,7 @@ Try the latest version of Azure AI Translator. In this quickstart, get started u
 
 ## Prerequisites
 
-You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Once you have your Azure subscription, create a [Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 
@@ -45,7 +45,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 To call the Translator service via the [REST API](../reference/rest-api-guide.md), you need to include the following headers with each request. Don't worry, we include the headers for you in the sample code for each programming language.
 
-For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/v3/reference.md#authentication) guide.
+For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/authentication.md) guide.
 
 Header|Value| Condition  |
 |--- |:--- |:---|

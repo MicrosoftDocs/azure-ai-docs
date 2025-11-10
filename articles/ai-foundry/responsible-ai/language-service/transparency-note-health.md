@@ -2,8 +2,8 @@
 title: Transparency note - Health feature of Azure AI Language
 titleSuffix: Azure AI services
 description: Azure AI service for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

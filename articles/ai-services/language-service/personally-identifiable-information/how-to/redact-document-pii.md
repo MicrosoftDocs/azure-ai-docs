@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 09/27/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -33,7 +33,7 @@ A native document refers to the file format used to create the original document
 |File type|File extension|Description|
 |---------|--------------|-----------|
 |Text| `.txt`|An unformatted text document.|
-|Adobe PDF| `.pdf`|A portable document file formatted document.|
+|PDF| `.pdf`|A portable document file formatted document and scanned PDFs.|
 |Microsoft Word| `.docx`|A Microsoft Word document file.|
 
 ## Input guidelines
@@ -42,7 +42,6 @@ A native document refers to the file format used to create the original document
 
 |Type|support and limitations|
 |---|---|
-|**PDFs**| Fully scanned PDFs aren't supported.|
 |**Text within images**| Digital images with embedded text aren't supported.|
 |**Digital tables**| Tables in scanned documents aren't supported.|
 
@@ -50,7 +49,7 @@ A native document refers to the file format used to create the original document
 
 |Attribute|Input limit|
 |---|---|
-|**Total number of documents per request** |**≤ 20**|
+|**Total number of documents per request** |**≤ 40**|
 |**Total content size per request**| **≤ 10 MB**|
 
 ## Include native documents with an HTTP request
@@ -65,7 +64,7 @@ A native document refers to the file format used to create the original document
     > macOS `curl -V`
     > Linux: `curl --version`
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to [create containers](#create-azure-blob-storage-containers) in your Azure Blob Storage account for your source and target files:
 
@@ -323,7 +322,7 @@ You receive a 200 (Success) response with JSON output. The **status** field indi
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
 
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)

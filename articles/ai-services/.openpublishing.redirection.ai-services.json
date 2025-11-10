@@ -1,6 +1,86 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/pattern-matching-overview.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-simple-language-pattern-matching.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-custom-entity-pattern-matching.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/cli.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/cpp.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/csharp.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/go.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/intro.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/java.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/javascript.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/luis-sign-up.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/objectivec.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/python.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/rest.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/swift.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/intent-recognition-retire.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/index-spatial-analysis.yml",
       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
       "redirect_document_id": false
@@ -127,17 +207,17 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/monitoring.md",
-      "redirect_url": "/azure/ai-services/openai/how-to/monitor-openai",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/monitor-openai",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/prepare-dataset.md",
-      "redirect_url": "/azure/ai-services/openai/concepts/fine-tuning-considerations",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/concepts/fine-tuning-considerations",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/audio-real-time.md",
-      "redirect_url": "/azure/ai-services/openai/realtime-audio-quickstart",
+      "redirect_url": "/azure/ai-foundry/openai/realtime-audio-quickstart",
       "redirect_document_id": false
     },
     {
@@ -182,8 +262,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/api-version-deprecation.md",
-      "redirect_url": "/azure/ai-services/openai/api-version-lifecycle",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/api-version-lifecycle",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-talent.md",
@@ -470,6 +550,46 @@
        "redirect_url": "/azure/ai-services/content-understanding/video/overview",
        "redirect_document_id": false
      },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-analyze.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-modify-images.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-planogram.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/coco-verification.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-shelf-analysis.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
@@ -563,6 +683,26 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/get-started-speaker-recognition.md",
       "redirect_url": "/azure/ai-services/speech-service/speaker-recognition-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/speaker-recognition-overview.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/intent-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-intent-recognition-clu.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-intent-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
@@ -972,8 +1112,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
-      "redirect_url": "/azure/ai-services/openai/overview",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/overview",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
@@ -1177,23 +1317,23 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#list---messages",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---messages",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread-and-run",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread-and-run",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#list---assistants",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---assistants",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
@@ -1232,7 +1372,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
-      "redirect_url": "/azure/ai-services/openai/concepts/content-filter",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter",
       "redirect_document_id": false
     },
     {
@@ -2706,6 +2846,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/containers/azure-kubernetes-recipe.md",
+      "redirect_url": "/azure/aks/what-is-aks",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/references/on-your-data.md",
       "redirect_url": "/azure/ai-foundry/openai/references/on-your-data",
       "redirect_document_id": true
@@ -2724,6 +2869,11 @@
       "source_path_from_root": "/articles/ai-services/openai/text-to-speech-quickstart.md",
       "redirect_url": "/azure/ai-foundry/openai/text-to-speech-quickstart",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/standard-avatars.md",
+      "redirect_url": "/azure/ai-services/speech-service",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/tutorials/embeddings.md",
@@ -2773,6 +2923,11 @@
     {
       "source_path_from_root": "/articles/ai-services/qnamaker/tutorials/integrate-with-power-virtual-assistant-fallback-topic.md",
       "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/concepts/configure-azure-resources",
       "redirect_document_id": true
     }
 

@@ -3,9 +3,10 @@ title: Azure OpenAI in Azure AI Foundry Models encryption of data at rest
 description: Learn how Azure OpenAI encrypts your data when it's persisted to the cloud.
 author: mrbullwinkle
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 04/17/2025
+ms.date: 07/31/2025
 ms.author: mbullwin
 ---
 

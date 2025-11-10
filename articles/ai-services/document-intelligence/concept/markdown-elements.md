@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
 ms.date: 05/05/2025
-ms.author: tonyeiyalla
+ms.author: lajanuar
 
 ---
 

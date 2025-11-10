@@ -6,7 +6,8 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.date: 07/10/2025
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: references_regions
 ---
@@ -24,7 +25,7 @@ The deep research tool is a **code-only release** and available for use using th
 
 |Azure AI foundry portal  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-|  | ✔️ |  |  |  | ✔️  | ✔️ |
+|  | ✔️ | ✔️ | ✔️ |  | ✔️  | ✔️ |
 
 > [!NOTE]
 > Once the agent is running, some elements of the agent and thread runs can show up in the Azure AI Foundry user interface.

@@ -16,7 +16,7 @@ This quickstart uses fictional hotel data from the [azure-search-sample-data](ht
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
@@ -92,7 +92,7 @@ To connect to your search service:
 1. Create a `$url` object that targets the indexes collection on your search service. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = "<YOUR-SEARCH-SERVICE>/indexes?api-version=2024-07-01&`$select=name"
+    $url = "<YOUR-SEARCH-SERVICE>/indexes?api-version=2025-09-01&`$select=name"
     ```
 
 1. Run `Invoke-RestMethod` to send a GET request to your search service. Include `ConvertTo-Json` to view responses from the service.
@@ -152,7 +152,7 @@ To create an index:
 2. Update the `$url` object to target the new index. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart?api-version=2024-07-01"
+    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart?api-version=2025-09-01"
     ```
 
 3. Run `Invoke-RestMethod` to create the index on your search service.
@@ -275,7 +275,7 @@ To upload documents to your index:
 2. Update the `$url` object to target the indexing endpoint. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs/index?api-version=2024-07-01"
+    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs/index?api-version=2025-09-01"
     ```
 
 3. Run `Invoke-RestMethod` to send the upload request to your search service.
@@ -301,7 +301,7 @@ To run a full-text query against your index:
 1. Update the `$url` object to specify search parameters. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
+    $url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
     ```
 
 2. Run `Invoke-RestMethod` to send the query request to your search service.
@@ -344,20 +344,20 @@ Run the following commands to explore the query syntax. You can perform string s
 # Query example 1
 # Search the index for the terms 'restaurant' and 'wifi'
 # Return only the HotelName, Description, and Tags fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=restaurant wifi&$count=true&$select=HotelName,Description,Tags'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=restaurant wifi&$count=true&$select=HotelName,Description,Tags'
 
 # Query example 2 
 # Use a filter to find hotels rated 4 or higher
 # Return only the HotelName and Rating fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=*&$filter=Rating gt 4&$select=HotelName,Rating'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=*&$filter=Rating gt 4&$select=HotelName,Rating'
 
 # Query example 3
 # Take the top two results
 # Return only the HotelName and Category fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=boutique&$top=2&$select=HotelName,Category'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=boutique&$top=2&$select=HotelName,Category'
 
 # Query example 4
 # Sort by a specific field (Address/City) in ascending order
 # Return only the HotelName, Address/City, Tags, and Rating fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=pool&$orderby=Address/City asc&$select=HotelName, Address/City, Tags, Rating'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=pool&$orderby=Address/City asc&$select=HotelName, Address/City, Tags, Rating'
 ```

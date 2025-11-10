@@ -3,8 +3,8 @@ title: Batch transcription overview - Speech service
 titleSuffix: Azure AI services
 description: Batch transcription is ideal if you want to transcribe a large quantity of audio in storage, such as Azure blobs. Then you can asynchronously retrieve transcriptions.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 5/25/2025
@@ -32,7 +32,22 @@ To use the batch transcription REST API:
 1. [Get batch transcription results](batch-transcription-get.md) - Check transcription status and retrieve transcription results asynchronously. 
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours it might take up to 30 minutes or longer for a transcription job to start processing. See how to check the current status of a batch transcription job in [this section](batch-transcription-get.md#get-transcription-status).
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes for a transcription job to start processing and up to 24 hours to complete. See how to check the current status of a batch transcription job in [this section](batch-transcription-get.md#get-transcription-status).
+
+## Best practices for improving performance
+
+
+**Request size**: Batch transcription is asynchronous, and requests are processed one at a time in each region. Submitting jobs at a higher rate does not speed up processing. For example, sending 600 or 6,000 requests per minute has no effect on throughput. We recommend submitting ~1000 files in a single `Transcription_Create` request. This way, you send fewer requests overall.
+
+**Time distribution**: Distribute your requests over time: Submit them across several hours rather than sending them all within a few minutes. Backend processing maintains a stable performance level due to fixed bandwidth, so sending requests too quickly doesn’t improve performance.
+
+**Job monitoring**: [When monitoring job status](./batch-transcription-get.md), polling every few seconds is unnecessary. If you submit multiple jobs, only the first job will be processed initially; subsequent jobs will wait until the first job completes. Polling all jobs frequently increases system load without benefit. Checking the status every 10 minutes is sufficient, and polling more often than once per minute is not recommended. 
+- Because of the sequential processing, you can get job status by checking only a subset of the files: check the first 100 files, and if they're not completed, later batches are likely not competed either. We recommend waiting at least one minute (ideally five minutes) before checking again. 
+
+**Avoid peak traffic for API calls**: The `ListFiles`, `Update`, and `Get` API calls behave similarly to the `Create` call and should be minimized during peak traffic times. 
+
+**Load balancing**: To optimize throughput for large-scale batch transcription, consider distributing your jobs across multiple supported Azure regions. This approach can help balance load and reduce overall processing time, provided your data and compliance requirements allow for multi-region usage. Review [region availability](./regions.md) and ensure your storage and resources are accessible from each region you plan to use.
+
 
 ## Related content
 

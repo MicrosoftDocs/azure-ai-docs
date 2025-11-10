@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: reference
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: jinzhong
 ms.date: 12/18/2023
+ms.update-cycle: 365-days
 ---
 
 # OpenAI GPT-4V (preview)
