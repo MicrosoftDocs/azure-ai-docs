@@ -30,7 +30,7 @@ We'll create a model that extracts entities as they're mentioned to complete tas
 
 * **Azure AI Foundry project** - Create a project in Azure AI Foundry. For more information, see [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-* **Deployed OpenAI model** - Deploy an OpenAI model in Azure AI Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-azure-ai-foundry) section.
+* **Deployed OpenAI model** - Deploy an OpenAI model in Azure AI Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-foundry-portal) section.
 
 ## Configure roles, permissions, and settings
 
@@ -73,7 +73,7 @@ To enable secure access, create a connection between your Azure AI Language reso
 
     :::image type="content" source="../media/add-connection.png" alt-text="Screenshot of the connection window in Azure AI Foundry.":::
 
-## Deploy an OpenAI model in the Foundry portal
+## Deploy an OpenAI model in Foundry portal
 
 Deploy an OpenAI model to provide the foundational intelligence and advanced reasoning capabilities for your CLU model.
 
