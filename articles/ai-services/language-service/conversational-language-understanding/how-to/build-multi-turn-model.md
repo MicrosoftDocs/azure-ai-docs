@@ -15,7 +15,7 @@ ms.custom: language-service-clu
 
 In this article, you learn how to build a CLU model that uses entity slot filling to enable multi-turn conversations. This approach allows your model to collect information progressively across multiple conversation turns, rather than requiring users to provide all details in a single interaction.
 
-You create a model that maintains conversation context, extracts entities as they're mentioned, and intelligently prompts for missing information to complete tasks naturally and efficiently.
+We'll create a model that extracts entities as they're mentioned to complete tasks naturally and efficiently.
 
 ## Prerequisites
 
@@ -251,7 +251,7 @@ Now that all entities have associations, you can proceed with Quick Deploy using
 
     :::image type="content" source="../media/multi-turn/details.png" alt-text="Screenshot of the Details response window.":::
 
-You successfully created a multi-turn CLU model with entity slot filling capabilities. Your model can maintain conversation context and progressively collect required information across multiple dialog turns.
+You successfully created a multi-turn CLU model with entity slot filling capabilities to collect required information across multiple dialog turns.
 
 ## Clean up resources
 

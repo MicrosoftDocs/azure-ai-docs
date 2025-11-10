@@ -30,7 +30,7 @@ CLU can be used in multiple scenarios across various industries. Some examples a
 
 ### Multi-turn conversations 🆕
 
-Use CLU with entity slot filling to enable natural, progressive information gathering across multiple conversation turns. Instead of overwhelming users with complex forms, your application can maintain conversation context and collect required details as they emerge naturally in dialogue. The system remembers what users shared and intelligently prompts for missing information, creating fluid interactions that feel more realistic and natural. This approach is ideal for scenarios like booking systems, customer service workflows, or any application where complete information needs to be gathered through conversational exchanges.
+Use CLU with entity slot filling to enable natural, progressive information gathering across multiple conversation turns. Instead of overwhelming users with complex forms, your application can collect required details as they emerge naturally in dialogue. This approach is ideal for scenarios like booking systems, customer service workflows, or any application where complete information needs to be gathered through conversational exchanges.
 
 * For more information, *see* [Multi-turn conversations](concepts/multi-turn-conversations.md).
 
