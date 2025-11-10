@@ -25,7 +25,7 @@ The primary objectives of Task Adherence are:
 
 Scenario: A customer support assistant chatbot integrated into an enterprise platform helps users check data usage, troubleshoot issues, and manage account settings. To maintain accurate automation, the system incorporates Task Adherence to validate agent plans before executing backend tool calls. 
 
-User: End-users, support agents, and customer experience teams. 
+User: End-users, support agents, and customer experience teams.
 
 Action: A user messages the chatbot: "Can you check how much data I’ve used this month?" The assistant plans to invoke a `change_data_plan()` tool. Task Adherence detects a misalignment between the user’s intent (information request) and the proposed action (subscription change). The tool invocation can be blocked, and the system either halts execution or asks the user for review.
 
@@ -33,7 +33,7 @@ Action: A user messages the chatbot: "Can you check how much data I’ve used th
 
 Scenario: An enterprise assistant chatbot automates routine HR-related workflows such as booking leave, submitting expenses, and checking policy details. Task Adherence ensures that agent actions stay within the expected scope and don't take unintended shortcuts.
 
-User: Employees, HR business partners, and workflow automation teams. 
+User: Employees, HR business partners, and workflow automation teams.
 
 Action: An employee writes: "I want to know how much annual leave I have left." The agent plans to invoke `apply_leave()`. Task Adherence identifies a task mismatch: the user asked for information, not to initiate a process. The execution is blocked, and the agent rephrases or prompts for confirmation. 
 
@@ -47,16 +47,17 @@ Action: The user prompts: "Write an email to the client about the missed deadlin
 
 ## Aligned vs. misaligned tool use 
 
-This Task Adherence API signal helps developers and platform owners understand when an agent’s tool invocation matches or deviates from the user's intent. 
+This Task Adherence API signal helps developers and platform owners understand when an agent’s tool invocation matches or deviates from the user's intent.
 
 ### Examples
 
-| Action | Classification | Example |
+| Classification | Action | Example |
 |--|--| 
-| Agent retrieves requested information without taking unintended action. | Aligned | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: get_calendar_events()<br>✅ Agent retrieves events as asked.<br>**Output**:<br>`{"taskRiskDetected":false}` | 
-| Agent attempts to modify user settings when only an information request was made. | Misaligned | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: clear_calendar_events()<br>❌ Agent prepares to delete data.<br>**Output**:<br>`{"taskRiskDetected": true,"details": "Planned action deletes calendar events, but user only requested to view them."}` |
-| Agent begins a document creation flow after user requests to generate a new document. | Aligned | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: create_document()<br>✅ Matches the user’s task request.<br>**Output**:<br>`{"taskRiskDetected": false }` | 
-| Agent shares the document with external collaborators without user instruction. | Misaligned | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: share_document()<br>❌ No user instruction to share.<br>**Output**:<br>`{"taskRiskDetected": true, "details": "Agent attempts to share a document externally without user request or confirmation."}` | 
+| Aligned | Agent retrieves requested information without taking unintended action. | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: get_calendar_events()<br>✅ Agent retrieves events as asked.<br>**Output**:<br>`{"taskRiskDetected":false}` | 
+| Misaligned | Agent attempts to modify user settings when only an information request was made. | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: clear_calendar_events()<br>❌ Agent prepares to delete data.<br>**Output**:<br>`{"taskRiskDetected": true,"details": "Planned action deletes calendar events, but user only requested to view them."}` |
+| Aligned | Agent begins a document creation flow after user requests to generate a new document. | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: create_document()<br>✅ Matches the user’s task request.<br>**Output**:<br>`{"taskRiskDetected": false }` | 
+| Misaligned | Agent shares the document with external collaborators without user instruction. | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: share_document()<br>❌ No user instruction to share.<br>**Output**:<br>`{"taskRiskDetected": true, "details": "Agent attempts to share a document externally without user request or confirmation."}` | 
+
 
 
 ## Limitations 
