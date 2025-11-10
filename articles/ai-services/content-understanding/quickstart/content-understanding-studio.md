@@ -26,28 +26,19 @@ To get started, make sure you have the following resources and permissions:
 ## Explore Content Understanding Studio
 If you are familiar with the Document Intelligence service, you may recognize the classic features of Document Intelligence, now coupled with the new features that Content Understanding brings to analyze data of all modalities. When you arrive in Content Understanding Studio, you have the option to select between the classic Document Intelligence Studio, and the new features of Content Understanding, shown below. Select “Content Understanding” to get started.
 
-<!---[Insert photo of the home page]--->
- 
 ## Try out Content Understanding prebuilt analyzers
 
 Get started by trying out the prebuilt analyzers offered through the Content Understanding API.
 
 1.	**Browse prebuilt analyzers**: Select the option to view all prebuilt analyzers from the home page of Content Understanding Studio.
 
-<!---[Insert photo of the button to select prebuilts]--->
-
- 
 2.	**Select a prebuilt to try**: Content Understanding offers an extensive list of prebuilt analyzers that support scenarios across all modalities. Select an option based on your data needs to explore what features it offers.
-
-<!---[Insert photo of the list of prebuilts]--->
-
  
 3.	**Test on sample data**: Explore how the analyzer performs on provided sample data.
 
-<!---[Insert photo of the prebuilt tested on sample data]--->
+:::image type="content" source="../media/quickstarts/cu-studio-tryout.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/quickstarts/cu-studio-tryout.png" :::
 
- 
-4. **Try out-on your own data**: To try out Content Understanding on your data, you will need to select a deployment of both a chat completion model and an embeddings model. Learn more about bringing your own deployment in [placeholder for BYOC doc](). 
+4. **Try out-on your own data**: To try out Content Understanding on your data, you will need to select a deployment of both a chat completion model and an embeddings model. Learn more about bringing your own deployment in [Connect your Content Understanding analyzer to Foundry model deployments](../concepts/models-deployments.md). 
 
 <!---[Include screenshot of deployment selection]--->
 
