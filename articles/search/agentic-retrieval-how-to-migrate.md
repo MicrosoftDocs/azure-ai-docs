@@ -404,15 +404,19 @@ The response includes the full definition of the new object. For more informatio
 
    + Update `knowledgeSources`:
 
-     + Delete `maxSubQueries`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold`. These properties are now only specified on the retrieval request itself, through the `retrievalReasoningEffort` (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+     + Delete `maxSubQueries` and replace with a retrievalReasoningEffort` (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+
+     + Move `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold` to the `knowledgeSourcesParams` section of a [retrieve action](agentic-retrieval-how-to-retrieve.md).
 
    + No changes for `models`.
 
-   + Replace `outputConfiguration` with `outputMode`.
+   + Update `outputConfiguration`:
 
-     + Replace `"modality": "answerSynthesis"` with `"extractiveData"`.
+     + Replace `outputConfiguration` with `outputMode`.
 
      + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum  (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+
+     + If modality is set to `answerSynthesis`, make sure you set the retrieval reasoning effort to low (default) or medium.
 
    + Add `ingestionParameters` as a requirement for creating a 2025-11-01-preview azureBlob knowledge source.
 
@@ -463,7 +467,7 @@ The retrieval request is modified for the 2025-11-01-preview to support more sha
 
 1. Change the API version to `2025-11-01-preview`.
 
-1. No changes to `messages` are required if you are using a `low` or `medium` retrievalReasoningEffort. Replace messages with intent if you use `minimal `reasoning (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
+1. No changes to `messages` are required if you are using a `low` or `medium` retrievalReasoningEffort. Replace messages with `intent` if you use `minimal `reasoning (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 1. Modify `knowledgeSourceParams` to include any properties that were removed from the agent: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`.
 

@@ -14,33 +14,33 @@ ms.date: 11/10/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, agentic retrieval uses context and user questions to generate a range of subqueries that can execute against your content in a knowledge source. For most knowledge sources, the physical data structure is a *search index*. The search index is specified as a [knowledge source](agentic-knowledge-source-overview.md) and referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and is either:
+In Azure AI Search, agentic retrieval uses context and user questions to generate a range of subqueries that can execute against your content in a [knowledge source](agentic-knowledge-source-overview.md). A knowledge source can point to indexed content on Azure AI Search, or remote content that's retrieved using the APIs that are native to the provider. When indexes are used in agentic retrieval, they are either:
 
 + An *existing index* containing searchable content. You can make an existing index available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
 
-+ A *generated index* created from a [knowledge source](agentic-knowledge-source-overview.md). Multiple knowledge sources can generate an indexer pipeline that results in a searchable index. These include:
++ A *generated index* created from an indexed [knowledge source](agentic-knowledge-source-overview.md). Indexed knowledge sources create a copy of an external data source inside a search index using a full indexer pipeline (data source, skillset, indexer, and index) for agentic retrieval. Indexed knowledge sources create a copy of an external data source inside a search index using a full indexer pipeline (data source, skillset, indexer, and index) for agentic retrievalMultiple knowledge sources can generate an indexer pipeline that results in a searchable index. These include:
 
   + [Azure blobs](agentic-knowledge-source-how-to-blob.md)
   + [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md)
-  + SharePoint (Indexed)
+  + [SharePoint (Indexed)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 
 A generated index is based on a template that meets all of the criteria for knowledge bases and agentic retrieval.
 
 This article explains which index elements affect agentic retrieval query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
-> [!IMPORTANT]
-> You can now configure agentic retrieval to bypass a search index and access external content directly using native query APIs. Results from external sources are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified response string. The following knowledge sources access external sources directly: [Web Knowledge Source (Bing)](agentic-knowledge-source-how-to-web.md) and [SharePoint (Remote)](agentic-knowledge-source-how-to-sharepoint-remote.md).
+> [!NOTE]
+> The following knowledge sources access external sources directly and don't require a search index: [Web Knowledge Source (Bing)](agentic-knowledge-source-how-to-web.md) and [SharePoint (Remote)](agentic-knowledge-source-how-to-sharepoint-remote.md).
 
 ## Criteria for agentic retrieval
 
 An index that's used in agentic retrieval must have these elements:
 
 + String fields attributed as `searchable` and `retrievable`.
-+ A semantic configuration, with a `defaultSemanticConfiguration` or a semantic configuration override in the knowledge source.
++ A [semantic configuration](semantic-search-overview.md), with a `defaultSemanticConfiguration` or a semantic configuration override in the knowledge source.
 
 It should also have fields that can be used for citations, such as  document or file name, page or chapter name, or at least a chunk ID.
 
-It should have vector fields and a vectorizer if you want to include text-to-vector query conversion in the pipeline.
+It should have [vector fields and a vectorizer](vector-search-how-to-create-index.md) if you want to include text-to-vector query conversion in the pipeline.
 
 Optionally, the following index elements increase your opportunities for optimization:
 
@@ -162,11 +162,11 @@ Chunked text is important because LLMs consume and emit tokenized strings of hum
 
 A built-in assumption for chunked content is that the original source documents have large amounts of verbose content. If your source content is structured data, such as a product database, then your index should forego chunking and instead include fields that map to the original data source (for example, a product name, category, description, and so forth). Attribution of `searchable` and `retrievable` applies to structured data as well. Searchable makes the content in-scope for queries, and retrievable adds it to the search results (grounding data).
 
-Vector content can be useful because it adds *similarity search* to information retrieval. At query time, when vector fields are present in the index, the agentic retrieval engine executes a vector query in parallel to the text query. Because vector queries look for similar content rather than matching words, a vector query can find a highly relevant result that a text query might miss. Adding vectors can enhance and improve the quality of your  grounding data, but aren't otherwise strictly required. Azure AI Search has a [built-in approach for vectorization](vector-search-overview.md).
+Vector content can be useful because it adds *similarity search* to information retrieval. At query time, when vector fields are present in the index, the agentic retrieval engine executes a vector query in parallel to the text query. Because vector queries look for similar content rather than matching words, a vector query can find a highly relevant result that a text query might miss. Adding vectors can enhance and improve the quality of your grounding data, but aren't otherwise strictly required. Azure AI Search has a [built-in approach for vectorization](vector-search-overview.md).
 
-Vector fields are used only for query execution on Azure AI Search. You don't need the vector in results because it isn't human or LLM readable. We recommend that you set `retrievable` and `stored` to false to minimize space requirements. 
+Vector fields are used only for query execution on Azure AI Search. You don't need the vector in results because it isn't human or LLM readable. We recommend that you set `retrievable` and `stored` to false to minimize space requirements. For more information, see [Optimize vector storage and processing](vector-search-how-to-configure-compression-storage.md).
 
-If you use vectors, having a vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes string subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
+If you use vectors, having a [vectorizer](vector-search-how-to-configure-vectorizer.md) defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes string subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
 By default, all `searchable` fields are included in query execution, and all `retrievable` fields are returned in results. You can choose which fields to use for each action in the [search index knowledge source definition](agentic-knowledge-source-how-to-search-index.md).
 
@@ -186,7 +186,7 @@ The index must have at least one semantic configuration. The semantic configurat
 + A named configuration.
 + A `prioritizedContentFields` set to at least one string field that is both `searchable` and `retrievable`.
 
-There are two ways to specify a semantic configuration by name. If index has `defaultSemanticConfiguration` set to a named configuration, retrieval uses it. Alternatively, you can specify the semantic configuration in a knowledge source.
+There are two ways to specify a semantic configuration by name. If index has `defaultSemanticConfiguration` set to a named configuration, retrieval uses it. Alternatively, you can specify the semantic configuration inside the [search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 Within the configuration, `prioritizedContentFields` is required. Title and keywords are optional. For chunked content, you might not have either. However, if you add [entity recognition](cognitive-search-skill-entity-recognition-v3.md) or [key phrase extraction](cognitive-search-skill-keyphrases.md), you might have some keywords associated with each chunk that can be useful in search scenarios, perhaps in a scoring profile.
 
@@ -346,6 +346,14 @@ Synonym maps are defined as a top-level resource on a search index and assigned 
     "synonymMaps":[ "country-synonyms" ]
 }
 ```
+
+## Add your index to a knowledge source
+
+If you have a standalone index that already exists, and it isn't generated by a knowledge source, create the following objects:
+
++ A [searchIndex knowledge source](agentic-knowledge-source-how-to-search-index.md) to encapsulate your indexed content.
+
++ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that represents one or more knowledge sources and other instructions for knowledge retrieval.
 
 ## Related content
 

@@ -39,11 +39,10 @@ Here are the knowledge sources you can create in this preview:
 
 + [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) wraps an existing index.
 + [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container.
-+ ["indexedOneLake" API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a lakehouse.
-+ ["remoteSharePoint" API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) retrieves content directly from SharePoint.
-+ ["WebParameters" API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) retrieves real-time grounding data from Microsoft Bing.
-
-A platform-specific knowledge source like the blob knowledge source or OneLake knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
++ [`"indexedOneLake"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a lakehouse.
++ [`"indexedSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a SharePoint site.
++ [`"remoteSharePoint"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) retrieves content directly from SharePoint.
++ [`"webParameters"` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) retrieves real-time grounding data from Microsoft Bing.
 
 ## Creating knowledge sources
 
@@ -54,6 +53,7 @@ You can use the REST API or an Azure SDK preview package to create a knowledge s
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
++ [How to create a SharePoint (indexed) knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-sharepoint-indexed.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
 + [How to create a Web Knowledge Source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
@@ -64,13 +64,13 @@ After the knowledge source is created, you can reference it in a knowledge base.
 
 Properties on the [*knowledge base*](agentic-retrieval-how-to-create-knowledge-base.md) determine which knowledge sources are used.
 
-+ ["knowledgeSources"](/rest/api/searchservice/knowledgebases/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-11-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge base.
++ ["knowledgeSources" REST](/rest/api/searchservice/knowledgebases/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-11-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge base.
 
-+ ["retrievalReasoningEffort"](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties determine the degree of LLM processing in query planning and answer formulation.
++ ["retrievalReasoningEffort" REST](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties determine the amount of effort put into a retrieval. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
-+ ["outputMode"](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties affect query output.
++ ["outputMode" REST](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) affects query output and what goes in the response.
 
-The knowledge base uses the [retrieve action](agentic-retrieval-how-to-retrieve.md) to send queries to the index specified in the knowledge source. The retrieve action includes knowledge source override properties if you need specific behaviors at query time.
+The knowledge base uses the [retrieve action](agentic-retrieval-how-to-retrieve.md) to send queries to the index specified in the knowledge source. In the retrieve action, some knowledge base and source defaults can be overridden at retrieval time.
 
 ### Use multiple knowledge sources simultaneously
 
@@ -87,7 +87,7 @@ The `alwaysQuerySource` property overrides `retrievalInstructions`. Set `alwaysQ
 
 Not all solutions benefit from LLM query planning and execution. If simplicity and speed outweigh the benefits the LLM query planning and context engineering provide, you can omit the LLM from your pipeline.
 
-The retrieval reasoning effort determines the level of processing that goes into a retrieval action.
+The retrieval reasoning effort determines the level of processing that goes into a retrieval action. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 > [!NOTE]
 > If you used `attemptFastPath` in the previous preview, that approach is now replaced with `retrievalReasoningEffort` set to `minimal`.
