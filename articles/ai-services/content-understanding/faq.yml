@@ -63,6 +63,7 @@ sections:
           * Microsoft Fabric
           * Azure AI Foundry Agent Service
           * Azure Logic Apps
+          
           The service offers a set of easy-to-use APIs that can be integrated into any application. See [code samples on GitHub](https://github.com/Azure-Samples/azure-ai-content-understanding-python).
       - question: |
          What security measures are in place to protect data processed by Content Understanding?
