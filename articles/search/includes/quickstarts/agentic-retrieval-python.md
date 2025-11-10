@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/10/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -69,8 +69,8 @@ To create and run the agentic retrieval pipeline:
     from azure.search.documents.indexes.models import SearchIndex, SearchField, VectorSearch, VectorSearchProfile, HnswAlgorithmConfiguration, AzureOpenAIVectorizer, AzureOpenAIVectorizerParameters, SemanticSearch, SemanticConfiguration, SemanticPrioritizedFields, SemanticField, SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference, KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
     from azure.search.documents.indexes import SearchIndexClient
     from azure.search.documents import SearchIndexingBufferedSender
-    from azure.search.documents.knowledgebase import KnowledgeBaseRetrievalClient
-    from azure.search.documents.knowledgebase.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
+    from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+    from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
     import requests
     import json
     

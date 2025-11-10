@@ -1,7 +1,7 @@
 ---
-title: Enable or Disable Access to Web Knowledge Sources
+title: Enable or Disable Access to Web Knowledge Source
 titleSuffix: Azure AI Search
-description: Learn how to enable or disable the use of web knowledge sources in your Azure subscription. By default, access is enabled, but you can disable or re-enable access using the Azure CLI.
+description: Learn how to enable or disable the use of Web Knowledge Source in your Azure subscription. By default, access is enabled, but you can disable or re-enable access using the Azure CLI.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -9,10 +9,10 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 11/10/2025
 ---
 
-# Manage access to web knowledge sources in your Azure subscription
+# Manage access to Web Knowledge Source in your Azure subscription
 
 > [!IMPORTANT]
 > + Web Knowledge Source, which uses Grounding with Bing Search and/or Grounding with Bing Custom Search, is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
@@ -23,7 +23,7 @@ ms.date: 11/07/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-As an Azure admin, you can use the Azure CLI to enable or disable the use of [web knowledge sources](agentic-knowledge-source-how-to-web.md) at the subscription level. This setting applies to all search services within the specified subscription.
+As an Azure admin, you can use the Azure CLI to enable or disable the use of [Web Knowledge Source](agentic-knowledge-source-how-to-web.md) at the subscription level. This setting applies to all search services within the specified subscription.
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ As an Azure admin, you can use the Azure CLI to enable or disable the use of [we
 
 ## Check the current access state
 
-To check the current status of web knowledge source access, run the following command.
+To check the current status of Web Knowledge Source access, run the following command.
 
 ### [PowerShell](#tab/powershell)
 
@@ -52,12 +52,12 @@ Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-tok
 
 The output shows the `state` property, which indicates the current registration status:
 
-+ `Registered` means web knowledge sources are **disabled**.
-+ `Unregistered` means web knowledge sources are **enabled**, which is the default state.
++ `Registered` means access is **disabled**.
++ `Unregistered` means access is **enabled**, which is the default state.
 
-## Enable use of web knowledge sources
+## Enable use of Web Knowledge Source
 
-Access to knowledge sources is enabled by default. If access has been disabled, you can run the following command to enable it.
+Access to Web Knowledge Source is enabled by default. If access has been disabled, you can run the following command to enable it.
 
 ### [PowerShell](#tab/powershell)
 
@@ -74,9 +74,9 @@ Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-tok
 
 ---
 
-## Disable use of web knowledge sources
+## Disable use of Web Knowledge Source
 
-Run the following command to disable access to web knowledge sources.
+Run the following command to disable access to Web Knowledge Source.
 
 ### [PowerShell](#tab/powershell)
 
@@ -95,5 +95,5 @@ Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-tok
 
 ## Related content
 
-+ [Create a web knowledge source](agentic-knowledge-source-how-to-web.md)
++ [Create a Web Knowledge Source resource](agentic-knowledge-source-how-to-web.md)
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
