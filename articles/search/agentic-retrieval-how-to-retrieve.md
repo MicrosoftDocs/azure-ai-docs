@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/10/2025
 ---
 
 # Retrieve data using a knowledge base in Azure AI Search
@@ -43,7 +43,7 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 ## Set up the retrieve action
 
-A retrieve action is specified on a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base has one or more knowledge sources, and it's common for a knowledge base to specify a chat completion model for query planning and answer formulation.
+A retrieve action is specified on a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base has one or more knowledge sources. Retrieval can return a synthesized answer in natural language or raw grounding chunks from the knowledge sources.
 
 + Review your knowledge base definition to understand which knowledge sources are in scope.
 
@@ -57,7 +57,7 @@ For knowledge sources that have default retrieval instructions, you can override
 
 For knowledge sources that target a search index, all `searchable` fields are in-scope for query execution. If the index includes vector fields, your index should have a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so that the agentic retrieval engine can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode.
 
-The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation.
+The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation. Messages are only supported if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is either low or medium.
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
@@ -112,22 +112,28 @@ Successful retrieval returns a `200 OK` status code. If the knowledge base fails
 
 Retrieve requests vary depending on the knowledge sources and whether you want to override a default configuration. Here are several examples that illustrate a range of requests.
 
-### Example: minimal reasoning effort
+### Example: Override default reasoning effort and set request limits
 
-In this example, there's no chat completion model for intelligent query planning or answer formulation. The query string is passed to the agentic retrieval engine for keyword search or hybrid search.
+This example specifies [answer formulation](agentic-retrieval-how-to-answer-synthesis.md), so `retrievalReasoningEffort` must be "low" or "medium".
 
 ```http
-POST {{url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
+POST {{url}}/knowledgebases/kb-override/retrieve?api-version={{api-version}}
 api-key: {{key}}
 Content-Type: application/json
 
 {
-    "intents": [
+    "messages": [
         {
-            "type": "semantic",
-            "search": "what is a brokerage"
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What companies are in the financial sector?" }
+            ]
         }
-    ]
+    ],
+    "retrievalReasoningEffort": { "kind": "low" },
+    "outputMode": "answerSynthesis",
+    "maxRuntimeInSeconds": 30,
+    "maxOutputSize": 6000
 }
 ```
 
@@ -152,19 +158,19 @@ Content-Type: application/json
     "includeActivity": true,
     "knowledgeSourceParams": [
         {
-            "knowledgeSourceName": "sec-gics-financials",
+            "knowledgeSourceName": "demo-financials-ks",
             "kind": "searchIndex",
             "includeReferences": true,
             "includeReferenceSourceData": true
         },
         {
-            "knowledgeSourceName": "sec-gics-communicationservices",
+            "knowledgeSourceName": "demo-communicationservices-ks",
             "kind": "searchIndex",
             "includeReferences": false,
             "includeReferenceSourceData": false
         },
         {
-            "knowledgeSourceName": "sec-gics-healthcare",
+            "knowledgeSourceName": "demo-healthcare=ks",
             "kind": "searchIndex",
             "includeReferences": true,
             "includeReferenceSourceData": false,
@@ -174,28 +180,22 @@ Content-Type: application/json
 }
 ```
 
-### Example: Override default reasoning effort and set request limits
+### Example: minimal reasoning effort
 
-This example uses a chat completion model, so `retrievalReasoningEffort` must be "low" or "medium". This example specifies answer formulation, and it imposes constraints on query processing.
+In this example, there's no chat completion model for intelligent query planning or answer formulation. The query string is passed to the agentic retrieval engine for keyword search or hybrid search.
 
 ```http
-POST {{url}}/knowledgebases/kb-override/retrieve?api-version={{api-version}}
+POST {{url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
 api-key: {{key}}
 Content-Type: application/json
 
 {
-    "messages": [
+    "intents": [
         {
-            "role": "user",
-            "content": [
-                { "type": "text", "text": "What companies are in the financial sector?" }
-            ]
+            "type": "semantic",
+            "search": "what is a brokerage"
         }
-    ],
-    "retrievalReasoningEffort": { "kind": "low" },
-    "outputMode": "answerSynthesis",
-    "maxRuntimeInSeconds": 30,
-    "maxOutputSize": 6000
+    ]
 }
 ```
 
@@ -230,7 +230,7 @@ The body of the response is also structured in the chat message style format. Cu
 + `content.type` has one valid value in this preview: `text`. 
 
 > [!NOTE]
-> The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string. We recommend 5,000 tokens.
+> The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string.
 
 ## Review the activity array
 
@@ -244,6 +244,8 @@ The output includes the following components.
 | source-specific activity | For each knowledge source included in the query, report on elapsed time and which arguments were used in the query, including the semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
 | agenticReasoningEffort | For each retrieve action, you can specify the degree of LLM support. Use minimal to bypass an LLM, low for constrained LLM processing, and medium for full LLM processing. | 
 | modelAnswerSynthesis | For knowledge bases that specify answer formulation, this section reports on the token count for formulating the answer, and the token count of the answer output. |
+
+Output reports on the token consumption for agentic reasoning during retrieval at the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
 Output also includes the following information:
 
@@ -264,7 +266,7 @@ Here's an example of an activity array.
     {
       "type": "searchIndex",
       "id": 1,
-      "knowledgeSourceName": "sec-gics-financials",
+      "knowledgeSourceName": "demo-financials-ks",
       "queryTime": "2025-11-04T19:25:23.683Z",
       "count": 26,
       "elapsedMs": 1137,
@@ -279,7 +281,7 @@ Here's an example of an activity array.
     {
       "type": "searchIndex",
       "id": 2,
-      "knowledgeSourceName": "sec-gics-healthcare",
+      "knowledgeSourceName": "demo-healthcare-ks",
       "queryTime": "2025-11-04T19:25:24.186Z",
       "count": 17,
       "elapsedMs": 494,

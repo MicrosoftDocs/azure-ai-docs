@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/28/2025
+ms.date: 11/10/2025
 ---
 
 # Migrate agentic retrieval code to the latest version
@@ -404,7 +404,7 @@ The response includes the full definition of the new object. For more informatio
 
    + Update `knowledgeSources`:
 
-     + Delete `maxSubQueries`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold`. These properties are now only specified on the retrieval request itself, through the `retrievalReasoningEffort` settings.
+     + Delete `maxSubQueries`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold`. These properties are now only specified on the retrieval request itself, through the `retrievalReasoningEffort` (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
    + No changes for `models`.
 
@@ -412,7 +412,7 @@ The response includes the full definition of the new object. For more informatio
 
      + Replace `"modality": "answerSynthesis"` with `"extractiveData"`.
 
-     + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum.
+     + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum  (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
    + Add `ingestionParameters` as a requirement for creating a 2025-11-01-preview azureBlob knowledge source.
 
@@ -463,11 +463,11 @@ The retrieval request is modified for the 2025-11-01-preview to support more sha
 
 1. Change the API version to `2025-11-01-preview`.
 
-1. No changes to `messages` are required.
+1. No changes to `messages` are required if you are using a `low` or `medium` retrievalReasoningEffort. Replace messages with intent if you use `minimal `reasoning (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 1. Modify `knowledgeSourceParams` to include any properties that were removed from the agent: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`.
 
-1. Add `retrievalReasoningEffort` set to `minimum` if you were using `attemptFastPath`. If you were using `maxSubQueries`, equivalent behavior is invoked through the `retrievalReasoningEffort` setting.
+1. Add `retrievalReasoningEffort` set to `minimum` if you were using `attemptFastPath`. If you were using `maxSubQueries`, it no longer exists. Use the `retrievalReasoningEffort` setting to specify subquery processing (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
@@ -500,7 +500,7 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 
 To complete your migration, follow these cleanup steps:
 
-1. For Azure Blob knowledge sources only, update clients to use the new index. If your code automates indexing, update the references to the indexer, data source, and skillset.
+1. For Azure Blob knowledge sources only, update clients to use the new index. If you have code or script that runs an indexer or references a data source, index, or skillset, make sure you update the references to the new objects.
 
 1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
 
@@ -663,7 +663,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 + Knowledge agent (base) `outputConfiguration` is renamed to `outputMode` and changed from an object to a string enumerator. Several properties are impacted:
 
   + `includeActivity` is moved from `outputConfiguration` onto the retrieval request object directly.  
-  + `attemptFastPath` in `outputConfiguration` is removed entirely. The new `minimal` reasoning effort is considered to be the replacement.
+  + `attemptFastPath` in `outputConfiguration` is removed entirely. The new `minimal` reasoning effort is the replacement.
 
 + Knowledge agent (base) `requestLimits` is removed. Its child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
 
@@ -694,7 +694,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + The `searchIndex` knowledge source adds `sourceDataFields` and `searchDataFields` to specify which fields are used at query time and also returned in a response.
 
-+ Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing.
++ Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing  (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)).
 
 + Knowledge agent (base) adds a new `intent` object for `minimal` retrieval reasoning effort, where `intent` replaces `messages` to the LLM. An `intent` is a query string passed directly to the search engine, with no intermediate LLM query planning step.
 
