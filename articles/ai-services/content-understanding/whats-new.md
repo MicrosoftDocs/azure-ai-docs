@@ -76,7 +76,7 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 ### Other improvements
 
-- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See[prebuilt analyzers](concepts/prebuilt-analyzers.md)
+- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See [prebuilt analyzers](concepts/prebuilt-analyzers.md)
 - `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting and summarizing charts, diagrams, and images with their context. See [prebuilt analyzers](concepts/prebuilt-analyzers.md)
 - When analyzing content, you can now provide a **page range** to only analyze specific pages of the input document.
 - Segmentation and classification (contentCategories) let you send sections to purpose-built analyzers during a single run. For example, `prebuilt-idDocument` classifies pages and routes them to specific analyzers (such as passport and driver's license analyzers), each with their own schemas—all within a single run.
