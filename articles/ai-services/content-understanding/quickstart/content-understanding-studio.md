@@ -36,7 +36,7 @@ Get started by trying out the prebuilt analyzers offered through the Content Und
  
 3.	**Test on sample data**: Explore how the analyzer performs on provided sample data.
 
-:::image type="content" source="media/quickstarts/cu-studio-tryout.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/quickstarts/cu-studio-tryout.png" :::
+:::image type="content" source="../media/quickstarts/cu-studio-tryout.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/quickstarts/cu-studio-tryout.png" :::
 
 4. **Try out-on your own data**: To try out Content Understanding on your data, you will need to select a deployment of both a chat completion model and an embeddings model. Learn more about bringing your own deployment in [Connect your Content Understanding analyzer to Foundry model deployments](../concepts/models-deployments.md). 
 
