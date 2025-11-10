@@ -21,13 +21,13 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 
 | Property | Limit |
 | --- | --- |
-| Resource IDs | 1-64 characters (`[a-zA-Z0-9._-]{1,64}`) |
+| Analyzer ID | 1-64 characters. Alphanumeric, period, and underscore. Pattern: `[a-zA-Z0-9._]{1,64}` |
 | URL properties | ≤ 8,192 characters |
 | Description properties | ≤ 1,024 characters |
-| Field names | ≤ 64 characters (`[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}`) |
+| Field names | ≤ 64 characters. Unicode letters, numbers, combining marks, connecting punctuation, period, hyphen, and underscore. Pattern: `[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}` |
 | Tags | ≤ 10 tags |
-| Tag key | ≤ 64 characters (`[a-zA-Z0-9+-.:=_/]{1,64}`) |
-| Tag value | ≤ 256 characters (`[a-zA-Z0-9+-.:=_/]{0,256}`) |
+| Tag key | ≤ 64 characters. Alphanumeric and `+ - . : = _ /` characters. Pattern: `[a-zA-Z0-9+-.:=_/]{1,64}` |
+| Tag value | ≤ 256 characters. Alphanumeric and `+ - . : = _ /` characters. Can be empty. Pattern: `[a-zA-Z0-9+-.:=_/]{0,256}` |
 | Image reference ID | ≤ 256 characters |
 
 ## Resource limits
@@ -48,7 +48,7 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
-| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
+| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | ≤ 300 pages |
 | ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters |
 | ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
 
@@ -60,15 +60,15 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 
 | Supported File Types | File Size | Resolution |
 | --- | --- | --- |
-| ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
+| ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
 
 #### Audio
 
 | Supported File Types | File Size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (`AAC`, `ALAC`)<br> ✓ `.spx` | ≤ 1 GB<sup>†</sup> | ≤ 4 hours<sup>†</sup> |
+| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (`AAC`, `ALAC`)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: 2 hours<sup>†</sup> |
 
-<sup>†</sup> For files ≤ 300 MB or ≤ 2 hours, Content Understanding transcription time is substantially reduced.
+<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files ≤ 300 MB or ≤ 2 hours.
 
 #### Video
 
@@ -82,12 +82,12 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
-| Direct upload | ≤ 200 MB | ≤ 30 minutes | When uploading a file via the API directly by including a file in the request. This is the path used by the Azure AI Foundry UX.  |
-| File reference | ≤ 20 GB | ≤ 4 hours | When referencing a video file via a URL stored in Azure Blob Storage or similar |
+| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Uploading video files directly in the API request body using the analyzeBinary API. This method is used by the Azure AI Foundry UX and Content Understanding Studio UX.  |
+| analyze API (file reference) | Max: 4 GB | Max: 2 hours | Referencing video files via URL from Azure Blob Storage or similar storage when using the analyze API |
 
 > [!NOTE]
 > Video analysis has the following limitations:
-> * Direct upload: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly
+> * analyzeBinary API: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly in the request body
 > * Frame sampling: Analyzes approximately one frame per second, which may miss quick movements or brief events
 > * Resolution: All frames are scaled to 512 x 512 pixels, which may affect visibility of small details or distant objects
 
@@ -121,27 +121,6 @@ Content Understanding supports both basic field value types and nested structure
 
 ---
 
-## Segmentation/Classification
-
-### General limits
-
-   > [!NOTE]
-   > This limit is for [Content Understanding segmentation/classification](concepts/classifier.md) itself, not classify fields within the extraction capability.
-
-| Property | Limit |
-| --- | --- |
-| Category name | Can't start with a dollar sign (`$`)|
-| Category name and description | Maximum 120 characters for combined name and description in each category |
-| Number of categories | 200 per analyzer |
-
-### Input file limits
-
-| Supported File Types | File Size | Length |
-| --- | --- | --- |
-| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
-| ✓ `.txt`  | ≤ 1 MB | ≤ 1M characters |
-
----
 
 
 

@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 11/05/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice live API for real-time voice agents.
 ---
@@ -202,7 +202,7 @@ The `voice` object has the following properties:
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
-See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
+See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech output customization configuration.
 
 ### Azure standard voices
 

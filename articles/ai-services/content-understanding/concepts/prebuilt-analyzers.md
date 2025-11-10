@@ -24,26 +24,26 @@ Azure AI Content Understanding provides several categories of analyzers to suppo
 
 ### Content extraction analyzers
 
-Content extraction analyzers focus on optical character recognition and layout analysis.
+Content extraction analyzers focus on optical character recognition and layout analysis. These analyzers are built on top of `prebuilt-document` and provide progressively richer extraction capabilities.
 
 #### `prebuilt-read`
 
-* Extracts text from documents and images
+* Extracts various content elements such as words, paragraphs, formulas, and barcodes from documents
 * Provides basic optical character recognition (OCR) capabilities
+* Foundational text extraction without layout analysis
 
 This prebuilt doesn't require a large language model (LLM) or Embeddings model
 
 #### `prebuilt-layout`
 
-* Extracts text with detailed layout information
-* Identifies document structure including tables, sections, and formatting
+* Extracts various content and layout elements such as words, figures, paragraphs, and tables from documents
+* Identifies document structure including sections and formatting
+* Extracts hyperlinks embedded within documents
+* Captures annotations such as highlights, underlines, and strikethroughs in digital PDFs
+* Provides detailed layout information beyond basic text extraction
+* Detects all figure types including charts, diagrams, pictures, icons, and other images providing location information (PDF files only)
 
 This prebuilt doesn't require a large language model (LLM) or Embeddings model
-
-#### `prebuilt-layoutWithFigures`
-
-* Extends layout extraction with figure detection and analysis
-* Extracts charts, diagrams, and images with their context
 
 ### Base analyzers
 
@@ -64,12 +64,15 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 
 #### `prebuilt-documentAnalyzer`
 
-* Extracts various content and layout elements such as paragraphs, tables, and figure descriptions from documents
-* Enables figure description to add textual descriptions of images, charts, and diagrams
-* Enabled annotation so that hand-written markup on the document file is captured
-* Generates a one-paragraph description of the document content
+* Extracts various content and layout elements such as paragraphs, tables, and figures from documents
+* Provides detailed figure descriptions with textual explanations of images, charts, and diagrams<sup>1</sup>
+* Analyzes charts and diagrams, providing structured output as chart.js syntax for charts or mermaid.js syntax for diagrams<sup>1</sup>
+* Captures hand-written annotations and markup on the document
+* Generates a one-paragraph summary of the entire document content
 * Supports a wide range of file formats including PDF, images, Office documents, and text files
 * Recommended for document ingestion in RAG workflows
+
+<sup>1</sup> Figure analysis is only supported for PDF and image file formats.
 
 #### `prebuilt-imageAnalyzer`
 

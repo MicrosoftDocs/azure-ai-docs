@@ -72,7 +72,7 @@ Create a JSON file named `receipt.json` with the following content:
 }
 ```
 
-Now imagine you have various types of documents you need to process, but want to categorize and analyze only the receipts. You can create an analyzer that categorizes the document first, and route it to the analyzer you have just created above as well with the following schema.
+If you have various types of documents you need to process, but want to categorize and analyze only the receipts, you can create an analyzer that categorizes the document first. Then, route it to the analyzer you created above with the following schema.
 
 Create a JSON file named `categorize.json` with the following content:
 ```json
@@ -80,7 +80,7 @@ Create a JSON file named `categorize.json` with the following content:
   "baseAnalyzerId": "prebuilt-document",
   // Use the base analyzer to invoke the document specific capabilities.
 
-  //Specify the model the analyzer should use. This is one of the suported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
+  //Specify the model the analyzer should use. This is one of the supported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
   "models": {
       "completion": "gpt-4.1",
       "embedding": "text-embedding-ada-002"
@@ -244,7 +244,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 ---
 
-## Build analyzer
+## Create analyzer
 
 ### PUT request
 
@@ -266,7 +266,7 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
   -d @categorize.json
 ```
 
-# [Image/Video/Audio](#tab/rest)
+# [Image](#tab/image)
 
 ```bash
 curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
@@ -274,6 +274,26 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
   -H "Content-Type: application/json" \
   -d @request_body.json
 ```
+
+# [Audio](#tab/audio)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+# [Video](#tab/video)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+---
 
 ### PUT response
 
@@ -636,6 +656,8 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   }
 }
 ```
+
+---
 
 ## Next steps
 

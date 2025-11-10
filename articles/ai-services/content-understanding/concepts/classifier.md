@@ -14,31 +14,37 @@ ms.custom:
 
 # Content Understanding classification/segmentation
 
-Azure AI Content Understanding doesn't have an explicit classifier API. Classifier is now part of the analyzer operation request that you would send in for any analysis, eliminating the need to call two separate APIs to perform content classification and content extraction at once. The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data that you process within your application. This feature within the analyzer can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. Starting with the GA version, document classification and video segmentation design is now unified, allowing for a coherent approach to classify input data regardless of its modality. In this documentation, Content Understanding classification refers to analyze operations needed (`contentCategories` and `enableSegment`) for classifying and splitting input data.
+Azure AI Content Understanding doesn't have an explicit classifier API. Instead, classification is now part of the analyzer operation request that you send for any analysis. You don't need to call two separate APIs to perform content classification and content extraction at once. 
+
+The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data you process within your application. This analyzer feature can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. 
+
+Starting with the GA version, document classification and video segmentation design are unified, allowing for a coherent approach to classify input data regardless of its modality. In the documentation, "Content Understanding classification" refers to the analyze operations required for classifying and splitting input data (`contentCategories` and `enableSegment`).
 
 ## Business use cases
 
-Content Understanding classification can allow for processing complex documents and videos in various formats and templates:
+Content Understanding classification allows for processing complex documents and videos in various formats and templates:
 
 * **Invoices**: Categorize invoices from multiple vendors to process each category with a different Content Understanding analyzer, if needed.
 * **Tax documents**: Categorize multiple tax documents into different types of tax forms, such as 1040 and 1099.
 * **Contracts**: Categorize long, unstructured contracts to streamline operations to understand different types of agreements and their specific legal implications.
 * **Sports video**: Automatically segment the scenes to break the video into logical chunks such as ads and the actual sports content.
 
-## Content Understanding classification/segmentation capabilities
+## Classification/segmentation capabilities
 
-Content Understanding classification can analyze single or multifile documents to identify if an input file can be classified into a category as defined. The following scenarios are supported:
+Content Understanding classification can analyze single or multi-file documents to identify if an input file can be classified into a category as defined. The following scenarios are supported:
 
 * A single file that contains one document type, such as a loan application form.
 * A single file that contains multiple document types. An example is a loan application package that contains a loan application form, pay slip, and bank statement.
 * A single file that contains multiple instances of the same document. An example is a collection of scanned invoices.
-* Starting with GA version,`$OTHER` class isn't included as default. To filter out the data, add the `$OTHER` class explicitly.
+* Starting with the GA version, the `$OTHER` class isn't included as default. To filter out the data, add the `$OTHER` class explicitly.
 
-### Use Content Understanding classification/segmentation
+### Create classification categories
 
-Content Understanding classification doesn't require any training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
+Content Understanding classification doesn't require a training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
 
-Starting with the GA version, you need to include the `other` within the `contentCategories` to ensure that the content can't be matched to any of your defined categories. If the `other` category is unincluded, all of the files is forced to be classified  into one of the categories you have set in the `contentCategories`. Each of the category names you define within `contentCategories` can also include `description` to give further information about the category you're defining.
+Starting with the GA version, you need to include the `other` category within the `contentCategories` to ensure that content can remain unmatched to any of your defined categories. If the `other` category is not included, all the files are forced to be classified into one of your defined categories. Each of the category names you define within `contentCategories` can also include a `description` to give further information about the category you're defining.
+
+### Input file splitting
 
 When you have more than one document in a file, the classifier can identify the different document types that are contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types that are contained within a file. This response can include multiple instances of the same document type.
 
@@ -64,13 +70,13 @@ The newly designed analyzer operation allows for hierarchical splitting and clas
 
 ## Classifier limits
 
-For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#segmentationclassification).
+For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#basic-limits).
 
 ## Best practices
 
-To improve classification and splitting quality, use a good category name and description so that the model can understand the categories with some context. For more information on category names and descriptions, see [Best practices](../concepts/best-practices.md#classifier-category-names-and-descriptions).
+To improve classification and splitting quality, use a good category name and description so that the model can understand the categories with some context. For more information on category names and descriptions, see [Best practices](../concepts/best-practices.md#optimize-classification-and-categorization).
 
-## Key benefits
+### Key benefits
 
 * **Accuracy and reliability**: Ensure precise document classification to reduce errors and boost efficiency.
 * **Scalability**: Scale out document processing to meet business demands.

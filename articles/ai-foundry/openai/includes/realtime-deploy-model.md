@@ -10,7 +10,9 @@ ms.date: 1/21/2025
 
 To deploy the `gpt-realtime` model in the Azure AI Foundry portal:
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and create or select your project. 
-1. Select **Models + endpoints** from under **My assets** in the left pane.
+1. Select your model deployments:
+    1. For Azure OpenAI resource, select **Deployments** from **Shared resources** section in the left pane.
+    1. For Azure AI Foundry resource, select **Models + endpoints** from under **My assets** in the left pane.
 1. Select **+ Deploy model** > **Deploy base model** to open the deployment window. 
 1. Search for and select the `gpt-realtime` model and then select **Confirm**.
 1. Review the deployment details and select **Deploy**.

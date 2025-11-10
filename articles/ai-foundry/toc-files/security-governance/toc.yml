@@ -25,6 +25,18 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+- name: High availability and disaster recovery
+  items:
+  - name: High availability and resiliency
+    href: ../../how-to/high-availability-resiliency.md
+  - name: Disaster recovery
+    items:
+    - name: Disaster recovery for agent services
+      href: ../../how-to/agent-service-disaster-recovery.md
+    - name: Recover from a platform outage
+      href: ../../how-to/agent-service-platform-disaster-recovery.md
+    - name: Recover from resource and data loss
+      href: ../../how-to/agent-service-operator-disaster-recovery.md
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
 - name: Disaster recovery
@@ -55,3 +67,5 @@ items:
       href: ../../how-to/access-on-premises-resources.md
     - name: Troubleshoot secure project connectivity
       href: ../../how-to/troubleshoot-secure-connection-project.md
+  - name: High availability and disaster recovery for hubs
+    href: ../../how-to/hub-disaster-recovery.md

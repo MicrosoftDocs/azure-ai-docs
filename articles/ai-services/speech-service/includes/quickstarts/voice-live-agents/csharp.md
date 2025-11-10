@@ -6,7 +6,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/30/2025
+ms.date: 11/06/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
@@ -43,12 +43,16 @@ Follow these steps to create a console application and install the Speech SDK.
 
    This command creates the *Program.cs* file in your project directory.
 
-1. Install the Voice Live SDK, Azure Identity, and NAudio in your new project with the .NET CLI.
+1. Install the Voice Live SDK, Azure Identity, and NAudio, and other required packages in your new project with the .NET CLI.
 
     ```dotnetcli
     dotnet add package Azure.AI.VoiceLive
     dotnet add package Azure.Identity
     dotnet add package NAudio
+    dotnet add package System.CommandLine --version 2.0.0-beta4.22272.1
+    dotnet add package Microsoft.Extensions.Configuration.Json
+    dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
+    dotnet add package Microsoft.Extensions.Logging.Console
     ```
 
 1. Create a new file named `appsettings.json` in the folder where you want to run the code. In that file, add the following JSON content:
@@ -56,7 +60,6 @@ Follow these steps to create a console application and install the Speech SDK.
     ```json
     {
       "VoiceLive": {
-        "ApiKey": "your-api-key-here",
         "Endpoint": "https://your-resource-name.services.ai.azure.com/",
         "Voice": "en-US-Ava:DragonHDLatestNeural"
       },
@@ -73,12 +76,18 @@ Follow these steps to create a console application and install the Speech SDK.
     }
     ```
     
-    The sample code in this quickstart uses either Microsoft Entra ID or an API key for authentication. You can set the script argument to be either your API key or your access token. 
-    We recommend using Microsoft Entra ID authentication instead of setting the `ApiKey` value and running the quickstart with the `--use-token-credential` argument.
-
-    Replace the `ApiKey` value (optional) with your AI Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
+    The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method
   
     Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
+
+1. In the file `csharp.csproj` add the following information to connect the appsettings.json:
+   ```text
+   <ItemGroup>
+   <None Update="appsettings.json">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+   </None>
+   </ItemGroup>
+   ``` 
 
 1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
 
@@ -177,8 +186,10 @@ Follow these steps to create a console application and install the Speech SDK.
                     () => "en-US-AvaNeural",
                     "Voice to use for the assistant");
     
+                // Currently Foundry Agent Integration only supports token authentication
                 var useTokenCredentialOption = new Option<bool>(
                     "--use-token-credential",
+                    () => true,
                     "Use Azure token credential instead of API key");
     
                 var verboseOption = new Option<bool>(
@@ -308,7 +319,7 @@ Follow these steps to create a console application and install the Speech SDK.
                     uriBuilder.Query = query.ToString();
                     endpoint = uriBuilder.ToString();
                     logger.LogInformation("Agent parameters added as query parameters: agent-id={AgentId}, agent-project-name={ProjectName}", agentId, agentProjectName);
-                    
+    
                     VoiceLiveClient client;
                     var endpointUri = new Uri(endpoint);
                     if (useTokenCredential)
@@ -428,6 +439,12 @@ Follow these steps to create a console application and install the Speech SDK.
             private VoiceLiveSession? _session;
             private AudioProcessor? _audioProcessor;
             private bool _disposed;
+            // Tracks whether an assistant response is currently active (created and not yet completed)
+            private bool _responseActive;
+            // Tracks whether we've already sent the initial proactive greeting to start the conversation
+            private bool _conversationStarted;
+            // Tracks whether the assistant can still cancel the current response (between ResponseCreated and ResponseDone)
+            private bool _canCancelResponse;
     
             /// <summary>
             /// Initializes a new instance of the BasicVoiceAssistant class.
@@ -467,7 +484,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     // Create session options for agent connection (no model or instructions specified)
                     var sessionOptions = await CreateSessionOptionsAsync(cancellationToken).ConfigureAwait(false);
-                    
+    
                     // Start VoiceLive session with agent parameters passed via headers in client
                     _session = await _client.StartSessionAsync(sessionOptions, cancellationToken).ConfigureAwait(false);
     
@@ -592,7 +609,21 @@ Follow these steps to create a console application and install the Speech SDK.
                         // Start audio capture once session is ready
                         if (_audioProcessor != null)
                         {
-                            await _audioProcessor.StartCaptureAsync().ConfigureAwait(false);
+                            // Proactive greeting
+                            if (!_conversationStarted)
+                            {
+                                _conversationStarted = true;
+                                _logger.LogInformation("Sending proactive greeting request");
+                                try
+                                {
+                                    await _session!.StartResponseAsync().ConfigureAwait(false);
+                                }
+                                catch (Exception ex)
+                                {
+                                    _logger.LogError(ex, "Failed to send proactive greeting request");
+                                }
+                            }
+                            await _audioProcessor!.StartCaptureAsync().ConfigureAwait(false);
                         }
                         break;
     
@@ -606,25 +637,42 @@ Follow these steps to create a console application and install the Speech SDK.
                             await _audioProcessor.StopPlaybackAsync().ConfigureAwait(false);
                         }
     
-                        // Cancel any ongoing response
-                        try
+                        // Only attempt cancellation / clearing if a response is actually active
+                        if (_responseActive && _canCancelResponse)
                         {
-                            await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogDebug(ex, "No response to cancel");
-                        }
+                            // Cancel any ongoing response (only if server may still be generating)
+                            try
+                            {
+                                await _session!.CancelResponseAsync(cancellationToken).ConfigureAwait(false);
+                                _logger.LogInformation("🛑 Active response cancelled due to user barge-in");
+                            }
+                            catch (Exception ex)
+                            {
+                                // Treat known benign message as debug-level (server already finished response)
+                                if (ex.Message.Contains("no active response", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    _logger.LogDebug("Cancellation benign: response already completed");
+                                }
+                                else
+                                {
+                                    _logger.LogWarning(ex, "Response cancellation failed during barge-in");
+                                }
+                            }
     
-                        // Demonstrate the new ClearStreamingAudio convenience method
-                        try
-                        {
-                            await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
-                            _logger.LogInformation("✨ Used ClearStreamingAudioAsync convenience method");
+                            // Clear any streaming audio still in transit only if response still marked active
+                            try
+                            {
+                                await _session!.ClearStreamingAudioAsync(cancellationToken).ConfigureAwait(false);
+                                _logger.LogInformation("✨ Cleared streaming audio after cancellation");
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogDebug(ex, "ClearStreamingAudio call failed (may not be supported in all scenarios)");
+                            }
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            _logger.LogDebug(ex, "ClearStreamingAudio call failed (may not be supported in all scenarios)");
+                            _logger.LogDebug("No active response to cancel during barge-in; skipping cancellation and clear operations");
                         }
                         break;
     
@@ -641,6 +689,8 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     case SessionUpdateResponseCreated responseCreated:
                         _logger.LogInformation("🤖 Assistant response created");
+                        _responseActive = true;
+                        _canCancelResponse = true; // Response can be cancelled until completion
                         break;
     
                     case SessionUpdateResponseAudioDelta audioDelta:
@@ -657,15 +707,20 @@ Follow these steps to create a console application and install the Speech SDK.
                     case SessionUpdateResponseAudioDone audioDone:
                         _logger.LogInformation("🤖 Assistant finished speaking");
                         Console.WriteLine("🎤 Ready for next input...");
+                        // Do NOT mark _responseActive false yet; ResponseDone may still arrive
                         break;
     
                     case SessionUpdateResponseDone responseDone:
                         _logger.LogInformation("✅ Response complete");
+                        _responseActive = false; // Response fully complete
+                        _canCancelResponse = false; // No longer cancellable
                         break;
     
                     case SessionUpdateError errorEvent:
                         _logger.LogError("❌ VoiceLive error: {ErrorMessage}", errorEvent.Error?.Message);
                         Console.WriteLine($"Error: {errorEvent.Error?.Message}");
+                        _responseActive = false;
+                        _canCancelResponse = false;
                         break;
     
                     default:
@@ -866,7 +921,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     _playbackBuffer = new BufferedWaveProvider(new WaveFormat(SampleRate, BitsPerSample, Channels))
                     {
-                        BufferDuration = TimeSpan.FromSeconds(5), // 5 second buffer
+                        BufferDuration = TimeSpan.FromSeconds(10), // 10 second buffer
                         DiscardOnBufferOverflow = true
                     };
     
@@ -1085,7 +1140,7 @@ Follow these steps to create a console application and install the Speech SDK.
 1. Run your console application to start the live conversation:
 
    ```dotnetcli
-   dotnet run --use-token-credential
+   dotnet run
    ```
 
 ## Output
