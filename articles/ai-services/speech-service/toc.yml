@@ -253,7 +253,7 @@ items:
         href: voice-live-agents-quickstart.md
       - name: Function calling in Voice Live
         href: how-to-voice-live-function-calling.md
-      - name: Bring your own model with Voice live (preview)
+      - name: Bring your own model with Voice live
         href: how-to-bring-your-own-model.md
     - name: How-to guides
       expanded: true

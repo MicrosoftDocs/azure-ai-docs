@@ -5,7 +5,7 @@ description: Learn how to use voice live with agents for real-time voice agents 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 10/28/2025
+ms.date: 11/10/2025
 author: goergenj
 reviewer: PatrickFarley
 ms.author: jagoerge
@@ -14,9 +14,7 @@ zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
 ---
 
-# Quickstart: Create a voice live real-time voice agent with Azure AI Foundry Agent Service (Preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Quickstart: Create a voice live real-time voice agent with Azure AI Foundry Agent Service
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
