@@ -1,7 +1,7 @@
 ---
 title: Create Web Knowledge Source for Agentic Retrieval
 titleSuffix: Azure AI Search
-description: Learn how to create Web Knowledge Source that uses  for agentic retrieval workloads in Azure AI Search.
+description: Learn how to create Web Knowledge Source for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -107,7 +107,7 @@ You can pass the following properties to create Web Knowledge Source.
 | `kind` | The kind of knowledge source, which is `web` in this case. | String | No | Yes |
 | `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `webParameters` | Parameters specific to web knowledge sources. Currently, this is only `domains`. | Object | Yes | No |
+| `webParameters` | Parameters specific to Web Knowledge Source. Currently, this is only `domains`. | Object | Yes | No |
 | `domains` | Domains to allow or block from the search space. By default, the knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) to search the entire public internet. When you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to restrict results to the specified domains. In both cases, Bing Custom Search is the search provider. | Object | Yes | No |
 | `allowedDomains` | Domains to include in the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | Yes | No |
 | `blockedDomains` | Domains to exclude from the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | Yes | No |

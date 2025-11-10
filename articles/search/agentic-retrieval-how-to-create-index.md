@@ -29,7 +29,7 @@ A generated index is based on a template that meets all of the criteria for know
 This article explains which index elements affect agentic retrieval query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
 > [!IMPORTANT]
-> You can now configure agentic retrieval to bypass a search index and access external content directly using native query APIs. Results from external sources are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified response string. The following knowledge sources access external sources directly: [web knowledge source (Bing)](agentic-knowledge-source-how-to-web.md) and [SharePoint (Remote)](agentic-knowledge-source-how-to-sharepoint-remote.md).
+> You can now configure agentic retrieval to bypass a search index and access external content directly using native query APIs. Results from external sources are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified response string. The following knowledge sources access external sources directly: [Web Knowledge Source (Bing)](agentic-knowledge-source-how-to-web.md) and [SharePoint (Remote)](agentic-knowledge-source-how-to-sharepoint-remote.md).
 
 ## Criteria for agentic retrieval
 

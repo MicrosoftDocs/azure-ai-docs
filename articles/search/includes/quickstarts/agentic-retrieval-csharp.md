@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/10/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -265,7 +265,7 @@ To create and run the agentic retrieval pipeline:
                 // Run agentic retrieval
                 var baseClient = new KnowledgeBaseRetrievalClient(
                     endpoint: new Uri(searchEndpoint),
-                    agentName: knowledgeBaseName,
+                    knowledgeBaseName: knowledgeBaseName,
                     tokenCredential: new DefaultAzureCredential()
                 );
     
@@ -760,7 +760,7 @@ You're ready to run agentic retrieval. The following code sends a two-part user 
 // Run agentic retrieval
 var baseClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri(searchEndpoint),
-    agentName: knowledgeBaseName,
+    knowledgeBaseName: knowledgeBaseName,
     tokenCredential: new DefaultAzureCredential()
 );
 
