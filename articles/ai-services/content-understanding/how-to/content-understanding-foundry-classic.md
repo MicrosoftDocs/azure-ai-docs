@@ -55,7 +55,7 @@ To get started with Content Understanding in the AI Foundry portal, follow these
 
     - If you're creating a **Foundry project**, select `Advanced options` and choose a [supported region](../language-region-support.md).
 
-    - If you're creating a **hub-based project**, select or create a hub to proceed. Ensure that the hub is in a [supported region](language-region-support.md). If you don't have a hub or your hub isn't in a supported region, select the option at the top of the dropdown to create a new hub and fill out the required inputs.
+    - If you're creating a **hub-based project**, select or create a hub to proceed. Ensure that the hub is in a [supported region](../language-region-support.md). If you don't have a hub or your hub isn't in a supported region, select the option at the top of the dropdown to create a new hub and fill out the required inputs.
     
 # [Standard mode](#tab/standard)
 
