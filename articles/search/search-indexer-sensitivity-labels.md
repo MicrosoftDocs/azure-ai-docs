@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
 ms.service: azure-ai-search  
 ms.topic: how-to  
-ms.date: 10/05/2025  
+ms.date: 10/09/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -48,7 +48,7 @@ These updates are detected if they occurred since the last indexer run.
 
 + [Global Administrator](/entra/identity/role-based-access-control/permissions-reference#global-administrator) or [Privileged Role Administrator](/entra/identity/role-based-access-control/permissions-reference#privileged-role-administrator) roles in your Microsoft Entra tenant are required to grant the search service access to Purview APIs and sensitivity labels.
 
-+ Both the Azure AI Search service and end users querying the content must belong to the same Microsoft Entra tenant. Guest users and multi-tenant scenarios aren't supported.
++ Both the Azure AI Search service and end users querying the content must belong to the same Microsoft Entra tenant. Guest users and multitenant scenarios aren't supported.
 
 + File types must be included in the [Purview sensitivity labels supported formats list](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and also be recognized as [Office supported file types](search-how-to-index-azure-blob-storage.md#supported-document-formats) by Azure AI Search indexers.
 
@@ -63,15 +63,15 @@ These updates are detected if they occurred since the last indexer run.
 
 The following steps must be followed in order to configure sensitivity label sync in Azure AI Search.
 
-## 1 - Enable AI Search managed identity
+## 1. Enable AI Search managed identity
 
 Enable a [system-assigned managed identity for your Azure AI Search service](search-how-to-managed-identities.md).  This identity is required for the indexer to securely access Microsoft Purview and extract label metadata.
 
-## 2 - Enable RBAC on your AI Search service
+## 2. Enable RBAC on your AI Search service
 
 [Enable a role-based access control (RBAC)](search-security-enable-roles.md) on your Azure AI Search service. This step is required so content-related operations such as indexing content and query the index succeed. Keep both RBAC and API keys to avoid disrupting operations that rely on API keys. 
 
-## 3 - Granting access to extract sensitivity labels
+## 3. Granting access to extract sensitivity labels
 
 Accessing Microsoft Purview sensitivity label metadata involves highly privileged operations, including reading encrypted content and security classifications. To enable this capability in Azure AI Search, you must grant specific roles to the service's managed identity—following your organization's internal governance and approval processes.
 
@@ -136,9 +136,9 @@ The appID roles in the provided PowerShell script are associated to the followin
 
 
 
-## 4 - Configure the index to enable Purview sensitivity label 
+## 4. Configure the index to enable Purview sensitivity label 
 
-When sensitivity label support is required, set the purviewEnabled property to true in your index definition.
+When sensitivity label support is required, set the purviewEnabled property to true in your [index definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 > [!IMPORTANT]
 > **purviewEnabled** property must be set to true when the index is created. This setting is permanent and can't be modified later.
 > When **purviewEnabled** is set to true, only RBAC authentication is supported for all document operations APIs.
@@ -160,9 +160,9 @@ PUT https://{service}.search.windows.net/indexes('{indexName}')?api-version=2025
 }
 ```
 
-## 5 - Configure the data source
+## 5. Configure the data source
 
-To enable sensitivity label ingestion, configure the data source with the indexerPermissionOptions property set to ["sensitivityLabel"]. 
+To enable sensitivity label ingestion, configure the [data source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with the indexerPermissionOptions property set to ["sensitivityLabel"]. 
 
 ```
 {
@@ -170,7 +170,7 @@ To enable sensitivity label ingestion, configure the data source with the indexe
   "type": "azureblob", // < adjust type value according to the data source you are enabling this for: sharepoint, onelake, adlsgen2.
   "indexerPermissionOptions": [ "sensitivityLabel" ],
   "credentials": {
-    "connectionString": "ResourceId=/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Storage/storageAccounts/<storageAccountName>/;"
+    "connectionString": <your-connection-string>;"
   },
   "container": {
     "name": "<container-name>"
@@ -180,28 +180,9 @@ To enable sensitivity label ingestion, configure the data source with the indexe
 
 The `indexerPermissionOptions` property instructs the indexer to extract sensitivity label metadata during ingestion and attach it to the indexed document.
 
-## 6 - Configure the indexer
+## 6. Configure index projections in your skillset (if applicable)
 
-- Define field mappings to route extracted label metadata to the index fields.
-If your data source emits label metadata under a different field name (for example, metadata_sensitivity_label), map it explicitly.
-
-```
-{
-  "fieldMappings": [
-    {
-      "sourceFieldName": "metadata_sensitivity_label",
-      "targetFieldName": "sensitivityLabel"
-    }
-  ]
-}
-```
-
-- Sensitivity label updates are indexed automatically when changes to a document's label, content, or metadata are detected during a scheduled indexer run. [Configure the indexer on a recurring schedule](search-howto-schedule-indexers.md). The minimum supported interval is every 5 minutes. 
-
-
-### Configure index projections in your skillset
-
-If your indexer has a skillset and you're implementing data chunking through [split skill](cognitive-search-skill-textsplit.md), you must ensure you also map the property to each chunk via index projections:
+If your indexer has a [skillset](cognitive-search-working-with-skillsets.md) and you're implementing data chunking through [split skill](cognitive-search-skill-textsplit.md), for example, if you have integrated vectorization, you must ensure you also map the sensitivity label to each chunk via [index projections in the skillset](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
 ```
 PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-11-01-preview
@@ -238,6 +219,27 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-1
 }
 
 ```
+
+## 7. Configure the indexer
+
+- Define field mappings in your [indexer definition](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to route extracted label metadata to the index fields.
+If your data source emits label metadata under a different field name (for example, metadata_sensitivity_label), map it explicitly.
+
+```
+{
+  "fieldMappings": [
+    {
+      "sourceFieldName": "metadata_sensitivity_label",
+      "targetFieldName": "sensitivityLabel"
+    }
+  ]
+}
+```
+
+- Sensitivity label updates are indexed automatically when changes to a document's label, content, or metadata are detected during a scheduled indexer run. [Configure the indexer on a recurring schedule](search-howto-schedule-indexers.md). The minimum supported interval is every 5 minutes. 
+
+
+
 
 ## Next steps
 
