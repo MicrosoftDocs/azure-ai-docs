@@ -1,7 +1,7 @@
 ---
 title: Conversational language understanding (CLU) entity slot filling in multi-turn conversations
 titleSuffix: Azure AI services
-description: Learn how CLU handles entity slot-filling across multi-turn conversations, enabling context-aware entity extraction and better understanding of user intent over multiple conversation exchanges.
+description: Learn how CLU handles entity slot-filling across multi-turn conversations.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -15,11 +15,11 @@ ms.custom: language-service-clu
 
 Entity slot filling in Conversational Language Understanding (CLU) enables multi-turn conversations where your applications gather information naturally across multiple exchanges. Instead of overwhelming users with complex forms or lengthy questions, CLU progressively extracts and organizes the details it needs as users provide them throughout these multi-turn conversations.
 
-This capability transforms rigid question-and-answer interactions into fluid, context-aware dialogues. Your CLU model intelligently asks for missing information when needed, creating conversations that feel more natural and intuitive.
+This capability transforms rigid question-and-answer interactions into fluid dialogues. You can prompt your CLU model to asks for missing information when needed, creating conversations that feel more natural and intuitive.
 
 ## Understand entity slot filling
 
-Entity slot filling works by identifying the structured information your application requires and systematically collecting it from user input. Think of slots as containers for specific types of information that your application needs to complete a task.
+Entity slot filling works by identifying the structured information your application requires and systematically collecting it from user input. Think of slots as containers for specific types of information that your application needs to complete a task. When users provide some details but not others, you can prompt your CLU model for the missing pieces.
 
 The process centers around three key elements:
 
@@ -31,9 +31,24 @@ Instead of requiring users to provide every detail at the outset, CLU enables pr
 
 ## Multi-turn conversation mechanics
 
-With CLU, multi-turn conversations preserve context throughout several interactions, enabling users to share information in whichever sequence they prefer. The model begins by recognizing the user's intent, then extracts any available entities from their initial input. 
+With CLU multi-turn conversations you can enable users to share information in whichever sequence they prefer. The model begins by recognizing the user's intent, then extracts any available entities from their initial input.
 
-This approach accommodates how people naturally communicate. Users might correct previous information, add details as they remember them, or provide partial information that gets completed over several turns. The conversation remains coherent between all collected entities.
+This approach accommodates how people naturally communicate. Users might correct previous information, add details as they remember them, or provide partial information that gets completed over several turns. The conversation remains coherent because CLU tracks the relationship between all collected entities.
+
+## Usage scenario
+
+Consider a restaurant reservation system that needs three pieces of information: party size, date, and time.
+
+**User**: "I'd like to make a reservation for four people"
+**System**: "I can help you with scheduling that reservation! What date would you prefer?"
+
+**User**: "How about this Friday?"
+**System**: "Perfect! And what time works best for your party of four on Friday?"
+
+**User**: "7 PM would be great"
+**System**: "Excellent! I reserved a table for four people this Friday at 7 PM."
+
+In this exchange, CLU extracts the party size from the first input, you prompt for the missing date, then prompt for the time. Each piece of information added, allowing for a natural dialogue flow rather than a rigid form-filling experience.
 
 ## Benefits of entity slot filling
 
