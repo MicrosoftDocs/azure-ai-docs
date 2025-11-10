@@ -29,7 +29,11 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 + Completion of the [SharePoint indexer prerequisites](search-how-to-index-sharepoint-online.md#prerequisites).
 
-+ Completion of the [application registration step for Microsoft Entra ID authentication](search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration).
++ Completion of three SharePoint indexer configuration steps:
+
+  + [Step 1: Enable a managed identity for Azure AI Search](search-how-to-index-sharepoint-online.md#step-1-optional-enable-system-assigned-managed-identity)
+  + [Step 2: Choose between delegated or application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires)
+  + [Step 3: Application registration step for Microsoft Entra ID authentication](search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration).
 
 + [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support for this knowledge source.
 
@@ -94,15 +98,10 @@ To create an indexed SharePoint knowledge source:
     @api-key = <YOUR SEARCH SERVICE ADMIN API KEY>
     @aoai-endpoint = <YOUR AZURE OPENAI RESOURCE PROVIDING A CHAT COMPLETION MODEL>
     @aoai-key = <YOUR AZURE OPENAI KEY>
-    @access-token = <YOUR PERSONAL ACCESS TOKEN USED FOR RETRIEVING PERMITTED CONTENT ON SHAREPOINT>
     @sharepoint-connection-string=SharePointOnlineEndpoint=https://<YOUR SERVICE NAME>.sharepoint.com/sites/<YOUR SITE>;ApplicationId=<YOUR APPLICATION ID>;ApplicationSecret=<YOUR APPLICATION SECRET>;TenantId=<YOUR TENANT>
-
     ```
 
-    [API keys](search-security-api-keys.md) are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint in Microsoft 365 on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md).
-
-    > [!NOTE]
-    > You can also use your personal access token to access Azure AI Search and Azure OpenAI if you [set up role assignments on each resource](search-security-rbac.md). Using API keys allows you to omit this step in this example.
+    The format of the connection string depends on the API permissions. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format).
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
@@ -144,6 +143,8 @@ To create an indexed SharePoint knowledge source:
    An embedding model is used to create a vector field counterpart to the primary chunked textual content, which adds vector query support to the agentic pipeline. You can omit the embedding model if you don't need vectors.
 
    A chat completion model is used in the generated skillset. If you enable image verbalization and specify a chat completion model, the model is used to verbalize image content on the SharePoint site. You can omit the chat completion model if you don't need this capability.
+
+   Content extraction mode is also used in the generated skillset. It calls the [Content Understanding skill](cognitive-search-skill-content-understanding.md), which uses document analyzers from Azure Content Understanding in Foundry Tools to analyze unstructured documents and other content types.
 
 1. Select **Send Request**.
 

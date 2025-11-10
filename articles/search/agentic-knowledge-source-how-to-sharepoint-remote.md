@@ -159,44 +159,9 @@ Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-servi
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specifying a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that references the knowledge source you created.
+If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](search-agentic-retrieval-how-to-create.md).
 
-<!-- Deviating from pattern here. SharePoint remote needs answerSynthesis-->
-Here's an example of a knowledge base that specifies a remote SharePoint knowledge source, with some key points:
-
-+ Make sure you set `outputMode` to `answerSynthesis`. It's a requirement.
-+ Answer synthesis stipulates that you set the `retrievalReasoningEffort` to `low`.
-
-```json
-{
-  "name": "remote-sp-kb",
-  "description": "Retrieves SharePoint in a trusted Microsoft 365 tenant.",
-  "retrievalInstructions": null,
-  "answerInstructions": null,
-  "outputMode": "answerSynthesis",
-  "knowledgeSources": [
-    {
-      "name": "my-sharepoint-ks"
-    }
-  ],
-  "models": [
-    {
-      "kind": "azureOpenAI",
-      "azureOpenAIParameters": {
-        "resourceUri": "<redacted>",
-        "deploymentId": "gpt-4.1-mini",
-        "apiKey": "<redacted>",
-        "modelName": "gpt-4.1-mini",
-        "authIdentity": null
-      }
-    }
-  ],
-  "encryptionKey": null,
-  "retrievalReasoningEffort": {
-    "kind": "low"
-  }
-}
-```
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Retrieve content
 
