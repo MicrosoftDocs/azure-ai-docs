@@ -63,7 +63,7 @@ Here are the limitations of this feature:
 
 + Security limitations:
 
-  + No support for [Private endpoint](search-indexer-howto-access-private.md). Secure network configuration must be enabled [via firewall](service-configure-firewall.md).
+  + No support for [Private endpoint](search-indexer-howto-access-private.md). Secure network configuration must be enabled [via a firewall](service-configure-firewall.md).
 
   + No support for tenants with [Microsoft Entra ID Conditional Access](/entra/identity/conditional-access/overview) enabled.
     
