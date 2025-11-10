@@ -110,7 +110,7 @@ The below fields must be included in the URL:
 
 | Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
-| **API Version** |Required |This is the API version to be checked. Current version is: `api-version=2024-09-01`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2024-09-01` | String |
+| **API Version** |Required |This is the API version to be checked. Current version is: `2024-12-15-preview`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2024-12-15-preview` | String |
 
 The parameters in the request body are defined in this table:
 
