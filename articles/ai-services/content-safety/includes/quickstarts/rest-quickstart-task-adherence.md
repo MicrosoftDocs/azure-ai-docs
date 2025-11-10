@@ -28,7 +28,7 @@ Paste the command below into a text editor, and make the following changes.
 
 ```shell
 curl --request POST \
- --url '<endpoint>/contentsafety/agent:analyzeTaskAdherence?api-version=2024-12-15-preview' \
+ --url '<endpoint>/contentsafety/agent:analyzeTaskAdherence?api-version=2025-09-15-preview' \
  --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
  --header 'Content-Type: application/json' \
  --data '{
@@ -110,7 +110,7 @@ The below fields must be included in the URL:
 
 | Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
-| **API Version** |Required |This is the API version to be checked. Current version is: `2024-12-15-preview`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2024-12-15-preview` | String |
+| **API Version** |Required |This is the API version to be checked. Current version is: `2025-09-15-preview`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2025-09-15-preview` | String |
 
 The parameters in the request body are defined in this table:
 
