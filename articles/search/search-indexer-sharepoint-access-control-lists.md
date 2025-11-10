@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) from SharePoint in Microsoft 365 files.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/08/2025
+ms.date: 11/09/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -48,12 +48,12 @@ This preview supports only basic ACLs for documents, as shown in the following t
 
 | SharePoint Feature | Description | Supported | Notes |
 |--------------------|-------------|-----------|-------|
-| Site & library inheritance | Site → library → folder → file | ✔️ | Evaluated at ingestion; effective ACLs computed per file. |
-| Folder & file unique ACLs | Item-level access | ✔️ | Included when present at first ingestion. |
-| Microsoft Entra (M365/Security) Groups | Group-based access | ✔️ | Group IDs included when resolvable to Entra identifier (ID) |
-| SharePoint site groups | Owners/Members/Visitors | ⚠️ Partial | Included only when resolvable to Entra group ID. |
-| Shareable "Anyone links" or "People in your organization links" | Org-wide or public access | ❌ | Not supported in preview. |
-| External/guest users | Access for guests | ❌ | Not supported. | 
+| Site & library inheritance | Site → library → folder → file. | ✔️ | Evaluated at ingestion; effective ACLs computed per file. |
+| Folder & file unique ACLs | Item-level access. | ✔️ | Included when present at first ingestion. |
+| Microsoft Entra (M365/Security) Groups | Group-based access. | ✔️ | Group IDs included when resolvable to Entra identifier (ID). |
+| SharePoint site groups | Owners/Members/Visitors. | ⚠️ Partial | Included only when resolvable to Entra group ID. |
+| Shareable "Anyone links" or "People in your organization links" | Org-wide or public access. | ❌ | Not supported in preview. |
+| External/guest users | Access for guests. | ❌ | Not supported. | 
 | Information Management policies | Policies to define specific permissions requirements. | ❌ | Not supported in preview. | 
 | Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md) and not to be tested in the same indexer/index as this ACL feature at this time. | 
 
@@ -99,7 +99,7 @@ Add fields to your [index schema definition](search-how-to-index-sharepoint-onli
   "permissionFilterOption": "enabled"
 }
 ```
-Set `retrievable` attribute to `true` only during development to verify values.
+Set `retrievable` attribute to `true` only during development to verify values. You can change retrievable from true to false with no index rebuild requirement.
 
 ### 3. Configure index projections in your skillset (if applicable)
 
@@ -190,8 +190,7 @@ POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=
 ```
 
 > [!IMPORTANT]
-> If you change SharePoint permissions without triggering an update mechanism, the index serves stale ACL data
-> for previously ingested files.
+> If you change SharePoint permissions without triggering an update mechanism, the index serves stale ACL data for previously ingested files.
 
 After indexing your data and ACLs, you can [query the index](search-query-access-control-rbac-enforcement.md). .
 
