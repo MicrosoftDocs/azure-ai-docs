@@ -56,4 +56,4 @@ The **Azure AI Foundry NextGen portal** (coming soon) will offer the ability to:
 
 
 ## Next steps
-* Check out the quickstart to [get started with Content Understanding Studio](../quickstart/content-understanding-studio.md)
+* Check out the quickstart to [get started with Content Understanding Studio](quickstart/content-understanding-studio.md)

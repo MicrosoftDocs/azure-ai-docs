@@ -25,37 +25,13 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
 | `australiaeast` | Australia East | Australia | Australia |
-| `brazilsouth` | Brazil South | Brazil | Brazil |
-| `canadacentral` | Canada Central | Canada | Canada |
-| `centralindia` | Central India | India | India |
-| `centralus` | Central US | United States | US |
-| `centraluseuap` | Central US EUAP | United States | US |
-| `eastasia` | East Asia | Asia Pacific | Asia |
 | `eastus` | East US | United States | US |
 | `eastus2` | East US 2 | United States | US |
-| `eastus2euap` | East US 2 EAUP | United States | US |
-| `francecentral` | France Central | France | Europe |
-| `germanywestcentral` | Germany West Central | Germany | Europe |
-| `italynorth` | Italy North | Italy | Europe |
-| `japaneast` | Japan East | Japan | Japan |
-| `japanwest` | Japan West | Japan | Japan |
-| `jioindiacentral` | Jio India Central | India | India |
-| `jioindiawest` | Jio India West | India | India |
-| `koreacentral` | Korea Central | Korea | Korea |
-| `northcentralus` | North Central US | United States | US |
 | `northeurope` | North Europe | Europe | Europe |
-| `norwayeast` | Norway East | Europe | Europe |
-| `qatarcentral` | Qatar Central | Qatar | Qatar |
-| `southafricanorth` | South Africa North | South Africa | South Africa |
 | `southcentralus` | South Central US | United States | US |
-| `swedencentral` | Sweden Central | Sweden | Europe |
 | `southeastasia` | Southeast Asia | Asia Pacific | Asia |
-| `switzerlandnorth` | Switzerland North | Switzerland | Switzerland |
-| `switzerlandwest` | Switzerland West | Switzerland | Switzerland |
-| `uaenorth` | UAE North | UAE | UAE |
-| `uknorth` | UK North | United Kingdom | UK |
+| `swedencentral` | Sweden Central | Sweden | Europe |
 | `uksouth` | UK South | United Kingdom | UK |
-| `westcentralus` | West Central US | United States | US |
 | `westeurope` | West Europe | Europe | Europe |
 | `westus` | West US | United States | US |
 | `westus2` | West US 2 | United States | US |
@@ -303,3 +279,22 @@ Different locales have different ways to represent numbers, date, and time. Cont
 |Indonesian|`id-ID`|Vietnamese|`vi-VN`|
 |Italian|`it-IT`|||
 
+## Preview API (2025-05-01-preview)
+
+The preview API version `2025-05-01-preview` includes managed capacity for generative capabilities and has limited regional availability compared to the GA version.
+
+### Region support
+
+To use Azure AI Content Understanding with the preview API, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+
+| Identifier      | Region         | Geography       | Data Zone        |
+|-----------------|----------------|-----------------|------------------|
+| `westus` | West US | United States | United States |
+| `swedencentral` | Sweden Central | Sweden | European Union |
+| `australiaeast` | Australia East | Australia | N/A<sup>†</sup> |
+
+<sup>†</sup> Australia East doesn't support data zone as a processing location.
+
+> [!NOTE]
+>
+> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.

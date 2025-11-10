@@ -26,9 +26,9 @@ To update your analyzer, the recommended approach is to create an updated analyz
 
 ## Migrating from `2025-05-01 preview`
 
-The `2025-05-01-preview` API version is the latest preview version and migrating from this version of the API to the GA API requires a few updates to your analyzer definitions. 1Code has comments. Press enter to view.
+The `2025-05-01-preview` API version is the latest preview version and migrating from this version of the API to the GA API requires a few updates to your analyzer definitions. 
 
-1. Connect to an Azure Foundry model deployment. The GA API requires a deployment of an LLM to be used by your analyzer. This is a three step process. 1Code has comments. Press enter to view.
+1. Connect to an Azure Foundry model deployment. The GA API requires a deployment of an LLM to be used by your analyzer. This is a three step process. 
 
 * **Step 1** You can specify the deployments to use on the resource via a ```PATCH``` request. 
 
@@ -99,17 +99,17 @@ Here, ```path``` can include:
 * contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber
 * contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id
 
-5. New **analyzeBinary** operation to support file upload scenarios. The analyzeBiunary enables files to be uploaded as part of the request body. 1Code has comments. Press enter to view.
+5. New **analyzeBinary** operation to support file upload scenarios. The analyzeBiunary enables files to be uploaded as part of the request body.
 
-6. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the files to be analyzed. Each input can contain the URL or base64 encoded data. Learn more about the [Analyze operation](Link to reference).
+6. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the files to be analyzed. Each input can contain the URL or base64 encoded data. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
-7. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify the labeled data as a type of ```knowledgeSources```. See [knowledgeSources]() for more details on how to define an analyzer to use labeled data.
+7. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify the labeled data as a type of ```knowledgeSources```. See [knowledgeSources](/rest/api/contentunderstanding/content-analyzers/create-or-replace) for more details on how to define an analyzer to use labeled data.
 
-8. For video modality analyzers, the key frames are now returned as  an array of ```keyFrames```. Learn more about the [analyzer response]().
+8. For video modality analyzers, the key frames are now returned as  an array of ```keyFrames```. Learn more about the [analyzer response](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 ### Analyze operation
 
-The Analyze operation schema is being updated to potentially support multiple input files. Add the new ```inputs``` property to the request.
+The Analyze operation schema is being updated to add the new ```inputs``` property to the request.
 
 ``` JSON
 
@@ -121,7 +121,6 @@ The Analyze operation schema is being updated to potentially support multiple in
     ]
 }
 ```
-  1Code has comments. Press enter to view.
  
 ### New features
 
@@ -147,7 +146,7 @@ The `2024-12-01-preview` API version is the earliest preview version and migrati
 1. Defining a custom analyzer requires a `baseAnalyzerId` property. See [Analyzer configuration reference](../concepts/analyzer-reference.md) for a list of base analyzers that can be used to derive a custom analyzer.
 3. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/robotic-process-automation.md) for guidance on how to classify or classify and analyze.
 4. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`.
-5. The `method` property in `fieldSchema` now supports a new default method of `auto`. This is the recommended option for the field method to support both extractive and generative scenarios with confidence and grounding. 1Code has comments. Press enter to view.
+5. The `method` property in `fieldSchema` now supports a new default method of `auto`. This is the recommended option for the field method to support both extractive and generative scenarios with confidence and grounding.
 
 ### Deprecated features
 
@@ -213,6 +212,6 @@ The `2024-12-01-preview` API version is the earliest preview version and migrati
 
 ## Next steps
 
-* [Learn more about Content Understanding pricing](../overview/pricing-explainer.md)
+* [Learn more about Content Understanding pricing](../pricing-explainer.md)
 
 * [Learn more Content Understanding analyzers](../concepts/analyzer-reference.md)
