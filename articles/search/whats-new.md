@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/05/2025
+ms.date: 11/10/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -32,7 +32,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Knowledge retrieval (preview)](agentic-retrieval-how-to-retrieve.md) | Execute retrieval operations with support for [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md), zero-model-call mode for efficiency, and partial responses. |
 | [Portal support for knowledge sources and knowledge bases (preview)](get-started-portal-agentic-retrieval.md) | Use the Azure portal to create and manage knowledge sources and knowledge bases, with a new chat playground for sending retrieval requests. These portal-generated objects use the 2025-08-01-preview schema and have breaking changes with the 2025-11-01-preview. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
 | [Azure Content Understanding skill (preview)](cognitive-search-skill-content-understanding.md) | New skill that wraps Azure Content Understanding in Foundry Tools to extract structured Markdown from text, images, PDFs, Microsoft PowerPoint, Microsoft Word, and more. This skill provides advanced document parsing with better table extraction (including cross-page tables), image descriptions, and semantic chunking. For indexed knowledge sources, this skill is available through the `contentExtractionMode` property within `ingestionParameters`. |
-| SharePoint support for ACLs (preview) | Extended ACL support to flow SharePoint permissions directly to indexed documents, enabling document-level access control. |
+| [SharePoint support for ACLs (preview)](search-indexer-sharepoint-access-control-lists.md) | Extended ACL support to flow SharePoint permissions directly to indexed documents, enabling document-level access control. |
 | [Elevated read permissions for ACLs (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | New capability to assign elevated read permissions to specific users or groups within ACL configurations for fine-grained access control. |
 | [Purview index configuration (preview)](search-indexer-sensitivity-labels.md) | New integration with Azure Purview to apply data governance classifications and sensitivity labels to indexed content based on source metadata. |
 | [SharePoint indexing updates (preview)](search-how-to-index-sharepoint-online.md) | New SharePoint indexer capabilities, including multi-site indexing, improved authentication options, incremental updates, and better handling of document permissions and metadata. |

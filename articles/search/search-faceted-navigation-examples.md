@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/10/2025
 ms.update-cycle: 365-days
 ---
 
@@ -49,7 +49,7 @@ The following facet queries work against the [hotels sample index](search-get-st
 This first query retrieves facets for Categories, Ratings, Tags, and rooms with baseRate values in specific ranges. Notice the last facet is on a subfield of the Rooms collection. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each pricing category.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 {  
   "search": "ocean view",  
   "facets": [ "Category", "Rating", "Tags", "Rooms/BaseRate,values:80|150|220" ],
@@ -60,7 +60,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 This second example uses a filter to narrow down the previous faceted query result after the user selects Rating 3 and category "Motel".
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 {  
   "search": "water view",  
   "facets": [ "Tags", "Rooms/BaseRate,values:80|150|220" ],
@@ -72,7 +72,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
 The third example sets an upper limit on unique terms returned in a query. The default is 10, but you can increase or decrease this value using the count parameter on the facet attribute. This example returns facets for city, limited to 5.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-03-01-Preview
+POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 {  
   "search": "view",  
   "facets": [ "Address/City,count:5" ],

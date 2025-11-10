@@ -108,21 +108,5 @@ Under fast path, `retrievalInstructions` are ignored. In general, `alwaysQuerySo
 
 To achieve the fastest possible response times, follow these best practices:
 
-1. In the knowledge base:
-
-   + Set `outputConfiguration.attemptFastPath` to true.
-
-   + Set `outputConfiguration.modality` to `answerSynthesis` to get a response framed as an LLM-formulated answer. It takes a few extra seconds, but it improves the quality of the response and saves time overall if the answer is usable without further LLM processing.
-
-   + Retain `outputConfiguration.includeActivity` set to true (default setting) for insights about query execution and elapsed time.
-
-   + Retain `knowledgeSource.includeReferences` set to true (default setting) for details about each individually scored result.
-
-   + Set `knowledgeSources.alwaysQuerySource` to true.
-
-   + Set `knowledgeSources.retrievalInstructions` to false.
-
-   + Set `knowledgeSources.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
-
 1. In the [retrieve action](agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
  -->
