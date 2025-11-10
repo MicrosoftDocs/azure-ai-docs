@@ -57,7 +57,7 @@ To create and run the agentic retrieval pipeline:
 1. Run the following command to install the required packages.
 
     ```console
-    pip install azure-identity azure-ai-evaluation openai aiohttp requests azure-search-documents --pre
+    pip install azure-identity requests azure-search-documents --pre
     ```
 
 1. Create a file named `agentic-retrieval.py` in the `quickstart-agentic-retrieval` folder.
