@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/08/2025
+ms.date: 11/09/2025
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
@@ -102,7 +102,8 @@ Perform this step if the SharePoint site is in the same tenant as the search ser
 
 After selecting **Save**, you receive an Object ID assigned to your search service.
 
-:::image type="content" source="media/search-howto-index-sharepoint-online/system-assigned-managed-identity.png" alt-text="Screenshot the object identifier.":::
+<!-- Replace this with a new image without GUID
+:::image type="content" source="media/search-howto-index-sharepoint-online/system-assigned-managed-identity.png" alt-text="Screenshot the object identifier."::: -->
 
 ### Step 2: Decide which permissions the indexer requires
 
@@ -197,7 +198,7 @@ These are the instructions to configure the application to use a client secret t
 
 ##### Using secretless authentication to obtain application tokens
 
-These are the instructions to configure the application so Entra trusts a managed identity to obtain an application token to authenticate without a client secret, so the indexer can ingest data from SharePoint.
+These are the instructions to configure the application so Microsoft Entra trusts a managed identity to obtain an application token to authenticate without a client secret, so the indexer can ingest data from SharePoint.
 
 ###### Configuring the registered application with a managed identity
 
@@ -237,10 +238,12 @@ For SharePoint indexing, the data source must have the following required proper
 
 + **name** is the unique name of the data source within your search service.
 + **type** must be "sharepoint". This value is case-sensitive.
-+ **credentials** provide the SharePoint endpoint and the authentication method allowed for the application to request the Entra tokens. An example SharePoint endpoint is `https://microsoft.sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser. Review the [connection string format](#connection-string-format) for the supported syntax.
++ **credentials** provide the SharePoint endpoint and the authentication method allowed for the application to request the Microsoft Entra tokens. An example SharePoint endpoint is `https://microsoft.sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser. Review the [connection string format](#connection-string-format) for the supported syntax.
 + **container** specifies which document library to index. Properties [control which documents are indexed](#controlling-which-documents-are-indexed).
 
 To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+Here's a data source definition sample for credentials with application secret or service-assigned managed identity.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
@@ -252,6 +255,25 @@ api-key: [admin key]
     "type" : "sharepoint",
     "credentials" : { "connectionString" : "[connection-string]" },
     "container" : { "name" : "defaultSiteLibrary", "query" : null }
+}
+```
+
+Here's a data source definition sample for credentials with user-assigned managed identity.
+
+```http
+POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
+Content-Type: application/json
+api-key: [admin key]
+
+{
+    "name" : "sharepoint-datasource",
+    "type" : "sharepoint",
+    "credentials" : { "connectionString" : "[connection-string]" },
+    "container" : { "name" : "defaultSiteLibrary", "query" : null },
+    "identity": {
+      "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+      "userAssignedIdentity": "/subscriptions/[Azure subscription ID]/resourceGroups/[resource-group]/providers/Microsoft.ManagedIdentity/userAssignedIdentities/[user-assigned managed identity]"
+    }
 }
 ```
 
@@ -267,11 +289,11 @@ The format of the connection string changes based on whether the indexer is usin
 
     `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];ApplicationSecret=[Azure AD App client secret];TenantId=[SharePoint site tenant id]`
 
-+ Application API permissions with secretless connection string format
++ Application API permissions with secretless (system-assigned managed identity) connection string format
 
     `SharePointOnlineEndpoint=[SharePoint site url];ApplicationId=[Azure AD App ID];FederatedCredentialObjectId=[selected managed identity object (principal) ID];TenantId=[SharePoint site tenant id]`
 
-You can get `tenantId` from the overview page in the Microsoft Entra admin center in your M365 subscription.
+You can get `tenantId` from the overview page in the Microsoft Entra admin center in your Microsoft 365 subscription.
 You can get the managed identity `object (principal) ID` from the section [Configuring the registered application with a managed identity](#configuring-the-registered-application-with-a-managed-identity)
 
 > [!NOTE]
@@ -355,7 +377,7 @@ There are a few steps to creating the indexer:
     }
     ```
 
-If you're using application permissions, it's necessary to wait until the initial run is complete before starting to query your index. The following instructions provided in this step pertain specifically to delegated permissions, and aren't applicable to application permissions.
+    If you're using application permissions, it's necessary to wait until the initial run is complete before starting to query your index. The following instructions provided in this step pertain specifically to delegated permissions, and aren't applicable to application permissions.
 
 1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
 
