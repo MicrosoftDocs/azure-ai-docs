@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/10/2025
 ---
 
 # Create an indexed SharePoint knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Use a *indexed SharePoint knowledge source* to index and query SharePoint content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
+Use an *indexed SharePoint knowledge source* to index and query SharePoint content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 When you create an indexed SharePoint knowledge source, you specify a SharePoint connection string, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -151,7 +151,7 @@ To create an indexed SharePoint knowledge source:
 <!-- Can't find an explanation of the query parameter in the spec. -->
 ### Source-specific properties
 
-You can pass the following properties to create a indexed SharePoint knowledge source.
+You can pass the following properties to create an indexed SharePoint knowledge source.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|

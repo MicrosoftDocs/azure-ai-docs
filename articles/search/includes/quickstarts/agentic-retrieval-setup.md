@@ -47,7 +47,7 @@ On your Azure AI Foundry resource:
 > + Billing from Azure AI Search for agentic retrieval.
 > + Billing from Azure OpenAI for query planning and answer synthesis.
 >
-> For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
+> For more information, see [Availability and pricing of agentic retrieval](../../agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Get endpoints
 
