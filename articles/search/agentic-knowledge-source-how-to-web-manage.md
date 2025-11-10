@@ -95,5 +95,5 @@ Authorization: Bearer {{accessToken}} // Obtain using `az account get-access-tok
 
 ## Related content
 
-+ [Create Web Knowledge Source](agentic-knowledge-source-how-to-web.md)
++ [Create a Web Knowledge Source resource](agentic-knowledge-source-how-to-web.md)
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)

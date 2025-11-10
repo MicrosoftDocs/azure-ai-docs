@@ -55,7 +55,7 @@ You can use the REST API or an Azure SDK preview package to create a knowledge s
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
 + [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
-+ [How to create Web Knowledge Source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
++ [How to create a Web knowledge source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
 After the knowledge source is created, you can reference it in a knowledge base.
 

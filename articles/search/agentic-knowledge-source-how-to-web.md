@@ -1,7 +1,7 @@
 ---
 title: Create Web Knowledge Source for Agentic Retrieval
 titleSuffix: Azure AI Search
-description: Learn how to create Web Knowledge Source for agentic retrieval workloads in Azure AI Search.
+description: Learn how to create a Web Knowledge Source resource for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -12,7 +12,7 @@ ms.topic: how-to
 ms.date: 11/10/2025
 ---
 
-# Create Web Knowledge Source
+# Create a Web Knowledge Source resource
 
 > [!IMPORTANT]
 > + Web Knowledge Source, which uses Grounding with Bing Search and/or Grounding with Bing Custom Search, is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
@@ -41,7 +41,7 @@ When you use Web Knowledge Source, keep the following in mind:
 
 + An Azure subscription with [access to Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md). By default, access is enabled. Contact your admin if access is disabled.
 
-+ An Azure AI Search service, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).  The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as Web Knowledge Source isn't supported in private or sovereign clouds.
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).  The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as Web Knowledge Source isn't supported in private or sovereign clouds.
 
 + [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support.
 
@@ -65,7 +65,7 @@ The following JSON is an example response for Web Knowledge Source.
 
 ## Create a knowledge source
 
-To create Web Knowledge Source:
+To create a Web Knowledge Source resource:
 
 1. Set environment variables at the top of your file.
 
@@ -99,7 +99,7 @@ To create Web Knowledge Source:
 
 ### Source-specific properties
 
-You can pass the following properties to create Web Knowledge Source.
+You can pass the following properties to create a Web Knowledge Source resource.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -114,7 +114,7 @@ You can pass the following properties to create Web Knowledge Source.
 
 ## Assign to a knowledge base
 
-If you're satisfied with the Web Knowledge Source, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the Web Knowledge Source resource, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
