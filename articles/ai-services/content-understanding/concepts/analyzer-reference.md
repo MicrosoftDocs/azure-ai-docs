@@ -274,7 +274,7 @@ The `config` object contains all processing options that control how content is 
 
 ##### `estimateFieldSourceAndConfidence`
 - **Default:** false (varies by analyzer)
-- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value
+- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value. Only available for fields whose method is `extract` or `generate`.
 - **When to use:**
   - Validation and quality assurance workflows
   - Understanding extraction accuracy
