@@ -99,7 +99,7 @@ Using GPT-4o-mini global deployment with the following pricing assumptions:
 - Contextualization: $1.00 per 1M tokens
 - GPT-4o-mini input tokens: $0.40 per 1M tokens
 - GPT-4o-mini output tokens: $1.60 per 1M tokens
-- Embeddings: $0.02 per 1,000 tokens. You're not using a knowledge base with training examples, so no embeddings charges apply. If you added labeled examples to improve accuracy, the system will add embedding token usage to embed all the text from the input documents as well as completion completion input tokens to process examples data added to the context window. 
+- Embeddings: $0.02 per 1,000 tokens. You're not using a knowledge base with training examples, so no embeddings charges apply. If you added labeled examples to improve accuracy, the system will add embedding token usage to embed all the text from the input documents as well as completion input tokens to process example data added to the context window. 
 
 **Cost calculation**:
 - Content extraction: 1,000 pages × $5.00 per 1,000 pages = $5.00
