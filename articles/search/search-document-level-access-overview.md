@@ -58,7 +58,7 @@ Your client app receives read permissions to the index through **Search Index Da
 
 - First, it checks for **Search Index Data Reader** permission that allows your client application to access the index.
 
--Second, given the extra token on the request, it checks for user or group permissions on documents that are returned in search results, excluding any that don't match.
+- Second, given the extra token on the request, it checks for user or group permissions on documents that are returned in search results, excluding any that don't match.
 
 To get permission metadata into the index, you can use the push model API, pushing any JSON documents to the search index, where the payload includes a string field providing POSIX-like ACLs for each document. The important difference between this approach and security trimming is that the permission filter metadata in the index and query is recognized as Microsoft Entra ID authentication, whereas the security trimming workaround is simple string comparison. Also, you can use the Graph SDK to retrieve the identities.
 

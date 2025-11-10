@@ -160,7 +160,7 @@ You can pass the following properties to create a indexed SharePoint knowledge s
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `indexedSharePointParameters` | Parameters specific to indexed SharePoint knowledge sources: `connectionString`, `containerName`, and `query`. | Object | No | No |
-| `connectionString` | An expression written in the SharePoint in [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), used to specify sites and paths to content. | String | Yes |No |
+| `connectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes |No |
 | `query` | Ignore for now. | String | Yes | No |
 
 ### `ingestionParameters` properties
@@ -187,6 +187,8 @@ We recommend using the Azure portal to validate output creation. The workflow is
 ## Assign to a knowledge base
 
 If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](search-agentic-retrieval-how-to-create.md).
+
+For any knowledge base that specifies an indexed SharePoint knowledge source, be sure to set `includeReferenceSourceData` to `true`. This step is necessary for pulling the source document URL into the citation.
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 

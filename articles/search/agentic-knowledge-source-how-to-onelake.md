@@ -176,6 +176,8 @@ We recommend using the Azure portal to validate output creation. The workflow is
 
 If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](search-agentic-retrieval-how-to-create.md).
 
+For any knowledge base that specifies a OneLake knowledge source, be sure to set `includeReferenceSourceData` to `true`. This step is necessary for pulling the source document URL into the citation.
+
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source

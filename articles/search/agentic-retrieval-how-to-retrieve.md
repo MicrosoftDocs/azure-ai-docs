@@ -180,6 +180,9 @@ Content-Type: application/json
 }
 ```
 
+> [!NOTE]
+> If you're retrieving content from a OneLake or indexed SharePoint knowledge source, set `includeReferenceSourceData` to `true` to include the source document URL in the citation.
+
 ### Example: minimal reasoning effort
 
 In this example, there's no chat completion model for intelligent query planning or answer formulation. The query string is passed to the agentic retrieval engine for keyword search or hybrid search.
@@ -342,6 +345,9 @@ Here's an example of the references array.
     }
   ]
 ```
+
+> [!NOTE]
+> If you're retrieving content from a OneLake or indexed SharePoint knowledge source, set `includeReferenceSourceData` to `true` on the retrieve request to get the source document URL in the citation.
 
 ## Related content
 
