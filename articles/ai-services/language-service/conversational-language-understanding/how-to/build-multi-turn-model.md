@@ -13,9 +13,7 @@ ms.custom: language-service-clu
 
 # Build multi-turn CLU models with entity slot filling
 
-In this article, you learn how to build a CLU model that uses entity slot filling to enable multi-turn conversations. This approach allows your model to collect information progressively across multiple conversation turns, rather than requiring users to provide all details in a single interaction.
-
-We'll create a model that extracts entities as they're mentioned to complete tasks naturally and efficiently.
+In this article, learn how to build a CLU model that implements entity slot filling to facilitate multi-turn conversations. With this approach, your model can incrementally collect the required information across multiple conversation turns. Users don't need to provide all the details in a single interaction. As a result, you can complete tasks more naturally and efficiently.
 
 ## Prerequisites
 
