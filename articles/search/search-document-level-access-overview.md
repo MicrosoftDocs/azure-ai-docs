@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.date: 11/08/2025
+ms.date: 11/09/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -89,7 +89,7 @@ For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-li
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 
-For SharePoint in Microsoft 365 content, Azure AI Search can apply document-level permissions based on SharePoint ACLs. This integration promote that only users or groups with access to the source document in SharePoint can retrieve it in search results, as soon as the permissions are synchronized in the index. Permissions are applied to the index either during initial document ingestion.
+For SharePoint in Microsoft 365 content, Azure AI Search can apply document-level permissions based on SharePoint ACLs. This integration promotes that only users or groups with access to the source document in SharePoint can retrieve it in search results, as soon as the permissions are synchronized in the index. Permissions are applied to the index either during initial document ingestion.
 
 SharePoint ACL support is available in preview through the SharePoint indexer using the [2025-11-01-preview REST API](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or supported SDK. The indexer extracts file and list item permission metadata and preserves it in the search index, where it's used to enforce access control at query time.
 
