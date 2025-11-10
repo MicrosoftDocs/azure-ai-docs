@@ -148,20 +148,16 @@ Currently, Azure portal support for agentic retrieval is limited to the 2025-08-
 
 Agentic retrieval is available in [selected regions](search-region-support.md). Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by service tier.
 
-It has a dependency on semantic ranker. You can disable semantic ranker for your search service, use it on a limited basis for free, or use it more expansively with pay-as-you-go billing:
+It has a dependency on semantic ranker. If you disable semantic ranker for your search service, you effectively disable agentic retrieval.
 
 | Plan | Description |
 |------|-------------|
-| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic retrieval tokens per month. Higher tiers can also use the free plan. |
-| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you are charged for each additional 1,000 requests. After the first 50 million agentic retrieval tokens per month, you are charged a nominal fee for each one million agentic retrieval tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
+| Free | A free tier search service provides 50 million free agentic reasoning tokens per month. On higher tiers, you can choose between the free plan (default) and the standard plan. |
+| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the free quota is used up, you are charged a nominal fee for each additional one million agentic reasoning tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
 
-Billing for agentic retrieval has two parts:
+Token-based billing for LLM-based query planning and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) (optional) is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the knowledge base is the one [charged for token usage](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing). For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
 
-+ Billing for query planning and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) (optional) is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the knowledge base is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
-
-+ Billing for semantic ranking during query execution. Billing is suspended during the initial roll-out phase but then transitions to pay-as-you-go on the Azure AI Search side through the semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models.
-
-Semantic ranking is performed for every subquery in the plan. Semantic ranking charges are based on the number of tokens returned by each subquery.
+Token-based billing for agentic retrieval is the number of tokens returned by each subquery.
 
 | Aspect | Classic single-query pipeline | Agentic retrieval multi-query pipeline |
 |--------|------------------------|----------------------------|
@@ -170,14 +166,11 @@ Semantic ranking is performed for every subquery in the plan. Semantic ranking c
 | Cost estimation | Estimate query count | Estimate token usage |
 | Free tier| 1,000 free queries | 50 million free tokens |
 
-> [!NOTE]
-> Existing semantic ranker billing is unchanged if you're using it outside of agentic retrieval. For pricing without agentic retrieval, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
-
 ### Example: Estimate costs
 
-Agentic retrieval has two billing models: billing from Azure OpenAI (query planning and, if enabled, answer synthesis) and billing from Azure AI Search for semantic ranking (query execution).
+Agentic retrieval has two billing models: billing from Azure OpenAI (query planning and, if enabled, answer synthesis) and billing from Azure AI Search for agentic retrieval.
 
-This pricing example omits answer synthesis, but helps illustrate the estimation process. Your costs could be lower. For the actual price of transactions, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing). For query execution, there's no charge for semantic ranking for agentic retrieval in the initial public preview.
+This pricing example omits answer synthesis, but helps illustrate the estimation process. Your costs could be lower. For the actual price of transactions, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
 
 #### Estimated billing costs for query planning
 
@@ -190,7 +183,7 @@ To estimate the query plan costs as pay-as-you-go in Azure OpenAI, let's assume 
 
 #### Estimated billing costs for query execution
 
-To estimate the semantic ranking costs associated with agentic retrieval, start with an idea of what an average document in your index looks like. For example, you might approximate:
+To estimate agentic retrieval token counts, start with an idea of what an average document in your index looks like. For example, you might approximate:
 
 + 10,000 chunks, where each chunk is one to two paragraphs of a PDF.
 + 500 tokens per chunk.
@@ -211,7 +204,7 @@ To estimate the semantic ranking costs associated with agentic retrieval, start 
 
 1. Estimate the output costs based on an average of 350 tokens. If we multiply 350 by 2,000 agentic retrievals, we get 700,000 output tokens total for a total of 42 cents.
 
-Putting it all together, you'd pay about $3.30 for semantic ranking in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. The combined cost for the full execution is $4.32.
+Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. The combined cost for the full execution is $4.32.
 
 <!-- 
 •Query Pipeline Recap: The query pipeline includes stages: Query Preprocessing (Query Rewriting, Vectorization, Text analysis), Ranking (Vector Search, Keyword Search, Fusion, Semantic Ranking), and Synthesis (Results for LLM, Extractive Answers, Contextualized Captions).

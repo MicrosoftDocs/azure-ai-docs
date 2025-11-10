@@ -139,8 +139,8 @@ You can disable semantic ranker for your search service, use it on a limited bas
 
 | Plan | Description |
 |------|-------------|
-| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic retrieval tokens per month. Higher tiers can also use the free plan. |
-| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you are charged for each additional 1,000 requests. After the first 50 million agentic retrieval tokens per month, you are charged a nominal fee for each one million agentic retrieval tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
+| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic reasoning tokens per month. Higher tiers can also use the free plan. |
+| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you are charged for each additional 1,000 requests. After the first 50 million agentic reasoning tokens per month, you are charged a nominal fee for each one million agentic reasoning tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
 
 The [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/) shows you the billing rate for different currencies and intervals.
 

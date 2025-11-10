@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 09/27/2025
+ms.date: 11/10/2025
 ms.update-cycle: 180-days
 ---
 
@@ -77,7 +77,7 @@ The following diagram illustrates how the ranking algorithms work together.
 :::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
 
 > [!NOTE]
-> This workflow diagram currently omits `@search.rerankerBoostedScore` and a step for semantic ranking with boosting from a scoring profile. If you use semantic ranking with scoring profile, the scoring profile is applied after L2 ranking, and the final score is based on `@search.rerankerBoostedScore`.
+> If you use semantic ranking, the [rankingOrder](/rest/api/searchservice/indexes/create-or-update#rankingorder) property determines whether results are the semantically scored results (`@search.rerankerScore`) or the boosted scores ( `@search.rerankerBoostedScore`) that are created after the scoring profile is applied.
 
 ## Example query inclusive of all ranking algorithms
 
