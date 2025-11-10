@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 11/03/2025
+ms.date: 11/10/2025
 ---
 
 # What is a knowledge source?
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A knowledge source specifies the content used for agentic retrieval. It can be a wrapper for search index or it can target a remote source such as Bing or SharePoint that queries the external content directly. A knowledge source is a required definition in a knowledge base. We provide guidance on how to create specific knowledge sources, but generally, you can:
+A knowledge source specifies the content used for agentic retrieval. It can be a wrapper for search index or it can target a remote source such as Bing or SharePoint that queries the external content directly. A knowledge source is a required definition in a knowledge base.
 
 + Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one physical data structure, either a search index that [meets the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md) or a supported external resource.
 
@@ -91,22 +91,3 @@ The retrieval reasoning effort determines the level of processing that goes into
 
 > [!NOTE]
 > If you used `attemptFastPath` in the previous preview, that approach is now replaced with `retrievalReasoningEffort` set to `minimal`.
-
-<!-- Fast path is opportunistic query processing that approaches the millisecond query performance of regular search. If you enable it, the search engine attempts fast path under the following conditions:
-
-+ `attemptFastPath` is set to true in `outputConfiguration`.
-
-+ The query input is a single message that's fewer than 512 characters.
-
-+ The query targets are the knowledge sources specified in the knowledge base that have `alwaysQuerySource` set to true.
-
-The small query, which executes in parallel on all compliant knowledge sources listed in the knowledge base, returns a result if its scored 1.9 or higher. The highest scoring result is returned in the response. If no results satisfy this criteria, fast path is abandoned and query execution resumes with query planning and the usual agentic retrieval pipeline.
-
-Under fast path, the response omits query planning information (`type": "modelQueryPlanning"`) and "activitySource" is set to 0 for each reference citation.
-
-Under fast path, `retrievalInstructions` are ignored. In general, `alwaysQuerySource` overrides `retrievalInstructions`.
-
-To achieve the fastest possible response times, follow these best practices:
-
-1. In the [retrieve action](agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
- -->
