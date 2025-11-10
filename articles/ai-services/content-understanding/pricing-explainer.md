@@ -26,7 +26,6 @@ Azure AI Content Understanding pricing is based on two main usage categories:
 Content extraction transforms unstructured input (documents, audio, video) into structured, searchable text and content. This output includes optical character recognition (OCR) for documents, speech-to-text for audio/video, and layout detection. You pay per input unit processed:
 - **Documents**: Per 1,000 pages  
 - **Audio and Video**: Per minute
-- **Images**: Per 1,000 images  
 
 ### 2. Generative feature charges
 
@@ -50,7 +49,7 @@ If you only use content extraction without generative capabilities, you're charg
 ## How to estimate your costs
 
 ### 1. Test with representative files  
-Run a small test analysis with your actual files and schema. Check the `usage` object in the POST Analyzers API response to see actual token consumption:
+Run a small test analysis with your actual files and schema. Check the `usage` object in the Analyzers API response to see actual token consumption:
 
 ```json
   "usage": {
@@ -79,17 +78,17 @@ The calculator provides accurate cost projections for your workload.
 
 Following the estimation approach, let's walk through a concrete example manually to demonstrate how the costs are calculated. You're processing invoices to extract structured data like vendor name, invoice number, total amount, and line items.
 
-**Scenario**: You want to process 1,000 invoice pages using GPT-4o-mini with source grounding and confidence scores enabled. 
+**Scenario**: You want to process 1,000 invoice pages using GPT-4o-mini with source grounding and confidence scores disabled. 
 
 **Step 1: Test with representative files**
 After testing representative files, you found the following average token usage per page:
-- **Input tokens**: 5,200 per page 
-- **Output tokens**: 180 per page 
+- **Input tokens**: 1,100 per page 
+- **Output tokens**: 60 per page 
 - **Contextualization**: 1,000 tokens per page (fixed rate)
 
 For 1,000 pages, totals equal:
-- **Total input tokens**: 1,000 pages × 5,200 = 5,200,000 tokens
-- **Total output tokens**: 1,000 pages × 180 = 180,000 tokens
+- **Total input tokens**: 1,000 pages × 1,100 = 1,100,000 tokens
+- **Total output tokens**: 1,000 pages × 60 = 60,000 tokens
 - **Total contextualization tokens**: 1,000 pages × 1,000 = 1,000,000 tokens
 
 **Step 2: Calculate costs manually (instead of using the pricing calculator)**
@@ -100,17 +99,17 @@ Using GPT-4o-mini global deployment with the following pricing assumptions:
 - Contextualization: $1.00 per 1M tokens
 - GPT-4o-mini input tokens: $0.40 per 1M tokens
 - GPT-4o-mini output tokens: $1.60 per 1M tokens
-- Embeddings: $0.02 per 1,000 tokens. You're not using a knowledge base with training examples, so no embeddings charges apply. If you added labeled examples to improve accuracy, the system will add embedding token usage to embed all the text from the input documents. 
+- Embeddings: $0.02 per 1,000 tokens. You're not using a knowledge base with training examples, so no embeddings charges apply. If you added labeled examples to improve accuracy, the system will add embedding token usage to embed all the text from the input documents as well as completion completion input tokens to process examples data added to the context window. 
 
 **Cost calculation**:
 - Content extraction: 1,000 pages × $5.00 per 1,000 pages = $5.00
 - Contextualization: 1,000,000 tokens × $1.00 per 1M tokens = $1.00  
-- Input tokens: 5,200,000 tokens × $0.40 per 1M tokens = $2.08
-- Output tokens: 180,000 tokens × $1.60 per 1M tokens = $0.29
+- Input tokens: 1,100,000 tokens × $0.40 per 1M tokens = $0.44
+- Output tokens: 60,000 tokens × $1.60 per 1M tokens = $0.10
 - Embeddings: Not used = $0.00
 
 ```
-Total Cost = $5.00 + $1.00 + $2.08 + $0.29 + $0.00 = $8.37 per 1000 pages
+Total Cost = $5.00 + $1.00 + $0.44 + $0.10 + $0.00 = $6.54 per 1000 pages
 ```
 
 >[!Note] 
@@ -135,9 +134,16 @@ For documents, you're charged for the type of processing Content Understanding p
 
 **Basic meter**: Applies when Content Understanding performs OCR processing to extract text from image-based documents (scanned PDFs, images, TIFFs).
 
-**Standard meter**: Applies when Content Understanding performs layout analysis, including table recognition and structural element detection.
+**Standard meter**: Applies when Content Understanding performs layout analysis, including table recognition and structural element detection from image-based documents (scanned PDFs, images, TIFFs).
 
 **Minimal meter**: Applies to digital documents (DOCX, XLSX, HTML, TXT) where no OCR or layout processing is needed. You're charged the minimal rate regardless of which analyzer you use—even if you call a layout analyzer on a digital document, you're only charged for the minimal processing performed.
+
+The following table shows which meter applies based on your file type and analysis level:
+
+| File Type | Read (Basic) | Layout (Standard) |
+|-----------|--------------|-------------------|
+| **Image-based** (PDF, PNG, TIFF, JPG, etc.) | Basic meter | Standard meter |
+| **Digital formats** (DOCX, XLSX, HTML, TXT, etc.) | Minimal meter | Minimal meter |
 
 > [!TIP]
 > The meter charged depends on the processing Content Understanding actually performs, not which analyzer you choose. Digital documents always use the minimal meter because they don't require OCR or layout processing.
@@ -241,6 +247,8 @@ You're charged for LLM tokens only when you provide the analyzer with a Foundry 
 ### Am I charged twice for Azure AI Foundry model usage?
 No. Content Understanding uses the LLM deployments linked for all LLM and embedding calls. You're billed on those deployments. You pay Content Understanding for content extraction and contextualization, and Azure AI Foundry for the generative model tokens (input/output tokens and embeddings).
 
+
+
 ### How much can I save with smaller models?
 Choosing GPT-4o-mini instead of GPT-4o can reduce LLM costs by up to 80%. Global deployments provide another 9% savings. Content extraction and contextualization charges remain the same regardless of model choice.
 
@@ -250,6 +258,9 @@ Several features multiply token consumption:
 - **Extractive mode**: ~1.5x token usage  
 - **Training examples**: ~2x token usage
 - **Segmentation/categorization**: ~2x token usage
+
+### Am I charged if my request fails?
+Content Understanding doesn't charge for content extraction or contextualization when a request fails with an error (such as a 400 error). However, if a call to an Azure AI Foundry completion model succeeded as part of that request before the failure occurred, you will be charged for Foundry model usage based on Azure AI Foundry's billing policies. 
 
 ## Cost optimization tips
 
@@ -311,9 +322,9 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 2. **Field extraction**: with source estimation + confidence enabled, the token usage will be ~2x more per page:
    - Base input tokens: 1,000 pages × 5,200 tokens/page = 5,200,000 tokens
-   - Cost: (5,200,000 / 1,000,000) × $0.40 = **$2.08** (mini pricing)
+   - Cost: (5,200,000 / 1,000,000) × $0.40 = **$2.08** 
    - Base output tokens: 1,000 pages × 180 tokens/page = 180,000 tokens
-   - Cost: (180,000 / 1,000,000) × $1.60 = **$0.29** (mini pricing)
+   - Cost: (180,000 / 1,000,000) × $1.60 = **$0.29** 
  
 3. **Contextualization**: 1,000 pages × 1,000 tokens/page = 1,000,000 tokens
    - Cost: (1,000,000 / 1,000,000) × $1.00 = **$1.00**
@@ -379,9 +390,9 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 2. **Field extraction**:
    - Input tokens: 60 minutes × 604 tokens/minute = 36,240 tokens
-   - Cost: (36,240 / 1,000,000) × $0.40 = **$0.01** (mini pricing)
+   - Cost: (36,240 / 1,000,000) × $0.40 = **$0.01** 
    - Output tokens: 60 minutes × 19 tokens/minute = 1,140 tokens
-   - Cost: (1,140 / 1,000,000) × $1.60 = **$0.00** (mini pricing)
+   - Cost: (1,140 / 1,000,000) × $1.60 = **$0.00** 
  
 3. **Contextualization**: 60 minutes × 1,667 tokens/minute = 100,020 tokens
    - Cost: (100,020 / 1,000,000) × $1.00 = **$0.10**
