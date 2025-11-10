@@ -69,12 +69,15 @@ items:
         - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
+        - name: Build a multi-turn model 🆕
+          href:  conversational-language-understanding/how-to/build-multi-turn-model.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Build a fine-tuning schema
           href: conversational-language-understanding/how-to/build-schema.md
           displayName: design, intents, entities, conversational model
         - name: Label utterances
           href: conversational-language-understanding/how-to/tag-utterances.md
-          displayName: labeling, tag utterances, training data, annotation
+          displayName: labeling, tag utterances, training data, annotation/
         - name: Train a model
           href: conversational-language-understanding/how-to/train-model.md
           displayName: training, clu training, conversational model training
@@ -95,6 +98,9 @@ items:
           displayName: language understanding, luis to clu
     - name: Concepts
       items:
+        - name: Multi-turn conversations 🆕
+          href:  conversational-language-understanding/concepts/multi-turn-conversations.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Best practices
           href: conversational-language-understanding/concepts/best-practices.md
           displayName: recommendations, guidelines, optimization
