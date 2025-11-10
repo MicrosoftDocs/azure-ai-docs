@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
 ms.service: azure-ai-search  
 ms.topic: how-to  
-ms.date: 10/08/2025  
+ms.date: 10/09/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -48,7 +48,7 @@ These updates are detected if they occurred since the last indexer run.
 
 + [Global Administrator](/entra/identity/role-based-access-control/permissions-reference#global-administrator) or [Privileged Role Administrator](/entra/identity/role-based-access-control/permissions-reference#privileged-role-administrator) roles in your Microsoft Entra tenant are required to grant the search service access to Purview APIs and sensitivity labels.
 
-+ Both the Azure AI Search service and end users querying the content must belong to the same Microsoft Entra tenant. Guest users and multi-tenant scenarios aren't supported.
++ Both the Azure AI Search service and end users querying the content must belong to the same Microsoft Entra tenant. Guest users and multitenant scenarios aren't supported.
 
 + File types must be included in the [Purview sensitivity labels supported formats list](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and also be recognized as [Office supported file types](search-how-to-index-azure-blob-storage.md#supported-document-formats) by Azure AI Search indexers.
 
