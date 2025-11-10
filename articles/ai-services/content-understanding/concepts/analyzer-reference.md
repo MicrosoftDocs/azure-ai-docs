@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding - What is an analyzer? Configuration and reference
+title: Azure Content Understanding in Foundry Tools - What is an analyzer? Configuration and reference
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
+description: Learn about Azure Content Understanding in Foundry Tools analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
 author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
@@ -14,7 +14,7 @@ ms.custom:
 
 # What is a Content understanding analyzer?
 
-An **analyzer** in Azure AI Content Understanding is a configurable processing unit that defines how your content should be analyzed and what information should be extracted. Think of an analyzer as a recipe that tells the service:
+An **analyzer** in Azure Content Understanding in Foundry Tools is a configurable processing unit that defines how your content should be analyzed and what information should be extracted. Think of an analyzer as a recipe that tells the service:
 - What type of content to process (documents, images, audio, or video)
 - What elements to extract (text, layout, tables, fields, transcripts)
 - How to structure the output (markdown, JSON fields, segments)
@@ -270,7 +270,7 @@ The `config` object contains all processing options that control how content is 
 
 ##### `estimateFieldSourceAndConfidence`
 - **Default:** false (varies by analyzer)
-- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value
+- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value. Only available for fields whose method is `extract` or `generate`.
 - **When to use:**
   - Validation and quality assurance workflows
   - Understanding extraction accuracy

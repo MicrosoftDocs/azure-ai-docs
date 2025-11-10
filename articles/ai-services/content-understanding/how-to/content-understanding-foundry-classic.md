@@ -35,7 +35,7 @@ Content Understanding offers two modes for different scenarios:
   - Use reference data (knowledge base) to guide extraction and validation
   - Perform complex multi-step analysis that goes beyond simple field extraction
 
-For detailed guidance on which mode to choose for your scenario, see [Azure AI Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
+For detailed guidance on which mode to choose for your scenario, see [Azure Content Understanding standard and pro modes (preview)](../concepts/standard-pro-modes.md).
 
 > [!NOTE]
 > Pro mode is a preview feature available only in this preview API version (`2025-05-01-preview`). For Standard Mode, you can transition to the GA API (`2025-11-01`) with minimal changes. See [GA Migration Guide](../how-to/migration-preview-to-ga.md)

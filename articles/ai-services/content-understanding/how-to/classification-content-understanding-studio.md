@@ -59,5 +59,5 @@ Custom categories let you route your data to a specific analyzer so you get the 
 
 ## Next step
 
-* Learn more about [Best practices for Azure AI Content Understanding](../concepts/best-practices.md)  
+* Learn more about [Best practices for Azure Content Understanding in Foundry Tools](../concepts/best-practices.md)  
 
