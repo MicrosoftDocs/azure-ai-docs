@@ -298,7 +298,7 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
 
 A scoring profile is more likely to add value to your solution if your index is based on structured data. Structured data is indexed into multiple discrete fields, which means your scoring profile can have criteria that target the content or characteristics of a specific field.
 
-If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking. Because agentic retrieval is available in newer preview APIs, the scoring profile executes last.
+If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking. Because agentic retrieval is available in newer preview APIs, the scoring profile executes last. The actual order of semantically ranked results is determined by the [rankingOrder property](/rest/api/searchservice/indexes/create-or-update#rankingorder) in the index, which is either set to `boostedRerankerScore` (a scoring profile was applied) or `rerankerScore` (no scoring profile).
 
 You can use any scoring profile that makes sense for your index. Here's an example of one that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example if a match was found in the "Category" field, the boosted score is multiplied by 5.
 

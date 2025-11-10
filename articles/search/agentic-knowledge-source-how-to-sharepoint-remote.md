@@ -139,9 +139,6 @@ You can pass the following properties to create a remote SharePoint knowledge so
 | `filterExpression` | An expression written in the SharePoint in [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), used to specify sites and paths to content. | String | Yes |No |
 | `resourceMetadata` | A comma-delimited list of the standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
 
-<!-- SharePoint embedded is containers. Many moving parts. Defer for now. -->
-<!-- containerTypeId is used to configure a remoteSharePoint that uses the SharePoint team's new "SharePointEmbedded" container. It's being actively validated so we're not ready to support it yet. -->
-
 ### Filter expression examples
 
 Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). Here's some more information about queryable properties that you can use in filter: [queryable properties](/graph/connecting-external-content-manage-schema#queryable).
@@ -159,7 +156,7 @@ Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-servi
 
 ## Assign to a knowledge base
 
-If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](search-agentic-retrieval-how-to-create.md).
+If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](search-agentic-retrieval-how-to-create.md).
 
 After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
