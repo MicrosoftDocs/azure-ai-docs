@@ -368,10 +368,8 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
 
 ---
 
-#### References
-Reference: [VoiceLiveConnection](/dotnet/api/azure.ai.voicelive.voiceliveconnection) [TO VERIFY]  
-Reference: [ConnectAsync](/dotnet/api/azure.ai.voicelive.voiceliveconnection.connectasync) [TO VERIFY]  
-Reference: [Azure.AI.VoiceLive NuGet](https://www.nuget.org/packages/Azure.AI.VoiceLive)
+## Related content
 
-> [!NOTE]
-> Replace any `[TO VERIFY]` placeholders with confirmed namespace and method names before publishing. (Source: copilot-instructions.md)
+- Try the [Voice live quickstart](./voice-live-quickstart.md)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- See the [Voice live API reference](./voice-live-api-reference.md)
