@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from data sources such as Azure Data Lake Storage (ADLS) Gen2 and SharePoint in Microsoft 365.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 11/09/2025  
+ms.date: 11/10/2025  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
@@ -40,7 +40,7 @@ This article explains how to set up queries that use permission metadata to filt
  
 - Initial ACL-based queries may experience higher latency compared to subsequent requests, due to caching and permission resolution overhead.
 
-## ACL Entry Limits per Data Source
+## ACL entry limits per data source
 
 Access Control List (ACL) entry limits define how many distinct permission records can be associated with a file, folder, or item within a connected data source. Each entry represents a single user or group identity and the access rights granted to that identity (for example, Read, Write, or Execute).
 
