@@ -179,9 +179,9 @@ Content-Type: application/json
     ]
 }
 ```
-<!-- 
+
 > [!NOTE]
-> If you're retrieving content from a OneLake or indexed SharePoint knowledge source, set `includeReferenceSourceData` to `true` to include the source document URL in the citation. -->
+> If you're retrieving content from a OneLake or indexed SharePoint knowledge source, set `includeReferenceSourceData` to `true` to include the source document URL in the citation.
 
 ### Example: minimal reasoning effort
 
