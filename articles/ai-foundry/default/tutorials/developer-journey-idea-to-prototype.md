@@ -17,7 +17,7 @@ ai.usage: ai-assisted
 
 [!INCLUDE [agent-v2-switch](../includes/agent-v2-switch.md)]
 
-This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
+This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. It demonstrates how to build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
 
 **Business scenario**: Create an AI assistant that helps employees by combining:
 
