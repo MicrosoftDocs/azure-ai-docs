@@ -30,7 +30,7 @@ items:
 - name: Observability, evaluation, & tracing
   href: toc-files-foundry/observability-evaluation-tracing/toc.yml
 
-- name: Developer environment 
+- name: Developer experience 
   href: toc-files-foundry/developer-environment/toc.yml
 
 - name: API & SDK
