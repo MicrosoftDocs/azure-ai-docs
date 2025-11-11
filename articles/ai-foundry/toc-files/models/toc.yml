@@ -34,7 +34,7 @@ items:
     href: ../../openai/how-to/model-router.md
 - name: Deploy Foundry Models
   items:
-  - name: Deployment options in Azure AI Foundry portal
+  - name: Deployment options in Microsoft Foundry portal
     href: ../../concepts/deployments-overview.md
   - name: Deployment types
     href: ../../foundry-models/concepts/deployment-types.md   
@@ -44,7 +44,7 @@ items:
     href: ../../foundry-models/how-to/create-model-deployments.md
   - name: Deploy Azure OpenAI in Foundry Models
     href: ../../how-to/deploy-models-openai.md
-  - name: Upgrade from GitHub Models to Azure AI Foundry Models
+  - name: Upgrade from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
     href: ../../how-to/troubleshoot-deploy-and-monitor.md
@@ -84,7 +84,7 @@ items:
     href: ../../how-to/develop/semantic-kernel.md
 - name: Deployment in AI hub
   items:
-  - name: Connect your AI hub to the Azure AI Foundry resource
+  - name: Connect your AI hub to the Microsoft Foundry resource
     href: ../../foundry-models/how-to/configure-project-connection.md
   - name: Managed compute endpoints
     items:
@@ -104,7 +104,7 @@ items:
         href: ../../how-to/healthcare-ai/deploy-medimageparse.md
   - name: Serverless API endpoints
     items:
-    - name: Configure AI projects to work with Azure AI Foundry Models
+    - name: Configure AI projects to work with Microsoft Foundry Models
       href: ../../foundry-models/how-to/quickstart-ai-project.md
     - name: Deploy models via serverless API
       href: ../../how-to/deploy-models-serverless.md
