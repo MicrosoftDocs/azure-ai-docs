@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 11/05/2025  
+ms.date: 11/10/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -111,4 +111,4 @@ The GUID alone is insufficient for user interface scenarios because sensitivity 
 
 Azure AI Search doesn't surface these capabilities. To display label names or enforce UI-specific restrictions, your application must call the Microsoft Purview Information Protection endpoint to retrieve full label metadata and associated permissions.
 
-You can use the GUID returned by Azure AI Search to resolve the label properties and call the [MIP SDK](/information-protection/develop/setup-configure-mip) to fetch the label name, description, and policy settings. This [end-to-end demo sample](https://aka.ms/azs-sensitivity-labels) includes code that shows how to call the endpoint from a user interface. It also demonstrates how to extract the label name and expose it as part of the citations used in your RAG applications or agents.
+You can use the GUID returned by Azure AI Search to resolve the label properties and call the [MIP SDK](/information-protection/develop/setup-configure-mip) to fetch the label name, description, and policy settings. This [end-to-end demo sample](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo) includes code that shows how to call the endpoint from a user interface. It also demonstrates how to extract the label name and expose it as part of the citations used in your RAG applications or agents.
