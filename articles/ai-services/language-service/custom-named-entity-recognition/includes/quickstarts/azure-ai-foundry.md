@@ -99,7 +99,7 @@ Next, let's add a container and upload your dataset files directly to the root d
 
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 
-1. Once signed in, access your existing Azure AI Foundry hub-based project for this quickstart.
+1. Once signed in, access your existing Azure AI Foundry project for this quickstart.
 
 1. Select **Management center** from the left navigation menu.
 
@@ -123,7 +123,7 @@ Next we create a connection to your Azure AI Language resource so Azure AI Found
 
 1. Return to the [Azure AI Foundry](https://ai.azure.com/).
 
-1. Access your existing Azure AI Foundry hub-based project for this quickstart.
+1. Access your existing Azure AI Foundry project for this quickstart.
 
 1. Select **Management center** from the left navigation menu.
 

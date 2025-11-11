@@ -1,7 +1,7 @@
 ---
-title: Build multi-turn conversational language understanding (CLU) models with entity slot filling
+title: "Quickstart: Multi-turn conversational language understanding (CLU) models with entity slot filling"
 titleSuffix: Azure AI services
-description: This article shows you how to create a CLU model for multi-turn interactions using slot-filling
+description: Get started creating a CLU model for multi-turn interactions using slot-filling
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -11,9 +11,9 @@ ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
-# Build multi-turn CLU models with entity slot filling
+# Quickstart: Multi-turn CLU models with entity slot filling
 
-In this article, learn how to build a CLU model that implements entity slot filling to facilitate multi-turn conversations. With this approach, your model can incrementally collect the required information across multiple conversation turns. Users don't need to provide all the details in a single interaction. As a result, you can complete tasks more naturally and efficiently.
+In this article, get started building a CLU model that uses entity slot filling to enable multi-turn conversations. This approach allows your model to collect information progressively across multiple conversation turns, rather than requiring users to provide all details in a single interaction to complete tasks naturally and efficiently.
 
 ## Prerequisites
 
@@ -28,13 +28,13 @@ In this article, learn how to build a CLU model that implements entity slot fill
 
 * **Azure AI Foundry project** - Create a project in Azure AI Foundry. For more information, see [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-* **Deployed OpenAI model** - Deploy an OpenAI model in Azure AI Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-azure-ai-foundry) section.
+* **Deployed OpenAI model** - Deploy an OpenAI model in Azure AI Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-foundry-portal) section.
 
-## Configure required roles, permissions, and settings
+## Configure roles, permissions, and settings
 
 Begin by configuring your Azure resources with the appropriate roles and permissions.
 
-### Add required roles for your Azure AI Language resource
+### Add roles for your Azure AI Language resource
 
 1. Navigate to your Language resource page in the [Azure portal](https://portal.azure.com/) and select **Access Control (IAM)** from the left navigation pane.
 
@@ -48,7 +48,7 @@ Begin by configuring your Azure resources with the appropriate roles and permiss
 
 1. Repeat these steps for all user accounts that require access to this resource.
 
-## Connect your Azure Language resource to Azure AI Foundry
+## Connect Azure Language resource to Azure AI Foundry
 
 To enable secure access, create a connection between your Azure AI Language resource and Azure AI Foundry. This connection provides secure identity management, authentication, and controlled access to your data.
 
@@ -71,7 +71,7 @@ To enable secure access, create a connection between your Azure AI Language reso
 
     :::image type="content" source="../media/add-connection.png" alt-text="Screenshot of the connection window in Azure AI Foundry.":::
 
-## Deploy an OpenAI model in Azure AI Foundry
+## Deploy an OpenAI model in Foundry portal
 
 Deploy an OpenAI model to provide the foundational intelligence and advanced reasoning capabilities for your CLU model.
 
@@ -97,11 +97,11 @@ Deploy an OpenAI model to provide the foundational intelligence and advanced rea
 
 1. The model deployment is now complete.
 
-## Build your multi-turn model
+## Build a multi-turn model
 
 Now that your Language resource, Foundry project, and OpenAI deployment are configured, you're ready to build your CLU model.
 
-### Create a CLU project
+### Create your CLU project
 
 In this section, you create a travel agent model and deploy it using Quick Deploy.
 
@@ -128,7 +128,7 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 
 1. Select **Create**. The creation operation may take a few minutes to complete.
 
-### Add intents
+### Add your intents
 
 1. From the **Getting Started** menu, select **Define schema**.
 
@@ -140,9 +140,19 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 
 1. After completing these fields, select **+ Add** to create your intents.
 
+1. Add the following intents:
+
+    |Intent name|Intent description|
+    |---|---|
+    |BookFlight|Make a travel reservation for an airline flight.|
+    |FlightTime|The scheduled departure and/or arrival time for an airline flight.|
+    |FlightStatus|The current status of a scheduled flight.|
+
+    :::image type="content" source="../media/multi-turn/add-intent.png" alt-text="Screenshot of the Add Intent fields.":::
+
 1. After defining all intents, select **Add Intent**.
 
-### Add entities
+### Add your entities
 
 1. Select the **Entities** tab, then select **Add entity**.
 
@@ -151,7 +161,29 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
    * Entity description
 1. After completing the entity fields, select **Add an entity**.
 
-### Associate intents with entities
+1. Add the following entities:
+
+    |Entity name |Entity description|
+    |---|---|
+    |FlightNumber|Flight number for scheduled flight.|
+    |FlightDepartureTime|Departure time for scheduled flight.|
+    |TravelDate|Desired travel date.|
+
+    :::image type="content" source="../media/multi-turn/add-entity.png" alt-text="Screenshot of the Add Entities fields.":::
+
+1. For common data types, add prebuilt entity components:
+
+   * Select your **TravelDate** entity:
+     * Under the **Prebuilt** section, select **Add prebuilt**.
+     * Select **DateTime** from the dropdown list, then select **Add**.
+   
+   * Select your **FlightDepartureTime** entity:
+     * Under the **Prebuilt** section, select **Add prebuilt**.
+     * Select **DateTime** from the dropdown list, then select **Add**.
+
+    :::image type="content" source="../media/multi-turn/add-prebuilt.png" alt-text="Screenshot of the Add Prebuilt components section.":::
+
+### Associate your intents with entities
 
 1. Select the **Associations** tab.
 
@@ -159,9 +191,15 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
 
 1. All entities must have an association with at least one intent. After configuring the associations, select **Update associations**.
 
-Once all entities have associations, you can proceed with Quick Deploy using a large language model (LLM).
+   |Intent|Association|
+   |---|---|
+   |BookFlight|TravelDate|
+   |FlightTime|FlightDepartureTime, TravelDate|
+   |FlightStatus|FlightNumber, FlightDepartureTime, TravelDate|
 
-### Quick deploy with LLM
+Now that all entities have associations, you can proceed with Quick Deploy using a large language model (LLM).
+
+### Use Quick deploy with LLM
 
 1. From the **Getting Started** menu, select **Train model**.
 
@@ -175,7 +213,7 @@ Once all entities have associations, you can proceed with Quick Deploy using a l
 
 1. Select **Create**. Azure AI Foundry manages the configuration and deployment processes through backend operations.
 
-### Test in playground
+### Test your model in the playground
 
 1. From the **Getting Started** menu, select **Deploy your model**.
 
@@ -191,23 +229,32 @@ Once all entities have associations, you can proceed with Quick Deploy using a l
 
 1. Select the **Multi-turn** understanding checkbox.
 
-1. Simulate a multi-turn dialog by entering a conversation.
+1. Simulate a multi-turn dialog by entering the following conversation:
+
+   ```text
+   User: Hello, I would like to book a flight.
+   Agent: Hello! On which day do you intend to travel?
+   User: Tomorrow.
+   Agent: What departure time would you prefer for your flight?   
+   User: Anytime after 5:00 PM.
+   ```
 
 1. Select **Run**.
 
 1. The model returns a response in both **Text** and **JSON** formats.
 
+    :::image type="content" source="../media/multi-turn/model-response.png" alt-text="Screenshot of the model response in test and json formats.":::
 
 1. In the **Details** panel on the right, review the **Top Intent** and detected **Entities**.
 
     :::image type="content" source="../media/multi-turn/details.png" alt-text="Screenshot of the Details response window.":::
 
-That's it! You successfully created a multi-turn CLU model with entity slot filling capabilities to collect required information across multiple dialog turns.
+You successfully created a multi-turn CLU model with entity slot filling capabilities to collect required information across multiple dialog turns.
 
-## Clean up resources
+## Clean up your resources
 
 To clean up and remove an Azure AI resource, delete either the individual resource or the entire resource group. Deleting the resource group removes all contained resources.
 
 ## Related content
 
-[Learn how CLU handles entity slot-filling across multi-turn conversations](../concepts/multi-turn-conversations.md)
+[Learn how CLU handles entity slot-filling across multi-turn conversations](../concepts/multi-turn-conversations.md).

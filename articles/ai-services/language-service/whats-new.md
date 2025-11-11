@@ -14,6 +14,44 @@ ms.author: lajanuar
 
 Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+## November 2025
+
+**Azure Language integrates with Azure AI Foundry Tools**. Azure Language now provides specialized tools and agents for building conversational AI applications in Azure AI Foundry:
+* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-). Connects AI agents to Azure Language services through the Model Context Protocol.
+* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-). Manages conversation flows by combining intent classification with answer delivery.
+* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-). Delivers consistent responses to frequently asked business questions.
+
+**Azure Language capabilities now available in Azure AI Foundry**. Several Azure Language capabilities are now available with the Azure AI Foundry:
+* [Conversational Language Understanding multi-turn conversations](conversational-language-understanding/concepts/multi-turn-conversations.md). Enable natural, context-aware dialogues through entity slot filling → Azure Foundry (new).
+* [Language detection](conversational-language-understanding/concepts/multiple-languages.md). Automatically detect the language of user utterances in conversational applications → Azure Foundry (new).
+ * [PII detection for text](personally-identifiable-information/how-to/redact-text-pii.md). Detect and redact personally identifiable information in text documents→ Azure Foundry (new).
+* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). Test, train, and deploy custom NER models directly in the Azure AI Foundry playground → Azure Foundry (classic).
+* [PII detection for conversations](personally-identifiable-information/how-to/redact-conversation-pii.md). Identify and redact personally identifiable information in conversations → Azure Foundry (classic).
+
+**Text PII detection enhancements (2025-11-15-preview API)**. The preview API introduces several new feature parameters for [PII detection](personally-identifiable-information/overview.md):
+* **Anonymization**. The `syntheticReplacement` [redaction policy](personally-identifiable-information/how-to/redact-text-pii.md#redaction-policies) enables masking detected PII entities with synthetic replacement values. For example, "John Doe received a call from 424-878-9193" can be transformed into "Sam Johnson received a call from 401-255-6901."
+* **Disable type-validation enforcement**. Disable [entity type validation](personally-identifiable-information/how-to/redact-text-pii.md#disableentityvalidation) to bypass strict validation when operational efficiency is prioritized over data integrity checks.
+* **Confidence threshold score**. Set a minimum [confidence score](personally-identifiable-information/how-to/redact-text-pii.md#confidencescorethreshold-) threshold to control which entities appear in the output based on detection confidence.
+
+**Entity Tags generally available**. [Entity Tags](named-entity-recognition/concepts/named-entity-categories.md) are now generally available, providing enhanced metadata and categorization for named entities.
+
+**New preview model for PII detection**. The updated preview model introduces support for the following new entity types:
+* [Airport](personally-identifiable-information/concepts/entity-categories.md#type-airport-preview)
+* [City](personally-identifiable-information/concepts/entity-categories.md#type-city-preview)
+* [Geopolitical Entity](personally-identifiable-information/concepts/entity-categories.md#type-geopolitical-entity-gpe-preview)
+* [South Korea Drivers License Number](personally-identifiable-information/concepts/entity-categories.md#type-south-korea-drivers-license-number-preview)
+* [South Korea Passport Number](personally-identifiable-information/concepts/entity-categories.md#type-south-korea-passport-number-preview)
+* [South Korea Social Security Number](personally-identifiable-information/concepts/entity-categories.md#type-south-korea-social-security-number-preview)
+* [Location](personally-identifiable-information/concepts/entity-categories.md#type-location-preview)
+* [State](personally-identifiable-information/concepts/entity-categories.md#type-state-preview)
+* [ZipCode](personally-identifiable-information/concepts/entity-categories.md#type-zipcode-preview)
+
+**Model improvements**. Significant quality improvements for the following entity types:
+* [Date Of Birth](personally-identifiable-information/concepts/entity-categories.md#type-date-of-birth-preview)
+* [License Plate](personally-identifiable-information/concepts/entity-categories.md#type-license-plate-preview)
+* [Sort Code](personally-identifiable-information/concepts/entity-categories.md#type-sort-code-preview)
+* [VIN](personally-identifiable-information/concepts/entity-categories.md#type-vin-preview)
+
 ## October 2025
 
 * **Summarization model 2025-06-10 generally available**. The [Summarization model](summarization/overview.md) version 2025-06-10 is now generally available. This model is fine-tuned using the [Phi open model family](https://azure.microsoft.com/products/phi), delivering enhanced performance for Issue and Resolution summary generation.
@@ -113,7 +151,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 * Updated and improved model GA release for NER
 * Expanded context window for [PII redaction](personally-identifiable-information/overview.md?tabs=text-pii) – This service update expands the window of detection the PII redaction service considers, enhancing quality and accuracy.
 /python/api/azure-cognitiveservices-language-luis/index* Added prediction capability for custom models, including conversational language Understanding (CLU), custom named entity recognition (NER), and custom text classification, are now available in three new regions: Jio India Central, UK West, and Canada East.
-* Scanned PDF PII - [Document input for PII redaction](personally-identifiable-information/how-to/redact-document-pii.md) now supports scanned PDFs, enabling PII detection and redaction in both digital and nondigital documents using `OCR`.
+* Scanned PDF PII. [Document input for PII redaction](personally-identifiable-information/how-to/redact-document-pii.md) now supports scanned PDFs, enabling PII detection and redaction in both digital and nondigital documents using `OCR`.
 
 ## March 2025
 
@@ -171,8 +209,8 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 ## September 2024
 
 * PII detection now has container support. See more details in the Azure Update post: [Announcing Text PII Redaction Container Release](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-text-pii-redaction-container-release/4264655).
-* Custom sentiment analysis (preview) will be retired January 10, 2025. You can transition to other custom model training services, such as custom text classification in Azure Language.  See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom sentiment analysis (preview) in Azure Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-sentiment-analysis-retirement).
-* Custom text analytics for health (preview) will be retired on January 10, 2025. Transition to other custom model training services, such as custom named entity recognition in Azure Language, by that date.  See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom text analytics for health (preview) in Azure Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-text-analytics-for-health-retirement).
+* Custom sentiment analysis (preview) will be retired January 10, 2025. You can transition to other custom model training services, such as custom text classification in Azure Language. See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom sentiment analysis (preview) in Azure Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-sentiment-analysis-retirement).
+* Custom text analytics for health (preview) will be retired on January 10, 2025. Transition to other custom model training services, such as custom named entity recognition in Azure Language, by that date. See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom text analytics for health (preview) in Azure Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-text-analytics-for-health-retirement).
 
 ## August 2024
 * [CLU utterance limit in a project](conversational-language-understanding/service-limits.md#data-limits) increased from 25,000 to 50,000.
@@ -265,7 +303,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
     [**Samples**](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-textanalytics_5.3.0b2/sdk/textanalytics/azure-ai-textanalytics/samples)
 
-    ---
+   . --
 
 ## February 2023
 
