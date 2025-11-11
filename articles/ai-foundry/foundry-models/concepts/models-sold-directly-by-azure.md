@@ -25,7 +25,8 @@ zone_pivot_groups: models-sold-directly-by-azure
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article lists a selection of Azure AI Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
+This article lists a selection of Azure AI Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). To see a list of Azure OpenAI models that are supported by the Azure AI Foundry Agent Service, see [Models supported by Azure AI Foundry Agent Service](../../agents/concepts/model-region-support.md).
+
 Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers. 
 
 ::: moniker range="foundry-classic"

@@ -15,7 +15,11 @@ monikerRange: 'foundry-classic || foundry'
 
 # Models supported by Azure AI Foundry Agent Service
 
-Agents are powered by a diverse set of Azure OpenAI models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
+In this article, you learn about the diverse set of Azure OpenAI models that power Agents in Azure AI Foundry Service. These models have different capabilities and price points.
+
+> [!NOTE]
+> If you'd like to see a selection of Azure AI Foundry Models sold directly by Azure, along with their capabilities, see [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md). 
+Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
 
 - **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
