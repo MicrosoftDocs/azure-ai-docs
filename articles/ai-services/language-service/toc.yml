@@ -38,7 +38,7 @@ items:
         - name: Get started
           href: conversational-language-understanding/quickstart.md
           displayName: getting started, tutorial, conversational ai setup
-        - name: Multi-turn conversations 🆕
+        - name: Try multi-turn conversations 🆕
           href: conversational-language-understanding/how-to/quickstart-multi-turn-conversations.md
           displayName: slot-filling, intent, entities, entity, association, foundry
     - name: Language support
