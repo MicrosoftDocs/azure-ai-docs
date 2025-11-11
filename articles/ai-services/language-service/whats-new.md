@@ -16,12 +16,12 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## November 2025
 
-**Azure Language integrates with Azure AI Foundry**. Azure Language now provides specialized tools and agents for building conversational AI applications in Azure AI Foundry:
+**Azure Language integrates with Azure AI Foundry Tools**. Azure Language now provides specialized tools and agents for building conversational AI applications in Azure AI Foundry:
 * [Azure Language MCP server](concepts/azure-foundry-tools-agents.md#azure-language-mcp-server-) - Connects AI agents to Azure Language services through the Model Context Protocol.
 * [Azure Language Intent Routing agent](concepts/azure-foundry-tools-agents.md#azure-language-intent-routing-agent-) - Manages conversation flows by combining intent classification with answer delivery.
 * [Azure Language Exact Question Answering agent](concepts/azure-foundry-tools-agents.md#azure-language-exact-question-answering-agent-) - Delivers consistent responses to frequently asked business questions.
 
-**Azure Language capabilities now available in Azure AI Foundry**. Several Azure Language capabilities are now integrated with the Azure AI Foundry:
+**Azure Language capabilities now available in Azure AI Foundry**. Several Azure Language capabilities are now available with the Azure AI Foundry:
 * [Conversational Language Understanding multi-turn conversations](conversational-language-understanding/concepts/entity-slot-filling-multi-turn.md) - Enable natural, context-aware dialogues through entity slot filling → Azure Foundry (new).
 * [Language detection](conversational-language-understanding/concepts/multiple-languages.md) - Automatically detect the language of user utterances in conversational applications → Azure Foundry (new).
  * [PII detection for text](personally-identifiable-information/overview.md) - Detect and redact personally identifiable information in text documents→ Azure Foundry (new).
