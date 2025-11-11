@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Azure Document Intelligence documentation # < 60 chars
-summary: Azure Document Intelligence is a cloud-based Azure AI Foundry tool that uses machine-learning models to automate your data processing in applications and workflows. Document Intelligence is essential for enhancing data-driven strategies and enriching document search capabilities. # < 160 chars
+title: Azure Document Intelligence in Foundry Tools documentation # < 60 chars
+summary: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry tool that uses machine-learning models to automate your data processing in applications and workflows. Document Intelligence is essential for enhancing data-driven strategies and enriching document search capabilities. # < 160 chars
 
 metadata:
-  title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Azure AI Foundry Tool | Microsoft Docs
-  description: Azure Document Intelligence is a cloud-based Azure Foundry tool that uses machine-learning models to extract key-value pairs, text, and tables from your documents. Document Intelligence analyzes your forms and documents, extracts text and data, maps field relationships as key-value pairs, and returns a structured JSON output. You quickly get accurate results that are tailored to your specific content without excessive manual intervention or extensive data science expertise. Use Document Intelligence to automate your data processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities.
+  title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  description: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry tool that uses machine-learning models to extract key-value pairs, text, and tables from your documents. Document Intelligence analyzes your forms and documents, extracts text and data, maps field relationships as key-value pairs, and returns a structured JSON output. You quickly get accurate results that are tailored to your specific content without excessive manual intervention or extensive data science expertise. Use Document Intelligence to automate your data processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities.
   ms.service: azure-ai-document-intelligence
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
-  ms.date: 07/17/2025
+  ms.date: 11/18/2025
   monikerRange: '<=doc-intel-4.0.0'
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://learn.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits

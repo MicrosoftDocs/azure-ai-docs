@@ -1,12 +1,12 @@
-﻿---
+---
 title: Azure Document Intelligence in Foundry Tools release history
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Release notes and updates for Azure Document Intelligence in Foundry Tools API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: reference
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions
 ---

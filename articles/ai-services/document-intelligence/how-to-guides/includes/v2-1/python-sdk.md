@@ -1,11 +1,11 @@
-﻿---
+---
 title: "Use Document Intelligence SDK for Python (REST API v2.1)"
 description: Use the Document Intelligence SDK for Python (REST API v2.1) to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: devx-track-python
 ---

@@ -1,10 +1,10 @@
 items:
-- name: Azure Document Intelligence Documentation
+- name: Azure Document Intelligence in Foundry Tools Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure Document Intelligence?
+  - name: What is Azure Document Intelligence in Foundry Tools?
     displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer, region availability, regional availability
     href: overview.md
   - name: What's new
@@ -371,5 +371,5 @@ items:
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/en-US/privacystatement
-  - name: Azure Document Intelligence release history
+  - name: Document Intelligence release history
     href: reference/release-history.md

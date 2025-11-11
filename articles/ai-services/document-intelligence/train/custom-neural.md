@@ -1,12 +1,12 @@
-﻿---
+---
 title: Custom neural document model - Document Intelligence 
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use the custom neural document model to train a model to extract data from structured, semi-structured, and unstructured documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions

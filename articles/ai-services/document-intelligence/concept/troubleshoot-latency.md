@@ -1,12 +1,12 @@
-﻿---
+---
 title: Troubleshoot latency issues with Document Intelligence API
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn troubleshooting tips, remedial solutions, and best practices for addressing Document Intelligence latency issues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: troubleshooting
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -18,7 +18,7 @@ Document Intelligence operates as a multitenant service, ensuring that latency f
 
 > [!NOTE]
 >
-> * Azure AI Foundry Tools don't provide a Service Level Agreement (SLA) for latency.
+> * Foundry Tools don't provide a Service Level Agreement (SLA) for latency.
 > * The Document Intelligence API offers asynchronous functionality, allowing you to access results up to 24 hours after sending your request to our backend. 
 > * Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our [service page](../service-limits.md#detailed-description-quota-adjustment-and-best-practices).
 

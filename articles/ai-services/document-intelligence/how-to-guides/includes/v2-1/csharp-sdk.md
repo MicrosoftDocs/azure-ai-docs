@@ -1,11 +1,11 @@
-﻿---
+---
 title: "Use Document Intelligence SDK for C#/.NET (REST API v2.1)"
 description: 'Use the Document Intelligence SDK for C# / .NET (REST API v2.1) to create a forms processing app that extracts key data from documents.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: devx-track-csharp
 ---
@@ -76,7 +76,7 @@ In the application's `Program` class, create variables for your resource's key a
 > [!IMPORTANT]
 > Go to the Azure portal. If the Document Intelligence resource you created in the Prerequisites section deployed successfully, select the **Go to Resource** button under **Next Steps**. In the left pane, under **Resource Management**, select **Keys and Endpoint**.
 >
-> Remember to remove the key from your code when you're done. Never post it publicly. For production, use secure methods to store and access your credentials. For more information, see [Azure AI Foundry Tools security](../../../../../ai-services/security-features.md).
+> Remember to remove the key from your code when you're done. Never post it publicly. For production, use secure methods to store and access your credentials. For more information, see [Foundry Tools security](../../../../../ai-services/security-features.md).
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_creds)]
 

@@ -1,12 +1,12 @@
-﻿---
+---
 title: Document Intelligence supported Markdown elements
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Layout API response and how to use the response in your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 
 ---

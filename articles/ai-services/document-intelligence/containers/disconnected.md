@@ -1,12 +1,12 @@
-﻿---
+---
 title: Use Document Intelligence containers in disconnected environments
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to run Cognitive Services Docker containers disconnected from the internet.
 ms.service: azure-ai-document-intelligence
 author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: sfi-ropc-nochange
 ---
@@ -74,7 +74,7 @@ Start by provisioning a new resource in the portal.
 
 ## Gather required parameters
 
-There are three required parameters for all Azure AI Foundry Tools' containers:
+There are three required parameters for all Foundry Tools' containers:
 
 * The end-user license agreement (EULA) must be present with a value of *accept*.
 * The endpoint URL for your resource from the Azure portal.

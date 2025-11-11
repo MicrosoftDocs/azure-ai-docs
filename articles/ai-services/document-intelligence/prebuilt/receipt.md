@@ -1,12 +1,12 @@
-﻿---
+---
 title: Receipt data extraction - Document Intelligence 
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use machine learning powered receipt data extraction model to digitize receipts.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

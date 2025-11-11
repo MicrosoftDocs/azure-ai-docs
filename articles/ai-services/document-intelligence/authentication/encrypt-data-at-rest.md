@@ -1,12 +1,12 @@
-﻿---
+---
 title: Service encryption of data at rest - Document Intelligence 
-titleSuffix: Azure AI Foundry Tools
-description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Azure AI Foundry Tools subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Document Intelligence, and how to enable and manage CMK.
+titleSuffix: Foundry Tools
+description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Foundry Tools subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Document Intelligence, and how to enable and manage CMK.
 author: erindormier
 manager: venkyv
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 monikerRange: '<=doc-intel-4.0.0'
 ---
 
