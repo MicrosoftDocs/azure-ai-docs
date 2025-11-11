@@ -733,7 +733,7 @@ Here's a sample of the JSON output structure:
 
 ---
 
-## Summary (So what?)
+## Summary
 
 You now have:
 - A working single-agent prototype grounded in internal and external knowledge.
