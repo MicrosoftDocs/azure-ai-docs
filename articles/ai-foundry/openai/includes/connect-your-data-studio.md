@@ -19,7 +19,8 @@ recommendations: false
 
 To add your data using the portal:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource. If you have an Azure AI Foundry resource, you can [create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md).  
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. Select your Azure OpenAI resource. If you have an Azure AI Foundry resource, you can [create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md).
 
 1. From the left pane, select **Playgrounds** > **Chat**.
 

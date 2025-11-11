@@ -98,7 +98,9 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 To fine-tune an Azure OpenAI model in an existing Azure AI Foundry project, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
+[!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+
+Select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
 
 1. From the collapsible left menu, select **Fine-tuning** > **+ Fine-tune model**.
 

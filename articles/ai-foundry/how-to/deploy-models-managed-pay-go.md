@@ -78,7 +78,7 @@ The consumption-based surcharge goes to the associated SaaS subscription and bil
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
 1. Filter the models list by selecting the **Collection** and model of your choice. This article uses **Cohere Command A** from the [list of supported models](#supported-models) for illustration.

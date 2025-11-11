@@ -58,7 +58,7 @@ Fine-tuning tasks are available only to users whose Azure subscription belongs t
 
 You can also go to the Azure AI Foundry portal to view all models that contain fine-tuning support:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
 1. If you're not already in your project, select it. 
 

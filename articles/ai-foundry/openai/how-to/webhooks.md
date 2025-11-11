@@ -9,6 +9,7 @@ ms.date: 10/24/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure OpenAI in AI Foundry Models webhooks

@@ -10,6 +10,8 @@ ms.topic: conceptual
 ms.date: 09/30/2025
 manager: nitinme
 keywords: ChatGPT, GPT-4, meta prompts, chain of thought
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # System message design

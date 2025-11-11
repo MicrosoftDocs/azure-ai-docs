@@ -12,6 +12,8 @@ manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Safety system messages 

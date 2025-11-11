@@ -7,18 +7,18 @@ manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 09/29/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
+monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
-
 ---
 
 # How to configure a private link for Azure AI Foundry (Foundry projects)
 
-> [!NOTE]
+> [!TIP]
 > An alternate hub-focused version of this article is available: [How to configure a private link for an Azure AI Foundry hub](hub-configure-private-link.md).
 
 When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
@@ -34,13 +34,13 @@ When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can
 
 To connect to Foundry secured by a virtual network, use one of these methods:
 
-* [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways)-Connect on-premises networks to the virtual network over a private connection on the public internet. Choose from two VPN gateway types:
+* [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) - Connect on-premises networks to the virtual network over a private connection on the public internet. Choose from two VPN gateway types:
 
-    * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal): Each client computer uses a VPN client to connect to the virtual network.
-    * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal): A VPN device connects the virtual network to your on-premises network.
+    * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal) : Each client computer uses a VPN client to connect to the virtual network.
+    * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal) : A VPN device connects the virtual network to your on-premises network.
 
-* [ExpressRoute](https://azure.microsoft.com/services/expressroute/)-Connect on-premises networks to Azure over a private connection through a connectivity provider.
-* [Azure Bastion](/azure/bastion/bastion-overview)-Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the workspace directly.
+* [ExpressRoute](https://azure.microsoft.com/services/expressroute/) - Connect on-premises networks to Azure over a private connection through a connectivity provider.
+* [Azure Bastion](/azure/bastion/bastion-overview) - Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the workspace directly.
 
 ## Create a Foundry project that uses a private endpoint
 
@@ -99,11 +99,11 @@ In some situations, you might want to allow someone to connect to your secured p
 
     :::image type="content" source="../media/how-to/network/foundry-portal-firewall.png" alt-text="Screenshot of the firewalls and virtual networks tab with the all networks option selected.":::
 
-## End-to-end secured networking for Agent Service
+## End-to-end secured networking for Agent Service and Evaluations
 
-When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)] to build Agents, we recommend the following network architecture for the most secure end-to-end configuration:
+When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)] to build Agents and run Evaluations, we recommend the following network architecture for the most secure end-to-end configuration:
 
-:::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
+:::image type="content" source="../media/how-to/network/agent-eval-networking.png" alt-text="Diagram of the recommended network isolation for AI Foundry." lightbox="../media/how-to/network/agent-eval-networking.png":::
 
 1. Set the public network access (PNA) flag of each of your resources to `Disabled`. Disabling public network access locks down inbound access from the public internet to the resources.
 
@@ -119,15 +119,21 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
 
 1. To access your resources, we recommend using a Bastion VM, ExpressRoute, or VPN connection to your Azure Virtual Network. These options allow you to connect to the isolated network environment.
 
-## Network injection for Agent Service
+## Network injection for Agent Service and Evaluations 
 
-Network-secured Standard Agents support full network isolation and data exfiltration protection through network injection of the Agent client. To do this, the Agent client is network injected into your Azure virtual network, allowing for strict control over data movement and preventing data exfiltration by keeping traffic within your defined network boundaries. Network injection is supported only for Standard Agent deployment, not Light Agent deployment.
+Network-secured Standard Agents and Evaluations support full network isolation and data exfiltration protection through network injection of the Agent and evaluations client. To do this, the client is network injected into your Azure virtual network, allowing for strict control over data movement and preventing data exfiltration by keeping traffic within your defined network boundaries. Network injection is supported only for Standard Agent deployment and Evaluations, not Light Agent deployment.
 
-Additionally, a network-secured Standard Agent is only supported through BICEP template deployment, and not through UX, CLI, or SDK. After the Foundry resource and Agent are deployed through the template, you can't update the delegated subnet for the Agent Service. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but can't update or remove the subnet delegation. To update the delegated subnet, you must redeploy the network-secured Standard Agent template. 
-
-:::image type="content" source="../media/how-to/network/network-injection.png" alt-text="Diagram of the network injection for Azure AI Foundry projects and agents." lightbox="../media/how-to/network/network-injection.png":::
+A network-injected Foundry resource can be set up through BICEP template deployment and Azure portal UI set up experience. After the Foundry resource is deployed, the delegated subnet cannot be updated. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but cannot remove the subnet delegation. To update the delegated subnet, you must delete your resource and redeploy. 
 
 For more information on secured networking for the Agent Service, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks) article.
+
+## Firewall Configuration for Agent and Evaluations Egress
+
+To secure egress (outbound) traffic of your Azure AI Foundry resource through network injection, you can configure your own Firewall, either Azure Firewall or another firewall resource. This ensures that all outbound traffic is inspected and controlled before leaving your virtual network, reducing exposure to malicious destinations and enforcing compliance with organizational policies. A Firewall also helps prevent data exfiltration by restricting traffic to approved endpoints using service tags and fully qualified domain names (FQDNs), ensuring sensitive data cannot be sent to unauthorized destinations. If you prefer not to use a Firewall, you can achieve basic outbound connectivity by combining Network Security Groups (NSGs) with Azure Virtual Network NAT, which allows controlled Internet egress without the full inspection capabilities of a Firewall.
+
+See in the below diagram a common hub and spoke network architecture. The spoke virtual network has resources for Azure AI Foundry. The hub virtual network has a firewall that control internet outbound from your virtual networks. In this case, your firewall must allow outbound to required resources and your resources in spoke virtual network must be able to reach your firewall.
+
+:::image type="content" source="../media/how-to/network/hub-spoke-network.png" alt-text="Diagram of the hub and spoke network isolation for Azure AI Foundry projects and agents." lightbox="../media/how-to/network/hub-spoke-network.png":::
 
 ## DNS configuration
 
@@ -161,11 +167,9 @@ You can grant a subset of trusted Azure services access to Azure OpenAI, while m
 You can grant networking access to trusted Azure services by creating a network rule exception using the REST API or Azure portal.
 
 ## Limitations
- 
-- A network-secured Agent (bring your own virtual network) is only supported through Bicep template deployment. For more information on network-secured Agent deployment, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
+
 - A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent. 
-- There's no managed virtual network support for the Agent Service or [!INCLUDE [FDP](../includes/fdp-project-name.md)].
-- Evaluations in AI Foundry are currently not supported with virtual network injection for egress. 
+- There's no managed virtual network support for Evaluations in Foundry, only Standard Agent set up.
 
 ## Next steps
 

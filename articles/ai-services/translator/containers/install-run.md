@@ -473,14 +473,13 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
     services:
       azure-ai-translator:
         container_name: azure-ai-translator
-        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation::latest
         environment:
             - EULA=accept
             - billing={TRANSLATOR_ENDPOINT_URI}
             - apiKey={TRANSLATOR_KEY}
             - ladurl=http://azure-ai-language:5000
             - VISIONURL=http://azure-ai-read:5000
-            - Languages=en,es
         ports:
               - "5000:5000"
         volumes:

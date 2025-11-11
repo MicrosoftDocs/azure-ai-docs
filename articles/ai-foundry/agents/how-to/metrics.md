@@ -8,6 +8,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Monitor Azure AI Foundry Agent Service
@@ -48,17 +49,16 @@ For a list of all metrics it's possible to gather for all resources in Azure Mon
 ## Azure AI Foundry Agent Service metrics
 Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. Here's a list of currently available metrics on Azure Monitor:
 
-| **Metric**      | **Name in REST API** | **Unit** | **Aggregation**                            | **Dimensions**                                         | **Time Grains** | **DS Export** |
-|-----------------|----------------------|----------|--------------------------------------------|--------------------------------------------------------|-----------------|---------------|
-| Agents          | `Agents`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
-| IndexedFiles    | `IndexedFiles`       | Count    | Average, Maximum, Minimum, Total (Sum)     | `ErrorCode`, `Status`, `VectorStoreId`                | PT1M            | No            |
-| Messages        | `Messages`           | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`, `ThreadId`                               | PT1M            | No            |
-| Runs            | `Runs`               | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`    | PT1M            | No            |
-| Threads         | `Threads`            | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
-| Tokens          | `Tokens`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `TokenType`                                | PT1M            | No            |
-| ToolCalls       | `ToolCalls`          | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `ToolName`                                 | PT1M            | No            |
 
-
+| Metric        | Name in REST API        | Unit  | Aggregation                             | Dimensions                                                | Time Grains | DS Export |
+|---------------|-------------------------|-------|-----------------------------------------|-----------------------------------------------------------|-------------|-----------|
+| Agents        | `AgentEvents`           | Count | Average, Maximum, Minimum, Total (Sum)  | `EventType`                                               | PT1M        | No        |
+| Indexed Files | `AgentIndexedFilesRead` | Count | Average, Maximum, Minimum, Total (Sum)  | `ErrorCode`, `Status`, `VectorStoreId`, `AgentId`         | PT1M        | No        |
+| Runs          | `AgentRuns`             | Count | Average, Maximum, Minimum, Total (Sum)  | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`, `ThreadId` | PT1M   | No        |
+| Messages      | `AgentUserMessageEvents`| Count | Average, Maximum, Minimum, Total (Sum)  | `EventType`, `AgentId`, `ThreadId`                        | PT1M        | No        |
+| Threads       | `AgentThreadEvents`     | Count | Average, Maximum, Minimum, Total (Sum)  | `AgentId`, `EventType`                                    | PT1M        | No        |
+| Tokens        | `AgentTotalTokens`      | Count | Average, Maximum, Minimum, Total (Sum)  | `AgentId`, `ModelName`, `ModelVersion`                    | PT1M        | No        |
+| Tool Calls    | `AgentToolCalls`        | Count | Average, Maximum, Minimum, Total (Sum)  | `AgentId`, `ToolName`                                     | PT1M        | No        |
 
 ## Analyze monitoring data
 

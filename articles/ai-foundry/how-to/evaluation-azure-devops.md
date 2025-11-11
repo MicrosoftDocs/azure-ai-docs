@@ -8,6 +8,8 @@ ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to run an evaluation in Azure DevOps (preview)
@@ -35,31 +37,28 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
       - Queries (required).
-    - Agent IDs
-      Retrieve agent identifiers from the AI Foundry portal.
+    - Agent IDs  Retrieve agent identifiers from AI Foundry.
 
-    See the following sample dataset:
+  See the following sample dataset:
 
-    ```JSON
-    { 
-      "name": "MyTestData", 
-      "evaluators": [ 
-        "FluencyEvaluator", 
-        "ViolenceEvaluator" 
-      ], 
-      "data": [ 
-    
-        { 
-          "query": "Tell me about Tokyo?", 
-        }, 
-        { 
-          "query": "Where is Italy?", 
-        } 
-      ] 
-    } 
-    ```
-
-
+  ```JSON
+  { 
+    "name": "MyTestData", 
+    "evaluators": [ 
+      "FluencyEvaluator", 
+      "ViolenceEvaluator" 
+    ], 
+    "data": [ 
+  
+      { 
+        "query": "Tell me about Tokyo?", 
+      }, 
+      { 
+        "query": "Where is Italy?", 
+      } 
+    ] 
+  } 
+  ```
 
 A sample YAML file:
 

@@ -11,6 +11,7 @@ manager: nitinme
 author: mrbullwinkle 
 ms.author: mbullwin 
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure OpenAI in Azure AI Foundry Models retired models

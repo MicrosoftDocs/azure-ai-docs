@@ -32,9 +32,7 @@ An Azure AI Foundry resource can organize the work for multiple use cases, and i
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
 
-Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
-
-Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
+Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md).
 
 ## Create your first resource
 
@@ -98,10 +96,19 @@ Built-in Azure RBAC developer roles for Foundry include:
 
 |Role|Description|
 |---|---|
-|Azure AI project manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Azure AI user'.|
-|Azure AI user|Grants development permissions.|
+|Azure AI Project Manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Azure AI User'.|
+|Azure AI User|Grants development permissions.|
+| **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts. Can invite other users to collaborate on a project as 'Azure AI User'. |
+| **Azure AI Owner**    | Grants full access to managed AI projects and accounts and build and develop with projects. |
 
-Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal] or [AI Foundry Portal via management center]. [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+>[!NOTE]
+> The Azure AI Owner role will be available to assign in the Azure and Foundry portal soon.
+
+:::image type="content" source="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Azure AI Foundry." lightbox="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png":::
+
+For larger enterprises with strict role based access requirements, we recommend utilizing the Azure AI User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Azure AI Owner role for developer permissions as well as resource creation permissions. 
+
+Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [AI Foundry Portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 > [!IMPORTANT]
 > Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.

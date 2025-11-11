@@ -12,6 +12,7 @@ ms.author: aahi
 recommendations: false
 ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-connected-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Build collaborative, multi-agent systems with Connected Agents

@@ -10,6 +10,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: references_regions
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Deep Research tool (preview)

@@ -12,6 +12,7 @@ author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Agents function calling

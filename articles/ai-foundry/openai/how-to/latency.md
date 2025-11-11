@@ -11,6 +11,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom:
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Performance and latency

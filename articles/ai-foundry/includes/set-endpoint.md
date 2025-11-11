@@ -14,7 +14,7 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
 
 [!INCLUDE [tip-left-pane](tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
 
 1. Open the project where the model is deployed, if it isn't already open.
 

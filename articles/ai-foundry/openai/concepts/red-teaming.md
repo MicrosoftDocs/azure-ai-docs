@@ -11,6 +11,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Planning red teaming for large language models (LLMs) and their applications

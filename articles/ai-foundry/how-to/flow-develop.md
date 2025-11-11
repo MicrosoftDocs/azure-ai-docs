@@ -56,7 +56,8 @@ To create a prompt flow from the gallery in Azure AI Foundry portal:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. 
+[!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. Select your project.
 1. If you're in the Management center, select **Go to project** to return to your project.
 1. From the collapsible left menu, select **Prompt flow**.
 1. Select **+ Create**.

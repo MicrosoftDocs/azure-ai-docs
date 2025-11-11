@@ -111,7 +111,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 1. Select your project, then select **Management center** from the left menu. 
 1. Under the **Project** heading, select **Overview**. 
 1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.

@@ -10,6 +10,8 @@ ms.date: 09/02/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to run AI Red Teaming Agent scans in the cloud using the Azure AI Foundry SDK so I can perform comprehensive pre-deployment safety analysis at scale.
 ---
 
 # Run AI Red Teaming Agent in the cloud (preview)

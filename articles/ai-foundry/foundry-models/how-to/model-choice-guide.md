@@ -8,6 +8,7 @@ ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 09/15/2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # GPT-5 vs GPT-4.1: choosing the right model for your use case

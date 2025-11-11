@@ -33,7 +33,7 @@ Sign up on the [Serp API home page](https://serpapi.com/).
 
 To create a Serp connection:
 
-1. Sign in to [Azure AI Foundry](https://ml.azure.com/).
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 1. Go to project settings by selecting  **Management Center** > **Overview**
 1. Under *Connected resources*, select **+ New connection**.
 1. Under *Other resource types*, select **Serp**.

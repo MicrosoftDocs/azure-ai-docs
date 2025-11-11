@@ -1,5 +1,5 @@
 ---
-title: Trustworthy AI for Azure AI Foundry
+title: Responsible AI for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use AI services and features responsibly with Azure AI Foundry.
 manager: nitinme
@@ -10,9 +10,10 @@ ms.date: 07/28/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: ignite-2024
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Trustworthy AI for Azure AI Foundry
+# Responsible AI for Azure AI Foundry
 
 This article provides an overview of the resources for building and deploying trustworthy agents. This includes end-to end security, observability, and governance with controls and checkpoints at all stages of the agent lifecycle. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Discover, Protect, and Govern potential content risks.
 

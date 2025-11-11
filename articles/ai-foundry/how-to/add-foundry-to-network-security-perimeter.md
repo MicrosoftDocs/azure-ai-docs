@@ -1,21 +1,19 @@
 ---
-title: Add Azure AI Foundry to a network security perimeter (preview)
+title: Add Azure AI Foundry to a network security perimeter
 description: Quickly learn how to associate an Azure AI Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management.
+monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
-ms.date: 08/28/2025
+ms.date: 09/29/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
-ai.usage: ai-assisted
+ai-usage: ai-assisted
 ---
 
 # Add Azure AI Foundry to a network security perimeter (preview)
 
-> [!NOTE]
-> Azure AI Foundry support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. Review the limitations and considerations section before you start.
-
-## Overview
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Use a network security perimeter (NSP) to restrict data‑plane access to your Azure AI Foundry resource and group it with other protected PaaS resources. An NSP lets you:
 
@@ -27,9 +25,9 @@ This article gives only the Foundry-specific pointers you need. All procedural d
 
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)]
 
-## Limitations and considerations (preview)
+:::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram of the NSP for Azure AI Foundry." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
 
-Summarized highlights (see linked docs for evolving preview limitations):
+## Limitations and considerations
 
 - Some Azure AI Foundry capabilities (for example fine-tuning and Assistants APIs) may be unavailable inside an enforced NSP boundary. 
 - NSP governs data plane traffic. Control plane (management) operations may still succeed unless separately restricted.
@@ -42,15 +40,7 @@ For more information, see [Network security perimeter concepts](/azure/private-l
 
 ## Prerequisites
 
-1. Register the preview feature flag `OpenAI.NspPreview` (Azure portal Preview features or CLI).
-  ```azurecli-interactive
-  az feature registration create --name OpenAI.NspPreview --namespace Microsoft.CognitiveServices
-  az provider register --namespace Microsoft.CognitiveServices
-  az provider register --namespace Microsoft.Network
-  ```
-2. Wait for the feature to reach the `Registered` state (poll with `az feature registration list --namespace Microsoft.CognitiveServices`).
-3. Review the current NSP concepts and limitations in [NSP concepts](/azure/private-link/network-security-perimeter-concepts).
-4. Have an existing Azure AI Foundry resource (or plan to create one) and required managed identity assignments.
+Create an existing Azure AI Foundry resource (or plan to create one) and required managed identity assignments.
 
 If any prerequisite behavior is unclear or changes, consult the latest Azure OpenAI + NSP article for parity details in [Azure OpenAI NSP guidance](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
@@ -112,18 +102,32 @@ List only required FQDNs (principle of least privilege). Keep dependent Azure se
 
 ## Validate before enforcement
 
+::: moniker range="foundry-classic"
+
 1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
 2. Add or refine inbound/outbound rules.
 3. Switch to Enforced mode.
-4. Open Azure AI Foundry (portal) and perform a model deployment or chat test. Success indicates required traffic is permitted.
+4. Open [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and perform a model deployment or chat test. Success indicates required traffic is permitted.
 5. If blocked, revert to Learning or add rules and retry.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
+2. Add or refine inbound/outbound rules.
+3. Switch to Enforced mode.
+4. Open [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] and perform a model deployment or chat test. Success indicates required traffic is permitted.
+5. If blocked, revert to Learning or add rules and retry.
+
+::: moniker-end
 
 ## View and manage configuration
 
 Use REST or CLI to audit and reconcile:
 - REST reference (perimeter core): [Network security perimeter REST API](/rest/api/network-security-perimeter/)
 - (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/cli/azure/network/perimeter?view=azure-cli-latest&preserve-view=true)
-- Configuration reconciliation APIs (preview) for perimeter profiles and associations. Use the latest published preview or stable version. Use the correct preview version for configuration APIs, currently `2024-10-01`.
+- Configuration reconciliation APIs for perimeter profiles and associations. Use the latest published preview or stable version. Use the correct preview version for configuration APIs, currently `2024-10-01`.
 
 Always confirm the latest API version in the reference before scripting.
 

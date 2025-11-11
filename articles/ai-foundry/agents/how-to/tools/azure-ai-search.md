@@ -7,14 +7,18 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 11/04/2025
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Search tool
+
+> [!NOTE]
+> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service](../../../default/agents/how-to/tools/knowledge-retrieval.md).
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Azure AI Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
@@ -45,7 +49,7 @@ This article describes how to set up the Azure AI Search tool, including creatin
 
 + The Azure AI Search tool can only target one index. To use multiple indexes, consider using [connected agents](../connected-agents.md), each with a configured index.
   
-+ An Azure AI Foundry resource with basic agent deployments do not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
++ An Azure AI Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
 + Your Azure AI Search resource and Azure AI Foundry Agent need to be in the same tenant.
 
@@ -176,7 +180,9 @@ ml_client.connections.create_or_update(my_connection)
 
 #### [Azure AI Foundry](#tab/azureaifoundry)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
+1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
+
+Select your project.
 
 1. On the **Overview** page, select **Open in management center**.
 

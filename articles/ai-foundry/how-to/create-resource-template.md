@@ -6,6 +6,7 @@ ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
 ms.date: 09/15/2025
+monikerRange: foundry-classic || foundry
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom:
@@ -85,7 +86,7 @@ Use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to view t
 # [Azure CLI](#tab/cli)
 
 ```azurecli
-az resource list --name exampleRG
+az resource list --resource-group exampleRG
 ```
 
 # [Azure PowerShell](#tab/powershell)
