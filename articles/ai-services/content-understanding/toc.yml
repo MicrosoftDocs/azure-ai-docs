@@ -80,8 +80,8 @@ items:
             - name: Markdown
               displayName: document, text, images, video, audio, visual, structured, content, field, extraction
               href: document/markdown.md
-            - name: Enrichments
-              href: document/enrichments.md
+            - name: Analyzer Improvement
+              href: document/analyzer-improvement.md
         - name: AudioVideo
           items:
             - name: Video Overview
