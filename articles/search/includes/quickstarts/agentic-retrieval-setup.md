@@ -31,7 +31,7 @@ On your Azure AI Search service:
 
     + **Search Index Data Reader**
 
-### [Foundry](#tab/foundry-perms)
+### [Microsoft Foundry](#tab/foundry-perms)
 
 Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
@@ -63,7 +63,7 @@ To get the endpoints for this quickstart, select both of the following tabs.
 
 1. Make a note of the endpoint, which should look like `https://my-service.search.windows.net`.
 
-### [Foundry](#tab/foundry-endpoint)
+### [Microsoft Foundry](#tab/foundry-endpoint)
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Foundry resource.
 

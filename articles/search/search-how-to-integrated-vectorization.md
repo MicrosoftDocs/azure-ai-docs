@@ -259,7 +259,7 @@ Azure AI Search supports Azure Vision image retrieval through multimodal embeddi
 
 <!--### [Foundry model catalog](#tab/prepare-model-catalog)
 
-Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Foundry](https://ai.azure.com/?cid=learnDocs) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
+Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
 For the model catalog, you should have a [Foundry project](/azure/ai-foundry/how-to/create-projects) with a [hub that's connected to an Azure OpenAI resource and an Azure AI Search service](/azure/ai-foundry/how-to/create-projects#create-a-project).
 
