@@ -36,7 +36,7 @@ This tutorial covers the first stage of the Azure AI Foundry developer journey: 
 > - Create evaluation framework for business-focused testing.
 > - Prepare foundation for governance and production deployment.
 
-This ultra-minimal sample demonstrates enterprise-ready patterns with realistic business scenarios.
+This minimal sample demonstrates enterprise-ready patterns with realistic business scenarios.
 
 ## Prerequisites 
 
@@ -116,7 +116,7 @@ Download repository ZIP, extract, and navigate to the tutorial folder.
 ---
 
 
-The ultra-minimal structure contains only essential files:
+The minimal structure contains only essential files:
 
 # [Python](#tab/python)
 
@@ -746,7 +746,7 @@ These patterns reduce prototype-to-production friction: you can add data sources
 
 ## Next steps
 
-This ultra-minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
+This minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
 
 ### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](../../agents/how-to/tools/azure-ai-search.md), [other sources](../../how-to/connections-add.md)).
