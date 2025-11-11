@@ -92,9 +92,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
 
-> [!NOTE]
-> If you want to use the Foundry Agent V2 (Preview) API with Voice live, replace the `agent-id` and the related `agent_id` variable with `agent-name` and `agent_name`.
-
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
     ```python

@@ -2,6 +2,8 @@
 title: Understanding deployment types in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to use deployment types in Azure AI model deployments
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -62,6 +64,8 @@ Global deployments are available in the same Azure AI Foundry resources as non-g
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../../model-inference/quotas-limits.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
+Global standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Azure AI Foundry models (preview)](../../openai/concepts/priority-processing.md).
+
 ## Global Provisioned
 
 - SKU name in code: `GlobalProvisionedManaged`
@@ -100,6 +104,8 @@ Key use cases include:
 Data Zone Standard deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](/azure/ai-foundry/openai/quotas-limits#usage-tiers). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
+
+Data zone standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Azure AI Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
 ## Data Zone Provisioned
 

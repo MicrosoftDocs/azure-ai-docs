@@ -99,6 +99,8 @@ items:
       - name: Manage costs
         href: ../../concepts/manage-costs.md
         displayName: pricing, budget, estimate
+      - name: Priority processing
+        href: ../../openai/concepts/priority-processing.md
       - name: What is the Provisioned Throughput offering (PTU)?
         href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
         displayName: PTU, provisioned, provisioned throughput units
@@ -112,5 +114,7 @@ items:
         href: ../../openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
       - name: Azure OpenAI PTU updates
         href: ../../openai/concepts/provisioned-migration.md    
+- name: Integrate Foundry with other apps
+  href: ../../how-to/integrate-with-other-apps.md
 - name: Service architecture
   href: ../../concepts/architecture.md

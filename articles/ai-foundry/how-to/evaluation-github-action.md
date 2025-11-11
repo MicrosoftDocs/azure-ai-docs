@@ -8,6 +8,7 @@ ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
 ---
 
 # How to run an evaluation in GitHub Action (preview)
@@ -61,7 +62,6 @@ The input of ai-agent-evals includes:
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
   - When multiple `agent-ids` are specified, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
-
 
 **Optional:**
 
@@ -189,6 +189,7 @@ Evaluation results are outputted to the summary section for each AI evaluation G
 The result includes two main parts:
 
 - The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to AI Foundry portal to view individual result in detail.
+
 - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Multi agent evaluation result:

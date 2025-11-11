@@ -124,14 +124,23 @@ When selecting the model, you may also select a [previously fine-tuned model](#c
 
 ### Choose your training type
 
-Select the training tier you'd like to use for your fine-tuning job:
 
-- **Standard**: training occurs in the current Azure OpenAI resource's region, providing data residency.
-- **Global (Preview)**: [more affordable](https://aka.ms/aoai-pricing) training per-token, does not offer [data residency](https://aka.ms/data-residency).
+Azure AI Foundry offers three training tiers designed to meet different customer needs:
 
-If you have no data residency requirements, **Global** is a good choice to take advantage of training capacity beyond your current region. While in public preview, **Global** may not be available within your current region. Consult
+#### Standard Training Tier
+Provides dedicated capacity for fine-tuning with predictable performance and SLAs. Ideal for production workloads requiring guaranteed throughput.
 
-In some cases, **Standard** may not be available within your current region. If you require data residency, consult regions listed on the [model availability](../concepts/models.md#fine-tuning-models) for your chosen model.
+#### Global Standard Training Tier
+Global Training expands the reach of model customization with the [more affordable](https://aka.ms/aoai-pricing) pricing of our other Global offerings. Does not offer [data residency](https://aka.ms/data-residency). If you require data residency, consult regions listed on the [model availability](../concepts/models.md#fine-tuning-models) for your chosen model.
+
+Your training data and the resulting model weights may be copied to another Azure region.
+
+- Train the latest OpenAI models from over a dozen Azure OpenAI regions.  
+- Benefit from lower per-token training rates compared to the Standard tier.
+
+#### Developer Training Tier
+A cost-effective option that uses idle capacity for non-urgent or exploratory workloads.  
+Jobs in this tier may be preempted and resumed later, making it ideal for experimentation and cost-sensitive use cases.  
 
 ### Choose your training data
 

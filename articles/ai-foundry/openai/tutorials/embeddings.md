@@ -6,11 +6,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 09/30/2025
+ms.date: 11/04/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
-zone_pivot_groups: "openai-embeddings"
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 ms.custom: devx-track-python
 ---
 
@@ -21,19 +21,12 @@ This tutorial will walk you through using the Azure OpenAI [embeddings](../conce
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> * Install Azure OpenAI.
 > * Download a sample dataset and prepare it for analysis.
 > * Create environment variables for your resources endpoint and API key.
 > * Use one of the following models: text-embedding-ada-002 (Version 2), text-embedding-3-large, text-embedding-3-small  models.
 > * Use [cosine similarity](../concepts/understand-embeddings.md) to rank search results.
- 
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python](../includes/embeddings-python.md)]
-::: zone-end
 
-::: zone pivot="programming-language-powershell"
-[!INCLUDE [PowerShell](../includes/embeddings-powershell.md)]
-::: zone-end
+[!INCLUDE [Python](../includes/embeddings-python.md)]
 
 Using this approach, you can use embeddings as a search mechanism across documents in a knowledge base. The user can then take the top search result and use it for their downstream task, which prompted their initial query.
 

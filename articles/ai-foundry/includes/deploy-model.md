@@ -14,7 +14,7 @@ To work with a model, you first deploy it into a project.
 
 [!INCLUDE [tip-left-pane](tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
 1. Studio remembers where you were last, so what you do next depends on where you are:
 
     * If you see a list of projects, select the one you want to use.  You can use either a [!INCLUDE [hub-project-name](hub-project-name.md)] or a [!INCLUDE [fdp-project-name](fdp-project-name.md)].

@@ -8,9 +8,13 @@ ms.date: 07/31/2025
 ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -25,9 +29,50 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
-3. Connect your Application Insights resource to the project.
+::: moniker range="foundry-classic"
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+
+1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
+
+1. Connect your Application Insights resource to the project.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+To view continuous evaluations in Foundry: 
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+
+1. Select **Build** from the upper-right navigation. 
+
+1. Select **Agents** from the left pane. Select the agent you'd like to evaluate. 
+
+1. Select the **Monitor** tab to view the agent monitoring dashboard.
+
+1. Open the **Settings** wizard to begin configuring continuous evaluations.
+
+1. Use the Add Evaluator dropdown to include one or more evaluators. You can add evaluators in two ways: 
+
+    - **Evaluator Name**
+    
+        - Select evaluators by name from your available list. 
+    
+    - **Importing from Past Evaluation**
+    
+        - Reuse evaluators from previous evaluation runs for consistency. 
+
+1. Set Sample Rate by defining how many runs per hour will be evaluated
+
+1. Apply Changes 
+
+1. Click Verify + Submit to save your configuration. 
+
+
+After configuring your continuous evaluation settings, you will be able to view top-level metrics on the summary cards and associated charts with more granular data. 
+
+::: moniker-end
 
 ## Azure AI Foundry project configuration and region support
 

@@ -46,7 +46,7 @@ In this article, you learn how to:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.

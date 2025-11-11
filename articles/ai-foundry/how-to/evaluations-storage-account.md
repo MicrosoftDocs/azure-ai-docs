@@ -8,6 +8,7 @@ ms.date: 09/22/2025
 ms.reviewer: gregharen
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
 ---
 
 # How to create and configure your storage account for use in Azure AI Foundry Projects

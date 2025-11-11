@@ -62,7 +62,7 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Foundry portal](#tab/portal)
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 1. Select your Azure OpenAI resource.
 1. On the overview page, find the banner **Want to try the latest industry models and Agents?** and select **Get started**.
 1. Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.

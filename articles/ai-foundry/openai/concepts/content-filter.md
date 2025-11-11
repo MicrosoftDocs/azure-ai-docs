@@ -2,17 +2,20 @@
 title: Azure OpenAI in Azure AI Foundry Models content filtering
 titleSuffix: Azure OpenAI
 description: Learn about the content filtering capabilities of Azure OpenAI.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Content filtering overview
+
 
 Azure OpenAI includes a content filtering system that works alongside core models, including image generation models. This system runs both the prompt and completion through a set of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
@@ -50,6 +53,7 @@ The following table summarizes the risk categories supported by Azure OpenAI's c
 | [Protected Material for Text](/azure/ai-foundry/openai/concepts/content-filter-protected-material)<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.|
 | [Protected Material for Code](/azure/ai-foundry/openai/concepts/content-filter-protected-material) | Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.|
 | [Personally identifiable information (PII)](/azure/ai-services/openai/concepts/content-filter-personal-information) | Personally identifiable information (PII) refers to any information that can be used to identify a particular individual. PII detection involves analyzing text content in LLM completions and filtering any PII that was returned. |
+| Task Adherence | Task Adherence helps ensure AI Agents consistently behave in alignment with user instructions and task objectives. It identifies discrepancies, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input.  |
 
 <sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 

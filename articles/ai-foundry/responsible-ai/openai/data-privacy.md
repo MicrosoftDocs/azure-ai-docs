@@ -1,12 +1,13 @@
 ---
 title: Data, privacy, and security for Azure Direct Models in Azure AI Foundry 
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: This document details issues for data, privacy, and security for Azure Direct Models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article
+monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
 ---
 
@@ -54,7 +55,7 @@ As depicted in the diagram above, managed customers may [apply to modify abuse m
 
 ### Generating completions, images or embeddings through inferencing
 
-Azure Direct Models (base or fine-tuned) deployed in your Azure AI Foundry resource process your input prompts and generate responses with text, images, or embeddings. Customer interactions with the model are logically isolated and secured employing technical measures including but not limited to transport encryption of TLS1.2 or higher, compute security perimeter, tokenization of text, and exclusive access to allocated GPU memory. Prompts and completions are evaluated in real time for harmful content types and content generation is filtered based on configured thresholds. Learn more at [Content filtering overview](/azure/ai-foundry/openai/concepts/content-filter). 
+Azure Direct Models (base or fine-tuned) deployed in your Azure AI Foundry resource process your input prompts and generate responses with text, images, or embeddings. Customer interactions with the model are logically isolated and secured employing technical measures including but not limited to transport encryption of TLS1.2 or higher, compute security perimeter, tokenization of text, and exclusive access to allocated GPU memory. Prompts and completions are evaluated in real time for harmful content types and content generation is filtered based on configured thresholds. Learn more at [Guardrails (previously content filters) overview](/azure/ai-foundry/openai/concepts/content-filter). 
 
 Prompts and responses are processed within the customer-specified [geography](https://azure.microsoft.com/explore/global-infrastructure/geographies/) (unless you are using a Global or DataZone deployment type), but may be processed between regions within the geography for operational purposes (including performance and capacity management). See below for information about location of processing when using a Global or DataZone deployment type.  
 
@@ -62,7 +63,7 @@ Prompts and responses are processed within the customer-specified [geography](ht
 
 ### Understanding location of processing for "Global" and "Data zone" deployment types 
 
-In addition to standard deployments, Azure AI Foundry offers Azure Direct Model deployment options labeled as 'Global' and 'DataZone.' For any [deployment type](/azure/ai-foundry/openai/how-to/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure Direct Model is deployed (learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure AI Foundry resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure AI Foundry resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, and including the abuse monitoring data store created for Global and DataZone deployments, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure Direct Models; Azure data processing and compliance commitments remain applicable. 
+In addition to standard deployments, Azure AI Foundry offers Azure Direct Model deployment options labeled as 'Global' and 'DataZone.' For any [deployment type](/azure/ai-foundry/foundry-models/concepts/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure Direct Model is deployed (learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure AI Foundry resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure AI Foundry resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, and including the abuse monitoring data store created for Global and DataZone deployments, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure Direct Models; Azure data processing and compliance commitments remain applicable. 
 
 ### Augmenting prompts to "ground" generated results "on your data"
 
@@ -105,9 +106,9 @@ If the customer has been approved for modified abuse monitoring (learn more at [
 
 ### Preventing harmful content generation
 
-Azure Direct Models include a system designed to detect and prevent the output of harmful content. To learn more about content filtering, see [Content Filtering](/azure/ai-services/openai/concepts/content-filter). 
+Azure Direct Models include a system designed to detect and prevent the output of harmful content. To learn more about Guardrails (previously content filters), see [Guardrails](/azure/ai-services/openai/concepts/content-filter). 
 
-Content filtering occurs synchronously as the service processes prompts to generate content as described above and [here](/azure/ai-foundry/openai/concepts/content-filter). No prompts or generated content are stored in the content classifier models, and prompts and outputs are not used to train any generative AI foundation models without your permission or instruction. 
+Guardrails occurs synchronously as the service processes prompts to generate content as described above and [here](/azure/ai-foundry/openai/concepts/content-filter). No prompts or generated content are stored in the content classifier models, and prompts and outputs are not used to train any generative AI foundation models without your permission or instruction. 
 
 
 ## How can a customer verify if data storage for abuse monitoring is off?
@@ -159,7 +160,7 @@ To learn more about Microsoft's privacy and security commitments see the [Micros
 
 |Date  |Changes  |
 |---------|---------|
-| 3 October 2025 | Expanded document to Azure Direct Models; separated content filtering and abuse monitoring sections; added clarifications on abuse monitoring and severe or recurring abuse. |
+| 3 October 2025 | Expanded document to Azure Direct Models; separated Guardrails (previously content filters) and abuse monitoring sections; added clarifications on abuse monitoring and severe or recurring abuse. |
 | 17 December 2024 | Added information about data processing and storage in connection with new Stored completions feature; added language clarifying that Azure OpenAI features in preview may not support all data storage conditions; removed "preview" designation for Batch processing |
 |18 November 2024 | Added information about location of data processing for new ‘Data zone’ deployment types; added information about new AI review of prompts and completions as part of preventing abuse and generation of harmful content  |
 | 4 September 2024 | Added information (and revised existing text accordingly) about data processing for new features including Assistants API (preview), Batch (preview), and Global Deployments; revised language related to location of data processing, in accordance with [Azure data residency principles](https://azure.microsoft.com/explore/global-infrastructure/data-residency#select-geography); added information about data processing for safety evaluations of fine-tuned models; clarified commitments related to use of prompts and completions; minor revisions to improve clarity  |

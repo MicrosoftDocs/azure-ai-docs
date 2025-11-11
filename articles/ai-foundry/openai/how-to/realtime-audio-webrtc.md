@@ -11,9 +11,13 @@ author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
 ---
 
 # Use the GPT Realtime API via WebRTC
+
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -36,7 +40,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 
-You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
+You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
@@ -54,14 +58,14 @@ You use different URLs to get an ephemeral API key and connect to the Realtime A
 
 | URL | Description | 
 |---|---|
-| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version.<br/><br/>You should use API version `2025-08-28` in the URL.<br/><br/>For an example and more information, see the [Sessions URL](#sessions-url) section in this article.|
+| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version.<br/><br/>You should use API version `2025-04-01-preview` in the URL.<br/><br/>For an example and more information, see the [Sessions URL](#sessions-url) section in this article.|
 | WebRTC URL | The WebRTC URL is used to establish a WebRTC peer connection with the Realtime API. The WebRTC URL includes the region and the `realtimeapi-preview.ai.azure.com/v1/realtimertc` path.<br/><br/>The supported regions are `eastus2` and `swedencentral`.<br/><br/>For an example and more information, see the [Sessions URL](#webrtc-url) section in this article.|
 
 ### Sessions URL
 Here's an example of a well-constructed `realtime/sessions` URL that you use to get an ephemeral API key:
 
 ```http
-https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-08-28
+https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-04-01-preview
 ```
 ### WebRTC URL
 Make sure the region of the WebRTC URL matches the region of your Azure OpenAI resource.
@@ -151,7 +155,7 @@ The sample code is an HTML page that allows you to start a session with the GPT 
             // The SESSIONS_URL includes the Azure OpenAI resource URL,
             // deployment name, the /realtime/sessions path, and the API version.
             // The Azure OpenAI resource region isn't part of the SESSIONS_URL.
-            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-08-28"
+            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-04-01-preview"
     		
             // The API key of the Azure OpenAI resource.
             const API_KEY = "YOUR_API_KEY_HERE"; 

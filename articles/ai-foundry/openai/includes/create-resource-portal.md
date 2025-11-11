@@ -95,7 +95,7 @@ Before you can generate text or inference, you need to deploy a model. You can s
 
 To deploy a model, follow these steps:
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 1. In **Keep building with Azure AI Foundry** section select **View all resources**.
 1. Find and select your resource.
 
