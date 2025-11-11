@@ -27,6 +27,10 @@ recommendations: false
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-api/csharp.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-api/java.md)]
+::: zone-end
+
 ## Related content
 
 - Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
