@@ -591,10 +591,9 @@
         "articles/ai-services/translator/**/*.md": false
       },
       "titleSuffix": {
-        "articles/ai-studio/**/*.md": "Azure AI Foundry",
-        "articles/ai-foundry/**/*.md": "Azure AI Foundry",
-        "articles/ai-services/openai/**/*.md": "Azure AI Foundry",
-        "articles/ai-services/**/*.md": "Azure AI services",
+        "articles/ai-studio/**/*.md": "Microsoft Foundry",
+        "articles/ai-foundry/**/*.md": "Microsoft Foundry",
+        "articles/ai-services/**/*.md": "Foundry Tools",
         "articles/ai-services/LUIS/*.md": "Azure",
         "articles/ai-services/LUIS/*.yml": "Azure",
         "articles/machine-learning/*.md": "Azure Machine Learning",
