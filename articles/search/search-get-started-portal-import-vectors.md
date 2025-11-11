@@ -211,7 +211,7 @@ The wizard supports several embedding models. Internally, the wizard calls the [
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-### [Foundry](#tab/model-catalog)
+### [Microsoft Foundry](#tab/model-catalog)
 
 The wizard supports several embedding models in the Foundry model catalog. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the model catalog.
 
@@ -367,7 +367,7 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 
 1. Select **Next**.
 
-### [Foundry](#tab/vectorize-text-catalog)
+### [Microsoft Foundry](#tab/vectorize-text-catalog)
 
 1. On the **Vectorize your text** page, select **AI Foundry Hub catalog models** for the kind.
 

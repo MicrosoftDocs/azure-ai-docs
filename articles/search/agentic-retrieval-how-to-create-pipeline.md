@@ -68,7 +68,7 @@ Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure 
 
 + For integrated operations, ensure your [search service identity](search-how-to-managed-identities.md) has the **Cognitive Services User** role for model access.
 
-### [**Foundry**](#tab/foundry-perms)
+### [**Microsoft Foundry**](#tab/foundry-perms)
 
 Foundry hosts the agent and MCP tool. Permissions are needed to create and use these resources. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
@@ -110,7 +110,7 @@ Development tasks for this solution include:
 
 + Parse the response for the parts you want to include in your chat application. For many scenarios, the [content portion](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) of the response is sufficient.
 
-### [Foundry](#tab/foundry-development)
+### [Microsoft Foundry](#tab/foundry-development)
 
 + Create a project connection and an agent that uses the MCP tool.
 
@@ -134,7 +134,7 @@ For this solution, you need the following information from each resource:
 
 + The endpoint for your Azure OpenAI resource, which you can find on the **Keys and Endpoint** page in the Azure portal. It should look like this: `https://{your-resource-name}.openai.azure.com/`
 
-### [Foundry](#tab/foundry-setup)
+### [Microsoft Foundry](#tab/foundry-setup)
 
 + The endpoint for your project, which you can find on the **Endpoints** page in the Azure portal. It should look like this: `https://{your-resource-name}.services.ai.azure.com/api/projects/{your-project-name}`
 
