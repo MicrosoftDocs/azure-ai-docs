@@ -10,7 +10,7 @@ ms.custom:
   - references_regions
   - ignite-2025
 ms.topic: reference
-ms.date: 11/04/2025
+ms.date: 11/10/2025
 ms.update-cycle: 365-days
 ---
 
@@ -47,7 +47,7 @@ The Azure Content Understanding skill has the following limitations:
 
 ## Supported regions
 
-The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true). Your Azure AI Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support).
+The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true). Your Azure AI Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support#preview-api-2025-05-01-preview).
 
 Your search service can be in any [supported Azure AI Search region](search-region-support.md). When your Azure AI Foundry resource and Azure AI Search service aren't in the same region, cross-region network latency impacts your indexer's performance.
 
