@@ -172,7 +172,7 @@ enterprise-agent-tutorial/
 
 ---
 
-## Step 2: Run the sample immediately (quick win)
+## Step 2: Run the sample immediately
 
 Start by running the agent so you see working functionality before diving into implementation details.
 
@@ -281,7 +281,7 @@ Now that you have a working agent, the next sections explain how it is built. No
 
 ---
 
-## Step 3: (Optional reading) Set up sample SharePoint business documents
+## Step 3: Set up sample SharePoint business documents
 
 You can create documents manually or generate them automatically.
 
