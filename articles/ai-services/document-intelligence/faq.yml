@@ -39,7 +39,7 @@ sections:
 
           - [AI Builder workflows](/ai-builder/create-form-processing-model?toc=~/articles/ai-services/document-intelligence/toc.json&bc=~/articles/ai-services/document-intelligence/breadcrumb/toc.json)
 
-          - [Azure AI Search](/azure/search/cognitive-search-custom-skill-form)
+          - [Azure Search](/azure/search/cognitive-search-custom-skill-form)
 
           - [Azure Functions](tutorial-azure-function.md)
 
@@ -345,7 +345,7 @@ sections:
 
           Although the model capabilities are the same for connected and disconnected containers, the billing and connectivity methods differ:
 
-          - Connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. With connected containers, internet connectivity is required to send [billing information](containers/install-run.md?tabs=layout#billing) to Azure. Document Intelligence connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. Connected containers don't send customer data, such as the image or text that's being analyzed, to Microsoft. For an example of the information that connected containers send to Microsoft for billing, see the [Azure AI container FAQ](../../ai-services/containers/disconnected-container-faq.yml#how-does-billing-work).
+          - Connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. With connected containers, internet connectivity is required to send [billing information](containers/install-run.md?tabs=layout#billing) to Azure. Document Intelligence connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. Connected containers don't send customer data, such as the image or text that's being analyzed, to Microsoft. For an example of the information that connected containers send to Microsoft for billing, see the [Azure container FAQ](../../ai-services/containers/disconnected-container-faq.yml#how-does-billing-work).
 
           - [Disconnected containers](../../ai-services/containers/disconnected-containers.md) enable you to use APIs that are disconnected from the internet. [Billing information](../../ai-services/containers/disconnected-container-faq.yml#how-does-billing-work) isn't sent via the internet. Instead, Charges are based on a purchased commitment tier. Currently, disconnected container usage is available for Document Intelligence custom and invoice models.
 

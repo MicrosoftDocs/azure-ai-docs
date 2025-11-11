@@ -35,7 +35,7 @@ To get started, you need:
 
 * An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [AI Foundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. For detailed steps, _see_ [Create an Microsoft Foundry resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
+* A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [A foundry ](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. For detailed steps, _see_ [Create an Microsoft Foundry resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
 
 * An [**Azure blob storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) in the same region as your Document Intelligence resource. Create containers to store and organize your blob data within your storage account.
 

@@ -133,7 +133,7 @@ networks:
 
 #### **Receipt and OCR Read containers**
 
-In this example, enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Receipt container and {COMPUTER_VISION_ENDPOINT_URI} and {COMPUTER_VISION_KEY} values for your Azure AI Vision Read container.
+In this example, enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Receipt container and {COMPUTER_VISION_ENDPOINT_URI} and {COMPUTER_VISION_KEY} values for your Azure Vision Read container.
 
 ```yml
 version: "3"

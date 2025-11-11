@@ -1,6 +1,6 @@
 ﻿---
 title: "Quickstart: Label forms, train a model, and analyze forms using the Sample Labeling tool - Document Intelligence "
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry tools
 description: In this quickstart, learn to use the Document Intelligence Sample Labeling tool to manually label documents. Then train a custom document processing model with the labeled documents and use the model to extract key/value pairs.
 author: laujan
 manager: nitinme
@@ -44,7 +44,7 @@ You need the following to get started:
 * An AI Services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer), or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI Foundry resource if you plan to access multiple Azure AI Foundry Tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+    > Create a foundry  resource if you plan to access multiple Foundry tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 ## Create a Document Intelligence resource
 

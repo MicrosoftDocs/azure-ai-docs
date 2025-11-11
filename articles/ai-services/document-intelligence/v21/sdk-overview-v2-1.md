@@ -1,6 +1,6 @@
 ﻿---
 title: Document Intelligence SDK target REST API v2.1 (GA)
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry tools
 description: Document Intelligence v2.1 (GA) software development kits (SDKs) expose Document Intelligence models, features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
 manager: nitinme

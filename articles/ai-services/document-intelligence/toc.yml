@@ -249,7 +249,7 @@ items:
 - name: Containers
   items:
   - name: Install and run containers
-    displayName: docker, docker-compose, container, compose, packages, az, acr, cli, import, pull, Azure AI Vision, kubernetes, cpu, EULA, billing
+    displayName: docker, docker-compose, container, compose, packages, az, acr, cli, import, pull, Azure Vision, kubernetes, cpu, EULA, billing
     href: containers/install-run.md
   - name: Configure containers
     displayName: docker, docker-compose, compose, containers, run, billing, keys, logging, EULA, telemetry, proxy
@@ -294,7 +294,7 @@ items:
       href: /ai-builder/id-reader?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/applied-ai-services/breadcrumb/toc.json
     - name: Business card
       href: /ai-builder/flow-business-card-reader?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
-  - name: Use Azure Document Intelligence with Azure AI Search
+  - name: Use Azure Document Intelligence with Azure Search
     href: /azure/search/cognitive-search-custom-skill-form
   - name: Use Azure Document Intelligence with Azure Functions
     href: tutorial-azure-function.md
