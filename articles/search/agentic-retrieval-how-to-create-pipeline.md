@@ -34,7 +34,7 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 + A search index that satisfies the [criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
-+ A [Foundry project](/azure/ai-foundry/how-to/create-projects) and Foundry resource. When you create a project, the resource is automatically created.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
 + An Azure OpenAI resource with a [supported LLM](agentic-retrieval-how-to-create-knowledge-base.md#supported-models) deployment. We recommend a minimum token capacity of 100,000. You can find the LLM's capacity and rate limit in the Foundry portal. If you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries), you should also deploy a text embedding model.
 

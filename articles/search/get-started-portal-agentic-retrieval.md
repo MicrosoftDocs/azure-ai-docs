@@ -37,7 +37,7 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
-+ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and Foundry resource. When you create a project, the resource is automatically created.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
 + For text-to-vector conversion, an embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
