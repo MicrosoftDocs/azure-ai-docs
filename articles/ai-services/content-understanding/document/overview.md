@@ -93,6 +93,6 @@ Developers who use Content Understanding should review the Microsoft policies on
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).

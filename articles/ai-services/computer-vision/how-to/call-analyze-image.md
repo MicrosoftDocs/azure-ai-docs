@@ -1,6 +1,6 @@
 ---
 title: Call the Image Analysis 3.2 API
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to call the Image Analysis API and configure its behavior.
 manager: nitinme
 author: PatrickFarley

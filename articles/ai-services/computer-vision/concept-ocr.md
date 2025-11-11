@@ -1,6 +1,6 @@
 ---
 title: OCR for images - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Extract text from in-the-wild and non-document images with a fast and synchronous Azure Vision in Foundry Tools Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme

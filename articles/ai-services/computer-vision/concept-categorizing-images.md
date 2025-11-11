@@ -1,6 +1,6 @@
 ---
 title: Image categorization - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn concepts related to the image categorization feature of the Image Analysis API.
 author: PatrickFarley
 manager: nitinme

@@ -274,7 +274,7 @@ Custom field extraction allows you to define and extract specific information fr
   "fields": {
     "Summary": {
       "type": "string",
-      "valueString": "The conversation revolves around an introduction to Azure AI Foundry's latest features."
+      "valueString": "The conversation revolves around an introduction to Microsoft Foundry's latest features."
     },
     "Sentiment": {
       "type": "string",
@@ -559,7 +559,7 @@ This complete example demonstrates how Content Understanding extracts and struct
 
 ## Next steps
 
-* Try processing your video content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your video content using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
 * Learn to analyze video content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code samples: [**video analysis with segments**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 * Review code sample: [**video analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

@@ -1,6 +1,6 @@
 ---
 title: What is Image Analysis?
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The Image Analysis service uses pretrained AI models to extract many different visual features from images.
 author: PatrickFarley
 manager: nitinme
@@ -146,7 +146,7 @@ To use the Image Analysis APIs, you must create your Azure AI Vision resource in
 
 ## Data privacy and security
 
-As with all of the Azure AI Foundry Tools, developers using the Azure AI Vision service should be aware of Microsoft's policies on customer data. To learn more, see the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
+As with all of the Foundry Tools, developers using the Azure Vision service should be aware of Microsoft's policies on customer data. To learn more, see the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
 
 ## Next steps
 

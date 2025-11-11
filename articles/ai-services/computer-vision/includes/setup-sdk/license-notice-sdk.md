@@ -1,6 +1,6 @@
 ---
 title: Vision SDK license terms
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This page shows links to license terms and third-party notice.
 author: PatrickFarley
 ms.service: azure-ai-vision

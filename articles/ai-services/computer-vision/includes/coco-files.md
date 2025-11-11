@@ -1,6 +1,6 @@
 ---
 title: "About COCO files"
-titleSuffix: "Azure AI Foundry Tools"
+titleSuffix: "Foundry Tools"
 author: PatrickFarley
 manager: nitinme
 

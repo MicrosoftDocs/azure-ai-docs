@@ -4,7 +4,7 @@ title: Azure Vision in Foundry Tools documentation # < 60 chars
 summary: The cloud-based Azure Vision service provides developers with access to advanced algorithms for processing images and returning information. By uploading an image or specifying an image URL, Azure Vision algorithms can analyze visual content in different ways based on inputs and user choices. Learn how to analyze visual content in different ways with quickstarts, tutorials, and samples. # < 160 chars
 
 metadata:
-  title: Azure Vision documentation - Quickstarts, Tutorials, API Reference - Azure AI Foundry Tools | Microsoft Docs
+  title: Azure Vision documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
   description: The cloud-based Azure Vision service provides developers with access to advanced algorithms for processing images and returning information. By uploading an image or specifying an image URL, Azure Vision algorithms can analyze visual content in different ways based on inputs and user choices. Learn how to analyze visual content in different ways with quickstarts, tutorials, and samples.
   ms.service: azure-ai-vision
   ms.topic: hub-page

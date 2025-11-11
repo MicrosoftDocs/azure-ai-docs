@@ -52,15 +52,15 @@ items:
         href: https://aka.ms/azsdk/image-analysis/samples/js
     - name: Version 3.2
       items:
-      - name: Azure AI Foundry .NET SDK samples
+      - name: Microsoft Foundry .NET SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples
-      - name: Azure AI Foundry Java SDK samples
+      - name: Microsoft Foundry Java SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-java-sdk-samples
-      - name: Azure AI Foundry Node.js SDK samples
+      - name: Microsoft Foundry Node.js SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-node-sdk-samples
       - name: JavaScript Static Web app
         href: https://github.com/azure-samples/js-e2e-client-cognitive-services/tree/main/
-      - name: Azure AI Foundry Python SDK samples
+      - name: Microsoft Foundry Python SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-python-sdk-samples
   - name: Responsible use of AI
     items:

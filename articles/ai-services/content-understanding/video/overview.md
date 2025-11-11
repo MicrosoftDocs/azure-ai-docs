@@ -273,7 +273,7 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 
 ## Related content
 
-* Process videos in the [Azure AI Foundry portal](https://aka.ms/cu-landing).
+* Process videos in the [Microsoft Foundry portal](https://aka.ms/cu-landing).
 * Quickstart: [Analyze video content with analyzer templates](../quickstart/use-ai-foundry.md).
 * Samples:
 

@@ -82,7 +82,7 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 ## Try pro mode
 
-You can try out the features of both Content Understanding standard and pro modes using the [Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
+You can try out the features of both Content Understanding standard and pro modes using the [Microsoft Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
 
 ### Pro mode known limitations and best practices
 

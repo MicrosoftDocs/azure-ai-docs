@@ -19,7 +19,7 @@ The Whisper model is a speech to text model from OpenAI that you can use to tran
 - The model is optimized for transcribing audio files that contain speech in English. 
 - The model can also be used to translate audio files that contain speech in other languages. The output of the transcription is English text.
 
-Whisper models are available via the Azure OpenAI in Azure AI Foundry Models or via Azure Speech in Foundry Tools. The features differ for those offerings. In [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model), Whisper is just one of several models that you can use for speech to text.
+Whisper models are available via the Azure OpenAI in Microsoft Foundry Models or via Azure Speech in Foundry Tools. The features differ for those offerings. In [Azure Speech (batch transcription)](./batch-transcription-create.md#use-a-whisper-model), Whisper is just one of several models that you can use for speech to text.
 
 You might ask:
 

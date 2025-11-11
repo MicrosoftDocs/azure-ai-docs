@@ -27,7 +27,7 @@ OpenAI text to speech voices are available via two model variants: `Neural` and 
 
 ## Available text to speech voices in Azure AI services
 
-You might ask: If I want to use an OpenAI text to speech voice, should I use it via the Azure OpenAI in Azure AI Foundry Models or via Azure Speech? What are the scenarios that guide me to use one or the other?
+You might ask: If I want to use an OpenAI text to speech voice, should I use it via the Azure OpenAI in Microsoft Foundry Models or via Azure Speech? What are the scenarios that guide me to use one or the other?
 
 Each voice model offers distinct features and capabilities, allowing you to choose the one that best suits your specific needs. You want to understand the options and differences between available text to speech voices in Azure AI services.
 

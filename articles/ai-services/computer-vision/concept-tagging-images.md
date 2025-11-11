@@ -1,6 +1,6 @@
 ---
 title: Content tags - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn concepts related to the images tagging feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme

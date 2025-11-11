@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Use the Face service'
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The Face API offers client libraries that make it easy to detect, find similar, identify, verify, and more.
 author: PatrickFarley
 manager: nitinme

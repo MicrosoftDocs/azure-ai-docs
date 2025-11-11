@@ -1063,7 +1063,7 @@ For more information on these operations, see [Face detection concepts](../conce
 
 ## Support options
 
-In addition to using the main [Azure AI Foundry Tools support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
+In addition to using the main [Foundry Tools support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
 ## Related content
 

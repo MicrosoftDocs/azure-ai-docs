@@ -1,6 +1,6 @@
 ---
 title: Configure Read containers - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article shows you how to configure both required and optional settings for Read optical character recognition (OCR) containers in Azure Vision in Foundry Tools.
 author: aahill
 manager: nitinme
@@ -45,7 +45,7 @@ The `ApiKey` setting specifies the Vision resource key used to track billing inf
 
 This setting can be found in the following place:
 
-* Azure portal: **Azure AI Foundry Tools** Resource Management, under **Keys**
+* Azure portal: **Foundry Tools** Resource Management, under **Keys**
 
 ## ApplicationInsights setting
 
@@ -53,11 +53,11 @@ This setting can be found in the following place:
 
 ## Billing configuration setting
 
-The `Billing` setting specifies the endpoint URI of the _Azure AI Foundry Tools_ resource on Azure used to meter billing information for the container. You must specify a value for this configuration setting, and the value must be a valid endpoint URI for an _Azure AI Foundry Tools_ resource on Azure. The container reports usage about every 10 to 15 minutes.
+The `Billing` setting specifies the endpoint URI of the _Foundry Tools_ resource on Azure used to meter billing information for the container. You must specify a value for this configuration setting, and the value must be a valid endpoint URI for a _Foundry Tools_ resource on Azure. The container reports usage about every 10 to 15 minutes.
 
 This setting can be found in the following place:
 
-* Azure portal: **Azure AI Foundry Tools** Overview; labeled `Endpoint`
+* Azure portal: **Foundry Tools** Overview; labeled `Endpoint`
 
 Remember to add the `vision/<version>` routing to the endpoint URI as shown in the following table. 
 

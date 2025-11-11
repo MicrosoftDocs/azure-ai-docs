@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Optical character recognition using Vision Studio"
-titleSuffix: "Azure AI Foundry Tools"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the OCR service using Vision Studio.
 author: PatrickFarley
 manager: nitinme

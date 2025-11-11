@@ -1,6 +1,6 @@
 ---
 title: Language support - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article provides a list of natural languages supported by Azure Vision in Foundry Tools features; OCR, Image analysis.
 author: PatrickFarley
 manager: nitinme

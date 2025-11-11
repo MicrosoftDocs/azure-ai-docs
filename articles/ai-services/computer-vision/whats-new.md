@@ -1,6 +1,6 @@
 ---
 title: What's new in Azure Vision in Foundry Tools?
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Stay up to date on recent releases and updates to Azure Vision in Foundry Tools.
 author: PatrickFarley
 manager: nitinme
@@ -464,7 +464,7 @@ See the [OCR overview](overview-ocr.md) to learn more.
 
 ## March 2020
 
-* TLS 1.2 is now enforced for all HTTP requests to this service. For more information, see [Azure AI Foundry Tools security](../security-features.md).
+* TLS 1.2 is now enforced for all HTTP requests to this service. For more information, see [Foundry Tools security](../security-features.md).
 
 ## January 2020
 
@@ -563,6 +563,6 @@ Follow an [Extract text quickstart](https://github.com/Azure-Samples/cognitive-s
 * Deprecated the V0 endpoint of Face API on June 30, 2016.
 
 
-## Azure AI Foundry Tools updates
+## Foundry Tools updates
 
-[Azure update announcements for Azure AI Foundry Tools](https://azure.microsoft.com/updates/?product=cognitive-services)
+[Azure update announcements for Foundry Tools](https://azure.microsoft.com/updates/?product=cognitive-services)

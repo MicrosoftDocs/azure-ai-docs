@@ -101,6 +101,6 @@ Developers using the Content Understanding service should review Microsoft's pol
 
 Our quickstart guides help you quickly start using the Content Understanding service:
 
-* [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
+* [**Microsoft Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 

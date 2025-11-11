@@ -1,6 +1,6 @@
 ---
 title: Face identity data notice
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: luhuo
 manager: wguyman
 ms.service: azure-ai-vision

@@ -19,7 +19,7 @@ ms.custom:
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to start generating results.
+Audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) to start generating results.
 
 Here are common scenarios for conversational audio data processing:
 
@@ -277,7 +277,7 @@ You can also customize prebuilt analyzers for more fine-grained control of the o
 ## Conversational Knowledge Mining Solution Accelerator
 For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
 
-Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure Content Understanding in Foundry Tools, Azure OpenAI in Azure AI Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Microsoft Foundry, Azure Content Understanding in Foundry Tools, Azure OpenAI in Microsoft Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
 
 Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
 
@@ -297,7 +297,7 @@ Developers using this service should review Microsoft's policies on customer dat
 
 ## Next steps
 
-* Try processing your audio content in the [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
+* Try processing your audio content in the [**Microsoft Foundry portal**](https://aka.ms/cu-landing).
 * Learn how to analyze audio content with [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code samples: 
   * [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).

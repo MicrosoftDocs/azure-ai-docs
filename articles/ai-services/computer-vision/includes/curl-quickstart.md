@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Optical character recognition REST API"
-titleSuffix: "Azure AI Foundry Tools"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Optical character recognition REST API.
 author: PatrickFarley
 manager: nitinme
@@ -133,7 +133,7 @@ A successful response is returned in JSON. The sample application parses and dis
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Clean up resources with the Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Clean up resources with Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)

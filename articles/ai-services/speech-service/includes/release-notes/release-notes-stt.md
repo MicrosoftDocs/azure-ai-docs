@@ -32,7 +32,7 @@ The English models (all `en-*` models except for `en-IN`) were updated to incorp
 
 We rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
 
-These updated models are ready to use through the API and the Azure AI Foundry playground, just like before.
+These updated models are ready to use through the API and the Microsoft Foundry playground, just like before.
 
 #### Improved speech to text models
 Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales improving by 10%-25% percent respectively, particularly with improved readability and recognition on entities.
@@ -55,7 +55,7 @@ Fast transcription now supports additional locales including fi-FI, he-IL, id-ID
 
 We are excited to announce substantial improvements to our pronunciation assessment models for these locales: `de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, and `pt-BR`. These enhancements bring significant advancements in Pearson Correlation Coefficients (PCC), ensuring more accurate and reliable assessments.
 
-As before, the models are available through the API and Azure AI Foundry playground.
+As before, the models are available through the API and Microsoft Foundry playground.
 
 ### March 2025 release
 
@@ -106,7 +106,7 @@ Announcing the release of the latest English speech model (en-US, en-CA), which 
 
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
-These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
+These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Microsoft Foundry playground. Feedback is encouraged to further refine its capabilities.
 
 ### November 2024 release
 
@@ -197,7 +197,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
-> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Microsoft Foundry portal](https://aka.ms/fasttranscription/studio).
 
 ### June 2024 release
 
@@ -260,7 +260,7 @@ You can create speech to text applications that use diarization to distinguish b
 
 The Whisper speech to text model with Azure Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Azure AI Foundry Models.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models.
 
 ### February 2024 release
 

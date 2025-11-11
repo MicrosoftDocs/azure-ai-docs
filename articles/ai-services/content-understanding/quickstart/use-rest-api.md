@@ -16,12 +16,12 @@ ms.custom:
 
 * This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
-* Try [Content Understanding with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
+* Try [Content Understanding with no code on Microsoft Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
 ## Prerequisites
 
 * To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+* Once you have your Azure subscription, create an [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 * In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
@@ -36,25 +36,25 @@ This quickstart uses prebuilt document, image, audio, and video analyzers to hel
 Before running the following cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Microsoft Foundry instance in the Azure portal.
 2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Microsoft Foundry instance in the Azure portal.
 2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`. This analyzer generates a description of the image.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Microsoft Foundry instance in the Azure portal.
 2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`. This analyzer extracts the audio transcript, generates a summary, and performs speaker labeling.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Microsoft Foundry instance in the Azure portal.
 2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`. This analyzer extracts keyframes, transcript, and chapter segments from video.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 ---
@@ -90,7 +90,7 @@ x-ms-region: West US
 
 Use the `request-id` from the [`POST` response](#post-response) and retrieve the result of the analysis.
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
 2. Replace `{request-id}` with the `request-id` from the `POST` response, or use the complete URL from the `Operation-Location` response header.
 
 #### GET request
