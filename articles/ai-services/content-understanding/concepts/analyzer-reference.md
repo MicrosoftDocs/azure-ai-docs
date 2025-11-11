@@ -43,7 +43,6 @@ An analyzer configuration is defined using a JSON object that contains several t
   * [description](#description) - Purpose description
   * [baseAnalyzerId](#baseanalyzerid) - Parent analyzer reference
 * [Model configuration](#model-configuration) - AI model settings
-  * [supportedModels](#supportedmodels) - Available models
   * [models](#models) - Default models
 * [Processing configuration](#processing-configuration) - Content processing options
   * [config](#config-object-properties) - Behavior settings
@@ -64,10 +63,6 @@ Here's a condensed example showing the overall structure of an analyzer configur
   },
   "fieldSchema": {...}
     }
-  },
-  "supportedModels": {
-    "completion": ["gpt-4o", "gpt-4o-mini", "gpt-4.1"],
-    "embedding": ["text-embedding-3-large"]
   },
   "models": {
     "completion": "gpt-4.1",
@@ -116,23 +111,6 @@ These properties uniquely identify and describe your analyzer:
 ## Model configuration
 
 These properties control which AI models the analyzer uses for processing. 
-
-### `supportedModels`
-- **Description:** Declares which Azure AI Foundry catalog model names this analyzer type is compatible with. Lists the model names that are supported for use with this analyzer.
-- **Properties:**
-  - `completion` - Array of completion model names from Azure AI Foundry catalog that can be used for text generation and field extraction
-  - `embedding` - Array of embedding model names from Azure AI Foundry catalog that can be used for semantic search and similarity
-- **Purpose:** Use this list to validate which model names you can specify in the `models` property
-- **Important:** These are model names (for example, `gpt-4o`), not deployment names. The actual deployments are configured separately at the resource level.
-
-- **Example:**
-  ```json
-  {
-    "completion": ["gpt-4o", "gpt-4o-mini", "gpt-4.1"],
-    "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
-  }
-  ```
-- **Limitations:** Can only include model names from the Azure AI Foundry catalog that the service supports.
 
 ### `models`
 - **Description:** Specifies which Azure AI Foundry catalog model names to use by default when processing with this analyzer. These are the default model names (not deployment names) that the service uses.
@@ -250,15 +228,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 #### Annotation options
-
-##### `enableAnnotations`
-- **Default:** false
-- **Description:** Extracts annotations, comments, highlights, and markup from documents (for example, PDF comments)
-- **When to use:**
-  - Processing reviewed documents
-  - Extracting editor comments
-  - Understanding document revisions
-- **Supported by:** Document-based analyzers
 
 ##### `annotationFormat`
 - **Default:** `"markdown"`

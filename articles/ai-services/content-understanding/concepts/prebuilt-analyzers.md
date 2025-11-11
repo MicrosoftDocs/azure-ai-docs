@@ -53,7 +53,6 @@ Base analyzers provide fundamental content processing capabilities specific to a
 * `prebuilt-document` - Base document processing
 * `prebuilt-image` - Base image processing
 * `prebuilt-video` - Base video processing
-* `prebuilt-callCenter` - Base call center audio processing
 
 > [!NOTE]
 > Currently, you can only derive custom analyzers from this set of five base analyzers.
