@@ -107,7 +107,7 @@ To call the synchronous translation feature via the REST API, include the follow
 ```bash
 curl --request POST \
   --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=fr' \
-  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>'
+  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
   --form 'document=@<path-to-your-document>/your-document-file.docx' \
   --output translated-document-fr.docx
   
