@@ -32,34 +32,34 @@ Skills are organized into the following categories:
 
 There are two types of built-in skills:
 
-+ Skills that connect to an [Azure AI Foundry resource](#azure-ai-foundry-resource) (for billing only)
++ Skills that connect to a [Microsoft Foundry resource](#foundry-resource) (for billing only)
 + Skills that connect to an [Azure-hosted model or resource](#azure-hosted-model-or-resource) (for billing and processing)
 
-### Azure AI Foundry resource
+### Foundry resource
 
-Skills in this category call subservices of Azure AI Foundry Tools. For billing rather than processing, you must [attach an Azure AI Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Azure AI Search uses internal resources to execute these skills and only uses your Azure AI Foundry resource for billing purposes.
+Skills in this category call subservices of Foundry Tools. For billing rather than processing, you must [attach a Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Azure AI Search uses internal resources to execute these skills and only uses your Foundry resource for billing purposes.
 
-A small quantity of processing is nonbillable, but at larger volumes, processing is billable. These skills are based on pretrained models from Azure AI Foundry Tools, which means you can't train the models using your own data.
+A small quantity of processing is nonbillable, but at larger volumes, processing is billable. These skills are based on pretrained models from Foundry Tools, which means you can't train the models using your own data.
 
 These skills are billed at the Standard rate.
 
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
-| [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Azure Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Looks for text from a custom, user-defined list of words and phrases.| Azure AI Search ([pricing](https://azure.microsoft.com/pricing/details/search/)) |
-| [Entity Linking](cognitive-search-skill-entity-linking-v3.md) | This skill uses a pretrained model to generate links for recognized entities to articles in Wikipedia. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | This skill uses a pretrained model to establish entities for a fixed set of categories: `"Person"`, `"Location"`, `"Organization"`, `"Quantity"`, `"DateTime"`, `"URL"`, `"Email"`, `"PersonType"`, `"Event"`, `"Product"`, `"Skill"`, `"Address"`, `"Phone Number"` and `"IP Address"` fields. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [Image Analysis](cognitive-search-skill-image-analysis.md) | This skill uses an image detection algorithm to identify the content of an image and generate a text description. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [Key Phrase Extraction](cognitive-search-skill-keyphrases.md) | This skill uses a pretrained model to detect important phrases based on term placement, linguistic rules, proximity to other terms, and how unusual the term is within the source data. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [Language Detection](cognitive-search-skill-language-detection.md)  | This skill uses a pretrained model to detect which language is used (one language ID per document). When multiple languages are used within the same text segments, the output is the LCID of the predominantly used language. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [OCR](cognitive-search-skill-ocr.md) | Optical character recognition. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [PII Detection](cognitive-search-skill-pii-detection.md)  | This skill uses a pretrained model to extract personal information from a given text. The skill also gives various options for masking the detected personal information entities in the text.  | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [Sentiment](cognitive-search-skill-sentiment-v3.md)  | This skill uses a pretrained model to assign sentiment labels (such as "negative", "neutral" and "positive") based on the highest confidence score found by the service at a sentence and document-level on a record by record basis. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
-| [Text Translation](cognitive-search-skill-text-translation.md) | This skill uses a pretrained model to translate the input text into various languages for normalization or localization use cases. | Azure AI Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Entity Linking](cognitive-search-skill-entity-linking-v3.md) | This skill uses a pretrained model to generate links for recognized entities to articles in Wikipedia. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | This skill uses a pretrained model to establish entities for a fixed set of categories: `"Person"`, `"Location"`, `"Organization"`, `"Quantity"`, `"DateTime"`, `"URL"`, `"Email"`, `"PersonType"`, `"Event"`, `"Product"`, `"Skill"`, `"Address"`, `"Phone Number"` and `"IP Address"` fields. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Image Analysis](cognitive-search-skill-image-analysis.md) | This skill uses an image detection algorithm to identify the content of an image and generate a text description. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Key Phrase Extraction](cognitive-search-skill-keyphrases.md) | This skill uses a pretrained model to detect important phrases based on term placement, linguistic rules, proximity to other terms, and how unusual the term is within the source data. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Language Detection](cognitive-search-skill-language-detection.md)  | This skill uses a pretrained model to detect which language is used (one language ID per document). When multiple languages are used within the same text segments, the output is the LCID of the predominantly used language. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [OCR](cognitive-search-skill-ocr.md) | Optical character recognition. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [PII Detection](cognitive-search-skill-pii-detection.md)  | This skill uses a pretrained model to extract personal information from a given text. The skill also gives various options for masking the detected personal information entities in the text.  | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Sentiment](cognitive-search-skill-sentiment-v3.md)  | This skill uses a pretrained model to assign sentiment labels (such as "negative", "neutral" and "positive") based on the highest confidence score found by the service at a sentence and document-level on a record by record basis. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Text Translation](cognitive-search-skill-text-translation.md) | This skill uses a pretrained model to translate the input text into various languages for normalization or localization use cases. | Foundry Tools ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 
 ### Azure-hosted model or resource
 
-Skills in this category call Azure-hosted models or resources that you own for both billing and processing. Although Azure Content Understanding is part of Azure AI Foundry Tools, the Azure Content Understanding skill connects to your deployed resource for processing, not just billing.
+Skills in this category call Azure-hosted models or resources that you own for both billing and processing. Although Azure Content Understanding is part of Foundry Tools, the Azure Content Understanding skill connects to your deployed resource for processing, not just billing.
 
 These skills are billed at the Standard rate.
 
@@ -67,7 +67,7 @@ These skills are billed at the Standard rate.
 |-------|-------------|-------------|
 | [Azure Content Understanding](cognitive-search-skill-content-understanding.md) | Connects to Azure Content Understanding for advanced document analysis and semantic chunking. | Azure Content Understanding ([pricing](https://azure.microsoft.com/pricing/details/content-understanding/)) |
 | [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) | Connects to a deployed Azure OpenAI embedding model for integrated vectorization. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
-| [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with an Azure AI Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
+| [GenAI Prompt](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with a Foundry chat completion model. | Azure OpenAI ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing)) |
 
 ## Custom skills
 
@@ -77,7 +77,7 @@ For guidance on creating a custom skill, see [Define a custom interface](cogniti
 
 | Skill  | Description | Metered by |
 |-------|-------------|-------------|
-| [AML](cognitive-search-aml-skill.md) | Extends an AI enrichment pipeline with an Azure AI Foundry or Azure Machine Learning model. | None, unless your solution uses a metered Azure service. |
+| [AML](cognitive-search-aml-skill.md) | Extends an AI enrichment pipeline with a Foundry or Azure Machine Learning model. | None, unless your solution uses a metered Azure service. |
 | [Custom Entity Lookup](cognitive-search-skill-custom-entity-lookup.md) | Extends an AI enrichment pipeline by detecting user-defined entities. | None, unless your solution uses a metered Azure service. |
 | [Web API](cognitive-search-custom-skill-web-api.md) | Extends an AI enrichment pipeline by making an HTTP call into a custom Web API. | None, unless your solution uses a metered Azure service. |
 

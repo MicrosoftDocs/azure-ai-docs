@@ -22,7 +22,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An [Azure AI Search service](../../search-create-service-portal.md), in any [region that provides agentic retrieval](../../search-region-support.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that you need for model deployments) when you create an Azure AI Foundry project.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects). You get a Foundry resource (that you need for model deployments) when you create a Foundry project.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
@@ -77,7 +77,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     AZURE_SEARCH_INDEX_NAME=agentic-retrieval-sample
     ```
 
-    Replace `<your-search-service-name>` and `<your-ai-foundry-resource-name>` with your actual Azure AI Search service name and Azure AI Foundry resource name.
+    Replace `<your-search-service-name>` and `<your-ai-foundry-resource-name>` with your actual Azure AI Search service name and Foundry resource name.
 
 1. Paste the following code into a new file named `index.js`:
 

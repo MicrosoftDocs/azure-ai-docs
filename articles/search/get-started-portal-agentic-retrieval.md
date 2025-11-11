@@ -16,7 +16,7 @@ ms.date: 11/07/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Azure AI Foundry Models.
+In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Foundry Models.
 
 The portal guides you through the process of creating the following objects:
 
@@ -37,7 +37,7 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and Foundry resource. When you create a project, the resource is automatically created.
 
 + For text-to-vector conversion, an embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
@@ -85,11 +85,11 @@ On your Azure Blob Storage account:
 
 + Assign **Storage Blob Data Reader** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-### [Azure AI Foundry](#tab/foundry-perms)
+### [Foundry](#tab/foundry-perms)
 
-Azure AI Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
+Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
-On your Azure AI Foundry resource:
+On your Foundry resource:
 
 + Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
@@ -139,7 +139,7 @@ To create the knowledge source for this quickstart:
 
 1. Select **Add vectorizer**.
 
-1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
+1. Select **Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
 1. Select **System managed identity** for the authentication type.
 
@@ -166,7 +166,7 @@ To create the knowledge base for this quickstart:
 
 1. Under **Model deployment**, select **Add model deployment**.
 
-1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and LLM deployment.
+1. Select **Foundry** for the kind, and then select your subscription, project, and LLM deployment.
 
 1. Select **System assigned identity** for the authentication type.
 
@@ -266,7 +266,7 @@ To review the auto-generated objects:
 
 When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the Azure portal, you can manage your Azure AI Search, Azure Blob Storage, and Azure AI Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+In the Azure portal, you can manage your Azure AI Search, Azure Blob Storage, and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
 
 You can also delete the knowledge source and knowledge base on their respective portal pages. When you delete the knowledge source, the portal prompts you to delete the associated data source, skillset, index, and indexer.
 

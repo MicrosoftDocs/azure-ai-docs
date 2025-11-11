@@ -17,7 +17,7 @@ ms.update-cycle: 365-days
 The **Text Merge** skill consolidates text from an array of strings into a single field. 
 
 > [!NOTE]
-> This skill isn't bound to Azure AI Foundry Tools. It is non-billable and has no Azure AI Foundry Tools key requirement.
+> This skill isn't bound to Foundry Tools. It is non-billable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Text.MergeSkill

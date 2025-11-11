@@ -37,14 +37,14 @@ You need the `synapseml` library and several Azure resources. If possible, use t
 
 + [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup>
 + [Azure AI Search](search-create-service-portal.md) (any tier) <sup>2</sup> 
-+ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) (any tier) with an **API Kind** of `AIServices` <sup>3</sup>
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) (any tier) with an **API Kind** of `AIServices` <sup>3</sup>
 + [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime <sup>4</sup>
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
 
 <sup>2</sup> You can use the Free tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#set-up-dependencies) step further on.
 
-<sup>3</sup> This tutorial uses Document Intelligence and Translator from Azure AI Foundry Tools. In the instructions that follow, provide an [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) key and the region. The same key works for both services. **For this tutorial, it's important that you use an Azure AI Foundry resource with an API kind of `AIServices`**. You can check the API kind in the Azure portal on the **Overview** page of your Azure AI Foundry resource. For more information about API kind, see [Attach an Azure AI Foundry resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
+<sup>3</sup> This tutorial uses Document Intelligence and Translator from Foundry Tools. In the instructions that follow, provide a [Foundry resource](/azure/ai-services/multi-service-resource) key and the region. The same key works for both services. **For this tutorial, it's important that you use a Foundry resource with an API kind of `AIServices`**. You can check the API kind in the Azure portal on the **Overview** page of your Foundry resource. For more information about API kind, see [Attach a Foundry resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
 <sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the cluster and workspace.
 
@@ -145,7 +145,7 @@ display(df2)
 
 Paste the following code into the third cell. No modifications are required, so run the code when you're ready.
 
-This code loads the [AnalyzeInvoices transformer](https://mmlspark.blob.core.windows.net/docs/1.0.9/pyspark/synapse.ml.services.form.html#module-synapse.ml.services.form.AnalyzeInvoices) and passes a reference to the data frame containing the invoices. It calls the prebuilt [invoice model](/azure/ai-services/document-intelligence/concept-invoice) of Azure Document Intelligence to extract information from the invoices.
+This code loads the [AnalyzeInvoices transformer](https://mmlspark.blob.core.windows.net/docs/1.0.9/pyspark/synapse.ml.services.form.html#module-synapse.ml.services.form.AnalyzeInvoices) and passes a reference to the data frame containing the invoices. It calls the prebuilt [invoice model](/azure/ai-services/document-intelligence/concept-invoice) of Azure Document Intelligence in Foundry Tools to extract information from the invoices.
 
 ```python
 from synapse.ml.services import AnalyzeInvoices
@@ -283,4 +283,4 @@ In this tutorial, you learned about the [AzureSearchWriter](https://microsoft.gi
 As a next step, review the other SynapseML tutorials that produce transformed content you might want to explore through Azure AI Search:
 
 > [!div class="nextstepaction"]
-> [Tutorial: Text Analytics with Azure AI Foundry Tools](/azure/synapse-analytics/machine-learning/tutorial-text-analytics-use-mmlspark)
+> [Tutorial: Text Analytics with Foundry Tools](/azure/synapse-analytics/machine-learning/tutorial-text-analytics-use-mmlspark)

@@ -31,7 +31,7 @@ In this tutorial, you use:
 
 ## Prerequisites
 
-+ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to both the Azure Vision multimodal embedding model and the Azure Document Intelligence Layout model used by the skills in this tutorial. You must use an Azure AI Foundry resource for skillset access to these resources.
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to both the Azure Vision multimodal embedding model and the Azure Document Intelligence Layout model used by the skills in this tutorial. You must use a Foundry resource for skillset access to these resources.
 
 + [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
@@ -41,7 +41,7 @@ In this tutorial, you use:
 
 ## Limitations
 
-+ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. When you create the Azure AI Foundry resource, choose a region that provides multimodal embeddings. For a list of supported regions, see [Document Layout skill supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
++ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. When you create the Foundry resource, choose a region that provides multimodal embeddings. For a list of supported regions, see [Document Layout skill supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 + The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
@@ -81,11 +81,11 @@ The following instructions apply to Azure Storage which provides the sample data
 
 ## Prepare models
 
-This tutorial assumes you have an existing Azure AI Foundry resource through which the skill calls the Azure Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+This tutorial assumes you have an existing Foundry resource through which the skill calls the Azure Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
-The same role assignment is also used for accessing the Azure Document Intelligence layout model via an Azure AI Foundry resource.
+The same role assignment is also used for accessing the Azure Document Intelligence layout model via a Foundry resource.
 
-1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and the [Azure Document Intelligence layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
+1. Sign in to the Azure portal (not the Foundry portal) and find the Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and the [Azure Document Intelligence layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 1. Select **Access control (IAM)**.
 

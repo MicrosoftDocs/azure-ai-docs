@@ -47,7 +47,7 @@ The wizard follows these steps to create a multimodal pipeline:
 
 1. **Generate image descriptions:** The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images, producing concise natural-language descriptions for text search and embedding using a large language model (LLM).
 
-1. **Generate embeddings:** The embedding skill creates vector representations of text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Foundry](cognitive-search-aml-skill.md), or [Azure Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
+1. **Generate embeddings:** The embedding skill creates vector representations of text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [Microsoft Foundry](cognitive-search-aml-skill.md), or [Azure Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
 
    Alternatively, you can skip image verbalization and pass the extracted text and images directly to a multimodal embedding model through the [AML skill](cognitive-search-aml-skill.md) or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). For more information, see [Options for multimodal content embedding](#options-for-multimodal-content-embedding).
 
@@ -70,7 +70,7 @@ A multimodal pipeline begins by cracking each source document into chunks of tex
 | Image location metadata extraction (pages and bounding polygons) | Yes | Yes | Yes |
 | Table extraction and preservation | No | No | Yes (including cross-page tables) |
 | Cross-page semantic units | Not applicable | Single page only | Yes (spans page boundaries) |
-| Location metadata extraction based on file type | PDFs only. | Multiple supported file types according to the [Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/prebuilt/layout#supported-file-types). | [Multiple supported file types](/azure/ai-services/content-understanding/language-region-support), including PDF, DOCX, XLSX, and PPTX. |
+| Location metadata extraction based on file type | PDFs only. | Multiple supported file types according to the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/prebuilt/layout#supported-file-types). | [Multiple supported file types](/azure/ai-services/content-understanding/language-region-support), including PDF, DOCX, XLSX, and PPTX. |
 | Billing for data extraction | Image extraction is billed according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). | Billed according to [Document Layout pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). | Billed according to [Azure Content Understanding pricing](https://azure.microsoft.com/pricing/details/content-understanding/). |
 | Built-in chunking | No (use Text Split skill) | Yes (based on paragraph boundaries) | Yes (semantic chunking) |
 | Recommended scenarios | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Advanced document analysis requiring cross-page table extraction, semantic chunking, or consistent handling across document formats (PDF, DOCX, XLSX, PPTX). |
@@ -81,7 +81,7 @@ In Azure AI Search, retrieving knowledge from images can follow two complementar
 
 ### Image verbalization followed by text embeddings
 
-With this method, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) invokes an LLM during ingestion to create a concise natural-language description of each extracted image, such as "Five-step HR access workflow that begins with manager approval." The description is stored as text and embedded alongside the surrounding document text, which you can then vectorize by calling the [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Foundry](cognitive-search-aml-skill.md), or [Azure Vision](cognitive-search-skill-vision-vectorize.md) embedding models.
+With this method, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) invokes an LLM during ingestion to create a concise natural-language description of each extracted image, such as "Five-step HR access workflow that begins with manager approval." The description is stored as text and embedded alongside the surrounding document text, which you can then vectorize by calling the [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [Microsoft Foundry](cognitive-search-aml-skill.md), or [Azure Vision](cognitive-search-skill-vision-vectorize.md) embedding models.
 
 Because the image is now expressed in language, Azure AI Search can:
 

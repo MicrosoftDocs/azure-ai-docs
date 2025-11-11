@@ -18,7 +18,7 @@ ms.update-cycle: 365-days
 The **PII Detection** skill extracts personal information from an input text and gives you the option of masking it. This skill uses the [detection models](/azure/ai-services/language-service/personally-identifiable-information/overview) provided in [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 > [!NOTE]
-> This skill is bound to Azure AI Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type

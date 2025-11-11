@@ -256,7 +256,7 @@ items:
         href: vector-search-how-to-generate-embeddings.md
       - name: Use integrated vectorization
         href: search-how-to-integrated-vectorization.md
-      - name: Use embedding models from Azure AI Foundry
+      - name: Use embedding models from Microsoft Foundry
         href: vector-search-integrated-vectorization-ai-studio.md
       - name: Reduce vector size
         items:
@@ -759,7 +759,7 @@ items:
       href: cognitive-search-skill-annotation-language.md
     - name: Built-in skills
       items:
-        - name: Azure AI Foundry resource
+        - name: Microsoft Foundry resource
           items:
           - name: Azure Vision multimodal embeddings
             href: cognitive-search-skill-vision-vectorize.md
@@ -822,7 +822,7 @@ items:
         href: cognitive-search-skill-sentiment.md
   - name: Vectorizers reference
     items:
-    - name: Azure AI Foundry model catalog
+    - name: Microsoft Foundry model catalog
       href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
     - name: Azure OpenAI
       href: vector-search-vectorizer-azure-open-ai.md
