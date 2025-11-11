@@ -746,7 +746,7 @@ These patterns reduce prototype-to-production friction: you can add data sources
 
 ## Next steps
 
-This minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
+This tutorial demonstrates **Stage 1** of the developer journey - from idea to prototype. This minimal sample provides the foundation for enterprise AI development. To continue your journey, explore the next stages:
 
 ### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](../../agents/how-to/tools/azure-ai-search.md), [other sources](../../how-to/connections-add.md)).
