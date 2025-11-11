@@ -1,5 +1,5 @@
 items:
-  - name: Azure AI Foundry client libraries
+  - name: Microsoft Foundry client libraries
     href: ../../../how-to/develop/sdk-overview.md
   - name: Endpoints for Foundry Models
     href: ../../../foundry-models/concepts/endpoints.md
@@ -49,10 +49,10 @@ items:
       href: ../../../openai/realtime-audio-reference.md
   - name: Azure AI Evaluation SDK
     href: /python/api/overview/azure/ai-evaluation-readme
-  - name: Azure AI Services SDKs
+  - name: Foundry Tools SDKs
     displayName: client library libraries development kit
     href: ../../../../ai-services/reference/sdk-package-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
-  - name: Azure AI Services REST APIs
+  - name: Foundry Tools REST APIs
     displayName: swagger http
     href: ../../../../ai-services/reference/rest-api-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Resource Management

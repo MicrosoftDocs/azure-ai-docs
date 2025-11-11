@@ -1,8 +1,8 @@
 items:
-- name: Use Azure AI services in Azure AI Foundry portal
+- name: Use Foundry Tools in Microsoft Foundry portal
   href: ../../../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
   displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
-- name: What are Azure AI services?
+- name: What are Foundry Tools?
   href: ../../../ai-services/what-are-ai-services.md?context=/azure/ai-foundry/context/context
 - name: Content Safety
   items: 
@@ -22,15 +22,15 @@ items:
   items:
   - name: What is Azure Content Understanding in Foundry Tools (preview)?
     href: ../../../ai-services/content-understanding/overview.md?context=/azure/ai-foundry/context/context
-  - name: Use Content Understanding in Azure AI Foundry portal
+  - name: Use Content Understanding in Microsoft Foundry portal
     href: ../../../ai-services/content-understanding/quickstart/use-ai-foundry.md?context=/azure/ai-foundry/context/context
 - name:  Document Intelligence
   items:
-  - name: What is Azure AI Document Intelligence?
+  - name: What is Document Intelligence in Foundry Tools?
     href: ../../../ai-services/document-intelligence/overview.md?context=/azure/ai-foundry/context/context
 - name:  Language
   items:
-  - name: What is Azure AI Language?
+  - name: What is Language in Foundry Tools?
     href: ../../../ai-services/language-service/overview.md?context=/azure/ai-foundry/context/context
   - name: Conversation Language Understanding
     href: ../../../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/ai-foundry/context/context&pivots=rest-api
@@ -86,9 +86,9 @@ items:
     href: ../../../ai-services/speech-service/how-to-audio-content-creation.md?context=/azure/ai-foundry/context/context
 - name:  Translator
   items:
-  - name: What is Azure AI Translator?
+  - name: What is Translator in Foundry Tools?
     href: ../../../ai-services/translator/overview.md?context=/azure/ai-foundry/context/context
-  - name: Azure AI Translator language support
+  - name: Translator in Foundry Tools language support
     href: ../../../ai-services/translator/language-support.md?context=/azure/ai-foundry/context/context
   - name: Text translation
     href: ../../../ai-services/translator/text-translation/overview.md?context=/azure/ai-foundry/context/context

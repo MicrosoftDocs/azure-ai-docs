@@ -11,7 +11,7 @@ items:
   href: ../../../concepts/retrieval-augmented-generation.md
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
-- name: Azure AI Speech
+- name: Azure Speech in Foundry Tools
   href: ../../../agents/how-to/tools/azure-ai-speech.md
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
