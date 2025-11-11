@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: The Speech CLI - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this Azure Speech in Foundry Tools CLI quickstart, you interact with speech to text, text to speech, and speech translation without having to write code.
 author: PatrickFarley
 manager: nitinme

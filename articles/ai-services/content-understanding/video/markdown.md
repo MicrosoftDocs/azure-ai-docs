@@ -1,6 +1,6 @@
 ---
 title: Content Understanding audiovisual modality markdown representation
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Description of the markdown representation returned as part of the Content Understanding audiovisual response for both audio and video inputs and how to use the response in your applications.
 author: laujan
 ms.author: paulhsu

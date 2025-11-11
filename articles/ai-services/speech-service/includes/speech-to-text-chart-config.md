@@ -1,6 +1,6 @@
 ---
 title: Install Speech containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Details the speech to text helm chart configuration options.
 author: PatrickFarley
 manager: nitinme

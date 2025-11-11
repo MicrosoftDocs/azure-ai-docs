@@ -1,6 +1,6 @@
 ---
 title: Content Understanding Glossary
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Quick reference, detailed description on Content Understanding Terms and Definition
 author: PatrickFarley 
 ms.author: pafarley
@@ -29,5 +29,5 @@ ms.custom:
 | **Generation method** | The process of determining the extracted value of a specified field. Content Understanding supports: <br/> &bullet; **Extract**: Directly extract values from the input content, such as dates from receipts or item details from invoices. <br/> &bullet; **Classify**: Classify content into predefined categories, such as call sentiment or chart type. <br/> &bullet; **Generate**: Generate values from input data, such as summarizing an audio conversation or generating scene descriptions from videos. |
 | **Grounding source** | The specific regions in content where a value was generated. It has different representations depending on the file type: <br>&bullet; **Image** - A polygon in the image, often an axis-aligned rectangle (bounding box). <br>&bullet; **PDF/TIFF** - A polygon on a specific page, often a quadrilateral. <br>&bullet; **Audio** - A start and end time range. <br>&bullet; **Video** - A start and end time range with an optional polygon in each frame, often a bounding box.|
 | **Person directory** | A structured way to store face data for recognition tasks. You can add individual faces to the directory and later search for visually similar faces. You can also create person profiles, associate faces to them, and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos. |
-| **Processing Location** | An API request parameter that defines the geographic region where Azure AI Services analyzes your data. You can choose from three options: `geography`, `dataZone`, and `global` to control where processing occurs. This setting helps meet data residency requirements and optimize performance or scalability based on your needs. |
+| **Processing Location** | An API request parameter that defines the geographic region where Foundry Tools analyzes your data. You can choose from three options: `geography`, `dataZone`, and `global` to control where processing occurs. This setting helps meet data residency requirements and optimize performance or scalability based on your needs. |
 | **Span** | A reference indicating the location of an element (for example, field, word) within the extracted Markdown content. A character offset and length represent a span. Different programming languages use various character encodings, which can affect the exact offset and length values for Unicode text. To avoid confusion, spans are only returned if the desired encoding is explicitly specified in the request. Some elements can map to multiple spans if they aren't contiguous in the markdown (for example, page). |

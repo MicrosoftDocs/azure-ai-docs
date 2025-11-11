@@ -1,6 +1,6 @@
 ﻿---
 title: Use pronunciation assessment
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: Language support - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech service supports numerous languages for speech to text and text to speech conversion, along with speech translation. This article provides a comprehensive list of language support by service feature.
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: Custom text to speech avatar overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the custom text to speech avatar feature of speech service, which allows you to create a customized, one-of-a-kind synthetic talking avatar for your application.
 manager: nitinme
 ms.service: azure-ai-speech

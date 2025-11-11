@@ -1,6 +1,6 @@
 ---
 title: Video translation overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: With video translation, you can seamlessly integrate multi-language voice-over capabilities into your videos.
 author: goergenj
 reviewer: patrickfarley

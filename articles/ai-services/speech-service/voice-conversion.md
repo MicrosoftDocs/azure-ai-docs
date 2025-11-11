@@ -1,6 +1,6 @@
 ---
 title: What is voice conversion?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about voice conversion in Azure Speech in Foundry Tools.
 author: JieD-7
 ms.author: pafarley

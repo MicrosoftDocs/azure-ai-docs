@@ -1,6 +1,6 @@
 ﻿---
 title: Build a retrieval-augmented generation solution with Azure Content Understanding in Foundry Tools
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
 author: PatrickFarley 
 ms.author: paulhsu
@@ -71,7 +71,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Load and validate Azure AI Services configs
+# Load and validate Foundry Tools configs
 AZURE_AI_SERVICE_ENDPOINT = os.getenv("AZURE_AI_SERVICE_ENDPOINT")
 AZURE_AI_SERVICE_API_VERSION = os.getenv("AZURE_AI_SERVICE_API_VERSION") or "2024-12-01-preview"
 AZURE_DOCUMENT_INTELLIGENCE_API_VERSION = os.getenv("AZURE_DOCUMENT_INTELLIGENCE_API_VERSION") or "2024-11-30"

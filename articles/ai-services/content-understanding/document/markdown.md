@@ -1,6 +1,6 @@
 ---
 title: "Document analysis: Markdown representation"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Content Understanding Document response and how to use the response in your applications.
 author: PatrickFarley 
 ms.author: paulhsu

@@ -1,6 +1,6 @@
 ---
 title: Embedded Speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Embedded Speech is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
 author: PatrickFarley
 manager: nitinme

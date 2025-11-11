@@ -1,6 +1,6 @@
 ---
 title: Game development with Azure Speech in Foundry Tools - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Concepts for game development with Azure Speech in Foundry Tools.
 author: PatrickFarley
 manager: nitinme

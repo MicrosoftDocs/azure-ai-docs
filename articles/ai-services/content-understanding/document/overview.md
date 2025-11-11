@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools Document Overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document solutions.
 author: PatrickFarley 
 ms.author: pafarley

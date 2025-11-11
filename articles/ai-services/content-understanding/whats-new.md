@@ -1,6 +1,6 @@
 ---
 title: What's new in Content Understanding?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley

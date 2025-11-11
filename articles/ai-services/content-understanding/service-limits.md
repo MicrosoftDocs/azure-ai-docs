@@ -1,6 +1,6 @@
 ---
 title: Service quotas and limits - Content Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Quick reference, detailed description, and best practices for working within Azure Content Understanding in Foundry Tools service Quotas and Limits
 author: PatrickFarley 
 ms.author: pafarley

@@ -1,6 +1,6 @@
 ---
 title: Speech Synthesis Markup Language (SSML) document structure and events - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Speech Synthesis Markup Language (SSML) document structure.
 author: PatrickFarley
 manager: nitinme

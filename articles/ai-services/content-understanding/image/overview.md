@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools image overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Azure Content Understanding in Foundry Tools image solutions
 author: PatrickFarley 
 ms.author: pafarley

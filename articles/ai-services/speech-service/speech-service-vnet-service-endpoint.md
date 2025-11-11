@@ -1,6 +1,6 @@
 ---
 title: Use Virtual Network service endpoints with Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article describes how to use Speech service with an Azure Virtual Network service endpoint.
 author: PatrickFarley
 ms.author: pafarley
@@ -16,10 +16,10 @@ ms.reviewer: jagoerge
 
 [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) [service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) help to provide secure and direct connectivity to Azure services over an optimized route on the Azure backbone network. Endpoints help you secure your critical Azure service resources to only your virtual networks. Service endpoints enable private IP addresses in the virtual network to reach the endpoint of an Azure service without needing a public IP address on the virtual network.
 
-This article explains how to set up and use Virtual Network service endpoints with Speech service in Azure AI services.
+This article explains how to set up and use Virtual Network service endpoints with Speech service in Foundry Tools.
 
 > [!NOTE]
-> Before you start, review [how to use virtual networks with Azure AI services](../cognitive-services-virtual-networks.md).
+> Before you start, review [how to use virtual networks with Foundry Tools](../cognitive-services-virtual-networks.md).
 
 This article also describes [how to remove Virtual Network service endpoints later but still use the Speech resource](#use-an-ai-foundry-resource-for-speech-that-has-a-custom-domain-name-but-that-doesnt-have-allowed-virtual-networks).
 
@@ -37,7 +37,7 @@ This article describes how to use Virtual Network service endpoints with Speech 
 
 ## Create a custom domain name
 
-Virtual Network service endpoints require a [custom subdomain name for Azure AI services](../cognitive-services-custom-subdomains.md). Create a custom domain by following the [guidance](speech-services-private-link.md#create-a-custom-domain-name) in the private endpoint article. All warnings in the section also apply to Virtual Network service endpoints.
+Virtual Network service endpoints require a [custom subdomain name for Foundry Tools](../cognitive-services-custom-subdomains.md). Create a custom domain by following the [guidance](speech-services-private-link.md#create-a-custom-domain-name) in the private endpoint article. All warnings in the section also apply to Virtual Network service endpoints.
 
 ## Configure virtual networks and the Speech resource networking settings
 

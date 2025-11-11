@@ -1,6 +1,6 @@
 ---
 title: Deploy a custom speech model - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to deploy custom speech models. 
 author: PatrickFarley
 manager: nitinme
@@ -436,7 +436,7 @@ The locations of each log file with more details are returned in the response bo
 
 ::: zone-end
 
-Logging data is available on Microsoft-owned storage for 30 days, and then it's removed. If your own storage account is linked to the Azure AI services subscription, the logging data isn't automatically deleted.
+Logging data is available on Microsoft-owned storage for 30 days, and then it's removed. If your own storage account is linked to the Foundry Tools subscription, the logging data isn't automatically deleted.
 
 ## Related content
 

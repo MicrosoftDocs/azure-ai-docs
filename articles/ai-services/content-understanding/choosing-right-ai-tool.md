@@ -1,7 +1,7 @@
 ---
 
 title: Choose the right Azure AI tool for document processing
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
 ms.author: pafarley

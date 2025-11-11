@@ -1,6 +1,6 @@
 ---
 title: "Speech to text quickstart"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, learn how to use the Speech service for real-time speech to text conversion.
 author: PatrickFarley
 manager: nitinme

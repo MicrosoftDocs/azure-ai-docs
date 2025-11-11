@@ -1,6 +1,6 @@
 ---
 title: Voice live API overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Voice live API for real-time voice agents.
 manager: nitinme
 author: goergenj

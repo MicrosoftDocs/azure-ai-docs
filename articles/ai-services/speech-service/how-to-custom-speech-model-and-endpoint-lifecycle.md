@@ -1,6 +1,6 @@
 ---
 title: Model lifecycle of custom speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Custom speech provides base models for training and lets you create custom models from your data. This article describes the timelines for models and for endpoints that use these models.
 author: PatrickFarley
 manager: nitinme

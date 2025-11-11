@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Azure Content Understanding in Foundry Tools REST APIs"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Content Understanding REST APIs
 author: PatrickFarley 
 ms.author: paulhsu

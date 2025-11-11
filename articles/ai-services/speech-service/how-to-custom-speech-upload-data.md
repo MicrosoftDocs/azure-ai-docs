@@ -1,6 +1,6 @@
 ---
 title: "Upload training and testing datasets for custom speech - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to upload data to test or train a custom speech model.
 author: PatrickFarley
 manager: nitinme

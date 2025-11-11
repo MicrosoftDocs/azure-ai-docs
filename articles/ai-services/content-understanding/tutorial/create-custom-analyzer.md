@@ -1,6 +1,6 @@
 ---
 title: Create a custom analyzer with Azure Content Understanding in Foundry Tools using REST APIs
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn to create a custom analyzer with Azure Content Understanding in Foundry Tools
 author: PatrickFarley 
 ms.author: paulhsu

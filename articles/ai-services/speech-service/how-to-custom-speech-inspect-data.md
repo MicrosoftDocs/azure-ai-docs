@@ -1,6 +1,6 @@
 ---
 title: Test recognition quality of a custom speech model - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Custom speech lets you qualitatively inspect the recognition quality of a model. You can play back uploaded audio and determine if the provided recognition result is correct.
 author: PatrickFarley
 manager: nitinme

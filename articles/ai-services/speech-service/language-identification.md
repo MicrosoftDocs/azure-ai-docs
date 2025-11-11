@@ -1,6 +1,6 @@
 ---
 title: Implement language identification - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how language identification can determine the language being spoken in audio when compared against a list of provided languages.
 author: PatrickFarley
 manager: nitinme

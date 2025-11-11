@@ -1,6 +1,6 @@
 ---
 title: Migrate from v3.0 to v3.1 REST API - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3.0 to v3.1 of the Speech to text REST API.
 author: PatrickFarley
 ms.author: pafarley

@@ -1,6 +1,6 @@
 ---
 title: Ingestion Client - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about a tool released on GitHub that enables customers push audio files to Speech service easily and quickly 
 author: PatrickFarley
 manager: nitinme
@@ -11,7 +11,7 @@ ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Ingestion Client tool that helps me quickly deploy a call center transcription solution to Azure with a no-code approach.
 ---
 
-# Ingestion Client with Azure AI services
+# Ingestion Client with Foundry Tools
 
 The Ingestion Client is a tool released by Microsoft on GitHub that helps you quickly deploy a call center transcription solution to Azure with a no-code approach. 
 
@@ -48,7 +48,7 @@ Here are some Language service features that are used by the Ingestion Client:
 - [Personally Identifiable Information (PII) extraction and redaction](../language-service/personally-identifiable-information/how-to-call-for-conversations.md): Identify, categorize, and redact sensitive information in conversation transcription.
 - [Sentiment analysis and opinion mining](../language-service/sentiment-opinion-mining/overview.md): Analyze transcriptions and associate positive, neutral, or negative sentiment at the utterance and conversation-level.
 
-Besides Azure AI services, these Azure products are used to complete the solution:
+Besides Foundry Tools, these Azure products are used to complete the solution:
 
 - [Azure storage](https://azure.microsoft.com/product-categories/storage/): Used for storing telephony data and the transcripts that batch transcription API returns. This storage account should use notifications, specifically for when new files are added. These notifications are used to trigger the transcription process.
 - [Azure Functions](https://azure.microsoft.com/services/functions/): Used for creating the shared access signature (SAS) URI for each recording, and triggering the HTTP POST request to start a transcription. Additionally, you use Azure Functions to create requests to retrieve and delete transcriptions by using the Batch Transcription API.
@@ -62,6 +62,6 @@ The tool is built to show customers results quickly. You can customize the tool 
 
 ## Next steps
 
-* [Learn more about Azure AI services features for call center](./call-center-overview.md)
-* [Explore Azure Language service features](../language-service/overview.md#available-features)
+* [Learn more about Foundry Tools features for call center](./call-center-overview.md)
+* [Explore the Language service features](../language-service/overview.md#available-features)
 * [Explore the Speech service features](./overview.md)

@@ -1,6 +1,6 @@
 ---
 title: How to use batch synthesis for text to speech avatar - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to create text to speech avatar batch synthesis.
 manager: nitinme
 ms.service: azure-ai-speech

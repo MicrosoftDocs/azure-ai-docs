@@ -1,6 +1,6 @@
 ---
 title: Create a batch transcription - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech in Foundry Tools for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
 author: goergenj

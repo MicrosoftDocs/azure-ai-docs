@@ -1,6 +1,6 @@
 ---
 title: Custom voice lite - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use custom voice lite to demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice.
 author: PatrickFarley
 manager: nitinme

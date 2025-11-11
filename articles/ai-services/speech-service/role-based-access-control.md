@@ -1,6 +1,6 @@
 ---
 title: Role-based access control for Speech resources
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to assign access roles for an AI Speech resource.
 author: PatrickFarley
 manager: nitinme
@@ -43,9 +43,9 @@ For finer-grained resource access control, you can [add or remove roles](/azure/
 ### Special considerations for Speech resources
 
 > [!IMPORTANT]
-> Speech service architecture differs from other Azure AI services in the way it uses [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). 
+> Speech service architecture differs from other Foundry Tools in the way it uses [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). 
 
-Speech service is extensively using data plane comparing to other Azure AI services, and this requires different set up for the roles. Because of this some general *"Cognitive Services"* roles have actual access right set that doesn't exactly match their name when used in Speech services scenario. 
+Speech service is extensively using data plane comparing to other Foundry Tools, and this requires different set up for the roles. Because of this some general *"Cognitive Services"* roles have actual access right set that doesn't exactly match their name when used in Speech services scenario. 
 
 For instance *Cognitive Services User* provides in effect the Contributor rights, while *Cognitive Services Contributor* provides no access at all. The same is true for generic *Owner* and *Contributor* roles which have no data plane rights and consequently provide no access to Speech resource. 
 

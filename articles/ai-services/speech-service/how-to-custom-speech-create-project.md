@@ -1,6 +1,6 @@
 ---
 title: Customize speech models with fine-tuning
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to customize speech models with fine-tuning. 
 author: PatrickFarley
 manager: nitinme
@@ -38,7 +38,7 @@ In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), you can 
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
-    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Foundry Tools models." lightbox="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png":::
  
 1. In the wizard, select **Custom Speech (speech to text fine-tuning)** for custom speech. Then select **Next**.
 

@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools video overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools video solutions.
 author: PatrickFarley 
 ms.author: pafarley
@@ -265,7 +265,7 @@ See [Language and region support](../language-region-support.md).
 
 ## Data privacy and security
 
-As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
+As with all Foundry Tools, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
 > [!IMPORTANT]
 >

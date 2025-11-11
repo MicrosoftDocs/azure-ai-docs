@@ -1,6 +1,6 @@
 ---
 title: Text to speech overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the text to speech feature of the Speech service.
 author: PatrickFarley
 manager: nitinme
@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is text to speech?
 
-In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Azure AI services.
+In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Foundry Tools.
 
 Text to speech enables your applications, tools, or devices to convert text into human like synthesized speech. The text to speech capability is also known as speech synthesis. Use human like standard voices out of the box, or create a custom voice that's unique to your product or brand. For a full list of supported voices, languages, and locales, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 

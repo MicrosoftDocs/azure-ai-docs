@@ -1,6 +1,6 @@
 ---
 title: About the Speech SDK - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech software development kit (SDK) exposes many of the Speech service capabilities, making it easier to develop speech-enabled applications.
 author: PatrickFarley
 manager: nitinme
@@ -69,7 +69,7 @@ You can suggest an idea or report a bug by creating an issue on GitHub:
 - [Microsoft/cognitive-services-speech-sdk-go](https://github.com/microsoft/cognitive-services-speech-sdk-go/issues)
 - [Microsoft/cognitive-services-speech-sdk-js](https://github.com/microsoft/cognitive-services-speech-sdk-js/issues)
 
-See also [Azure AI services support and help options](../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context) to get support, stay up-to-date, give feedback, and report bugs for Azure AI services.
+See also [Foundry Tools support and help options](../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context) to get support, stay up-to-date, give feedback, and report bugs for Foundry Tools.
 
 ## Next steps
 

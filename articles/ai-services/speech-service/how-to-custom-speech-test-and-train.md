@@ -1,6 +1,6 @@
 ---
 title: "Training and testing datasets - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about types of training and testing data for a custom speech project, along with how to use and manage that data.
 author: PatrickFarley
 manager: nitinme
