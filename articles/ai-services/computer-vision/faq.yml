@@ -1,8 +1,8 @@
 ### YamlMime:FAQ
 metadata:
-  title: "Frequently asked questions - Azure AI Vision"
-  titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the Azure AI Vision Service in Azure AI services.
+  title: "Frequently asked questions - Azure Vision in Foundry Tools"
+  titleSuffix: Foundry Tools
+  description: Get answers to frequently asked questions about the Azure Vision service in Foundry Tools.
   #services: cognitive-services
   author: PatrickFarley
   manager: nitinme
@@ -48,7 +48,7 @@ sections:
       - question: |
           Can I access Azure AI Vision by using Azure-assigned managed identity?
         answer: |
-          Yes. Follow the instructions in the [Authentication guide](/azure/ai-services/authentication?tabs=powershell#authorize-access-to-managed-identities) to use Azure-assigned managed identity to access Azure AI services such as Azure AI Vision. 
+          Yes. Follow the instructions in the [Authentication guide](/azure/ai-services/authentication?tabs=powershell#authorize-access-to-managed-identities) to use Azure-assigned managed identity to access Foundry Tools such as Azure Vision. 
       - question: |
           Can I train Azure AI Vision API to use custom tags?  For example, I would like to feed in pictures of cat breeds to 'train' the AI, then receive the breed value on an AI request.
         answer: |

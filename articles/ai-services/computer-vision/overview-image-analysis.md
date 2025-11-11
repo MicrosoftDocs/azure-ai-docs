@@ -146,7 +146,7 @@ To use the Image Analysis APIs, you must create your Azure AI Vision resource in
 
 ## Data privacy and security
 
-As with all of the Foundry Tools, developers using the Azure Vision service should be aware of Microsoft's policies on customer data. To learn more, see the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
+As with all of the Azure AI Foundry Tools, developers using the Azure Vision service should be aware of Microsoft's policies on customer data. To learn more, see the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
 
 ## Next steps
 
