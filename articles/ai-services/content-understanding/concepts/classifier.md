@@ -40,7 +40,7 @@ Content Understanding classification can analyze single or multi-file documents 
 * [Hierarchical classifier](#hierarchical-classifier): optional additional analysis depending on the category can also be a classifier analyzer.
 
 > [!NOTE]
-> The minimum unit for classification for documents is at a page level. Intra-page classification is not supported.
+> The minimum unit for classification of documents is a single page. Intra-page classification is not supported.
 
 ### Create classification categories
 
