@@ -7,7 +7,7 @@ ms.author: jppark
 manager: nitinme
 ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
-ms.topic: overview
+ms.topic: conceptual
 ms.custom:
   - build-2025
 ---
