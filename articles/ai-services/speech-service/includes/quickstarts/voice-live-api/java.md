@@ -268,7 +268,7 @@ public final class ModelQuickstart {
 
     // Service configuration constants
     private static final String DEFAULT_API_VERSION = "2025-10-01";
-    private static final String DEFAULT_MODEL = "gpt-4o-realtime-preview";
+    private static final String DEFAULT_MODEL = "gpt-realtime";
     private static final String DEFAULT_VOICE = "en-US-Ava:DragonHDLatestNeural";
     private static final String DEFAULT_INSTRUCTIONS = "You are a helpful AI voice assistant. Respond naturally and conversationally. Keep your responses concise but engaging. Speak as if having a real conversation.";
 
@@ -626,7 +626,7 @@ public final class ModelQuickstart {
         * <ul>
         *   <li>--endpoint &lt;url&gt; - VoiceLive endpoint URL</li>
         *   <li>--api-key &lt;key&gt; - API key for authentication</li>
-        *   <li>--model &lt;model&gt; - Model to use (default: gpt-4o-realtime-preview)</li>
+        *   <li>--model &lt;model&gt; - Model to use (default: gpt-realtime)</li>
         *   <li>--voice &lt;voice&gt; - Voice name (e.g., en-US-Ava:DragonHDLatestNeural)</li>
         *   <li>--instructions &lt;text&gt; - Custom system instructions</li>
         *   <li>--use-token-credential - Use Azure CLI authentication instead of API key</li>
@@ -729,7 +729,7 @@ public final class ModelQuickstart {
         System.err.println("\nCommand Line Options:");
         System.err.println("  --endpoint <url>         VoiceLive endpoint URL");
         System.err.println("  --api-key <key>          API key for authentication");
-        System.err.println("  --model <model>          Model to use (default: gpt-4o-realtime-preview)");
+        System.err.println("  --model <model>          Model to use (default: gpt-realtime)");
         System.err.println("  --voice <voice>          Voice name (e.g., en-US-Ava:DragonHDLatestNeural)");
         System.err.println("  --instructions <text>    Custom system instructions");
         System.err.println("  --use-token-credential   Use Azure CLI authentication");
