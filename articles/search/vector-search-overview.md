@@ -71,7 +71,7 @@ For portal and programmatic access to vector search, you can use:
 + The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 + The [Search Service REST APIs](/rest/api/searchservice).
 + The Azure SDKs for [.NET](https://www.nuget.org/packages/Azure.Search.Documents), [Python](https://pypi.org/project/azure-search-documents), and [JavaScript](https://www.npmjs.com/package/@azure/search-documents).
-+ [Other Azure offerings](#azure-integration-and-related-services), such as Azure AI Foundry.
++ [Other Azure offerings](#azure-integration-and-related-services), such as Microsoft Foundry.
 
 > [!NOTE]
 > + Some search services created before January 1, 2019 don't support vector workloads. If you try to add a vector field to a schema and get an error, it's a result of outdated services. In this situation, you must create a new search service to try out the vector feature.
@@ -84,9 +84,9 @@ Azure AI Search is deeply integrated across the Azure AI platform. The following
 
 | Product | Integration |
 |---------|-------------|
-| Azure AI Foundry | Agents in Azure AI Foundry can integrate with Azure AI Search knowledge bases via Model Context Protocol (MCP) for knowledge retrieval and grounded reasoning. For more information, see [Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval). |
+| Foundry | Agents in Foundry can integrate with Azure AI Search knowledge bases via Model Context Protocol (MCP) for knowledge retrieval and grounded reasoning. For more information, see [Use knowledge to improve retrieval quality in Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval). |
 | Azure OpenAI | Azure OpenAI provides embedding models and chat models. Demos and samples target the [text-embedding-ada-002](/azure/ai-services/openai/concepts/models#embeddings-models) model. We recommend Azure OpenAI for generating embeddings for text. |
-| Azure AI Foundry Tools | [Image Retrieval Vectorize Image API (preview)](/azure/ai-services/computer-vision/how-to/image-retrieval#call-the-vectorize-image-api) supports vectorization of image content. We recommend this API for generating embeddings for images. |
+| Foundry Tools | [Image Retrieval Vectorize Image API (preview)](/azure/ai-services/computer-vision/how-to/image-retrieval#call-the-vectorize-image-api) supports vectorization of image content. We recommend this API for generating embeddings for images. |
 | Azure data platforms: Azure Blob Storage, Azure Cosmos DB, Azure SQL, Microsoft OneLake | You can use [indexers](search-indexer-overview.md) to automate data ingestion, and then use [integrated vectorization](vector-search-integrated-vectorization.md) to generate embeddings. Azure AI Search can automatically index vector data from [Azure blob indexers](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL indexers](search-how-to-index-cosmosdb-sql.md), [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md), [Azure Table Storage](search-how-to-index-azure-tables.md), and [Microsoft OneLake](search-how-to-index-onelake-files.md). For more information, see [Add vector fields to a search index.](vector-search-how-to-create-index.md). |
 
 It's also commonly used in open-source frameworks like [LangChain](https://js.langchain.com/docs/integrations/vectorstores/azure_aisearch).

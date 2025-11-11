@@ -26,7 +26,7 @@ else
 ```
 
 > [!NOTE]
-> This skill isn't bound to Azure AI Foundry Tools. It's nonbillable and has no Azure AI Foundry Tools key requirement.
+> This skill isn't bound to Foundry Tools. It's nonbillable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Util.ConditionalSkill

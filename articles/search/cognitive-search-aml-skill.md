@@ -1,7 +1,7 @@
 ---
 title: Custom AML skill in skillsets
 titleSuffix: Azure AI Search
-description: Learn how to extend the capabilities of Azure AI Search skillsets with Azure AI Foundry or Azure Machine Learning models.
+description: Learn how to extend the capabilities of Azure AI Search skillsets with Microsoft Foundry or Azure Machine Learning models.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
@@ -16,9 +16,9 @@ ms.update-cycle: 180-days
 # AML skill
 
 > [!IMPORTANT]
-> Support for indexer connections to the Azure AI Foundry model catalog is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Preview REST APIs support this capability.
+> Support for indexer connections to the model catalog is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Preview REST APIs support this capability.
 
-Use the **AML** skill to extend AI enrichment with a deployed base embedding model from the [Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md) or a custom [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) model. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
+Use the **AML** skill to extend AI enrichment with a deployed base embedding model from the [Microsoft Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md) or a custom [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) model. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 You specify the AML skill in a skillset, which then integrates your deployed model into an AI enrichment pipeline. The AML skill is useful for performing processing or inference not supported by built-in skills. Examples include generating embeddings with your own model and applying custom machine learning logic to enriched content.
 
@@ -26,26 +26,26 @@ For AML online endpoints, use a stable API version or an equivalent Azure SDK to
 
 ## AML skill usage
 
-Like other skills, the AML skill has inputs and outputs. The inputs are sent as a JSON object to a serverless deployment from the Azure AI Foundry model catalog or an AML online endpoint. The output should include a success status code, JSON payload, and the parameters specified by your AML skill definition. Any other response is considered an error, and no enrichments are performed.
+Like other skills, the AML skill has inputs and outputs. The inputs are sent as a JSON object to a serverless deployment from the Foundry model catalog or an AML online endpoint. The output should include a success status code, JSON payload, and the parameters specified by your AML skill definition. Any other response is considered an error, and no enrichments are performed.
 
 The indexer retries two times for the following HTTP status codes:
 
 + `503 Service Unavailable`
 + `429 Too Many Requests`
 
-## AML skill for models in Azure AI Foundry
+## AML skill for models in Foundry
 
-Azure AI Search provides the [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data (new)** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
+Azure AI Search provides the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data (new)** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
 
-During indexing, the AML skill can connect to the model catalog to generate vectors for the index. At query time, queries can use a vectorizer to connect to the same model to vectorize text strings. You should use the AML skill and the Azure AI Foundry model catalog vectorizer together so that the same embedding model is used for indexing and queries. For more information, see [Use embedding models from the Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md).
+During indexing, the AML skill can connect to the model catalog to generate vectors for the index. At query time, queries can use a vectorizer to connect to the same model to vectorize text strings. You should use the AML skill and the Microsoft Foundry model catalog vectorizer together so that the same embedding model is used for indexing and queries. For more information, see [Use embedding models from the Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md).
 
-We recommend using the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) to generate a skillset that includes an AML skill for deployed embedding models in Azure AI Foundry. The wizard generates the AML skill definition for inputs, outputs, and mappings, providing an easy way to test a model before writing any code.
+We recommend using the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) to generate a skillset that includes an AML skill for deployed embedding models in Foundry. The wizard generates the AML skill definition for inputs, outputs, and mappings, providing an easy way to test a model before writing any code.
 
 ## Prerequisites
 
-+ An [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
++ A [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
 
-+ For hub-based projects only, a [serverless deployment](/azure/ai-foundry/how-to/deploy-models-serverless) of a [supported model](#skill-parameters) from the Azure AI Foundry model catalog.
++ For hub-based projects only, a [serverless deployment](/azure/ai-foundry/how-to/deploy-models-serverless) of a [supported model](#skill-parameters) from the Foundry model catalog.
 
 ## @odata.type
 
@@ -57,7 +57,7 @@ Parameters are case sensitive. The parameters you use depend on what [authentica
 
 | Parameter name | Description |
 |--------------------|-------------|
-| `uri` | (Required for [key authentication](#WhatSkillParametersToUse)) The target URI of the serverless deployment from the Azure AI Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. Supported models from the model catalog are:<ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
+| `uri` | (Required for [key authentication](#WhatSkillParametersToUse)) The target URI of the serverless deployment from the Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. Supported models from the model catalog are:<ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
 | `key` | (Required for [key authentication](#WhatSkillParametersToUse)) The API key of the model provider. |
 | `resourceId` | (Required for [token authentication](#WhatSkillParametersToUse)) The Azure Resource Manager resource ID of the model provider. For an AML online endpoint, use the `subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}` format. |
 | `region` | (Optional for [token authentication](#WhatSkillParametersToUse)) The region in which the model provider is deployed. Required if the region is different from the region of the search service. |
@@ -72,7 +72,7 @@ The AML skill provides two authentication options:
 
 + **Key-based authentication**. You provide a static key to authenticate scoring requests from the AML skill. Set the `uri` and `key` parameters for this connection.
 
-+ **Token-based authentication**. The Azure AI Foundry hub-based project or AML online endpoint is deployed using token-based authentication. The Azure AI Search service must have a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and a role assignment on the model provider. The AML skill then uses the search service identity to authenticate against the model provider, with no static keys required. The search service identity must have the **Owner** or **Contributor** role. Set the `resourceId` parameter, and if the search service is in a different region from the model provider, set the `region` parameter.
++ **Token-based authentication**. The Foundry hub-based project or AML online endpoint is deployed using token-based authentication. The Azure AI Search service must have a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and a role assignment on the model provider. The AML skill then uses the search service identity to authenticate against the model provider, with no static keys required. The search service identity must have the **Owner** or **Contributor** role. Set the `resourceId` parameter, and if the search service is in a different region from the model provider, set the `region` parameter.
 
 ## Skill inputs
 
@@ -106,7 +106,7 @@ Skill outputs are new nodes of an enriched document created by the skill. There 
 
 ## Sample input JSON structure
 
-This JSON structure represents the payload sent to your Azure AI Foundry hub-based project or AML online endpoint. The top-level fields of the structure correspond to the "names" specified in the `inputs` section of the skill definition. The values of those fields are from the "sources" of those fields, which could be from a field in the document or another skill.
+This JSON structure represents the payload sent to your Foundry hub-based project or AML online endpoint. The top-level fields of the structure correspond to the "names" specified in the `inputs` section of the skill definition. The values of those fields are from the "sources" of those fields, which could be from a field in the document or another skill.
 
 ```json
 {
@@ -116,7 +116,7 @@ This JSON structure represents the payload sent to your Azure AI Foundry hub-bas
 
 ## Sample output JSON structure
 
-The output corresponds to the response from your Azure AI Foundry hub-based project or AML online endpoint. The model provider should only return a JSON payload (verified by looking at the `Content-Type` response header) and should be an object whose fields are enrichments matching the "names" in the `output` and whose value is considered the enrichment.
+The output corresponds to the response from your Foundry hub-based project or AML online endpoint. The model provider should only return a JSON payload (verified by looking at the `Content-Type` response header) and should be an object whose fields are enrichments matching the "names" in the `output` and whose value is considered the enrichment.
 
 ```json
 {
@@ -170,7 +170,7 @@ The output corresponds to the response from your Azure AI Foundry hub-based proj
 
 ## Error cases
 
-In addition to your Azure AI Foundry hub-based project or AML online endpoint being unavailable or sending nonsuccessful status codes, the following cases are considered errors:
+In addition to your Foundry hub-based project or AML online endpoint being unavailable or sending nonsuccessful status codes, the following cases are considered errors:
 
 * The model provider returns a success status code, but the response indicates that it isn't `application/json`. The response is thus invalid, and no enrichments are performed.
 
@@ -181,5 +181,5 @@ If the model provider is unavailable or returns an HTTP error, a friendly error 
 ## See also
 
 + [Create a skillset in Azure AI Search](cognitive-search-defining-skillset.md)
-+ [Use embedding models from Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md)
++ [Use embedding models from Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md)
 + [Troubleshoot Azure Machine Learning online endpoint deployment and scoring](../machine-learning/how-to-troubleshoot-online-endpoints.md)

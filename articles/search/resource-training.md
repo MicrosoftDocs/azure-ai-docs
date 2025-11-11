@@ -19,7 +19,7 @@ Training modules deliver an end-to-end experience that helps you build skills an
 
 Learning paths are a collection of training modules that are organized around specific roles (like developer) or technologies (like Azure AI Search). Azure AI Search is covered in two learning paths.
 
-+ [Microsoft Azure AI Fundamentals: Azure Document Intelligence and Knowledge Mining](/training/paths/document-intelligence-knowledge-mining/) includes two modules: [Fundamentals of Azure AI Search and knowledge mining](/training/modules/intro-to-azure-search/) and [Fundamentals of Azure Document Intelligence](/training/modules/analyze-receipts-form-recognizer/). Choose this learning path to broaden your understanding of when to use each technology.
++ [Microsoft Azure AI Fundamentals: Azure Document Intelligence in Foundry Tools and Knowledge Mining](/training/paths/document-intelligence-knowledge-mining/) includes two modules: [Fundamentals of Azure AI Search and knowledge mining](/training/modules/intro-to-azure-search/) and [Fundamentals of Azure Document Intelligence](/training/modules/analyze-receipts-form-recognizer/). Choose this learning path to broaden your understanding of when to use each technology.
 
 + [Implement knowledge mining with Azure AI Search](/training/paths/implement-knowledge-mining-azure-cognitive-search/) includes eight modules that teach important skills. Choose this learning path to gain expertise in Azure AI Search.
 
@@ -40,8 +40,8 @@ Learning paths are a collection of training modules that are organized around sp
 
 ## RAG-centric modules
 
-+ [Build a RAG-based copilot solution with your own data using Azure AI Foundry](/training/modules/build-copilot-ai-studio/)
-+ [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI in Azure AI Foundry Models](/training/modules/use-own-data-azure-openai/)
++ [Build a RAG-based copilot solution with your own data using Microsoft Foundry](/training/modules/build-copilot-ai-studio/)
++ [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI in Foundry Models](/training/modules/use-own-data-azure-openai/)
 
 ## Pluralsight training
 

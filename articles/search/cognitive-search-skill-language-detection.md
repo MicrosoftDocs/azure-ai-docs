@@ -21,7 +21,7 @@ This capability is especially useful when you need to provide the language of th
 See [supported languages](/azure/ai-services/language-service/language-detection/language-support) for Language Detection. If you have content expressed in an unsupported language, the response is `(Unknown)`.
 
 > [!NOTE]
-> This skill is bound to Azure AI Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type  

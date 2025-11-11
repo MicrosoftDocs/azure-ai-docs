@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create a Knowledge Store in the Azure Portal"
+title: "Quickstart: Create a Knowledge Store in the Azure portal"
 titleSuffix: Azure AI Search
 description: Learn how to use the Import Data wizard to create a knowledge store for persisting enriched content. Connect to a knowledge store for analysis from other apps or send enriched content to downstream processes.
 author: haileytap
@@ -39,7 +39,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
   + [Upload the file to a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) in Azure Storage.
 
 > [!NOTE]
-> This quickstart uses [Azure AI Foundry Tools](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Azure AI Foundry Tools is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Azure AI Foundry resource.
+> This quickstart uses [Foundry Tools](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Foundry Tools is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Microsoft Foundry resource.
 
 ## Start the wizard
 
@@ -79,7 +79,7 @@ Because the data is multiple rows in one CSV file, set the *parsing mode* to get
 
 In this wizard step, add skills for AI enrichment. The source data consists of customer reviews in English and French. Skills that are relevant for this data set include key phrase extraction, sentiment detection, and text translation. In a later step, these enrichments are "projected" into a knowledge store as Azure tables.
 
-1. Expand **Attach Azure AI Foundry Tools**. **Free (Limited enrichments)** is selected by default. You can use this resource because the number of records in HotelReviews-Free.csv is 19 and this free resource allows up to 20 transactions a day.
+1. Expand **Attach Foundry Tools**. **Free (Limited enrichments)** is selected by default. You can use this resource because the number of records in HotelReviews-Free.csv is 19 and this free resource allows up to 20 transactions a day.
 
 1. Expand **Add enrichments**.
 

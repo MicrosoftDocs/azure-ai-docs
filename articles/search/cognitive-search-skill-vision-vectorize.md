@@ -19,14 +19,14 @@ ms.date: 10/23/2025
 
 The **Azure Vision multimodal embeddings** skill uses the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval) from Azure Vision in Foundry Tools to generate embeddings for text or image input.
 
-For transactions that exceed 20 documents per indexer per day, this skill requires that you [attach a billable Azure AI Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Execution of built-in skills is charged at the existing [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
+For transactions that exceed 20 documents per indexer per day, this skill requires that you [attach a billable Microsoft Foundry resource to your skillset](cognitive-search-attach-cognitive-services.md). Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction is also [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 
-Location of resources is a consideration for billing. Because you're using a preview REST API version to create a skillset that contains preview skills, you can use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to bypass the same-region requirement. However, for key-based connections, Azure AI Search and Azure AI Foundry must be in the same region. To ensure region compatibility:
+Location of resources is a consideration for billing. Because you're using a preview REST API version to create a skillset that contains preview skills, you can use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to bypass the same-region requirement. However, for key-based connections, Azure AI Search and Foundry must be in the same region. To ensure region compatibility:
 
 1. Find a [supported region for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability).
 1. Verify the [region provides AI enrichment](search-region-support.md).
 
-The Azure AI Foundry resource is used for billing purposes only. Content processing occurs on separate resources managed and maintained by Azure AI Search within the same geo. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your resource is deployed.
+The Foundry resource is used for billing purposes only. Content processing occurs on separate resources managed and maintained by Azure AI Search within the same geo. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your resource is deployed.
 
 ## @odata.type  
 

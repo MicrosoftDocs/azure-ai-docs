@@ -15,7 +15,7 @@ To configure access for this quickstart, select both of the following tabs.
 
 ### [Azure AI Search](#tab/search-perms)
 
-Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with Azure AI Foundry, and run the pipeline.
+Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with Foundry, and run the pipeline.
 
 On your Azure AI Search service:
 
@@ -31,11 +31,11 @@ On your Azure AI Search service:
 
     + **Search Index Data Reader**
 
-### [Azure AI Foundry](#tab/foundry-perms)
+### [Microsoft Foundry](#tab/foundry-perms)
 
-Azure AI Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
+Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
-On your Azure AI Foundry resource:
+On your Foundry resource:
 
 + Assign **Cognitive Services User** to the managed identity of your search service.
 
@@ -51,7 +51,7 @@ On your Azure AI Foundry resource:
 
 ## Get endpoints
 
-Each Azure AI Search service and Azure AI Foundry resource has an *endpoint*, which is a unique URL that identifies and provides network access to the resource. In a later section, you specify these endpoints to connect to your resources programmatically.
+Each Azure AI Search service and Foundry resource has an *endpoint*, which is a unique URL that identifies and provides network access to the resource. In a later section, you specify these endpoints to connect to your resources programmatically.
 
 To get the endpoints for this quickstart, select both of the following tabs.
 
@@ -63,9 +63,9 @@ To get the endpoints for this quickstart, select both of the following tabs.
 
 1. Make a note of the endpoint, which should look like `https://my-service.search.windows.net`.
 
-### [Azure AI Foundry](#tab/foundry-endpoint)
+### [Microsoft Foundry](#tab/foundry-endpoint)
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Foundry resource.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Foundry resource.
 
 1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
 
@@ -77,10 +77,10 @@ To get the endpoints for this quickstart, select both of the following tabs.
 
 ## Deploy models
 
-To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure AI Foundry project:
+To use agentic retrieval, you must deploy two Azure OpenAI models to your Foundry project:
 
 + An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
 
 + An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
 
-For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
+For deployment instructions, see [Deploy Azure OpenAI models with Foundry](/azure/ai-foundry/how-to/deploy-models-openai).

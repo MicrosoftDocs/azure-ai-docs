@@ -17,7 +17,7 @@ ms.update-cycle: 365-days
 The **Entity Linking** skill (v3) returns a list of recognized entities with links to articles in a well-known knowledge base (Wikipedia).
 
 > [!NOTE]
-> This skill is bound to the [Entity Linking](/azure/ai-services/language-service/entity-linking/overview) machine learning models in [Azure Vision in Foundry Tools](/azure/ai-services/language-service/overview). It requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to the [Entity Linking](/azure/ai-services/language-service/entity-linking/overview) machine learning models in [Azure Vision in Foundry Tools](/azure/ai-services/language-service/overview). It requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type

@@ -24,7 +24,7 @@ Several parameters are version-specific. The skills parameter table notes the AP
 The Azure portal supports most preview features and can be used to create or update a skillset. For updates to the Text Split skill, edit the skillset JSON definition to add new preview parameters. 
 
 > [!NOTE]
-> This skill isn't bound to Azure AI Foundry Tools. It's non-billable and has no Azure AI Foundry Tools key requirement.
+> This skill isn't bound to Foundry Tools. It's non-billable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Text.SplitSkill 

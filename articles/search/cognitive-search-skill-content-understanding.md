@@ -18,7 +18,7 @@ ms.update-cycle: 365-days
 
 The **Azure Content Understanding** skill uses [document analyzers](/azure/ai-services/content-understanding/document/overview) from [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/overview) to analyze unstructured documents and other content types, generating organized, searchable outputs that can be integrated into automation workloads. This skill extracts both text and images, including location metadata that preserves each image's position within the document. Image proximity to related content is especially useful for [multimodal search](multimodal-search-overview.md), [agentic retrieval](agentic-retrieval-overview.md), and [retrieval-augmented generation](retrieval-augmented-generation-overview.md) (RAG).
 
-You can use the Azure Content Understanding skill for both content extraction and chunking. There's no need to use the Text Split skill in your skillset. This skill implements the same interface as the Document Layout skill, which uses the [Azure Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) when `outputFormat` is set to `text`. However, the Azure Content Understanding skill offers several advantages over the Document Layout skill:
+You can use the Azure Content Understanding skill for both content extraction and chunking. There's no need to use the Text Split skill in your skillset. This skill implements the same interface as the Document Layout skill, which uses the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) when `outputFormat` is set to `text`. However, the Azure Content Understanding skill offers several advantages over the Document Layout skill:
 
 + Tables and figures are output in Markdown format, making them easier for large language models (LLMs) to understand. In contrast, the Document Layout skill outputs tables and figures as plain text, which can result in information loss.
 
@@ -28,7 +28,7 @@ You can use the Azure Content Understanding skill for both content extraction an
 
 + The Azure Content Understanding skill is more cost effective than the Document Layout skill because the Content Understanding API is less expensive.
 
-The Azure Content Understanding skill is bound to a [billable Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other
+The Azure Content Understanding skill is bound to a [billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Unlike other
 Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
 
 > [!TIP]
@@ -41,15 +41,15 @@ Azure AI resource skills, such as the [Document Layout skill](/azure/search/cogn
 
 The Azure Content Understanding skill has the following limitations:
 
-+ This skill isn't suitable for large documents requiring more than five minutes of processing in the Content Understanding document analyzer. The skill times out, but charges still apply to the Azure AI Foundry resource that's attached to the skillset. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ This skill isn't suitable for large documents requiring more than five minutes of processing in the Content Understanding document analyzer. The skill times out, but charges still apply to the Foundry resource that's attached to the skillset. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
 + This skill calls the Azure Content Understanding document analyzer, so all documented [service behaviors for different document types](/azure/ai-services/content-understanding/service-limits#document-and-text) apply to its output. For example, Word (DOCX) and PDF files might produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
 
 ## Supported regions
 
-The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true). Your Azure AI Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support#preview-api-2025-05-01-preview).
+The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true). Your Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support#preview-api-2025-05-01-preview).
 
-Your search service can be in any [supported Azure AI Search region](search-region-support.md). When your Azure AI Foundry resource and Azure AI Search service aren't in the same region, cross-region network latency impacts your indexer's performance.
+Your search service can be in any [supported Azure AI Search region](search-region-support.md). When your Foundry resource and Azure AI Search service aren't in the same region, cross-region network latency impacts your indexer's performance.
 
 ## Supported file formats
 

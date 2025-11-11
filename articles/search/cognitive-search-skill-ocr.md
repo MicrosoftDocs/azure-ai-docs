@@ -32,7 +32,7 @@ The **OCR** skill extracts text from image files and embedded images. Supported 
 Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 > [!NOTE]
-> This skill is bound to Azure AI Foundry Tools and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the [Azure AI Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 > In addition, image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 
