@@ -1,7 +1,7 @@
 ---
-title: Evaluate Generative AI Models and Apps with Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Evaluate your generative AI models and applications by using Azure AI Foundry.
+title: Evaluate Generative AI Models and Apps with Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Evaluate your generative AI models and applications by using Microsoft Foundry.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
@@ -11,18 +11,18 @@ ms.date: 11/18/2025
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to evaluate my generative AI models and applications using Azure AI Foundry so I can assess their performance and safety with comprehensive metrics.
+# customer intent: As a developer, I want to evaluate my generative AI models and applications using Microsoft Foundry so I can assess their performance and safety with comprehensive metrics.
 ---
 
-# Evaluate generative AI models and applications by using Azure AI Foundry
+# Evaluate generative AI models and applications by using Microsoft Foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 To thoroughly assess the performance of your generative AI models and applications on a substantial dataset, initiate an evaluation process. During this evaluation, the model or application is tested with the given dataset, and its performance is measured using mathematical metrics and AI-assisted metrics. This evaluation run provides comprehensive insights into the application's capabilities and limitations.
 
-Use the evaluation functionality in the Azure AI Foundry portal, a platform that offers tools and features for assessing the performance and safety of generative AI models. In the Azure AI Foundry portal, log, view, and analyze detailed evaluation metrics.
+Use the evaluation functionality in the Microsoft Foundry portal, a platform that offers tools and features for assessing the performance and safety of generative AI models. In the Foundry portal, log, view, and analyze detailed evaluation metrics.
 
-This article explains how to create an evaluation run against a model, agent, or test dataset using built-in evaluation metrics from the Azure AI Foundry UI. For greater flexibility, you can establish a custom evaluation flow and employ the  **custom evaluation** feature. Use the **custom evaluation** feature to conduct a batch run without evaluation.
+This article explains how to create an evaluation run against a model, agent, or test dataset using built-in evaluation metrics from the Foundry UI. For greater flexibility, you can establish a custom evaluation flow and employ the  **custom evaluation** feature. Use the **custom evaluation** feature to conduct a batch run without evaluation.
 
 ## Prerequisites
 
@@ -44,7 +44,7 @@ This article explains how to create an evaluation run against a model, agent, or
 
 ::: moniker range="foundry-classic"
 
-An evaluation run lets you generate metric outputs for each data row in your test dataset. Select one or more evaluation metrics to assess the output from different aspects. Create an evaluation run from the evaluation or model catalog pages in the Azure AI Foundry portal. The evaluation creation wizard guides you through setting up an evaluation run.
+An evaluation run lets you generate metric outputs for each data row in your test dataset. Select one or more evaluation metrics to assess the output from different aspects. Create an evaluation run from the evaluation or model catalog pages in the Foundry portal. The evaluation creation wizard guides you through setting up an evaluation run.
 
 ::: moniker-end
 
@@ -166,12 +166,12 @@ AI Quality (NLP) metrics are mathematically based measurements that assess your 
 
 ::: moniker-end
 
-For risk and safety metrics, you don't need to provide a deployment. The Azure AI Foundry portal provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
+For risk and safety metrics, you don't need to provide a deployment. The Foundry portal provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
 
 ::: moniker range="foundry-classic"
 
 > [!NOTE]
-> AI-assisted risk and safety metrics are hosted by Azure AI Foundry safety evaluations and are available only in the following regions: East US 2, France Central, UK South, Sweden Central.
+> AI-assisted risk and safety metrics are hosted by Foundry safety evaluations and are available only in the following regions: East US 2, France Central, UK South, Sweden Central.
 
 :::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot that shows the metric Violent content, which is one of the risk and safety metrics." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
 
@@ -287,7 +287,7 @@ See the details and status of your evaluators in one place in the evaluator libr
 
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily.
 
-To use the evaluator library in the Azure AI Foundry portal, go to your project's **Evaluation** page and select the **Evaluator library** tab.
+To use the evaluator library in the Foundry portal, go to your project's **Evaluation** page and select the **Evaluator library** tab.
 
 Select the evaluator name to see more details, including the name, description, parameters, and any associated files. Here are some examples of Microsoft-curated evaluators:
 
@@ -302,4 +302,4 @@ Learn more about evaluating your generative AI applications:
 
 - [View the evaluation results](./evaluate-results.md)
 - [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md)
-- [Transparency note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md)
+- [Transparency note for Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md)

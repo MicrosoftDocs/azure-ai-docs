@@ -1,7 +1,7 @@
 ---
-title: Transparency Note for Optical Character Recognition (OCR) - Azure AI Vision
-titleSuffix: Azure AI services
-description: Transparency note for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure AI Vision API.
+title: Transparency Note for Optical Character Recognition (OCR) - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Transparency note for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -30,7 +30,7 @@ Businesses today frequently need to convert text from images, scanned paper docu
 
 ### The basics of OCR
 
-The [OCR technology](/azure/ai-services/computer-vision/overview-ocr) from Microsoft is offered via the Azure AI Vision Read API. Customers call the Read API with their content to get the extracted text, its location, and other insights in machine readable text output. They process the output within their business applications to implement content intelligence, business process automation, and other scenarios for their users.
+The [OCR technology](/azure/ai-services/computer-vision/overview-ocr) from Microsoft is offered via the Azure Vision in Foundry Tools Read API. Customers call the Read API with their content to get the extracted text, its location, and other insights in machine readable text output. They process the output within their business applications to implement content intelligence, business process automation, and other scenarios for their users.
 
 | Term | Definition |
 |:-----|:----|

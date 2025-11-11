@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure AI Foundry fine-tuning'
+title: 'Customize a model with Microsoft Foundry fine-tuning'
 titleSuffix: Azure OpenAI
-description: Learn how to fine-tune and customize AI Foundry models using Python, REST APIs, or Azure AI Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
+description: Learn how to fine-tune and customize AI Foundry models using Python, REST APIs, or Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Customize a model with fine-tuning
 
-Learn how to fine-tune models in Azure AI Foundry for your datasets and use cases. Fine-tuning enables:
+Learn how to fine-tune models in Microsoft Foundry for your datasets and use cases. Fine-tuning enables:
 
 - Higher quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md)
 - The ability to train on more examples than can fit into a model's max request context limit.
@@ -39,13 +39,13 @@ In this article, you will learn how to:
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure AI Foundry portal fine-tuning](../../includes/fine-tuning-foundry.md)]
+[!INCLUDE [Foundry portal fine-tuning](../../includes/fine-tuning-foundry.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Azure AI Foundry portal fine-tuning](../../includes/fine-tune-foundry-python.md)]
+[!INCLUDE [Foundry portal fine-tuning](../../includes/fine-tune-foundry-python.md)]
 
 ::: zone-end
 
@@ -61,7 +61,7 @@ In this article, you will learn how to:
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
+[!INCLUDE [Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
 
 ::: zone-end
 

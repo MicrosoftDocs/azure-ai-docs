@@ -1,5 +1,5 @@
 ---
-title:  Prompt engineering techniques | Azure AI Foundry Models
+title:  Prompt engineering techniques | Microsoft Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to use prompt engineering to optimize your work with Azure OpenAI.
 ms.service: azure-ai-foundry

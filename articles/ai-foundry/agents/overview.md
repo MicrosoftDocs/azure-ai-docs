@@ -1,6 +1,6 @@
 ---
-title: What is Azure AI Foundry Agent Service?
-titleSuffix: Azure AI Foundry
+title: What is Foundry Agent Service?
+titleSuffix: Microsoft Foundry
 description: Learn how to create agents that apply advanced language models for workflow automation.
 manager: nitinme
 author: aahill
@@ -14,7 +14,7 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 
-# What is Azure AI Foundry Agent Service?
+# What is Foundry Agent Service?
 
 Most businesses don’t want just chatbots - they want automation that's faster and with fewer errors. That might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 
@@ -22,14 +22,14 @@ Large language models (LLMs) opened the door to a new type of automation with sy
 
 :::row:::
     :::column span="1":::
-**Azure AI Foundry** is designed to change that. It's a platform that combines models, tools, frameworks, and governance into a unified system for building intelligent agents. At the center of this system is **Azure AI Foundry Agent Service**, enabling the operation of agents across development, deployment, and production.
+**Microsoft Foundry** is designed to change that. It's a platform that combines models, tools, frameworks, and governance into a unified system for building intelligent agents. At the center of this system is **Foundry Agent Service**, enabling the operation of agents across development, deployment, and production.
     :::column-end:::
     :::column span="3":::
-![Graphic that shows Foundry Agent Service is the Azure AI Foundry glue.](media\agent-service-the-glue.png)
+![Graphic that shows Foundry Agent Service is the Foundry glue.](media\agent-service-the-glue.png)
     :::column-end:::
 :::row-end:::
 
-AI Foundry Agent Service connects the core pieces of Azure AI Foundry such as models, tools, and frameworks into a single runtime. It manages threads, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems to ensure agents are secure, scalable, and production-ready.
+AI Foundry Agent Service connects the core pieces of Foundry such as models, tools, and frameworks into a single runtime. It manages threads, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems to ensure agents are secure, scalable, and production-ready.
 
 By abstracting away infrastructure complexity and enforcing trust and safety by design, AI Foundry Agent Service makes it easy to move from prototype to production with confidence.
 
@@ -55,9 +55,9 @@ Agents receive unstructured inputs such as user prompts, alerts, or messages fro
 
 ## How do agents in AI Foundry work?
 
-Think of Azure AI Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together different specialized stations, each responsible for shaping part of the final product. Instead of machines and conveyor belts, the Agent Factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production-ready. Here’s how the factory works step by step:
+Think of Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together different specialized stations, each responsible for shaping part of the final product. Instead of machines and conveyor belts, the Agent Factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production-ready. Here’s how the factory works step by step:
 
-![Graphic that shows Azure AI Foundry: Agent Factory.](media\agent-factory.png)
+![Graphic that shows Foundry: Agent Factory.](media\agent-factory.png)
 
 
 :::row:::
@@ -99,11 +99,11 @@ It's important to ensure agents are suitable and reliable for the workload they'
 
 The result? An agent that's ready for production: reliable, extensible, and safe to deploy across your workflows.
 
-## Why Use Azure AI Foundry Agent Service?
+## Why Use Agent Service?
 
-Azure AI Foundry Agent Service provides a production-ready foundation for deploying intelligent agents in enterprise environments. Here's how it compares across key capabilities:
+Agent Service provides a production-ready foundation for deploying intelligent agents in enterprise environments. Here's how it compares across key capabilities:
 
-| Capability | Azure AI Foundry Agent Service | 
+| Capability | Agent Service | 
 |------------|--------------------------------|
 | **1. Visibility into conversations** | Full access to structured [threads](./concepts/threads-runs-messages.md#threads), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
 | **2. Multi-agent coordination** | Built-in support for agent-to-agent messaging. |
@@ -115,7 +115,7 @@ Azure AI Foundry Agent Service provides a production-ready foundation for deploy
 
 ## Get started with Foundry Agent Service
 
-To get started with Foundry Agent Service, you need to create an Azure AI Foundry project in your Azure subscription. 
+To get started with Foundry Agent Service, you need to create a Foundry project in your Azure subscription. 
 
 Start with the [environment setup](environment-setup.md) and [quickstart](quickstart.md) guide if it's your first time using the service.
 1. You can create a project with the required resources. 
@@ -124,7 +124,7 @@ Start with the [environment setup](environment-setup.md) and [quickstart](quicks
 
 ## Business Continuity and Disaster Recovery (BCDR) for Agents
 
-To support service resilience, the Azure AI Foundry Agent service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered in the event of a regional outage.
+To support service resilience, the Foundry Agent service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered in the event of a regional outage.
 
 ### Use your own Cosmos DB account
 

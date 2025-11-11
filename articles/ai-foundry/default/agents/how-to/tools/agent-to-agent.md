@@ -1,6 +1,6 @@
 ---
 title: 'How to add an A2A agent endpoint to Foundry Agent Service'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use the A2A tool.
 services: azure-ai-agent-service
 manager: nitinme
@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Agent2Agent (A2A) tool (preview)
 
-You can extend the capabilities of your Azure AI Foundry agent by connecting it to agent endpoints that support the [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/) by using the A2A Tool. Developers and organizations maintain these agent endpoints. The A2A Tool makes sharing context between AI Foundry agents and external agent endpoints easier through a standardized protocol. 
+You can extend the capabilities of your Microsoft Foundry agent by connecting it to agent endpoints that support the [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/) by using the A2A Tool. Developers and organizations maintain these agent endpoints. The A2A Tool makes sharing context between AI Foundry agents and external agent endpoints easier through a standardized protocol. 
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 

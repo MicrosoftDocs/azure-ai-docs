@@ -1,6 +1,6 @@
 ---
 title: Vector stores for file search in Azure AI Agent Service
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: "Discover how vector stores in Azure AI Agent Service enable file search capabilities with automatic chunking, embedding, and semantic search for your AI agents." 
 services: cognitive-services
 manager: nitinme

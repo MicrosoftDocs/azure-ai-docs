@@ -44,13 +44,13 @@ While not all Foundry capabilities support organizing work in projects yet, your
 
 * To add a project to a Foundry resource:
     
-    # [Azure AI Foundry portal](#tab/ai-foundry)
+    # [Microsoft Foundry portal](#tab/ai-foundry)
     
     <!-- ::: moniker range="foundry-classic" -->
     
     [!INCLUDE [tip-left-pane](tip-left-pane.md)]
     
-    1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
+    1. In [Foundry](https://ai.azure.com/?cid=learnDocs), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
     1. In the left pane, select **Management center**.
     1. In the resource section, select  **Overview**.
     1. Select **New project** and provide a name.

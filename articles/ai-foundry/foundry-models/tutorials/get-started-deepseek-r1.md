@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Azure AI Foundry Models"
-titleSuffix: Azure AI Foundry
-description: Learn how to deploy and use DeepSeek-R1 reasoning model in Azure AI Foundry Models with step-by-step guidance and code examples.
+title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Microsoft Foundry Models"
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models with step-by-step guidance and code examples.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -10,18 +10,18 @@ ms.date: 10/30/2025
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
-#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Azure AI Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
+#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
 ---
 
-# Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models
+# Tutorial: Get started with DeepSeek-R1 reasoning model in Microsoft Foundry Models
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-In this tutorial, you learn how to deploy and use a DeepSeek reasoning model in Azure AI Foundry. This tutorial uses [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) for illustration. However, the content also applies to the newer [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) reasoning model.
+In this tutorial, you learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry. This tutorial uses [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) for illustration. However, the content also applies to the newer [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) reasoning model.
 
 The steps you perform in this tutorial are:
 
-* Create and configure the Azure resources to use DeepSeek-R1 in Azure AI Foundry Models.
+* Create and configure the Azure resources to use DeepSeek-R1 in Foundry Models.
 * Configure the model deployment.
 * Use DeepSeek-R1 with the next generation v1 Azure OpenAI APIs to consume the model in code
 
@@ -30,7 +30,7 @@ The steps you perform in this tutorial are:
 
 To complete this article, you need:
 
-- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md), if that applies to you.
+- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md), if that applies to you.
 
 
 [!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
@@ -50,10 +50,10 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 1. Search for the **DeepSeek-R1** model and open its model card.
     
-1. Select **Use this model**. This action opens up a wizard to create an Azure AI Foundry project and resources that you'll work in. You can keep the default name for the project or change it.
+1. Select **Use this model**. This action opens up a wizard to create a Foundry project and resources that you'll work in. You can keep the default name for the project or change it.
 
     > [!TIP]
-    > **Are you using Azure OpenAI in Azure AI Foundry Models?** When you're connected to Azure AI Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
+    > **Are you using Azure OpenAI in Foundry Models?** When you're connected to Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
     >
     > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
     >
@@ -65,7 +65,7 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
     | -------------- | ----------- |
     | Resource group | The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps to have a scope for the costs associated with the entire project. |
     | Region     | The region of the resources that you're creating. |
-    | Azure AI Foundry resource    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
+    | Foundry resource    | The resource enabling access to the flagship models in Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
 
 1. Select **Create** to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
@@ -84,11 +84,11 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 ::: moniker range="foundry-classic"
 
-1. When you create the project and resources, a deployment wizard appears. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Azure AI Foundry Models pricing page](https://azure.microsoft.com/pricing/details/phi-3/).
+1. When you create the project and resources, a deployment wizard appears. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Foundry Models pricing page](https://azure.microsoft.com/pricing/details/phi-3/).
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup allows you to configure specific names for your models when you attach specific configurations.
 
-1. Azure AI Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type, which offers higher throughput and performance.
+1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type, which offers higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png":::
 
@@ -205,7 +205,7 @@ In general, reasoning models don't support the following parameters that you can
 
 ## Related content
 
-- [How to generate chat completions with Azure AI Foundry Models](../how-to/use-chat-completions.md)
+- [How to generate chat completions with Foundry Models](../how-to/use-chat-completions.md)
 - [Use chat reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 

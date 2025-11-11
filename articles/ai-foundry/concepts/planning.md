@@ -1,7 +1,7 @@
 ---
-title: Azure AI Foundry Rollout Across My Organization
-titleSuffix: Azure AI Foundry
-description: Learn how to plan the rollout of Azure AI Foundry across your organization, including environment setup, data isolation, and governance.
+title: Microsoft Foundry Rollout Across My Organization
+titleSuffix: Microsoft Foundry
+description: Learn how to plan the rollout of Microsoft Foundry across your organization, including environment setup, data isolation, and governance.
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article
@@ -11,11 +11,11 @@ ms.reviewer: deeikele
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure AI Foundry rollout across my organization
+# Microsoft Foundry rollout across my organization
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This guide outlines key decisions for rolling out Azure AI Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Every organization is different. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
+This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Every organization is different. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
 
 ## Example organization
 
@@ -25,15 +25,15 @@ To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims t
 
 ## Rollout considerations
 
-The Azure AI Foundry resource defines the scope for configuring, securing, and monitoring your team’s environment. Projects are like folders to organize your work within this resource context. Projects also grant access to Foundry’s developer APIs and tools.
+The Foundry resource defines the scope for configuring, securing, and monitoring your team’s environment. Projects are like folders to organize your work within this resource context. Projects also grant access to Foundry’s developer APIs and tools.
 
-:::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Azure AI Foundry resource.":::
+:::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
 
-To ensure consistency, scalability, and governance across teams, consider the following environment setup practices when rolling out Azure AI Foundry:
+To ensure consistency, scalability, and governance across teams, consider the following environment setup practices when rolling out Foundry:
 
 - **Establish distinct environments for development, testing, and production** Use separate resource groups or subscriptions, and AI Foundry resources to isolate workflows, manage access, and support experimentation with controlled releases.
 
-- **Create a separate Azure AI Foundry resource for each business group** Align deployments with logical boundaries such as data domains or business functions to ensure autonomy, governance, and cost tracking.
+- **Create a separate Foundry resource for each business group** Align deployments with logical boundaries such as data domains or business functions to ensure autonomy, governance, and cost tracking.
 
 - **Define a project per use case** Foundry projects are designed to represent one specific use case. They're containers to organize components such as agents, files, for one application. While they inherit security settings from their parent resource, they also implement their own access controls, data integration, and other governance controls.
 
@@ -86,23 +86,23 @@ Effective access management is foundational to a secure and scalable AI Foundry 
 
 ## Establish connectivity with other Azure services
 
-Azure AI Foundry supports **connections**, which are reusable configurations that enable access to application components on Azure and non-Azure services. These connections also act as **identity brokers**, allowing Foundry to authenticate to external systems using managed identities or service principals on behalf of project users.
+Foundry supports **connections**, which are reusable configurations that enable access to application components on Azure and non-Azure services. These connections also act as **identity brokers**, allowing Foundry to authenticate to external systems using managed identities or service principals on behalf of project users.
 
 Connections can be created at the **AI Foundry resource level**—ideal for shared services like Azure Storage or Key Vault—or scoped to a **specific project**, which is recommended for sensitive or project-specific integrations. This flexibility allows teams to balance reuse and isolation based on their needs. [Learn more about connections in AI Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
 Connection authentication can be configured to use either shared access tokens—such as Microsoft Entra ID managed identities or API keys—for simplified management and onboarding, or user tokens via Entra ID passthrough, which offer greater control when accessing sensitive data sources.
 
-:::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Azure AI Foundry project connectivity and integration with other Azure services.":::
+:::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
 
 ### Example: Contoso’s connectivity strategy
 
-- Contoso creates an Azure AI Foundry resource for every business group, ensuring projects with similar data needs can share same connected resources.
+- Contoso creates a Foundry resource for every business group, ensuring projects with similar data needs can share same connected resources.
 - By default, connected resources use shared authentication tokens and are shared across all projects.
 - Projects that use sensitive data workloads, connect to data source with project-scoped connections, and EntraID passthrough authentication.
 
 ## Governance
 
-Effective governance in Azure AI Foundry ensures secure, compliant, and cost-efficient operations across business groups.
+Effective governance in Foundry ensures secure, compliant, and cost-efficient operations across business groups.
 
 - **Model Access Control with Azure Policy**
   Azure Policy allows you to enforce rules across Azure resources. In AI Foundry, you can use policies to restrict which models or model families specific business groups can access.
@@ -126,7 +126,7 @@ To prevent overuse and ensure fair resource allocation, you can apply [Tokens Pe
 
 ## Access extended functionality with Azure AI Hub
 
-While an Azure AI Foundry resource alone gives you access to most AI Foundry functionality, select capabilities are currently only available in combination with an Azure AI hub resource powered by Azure Machine Learning. These are capabilities lower in the AI development stack, focused on model customization.
+While a Foundry resource alone gives you access to most AI Foundry functionality, select capabilities are currently only available in combination with an Azure AI hub resource powered by Azure Machine Learning. These are capabilities lower in the AI development stack, focused on model customization.
 
 Hub resources require their own project types that can also be accessed using the Azure Machine Learning Studio/SDK/CLI. To help plan your deployment, see [this table](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../concepts/resource-types.md), for an overview of supported capabilities.
 
@@ -138,20 +138,20 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 
 - Secure the AI Foundry Environment
 
-  - Authentication & RBAC: [Role-based access control in Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md)
-  - - Networking: [Use a virtual network with Azure AI Foundry](../how-to/configure-private-link.md)
-  - Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](../../ai-services/openai/how-to/managed-identity.md)
-  - Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../concepts/encryption-keys-portal.md)
+  - Authentication & RBAC: [Role-based access control in Foundry](../concepts/rbac-azure-ai-foundry.md)
+  - - Networking: [Use a virtual network with Foundry](../how-to/configure-private-link.md)
+  - Identity & Managed Identity: [Configure managed identity in Foundry](../../ai-services/openai/how-to/managed-identity.md)
+  - Customer-Managed Keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)
   - Example infrastructure [templates repository with sample infrastructure templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
-  - [Recover or purge deleted Azure AI Foundry resources](../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context)
+  - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context)
 
 - Establish Connectivity with Other Azure Services
 
-  - Overview of Connections: [Add a new connection in Azure AI Foundry](../how-to/connections-add.md)
+  - Overview of Connections: [Add a new connection in Foundry](../how-to/connections-add.md)
 
 - Governance
 
   - Model Access Control with Azure Policy: [Control model deployment with built-in policies](../how-to/built-in-policy-model-deployment.md)
-  - Cost Management: [Plan and manage costs for Azure AI Foundry](../how-to/costs-plan-manage.md)
+  - Cost Management: [Plan and manage costs for Foundry](../how-to/costs-plan-manage.md)
   - Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](../how-to/monitor-applications.md)
   

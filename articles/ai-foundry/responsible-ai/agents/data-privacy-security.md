@@ -1,6 +1,6 @@
 ---
 title: Data, privacy, and security for Azure AI Agent Service
-titleSuffix: Azure AI Services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Azure AI Agent Service
 author: aahill
 ms.author: aahi

@@ -1,7 +1,7 @@
 ---
 title: Agent2Agent (A2A) authentication
-titleSuffix: Azure AI Foundry
-description: Learn about ways of adding authentication to the Agent2Agent tool in the Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -41,13 +41,13 @@ When the agent invokes the A2A endpoint, it will retrieve the credentials from y
 
 You can use your agent’s Agentic Identity to authenticate with A2A endpoints that support authenticating with Agentic Identity. If your agent is created with Foundry Agent Service, your agent will automatically be assigned an Agentic Identity. All agents in your Foundry Project will share the same Agentic Identity before publishing. After you publish an agent, your agent will be assigned a unique Agentic Identity. When you choose to authenticate with Agentic Identity, Foundry Agent Service will use the shared Agentic Identity if the agent hasn’t been published and therefore doesn’t have a unique Agentic Identity; it will use the unique Agentic Identity if the agent has been published and has a unique Agentic Identity.  
 
-You need to make sure your Agentic Identity has the proper RBAC role to the underlying service powering the A2A endpoint. <!--(please refer to the A2A endpoint documentation for specific RBAC roles needed)--> When you're connecting an A2A endpoint to your agent, you need to specify the scope URI of the service, for example, when you're connecting to Azure AI Foundry A2A endpoint, the scope URI is `http://ai.azure.com`.  
+You need to make sure your Agentic Identity has the proper RBAC role to the underlying service powering the A2A endpoint. <!--(please refer to the A2A endpoint documentation for specific RBAC roles needed)--> When you're connecting an A2A endpoint to your agent, you need to specify the scope URI of the service, for example, when you're connecting to Microsoft Foundry A2A endpoint, the scope URI is `http://ai.azure.com`.  
 
 When the agent invokes the A2A endpoint, it will use the available Agentic Identity to get its authorization token from the scope URI and pass it to the A2A endpoint for authentication.  
 
 ### Foundry project managed identity 
 
-You can use your Foundry Project's Managed Identity to authenticate with A2A endpoints that support authenticating with Managed Identity. You need to make sure your Foundry Project’s Managed Identity has the proper RBAC role to the underlying service powering the A2A endpoint. <!--(please refer to the A2A endpoint documentation for specific RBAC roles needed)--> When you're connecting the A2A endpoint to your agent, you need to specify the scope URI of the service, for example, when you're connecting to Azure AI Foundry A2A endpoint, the scope URI is `http://ai.azure.com`.  
+You can use your Foundry Project's Managed Identity to authenticate with A2A endpoints that support authenticating with Managed Identity. You need to make sure your Foundry Project’s Managed Identity has the proper RBAC role to the underlying service powering the A2A endpoint. <!--(please refer to the A2A endpoint documentation for specific RBAC roles needed)--> When you're connecting the A2A endpoint to your agent, you need to specify the scope URI of the service, for example, when you're connecting to Foundry A2A endpoint, the scope URI is `http://ai.azure.com`.  
 
 When the agent invokes the A2A endpoint, it will use the Foundry Project’s Managed Identity to get its authorization token from the scope URI and pass it to the A2A endpoint for authentication. 
 

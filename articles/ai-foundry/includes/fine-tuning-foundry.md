@@ -4,7 +4,7 @@
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
 - Fine-tuning access requires the **Azure AI User** role.
-- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you require [more permissions](../openai/how-to/role-based-access-control.md).
+- If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you require [more permissions](../openai/how-to/role-based-access-control.md).
 
 ### Supported models
 
@@ -62,9 +62,9 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 ## Create your fine-tuned model
 
-To fine-tune a model in an existing Azure AI Foundry project, follow these steps:
+To fine-tune a model in an existing Foundry project, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/) and select your project. If you don't have a project already, first [create a project](../how-to/create-projects.md).
+1. Sign in to [Foundry](https://ai.azure.com/) and select your project. If you don't have a project already, first [create a project](../how-to/create-projects.md).
 
 1. Navigate to **Build > Fine-tune** page and select the **Fine-tune** button at the top right.
 
@@ -171,7 +171,7 @@ See the [fine-tune deployment guide](../openai/how-to/fine-tuning-deploy.md?tabs
 
 ### Use a deployed fine-tuned model
 
-After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
+After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 
 > [!NOTE]
 > For chat models, the system message that you use to guide your fine-tuned model (whether it's deployed or available for testing in the playground) must be the same as the system message you used for training. If you use a different system message, the model might not perform as expected.
@@ -190,11 +190,11 @@ When you're done with your fine-tuned model, you can delete the deployment and m
 
 [!INCLUDE [Fine-tuning deletion](../openai/includes/fine-tune.md)]
 
-You can delete the deployment for your fine-tuned model on the **Build > Models** page in Azure AI Foundry portal.
+You can delete the deployment for your fine-tuned model on the **Build > Models** page in Foundry portal.
 
 ### Delete your fine-tuned model
 
-You can delete a fine-tuned model on the **Fine-tuning** page in Azure AI Foundry portal. Select the fine-tuned model to delete and then select **Delete** to delete the fine-tuned model.
+You can delete a fine-tuned model on the **Fine-tuning** page in Foundry portal. Select the fine-tuned model to delete and then select **Delete** to delete the fine-tuned model.
 
 > [!NOTE]
 > You can't delete a fine-tuned model if it has an existing deployment. You must first [delete your model deployment](#delete-your-fine-tuned-model-deployment) before you can delete your fine-tuned model.

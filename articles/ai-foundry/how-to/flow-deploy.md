@@ -1,7 +1,7 @@
 ---
 title: Deploy a Flow as a Managed Online Endpoint for Real-Time Inference
-titleSuffix: Azure AI Foundry
-description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -41,14 +41,14 @@ In this article, you learn how to deploy a flow as a managed online endpoint for
 To deploy a prompt flow as an online endpoint, you need:
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure AI Foundry project.
+- A Microsoft Foundry project.
 - A `Microsoft.PolicyInsights` resource provider registered in your subscription. For more information, see [Register a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 ## Create an online deployment
 
 After you build a flow and test it, create your online endpoint for real-time inference.
 
-To deploy a prompt flow as an online endpoint in the Azure AI Foundry portal:
+To deploy a prompt flow as an online endpoint in the Foundry portal:
 
 1. Have a prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](./flow-develop.md).
 1. Optional: Select **Chat** to test if the flow is working correctly. We recommend that you test your flow before deployment.
@@ -79,7 +79,7 @@ To deploy a prompt flow as an online endpoint in the Azure AI Foundry portal:
 
     :::image type="content" source="../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-score-url-samples.png" alt-text="Screenshot that shows the deployment endpoint and code samples." lightbox = "../media/prompt-flow/how-to-deploy-for-real-time-inference/deployments-score-url-samples.png":::
 
-For information about how to deploy a base model, see [Deploy models with Azure AI Foundry](deploy-models-managed.md).
+For information about how to deploy a base model, see [Deploy models with Foundry](deploy-models-managed.md).
 
 ## Settings and configurations
 
@@ -121,7 +121,7 @@ This setting identifies the authentication method for the endpoint. Key-based au
 
 #### Identity type
 
-The endpoint needs to access Azure resources for inferencing, such as Azure Container Registry or your Azure AI Foundry hub connections. You can allow the endpoint permission to access Azure resources by giving permission to its managed identity.
+The endpoint needs to access Azure resources for inferencing, such as Azure Container Registry or your Foundry hub connections. You can allow the endpoint permission to access Azure resources by giving permission to its managed identity.
 
 System-assigned identity is created after your endpoint is created. The user creates the user-assigned identity. For more information, see [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
 
@@ -133,16 +133,16 @@ If you have connection secrets reader permission, the endpoint is granted access
 
 ##### User assigned
 
-When you create the deployment, Azure tries to pull the user container image from the Azure AI Foundry hub's container registry and mounts the user model and code artifacts into the user container from the hub's storage account.
+When you create the deployment, Azure tries to pull the user container image from the Foundry hub's container registry and mounts the user model and code artifacts into the user container from the hub's storage account.
 
 If you create the associated endpoint with the **User Assigned Identity** option, grant the user-assigned identity the following roles before you create the deployment. Otherwise, the deployment creation fails.
 
 |Scope|Role|Why it's needed|
 |---|---|---|
-|Azure AI Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role or a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Gets project connections.|
-|Azure AI Foundry project container registry |**ACR Pull** |Pulls container images. |
-|Azure AI Foundry project default storage| **Storage Blob Data Reader**| Loads a model from storage. |
-|Azure AI Foundry project|**Azure Machine Learning Metrics Writer (preview)**| After you deploy the endpoint, if you want to monitor the endpoint-related metrics like CPU/GPU/Disk/Memory utilization, grant this permission to the identity.<br/><br/>Optional.|
+|Foundry project|**Azure Machine Learning Workspace Connection Secrets Reader** role or a customized role with `Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action` | Gets project connections.|
+|Foundry project container registry |**ACR Pull** |Pulls container images. |
+|Foundry project default storage| **Storage Blob Data Reader**| Loads a model from storage. |
+|Foundry project|**Azure Machine Learning Metrics Writer (preview)**| After you deploy the endpoint, if you want to monitor the endpoint-related metrics like CPU/GPU/Disk/Memory utilization, grant this permission to the identity.<br/><br/>Optional.|
 
 For more information about how to grant permissions to the endpoint identity, see [Grant permissions to the endpoint](#grant-permissions-to-the-endpoint).
 
@@ -176,7 +176,7 @@ If you enable this capability, tracing data and system metrics during inference 
 
 To grant the required permissions in the Azure portal, follow these steps:
 
-1. Go to the Azure AI Foundry project overview page in the [Azure portal](https://ms.portal.azure.com/#home).
+1. Go to the Foundry project overview page in the [Azure portal](https://ms.portal.azure.com/#home).
 
 1. Select **Access control (IAM)**, and then select **Add role assignment**.
 
@@ -242,6 +242,6 @@ If you aren't going to use the endpoint after you finish this tutorial, delete t
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-azure-ai-foundry.md).
-- Get answers to frequently asked questions in the [Azure AI Foundry FAQ](../faq.yml).
+- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md).
+- Get answers to frequently asked questions in the [Foundry FAQ](../faq.yml).
 - [Enable trace and collect feedback for your deployment](./develop/trace-production-sdk.md).

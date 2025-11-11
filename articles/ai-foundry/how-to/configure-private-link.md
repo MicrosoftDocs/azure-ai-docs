@@ -1,8 +1,8 @@
-﻿---
+---
 
-title: How to configure a private link for Azure AI Foundry projects
-titleSuffix: Azure AI Foundry
-description: Learn how to configure a private link for Azure AI Foundry projects. A private link is used to secure communication with the Azure AI Foundry.
+title: How to configure a private link for Microsoft Foundry projects
+titleSuffix: Microsoft Foundry
+description: Learn how to configure a private link for Microsoft Foundry projects. A private link is used to secure communication with the Microsoft Foundry.
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
@@ -16,10 +16,10 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
-# How to configure a private link for Azure AI Foundry (Foundry projects)
+# How to configure a private link for Microsoft Foundry (Foundry projects)
 
 > [!TIP]
-> An alternate hub-focused version of this article is available: [How to configure a private link for an Azure AI Foundry hub](hub-configure-private-link.md).
+> An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](hub-configure-private-link.md).
 
 When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
 
@@ -46,7 +46,7 @@ To connect to Foundry secured by a virtual network, use one of these methods:
 
 When creating a new project, use the following steps to create the project.
 
-1. From the [Azure portal](https://portal.azure.com), search for __Azure AI Foundry__ and select __Create a resource__.
+1. From the [Azure portal](https://portal.azure.com), search for __Foundry__ and select __Create a resource__.
 1. After configuring the __Basics__ tab, select the __Networking__ tab and then the __Disabled__ option.
 1. From the __Private endpoint__ section, select __+ Add private endpoint__.
 1. When going through the forms to create a private endpoint, be sure to:
@@ -55,7 +55,7 @@ When creating a new project, use the following steps to create the project.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
 
     > [!NOTE]
-    > In the portal UI, the target to which you create the private endpoint may be labeled as an "account" or "resource". Select your Azure AI Foundry project resource when prompted.
+    > In the portal UI, the target to which you create the private endpoint may be labeled as an "account" or "resource". Select your Foundry project resource when prompted.
 
 1. Continue through the forms to create the project. When you reach the __Review + create__ tab, review your settings and select __Create__ to create the project.
 
@@ -69,7 +69,7 @@ When creating a new project, use the following steps to create the project.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
 
     > [!NOTE]
-    > The portal refers to the PE target as an "account" or "resource". Choose your Azure AI Foundry project resource as the target.
+    > The portal refers to the PE target as an "account" or "resource". Choose your Foundry project resource as the target.
 
 1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
@@ -115,7 +115,7 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
     - Azure Storage Account
     - Azure AI Search resource
     - Cosmos DB resource
-    - Azure AI Foundry resource
+    - Foundry resource
 
 1. To access your resources, we recommend using a Bastion VM, ExpressRoute, or VPN connection to your Azure Virtual Network. These options allow you to connect to the isolated network environment.
 
@@ -129,28 +129,28 @@ For more information on secured networking for the Agent Service, see [How to us
 
 ## Firewall Configuration for Agent and Evaluations Egress
 
-To secure egress (outbound) traffic of your Azure AI Foundry resource through network injection, you can configure your own Firewall, either Azure Firewall or another firewall resource. This ensures that all outbound traffic is inspected and controlled before leaving your virtual network, reducing exposure to malicious destinations and enforcing compliance with organizational policies. A Firewall also helps prevent data exfiltration by restricting traffic to approved endpoints using service tags and fully qualified domain names (FQDNs), ensuring sensitive data cannot be sent to unauthorized destinations. If you prefer not to use a Firewall, you can achieve basic outbound connectivity by combining Network Security Groups (NSGs) with Azure Virtual Network NAT, which allows controlled Internet egress without the full inspection capabilities of a Firewall.
+To secure egress (outbound) traffic of your Foundry resource through network injection, you can configure your own Firewall, either Azure Firewall or another firewall resource. This ensures that all outbound traffic is inspected and controlled before leaving your virtual network, reducing exposure to malicious destinations and enforcing compliance with organizational policies. A Firewall also helps prevent data exfiltration by restricting traffic to approved endpoints using service tags and fully qualified domain names (FQDNs), ensuring sensitive data cannot be sent to unauthorized destinations. If you prefer not to use a Firewall, you can achieve basic outbound connectivity by combining Network Security Groups (NSGs) with Azure Virtual Network NAT, which allows controlled Internet egress without the full inspection capabilities of a Firewall.
 
-See in the below diagram a common hub and spoke network architecture. The spoke virtual network has resources for Azure AI Foundry. The hub virtual network has a firewall that control internet outbound from your virtual networks. In this case, your firewall must allow outbound to required resources and your resources in spoke virtual network must be able to reach your firewall.
+See in the below diagram a common hub and spoke network architecture. The spoke virtual network has resources for Foundry. The hub virtual network has a firewall that control internet outbound from your virtual networks. In this case, your firewall must allow outbound to required resources and your resources in spoke virtual network must be able to reach your firewall.
 
-:::image type="content" source="../media/how-to/network/hub-spoke-network.png" alt-text="Diagram of the hub and spoke network isolation for Azure AI Foundry projects and agents." lightbox="../media/how-to/network/hub-spoke-network.png":::
+:::image type="content" source="../media/how-to/network/hub-spoke-network.png" alt-text="Diagram of the hub and spoke network isolation for Foundry projects and agents." lightbox="../media/how-to/network/hub-spoke-network.png":::
 
 ## DNS configuration
 
-Clients on a virtual network that use the private endpoint use the same connection string for the Azure AI Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routes the connections from the virtual network to the Azure AI Foundry resource and projects over a private link.
+Clients on a virtual network that use the private endpoint use the same connection string for the Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routes the connections from the virtual network to the Foundry resource and projects over a private link.
 
 ### Apply DNS changes for private endpoints
 
-When you create a private endpoint, the DNS CNAME resource record for the Azure AI Foundry resource is updated to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [what is Azure Private DNS](/azure/dns/private-dns-overview).
+When you create a private endpoint, the DNS CNAME resource record for the Foundry resource is updated to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [what is Azure Private DNS](/azure/dns/private-dns-overview).
 
-When you resolve the endpoint URL from outside the virtual network with the private endpoint, it resolves to the public endpoint of the Azure AI Foundry resource. When it's resolved from the virtual network hosting the private endpoint, it resolves to the private IP address of the private endpoint.
+When you resolve the endpoint URL from outside the virtual network with the private endpoint, it resolves to the public endpoint of the Foundry resource. When it's resolved from the virtual network hosting the private endpoint, it resolves to the private IP address of the private endpoint.
 
-This approach enables access to the Azure AI Foundry resource using the same connection string for clients in the virtual network that hosts the private endpoints, and clients outside the virtual network.
+This approach enables access to the Foundry resource using the same connection string for clients in the virtual network that hosts the private endpoints, and clients outside the virtual network.
 
-If you use a custom DNS server on your network, clients must be able to resolve the fully qualified domain name (FQDN) for the Azure AI services resource endpoint to the private endpoint IP address. Configure your DNS server to delegate your private link subdomain to the private DNS zone for the virtual network.
+If you use a custom DNS server on your network, clients must be able to resolve the fully qualified domain name (FQDN) for the Foundry Tools resource endpoint to the private endpoint IP address. Configure your DNS server to delegate your private link subdomain to the private DNS zone for the virtual network.
 
 > [!TIP]
-> When you use a custom or on-premises DNS server, you should configure your DNS server to resolve the Azure AI services resource name in the `privatelink` subdomain to the private endpoint IP address. Delegate the `privatelink` subdomain to the private DNS zone of the virtual network. Alternatively, configure the DNS zone of your DNS server and add the DNS A records.
+> When you use a custom or on-premises DNS server, you should configure your DNS server to resolve the Foundry Tools resource name in the `privatelink` subdomain to the private endpoint IP address. Delegate the `privatelink` subdomain to the private DNS zone of the virtual network. Alternatively, configure the DNS zone of your DNS server and add the DNS A records.
 >
 > For more information on configuring your own DNS server to support private endpoints, use the following articles:
 > - [Name resolution that uses your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server)
@@ -173,6 +173,6 @@ You can grant networking access to trusted Azure services by creating a network 
 
 ## Next steps
 
-- [Create an Azure AI Foundry project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Create a Foundry project](create-projects.md)
+- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
 - [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

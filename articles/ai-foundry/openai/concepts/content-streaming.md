@@ -44,7 +44,7 @@ Customers must understand that while the feature improves latency, it's a trade-
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material might not be eligible for Customer Copyright Commitment coverage. 
 
-To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), follow the [Content filter how-to guide](/azure/ai-foundry/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
+To enable Asynchronous Filter in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), follow the [Content filter how-to guide](/azure/ai-foundry/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 ## Comparison of content filtering modes
 
@@ -52,7 +52,7 @@ To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/
 |---|---|---|
 |Status |GA | GA |
 | Eligibility |All customers |All customers |
-| How to enable | Enabled by default, no action needed |Customers can configure it directly in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) (as part of a content filtering configuration, applied at the deployment level) |
+| How to enable | Enabled by default, no action needed |Customers can configure it directly in [Foundry portal](https://ai.azure.com/?cid=learnDocs) (as part of a content filtering configuration, applied at the deployment level) |
 |Modality and availability |Text; all GPT models |Text; all GPT models |
 |Streaming experience |Content is buffered and returned in chunks |Zero latency (no buffering, filters run asynchronously) |
 |Content filtering signal |Immediate filtering signal |Delayed filtering signal (in up to ~1,000-character increments) |

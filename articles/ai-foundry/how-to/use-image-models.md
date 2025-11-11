@@ -1,6 +1,6 @@
-﻿---
+---
 title: How to use image-to-text models in the model catalog
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use image-to-text models from the AI Foundry model catalog.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -28,9 +28,9 @@ To use image models in your application, you need:
  
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](create-projects.md).
+- A [Microsoft Foundry project](create-projects.md).
 
-- An image model deployment on Azure AI Foundry. 
+- An image model deployment on Foundry. 
 
   - This article uses a __Mistral OCR__ model deployment.
 

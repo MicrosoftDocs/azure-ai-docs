@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations of QnA Maker
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations of QnA Maker
 author: laujan
 ms.author: lajanuar

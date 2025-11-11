@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for Custom Vision
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn general guidelines for using this image recognition service from Azure.
 author: PatrickFarley
 ms.author: pafarley

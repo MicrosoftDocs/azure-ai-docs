@@ -1,6 +1,6 @@
 ---
-title: 'How to use Azure AI Foundry Agent Service Web Search'
-titleSuffix: Azure AI Foundry
+title: 'How to use Foundry Agent Service Web Search'
+titleSuffix: Microsoft Foundry
 description: Learn how to use agents web search tool.
 services: cognitive-services
 manager: nitinme

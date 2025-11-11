@@ -17,11 +17,11 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Foundry resource (formerly known as Azure AI Services resource) name.
+  * Your Microsoft Foundry resource (formerly known as Azure AI Services resource) name.
 
-  * The resource group where the Azure AI Foundry resource is deployed.
+  * The resource group where the Foundry resource is deployed.
 
-  * The model name, provider, version, and SKU you want to deploy. You can use the Azure AI Foundry portal or the Azure CLI to find this information. In this example, you deploy the following model:
+  * The model name, provider, version, and SKU you want to deploy. You can use the Foundry portal or the Azure CLI to find this information. In this example, you deploy the following model:
 
     * **Model name:**: `Phi-3.5-vision-instruct`
     * **Provider**: `Microsoft`
@@ -78,7 +78,7 @@ __Inference endpoint__
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Azure AI Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+To make requests to the Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
 
 __Inference keys__
 

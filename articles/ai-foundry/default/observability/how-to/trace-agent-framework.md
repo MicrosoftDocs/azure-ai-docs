@@ -1,7 +1,7 @@
 ---
 title: Agent Tracing Integrations
-titleSuffix: Azure AI Foundry
-description: "Discover how Azure AI Foundry simplifies agent tracing with integrations for Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK."
+titleSuffix: Microsoft Foundry
+description: "Discover how Microsoft Foundry simplifies agent tracing with integrations for Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -12,17 +12,17 @@ ms.topic: how-to
 ---
 # Tracing integrations
 
-Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
+Microsoft Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
 ## Microsoft Agent Framework
 
-Azure AI Foundry has native integrations with Microsoft Agent Framework. Agents built on Microsoft Agent frameworks get out-of-the-box tracing in Observability.
+Foundry has native integrations with Microsoft Agent Framework. Agents built on Microsoft Agent frameworks get out-of-the-box tracing in Observability.
 
 To learn more about tracing and observability in the Microsoft Agent Framework see, [Microsoft Agent Framework Workflows - Observability](/agent-framework/user-guide/workflows/observability).
 
 ## Semantic Kernel
 
-Azure AI Foundry has native integrations with Microsoft Semantic Kernel. Agents built on Microsoft Semantic Kernel get out-of-the-box tracing in Observability.
+Foundry has native integrations with Microsoft Semantic Kernel. Agents built on Microsoft Semantic Kernel get out-of-the-box tracing in Observability.
 
 Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) 
 

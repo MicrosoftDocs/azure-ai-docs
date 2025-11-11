@@ -14,7 +14,7 @@ ms.custom:
   - build-2025
   - build-aifnd
 keywords:
-  - Azure AI services
+  - Foundry Tools
   - cognitive
   - AI models
   - local inference

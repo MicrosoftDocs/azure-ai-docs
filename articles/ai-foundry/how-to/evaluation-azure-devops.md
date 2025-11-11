@@ -1,6 +1,6 @@
 ---
 title: How to run an evaluation in Azure DevOps
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -156,7 +156,7 @@ Commit and run the pipeline in Azure DevOps.
 
 - Select the run and go to "Azure AI Evaluation" tab.
 - The results are shown in this format:
-  - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Azure AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to Azure AI Foundry portal to view individual result in detail.
+  - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Microsoft Foundry portal. You can also select the link for Evaluation Results, and it directs you to Foundry portal to view individual result in detail.
   - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Evaluation results and comparisons from multiple AI agents:
@@ -167,5 +167,5 @@ Single agent evaluation result:
 
 ## Related content
 
-- [How to evaluate generative AI models and applications with Azure AI Foundry](./evaluate-generative-ai-app.md)
-- [How to view evaluation results in Azure AI Foundry portal](./evaluate-results.md)
+- [How to evaluate generative AI models and applications with Foundry](./evaluate-generative-ai-app.md)
+- [How to view evaluation results in Foundry portal](./evaluate-results.md)

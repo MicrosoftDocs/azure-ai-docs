@@ -1,6 +1,6 @@
 ---
-title: Azure AI Foundry Project REST Reference (preview)
-description: Learn how to use Azure AI Foundry Project REST API (preview)
+title: Microsoft Foundry Project REST Reference (preview)
+description: Learn how to use Microsoft Foundry Project REST API (preview)
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: reference
@@ -10,7 +10,7 @@ ms.author: mbullwin
 monikerRange: 'foundry'
 ---
 
-# Azure AI Foundry Project REST reference
+# Microsoft Foundry Project REST reference
 
 API Version: 2025-11-15-preview
 

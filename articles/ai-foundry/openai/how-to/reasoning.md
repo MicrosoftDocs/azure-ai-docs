@@ -72,7 +72,7 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 **Microsoft Entra ID:**
 
-If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
 from openai import OpenAI

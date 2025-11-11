@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models working with models
+title: Azure OpenAI in Microsoft Foundry Models working with models
 titleSuffix: Azure OpenAI
 description: Learn about managing model deployment life cycle, updates, & retirement.
 ms.service: azure-ai-foundry
@@ -16,7 +16,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # Working with models
 
-Azure OpenAI in Azure AI Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../concepts/models.md).
+Azure OpenAI in Microsoft Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../concepts/models.md).
 
 You can get a list of models that are available for both inference and fine-tuning by your Azure OpenAI resource by using the [Models List API](/rest/api/azureopenai/models/list).
 
@@ -289,7 +289,7 @@ In-place migrations allow you to maintain the same provisioned deployment name a
 
 #### In-place migration: model version update
 
-In-place migrations that target updating an existing provisioned deployment to a new model version within the same model family are supported through Azure AI Foundry, REST API, and Azure CLI. To perform an in-place migration targeting a model version update within Azure AI Foundry, select **Deployments** > under the deployment name column select the deployment name of the provisioned deployment you would like to migrate.
+In-place migrations that target updating an existing provisioned deployment to a new model version within the same model family are supported through Foundry, REST API, and Azure CLI. To perform an in-place migration targeting a model version update within Foundry, select **Deployments** > under the deployment name column select the deployment name of the provisioned deployment you would like to migrate.
 
 Selecting a deployment name opens the **Properties** for the model deployment. From this view, select the **edit** button, which will show the **Update deployment** dialogue box. Select the model version dropdown to set a new model version for the provisioned deployment. As noted, the provisioning state will change to "updating" during the migration and will revert to "succeeded" once the migration is complete. 
 

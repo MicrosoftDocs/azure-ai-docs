@@ -1,6 +1,6 @@
 ---
 title: Data and privacy for Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Image Analysis.
 author: PatrickFarley
 ms.author: pafarley
@@ -17,7 +17,7 @@ ms.date: 10/04/2022
 
 This article provides high-level details regarding how Image Analysis service processes data provided by customers. Image Analysis was designed with compliance, privacy, and security in mind. As an important reminder, you're responsible for the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction, including ensuring you have all necessary licenses, permissions or other third-party approvals required to transfer and process your content using Image Analysis.
 
-Image Analysis is part of the Azure Cognitive Azure AI Vision Service. To learn more about the different offerings, see [Azure AI Vision Overview](/azure/ai-services/computer-vision/overview).
+Image Analysis is part of the Azure Cognitive Azure Vision in Foundry Tools Service. To learn more about the different offerings, see [Vision Overview](/azure/ai-services/computer-vision/overview).
 
 
 > [!NOTE]
@@ -54,11 +54,11 @@ The following diagram shows how your data is processed.
 
 ### Authenticate (with subscription or API keys)
 
-The most common way to authenticate access to the Image Analysis API is by using your single-service (Azure AI Vision) or multi-service (Azure AI services) API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service or group of services. For more information, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication?tabs=powershell).
+The most common way to authenticate access to the Image Analysis API is by using your single-service (Vision) or multi-service (Foundry Tools) API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service or group of services. For more information, see [Authenticate requests to Foundry Tools](/azure/ai-services/authentication?tabs=powershell).
 
 ### Secure data in transit
 
-All Azure AI services endpoints, including the Image Analysis API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
+All Foundry Tools endpoints, including the Image Analysis API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
 
 ### Return the processed image results
 
@@ -70,7 +70,7 @@ The Image Analysis processes images in real time. The API returns the analysis a
 The images you submit to Image Analysis service are processed in real time, and the input images and results are not retained or stored in the service after processing.  
 
 To learn more about privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
-For additional security best practices and information, visit [Azure AI services security baseline](/azure/ai-services/security-features).
+For additional security best practices and information, visit [Foundry Tools security baseline](/azure/ai-services/security-features).
 
 
 ## Next steps

@@ -1,7 +1,7 @@
 ---
-title: See Evaluation Results in Azure AI Foundry Portal
-titleSuffix: Azure AI Foundry
-description: See and analyze AI model evaluation results in Azure AI Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization.
+title: See Evaluation Results in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: See and analyze AI model evaluation results in Microsoft Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -16,11 +16,11 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# See evaluation results in the Azure AI Foundry portal
+# See evaluation results in the Microsoft Foundry portal
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Learn how to see evaluation results in the Azure AI Foundry portal. View and interpret AI model evaluation data, performance metrics, and quality assessments. Access results from flows, playground sessions, and SDK to make data-driven decisions.
+Learn how to see evaluation results in the Microsoft Foundry portal. View and interpret AI model evaluation data, performance metrics, and quality assessments. Access results from flows, playground sessions, and SDK to make data-driven decisions.
 
 After visualizing your evaluation results, examine them thoroughly. View individual results, compare them across multiple evaluation runs, and identify trends, patterns, and discrepancies to gain insights into your AI system's performance under various conditions.
 
@@ -249,9 +249,9 @@ To learn more, see [What are evaluators?](../concepts/observability.md#what-are-
 ## Related content
 
 - Improve low metrics with prompt iteration or [fine-tuning](../concepts/fine-tuning-overview.md).
-- [Run evaluations in the cloud with the Azure AI Foundry SDK](./develop/cloud-evaluation.md).
+- [Run evaluations in the cloud with the Microsoft Foundry SDK](./develop/cloud-evaluation.md).
 
 Learn how to evaluate your generative AI applications:
 
-- [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md).
+- [Evaluate your generative AI apps with the Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md).
 - [Create evaluations with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md).

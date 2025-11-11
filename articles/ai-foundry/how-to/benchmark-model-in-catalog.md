@@ -1,7 +1,7 @@
 ---
-title: Benchmark models in the model leaderboard of Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: In this article, you learn to compare benchmarks across models and datasets, using the model leaderboards (preview) and the benchmarks feature in Azure AI Foundry portal.
+title: Benchmark models in the model leaderboard of Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: In this article, you learn to compare benchmarks across models and datasets, using the model leaderboards (preview) and the benchmarks feature in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
@@ -15,11 +15,11 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Compare and select models using the model leaderboard in Azure AI Foundry portal (preview)
+# Compare and select models using the model leaderboard in Microsoft Foundry portal (preview)
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-In this article, you learn to streamline your model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards (preview) available in Azure AI Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application. You can compare models by viewing the following leaderboards:
+In this article, you learn to streamline your model selection process in the Microsoft Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards (preview) available in Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application. You can compare models by viewing the following leaderboards:
 
 - [Quality, safety, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single criterion (quality, safety, cost, or throughput);
 - [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost, among different selection criteria;
@@ -31,7 +31,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](create-projects.md).
+- A [Foundry project](create-projects.md).
 
 ## Access model leaderboards
 
@@ -135,7 +135,7 @@ When you're in the "Benchmarks" tab for a specific model, you can gather extensi
 
     :::image type="content" source="../media/how-to/model-benchmarks/gpt4o-benchmark-tab-expand.png" alt-text="Screenshot showing benchmarks tab for gpt-4o." lightbox="../media/how-to/model-benchmarks/gpt4o-benchmark-tab-expand.png":::
 
-By default, Azure AI Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
+By default, Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
 
 To access benchmark results for a specific metric and dataset:
 
@@ -177,6 +177,6 @@ Insert NextGen content
 
 ## Related content
 
-- [Model leaderboards in Azure AI Foundry portal](../concepts/model-benchmarks.md)
-- [How to evaluate generative AI apps with Azure AI Foundry](evaluate-generative-ai-app.md)
-- [How to view evaluation results in Azure AI Foundry portal](evaluate-results.md)
+- [Model leaderboards in Foundry portal](../concepts/model-benchmarks.md)
+- [How to evaluate generative AI apps with Foundry](evaluate-generative-ai-app.md)
+- [How to view evaluation results in Foundry portal](evaluate-results.md)

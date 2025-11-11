@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure OpenAI in Azure AI Foundry Models evaluation - Python
+title: 'How to use Azure OpenAI in Microsoft Foundry Models evaluation - Python
 titleSuffix: Azure OpenAI
 description:  Learn how to use evaluations with Azure OpenAI -Python
 author: mrbullwinkle

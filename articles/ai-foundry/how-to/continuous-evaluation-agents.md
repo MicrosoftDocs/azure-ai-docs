@@ -1,6 +1,6 @@
 ---
 title: Continuously Evaluate your AI agents
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -74,9 +74,9 @@ After configuring your continuous evaluation settings, you will be able to view 
 
 ::: moniker-end
 
-## Azure AI Foundry project configuration and region support
+## Microsoft Foundry project configuration and region support
 
-Since the evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+Since the evaluators use hosted evaluation LLMs in the Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
 
 > [!div class="mx-tdCol2BreakAll"]
 > | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
@@ -257,7 +257,7 @@ project_client.evaluation.create_agent_evaluation(
 
 ## Viewing continuous evaluation results
 
-After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Azure AI Foundry and Azure Monitor](./monitor-applications.md).
+After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Foundry and Azure Monitor](./monitor-applications.md).
 
 ## Related content
 

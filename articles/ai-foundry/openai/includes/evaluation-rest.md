@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure OpenAI in Azure AI Foundry Models evaluation - REST
+title: 'How to use Azure OpenAI in Microsoft Foundry Models evaluation - REST
 titleSuffix: Azure OpenAI
 description:  Learn how to use evaluations with Azure OpenAI - REST
 author: mrbullwinkle

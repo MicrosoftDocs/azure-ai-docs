@@ -1,6 +1,6 @@
 ---
 title: Guidance for integration and responsible use with Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for how to deploy the Image Analysis service responsibly, based on the knowledge and understanding from the team that created this product.
 author: PatrickFarley
 ms.author: pafarley

@@ -1,7 +1,7 @@
-﻿---
+---
 title: Feature availability across cloud regions
-titleSuffix: Azure AI Foundry
-description: This article lists Azure AI Foundry feature availability across cloud regions.
+titleSuffix: Microsoft Foundry
+description: This article lists Microsoft Foundry feature availability across cloud regions.
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 10/21/2025
@@ -12,25 +12,25 @@ monikerRange: 'foundry-classic || foundry'
 ms.custom: references_regions, build-2024, copilot-scenario-highlight
 ---
 
-# Azure AI Foundry feature availability across cloud regions
+# Microsoft Foundry feature availability across cloud regions
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 :::moniker range="foundry" 
-[!INCLUDE [foundry-link](../default/includes/foundry-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Azure AI Foundry features are available across cloud regions.  
+[!INCLUDE [foundry-link](../default/includes/foundry-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Microsoft Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.  
 
-## Azure AI Foundry projects
+## Foundry projects
 
-Azure AI Foundry is currently available in the following Azure regions. 
+Foundry is currently available in the following Azure regions. 
 
 ::: moniker-end
 
 :::moniker range="foundry-classic" 
-[!INCLUDE [classic-link](../includes/classic-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Azure AI Foundry features are available across cloud regions.  
+[!INCLUDE [classic-link](../includes/classic-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.  
 
-## Azure AI Foundry projects
+## Foundry projects
 
-Azure AI Foundry is currently available in the following Azure regions. You can [create either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Azure AI Foundry](../how-to/create-projects.md) in these regions.
+Foundry is currently available in the following Azure regions. You can [create either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Foundry](../how-to/create-projects.md) in these regions.
 
 :::row:::
     :::column:::
@@ -115,7 +115,7 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 :::row-end:::
 ::: moniker-end
 
-## Azure AI Foundry features
+## Foundry features
  
 
 For maximum feature availability, consider East US 2, Sweden Central, or West US 2 as your primary regions, as they offer the most comprehensive coverage across features.
@@ -126,10 +126,10 @@ Use the following table to investigate regional availability for specific featur
 
 | Service                        | Description                                                                                                                                          | Link                                                                                                      |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| Azure OpenAI                   | Note that some models might not be available within the Azure AI Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
+| Azure OpenAI                   | Note that some models might not be available within the Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
 | Speech capabilities            | Azure Speech in Foundry Tools capabilities including custom neural voice vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md)                           |
 | Azure AI Content Safety        | To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability).       |
-| Azure AI Foundry Agent Service         | Azure AI Foundry Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Foundry Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models). |
+| Foundry Agent Service         | Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models). |
 
 
 ::: moniker-end
@@ -138,30 +138,30 @@ Use the following table to investigate regional availability for specific featur
 
 | Service                        | Description                                                                                                                                          | Link                                                                                                      |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| Azure OpenAI                   | Note that some models might not be available within the Azure AI Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
+| Azure OpenAI                   | Note that some models might not be available within the model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
 | Speech capabilities            | Azure Speech capabilities including custom neural voice vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md).                           |
 | Serverless deployment     | Some models in the model catalog can be deployed as serverless deployments.                                                      | [Region availability for models in serverless deployment](../how-to/deploy-models-serverless-availability.md). |
 | Azure AI Content Safety        | To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability).       |
-| Azure AI Foundry Agent Service         | Azure AI Foundry Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Foundry Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models). |
+| Agent Service         | Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models). |
 
 
 
-## Azure AI Foundry in sovereign clouds
+## Foundry in sovereign clouds
 
 ### Azure Government (United States)
 
 Available to US government entities and their partners only. For more information, see [Azure Government documentation](/azure/azure-government/documentation-government-welcome) and [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure).
 
-- **Azure AI Foundry portal URL:**
+- **Foundry portal URL:**
   - [https://ai.azure.us/](https://ai.azure.us/)
 - **Regions:**
   - US Gov Arizona
   - US Gov Virginia
 - **Available pricing tiers:**
-  - Standard. For more information, see [Azure AI Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/).
+  - Standard. For more information, see [Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/).
 - **Supported features:**
-  - [Azure OpenAI in Azure AI Foundry Models](../openai/azure-government.md)
-  - Azure AI Services
+  - [Azure OpenAI in Foundry Models](../openai/azure-government.md)
+  - Foundry Tools
     - [Speech](../../ai-services/speech-service/regions.md)
     - Speech playground (preview)
     - Language playground (preview)
@@ -197,7 +197,7 @@ Available to US government entities and their partners only. For more informatio
 Use AI to help you find the right region for your needs.  Open [Ask AI](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case:
 
 ```copilot-prompt
-   Based on the features I need for my Azure AI Foundry project, which regions would you recommend to create the project? 
+   Based on the features I need for my Foundry project, which regions would you recommend to create the project? 
    I need: [list your required features here, such as: gpt-4o models, speech capabilities, custom avatar training, etc.]
 ```
 

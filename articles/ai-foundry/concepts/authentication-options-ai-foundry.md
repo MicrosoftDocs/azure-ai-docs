@@ -1,6 +1,6 @@
 ---
-title: Authentication and authorization options in Azure AI Foundry
-description: Learn the authentication and authorization options for Azure AI Foundry including API keys, Microsoft Entra ID, managed identities, and common RBAC scenarios.
+title: Authentication and authorization options in Microsoft Foundry
+description: Learn the authentication and authorization options for Microsoft Foundry including API keys, Microsoft Entra ID, managed identities, and common RBAC scenarios.
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: meerakurup
@@ -8,14 +8,14 @@ ms.date: 09/25/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ai.usage: ai-assisted
-#customer intent: As a platform admin, I want to choose and implement the right authentication approach for Azure AI Foundry so my teams are secure and productive.
+#customer intent: As a platform admin, I want to choose and implement the right authentication approach for Microsoft Foundry so my teams are secure and productive.
 ---
 
-# Authentication and authorization options in Azure AI Foundry
+# Authentication and authorization options in Microsoft Foundry
 <!--
-Azure AI Foundry supports multiple authentication approaches to balance security, operational simplicity, and speed. This article explains the control plane and data plane model, compares API key and Microsoft Entra ID (formerly Azure AD) authentication, maps identities to roles, and describes common least privilege scenarios. Use this article with:
+Microsoft Foundry supports multiple authentication approaches to balance security, operational simplicity, and speed. This article explains the control plane and data plane model, compares API key and Microsoft Entra ID (formerly Azure AD) authentication, maps identities to roles, and describes common least privilege scenarios. Use this article with:
 
-- [Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md)
+- [Role-based access control for Foundry](rbac-azure-ai-foundry.md)
 - [Configure keyless authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Rotate API access keys](../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
@@ -26,10 +26,10 @@ Azure AI Foundry supports multiple authentication approaches to balance security
 
 Azure services separate management (_control plane_) from runtime operations (_data plane_).
 
-| Plane | Scope in Azure AI Foundry | Typical operations | Example tools | Authorization surface |
+| Plane | Scope in Foundry | Typical operations | Example tools | Authorization surface |
 |-------|---------------------------|--------------------|---------------|-----------------------|
 | Control plane | Setting up and configuring hubs, projects, networking, encryption, and connections | Create or delete resources, assign roles, rotate keys, set up Private Link | Azure portal, Azure CLI, ARM templates and Bicep, Terraform | Azure RBAC (management actions and dataActions) |
-| Data plane | Running and using model inference, agent interactions, evaluation jobs, and content safety calls | Chat completions, embedding generation, start fine-tune jobs, send agent messages, analyzer and classifier operations | SDKs, REST APIs, Azure AI Foundry portal playground | API key header or OAuth 2.0 (Microsoft Entra ID token) plus dataActions |
+| Data plane | Running and using model inference, agent interactions, evaluation jobs, and content safety calls | Chat completions, embedding generation, start fine-tune jobs, send agent messages, analyzer and classifier operations | SDKs, REST APIs, Foundry portal playground | API key header or OAuth 2.0 (Microsoft Entra ID token) plus dataActions |
 
 ### Control and data plane diagram
 
@@ -43,7 +43,7 @@ _Source file: control-data-plane.mmd (stored alongside the image for maintenance
 
 ### API keys
 
-API keys are static secrets scoped to an Azure AI Foundry resource (formerly Azure AI Services).
+API keys are static secrets scoped to a Foundry resource (formerly Azure AI Services).
 
 **Recommended for:**
 - Rapid prototyping and isolated test environments
@@ -112,16 +112,16 @@ See the authoritative list in [Azure built-in roles (AI + machine learning)](/az
 
 High-level steps. See the detailed guide: [Configure key-less authentication](../foundry-models/how-to/configure-entra-id.md).
 
-1. Ensure your Azure AI Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
+1. Ensure your Foundry resource has a custom subdomain configured. See [Custom subdomains](/azure/ai-services/cognitive-services-custom-subdomains).
 1. Assign the needed built-in or custom role, such as Cognitive Services User, to each principal—user, service principal, or managed identity—at the resource or project scope.
 1. For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
-1. For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Azure AI Foundry resource.
-1. Update project connections in Azure AI Foundry to use Microsoft Entra ID: Management center > Connected resources > Access details > Authentication > Microsoft Entra ID.
+1. For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Foundry resource.
+1. Update project connections in Foundry to use Microsoft Entra ID: Management center > Connected resources > Access details > Authentication > Microsoft Entra ID.
 1. Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
 
 ### Example: Contoso mixed workload scenario
 
-![Diagram that shows developers, a CI/CD service principal, and a managed identity enabled Azure Function interacting with an Azure AI Foundry resource while a security admin applies RBAC and Azure Monitor and tracing receive logs.](../media/authentication-options-ai-foundry/contoso-mixed-scenario.png)
+![Diagram that shows developers, a CI/CD service principal, and a managed identity enabled Azure Function interacting with a Foundry resource while a security admin applies RBAC and Azure Monitor and tracing receive logs.](../media/authentication-options-ai-foundry/contoso-mixed-scenario.png)
 
 _Diagram source file: contoso-mixed-scenario.mmd (stored with the image for maintenance; not published)._ 
 
@@ -170,7 +170,7 @@ Some creation workflows can auto assign broad roles, such as granting the resour
 
 ## Related content
 
-- [Authenticate requests to Azure AI services](/azure/ai-services/authentication)
+- [Authenticate requests to Foundry Tools](/azure/ai-services/authentication)
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
 - [Managed identities for Azure resources](/entra/identity/managed-identities-azure-resources/overview)

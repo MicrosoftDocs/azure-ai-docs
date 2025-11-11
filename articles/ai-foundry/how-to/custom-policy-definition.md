@@ -1,6 +1,6 @@
 ---
 title: Create a custom Azure Policy for AI Foundry
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: "Learn how to use custom Azure policies to enable self-service resource management in your organization, while applying guardrails and constraints on allowed configurations to meet security and compliance requirements."
 ms.author: deeikele
 author: compliance
@@ -14,15 +14,15 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Create custom policies for Azure AI Foundry
+# Create custom policies for Microsoft Foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Learn how to use custom Azure policies to enable teams to self-manage Azure AI Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
+Learn how to use custom Azure policies to enable teams to self-manage Microsoft Foundry resources. Apply guardrails and constraints on allowed configurations so you can provide flexibility while meeting security and compliance requirements.
 
 Custom policies allow you to:
 
-- **Enforce governance**: Prevent unauthorized creation of Azure AI Foundry hubs, projects, connections, or capability hosts.
+- **Enforce governance**: Prevent unauthorized creation of Foundry hubs, projects, connections, or capability hosts.
 - **Control resource behavior**: Ensure security configurations, enforce tagging, or allow only approved integrations.
 - **Ensure compliance**: Apply enterprise security and operational standards consistently across environments.
 

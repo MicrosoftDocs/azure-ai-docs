@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for CLU
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations for using conversational language understanding.
 author: laujan
 ms.author: lajanuar

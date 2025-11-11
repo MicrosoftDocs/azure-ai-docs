@@ -1,7 +1,7 @@
 ---
 title: Observability in Generative AI
-titleSuffix: Azure AI Foundry
-description: Learn how Azure AI Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
+titleSuffix: Microsoft Foundry
+description: Learn how Microsoft Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 author: lgayhardt
@@ -150,7 +150,7 @@ Before building your application, you need to select the right foundation. This 
 - Ethical considerations: Is the model free from harmful biases?
 - Safety profile: What is the risk of generating unsafe content?
 
-**Tools available**: [Azure AI Foundry benchmark](model-benchmarks.md) for comparing models on public datasets or your own data, and the Azure AI Evaluation SDK for [testing specific model endpoints](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
+**Tools available**: [Microsoft Foundry benchmark](model-benchmarks.md) for comparing models on public datasets or your own data, and the Azure AI Evaluation SDK for [testing specific model endpoints](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
 
 ### Preproduction evaluation
 
@@ -171,7 +171,7 @@ Evaluation Tools and Approaches:
 
 ::: moniker range="foundry-classic"
 
-- **Bring your own data**: You can evaluate your AI agents and applications in preproduction using your own evaluation data with supported evaluators, including quality, safety, or custom evaluators, and view results via the Azure AI Foundry portal. Use Azure AI Foundry's evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Azure AI Foundry portal](../how-to/evaluate-results.md).
+- **Bring your own data**: You can evaluate your AI agents and applications in preproduction using your own evaluation data with supported evaluators, including quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Foundry portal](../how-to/evaluate-results.md).
 - **Simulators and AI red teaming agent**: If you don’t have evaluation data (test data), [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 
   - [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT.
@@ -180,13 +180,13 @@ Evaluation Tools and Approaches:
 
    Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
-Alternatively, you can also use [the Azure AI Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
+Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Azure AI Foundry portal. Use Azure AI Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
+- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Foundry portal](../how-to/evaluate-results.md).
 
 - Simulators and AI red teaming agent: If you don't have evaluation data (test data), simulators can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 
@@ -194,7 +194,7 @@ Alternatively, you can also use [the Azure AI Foundry portal](../how-to/evaluate
   
   Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
-Alternatively, you can also use [the Azure AI Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
+Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
 
 ::: moniker-end
 
@@ -292,17 +292,17 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 ::: moniker range="foundry-classic"
 
 - [Evaluate with the Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md)
-- [Evaluate generative AI apps by using Azure AI Foundry](../how-to/evaluate-generative-ai-app.md)
-- [See evaluation results in the Azure AI Foundry portal](../how-to/evaluate-results.md)
-- [Azure AI Foundry Transparency Note](safety-evaluations-transparency-note.md)
+- [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
+- [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)
+- [Foundry Transparency Note](safety-evaluations-transparency-note.md)
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-- [Azure AI Foundry control plane](../default/control-plane/what-is-foundry-control-plane.md)
-- [Evaluate generative AI apps by using Azure AI Foundry](../how-to/evaluate-generative-ai-app.md)
-- [See evaluation results in the Azure AI Foundry portal](../how-to/evaluate-results.md)
-- [Azure AI Foundry Transparency Note](safety-evaluations-transparency-note.md)
+- [Foundry control plane](../default/control-plane/what-is-foundry-control-plane.md)
+- [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
+- [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)
+- [Foundry Transparency Note](safety-evaluations-transparency-note.md)
 
 ::: moniker-end

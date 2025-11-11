@@ -1,5 +1,5 @@
 ---
-title: 'Text to speech with Azure OpenAI in Azure AI Foundry Models'
+title: 'Text to speech with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use Azure OpenAI for text to speech with OpenAI voices.
 manager: nitinme
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 
 ---
 
-# Quickstart: Text to speech with Azure OpenAI in Azure AI Foundry Models
+# Quickstart: Text to speech with Azure OpenAI in Microsoft Foundry Models
 
 In this quickstart, you use Azure OpenAI for text to speech with OpenAI voices.  
 

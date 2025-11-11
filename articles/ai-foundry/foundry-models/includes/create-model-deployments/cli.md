@@ -11,7 +11,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* Install the [Azure CLI](/cli/azure/) and the `cognitiveservices` extension for Azure AI Services.
+* Install the [Azure CLI](/cli/azure/) and the `cognitiveservices` extension for Foundry Tools.
 
     ```azurecli
     az extension add -n cognitiveservices
@@ -23,9 +23,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Foundry Tools resource name.
 
-  * The resource group where you deployed the Azure AI Services resource.
+  * The resource group where you deployed the Foundry Tools resource.
     
     
 ## Add models
@@ -44,7 +44,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     az account set --subscription $subscriptionId
     ```
 
-1. Set the following environment variables with the name of the Azure AI Services resource you plan to use and resource group.
+1. Set the following environment variables with the name of the Foundry Tools resource you plan to use and resource group.
 
     ```azurecli
     accountName="<ai-services-resource-name>"
@@ -52,7 +52,7 @@ To add a model, first identify the model that you want to deploy. You can query 
     location="eastus2"
     ```
 
-1. If you didn't create an Azure AI Services account yet, create one.
+1. If you didn't create a Foundry Tools account yet, create one.
 
     ```azurecli
     az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --location $location --kind AIServices --sku S0
@@ -109,7 +109,7 @@ __Inference endpoint__
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Azure AI Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+To make requests to the Microsoft Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
 
 __Inference keys__
 

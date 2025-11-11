@@ -12,11 +12,11 @@ ai-usage: ai-assisted
 zone_pivot_groups: set-up-key-vault
 ---
 
-# Set up an Azure Key Vault connection in Azure AI Foundry (Preview)
+# Set up an Azure Key Vault connection in Microsoft Foundry (Preview)
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-If you don't set up a Key Vault connection, Azure AI Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Azure AI Foundry.
+If you don't set up a Key Vault connection, Microsoft Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Foundry.
 
 > [!NOTE]
 > Review limitations before you set up a Key Vault connection.
@@ -41,7 +41,7 @@ If you bring your own Azure Key Vault, review these limitations:
 
 Create a connection to Azure Key Vault.
 
-1. Go to your project in the Azure AI Foundry portal. If you don't have a project, create one.
+1. Go to your project in the Foundry portal. If you don't have a project, create one.
 
 1. Check that there are no connections in the **Resource** or **Project** sections. If connections exist, **Azure Key Vault** isn't available.
 

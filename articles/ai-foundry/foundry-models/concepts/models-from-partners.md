@@ -1,7 +1,7 @@
 ---
 title: Foundry Models from partners and community
-titleSuffix: Azure AI Foundry
-description: Learn about Azure AI Foundry Models from partners and community, their capabilities, deployment types, and regional availability for AI applications.
+titleSuffix: Microsoft Foundry
+description: Learn about Microsoft Foundry Models from partners and community, their capabilities, deployment types, and regional availability for AI applications.
 author: msakande
 ms.author: mopeakande
 manager: nitinme
@@ -18,14 +18,14 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
 
-#CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Azure AI Foundry Models from partners and community, including their specific capabilities, deployment types, and regional availability, so that I can select the most appropriate model for my AI application requirements.
+#CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Microsoft Foundry Models from partners and community, including their specific capabilities, deployment types, and regional availability, so that I can select the most appropriate model for my AI application requirements.
 ---
 
 # Foundry Models from partners and community
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article lists a selection of Azure AI Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
+This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
 
 ::: moniker range="foundry-classic"
@@ -40,12 +40,12 @@ Foundry Models are available for standard deployment to a Foundry resource.
 
 ::: moniker-end
 
-To learn more about attributes of Foundry Models from partners and community, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
+To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 >
-> For a list of Azure OpenAI models that are supported by the Azure AI Foundry Agent Service, see [Models supported by Azure AI Foundry Agent Service](../../agents/concepts/model-region-support.md).
+> For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support.md).
 
 ## Cohere
 
@@ -89,7 +89,7 @@ For more details on pricing for Cohere rerank models, see [Pricing for Cohere re
 
 ::: moniker-end
 
-See [the Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
+See [the Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
 
 ## Core42
 
@@ -111,7 +111,7 @@ Core42 includes autoregressive bilingual LLMs for Arabic and English with state-
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Core42/?cid=learnDocs).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Core42/?cid=learnDocs).
 
 ## Meta
 
@@ -145,7 +145,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
 ## Microsoft
 
@@ -175,7 +175,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 ::: moniker-end
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
 ## Mistral AI
 
@@ -212,7 +212,7 @@ Mistral AI offers two categories of models: premium models such as Mistral Large
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
 
 ::: moniker range="foundry-classic"
@@ -229,7 +229,7 @@ To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference 
 
 For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples.md#nixtla).
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla/?cid=learnDocs).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla/?cid=learnDocs).
 
 ::: moniker-end
 
@@ -243,7 +243,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | ------ | ---- | ------------ | ------------ |
 | [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata/?cid=learnDocs) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Hub-based |
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=NTT+Data/?cid=learnDocs).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=NTT+Data/?cid=learnDocs).
 
 ::: moniker-end
 
@@ -272,7 +272,7 @@ The Stability AI collection of image generation models includes Stable Image Cor
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
 
 ::: moniker range="foundry-classic"
 
@@ -282,9 +282,9 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Related content
 
-- [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
-- [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
-- [Deployment types in Azure AI Foundry Models](deployment-types.md)
+- [Deployment overview for Foundry Models](../../concepts/deployments-overview.md)
+- [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
+- [Deployment types in Foundry Models](deployment-types.md)
 
 ::: moniker range="foundry-classic"
 

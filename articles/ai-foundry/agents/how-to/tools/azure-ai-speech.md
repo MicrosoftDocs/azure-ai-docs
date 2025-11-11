@@ -1,7 +1,7 @@
 ---
 title: 'How to connect the Azure Speech tool to an agent'
-titleSuffix: Azure AI Foundry
-description: Learn how to use Agents Azure AI Speech tool.
+titleSuffix: Microsoft Foundry
+description: Learn how to use Agents Azure Speech in Foundry Tools tool.
 services: azure-ai-speech
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,14 +14,14 @@ ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure AI Speech tool
+# Azure Speech in Foundry Tools tool
 
-The Azure AI Speech tool allows agents to interact with users through speech. By integrating this model context protocol (MCP), AI agents can convert text responses into spoken words and process spoken user inputs into text.
+The Azure Speech in Foundry Tools tool allows agents to interact with users through speech. By integrating this model context protocol (MCP), AI agents can convert text responses into spoken words and process spoken user inputs into text.
 
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a supported region. Your Azure AI Foundry resource includes speech capabilities and will be used by the Speech MCP server
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a supported region. Your Foundry resource includes speech capabilities and will be used by the Speech MCP server
 
 ## Set up storage
 
@@ -43,8 +43,8 @@ Create one or more blob containers to store the input and output audio files.
 1. In the **Select a tool** dialog, go to the **Catalog** tab. Search for and select Azure Speech MCP Server, then select **Create**.
 1. On the setup page, fill in the following fields:  
 
-    - Parameters -> `foundry-resource-name`: Enter the name of the Azure AI Foundry resource you created in the Prerequisites section. 
-    - Authorization -> `Bearer` (API Key): Enter the API key from your Azure AI Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure portal. 
+    - Parameters -> `foundry-resource-name`: Enter the name of the Foundry resource you created in the Prerequisites section. 
+    - Authorization -> `Bearer` (API Key): Enter the API key from your Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure portal. 
     - Authorization -> `X-Blob-Container-Url`: Generate a SAS URL for your storage container, with read and write permissions, and enter it here. This location is where the service will store audio output files.
     
 1. Select **Connect** to add the remote Speech MCP server as a tool for your agent.

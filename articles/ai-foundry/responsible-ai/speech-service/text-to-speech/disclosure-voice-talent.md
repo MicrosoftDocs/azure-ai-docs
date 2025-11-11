@@ -13,7 +13,7 @@ ms.date: 02/19/2022
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
-The goal of this article is to help voice and avatar talent understand the technology behind the text to speech capabilities that their voices and images help create. It also contains important privacy disclosures for talent about how Microsoft may process, use, and retain audio and video files containing talent’s recorded voices and images and helps Microsoft prevent, and/or respond to complaints of, misuse of Azure AI services.
+The goal of this article is to help voice and avatar talent understand the technology behind the text to speech capabilities that their voices and images help create. It also contains important privacy disclosures for talent about how Microsoft may process, use, and retain audio and video files containing talent’s recorded voices and images and helps Microsoft prevent, and/or respond to complaints of, misuse of Foundry Tools.
 
 Microsoft is committed to designing AI responsibly. We hope this note will foster a greater shared understanding among tech builders, voice talent, avatar talent, and the general public about the intended and beneficial uses of this technology.
 
@@ -123,7 +123,7 @@ Customers must obtain permission from voice talent to use their voice to create 
 
 In [Speech Studio](https://speech.microsoft.com/customvoice), you must upload an audio file with a recorded acknowledgement statement from the voice talent. Microsoft reserves the right to use Microsoft's speaker recognition technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices came from the same speaker, or as otherwise necessary to investigate misuse of Azure Speech.
 
-The speaker's voice signatures created from the recorded acknowledgement statement files and training audio data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). 
+The speaker's voice signatures created from the recorded acknowledgement statement files and training audio data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Foundry Tools. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). 
 
 #### [Custom text to speech avatar](#tab/avatar)
 
@@ -131,9 +131,9 @@ The speaker's voice signatures created from the recorded acknowledgement stateme
 
 Customers must obtain permission from avatar talent for use of their image/likeness to create a custom text to speech avatar for a synthetic video. This technical safeguard is intended to help prevent misuse of our service by, for example, preventing someone from training avatar models with video recordings and using the models to spoof an avatar without the person’s knowledge or consent.
 
-You must provide a video file with a recorded acknowledgement statement from the avatar talent. Microsoft reserves the right to verify the recorded acknowledgement statement against the training video data to confirm that the images and voices came from the same person, or as otherwise necessary to investigate misuse of Azure AI services.
+You must provide a video file with a recorded acknowledgement statement from the avatar talent. Microsoft reserves the right to verify the recorded acknowledgement statement against the training video data to confirm that the images and voices came from the same person, or as otherwise necessary to investigate misuse of Foundry Tools.
 
-The avatar talent’s video signatures created from the recorded acknowledgement statement files and training video data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). 
+The avatar talent’s video signatures created from the recorded acknowledgement statement files and training video data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Foundry Tools. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). 
 
 ---
 
@@ -141,7 +141,7 @@ The avatar talent’s video signatures created from the recorded acknowledgement
 
 #### [Custom neural voice](#tab/cnv)
 
-While customers maintain the exclusive usage rights to their custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Microsoft Azure AI services.
+While customers maintain the exclusive usage rights to their custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Microsoft Foundry Tools.
 
 Microsoft will secure and store a copy of voice talent’s recorded acknowledgement statement and custom neural voice models with the same high-level security that it uses for its other Azure Services. Learn more at Microsoft Trust Center.
 
@@ -157,7 +157,7 @@ In addition, before you can deploy any synthetic voice model created using a cus
 
 #### [Custom text to speech avatar](#tab/avatar)
 
-While you maintain the exclusive usage rights to your custom text to speech avatar model, Microsoft may independently retain a copy of your custom avatar models for as long as necessary. Microsoft may use your custom avatar models for the sole purpose of protecting the security and integrity of Azure AI services. 
+While you maintain the exclusive usage rights to your custom text to speech avatar model, Microsoft may independently retain a copy of your custom avatar models for as long as necessary. Microsoft may use your custom avatar models for the sole purpose of protecting the security and integrity of Foundry Tools. 
 
 Microsoft will secure and store a copy of custom avatar models with the same high level of security that it uses for its other Azure Services. Learn more at Microsoft Trust Center. 
 

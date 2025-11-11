@@ -1,6 +1,6 @@
 ---
 title: Bring your own AI gateway to Azure AI Agent Service (preview)
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: "Learn how to connect and use models hosted behind your enterprise AI gateways."
 author: aahil
 ms.author: aahi
@@ -36,7 +36,7 @@ View the diagram to understand the potential flows from the Agent service to you
 
 ## Connections for AI gateway
 
-Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Azure AI Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
 
 ## API Management (APIM) connection 
 APIM connections are specialized model gateway connections designed for Azure API management scenarios. These connections provide intelligent defaults and follow APIM standard conventions while integrating with the broader model gateway ecosystem.
@@ -120,7 +120,7 @@ After creating the connection, deploy a prompt agent that uses the model gateway
  
 ## Validation 
 
-* Confirm the connection is active in Azure AI Foundry. 
+* Confirm the connection is active in Foundry. 
     * You should see the connection in the Foundry portal under Admin 
 
 * Test the deployed prompt agent by sending a sample prompt. 

@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for LUIS
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations for Language Understanding
 author: laujan
 ms.author: lajanuar

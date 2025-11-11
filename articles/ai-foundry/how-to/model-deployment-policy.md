@@ -1,8 +1,8 @@
 ---
 title: Built-in policy for model deployment
-description: Manage AI model deployment in Azure AI Foundry Portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively.
+description: Manage AI model deployment in Microsoft Foundry portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively.
 monikerRange: 'foundry-classic || foundry'
-#customer intent: As an IT admin, I want to control the deployment of AI models in Azure AI Foundry Portal so that I can ensure compliance with organizational policies.
+#customer intent: As an IT admin, I want to control the deployment of AI models in Microsoft Foundry portal so that I can ensure compliance with organizational policies.
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
@@ -12,17 +12,17 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Built-in policy for model deployment in Azure AI Foundry portal
+# Built-in policy for model deployment in Microsoft Foundry portal
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Azure AI Foundry Portal. You can use
-these policies to control what models your developers can deploy in Azure AI Foundry portal.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Microsoft Foundry portal. You can use
+these policies to control what models your developers can deploy in Foundry portal.
 
 ## Prerequisites
 
 - An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your
-  Azure account lets you access the Azure AI Foundry portal.
+  Azure account lets you access the Foundry portal.
 
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.
 
@@ -56,21 +56,21 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry-classic"
 
-     1. Go to the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Azure AI Foundry Portal:
+     1. Go to the [Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Foundry portal:
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
-        :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of Azure AI Foundry model catalog showing a model card with the publisher name highlighted.":::
+        :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of model catalog showing a model card with the publisher name highlighted.":::
 
      ::: moniker-end
 
      ::: moniker range="foundry"
 
-     1. Go to the[Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Azure AI Foundry Portal:
+     1. Go to the[model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Foundry portal:
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
-        :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of Azure AI Foundry model catalog showing a model card with the publisher name highlighted.":::
+        :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of model catalog showing a model card with the publisher name highlighted.":::
 
      ::: moniker-end
 
@@ -80,7 +80,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry-classic"
 
-     1. Go to the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
+     1. Go to the [model catalog](https://ai.azure.com/explore/models).
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]
@@ -90,7 +90,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry"
 
-     1. Go to the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
+     1. Go to the [model catalog](https://ai.azure.com/explore/models).
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]
@@ -130,4 +130,4 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview)
+- [model catalog](/azure/ai-foundry/how-to/model-catalog-overview)

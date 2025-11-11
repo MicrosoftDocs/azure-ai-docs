@@ -19,7 +19,7 @@ ms.custom:
   - peer-review-program
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
-# customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
+# customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---
 
 # Microsoft Foundry Quickstart
@@ -50,11 +50,11 @@ In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry
 > * Chat with an agent
 ::: moniker-end
 
-The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
+The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 ::: moniker-end
 
 
@@ -160,9 +160,9 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/azure-ai-foundry)
 
-No installation is necessary to use the Azure AI Foundry portal.
+No installation is necessary to use the Foundry portal.
 
 ---
 
@@ -220,7 +220,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/azure-ai-foundry)
 
 1. In the chat playground, fill in the prompt and select **Send**.
 1. The model returns a response in the **Response** pane.
@@ -269,7 +269,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/azure-ai-foundry)
 
 When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
@@ -321,7 +321,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+# [Foundry portal](#tab/azure-ai-foundry)
 
 1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
 1. Select **Add**.

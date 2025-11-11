@@ -74,7 +74,7 @@ Images containing the following will be excluded from your dataset and not used 
 - CAPTCHAs
 
 > [!IMPORTANT]
->For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security).
+>For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security).
 
 ## Next steps
 

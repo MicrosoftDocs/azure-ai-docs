@@ -1,7 +1,7 @@
 ---
 title: Disable Use of Grounding With Bing
-titleSuffix: Azure AI Foundry
-description: Learn how to manage Grounding With Bing in Azure AI Foundry and Azure.
+titleSuffix: Microsoft Foundry
+description: Learn how to manage Grounding With Bing in Microsoft Foundry and Azure.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -10,11 +10,11 @@ ms.topic: how-to
 ms.date: 11/10/2025
 ---
 
-# Manage Grounding With Bing in Azure AI Foundry and Azure
+# Manage Grounding With Bing in Microsoft Foundry and Azure
 
-As an admin, you can disable Grounding With Bing in Azure AI Foundry and Azure by following the steps in this article.
+As an admin, you can disable Grounding With Bing in Microsoft Foundry and Azure by following the steps in this article.
 
-## Azure AI Foundry Agent Service
+## Foundry Agent Service
 
 See [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](../concepts/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
 

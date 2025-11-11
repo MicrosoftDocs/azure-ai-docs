@@ -1,7 +1,7 @@
 ---
-title: Azure AI Foundry Playgrounds
-titleSuffix: Azure AI Foundry
-description: Learn how to use Azure AI Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment.
+title: Microsoft Foundry Playgrounds
+titleSuffix: Microsoft Foundry
+description: Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
@@ -13,23 +13,23 @@ ms.reviewer: tgokal
 manager: nitinme
 reviewer: tgokal
 ms.custom: build-2025
-#CustomerIntent: As a developer, I want to use Azure AI Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
+#CustomerIntent: As a developer, I want to use Microsoft Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
 ---
 
-# Azure AI Foundry Playgrounds
+# Microsoft Foundry Playgrounds
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-As you build with state-of-the-art models and create agents and apps with them, Azure AI Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
+As you build with state-of-the-art models and create agents and apps with them, Microsoft Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
 
-## Highlights of the Azure AI Foundry playgrounds experience
+## Highlights of the Foundry playgrounds experience
 
-Some highlights of the Azure AI Foundry playgrounds experience include:
+Some highlights of the Foundry playgrounds experience include:
 
 - **AgentOps support** for evaluations and tracing in the **Agents playground.**
-- **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Azure AI Foundry to VS Code for multilingual code samples.
+- **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Foundry to VS Code for multilingual code samples.
 - **Images Playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
 - **Video playground** for Azure OpenAI Sora-2.
 
@@ -41,7 +41,7 @@ Some highlights of the Azure AI Foundry playgrounds experience include:
 
 ::: moniker range="foundry-classic"
 
-:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
+:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
 > In the screenshot of the playground landing page, the left pane of the portal is customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#left-pane).
@@ -52,7 +52,7 @@ Some highlights of the Azure AI Foundry playgrounds experience include:
 
 Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playgrounds are built to meet this need.
 
-The Azure AI Foundry playgrounds provide ready-to-use environments with all the necessary tools and features preinstalled, so you don't need to set up projects, manage dependencies, or solve compatibility issues. The playgrounds can *accelerate developer velocity* by validating API behavior, going quicker to code, reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
+The Foundry playgrounds provide ready-to-use environments with all the necessary tools and features preinstalled, so you don't need to set up projects, manage dependencies, or solve compatibility issues. The playgrounds can *accelerate developer velocity* by validating API behavior, going quicker to code, reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
 
 Playgrounds also *provide clarity quickly* when you have questions, by providing answers in seconds—rather than hours—and allowing you to test and validate ideas before you commit to building at scale. For example, the playgrounds are ideal for quickly answering questions like:
 
@@ -65,9 +65,9 @@ Playgrounds also *provide clarity quickly* when you have questions, by providing
 
 ::: moniker range="foundry-classic"
 
-The **Chat playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code** button. You can find this button through the Azure AI Foundry extension in VS Code. 
+The **Chat playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code** button. You can find this button through the Foundry extension in VS Code. 
 
-Available on the multilingual sample code samples, **Open in VS Code** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
+Available on the multilingual sample code samples, **Open in VS Code** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Foundry portal.
 
 To use the **Open in VS Code** functionality from the chat and agents playgrounds, follow these steps:
 
@@ -81,7 +81,7 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 1. Select **Open in VS Code** to open VS Code in a new tab of your browser window.
 
-1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint, and key are already imported from the Azure AI Foundry playground.
+1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint, and key are already imported from the Foundry playground.
 
 1. Browse the `INSTRUCTIONS.md` file for instructions to run your model.
 
@@ -95,7 +95,7 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 The **Model playground** and **Agents playground** let you work in VS Code by using the **Open in VS Code for the Web** button. You can find this button from the **Code** tab in the chat pane of the model playground.
 
-Available on the multilingual sample code samples, **Open in VS Code for the Web** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
+Available on the multilingual sample code samples, **Open in VS Code for the Web** automatically imports your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Foundry portal.
 
 ::: moniker-end
 
@@ -218,7 +218,7 @@ You can use the video playground with the **Azure OpenAI Sora-2** model.
 ::: moniker range="foundry-classic"
 
 > [!TIP]  
-> See the DevBlog for [Sora and video playground in Azure AI Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
+> See the DevBlog for [Sora and video playground in Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
 
 Follow these steps to use the video playground:
 
@@ -311,7 +311,7 @@ The images playground is ideal for developers who build image generation flows. 
 ::: moniker range="foundry-classic"
 
 > [!TIP]  
-> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images Playground in Azure AI Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images Playground in Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
 You can use the images playground with these models:
 
@@ -398,6 +398,6 @@ By using the images playground, you can explore and validate the following aspec
 
 ## Related content
 
-- [Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
+- [Use the chat playground in Foundry portal](../quickstarts/get-started-playground.md)
 - [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
-- [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
+- [Basic Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)

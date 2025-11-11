@@ -1,7 +1,7 @@
-﻿---
-title: Quotas and limits for Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
-description: Learn about the quotas and limits for when you use Azure AI Foundry Agent Service.
+---
+title: Quotas and limits for Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Learn about the quotas and limits for when you use Foundry Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -13,13 +13,13 @@ ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure AI Foundry Agent Service quotas and limits
+# Foundry Agent Service quotas and limits
 
-This article contains a reference and a detailed description of the quotas and limits for Azure AI Foundry Agent Service.
+This article contains a reference and a detailed description of the quotas and limits for Foundry Agent Service.
 
-## Quotas and limits for the Azure AI Foundry Agent Service
+## Quotas and limits for the Agent Service
 
-The following sections provide you with a guide to the default quotas and limits that apply to Azure AI Foundry Agent Service:
+The following sections provide you with a guide to the default quotas and limits that apply to Agent Service:
 
 | Limit Name | Limit Value |
 |--|--|
@@ -33,8 +33,8 @@ The following sections provide you with a guide to the default quotas and limits
 
 ## Quotas and limits for Azure OpenAI models
 
-See the [Azure OpenAI](../openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Azure AI Foundry Agent Service. 
+See the [Azure OpenAI](../openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Agent Service. 
 
 ## Next steps
 
-[Learn about the models available for Azure AI Foundry Agent Service](concepts\model-region-support.md)
+[Learn about the models available for Agent Service](concepts\model-region-support.md)

@@ -1,6 +1,6 @@
 ---
 title: Retrieval-Augmented Generation (RAG) Evaluators for Generative AI
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn about Retrieval-Augmented Generation evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -707,7 +707,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Using Azure AI Foundry Hub
+# Using Microsoft Foundry Hub
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),

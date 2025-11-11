@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Graders for generative AI
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -19,7 +19,7 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Azure OpenAI graders are a new set of evaluation tools in the Azure AI Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
+Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
 
 ::: moniker range="foundry-classic"
 
@@ -238,7 +238,7 @@ The grader also returns a metric indicating the overall dataset pass rate.
 
 ## Python grader
 
-Advanced users can create or import custom Python grader functions and integrate them into the Azure OpenAI Python grader. This enables evaluations tailored to specific areas of interest beyond the capabilities of the existing Azure OpenAI graders. The following example demonstrates how to import a custom similarity grader function and configure it to run as an Azure OpenAI Python grader using the Azure AI Foundry SDK.
+Advanced users can create or import custom Python grader functions and integrate them into the Azure OpenAI Python grader. This enables evaluations tailored to specific areas of interest beyond the capabilities of the existing Azure OpenAI graders. The following example demonstrates how to import a custom similarity grader function and configure it to run as an Azure OpenAI Python grader using the Microsoft Foundry SDK.
 
 ### Python grader example
 

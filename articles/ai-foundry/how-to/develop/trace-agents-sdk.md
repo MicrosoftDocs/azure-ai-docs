@@ -1,7 +1,7 @@
 ---
-title: Trace and Observe AI Agents in Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Trace and Observe AI Agents in Azure AI Foundry using OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
+title: Trace and Observe AI Agents in Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Trace and Observe AI Agents in Microsoft Foundry using OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -12,7 +12,7 @@ ms.topic: how-to
 ms.custom: references_regions
 ---
 
-# Trace and Observe AI Agents in Azure AI Foundry (preview)
+# Trace and Observe AI Agents in Microsoft Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -55,7 +55,7 @@ Here's a brief overview of key concepts before getting started:
 ## Extending OpenTelemetry with multi-agent observability
 
 Microsoft is enhancing multi-agent observability by introducing new semantic conventions to [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/), developed collaboratively with Outshift, Cisco's incubation engine. These additions—built upon OpenTelemetry and W3C Trace Context—establish standardized practices for tracing and telemetry within multi-agent systems, facilitating consistent logging of key metrics for quality, performance, safety, and cost. This systematic approach enables more comprehensive visibility into multi-agent workflows, including tool invocations and collaboration.
-These advancements have been integrated into Azure AI Foundry, Microsoft Agent Framework, Semantic Kernel, and Azure AI packages for LangChain, LangGraph, and the OpenAI Agents SDK, enabling customers to get unified observability for agentic systems built using any of these frameworks with Azure AI Foundry. Learn more about [tracing integrations](#integrations).
+These advancements have been integrated into Microsoft Foundry, Microsoft Agent Framework, Semantic Kernel, and Azure AI packages for LangChain, LangGraph, and the OpenAI Agents SDK, enabling customers to get unified observability for agentic systems built using any of these frameworks with Foundry. Learn more about [tracing integrations](#integrations).
 
 | Type         | Context/Parent Span   | Name/Attribute/Event           | Purpose |
 |--------------|----------------------|-------------------------------|---------|
@@ -70,9 +70,9 @@ These advancements have been integrated into Azure AI Foundry, Microsoft Agent F
 | Attribute    | execute_tool         | tool.call.results             | Records the results returned by the tool. |
 | Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
 
-## Set up tracing in Azure AI Foundry SDK
+## Set up tracing in Microsoft Foundry SDK
 
-For chat completions or building agents with Azure AI Foundry, install:
+For chat completions or building agents with Foundry, install:
 
 ```bash
 pip install azure-ai-projects azure-identity
@@ -84,9 +84,9 @@ To instrument tracing, you need to install the following instrumentation librari
 pip install azure-monitor-opentelemetry opentelemetry-sdk
 ```
 
-To view traces in Azure AI Foundry, you need to connect an Application Insights resource to your Azure AI Foundry project.
+To view traces in Foundry, you need to connect an Application Insights resource to your Foundry project.
 
-1. Navigate to **Tracing** in the left navigation pane of the Azure AI Foundry portal.
+1. Navigate to **Tracing** in the left navigation pane of the Foundry portal.
 1. Create a new Application Insights resource if you don't already have one.
 1. Connect the resource to your AI Foundry project.
 
@@ -137,7 +137,7 @@ with tracer.start_as_current_span("example-tracing"):
     run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
-After running your agent, you can begin to [view traces in Azure AI Foundry Portal](#view-traces-in-the-azure-ai-foundry-portal).
+After running your agent, you can begin to [view traces in Foundry portal](#view-traces-in-the-foundry-portal).
 
 ### Log traces locally
 
@@ -192,7 +192,7 @@ with tracer.start_as_current_span("example-tracing"):
 
 AI Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it ideal for development and debugging. 
 
-The toolkit supports AI frameworks like Azure AI Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
+The toolkit supports AI frameworks like Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
 
 For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
@@ -227,9 +227,9 @@ For detailed instructions and advanced usage, refer to the [OpenTelemetry docume
 
 ## Attach user feedback to traces
 
-To attach user feedback to traces and visualize it in the Azure AI Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions.
+To attach user feedback to traces and visualize it in the Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions.
 
-By correlating feedback traces with their respective chat request traces using the response ID or thread ID, you can view and manage these traces in the Azure AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in the Azure AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
+By correlating feedback traces with their respective chat request traces using the response ID or thread ID, you can view and manage these traces in the Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in the Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
 
 To log user feedback, follow this format:
 
@@ -246,7 +246,7 @@ The user feedback event body has the following structure:
 
 To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them.
 
-For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application` when monitoring your application in AI Foundry Portal.
+For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application` when monitoring your application in AI Foundry portal.
 
 To set up the service name property, you can do so directly in your application code by following the steps, see [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` before deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
 
@@ -258,11 +258,11 @@ To query trace data for a given service name, query for the `cloud_roleName` pro
 
 ## Integrations
 
-Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
+Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
 ### Tracing agents built on Microsoft Agent Framework and Semantic Kernel
 
-Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Observability.
+Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Observability.
 
 - Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](/agent-framework/user-guide/workflows/observability).
 
@@ -678,7 +678,7 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
     pass
 ```
 
-## View traces in the Azure AI Foundry portal
+## View traces in the Foundry portal
 
 In your project, go to **Tracing** to filter your traces as you see fit.
 
@@ -690,9 +690,9 @@ If you logged traces using the previous code snippet, then you're all set to vie
 
 For more information on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
 
-## View thread results in the Azure AI Foundry Agents playground
+## View thread results in the Foundry Agents playground
 
-The Agents playground in the Azure AI Foundry portal lets you view results for threads and runs that your agents produce. To see thread results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
+The Agents playground in the Foundry portal lets you view results for threads and runs that your agents produce. To see thread results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
 > Evaluation in the playground is billed as outlined under Trust and Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42). Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
@@ -702,7 +702,7 @@ The Agents playground in the Azure AI Foundry portal lets you view results for t
 >     - `southindia`
 >     - `uksouth`
 
-:::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
+:::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
 
 After selecting **Thread logs**, review:
 

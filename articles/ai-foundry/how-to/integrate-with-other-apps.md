@@ -1,10 +1,10 @@
 ---
-title: 'Integrate Azure AI Foundry with your applications'
-description: Learn how to retrieve and use Azure AI Foundry endpoints for third-party integrations, including comparison with Azure OpenAI v1 endpoints.
+title: 'Integrate Microsoft Foundry with your applications'
+description: Learn how to retrieve and use Microsoft Foundry endpoints for third-party integrations, including comparison with Azure OpenAI v1 endpoints.
 monikerRange: 'foundry-classic || foundry'
 ms.topic: how-to
 ms.date: 11/05/2025
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 ms.service: azure-ai-foundry
 ms.reviewer: deeikele
 ms.author: sgilley
@@ -13,16 +13,16 @@ ms.custom: devx-track-ai
 content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
-#customer intent: As a developer, I want to understand how to retrieve Azure AI Foundry endpoints and integrate them with third-party applications, similar to Azure OpenAI.
+#customer intent: As a developer, I want to understand how to retrieve Microsoft Foundry endpoints and integrate them with third-party applications, similar to Azure OpenAI.
 ---
 
-# Integrate Azure AI Foundry with your applications (Microsoft or third-party services)
+# Integrate Microsoft Foundry with your applications (Microsoft or third-party services)
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 ## Overview
 
-Azure AI Foundry is a developer platform that lets you embed AI models, agents, evaluation tools, and Responsible AI capabilities into your workflows and applications.
+Microsoft Foundry is a developer platform that lets you embed AI models, agents, evaluation tools, and Responsible AI capabilities into your workflows and applications.
 
 You can build complete solutions in Foundry or selectively integrate its features into your custom apps and Microsoft or partner solutions.
 
@@ -36,20 +36,20 @@ Foundry supports multiple integration patterns, including:
 
 ### 1. Connector‑based integration
 
-Use this pattern when your platform natively supports built-in integration to Azure AI Foundry or Azure OpenAI (for example when using Microsoft Power Platform or Logic Apps).
+Use this pattern when your platform natively supports built-in integration to Foundry or Azure OpenAI (for example when using Microsoft Power Platform or Logic Apps).
 
 - **Power Platform**: Use the [Azure OpenAI connector](/connectors/azureopenai/) in Power Apps, Power Automate, or Logic Apps.
-- **Third-party platforms**: Various third-party software vendors provide prebuilt Azure OpenAI or Azure AI Foundry modules for chat, image generation, and transcription.
+- **Third-party platforms**: Various third-party software vendors provide prebuilt Azure OpenAI or Foundry modules for chat, image generation, and transcription.
 
 ### 2. Direct REST calls
-Use direct REST calls when you're building your own application or when you need full control over HTTP calls. You can choose between Azure AI Foundry endpoint variants to access agentic or cross-model provider APIs, or use Azure OpenAI endpoint if your integration expects OpenAI v1 semantics.
+Use direct REST calls when you're building your own application or when you need full control over HTTP calls. You can choose between Foundry endpoint variants to access agentic or cross-model provider APIs, or use Azure OpenAI endpoint if your integration expects OpenAI v1 semantics.
 
-- Azure AI Foundry endpoint, for stateless API integration such as model inference:
+- Foundry endpoint, for stateless API integration such as model inference:
   ```REST
   POST https://{resource}.services.ai.azure.com/api/
   ```
 
-- Azure AI Foundry project endpoint, for stateful APIs such as agent service:
+- Foundry project endpoint, for stateful APIs such as agent service:
   ```REST
   POST https://{resource}.services.ai.azure.com/api/projects/{projectname}/
   ```
@@ -63,7 +63,7 @@ Use direct REST calls when you're building your own application or when you need
 
 To establish a single entry point across multiple model hosts, use [Azure API Management (APIM)](/azure/api-management/) as an AI gateway to centralize authentication, quota governance, and routing.
 
-- Place APIM in front of Azure AI Foundry or Azure OpenAI endpoints.
+- Place APIM in front of Foundry or Azure OpenAI endpoints.
 - Apply policies for authentication, token budgets, semantic caching, and routing.
 
 To learn more, see [API Management for AI](/azure/api-management/azure-ai-foundry-api).
@@ -73,13 +73,13 @@ To learn more, see [API Management for AI](/azure/api-management/azure-ai-foundr
 - Use Microsoft Fabric notebooks or pipelines to invoke models for batch or streaming enrichment.
 - Write results back to OneLake for downstream analytics and governance.
 
-To learn more, see [Azure AI Foundry in Fabric](/fabric/data-science/ai-services/ai-services-overview).
+To learn more, see [Foundry in Fabric](/fabric/data-science/ai-services/ai-services-overview).
 
 ## How to use the REST API
 
-Azure AI Foundry supports direct HTTP calls for scenarios where you need full control. Use the REST API when:
+Foundry supports direct HTTP calls for scenarios where you need full control. Use the REST API when:
 
-- Your tool doesn't have a native Azure AI Foundry or Azure OpenAI connector.
+- Your tool doesn't have a native Foundry or Azure OpenAI connector.
 - You want to embed calls in scripts, automation pipelines, or custom adapters.
 - You need compatibility with OpenAI v1 for third-party SDKs or connectors.
 
@@ -112,7 +112,7 @@ curl -sS -X POST \
 
 ## Related content
 
-- [Authentication and authorization options in Azure AI Foundry](../concepts/authentication-options-ai-foundry.md)
-- [Import an Azure AI Foundry API in API Management](/azure/api-management/azure-ai-foundry-api)
+- [Authentication and authorization options in Foundry](../concepts/authentication-options-ai-foundry.md)
+- [Import a Foundry API in API Management](/azure/api-management/azure-ai-foundry-api)
 - [AI gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
-- [Consume Fabric data agent from Azure AI Foundry Services](/fabric/data-science/data-agent-foundry)
+- [Consume Fabric data agent from Foundry Services](/fabric/data-science/data-agent-foundry)
