@@ -12,7 +12,7 @@ metadata:
   author: santiagxf
 title: Foundry Models frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Microsoft Foundry services (formerly known  Azure AI Services) support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).
+  If you can't find answers to your questions in this document, and still need help check the [Foundry Tools support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).
 sections:
   - name: General
     questions:
@@ -38,11 +38,11 @@ sections:
   - name: Models
     questions:
       - question: |
-          Why aren't all the models in the Azure AI model catalog supported in Microsoft Foundry services?
+          Why aren't all the models in the Microsoft model catalog supported in Microsoft Foundry services?
         answer: |
           Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
 
-          The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Microsoft Foundry](../../ai-studio/concepts/deployments-overview.md).
+          The Microsoft model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Microsoft Foundry](../../ai-studio/concepts/deployments-overview.md).
       - question: |
           My company hasn't approved specific models for use. How can I prevent users from deploying them?
         answer: |
