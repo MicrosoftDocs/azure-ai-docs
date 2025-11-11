@@ -85,7 +85,7 @@ On your Azure Blob Storage account:
 
 + Assign **Storage Blob Data Reader** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-### [Microsoft Foundry](#tab/foundry-perms)
+### [Foundry](#tab/foundry-perms)
 
 Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 

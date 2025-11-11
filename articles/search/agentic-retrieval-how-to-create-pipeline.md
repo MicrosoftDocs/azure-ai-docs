@@ -18,7 +18,7 @@ ms.custom:
 
 In this tutorial, you learn how to build a solution that integrates Azure AI Search and Foundry Agent Service for intelligent knowledge retrieval.
 
-This solution uses the Model Context Protocol (MCP) to establish a standardized connection between your agentic retrieval pipeline in Azure AI Search, which consists of a *knowledge base* that references a *knowledge source*, and your agent in Foundry.
+This solution uses the Model Context Protocol (MCP) to establish a standardized connection between your agentic retrieval pipeline in Azure AI Search, which consists of a *knowledge base* that references a *knowledge source*, and your agent in Foundry Agent Service.
 
 The following diagram shows the high-level architecture of this agentic retrieval solution:
 
@@ -110,7 +110,7 @@ Development tasks for this solution include:
 
 + Parse the response for the parts you want to include in your chat application. For many scenarios, the [content portion](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) of the response is sufficient.
 
-### [Microsoft Foundry](#tab/foundry-development)
+### [Foundry](#tab/foundry-development)
 
 + Create a project connection and an agent that uses the MCP tool.
 
@@ -134,7 +134,7 @@ For this solution, you need the following information from each resource:
 
 + The endpoint for your Azure OpenAI resource, which you can find on the **Keys and Endpoint** page in the Azure portal. It should look like this: `https://{your-resource-name}.openai.azure.com/`
 
-### [Microsoft Foundry](#tab/foundry-setup)
+### [Foundry](#tab/foundry-setup)
 
 + The endpoint for your project, which you can find on the **Endpoints** page in the Azure portal. It should look like this: `https://{your-resource-name}.services.ai.azure.com/api/projects/{your-project-name}`
 

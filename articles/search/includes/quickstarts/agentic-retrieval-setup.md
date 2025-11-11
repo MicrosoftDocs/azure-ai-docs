@@ -15,7 +15,7 @@ To configure access for this quickstart, select both of the following tabs.
 
 ### [Azure AI Search](#tab/search-perms)
 
-Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with Microsoft Foundry, and run the pipeline.
+Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with Foundry, and run the pipeline.
 
 On your Azure AI Search service:
 
@@ -31,7 +31,7 @@ On your Azure AI Search service:
 
     + **Search Index Data Reader**
 
-### [Microsoft Foundry](#tab/foundry-perms)
+### [Foundry](#tab/foundry-perms)
 
 Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
@@ -63,7 +63,7 @@ To get the endpoints for this quickstart, select both of the following tabs.
 
 1. Make a note of the endpoint, which should look like `https://my-service.search.windows.net`.
 
-### [Microsoft Foundry](#tab/foundry-endpoint)
+### [Foundry](#tab/foundry-endpoint)
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Foundry resource.
 
