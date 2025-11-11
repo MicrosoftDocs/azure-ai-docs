@@ -427,7 +427,7 @@ Check the data type for the 'High Water Mark' column in the source and update th
 ## `Error: Access denied to Virtual Network/Firewall rules.`
 
 This error typically occurs due to one of the following:
-- Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)) or AI Services / AI Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
+- Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)), or Microsoft Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
 - Private endpoint configurations that block access from the indexer to those resources.
 
 Ensure that the indexer has access to your setup components by reviewing your resource configurations to confirm they allow traffic to all required services:
