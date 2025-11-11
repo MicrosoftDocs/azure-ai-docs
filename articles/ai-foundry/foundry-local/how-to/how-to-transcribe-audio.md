@@ -54,7 +54,6 @@ Next, open the `audio-transcription-app.csproj` file and modify to the following
   <ItemGroup>
     <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
-    <PackageReference Include="OpenAI" Version="2.5.0" />
   </ItemGroup>
 
 </Project>
@@ -73,7 +72,6 @@ Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
 
 ```bash
 dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
 ```
 
 ---
@@ -97,12 +95,12 @@ using Microsoft.Extensions.Logging;
 var config = new Configuration
 {
     AppName = "my-audio-app",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Debug
 };
 
 using var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
 });
 var logger = loggerFactory.CreateLogger<Program>();
 
@@ -111,21 +109,38 @@ await FoundryLocalManager.CreateAsync(config, logger);
 var mgr = FoundryLocalManager.Instance;
 
 // Get the model catalog
-var catalog = mgr.GetCatalog();
+var catalog = await mgr.GetCatalogAsync();
 
 // Get a model using an alias
 var model = await catalog.GetModelAsync("whisper-tiny") ?? throw new System.Exception("Model not found");
 
-// Download and load the variant
-await model.DownloadAsync();
+// Download the model (the method skips download if already cached)
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading model: {progress:F2}%");
+    if (progress >= 100f)
+    {
+        Console.WriteLine();
+    }
+});
+
+// Load the model
 await model.LoadAsync();
 
 // Get a chat client
 var audioClient = await model.GetAudioClientAsync();
 
-// Get a transcription
-var response = await audioClient.TranscribeAudio("Recording.mp3");
-Console.WriteLine($"Response: {response}");
+// get a cancellation token
+CancellationToken ct = new CancellationToken();
+
+// Get a transcription with streaming outputs
+var response = audioClient.TranscribeAudioStreamingAsync("Recording.mp3", ct);
+await foreach (var chunk in response)
+{
+    Console.Write(chunk.Text);
+    Console.Out.Flush();
+}
+Console.WriteLine();
 
 // Tidy up - unload the model
 await model.UnloadAsync();

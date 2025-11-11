@@ -55,9 +55,7 @@ Next, open the `hello-foundry-local.csproj` file and modify to the following:
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
-    <PackageReference Include="OpenAI" Version="2.5.0" />
-  </ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />  </ItemGroup>
 
 </Project>
 ```
@@ -75,7 +73,6 @@ Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
 
 ```bash
 dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
 ```
 
 ---
