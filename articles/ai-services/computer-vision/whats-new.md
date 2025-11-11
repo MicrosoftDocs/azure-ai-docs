@@ -438,7 +438,7 @@ See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 ### Read API v3.1 Public Preview with OCR for Simplified Chinese
 
-The Azure AI Vision Read API v3.1 public preview adds support for Simplified Chinese.
+The Azure Vision in Foundry Tools Read API v3.1 public preview adds support for Simplified Chinese.
 
 * This preview version of the Read API supports English, Dutch, French, German, Italian, Portuguese, Simplified Chinese, and Spanish languages.
 

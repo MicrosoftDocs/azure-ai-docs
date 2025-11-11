@@ -125,7 +125,7 @@ Different Image Analysis features are available in different languages. See the 
 
 ### Region availability
 
-To use the Image Analysis APIs, you must create your Azure AI Vision resource in a supported region. The Image Analysis features are available in the following regions:
+To use the Image Analysis APIs, you must create your Azure Vision in Foundry Tools resource in a supported region. The Image Analysis features are available in the following regions:
 
 |Region | Analyze Image<br>(minus 4.0 Captions) | Analyze Image<br>(including 4.0 Captions) | Product Recognition | Multimodal embeddings | 
 |---|---|---|---|---|

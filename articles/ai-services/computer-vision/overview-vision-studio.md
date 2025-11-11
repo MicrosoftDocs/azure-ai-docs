@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is Vision Studio?
 
-[Vision Studio](https://portal.vision.cognitive.azure.com) is a set of UI-based tools that lets you explore, build, and integrate features from Azure AI Vision.
+[Vision Studio](https://portal.vision.cognitive.azure.com) is a set of UI-based tools that lets you explore, build, and integrate features from Azure Vision in Foundry Tools.
 
 Vision Studio lets you try several service features and sample their returned data in a quick, straightforward manner. Using Vision Studio, you can start experimenting with the services and learning what they offer without needing to write any code. Then, use the available client libraries and REST APIs to embed these services into your own applications.
 
