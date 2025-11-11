@@ -17,7 +17,7 @@ ai.usage: ai-assisted
 
 [!INCLUDE [agent-v2-switch](../includes/agent-v2-switch.md)]
 
-This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. It demonstrates how to build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
+This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You will build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
 
 **Business scenario**: Create an AI assistant that helps employees by combining:
 
@@ -29,7 +29,7 @@ This tutorial covers the first stage of the Azure AI Foundry developer journey: 
 **Tutorial outcome**: By the end you will have a running Modern Workplace Assistant that can answer policy, technical, and combined implementation questions; a repeatable batch evaluation script; and clear extension points (additional tools, multi‑agent patterns, richer evaluation).
 
 > [!div class="checklist"]
-> **You will achieve:**
+> **You will:**
 > - Build a Modern Workplace Assistant with SharePoint and MCP integration.
 > - Demonstrate real business scenarios combining internal and external knowledge.
 > - Implement robust error handling and graceful degradation.
@@ -294,7 +294,7 @@ You can create documents manually or generate them automatically.
    - `security-guidelines.docx`  
    - `collaboration-standards.docx`
    - `data-governance-policy.docx`
-4. Copy content from corresponding sections in `SAMPLE_SHAREPOINT_CONTENT.md`.
+4. Copy content from corresponding sections in `SAMPLE_SHAREPOINT_CONTENT.md`, found in the [sample folder referenced previously](#option-c-download-zip-of-repository).
 
 ### Option B: Auto-generate documents (PowerShell)
 
