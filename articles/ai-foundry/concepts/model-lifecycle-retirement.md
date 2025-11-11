@@ -88,6 +88,12 @@ The following tables list the timelines for models that are on track for retirem
 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21/?cid=learnDocs) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
 | [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21/?cid=learnDocs) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
 
+#### Bria
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Bria-2.3-Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria/?cid=learnDocs) | N/A | August 31, 2025 |October 31, 2025 | N/A |
+
 #### Cohere
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |

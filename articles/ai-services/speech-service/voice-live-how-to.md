@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 11/05/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice live API for real-time voice agents.
 ---
@@ -137,7 +137,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-4o-mini-realtime-preview* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
+| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `speech_duration_ms` | integer | Optional | The duration of user's speech audio required to start detection. If not set or under 80 ms, the detector uses a default value of 80 ms. |
@@ -202,7 +202,7 @@ The `voice` object has the following properties:
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
-See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
+See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech output customization configuration.
 
 ### Azure standard voices
 

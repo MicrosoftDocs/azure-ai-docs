@@ -5,7 +5,7 @@ description: Learn how to use global batch with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/13/2025
+ms.date: 11/05/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -53,7 +53,7 @@ Key use cases include:
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
-Registration is required for access to `o3-mini`. For more information see, our [reasoning models guide](./reasoning.md).
+Registration is required for access to `gpt-5` and `o3` For more information see, our [reasoning models guide](./reasoning.md).
 
 # [Data Zone Batch](#tab/datazone-batch)
 
@@ -61,23 +61,21 @@ Registration is required for access to `o3-mini`. For more information see, our 
 
 [!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
 
+Registration is required for access to `gpt-5` and `o3`. For more information see, our [reasoning models guide](./reasoning.md).
+
 ---
 
 The following models support global batch:
 
 | Model | Version | Input format |
 |---|---|---|
+| `gpt-5` | `2025-08-7`  | text + image |
+| `o3` | `2025-04-16`  | text + image   |
 | `o3-mini` | 2025-01-31 | text |
 |`gpt-4o` | 2024-08-06 |text + image |
 |`gpt-4o-mini`| 2024-07-18 | text + image |
 |`gpt-4o` | 2024-05-13 |text + image |
 
-### API support
-
-|   | API Version   |
-|---|---|
-|**Latest GA API release:**| `2024-10-21`|
-|**Latest Supported Preview API release:**| `2025-04-01-preview`|
 
 > [!NOTE]
 > While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.

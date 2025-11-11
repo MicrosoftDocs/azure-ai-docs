@@ -265,7 +265,7 @@ Azure AI Foundry makes it easy to log traces with minimal changes by using our t
 
 Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Azure AI Foundry Observability.
 
-- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability).
+- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](/agent-framework/user-guide/workflows/observability).
 
 
 ### Enable tracing for Agents built on LangChain & LangGraph
