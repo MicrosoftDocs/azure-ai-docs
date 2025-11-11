@@ -1,7 +1,7 @@
 ---
 title: Azure AI Content Understanding Disaster recovery
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document solutions.
+description: Learn about disaster recovery features in Azure AI Content Understanding.
 author: PatrickFarley 
 ms.author: jppark
 manager: nitinme
