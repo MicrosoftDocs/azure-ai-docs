@@ -33,16 +33,21 @@ Content Understanding classification allows for processing complex documents and
 
 Content Understanding classification can analyze single or multi-file documents to identify if an input file can be classified into a category as defined. The following scenarios are supported:
 
-* A single file that contains one document type, such as a loan application form.
-* A single file that contains multiple document types. An example is a loan application package that contains a loan application form, pay slip, and bank statement.
-* A single file that contains multiple instances of the same document. An example is a collection of scanned invoices.
-* Starting with the GA version, the `$OTHER` class isn't included as default. To filter out the data, add the `$OTHER` class explicitly.
+* Classify only: classifies the input file as a whole. For example, a single file that contains one document type, such as a loan application form.
+* Classify and analyze: classifies and analyze the input file by routing the input to the desired extraction analyzer
+* Classify and segment: classifies and segments a single input file that may have multiple types or instances of documents concatenated. For example, a loan application package that contains a loan application form, pay slip, and bank statement. Another example is a collection of scanned invoices in a single file.
+* Classify, segment, and analyze: once the segments are classified, route each segment to the desired extraction analyzer for further field extraction.
+* [Hierarchical classifier](#hierarchical-classifier): optional additional analysis depending on the category can also be a classifier analyzer.
+
+> [!NOTE]
+> The minimum unit for classification for documents is at a page level. Intra-page classification is not supported.
 
 ### Create classification categories
 
 Content Understanding classification doesn't require a training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
 
 Starting with the GA version, you need to include the `other` category within the `contentCategories` to ensure that content can remain unmatched to any of your defined categories. If the `other` category is not included, all the files are forced to be classified into one of your defined categories. Each of the category names you define within `contentCategories` can also include a `description` to give further information about the category you're defining.
+
 
 ### Input file splitting
 
@@ -52,6 +57,9 @@ When you run the `analyze` operation, it now includes a `enableSegment` property
 
 * To treat the entire input file as multiple documents combined together for classification, set `enableSegment` to `true`. When you do so, the service returns categories for the segments within the input file automatically. Likewise for any videos, it categorizes each segment with respect to its included classified category.
 * To treat the entire input file as a single document or a video, set `enableSegment` to `false`.
+
+> [!NOTE]
+> Note for videos, the current limitation is that we only allow a single `contentCategories` to be defined. If you want to enable video segmentation for a single file, you will need to utilize the `description` field to define where to break into separate pieces.
 
 
 ### Optional analysis
@@ -67,6 +75,8 @@ On the top layer, you can also specify `omitContent` as true to ensure that orig
 #### Hierarchical classifier
 
 The newly designed analyzer operation allows for hierarchical splitting and classification. For example, within the base analyzer operation, you can set the `analyzerID` for the content categories you defined with your custom analyzer that performs additional classification or splitting, depending on the need. Defining hierarchical analyzers allow for scenarios such as categorizing different types of documents like invoices, contracts, and receipts, with the analyzerID for each of these categories can also be an analyze operation with additional classification enabled for different types of files within invoices, contracts, and receipts. 
+
+For now, document inputs support 5 levels of nesting, and 2 levels for video inputs.
 
 ## Classifier limits
 

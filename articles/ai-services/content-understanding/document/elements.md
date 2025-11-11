@@ -183,12 +183,16 @@ JSON example:
 
 A *formula* is a content element that represents mathematical expressions in the document. It might be an inline formula embedded with other text or a display formula that takes up an entire line. Multiline formulas are represented as multiple display formula elements grouped into paragraphs to preserve mathematical relationships.
 
+Formula can be of kind `inline` or `display` depending on the placement of the formula within the document. 
+
 JSON example:
 
 ```json
 {
   "formulas": [
     {
+      "kind": "inline",
+      "value": "x = \\frac { - b \\pm \\sqrt { b ^ { 2 } - 4 a c } } { 2 a }",
       "confidence": 0.708,
       "source": "D(1,3.4282,7.0195,4.0452,7.0307,4.0425,7.1803,3.4255,7.1691)",
       "span": {
@@ -202,7 +206,7 @@ JSON example:
 
 #### Figures
 
-A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding generates summary of detected figures, converts select images into chart.js representation, and extracts any embedded text from the images and any associated captions and footnotes. Charts are represented in figure content using chart.js syntax and diagrams are represented in figure content using a string in mermaid syntax.
+A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding generates summary of detected figures, converts select images into chart.js representation, and extracts any embedded text from the images and any associated captions and footnotes. Charts are represented in figure content using chart.js syntax and diagrams are represented in figure content using a string in mermaid syntax. This is an optional feature you can turn on in the analyzer configuration by setting `enableFigureAnalysis` and `enableFigureDescription` as `true`.
 
 The following figure types are currently supported:
 
@@ -226,7 +230,10 @@ JSON example:
 {
   "figures": [
      {
+      // enableFigureDescription = True
       "description": "This figure illustrates the sales revenue over the year 2023.",
+
+      // enableFigureAnalysis = True
       "kind": "chart",
       "content": {
         "type": "line",
@@ -282,7 +289,7 @@ JSON example:
 > [!NOTE]
 > Note that annotations are currently only supported in digital PDF inputs.
 
-| Annotation type |
+| Annotation kind |
 |--------------|
 | `highlight` |
 | `underline` |
@@ -290,6 +297,7 @@ JSON example:
 | `rectangle` |
 | `circle` |
 | `drawing` |
+| `comments` |
 | `other` |
 
 JSON example:
@@ -302,6 +310,14 @@ JSON example:
       "kind": "underline",
       "spans": [...],
       "source": "D(pageNumber,l,t,w,h)",
+      "comments": [
+        {
+          "message": "Hi",
+          "author": "johndoe",
+          "createdAt": "2023-10-01T12:00:00Z",
+          "tags": ["approved"]
+        }
+      ]
       "author": "paulhsu",
       "createdAt": "2023-10-01T12:00:00Z",
       "lastModifiedAt": "2023-10-02T12:00:00Z",
@@ -431,13 +447,24 @@ JSON example:
           "span": {
             "offset": 798,
             "length": 8
-          }
+          },
+          "elements": [
+            "/paragraphs/7"
+          ]
         }
       ],
       "source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
       "span": {
         "offset": 781,
         "length": 280
+      },
+      "caption": {
+        "content": "Table 1: This is a table",
+        "source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
+        "span": {
+          "offset": 335,
+          "length": 30
+        }
       }
     }
   ]
