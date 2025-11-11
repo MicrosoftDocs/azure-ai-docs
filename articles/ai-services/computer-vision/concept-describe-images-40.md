@@ -22,7 +22,7 @@ Image captioning is available in English only.
 > [!IMPORTANT]
 > Image captioning in Image Analysis 4.0 is only available in certain Azure data center regions: see [Region availability](./overview-image-analysis.md#region-availability). You must use an Azure AI Vision resource located in one of these regions to get results from Caption and Dense Captions features.
 >
-> If you need to use a Vision resource outside these regions to generate image captions, please use [Image Analysis 3.2](concept-describing-images.md) which is available in all Azure AI Vision regions.
+> If you need to use a Vision resource outside these regions to generate image captions, please use [Image Analysis 3.2](concept-describing-images.md) which is available in all Azure Vision regions.
 
 Try out the image captioning features quickly and easily in your browser using Vision Studio.
 

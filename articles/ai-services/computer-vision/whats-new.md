@@ -449,7 +449,7 @@ See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 ## May 2020
 
-Azure AI Vision API v3.0 entered General Availability, with updates to the Read API:
+Azure Vision API v3.0 entered General Availability, with updates to the Read API:
 
 * Support for English, Dutch, French, German, Italian, Portuguese, and Spanish
 * Improved accuracy

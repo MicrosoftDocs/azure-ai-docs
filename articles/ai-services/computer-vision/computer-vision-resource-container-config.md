@@ -85,13 +85,13 @@ Remember to add the `vision/<version>` routing to the endpoint URI as shown in t
 
 Use bind mounts to read and write data to and from the container. You can specify an input mount or output mount by specifying the `--mount` option in the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command.
 
-The Azure AI Vision containers don't use input or output mounts to store training or service data. 
+The Azure Vision containers don't use input or output mounts to store training or service data. 
 
 The exact syntax of the host mount location varies depending on the host operating system. Additionally, the [host computer](computer-vision-how-to-install-containers.md#host-computer-requirements)'s mount location might not be accessible due to a conflict between permissions used by the Docker service account and the host mount location permissions. 
 
 |Optional| Name | Data type | Description |
 |-------|------|-----------|-------------|
-|Not allowed| `Input` | String | Azure AI Vision containers don't use this field.|
+|Not allowed| `Input` | String | Azure Vision containers don't use this field.|
 |Optional| `Output` | String | The target of the output mount. The default value is `/output`. This is the location of the logs. This includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output`|
 
 ## Example docker commands

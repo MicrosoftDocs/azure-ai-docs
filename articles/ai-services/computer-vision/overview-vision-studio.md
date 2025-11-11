@@ -46,7 +46,7 @@ To use Vision Studio, you need an Azure subscription and a resource for Foundry 
 
 ## Preconfigured features
 
-Azure AI Vision offers multiple features that use prebuilt, preconfigured models for performing various tasks, such as: understanding how people move through a space, detecting faces in images, and extracting text from images. See the [Azure AI Vision overview](overview.md) for a list of features offered by the Vision service.
+Azure Vision offers multiple features that use prebuilt, preconfigured models for performing various tasks, such as: understanding how people move through a space, detecting faces in images, and extracting text from images. See the [Azure Vision overview](overview.md) for a list of features offered by the Vision service.
 
 Each of these features has one or more try-it-out experiences in Vision Studio that allow you to upload images and receive JSON and text responses. These experiences help you quickly test the features using a no-code approach.
 
@@ -62,4 +62,4 @@ If you want to remove an AI Foundry resource after using Vision Studio, you can 
 ## Related content
 
 * Go to [Vision Studio](https://portal.vision.cognitive.azure.com) to begin using features offered by the service.
-* For more information on the features offered, see the [Azure AI Vision overview](overview.md).
+* For more information on the features offered, see the [Azure Vision overview](overview.md).
