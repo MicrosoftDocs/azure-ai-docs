@@ -97,8 +97,6 @@ You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/op
 
 1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. From the left pane, select **Model catalog**.
-
 1. Select **text-embedding-3-large**, and then select **Use this model**.
 
 1. Specify a deployment name. We recommend **text-embedding-3-large**.

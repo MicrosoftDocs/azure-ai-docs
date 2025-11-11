@@ -56,8 +56,6 @@ Supported embedding models from the Foundry model catalog vary by usage method:
 <!--
 1. Open the [Foundry model catalog](https://ai.azure.com/explore/models). Create a project if you don't have one already.
 
-1. From the left pane, select **Model catalog**.
-
 1. Apply a filter to show just the embedding models. Under **Inference tasks**, select **Embeddings**.
 
    :::image type="content" source="media\vector-search-integrated-vectorization-ai-studio\ai-studio-catalog-embeddings-filter.png" lightbox="media\vector-search-integrated-vectorization-ai-studio\ai-studio-catalog-embeddings-filter.png" alt-text="Screenshot of the Foundry model catalog page highlighting how to filter by embeddings models.":::

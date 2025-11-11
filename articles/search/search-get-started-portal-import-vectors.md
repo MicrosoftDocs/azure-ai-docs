@@ -209,8 +209,6 @@ The wizard supports several embedding models. Internally, the wizard calls the [
 
    1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
 
-   1. From the left pane, select **Model catalog**.
-
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
 ### [Foundry](#tab/model-catalog)
@@ -236,8 +234,6 @@ To complete these steps, you must have a [Foundry project](/azure/ai-foundry/how
 1. To deploy an embedding model:
 
    1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your resource.
-
-   1. From the left pane, select **Model catalog**.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 

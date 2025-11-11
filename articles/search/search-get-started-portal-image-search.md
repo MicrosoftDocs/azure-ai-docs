@@ -179,8 +179,6 @@ To deploy the models for this quickstart:
 
 1. Select your Azure OpenAI resource or Foundry project.
 
-1. From the left pane, select **Model catalog**.
-
 1. Deploy the models required for your chosen [embedding method](#supported-embedding-methods).
 
 ## Start the wizard

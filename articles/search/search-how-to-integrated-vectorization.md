@@ -226,8 +226,6 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
    1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
 
-   1. From the left pane, select **Model catalog**.
-
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
    1. Copy the deployment and model names, which you specify later in [Set variables](#set-variables). The deployment name is the custom name you chose, while the model name is the model you deployed, such as `text-embedding-ada-002`.
@@ -282,8 +280,6 @@ For the model catalog, you should have a [Foundry project](/azure/ai-foundry/how
 1. To deploy an embedding model:
 
    1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
-
-   1. From the left pane, select **Model catalog**.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
