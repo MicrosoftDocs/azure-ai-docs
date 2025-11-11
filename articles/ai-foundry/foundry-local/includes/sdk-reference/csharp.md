@@ -84,7 +84,7 @@ In the previous version of the Foundry Local C# SDK, you couldn't configure thes
 
 ### Project setup
 
-To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
+To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow these instructions to create a new C# console application and add the necessary dependencies:
 
 #### [Windows](#tab/windows)
 
@@ -95,7 +95,7 @@ dotnet new console -n hello-foundry-local
 cd hello-foundry-local
 ```
 
-Next, open the `hello-foundry-local.csproj` file and modify to the following:
+Next, open the `hello-foundry-local.csproj` file and modify it to include the required WinAppSDK parameters (such as `TargetFramework` and `WindowsAppSDKSelfContained`) and NuGet packages for Foundry Local and OpenAI SDK:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -118,7 +118,7 @@ Next, open the `hello-foundry-local.csproj` file and modify to the following:
 </Project>
 ```
 
-The Windows-specific package `Microsoft.AI.Foundry.Local.WinML` includes support for Windows ML hardware acceleration. On initialization, Foundry Local will automatically detect compatible hardware and use it for model inference. If the host machine is missing the correct runtimes and drivers for the available hardware, Foundry Local will automatically download and install them on initialization. You can also override the automatic runtime/driver download behavior and manage the download in your application logic. By keeping the runtimes and drivers separated from the Foundry Local SDK package, we ensure the package size remains small and only the necessary components are installed on the host machine, which will reduce your application's size.
+The Windows-specific package `Microsoft.AI.Foundry.Local.WinML` includes support for Windows ML hardware acceleration. On initialization, Foundry Local automatically detects compatible hardware and uses it for model inference. If the host machine is missing the correct runtimes and drivers for the available hardware, Foundry Local automatically downloads and installs them on initialization. You can also override the automatic runtime/driver download behavior and manage the download in your application logic. By keeping the runtimes and drivers separated from the Foundry Local SDK package, we ensure only the necessary components are installed on the host machine, which reduces your application's size.
 
 For an up-to-date list of supported hardware accelerators, see [Supported execution providers in Windows ML](https://learn.microsoft.com/windows/ai/new-windows-ml/supported-execution-providers).
 
@@ -138,7 +138,7 @@ dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
 dotnet add package OpenAI --version 2.5.0
 ```
 
-On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU. In the case of GPU, Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider uses a library called Dawn that converts from the WebGPU shader language to Metal.
+On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU (default). Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider uses a library called Dawn that converts from the WebGPU shader language to Metal.
 
 #### [Linux](#tab/linux)
 
@@ -156,7 +156,7 @@ dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
 dotnet add package OpenAI --version 2.5.0
 ```
 
-On Linux, Foundry Local supports hardware acceleration for CPU and Nvidia CUDA-enabled GPUs. For Nvidia GPUs, you'll need to ensure you have installed the appropriate CUDA drivers and libraries.
+On Linux, Foundry Local supports hardware acceleration for CPU and Nvidia CUDA-enabled GPUs. For Nvidia GPUs, you need to install the appropriate CUDA drivers and libraries.
 
 ---
 
@@ -287,4 +287,4 @@ dotnet run -r:linux-x64
 
 ### API reference
 
-- The complete API reference for the Foundry Local C# SDK is available at [Microsoft.AI.Foundry.Local](../../reference/api-reference/cs/Microsoft.AI.Foundry.Local.md).
+- For more details on the Foundry Local C# SDK read [Foundry Local C# SDK API Reference](https://aka.ms/fl-csharp-api-ref).
