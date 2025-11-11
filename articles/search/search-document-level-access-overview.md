@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.date: 11/09/2025
+ms.date: 11/10/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -44,7 +44,7 @@ This approach is useful for systems with custom access models or non-Microsoft s
 
 Native support is based on Microsoft Entra users and groups affiliated with documents that you want to index and query. 
 
-Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use the [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) and a preview API to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md), RBAC scope preservation is at the container level.
+Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use the [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) and the preview API version 2025-11-01-preview to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md), RBAC scope preservation is at the container level.
 
 For ACL-secured content, we recommend group access over individual user access for ease of management. The pattern includes the following components:
 
@@ -52,9 +52,9 @@ For ACL-secured content, we recommend group access over individual user access f
 - [Enable permission filters](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexpermissionfilteroption) in the index.
 - [Add a permission filter](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#permissionfilter) to a string field in an index.
 - Load the index with source documents having associated ACLs.
-- Query the index, [adding `x-ms-query-source-authorization`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true#request-headers) in the request header.
+- Query the index, adding [`x-ms-query-source-authorization`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true#request-headers) in the request header.
 
-Your client app receives read permissions to the index through **Search Index Data Reader** role. Access at query time is determined by user or group permission metadata in the indexed content. Queries that include a permission filter pass a user or group token as `x-ms-query-source-authorization` in the request header. When you use permission filters at query time, Azure AI Search checks for two things:
+Your client app receives read permissions to the index through **Search Index Data Reader** or **Search Index Data Contributor** role. Access at query time is determined by user or group permission metadata in the indexed content. Queries that include a permission filter pass a user or group token as `x-ms-query-source-authorization` in the request header. When you use permission filters at query time, Azure AI Search checks for two things:
 
 - First, it checks for **Search Index Data Reader** permission that allows your client application to access the index.
 
@@ -70,7 +70,7 @@ How you retrieve ACL permissions varies depending on whether you're pushing a do
 
 Start with a preview API that provides the feature:
 
-- [2025-08-01-preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+- [2025-11-01-preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 - [Azure SDK for Python prerelease package](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1160b12-2025-05-14)
 - [Azure SDK for .NET prerelease package](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta4-2025-05-14)
 - [Azure SDK for Java prerelease package](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md#1180-beta7-2025-05-16)
@@ -125,7 +125,7 @@ The pattern includes the following components:
 - Configure your [index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true), [data source](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and [indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (for scheduling purposes) using the 2025-11-01-preview REST API or a corresponding SDK that supports Purview label ingestion.
 - Enable a [system-assigned managed identity](search-how-to-managed-identities.md) to your search service. Then ask your tenant global administrator or privileged role administrator to [grant the required access](search-indexer-sensitivity-labels.md), so the search service can securely access Microsoft Purview and extract label metadata.
 - Apply sensitivity labels to documents before indexing so they can be recognized and preserved during ingestion.
-- At query time, attach a valid Microsoft Entra token via the respective header to each query request. Azure AI Search evaluates the token and the associated label metadata to enforce label-based access control.
+- At query time, attach a valid Microsoft Entra token via the header `x-ms-query-source-authorization` to each query request. Azure AI Search evaluates the token and the associated label metadata to enforce label-based access control.
 
 Purview sensitivity label enforcement is limited to single-tenant scenarios, requires RBAC authentication, and during public preview is supported only through REST API or SDK. Autocomplete and Suggest APIs aren't available for Purview-enabled indexes at this time.
 
