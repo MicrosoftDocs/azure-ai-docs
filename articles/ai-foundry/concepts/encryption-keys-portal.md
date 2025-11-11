@@ -114,7 +114,6 @@ Using CMKs may incur extra subline cost items due to dedicated hosting of certai
 
 * Projects can be updated from Microsoft-managed keys to CMKs but not reverted.
 * Project CMK can be updated only to keys in the same Key Vault instance.
-* Request form required for some services: [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) for Speech and Content Safety.
 * Storage-related charges for CMK encryption continue during soft-deleted retention.
 
 ## Related content
