@@ -1,16 +1,15 @@
 ---
 title: how to call the Key Phrase Extraction API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: How to extract key phrases by using the Key Phrase Extraction API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
-
 # How to use key phrase extraction 
 
 The key phrase extraction feature can evaluate unstructured text, and for each document, return a list of key phrases.

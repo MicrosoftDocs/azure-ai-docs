@@ -1,6 +1,6 @@
 ---
 title: How to record video samples for custom text to speech avatar - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar.
 author: PatrickFarley
 manager: nitinme

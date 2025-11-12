@@ -1,12 +1,12 @@
 ---
-title: Migrate from Translator v3 to the latest Azure AI Translator text translation version.
-titleSuffix: Azure AI services
-description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-10-01-preview text translation API.
+title: Migrate from Translator v3 to the latest Azure Translator in Foundry Tools text translation version.
+titleSuffix: Foundry Tools
+description: This article provides the steps to help you migrate from Azure Translator v3 to 2025-05-01-preview text translation API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 09/03/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -20,7 +20,7 @@ Azure AI Translator text translation 2025-10-01-preview is our latest cloud-base
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
-The latest version of Azure AI Translator includes the following enhancements and capabilities:
+The latest version of Azure Translator includes the following enhancements and capabilities:
 
  * **Large language model (LLM) choice**. You can choose a large language model based for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
 
@@ -52,7 +52,7 @@ The following table provides a detailed comparison of the updates introduced in 
 |[Translate text](../reference/v3/translate.md)|[Translate text](../preview/translate-api.md)|
 |[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../preview/transliterate-api.md)|
 |[Languages](../reference/v3/languages.md)|[Languages](../preview/get-languages.md)|
-|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use a sentence delimiter function or a Natural Language Processing (NLP) library that is compatible with your programming language.|
+|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use a sentence delimiter function or a Natural Language Processing (NLP) library that's compatible with your programming language.|
 |[Detect](../reference/v3/detect.md)|Feature no longer supported.<br>Use the [Azure AI Language detection API](../../../language-service/language-detection/how-to/call-api.md).|
 |[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported.|
 |[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported.|

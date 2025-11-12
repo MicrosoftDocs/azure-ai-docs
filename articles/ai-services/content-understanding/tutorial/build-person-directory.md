@@ -253,4 +253,4 @@ The API returns the detected bounding box of the face along with the most simila
 
 ## Next step
 
-Explore how to identify individuals in video content using the [Azure AI Content Understanding video solutions (preview)](../video/overview.md).
+Explore how to identify individuals in video content using the [Azure Content Understanding in Foundry Tools video solutions (preview)](../video/overview.md).

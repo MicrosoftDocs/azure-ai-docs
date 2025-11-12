@@ -21,7 +21,7 @@ To use your fine-tuned professional voice, you must specify the voice model name
 To create a professional voice endpoint:
 
 To deploy an endpoint, follow these steps:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Deploy model** > **Deploy model**. 
@@ -67,12 +67,12 @@ You can suspend or resume an endpoint to limit spend and conserve resources that
 > [!NOTE]
 > The suspend operation completes almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
 
-This section describes how to suspend or resume a custom voice endpoint in the Azure AI Foundry portal.
+This section describes how to suspend or resume a custom voice endpoint in the Microsoft Foundry portal.
 
 ### Suspend endpoint
 
 To suspend and deactivate your endpoint:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Deploy model**. 
@@ -84,7 +84,7 @@ To suspend and deactivate your endpoint:
 
 ### Resume endpoint
 
-1. To resume and activate your endpoint, select **Resume** from the **Deploy model** tab in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. To resume and activate your endpoint, select **Resume** from the **Deploy model** tab in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. In the dialog box that appears, select **Submit**. After you successfully reactivate the endpoint, the status will change from **Suspended** to **Succeeded**.
 
 ## Next steps

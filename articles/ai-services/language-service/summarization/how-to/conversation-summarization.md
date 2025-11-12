@@ -1,17 +1,16 @@
 ---
 title: Summarize text with the conversation summarization API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to summarize chat logs with the conversation summarization API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-pii
 ---
-
 # How to use conversation summarization
 
 [!INCLUDE [availability](../includes/regional-availability.md)]

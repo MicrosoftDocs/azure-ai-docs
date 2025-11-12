@@ -1,7 +1,7 @@
 ﻿---
 title: Content Understanding region and language support
-titleSuffix: Azure AI services
-description: Azure AI Content Understanding region and language support
+titleSuffix: Foundry Tools
+description: Azure Content Understanding in Foundry Tools region and language support
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,13 +14,13 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding region and language support
+# Azure Content Understanding in Foundry Tools region and language support
 
-Azure AI Content Understanding provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
+Azure Content Understanding in Foundry Tools provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
 
 ## Region support
 
-To use Azure AI Content Understanding, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
@@ -44,7 +44,7 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 
 ## Language support
 
-Azure AI Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
+Azure Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
 Content Understanding applies [Azure OpenAI models](../../ai-foundry/openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
 
@@ -153,7 +153,7 @@ The following table lists the supported languages/locales for **handwritten** te
 
 ### Speech transcription
 
-Content Understanding applies [Azure AI speech to text](../speech-service/speech-to-text.md) to transcribe spoken words in the input. For a subset of supported languages, it uses [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to reduce processing latency.
+Content Understanding applies [Azure Speech in Foundry Tools to text](../speech-service/speech-to-text.md) to transcribe spoken words in the input. For a subset of supported languages, it uses [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to reduce processing latency.
 
 The following table lists the supported languages/locales for fast transcription.
 

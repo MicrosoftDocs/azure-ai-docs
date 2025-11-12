@@ -1,6 +1,6 @@
 ---
 title: What's new in Content Understanding?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
@@ -13,9 +13,9 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure AI Content Understanding?
+# What's new in Azure Content Understanding in Foundry Tools?
 
-Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+Azure Content Understanding in Foundry Tools service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## November 2025
 
@@ -101,7 +101,7 @@ Azure AI Content Understanding preview version introduces the following updates:
 
 ## May 2025
 
-The Azure AI Content Understanding [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) REST API is now available. This update introduces the following updates and enhanced capabilities:
+The Azure Content Understanding [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) REST API is now available. This update introduces the following updates and enhanced capabilities:
 
 ### Processing modes
 
@@ -113,7 +113,7 @@ The `pro` mode (preview) is currently limited to documents as inputs, with suppo
 
 ### AI Foundry experience
 
-With this release, the following updates are now available to the Content Understanding experience in Azure AI Foundry:
+With this release, the following updates are now available to the Content Understanding experience in Microsoft Foundry:
 
 * Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal](./how-to/content-understanding-foundry-classic.md).
 * Try-out experiences are now available for general document analysis and invoice analysis. Try out these prebuilt features on your own data and start getting insights without having to create a custom task. 
@@ -174,4 +174,4 @@ This release adds new face detection and recognition capabilities to Content Und
 
 ## November 2024
 
-Welcome! The Azure AI Content Understanding API version `2024-12-01-preview` is now in public preview. This version allows you to generate a structured representation of content tailored to specific tasks from various modalities or formats. Content Understanding uses a defined schema to extract content suitable for processing by large language models and subsequent applications.
+Welcome! The Azure Content Understanding API version `2024-12-01-preview` is now in public preview. This version allows you to generate a structured representation of content tailored to specific tasks from various modalities or formats. Content Understanding uses a defined schema to extract content suitable for processing by large language models and subsequent applications.

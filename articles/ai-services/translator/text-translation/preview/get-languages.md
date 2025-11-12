@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -14,7 +14,7 @@ ms.author: lajanuar
 
 # Languages (2025-10-01-preview)
 
-Get the set of languages currently supported by the latest Azure AI Translator version.
+Get the set of languages currently supported by the latest Azure Translator version.
 ## Request URL
 
 Send a `GET` request to:
@@ -30,7 +30,7 @@ For virtual networks, use your custom domain endpoint:
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-10-01-preview
 ```
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
+For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
 
 ## Request parameters
 

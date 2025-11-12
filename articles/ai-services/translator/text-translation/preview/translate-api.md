@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -80,7 +80,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate
 
 ### Private endpoint
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
+For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
 ## Request headers
 
@@ -329,7 +329,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 #### Translate using `GPT-4o mini` deployment and `NMT`
 
 * Here,  the source text is translated into Spanish language using a specified mode (gpt-4o) and into German language using general NMT model. 
-* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -393,7 +393,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 
 #### Translate specifying gender and tone using `GPT-4o mini` deployment
 
-Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -463,7 +463,7 @@ Using an `LLM` model requires you to have an Azure AI Foundry resource. For more
 
 #### Text translation request applying adaptive custom translation with dataset
 
-Adaptive custom translation deploys on Translator service infrastructure. Charges are based on source characters.
+Adaptive custom translation deploys on Translator infrastructure. Charges are based on source characters.
 
 ***Request***
 

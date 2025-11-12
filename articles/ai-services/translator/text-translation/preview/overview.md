@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.custom: references_regions
-ms.date: 09/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -21,12 +21,12 @@ ms.author: lajanuar
 
 Azure AI Translator `2025-10-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications.
 
-The Translator service is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.
+The Translator is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.
 
 
 >[!IMPORTANT]
-> * Azure AI Translator REST API `2025-10-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
-> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> * Azure Translator REST API `2025-10-01-preview` is new version of the Azure Translator REST API **with breaking changes**.
+> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
@@ -34,7 +34,7 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 * **Revised request and response JSON format**. The REST API structure has been revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide (preview)](rest-api-guide.md#rest-api-code-sample-translate).
 
-* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
+* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md)
 
 * **Adaptive custom translation**. You can provide up to five reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs.
 
@@ -52,7 +52,7 @@ The `2025-10-01-preview` API supports both the resource API key and Microsoft En
 
 ## NMT Base URLs
 
-Requests to Translator are, in most cases, handled by the datacenter that is closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
+Requests to Translator are, in most cases, handled by the datacenter that's closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
 
 To force the request to be handled within a specific geography, use the desired geographical endpoint. All requests are processed among the datacenters within the geography.
 
@@ -85,7 +85,7 @@ The amount of computing resources you provide influences translation latency whe
 
 #### Pricing
 
-* By default, translations using general NMT (Neural Machine Translation) models are billed according to the number of characters in the source text. For more information, *see* [Azure AI Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+* By default, translations using general NMT (Neural Machine Translation) models are billed according to the number of characters in the source text. For more information, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 
 * Translations using generative AI LLMs are charged according to the number of input and output tokens processed. For more information, *see* [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 

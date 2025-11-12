@@ -1,18 +1,18 @@
 ---
 title: What is Azure Text translation?
-titlesuffix: Azure AI services
+titlesuffix: Foundry Tools
 description: Integrate the Text translation API into your applications, websites, tools, and other solutions for multi-language user experiences.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 07/31/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# What is Azure Text translation?
+# What is Azure Text translation in Foundry Tools?
 
- Azure Text translation is a cloud-based REST API feature of the Translator service that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text translation REST APIs enable you to build intelligent solutions for your applications and workflows.
+ Azure Translator in Foundry Tools is a cloud-based REST API feature of Translator that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text translation REST APIs enable you to build intelligent solutions for your applications and workflows.
 
 Text translation documentation contains the following article types:
 
@@ -111,7 +111,7 @@ Ready to begin?
 
 * [**Get your access keys and API endpoint**](../how-to/create-translator-resource.md#authentication-keys-and-endpoint-url). An endpoint URL and read-only key are required for authentication.
 
-* Explore our [**Quickstart**](quickstart/rest-api.md) "Learn to use Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages:
+* Explore our [**Quickstart**](quickstart/rest-api.md) "Learn to Use the Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages:
   * [**C#/.NET**](quickstart/rest-api.md?tabs=csharp)
   * [**Go**](quickstart/rest-api.md?tabs=go)
   * [**Java**](quickstart/rest-api.md?tabs=java)

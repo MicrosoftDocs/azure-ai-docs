@@ -3,11 +3,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
-
 ## Prerequisites
 
 > [!TIP]
@@ -40,7 +39,7 @@ You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 
 ## Navigate to the [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
 
-Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
+Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
@@ -48,7 +47,7 @@ Using the left side pane, select **Playgrounds**. Then select the **Try the Lang
 
 The **Language Playground** consists of four sections:
 
-* Top banner: You can select any of the currently available Language services here.
+* Top banner: You can select any of the currently available Languages here.
 * Right pane: This pane is where you can find the **Configuration** options for the service, such as the API and model version, along with features specific to the service.
 * Center pane: This pane is where you enter your text for processing. After the operation is run, some results will be shown here.
 * Right pane: This pane is where **Details** of the run operation are shown.

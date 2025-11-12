@@ -3,11 +3,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-To use personally identifiable information (PII) detection, submit text for analysis and configure the desired API output for your application. Analysis is performed as-is, with no customization to the model used on your data. There are two ways to use PII detection:
+To use PII detection, you submit text for analysis and handle the API output in your application. Analysis is performed as-is, with no customization to the model used on your data. There are two ways to use PII detection:
 
 
 |Development option  |Description  |

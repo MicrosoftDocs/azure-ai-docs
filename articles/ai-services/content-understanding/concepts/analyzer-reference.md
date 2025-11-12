@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools - What is an analyzer? Configuration and reference
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
 author: PatrickFarley 
 ms.author: jfilcik
@@ -124,7 +124,6 @@ These properties control which AI models the analyzer uses for processing.
   - `embedding` - Array of embedding model names from Azure AI Foundry catalog that can be used for semantic search and similarity
 - **Purpose:** Use this list to validate which model names you can specify in the `models` property
 - **Important:** These are model names (for example, `gpt-4o`), not deployment names. The actual deployments are configured separately at the resource level.
-
 - **Example:**
   ```json
   {

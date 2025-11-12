@@ -1,7 +1,7 @@
 ---
-title: Create a custom analyzer with Azure AI Content Understanding using REST APIs
-titleSuffix: Azure AI services
-description: Learn to create a custom analyzer with Azure AI Content Understanding
+title: Create a custom analyzer with Azure Content Understanding in Foundry Tools using REST APIs
+titleSuffix: Foundry Tools
+description: Learn to create a custom analyzer with Azure Content Understanding in Foundry Tools
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
@@ -327,19 +327,19 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Microsoft Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 

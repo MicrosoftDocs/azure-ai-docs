@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -70,7 +70,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//translit
 
 ### Private endpoint
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
+For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
 ## Request headers 
 

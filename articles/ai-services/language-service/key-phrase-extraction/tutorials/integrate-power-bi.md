@@ -1,19 +1,18 @@
 ---
 title: 'Tutorial: Integrate Power BI with key phrase extraction'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/29/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-key-phrase
   - cogserv-non-critical-language
   - sfi-image-nochange
 ---
-
 # Tutorial: Extract key phrases from text stored in Power BI
 
 Microsoft Power BI Desktop is a free application that lets you connect to, transform, and visualize your data. Key phrase extraction, one of the features of Azure AI Language, provides natural language processing. Given raw unstructured text, it can extract the most important phrases, analyze sentiment, and identify well-known entities such as brands. Together, these tools can help you quickly see what your customers are talking about and how they feel about it.
@@ -82,7 +81,7 @@ You might also consider filtering out blank messages using the Remove Empty filt
 
 ## Understand the API
 
-[Key Phrase Extraction](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=true&tabs=HTTP#analyzetextkeyphraseextractioninput) can process up to a thousand text documents per HTTP request. Power BI prefers to deal with records one at a time, so in this tutorial your calls to the API include only a single document each. The Key Phrases API requires the following fields for each document being processed.
+[Key Phrase Extraction](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&branch=main&tabs=HTTP#analyzetextkeyphraseextractioninput&preserve-view=true) can process up to a thousand text documents per HTTP request. Power BI prefers to deal with records one at a time, so in this tutorial your calls to the API include only a single document each. The Key Phrases API requires the following fields for each document being processed.
 
 | Field | Description |
 | - | - |

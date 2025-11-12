@@ -1,6 +1,6 @@
 ---
 title: Speech Synthesis Markup Language (SSML) overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Speech Synthesis Markup Language to control pronunciation and prosody in text to speech.
 author: PatrickFarley
 manager: nitinme

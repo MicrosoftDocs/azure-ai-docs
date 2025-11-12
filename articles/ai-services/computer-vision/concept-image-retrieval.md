@@ -1,6 +1,6 @@
 ---
 title: Multimodal embeddings concepts - Image Analysis 4.0
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme
@@ -39,7 +39,7 @@ Multimodal embedding has a variety of applications in different fields, includin
 
 Vector embeddings are a way of representing content&mdash;text or images&mdash;as vectors of real numbers in a high-dimensional space. Vector embeddings are often learned from large amounts of textual and visual data using machine learning algorithms, such as neural networks. 
 
-Each dimension of the vector corresponds to a different feature or attribute of the content, such as its semantic meaning, syntactic role, or context in which it commonly appears. In Azure AI Vision, image and text vector embeddings have 1024 dimensions.
+Each dimension of the vector corresponds to a different feature or attribute of the content, such as its semantic meaning, syntactic role, or context in which it commonly appears. In Azure Vision in Foundry Tools, image and text vector embeddings have 1024 dimensions.
 
 > [!IMPORTANT]
 > Vector embeddings can only be compared and matched if they're from the same model type. Images vectorized by one model won't be searchable through a different model. The latest Image Analysis API offers two models, version `2023-04-15` which supports text search in many languages, and the legacy `2022-04-11` model which supports only English.
