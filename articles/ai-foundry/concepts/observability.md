@@ -265,6 +265,7 @@ For network isolation purposes you can bring your own virtual network for evalua
 ### Virtual network region support
 
 | Region | Supported Azure region|
+|--|--|
 | US | westus, westus3, eastus, eastus2 |
 | Australia | australiaeast |
 | France | francecentral
