@@ -267,13 +267,6 @@ curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-versi
   -d @receipt.json
 ```
 
-```bash
-curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d @categorize.json
-```
-
 # [Image](#tab/image)
 
 ```bash
@@ -326,6 +319,9 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operation
 You can now use the custom analyzer you created to process files and extract the fields you defined in the schema.
 
 Before running the cURL command, make the following changes to the HTTP request:
+
+# [Document](#tab/document)
+
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer you created with the `categorize.json` file.
