@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Manage compliance and security in Microsoft Foundry
 
-Learn how Foundry Control Plane helps you manage the compliance and security of your assets across subscriptions. You can use guardrail policies and guardrail management, integrate with Microsoft Defender for Cloud, and integrate with Microsoft Purview.
+Learn how Foundry Control Plane helps you manage the compliance and security of your assets across subscriptions. You can use guardrail policies and guardrail management and integrate with Microsoft Defender for Cloud.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -169,30 +169,9 @@ To review Defender security recommendations, follow these steps:
 
 1. Select a recommendation to view details and links to take action to remediate in Azure portal.
 
-### Opt into Purview Data Security Posture Management
-
-To use Purview Data Security Posture Management for Foundry, you need:
-
-- Microsoft Purview with E5 license.
-
-- Cognitive Services Security Integration Administrator role. Your Subscription Owner assigns this role.
-
-In addition to Foundry's security offerings, you can opt into enterprise-grade data security, compliance, and governance that Microsoft Purview provides. Once you enable this integration for a subscription, the system sends app and agent interaction data to Purview. Your tenant's data security administrator creates policies in the Microsoft Purview portal, and the data complies with those policies. Purview policies might also block apps and agents in Foundry within the subscription, meaning the system can prevent requests to these apps and agents if they violate your organization's data governance policies.
-
-To enable Purview:
-
-1. Select **Operate** from the upper-right navigation.
-
-1. Select **Compliance** in the left pane.
-
-1. Select the **Security** tab.
-
-1. Select the enablement toggle next to **Microsoft Purview**.
-
-1. Create Purview policies to govern Foundry apps and agents in the [Microsoft Purview portal](https://purview.microsoft.com).
 
 ## Related content
 
 - [Overview of Azure Policy](/azure/governance/policy/overview)
 - [Microsoft Defender for Cloud documentation](/azure/defender-for-cloud/)
-- [Microsoft Purview data security and compliance](/purview/)
+
