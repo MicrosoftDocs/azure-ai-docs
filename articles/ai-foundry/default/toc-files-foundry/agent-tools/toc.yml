@@ -1,11 +1,11 @@
 items:
-- name: AI Foundry tool catalog (preview)
+- name: Tool catalog (preview)
   href: ../../agents/concepts/tool-catalog.md
 - name: Create a private tool catalog (preview)
   href: ../../agents/how-to/private-tool-catalog.md
-- name: Agent2Agent (A2A) tool
+- name: Agent2Agent (A2A) tool (preview)
   href: ../../agents/how-to/tools/agent-to-agent.md
-- name: Agent2Agent (A2A) authentication
+- name: Agent2Agent (A2A) authentication (preview)
   href: ../../agents/concepts/agent-to-agent-authentication.md
 - name: Retrieval Augmented Generation (RAG) overview
   href: ../../../concepts/retrieval-augmented-generation.md
