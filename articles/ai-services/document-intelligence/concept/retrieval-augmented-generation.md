@@ -1,12 +1,12 @@
-﻿---
+---
 title: Retrieval-Augmented Generation (RAG) with Azure Document Intelligence in Foundry Tools 
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Introduction to how semantic chunking can help with Retrieval-Augmented Generation (RAG) implementation using Azure Document Intelligence in Foundry Tools Layout model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -111,7 +111,7 @@ You can follow the [Document Intelligence Studio quickstart](../studio-overview.
 
 * Azure Document Intelligence is now integrated with [LangChain](https://python.langchain.com/docs/integrations/document_loaders/azure_document_intelligence) as one of its document loaders. You can use it to easily load the data and output to Markdown format. For more information, see our [sample code](https://github.com/microsoft/Form-Recognizer-Toolkit/blob/main/SampleCode/Python/sample_rag_langchain.ipynb) that shows a simple demo for RAG pattern with Azure Document Intelligence as document loader and Azure Search as retriever in LangChain.
 
-* The chat with your data solution accelerator [code sample](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) demonstrates an end-to-end baseline RAG pattern sample. It uses Azure AI Search as a retriever and Azure Document Intelligence for document loading and semantic chunking.
+* The chat with your data solution accelerator [code sample](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) demonstrates an end-to-end baseline RAG pattern sample. It uses Azure Search as a retriever and Azure Document Intelligence for document loading and semantic chunking.
 
 ## Use case
 

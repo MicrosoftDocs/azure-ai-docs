@@ -1,11 +1,11 @@
-﻿---
+---
 title: "Get started: Document Intelligence client library for Java v2.1"
 description: Use the Document Intelligence SDK for Java to create a forms processing app that extracts key/value pairs and table data from your custom documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -110,7 +110,7 @@ import com.azure.core.util.polling.SyncPoller;
 
 > [!IMPORTANT]
 > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). 
-For more information, *see* Azure AI Foundry Tools [security](../../../../../ai-services/security-features.md).
+For more information, *see* Foundry Tools [security](../../../../../ai-services/security-features.md).
 
 ## **Try it**: Layout model
 

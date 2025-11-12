@@ -1,12 +1,12 @@
-﻿---
+---
 title: Service quotas and limits - Document Intelligence
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Quick reference, detailed description, and best practices for working within Azure Document Intelligence in Foundry Tools Quotas and Limits
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---

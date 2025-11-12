@@ -1,12 +1,12 @@
-﻿---
+---
 title: "Get started: Document Intelligence client library for Python v2.1"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library v2.1
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: includes
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -29,7 +29,7 @@ In this quickstart, you use the following APIs to extract structured data from f
 * An AI Services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI Foundry resource if you plan to access multiple Azure AI Foundry Tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll  need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+    > Create a foundry  resource if you plan to access multiple Foundry Tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll  need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. You paste your key and endpoint into the code later in the quickstart:
 
@@ -80,7 +80,7 @@ key = "YOUR_FORM_RECOGNIZER_KEY"
 * [**Prebuilt Invoice**](#try-it-prebuilt-model)
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI Foundry Tools [security](../../../../../ai-services/security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Foundry Tools [security](../../../../../ai-services/security-features.md).
 
 ## **Try it**: Layout model
 

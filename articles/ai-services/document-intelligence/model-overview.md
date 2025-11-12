@@ -1,12 +1,12 @@
-﻿---
+---
 title: Document Processing Models - Document Intelligence
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Document processing models for OCR, document layout, invoices, identity, custom models, and more to extract text, structure, and key/value pairs.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: sfi-image-nochange
 ---

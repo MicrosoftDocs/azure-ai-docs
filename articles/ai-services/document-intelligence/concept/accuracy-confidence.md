@@ -1,12 +1,12 @@
-﻿---
+---
 title:  Interpret and improve model accuracy and confidence scores
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Best practices to interpret and improve Azure Document Intelligence in Foundry Tools accuracy scores from train model operations and confidence scores from analysis operations.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

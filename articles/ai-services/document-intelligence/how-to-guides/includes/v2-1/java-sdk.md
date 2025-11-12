@@ -1,11 +1,11 @@
-﻿---
+---
 title: "Use Document Intelligence SDK for Java (REST API v2.1)"
 description: Use the Document Intelligence Java SDK (REST API v2.1) to create a forms processing app that extracts key data from your documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.custom: devx-track-java
 ms.author: lajanuar
 ---
@@ -98,7 +98,7 @@ In the application's **FormRecognizer** class, create variables for your resourc
 > [!IMPORTANT]
 > Go to the Azure portal. If the Document Intelligence resource you created in the Prerequisites section deployed successfully, under **Next Steps** select **Go to Resource**. You can find your key and endpoint in **Resource management** under **Keys and Endpoint**.
 >
-> Remember to remove the key from your code when you're done. Never post it publicly. For production, use secure methods to store and access your credentials. For more information, see Azure AI Foundry Tools [security](../../../../../ai-services/security-features.md).
+> Remember to remove the key from your code when you're done. Never post it publicly. For production, use secure methods to store and access your credentials. For more information, see Foundry Tools [security](../../../../../ai-services/security-features.md).
 
 In the application's `main` method, add calls for the methods used in this project. You define these calls later. You also need to add references to the URLs for your training and testing data.
 

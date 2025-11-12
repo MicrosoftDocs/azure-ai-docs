@@ -1,12 +1,12 @@
-﻿---
+---
 title: Language and locale support for Read and Layout document analysis - Document Intelligence
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Document Intelligence Read and Layout OCR document analysis model language extraction and detection support
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ---
 <!-- markdownlint-disable MD055 -->
 <!-- markdownlint-disable MD056 -->

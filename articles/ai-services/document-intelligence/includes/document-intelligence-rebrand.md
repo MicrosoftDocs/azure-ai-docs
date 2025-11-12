@@ -1,9 +1,9 @@
-﻿---
+---
 author: laujan
 ms.service: ai-services
 ms.subservice: forms-recognizer
 ms.topic: include
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 > [!IMPORTANT]

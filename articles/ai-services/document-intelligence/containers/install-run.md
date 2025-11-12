@@ -1,12 +1,12 @@
-﻿---
+---
 title: Install and run Docker containers for Document Intelligence
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use the Docker containers for Document Intelligence on-premises to identify and extract key-value pairs, selection marks, tables, and structure from forms and documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 10/01/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: sfi-ropc-nochange
 ---
@@ -20,7 +20,7 @@ ms.custom: sfi-ropc-nochange
 
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
-Azure Document Intelligence in Foundry Tools is an Azure AI Foundry Tools that lets you build automated data processing software using machine-learning technology. Document Intelligence enables you to identify and extract text, key/value pairs, selection marks, table data, and more from your documents. The results are delivered as structured data that ../includes the relationships in the original file. Containers process only the data provided to them and solely utilize the resources they're permitted to access. Containers can't process data from other regions.
+Azure Document Intelligence in Foundry Tools is a Microsoft Foundry Tools that lets you build automated data processing software using machine-learning technology. Document Intelligence enables you to identify and extract text, key/value pairs, selection marks, table data, and more from your documents. The results are delivered as structured data that ../includes the relationships in the original file. Containers process only the data provided to them and solely utilize the resources they're permitted to access. Containers can't process data from other regions.
 
 In this article you can learn how to download, install, and run Document Intelligence containers. Containers enable you to run the Document Intelligence service in your own environment. Containers are great for specific security and data governance requirements.
 
@@ -1183,7 +1183,7 @@ If you receive the following error: *Container isn't in a valid state. Subscript
 
 ### Connect to Azure
 
-The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run, but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. See the [Azure AI container FAQ](../../../ai-services/containers/container-faq.yml#how-does-billing-work) for an example of the information sent to Microsoft for billing.
+The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run, but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. See the [Azure container FAQ](../../../ai-services/containers/container-faq.yml#how-does-billing-work) for an example of the information sent to Microsoft for billing.
 
 ### Billing arguments
 
@@ -1207,7 +1207,7 @@ That's it! In this article, you learned concepts and workflows for downloading, 
 * The billing information must be specified when you instantiate a container.
 
 > [!IMPORTANT]
-> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to always communicate billing information with the metering service. Azure AI containers don't send customer data (for example, the image or text that is being analyzed) to Microsoft.
+> Azure containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to always communicate billing information with the metering service. Azure containers don't send customer data (for example, the image or text that is being analyzed) to Microsoft.
 
 ## Next steps
 
