@@ -24,7 +24,7 @@ This article explains how to configure a search index for semantic reranking.
 
 ## Prerequisites
 
-+ A search service on a Basic tier or higher, subject to [region availability](search-region-support.md).
++ Azure AI Search, in any [region that provides semantic ranking](search-region-support.md).
 
 + Semantic ranker [enabled on your search service](semantic-how-to-enable-disable.md).
 

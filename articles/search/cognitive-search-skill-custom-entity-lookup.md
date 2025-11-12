@@ -17,7 +17,7 @@ ms.update-cycle: 365-days
 The **Custom Entity Lookup** skill is used to detect or recognize entities that you define. During skillset execution, the skill looks for text from a custom, user-defined list of words and phrases. The skill uses this list to label any matching entities found within source documents. The skill also supports a degree of fuzzy matching that can be applied to find matches that are similar but not exact.  
 
 > [!NOTE]
-> This skill isn't bound to an Azure AI services API but requires an Azure AI services key to allow more than 20 transactions. This skill is [metered by Azure AI Search](https://azure.microsoft.com/pricing/details/search/#pricing).
+> This skill isn't bound to a Foundry Tools API but requires a Foundry Tools key to allow more than 20 transactions. This skill is [metered by Azure AI Search](https://azure.microsoft.com/pricing/details/search/#pricing).
 
 ## @odata.type  
 
@@ -31,7 +31,7 @@ Microsoft.Skills.Text.CustomEntityLookupSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Description |
 |--------------------|-------------|

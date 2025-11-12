@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Vectorize from a structured document layout'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
+description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure Vision for embeddings.
 manager: arjagann
 author: rawan
 ms.author: rawan
@@ -15,7 +15,7 @@ ms.date: 09/27/2025
 
 # Tutorial: Vectorize from a structured document layout
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and *uses multimodal embeddings* to vectorize text and images from the same document. Cropped images are stored in a knowledge store, and both text and visual content are vectorized and ingested in a searchable index. Chunking is based on the Azure AI Document Intelligence Layout model that recognizes document structure.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and *uses multimodal embeddings* to vectorize text and images from the same document. Cropped images are stored in a knowledge store, and both text and visual content are vectorized and ingested in a searchable index. Chunking is based on the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) that recognizes document structure.
 
 In this tutorial, you use:
 
@@ -25,13 +25,13 @@ In this tutorial, you use:
 
 + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its `locationMetadata` from various documents, such as page numbers or bounding regions.
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
++ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
 
 + A search index configured to store extracted text and image content. Some content is vectorized for vector-based similarity search.
 
 ## Prerequisites
 
-+ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills). This account provides access to both the Azure AI Vision multimodal embedding model and the Document Intelligence Layout model used by the skills in this tutorial. You must use an Azure AI multi-service account for skillset access to these resources. 
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to both the Azure Vision multimodal embedding model and the Azure Document Intelligence Layout model used by the skills in this tutorial. You must use a Foundry resource for skillset access to these resources.
 
 + [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
@@ -41,9 +41,9 @@ In this tutorial, you use:
 
 ## Limitations
 
-+ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. When you install the multi-service account, choose a region that provides multimodal embeddings. For a list of supported regions, see [Document Layout skill> Supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
++ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. When you create the Foundry resource, choose a region that provides multimodal embeddings. For a list of supported regions, see [Document Layout skill supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 ## Prepare data
 
@@ -81,11 +81,11 @@ The following instructions apply to Azure Storage which provides the sample data
 
 ## Prepare models
 
-This tutorial assumes you have an existing Azure AI multiservice account through which the skill calls the Azure AI Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+This tutorial assumes you have an existing Foundry resource through which the skill calls the Azure Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
-The same role assignment is also used for accessing the Document Intelligence Layout model via an Azure AI multi-service account.
+The same role assignment is also used for accessing the Azure Document Intelligence layout model via a Foundry resource.
 
-1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI multiservice account. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and the [Document Intelligence Layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
+1. Sign in to the Azure portal (not the Foundry portal) and find the Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) and the [Azure Document Intelligence layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 1. Select **Access control (IAM)**.
 
@@ -109,7 +109,7 @@ For authenticated connections that occur during indexer and skillset processing,
    @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
    @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
    @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-   @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-MULTI-SERVICE-ENDPOINT-HERE
+   @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-FOUNDARY-ENDPOINT-HERE
    @modelVersion = 2023-04-15
    @imageProjectionContainer=sustainable-ai-pdf-images
    ```
@@ -130,7 +130,7 @@ To get the Azure AI Search endpoint and API key:
 
 ```http
 ### Create a data source using system-assigned managed identities
-POST {{searchUrl}}/datasources?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -159,7 +159,7 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-08-01-preview -Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-11-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -197,7 +197,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{searchUrl}}/indexes?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -342,11 +342,11 @@ Key points:
 
 ## Create a skillset
 
-[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the Document Layout skill to extract text and images, preserving location metadata which is useful for citations in RAG applications. It uses Azure AI Vision multimodal embeddings skill to vectorize image and text content.
+[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the Document Layout skill to extract text and images, preserving location metadata which is useful for citations in RAG applications. It uses Azure Vision multimodal embeddings skill to vectorize image and text content.
 
 ```http
 ### Create a skillset
-POST {{searchUrl}}/skillsets?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -357,7 +357,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-08-01-preview   HTTP/1.1
     {
       "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
       "name": "document-layout-skill",
-      "description": "Document Intelligence skill for document cracking",
+      "description": "Azure Document Intelligence skill for document cracking",
       "context": "/document",
       "outputMode": "oneToMany",
       "outputFormat": "text",
@@ -529,7 +529,7 @@ Key points:
 
 + `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from documents when `extractOption` is set to `["images", "locationMetadata"]` or `["images"]`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
-+ The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
++ The Azure Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 ## Create and run an indexer
 
@@ -537,7 +537,7 @@ Key points:
 
 ```http
 ### Create and run an indexer
-POST {{searchUrl}}/indexers?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -569,7 +569,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -591,7 +591,7 @@ Send the request. This is an unspecified full-text search query that returns all
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview "
 }
 ```
 100 documents are returned in the response.
@@ -603,7 +603,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ```http
 ### Query for only images
-POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -616,7 +616,7 @@ POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/sear
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -633,19 +633,19 @@ Indexers can be reset to clear execution history, which allows a full rerun. The
 
 ```http
 ### Reset the indexer
-POST {{searchUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/reset?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{searchUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/run?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{searchUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/status?api-version=2025-08-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
@@ -659,7 +659,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
-+ [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
++ [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Vectors in Azure AI Search](vector-search-overview.md)
 + [Semantic ranking in Azure AI Search](semantic-search-overview.md)
