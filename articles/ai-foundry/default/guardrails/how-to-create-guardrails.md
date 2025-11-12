@@ -38,7 +38,7 @@ Default controls are displayed in the right pane when you create a new guardrail
 2. **Choose intervention points and actions**: Recommended intervention points and actions for that risk is shown. Select one or many intervention points and one action to configure your control.
 
    > [!NOTE]
-   > Some intervention points will not be available for a risk if that is inapplicable at that intervention point. For example, by definition, user input attacks are malicious content added to the user input. So, that risk can be scanned only at that intervention point. Additionally, Task Adherence analyzes tool calls and therefore can only be specified at the tool call intervention point.
+   > Some intervention points will not be available for a risk if that is inapplicable at that intervention point. For example, by definition, user input attacks are malicious content added to the user input. So, that risk can be scanned only at that intervention point. 
 
 3. Select **Add control**. The control is added to the table on the right.
 
@@ -178,7 +178,7 @@ Optional models can be set to annotate mode (returns information when content is
 | Protected material code | - detected (true or false)<br>- filtered (true or false)<br>- Example citation of public GitHub repository where code snippet was found<br>- The license of the repository |
 | Personally identifiable information (PII) | - detected (true or false)<br>- filtered (true or false)<br>- redacted (true or false) |
 | Groundedness | - detected (true or false)<br>- filtered (true or false, with details)<br>- (Annotate mode only) details:(completion_end_offset, completion_start_offset) |
-| Task adherence | - detected (true or false)<br>- filtered (true or false) |
+
 
 > [!IMPORTANT]
 > When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
@@ -201,7 +201,7 @@ The following table shows annotation mode availability in each API version:
 | Profanity blocklist | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Custom blocklist | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Groundedness¹ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
-| Task adherence | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
 
 ¹ Not available in non-streaming scenarios; only available for streaming scenarios. 
 
