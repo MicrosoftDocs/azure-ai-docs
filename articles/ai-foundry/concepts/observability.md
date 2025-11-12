@@ -96,6 +96,16 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
+| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
+| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
+| Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+| Evaluator | Purpose | Inputs |
+|--|--|--|
 | Task Adherence | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
 | Task Completion (preview)  | Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
 | Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
@@ -105,16 +115,6 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Tool Input Accuracy (preview)  | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
 | Tool Output Utilization (preview)  | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
 | Tool Call Success (preview) | Evaluates whether all tool calls executed successfully without technical failures. | Response, Tool definitions (Optional) |
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
-| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
-| Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
 
 ::: moniker-end
 
@@ -178,7 +178,7 @@ Evaluation Tools and Approaches:
   - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks such as attempted jailbreaks, helping identify limitations and preparing the model for unexpected conditions.
   - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you'd expect from users to test quality of responses. With context-appropriate simulators you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
 
-   Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
+   Automated scans using the AI red teaming agent enhance preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
 Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
 
@@ -213,7 +213,7 @@ After deployment, [continuous monitoring](../default/agents/how-to/how-to-monito
 - **Continuous evaluation**: Enables quality and safety evaluation of production traffic at a sampled rate.
 - **Scheduled evaluation**: Enables scheduled quality and safety evaluation using a test dataset to detect drift in the underlying systems.
 - **Scheduled red teaming**: Provides scheduled adversarial testing capabilities to probe for safety and security vulnerabilities.
-- **Azure Monitor alerts**: Swift action when harmful or inappropriate outputs occur. Set up alerts for continuous evaluation to be notified when there when evaluation results drop below the pass rate threshold in production.
+- **Azure Monitor alerts**: Swift action when harmful or inappropriate outputs occur. Set up alerts for continuous evaluation to be notified when evaluation results drop below the pass rate threshold in production.
 
 Effective monitoring helps maintain user trust and allows for rapid issue resolution.
 
@@ -262,6 +262,20 @@ For network isolation purposes you can bring your own virtual network for evalua
 > [!NOTE]
 > Evaluation data is sent to Application Insights if Application Insights is connected. Virtual Network support for Application Insights isn't available yet and coming.
 
+### Virtual network region support
+
+| Region | Supported Azure region|
+| US | westus, westus3, eastus, eastus2 |
+| Australia | australiaeast |
+| France | francecentral
+| India | southindia |
+| Japan | japaneast |
+| Norway | norwayeast |
+| Sweden | swedencentral |
+| Switzerland | switzerlandnorth |
+| UAE | uaenorth |
+| UK | uksouth |
+
 ## Region support
 
 Currently certain AI-assisted evaluators are available only in the following regions:
@@ -274,14 +288,18 @@ Currently certain AI-assisted evaluators are available only in the following reg
 | France Central | Supported | N/A | N/A |
 | Switzerland West | Supported | N/A | N/A |
 
-### Virtual network region support
+### Agent playground evaluation region support
 
 | Region | Status |
 |--|--|
-| UAENorth | Supported |
-| WestUS | Supported |
-| UKSouth | Supported |
-| EastUS2 | Supported |
+| East US | Supported |
+| East US 2 | Supported |
+| West US | Supported |
+| West US 2 | Supported |
+| West US 3 | Supported |
+| France Central | Supported |
+| Norway East | Supported |
+| Sweden Central | Supported |
 
 ## Pricing
 
