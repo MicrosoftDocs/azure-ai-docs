@@ -9,12 +9,14 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/21/2025
 ms.custom: references_regions
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
-In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+In this article, you learn how to use video translation with Azure Speech in Foundry Tools in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 > [!TIP]
-> Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
+> Try out video translation in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
 
 ## Prerequisites
 
@@ -28,11 +30,11 @@ In this article, you learn how to use video translation with Azure AI Speech in 
 
 To try out the video translation demo, follow these steps:
 
-1. Go to the [model catalog in Azure AI Foundry portal](https://ai.azure.com/explore/models). 
+1. Go to the [model catalog in Microsoft Foundry portal](https://ai.azure.com/explore/models). 
    
 1. Enter and search for "Azure-AI-Speech" in the catalog search box.
 
-   :::image type="content" source="../../../media/video-translation/foundry-portal/search-model-catalog.png" alt-text="Screenshot of the model catalog in Azure AI Foundry portal." lightbox="../../../media/video-translation/foundry-portal/search-model-catalog.png":::
+   :::image type="content" source="../../../media/video-translation/foundry-portal/search-model-catalog.png" alt-text="Screenshot of the model catalog in Microsoft Foundry portal." lightbox="../../../media/video-translation/foundry-portal/search-model-catalog.png":::
 
 1. Select **Azure-AI-Speech** and you're taken to the **Azure-AI-Speech** try out page.
 1. Select **Speech capabilities by scenario** > **Video translation**.
@@ -57,11 +59,11 @@ To try out the video translation demo, follow these steps:
 
 To create a video translation project, follow these steps:
 
-1. Go to the [model catalog in Azure AI Foundry portal](https://ai.azure.com/explore/models). 
+1. Go to the [model catalog in Microsoft Foundry portal](https://ai.azure.com/explore/models). 
    
 1. Enter and search for "Azure-AI-Speech" in the catalog search box.
 
-   :::image type="content" source="../../../media/video-translation/foundry-portal/search-model-catalog.png" alt-text="Screenshot of the model catalog in Azure AI Foundry portal." lightbox="../../../media/video-translation/foundry-portal/search-model-catalog.png":::
+   :::image type="content" source="../../../media/video-translation/foundry-portal/search-model-catalog.png" alt-text="Screenshot of the model catalog in Microsoft Foundry portal." lightbox="../../../media/video-translation/foundry-portal/search-model-catalog.png":::
 
 1. Select **Azure-AI-Speech** and you're taken to the **Azure-AI-Speech** try out page.
 1. Select **Speech capabilities by scenario** > **Video translation**.
@@ -138,6 +140,7 @@ You can keep the current translation project and translate the original video in
 1. Select **My videos** and then select the tile for your video translation. 
 1. Select **+ New language**. 
 1. On the new **Translate to new language** page that appears, choose a new translation language and voice type. Once the video is translated, a new project is automatically created. 
+
 
 ## Related content
 

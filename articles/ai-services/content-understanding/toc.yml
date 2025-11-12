@@ -1,10 +1,10 @@
 items:
-  - name: Azure AI Content Understanding documentation
+  - name: Azure Content Understanding in Foundry Tools documentation
     href: index.yml
   - name: Overview
     expanded: true       
     items:
-      - name: What is Azure AI Content Understanding?
+      - name: What is Azure Content Understanding in Foundry Tools?
         displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
         href: overview.md
       - name: Choose the right tool for document processing
@@ -19,10 +19,10 @@ items:
         href: language-region-support.md
       - name: Foundry and Content Understanding Studio comparison
         displayName: studio, foundry, differences, comparison, use cases, features
-        href: overview/foundry-vs-content-understanding-studio.md
+        href: foundry-vs-content-understanding-studio.md
       - name: Pricing model details and examples
         displayName: pricing, cost, examples, billing
-        href: overview/pricing-explainer.md
+        href: pricing-explainer.md
       - name: Pricing
         href: https://azure.microsoft.com/pricing/details/content-understanding/
       - name: Security features

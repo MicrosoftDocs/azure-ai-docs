@@ -1,7 +1,7 @@
 ---
 title: Best practices for using Content Understanding
-titleSuffix: Azure AI services
-description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
+titleSuffix: Foundry Tools
+description: Learn how to best use Azure Content Understanding in Foundry Tools for document, image, video, and audio file content and field extractions.
 author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Best practices for Azure AI Content Understanding
+# Best practices for Azure Content Understanding in Foundry Tools
 
 Azure AI Content Understanding uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This guide provides best practices to maximize accuracy and efficiency.
 
@@ -31,7 +31,7 @@ The date when the invoice was issued, typically found at the top right corner. M
 
 ### Include all aliases
 
-List all possible names for each field, when possible, especially when working with diverse document templates. This diversity helps the model recognize the field regardless of labeling variations.
+List all possible names for each field, when possible, especially when working with diverse file templates. This diversity helps the model recognize the field regardless of labeling variations.
 
 **Example - Investment distributions:**
 ```
@@ -47,7 +47,7 @@ Describe what the field *is* rather than what it *isn't*. Positive descriptions 
 
 ### Match language to content
 
-Define field names and descriptions in the same language as your documents. Language mismatches can reduce accuracy significantly.
+Define field names and descriptions in the same language as your file. Language mismatches can reduce accuracy significantly.
 
 **Example:** For Italian invoices, use `Fornitore` with Italian descriptions instead of `Vendor` with English descriptions.
 
@@ -74,17 +74,17 @@ Define repeated items (like line items or entries) as arrays of objects rather t
 ### Specify generation methods
 
 Explicitly set the method (`extract`, `generate`, or `classify`) for each field based on its purpose:
-- **Extract**: Values appearing directly in the content (Invoice Number, Date)
 - **Generate**: Values requiring inference or summarization (Risk Level, Summary)  
 - **Classify**: Selection from predefined options (Document Type, Category)
+- **Extract**: Values appearing directly in the content (Invoice Number, Date). Note: Extract is only supported for Document analyzers. 
 
 ## Optimize classification and categorization
 
 Content Understanding handles visual template variations within semantic categories automatically. Follow these guidelines:
 
-### Use semantic categories, not visual templates
+### Use semantic categories, not visual templates for document classification
 
-Don't create separate categories for documents with the same semantic type but different visual layouts. For example, use one `Invoice` category for all invoice variations rather than `Invoice_Template_A`, `Invoice_Template_B`.
+Don't create separate categories for documents or files with the same semantic type but different visual layouts. For example, use one `Invoice` category for all invoice variations rather than `Invoice_Template_A`, `Invoice_Template_B`.
 
 ### Write effective category definitions
 
@@ -108,6 +108,8 @@ Confidence scores help determine when human review is needed. Set different thre
 * **Important fields** (VendorName, InvoiceNumber): Use medium thresholds (≥0.80)  
 * **Non-critical fields** (Comments, Notes): Use lower thresholds (≥0.70)
 
+Confidence score is currently only supported for document analyzers. 
+
 **Note:** These thresholds are included as an illustration. Thresholds need to be determined experimentally per use case. 
 
 ## Improve accuracy over time
@@ -118,9 +120,11 @@ Prioritize refining field descriptions before adding labeled training examples. 
 
 ### Add training examples for low confidence
 
-If confidence scores are lower than expected with zero-shot extraction, add similar documents to the knowledge base as training examples to improve accuracy.
+If accuracy or confidence scores are lower than expected with zero-shot extraction, add similar documents to the knowledge base as training examples to improve accuracy.
 
 ## Optimize audio and video processing
+
+All the best practices described above for defining field schemas apply to audio and video processing as well. The following are additional tips specific to audio and video content:
 
 ### Narrow language selection
 
@@ -128,7 +132,7 @@ Specify only the languages you expect in the content. Including too many languag
 
 **Example:** For content containing only English and Spanish, configure only those two languages rather than autodetecting from all available languages.
 
-### Content extraction is automatic
+### Avoid extracting content as fields unnecessarily    
 
 Speech transcripts, optical character recognition (OCR) text, and video key frames are automatically available in analyzer output. Don't define fields for this content unless you need extra processing (summarization, entity extraction).
 

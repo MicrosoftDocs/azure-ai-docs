@@ -1,7 +1,7 @@
 ---
-title: Run AI Red Teaming Agent in the cloud (Azure AI Foundry SDK)
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Azure AI Foundry SDK.
+title: Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK)
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK.
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
@@ -10,6 +10,8 @@ ms.date: 09/02/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to run AI Red Teaming Agent scans in the cloud using the Microsoft Foundry SDK so I can perform comprehensive pre-deployment safety analysis at scale.
 ---
 
 # Run AI Red Teaming Agent in the cloud (preview)
@@ -26,7 +28,7 @@ Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-
 
 ## Getting started
 
-First, install Azure AI Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
+First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```python
 uv install azure-ai-projects==1.1.0b3 azure-identity
@@ -35,7 +37,7 @@ uv install azure-ai-projects==1.1.0b3 azure-identity
 > [!NOTE]
 > For more detailed information, see the [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/red-teams).
 
-Then, set your environment variables for your Azure AI Foundry resources
+Then, set your environment variables for your Microsoft Foundry resources
 
 ```python
 import os
@@ -46,7 +48,7 @@ endpoint = os.environ["PROJECT_ENDPOINT"] # Sample : https://<account_name>.serv
 
 ## Supported targets
 
-Running the AI Red Teaming Agent in the cloud currently only supports Azure OpenAI model deployments in your Azure AI Foundry project as a target.
+Running the AI Red Teaming Agent in the cloud currently only supports Azure OpenAI model deployments in your Foundry project as a target.
 
 ## Configure your target
 
@@ -54,7 +56,7 @@ You can configure your target model deployment in two ways:
 
 ### Option 1: Using Foundry project deployments
 
-If you're using model deployments that are part of your Azure AI Foundry project, set up the following environment variables:
+If you're using model deployments that are part of your Foundry project, set up the following environment variables:
 
 ```python
 import os

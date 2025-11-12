@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure OpenAI in Azure AI Foundry Models evaluation'
+title: 'How to use Azure OpenAI in Microsoft Foundry Models evaluation'
 titleSuffix: Azure OpenAI
 description: Learn how to use evaluations with Azure OpenAI
 manager: nitinme
@@ -139,7 +139,7 @@ When you click into each testing criteria, you will see different types of grade
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/evaluation-foundry.md)]
+[!INCLUDE [Microsoft Foundry portal fine-tuning](../includes/evaluation-foundry.md)]
 
 ::: zone-end
 

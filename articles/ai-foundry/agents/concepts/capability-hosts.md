@@ -1,6 +1,6 @@
 ---
 title: 'Learn what is a capability host'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to create and delete capability hosts
 services: cognitive-services
 manager: nitinme
@@ -8,8 +8,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 07/07/2025
-author: fosteramanda
-ms.author: fosteramanda
+author: aahill
+ms.author: aahi
+ms.reviewer: fosteramanda
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Capability hosts
@@ -17,7 +19,7 @@ ms.author: fosteramanda
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
 
-Capability hosts are sub-resources that you define at both the Azure AI Foundry Account and Foundry project scopes. They specify where the Azure AI Foundry Agent Service should store and process your agent data, including:
+Capability hosts are sub-resources that you define at both the Microsoft Foundry Account and Foundry project scopes. They specify where the Foundry Agent Service should store and process your agent data, including:
 - **Conversation history (threads)** 
 - **File uploads** 
 - **Vector stores** 
@@ -35,7 +37,7 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 Creating capability hosts is not required. However if you do want agents to use your own resources, you must create a capability host on both the account and project. 
 
 ### Default behavior (Microsoft-managed resources)
-If you don't create an account-level and project-level capability host, the Azure AI Foundry Agent Service automatically uses Microsoft-managed Azure resources for:
+If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
 - Thread storage (conversation history, agent definitions)
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
@@ -127,7 +129,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 > [!NOTE]
-> All Azure AI Foundry projects will inherit these settings. Then override specific settings at the project level as needed.
+> All Foundry projects will inherit these settings. Then override specific settings at the project level as needed.
 
 ## Delete capability hosts
 

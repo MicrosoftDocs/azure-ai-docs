@@ -1,7 +1,7 @@
 ---
 title: "Test a fine-tuned model"
 titleSuffix: Azure OpenAI
-description: Learn how to test your fine-tuned model with Azure OpenAI in Azure AI Foundry Models by using Python, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to test your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal.
 author: voutilad
 ms.author: davevoutila
 manager: nitinme
@@ -9,8 +9,7 @@ ms.date: 09/30/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.custom:
-  - build-2025
+ms.custom: build-2025
 ---
 
 # Deploy a fine-tuned model for testing
@@ -32,9 +31,9 @@ To deploy your model candidate, select the fine-tuned model to deploy, and then 
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Developer** from the deployment type drop-down. Select **Create** to start the deployment of your custom model.
 
-:::image type="content" source="../media/fine-tuning/developer.png" alt-text="Screenshot showing selecting Developer deployment in AI Foundry.":::
+:::image type="content" source="../media/fine-tuning/developer.png" alt-text="Screenshot showing selecting Developer deployment in Foundry.":::
 
-You can monitor the progress of your new deployment on the **Deployments** pane in Azure AI Foundry portal.
+You can monitor the progress of your new deployment on the **Deployments** pane in Microsoft Foundry portal.
 
 ## [Python](#tab/python)
 
@@ -147,9 +146,9 @@ az cognitiveservices account deployment create
 
 ## [Portal](#tab/portal)
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
-:::image type="content" source="../media/fine-tuning/chat-playground.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/fine-tuning/chat-playground.png":::
+:::image type="content" source="../media/fine-tuning/chat-playground.png" alt-text="Screenshot of the Playground pane in Foundry portal, with sections highlighted." lightbox="../media/fine-tuning/chat-playground.png":::
 
 You can also use the [Evaluations](./evaluations.md) service to create and run model evaluations against your deployed model candidate as well as other model versions.
 
@@ -170,7 +169,7 @@ response = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Foundry Tools support this too?"}
     ]
 )
 
@@ -183,7 +182,7 @@ print(response.choices[0].message.content)
 curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '"model": "YOUR_MODEL_DEPLOYMENT_NAME", {"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
+  -d '"model": "YOUR_MODEL_DEPLOYMENT_NAME", {"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Foundry Tools support this too?"}]}'
 ```
 
 ---
@@ -192,7 +191,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
 
 Developer deployments will auto-delete on their own regardless of activity. Each deployment has a fixed lifetime of **24 hours** after which it is subject to removal. The deletion of a deployment doesn't delete or affect the underlying customized model and the customized model can be redeployed at any time.
 
-To delete a deployment manually, you can use the Azure AI Foundry portal or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+To delete a deployment manually, you can use the Foundry portal or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
 
 To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) send an HTTP `DELETE` to the deployment resource. Like with creating deployments, you must include the following parameters:
 

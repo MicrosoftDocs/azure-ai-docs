@@ -9,9 +9,14 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
 ms.date: 09/16/2025
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Vision-enabled chat model concepts
+
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](./models.md).
 
@@ -30,7 +35,7 @@ This section describes the limitations of vision-enabled chat models.
 
 - **Maximum input image size**: The maximum size for input images is restricted to 20 MB.
 - **Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.
-- **Image chat restriction**: When you upload images in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or the API, there is a limit of 10 images per chat call.
+- **Image chat restriction**: When you upload images in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) or the API, there is a limit of 10 images per chat call.
 
 ## Special pricing information
 
@@ -85,8 +90,8 @@ Additionally, there's a one-time indexing cost of $0.15 to generate the Video Re
 ### Video support
 
 - **Low resolution**: Video frames are analyzed using GPT-4 Turbo with Vision's "low resolution" setting, which may affect the accuracy of small object and text recognition in the video.
-- **Video file limits**: Both MP4 and MOV file types are supported. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), videos must be less than 3 minutes long. When you use the API there is no such limitation.
-- **Prompt limits**: Video prompts only contain one video and no images. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can clear the session to try another video or images.
+- **Video file limits**: Both MP4 and MOV file types are supported. In [Foundry portal](https://ai.azure.com/?cid=learnDocs), videos must be less than 3 minutes long. When you use the API there is no such limitation.
+- **Prompt limits**: Video prompts only contain one video and no images. In [Foundry portal](https://ai.azure.com/?cid=learnDocs), you can clear the session to try another video or images.
 - **Limited frame selection**: The service selects 20 frames from the entire video, which might not capture all the critical moments or details. Frame selection can be approximately evenly spread through the video or focused by a specific video retrieval query, depending on the prompt.
 - **Language support**: The service primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics in songs.
 -->

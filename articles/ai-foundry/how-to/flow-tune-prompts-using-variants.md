@@ -1,7 +1,7 @@
 ---
 title: Tune prompts using variants
-titleSuffix: Azure AI Foundry
-description: Learn how to tune prompts using variants in Prompt flow with Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Learn how to tune prompts using variants in Prompt flow with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Tune prompts using variants in Azure AI Foundry portal
+# Tune prompts using variants in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

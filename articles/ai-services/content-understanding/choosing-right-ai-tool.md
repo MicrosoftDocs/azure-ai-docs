@@ -1,10 +1,10 @@
 ---
 
 title: Choose the right Azure AI tool for document processing
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
-ms.author: jppark
+ms.author: pafarley
 manager: nitinme
 ms.date: 07/16/2025
 ms.service: azure-ai-content-understanding
@@ -12,7 +12,7 @@ ms.topic: overview
 ---
  
 
-# Choose the right Azure AI tool for document processing: Azure Document Intelligence, Azure AI Content Understanding, and Azure AI Foundry models
+# Choose the right Foundry tool for document processing: Azure Document Intelligence, Content Understanding, and Foundry models
 
 As organizations increasingly rely on Generative AI to manage documents and unstructured data, selecting the right tools is essential for building robust, secure, and scalable document processing workflows. Let's review a comparative overview of the leading Azure AI solutions for intelligent document processing (IDP), helping you evaluate and choose the most effective approach for your business requirements. This article compares the following key options:
 
@@ -32,9 +32,9 @@ Azure AI Document Intelligence is the trusted choice for many document-centric s
 * Document field extraction with [prebuilt models](/azure/ai-services/document-intelligence/model-overview) for predefined schema extraction from standard document types like tax, mortgage, bank checks, forms with higher variations like invoices, receipts, and ID, and [custom models](/azure/ai-services/document-intelligence/train/custom-model) to label and train your own model. 
 
 
-## Azure AI Content Understanding 
+## Azure Content Understanding in Foundry Tools 
 
-Azure AI Content Understanding, built on the same foundational capabilities as Document Intelligence, extends document scenarios to images and embedded content, expanding to multimodal scenarios with audio and video. Content Understanding is built for content processing with Generative AI, improving your ability to generate the specific output you need with inferred fields, enrichments, validations, and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero-shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, wherever applicable. Content Understanding provides a rich set of capabilities that can be configured to solve most document processing challenges:
+Azure Content Understanding, built on the same foundational capabilities as Document Intelligence, extends document scenarios to images and embedded content, expanding to multimodal scenarios with audio and video. Content Understanding is built for content processing with Generative AI, improving your ability to generate the specific output you need with inferred fields, enrichments, validations, and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero-shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, wherever applicable. Content Understanding provides a rich set of tools among others that can be configured to solve most document processing challenges.
 
 * **Updated Read and Layout**: Content Understanding Layout has a few updated features, including multi-page tables, hyperlink extraction and more. Learn more about [the new features in Layout](whats-new.md#content-extraction). The models for Read and Layout are updated with AI quality improvements.
 * **Improved Layout pricing**: Content Understanding has a new and lower pricing for Layout, see [pricing for more details](https://azure.microsoft.com/pricing/details/content-understanding/).
@@ -47,11 +47,11 @@ Azure AI Content Understanding, built on the same foundational capabilities as D
 
 > [!NOTE]
 >
-> Starting with the GA version, Azure AI Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](./concepts/models-deployments.md) page.
+> Starting with the GA version, Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](./concepts/models-deployments.md) page.
 
 ## Azure-hosted LLMs (Foundry models) 
 
-For organizations requiring niche AI workflows, custom solutions built with Azure Foundry models directly offer maximum flexibility. Developers can combine models like GPT-4.1, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence or Azure AI Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility but requires users to evaluate models, update models as needed, manage the prompts, and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. Confidence scores and source or citatation is a critical gap that requires significant engineering investment or human review.
+For organizations requiring niche AI workflows, custom solutions built with Foundry models directly offer maximum flexibility. Developers can combine models like GPT-4.1, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence or Azure Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility but requires users to evaluate models, update models as needed, manage the prompts, and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. Confidence scores and source or citation is a critical gap that requires significant engineering investment or human review.
 
 ## Overview of services
 
@@ -61,7 +61,7 @@ Here’s a summary of the three available services:
 |--------|---------------|-----------|-----------|----------------|
 | Azure AI Document Intelligence | Extracts text, key-value pairs, tables, and layout  (structure) from documents, field extraction with grounding, confidence, support for classification and splitting | Standard forms, invoices, receipts, purchase orders, IDs, contracts, legal documents | Proven, high-accuracy extraction, consistency, confidence score and grounding, predefined schemas for many templated document types | OCR/Read/Layout models, Prebuilt Models (invoice, tax, receipt, etc.), Custom model (field extraction and classification) |
 | Azure AI Content Understanding | Processes documents, images, audio, and video; richer field extraction  and inference, built-in support for validation, enrichment, and post processing, integrated reasoning for complex tasks (preview) | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs, start with no labeling. Handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Enhanced support for content extraction(OCR, layout), field extraction, inferred fields and classification, tackle large documents with high variations, configure your Gen AI model for control over quality an price. |
-| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that requires fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component. Requires engineering investment in model upgrades, quality and relaibility. |
+| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that requires fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component. Requires engineering investment in model upgrades, quality and reliability. |
 
 
 ## Service capabilities
@@ -89,7 +89,7 @@ Here's a capabilities overview for all three services.
 
 ## When to choose Content Understanding over build your own model
 
-| Advantage | Azure AI Content Understanding | Build your own model |
+| Advantage | Azure Content Understanding | Build your own model |
 |-----------|-------------------------------|------------------|
 | Unified, multimodal pipeline | ✅ Supports docs, images, audio, video | ❌ Requires orchestration |
 | Prebuilt enrichments and schema normalization | ✅ Prebuilt templates available | ❌ Requires implementation |
@@ -169,7 +169,7 @@ Extract key fields like Invoice Number, Vendor Name, Total Amount, Line Items, a
 
 **Recommendation**:
 * Azure AI Content Understanding ```(Recommended)```: With a simple getting started experience and analyzers that can generalize across templates and variations in language, Content Understanding is best equipped to provide a high quality output with minimal management overhead.  
-* Azure AI Document Intelligence Prebuilt Model if they're applicable or you can build your own custom models with multiple labeling to get grounded, low latency, consistent output. 
+* Azure AI Document Intelligence: Prebuilt Model if they're applicable, or you can build your own custom models with multiple labeling to get grounded, low latency, consistent output. 
 * Build a custom solution: Build and configure the components needed for parsing the documents (Layout), extracting the fields and any build any post-processing needed. The solution needs to be tested and verified with different variations and you'll need to scale and manage the deployed solution. With no confidence scores, you either accept all results or review all results based on the expected error rate. 
 ---
 
@@ -211,12 +211,12 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 
 ## Summary
 
-Choosing the right document processing service is dependent on the complexity of the task, format or template diversity, reasoning needs, latency sensitivity, human review needs, and enterprise integration requirements. Building on Document Intelligence, Content Understanding delivers imporved OCR, layout, and field extraction capabilities with built-in postprocessing. It fully matches Document Intelligence functionality while extending support for more complex and varied document types.
-Start with Azure AI Content Understanding for most IDP scenarios.  
+Choosing the right document processing service is dependent on the complexity of the task, format or template diversity, reasoning needs, latency sensitivity, human review needs, and enterprise integration requirements. Building on Document Intelligence, Content Understanding delivers improved OCR, layout, and field extraction capabilities with built-in postprocessing. It fully matches Document Intelligence functionality while extending support for more complex and varied document types.
+Start with Azure AI Content Understanding for most IDP scenarios.  
 
-Use Azure OpenAI Service for custom, experimental, or conversational AI workflows where managed services aren’t a fit. Layout from Content Understanding can be used as preprocessing service for all input documents. 
+Use Foundry models for custom, experimental, or conversational AI workflows where managed services aren’t a fit. Layout from Content Understanding can be used as preprocessing service for all input documents. 
 
-In the past, many enterprises combine these services into hybrid solutions—using Document Intelligence for layout or content extraction integrated as preprocessing step, now Content Understanding provides a solution for most of thses scenarios. 
+In the past, many enterprises combine these services into hybrid solutions—using Document Intelligence for layout or content extraction integrated as preprocessing step, now Content Understanding provides a solution for most of these scenarios. 
 
 
 

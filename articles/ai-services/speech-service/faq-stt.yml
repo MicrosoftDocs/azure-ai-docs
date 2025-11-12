@@ -1,8 +1,8 @@
 ### YamlMime:FAQ
 metadata:
   title: Speech to text frequently asked questions (FAQ)
-  titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the speech to text capability in Azure AI Speech.
+  titleSuffix: Foundry Tools
+  description: Get answers to frequently asked questions about the speech to text capability in Azure Speech in Foundry Tools.
   author: PatrickFarley
   manager: nitinme
   ms.service: azure-ai-speech
@@ -102,7 +102,7 @@ sections:
       - question: |
           How am I charged for dual channel audio?
         answer: |
-          If you submit each channel separately in their own file, you're charged for the audio duration of each file. If you submit a single file with the channels multiplexed together, you're charged for the duration of the single file. For more information about pricing, see the [Azure AI services pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+          If you submit each channel separately in their own file, you're charged for the audio duration of each file. If you submit a single file with the channels multiplexed together, you're charged for the duration of the single file. For more information about pricing, see the [Foundry Tools pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
           > [!IMPORTANT]
           > If you have further privacy concerns that prevent you from using the custom speech service, contact one of the support channels.

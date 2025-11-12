@@ -1,6 +1,6 @@
 ---
 title: Audio processing - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of audio processing and capabilities of the Microsoft Audio Stack.
 manager: nitinme
 ms.service: azure-ai-speech

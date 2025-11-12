@@ -1,6 +1,6 @@
 ---
 title: Get a speaker profile ID for the personal voice - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to Get a speaker profile ID for the personal voice.
 author: PatrickFarley
 manager: nitinme

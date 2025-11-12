@@ -1,6 +1,6 @@
 ---
 title: Transparency note for LUIS
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency Note for Language Understanding
 author: laujan
 ms.author: lajanuar

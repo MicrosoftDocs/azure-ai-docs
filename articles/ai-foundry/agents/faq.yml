@@ -1,8 +1,8 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI Foundry Agent Service frequently asked questions
-  titleSuffix: Azure AI Foundry
-  description: Get answers to the most popular questions about Azure AI Foundry Agent Service
+  title: Microsoft Foundry Agent Service frequently asked questions
+  titleSuffix: Microsoft Foundry
+  description: Get answers to the most popular questions about Microsoft Foundry Agent Service
   #services: cognitive-services
   manager: nitinme
   ms.service: azure-ai-foundry
@@ -12,9 +12,10 @@ metadata:
   ms.author: aahi
   author: aahill
   ms.custom: references_regions
-title: Azure AI Foundry Agent Service frequently asked questions
+  monikerRange: 'foundry-classic || foundry'
+title: Microsoft Foundry Agent Service frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../../ai-services/cognitive-services-support-options.md). Azure AI Foundry Agent Service is part of Azure AI services.
+  If you can't find answers to your questions in this document, and still need help check the [Foundry Tools support options guide](../../ai-services/cognitive-services-support-options.md). Microsoft Foundry Agent Service is part of Foundry Tools.
 sections:
   - name: General
     questions:
@@ -22,8 +23,8 @@ sections:
           Do you store any data used in the Foundry Agent Service API? 
         answer: |
           Yes. Foundry Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the Foundry Agent Service API: 
-          * Stateful entities: Threads, messages, and runs created during usage. 
-          * Files: Uploaded during Foundry Agent Service setup or as part of a message.  
+          * Stateful entities: Conversations and responses created during usage. 
+          * Files and Vector stores: Uploaded during Foundry Agent Service setup or as part of a response generation.  
       - question: |
           Where is this data stored?
         answer: |
@@ -32,11 +33,12 @@ sections:
       - question: |
           How long is this data stored?
         answer: |
-          All used data persists in this system unless you explicitly delete this data. Use the delete function with the thread ID of the thread you want to delete. Clearing the Run in the Foundry Agent Service Playground doesn't delete threads, however deleting them using delete function won't list them in the thread page. 
+          All used data persists in this system unless you explicitly delete this data. Use the delete function with the conversation ID of the conversation you want to delete. Use the delete function with the Response ID of the generated response you want to delete. 
       - question: | 
           Does Foundry Agent Service support customer-managed key encryption (CMK)?
         answer: |
-          Today we support CMK for Threads and Files in Foundry Agent Service.
+          Basic Setup: Supports Microsoft managed keys only.  
+          Standard Setup: Supports CMK.
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |
@@ -44,7 +46,7 @@ sections:
       - question: |
           Where is data stored geographically?
         answer: |
-          Azure AI Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
+          Microsoft Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
       - question: |
           How am I charged for Foundry Agent Service?
         answer: |
@@ -84,7 +86,7 @@ sections:
         answer: |
           The recommended subnet size is /24 (256 address) and is what we default to in our templates. The minimum subnet size is /27 (32 addresses). The reason why /24 is recommended is because of the runtime impact in the event of a container update, listed in the ACA documentation. For more information, see [Configuring virtual networks Azure Container Apps environments](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet). 
 
-          We set an IP range per Azure AI Foundry account. Each project gets an IP from the range. There isn't IP address set per Agent, but per project. This means there's no limit to the number of agents to create within your project. The user isn't limited by the minimum address space of the subnet to create any number of agents. 
+          We set an IP range per Microsoft Foundry account. Each project gets an IP from the range. There isn't IP address set per Agent, but per project. This means there's no limit to the number of agents to create within your project. The user isn't limited by the minimum address space of the subnet to create any number of agents. 
       - question: |
           What is the minimum and recommended virtual network address range for the Agent service? 
         answer: |
@@ -98,7 +100,7 @@ sections:
         answer: |
           Yes, allowlist the Fully Qualified Domain Names (FQDNs) listed **Managed Identity in the [Use Azure Firewall with Azure Container Apps](/azure/container-apps/use-azure-firewall) article or add the service tag `AzureActiveDirectory`. Verify no TLS inspection happens in the firewall that could be adding a self-signed certificate. During failures, inspect if there's any traffic landing on the firewall and what traffic is being blocked by the firewall.  
       - question: 
-          Can the virtual network be reused by multiple Azure AI Foundry resources? 
+          Can the virtual network be reused by multiple Microsoft Foundry resources? 
         answer: |
           Yes, a virtual network can be reused by multiple Foundry resources, but the Agent runtime subnet is per Foundry account.
       - question: |

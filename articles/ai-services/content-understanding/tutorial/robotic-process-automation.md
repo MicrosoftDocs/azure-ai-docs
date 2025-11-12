@@ -144,7 +144,7 @@ Analyzers support post processing like extracting just the numeric portion or a 
 
 ### Confidence scores and grounding
 
-Confidence and grounding (source) are set at the field level. For each field that requires confidence and grounding, set the `estimateSourceAndConfidence` property to true. Learn more about [confidence and grounding]()
+Confidence and grounding (source) are set at the field level. For each field that requires confidence and grounding, set the `estimateSourceAndConfidence` property to true.
 
 ### Triggering human review based on confidence scores
 

@@ -1,7 +1,7 @@
 ---
-title: How to generate image embeddings with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI Foundry Models
+title: How to generate image embeddings with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to generate embeddings with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use image embeddings API with Azure AI Foundry Models.
+This article explains how to use image embeddings API with Microsoft Foundry Models.
 
 
 ## Prerequisites

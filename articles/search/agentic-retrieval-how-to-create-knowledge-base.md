@@ -1,53 +1,56 @@
 ---
-title: Create a knowledge agent
+title: Create a knowledge base
 titleSuffix: Azure AI Search
-description: Learn how to create a knowledge agent for agentic retrieval workloads in Azure AI Search.
+description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 11/10/2025
 ---
 
-# Create a knowledge agent in Azure AI Search
+# Create a knowledge base in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge agent is used by the [retrieve method](agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
+In Azure AI Search, a *knowledge base* is a top-level resource in agentic retrieval workloads. It specifies the various knowledge sources used for retrieval, and if applicable, it represents a connection to a chat completion model . A knowledge base is used by the [retrieve method](agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
 
-A knowledge agent specifies:
+A knowledge base specifies:
 
-+ A knowledge source (one or more) that points to a searchable content
++ A [knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) (one or more) that points to a searchable content
 + A chat completion model that provides reasoning capabilities for query planning and answer formulation
-+ Properties for performance optimization (constrain query processing time)
++ A default [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) to control the cost, latency, and quality of the final response
 
-After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
+After you create a knowledge base, you can update its properties at any time. If the knowledge base is in use, updates take effect on the next retrieval.
 
 > [!IMPORTANT]
-> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more `knowledgeSource` definitions. We recommend [migrating existing code](agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
+> 2025-11-01-preview renames the 2025-08-01-preview *knowledge agent* to *knowledge base*. This is a breaking change. We recommend [migrating existing code](agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
 
 ## Prerequisites
 
-+ Familiarity with [agentic retrieval concepts and use cases](agentic-retrieval-overview.md).
++ Familiarity with [agentic retrieval concepts and workflow](agentic-retrieval-overview.md).
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). Your search service must be basic pricing tier or higher if you're using [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models.
 
 + A [supported chat completion model](#supported-models) on Azure OpenAI.
 
-+ Permission requirements. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
++ Permission requirements. **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
 
-+ Content requirements. A [knowledge source](agentic-knowledge-source-overview.md) that identifies searchable content used by the agent. It can be either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md)
++ Content requirements. A [knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) that identifies searchable content used by the knowledge base.
 
-+ API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support knowledge agents at this time**.
++ API requirements. To create or use a knowledge base, use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge base APIs: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
+> [!NOTE]
+> Although you can use the Azure portal to create knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
 ## Deploy a model for agentic retrieval
 
-Make sure you have a supported model that Azure AI Search can access. The following instructions assume Azure AI Foundry Model as the provider.
+Make sure you have a supported model that Azure AI Search can access. The following instructions assume Foundry Models as the provider.
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Deploy a supported model using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
 
@@ -80,7 +83,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
 
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
-1. On your model provider, such as Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
+1. On your model provider, such as Foundry Models, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
 
 1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to get a personal access token and to ensure you're logged in to a specific subscription and tenant. Paste your personal identity token into the `@accessToken` variable. A request that connects using your personal identity should look similar to the following example:
 
@@ -89,7 +92,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
     @accessToken=<YOUR PERSONAL ID>
     
     # List Indexes
-    GET https://{{search-url}}/indexes?api-version=2025-08-01-preview
+    GET https://{{search-url}}/indexes?api-version=2025-11-01-preview
     Authorization: Bearer {{accessToken}}
     ```
 
@@ -109,66 +112,69 @@ You can use API keys if you don't have permission to create role assignments.
     @search-api-key=<YOUR SEARCH SERVICE ADMIN API KEY>
 
    # List Indexes
-   GET {{search-url}}/indexes?api-version=2025-08-01-preview
+   GET {{search-url}}/indexes?api-version=2025-11-01-preview
       Content-Type: application/json
       @api-key: {{search-api-key}}
    ```
 
 ---
 
-## Check for existing knowledge agents
+## Check for existing knowledge bases
 
-The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful to know about existing knowledge agents for reuse or for naming new agents.
+The following request lists knowledge bases by name. Within the knowledge bases collection, all knowledge bases must be uniquely named. It's helpful to know about existing knowledge bases for reuse or for naming new bases.
+
+Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases collection.
 
 ### [**Python**](#tab/python-get-agents)
 
+The Python code snippets in this article assume you installed necessary libraries and have environment variables for endpoints and object names. For more information about these tasks, see [Quickstart: Use agentic retrieval](search-get-started-agentic-retrieval.md?pivots=programming-language-python).
+
 ```python
-# List existing knowledge agents on the search service
+# List existing knowledge bases on the search service
 from azure.search.documents.indexes import SearchIndexClient
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 
 try:
-    agents = {agent.name: agent for agent in index_client.list_agents(api_version=search_api_version)}
-    print(f"\nKnowledge agents on search service '{search_endpoint}':")
-    
-    if agents:
-        print(f"Found {len(agents)} knowledge agent(s):")
-        for i, (name, agent) in enumerate(sorted(agents.items()), 1):
+    knowledgebases = {kb.name: kb for kb in index_client.list_knowledge_bases(api_version=search_api_version)}
+    print(f"\nKnowledge bases on search service '{search_endpoint}':")
+
+    if knowledgebases:
+        print(f"Found {len(knowledgebases)} knowledge base(s):")
+        for i, (name, knowledgebases) in enumerate(sorted(knowledgebases.items()), 1):
             print(f"{i}. Name: {name}")
-            if agent.knowledge_sources:
-                ks_names = [ks.name for ks in agent.knowledge_sources]
+            if knowledgebases.knowledge_sources:
+                ks_names = [ks.name for ks in knowledgebases.knowledge_sources]
                 print(f"   Knowledge Sources: {', '.join(ks_names)}")
             print()
     else:
-        print("No knowledge agents found.")
+        print("No knowledge bases found.")
         
 except Exception as e:
-    print(f"Error listing knowledge agents: {str(e)}")
+    print(f"Error listing knowledge bases: {str(e)}")
 ```
 
-You can also return a single agent by name to review its JSON definition.
+You can also return a single knowledge base by name to review its JSON definition.
 
 ```python
-# Get knowledge agent definition for earth-knowledge-agent-2
+# Get a specific knowledge base definition
 from azure.search.documents.indexes import SearchIndexClient
 import json
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 
 try:
-    agent_name = "earth-knowledge-agent-2"
-    agent = index_client.get_agent(agent_name, api_version=search_api_version)
+    knowledgebase = index_client.get_knowledge_base(knowledge_base_name, api_version=search_api_version)
     
-    print(f"Knowledge agent '{agent_name}':")
-    print(f"Name: {agent.name}")
+    print(f"Knowledge base: '{knowledge_base_name}'")
+    print(f"Name: {knowledgebase.name}")
     
-    if agent.description:
-        print(f"Description: {agent.description}")
+    if knowledgebase.description:
+        print(f"Description: {knowledgebase.description}")
     
-    if agent.models:
-        print(f"\nModels ({len(agent.models)}):")
-        for i, model in enumerate(agent.models, 1):
+    if knowledgebase.models:
+        print(f"\nModels ({len(knowledgebase.models)}):")
+        for i, model in enumerate(knowledgebase.models, 1):
             print(f"  {i}. {type(model).__name__}")
             if hasattr(model, 'azure_open_ai_parameters'):
                 params = model.azure_open_ai_parameters
@@ -176,64 +182,88 @@ try:
                 print(f"     Deployment: {params.deployment_name}")
                 print(f"     Model: {params.model_name}")
     
-    if agent.knowledge_sources:
-        print(f"\nKnowledge Sources ({len(agent.knowledge_sources)}):")
-        for i, ks in enumerate(agent.knowledge_sources, 1):
-            print(f"  {i}. {ks.name} (threshold: {ks.reranker_threshold})")
+    if knowledgebase.knowledge_sources:
+        print(f"\nKnowledge Sources ({len(knowledgebase.knowledge_sources)}):")
+        for i, ks in enumerate(knowledgebase.knowledge_sources, 1):
+            print(f"  {i}. {ks.name}")
     
-    if agent.output_configuration:
-        config = agent.output_configuration
-        print(f"\nOutput: {config.modality} (activity: {config.include_activity})")
+    if knowledgebase.output_mode:
+        print(f"\nOutput Mode: {knowledgebase.output_mode}")
     
     # Full JSON definition
-    print(f"\nJSON definition:")
-    print(json.dumps(agent.as_dict(), indent=2))
+    print(f"\n{'='*60}")
+    print("JSON Definition:")
+    print('='*60)
+    print(json.dumps(knowledgebase.as_dict(), indent=2))
     
 except Exception as e:
     print(f"Error: {str(e)}")
     
-    # Show available agents
+    # Show available knowledge bases
     try:
-        agents = {agent.name: agent for agent in index_client.list_agents(api_version=search_api_version)}
-        print(f"\nAvailable agents: {list(agents.keys())}")
+        knowledgebase = {kb.name: kb for kb in index_client.knowledge_bases(api_version=search_api_version)}
+        print(f"\nAvailable bases: {list(knowledgebase.keys())}")
     except Exception:
-        print("Could not list available agents.")
+        print("Could not list available bases.")
 ```
 
 ### [**REST**](#tab/rest-get-agents)
 
 ```http
-# List knowledge agents
-GET {{search-url}}/agents?api-version=2025-08-01-preview
+# List knowledge bases
+GET {{search-url}}/knowledgebases?api-version=2025-11-01-preview&$select=name
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 ```
 
-You can also return a single agent by name to review its JSON definition.
+You can also return a single knowledge base by name to review its JSON definition.
 
 ```http
-# Get knowledge agent
-GET {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
+# Get knowledge base
+GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
+```
+
+A response might look like the following example:
+
+```json
+{
+
+  "name": "my-knowledge-base",
+  "description": "This knowledge source uses a search index and omits a completion model for query planning and answer generation.",
+  "retrievalInstructions": null,
+  "answerInstructions": null,
+  "outputMode": null,
+  "knowledgeSources": [
+    {
+      "name": "my-knowledge-source"
+    }
+  ],
+  "models": [],
+  "encryptionKey": null,
+  "retrievalReasoningEffort": {
+    "kind": "minimal"
+  }
+}
 ```
 
 ---
 
-## Create a knowledge agent
+## Create a knowledge base
 
-A knowledge agent drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
+A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
 
 Its composition consists of connections between *knowledge sources* (searchable content) and chat completion models that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
 
-To create an agent, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a knowledge base, use the 2025-11-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
-Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to give to the agent.
+Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to assign to the knowledge base.
 
 ### [**Python**](#tab/python-create-agent)
 
 ```python
-from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeAgentOutputConfiguration, KnowledgeAgentOutputConfigurationModality
+from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
 from azure.search.documents.indexes import SearchIndexClient
 
 aoai_params = AzureOpenAIVectorizerParameters(
@@ -242,135 +272,100 @@ aoai_params = AzureOpenAIVectorizerParameters(
     model_name=aoai_gpt_model,
 )
 
-output_cfg = KnowledgeAgentOutputConfiguration(
-    modality=KnowledgeAgentOutputConfigurationModality.ANSWER_SYNTHESIS,
-    include_activity=True,
-)
-
-agent = KnowledgeAgent(
-    name=knowledge_agent_name,
-    models=[KnowledgeAgentAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
+knowledge_base = KnowledgeBase(
+    name=knowledge_base_name,
+    models=[KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
     knowledge_sources=[
         KnowledgeSourceReference(
-            name=knowledge_source_name,
-            reranker_threshold=2.5,
+            name=knowledge_source_name
         )
     ],
-    output_configuration=output_cfg,
+    output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
 )
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-index_client.create_or_update_agent(agent, api_version=search_api_version)
-print(f"Knowledge agent '{knowledge_agent_name}' created or updated successfully.")
+index_client.create_or_update_knowledge_base(knowledge_base)
+print(f"Knowledge base '{knowledge_base_name}' created or updated successfully.")
 ```
 
-### [**REST**](#tab/rest-create-agent)
+### [**REST**](#tab/rest-create-kb)
 
-```http
-@search-url=<YOUR SEARCH SERVICE URL>
-@agent-name=<YOUR AGENT NAME>
-@index-name=<YOUR INDEX NAME>
-@model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
-@model-api-key=<YOUR AZURE OPENAI API KEY>
-@accessToken = <a long GUID>
+To create a knowledge base:
 
-# Create knowledge agent
-PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
-   Content-Type: application/json
-   Authorization: Bearer {{accessToken}}
+1. Set environment variables at the top of your file.
 
-{
-    "name" : "{{agent-name}}",
-    "description": "This knowledge agent handles questions directed at two unrelated sample indexes."
-    "retrievalInstructions": "Use the hotels knowledge source only for queries about hotels or where to stay, otherwise use the earth at night knowledge source.",
-    "knowledgeSources": [
-        {
-            "name": "earth-at-night-blob-ks",
-            "alwaysQuerySource": false,
-            "includeReferences": true,
-            "includeReferenceSourceData": true,
-            "maxSubQueries": 30,
-            "rerankerThreshold": null
-        },
-        {
-            "name": "hotels-index-ks",
-            "alwaysQuerySource": false,
-            "includeReferences": true,
-            "includeReferenceSourceData": true,
-            "maxSubQueries": 5,
-            "rerankerThreshold": null
-        }
-    ],
-    "models" : [ 
-        {
-            "kind": "azureOpenAI",
-            "azureOpenAIParameters": {
-                "resourceUri": "{{model-provider-url}}",
-                "apiKey": "{{model-api-key}}",
-                "deploymentId": "gpt-5-mini",
-                "modelName": "gpt-5-mini"
+    ```http
+    @search-url=<YOUR SEARCH SERVICE URL>
+    @knowledge-base-name=<YOUR KNOWLEDGE BASE NAME>
+    @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
+    @model-api-key=<YOUR AZURE OPENAI API KEY>
+    @accessToken = <a long GUID>
+    ```
+
+1. Use the 2025-11-01-preview of [Knowledge Bases - Create or Update (REST API)](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+
+    ```http
+    # Create knowledge base
+    PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
+       Content-Type: application/json
+       Authorization: Bearer {{accessToken}}
+    
+    {
+        "name" : "{{knowledge-base-name}}",
+        "description": "This knowledge base handles questions directed at two unrelated sample indexes."
+        "retrievalInstructions": "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
+        "answerInstructions": null,
+        "outputMode": "answerSynthesis",
+        "knowledgeSources": [
+            {
+                "name": "earth-at-night-blob-ks"
+            },
+            {
+                "name": "hotels-index-ks"
             }
+        ],
+        "models" : [ 
+            {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "resourceUri": "{{model-provider-url}}",
+                    "apiKey": "{{model-api-key}}",
+                    "deploymentId": "gpt-4.1-mini",
+                    "modelName": "gpt-4.1-mini"
+                }
+            }
+        ],
+        "encryptionKey": null,
+        "retrievalReasoningEffort": {
+            "kind": "low"
         }
-    ],
-    "outputConfiguration": {
-        "modality": "extractiveData",
-        "answerInstructions": "Provide a concise answer to the question.",
-        "attemptFastPath": false,
-        "includeActivity": true
-    },
-    "requestLimits": {
-        "maxOutputSize": 5000,
-        "maxRuntimeInSeconds": 60
     }
-}
-```
+    ```
 
-**Key points**:
+1. Select **Send Request**.
 
-+ `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
+### Knowledge base properties
 
-+ `description` is recommended for query planning. The LLM uses the description to inform query planning. 
+You can pass the following properties to create a knowledge base.
 
-+ `retrievalInstructions` is recommended for query planning when you have multiple knowledge sources. The instructions are passed as a prompt to the LLM to determine whether a knowledge source should be in scope for a query. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). If you set `retrievalInstructions`, make sure `alwaysQuerySource` is set to false.
-
-+ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs used by the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
-
-    + `name` is a reference to either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md).
-    
-    + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment. If you're using `attemptFastPath` on a specific knowledge source, `alwaysQuerySource` must be set to true.
-    
-    + `includeReferences` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
-    
-    + `maxSubQueries` is the maximum number of queries the query planning step will generate. Each query can return up to 50 documents, which are reranked by semantic ranker. The `maxSubQueries` property must be between 2 and 40.
-
-    + `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
-
-+ `models` specifies a connection to a [supported chat completion model](#supported-models). In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
-
-+ `outputConfiguration` gives you control over query execution logic and output.
-
-  + `modality` determines the shape of the results. Valid values are `extractiveData` (default) or `answerSynthesis` (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)).
-
-  + `answerInstructions` is used for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null.
-
-  + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. If the query is larger or the score is lower, query planning is invoked. You must have at least one knowledge source that has `alwaysQuerySource` enabled. If there are multiple knowledge sources, they must all have `alwaysQuerySource` enabled to be considered for fast path. The small query runs on all of them. The default is `false`.
-
-  + `includeActivity` indicates whether retrieval results should include the query plan. The default is `true`.
-
-<!--  Check minimum 10k  -->
-+ `requestLimits` sets numeric limits over query processing.
-
-  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 5,000 tokens as the minimum and recommended value, and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
-
-  + `maxRuntimeInSeconds` sets the maximum amount of processing time for the entire request, inclusive of both Azure OpenAI and Azure AI Search.
-
-+ `encryptionKey` is optional. Include an encryption key definition if you're supplementing with [customer-managed keys](search-security-manage-encryption-keys.md).
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
+| `retrievalInstructions` | A prompt to the LLM to determine whether a knowledge source should be in scope for a query, recommended for query planning when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). | String | Yes |
+| `answerInstructions` | Use for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null. | String | Yes |
+| `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer, or `extractedData` if you want full search results that you can pass to an LLM as a downstream step. | String | Yes |
+| `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
+| `models` | A connection to a [supported chat completion model](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
+| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium` (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)). | Object | No |
 
 ---
 
-## Query the knowledge agent
+## Query the knowledge base
 
-Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge agent in Azure AI Search](agentic-retrieval-how-to-retrieve.md).
+Call the **retrieve** action on the knowledge base object to confirm the model connection and return a response. Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge base in Azure AI Search](agentic-retrieval-how-to-retrieve.md).
 
 Replace "where does the ocean look green?" with a query string that's valid for your search index.
 
@@ -395,12 +390,12 @@ messages = [
 Then send the query.
 
 ```python
-from azure.search.documents.agent import KnowledgeAgentRetrievalClient
-from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, SearchIndexKnowledgeSourceParams
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
 
-agent_client = KnowledgeAgentRetrievalClient(endpoint=search_endpoint, agent_name=knowledge_agent_name, credential=credential)
+kb_client = KnowledgeBaseRetrievalClient(endpoint=search_endpoint, knowledge_base_name=knowledge_base_name, credential=credential)
 query_1 = """
-    where does the ocean look green??
+    Where does the ocean look green?
     """
 
 messages.append({
@@ -408,34 +403,39 @@ messages.append({
     "content": query_1
 })
 
-req = KnowledgeAgentRetrievalRequest(
+req = KnowledgeBaseRetrievalRequest(
     messages=[
-        KnowledgeAgentMessage(
+        KnowledgeBaseMessage(
             role=m["role"],
-            content=[KnowledgeAgentMessageTextContent(text=m["content"])]
+            content=[KnowledgeBaseMessageTextContent(text=m["content"])]
         ) for m in messages if m["role"] != "system"
     ],
     knowledge_source_params=[
         SearchIndexKnowledgeSourceParams(
             knowledge_source_name=knowledge_source_name,
+            include_references=True,
+            include_reference_source_data=True,
+            always_query_source=True
         )
-    ]
+    ],
+    include_activity=True,
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
 )
 
-result = agent_client.retrieve(retrieval_request=req, api_version=search_api_version)
-print(f"Retrieved content from '{knowledge_source_name}' successfully.")
+result = kb_client.retrieve(retrieval_request=req)
+print(f"Retrieved content from '{knowledge_base_name}' successfully.")
 ```
 
-### [**REST**](#tab/rest-query-agent)
+### [**REST**](#tab/rest-query-kb)
 
 ```http
 # Send grounding request
-POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 
 {
-  "messages" : [
+    "messages" : [
         { "role" : "assistant",
                 "content" : [
                   { "type" : "text", "text" : "Use the earth at night index to answer the question. If you can't find relevant content, say you don't know." }
@@ -451,21 +451,22 @@ POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-previe
             ]
         }
     ],
-  "knowledgeSourceParams": [
-    {
-      "filterAddOn": null,
-      "knowledgeSourceName": "earth-at-night-blob-ks",
-      "kind": "searchIndex"
-    }
+    "includeActivity": true,
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "earth-at-night-blob-ks",
+            "kind": "searchIndex"
+            "includeReferences": true,
+            "includeReferenceSourceData": true,
+            "alwaysQuerySource": false
+        }
   ]
 }
 ```
 
-[messages](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just "user" role that provides the query.
+[messages](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just the "user" role that provides the query.
 
-[`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the agent is configured for multiple sources and you want to focus the retrieve action on just one of them.
-
-A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
+[knowledgeSourceParams](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
 
 The response to the previous query might look like this:
 
@@ -484,24 +485,24 @@ The response to the previous query might look like this:
 
 ---
 
-## Delete an agent
+## Delete a knowledge base
 
-If you no longer need the agent, or if you need to rebuild it on the search service, use this request to delete the current object.
+If you no longer need the knowledge base, or if you need to rebuild it on the search service, use this request to delete the current object.
 
-### [**Python**](#tab/python-delete-agent)
+### [**Python**](#tab/python-delete-kb)
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-index_client.delete_agent(knowledge_agent_name)
-print(f"Knowledge agent '{knowledge_agent_name}' deleted successfully.")
+index_client.delete_knowledge_base(knowledge_base_name)
+print(f"Knowledge base '{knowledge_base_name}' deleted successfully.")
 ```
 
-### [**REST**](#tab/rest-delete-agent)
+### [**REST**](#tab/rest-delete-kb)
 ```http
-# Delete agent
-DELETE {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
+# Delete knowledge base
+DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
    Authorization: Bearer {{accessToken}}
 ```
 

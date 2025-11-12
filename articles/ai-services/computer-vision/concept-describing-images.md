@@ -1,19 +1,19 @@
 ---
-title: Image descriptions - Azure AI Vision
-titleSuffix: Azure AI services
-description: Concepts related to the image description feature of the Azure AI Vision API.
+title: Image descriptions - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Concepts related to the image description feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
 # Image descriptions
 
-Azure AI Vision can analyze an image and generate a human-readable phrase that describes its contents. The service returns several descriptions based on different visual features, and each description is given a confidence score. The final output is a list of descriptions ordered from highest to lowest confidence.
+Azure Vision in Foundry Tools can analyze an image and generate a human-readable phrase that describes its contents. The service returns several descriptions based on different visual features, and each description is given a confidence score. The final output is a list of descriptions ordered from highest to lowest confidence.
 
 English is the only supported language for image descriptions.
 

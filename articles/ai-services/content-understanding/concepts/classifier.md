@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Classifier Overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding classifier solutions.
+title: Azure Content Understanding in Foundry Tools Classifier Overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -70,7 +70,7 @@ The newly designed analyzer operation allows for hierarchical splitting and clas
 
 ## Classifier limits
 
-For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#segmentationclassification).
+For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#basic-limits).
 
 ## Best practices
 

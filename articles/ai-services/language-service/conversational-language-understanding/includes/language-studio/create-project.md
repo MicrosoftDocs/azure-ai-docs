@@ -3,13 +3,12 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. In [Language Studio](https://aka.ms/languageStudio), find the section named **Understand questions and conversational language** and select **Conversational Language Understanding**.
 
-    :::image type="content" source="../../media/select-custom-clu.png" alt-text="A screenshot that shows the location of Custom Language Understanding on the Language Studio landing page." lightbox="../../media/select-custom-clu.png":::
+    :::image type="content" source="../../media/select-custom-clu.png" alt-text="A screenshot that shows the location of Custom Language Understanding on Azure Language Studio landing page." lightbox="../../media/select-custom-clu.png":::
 
 1. When the **Conversational Language Understanding projects** page opens, select **Create new project**.
 

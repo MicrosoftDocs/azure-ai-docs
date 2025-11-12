@@ -1,7 +1,7 @@
 ---
-title: How to get started with Azure AI Foundry SDK
-titleSuffix: Azure AI Foundry
-description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
+title: How to get started with Microsoft Foundry SDK
+titleSuffix: Microsoft Foundry
+description: This article provides an overview of the Microsoft Foundry SDK and how to get started using it.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -13,27 +13,42 @@ ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
 zone_pivot_groups: foundry-sdk-overview-languages
-# customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
+monikerRange: foundry-classic || foundry
+# customer intent: I want to learn how to use the Microsoft Foundry SDK to build AI applications on Azure.
 ---
 
-# Azure AI Foundry SDK client libraries
+# Microsoft Foundry SDK client libraries
 
-The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+The Microsoft Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
 - Access popular models from various model providers through a single interface
 - Easily combine together models, data, and AI services to build AI-powered applications
 - Evaluate, debug, and improve application quality & safety across development, testing, and production environments
 
-The Azure AI Foundry SDK is a set of client libraries and services designed to work together. 
+The Microsoft Foundry SDK is a set of client libraries and services designed to work together. 
+
+::: moniker range="foundry-classic"
 
 > [!NOTE]
 > This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
 
+::: moniker-end
+
 ## Prerequisites
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+
+::: moniker range="foundry-classic"
 * [Create a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) if you don't have one already.
 * [!INCLUDE [find-endpoint](../../includes/find-endpoint.md)]
+::: moniker-end
+
+::: moniker range="foundry"
+* [!INCLUDE [find-endpoint](../../default/includes/find-endpoint.md)]
+::: moniker-end
+
 * Sign in with the Azure CLI using the same account that you use to access your project:
 
     ```bash
@@ -42,7 +57,7 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
 
 ## Unified Projects client library
 
-The following examples show how to connect to your Azure AI Foundry project using different programming languages. This connection is the first step to accessing models, data, and AI services through the SDK. Each code block demonstrates how to authenticate and create a client for your project endpoint.
+The following examples show how to connect to your Microsoft Foundry project using different programming languages. This connection is the first step to accessing models, data, and AI services through the SDK. Each code block demonstrates how to authenticate and create a client for your project endpoint.
 
 > [!TIP]
 > The code samples below are starting points. You’ll use these clients to interact with models, run evaluations, and more, as described in the client libraries section below.
@@ -50,7 +65,7 @@ The following examples show how to connect to your Azure AI Foundry project usin
 
 ::: zone pivot="programming-language-python"
 
-The [Azure AI Foundry Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Foundry Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install the project client library 
 
@@ -58,7 +73,7 @@ The [Azure AI Foundry Projects client library for Python](/python/api/overview/a
     pip install azure-ai-projects azure-identity
     ```
 
-* Create a project client in code. **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
 
     ```python
     from azure.identity import DefaultAzureCredential
@@ -73,7 +88,7 @@ The [Azure AI Foundry Projects client library for Python](/python/api/overview/a
 
 ::: zone pivot="programming-language-java"
 
-The [Azure AI Foundry Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Foundry Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -81,7 +96,7 @@ The [Azure AI Foundry Projects client library for Java (preview)](/java/api/over
     * `com.azure.ai.projects`
     * `com.azure.core`
 
-* Create a project client in code. **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
 
     ```java
     import com.azure.ai.projects.ProjectsClient;
@@ -103,7 +118,7 @@ The [Azure AI Foundry Projects client library for Java (preview)](/java/api/over
 
 ::: zone pivot="programming-language-javascript"
 
-The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Foundry Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install dependencies (preview):
 
@@ -111,7 +126,7 @@ The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/ov
     npm install @azure/ai-projects @azure/identity
     ```
 
-* Create a project client in code. **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
 
 
     ```javascript
@@ -132,7 +147,7 @@ The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/ov
 
 ::: zone pivot="programming-language-csharp"
 
-The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install packages:
 
@@ -142,7 +157,7 @@ The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azu
     dotnet add package Azure.AI.Inference
     ```
 
-* Create a project client in code. **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
 
     ```csharp
     using Azure;
@@ -173,7 +188,7 @@ The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azu
 
 ::: zone-end
 
-After you create a client, you can use it to access models, run evaluations, and connect to other AI services. The next section lists the available client libraries and shows how to use them for specific Azure AI services.
+After you create a client, you can use it to access models, run evaluations, and connect to other AI services. The next section lists the available client libraries and shows how to use them for specific Foundry Tools.
 
 <a name="azure-ai-foundry-agent-service"></a>
 * Using the project endpoint, you can:
@@ -183,9 +198,9 @@ After you create a client, you can use it to access models, run evaluations, and
     - [Enable tracing for your app](../../concepts/trace.md) 
     - Retrieve endpoints and keys for external resource connections
 
-## Azure AI Services client libraries
+## Foundry Tools client libraries
 
-To use Azure AI services, you can use the following client libraries with the endpoints listed on the project homepage.
+To use Foundry Tools, you can use the following client libraries with the endpoints listed on the project homepage.
 
 <!-- ::: zone pivot="programming-language-cpp"
 [!INCLUDE [C++ include](../../includes/sdk/cpp.md)]

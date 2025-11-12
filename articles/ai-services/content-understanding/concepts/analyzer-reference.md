@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools - What is an analyzer? Configuration and reference
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
 author: PatrickFarley 
 ms.author: jfilcik
@@ -115,9 +115,7 @@ These properties uniquely identify and describe your analyzer:
 
 ## Model configuration
 
-These properties control which AI models the analyzer uses for processing. Understanding the distinction between `supportedModels` and `models` is key to working effectively with Content Understanding.
-
-**Key concept:** Both `supportedModels` and `models` reference **Azure AI Foundry catalog model names** (such as `gpt-4o`, `gpt-4.1`, `text-embedding-3-large`), not deployment names. `supportedModels` declares which model names from the Azure AI Foundry catalog are compatible with this analyzer, while `models` specifies which model names to use by default. At runtime, the service maps these model names to actual deployments that you configure at the resource level in Azure.
+These properties control which AI models the analyzer uses for processing. 
 
 ### `supportedModels`
 - **Description:** Declares which Azure AI Foundry catalog model names this analyzer type is compatible with. Lists the model names that are supported for use with this analyzer.
@@ -133,7 +131,7 @@ These properties control which AI models the analyzer uses for processing. Under
     "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
   }
   ```
-- **Limitations:** Can only include model names from the Azure AI Foundry catalog that the service supports
+- **Limitations:** Can only include model names from the Azure AI Foundry catalog that the service supports.
 
 ### `models`
 - **Description:** Specifies which Azure AI Foundry catalog model names to use by default when processing with this analyzer. These are the default model names (not deployment names) that the service uses.
@@ -153,11 +151,8 @@ These properties control which AI models the analyzer uses for processing. Under
   - The service maps these model names to actual deployments configured at your resource level
   - You configure the mapping between model names and deployments separately in your Azure AI resource settings
   - Model names can be overridden per analyze request for testing or routing
-- **Best practices:**
-  - Use consistent model names across analyzers for easier management
-  - Configure resource-level model deployment mappings before using analyzers
-  - Choose larger models (such as `gpt-4.1`) for complex extraction; smaller models (such as `gpt-4o-mini`) for simple classification
-- **Performance and cost:** Larger models (for example, `gpt-4.1`) result in higher latency and cost compared to smaller variants
+
+See [Connect your Content Understanding resource with Foundry models](models-deployments.md) for more details on how to configure connected models.
 
 ## Processing configuration
 
@@ -274,13 +269,13 @@ The `config` object contains all processing options that control how content is 
 
 ##### `estimateFieldSourceAndConfidence`
 - **Default:** false (varies by analyzer)
-- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value
+- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value. Only available for fields whose method is `extract` or `generate`.
 - **When to use:**
   - Validation and quality assurance workflows
   - Understanding extraction accuracy
   - Debugging extraction issues
   - Highlighting source text in user interfaces
-- **Supported by:** Structured document analyzers (invoice, receipt, ID documents, tax forms)
+- **Supported by:** Document analyzers (invoice, receipt, ID documents, tax forms)
 
 #### Audio and video options
 
@@ -449,8 +444,18 @@ For information about writing effective field descriptions, see [Best practices 
 - **Description:** Extraction method to use for this field. When not specified, the system automatically determines the best method based on the field type and description.
 - **Method types:**
   - `"generate"` - Values are generated freely based on the content using AI models (best for complex or variable fields requiring interpretation)
-  - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations)
+  - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations). Extract requires `enableSourceGroundingAndConfidence` to be set to true for this field.
   - `"classify"` - Values are classified against a predefined set of categories (best when using `enum` with a fixed set of possible values)
+
+##### `estimateSourceAndConfidence`
+- **Default:** false
+- **Description:** Returns source location (page number, bounding box) and confidence score for this field value. Must be true for fields with `method` = extract.
+- **When to use:**
+  - Validation and quality assurance workflows
+  - Understanding extraction accuracy
+  - Debugging extraction issues
+  - Highlighting source text in user interfaces
+- **Supported by:** Document analyzers (invoice, receipt, ID documents, tax forms)
 
 #### `items` (for array types)
 - **Description:** Defines the structure of items in the array

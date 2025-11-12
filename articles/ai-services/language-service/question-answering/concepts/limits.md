@@ -5,9 +5,8 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: conceptual
-ms.date: 07/22/2025
+ms.date: 11/18/2025
 ---
-
 # Project limits and boundaries
 
 The following custom question answering limits are a combination of the [Azure AI Search pricing tier limits](/azure/search/search-limits-quotas-capacity) and custom question answering limits. Both sets of limits affect how many projects you can create per resource and how large each project can grow.
@@ -62,17 +61,17 @@ The maximum number of deep-links that can be crawled for extraction of question 
 
 Metadata is presented as a text-based `key:value` pair, such as `product:windows 10`. Metadata is stored and compared in lower case. The maximum number of metadata fields is based on your **[Azure AI Search tier limits](/azure/search/search-limits-quotas-capacity)**.
 
-If you choose to projects with multiple languages in a single language resource, there's a dedicated test index per project. So the limit is applied per project in the language service.
+If you choose to projects with multiple languages in a single language resource, there's a dedicated test index per project. So the limit is applied per project in Azure Language.
 
 |**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
 |---|---|---|---|---|---|----|
-|Maximum metadata fields per language service (per project)|1,000|100*|1,000|1,000|1,000|1,000|
+|Maximum metadata fields per Language (per project)|1,000|100*|1,000|1,000|1,000|1,000|
 
-If you don't choose the option to have projects with multiple different languages, then the limits are applied across all projects in the language service.
+If you don't choose the option to have projects with multiple different languages, then the limits are applied across all projects in Azure Language.
 
 |**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
 |---|---|---|---|---|---|----|
-|Maximum metadata fields per Language service (across all projects)|1,000|100*|1,000|1,000|1,000|1,000|
+|Maximum metadata fields per Language (across all projects)|1,000|100*|1,000|1,000|1,000|1,000|
 
 ### By name and value
 

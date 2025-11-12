@@ -1,6 +1,6 @@
 ---
 title: Content Understanding Glossary
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Quick reference, detailed description on Content Understanding Terms and Definition
 author: PatrickFarley 
 ms.author: pafarley
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding terminology
+# Azure Content Understanding in Foundry Tools terminology
 
 | Term | Description |
 |:---------|:----------|
@@ -23,7 +23,7 @@ ms.custom:
 | **Categorization** | A feature that classifies content into predefined categories and optionally routes it to specialized analyzers for further processing. Supports up to 200 categories within a single analyzer. Learn more about [categorization](how-to/classification-content-understanding-studio.md). |
 | **Confidence score** | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows. Learn more about [confidence scores and field extraction](document/overview.md#field-extraction). |
 | **Content extraction** | The foundational processing step that transforms unstructured input into standardized format. Includes optical character recognition (OCR) for documents, speech-to-text for audio/video, layout detection, and structural element identification. |
-| **Contextualization** | Content Understanding's processing layer that prepares context for generative models and post-processes their output into structured results. Includes output normalization, source grounding calculation, confidence score computation, and context engineering. Learn more in the [Pricing explainer](overview/pricing-explainer.md#contextualization-tokens). |
+| **Contextualization** | Content Understanding's processing layer that prepares context for generative models and post-processes their output into structured results. Includes output normalization, source grounding calculation, confidence score computation, and context engineering. Learn more in the [Pricing explainer](pricing-explainer.md#contextualization-tokens). |
 | **Domain-specific analyzer** | A prebuilt analyzer preconfigured for common document categories in popular industries, such as invoices, tax forms, mortgage documents, and identity documents. See the [complete list of domain-specific analyzers](concepts/prebuilt-analyzers.md#domain-specific-analyzers). |
 | **Field schema** | A formal description of the fields to extract from the input. It specifies the name, description, value type, generation method, and more for each field. Learn more about [field schema limits](service-limits.md#field-schema-limits). |
 | **Fields** | List of structured key-value pairs derived from the content, as defined by the field schema. [Learn more about supported field value types.](service-limits.md#field-schema-limits) |

@@ -1,7 +1,7 @@
 ﻿---
-title: What is Azure AI Content Understanding?
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
+title: What is Azure Content Understanding in Foundry Tools?
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -42,9 +42,11 @@ Content Understanding accelerates time to value by enabling straight-through pro
 
 * **Intelligent document processing (IDP)**. Content Understanding enables intelligent document processing by converting unstructured documents into structured data with high accuracy. Confidence scores and grounding capabilities ensure data quality while minimizing manual review and reducing operational costs. For example, automate invoice processing, contract analysis, and claims management by extracting and validating fields from complex documents.
 
-* **Robotic process automation (RPA)**. Content Understanding integrates seamlessly with RPA workflows by providing structured data extracted from various content types. This enables end-to-end automation of business processes that require content understanding, such as order processing, customer onboarding, and regulatory compliance workflows.
+* **Agentic applications**. Content Understanding is the tool for agents turning messy, multimodal file inputs into predictable, standardized inputs. It delivers clean markdown representations for reasoning and knowledge workflows, ensuring clarity and context for downstream tasks. When structured data is required, it provides schema-aligned key-value fields with confidence scores and grounding, enabling agents to automate decisions with accuracy and auditability.
 
 * **Search and retrieval-augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into a search index, with extensive support for figure description and analysis to make your data more accessible. The Content Understanding service offers multiple prebuilt analyzers that are fine-tuned to give you the best outputs for your RAG search scenarios.
+
+* **Robotic process automation (RPA)**. Content Understanding integrates seamlessly with RPA workflows by providing structured data extracted from various content types. This enables end-to-end automation of business processes that require content understanding, such as order processing, customer onboarding, and regulatory compliance workflows.
 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
@@ -77,22 +79,22 @@ The Content Understanding framework processes unstructured content through multi
 |**Analyzer**|The core component that defines how your content is processed. It configures content extraction settings, field extraction schema, and model deployments. Once configured, the analyzer consistently applies these settings to all incoming data. Content Understanding offers prebuilt analyzers for common scenarios and supports custom analyzers tailored to your needs. Learn more about [analyzers](concepts/analyzer-reference.md), [prebuilt analyzers](concepts/prebuilt-analyzers.md), and [custom analyzers](tutorial/create-custom-analyzer.md).|
 |**Content extraction**|Transforms unstructured input into normalized, structured text and metadata. Extracts text using optical character recognition (OCR), identifies selection marks and barcodes, detects formulas, and recognizes layout elements like paragraphs, sections, and tables. For audio and video, transcribes speech and identifies key visual elements. Learn more about [content extraction](document/overview.md#content-extraction).|
 |**Segmentation**|Divides documents or videos into logical sections for targeted processing. Configured using the `enableSegment` property in the analyzer schema. Enables breaking content into meaningful chunks, such as splitting a document by document type or dividing a video into scenes. Learn more about [segmentation and classification](concepts/classifier.md).|
-|**Field extraction**|Generates structured key-value pairs based on your defined schema. See [service limits](service-limits.md) for supported field types. Fields can be generated via three methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type, and route it to the correct analyzer for analysis.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.</br></br>Learn more about [field extraction](document/overview.md#field-extraction).|
-|**Confidence scores**|Provides reliability estimates from 0 to 1 for each extracted field value. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows. Enabled using the `estimateFieldSourceAndConfidence` setting. Learn more about [confidence scores](document/overview.md#field-extraction).|
-|**Grounding**|Identifies the specific regions in the content where each value was extracted or generated. Source grounding allows users in automation scenarios to quickly verify the correctness of field values by tracing them back to their origin in the source content. Learn more about [grounding](document/overview.md#field-extraction).|
-|**Contextualization**|Content Understanding's processing layer that prepares context for generative models and post-processes their output. Includes output normalization and formatting, source grounding calculation, confidence score computation, and context engineering to optimize model usage. Learn more about [contextualization](overview/pricing-explainer.md#contextualization-tokens).|
+|**Field extraction**|Generates structured key-value pairs based on your defined schema. See [service limits](service-limits.md) for supported field types. Fields can be generated via three methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content (supported for documents only), such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type, and route it to the correct analyzer for analysis.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.</br></br>Learn more about [field extraction](document/overview.md#field-extraction).|
+|**Confidence scores**|Provides reliability estimates from 0 to 1 for each extracted field value. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows. Enabled using the `estimateFieldSourceAndConfidence` setting in document analyzers. Learn more about [confidence scores](document/overview.md#field-extraction).|
+|**Grounding**|Identifies the specific regions in the content where each value was extracted or generated. Source grounding allows users in automation scenarios to quickly verify the correctness of field values by tracing them back to their origin in the source content. Enabled using the `estimateFieldSourceAndConfidence` setting in document analyzers. Learn more about [grounding](document/overview.md#field-extraction).|
+|**Contextualization**|Content Understanding's processing layer that prepares context for generative models and post-processes their output. Includes output normalization and formatting, source grounding calculation, confidence score computation, and context engineering to optimize model usage. Learn more about [contextualization](pricing-explainer.md#contextualization-tokens).|
 |**Foundry models**|The Azure AI Foundry large language models (LLMs) and embeddings models that power generative capabilities. You bring your own deployments of supported generative models and text-embedding models for training examples. Content Understanding uses these models for field extraction, figure analysis, and other AI-powered features. Learn more about [models and deployments](concepts/models-deployments.md).|
 |**Structured output** |The final result is supplied in your chosen format. Content can be output as Markdown for search and retrieval scenarios, or as structured JSON matching your defined schema for automation and analytics workflows.|
 
 ## Content Understanding experiences
-Azure AI Content Understanding is an Azure AI Foundry service. To use Content Understanding, you must create an AI Foundry Azure Resource. Content Understanding Studio complements the Azure AI Foundry experience for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio](overview/foundry-vs-content-understanding-studio.md)
+Azure AI Content Understanding is an Azure AI Foundry service. To use Content Understanding, you must create an AI Foundry Azure Resource. Content Understanding Studio complements the Azure AI Foundry experience for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio](foundry-vs-content-understanding-studio.md)
 
 * **Content Understanding in Azure AI Foundry NextGen portal (coming soon)**: The Azure AI Foundry NextGen portal offers the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
 * **Content Understanding Studio**: A complementary UX experience, Content Understanding Studio enables a smooth transition for customers transitioning from Document Intelligence. It offers an experience optimized for analyzer performance improvement including improving custom analyzers using data labeling techniques. It also supports building classification-based custom analyzers.
 
 ## Responsible AI
 
-Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
+Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. The service leverages the standard Azure AI Foundry infrastructure, including the Azure AI Content Safety, integrating content safety results into the Content Understanding output. For more information and a full list of prohibited content, see our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified content filtering
 
@@ -121,6 +123,7 @@ Developers using the Content Understanding service should review Microsoft's pol
 
 Our quickstart guides help you quickly start using the Content Understanding service:
 
+* [**Microsoft Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Content Understanding Studio quickstart**](quickstart/content-understanding-studio.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 
