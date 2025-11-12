@@ -292,13 +292,34 @@ After you create a client, you can also use it to access models, run evaluations
     - [Enable tracing for your app](../../concepts/trace.md) 
     - Retrieve endpoints and keys for external resource connections, such as Foundry Tools, local orchestration, and more.
 
+## Foundry Tools SDKs
+
+To use Foundry Tools, you can use the following SDKs with the endpoints listed.
+
 ### Which endpoint should you use?
 
 Choose an endpoint based on your needs:
 
-## Foundry Tools SDKs
+Use the Foundry Tools endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token services. 
 
-To use Foundry Tools, you can use the following SDKs with the endpoints listed on the project homepage.
+Foundry Tools endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
+
+For Speech and Translation Foundry Tools, use the endpoints in the following tables, replacing placeholders with your resource information.
+
+Speech Endpoints
+ | Foundry Tool | Endpoint |
+    | --- | --- |
+|Speech to Text (Standard)|`https://<YOUR-RESOURCE-REGION>.stt.speech.microsoft.com`|
+|Text to Speech (Neural)|`https://<YOUR-RESOURCE-REGION>.tts.speech.microsoft.com`|
+|Custom Voice|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
+
+Translation Endpoints
+ | Foundry Tool | Endpoint |
+    | --- | --- |
+|Text Translation|`https://api.cognitive.microsofttranslator.com/`|
+|Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
+
+The following sections include quickstart links for the Foundry Tools SDKs and reference information.
 
 <!-- ::: zone pivot="programming-language-cpp"
 [!INCLUDE [C++ include](../../includes/sdk/cpp.md)]
