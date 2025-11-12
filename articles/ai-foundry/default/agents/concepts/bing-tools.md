@@ -38,6 +38,164 @@ The grounding process involves several key steps:
 |Grounding with Bing Search     | Gives agents standard access to Bing's search capabilities.        | Scenarios requiring broad knowledge access.        |
 |Grounding with Bing Custom Search (preview)  | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information management.        |
 
+## Code examples
+
+# [Grounding with Bing Search](#tab/grounding-with-bing)
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    BingGroundingAgentTool,
+    BingGroundingSearchToolParameters,
+    BingGroundingSearchConfiguration,
+)
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+openai_client = project_client.get_openai_client()
+
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful assistant.",
+            tools=[
+                BingGroundingAgentTool(
+                    bing_grounding=BingGroundingSearchToolParameters(
+                        search_configurations=[
+                            BingGroundingSearchConfiguration(
+                                project_connection_id=os.environ["BING_PROJECT_CONNECTION_ID"]
+                            )
+                        ]
+                    )
+                )
+            ],
+        ),
+        description="You are a helpful agent.",
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    stream_response = openai_client.responses.create(
+        stream=True,
+        tool_choice="required",
+        input="What is today's date and whether in Seattle?",
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    for event in stream_response:
+        if event.type == "response.created":
+            print(f"Follow-up response created with ID: {event.response.id}")
+        elif event.type == "response.output_text.delta":
+            print(f"Delta: {event.delta}")
+        elif event.type == "response.text.done":
+            print(f"\nFollow-up response done!")
+        elif event.type == "response.output_item.done":
+            if event.item.type == "message":
+                item = event.item
+                if item.content[-1].type == "output_text":
+                    text_content = item.content[-1]
+                    for annotation in text_content.annotations:
+                        if annotation.type == "url_citation":
+                            print(f"URL Citation: {annotation.url}")
+        elif event.type == "response.completed":
+            print(f"\nFollow-up completed!")
+            print(f"Full response: {event.response.output_text}")
+```
+
+# [Grounding with Bing Custom Search (preview)](#tab/grounding-with-bing-custom)
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    BingCustomSearchAgentTool,
+    BingCustomSearchToolParameters,
+    BingCustomSearchConfiguration,
+)
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+# Get the OpenAI client for responses and conversations
+openai_client = project_client.get_openai_client()
+
+bing_custom_search_tool = BingCustomSearchAgentTool(
+    bing_custom_search_preview=BingCustomSearchToolParameters(
+        search_configurations=[
+            BingCustomSearchConfiguration(
+                project_connection_id=os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"],
+                instance_name=os.environ["BING_CUSTOM_SEARCH_INSTANCE_NAME"],
+            )
+        ]
+    )
+)
+
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="""You are a helpful agent that can use Bing Custom Search tools to assist users. 
+            Use the available Bing Custom Search tools to answer questions and perform tasks.""",
+            tools=[bing_custom_search_tool],
+        ),
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    user_input = input(
+        "Enter your question for the Bing Custom Search agent " "(e.g., 'Tell me more about foundry agent service'): \n"
+    )
+
+    # Send initial request that will trigger the Bing Custom Search tool
+    stream_response = openai_client.responses.create(
+        stream=True,
+        input=user_input,
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    for event in stream_response:
+        if event.type == "response.created":
+            print(f"Follow-up response created with ID: {event.response.id}")
+        elif event.type == "response.output_text.delta":
+            print(f"Delta: {event.delta}")
+        elif event.type == "response.text.done":
+            print(f"\nFollow-up response done!")
+        elif event.type == "response.output_item.done":
+            if event.item.type == "message":
+                item = event.item
+                if item.content[-1].type == "output_text":
+                    text_content = item.content[-1]
+                    for annotation in text_content.annotations:
+                        if annotation.type == "url_citation":
+                            print(
+                                f"URL Citation: {annotation.url}, "
+                                f"Start index: {annotation.start_index}, "
+                                f"End index: {annotation.end_index}"
+                            )
+        elif event.type == "response.completed":
+            print(f"\nFollow-up completed!")
+            print(f"Full response: {event.response.output_text}")
+```
+
+---
+
 ## How it works
 
 The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
