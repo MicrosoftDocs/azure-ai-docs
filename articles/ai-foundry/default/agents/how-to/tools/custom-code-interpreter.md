@@ -26,6 +26,11 @@ With a Custom code interpreter for your agent, you can customize the resources, 
 
 ## Code samples
 
+### Enable MCP server for dynamic sessions
+
+```console
+az feature register --namespace Microsoft.App --name SessionPoolsSupportMCP
+az provider register -n Microsoft.App
 ### Create a dynamic session pool with a code interpreter image
 
 ```ARM
