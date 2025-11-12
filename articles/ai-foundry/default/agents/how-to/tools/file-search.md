@@ -255,7 +255,6 @@ curl --request DELETE \
   -d '{}'
 ```
 ::: zone-end
--->
 
 ### File sources  
 - Upload local files (Basic and Standard agent setup) 
