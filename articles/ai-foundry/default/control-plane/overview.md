@@ -169,7 +169,7 @@ The Foundry Control Plane brings together everything you need to manage, govern,
 
 **Quickstarts** - Get up and running quickly with these introductory guides:
 
-- **Access the Control Plane and Understand the Dashboard at a Glance** - Learn how to navigate the **Operate** tab, interpret fleet KPIs, and explore your first insights.
+
 - **[Create a Guardrail Policy](quickstart-create-guardrail-policy.md)** - Define your first guardrail policy and understand how guardrails apply across projects.
 
 **How-to guides** - Deepen your operational expertise with hands-on workflows:
