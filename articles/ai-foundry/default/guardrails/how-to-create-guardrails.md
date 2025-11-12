@@ -106,7 +106,7 @@ There are two paths to assigning a guardrail to a model or agent:
 
 1. Select **Build** in the top right menu.
 2. Select **Agents** or **Models** in the left navigation.
-3. Select the individual agent or model that needs updating.
+3. Select the individual agent or model that needs to update.
 4. A section for **Guardrails** appears in the left panel of the Agent Playground or Chat Playground.
 5. Select **Manage** at the bottom of the Guardrails section.
 6. Select **Assign a new guardrail**.
@@ -146,7 +146,7 @@ To test the behavior of a particular guardrail:
 ## API instructions
 
 ### Creating a Guardrail in Foundry 
-A guardrail is represented as an RaiPolicy in the resource manager. Use the [RAI Policies page](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) to create or update a new guardrail through code. 
+A guardrail is represented as a RaiPolicy in the Resource Manager. Use the [RAI Policies page](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) to create or update a new guardrail through code. 
 
 
 ### Assigning a Guardrail to a Model 
