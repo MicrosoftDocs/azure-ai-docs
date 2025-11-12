@@ -48,7 +48,7 @@ items:
 - name: OpenAPI defined tools
   href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint (preview)
-  href: ../../../agents/how-to/tools/sharepoint.md 
+  href: ../../agents/how-to/tools/sharepoint.md 
 - name: Web search (preview)
   href: ../../agents/how-to/tools/web-search.md
 
