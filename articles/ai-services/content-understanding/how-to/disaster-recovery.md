@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Disaster recovery
-titleSuffix: Azure AI services
-description: Learn about disaster recovery features in Azure AI Content Understanding.
+title: Azure Content Understanding in Foundry Tools Disaster recovery
+titleSuffix: Foundry Tools
+description: Learn about disaster recovery features in Azure Content Understanding.
 author: PatrickFarley 
 ms.author: jppark
 manager: nitinme
@@ -19,14 +19,14 @@ ms.custom:
 
 ## Copy API overview
 
-The process for copying an analayzer across regions consists of the following steps:
+The process for copying an analyzer across regions consists of the following steps:
 
 1. First you issue a copy authorization request to the source resource&mdash;the resource that contains the model to be copied. You receive back the authorization token.
 1. Next you send the copy request to the target resource&mdash;that is, the resource that receives the copied model, along with the authorization token.
 
 ## Generate Copy authorization request
 
-In this operation, target may be optionally specified to lock the key to the specific target resource. This authorization token expires in 24 hours. `encryptionKey` may be optionally specified to double encrypt the authorization token such that it can only be used with a corresponding decryptionKey. Authorization token encrypts the source, optional target, and other metadata.
+In this operation, target can be optionally specified to lock the key to the specific target resource. This authorization token expires in 24 hours. `encryptionKey` can be optionally specified to double encrypt the authorization token such that it can only be used with a corresponding decryptionKey. Authorization token encrypts the source, optional target, and other metadata.
 
 ```http
 POST {sourceEndpoint}/contentunderstanding/analyzers/{sourceAnalyzerId}:getCopyAuthorization
@@ -54,7 +54,7 @@ You receive a `200` response code with response body that contains the authoriza
 
 ## Start Copy operation
 
-If `encryptionKey` was used when generating the authorization token, a corresponding `decryptionKey` must be specified. The target resource needs RBAC access to the source resource, or `authorizationToken` for the remote source analyzer is required. Copied analyzers link to model deployments with the same name in the target resource as the source analyzer by default. User may override the deployment names in the :copy request JSON. If the target resource does not contain the named model deployments, copy fails. The target embedding model must match the source embedding model, or a 400 error will be returned. If the target chatCompletion model is different from the source chatCompletion model, a warning is returned.
+If `encryptionKey` was used when generating the authorization token, a corresponding `decryptionKey` must be specified. The target resource needs role-based-access-control (RBAC) access to the source resource, or `authorizationToken` for the remote source analyzer is required. Copied analyzers link to model deployments with the same name in the target resource as the source analyzer by default. User may override the deployment names in the `:copy` request JSON. If the target resource doesn't contain the named model deployments, copy fails. The target embedding model must match the source embedding model, or a 400 error will be returned. If the target chatCompletion model is different from the source chatCompletion model, a warning is returned.
 
 ```http
 POST {targetEndpoint}/contentunderstanding/analyzers/{targetAnalyzerId}:copy
