@@ -68,10 +68,6 @@ The following examples show how to connect to your Microsoft Foundry project usi
 > [!TIP]
 > These code samples are starting points. Use these clients to interact with models, run evaluations, and more, as explained in the client libraries section.
 
-### Using the Foundry project client with the OpenAI SDK
-
-The OpenAI SDK allows you to interact with the Azure OpenAI service. It provides a simple interface for making API calls to the service and managing authentication. - The OpenAI SDK directly calls the Azure OpenAI endpoint. The following code snippet shows how to instantiate the OpenAI client from the Project client for proper scoping and context management.
-
 ::: zone pivot="programming-language-python"
 
 The [Foundry Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
@@ -198,6 +194,97 @@ The [Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.pro
 
     DefaultAzureCredential credential = new();
     BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
+    
+    OpenAIClientOptions clientOptions = new()
+    {
+        Endpoint = new Uri(endpointUrl)
+    };
+
+    // The PerRetry position ensures the authentication policy is applied to every retry attempt.
+    // This is important for robust authentication in distributed/cloud environments.
+    clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+    
+    var projectClient = new ResponseClient(
+        endpointUrl, 
+        credential,
+        clientOptions
+    );
+    // The ResponseClient lets you interact with models and services in your project.
+    ```
+
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet&preserve-view=true)
+::: moniker-end
+
+::: zone-end
+
+## OpenAI SDK
+
+The OpenAI SDK allows you to interact with the Azure OpenAI service. It provides a simple interface for making API calls to the service and managing authentication. - The OpenAI SDK directly calls the Azure OpenAI endpoint. The following code snippet shows how to instantiate the OpenAI client from the Project client for proper scoping and context management.
+
+::: zone pivot="programming-language-python"
+
+
+```python
+
+# Use the AIProjectClient to create an OpenAI client for your project
+openai_client = project.get_openai_client()
+```
+
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
+::: moniker-end
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+
+```java
+// Use the ProjectsClient to create an OpenAI client for your project
+OpenAIClient openAIClient = projectClient.getOpenAIClient();
+```
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true)
+::: moniker-end
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+```javascript
+// Use the AIProjectClient to create an OpenAI client for your project
+const openAIClient = await project.getOpenAIClient();
+```
+
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true)
+::: moniker-end
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+* Install packages:
+
+    ```bash
+    dotnet add package OpenAI
+    ```
+
+    ```csharp
     
     OpenAIClientOptions clientOptions = new()
     {
