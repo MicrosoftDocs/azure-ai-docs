@@ -19,10 +19,10 @@ ms.custom: references_regions
 In this article, you learn how to:
 
 - Understand key tracing concepts
-- Trace and observe AI agents in AI Foundry
+- Trace and observe AI agents in Foundry
 - Explore new semantic conventions with multi-agent observability
 - Integrate with popular agent frameworks
-- View traces in the AI Foundry portal and Azure Monitor
+- View traces in the Foundry portal and Azure Monitor
 - View agent threads in the Agents playground
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
@@ -88,7 +88,7 @@ To view traces in Foundry, you need to connect an Application Insights resource 
 
 1. Navigate to **Tracing** in the left navigation pane of the Foundry portal.
 1. Create a new Application Insights resource if you don't already have one.
-1. Connect the resource to your AI Foundry project.
+1. Connect the resource to your Foundry project.
 
 ## Instrument tracing in your code
 
@@ -246,7 +246,7 @@ The user feedback event body has the following structure:
 
 To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them.
 
-For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application` when monitoring your application in AI Foundry portal.
+For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application` when monitoring your application in Foundry portal.
 
 To set up the service name property, you can do so directly in your application code by following the steps, see [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` before deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
 

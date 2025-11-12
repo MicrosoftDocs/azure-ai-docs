@@ -1,6 +1,6 @@
 ---
 title: Set up an Azure Key Vault Connection (Preview)
-description: Learn how to securely connect your Azure Key Vault to AI Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration.
+description: Learn how to securely connect your Azure Key Vault to Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration.
 monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
@@ -27,11 +27,11 @@ Create Azure Key Vault connections only when you need them.
 
 If you bring your own Azure Key Vault, review these limitations:
 
-- Limit Azure Key Vault connections to one per AI Foundry resource. Delete an Azure Key Vault connection only if no other connections exist at the AI Foundry resource or project level.
+- Limit Azure Key Vault connections to one per Foundry resource. Delete an Azure Key Vault connection only if no other connections exist at the Foundry resource or project level.
 
-- AI Foundry doesn't support secret migration. Remove and recreate connections yourself.
-- Deleting the underlying Azure Key Vault breaks the AI Foundry resource. Azure Key Vault stores secrets for connections that don't use Entra ID. Any AI Foundry feature that depends on those connections stops working.
-- Deleting connection secrets that your AI Foundry resource stores in your bring your own (BYO) Azure Key Vault can break connections to other services.
+- Foundry doesn't support secret migration. Remove and recreate connections yourself.
+- Deleting the underlying Azure Key Vault breaks the Foundry resource. Azure Key Vault stores secrets for connections that don't use Entra ID. Any Foundry feature that depends on those connections stops working.
+- Deleting connection secrets that your Foundry resource stores in your bring your own (BYO) Azure Key Vault can break connections to other services.
 
 ::: moniker range="foundry-classic"
 
@@ -85,7 +85,7 @@ When you create a Key Vault connection, the managed Key Vault in Azure isn't use
 
 ### Deletion
 
-Before you delete an Azure Key Vault connection from AI Foundry, remove all other connections.
+Before you delete an Azure Key Vault connection from Foundry, remove all other connections.
 After you remove all other connections at the Foundry resource and project levels,
 delete the Key Vault connection. Foundry doesn't support secret migration.
 
@@ -98,7 +98,7 @@ To switch from Azure Key Vault 1 to Azure Key Vault 2, delete the Azure Key Vaul
 When you delete connections from your managed Key Vault, the corresponding secrets are deleted.
 Deleting a Key Vault connection also deletes its secrets.
 
-### Granting AI Foundry access to your key vault
+### Granting Foundry access to your key vault
 
 Depending on how your key vault is provisioned, you might need to apply additional permissions.
 Check whether your Azure Key Vault uses role-based access control (RBAC) or access policies, and then continue.
@@ -139,4 +139,4 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 ## Related content
 
 - [Azure Key Vault documentation](/azure/key-vault/)
-- [AI Foundry documentation](/azure/ai-foundry/) 
+- [Foundry documentation](/azure/ai-foundry/) 

@@ -16,7 +16,7 @@ manager: nitinme
 author: msakande
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or data scientist, I want to deploy and interact with Azure OpenAI in AI Foundry Models using the AI Foundry portal so that I can build, test, and integrate advanced AI capabilities into my applications efficiently and securely.
+#CustomerIntent: As a developer or data scientist, I want to deploy and interact with Azure OpenAI in Foundry Models using the Foundry portal so that I can build, test, and integrate advanced AI capabilities into my applications efficiently and securely.
 ---
 
 # How to deploy Azure OpenAI models with Microsoft Foundry

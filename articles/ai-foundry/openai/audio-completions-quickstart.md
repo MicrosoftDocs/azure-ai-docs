@@ -20,7 +20,7 @@ monikerRange: 'foundry-classic || foundry'
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [AI Foundry](includes/audio-completions-ai-foundry.md)]
+[!INCLUDE [Foundry](includes/audio-completions-ai-foundry.md)]
 
 ::: zone-end
 

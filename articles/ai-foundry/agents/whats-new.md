@@ -74,9 +74,9 @@ You can new extend the capabilities of your agents by connecting them to tools h
 
 The Agent Service is now Generally Available (GA). Along with this milestone, the service offers the following feature updates:
 
-#### AI Foundry Visual Studio Code extension
+#### Foundry Visual Studio Code extension
 
-The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of AI Foundry actions, such as deploying and configure agents natively.
+The [Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of Foundry actions, such as deploying and configure agents natively.
 
 #### Connected agents
 

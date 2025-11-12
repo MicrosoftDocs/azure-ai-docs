@@ -29,15 +29,15 @@ Large language models (LLMs) opened the door to a new type of automation with sy
     :::column-end:::
 :::row-end:::
 
-AI Foundry Agent Service connects the core pieces of Foundry such as models, tools, and frameworks into a single runtime. It manages threads, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems to ensure agents are secure, scalable, and production-ready.
+Foundry Agent Service connects the core pieces of Foundry such as models, tools, and frameworks into a single runtime. It manages threads, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems to ensure agents are secure, scalable, and production-ready.
 
-By abstracting away infrastructure complexity and enforcing trust and safety by design, AI Foundry Agent Service makes it easy to move from prototype to production with confidence.
+By abstracting away infrastructure complexity and enforcing trust and safety by design, Foundry Agent Service makes it easy to move from prototype to production with confidence.
 
 ## What is an AI Agent?
 
 Agents make decisions, invoke tools, and participate in workflows. Sometimes independently, sometimes in collaboration with other agents or humans. They are foundational to real process automation.
 
-Agents created using AI Foundry are not monoliths. They are composable units. Each with a specific role, powered by the right model, and equipped with the right tools, and deployed within a secure, observable, and governable runtime.
+Agents created using Foundry are not monoliths. They are composable units. Each with a specific role, powered by the right model, and equipped with the right tools, and deployed within a secure, observable, and governable runtime.
 
 Each agent has three core components:
 - **Model (LLM)**: Powers reasoning and language understanding
@@ -53,7 +53,7 @@ Each agent has three core components:
 Agents receive unstructured inputs such as user prompts, alerts, or messages from other agents. They produce outputs in the form of tool results or messages. Along the way, they may call tools to perform retrieval, or trigger actions.
 
 
-## How do agents in AI Foundry work?
+## How do agents in Foundry work?
 
 Think of Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together different specialized stations, each responsible for shaping part of the final product. Instead of machines and conveyor belts, the Agent Factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production-ready. Here’s how the factory works step by step:
 
@@ -88,12 +88,12 @@ Next, the agent needs coordination. [Connected agents](how-to\connected-agents.m
     :::column span="1":::
 ### 5. Observability
 
-Finally, agents are tested and monitored. AI Foundry can capture logs, traces, and evaluations at every step. With full thread-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
+Finally, agents are tested and monitored. Foundry can capture logs, traces, and evaluations at every step. With full thread-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
     :::column-end:::
     :::column span="1":::
 ### 6. Trust
 
-It's important to ensure agents are suitable and reliable for the workload they're assigned to. AI Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run - using platform-managed or bring-your-own infrastructure.
+It's important to ensure agents are suitable and reliable for the workload they're assigned to. Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run - using platform-managed or bring-your-own infrastructure.
     :::column-end:::
 :::row-end:::
 

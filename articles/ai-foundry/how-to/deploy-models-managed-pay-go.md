@@ -60,7 +60,7 @@ Pay-as-you-go billing of Azure compute and model surcharge is prorated per minut
 A user's subscription to Azure Marketplace offers are scoped to the project resource within Foundry. If a subscription to the Azure Marketplace offer for a particular model already exists within the project, the user is informed in the deployment wizard that the subscription already exists for the project. 
 
 > [!NOTE]
-> For [NVIDIA inference microservices (NIM)](#nvidia), multiple models are associated with a single marketplace offer, so you only have to subscribe to the NIM offer once within a project to be able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
+> For [NVIDIA inference microservices (NIM)](#nvidia), multiple models are associated with a single marketplace offer, so you only have to subscribe to the NIM offer once within a project to be able to deploy all NIMs offered by NVIDIA in the Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
 
 To find all the SaaS subscriptions that exist in an Azure subscription:
 
@@ -142,7 +142,7 @@ Some special things to note about NIMs are:
 
 - **NIMs include a 90-day trial**. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription is created.
 
-- **SaaS subscriptions scope to a Foundry project**. Because multiple models are associated with a single Azure Marketplace offer, you only need to subscribe once to the NIM offer within a project, then you're able to deploy all the NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
+- **SaaS subscriptions scope to a Foundry project**. Because multiple models are associated with a single Azure Marketplace offer, you only need to subscribe once to the NIM offer within a project, then you're able to deploy all the NIMs offered by NVIDIA in the Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
 
 
 | Model | Task |

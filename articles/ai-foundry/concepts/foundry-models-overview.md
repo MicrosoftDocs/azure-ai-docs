@@ -139,7 +139,7 @@ To view a list of supported models for serverless API deployment or Managed Comp
 :::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Diagram that shows models as a service and the service cycle of managed computes." lightbox="../media/explore/platform-service-cycle.png":::
 
 ## Model lifecycle: deprecation and retirement
-AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
+AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
 - [Azure OpenAI model deprecations and retirements](../openai/concepts/model-retirements.md)
 - [Serverless API deployment model deprecations and retirements](../concepts/model-lifecycle-retirement.md)

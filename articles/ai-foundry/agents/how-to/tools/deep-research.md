@@ -17,7 +17,7 @@ monikerRange: 'foundry-classic || foundry'
 
 > [!NOTE]
 > * The `o3-deep-research` model is available for use **only with the Deep Research tool**. It is **not** available in the Azure OpenAI Chat Completions and Responses APIs.
-> * The **parent** AI Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
+> * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
 
 The Deep Research tool in the Foundry Agent Service enables you to integrate a web-based research capability into your systems. The Deep Research capability is a specialized AI capability designed to perform in-depth, multi-step research using data from the public web.  
 
@@ -65,7 +65,7 @@ The Deep Research tool uses the `gpt-4o` model to clarify the question contained
   
 ## Research tool prerequisites
 - If you already have access to the Azure OpenAI `o3` model, no request is required to access the `o3-deep-research`  model. Otherwise, fill out the [request form](https://aka.ms/OAI/deepresearchaccess). 
-- An Azure subscription with the ability to create AI Foundry project, Grounding with Bing Search, deep research model and GPT model resources [Set up your environment](../../environment-setup.md) in the **West US** and **Norway East** regions.
+- An Azure subscription with the ability to create Foundry project, Grounding with Bing Search, deep research model and GPT model resources [Set up your environment](../../environment-setup.md) in the **West US** and **Norway East** regions.
 - [Grounding with Bing Search tool](./bing-grounding.md) resource for connecting to your Foundry project.
 - [Model deployments](../../../model-inference/how-to/create-model-deployments.md) for the following models
     - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.

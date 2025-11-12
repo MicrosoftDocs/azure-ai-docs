@@ -31,7 +31,7 @@ An AI Gateway sits between clients and model deployments. All requests flow thro
 
 ## Choose API Management usage model
 
-When you create a new AI Gateway, you need to decide whether to create a new APIM instance (isolated governance, predictable usage boundary), or reuse an existing APIM instance (centralized management, shared cost). You can use any existing APIM instance in the same Azure region as the AI Foundry resource.
+When you create a new AI Gateway, you need to decide whether to create a new APIM instance (isolated governance, predictable usage boundary), or reuse an existing APIM instance (centralized management, shared cost). You can use any existing APIM instance in the same Azure region as the Foundry resource.
 
 When you create a new instance from the Foundry portal flow, the SKU defaults to Basic v2. Refer to [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/) to learn more about associated costs and pricing for the API Management service.
 
@@ -43,7 +43,7 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 1. Select **Operate** > **Admin console**.
 1. Open the **AI Gateway** tab.
 1. Select **Add AI Gateway**.
-1. Select the AI Foundry resource you want to connect with the gateway.
+1. Select the Foundry resource you want to connect with the gateway.
 1. Select **Create new** or **Use existing** APIM.
 1. If creating new, review the [Basic v2 SKU limitation and trial cost details](#limitations).
 1. Name the gateway, and select **Add** to create or associate the APIM instance.

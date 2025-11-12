@@ -96,7 +96,7 @@ The following sections describe recovery strategies for incidents that affect a 
 
 1. Redeploy agents (definitions, knowledge files, and tools) from source control or application code. They become new agents with new IDs and have **no access** to prior threads or files.
 
-1. Apply a *delete* resource lock on the AI Foundry account.
+1. Apply a *delete* resource lock on the Foundry account.
 
 **Results:**
 
@@ -320,7 +320,7 @@ If the index was tied to knowledge uploaded as part of a thread, there's no reco
 When other recovery options aren't available, you can perform a complete reset of your project's AI Agent Service capability host. This reset is a *fresh start* that restores functionality but permanently orphans all agents, threads, and related state.
 
 > [!CAUTION]
-> Performing these steps orphans all existing agent state, making all agent data permanently unretrievable through any AI Foundry Agent Service API call. This process restores functionality but *provides no data recovery point*.
+> Performing these steps orphans all existing agent state, making all agent data permanently unretrievable through any Foundry Agent Service API call. This process restores functionality but *provides no data recovery point*.
 >
 > This is a **last resort** after you exhaust all other options. **All agents and threads are permanently lost.**
 

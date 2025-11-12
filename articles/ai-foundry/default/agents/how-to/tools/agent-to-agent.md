@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Agent2Agent (A2A) tool (preview)
 
-You can extend the capabilities of your Microsoft Foundry agent by connecting it to agent endpoints that support the [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/) by using the A2A Tool. Developers and organizations maintain these agent endpoints. The A2A Tool makes sharing context between AI Foundry agents and external agent endpoints easier through a standardized protocol. 
+You can extend the capabilities of your Microsoft Foundry agent by connecting it to agent endpoints that support the [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/) by using the A2A Tool. Developers and organizations maintain these agent endpoints. The A2A Tool makes sharing context between Foundry agents and external agent endpoints easier through a standardized protocol. 
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 
@@ -35,7 +35,7 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 -->
 
 <!-- :::zone-pivot="rest-api"-->
-## Create the remote A2A AI Foundry connection 
+## Create the remote A2A Foundry connection 
 
 Use the following examples to store your authentication information. Adding an agent card path is optional. If not provided, `/.well-known/agent-card.json` is used by default.
 
@@ -231,6 +231,6 @@ Your use of connected non-Microsoft services and servers ("non-Microsoft service
 
 The non-Microsoft services, including A2A agent endpoints, that you decide to use with the A2A tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these A2A agent endpoints. Microsoft has no responsibility to you or others in relation to your use of any non-Microsoft Services.  
 
-We recommend that you carefully review and track the A2A agent endpoints you add to AI Foundry Agent Service. We also recommend that you rely on endpoints hosted by trusted service providers themselves rather than proxies. 
+We recommend that you carefully review and track the A2A agent endpoints you add to Foundry Agent Service. We also recommend that you rely on endpoints hosted by trusted service providers themselves rather than proxies. 
 
 The A2A tool allows you to pass custom headers, such as authentication keys or schemas, that an A2A agent endpoint might need. We recommend that you review all data that's shared with non-Microsoft services, including A2A agent endpoints, and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data. 

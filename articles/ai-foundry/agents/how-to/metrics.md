@@ -26,7 +26,7 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 
 Foundry Agent Service provides out-of-box dashboards. There are two key dashboards to monitor your resource: 
 
-- The metrics dashboard in the AI Foundry resource view 
+- The metrics dashboard in the Foundry resource view 
 - The dashboard in the overview pane within the Azure portal 
 
 To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select **Monitoring** in the left navigation menu, then click **Metrics**.

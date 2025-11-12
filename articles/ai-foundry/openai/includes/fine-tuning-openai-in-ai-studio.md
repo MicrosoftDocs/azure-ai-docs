@@ -181,7 +181,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 
 ## Pause and resume
 
-You can track progress in both fine-tuning views of the AI Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+You can track progress in both fine-tuning views of the Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
 
 You can also review the results files while training runs, to get a peak at the progress and whether your training is proceeding as expected.
 

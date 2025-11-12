@@ -90,7 +90,7 @@ Admins can leverage RBAC role assignments for enabling or disabling use of using
 
 1. Once the Admin has registered `Microsoft.Bing`, people with permissions can create/delete/retrieve the resource key for a Grounding with Bing and/or Grounding with Bing Custom Search resource. These people need to have the **Contributor** or **Owner** role at the subscription or resource group level. 
 
-1. Once a Grounding with Bing and/or Grounding with Bing Custom Search resource is created, people with permissions can then create a Microsoft Foundry connection to connect to the resource and use it as a tool in AI Foundry Agent Service. These people need to have at least  the **Azure AI Project Manager** role. 
+1. Once a Grounding with Bing and/or Grounding with Bing Custom Search resource is created, people with permissions can then create a Microsoft Foundry connection to connect to the resource and use it as a tool in Foundry Agent Service. These people need to have at least  the **Azure AI Project Manager** role. 
 
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 
