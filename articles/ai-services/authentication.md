@@ -1,7 +1,7 @@
 ---
-title: Authentication in Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
-description: "Learn how to authenticate a request to Azure AI Foundry Tools via Microsoft Entra ID or API key."
+title: Authentication in Foundry Tools
+titleSuffix: Foundry Tools
+description: "Learn how to authenticate a request to Foundry Tools via Microsoft Entra ID or API key."
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
@@ -11,9 +11,9 @@ ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Authenticate requests to Azure AI Foundry Tools
+# Authenticate requests to Foundry Tools
 
-Each request to Azure AI Foundry Tools must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn about three ways to authenticate a request and the requirements for each.
+Each request to Foundry Tools must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn about three ways to authenticate a request and the requirements for each.
 
 * Authenticate with a [single-service](#authenticate-with-a-single-service-resource-key) or [AI Foundry multi-service](#authenticate-with-an-ai-foundry-resource-key) resource key.
 * Authenticate with a [token](#authenticate-with-an-access-token).
@@ -25,7 +25,7 @@ Before you make a request, you need an Azure subscription and an AI Foundry reso
 
 ## Authentication headers
 
-Let's quickly review the authentication headers available for use with Azure AI Foundry Tools.
+Let's quickly review the authentication headers available for use with Foundry Tools.
 
 | Header | Description |
 |--------|-------------|
@@ -35,9 +35,9 @@ Let's quickly review the authentication headers available for use with Azure AI 
 
 ## Authenticate with a single-service resource key
 
-The first option is to authenticate a request with a resource key for a specific service, like Azure AI Translator. The keys are available in the Azure portal for each resource that you've created. Go to your resource in the Azure portal. The **Keys & Endpoint** section can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+The first option is to authenticate a request with a resource key for a specific service, like Azure Translator. The keys are available in the Azure portal for each resource that you've created. Go to your resource in the Azure portal. The **Keys & Endpoint** section can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
 
-To use a resource key to authenticate a request, it must be passed along as the `Ocp-Apim-Subscription-Key` header. This is a sample call to the Azure AI Translator service:
+To use a resource key to authenticate a request, it must be passed along as the `Ocp-Apim-Subscription-Key` header. This is a sample call to the Azure Translator service:
 
 This is a sample call to the Translator service:
 ```cURL
@@ -49,7 +49,7 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-versio
 
 ## Authenticate with an AI Foundry resource key
 
-You can use an [AI Foundry resource](./multi-service-resource.md) key to authenticate requests for multiple Azure AI services. The authentication credentials aren't tied to a specific service. See [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) for information about regional availability, supported features, and pricing.
+You can use an [AI Foundry resource](./multi-service-resource.md) key to authenticate requests for multiple Foundry Tools. The authentication credentials aren't tied to a specific service. See [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) for information about regional availability, supported features, and pricing.
 
 The resource key is provided in each request as the `Ocp-Apim-Subscription-Key` header.
 
@@ -57,7 +57,7 @@ The resource key is provided in each request as the `Ocp-Apim-Subscription-Key` 
 
 When using the [AI Foundry resource](./multi-service-resource.md) key to make a request to `api.cognitive.microsoft.com`, you must include the region in the URL. For example: `westus.api.cognitive.microsoft.com`.
 
-When using an AI Foundry resource key with [Azure AI Translator](./translator/index.yml), you must specify the resource region with the `Ocp-Apim-Subscription-Region` header.
+When using an AI Foundry resource key with [Azure Translator](./translator/index.yml), you must specify the resource region with the `Ocp-Apim-Subscription-Region` header.
 
 AI Foundry resource authentication is supported in these regions:
 
@@ -86,7 +86,7 @@ AI Foundry resource authentication is supported in these regions:
 
 ### Sample requests
 
-This is a sample call to the Azure AI Translator service:
+This is a sample call to the Azure Translator service:
 
 ```cURL
 curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de' \
@@ -99,11 +99,11 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-versio
 
 ## Authenticate with an access token
 
-Some Azure AI services accept, and in some cases require, an access token. Currently, these services support access tokens:
+Some Foundry Tools accept, and in some cases require, an access token. Currently, these services support access tokens:
 
 * Text Translation API
-* Speech Services: Speech to text API
-* Speech Services: Text to speech API
+* Speechs: Speech to text API
+* Speechs: Text to speech API
 
 > [!WARNING]
 > The services that support access tokens may change over time, so check the API reference for a service before using this authentication method.
@@ -142,7 +142,7 @@ These regions support token exchange for AI Foundry resources:
 - `westus`
 - `westus2`
 
-After you get an access token, you'll need to pass it in each request as the `Authorization` header. This is a sample call to the Azure AI Translator service:
+After you get an access token, you'll need to pass it in each request as the `Authorization` header. This is a sample call to the Azure Translator service:
 
 ```cURL
 curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de' \
@@ -160,14 +160,14 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-versio
 
 In the previous sections, we showed you how to authenticate using API keys. While these keys provide a quick and easy path to start development, they fall short in scenarios that require Azure [role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). Let's take a look at what's required to authenticate more securely using Microsoft Entra ID.
 
-In the following sections, you'll use either the Azure Cloud Shell environment or the Azure CLI to create a subdomain, assign roles, and obtain a bearer token to call the Azure AI services. If you get stuck, links are provided in each section with all available options for each command in Azure Cloud Shell/Azure CLI.
+In the following sections, you'll use either the Azure Cloud Shell environment or the Azure CLI to create a subdomain, assign roles, and obtain a bearer token to call the Foundry Tools. If you get stuck, links are provided in each section with all available options for each command in Azure Cloud Shell/Azure CLI.
 
 > [!IMPORTANT]
 > If your organization is doing authentication through Microsoft Entra ID, you should [disable local authentication](./disable-local-auth.md) (authentication with keys) so that users in the organization must always use Microsoft Entra ID.
 
 ### Create a resource with a custom subdomain
 
-The first step is to create a custom subdomain. If you want to use an existing AI Foundry resource which doesn't have custom subdomain name, follow the instructions in [Azure AI services custom subdomains](./cognitive-services-custom-subdomains.md#how-does-this-impact-existing-resources) to enable custom subdomain for your resource.
+The first step is to create a custom subdomain. If you want to use an existing AI Foundry resource which doesn't have custom subdomain name, follow the instructions in [Foundry Tools custom subdomains](./cognitive-services-custom-subdomains.md#how-does-this-impact-existing-resources) to enable custom subdomain for your resource.
 
 1. Start by opening the Azure Cloud Shell. Then [select a subscription](/powershell/module/az.accounts/set-azcontext):
 
@@ -222,7 +222,7 @@ Now that you have a custom subdomain associated with your resource, you're going
 
 ### Sample request
 
-In this sample, a password is used to authenticate the service principal. The token provided is then used to call the Azure AI Vision API.
+In this sample, a password is used to authenticate the service principal. The token provided is then used to call the Azure Vision API.
 
 1. Get your **TenantId**:
    ```powershell-interactive
@@ -252,7 +252,7 @@ In this sample, a password is used to authenticate the service principal. The to
    > [!NOTE]
    > Anytime you use passwords in a script, the most secure option is to use the PowerShell Secrets Management module and integrate with a solution such as Azure Key Vault.
   
-1. Call the Azure AI Vision API:
+1. Call the Azure Vision API:
    ```powershell-interactive
    $url = $account.Endpoint+"vision/v1.0/models"
    $result = Invoke-RestMethod -Uri $url  -Method Get -Headers @{"Authorization"="Bearer $accessToken"} -Verbose
@@ -263,7 +263,7 @@ Alternatively, the service principal can be authenticated with a certificate. Be
 
 ## Authorize access to managed identities
  
-Azure AI services support Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to AI Foundry resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
+Foundry Tools support Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to AI Foundry resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
 
 ### Enable managed identities on a Virtual Machine (VM)
 
@@ -285,6 +285,6 @@ Authentication is done via Microsoft Entra ID. Authorization may be done via Azu
 
 ## Related content
 
-* [What are Azure AI services?](./what-are-ai-services.md)
-* [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)
+* [What are Foundry Tools?](./what-are-ai-services.md)
+* [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)
 * [Custom subdomains](cognitive-services-custom-subdomains.md)
