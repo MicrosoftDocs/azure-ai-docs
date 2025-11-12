@@ -233,7 +233,7 @@ with project_client:
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
             model='gpt-4o-mini,
-            instructions="""\
+            instructions="""
             You are a helpful agent that can use a Python code interpreter to assist users. Use the `python_tool` MCP
             server to perform any calculations or numerical analyses. ALWAYS call the `launchShell` tool first before
             calling the `runPythonCodeInRemoteEnvironment` tool. If you need to display any non-text output to the
