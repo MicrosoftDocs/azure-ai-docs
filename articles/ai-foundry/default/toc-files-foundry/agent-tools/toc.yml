@@ -1,7 +1,7 @@
 items:
 - name: Agent tools overview
   href: ../../../agents/how-to/tools/overview.md
-- name: Memory
+- name: Memory (preview)
   href: ../../agents/concepts/agent-memory.md
 - name: AI Foundry tool catalog (preview)
   href: ../../agents/concepts/tool-catalog.md
