@@ -1,16 +1,16 @@
 ---
 title: Language support - Translator
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Azure Translator supports the following languages for text to text translation using Neural Machine Translation (NMT).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/08/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure Translator language support
+# Azure Translator in Foundry Tools language support
 
 **Translation - Cloud:** Cloud translation is available in all languages for the `Translate` operation of Text translation and for Document translation.
 
@@ -327,15 +327,15 @@ ms.author: lajanuar
 |Ukrainian| `uk` | Cyrillic `Cyrl`  | <--> | Latin `Latn` |
 |Urdu| `ur` | Arabic `Arab`  | <--> | Latin `Latn` |
 
-## Other Azure AI Foundry Tools
+## Other Foundry Tools
 
-Add more capabilities to your apps and workflows by utilizing other Azure AI Foundry Tools with Translator. Language support for other services:
+Add more capabilities to your apps and workflows by utilizing other Foundry Tools with the Translator. Language support for other services:
 
 * [Azure AI Vision](../computer-vision/language-support.md)
 * [Speech](../speech-service/language-support.md)
 * [Language service](../language-service/concepts/language-support.md)
 
-View all [Azure AI Foundry Tools](../index.yml).
+View all [Foundry Tools](../index.yml).
 
 ## Next steps
 

@@ -1,13 +1,13 @@
 ---
 title: Azure Text translation SDKs 
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Azure Text translation software development kits (SDKs) expose Text translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -19,7 +19,7 @@ recommendations: false
 
 # Azure Translator in Foundry Tools SDK
 
-Azure Translator is a cloud-based REST API feature of the Azure Translator service. The Text translation API enables quick and accurate source-to-target text translations in real time. The Text translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text translation REST API capabilities into your applications. Text translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
+Azure Translator is a cloud-based REST API feature of the Azure Translator. The Text translation API enables quick and accurate source-to-target text translations in real time. The Text translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text translation REST API capabilities into your applications. Text translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
 
 ## Supported languages
 
@@ -38,7 +38,7 @@ Text translation SDK supports the programming languages and platforms:
 
 This section provides a version-based description of Text translation feature and capability releases, changes, updates, and enhancements.
 
-#### Translator Text SDK May 2024 (GA) release
+#### Azure Translator in Foundry Tools Text SDK May 2024 (GA) release
 
 This release includes the following updates:
 
@@ -100,7 +100,7 @@ This release includes the following updates:
 
 ---
 
-#### Translator Text SDK April 2023 preview release
+#### Azure Translator in Foundry Tools Text SDK April 2023 preview release
 
 This release includes the following updates:
 
@@ -244,7 +244,7 @@ from azure.ai.translation.text import TextTranslationClient
 
 ### 3. Authenticate the client
 
-Interaction with the Translator service using the client library begins with creating an instance of the `TextTranslationClient`class. You need your API key and region to instantiate a client object.
+Interaction with the Translator using the client library begins with creating an instance of the `TextTranslationClient`class. You need your API key and region to instantiate a client object.
 The Text translation API key is found in the Azure portal:
 
 :::image type="content" source="../media/keys-and-endpoint-text-sdk.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::

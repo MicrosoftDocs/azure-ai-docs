@@ -1,16 +1,16 @@
 ---
 title: Frequently asked questions - Azure Translator in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
-description: Get answers to frequently asked questions about the Azure Translator API in Azure AI Foundry Tools.
+titleSuffix: Foundry Tools
+description: Get answers to frequently asked questions about the Azure Translator API in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure Translator frequently asked questions
+# Azure Translator in Foundry Tools frequently asked questions
 
 Welcome to Azure Translator frequently asked questions (FAQ). This resource provides targeted, technically focused answers to key questions regarding Azure Translator, Microsoft's advanced cloud-based machine translation service. Whether you are a developer seeking integration guidance or an IT professional evaluating multilingual support capabilities, these FAQs are designed to clarify Azure Translator's architecture, supported features, implementation strategies, and operational best practices.
 
@@ -30,11 +30,11 @@ Azure Translator counts the following input:
 * A space, tab, markup, or any white-space character.
 * A repeated translation, even if you previously translated the same text. Every character submitted to the translate function is counted even when the content is unchanged or the source and target language are the same.
 
-For scripts based on graphic symbols, such as written Chinese and Japanese Kanji, the Azure Translator service counts the number of Unicode code points. One character per symbol. Exception: Unicode surrogate pairs count as two characters.
+For scripts based on graphic symbols, such as written Chinese and Japanese Kanji, the Azure Translator counts the number of Unicode code points. One character per symbol. Exception: Unicode surrogate pairs count as two characters.
 
 Calls to the **Detect** and **BreakSentence** methods aren't counted in the character consumption. However, we do expect calls to the Detect and BreakSentence methods to be reasonably proportionate to the use of other counted functions. If the number of Detect or BreakSentence calls exceeds the number of other counted methods by 100 times, Microsoft reserves the right to restrict your use of the Detect and BreakSentence methods.
 
-For detailed information regarding Azure Translator Service request limits, *see* [**Text translation request limits**](service-limits.md#text-translation).
+For detailed information regarding Azure Translator request limits, *see* [**Text translation request limits**](service-limits.md#text-translation).
 
 ## Where can I see my monthly usage?
 

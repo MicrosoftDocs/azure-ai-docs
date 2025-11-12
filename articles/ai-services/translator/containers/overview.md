@@ -1,18 +1,18 @@
 ---
 title: What are Azure Translator containers?
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Translate text and documents using Azure Translator containers.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
 # What are Azure Translator containers?
 
-Azure Translator containers enable you to build translator application architecture that's optimized for both robust cloud capabilities and edge locality. A container is an active running instance of an executable software image that contains everything needed—such as all libraries, tools, and dependencies—to run your application consistently and reliably in any environment, whether it's private, public, or personal. Containers are isolated, lightweight, portable, making them ideal for meeting specific security or data governance requirements. Azure Translator containers are available in [connected](#connected-azure-translator-containers) and [disconnected (offline)](#disconnected-azure-translator-containers) modes.
+Azure Translator in Foundry Tools containers enable you to build translator application architecture that's optimized for both robust cloud capabilities and edge locality. A container is an active running instance of an executable software image that contains everything needed—such as all libraries, tools, and dependencies—to run your application consistently and reliably in any environment, whether it's private, public, or personal. Containers are isolated, lightweight, portable, making them ideal for meeting specific security or data governance requirements. Azure Translator containers are available in [connected](#connected-azure-translator-containers) and [disconnected (offline)](#disconnected-azure-translator-containers) modes.
 
 ## Connected Azure Translator containers
 
@@ -38,7 +38,7 @@ You're billed for connected containers monthly, based on the usage and consumpti
 
 **Translator disconnected container** is deployed on premises and processes content in your environment. It doesn't require internet connectivity at runtime. Customer must license the container for projected usage over a year and is charged affront.
 
-Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Translator Service features for a fixed fee, at a predictable total cost, based on the needs of your workload. Commitment plans for disconnected containers have a calendar year commitment period.
+Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Translator features for a fixed fee, at a predictable total cost, based on the needs of your workload. Commitment plans for disconnected containers have a calendar year commitment period.
 
 When you purchase a plan, you're charged for the full price immediately. During the commitment period, you can't change your commitment plan; however you can purchase more units at a pro-rated price for the remaining days in the year. You have until midnight (UTC) on the last day of your commitment, to end a commitment plan.
 
@@ -78,7 +78,7 @@ The aggregated value of `billedUnit` for the following meters is counted  toward
 
 * To request access t a disconnected container, complete and submit the [**disconnected container request form**](https://aka.ms/csdisconnectedcontainers).
 
-* The form requests information about you, your company, and the user scenario for which you use the container. After you submit the form, the Azure AI Foundry Tools team reviews it and emails you with a decision within 10 business days.
+* The form requests information about you, your company, and the user scenario for which you use the container. After you submit the form, the Foundry Tools team reviews it and emails you with a decision within 10 business days.
 
   > [!IMPORTANT]
   > ✔️ On the form, you must use an email address associated with an Azure subscription ID.

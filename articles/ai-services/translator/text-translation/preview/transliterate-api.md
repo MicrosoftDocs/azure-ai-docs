@@ -1,12 +1,12 @@
 ---
 title: Azure Translator in Foundry Tools 2025-05-01-preview transliterate method
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Convert text from one script to another script with the Azure Translator 2025-05-01-preview transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -64,7 +64,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//translit
 
 ### Private endpoint
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
+For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
 ## Request headers 
 

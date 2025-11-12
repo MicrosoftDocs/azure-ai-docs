@@ -1,13 +1,13 @@
 ---
 title: "Batch Document translation C#/.NET or Python client library"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use the Batch Document translation C#/.NET or Python client library (SDK) for cloud-based batch document translation service and process.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-dotnet, devx-track-python
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-document-sdk
 ---
@@ -16,12 +16,12 @@ zone_pivot_groups: programming-languages-document-sdk
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document translation is a cloud-based feature of the [Azure Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 > [!IMPORTANT]
 >
-> * Document translation is currently supported in the Azure Translator (single-service) resource only, and is **not** included in the Azure AI Foundry Tools (multi-service) resource.
-> * Document translation is supported in paid tiers. The Language Studio supports the S1 or D3 instance tiers. We suggest that you select Standard S1 to try Document translation. *See* [Azure AI Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Document translation is currently supported in the Azure Translator (single-service) resource only, and is **not** included in the Foundry Tools (multi-service) resource.
+> * Document translation is supported in paid tiers. The Language Studio supports the S1 or D3 instance tiers. We suggest that you select Standard S1 to try Document translation. *See* [Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 > * Document translation public preview releases provide early access to features that are in active development. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 > * The public preview version of Document translation client libraries default to REST API version **2024-05-01**.
 
@@ -35,7 +35,7 @@ To get started, you need:
 
     * After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
 
-    * You need the key and endpoint from the resource to connect your application to the Azure Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
+    * You need the key and endpoint from the resource to connect your application to the Azure Translator. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
 
       :::image type="content" source="../media/document-translation-key-endpoint.png" alt-text="Screenshot to document translation key and endpoint location in the Azure portal.":::
 
@@ -56,7 +56,7 @@ To learn more, *see* [Managed identities for Document translation](../how-to-gui
 
   :::image type="content" source="../media/managed-identity-rbac-flow.png" alt-text="Screenshot of managed identity flow (RBAC).":::
 
-**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Translator service. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and target containers. The `sourceUrl`  and `targetUrl` must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
+**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Translator. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and target containers. The `sourceUrl`  and `targetUrl` must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
 
 * Your **source** container or blob must designate **read** and **list** access.
 * Your **target** container or blob must designate **write** and **list** access.

@@ -6,7 +6,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: FY25Q1-Linter
 ---
 

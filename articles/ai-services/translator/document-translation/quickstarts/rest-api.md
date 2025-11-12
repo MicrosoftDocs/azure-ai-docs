@@ -1,20 +1,20 @@
 ---
 title: "Quickstart: Document translation REST API"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use the Document translation REST APIs for batch and single document translations.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
 
 # Get started: Translator document translation REST APIs
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document translation is a cloud-based feature of the [Azure Translator in Foundry Tools](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure Translator in Foundry Tools](../../overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 The Document translation API supports two translation processes:
 
@@ -37,7 +37,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 * After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
 
-  * You need the key and endpoint from the resource to connect your application to the Azure Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
+  * You need the key and endpoint from the resource to connect your application to the Azure Translator. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
 
     :::image type="content" source="../media/document-translation-key-endpoint.png" alt-text="Screenshot to document translation key and endpoint location in the Azure portal.":::
 
@@ -87,7 +87,7 @@ To learn more, *see* [Managed identities for Document translation](../how-to-gui
 
   :::image type="content" source="../media/managed-identity-rbac-flow.png" alt-text="Screenshot of managed identity flow (RBAC).":::
 
-**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Translator service. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and target containers. The `sourceUrl`  and `targetUrl` must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
+**✔️ Shared Access Signature (SAS)**. A shared access signature is a URL that grants restricted access for a specified period of time to your Translator. To use this method, you need to create Shared Access Signature (SAS) tokens for your source and target containers. The `sourceUrl`  and `targetUrl` must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs.
 
 * Your **source** container or blob must designate **read** and **list** access.
 * Your **target** container or blob must designate **write** and **list** access.
@@ -99,7 +99,7 @@ To learn more, *see* [**Create SAS tokens**](../how-to-guides/create-sas-tokens.
 Before you run the **POST** request, replace `{your-document-translator-endpoint}` and `{your-key}` with the values from your Azure portal Azure Translator instance.
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI Foundry Tools [security](../../../security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Foundry Tools [security](../../../security-features.md).
 
 ***PowerShell***
 
@@ -145,10 +145,10 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 
 1. For this project, you need a **sample document**. You can download our [Microsoft Word sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Translator/document-translation-sample.docx) for this quickstart. The source language is English.
 
-1. Before you run the **POST** request, replace `{your-document-translation-endpoint}` and `{your-key}` with the values from your Azure portal Azure Translator service instance.
+1. Before you run the **POST** request, replace `{your-document-translation-endpoint}` and `{your-key}` with the values from your Azure portal Azure Translator instance.
 
     > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI Foundry Tools [security](/azure/ai-services/security-features).
+    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Foundry Tools [security](/azure/ai-services/security-features).
 
    ***command prompt / terminal***
 
@@ -171,7 +171,7 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 * The translated document is returned with the response.
 * The successful POST method returns a `200 OK` response code indicating that the service created the request.
 
-That's it, congratulations! You just learned to translate documents using the Azure Translator service.
+That's it, congratulations! You just learned to translate documents using the Azure Translator.
 
 ## Next steps
 

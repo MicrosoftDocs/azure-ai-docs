@@ -1,18 +1,18 @@
 ---
 title: Translate behind firewalls - Azure Translator
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: How to enable Azure Translator to translate behind firewalls using either domain-name or IP filtering.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
 # Use Azure Translator behind firewalls
 
-Azure Translator can translate behind firewalls by using either [domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the recommended approach.
+Azure Translator in Foundry Tools can translate behind firewalls by using either [domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the recommended approach.
 
 If you still require IP filtering, you can obtain the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is included under the **CognitiveServicesManagement** service tag.
 

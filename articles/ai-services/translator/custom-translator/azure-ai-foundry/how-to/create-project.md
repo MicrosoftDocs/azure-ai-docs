@@ -1,11 +1,11 @@
 ---
-title: Create an Azure AI Foundry Tools fine-tuning project - custom translation
-titleSuffix: Azure AI Foundry Tools
+title: Create an Foundry Tools fine-tuning project - custom translation
+titleSuffix: Foundry Tools
 description: How to create and manage a fine-tuning project
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 
@@ -13,7 +13,7 @@ ms.topic: how-to
 
 # Create a Foundry Tools fine-tuning project
 
-Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint. In the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Azure AI Foundry Tools models, for example, custom translation, Custom speech, etc. For custom translation, you can fine-tune a model for a language pair, *say* English to French.
+Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint. In the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Foundry Tools models, for example, custom translation, Custom speech, etc. For custom translation, you can fine-tune a model for a language pair, *say* English to French.
 
 1. Go to your project in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](../../azure-ai-foundry/how-to/create-project.md).
 
@@ -21,7 +21,7 @@ Custom translation fine-tuning includes one or many language pairs, model traini
 
 1. Select **AI Service Fine-tuning** > **+ Fine-tune**.
 
-:::image type="content" source="../media/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Foundry Tools models.":::
+:::image type="content" source="../media/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Foundry Tools models.":::
 
 1. In the dialog, select **Translation** for custom translation. Then select **Next**.
 

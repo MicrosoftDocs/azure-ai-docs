@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
@@ -15,13 +15,13 @@ ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 
 # Use Document Translation APIs programmatically
 
- Document translation is a cloud-based feature of the [Azure Translator](../../translator-overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
+ Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
 
 ## Prerequisites
 
 > [!NOTE]
 >
-> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 To get started, you need:
@@ -58,7 +58,7 @@ To get started, you need:
 
 ### Retrieve your key and custom domain endpoint
 
-* Requests to the Translator service require a read-only key and custom endpoint to authenticate access. The custom domain endpoint is a URL formatted with your resource name, hostname, and Translator subdirectories and is available in the Azure portal.
+* Requests to the Translator require a read-only key and custom endpoint to authenticate access. The custom domain endpoint is a URL formatted with your resource name, hostname, and Translator subdirectories and is available in the Azure portal.
 
 1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document translation resource, navigate directly to your resource page.
 
@@ -72,7 +72,7 @@ To get started, you need:
 
 ### Get your key
 
-Requests to the Translator service require a read-only key for authenticating access.
+Requests to the Translator require a read-only key for authenticating access.
 
 1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document translation resource, navigate directly to your resource page.
 1. In the left rail, under *Resource Management*, select **Keys and Endpoint**.
@@ -107,9 +107,9 @@ The `sourceUrl` , `targetUrl` , and optional `glossaryUrl`  must include a Share
 
 ## HTTP requests
 
-An asynchronous batch translation request is submitted to your Translator service endpoint via a POST request. If successful, the POST method returns a `202 Accepted`  response code and the service creates a batch request. The translated documents are listed in your target container.
+An asynchronous batch translation request is submitted to your Translator endpoint via a POST request. If successful, the POST method returns a `202 Accepted`  response code and the service creates a batch request. The translated documents are listed in your target container.
 
-For detailed information regarding Azure Translator Service request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
+For detailed information regarding Azure Translator request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
 
 ### HTTP headers
 

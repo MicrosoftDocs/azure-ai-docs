@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -43,7 +43,7 @@ To call the synchronous translation feature via the REST API, include the follow
 
 |Header|Value| Condition  |
 |---|:--- |:---|
-|**Ocp-Apim-Subscription-Key** |Your Translator service key from the Azure portal.|&bullet; ***Required***|
+|**Ocp-Apim-Subscription-Key** |Your Translator key from the Azure portal.|&bullet; ***Required***|
 
 ## Request parameters
 

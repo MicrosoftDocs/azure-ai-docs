@@ -1,16 +1,16 @@
 ---
 title: "Container: Transliterate text"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator container transliterate text operation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure Translator container: transliterate text
+# Azure Translator in Foundry Tools container: transliterate text
 
 Convert characters or letters of a source language to the corresponding characters or letters of a target language.
 
@@ -23,7 +23,7 @@ Convert characters or letters of a source language to the corresponding characte
 
 ```
 
-*See* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+*See* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 

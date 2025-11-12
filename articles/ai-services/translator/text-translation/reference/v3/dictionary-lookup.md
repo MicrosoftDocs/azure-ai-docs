@@ -1,17 +1,17 @@
 ---
 title: Translator Dictionary Lookup Method
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Dictionary Lookup
+# Azure Translator in Foundry Tools 3.0: Dictionary Lookup
 
 Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples.md) operation includes example uses of each translation pair.
 
@@ -23,7 +23,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 

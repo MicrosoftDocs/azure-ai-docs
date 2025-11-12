@@ -1,21 +1,21 @@
 ---
 title: Migrate to V3 - Azure Translator in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article provides the steps to help you migrate from V2 to V3 of the Azure Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure Translator V3 Migration
+# Azure Translator in Foundry Tools V3 Migration
 
 > [!NOTE]
 > Microsoft Translator V2 was deprecated on April 30, 2018. Migrate your applications to V3 and experience new functionality available exclusively in V3. V2 was retired on May 24, 2021.
 
-Azure Translator Version 3 (V3) is generally available. The release includes new features, deprecated methods and a new format for sending to, and receiving data from the Microsoft Translator Service. This document provides information for changing applications to use V3.
+Azure Translator Version 3 (V3) is generally available. The release includes new features, deprecated methods and a new format for sending to, and receiving data from the Microsoft Translator. This document provides information for changing applications to use V3.
 
 The end of this document contains helpful links for you to learn more.
 

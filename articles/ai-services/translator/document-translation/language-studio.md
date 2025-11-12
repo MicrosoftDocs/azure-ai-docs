@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions, build-2023
 recommendations: false
@@ -45,9 +45,9 @@ If you or an administrator have previously setup a Translator resource with a **
 
 > [!NOTE]
 >
-> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI Foundry Tools (multi-service) resource.
+> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Foundry Tools (multi-service) resource.
 >
-> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Azure AI Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 Document translation in Language Studio requires the following resources:

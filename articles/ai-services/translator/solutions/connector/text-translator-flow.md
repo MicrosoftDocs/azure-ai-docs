@@ -1,13 +1,13 @@
 ---
 title: Use Translator v3 connector to configure a Text translation flow
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use Microsoft Translator v3 connector and Power Automate to configure a Text translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -23,9 +23,9 @@ ms.author: lajanuar
 >
 > * The Translator connector is currently available in public preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 
-This article guides you through configuring a Microsoft Translator v3 connector cloud flow that supports text translation and transliteration. The Translator v3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
+This article guides you through configuring a Microsoft Translator v3 connector cloud flow that supports text translation and transliteration. The Translator v3 connector creates a connection between your Translator instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
-Text translation is a cloud-based REST API feature of the Azure Translator service. The Text translation API enables quick and accurate source-to-target text translations in real time.
+Text translation is a cloud-based REST API feature of the Azure Translator. The Text translation API enables quick and accurate source-to-target text translations in real time.
 
 ## Prerequisites
 
