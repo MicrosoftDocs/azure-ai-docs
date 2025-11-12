@@ -1,5 +1,5 @@
 ---
-title: How to get started with Microsoft Foundry SDK
+title: How to get started with Microsoft Foundry SDK and Endpoints
 titleSuffix: Microsoft Foundry
 description: This article provides an overview of the Microsoft Foundry SDK and how to get started using it.
 ms.service: azure-ai-foundry
@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 11/10/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -17,17 +17,23 @@ monikerRange: foundry-classic || foundry
 # customer intent: I want to learn how to use the Microsoft Foundry SDK to build AI applications on Azure.
 ---
 
-# Microsoft Foundry SDK client libraries
+# Microsoft Foundry SDKs and Endpoints
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-The Microsoft Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
+This article explains how to use the Microsoft Foundry SDK and others to build AI applications. It shows you how to connect to your project, access models from different providers, and use Foundry Tools. The SDK offers a unified way to work with AI resources through client libraries in multiple programming languages.
 
-- Access popular models from various model providers through a single interface
-- Easily combine together models, data, and AI services to build AI-powered applications
-- Evaluate, debug, and improve application quality & safety across development, testing, and production environments
+The Microsoft Foundry SDK simplifies AI application development on Azure. It lets developers:
 
-The Microsoft Foundry SDK is a set of client libraries and services designed to work together. 
+- Access models from various providers through one interface
+- Combine models, data, and AI services to create AI-powered applications
+- Evaluate, debug, and improve application quality and safety across development, testing, and production
+
+The Microsoft Foundry SDK integrates with other client libraries and services that work together. 
+
+## Client Libraries for Microsoft Foundry
+
+Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized AI services. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
 
 ::: moniker range="foundry-classic"
 
@@ -55,13 +61,16 @@ The Microsoft Foundry SDK is a set of client libraries and services designed to 
     az login
     ```
 
-## Unified Projects client library
+## Foundry SDK
 
-The following examples show how to connect to your Microsoft Foundry project using different programming languages. This connection is the first step to accessing models, data, and AI services through the SDK. Each code block demonstrates how to authenticate and create a client for your project endpoint.
+The following examples show how to connect to your Microsoft Foundry project using different programming languages. Connecting is the first step to accessing models, data, and AI services through the OpenAI SDK using the Foundry project client. Each code block shows how to authenticate and create a client for your project endpoint.
 
 > [!TIP]
-> The code samples below are starting points. You’ll use these clients to interact with models, run evaluations, and more, as described in the client libraries section below.
+> These code samples are starting points. Use these clients to interact with models, run evaluations, and more, as explained in the client libraries section.
 
+### Using the Foundry project client with the OpenAI SDK
+
+The OpenAI SDK allows you to interact with the Azure OpenAI service. It provides a simple interface for making API calls to the service and managing authentication. - The OpenAI SDK directly calls the Azure OpenAI endpoint. The following code snippet shows how to instantiate the OpenAI client from the Project client for proper scoping and context management.
 
 ::: zone pivot="programming-language-python"
 
@@ -73,7 +82,7 @@ The [Foundry Projects client library for Python](/python/api/overview/azure/ai-p
     pip install azure-ai-projects azure-identity
     ```
 
-* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpoint string value.
 
     ```python
     from azure.identity import DefaultAzureCredential
@@ -83,7 +92,16 @@ The [Foundry Projects client library for Python](/python/api/overview/azure/ai-p
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     # The AIProjectClient lets you access models, data, and services in your project.
+    openai_client = project.get_openai_client()
     ```
+
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
+::: moniker-end
+
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
@@ -110,10 +128,14 @@ The [Foundry Projects client library for Java (preview)](/java/api/overview/azur
         .endpoint(endpoint)
         .buildClient();
     // The ProjectsClient enables unified access to your project's resources.
+    OpenAIClient openAIClient = projectClient.getOpenAIClient();
     ```
-
-
-
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true)
+::: moniker-end
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -126,7 +148,7 @@ The [Foundry Projects client library for JavaScript](/javascript/api/overview/az
     npm install @azure/ai-projects @azure/identity
     ```
 
-* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpoint string value.
 
 
     ```javascript
@@ -134,14 +156,19 @@ The [Foundry Projects client library for JavaScript](/javascript/api/overview/az
     import { DefaultAzureCredential } from '@azure/identity';
     
     const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
+
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
-    const projectClient = await project.getAzureOpenAIClient({
-        // The API version should match the version of the Azure OpenAI resource
-        apiVersion: "2024-12-01-preview"
-    });
+    const openAIClient = await project.getOpenAIClient();
+
     // The AIProjectClient lets you access models, data, and services in your project.
     ```
 
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true)
+::: moniker-end
 
 ::: zone-end
 
@@ -154,49 +181,68 @@ The [Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.pro
     ```bash
     dotnet add package Azure.Identity
     dotnet add package Azure.Core
-    dotnet add package Azure.AI.Inference
+    dotnet add package OpenAI
     ```
 
-* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpointUrl string value.
 
     ```csharp
-    using Azure;
     using Azure.Identity;
-    using Azure.AI.Inference;
     using Azure.Core;
-    using Azure.Core.Pipeline;
+    using Azure.Core.Pipeline;   
+    using OpenAI;
+    using System;
+    using System.ClientModel.Primitives;
+
+    endpointUrl = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+
+    DefaultAzureCredential credential = new();
+    BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
     
-    var endpointUrl = "your_project_endpoint"; // Replace with your actual endpoint
-    var credential = new DefaultAzureCredential();
-    
-    AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-    BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(
-        credential, 
-        new string[] { "https://cognitiveservices.azure.com/.default" }
-    );
+    OpenAIClientOptions clientOptions = new()
+    {
+        Endpoint = new Uri(endpointUrl)
+    };
+
     // The PerRetry position ensures the authentication policy is applied to every retry attempt.
     // This is important for robust authentication in distributed/cloud environments.
     clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
     
-    var projectClient = new ChatCompletionsClient(
+    var projectClient = new ResponseClient(
         endpointUrl, 
         credential,
         clientOptions
     );
-    // The ChatCompletionsClient lets you interact with models and services in your project.
+    // The ResponseClient lets you interact with models and services in your project.
     ```
+
+::: moniker range="foundry-classic"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet&preserve-view=true).
+::: moniker-end
+::: moniker range="foundry"
+For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet&preserve-view=true)
+::: moniker-end
 
 ::: zone-end
 
-After you create a client, you can use it to access models, run evaluations, and connect to other AI services. The next section lists the available client libraries and shows how to use them for specific Foundry Tools.
+After you create a client, you can also use it to access models, run evaluations, and connect to other AI services. The next section lists the available Foundry Tools client libraries and shows how to use them for specific Foundry Tools.
 
 <a name="azure-ai-foundry-agent-service"></a>
 * Using the project endpoint, you can:
     - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
     - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
-    - [Run evaluations in the cloud](cloud-evaluation.md))
+    - [Run evaluations in the cloud](cloud-evaluation.md)
     - [Enable tracing for your app](../../concepts/trace.md) 
-    - Retrieve endpoints and keys for external resource connections
+    - Retrieve endpoints and keys for external resource connections, such as Foundry Tools, local orchestration, and more.
+
+### Which endpoint should you use?
+
+Choose an endpoint based on your needs:
+
+- **Managing a Project or calling Agents v2?** Use the Foundry Project endpoint with the Foundry SDK. Get your OpenAI client from the Project using Microsoft Entra ID for authentication.
+- **Calling a model directly?** Use the Azure OpenAI endpoint with the OpenAI SDK with Microsoft Entra ID as the preferred authentication method. If using API keys, choose the v1 endpoint.
+- **Using Speech, Vision, or similar services?** Use the service’s endpoint with its SDK
+- **Viewing traces or metrics?** Add OpenTelemetry and check Foundry Observability.
 
 ## Foundry Tools client libraries
 
@@ -233,3 +279,9 @@ To use Foundry Tools, you can use the following client libraries with the endpoi
 <!-- ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](../../includes/sdk/swift.md)]
 ::: zone-end -->
+
+## Using the Agent Framework for local orchestration
+
+Microsoft Agent Framework is an open-source development kit for building AI agents and multi-agent workflows for .NET and Python. It provides a way to build and manage AI agents that can interact with users and other services. The framework makes it easy to create simple agents based on many different inference services.
+
+For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
