@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 06/03/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions
 recommendations: false
@@ -18,9 +18,9 @@ recommendations: false
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
 
-# What is Document translation?
+# What is Azure Translator in Foundry Tools document translation?
 
-Document translation is a cloud-based machine translation feature of the [Azure AI Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
+Document translation is a cloud-based machine translation feature of [Azure Translator](../overview.md). You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 
 * [Asynchronous batch translation](#asynchronous-batch-translation) supports the processing of multiple documents and large files. The batch translation process requires an Azure Blob storage account with storage containers for your source and translated documents.
 
@@ -38,7 +38,7 @@ Use asynchronous document processing to translate multiple documents and large f
   |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
   |[**Translate text embedded within images in documents** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.|
   |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
+  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
   |**Apply custom glossaries**|Translate documents using custom glossaries.|
   |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
   |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
@@ -104,7 +104,7 @@ Document translation supports the following glossary file types:
 | ---------| -------------|
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
 |**Single language translation**|Translate to and from one [supported language](../language-support.md).|
 |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
@@ -137,7 +137,7 @@ Document translation supports the following glossary file types:
 
 ## Document translation Request limits
 
-For detailed information regarding Azure AI Translator Service request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
+For detailed information regarding Azure Translator request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
 
 ## Document translation data residency
 

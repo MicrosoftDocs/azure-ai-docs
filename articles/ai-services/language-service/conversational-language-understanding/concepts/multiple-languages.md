@@ -1,15 +1,14 @@
 ---
 title: Multilingual projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to make use of multilingual projects in conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Multilingual projects
 
 Conversational language understanding makes it easy for you to extend your project to several languages at once. When you enable multiple languages in projects, you can add language-specific utterances and synonyms to your project. You can get multilingual predictions for your intents and entities.

@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 To deploy your model from within the [Language Studio](https://aka.ms/LanguageStudio):
 
 1. Select **Deploying a model** from the left side menu.
@@ -15,10 +14,10 @@ To deploy your model from within the [Language Studio](https://aka.ms/LanguageSt
 
     :::image type="content" source="../../media/deploy-model.png" alt-text="A screenshot showing the deployment button" lightbox="../../media/deploy-model.png":::
 
-3. Select **Create new deployment** to create a new deployment and assign a trained model from the dropdown below. You can also **Overwrite an existing deployment** by selecting this option and select the trained model you want to assign to it from the dropdown below.
+3. Select **Create new deployment** to create a new deployment and assign a trained model from the dropdown. You can also **Overwrite an existing deployment** by selecting this option and select the trained model you want to assign to it from the dropdown.
 
     > [!NOTE]
-    > Overwriting an existing deployment doesn't require changes to your [prediction API](https://aka.ms/ct-runtime-swagger) call but the results you get will be based on the newly assigned model.
+    > Overwriting an existing deployment doesn't require changes to your [prediction API](https://aka.ms/ct-runtime-swagger) call but the results you get are based on the newly assigned model.
     
    :::image type="content" source="../../media/add-deployment.png" alt-text="A screenshot showing the deployment screen" lightbox="../../media/add-deployment.png":::
      

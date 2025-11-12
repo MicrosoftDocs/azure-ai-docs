@@ -1,12 +1,12 @@
 ---
 title: "Check my usage and estimate the cost -  Document Intelligence "
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Azure portal to check how many pages are analyzed and estimate the total price.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: luzhan
 ---
 
@@ -73,11 +73,11 @@ Now that we have the page processed data from the portal, we can use the Azure p
 
     > Press Ctrl + right-click to open in a new tab!
 
-1. Search for **Azure AI Document Intelligence** in the **Search products** search box.
+1. Search for **Azure Document Intelligence in Foundry Tools** in the **Search products** search box.
 
-1. Select **Azure AI Document Intelligence** and you see it was added to the page.
+1. Select **Azure Document Intelligence** and you see it was added to the page.
 
-1. Under **Your Estimate**, select the relevant **Region**, **Payment Option**, and **Instance** for your Document Intelligence resource. For more information, *see* [Azure AI Document Intelligence pricing options](https://azure.microsoft.com/pricing/details/form-recognizer/#pricing).
+1. Under **Your Estimate**, select the relevant **Region**, **Payment Option**, and **Instance** for your Document Intelligence resource. For more information, *see* [Azure Document Intelligence pricing options](https://azure.microsoft.com/pricing/details/form-recognizer/#pricing).
 
 1. Enter the number of pages processed from the Azure portal metrics dashboard. That data can be found using the steps in sections [Check how many pages are processed](#check-how-many-pages-were-processed) or [Examine analyzed pages](#examine-analyzed-pages).
 

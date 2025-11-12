@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 To use summarization, you submit for analysis and handle the API output in your application. Analysis is performed as-is, with no added customization to the model used on your data. There are two ways to use summarization:
 
 # [Text summarization](#tab/text-summarization)

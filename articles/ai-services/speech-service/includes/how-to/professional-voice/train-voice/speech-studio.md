@@ -250,7 +250,7 @@ If you want to upload your own test scripts to further test your model, select *
 
 :::image type="content" source="../../../../media/custom-voice/cnv-model-add-testscripts.png" alt-text="Screenshot of adding model test scripts.":::
 
-Before you upload test script, check the [Test script requirements](#test-script-requirements). You're charged for the extra testing with the batch synthesis based on the number of billable characters. See [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+Before you upload test script, check the [Test script requirements](#test-script-requirements). You're charged for the extra testing with the batch synthesis based on the number of billable characters. See [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 Under **Add test scripts**, select **Browse for a file** to select your own script, then select **Add** to upload it.
 

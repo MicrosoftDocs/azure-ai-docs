@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding analyzer templates
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding analyzer templates.
+title: Azure Content Understanding in Foundry Tools analyzer templates
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools analyzer templates.
 author: PatrickFarley 
 ms.author: kabrow
 manager: nitinme
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Analyzer templates offered with Azure AI Content Understanding
+# Analyzer templates offered with Azure Content Understanding in Foundry Tools
 
 Content Understanding analyzer templates give you a head start in developing your Content Understanding solution by allowing you to build your analyzer without creating schemas from scratch.
 There are analyzer templates specific to common scenarios in each modality, such as call center audio analytics and advertising analysis for videos. Templates are also fully customizable, allowing you to adjust any
@@ -20,7 +20,7 @@ fields in the schemas to better fit your needs. Learn more about the analyzer te
 
 ## Modality templates
 
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://aka.ms/cu-landing). For more information, *see* [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step guide to creating your first analyzer.
+The following analyzer templates are available for use in the [Microsoft Foundry Content Understanding experience](https://aka.ms/cu-landing). For more information, *see* [Use Content Understanding in the Microsoft Foundry](../quickstart/use-ai-foundry.md) for a step-by-step guide to creating your first analyzer.
 
 # [Document](#tab/document)
 

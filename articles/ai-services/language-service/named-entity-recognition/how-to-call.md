@@ -1,17 +1,15 @@
 ---
 title: How to perform Named Entity Recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to extract named entities from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 08/20/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, ignite-2024
 ---
-
-
 # How to use Named Entity Recognition (NER)
 
 The NER feature can evaluate unstructured text, and extract named entities from text in several predefined categories, for example: person, location, event, product, and organization.  

@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Classifier Overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding classifier solutions.
+title: Azure Content Understanding in Foundry Tools Classifier Overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,11 +14,11 @@ ms.custom:
 
 # Content Understanding classifier
 
-You can use the Azure AI Content Understanding classifier to detect and identify documents that you process within your application. The Content Understanding classifier can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file.
+You can use the Azure Content Understanding in Foundry Tools classifier to detect and identify documents that you process within your application. The Content Understanding classifier can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file.
 
 > [!IMPORTANT]
 >
-> The Azure AI Content Understanding classifier is available only in the `2025-05-01-preview` release. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> The Azure Content Understanding in Foundry Tools classifier is available only in the `2025-05-01-preview` release. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Business use cases
 
@@ -79,5 +79,5 @@ Developers who use Content Understanding should review Microsoft policies on cus
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).

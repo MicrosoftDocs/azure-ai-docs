@@ -1,30 +1,29 @@
 ---
-title: What is Azure AI Language
-titleSuffix: Azure AI services
+title: What is Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
+# What is Azure Language in Foundry Tools?
 
-# What is Azure AI Language?
-
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.
+Azure Language in Foundry Tools is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.
 
 ## Available features
 
-This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
+Azure Language unifies the following previously available Foundry Tools: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
 
-The Language service also provides several new features as well, which can either be:
+The Language also provides several new features as well, which can either be:
 
 * Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
 * Customizable, which means you train an AI model using our tools to fit your data specifically.
 
 > [!TIP]
-> Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
+> Unsure which feature to use? See [Which Language feature should I use](#which-language-feature-should-i-use) to help you decide.
 
 [**Azure AI Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
 
@@ -106,7 +105,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 ### Entity linking
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
+> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
 
 
 :::row:::
@@ -188,9 +187,9 @@ Conversation summarization recaps and segments long meetings into timestamped ch
    :::column-end:::
 :::row-end:::
 
-## Which Language service feature should I use?
+## Which Language feature should I use?
 
-This section helps you decide which Language service feature you should use for your application:
+This section helps you decide which Language feature you should use for your application:
 
 |What do you want to do?  |Document format  |Your best solution  | Is this solution customizable?* |
 |---------|---------|---------|---------|
@@ -212,16 +211,16 @@ This section helps you decide which Language service feature you should use for 
 
 ## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
 
-Azure AI Language unifies three individual language services in Azure AI services - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure AI Language. For instructions see [Migrating to Azure AI Language](concepts/migrate.md).
+Azure Language unifies three individual Languages in Foundry Tools - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure Language. For instructions see [Migrating to Azure Language](concepts/migrate.md).
 
 ## Tutorials
 
-After you get started with the Language service quickstarts, try our tutorials that show you how to solve various scenarios.
+After you get started with Azure Language quickstarts, try our tutorials that show you how to solve various scenarios.
 
 * [Extract key phrases from text stored in Power BI](key-phrase-extraction/tutorials/integrate-power-bi.md)
 * [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md)
 * [Use Flask to translate text, analyze sentiment, and synthesize speech](/training/modules/python-flask-build-ai-web-app/)
-* [Use Azure AI services in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
+* [Use Foundry Tools in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
 * [Create an FAQ Bot](question-answering/tutorials/bot-service.md)
 
 ## Code samples
@@ -234,7 +233,7 @@ You can find more code samples on GitHub for the following languages:
 * [Python](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples)
 
 ## Deploy on premises using Docker containers
-Use Language service containers to deploy API features on-premises. These Docker containers enable you to bring the service closer to your data for compliance, security, or other operational reasons. The Language service offers the following containers:
+Use Language containers to deploy API features on-premises. These Docker containers enable you to bring the service closer to your data for compliance, security, or other operational reasons. The Language offers the following containers:
 
 * [Sentiment analysis](sentiment-opinion-mining/how-to/use-containers.md)
 * [Language detection](language-detection/how-to/use-containers.md)
@@ -247,6 +246,6 @@ Use Language service containers to deploy API features on-premises. These Docker
 
 An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 
-* [Transparency note for the Language service](../../ai-foundry/responsible-ai/language-service/transparency-note.md)
+* [Transparency note for Azure Language](../../ai-foundry/responsible-ai/language-service/transparency-note.md)
 * [Integration and responsible use](../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md)
 * [Data, privacy, and security](../../ai-foundry/responsible-ai/language-service/data-privacy.md)

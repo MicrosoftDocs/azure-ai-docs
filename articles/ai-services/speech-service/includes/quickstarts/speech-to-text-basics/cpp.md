@@ -25,7 +25,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 ## Recognize speech from a microphone
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 Follow these steps to create a console application and install the Speech SDK.
 

@@ -1,16 +1,15 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from text
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to identify, extract, and redact Personally Identifying Information (PII) from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
-
 # Detect and redact Personally Identifying Information in text
 
 Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](../concepts/entity-categories.md).

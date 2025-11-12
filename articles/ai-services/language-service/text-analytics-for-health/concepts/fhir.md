@@ -1,16 +1,15 @@
 ---
 title: Fast Healthcare Interoperability Resources (FHIR) structuring in Text Analytics for health
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Fast Healthcare Interoperability Resources (FHIR) structuring
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 04/29/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health, ignite-2024
 ---
-
 # Utilizing Fast Healthcare Interoperability Resources (FHIR) structuring in Text Analytics for Health
 
 When you process unstructured data using Text Analytics for health, you can request that the output response includes a Fast Healthcare Interoperability Resources (FHIR) resource bundle. The FHIR resource bundle output is enabled by passing the FHIR version as part of the options in each request. How you pass the FHIR version differs depending on whether you're using the SDK or the REST API.

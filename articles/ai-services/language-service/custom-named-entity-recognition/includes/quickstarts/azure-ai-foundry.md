@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 > [!NOTE]
 >
 > * This project requires that you have an **Azure AI Foundry hub-based project with an Azure storage account** (not a Foundry project). For more information, *see* [How to create and manage an Azure AI Foundry hub](/azure/ai-foundry/how-to/create-azure-ai-resource)
@@ -25,7 +24,7 @@ ms.author: lajanuar
   > [!NOTE]
   >  * You need to have an **owner** role assigned on the resource group to create a Language resource.
   >  * If you're connecting a preexisting storage account, you should have an owner role assigned to it.
-  >  * Don't move the storage account to a different resource group or subscription once linked with the Language resource.
+  >  * Don't move the storage account to a different resource group or subscription once linked with Azure Language resource.
 
 
 * **An Azure AI Foundry hub-based project**. For more information about Foundry hub-based project, *see* [Create a hub project for Azure AI Foundry](/azure/ai-foundry/how-to/hub-create-projects).
@@ -158,7 +157,7 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 1. In the **Create service fine-tuning task** window, complete the fields as follows:
 
-    * **Connected service**. The name of your language service resource should already appear in this field by default. if not, add it from the drop-down menu.
+    * **Connected service**. The name of your Language resource should already appear in this field by default. if not, add it from the drop-down menu.
 
     * **Name**. Give your fine-tuning task project a name.
 
@@ -184,7 +183,7 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 ## Step 6: Deploy your model
 
-Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in the Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry.
+Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in Azure Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry.
 
 1. Select **Deploy model** from the left-side menu.
 1. Next, select **➕Deploy a trained model** from the **Deploy your model** window.
@@ -205,12 +204,12 @@ Typically, after training a model, you review its evaluation details. For this q
 
     :::image type="content" source="../../media/foundry-next/deployed-model.png" alt-text="Screenshot of the deploy your model status window in Azure AI Foundry.":::
 
-## Step 7: Try the Language playground
+## Step 7: Try Azure Language playground
 
 The Language playground provides a sandbox to test and configure your fine-tuned model before deploying it to production, all without writing code.
 
 1. From the top menu bar, select **Try in playground**.
-1. In the Language Playground window, select the **Custom named entity recognition** tile.
+1. In Azure Language Playground window, select the **Custom named entity recognition** tile.
 1. In the **Configuration** section, select your **Project name** and **Deployment name** from the drop-down menus.
 1. Enter an entity and select **Run**.
 1. You can evaluate the results in the **Details** window.
@@ -218,7 +217,7 @@ The Language playground provides a sandbox to test and configure your fine-tuned
 
 That's it, congratulations!
 
-In this quickstart, you created a fine-tuned custom NER model, deployed it in Azure AI Foundry, and tested your model in the Language playground.
+In this quickstart, you created a fine-tuned custom NER model, deployed it in Azure AI Foundry, and tested your model in Azure Language playground.
 
 ## Clean up resources
 

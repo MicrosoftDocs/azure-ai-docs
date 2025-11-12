@@ -1,9 +1,9 @@
 ---
-title: Azure AI Content Understanding Prebuilt analyzers
-titleSuffix: Azure AI services
-description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure AI Content Understanding.
+title: Azure Content Understanding in Foundry Tools Prebuilt analyzers
+titleSuffix: Foundry Tools
+description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
-ms.author: admaheshwari
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
@@ -12,13 +12,13 @@ ms.custom:
   - build-2025
 ---
 
-# Prebuilt analyzers in Azure AI Content Understanding
+# Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
-Azure AI Content Understanding prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks. They support scenarios such as content ingestion for search and retrieval-augmented generation (RAG) workflows, and intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract more fields or refine outputs to better fit your specific workflow requirements.
+Azure Content Understanding in Foundry Tools prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks. They support scenarios such as content ingestion for search and retrieval-augmented generation (RAG) workflows, and intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract more fields or refine outputs to better fit your specific workflow requirements.
 
 ## Prebuilt analyzers for content ingestion
 
-Azure AI Content Understanding offers prebuilt analyzers that extract raw content with layout as markdown and perform essential semantic analysis, simplifying common content ingestion tasks. These capabilities enhance retrieval quality for downstream applications such as retrieval-augmented generation (RAG).
+Azure Content Understanding in Foundry Tools offers prebuilt analyzers that extract raw content with layout as markdown and perform essential semantic analysis, simplifying common content ingestion tasks. These capabilities enhance retrieval quality for downstream applications such as retrieval-augmented generation (RAG).
 
 ##### `prebuilt-documentAnalyzer`
 

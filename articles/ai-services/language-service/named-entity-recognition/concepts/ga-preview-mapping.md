@@ -1,16 +1,15 @@
 ---
 title: Version-based API mapping for entity types and tags
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the differences between NER API versions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 04/29/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, ignite-2024
 ---
-
 # Entity types and tags
 
 Use this article to get an overview of the new API changes starting from version `2024-11-01`. This API change mainly introduces two new concepts (`entity types` and `entity tags`) replacing the `category` and `subcategory` fields in the current Generally Available API. A detailed overview of each API parameter and the supported API versions it corresponds to can be found on the [Skill Parameters][../how-to/skill-parameters.md] page.

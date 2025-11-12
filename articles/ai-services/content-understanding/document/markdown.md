@@ -1,6 +1,6 @@
 ---
 title: "Document analysis: Markdown representation"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Content Understanding Document response and how to use the response in your applications.
 author: PatrickFarley 
 ms.author: paulhsu
@@ -14,7 +14,7 @@ ms.custom:
 
 # Document analysis: Markdown representation
 
-Azure AI Content Understanding converts unstructured documents into [GitHub Flavored Markdown](https://github.github.com/gfm), while maintaining content and layout for accurate downstream use. This article describes how each content and layout element is represented in Markdown.
+Azure Content Understanding in Foundry Tools converts unstructured documents into [GitHub Flavored Markdown](https://github.github.com/gfm), while maintaining content and layout for accurate downstream use. This article describes how each content and layout element is represented in Markdown.
 
 ## Words and selection marks
 
@@ -120,7 +120,7 @@ The Content Understanding Markdown elements provide a powerful way to represent 
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review the code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

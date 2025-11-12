@@ -1,15 +1,14 @@
 ---
 title: What's new in Azure Language in Foundry Tools?
-titleSuffix: Azure AI Foundry Tools
-description: Find out about new releases and features for the Azure Language.
+titleSuffix: Foundry Tools
+description: Find out about new releases and features for Azure Language in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # What's new in Azure Language in Foundry Tools?
 
 Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
@@ -18,7 +17,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 * **Summarization model 2025-06-10 generally available**. The [Summarization model](summarization/overview.md) version 2025-06-10 is now generally available. This model is fine-tuned using the [Phi open model family](https://azure.microsoft.com/products/phi), delivering enhanced performance for Issue and Resolution summary generation.
 
-* **Expanded Azure Language MCP server capabilities**. The Model Context Protocol (MCP) server for Azure Language now provides eight additional NLP tools: [Named Entity Recognition](named-entity-recognition/overview.md), [Text Analytics for health](text-analytics-for-health/overview.md), [Conversational Language Understanding](conversational-language-understanding/overview.md), [Custom Question Answering](question-answering/overview.md), [Language Detection](language-detection/overview.md), [Sentiment Analysis](sentiment-opinion-mining/overview.md), [Summarization](summarization/overview.md), and [Key Phrase Extraction](key-phrase-extraction/overview.md). These tools complement the existing PII Detection capability.
+* **Expanded Azure Language in Foundry Tools MCP server capabilities**. The Model Context Protocol (MCP) server for Azure Language now provides eight additional NLP tools: [Named Entity Recognition](named-entity-recognition/overview.md), [Text Analytics for health](text-analytics-for-health/overview.md), [Conversational Language Understanding](conversational-language-understanding/overview.md), [Custom Question Answering](question-answering/overview.md), [Language Detection](language-detection/overview.md), [Sentiment Analysis](sentiment-opinion-mining/overview.md), [Summarization](summarization/overview.md), and [Key Phrase Extraction](key-phrase-extraction/overview.md). These tools complement the existing PII Detection capability.
 
 ## September 2025
 
@@ -166,7 +165,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## October 2024
 
-* Custom language service features enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md) via the API.
+* Custom Language features enable you to deploy your project to multiple [resources within a single region](concepts/custom-features/multi-region-deployment.md) via the API.
 
 ## September 2024
 
@@ -344,7 +343,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
   * Switzerland North
   * West US 2
 * Text Analytics for Health now [supports more languages](./text-analytics-for-health/language-support.md) in preview: Spanish, French, German Italian, Portuguese and Hebrew. These languages are available when using a docker container to deploy the API service.
-* The Azure.AI.TextAnalytics client library v5.2.0 are generally available and ready for use in production applications. For more information on Language service client libraries, see the [**Developer overview**](./concepts/developer-guide.md).
+* The Azure.AI.TextAnalytics client library v5.2.0 are generally available and ready for use in production applications. For more information on Language client libraries, see the [**Developer overview**](./concepts/developer-guide.md).
     * Java
         * [**Package (Maven)**](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0)
         * [**Changelog/Release History**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/textanalytics/azure-ai-textanalytics/CHANGELOG.md)
@@ -363,7 +362,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## August 2022
 
-* [Role-based access control](./concepts/role-based-access-control.md) for the Language service.
+* [Role-based access control](./concepts/role-based-access-control.md) for Azure Language.
 
 ## July 2022
 
@@ -371,9 +370,9 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
     * Performance and quality improvements for the following 11 [languages](./sentiment-opinion-mining/language-support.md) supported by sentiment analysis: `ar`, `da`, `el`, `fi`, `hi`, `nl`, `no`, `pl`,  `ru`, `sv`, `tr`
     * Performance and quality improvements for the following 20 [languages](./key-phrase-extraction/language-support.md) supported by key phrase extraction: `af`, `bg`, `ca`, `hr`, `da`, `nl`, `et`, `fi`, `el`, `hu`, `id`, `lv`, `no`, `pl`, `ro`, `ru`, `sk`, `sl`, `sv`, `tr`
 
-* Conversational PII is now available in all Azure regions supported by the Language service.
+* Conversational PII is now available in all Azure regions supported by Azure Language.
 
-* A new version of the Language API (`2022-07-01-preview`) is available. It provides:
+* A new version of Azure Language API (`2022-07-01-preview`) is available. It provides:
     * [Automatic language detection](./concepts/use-asynchronously.md#automatic-language-detection) for asynchronous tasks.
     * Text Analytics for health confidence scores are now returned in relations.
 
@@ -389,7 +388,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
     * [Python](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-language-conversations_1.0.0/sdk/cognitivelanguage/azure-ai-language-conversations)
 * v1.1.0b1 client library for [conversation summarization](summarization/quickstart.md?tabs=conversation-summarization&pivots=programming-language-python) is available as a preview for:
     * [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-language-conversations_1.1.0b1/sdk/cognitivelanguage/azure-ai-language-conversations/samples/README.md)
-* There's a new endpoint URL and request format for making REST API calls to prebuilt Language service features. See the following quickstart guides and reference documentation for information on structuring your API calls. All text analytics `3.2-preview.2` API users can begin migrating their workloads to this new endpoint.
+* There's a new endpoint URL and request format for making REST API calls to prebuilt Language features. See the following quickstart guides and reference documentation for information on structuring your API calls. All text analytics `3.2-preview.2` API users can begin migrating their workloads to this new endpoint.
     * [Entity linking](./entity-linking/quickstart.md?pivots=rest-api)
     * [Language detection](./language-detection/quickstart.md?pivots=rest-api)
     * [Key phrase extraction](./key-phrase-extraction/quickstart.md?pivots=rest-api)

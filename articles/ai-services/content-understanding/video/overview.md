@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding video overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding video solutions.
+title: Azure Content Understanding in Foundry Tools video overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools video solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -12,13 +12,13 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding video solutions (preview)
+# Azure Content Understanding in Foundry Tools video solutions (preview)
 
 > [!IMPORTANT]
 >
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
+> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
 
-Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
+Azure Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
 
@@ -103,7 +103,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 
 See the following walkthrough for RAG on Video using Content Understanding:
 
-[RAG on Video using Azure AI Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
+[RAG on Video using Azure Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
 ## Capabilities
 
@@ -121,7 +121,7 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. Details of language support for video are the same as audio, *see* [Audio Language Handling](../audio/overview.md#language-handling) for details. The following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure Speech in Foundry Tools speech-to-text languages. Details of language support for video are the same as audio, *see* [Audio Language Handling](../audio/overview.md#language-handling) for details. The following transcription details are important to consider:
 
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
   * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `"returnDetails": true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
@@ -265,7 +265,7 @@ See [Language and region support](../language-region-support.md).
 
 ## Data privacy and security
 
-As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
+As with all Foundry Tools, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
 > [!IMPORTANT]
 >
@@ -273,7 +273,7 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 
 ## Related content
 
-* Process videos in the [Azure AI Foundry portal](https://aka.ms/cu-landing).
+* Process videos in the [Microsoft Foundry portal](https://aka.ms/cu-landing).
 * Quickstart: [Analyze video content with analyzer templates](../quickstart/use-ai-foundry.md).
 * Samples:
 
