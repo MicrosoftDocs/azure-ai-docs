@@ -34,7 +34,7 @@ items:
 - name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
 - name: Model Context Protocol (MCP)
-  href: ../../../agents/how-to/tools/model-context-protocol.md
+  href: ../../agents/how-to/tools/model-context-protocol.md
 - name: MCP authentication
   href: ../../agents/how-to/mcp-authentication.md
 - name: Build your own MCP server
