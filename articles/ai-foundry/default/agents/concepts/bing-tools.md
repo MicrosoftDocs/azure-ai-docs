@@ -1,7 +1,7 @@
 ---
-title: 'Grounding with Bing Search overview'
+title: 'Grounding with Bing Search overview for the Agents v2 API'
 titleSuffix: Microsoft Foundry
-description: Learn about the options available to let agents search the web using standard and custom Bing Search grounding tools
+description: Learn about the options available to let agents search the web using standard and custom Bing Search grounding tools.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,9 +13,11 @@ ms.author: aahi
 ai-usage: ai-assisted
 ---
 
-# Grounding with Bing Search tools 
+# Grounding with Bing Search tools in the Agents v2 API
 
 Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search and Grounding with Bing Custom Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
+
+[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 
 The grounding process involves several key steps:
 
@@ -39,6 +41,9 @@ The grounding process involves several key steps:
 |Grounding with Bing Custom Search (preview)  | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information management.        |
 
 ## Code examples
+
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 # [Grounding with Bing Search](#tab/grounding-with-bing)
 
