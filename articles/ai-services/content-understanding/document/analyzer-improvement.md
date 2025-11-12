@@ -17,10 +17,10 @@ ms.custom:
 
 Processing unstructured documents like contracts and statements of work, or structured documents like invoices and insurance forms, is critical for accelerating business value in workflows (IDP), ingesting information for RAG and  agentic workflows. Extracting this data reliably, at scale, requires more capabilities than just text/content extraction. Intelligent document processing requires information like what was extracted, why it was extracted, did the extracted value align with the intent, and how reliably was it extracted.
 
-Most enterprises face the following challenges when handling a variety of documents at scale:
+Most enterprises face the following challenges when handling various documents at scale:
 - Need to **automate workflows**, but only when the extraction meets an accuracy threshold that is required for the business application. You need to know how confident/accurate the analyzer is in its results.
 - Need to **validate the sources** of extracted data for true reference. When seeing lower than expected confidence scores, validate the results quickly by reviewing the specific location in the document.
-- Ideally, require ways to **improve the quality of the analyzer reults** (by providing a few labeled examples) when it gets something wrong or encounters a new format with lower than expected confidence scores.
+- Ideally, require ways to **improve the quality of the analyzer results** (by providing a few labeled examples) when it gets something wrong or encounters a new format with lower than expected confidence scores.
 
 Azure AI Content Understanding provides critical features for post-processing your extracted output.
 
@@ -61,10 +61,10 @@ Grounding ensures that every  field, answer, or classification has a reference t
 
 ### Why grounding matters
 
-In enterprise workflows, accuracy is not enough; you also need traceability. When a model extracts a customer name or a termination clause, you must be able to validate where that information came from. Grounding is critical for:
+In enterprise workflows, accuracy isn't enough; you also need traceability. When a model extracts a customer name or a termination clause, you must be able to validate where that information came from. Grounding is critical for:
 - Maintaining clear traceability and localization of extracted data for any extracted output like clauses, financial numbers, tables, insurance ID, etc.
 - Ensure transparency with internal compliance checks.
-- Use efficient human-in-the-loop validation from the actual reference source. Navigate to the page, section and content that provided the field value.
+- Use efficient human-in-the-loop validation from the actual reference source. Navigate to the page, section, and content that provided the field value.
 
 ### Example
 
@@ -88,7 +88,7 @@ With this grounding data, your legal team can verify the extraction by jumping d
 
 ## Labeled samples (In-context learning): Improve with examples
 
-If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. Start with following the [best practices for schema definiton](../concepts/best-practices.md), if you are still seeing field values being extracted incorrectly or confidence scores below the threshold you want to straight through process, labeled samples or in-context learning can target analyzer improvements. The analyzer uses these examples  at analyze time to adapt to new formats, naming conventions, or extraction rules by correcting itself.
+If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. Start with following the [best practices for schema definitions](../concepts/best-practices.md), if you are still seeing field values being extracted incorrectly or confidence scores below the threshold you want to straight through process, labeled samples or in-context learning can target analyzer improvements. The analyzer uses these examples  at analyze time to adapt to new formats, naming conventions, or extraction rules by correcting itself.
 
 To enhance the model quality: 
 - For datasets with minimal template variations, you can add just a single labeled example. 
@@ -100,7 +100,7 @@ To enhance the model quality:
 To manage diverse layout changes across different versions, templates, languages, or regions, help the analyzer learn by adding examples.
 
 In-context learning helps: 
-- Provide context for the analyzer to recognize the differnt ways the field could be represented in input documents and thus improve model accuracy.
+- Provide context for the analyzer to recognize the different ways the field could be represented in input documents and thus improve model accuracy.
 - Rapidly onboard new templates within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
@@ -117,13 +117,13 @@ Then you can edit the fields by selecting the correct values. Once you save it, 
 
 ### Limitations
 
-Labeled samples do not correct any text recognition issues. For instance if the letter l is is recognized as the digit 1, labeling the value as the letter l will not improve the extraction quality. OCR errors are not currently in scope for analyzer improvement with labeling.
+Labeled samples don't correct any text recognition issues. For instance if the letter `l` is recognized as the digit `1`, labeling the value as the letter `l` will not improve the extraction quality. OCR errors aren't currently in scope for analyzer improvement with labeling.
 
 ### Example
 
-You start receiving invoices from a new vendor that produces a lower than expected confidence scores on the amount due field or incorrectly extracts the total amount value for those specific invoices. You can now add an example of the invoice with the labeled values. This will improve the quality of the extracted values for the variations labeled.
+You start receiving invoices from a new vendor that produces a lower than expected confidence scores on the amount due field or incorrectly extracts the total amount value for those specific invoices. You can now add an example of the invoice with the labeled values. This improves the quality of the extracted values for the variations labeled.
 
-The analyzer will now generalize better on this pattern to correctly extract the value for similar tempates of documents.
+The analyzer will now generalize better on this pattern to correctly extract the value for similar templates of documents.
 
 ## A complete workflow
 
