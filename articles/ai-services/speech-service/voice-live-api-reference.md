@@ -1827,7 +1827,7 @@ The server `mcp_list_tools.in_progress` event is returned when the service start
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `mcp_list_tools.in_progress`. |
-| item_id | string | The ID of the [MCP list tools item](#RealtimeConversationMCPListToolsItem) being processed. |
+| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
 
 ### mcp_list_tools.completed
 
@@ -1847,7 +1847,7 @@ The server `mcp_list_tools.completed` event is returned when the service complet
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `mcp_list_tools.completed`. |
-| item_id | string | The ID of the [MCP list tools item](#RealtimeConversationMCPListToolsItem) being processed. |
+| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
 
 ### mcp_list_tools.failed
 
@@ -1867,7 +1867,7 @@ The server `mcp_list_tools.failed` event is returned when the service fails to l
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `mcp_list_tools.failed`. |
-| item_id | string | The ID of the [MCP list tools item](#RealtimeConversationMCPListToolsItem) being processed. |
+| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
 
 ### response.mcp_call_arguments.delta
 
@@ -1891,7 +1891,7 @@ The server `response.mcp_call_arguments.delta` event is returned when the model-
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call_arguments.delta`. |
 | response_id | string | The ID of the response. |
-| item_id | string | The ID of the [mcp tool call item](#RealtimeConversationMCPCallItem). |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 | delta | string | The arguments delta as a JSON string. |
 
@@ -1917,7 +1917,7 @@ The server `response.mcp_call_arguments.done` event is returned when the model-g
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call_arguments.done`. |
 | response_id | string | The ID of the response. |
-| item_id | string | The ID of the [mcp tool call item](#RealtimeConversationMCPCallItem). |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 | arguments | string | The final arguments as a JSON string. |
 
@@ -1940,7 +1940,7 @@ The server `response.mcp_call.in_progress` event is returned when an MCP tool ca
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call.in_progress`. |
-| item_id | string | The ID of the [mcp tool call item](#RealtimeConversationMCPCallItem). |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
 ### response.mcp_call.completed
@@ -1962,7 +1962,7 @@ The server `response.mcp_call.completed` event is returned when an MCP tool call
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call.completed`. |
-| item_id | string | The ID of the [mcp tool call item](#RealtimeConversationMCPCallItem). |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
 ### response.mcp_call.failed
@@ -1984,7 +1984,7 @@ The server `response.mcp_call.failed` event is returned when an MCP tool call fa
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call.failed`. |
-| item_id | string | The ID of the [mcp tool call item](#RealtimeConversationMCPCallItem). |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
 ### response.output_item.added
