@@ -124,10 +124,10 @@ Preview REST APIs support connections based on a user-assigned managed identity.
 
 * Second, add an "identity" property that contains the collection of user-assigned managed identities. Only one user-assigned managed identity should be provided when creating the data source. Set it to type "userAssignedIdentities".
 
-Here's an example of how to create an indexer data source object using the most recent preview API version for [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true):
+Here's an example of how to create an indexer data source object using the most recent preview API version for [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true):
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
