@@ -171,8 +171,8 @@ Evaluation Tools and Approaches:
 
 ::: moniker range="foundry-classic"
 
-- **Bring your own data**: You can evaluate your AI agents and applications in preproduction using your own evaluation data with supported evaluators, including quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Foundry portal](../how-to/evaluate-results.md).
-- **Simulators and AI red teaming agent**: If you don’t have evaluation data (test data), [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
+- **Bring your own data**: You can evaluate your AI agents and applications in preproduction using your own evaluation data with supported evaluators, including quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Foundry portal](../how-to/evaluate-results.md).
+- **Simulators and AI red teaming agent**: If you don't have evaluation data (test data), [Azure AI Evaluation SDK's simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 
   - [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT.
   - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks such as attempted jailbreaks, helping identify limitations and preparing the model for unexpected conditions.
@@ -300,7 +300,7 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 
 ::: moniker range="foundry"
 
-- [Foundry control plane](../default/control-plane/what-is-foundry-control-plane.md)
+- [Foundry control plane](../default/control-plane/overview.md)
 - [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
 - [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)
 - [Foundry Transparency Note](safety-evaluations-transparency-note.md)

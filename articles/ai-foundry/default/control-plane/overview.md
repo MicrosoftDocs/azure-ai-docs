@@ -45,7 +45,7 @@ The Foundry Control Plane provides:
 
 The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**. 
 
-:::image type="content" source="media/what-is-foundry-control-plane/control-plane-overall.png" alt-text="A diagram depicting the Foundry Control Plane unified fleet visibility with agents, models, and tools listed across projects in a subscription." lightbox="media/what-is-foundry-control-plane/control-plane-overall.png":::
+:::image type="content" source="media/overview/control-plane-overall.png" alt-text="A diagram depicting the Foundry Control Plane unified fleet visibility with agents, models, and tools listed across projects in a subscription." lightbox="media/overview/control-plane-overall.png":::
 
 Core capabilities include:
 
@@ -90,13 +90,13 @@ Operationalize Responsible AI principles through policies that scale.
 
 The Foundry Control Plane experience begins in the **Operate** tab, your command center on the upper right-hand side of the Foundry workspace. From Operate, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. Each sub-tab within Operate is designed around a specific job-to-be-done (JTBD), helping different roles, from builders to administrators, manage AI systems confidently at scale.
 
-:::image type="content" source="media/what-is-foundry-control-plane/control-plane-operate.png" alt-text="A screenshot showing the Operate tab in the upper navigation." lightbox="media/what-is-foundry-control-plane/control-plane-operate.png":::
+:::image type="content" source="media/overview/control-plane-operate.png" alt-text="A screenshot showing the Operate tab in the upper navigation." lightbox="media/overview/control-plane-operate.png":::
 
 ### Overview
 
 Use this page to understand fleet health, performance, and compliance at a glance.
 
-:::image type="content" source="media/what-is-foundry-control-plane/control-plane-overview.png" alt-text="Screenshot of the Fleet Overview page displaying trend-based health scores, alert summaries, and aggregated compliance metrics." lightbox="media/what-is-foundry-control-plane/control-plane-overview.png":::
+:::image type="content" source="media/overview/control-plane-overview.png" alt-text="Screenshot of the Fleet Overview page displaying trend-based health scores, alert summaries, and aggregated compliance metrics." lightbox="media/overview/control-plane-overview.png":::
 
 The Fleet Overview page provides a high-level snapshot of your AI estate, aggregating key operational and compliance metrics in one view.
 
@@ -108,7 +108,7 @@ The Fleet Overview page provides a high-level snapshot of your AI estate, aggreg
 
 Use this view to track, analyze, and manage every agent, model, and tool from one place.
 
-:::image type="content" source="media/what-is-foundry-control-plane/assets-view.png" alt-text="Screenshot of the Agent Inventory table with filters and sort options applied, displaying metadata and health indicators for AI assets." lightbox="media/what-is-foundry-control-plane/assets-view.png":::
+:::image type="content" source="media/overview/assets-view.png" alt-text="Screenshot of the Agent Inventory table with filters and sort options applied, displaying metadata and health indicators for AI assets." lightbox="media/overview/assets-view.png":::
 
 The **Inventory** view provides a unified, searchable table of all AI assets across projects within a subscription. It brings together critical metadata and health indicators, so you can assess and act on your AI estate efficiently.
 
@@ -126,7 +126,7 @@ Together, these capabilities turn the Inventory into the operational backbone of
 
 Use this tab to govern your AI systems and enforce the right guardrails.
 
-:::image type="content" source="media/what-is-foundry-control-plane/compliance.png" alt-text="Screenshot of the Policy & Security tab showing options to define, apply, and monitor AI compliance policies with Azure Policy, Defender, and Purview integrations." lightbox="media/what-is-foundry-control-plane/compliance.png":::
+:::image type="content" source="media/overview/compliance.png" alt-text="Screenshot of the Policy & Security tab showing options to define, apply, and monitor AI compliance policies with Azure Policy, Defender, and Purview integrations." lightbox="media/overview/compliance.png":::
 
 The **Policy & Security** tab empowers organizations to define, apply, and continuously monitor guardrails and compliance policies across their AI estate. It provides a unified interface to operationalize Responsible AI principles while ensuring enterprise-grade safety and regulatory alignment.
 
@@ -141,7 +141,7 @@ Policy Management in Foundry allows administrators and developers alike to embed
 
 Use this tab to view, adjust, and request quotas.
 
-:::image type="content" source="media/what-is-foundry-control-plane/quota-view.png" alt-text="Screenshot of the Quota tab showing model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/what-is-foundry-control-plane/quota-view.png":::
+:::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota tab showing model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
 The **Quota** tab allows customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps manage resources effectively. 
 
@@ -149,7 +149,7 @@ The **Quota** tab allows customers to easily see their model deployments and how
 
 Use this tab to view, organize, and administer all projects, users, and connected resources across your Foundry environment.
 
-:::image type="content" source="media/what-is-foundry-control-plane/admin-tab-overview.png" alt-text="Screenshot of the Admin tab showing a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/what-is-foundry-control-plane/admin-tab-overview.png":::
+:::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin tab showing a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
 
 The **[Admin](../../concepts/management-center.md)** tab extends your operational view beyond a single project. While most work in Foundry takes place within a project context, **Manage** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
 

@@ -94,6 +94,6 @@ In this section, you see:
 
 ## Related content
 
-- [Foundry Control Plane overview](what-is-foundry-control-plane.md)
+- [Foundry Control Plane overview](overview.md)
 - [Register an agent](register-custom-agent.md)
 
