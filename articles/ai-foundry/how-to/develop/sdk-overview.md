@@ -313,16 +313,18 @@ Foundry Tools endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
 
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 
-Speech Endpoints
- | Foundry Tool | Endpoint |
-    | --- | --- |
+#### Speech Endpoints
+
+| Foundry Tool | Endpoint |
+| --- | --- |
 |Speech to Text (Standard)|`https://<YOUR-RESOURCE-REGION>.stt.speech.microsoft.com`|
 |Text to Speech (Neural)|`https://<YOUR-RESOURCE-REGION>.tts.speech.microsoft.com`|
 |Custom Voice|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
 
-Translation Endpoints
- | Foundry Tool | Endpoint |
-    | --- | --- |
+#### Translation Endpoints
+
+| Foundry Tool | Endpoint |
+| --- | --- |
 |Text Translation|`https://api.cognitive.microsofttranslator.com/`|
 |Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
 
