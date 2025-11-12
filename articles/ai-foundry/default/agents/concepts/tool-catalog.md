@@ -3,7 +3,7 @@ title: "Discover tools in the Microsoft Foundry tool catalog"
 description: "Learn about the tool catalog in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
-ms.date: 10/27/2025
+ms.date: 11/12/2025
 ms.manager: nitinme
 ms.topic: conceptual
 ms.service: azure-ai-foundry
