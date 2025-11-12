@@ -25,7 +25,7 @@ Memory stores act as persistent storage that define what types of information ar
 
 ## Common memory use cases
 
-The following examples illustrate how memory can enhance various types of agents:
+The following examples illustrate how memory can enhance various types of agents.
 
 ### Conversational Agent
 
