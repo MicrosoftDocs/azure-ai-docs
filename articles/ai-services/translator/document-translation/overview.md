@@ -26,9 +26,31 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 
 * [Synchronous single file](#synchronous-translation) supports the processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
+## Document translation development options
+
+Add document translation to your projects and applications using the following resources:
+
+##### Asynchronous translation
+
+|Development option|Description|
+|---|---|
+|**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
+|**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+
+##### Synchronous translation
+
+Utilize synchronous document translation to convert textual content in real time from one language to another, preserving original structure and formatting.
+
+|Development option|Description|
+|---|---|
+|**Azure AI Foundry**| &bullet; [**Azure AI Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[**Azure AI Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
+|**REST API**|Integrate synchronous document translation into your applications using the [REST API](reference/translate-document.md).|
+|**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications our [Python SDK](quickstarts/client-library-sdks.md).|
+| **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
+
 ## Asynchronous batch translation
 
-Use asynchronous document processing to translate multiple documents and large files.
+Utilize asynchronous workflows to parallelize translation of multiple documents and large files, maximizing efficiency.
 
 ### Batch key features
 
@@ -45,11 +67,13 @@ Use asynchronous document processing to translate multiple documents and large f
 
 ### Batch development options
 
-You can add Document translation to your applications using the REST API or a client-library SDK:
+You can add Document translation to your applications using the following resources:
 
-* The [**REST API**](reference/rest-api-guide.md). is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.
-
-* The [**client-library SDKs**](./quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/).
+|Development option  |Description  |
+|---------|---------|
+|[**Azure AI Foundry (new)**](https://ai.azure.com/) portal| Azure AI Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.|
+|[**Azure AI Foundry (classic)**](https://ai.azure.com/) portal| Azure AI Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types.|
+|**REST API or Client library (Azure SDK)**| Integrate translation into your applications using the [**REST API**](reference/rest-api-guide.md), or the [**client-library SDKs**](./quickstarts/client-library-sdks.md). Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/) |
 
 ### Batch supported document formats
 

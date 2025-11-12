@@ -24,15 +24,23 @@ To use Azure Content Understanding, create your Azure AI Service resource in a s
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
-| `westus`        | West US        | United States   | United States    |
-| `swedencentral` | Sweden Central | Sweden          | European Union   |
-| `australiaeast` | Australia East | Australia       | N/A †            |
+| `australiaeast` | Australia East | Australia | Australia |
+| `eastus` | East US | United States | US |
+| `eastus2` | East US 2 | United States | US |
+| `northeurope` | North Europe | Europe | Europe |
+| `southcentralus` | South Central US | United States | US |
+| `southeastasia` | Southeast Asia | Asia Pacific | Asia |
+| `swedencentral` | Sweden Central | Sweden | Europe |
+| `uksouth` | UK South | United Kingdom | UK |
+| `westeurope` | West Europe | Europe | Europe |
+| `westus` | West US | United States | US |
+| `westus2` | West US 2 | United States | US |
+| `westus3` | West US 3 | United States | US |
 
-† Australia East doesn't support data zone as a processing location.
 
 > [!NOTE]
 >
-> [Pro mode](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
+> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
 
 ## Language support
 
@@ -238,7 +246,7 @@ The following table lists all supported languages/locales.
 | Greek (Greece) | `el-GR` | Uzbek (Latin, Uzbekistan) | `uz-UZ` |
 | Gujarati (India) | `gu-IN` | Vietnamese (Vietnam) | `vi-VN` |
 | Hebrew (Israel) | `he-IL` | Welsh (United Kingdom) | `cy-GB` |
-| Hindi (India) | `hi-IN` |||
+| Hindi (India) | `hi-IN` |  |  |
 
 
 ### Field value normalization
@@ -271,3 +279,22 @@ Different locales have different ways to represent numbers, date, and time. Cont
 |Indonesian|`id-ID`|Vietnamese|`vi-VN`|
 |Italian|`it-IT`|||
 
+## Preview API (2025-05-01-preview)
+
+The preview API version `2025-05-01-preview` includes managed capacity for generative capabilities and has limited regional availability compared to the GA version.
+
+### Region support
+
+To use Azure AI Content Understanding with the preview API, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+
+| Identifier      | Region         | Geography       | Data Zone        |
+|-----------------|----------------|-----------------|------------------|
+| `westus` | West US | United States | United States |
+| `swedencentral` | Sweden Central | Sweden | European Union |
+| `australiaeast` | Australia East | Australia | N/A<sup>†</sup> |
+
+<sup>†</sup> Australia East doesn't support data zone as a processing location.
+
+> [!NOTE]
+>
+> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.

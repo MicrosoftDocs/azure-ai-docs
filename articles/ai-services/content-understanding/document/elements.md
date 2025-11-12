@@ -3,20 +3,16 @@ title: 'Document Analysis: Extract Structured Content with Azure Content Underst
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
-ms.author: paulhsu
+ms.author: jppark
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 10/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
-  - build-2025
+  - ignite-2025
 ---
 
 # Document analysis: Extract structured content
-
-> [!IMPORTANT]
->
-> Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 
@@ -59,7 +55,9 @@ The Content Understanding API returns analysis results in a structured JSON form
         "paragraphs": [ /* paragraph elements */ ],
         "sections": [ /* section elements */ ],
         "tables": [ /* table elements */ ],
-        "figures": [ /* figure elements */ ]
+        "figures": [ /* figure elements */ ],
+        "hyperlinks": [ /* hyperlink elements */ ],
+        "annotations": [ /* annotation elements */ ]
       }
     ]
   }
@@ -68,21 +66,24 @@ The Content Understanding API returns analysis results in a structured JSON form
 
 ## Document elements
 
-You can extract the following document elements through content extraction:
+You can extract the following document elements through document analysis:
 
 * [Markdown](#markdown-content-elements)
-* Content elements
+* Page objects
   * [Words](#words)
   * [Selection marks](#selection-marks)
   * [Barcodes](#barcodes)
   * [Formulas](#formulas)
   * [Figures](#figures)
-* Layout elements
+  * [Hyperlinks](#hyperlinks)
+  * [Annotations](#annotations)
+* Document structure
   * [Pages](#pages)
   * [Paragraphs](#paragraphs)
   * [Lines](#lines)
   * [Tables](#tables)
   * [Sections](#sections)
+  
 
 Not all content and layout elements are applicable or currently supported by all document file types.
 
@@ -201,23 +202,110 @@ JSON example:
 
 #### Figures
 
-A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding extracts any embedded text from the images and any associated captions and footnotes.
+A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding generates summary of detected figures, converts select images into chart.js representation, and extracts any embedded text from the images and any associated captions and footnotes. Charts are represented in figure content using chart.js syntax and diagrams are represented in figure content using a string in mermaid syntax.
+
+The following figure types are currently supported:
+
+| Figure type | Representation |
+|--------------|-------------|
+| `Bar chart` | Chart.js |
+| `Line chart` | Chart.js |
+| `Pie chart` | Chart.js |
+| `Radar chart` | Chart.js |
+| `Scatter chart` | Chart.js |
+| `Bubble chart` | Chart.js |
+| `Quadrant chart` | Chart.js |
+| `Mixed chart (e.g. combined bar and line chart)` | Mermaid.js |
+| `Flow chart` | Mermaid.js |
+| `Sequence diagrams` | Mermaid.js |
+| `Gantt chart` | Mermaid.js |
 
 JSON example:
 
 ```json
 {
   "figures": [
+     {
+      "description": "This figure illustrates the sales revenue over the year 2023.",
+      "kind": "chart",
+      "content": {
+        "type": "line",
+        "data": {
+          "labels": ["January", "February", "March", "April", "May", "June", "July"],
+          "datasets": [
+            {
+              "label": "A",
+              "data": [93, -29, -17, -8, 73, 98, 40]
+            },
+            {
+              "label": "B",
+              "data": [20, 85, -79, 93, 27, -81, -22]
+            }
+          ]
+        },
+        "options": {
+          "title": { "text": "Title" }
+        }
+      }
+    },
     {
-      "source": "D(2,1.3465,1.8481,3.4788,1.8484,3.4779,3.8286,1.3456,3.8282)",
-      "span": {
-        "offset": 658,
-        "length": 42
-      },
-      "elements": [
-        "/paragraphs/14"
-      ],
-      "id": "2.1"
+      "kind": "mermaid",
+      "content": "xychart-beta\n    title \"Sales Revenue\"\n    x-axis [jan, feb, mar, apr]..."
+    },
+  ]
+}
+```
+
+#### Hyperlinks
+
+A *hyperlink* is a content element that represents an embedded link that connects to another resource such as web page in the document. Content Understanding represents hyperlinks by using its embedded link.
+
+JSON example:
+
+```json
+{
+  "hyperlinks": [
+        {
+          "content": "Microsoft",
+          "url": "https://www.microsoft.com",
+          "span": {...},
+          "source": "..."
+        }
+  ]
+}
+```
+
+#### Annotations
+
+*Annotations* are additional metadata on the document to provide extra information, clarification, or feedback without changing the main content itself. There are many types of annotations that can range specific spans of content, or even refer to specific bounding boxes. Below are the list of annotation types we support. 
+
+> [!NOTE]
+> Note that annotations are currently only supported in digital PDF inputs.
+
+| Annotation type |
+|--------------|
+| `highlight` |
+| `underline` |
+| `strikethrough` |
+| `rectangle` |
+| `circle` |
+| `drawing` |
+| `other` |
+
+JSON example:
+
+```json
+{
+  "annotations": [
+    {
+      "id": "underline-1",
+      "kind": "underline",
+      "spans": [...],
+      "source": "D(pageNumber,l,t,w,h)",
+      "author": "paulhsu",
+      "createdAt": "2023-10-01T12:00:00Z",
+      "lastModifiedAt": "2023-10-02T12:00:00Z",
+      "tags": [ ... ],
     }
   ]
 }
@@ -317,12 +405,11 @@ A table caption specifies content that explains the table. A table can also have
 
 A table might span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Typically, no intervening content comes between the initial table and its continuations except for page headers, footers, and page numbers.
 
-The span for tables covers only the core content and excludes associated captions and footnotes.
 
 A table might span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Other than page headers, footers, and page numbers, there's generally no intervening content between the initial table and its continuations.
 
 > [!NOTE]
-> The span for tables covers only the core content and excludes associated captions and footnotes.
+> The span for tables will cover both the core content and its associated captions and footnotes.
 
 JSON example:
 
@@ -382,6 +469,7 @@ JSON example:
 }
 ```
 
+
 ### Element properties
 
 Documents consist of various components that are categorized into structural, textual, and form-related elements. These elements define the organization and presentation of the document. You can systematically identify and extract the elements for further analysis or application.
@@ -406,8 +494,9 @@ Page numbers are one indexed. The bounding polygon describes a sequence of point
 
 ## Related content
 
-* Process your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content with [analyzer templates](../quickstart/use-ai-foundry.md).
+* Try processing your document content by using [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn to analyze document content using [analyzer templates](../concepts/analyzer-templates.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review the code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 

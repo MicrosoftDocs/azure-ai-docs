@@ -86,21 +86,47 @@ Speakers are identified using the `<v Speaker N>` or `<Speaker N>` format within
 > [!NOTE]
 > Segmentation is only available for video inputs when segmentation is enabled in the analyzer configuration.
 
-Video content can be automatically segmented into logical temporal units. Each segment receives a descriptive heading and natural language description of the visual and audio content.
+Video content can be segmented based on categories that you define into logical temporal units. You can define what fields are extracted from each segment. Segments are output as multiple markdown files, one for each segment. 
 
 **Segment example:**
-```markdown
-## Segment 1: 00:00.000 => 00:02.001
-The video begins with a black screen, with the text 'Welcome' appearing at the bottom left corner.
+````markdown
+# Video: 00:00.737 => 00:48.246
+Width: 1280
+Height: 720
 
-## Segment 2: 00:02.001 => 00:22.356
-The segment transitions to a sports montage. Various sports clips are shown, including volleyball, softball, football, basketball, golf, hockey, swimming, and track events.
+Transcript
+```
+WEBVTT
+
+00:14.680 --> 00:28.680
+<Speaker 1>Stuck on you Got this feeling down deep in my soul That I just can't lose Guess I'm on my way Mighty glad you stayed
+
+...
 ```
 
-Segment properties include:
-- Segment identifier and timing span
-- Natural language description of visual and audio content
-- Embedded transcript and key frames for that time period
+Key Frames
+- 00:00.737 ![](keyFrame.737.jpg)
+...
+
+# Video: 00:48.246 => 01:29.283
+Width: 1280
+Height: 720
+
+Transcript
+```
+WEBVTT
+
+00:51.800 --> 00:54.200
+<Speaker 1>And I know just where I'm going.
+
+...
+```
+
+Key Frames
+- 00:48.246 ![](keyFrame.48246.jpg)
+````
+
+Segments will just cause the standard output format to be emitted for each segment. All the same outputs are available.
 
 ### Key frames
 
@@ -125,11 +151,7 @@ Key frame properties:
 The following is a complete example fo the markdown generated for a video
 
 ````markdown
-# Video: 00:00.000 => 00:42.520
-Width: 640
-Height: 360
-
-## Segment 1: 00:08.960 => 00:25.040
+# Video: 00:00.960 => 00:25.040
 The video shows the Xbox interface with step-by-step instructions for code redemption.
 
 Key Frames
@@ -154,7 +176,8 @@ WEBVTT
 
 ## Next steps
 
-* Try processing your audiovisual content using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
-* Learn to analyze audiovisual content [**analyzer templates**](../quickstart/use-ai-foundry.md).
-* Review code samples: [**video analysis with segments**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-* Review the complete [**audiovisual elements documentation**](elements.md) for detailed information about all supported elements.
+* Try out analyzing videos in the [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn more about analyzing video content using [analyzer templates](../concepts/analyzer-templates.md).
+* Review code samples: [video analysis with segments](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Review the complete [audiovisual elements documentation](elements.md) for detailed information about all supported elements.

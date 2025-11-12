@@ -1,6 +1,6 @@
 ---
 title: Copy custom analyzers 
-titleSuffix: Foundry Tools
+titleSuffix: Azure AI services
 description: Copy custom analyzers within a resource and across Azure resources
 author: PatrickFarley 
 ms.author: pafarley
@@ -16,7 +16,7 @@ ms.custom:
 
 # Copy custom analyzers
 
-Every Content Understanding resource provides access to all prebuilt analyzers by default. For a complete list, see [prebuilt analyzers](../concepts/prebuilt-analyzers.md). Custom analyzers are analyzers you define to process specific content where you can define the content type, schema, and any other processing logic. For more information on defining a custom analyzer, see [defining a custom analyzer](../tutorial/create-custom-analyzer.md).
+Every Content Understanding resource provides access to all prebuilt analyzers by default. For a complete list, see [prebuilt analyzers](../concepts/prebuilt-analyzers.md). Custom analyzers are analyzers you define to process specific content where you can define the content type, schema, and any other processing logic. For more information on defining a custom analyzer, see [defining a custom analyzer](./customize-analyzer-content-understanding-studio.md).
 
 The copy operation on analyzers supports a few different scenarios:
 * **Copy within resource** to create a copy of an existing analyzer in the same resource as a backup or a version you can iteratively make changes from. 

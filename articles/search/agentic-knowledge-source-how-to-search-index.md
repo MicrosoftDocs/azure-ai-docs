@@ -1,102 +1,114 @@
 ---
-title: Create a search index knowledge source
+title: Create a Search Index Knowledge Source
 titleSuffix: Azure AI Search
-description: A search index knowledge source specifies an index used by a knowledge agent for agentic retrieval workloads.
+description: A search index knowledge source specifies an index used by a knowledge base for agentic retrieval workloads.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 11/03/2025
 ---
 
 # Create a search index knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
-
-Knowledge sources are new in the 2025-08-01-preview release.
+A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 ## Prerequisites
 
-You need a search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge agent.
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). 
 
-To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
++ A search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge base.
+
+To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search.
+
+> [!NOTE]
+> Although you can use the Azure portal to create search index knowledge sources, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ## Check for existing knowledge sources
 
 [!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
-The following JSON is an example response for a `searchIndex` knowledge source. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
+The following JSON is an example response for a search index knowledge source. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
 
 ```json
 {
 
-  "name": "earth-at-night-ks",
+  "name": "my-search-index-ks",
   "kind": "searchIndex",
-  "description": "Earth at night e-book knowledge source",
+  "description": "A sample search index knowledge source.",
   "encryptionKey": null,
   "searchIndexParameters": {
-    "searchIndexName": "earth_at_night",
-    "sourceDataSelect": "page_chunk,page_number"
-  },
-  "azureBlobParameters": null,
-  "webParameters": null
+    "searchIndexName": "my-search-index",
+    "semanticConfigurationName": null,
+    "sourceDataFields": [],
+    "searchFields": []
+  }
 }
 ```
 
-> [!NOTE]
-> The `webParameters` property isn't operational in this preview and is reserved for future use.
-
 ## Create a knowledge source
 
-To create a `searchIndex` knowledge source:
+To create a search index knowledge source:
 
 1. Set environment variables at the top of your file.
 
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
     @api-key = <YOUR ADMIN API KEY>
-    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
-    @index-name = <YOUR INDEX NAME>
     ```
 
-1. Use the 2025-08-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    POST {{search-url}}/knowledgeSources?api-version=2025-08-01-preview
+    POST {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-        "name" : "{{ks-name}}",
-        "kind" : "searchIndex",
-        "description" : "Earth at night e-book knowledge source",
-        "searchIndexParameters" :{
-          "searchIndexName" : "{{index-name}}",
-          "sourceDataSelect" : "page_chunk,page_number"
+        "name": "my-search-index-ks",
+        "kind": "searchIndex",
+        "description": "This knowledge source pulls from an existing index designed for agentic retrieval.",
+        "encryptionKey": null,
+        "searchIndexParameters": {
+            "searchIndexName": "<YOUR INDEX NAME>",
+            "semanticConfigurationName": "my-semantic-config",
+            "sourceDataFields": [
+              { "name": "description" },
+              { "name": "category" }
+            ],
+            "searchFields": [
+              { "name": "*" }
+            ]
         }
     }
     ```
 
 1. Select **Send Request**.
 
-**Key points**:
+### Source-specific properties
 
-+ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search.
+You can pass the following properties to create a search index knowledge source.
 
-+ `kind` must be `searchIndex` for a search index knowledge source.
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `searchIndex` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `searchIndexParameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, and `searchFields`. | Object | Yes | Yes |
+| `searchIndexName` | The name of the existing search index. | String | Yes | Yes |
+| `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
+| `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
+| `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
 
-+ `searchIndexName` is the name of your index, which must be [designed for agentic retrieval](agentic-retrieval-how-to-create-index.md).
+## Assign to a knowledge base
 
-+ `sourceDataSelect` is the list of index fields returned when you specify `includeReferenceSourceData` in the knowledge agent definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers.
+If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-## Assign to a knowledge agent
-
-If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
-
-Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 09/30/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
@@ -20,6 +20,23 @@ Bookmark this page to stay up to date with release notes, feature enhancements, 
 Azure Translator in Foundry Tools is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. 
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## November 2025
+
+### Azure AI Foundry (new)
+
+* The Azure AI Foundry portal streamlines access to models, agents, and tools for Foundry projects.
+
+* For text translation, you have three model options: Azure-MT (neural machine translation), GPT-4o, and GPT-4o mini. These models allow you to generate translations tailored to a specific gender or tone, and you can refine your results using your domain-specific data and terminology.
+
+* Document translation is available through a built-in playground, where you can select or provide a source document or text, specify the target language, and receive your translated output.
+
+### Azure AI Translator 2025-10-01-preview
+
+Azure AI Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from a variety of generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
+
+For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
+
 
 ## September 2025
 

@@ -9,9 +9,35 @@ ms.custom: language-service-pii
 ---
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
+> [!TIP]
+>
+> * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. 
+> * For more information, see [How to use Azure AI services in the Azure AI Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
+> * We highly recommended that you use an Azure AI Foundry resource in the AI Foundry; however, you can also follow these instructions using a Language resource.
 
-## Navigate to the Azure AI Foundry Playground
+* **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
+*  [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **A Foundry project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+
+
+### [Azure AI Foundry (classic)](#tab/foundry-classic)
+
+> [!NOTE]
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::
+
+
+You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Run a chat completion
+> * Create and run an agent
+> * Upload files to your agent
+
+
+## Navigate to the [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
@@ -43,12 +69,12 @@ In **Configuration** there are the following options:
 |Specify redaction policy| Select the method of redaction.|
 |Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for each entity:
+After your operation is completed, the type of entity is displayed beneath each entity in the center pane. The **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
 |Entity|The detected entity.|
-|Category| The type of entity that was detected.|
+|Category| The entity type that was detected.|
 |Offset| The number of characters that the entity was detected from the beginning of the line.|
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
@@ -59,23 +85,23 @@ After your operation is completed, the type of entity is displayed beneath each 
 
 **Extract PII from text** is designed to identify and mask personally identifying information in text.
 
-In **Configuration** there are the following options:
+In **Configuration** you can select from the following options:
 
 |Option              |Description                              |
 |--------------------|-----------------------------------------|
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
 |Select text language| Select which language the language is input in.|
-|Select types to include| Select they types of information you want to redact.|
+|Select types to include| Select the types of information you want to redact.|
 |Specify redaction policy| Select the method of redaction.|
 |Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for each entity:
+After your operation is completed, the type of entity is displayed beneath each entity in the center pane. The **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
 |Entity|The detected entity.|
-|Category| The type of entity that was detected.|
+|Category| The entity type that was detected.|
 |Offset| The number of characters that the entity was detected from the beginning of the line.|
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
@@ -83,3 +109,71 @@ After your operation is completed, the type of entity is displayed beneath each 
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
 
+### [Azure AI Foundry (new)](#tab/foundry-new)
+
+> [!NOTE]
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+
+
+You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Create and run an agent
+> * Upload files to the agent
+
+
+## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
+
+* The project you're working on appears in the upper-left corner.  
+* You can select to create a new project from the drop-down menu:
+  * Select the provided project name or create a new project name.
+  * Finally, select **Create project**.
+
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the AI Foundry (new) homepage":::
+
+
+There are two ways to access the PII interface:
+
+1. Select the **Discover** tab from the upper right navigation bar to go to the **Models** page.
+   * In the search bar under models, enter **Azure** and press enter.
+   * Next, select **Azure-Language-Text-PII redaction** from the search results.
+   * Finally, select the **Open in Playground** button.
+
+1. Select the  **Build** tab from the upper right navigation bar.
+   * From the left navigation bar, select  **Models**.
+   * Select the **AI services** tab.
+   * Next, select **Azure-Language-Text-PII redaction** to go to the playground.
+
+
+## Use playground: extract PII from text
+
+The Azure AI Foundry playground is an interactive environment where you can engage with deployed AI models.
+
+The **extract PII from text** feature detects and masks personally identifying information within written content.
+
+1. On the **Playground** tab, select the sample tab, use the paperclip icon to upload your text, or enter your own text.
+
+1. Next select the **Configure** button. In the **Configure** side panel, you can select from the following options:
+
+| Option | Description |
+|--|--|
+| **API version** | Select the API version that you prefer to use. |
+| **Model version** | Select the model version that you prefer to use. |
+| **Language** | Select the language in which your source text is written. |
+| **Types** | Select the types of information you want to redact. |
+| **Specify redaction policy** | Select the method of redaction. |
+| **Excluded values** | Select the values that you want to exclude. |
+| **Synonyms** | Select a category for your redaction type values to target related synonyms. |
+
+After you make your selections, choose the **Detect** button. Then review the text and accompanying details written in formatted text or as a JSON response:
+
+| Field | Description |
+|--|--|
+| **Type** | The detected type. |
+| **Confidence** | The model's level of certainty regarding whether it correctly identified an entity type. |
+| **Offset** | The number of characters that the entity was detected from the beginning of the text. |
+| **Length** | The character length of the entity. |
+
+You can use the **Edit** button to modify the **Configure** parameters and customize your response as needed.

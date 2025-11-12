@@ -24,20 +24,17 @@ highlightedContent:
     - title: Try the REST API
       itemType: quickstart
       url: quickstart/use-rest-api.md
-    - title: Try Microsoft Foundry
+    - title: Try Content Understanding Studio
       itemType: quickstart
-      url: quickstart/use-ai-foundry.md
+      url: quickstart/content-understanding-studio.md
 
 conceptualContent:
   items:
-    - title: Microsoft Foundry
+    - title: Foundry Classic
       links:
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with a single file"
-          url: quickstart/use-ai-foundry.md
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with multiple files"
-          url: quickstart/use-ai-foundry-pro-mode.md  
+        - itemType: how-to-guide
+          text: "Create Content Understanding Standard and Pro tasks in the Foundry Classic portal"
+          url: how-to/content-understanding-foundry-classic.md
         - itemType: concept
           text: Analyzer templates
           url: concepts/analyzer-templates.md
@@ -47,7 +44,7 @@ conceptualContent:
           text: Quickstart
           url: quickstart/use-rest-api.md
         - itemType: concept
-          text: "Modes: standard and pro"
+          text: "Modes: standard and pro (preview)"
           url: concepts/standard-pro-modes.md
         - itemType: concept
           text: Prebuilt analyzers
@@ -60,13 +57,13 @@ conceptualContent:
         - itemType: overview
           text: Overview
           url: concepts/classifier.md
-    - title: Face and person directories
+    - title: Face and person directories (preview)
       links:
         - itemType: overview
           text: Overview
           url: face/overview.md
         - itemType: how-to-guide
-          text: Build a person directory
+          text: Build a person directory (preview)
           url: tutorial/build-person-directory.md
     - title: Modalities
       links:
@@ -88,7 +85,7 @@ conceptualContent:
           text: Create a custom analyzer
           url: tutorial/create-custom-analyzer.md
         - itemType: how-to-guide
-          text: Build a person directory
+          text: Build a person directory (preview)
           url: tutorial/build-person-directory.md
     - title: Resources
       links:

@@ -1,7 +1,7 @@
 ---
-title: Azure Content Understanding in Foundry Tools face overview
-titleSuffix: Foundry Tools
-description: Learn about Azure Content Understanding in Foundry Tools face solutions.
+title: Azure AI Content Understanding face overview (preview)
+titleSuffix: Azure AI services
+description: Learn about Azure AI Content Understanding face solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -95,5 +95,5 @@ Azure Content Understanding adheres to Microsoft's strict policies on customer d
 
 ## Related content
 
-* Learn how to build a [**person directory**](../tutorial/build-person-directory.md).
+* Learn how to build a [**person directory**](../tutorial/build-person-directory.md) (preview).
 * Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/build_person_directory.ipynb).

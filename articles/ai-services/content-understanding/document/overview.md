@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure Content Understanding in Foundry Tools document solutions (preview)
+# Azure AI Content Understanding document solutions
 
 > [!IMPORTANT]
 > Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
@@ -54,7 +54,9 @@ Content extraction forms the foundation of Content Understanding document analys
   - **Selection marks**: Identifies and extracts selection indicators such as checkboxes, buttons, and similar markers.
   - **Barcode detection**: Scans and decodes information from over a dozen types of linear and two-dimensional barcodes.
   - **Mathematical formulas**: Captures and preserves complex mathematical expressions in LaTeX format.
-  - **Image elements**: Locates and extracts images, diagrams, and charts along with their related captions and annotations.
+  - **Image elements**: Locates and extracts images, figures, diagrams, and charts along with their related captions and annotations.
+  - **Hyperlink elements**: Detects hyperlinks embedded within the document.
+  - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, highlight.
 - Structure analysis
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
   - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multipage layouts.
@@ -93,6 +95,7 @@ Developers who use Content Understanding should review the Microsoft policies on
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).
+* Try processing your document content by using [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn to analyze document content using [analyzer templates](../concepts/analyzer-templates.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
