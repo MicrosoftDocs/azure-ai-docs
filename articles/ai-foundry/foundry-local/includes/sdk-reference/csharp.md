@@ -120,7 +120,7 @@ Next, open the `hello-foundry-local.csproj` file and modify it to include the re
 
 The Windows-specific package `Microsoft.AI.Foundry.Local.WinML` includes support for Windows ML hardware acceleration. On initialization, Foundry Local automatically detects compatible hardware and uses it for model inference. If the host machine is missing the correct runtimes and drivers for the available hardware, Foundry Local automatically downloads and installs them on initialization. You can also override the automatic runtime/driver download behavior and manage the download in your application logic. By keeping the runtimes and drivers separated from the Foundry Local SDK package, we ensure only the necessary components are installed on the host machine, which reduces your application's size.
 
-For an up-to-date list of supported hardware accelerators, see [Supported execution providers in Windows ML](https://learn.microsoft.com/windows/ai/new-windows-ml/supported-execution-providers).
+For an up-to-date list of supported hardware accelerators, see [Supported execution providers in Windows ML](/windows/ai/new-windows-ml/supported-execution-providers).
 
 #### [macOS](#tab/macos)
 
