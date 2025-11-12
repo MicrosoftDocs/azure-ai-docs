@@ -32,7 +32,7 @@ items:
 - name: Function calling
   href: ../../../agents/how-to/tools/function-calling.md
 - name: Grounding with Bing tools
-  href: ../../agents/concepts/bing-tools.md
+  href: ../../agents/how-to/tools/bing-tools.md
 - name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
 - name: Model Context Protocol (MCP)
