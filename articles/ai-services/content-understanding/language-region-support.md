@@ -248,7 +248,7 @@ The following table lists all supported languages/locales.
 | Hebrew (Israel) | `he-IL` | Welsh (United Kingdom) | `cy-GB` |
 | Hindi (India) | `hi-IN` |  |  |
 
-Content Understanding supports the full set of languages/locales supported by fast transcription. See the Fast transcription column here - [Azure Speech Regions](../../speech-service/regions.md?tabs=stt).
+Content Understanding supports the full set of languages/locales supported by fast transcription. See the Fast transcription column here - [Azure Speech Regions](../speech-service/regions.md?tabs=stt).
 
 ### Field value normalization
 
