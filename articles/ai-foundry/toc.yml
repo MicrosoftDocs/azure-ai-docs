@@ -7,7 +7,7 @@ items:
   items:
     - name: Quickstart
       href: quickstarts/get-started-code.md  
-    - name: Client libraries
+    - name: Microsoft Foundry SDKs
       href: how-to/develop/sdk-overview.md
     - name: Ask AI
       href: foundry-agent/ask-foundry-agent.md
