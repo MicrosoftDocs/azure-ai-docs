@@ -1,7 +1,7 @@
 ---
 title: Best practices for using Content Understanding
-titleSuffix: Azure AI services
-description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
+titleSuffix: Foundry Tools
+description: Learn how to best use Azure Content Understanding in Foundry Tools for document, image, video, and audio file content and field extractions.
 author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Best practices for Azure AI Content Understanding
+# Best practices for Azure Content Understanding in Foundry Tools
 
 Azure AI Content Understanding uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This guide provides best practices to maximize accuracy and efficiency.
 
@@ -76,7 +76,10 @@ Define repeated items (like line items or entries) as arrays of objects rather t
 Explicitly set the method (`extract`, `generate`, or `classify`) for each field based on its purpose:
 - **Generate**: Values requiring inference or summarization (Risk Level, Summary)  
 - **Classify**: Selection from predefined options (Document Type, Category)
-- **Extract**: Values appearing directly in the content (Invoice Number, Date). Note: Extract is only supported for Document analyzers. 
+- **Extract**: Values appearing directly in the content (Invoice Number, Date).
+
+> [!NOTE]
+> Extract is only supported for Document analyzers. 
 
 ## Optimize classification and categorization
 
@@ -110,7 +113,8 @@ Confidence scores help determine when human review is needed. Set different thre
 
 Confidence score is currently only supported for document analyzers. 
 
-**Note:** These thresholds are included as an illustration. Thresholds need to be determined experimentally per use case. 
+> [!NOTE]
+> These thresholds are included as an illustration. Thresholds need to be determined experimentally per use case. 
 
 ## Improve accuracy over time
 

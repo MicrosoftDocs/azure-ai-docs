@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure OpenAI in Azure AI Foundry Models evaluation - Foundry
+title: 'How to use Azure OpenAI in Microsoft Foundry Models evaluation - Foundry
 titleSuffix: Azure OpenAI
 description:  Learn how to use evaluations with Azure OpenAI - Foundry
 author: mrbullwinkle
@@ -13,7 +13,7 @@ ms.topic: include
 
 ## Create evaluation
 
-1. Select the **Azure OpenAI Evaluation (PREVIEW)** within [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To see this view as an option, first select an existing Azure OpenAI resource in a supported region.
+1. Select the **Azure OpenAI Evaluation (PREVIEW)** within [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To see this view as an option, first select an existing Azure OpenAI resource in a supported region.
 2. Select **+ New evaluation**
 
     :::image type="content" source="../media/how-to/evaluations/new-evaluation.png" alt-text="Screenshot of the Azure OpenAI evaluation UX with new evaluation selected." lightbox="../media/how-to/evaluations/new-evaluation.png":::

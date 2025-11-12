@@ -1,6 +1,6 @@
 ---
 title: Transparency Note and use cases for Content Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains Content Understanding Responsible AI basics, use cases, terms, and provides guidelines for responsible usage.
 author: PatrickFarley
 ms.author: pafarley
@@ -10,7 +10,7 @@ ms.topic: article
 ms.date: 07/29/2025
 ---
 
-# Transparency note: Content Understanding
+# Transparency note: Azure Content Understanding in Foundry Tools
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
@@ -20,11 +20,11 @@ An AI system includes not only the technology, but also the people who will use 
 
 Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI Principles into practice. To find out more, see the [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
 
-## The basics of Azure AI Content Understanding 
+## The basics of Azure Content Understanding
 
 ### Introduction
 
-Azure AI Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure AI Speech](/azure/ai-services/speech-service/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
+Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview), and [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
 
 
 ### Key terms
@@ -39,7 +39,7 @@ Azure AI Content Understanding ingests unstructured content in any modality such
 |Face grouping |  After the faces are detected, the identified faces are filtered into local groups. If a person is detected more than once, more observed face instances are created for this person. Please refer to [Face grouping documentation](/azure/ai-services/computer-vision/overview-identity" \l "group-faces) for more information.    |
 |Generate | This is a type of field kind. The field will generate a value from parent field content. An example would be generating scene description from videos or summarizing from a call audio.     |
 |Schema |  Schema is the term we use for field names and descriptions that customers need to provide for us to extract values from the input. Content Understanding provides a set of prebuilt schemas to fit your scenarios. Depending on the scenario, Content Understanding has a pre-defined list of fields that will be filled out based on the input. You can use these prebuilt schemas to get started on your project faster without having to define the fields yourself.    |
-|Transcription |  Content Understanding's automated speech-to-text output feature, sometimes called machine transcription or automated speech recognition (ASR). Transcription uses [Azure AI Speech](/azure/ai-services/speech-service/overview) and is fully automated. All Content Understanding APIs that support transcription also support diarization.    |
+|Transcription |  Content Understanding's automated speech-to-text output feature, sometimes called machine transcription or automated speech recognition (ASR). Transcription uses [Azure Speech](/azure/ai-services/speech-service/overview) and is fully automated. All Content Understanding APIs that support transcription also support diarization.    |
 
 
 
@@ -47,7 +47,7 @@ Azure AI Content Understanding ingests unstructured content in any modality such
 
 ### System behavior
 
-Azure AI Content Understanding is a cloud-based Azure AI service that uses a variety of AI/ML models (such as those available through Azure OpenAI Service, Azure Face Service, and Azure Speech) to extract, classify and generate fields from a customer's input file. Content Understanding does not support integrating any models that customers bring in. 
+Content Understanding is a cloud-based Azure AI service that uses a variety of AI/ML models (such as those available through Azure OpenAI Service, Azure Face Service, and Azure Speech) to extract, classify and generate fields from a customer's input file. Content Understanding does not support integrating any models that customers bring in. 
 
 Content Understanding first extracts the content into a structured output. It then uses a  large language model (LLM) to generate fields and assign confidence scores to applicable fields.
 
@@ -73,7 +73,7 @@ Azure Content Understanding service includes a content filtering system that det
 >
 > * Disabling Indirect Attack Prompt Shield could potentially expose the system to vulnerabilities, wherein third parties may embed malicious instructions within documents accessible to and processed by the Generative AI system. Analogous vulnerabilities may arise from jailbreak attempts that directly seek to circumvent and to override built-in safeguards through specific prompts.
 
-### Limited Access to Azure AI Content Understanding 
+### Limited Access to Content Understanding 
 
 The Face grouping feature in Content Understanding is a Limited Access service and registration is required for access to it. For more information, see [Microsoft's Limited Access Policy](/azure/ai-services/cognitive-services-limited-access) and access the [Face API registration](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu). Certain features are only available to Microsoft managed customers and approved partners, and only for certain use cases selected at the time of registration. Note that facial detection, facial attributes, and facial redaction use cases do not require registration.
 
@@ -281,7 +281,7 @@ To ensure service performance, we regularly conduct evaluations and error analys
 
 One important dimension to consider when using AI systems, is how well the system performs for different groups of people. Research has shown that without conscious effort focused on improving performance for all groups, AI systems can exhibit varying levels of performance across different demographic factors such as race, ethnicity, gender, and age. 
 
-As part of our evaluation of Azure AI Content Understanding, we have conducted an analysis to assess potential fairness harms. We have examined the system's performance across different demographic groups, aiming to identify any disparities or differences that may exist and could potentially impact fairness. 
+As part of our evaluation of Content Understanding, we have conducted an analysis to assess potential fairness harms. We have examined the system's performance across different demographic groups, aiming to identify any disparities or differences that may exist and could potentially impact fairness. 
 
 In some cases, there may be remaining performance disparities. It is important to note that these disparities may exceed the target, and we are actively working to address and minimize any potential biases or performance gaps  and seek diverse perspectives from a variety of backgrounds. 
 
@@ -310,18 +310,18 @@ When you're getting ready to integrate Content Understanding to your product or 
 ## Learn more about Content Understanding
 
 - [Azure OpenAI overview](/azure/ai-foundry/openai/overview )
-- [Azure AI Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
-- [Azure AI Speech overview](/azure/ai-services/speech-service/overview )
-- [Azure AI Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )
+- [Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
+- [Azure Speech overview](/azure/ai-services/speech-service/overview )
+- [Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )
 - [Azure AI Face service overview](/azure/ai-services/computer-vision/overview-identity)
 - [Azure AI Video Indexer overview](/azure/azure-video-indexer/video-indexer-overview)
 
 ### Additional transparency notes for underlying services
 
 - [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note) 
-- [Azure AI Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
-- [Azure AI Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
-- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note) 
+- [Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
+- [Azure Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
+- [Vision](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note) 
 - [Azure AI Face](/azure/ai-foundry/responsible-ai/face/transparency-note)  
 - [Azure AI Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext ) 
 

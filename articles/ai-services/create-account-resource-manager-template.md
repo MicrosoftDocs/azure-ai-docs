@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Create an AI Foundry resource by using an ARM template"
 description: Learn how to use an Azure Resource Manager template to create an AI Foundry resource.
-keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
+keywords: Foundry Tools, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ms.custom:
   - subject-armqs
@@ -17,7 +17,7 @@ ms.custom:
 
 # Quickstart: Create an AI Foundry resource by using an ARM template
 
-This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Azure AI services.
+This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Foundry Tools.
 
 [!INCLUDE [About AI services](./includes/ai-services-intro.md)]
 
@@ -35,7 +35,7 @@ The template that you use in this quickstart is from [Azure Quickstart Templates
 
 One Azure resource is defined in the Bicep file. The `kind` field in the Bicep file defines the type of resource.
 
-As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure AI Language service. 
+As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure Language. 
 
 ## Deploy the template
 
@@ -105,7 +105,7 @@ az cognitiveservices account list -g $resourceGroupName
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or the resource group. Deleting the resource group also deletes any other resources that the group contains.
+If you want to clean up and remove an Foundry Tools subscription, you can delete the resource or the resource group. Deleting the resource group also deletes any other resources that the group contains.
 
 # [Azure portal](#tab/portal)
 
@@ -127,8 +127,8 @@ az group delete --name $resourceGroupName
 
 ## Related content
 
-* For more information on how to securely work with Azure AI services, see [Authenticate requests to Azure AI services](authentication.md).
-* For a list of Azure AI services, see [What are Azure AI services?](./what-are-ai-services.md).
-* For a list of natural languages that Azure AI services support, see [Natural language support in Azure AI services](language-support.md).
-* To understand how to use Azure AI services on-premises, see [What are Azure AI containers?](cognitive-services-container-support.md).
-* To estimate the cost of using Azure AI services, see [Plan and manage costs for Azure AI Foundry](../ai-foundry/how-to/costs-plan-manage.md).
+* For more information on how to securely work with Foundry Tools, see [Authenticate requests to Foundry Tools](authentication.md).
+* For a list of Foundry Tools, see [What are Foundry Tools?](./what-are-ai-services.md).
+* For a list of natural languages that Foundry Tools support, see [Natural language support in Foundry Tools](language-support.md).
+* To understand how to use Foundry Tools on-premises, see [What are Azure containers?](cognitive-services-container-support.md).
+* To estimate the cost of using Foundry Tools, see [Plan and manage costs for Azure AI Foundry](../ai-foundry/how-to/costs-plan-manage.md).

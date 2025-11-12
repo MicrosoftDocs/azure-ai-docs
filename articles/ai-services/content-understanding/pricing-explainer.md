@@ -201,9 +201,9 @@ Token-based charges from Azure AI Foundry models that power the actual field ext
 
 Token-based charges for embedding models used when training custom analyzers with labeled examples to improve accuracy.
 
-**When charged**: Only when using the training feature with labeled data
-**Models**: text-embedding-3-large, text-embedding-3-small, or text-embedding-ada-002
-**Typical usage**: The entire document is embedded. Usage can vary depending on the density of text, but ~1,500 tokens per page are a good initial estimate.
+- **When charged**: Only when using the training feature with labeled data
+- **Models**: text-embedding-3-large, text-embedding-3-small, or text-embedding-ada-002
+- **Typical usage**: The entire document is embedded. Usage can vary depending on the density of text, but ~1,500 tokens per page are a good initial estimate.
 
 ## Generative feature details
 There are several generative features each of which has slightly different cost implications. 

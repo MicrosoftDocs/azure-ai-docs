@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Classifier Overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding classifier solutions.
+title: Azure Content Understanding in Foundry Tools Classifier Overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme

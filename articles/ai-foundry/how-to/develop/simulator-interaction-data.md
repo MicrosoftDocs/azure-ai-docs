@@ -1,6 +1,6 @@
 ---
 title: Generate Synthetic and Simulated Data for Evaluation
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application.
 ms.service: azure-ai-foundry
 ms.custom:
@@ -12,6 +12,8 @@ ms.date: 08/20/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer or evaluator, I want to generate synthetic and adversarial datasets so I can assess quality, safety, and robustness of my generative AI application.
+ai-usage: ai-assisted
 ---
 
 # Generate synthetic and simulated data for evaluation (preview)
@@ -344,13 +346,13 @@ To run a full example, see [Evaluating Model Groundedness notebook](https://gith
 
 ## Generate adversarial simulations for safety evaluation
 
-Augment and accelerate your red-teaming operation by using Azure AI Foundry safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
+Augment and accelerate your red-teaming operation by using Microsoft Foundry safety evaluations to generate an adversarial dataset against your application. We provide adversarial scenarios along with configured access to a service-side Azure OpenAI GPT-4 model with safety behaviors turned off to enable the adversarial simulation.
 
 ```python
 from azure.ai.evaluation.simulator import  AdversarialSimulator, AdversarialScenario
 ```
 
-The adversarial simulator works by setting up a service-hosted GPT LLM to simulate an adversarial user and interact with your application. An Azure AI Foundry project is required to run the adversarial simulator:
+The adversarial simulator works by setting up a service-hosted GPT LLM to simulate an adversarial user and interact with your application. A Foundry project is required to run the adversarial simulator:
 
 ```python
 import os

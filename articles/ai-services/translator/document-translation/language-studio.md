@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions, build-2023
 recommendations: false
@@ -17,13 +17,13 @@ recommendations: false
 >
 > * Document translation in Language Studio is currently in Public Preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 >
-> * Currently, virtual network connectivity isn't supported for the Document translation feature in the Language Studio.
+> * Currently, virtual network connectivity isn't supported for the Document translation feature in Azure Language Studio.
 
  Document translation in [**Azure AI Language Studio**](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage.
 
 ## Supported regions
 
-The Document translation feature in the Language Studio is currently available in the following regions;
+The Document translation feature in Azure Language Studio is currently available in the following regions;
 
 |DisplayName|Name|
 |-----------|------|
@@ -45,9 +45,9 @@ If you or an administrator have previously setup a Translator resource with a **
 
 > [!NOTE]
 >
-> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
+> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Foundry Tools (multi-service) resource.
 >
-> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 Document translation in Language Studio requires the following resources:
@@ -60,7 +60,7 @@ Document translation in Language Studio requires the following resources:
 
   * **Pricing tier**. Select Standard S1 or D3. Document translation isn't supported in the free tier.
 
-* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document translation in the Language Studio.
+* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document translation in Azure Language Studio.
 
 Now that you completed the prerequisites, let's start translating documents!
 
@@ -70,7 +70,7 @@ At least one **source document** is required. You can download our [document tra
 
 1. Navigate to [Language Studio](https://language.cognitive.azure.com/home).
 
-1. If you're using the Language Studio for the first time, a **Select an Azure resource** pop-up screen appears. Make the following selections:
+1. If you're using Azure Language Studio for the first time, a **Select an Azure resource** pop-up screen appears. Make the following selections:
 
    * **Azure directory**.
    * **Azure subscription**.
@@ -86,7 +86,7 @@ At least one **source document** is required. You can download our [document tra
 
     :::image type="content" source="media/language-studio/welcome-home-page.png" alt-text="Screenshot of the language studio home page.":::
 
-1. If you're using the Document translation feature for the first time, start with the **Initial Configuration** to select your **Azure AI Translator resource** and **Document storage** account:
+1. If you're using the Document translation feature for the first time, start with the **Initial Configuration** to select your **Azure Translator resource** and **Document storage** account:
 
    :::image type="content" source="media/language-studio/initial-configuration.png" alt-text="Screenshot of the initial configuration page.":::
 

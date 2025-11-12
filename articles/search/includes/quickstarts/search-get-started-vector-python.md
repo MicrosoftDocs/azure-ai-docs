@@ -20,7 +20,7 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
+    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 

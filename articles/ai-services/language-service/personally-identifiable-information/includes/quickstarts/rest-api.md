@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -10,7 +10,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
 
 Use this quickstart to send Personally Identifiable Information (PII) detection requests using the REST API. In the following example, you will use cURL to identify [recognized sensitive information](../../concepts/entity-categories.md) in text.

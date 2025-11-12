@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 11/05/2025
 ms.update-cycle: 365-days
 ---
 

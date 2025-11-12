@@ -1,7 +1,7 @@
 ---
 author: laujan
 ms.author: lajanuar
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -9,7 +9,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 # [Text summarization](#tab/text-summarization)
 
 [Reference documentation](/python/api/azure-ai-textanalytics/azure.ai.textanalytics?view=azure-python&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples) | [Package (PyPi)](https://pypi.org/project/azure-ai-textanalytics/5.3.0/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics) 

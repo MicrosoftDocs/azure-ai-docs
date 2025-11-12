@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding video overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding video solutions.
+title: Azure Content Understanding in Foundry Tools video overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools video solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -12,22 +12,24 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding video solutions (preview)
+# Azure Content Understanding in Foundry Tools video solutions (preview)
 
 > [!IMPORTANT]
 >
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
+> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
 
-Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
+Azure Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
 
-The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
+The **pre-built video analyzer** (`prebuilt-videoAnalysis`) outputs RAG-ready output. In Markdown it outputs the following:
 
 - **Transcript:** Inline transcripts in standard WEBVTT format
+- **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
+
+And the JSON schema contains more details from the visual analysis. 
 - **Description:** Natural-language segment descriptions with visual and speech context
 - **Segmentation:** Automatic scene segmentation breaking the video into logical chunks based on categories you define
-- **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
 
 This format can drop straight into a vector store to enable an agent or RAG workflow—no post-processing is required.
 
@@ -92,7 +94,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 
 See the following walkthrough for RAG on Video using Content Understanding:
 
-[RAG on Video using Azure AI Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
+[RAG on Video using Azure Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
 ## Capabilities
 
@@ -112,7 +114,7 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking and where are the cuts. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. Details of language support for video are the same as audio, *see* [Audio Language Handling](../audio/overview.md#language-handling) for details. The following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure Speech in Foundry Tools speech-to-text languages. Details of language support for video are the same as audio, *see* [Audio Language Handling](../audio/overview.md#language-handling) for details. The following transcription details are important to consider:
 
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
   * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `"returnDetails": true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
@@ -187,7 +189,7 @@ The field extraction capability can optionally be enhanced to provide detailed d
 > Setting segmentation will use the generative model, consuming tokens even if no fields are defined.
 
 
-Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `enableSegment` property on a custom analyzer.
+Content Understanding offers two ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `enableSegment` property on a custom analyzer.
 
 * **Whole-video** – `enableSegment : false`
   The service treats the entire video file as a single segment and extracts metadata across its full duration.
@@ -197,25 +199,24 @@ Content Understanding offers three ways to slice a video, letting you get the ou
     * full-length descriptive summaries
 
 * **Custom segmentation** – `enableSegment : true` 
-  You describe the logic in natural language and the model creates segments to match. Set `contentCategories` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt.
+  You describe the logic in natural language and the model creates segments to match. Set `contentCategories` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt. In this version, video only supports one `contentCategories` object. 
 
   **Example:**
     Break a news broadcast up into stories.
 
-     ```json
+  ```json
   {
     "config": {
       "enableSegment": true,
       "contentCategories": {
-        "news-story": { "description": "news story on a specific topic", "analyzerId": "myNewsMetadata" },
-        "ad": { "description": "an advertizement or commercial. Typically 30 sec or less", "analyzerId": "myAdMetadata" },
-        "other": { }  // Categorize but don't process
+        "news-story": { 
+        "description": "Segment the video based on each distinct news segment. Use the timestamp of each image to identify the start and end time of each segment, no overlap segments. Ignore non-news segments like ads or promotion.",
+        "analyzerId": "NewsAnalyzer"
+        }         
       }
     }
   }
   ```
-
-
 
 ## Key benefits
 
@@ -245,7 +246,7 @@ See [Language and region support](../language-region-support.md).
 
 ## Data privacy and security
 
-As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
+As with all Foundry Tools, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
 > [!IMPORTANT]
 >

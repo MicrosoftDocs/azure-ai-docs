@@ -17,9 +17,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Foundry resource (formerly known as Azure AI Services resource) name.
+  * Your Microsoft Foundry resource (formerly known as Azure AI Services resource) name.
 
-  * The resource group where you deployed the Azure AI Foundry resource.
+  * The resource group where you deployed the Foundry resource.
 
 
 ## Configure Microsoft Entra ID for inference
@@ -39,7 +39,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
     az account set --subscription "<subscription-id>"
     ```
 
-1. Set the following environment variables with the name of the Azure AI Foundry resource you plan to use and resource group.
+1. Set the following environment variables with the name of the Foundry resource you plan to use and resource group.
 
     ```azurecli
     ACCOUNT_NAME="<ai-services-resource-name>"

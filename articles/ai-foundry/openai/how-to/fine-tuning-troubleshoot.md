@@ -1,7 +1,7 @@
 ---
 title: 'Troubleshooting for Azure OpenAI fine-tuning'
 titleSuffix: Azure OpenAI
-description: Learn how to troubleshoot Azure OpenAI in Azure AI Foundry Models fine-tuning.
+description: Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -20,7 +20,7 @@ In order to successfully access fine-tuning, you need **Cognitive Services OpenA
 
 ## Why did my upload fail?
 
-If your file upload fails in Azure AI Foundry portal, you can view the error message under **Data files** in Azure AI Foundry portal. Hover your mouse over where it says **error** (under the status column) and an explanation of the failure will be displayed.
+If your file upload fails in Microsoft Foundry portal, you can view the error message under **Data files** in Foundry portal. Hover your mouse over where it says **error** (under the status column) and an explanation of the failure will be displayed.
 
 :::image type="content" source="../media/fine-tuning/error.png" alt-text="Screenshot of fine-tuning error message." lightbox="../media/fine-tuning/error.png":::
 

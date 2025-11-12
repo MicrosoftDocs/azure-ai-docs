@@ -99,7 +99,7 @@ Provide a connection string that contains a `ResourceId`, with no account key or
 Provide an `identity` using the syntax shown in the following example. Set `userAssignedIdentity` to the user-assigned managed identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
 
 {
     "name" : "blob-datasource",

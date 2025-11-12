@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI JavaScript support
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI JavaScript support
 manager: nitinme
 ms.service: azure-ai-foundry

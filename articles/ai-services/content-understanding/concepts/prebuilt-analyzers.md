@@ -1,6 +1,6 @@
 ---
 title: Azure AI Content Understanding prebuilt analyzers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure AI Content Understanding.
 author: PatrickFarley 
 ms.author: jfilcik
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Prebuilt analyzers in Azure AI Content Understanding
+# Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
 Azure AI Content Understanding prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
 
@@ -21,6 +21,12 @@ Prebuilt analyzers are ready-to-use tools that streamline common content process
 ## Analyzer types
 
 Azure AI Content Understanding provides several categories of analyzers to support different scenarios:
+
+- **[Content extraction analyzers](#content-extraction-analyzers)** - Focus on OCR and layout analysis with progressively richer extraction capabilities for basic text extraction, layout analysis, and barcode detection.
+- **[Base analyzers](#base-analyzers)** - Fundamental content processing capabilities for each modality, used as parent analyzers when creating custom analyzers for document, image, audio, and video content.
+- **[RAG analyzers](#retrieval-augmented-generation-rag-analyzers)** - Optimized for retrieval-augmented generation scenarios with semantic analysis and markdown extraction for document ingestion, search applications, and knowledge bases.
+- **[Domain-specific analyzers](#domain-specific-analyzer-reference)** - Preconfigured analyzers for common document categories with specialized field extraction for invoice processing, tax forms, ID verification, mortgage documents, and contracts.
+- **[Utility analyzers](#utility-analyzers)** - Specialized tools for schema generation and field extraction to discover document structure and extract key-value pairs.
 
 ### Content extraction analyzers
 
@@ -53,7 +59,6 @@ Base analyzers provide fundamental content processing capabilities specific to a
 * `prebuilt-document` - Base document processing
 * `prebuilt-image` - Base image processing
 * `prebuilt-video` - Base video processing
-* `prebuilt-callCenter` - Base call center audio processing
 
 > [!NOTE]
 > Currently, you can only derive custom analyzers from this set of five base analyzers.

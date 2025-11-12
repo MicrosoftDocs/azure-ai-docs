@@ -1,6 +1,6 @@
 ---
 title: Audio content creation tool
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Audio content creation is an online tool that allows you to run text to speech synthesis without writing any code.
 author: PatrickFarley
 manager: nitinme
@@ -13,7 +13,7 @@ zone_pivot_groups: foundry-speech-studio
 
 # Text to speech with the audio content creation tool
 
-You can use the audio content creation tool in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation) for text to speech without writing any code. 
+You can use the audio content creation tool in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation) for text to speech without writing any code. 
 
 > [!TIP]
 > Select **Foundry portal** or **Speech Studio** at the top of this article. 

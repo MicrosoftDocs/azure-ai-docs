@@ -1,22 +1,22 @@
 ---
-title: Language support - Azure AI Vision
-titleSuffix: Azure AI services
-description: This article provides a list of natural languages supported by Azure AI Vision features; OCR, Image analysis.
+title: Language support - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: This article provides a list of natural languages supported by Azure Vision in Foundry Tools features; OCR, Image analysis.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
-# Language support for Azure AI Vision
+# Language support for Azure Vision in Foundry Tools
 
-Some capabilities of Azure AI Vision support multiple languages; any capabilities not mentioned here only support English.
+Some capabilities of Azure Vision support multiple languages; any capabilities not mentioned here only support English.
 
 ## Optical Character Recognition (OCR)
 
-The Azure AI Vision [Read API](./overview-ocr.md) supports many languages. The `Read` API can extract text from images and documents with mixed languages, including from the same text line, without requiring a language parameter. See [How to specify the `Read` model](./how-to/call-read-api.md#determine-how-to-process-the-data-optional) to use the new languages.
+Azure Vision [Read API](./overview-ocr.md) supports many languages. The `Read` API can extract text from images and documents with mixed languages, including from the same text line, without requiring a language parameter. See [How to specify the `Read` model](./how-to/call-read-api.md#determine-how-to-process-the-data-optional) to use the new languages.
 
 > [!NOTE]
 > **Language code optional**

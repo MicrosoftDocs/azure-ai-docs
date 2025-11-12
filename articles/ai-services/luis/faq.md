@@ -79,7 +79,7 @@ To fix this error, you need to either [change your pricing tier](luis-how-to-azu
 
 Solutions for this error include:
 
-* In the [Azure portal](https://portal.azure.com/), navigate to your Language Understanding resource, and select **Resource Management ,** then select **Pricing tier** , and change your pricing tier. You don't need to change anything in the Language Understanding portal if your resource is already assigned to your Language Understanding app.
+* In the [Azure portal](https://portal.azure.com/), navigate to your Language Understanding resource, and select **Resource Management ,** then select **Pricing tier** , and change your pricing tier. You don't need to change anything in Azure Language Understanding portal if your resource is already assigned to your Language Understanding app.
 * If your usage exceeds the highest pricing tier, add more Language Understanding resources with a load balancer in front of them. The [Language Understanding container](luis-container-howto.md) with Kubernetes or Docker Compose can help with this.
 
 An HTTP 429 error code is returned when your transactions per second exceed your pricing tier.
@@ -131,7 +131,7 @@ If you are using your log for prediction analysis, do not capture test utterance
 
 ## What are the supported languages?
 
-See [supported languages](luis-language-support.md), for multilingual NLU, consider using the new [Conversation Language Understanding (CLU)](../language-service/conversational-language-understanding/overview.md) feature of the Language Service. 
+See [supported languages](luis-language-support.md), for multilingual NLU, consider using the new [Conversation Language Understanding (CLU)](../language-service/conversational-language-understanding/overview.md) feature of Azure Language Service. 
 
 ## Is Language Understanding (LUIS) available on-premises or in a private cloud?
 

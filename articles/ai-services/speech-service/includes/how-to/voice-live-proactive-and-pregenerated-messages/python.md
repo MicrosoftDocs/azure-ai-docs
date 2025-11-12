@@ -6,7 +6,7 @@ author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/09/2025
 ---
 
 [!INCLUDE [Header](../../common/voice-live-python.md)]
@@ -37,21 +37,21 @@ To get started with the pro-active greeting, start with one of our [quickstart s
 
     ```python
     if event.type == ServerEventType.SESSION_UPDATED:
-    logger.info("Session ready: %s", event.session.id)
-    self.session_ready = True
-
-    # Proactive greeting
-    if not self.conversation_started:
-        self.conversation_started = True
-        logger.info("Sending proactive greeting request")
-        try:
-            await conn.response.create()
-
-        except Exception:
-            logger.exception("Failed to send proactive greeting request")
-
-    # Start audio capture once session is ready
-    ap.start_capture()
+        logger.info("Session ready: %s", event.session.id)
+        self.session_ready = True
+    
+        # Proactive greeting
+        if not self.conversation_started:
+            self.conversation_started = True
+            logger.info("Sending proactive greeting request")
+            try:
+                await conn.response.create()
+    
+            except Exception:
+                logger.exception("Failed to send proactive greeting request")
+    
+        # Start audio capture once session is ready
+        ap.start_capture()
     ```
 
 ### Option 2 Requesting a pregenerated assistant greeting
@@ -72,32 +72,32 @@ To get started with the pro-active greeting, start with one of our [quickstart s
 
     ```python
     if event.type == ServerEventType.SESSION_UPDATED:
-    logger.info("Session ready: %s", event.session.id)
-    self.session_ready = True
-
-    # Proactive greeting with pre-generated message
-    if not self.conversation_started:
-        self.conversation_started = True
-        proactive_greeting = "Welcome to Contoso Insurance. You are now connected to our AI assistant. How can I help you today?"
-        logger.info("Sending proactive greeting via response.create: %s", proactive_greeting)
-        try:
-            await conn.send({
-                "type": "response.create",
-                "response": {
-                    "pre_generated_assistant_message": {
-                        "type": "message",
-                        "role": "assistant",
-                        "content": [
-                            {"type": "text", "text": proactive_greeting}
-                        ],
+        logger.info("Session ready: %s", event.session.id)
+        self.session_ready = True
+    
+        # Proactive greeting with pre-generated message
+        if not self.conversation_started:
+            self.conversation_started = True
+            proactive_greeting = "Welcome to Contoso Insurance. You are now connected to our AI assistant. How can I help you today?"
+            logger.info("Sending proactive greeting via response.create: %s", proactive_greeting)
+            try:
+                await conn.send({
+                    "type": "response.create",
+                    "response": {
+                        "pre_generated_assistant_message": {
+                            "type": "message",
+                            "role": "assistant",
+                            "content": [
+                                {"type": "text", "text": proactive_greeting}
+                            ],
+                        }
                     }
-                }
-            })
-        except Exception:
-            logger.exception("Failed to send proactive greeting event")
-
-    # Start audio capture once session is ready
-    ap.start_capture()
+                })
+            except Exception:
+                logger.exception("Failed to send proactive greeting event")
+    
+        # Start audio capture once session is ready
+        ap.start_capture()
     ```
 
 ### General advice

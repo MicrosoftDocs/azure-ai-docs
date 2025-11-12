@@ -10,9 +10,9 @@ ms.date: 04/23/2025
 ms.custom: include, build-2024, ignite-2024
 ---
 
- To create a [!INCLUDE [hub-project-name](hub-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
+ To create a [!INCLUDE [hub-project-name](hub-project-name.md)] in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
  
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
 
 1. [!INCLUDE [create-project-access](create-project-access.md)]
 

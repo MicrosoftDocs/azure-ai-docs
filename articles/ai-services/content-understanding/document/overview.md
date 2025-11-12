@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Document Overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document solutions.
+title: Azure Content Understanding in Foundry Tools Document Overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools document solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -15,7 +15,7 @@ ms.custom:
 # Azure AI Content Understanding document solutions
 
 > [!IMPORTANT]
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Content Understanding offers sophisticated document analysis capabilities. Organizations can use these capabilities to convert unstructured content into actionable and organized data. Content Understanding can use [customizable analyzers](../concepts/prebuilt-analyzers.md) to expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
 
@@ -71,7 +71,7 @@ With field extraction, you can extract, classify, and generate structured data f
 
 For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices. You can also identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can use prebuilt analyzer templates, such as templates that are tailored for invoices. You can also design bespoke analyzers from scratch to enhance precision through the labeling of more sample documents.
 
-The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence` as `true`.
+The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field. 
 
 #### Field extraction methods
 

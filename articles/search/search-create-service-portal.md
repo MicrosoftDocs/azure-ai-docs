@@ -1,5 +1,5 @@
 ---
-title: 'Create a Search Service in the Azure Portal'
+title: 'Create a Search Service in the Azure portal'
 titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search service in the Azure portal. Choose a resource group, region, and pricing tier.
 manager: nitinme
@@ -117,11 +117,11 @@ In most cases, choose a region near you, unless any of the following apply:
 
 1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in different Azure regions, each with two or more replicas so that they can be spread across multiple [availability zones](/azure/reliability/reliability-ai-search#availability-zone-support). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
 
-1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md)? For [billing purposes](cognitive-search-attach-cognitive-services.md), Azure AI Search and Azure AI services multi-service must coexist in the same region.
+1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md)? For [billing purposes](cognitive-search-attach-cognitive-services.md), your Azure AI Search service and Microsoft Foundry resource must be in the same region.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Azure AI services multi-service are in the same region.
+   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Foundry are in the same region.
 
-   + Check [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure AI Vision and accessed through an Azure AI services multi-service resource. However, they're generally available in fewer regions than the multi-service resource itself.
+   + Check [Azure Vision in Foundry Tools regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure Vision and accessed through a Foundry resource. However, they're generally available in fewer regions than the Foundry resource itself.
 
 ## Choose a tier
 

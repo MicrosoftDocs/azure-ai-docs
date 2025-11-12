@@ -1,5 +1,5 @@
 ---
-title: Monitor Model Deployments in Azure AI Foundry Models
+title: Monitor Model Deployments in Microsoft Foundry Models
 description: Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for Foundry Models.
 author: ssalgadodev
 ms.author: ssalgado
@@ -11,7 +11,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Monitor model deployments in Azure AI Foundry Models
+# Monitor model deployments in Microsoft Foundry Models
 
 [!INCLUDE [Feature preview](../../foundry-models/includes/feature-preview.md)]
 
@@ -23,7 +23,7 @@ This article explains how you can use metrics and logs to monitor model deployme
 
 To use monitoring capabilities for model deployments in Foundry Models, you need the following:
 
-* An [Azure AI Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
+* A [Microsoft Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
 
     > [!TIP]
     > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
@@ -44,11 +44,11 @@ Azure Monitor collects metrics from Foundry Models automatically. *No configurat
 
 Azure Monitor metrics can be queried using multiple tools, including:
 
-#### Azure AI Foundry portal
+#### Foundry portal
 
-You can view metrics within the Azure AI Foundry portal. To view them, follow these steps:
+You can view metrics within the Foundry portal. To view them, follow these steps:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Under **My assets** in the sidebar menu, select **Models + endpoints**, and then select the name of the deployment you want to see metrics about.
 
@@ -56,9 +56,9 @@ You can view metrics within the Azure AI Foundry portal. To view them, follow th
 
 1. You can access an overview of common metrics that might be of interest. For cost-related metrics, select the **Azure Cost Management** link, which provides access to detailed post-consumption cost metrics in the **Cost analysis** section located in the Azure portal.
 
-    :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
+    :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
-    Cost data in the Azure portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. For a full list of AI resources, see [Build with customizable APIs and models](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There's approximately a five- hour delay from the billing event to when it can be viewed in Azure portal cost analysis.
+    Cost data in the Azure portal displays actual post-consumption charges for model consumption, including other AI resources within Foundry. For a full list of AI resources, see [Build with customizable APIs and models](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There's approximately a five- hour delay from the billing event to when it can be viewed in Azure portal cost analysis.
 
     > [!IMPORTANT]
     > The **Azure Cost Management** link provides a direct link within the Azure portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
@@ -81,7 +81,7 @@ To use Azure Monitor, follow these steps:
 
 1. Select **Metrics** in the sidebar menu.
 
-1. On **Select scope**, select the resources you want to monitor. You can either select one resource or select a resource group or subscription. If that's the case, ensure you select **Resource types** as **Azure AI Services**.
+1. On **Select scope**, select the resources you want to monitor. You can either select one resource or select a resource group or subscription. If that's the case, ensure you select **Resource types** as **Foundry Tools**.
 
 1. The metrics explorer appears. Select the [metrics](#metrics-reference) that you want to explore. The following example shows the number of requests made to the model deployments in the resource.
 
@@ -113,7 +113,7 @@ To query metrics, follow these steps:
 
 1. Go to the [Azure portal](https://portal.azure.com).
 
-1. Locate the Azure AI Foundry resource you want to query.
+1. Locate the Foundry resource you want to query.
 
 1. Under **Monitoring** in the sidebar menu, select **Logs**.
 
@@ -180,7 +180,7 @@ Resource logs provide insight into operations that were done by an Azure resourc
 
 ## Configure diagnostic settings
 
-All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you need to configure diagnostic settings for your Azure AI Services resource. You need to perform this operation on each resource.
+All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you need to configure diagnostic settings for your Foundry Tools resource. You need to perform this operation on each resource.
 
 :::image type="content" source="../media/monitor-models/azmon-diagnostic.png" alt-text="Screenshot showing how to configure diagnostic logging in a resource.png":::
 
