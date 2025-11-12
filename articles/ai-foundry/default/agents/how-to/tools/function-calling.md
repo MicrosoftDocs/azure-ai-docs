@@ -26,7 +26,7 @@ Microsoft Foundry agents support function calling, which allows you to describe 
 
 ## Example agent code
 
-::: zone pivot="python"
+::: zone-pivot="python"
 
 Use the following code sample to create an agent and call the function. You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
@@ -119,9 +119,9 @@ with project_client:
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
 ```
-::: zone end
+:::zone-end
 
-::: zone pivot="rest"
+:::zone-pivot="rest"
 There are two ways to use function calling in Foundry Agent Service.
 1. You can create just `response` and when you need the agent to call this function again, you can create another `response`
 1. You can create on `conversation` and within this conversation, you can create multiple `conversation items`. Each conversation item will correspond to one `response`. You will be able to organize your responses and function calling more consistently.
