@@ -62,5 +62,5 @@ That's it! You're now chatting with an AI model running entirely on your local d
 
 ## Next steps
 
-- [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)
+- [Use chat completions via REST server with Foundry Local](how-to-integrate-with-inference-sdks.md)
 - [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)
