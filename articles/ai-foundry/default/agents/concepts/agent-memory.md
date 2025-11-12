@@ -1,8 +1,8 @@
 ---
-title: Create and manage memory in Foundry Agent Service
+title: Create and manage memory in Foundry Agent Service (preview)
 ms.reviewer: liulewis
 titleSuffix: Microsoft Foundry
-description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
+description: Learn how to create and manage memory (preview) in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
 author: jonburchel
 ms.author: jburchel
@@ -12,12 +12,12 @@ ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
 
-# Manage memory in Foundry Agent Service
+# Manage memory in Foundry Agent Service (preview)
 
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA) ("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Memory in Microsoft Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
+Memory in Microsoft Foundry Agent Service (preview) is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 This article shows you how to create memory stores, attach them to agents, add and search memories, and implement best practices for security and privacy. With these capabilities, your agents can maintain context across multistep interactions and provide more reliable, personalized responses.
 
