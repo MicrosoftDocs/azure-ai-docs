@@ -100,8 +100,6 @@ with project_client:
 > * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
 > * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
 
-1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
-
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 
     > [!NOTE]
