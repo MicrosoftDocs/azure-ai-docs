@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
-zone_pivot_groups: selection-function-calling
 ms.custom: azure-ai-agents
 ---
 
@@ -23,8 +22,6 @@ Microsoft Foundry agents support function calling, which allows you to describe 
 > [!NOTE]
 > * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
 > * Although function calling isn't supported in the Microsoft Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
-
-::: zone pivot="python"
 
 ## Example agent code
 <!--
