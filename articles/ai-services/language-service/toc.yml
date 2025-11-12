@@ -33,9 +33,14 @@ items:
     - name: Overview
       href: conversational-language-understanding/overview.md
       displayName: clu, conversational language understanding, intent recognition, entity extraction
-    - name: Quickstart
-      href: conversational-language-understanding/quickstart.md
-      displayName: getting started, tutorial, conversational ai setup
+    - name: Quickstarts
+      items:
+        - name: Get started
+          href: conversational-language-understanding/quickstart.md
+          displayName: getting started, tutorial, conversational ai setup
+        - name: Try multi-turn conversations 🆕
+          href: conversational-language-understanding/how-to/quickstart-multi-turn-conversations.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
     - name: Language support
       href: conversational-language-understanding/language-support.md
       displayName: clu languages, supported languages, multilingual, international support
@@ -54,6 +59,9 @@ items:
         href: /azure/ai-foundry/responsible-ai/clu/clu-data-privacy-security?context=/azure/ai-services/language-service/context/context
     - name: How-to guides
       items:
+        - name: Build a multi-turn conversation model 🆕
+          href:  conversational-language-understanding/how-to/build-multi-turn-model.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Use containers
           items:
           - name: Use Docker Containers
@@ -74,7 +82,7 @@ items:
           displayName: design, intents, entities, conversational model
         - name: Label utterances
           href: conversational-language-understanding/how-to/tag-utterances.md
-          displayName: labeling, tag utterances, training data, annotation
+          displayName: labeling, tag utterances, training data, annotation/
         - name: Train a model
           href: conversational-language-understanding/how-to/train-model.md
           displayName: training, clu training, conversational model training
@@ -95,6 +103,9 @@ items:
           displayName: language understanding, luis to clu
     - name: Concepts
       items:
+        - name: Multi-turn conversations 🆕
+          href:  conversational-language-understanding/concepts/multi-turn-conversations.md
+          displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Best practices
           href: conversational-language-understanding/concepts/best-practices.md
           displayName: recommendations, guidelines, optimization
@@ -635,13 +646,13 @@ items:
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-    - name: Concepts
+    - name: Recognized entities
       items:
-      - name: Recognized entity types 🆕
+      - name: Entity types for text (extended format)  🆕
         href: personally-identifiable-information/concepts/entity-categories.md
-      - name: Recognized entities list 🆕
+      - name: Entities for text (list format) 🆕
         href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: Recognized entity categories for conversation
+      - name: Entity categories for conversation
         href: personally-identifiable-information/concepts/conversations-entity-categories.md
 
   - name: Sentiment analysis and opinion mining
@@ -773,12 +784,15 @@ items:
         href: text-analytics-for-health/concepts/assertion-detection.md
       - name: Fast Healthcare Interoperability Resources structuring
         href: text-analytics-for-health/concepts/fhir.md
-        
+
 - name: Concepts
   items:
   - name: Developer guide
     href: concepts/developer-guide.md
     displayName: development, sdk guide, programming
+  - name: Azure tools and agents 🆕
+    href: concepts/foundry-tools-agents.md
+    displayName: mcp, exact, question, answering, intent, routing
   - name: Role-based-access-control
     href: concepts/role-based-access-control.md
   - name: Multilingual and emoji support

@@ -32,8 +32,14 @@ items:
   items:
   - name: What is Language in Foundry Tools?
     href: ../../../ai-services/language-service/overview.md?context=/azure/ai-foundry/context/context
+  - name: Azure Language tools and agents
+    href: ../../../ai-services/language-service/concepts/foundry-tools-agents.md?context=/azure/ai-foundry/context/context
   - name: Conversation Language Understanding
-    href: ../../../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/ai-foundry/context/context&pivots=rest-api
+    items:
+    - name: "Quickstart: Get started"
+      href: ../../../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/ai-foundry/context/context&pivots=rest-api
+    - name: "Quickstart: Multi-turn conversations"
+      href: ../../../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md?context
   - name: Key Phrase Extraction
     href: ../../../ai-services/language-service/key-phrase-extraction/quickstart.md?context=/azure/ai-foundry/context/context
   - name: Language Detection
@@ -47,7 +53,11 @@ items:
   - name: Orchestration Workflow
     href: ../../../ai-services/language-service/orchestration-workflow/quickstart.md?context=/azure/ai-foundry/context/context
   - name: Personally Identifiable Information detection
-    href: ../../../ai-services/language-service/personally-identifiable-information/quickstart.md?context=/azure/ai-foundry/context/context
+    items:
+    - name: Quickstart
+      href: ../../../ai-services/language-service/personally-identifiable-information/quickstart.md?context=/azure/ai-foundry/context/context
+    - name: How to redact PII from text
+      href: ../../../ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii.md?context=/azure/ai-foundry/context/context
   - name: Sentiment Analysis
     href: ../../../ai-services/language-service/sentiment-opinion-mining/quickstart.md?context=/azure/ai-foundry/context/context
   - name: Summarization
