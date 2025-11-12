@@ -1,7 +1,7 @@
 ---
 title: Create and manage memory in Foundry Agent Service
 ms.reviewer: liulewis
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
 author: jonburchel
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # Manage memory in Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
-Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
+Memory in Microsoft Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 This article shows you how to create memory stores, attach them to agents, add and search memories, and implement best practices for security and privacy. With these capabilities, your agents can maintain context across multistep interactions and provide more reliable, personalized responses.
 
@@ -25,12 +25,12 @@ Memory stores act as persistent storage that define what types of information ar
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- Access to Azure AI Foundry with appropriate permissions to create and manage resources.
-- An [Azure AI Foundry project](../../../how-to/create-projects.md).
-- An [agent created in Azure AI Foundry](../../../agents/quickstart.md).
+- Access to Microsoft Foundry with appropriate permissions to create and manage resources.
+- An [Microsoft Foundry project](../../../how-to/create-projects.md).
+- An [agent created in Microsoft Foundry](../../../agents/quickstart.md).
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- Python 3.8 or later with the Azure AI Agent SDK installed, or access to the REST API.
+- Python 3.8 or later with the Foundry Agent SDK installed, or access to the REST API.
 
 ## Create a memory store
 
@@ -453,7 +453,7 @@ Agent memory typically falls into two categories:
 
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
-Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
+Microsoft Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
 ## Understand `Scope`
 `Scope` defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
@@ -486,6 +486,6 @@ To strengthen memory security, you can consider the following:
 
 ## Related content
 
-- [Build an agent with Azure AI Foundry](../../../agents/quickstart.md)
+- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
-- [Create a project in Azure AI Foundry](../../../how-to/create-projects.md)
+- [Create a project in Microsoft Foundry](../../../how-to/create-projects.md)
