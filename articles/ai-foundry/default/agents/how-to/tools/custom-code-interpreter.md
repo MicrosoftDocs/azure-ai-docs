@@ -35,7 +35,8 @@ az provider register -n Microsoft.App
 
 ### Create a dynamic session pool with a code interpreter image
 
-In the Azure [Custom deployment tool](https://ms.portal.azure.com/?l=en.en-us#create/Microsoft.Template), click "Build your own template in the editor", and paste the ARM template into the editor. Save, and then fill out the parameters appropriately.
+In the Azure [Custom deployment tool](https://ms.portal.azure.com#create/Microsoft.Template), select **Build your own template in the editor**, and paste the following ARM template into the editor. Save it, and then fill out the parameters appropriately.
+
 ```ARM
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -198,7 +199,7 @@ In the Azure [Custom deployment tool](https://ms.portal.azure.com/?l=en.en-us#cr
 az rest --method POST --uri {AZURE_SESSION_POOL_ID}/fetchMCPServerCredentials?api-version=2025-02-02-preview
 ```
 
-### Use the Custom Code Interpreter in an agent
+### Use the custom code interpreter in an agent
 
 Set the `AZURE_AI_PROJECT_ENDPOINT`, `CODE_INTERPRETER_MCP_ENDPOINT`, and `CODE_INTERPRETER_MCP_API_KEY` environment variables, and then run the below script.
 
