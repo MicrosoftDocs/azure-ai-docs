@@ -47,7 +47,6 @@ The following table summarizes which risks are applicable to models and agents:
 | Protected material for text | ✅ | ✅ |
 | Groundedness | ✅ | ❌ |
 | Personally identifiable information | ✅ | ✅ |
-| Task Adherence | ❌ | ✅ |
 
 ### Intervention point applicability
 
