@@ -194,7 +194,7 @@ The [Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.pro
     using System;
     using System.ClientModel.Primitives;
 
-    endpointUrl = "your_project_endpoint" // Replace with your endpoint
+    string endpointUrl = "your_project_endpoint"; // Replace with your endpoint
 
     DefaultAzureCredential credential = new();
     BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
