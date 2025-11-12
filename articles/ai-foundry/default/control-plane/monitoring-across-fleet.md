@@ -83,6 +83,8 @@ You can view all your assets under a specific project along with top-level metri
 
 To view more granular information on the performance of an individual agent, the side panel provides quick insights into the selected agent's health and recent activity. You can use it to identify issues and take corrective actions.  
 
+:::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of Foundry Control Plane agent details pane showing details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
+
 In this section, you see: 
 
 - Active alerts: View policy, security, and evaluation alerts grouped by severity and take action. 
