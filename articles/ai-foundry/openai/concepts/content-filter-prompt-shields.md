@@ -12,7 +12,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Prompt shields in AI Foundry
+# Prompt shields in Foundry
 
 ::: moniker range="foundry"
 

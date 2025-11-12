@@ -20,7 +20,7 @@ ms.custom: include
 ::: moniker-end
 ::: moniker range="foundry"
 > [!TIP]
-> To open your AI Foundry resource in Azure portal:
+> To open your Foundry resource in Azure portal:
 > 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 > 1. Select **Operate** from the upper-right navigation.
 > 1. Select **Admin**.

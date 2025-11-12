@@ -17,7 +17,7 @@ ms.custom:
   - build-2025
 ---
 
-Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `AI Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
+Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
 
 :::image type="content" source="../media/how-to/projects/projects-multi-setup.png" alt-text="Diagram shows how a team could share resource access with multiple projects on a Foundry resource.":::
 

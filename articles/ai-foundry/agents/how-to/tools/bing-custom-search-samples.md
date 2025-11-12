@@ -24,7 +24,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 1. Navigate to the **Agents** screen for your agent in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot of the agents screen in the AI Foundry portal.":::
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot of the agents screen in the Foundry portal.":::
 
 1. Select the **Grounding with Bing Custom Search** tool.  
 
@@ -62,7 +62,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
-    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
+    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
     
     Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
@@ -300,7 +300,7 @@ require("dotenv/config");
 const connectionString =
   process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
 
-// Create an Azure AI Client from a connection string, copied from your AI Foundry project.
+// Create an Azure AI Client from a connection string, copied from your Foundry project.
 // At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
 // Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 const client = AIProjectsClient.fromConnectionString(

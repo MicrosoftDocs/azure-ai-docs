@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create an AI Foundry resource using Bicep"
+title: "Quickstart: Create a Foundry resource using Bicep"
 titleSuffix: Microsoft Foundry
 description: Learn how to use a Bicep file (template) to create a Microsoft Foundry resource in your Azure subscription.
 ms.author: sgilley
@@ -13,7 +13,7 @@ ms.custom:
   - "subject-bicepqs"
   - "build-aifnd"
   - "build-2025"
-# Customer intent: As a DevOps person, I need to automate or customize the creation of an AI Foundry resource by using templates.
+# Customer intent: As a DevOps person, I need to automate or customize the creation of a Foundry resource by using templates.
 ---
 
 # Quickstart: Create a Microsoft Foundry resource using a Bicep file

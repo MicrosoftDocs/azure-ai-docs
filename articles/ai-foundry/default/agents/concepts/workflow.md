@@ -69,7 +69,7 @@ Nodes define the building blocks of your workflow. Common node types include:
 ## Add agents to your workflow
 
 You can add any Foundry agent from your project to the workflow. Agent nodes also allow you to create new agents, configure their model, prompt, and tools, giving them customized capabilities.
-For more advanced options and comprehensive agent creation, visit the Foundry Agent tab in the AI Foundry portal.
+For more advanced options and comprehensive agent creation, visit the Foundry Agent tab in the Foundry portal.
 
 ### Add existing agent
 

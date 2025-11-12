@@ -22,7 +22,7 @@ ms.custom:
 > [!NOTE]
 > You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** isn't supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need).
 
-Azure AI Hub is a resource type that is used in combination with Microsoft Foundry resource type, and is only required for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated AI Foundry resource.
+Azure AI Hub is a resource type that is used in combination with Microsoft Foundry resource type, and is only required for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated Foundry resource.
 
 When you create an AI Hub, a Foundry resource is automatically provisioned. Hub resources can be used in [Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com).
 
@@ -36,7 +36,7 @@ Hubs group one or more projects together with common settings including data acc
 
 ## Create a hub-based project
 
-To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md). Hub-based projects can be accessed in [AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
+To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md). Hub-based projects can be accessed in [Foundry portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
 
 ## Project concepts
 
@@ -65,7 +65,7 @@ A hub shares configurations for a group of projects. All projects in the hub sha
 
 Shared configurations managed on the hub include:
 * **Security** including public network access, customer-managed key encryption, and identity controls. Security settings configured on the hub automatically pass down to each project. A managed virtual network is shared between all projects that share the same hub.
-* **Connections** let you access objects in Foundry portal that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI or AI Foundry resource. Optionally use connection to store shared credentials, so developers can implicitly access remote objects during development.
+* **Connections** let you access objects in Foundry portal that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI or Foundry resource. Optionally use connection to store shared credentials, so developers can implicitly access remote objects during development.
 * **Compute and quota allocation** is managed as shared capacity for all projects in Foundry portal that share the same hub. This quota includes compute instance as managed cloud-based workstation for an individual. The same user can use a compute instance across projects.
 * **Policy** enforced in Azure on the hub scope applies to all projects managed under it.
 * **Dependent Azure resources** are set up once per hub and associated projects and used to store artifacts you generate while working in Foundry portal such as logs or when uploading data. For more information, see [dependent resources](#storage-and-key-vault-dependent-resources).
@@ -74,7 +74,7 @@ Shared configurations managed on the hub include:
 
 Hubs let you manage connections to existing Azure OpenAI or Foundry resources, so you can use their models and selected customization capabilities in hub-based projects. 
 
-After a connection is created, model deployments are accessible via playground experiences. When you use Fine-tuning experiences in a hub-based project, your fine-tuning jobs are implicitly executed on the connected AI Foundry resource (default project context).
+After a connection is created, model deployments are accessible via playground experiences. When you use Fine-tuning experiences in a hub-based project, your fine-tuning jobs are implicitly executed on the connected Foundry resource (default project context).
 
 ## Storage and Key Vault dependent resources
 

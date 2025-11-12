@@ -31,7 +31,7 @@ Foundry project or Hubs based project. To learn more, see [Create a project](cre
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
-- If your application is already using AI Foundry agents, **ai-agent-evals** is well-suited as it offers a simplified setup process and direct integration with agent-based workflows.
+- If your application is already using Foundry agents, **ai-agent-evals** is well-suited as it offers a simplified setup process and direct integration with agent-based workflows.
 - **genai-evals** is intended for evaluating generative AI models outside of the agent framework.
 
 > [!NOTE]
@@ -188,7 +188,7 @@ Evaluation results are outputted to the summary section for each AI evaluation G
 
 The result includes two main parts:
 
-- The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to AI Foundry portal to view individual result in detail.
+- The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Foundry portal. You can also select the link for Evaluation Results, and it directs you to Foundry portal to view individual result in detail.
 
 - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 

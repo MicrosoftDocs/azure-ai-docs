@@ -21,9 +21,9 @@ Microsoft Foundry provides an observability platform for monitoring and tracing 
 
 Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-## OpenTelemetry in AI Foundry
+## OpenTelemetry in Foundry
 
-OpenTelemetry (OTel) provides standardized protocols for collecting and routing telemetry data. Foundry supports multiple ways to collect and analyze tracing data from OpenTelemetry-instrumented agents, whether you’re using AI Foundry infrastructure or a vendor-neutral setup.
+OpenTelemetry (OTel) provides standardized protocols for collecting and routing telemetry data. Foundry supports multiple ways to collect and analyze tracing data from OpenTelemetry-instrumented agents, whether you’re using Foundry infrastructure or a vendor-neutral setup.
 
 ## Trace key concepts overview
 

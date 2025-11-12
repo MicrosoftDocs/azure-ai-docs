@@ -37,7 +37,7 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
       - Queries (required).
-    - Agent IDs  Retrieve agent identifiers from AI Foundry.
+    - Agent IDs  Retrieve agent identifiers from Foundry.
 
   See the following sample dataset:
 

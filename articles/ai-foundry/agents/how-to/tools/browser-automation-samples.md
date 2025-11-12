@@ -33,7 +33,7 @@ Use this article to find step-by-step instructions and code samples for using th
     pip install azure-ai-projects
     pip install azure-identity
     ```
-* The **contributor** role assigned to your AI Foundry project from within your Playwright workplace. 
+* The **contributor** role assigned to your Foundry project from within your Playwright workplace. 
 * Your Playwright connection ID. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
     
     <!--

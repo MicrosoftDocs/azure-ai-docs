@@ -78,9 +78,9 @@ az ml workspace create --kind hub --resource-group {my_resource_group} --name {m
 
 ---
 
-## Create an AI Foundry connection
+## Create a Foundry connection
 
-After creating your own [AI Foundry resource](../../../ai-services/multi-service-resource.md?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext) or [Azure OpenAI resource](../../openai/how-to/create-resource.md) in the same resource group, you can connect it to your hub. You can also connect [Azure AI Search](../../../search/search-create-service-portal.md) from any resource group in your same subscription.
+After creating your own [Foundry resource](../../../ai-services/multi-service-resource.md?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext) or [Azure OpenAI resource](../../openai/how-to/create-resource.md) in the same resource group, you can connect it to your hub. You can also connect [Azure AI Search](../../../search/search-create-service-portal.md) from any resource group in your same subscription.
 
 # [Python SDK](#tab/python)
 
@@ -94,7 +94,7 @@ After creating your own [AI Foundry resource](../../../ai-services/multi-service
 
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-2. Use `ml_client` to create the connection to your AI Services.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For an AI Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the Url for the endpoint.
+2. Use `ml_client` to create the connection to your AI Services.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For a Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the Url for the endpoint.
 
     ```python
     from azure.ai.ml.entities import AzureAIServicesConnection

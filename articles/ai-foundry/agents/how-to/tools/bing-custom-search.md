@@ -87,7 +87,7 @@ When you create or update a configuration, enter the following information:
 
 1. Navigate to the **Agents** screen for your agent in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot of the agents screen in the AI Foundry portal.":::
+    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot of the agents screen in the Foundry portal.":::
 
 1. Select the **Grounding with Bing Custom Search** tool.  
 

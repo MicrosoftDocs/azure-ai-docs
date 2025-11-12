@@ -93,17 +93,17 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ### Azure Key Vault limitations
 
-AI Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection. All Foundry projects use a managed Azure Key Vault (not shown in your subscription). If you bring your own Azure Key Vault, note:
+Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection. All Foundry projects use a managed Azure Key Vault (not shown in your subscription). If you bring your own Azure Key Vault, note:
 
-- Only one Azure Key Vault connection per AI Foundry resource at a time.
+- Only one Azure Key Vault connection per Foundry resource at a time.
 - You can delete an Azure Key Vault connection only if there are no other existing connections on the Foundry resource or project level.
 - Secret migration isn't supported; recreate connections after attaching the Key Vault.
-- Deleting the underlying Azure Key Vault breaks the AI Foundry resource (connections depend on stored secrets).
+- Deleting the underlying Azure Key Vault breaks the Foundry resource (connections depend on stored secrets).
 - Deleting secrets in your BYO Key Vault may break connections to other services.
 
 ### Azure Databricks connection (preview) limitations
 
-It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in AI Foundry Playground is currently not supported.
+It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in Foundry Playground is currently not supported.
 
 ## <a name="create-a-new-connection"></a> Create a new connection in Foundry portal
 
@@ -152,7 +152,7 @@ Follow these steps to create a new connection that's only available for the curr
 
 ## Network isolation
 
-For end-to-end [network isolation](configure-private-link.md) with AI Foundry, you need private endpoints to connect to your connected resource. For example, if your Azure Storage account is set to public network access as __Disabled__, then a private endpoint should be deployed in your virtual network to access in Foundry. 
+For end-to-end [network isolation](configure-private-link.md) with Foundry, you need private endpoints to connect to your connected resource. For example, if your Azure Storage account is set to public network access as __Disabled__, then a private endpoint should be deployed in your virtual network to access in Foundry. 
 
 For more on how to set private endpoints to your connected resources, see the following documentation:
     

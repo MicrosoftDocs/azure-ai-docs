@@ -126,7 +126,7 @@ The chat session pane is where you can chat to the model and test out your assis
 
 Foundry has two different project types—see [What is Foundry?](../what-is-azure-ai-foundry.md#project-types). The type appears in the **Type** column in the **All resources** view. In the recent resources picker, the type is in a second line under the project name.
 
-- Look for either **(AI Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]. 
+- Look for either **(Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]. 
 - Look for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 

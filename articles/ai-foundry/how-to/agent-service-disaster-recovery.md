@@ -41,7 +41,7 @@ The Agent Service has important limitations that shape your workload's disaster 
 
 ### General implications for your recovery design
 
-- Treat each independent workload capability as an isolated blast radius. Design recovery decisions and procedures to support independent recovery. This boundary is usually a single AI Foundry project, but it can be multiple projects that share the same dependencies and recovery requirements.
+- Treat each independent workload capability as an isolated blast radius. Design recovery decisions and procedures to support independent recovery. This boundary is usually a single Foundry project, but it can be multiple projects that share the same dependencies and recovery requirements.
 - The recovery point for stateful content can be total loss. Plan for business and user acceptance of that loss.
 - Recovery time mostly depends on how fast you can reapply infrastructure as code and redeploy agent definitions. Invest in automation accordingly.
 - Warm standby environments start mostly empty. Recovery is reconstruction, not promotion of a hot replica.
@@ -79,4 +79,4 @@ Likewise, if your agent provides customer support capabilities to reduce the amo
 
 ## Next steps
 
-Start your AI Foundry Agent Service design with [recovery strategies for platform outages](agent-service-platform-disaster-recovery.md), and then plan your [resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md).
+Start your Foundry Agent Service design with [recovery strategies for platform outages](agent-service-platform-disaster-recovery.md), and then plan your [resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md).

@@ -26,7 +26,7 @@ To use monitoring capabilities in Microsoft Foundry, you need to connect an Appl
 1. Navigate to **Monitoring** in the left navigation pane of the Foundry portal.
 2. Select the **Application analytics** tab.
 3. Create a new Application Insights resource if you don't already have one.
-4. Connect the resource to your AI Foundry project.
+4. Connect the resource to your Foundry project.
 
 ### Collecting production data for monitoring
 
@@ -42,9 +42,9 @@ In Foundry portal, the **Application analytics** dashboard view uses signals fro
 
 These views are designed to bring key metrics - token consumption, latency, exceptions, response quality into a single pane of glass that provides transparency to teams to track operational health and quality, understand trends, and assess continuously to improve their application.
 
-Follow these steps to access and utilize the built-in monitoring view in your AI Foundry Project:
+Follow these steps to access and utilize the built-in monitoring view in your Foundry Project:
 
-1. Navigate to your AI Foundry Project in the Foundry portal.
+1. Navigate to your Foundry Project in the Foundry portal.
 2. Select **Monitoring** from the left navigation pane.
 3. Under the **Application analytics** tab, review the overview of your application's health.
 4. Use filters to specify a time range, application, and/or model to extract detailed insights.

@@ -52,7 +52,7 @@ Verify that your subscription is registered to the *Microsoft.Network* resource 
 
 ## Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [region availability for models in serverless APIs](deploy-models-serverless-availability.md).
+The Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [region availability for models in serverless APIs](deploy-models-serverless-availability.md).
 
 Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
@@ -194,7 +194,7 @@ Here are some of the tasks you can do on the **Models** tab:
 Several enterprise scenarios are supported for serverless API deployment fine-tuning. The following table outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
->- Data connections authentication can be changed via AI Foundry by selecting the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
+>- Data connections authentication can be changed via Foundry by selecting the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
 >- Storage authentication can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
@@ -208,7 +208,7 @@ Several enterprise scenarios are supported for serverless API deployment fine-tu
 | Public network access = Disabled | Account key enabled | SAS/Account key | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
 | Public network access = Disabled | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
 
-The preceding scenarios should work in a managed virtual network workspace as well. To learn how to set up managed virtual network AI Foundry hub, see [How to configure a managed network for Foundry hubs](./configure-managed-network.md).
+The preceding scenarios should work in a managed virtual network workspace as well. To learn how to set up managed virtual network Foundry hub, see [How to configure a managed network for Foundry hubs](./configure-managed-network.md).
 
 Using customer-managed keys (CMKs) is *not* a supported enterprise scenario with serverless API deployment fine-tuning.
 
@@ -313,7 +313,7 @@ workspace.id
 
 ### Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [Region availability for models in serverless APIs](deploy-models-serverless-availability.md).
+The Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [Region availability for models in serverless APIs](deploy-models-serverless-availability.md).
 
 Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
@@ -559,7 +559,7 @@ model_id = f"azureml://locations/{workspace.location}/workspaces/{workspace._wor
 Several enterprise scenarios are supported for serverless API deployment fine-tuning. The following table outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
->- Data connections authentication can be changed via AI Foundry by clicking on the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
+>- Data connections authentication can be changed via Foundry by clicking on the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
 >- Storage authentication can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
@@ -573,7 +573,7 @@ Several enterprise scenarios are supported for serverless API deployment fine-tu
 | Public network access = Disabled    | Account key enabled  | SAS/Account key   | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage  |
 | Public network access = Disabled    | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage  |
 
-The preceding scenarios should work in a managed virtual network workspace, as well. To learn how to set up managed virtual network AI Foundry hub, see [How to set up a managed network for Foundry hubs](./configure-managed-network.md).
+The preceding scenarios should work in a managed virtual network workspace, as well. To learn how to set up managed virtual network Foundry hub, see [How to set up a managed network for Foundry hubs](./configure-managed-network.md).
 
 Using customer-managed keys (CMKs) is *not* a supported enterprise scenario with serverless API deployment fine-tuning.
 

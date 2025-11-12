@@ -36,7 +36,7 @@ To create a project with a Microsoft Foundry (formerly known Azure AI Services) 
     | Resource group | The main container for all the resources in Azure. This helps get resources that work together organized. It also helps to have a scope for the costs associated with the entire project. |
     | Location       | The region of the resources that you're creating. |
     | Hub            | The main container for AI projects in Foundry. Hubs promote collaboration and allow you to store information for your projects. |
-    | AI Foundry    | In this tutorial, a new account is created, but Foundry Services can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how, you can create connections between projects and Foundry to consume Foundry Models you can read [Connect your AI project](../../how-to/configure-project-connection.md). |
+    | Foundry    | In this tutorial, a new account is created, but Foundry Services can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how, you can create connections between projects and Foundry to consume Foundry Models you can read [Connect your AI project](../../how-to/configure-project-connection.md). |
 
 8. Select **Create**. The resources creation process starts. 
 

@@ -59,11 +59,11 @@ Before connecting your storage, ensure you have:
 
 ### Foundry connections
 
-Foundry connections act as shared data pointers across AI Foundry capabilities (agents, evaluations, datasets, content understanding). Each connection wraps the target storage endpoint plus authentication so users with project access can use the data without direct storage account permissions. Use connections as the default pattern; create a capability host only when you need to explicitly bind (override) a single feature to one connection among several.
+Foundry connections act as shared data pointers across Foundry capabilities (agents, evaluations, datasets, content understanding). Each connection wraps the target storage endpoint plus authentication so users with project access can use the data without direct storage account permissions. Use connections as the default pattern; create a capability host only when you need to explicitly bind (override) a single feature to one connection among several.
 
 ### Capability hosts
 
-[Capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) bind specific features to designated connections when multiple storage connections exist. They define which storage connection a particular feature uses. Use capability hosts most commonly for agents standard setup. If you don't create capability hosts for agents, AI Foundry uses Microsoft-managed storage for that feature.
+[Capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) bind specific features to designated connections when multiple storage connections exist. They define which storage connection a particular feature uses. Use capability hosts most commonly for agents standard setup. If you don't create capability hosts for agents, Foundry uses Microsoft-managed storage for that feature.
 
 See [Capability hosts](../agents/concepts/capability-hosts.md) for conceptual details.
 
@@ -163,7 +163,7 @@ Set up [capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) to
 
 ### Create project-level capability host
 
-After creating your AI Foundry project:
+After creating your Foundry project:
 
 1. Create a project-level capability host that references the resource-level capability host.
 

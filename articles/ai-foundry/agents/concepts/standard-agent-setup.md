@@ -58,14 +58,14 @@ Standard setup enforces project-level data isolation by default. Two blob storag
     * Create new (or pass in resource ID of existing) Azure AI Search resource 
     * Create a new Key Vault resource 
     * [Optional]: Create new application insights resource 
-    * [Optional]: pass in resource ID of existing AI Foundry resource 
+    * [Optional]: pass in resource ID of existing Foundry resource 
 2. Create Microsoft Foundry Resource (cognitive service/accounts kind=AIServices) 
 3. Create Account-level connections 
     * Create account connection to Application Insights resource 
 4. Deploy gpt-4o or other agent compatible model 
 5. Create Project (cognitive service/accounts/project) 
 6. Create project connections 
-    * [if provided] Project connection to AI Foundry resource 
+    * [if provided] Project connection to Foundry resource 
     * Create project connection to Azure Storage account 
     * Create project connection to Azure AI Search account 
     * Create project connection to Cosmos DB account 

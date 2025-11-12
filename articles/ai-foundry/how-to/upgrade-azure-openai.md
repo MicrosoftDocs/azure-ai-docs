@@ -43,9 +43,9 @@ Your existing resource configurations and state remain preserved including:
 
 Backend limitations:
 
-* AI Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
+* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
-* The AI Foundry resource type doesn't support configuring Weights & Biases.
+* The Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [reconfiguration of private link endpoints and extra Domain Name Server (DNS) configurations](#private-network-configuration) before all Foundry capabilities can be used.
 
 Foundry portal limitations:
@@ -99,7 +99,7 @@ resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
     }
     kind: 'AIServices' // Update from 'OpenAI'
     properties: {
-        // required to work in AI Foundry
+        // required to work in Foundry
         allowProjectManagement: true 
 
         // Needed for capabilities that require EntraID authentication
@@ -128,7 +128,7 @@ After upgrading from Azure OpenAI to Foundry, you'll notice updates to the porta
 
 1. **Your default view is now a project**
 
-   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. Multiple can be created as part of your AI Foundry resource, so you can separate your work between use cases that you're working on. The first project after upgrade has access to your previous work in Azure OpenAI.
+   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. Multiple can be created as part of your Foundry resource, so you can separate your work between use cases that you're working on. The first project after upgrade has access to your previous work in Azure OpenAI.
 
 1. **Broader set of models in model catalog**
    
@@ -146,7 +146,7 @@ For estimating costs of new features available in Foundry, use the [Azure Pricin
 
 ## Private network configuration
 
-AI Foundry resource is a superset of Azure OpenAI resource and its capabilities are exposed over three FQDNs:
+Foundry resource is a superset of Azure OpenAI resource and its capabilities are exposed over three FQDNs:
 
 - {custom-domain}.openai.azure.com
 - {custom-domain}.services.ai.azure.com
@@ -171,7 +171,7 @@ In case you run into any issues, a rollback option is available. As prerequisite
 * Connections
 * Non-Azure OpenAI model deployments
 
-Then, use either AI Foundry portal or ARM template to roll back:
+Then, use either Foundry portal or ARM template to roll back:
 
 # [Foundry portal](#tab/portal)
 
@@ -237,7 +237,7 @@ Azure resource limits and organizational configurations may require extra steps 
 
 ## How to inspect whether a resource was upgraded
 
-The following Azure resource property is available to inspect whether a resource was previously upgraded to AI Foundry.
+The following Azure resource property is available to inspect whether a resource was previously upgraded to Foundry.
 
 ```bicep
 {

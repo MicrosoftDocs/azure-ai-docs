@@ -1,5 +1,5 @@
 ---
-title: Create a custom Azure Policy for AI Foundry
+title: Create a custom Azure Policy for Foundry
 titleSuffix: Microsoft Foundry
 description: "Learn how to use custom Azure policies to enable self-service resource management in your organization, while applying guardrails and constraints on allowed configurations to meet security and compliance requirements."
 ms.author: deeikele
@@ -43,7 +43,7 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
    - Provide:
      - **Definition location**: Subscription or management group.
      - **Name**: A unique name (for example, `Deny-Unapproved-Connections`).
-     - **Description**: Explain the purpose (for example, “Restrict AI Foundry connections to approved categories”).
+     - **Description**: Explain the purpose (for example, “Restrict Foundry connections to approved categories”).
      - **Category**: Use an existing category or create one such as `AI Governance`.
 
 3. **Add policy rule**
@@ -62,11 +62,11 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
 - **Deny connections that use API keys as the authentication type**  
   Require all other authentication types because API keys are typically less secure.
 
-- **Audit AI Foundry resources without a valid Agent capability host**  
+- **Audit Foundry resources without a valid Agent capability host**  
   Check for the existence of a virtual network subnet ARM ID and custom storage resources when using Agent service in a regulated environment.
 
 - **Deny creation of account kinds that don't have full Foundry capabilities**  
-  Ensure new accounts are configured so users can access all AI Foundry capabilities.
+  Ensure new accounts are configured so users can access all Foundry capabilities.
 
 ## Sample library
 
@@ -77,5 +77,5 @@ This library includes JSON templates for common scenarios.
 
 ## Next steps
 
-- Review [Built-in Policies for AI Foundry](../../ai-services/policy-reference.md) for built-in and custom policies for comprehensive compliance.
+- Review [Built-in Policies for Foundry](../../ai-services/policy-reference.md) for built-in and custom policies for comprehensive compliance.
 - Test policies in a non-production environment before enforcing them broadly.

@@ -29,7 +29,7 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you access to the latest generative AI features in AI Foundry, including:
+* This project type gives you access to the latest generative AI features in Foundry, including:
 
     * Agents 
     * Foundry SDK and API to build agents and switch easily between models
@@ -59,7 +59,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry-classic"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create a Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
 :::moniker-end
 
 :::moniker range="foundry"
@@ -157,7 +157,7 @@ To create a Foundry project, follow these steps:
 
 ### Advanced options
 
-1. A Foundry project is created on an `AI Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
+1. A Foundry project is created on an `Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
 
     > [!TIP]
     > Especially for getting started, we recommend you create a new resource group for your project. The resource group lets you easily manage the project and all its resources together.
@@ -255,7 +255,7 @@ az cognitiveservices account connection show --name <my_project_name> --resource
 1. Select any projects you no longer want to keep.
 1. Select **Delete project**.
 
-To delete the AI Foundry resource and all its projects:
+To delete the Foundry resource and all its projects:
 
 1. In the Management center, select the resource name from the Overview section to go to the Azure portal.
 1. In the Azure portal, select **Delete** to delete the resource and all its associated projects.

@@ -380,7 +380,7 @@ response = evaluate(
 # Inspect the average scores at a high level.
 print(response["metrics"])
 # Use the URL to inspect the results on the UI.
-print(f'AI Foundry URL: {response.get("studio_url")}')
+print(f'Foundry URL: {response.get("studio_url")}')
 ```
 
 After selecting the URL, you are redirected to Foundry. View your evaluation results in your Azure AI project and debug your application. Use reason fields and pass/fail results to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
