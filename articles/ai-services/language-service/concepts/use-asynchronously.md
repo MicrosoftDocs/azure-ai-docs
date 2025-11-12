@@ -29,7 +29,7 @@ When you send asynchronous requests, you incur charges based on number of text r
 
 ## Submit an asynchronous job using the REST API
 
-To submit an asynchronous job, review the [reference documentation](/rest/api/language/analyze-text-submit-job) for the JSON body you send in your request.
+To submit an asynchronous job, review the [reference documentation](/rest/api/language/analyze-text/analyze-text-submit-job/analyze-text-submit-job?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP) for the JSON body you send in your request.
 1. Add your documents to the `analysisInput` object.  
 1. In the `tasks` object, include the operations you want performed on your data. For example, if you wanted to perform sentiment analysis, you would include the `SentimentAnalysisLROTask` object.
 1. You can optionally:
@@ -48,7 +48,7 @@ A successful call returns a 202 response code. The `operation-location` in the r
 GET {Endpoint}/language/analyze-text/jobs/12345678-1234-1234-1234-12345678?api-version=2022-05-01
 ```
 
-To [get the status and retrieve the results](/rest/api/language/analyze-text-job-status) of the request, send a GET request to the URL you received in the `operation-location` header from the previous API response. Remember to include your key in the `Ocp-Apim-Subscription-Key`. The response includes the results of your API call.
+To [get the status and retrieve the results](/rest/api/language/analyze-text/analyze-text-submit-job/analyze-text-submit-job?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP) of the request, send a GET request to the URL you received in the `operation-location` header from the previous API response. Remember to include your key in the `Ocp-Apim-Subscription-Key`. The response includes the results of your API call.
 
 ## Send asynchronous API requests using the client library
 

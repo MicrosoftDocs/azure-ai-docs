@@ -23,7 +23,7 @@ The Language also provides several new features as well, which can either be:
 * Customizable, which means you train an AI model using our tools to fit your data specifically.
 
 > [!TIP]
-> Unsure which feature to use? See [Which Language feature should I use](#which-language-service-feature-should-i-use) to help you decide.
+> Unsure which feature to use? See [Which Language feature should I use](#which-language-feature-should-i-use) to help you decide.
 
 [**Azure AI Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
 
