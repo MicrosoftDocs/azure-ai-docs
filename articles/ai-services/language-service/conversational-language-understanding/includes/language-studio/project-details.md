@@ -1,13 +1,12 @@
 ---
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Go to your **Project settings** page in [Language Studio](https://aka.ms/languageStudio).
 
 1. Review your project details.

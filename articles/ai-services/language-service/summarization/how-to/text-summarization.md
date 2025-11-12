@@ -1,19 +1,18 @@
 ---
 title: Summarize text with the extractive summarization API
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article shows you how to summarize text with the extractive summarization API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-summarization
   - ignite-2023
   - build-2024
 ---
-
 # How to use text summarization
 
 Text summarization is designed to shorten content that users consider too long to read. Both extractive and abstractive summarization condense articles, papers, or documents to key sentences.

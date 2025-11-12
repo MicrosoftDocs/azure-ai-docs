@@ -1,17 +1,16 @@
 ---
 title: Install and run Docker containers for Sentiment Analysis
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use the Docker containers for the Sentiment Analysis API to perform natural language processing such as sentiment analysis, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 keywords: on-premises, Docker, container, sentiment analysis, natural language processing
 ---
-
 # Install and run Sentiment Analysis containers
 
 Containers enable you to host the Sentiment Analysis API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Sentiment Analysis remotely, then containers might be a good option.

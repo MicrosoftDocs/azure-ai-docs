@@ -1,14 +1,13 @@
 ---
 title: How to create custom projects
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 |Requirement  |Description  |
 |---------|---------|
 |Regions     |  If you don't have a resource, you need to create a new one in a supported region.        |
@@ -33,7 +32,7 @@ Your Language resource must have identity management, to enable it using [Langua
 
 1. Select the settings icon in the top right corner of the screen
 2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure Language resource.
+3. Select the check box **Managed Identity** for your Azure Language in Foundry Tools resource.
 
 ---
 

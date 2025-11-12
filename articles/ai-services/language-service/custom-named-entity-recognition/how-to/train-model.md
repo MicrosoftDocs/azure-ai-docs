@@ -1,16 +1,15 @@
 ---
 title: How to train your Custom Named Entity Recognition (NER) model
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about how to train your model for Custom Named Entity Recognition (NER).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
 # Train your custom named entity recognition model
 
 Training is the process where the model learns from your [labeled data](tag-data.md). After training is completed, you'll be able to view the [model's performance](view-model-evaluation.md) to determine if you need to improve your model.

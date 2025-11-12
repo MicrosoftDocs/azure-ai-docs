@@ -3,11 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 To assign deployment resources in other regions in [Language Studio](https://aka.ms/LanguageStudio):
   1. Make sure you assign yourself as a [Cognitive Services Language Owner](https://aka.ms/rbac-language) to the resource you used to create the project.
   2. Go to the **Deploying a model** page in Language Studio.

@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Create and manage project settings
 
 Custom question answering allows you to manage your projects by providing access to the project settings and data sources. If you haven't created a custom question answering project before we recommend starting with the [getting started article](create-test-deploy.md).

@@ -1,16 +1,15 @@
 ---
 title: How to train and evaluate models in orchestration workflow
 description: Learn how to train a model for orchestration workflow projects.
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # Train your orchestration workflow model
 
 Training is the process where the model learns from your [labeled utterances](tag-utterances.md). After training is completed, you can [view model performance](view-model-evaluation.md).

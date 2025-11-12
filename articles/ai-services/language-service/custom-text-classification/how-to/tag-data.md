@@ -1,17 +1,16 @@
 ---
 title: How to label your data for custom classification - Azure AI services
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about how to label your data for use with the custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # Label text data for training your model 
 
 Before training your model, you need to label your documents with the classes you want to categorize them into. Data labeling  is a crucial step in development lifecycle; in this step you can create the classes you want to categorize your data into and label your documents with these classes. This data is used in the next step when training your model so that your model can learn from the labeled data. If you already labeled your data, you can directly [import](create-project.md) it into your project but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md).

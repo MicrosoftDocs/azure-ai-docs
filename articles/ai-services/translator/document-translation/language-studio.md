@@ -17,13 +17,13 @@ recommendations: false
 >
 > * Document translation in Language Studio is currently in Public Preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 >
-> * Currently, virtual network connectivity isn't supported for the Document translation feature in the Language Studio.
+> * Currently, virtual network connectivity isn't supported for the Document translation feature in Azure Language Studio.
 
  Document translation in [**Azure AI Language Studio**](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage.
 
 ## Supported regions
 
-The Document translation feature in the Language Studio is currently available in the following regions;
+The Document translation feature in Azure Language Studio is currently available in the following regions;
 
 |DisplayName|Name|
 |-----------|------|
@@ -60,7 +60,7 @@ Document translation in Language Studio requires the following resources:
 
   * **Pricing tier**. Select Standard S1 or D3. Document translation isn't supported in the free tier.
 
-* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document translation in the Language Studio.
+* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document translation in Azure Language Studio.
 
 Now that you completed the prerequisites, let's start translating documents!
 
@@ -70,7 +70,7 @@ At least one **source document** is required. You can download our [document tra
 
 1. Navigate to [Language Studio](https://language.cognitive.azure.com/home).
 
-1. If you're using the Language Studio for the first time, a **Select an Azure resource** pop-up screen appears. Make the following selections:
+1. If you're using Azure Language Studio for the first time, a **Select an Azure resource** pop-up screen appears. Make the following selections:
 
    * **Azure directory**.
    * **Azure subscription**.

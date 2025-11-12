@@ -49,7 +49,7 @@ This example:
 
 ### Reuse recipe: store billing settings with container
 
-This example shows how to build the Language service's sentiment container from a Dockerfile.
+This example shows how to build Azure Language service's sentiment container from a Dockerfile.
 
 ```Dockerfile
 FROM mcr.microsoft.com/azure-cognitive-services/sentiment:latest
@@ -64,7 +64,7 @@ Build and run the container [locally](#how-to-use-container-on-your-local-host) 
 
 This example shows how to use Language Understanding, saving billing and models from the Dockerfile.
 
-* Copies the Language Understanding (LUIS) model file from the host's file system using `COPY`.
+* Copies Azure Language Understanding (LUIS) model file from the host's file system using `COPY`.
 * The LUIS container supports more than one model. If all models are stored in the same folder, you all need one `COPY` statement.
 * Run the docker file from the relative parent of the model input directory. For the following example, run the `docker build` and `docker run` commands from the relative parent of `/input`. The first `/input` on the `COPY` command is the host computer's directory. The second `/input` is the container's directory.
 
@@ -102,7 +102,7 @@ Follow these steps to use the Dockerfile and place the new image in your private
 
 1. Build the file into an image at the command line or terminal, using the following command. Replace the values in the angle brackets, `<>`, with your own container name and tag.  
 
-    The tag option, `-t`, is a way to add information about what you have changed for the container. For example, a container name of `modified-LUIS` indicates the original container has been layered. A tag name of `with-billing-and-model` indicates how the Language Understanding (LUIS) container has been modified.
+    The tag option, `-t`, is a way to add information about what you have changed for the container. For example, a container name of `modified-LUIS` indicates the original container has been layered. A tag name of `with-billing-and-model` indicates how Azure Language Understanding (LUIS) container has been modified.
 
     ```Bash
     docker build -t <your-new-container-name>:<your-new-tag-name> .

@@ -1,16 +1,13 @@
 ---
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu 
 ---
-
-
-
 1. After the deployment job is completed successfully, select the deployment you want to use and from the top menu select **Get prediction URL**.
 
     :::image type="content" source="../../media/prediction-url.png" alt-text="A screenshot showing the prediction URL in Language Studio." lightbox="../../media/prediction-url.png":::

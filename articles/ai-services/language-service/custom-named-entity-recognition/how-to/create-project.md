@@ -1,16 +1,15 @@
 ---
 title: Create custom named entity recognition (NER) projects and use Azure resources
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to create and manage projects and Azure resources for custom NER.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, references_regions
 ---
-
 # How to create custom named entity recognition (NER) project
 
 Use this article to learn how to set up the requirements for starting with custom NER and create a project.
@@ -39,7 +38,7 @@ You can create a resource in the following ways:
 * PowerShell
 
 > [!Note]
-> You shouldn't move the storage account to a different resource group or subscription once it's linked with the Language resource.
+> You shouldn't move the storage account to a different resource group or subscription once it's linked with Azure Language resource.
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 

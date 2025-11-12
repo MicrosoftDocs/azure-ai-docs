@@ -1,6 +1,6 @@
 ---
 title: Adding chitchat to a custom question answering project
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Adding personal chitchat to your bot makes it more conversational and engaging when you create a project. Custom question answering allows you to easily add a prepopulated set of the top chitchat, into your projects.
 #services: cognitive-services
 manager: nitinme
@@ -8,10 +8,9 @@ author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Use chitchat with a project
 
 Adding chitchat to your bot makes it more conversational and engaging. The chitchat feature in custom question answering allows you to easily add a prepopulated set of the top chitchat, into your project. This can be a starting point for your bot's personality, and it will save you the time and cost of writing them from scratch.

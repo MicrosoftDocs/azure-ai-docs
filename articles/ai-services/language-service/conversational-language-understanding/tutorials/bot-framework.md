@@ -7,9 +7,8 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
-
 # Integrate conversational language understanding with Bot Framework
 
 A dialog is the interaction that occurs between user queries and an application. Dialog management is the process that defines the automatic behavior that should occur for different customer interactions. While conversational language understanding can classify intents and extract information through entities, the [Bot Framework SDK](/azure/bot-service/bot-service-overview) allows you to configure the applied logic for the responses returned from it.
@@ -28,7 +27,7 @@ This tutorial will explain how to integrate your own conversational language und
 
 1. Download the [FlightBooking.json](https://aka.ms/clu-botframework-json) file in the **Core Bot with CLU** sample, in the _Cognitive Models_ folder.
 2. Sign into the [Azure AI Foundry](https://ai.azure.com/) with your Azure credentials and select your project.
-3. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and choose **Try the Language playground**. Select the **Conversational language understanding** tile, then select **Fine-tune**. Create a new fine-tuning task and import the FlightBooking.json file with the project name as **FlightBooking**. This will automatically import the CLU project with all the intents, entities, and utterances. 
+3. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and choose **Try Azure Language playground**. Select the **Conversational language understanding** tile, then select **Fine-tune**. Create a new fine-tuning task and import the FlightBooking.json file with the project name as **FlightBooking**. This will automatically import the CLU project with all the intents, entities, and utterances. 
     
     :::image type="content" source="../media/import.png" alt-text="A screenshot showing where to import a J son file." lightbox="../media/import.png":::
 

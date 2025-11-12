@@ -8,9 +8,8 @@ manager: nitinme
 ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
-
 # Connect different services with Orchestration workflow
 
 Orchestration workflow is a feature that allows you to connect different projects from conversational language understanding and custom question answering in one project. You can then use this project for predictions under one endpoint. The orchestration project makes a prediction on which project should be called and automatically routes the request to that project, and returns with its response. 
@@ -88,7 +87,7 @@ dotnet add package Azure.AI.Language.Conversations
 ```
 Alternatively, you can search for "Azure.AI.Language.Conversations" in the NuGet package manager and install the latest release.
 
-3. In `Program.cs`, replace `{api-key}` and the `{endpoint}` variables. Use the key and endpoint for the Language resource you created earlier. You can find them in the **Keys and Endpoint** tab in your Language resource in Azure.
+3. In `Program.cs`, replace `{api-key}` and the `{endpoint}` variables. Use the key and endpoint for Azure Language resource you created earlier. You can find them in the **Keys and Endpoint** tab in your Language resource in Azure.
 
 ```csharp
 Uri endpoint = new Uri("{endpoint}");

@@ -3,7 +3,7 @@ title: "Quickstart: custom question answering"
 description: This quickstart shows you how to create and manage your  custom question answering projects.
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 author: laujan
 ms.author: lajanuar
 recommendations: false
@@ -12,7 +12,6 @@ ms.devlang: csharp
 ms.custom: devx-track-python, devx-track-csharp, language-service-question-answering, mode-api, devx-track-dotnet
 zone_pivot_groups: custom-cqa-quickstart
 ---
-
 # Quickstart: custom question answering (CQA)
 
 

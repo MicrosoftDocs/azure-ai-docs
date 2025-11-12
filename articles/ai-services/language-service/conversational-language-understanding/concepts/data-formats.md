@@ -1,16 +1,15 @@
 ---
 title: Conversational language understanding data formats
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-clu
 ---
-
 # Data formats accepted by conversational language understanding
 
 If you're uploading your data into conversational language understanding, it must follow a specific format. Use this article to learn more about accepted data formats.

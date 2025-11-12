@@ -1,17 +1,16 @@
 ---
 title: How to train your custom text classification model - Azure AI services
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about how to train your model for custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # How to train a custom text classification model
 
 Training is the process where the model learns from your [labeled data](tag-data.md). After training is completed, you can [view the model's performance](view-model-evaluation.md) to determine if you need to improve your model.

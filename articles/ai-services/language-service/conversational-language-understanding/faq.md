@@ -1,16 +1,15 @@
 ---
 title: Frequently Asked Questions
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about conversational language understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: mode-other
 ---
-
 # Frequently asked questions for conversational language understanding
 
 This article provides quick answers to essential FAQs about conversational language understanding.

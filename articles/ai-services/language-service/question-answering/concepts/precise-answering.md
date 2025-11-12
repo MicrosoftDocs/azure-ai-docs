@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Precise answering
 
 The precise answering feature introduced, allows you to get the precise short answer from the best candidate answer passage present in the project for any user query. This feature uses a deep learning model at runtime, which understands the intent of the user query and detects the precise short answer from the answer passage, if there is a short answer present as a fact in the answer passage.

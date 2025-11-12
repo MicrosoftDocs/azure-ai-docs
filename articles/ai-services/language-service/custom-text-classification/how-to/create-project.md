@@ -1,17 +1,16 @@
 ---
 title: How to create custom text classification projects
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
-
 # How to create custom text classification project
 
 Use this article to learn how to set up the requirements for starting with custom text classification and create a project.
@@ -36,7 +35,7 @@ You also need an Azure storage account where to upload your `.txt` documents tha
 
 
 > [!Note]
-> You shouldn't move the storage account to a different resource group or subscription once it's linked with the Language resource.
+> You shouldn't move the storage account to a different resource group or subscription once it's linked with Azure Language resource.
 
 ### [Using the Azure portal](#tab/azure-portal)
 

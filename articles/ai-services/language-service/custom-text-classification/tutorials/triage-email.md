@@ -1,16 +1,15 @@
 ---
 title: Triage incoming emails with Power Automate
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use custom text classification to categorize and triage incoming emails with Power Automate
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Tutorial: Triage incoming emails with Power Automate
 
 In this tutorial, you learn to categorize and triage incoming email using custom text classification. With this [Power Automate](/power-automate/getting-started) flow, a new email is received, its contents are classified, and, depending on the result, a message is sent to a designated channel on [Microsoft Teams](https://www.microsoft.com/microsoft-teams).
@@ -39,9 +38,9 @@ In this tutorial, you learn to categorize and triage incoming email using custom
 
 4. Add the right connection to your email account. This connection is used to access the email content.
 
-5. To add a Language service connector, search for *Azure AI Language*.
+5. To add a Language connector, search for *Azure AI Language*.
   
-    :::image type="content" source="../media/language-connector.png" alt-text="A screenshot of available Azure AI Language service connectors." lightbox="../media/language-connector.png":::
+    :::image type="content" source="../media/language-connector.png" alt-text="A screenshot of available Azure AI Language connectors." lightbox="../media/language-connector.png":::
 
 6. Search for *CustomSingleLabelClassification*.
 
@@ -65,5 +64,5 @@ In this tutorial, you learn to categorize and triage incoming email using custom
 
 ## Next steps
 
-* [Use the Language service with Power Automate](../../tutorials/power-automate.md)
-* [Available Language service connectors](/connectors/cognitiveservicestextanalytics)
+* [Use Azure Language with Power Automate](../../tutorials/power-automate.md)
+* [Available Language connectors](/connectors/cognitiveservicestextanalytics)

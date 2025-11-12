@@ -1,17 +1,16 @@
 ---
 title: How to deploy a custom text classification model
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to deploy a model for custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # Deploy a model and classify text using the runtime API
 
 Once you're satisfied with how your model performs, it's ready to be deployed; and use it to classify text. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).

@@ -1,16 +1,15 @@
 ---
 title: What is key phrase extraction in Azure Language in Foundry Tools?
-titleSuffix: Azure AI Foundry Tools
-description: An overview of key phrase extraction in Azure AI Foundry Tools, which helps you identify main concepts in unstructured text
+titleSuffix: Foundry Tools
+description: An overview of key phrase extraction in Foundry Tools, which helps you identify main concepts in unstructured text
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
-
 # What is key phrase extraction in Azure AI Language?
 
 Key phrase extraction is one of the features offered by [Azure AI Language](../overview.md). This capability is part of a suite of cloud-based machine learning and AI tools designed for building intelligent applications that process written language. Use key phrase extraction to quickly identify the main concepts in text. For example, in the text "*The food was delicious and the staff were wonderful.*", key phrase extraction returns the main topics: "*food*" and "*wonderful staff*."

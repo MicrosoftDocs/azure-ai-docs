@@ -4,12 +4,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
-
 Create a **DELETE** request using the following URL, headers, and JSON body to delete a trained model.
 
 

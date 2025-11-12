@@ -1,17 +1,16 @@
 ---
 title: How to call Text Analytics for health
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to extract and label medical information from unstructured clinical text with Text Analytics for health.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-
 # How to use Text Analytics for health
 
 [!INCLUDE [service notice](../includes/service-notice.md)]

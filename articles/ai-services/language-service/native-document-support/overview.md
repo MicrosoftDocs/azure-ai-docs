@@ -1,6 +1,6 @@
 ---
 title: Native document support for Azure Language in Foundry Tools (preview)
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: How to use native document with Azure Language Personally Identifiable Information and Summarization capabilities.
 author: laujan
 manager: nitinme
@@ -8,10 +8,9 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD024 -->
@@ -67,7 +66,7 @@ A native document refers to the file format used to create the original document
 |---------|---------|
 |`-X POST <endpoint>`     | Specifies your Language resource endpoint for accessing the API.        |
 |`--header Content-Type: application/json`     | The content type for sending JSON data.          |
-|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies the Language resource key for accessing the API.        |
+|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies Azure Language resource key for accessing the API.        |
 |`-data`     | The JSON file containing the data you want to pass with your request.         |
 
 ## Related content

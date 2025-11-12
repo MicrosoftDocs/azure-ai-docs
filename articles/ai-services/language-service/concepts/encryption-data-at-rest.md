@@ -1,19 +1,18 @@
 ---
 title: Language service encryption of data at rest
-description: Learn how the Language service encrypts your data when persisted to the cloud.
-titleSuffix: Azure AI Foundry Tools
+description: Learn how Azure Language service encrypts your data when persisted to the cloud.
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-#Customer intent: As a user of the Language service, I want to learn how encryption at rest works.
+#Customer intent: As a user of Azure Language service, I want to learn how encryption at rest works.
 ---
+# Language encryption of data at rest
 
-# Language service encryption of data at rest
-
-The Language service automatically encrypts your data when persisted to the cloud. The Language service encryption protects your data and helps you meet your organizational security and compliance commitments.
+The Language automatically encrypts your data when persisted to the cloud. The Language encryption protects your data and helps you meet your organizational security and compliance commitments.
 
 ## Azure AI services encryption
 

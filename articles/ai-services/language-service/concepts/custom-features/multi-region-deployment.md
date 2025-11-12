@@ -1,16 +1,15 @@
 ---
 title: Deploy custom language projects to multiple regions in Azure Language in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about how to deploy your custom language projects to multiple regions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, ignite-2024
 ---
-
 # Deploy custom language projects to multiple regions
 
 > [!NOTE]
@@ -21,7 +20,7 @@ ms.custom: language-service-clu, ignite-2024
 > * [Custom named entity recognition (NER)](../../custom-named-entity-recognition/overview.md)
 > * [Orchestration workflow](../../orchestration-workflow/overview.md)
 
-Custom language service features enable you to deploy your project to more than one region. This capability makes it much easier to access your project globally while you manage only one instance of your project in one place. As of November 2024, custom language service features also enable you to deploy your project to multiple resources within a single region via the API, so that you can use your custom model wherever you need.
+Custom Language features enable you to deploy your project to more than one region. This capability makes it much easier to access your project globally while you manage only one instance of your project in one place. As of November 2024, custom Language features also enable you to deploy your project to multiple resources within a single region via the API, so that you can use your custom model wherever you need.
 
 Before you deploy a project, you can assign *deployment resources* in other regions. Each deployment resource is a different Language resource from the one that you use to author your project. You deploy to those resources and then target your prediction requests to that resource in their respective regions and your queries are served directly from that region.
 

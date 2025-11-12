@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Go to your project page in [Language Studio](https://aka.ms/languageStudio).
 
 2. Select **Model performance** from the menu on the left side of the screen.

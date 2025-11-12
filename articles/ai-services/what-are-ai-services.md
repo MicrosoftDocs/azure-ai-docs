@@ -80,7 +80,7 @@ If you want to learn more about available client libraries and REST APIs, use ou
 
 ### Continuous integration and deployment
 
-You can use Azure DevOps and GitHub Actions to manage your deployments. In the [following section](#continuous-integration-and-delivery-with-devops-and-github-actions), we have two examples of CI/CD integrations to train and deploy custom models for Speech and the Language Understanding (LUIS) service.
+You can use Azure DevOps and GitHub Actions to manage your deployments. In the [following section](#continuous-integration-and-delivery-with-devops-and-github-actions), we have two examples of CI/CD integrations to train and deploy custom models for Speech and Azure Language Understanding (LUIS) service.
 
 * **Target user(s)**: Developers, data scientists, and data engineers.
 * **Benefits**: Allows you to continuously adjust, update, and deploy applications and models programmatically. There's significant benefit when regularly using your data to improve and update models for Speech, Vision, Language, and Decision.

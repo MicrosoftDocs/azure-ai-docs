@@ -1,17 +1,15 @@
 ---
 title: Custom Named Entity Recognition (NER) FAQ
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about Frequently asked questions when using custom Named Entity Recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
-
 # Frequently asked questions for Custom Named Entity Recognition
 
 Find answers to commonly asked questions about concepts, and scenarios related to custom NER in Azure AI Language.

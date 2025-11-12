@@ -1,16 +1,15 @@
 ---
 title: Orchestration workflow data formats
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:  language-service-orchestration
 ---
-
 # Data formats accepted by orchestration workflow
 
 When data is used by your model for learning, it expects the data to be in a specific format. When you tag your data in Language Studio, it gets converted to the JSON format described in this article. You can also manually tag your files.

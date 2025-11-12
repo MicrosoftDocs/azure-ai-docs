@@ -1,15 +1,14 @@
 ---
 title: Identification entities
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
-
 ## Financial account identification
 
 This entity category includes financial information and official forms of identification.

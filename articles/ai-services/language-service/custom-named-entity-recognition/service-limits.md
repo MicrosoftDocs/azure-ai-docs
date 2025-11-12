@@ -1,16 +1,15 @@
 ---
 title: Custom Named Entity Recognition (NER) service limits
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the data and service limits when using Custom Named Entity Recognition (NER).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, references_regions
 ---
-
 # Custom named entity recognition service limits
 
 Use this article to learn about the data and service limits when using custom NER.
@@ -35,7 +34,7 @@ Use this article to learn about the data and service limits when using custom NE
 
 ## Regional availability 
 
-See [Language service regional availability](../concepts/regional-support.md#custom-named-entity-recognition).
+See [Language regional availability](../concepts/regional-support.md#custom-named-entity-recognition).
 
 ## API limits
 

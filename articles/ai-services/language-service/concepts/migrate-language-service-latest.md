@@ -1,21 +1,20 @@
 ---
 title: Migrate to the latest version of Azure Language in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
-description: Learn how to move your Text Analytics applications to use the latest version of the Language service.
+titleSuffix: Foundry Tools
+description: Learn how to move your Text Analytics applications to use the latest version of Azure Language service.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Migrate to the latest version of Azure Language in Foundry Tools
 
 > [!TIP]
 > Just getting started with Azure Language in Foundry Tools? See the [overview article](../overview.md) for details on the service, available features, and links to quickstarts for information on the current version of the API.
 
-If your applications are still using the Text Analytics API, or client library (before stable v5.1.0), this article helps you upgrade your applications to use the latest version of the [Azure Language](../overview.md) features.
+If your applications are still using the Text Analytics API, or client library (before stable v5.1.0), this article helps you upgrade your applications to use the latest version of the [Azure Language in Foundry Tools](../overview.md) features.
 
 ## Unified Language endpoint (REST API)
 
@@ -25,7 +24,7 @@ This section applies to applications that use the older `/text/analytics/...` en
 https://<your-custom-subdomain>.cognitiveservices.azure.com/text/analytics/<version>/<feature>
 ```
 
-If your application used the endpoint format, the REST API endpoint for the following Language service features is changed:
+If your application used the endpoint format, the REST API endpoint for the following Language features is changed:
 
 * [Entity linking](../entity-linking/quickstart.md?pivots=rest-api)
 * [Key phrase extraction](../key-phrase-extraction/quickstart.md?pivots=rest-api)
@@ -35,7 +34,7 @@ If your application used the endpoint format, the REST API endpoint for the foll
 * [Sentiment analysis and opinion mining](../sentiment-opinion-mining/quickstart.md?pivots=rest-api)
 * [Text analytics for health](../text-analytics-for-health/quickstart.md?pivots=rest-api)
 
-The Language service now provides a unified endpoint for sending REST API requests to these features. If your application uses the REST API, update its request endpoint to use the current endpoint:
+The Language now provides a unified endpoint for sending REST API requests to these features. If your application uses the REST API, update its request endpoint to use the current endpoint:
 
 ```http
 https://<your-language-resource-endpoint>/language/:analyze-text?api-version=2022-05-01
@@ -80,7 +79,7 @@ If you're migrating an application from v2.1 of the API, there are several chang
 
 ### NER, PII, and entity linking v2.1
 
-In version 2.1, the Text Analytics API used one endpoint for Named Entity Recognition (NER) and entity linking. The current version of this feature provides expanded named entity detection, and has separate endpoints for [NER](../named-entity-recognition/quickstart.md?pivots=rest-api) and [entity linking](../entity-linking/quickstart.md?pivots=rest-api) requests. Additionally, you can use another feature offered in the Language service that lets you detect [detect personal (PII) and health (PHI) information](../personally-identifiable-information/overview.md).
+In version 2.1, the Text Analytics API used one endpoint for Named Entity Recognition (NER) and entity linking. The current version of this feature provides expanded named entity detection, and has separate endpoints for [NER](../named-entity-recognition/quickstart.md?pivots=rest-api) and [entity linking](../entity-linking/quickstart.md?pivots=rest-api) requests. Additionally, you can use another feature offered in Azure Language that lets you detect [detect personal (PII) and health (PHI) information](../personally-identifiable-information/overview.md).
 
 You also need to update your application to use the [entity categories](../named-entity-recognition/concepts/named-entity-categories.md) returned in the [API's response](../named-entity-recognition/how-to-call.md).
 
@@ -124,7 +123,7 @@ The key phrase extraction feature functionality currently isn't changed outside 
 ## See also
 
 * [What is Azure AI Language?](../overview.md)
-* [Language service developer guide](developer-guide.md)
+* [Language developer guide](developer-guide.md)
 * See the following reference documentation for information on previous API versions.
     * [Version 2.1](https://westcentralus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v2-1/operations/56f30ceeeda5650db055a3c9)
     * [Version 3.0](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-0/operations/Sentiment)

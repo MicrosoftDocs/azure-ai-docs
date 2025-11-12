@@ -1,17 +1,16 @@
 ---
 title: Use Language service in power automate
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use Azure AI Language in power automate, without writing code.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-language
 ---
-
-#  Use the Language service in Power Automate
+#  Use Azure Language in Power Automate
 
 You can use [Power Automate](/power-automate/getting-started) flows to automate repetitive tasks and bring efficiency to your organization. Using Azure AI Language, you can automate tasks like:
 * Send incoming emails to different departments based on their contents. 
@@ -47,7 +46,7 @@ For this tutorial, you will create a flow that extracts named entities from text
 
     :::image type="content" source="../media/trigger-flow.png" alt-text="A screenshot of how to manually trigger a flow." lightbox="../media/trigger-flow.png":::
 
-1. Select **+ New step** to begin adding a Language service connector. 
+1. Select **+ New step** to begin adding a Language connector. 
 
 1. Under **Choose an operation** search for **Azure AI Language**. Then select **Azure AI Language**. This will narrow down the list of actions to only those that are available for Language.
 
@@ -81,6 +80,6 @@ For this tutorial, you will create a flow that extracts named entities from text
 ## Next steps 
 
 * [Triage incoming emails with custom text classification](../custom-text-classification/tutorials/triage-email.md)
-* [Available Language service connectors](/connectors/cognitiveservicestextanalytics)
+* [Available Language connectors](/connectors/cognitiveservicestextanalytics)
 
 

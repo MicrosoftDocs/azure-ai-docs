@@ -1,19 +1,18 @@
 ---
 title: 'Tutorial: Integrate Power BI with key phrase extraction'
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-key-phrase
   - cogserv-non-critical-language
   - sfi-image-nochange
 ---
-
 # Tutorial: Extract key phrases from text stored in Power BI
 
 Microsoft Power BI Desktop is a free application that lets you connect to, transform, and visualize your data. Key phrase extraction, one of the features of Azure AI Language, provides natural language processing. Given raw unstructured text, it can extract the most important phrases, analyze sentiment, and identify well-known entities such as brands. Together, these tools can help you quickly see what your customers are talking about and how they feel about it.

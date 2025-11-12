@@ -1,16 +1,15 @@
 ---
 title: Conversational language understanding language support
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article lists the natural languages Azure Language in Foundry Tools supports for conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Language support for Conversational Language Understanding (CLU)
 
 Use this article to learn about the languages currently supported by CLU feature.
