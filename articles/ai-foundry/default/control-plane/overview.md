@@ -64,9 +64,9 @@ Get a real-time overview of every agent, model, and tool across projects in your
 
 - Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
 
-- Continuously evaluate agent performance, quality, and risk dimensions such as **Task Adherence, Intent Resolution, Tool Call Success, Sensitive Data Leakage, and Jailbreak/XPIA exposure.**
+- [Continuously evaluate](../../how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions such as **[Task Adherence, Intent Resolution, Tool Call Success](../../concepts/evaluation-evaluators/agent-evaluators.md), [Groundedness](../../concepts/evaluation-evaluators/rag-evaluators.md), Sensitive Data Leakage, and Jailbreak/XPIA exposure.**
 
-- Use the [**AI Red Teaming Agent**](../../concepts/ai-red-teaming-agent.md) and **cluster analysis** for automated vulnerability probing and error root-cause discovery.
+- Use the [**AI Red Teaming Agent**](../../concepts/ai-red-teaming-agent.md) and [**cluster analysis**](../observability/how-to/cluster-analysis.md) for automated vulnerability probing and error root-cause discovery.
 
 - Let **Foundry Agent** recommend improvements, from prompt refinements to model version upgrades.
 
