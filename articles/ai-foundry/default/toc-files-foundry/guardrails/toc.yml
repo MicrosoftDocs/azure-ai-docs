@@ -11,10 +11,6 @@ items:
       href: ../../../openai/concepts/content-filter-personal-information.md
     - name: Groundedness detection
       href: ../../../openai/concepts/content-filter-groundedness.md
-    - name: Task Aherence quickstart
-      href: ../../guardrails/how-to-task-adherence.md
-    - name: Task Aherence overview
-      href: ../../guardrails/task-adherence.md
     - name: Harm categories
       href: ../../guardrails/severity-levels.md
     - name: Block lists
