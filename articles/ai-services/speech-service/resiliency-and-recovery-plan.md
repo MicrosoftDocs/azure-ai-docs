@@ -1,6 +1,6 @@
 ---
 title: How to back up and recover speech customer resources
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to prepare for service outages with custom speech and custom voice.
 author: PatrickFarley
 ms.author: pafarley

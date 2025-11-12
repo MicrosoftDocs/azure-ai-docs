@@ -1,6 +1,6 @@
 ---
 title: Azure AI Content Understanding prebuilt analyzers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure AI Content Understanding.
 author: PatrickFarley 
 ms.author: jfilcik
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Prebuilt analyzers in Azure AI Content Understanding
+# Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
 Azure AI Content Understanding prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
 

@@ -2,7 +2,7 @@
 title: Integrate Open WebUI with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to create a chat application using Foundry Local and Open WebUI
-keywords: Azure AI services, cognitive, AI models, local inference
+keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
@@ -62,5 +62,5 @@ That's it! You're now chatting with an AI model running entirely on your local d
 
 ## Next steps
 
-- [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)
+- [Use chat completions via REST server with Foundry Local](how-to-integrate-with-inference-sdks.md)
 - [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)

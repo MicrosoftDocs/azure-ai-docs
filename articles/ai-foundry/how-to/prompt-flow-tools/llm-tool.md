@@ -1,7 +1,7 @@
-﻿---
-title: LLM tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the large language model (LLM) tool for flows in Azure AI Foundry portal.
+---
+title: LLM tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the large language model (LLM) tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# LLM tool for flows in Azure AI Foundry portal
+# LLM tool for flows in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -34,10 +34,10 @@ Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites)
 
 ## Build with the LLM tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ LLM** to add the LLM tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/llm-tool.png" alt-text="Screenshot that shows the LLM tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/llm-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/llm-tool.png" alt-text="Screenshot that shows the LLM tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/llm-tool.png":::
 
 1. Select the connection to one of your provisioned resources. For example, select **Default_AzureOpenAI**.
 1. From the **Api** dropdown list, select **chat** or **completion**.

@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot private endpoint connection
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: 'Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint.'
 ms.service: azure-ai-foundry
 ms.custom:
@@ -18,23 +18,23 @@ ai.usage: ai-assisted
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-When you create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), secure it with a private endpoint. A private endpoint lets you connect to the project over a private network and protects your data and resources. If you're having trouble connecting to a project that uses a private endpoint, this article lists steps to help you fix the issue.
+When you create a project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), secure it with a private endpoint. A private endpoint lets you connect to the project over a private network and protects your data and resources. If you're having trouble connecting to a project that uses a private endpoint, this article lists steps to help you fix the issue.
 
-When you connect to an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) project that's set up with a private endpoint, you might see an HTTP 403 error or a message that says access is forbidden. Use this article to check for common configuration issues that cause this error.
+When you connect to a [Foundry](https://ai.azure.com/?cid=learnDocs) project that's set up with a private endpoint, you might see an HTTP 403 error or a message that says access is forbidden. Use this article to check for common configuration issues that cause this error.
 
-## Error loading Azure AI Foundry hub or project
+## Error loading Foundry hub or project
 
-If you get an error when loading your Azure AI Foundry hub or project, check these two settings.
+If you get an error when loading your Foundry hub or project, check these two settings.
 
 1. Your hub has public network access set to __Disabled__.
 1. Your hub has public network access set to __Enable from selected IPs__.
 
-Depending on the public network access setting for your Azure AI Foundry hub or project, take the matching action:
+Depending on the public network access setting for your Foundry hub or project, take the matching action:
 
 | Public network access setting | Action |
 | ----- | ----- |
-| Disabled | Create and approve an inbound private endpoint from your virtual network to your Azure AI Foundry hub. Connect securely to your hub or project using Azure VPN, ExpressRoute, or Azure Bastion. |
-| Enable from selected IPs | Make sure your IP address is listed in the **Firewall IP ranges allowed to access Azure AI Foundry**. If you can't add your IP address, contact your IT admin. |
+| Disabled | Create and approve an inbound private endpoint from your virtual network to your Foundry hub. Connect securely to your hub or project using Azure VPN, ExpressRoute, or Azure Bastion. |
+| Enable from selected IPs | Make sure your IP address is listed in the **Firewall IP ranges allowed to access Foundry**. If you can't add your IP address, contact your IT admin. |
 
 ## Securely connect to your hub or project
 
@@ -52,7 +52,7 @@ To connect to a hub or project secured by a virtual network, use one of these me
 
 Troubleshooting steps differ based on whether you use Azure DNS or a custom DNS. Follow these steps to see which one you're using:
 
-1. In the [Azure portal](https://portal.azure.com), select the private endpoint resource for your Azure AI Foundry. If you don't remember the name, select your Azure AI Foundry resource, __Networking__, __Private endpoint connections__, and then select the __Private endpoint__ link.
+1. In the [Azure portal](https://portal.azure.com), select the private endpoint resource for your Foundry. If you don't remember the name, select your Foundry resource, __Networking__, __Private endpoint connections__, and then select the __Private endpoint__ link.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-connections.png" alt-text="Screenshot of the private endpoint connections for the resource." lightbox="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-connections.png":::
 
@@ -156,6 +156,6 @@ Try these steps to troubleshoot:
 1. In the Azure portal, check the network settings of the storage account that's associated with your hub.
   * If public network access is set to __Enabled from selected virtual networks and IP addresses__, make sure the correct IP address ranges are added to allow access to your storage account.
   * If public network access is set to __Disabled__, make sure a private endpoint from your Azure virtual network to your storage account is configured with Target sub-resource set to blob. Also, grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
-1. In the Azure portal, go to your Azure AI Foundry hub. Make sure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. Learn more in [How to configure a managed network for Azure AI Foundry hubs](configure-managed-network.md).
-1. Go to Azure AI Foundry > your project > project settings.
+1. In the Azure portal, go to your Foundry hub. Make sure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. Learn more in [How to configure a managed network for Foundry hubs](configure-managed-network.md).
+1. Go to Foundry > your project > project settings.
 1. Refresh the page. Several connections appear, including `workspaceblobstore`.

@@ -1,6 +1,6 @@
 ---
 title: Secure your Content Understanding analyzers and data
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Configure security features like customer managed keys and managed identities to secure your data and applications
 author: PatrickFarley 
 ms.author: pafarley
@@ -21,7 +21,7 @@ Content Understanding is part of Azure AI Foundry and provides the same security
 
 Azure AI Foundry provides a layered security model. Azure AI Document Intelligence automatically encrypts your data when persisting it to the cloud. Document Intelligence encryption protects your data to help you to meet your organizational security and compliance commitments.
 
-### Azure AI services encryption
+### Foundry Tools encryption
 
 By default, your subscription uses Microsoft-managed encryption keys. Data is encrypted and decrypted using FIPS 140-2-compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default. You don't need to modify your code or applications to take advantage of encryption.
 

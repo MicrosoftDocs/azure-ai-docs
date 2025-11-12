@@ -1,6 +1,6 @@
 ---
-title: "How to use telephony integration with Voice live - Speech service"
-titleSuffix: Azure AI services
+title: Call Center Voice Agent Accelerator 
+titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API with telephony systems.
 manager: nitinme
 author: PatrickFarley

@@ -1,6 +1,6 @@
 ---
 title: How to use video translation - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to use video translation. 
 author: PatrickFarley
 manager: nitinme
@@ -14,14 +14,14 @@ zone_pivot_groups: foundry-speech-studio-rest
 
 # How to use video translation
 
-::: zone pivot="ai-foundry-portal"
-[!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]
+::: zone pivot="rest-api"
+[!INCLUDE [REST API include](./includes/how-to/video-translation/rest.md)]
 ::: zone-end
 
 ::: zone pivot="speech-studio"
 [!INCLUDE [Speech Studio include](./includes/how-to/video-translation/speech-studio.md)]
 ::: zone-end
 
-::: zone pivot="rest-api"
-[!INCLUDE [REST API include](./includes/how-to/video-translation/rest.md)]
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]
 ::: zone-end

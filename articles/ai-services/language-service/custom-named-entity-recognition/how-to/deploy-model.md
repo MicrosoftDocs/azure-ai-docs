@@ -1,16 +1,15 @@
 ---
 title: How to deploy a custom named entity recognition (NER) model
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to deploy a model for custom NER.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
 # Deploy a model and extract entities from text using the runtime API
 
 Once you're satisfied with how your model performs, it's ready to be deployed and used to recognize entities in text. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).

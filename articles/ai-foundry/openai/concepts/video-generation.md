@@ -115,7 +115,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 ```python
 from openai import OpenAI
@@ -304,7 +304,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 **Synchronous:**
 
@@ -439,7 +439,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 ```python
 from openai import OpenAI
@@ -599,7 +599,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 **Local reference file:**
 
@@ -714,7 +714,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 ```python
 from openai import OpenAI

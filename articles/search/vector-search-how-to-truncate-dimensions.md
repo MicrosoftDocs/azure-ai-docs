@@ -37,7 +37,7 @@ MRL multilevel compression saves on vector storage and improves query response t
 
 ### Supported clients
 
-You can use the REST APIs or Azure SDK packages to implement MRL compression. At this time, there's no Azure portal or Azure AI Foundry support.
+You can use the REST APIs or Azure SDK packages to implement MRL compression. At this time, there's no Azure portal or Microsoft Foundry support.
 
 - Check the change logs for each Azure SDK package for feature support: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
 

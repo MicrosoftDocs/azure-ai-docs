@@ -13,7 +13,7 @@ ms.author: admayber
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Indexing documents, along with their associated [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-08-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time.
+Indexing documents, along with their associated [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time.
 
 Key features include:
 
@@ -27,7 +27,7 @@ This article explains how to use the push REST API to index document-level permi
 
 - Content with ACL metadata from [Microsoft Entra ID](/entra/fundamentals/whatis) or another POSIX-style ACL system. 
 
-- The [latest preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
+- The [latest preview REST API](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
 
 - An index schema with a `permissionFilterOption` enabled, plus `permissionFilter` field attributes that store the permissions associated with the document.
 
@@ -72,7 +72,7 @@ Here's a basic example schema that includes all `permissionFilter` types:
 Once you have an index with permission filter fields, you can populate those values using the indexing push API as with any other document fields. Here's an example using the specified index schema, where each document specifies the upload action, the key field (DocumentId), and permission fields. It should also have content, but that field is omitted in this example for brevity.
 
 ```https
-POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2025-08-01-preview
+POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2025-11-01-preview
 {
   "value": [
     {

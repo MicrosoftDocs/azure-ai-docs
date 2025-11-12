@@ -1,19 +1,18 @@
 ---
-title: What is sentiment analysis and opinion mining in the Language service?
-titleSuffix: Azure AI services
-description: An overview of the sentiment analysis feature in Azure AI services, which helps you find out what people think of a topic by mining text for clues.
+title: What is sentiment analysis and opinion mining in Azure Language service?
+titleSuffix: Foundry Tools
+description: An overview of the sentiment analysis feature in Azure Language, which helps you find out what people think of a topic by mining text for clues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
-
 # What is sentiment analysis and opinion mining?
 
-Sentiment analysis and opinion mining are features offered by [the Language service](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you discover what people think about your brand or topic by analyzing text for signs of positive or negative sentiment. They can also link these sentiments to specific aspects of the text.
+Sentiment analysis and opinion mining are features offered by [Azure Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you discover what people think about your brand or topic by analyzing text for signs of positive or negative sentiment. They can also link these sentiments to specific aspects of the text.
 
 Both sentiment analysis and opinion mining work with various [written languages](./language-support.md).
 
@@ -35,7 +34,7 @@ Opinion mining is a feature of sentiment analysis, also known as aspect-based se
 
 ## Reference documentation
 
-As you use sentiment analysis, see the following reference documentation and samples for the Language service:
+As you use sentiment analysis, see the following reference documentation and samples for Azure Language:
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|

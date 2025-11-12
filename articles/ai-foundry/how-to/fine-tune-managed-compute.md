@@ -1,7 +1,7 @@
 ---
-title: Deploy Fine-Tuned Models with Managed Compute in Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Deploy fine-tuned models using managed compute in Azure AI Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources.
+title: Deploy Fine-Tuned Models with Managed Compute in Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Deploy fine-tuned models using managed compute in Microsoft Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 08/15/2025
@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Learn how to fine-tune and deploy models using managed compute in Azure AI Foundry. Adjust training parameters (learning rate, batch size, epochs) to optimize performance.
+Learn how to fine-tune and deploy models using managed compute in Microsoft Foundry. Adjust training parameters (learning rate, batch size, epochs) to optimize performance.
 
 Fine-tuning a pretrained model for a related task is more efficient than training a new model from scratch.
 
@@ -40,13 +40,13 @@ In this article, you learn how to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 ## Fine-tune a foundation model using managed compute
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.
@@ -58,7 +58,7 @@ In this article, you learn how to:
 
     1. Select __Fine-tune__ on the model card to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.
 
-    :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in Azure AI Foundry." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
+    :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in Foundry." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
 
 1. Select **Managed compute**. This opens **Basic settings**.
 

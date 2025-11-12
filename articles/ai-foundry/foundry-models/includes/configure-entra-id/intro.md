@@ -8,15 +8,15 @@ ms.date: 09/26/2025
 ms.topic: include
 ---
 
-Azure AI Foundry Models support keyless authorization with Microsoft Entra ID. Keyless authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. Keyless authorization is a strong choice for organizations adopting secure and scalable identity management solutions.
+Microsoft Foundry Models support keyless authorization with Microsoft Entra ID. Keyless authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. Keyless authorization is a strong choice for organizations adopting secure and scalable identity management solutions.
 
-This article explains how to configure Microsoft Entra ID for inference in Azure AI Foundry Models.
+This article explains how to configure Microsoft Entra ID for inference in Foundry Models.
 
 ## Understand roles in the context of resource in Azure
 
 Microsoft Entra ID uses role-based access control (RBAC) for authorization. Roles are central to managing access to your cloud resources. A role is a collection of permissions that define what actions can be performed on specific Azure resources. By assigning roles to users, groups, service principals, or managed identities—collectively known as security principals—you control their access within your Azure environment to specific resources.
 
-When you assign a role, you specify the security principal, the role definition, and the scope. This combination is known as a role assignment. Azure AI Foundry Models is a capability of the Azure AI Services resources, and hence, roles assigned to that particular resource control the access for inference.
+When you assign a role, you specify the security principal, the role definition, and the scope. This combination is known as a role assignment. Foundry Models is a capability of the Foundry Tools resources, and hence, roles assigned to that particular resource control the access for inference.
 
 You identify two different types of access to the resources:
 
@@ -42,7 +42,7 @@ To complete this article, you need:
   
   * Security principal: your user account.
   * Role definition: the *Cognitive Services User* role.
-  * Scope: the Azure AI Services resource.
+  * Scope: the Foundry Tools resource.
 
 * If you want to create a custom role definition instead of using the *Cognitive Services User* role, ensure the role has the following permissions:
 

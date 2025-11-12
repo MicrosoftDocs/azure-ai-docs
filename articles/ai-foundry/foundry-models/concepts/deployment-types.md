@@ -1,7 +1,9 @@
 ---
-title: Understanding deployment types in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
+title: Understanding deployment types in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
 description: Learn how to use deployment types in Azure AI model deployments
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -13,11 +15,11 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Deployment types for Azure AI Foundry Models
+# Deployment types for Microsoft Foundry Models
 
-Azure AI Foundry makes models available by using the model deployment concept in Azure AI Foundry Services (formerly known as Azure AI Services). Model deployments are also Azure resources and, when created, give access to a given model under certain configurations. Such a configuration includes the infrastructure required to process the requests.
+Microsoft Foundry makes models available by using the model deployment concept in Foundry Services (formerly known as Azure AI Services). Model deployments are also Azure resources and, when created, give access to a given model under certain configurations. Such a configuration includes the infrastructure required to process the requests.
 
-Azure AI Foundry models provide customers with hosting structure choices that fit their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Azure AI Foundry resource. 
+Foundry models provide customers with hosting structure choices that fit their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Foundry resource. 
 
 The service offers two main types of deployments: *standard* and *provisioned*. For a given deployment type, customers can align their workloads with their data-processing requirements. They can choose an Azure geography (`Standard` or `Provisioned-Managed`), a Microsoft-specified data zone (`DataZone- Standard` or `DataZone Provisioned-Managed`), or a global (`Global-Standard` or `Global Provisioned-Managed`) processing option.
 
@@ -30,7 +32,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 :::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot showing how to customize the deployment type for a given model deployment." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
 
-## Azure AI Foundry deployment data processing locations
+## Foundry deployment data processing locations
 
 For standard deployments, there are three deployment-type options to choose from: global, data zone, and Azure geography. For provisioned deployments, there are two deployment-type options to choose from: global and Azure geography. We recommend Global Standard as a starting point.
 
@@ -42,11 +44,11 @@ Our global deployments are the first location for all new models and features. D
 
 ### Data Zone deployments
 
-For any [deployment type](/azure/ai-foundry/openai/how-to/deployment-types) labeled **Global**, prompts and responses might be processed in any geography where the relevant Azure AI Foundry model is deployed. Learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+For any [deployment type](/azure/ai-foundry/openai/how-to/deployment-types) labeled **Global**, prompts and responses might be processed in any geography where the relevant Foundry model is deployed. Learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 
-For any deployment type labeled as **DataZone**, prompts and responses might be processed in any geography within the specified data zone, as defined by Microsoft. If you create a **DataZone** deployment in an Azure AI Foundry resource located in the United States, prompts and responses might be processed anywhere within the United States. If you create a **DataZone** deployment in an Azure AI Foundry resource located in a European Union member nation, prompts and responses might be processed in that or any other European Union member nation.
+For any deployment type labeled as **DataZone**, prompts and responses might be processed in any geography within the specified data zone, as defined by Microsoft. If you create a **DataZone** deployment in a Foundry resource located in the United States, prompts and responses might be processed anywhere within the United States. If you create a **DataZone** deployment in a Foundry resource located in a European Union member nation, prompts and responses might be processed in that or any other European Union member nation.
 
-For both **Global** and **DataZone** deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a **Global** or **DataZone** deployment type in an Azure AI Foundry resource; Azure data processing and compliance commitments remain applicable.
+For both **Global** and **DataZone** deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a **Global** or **DataZone** deployment type in a Foundry resource; Azure data processing and compliance commitments remain applicable.
 
 > [!NOTE]
 > With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic that is initially routed to this region is affected. To learn more, consult the [business continuity and disaster recovery guide](../../openai/how-to/business-continuity-disaster-recovery.md).
@@ -56,27 +58,29 @@ For both **Global** and **DataZone** deployment types, any data stored at rest, 
 - SKU name in code: `GlobalStandard`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Global deployments are available in the same Azure AI Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
+Global deployments are available in the same Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../../model-inference/quotas-limits.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+
+Global standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
 ## Global Provisioned
 
 - SKU name in code: `GlobalProvisionedManaged`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Global deployments are available in the same Azure AI Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure global infrastructure.  
+Global deployments are available in the same Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure global infrastructure.  
 
 ## Global Batch
 
 - SKU name in code: `GlobalBatch`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
 [Global Batch](../../openai/how-to/batch.md) is designed to efficiently handle large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at [50% less cost than Global Standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.  
 
@@ -95,27 +99,29 @@ Key use cases include:
 - SKU name in code: `DataZoneStandard`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Data Zone Standard deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
+Data Zone Standard deployments are available in the same Foundry resource as all other Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](/azure/ai-foundry/openai/quotas-limits#usage-tiers). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
+
+Data zone standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
 ## Data Zone Provisioned
 
 - SKU name in code: `DataZoneProvisionedManaged`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Data Zone Provisioned deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-specified data zone with the best availability for each request. Data Zone Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure infrastructure within the Microsoft-specified data zone.  
+Data Zone Provisioned deployments are available in the same Foundry resource as all other Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-specified data zone with the best availability for each request. Data Zone Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure infrastructure within the Microsoft-specified data zone.  
 
 ## Data Zone Batch
 
 - SKU name in code: `DataZoneBatch`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
 Data Zone Batch deployments provide all the same functionality as [Global Batch deployments](../../openai/how-to/batch.md). However, they allow you to use the global infrastructure of Azure to dynamically route traffic to only datacenters within the Microsoft-defined data zone with the best availability for each request.
 
@@ -137,7 +143,7 @@ Regional Provisioned deployments allow you to specify the amount of throughput y
 
 Azure Policy helps to enforce organizational standards and to assess compliance at scale. Through its compliance dashboard, it provides an aggregated view to evaluate the overall state of the environment, with the ability to drill down to per-resource, per-policy granularity. It also helps to bring your resources to compliance through bulk remediation for existing resources and automatic remediation for new resources. [Learn more about Azure Policy and specific built-in controls for AI services](/azure/ai-services/security-controls-policy).
 
-You can use the following policy to disable access to any Azure AI Foundry deployment type. To disable access to a specific deployment type, replace `GlobalStandard` with the SKU name for the deployment type that you want to disable access to.
+You can use the following policy to disable access to any Foundry deployment type. To disable access to a specific deployment type, replace `GlobalStandard` with the SKU name for the deployment type that you want to disable access to.
 
 ```json
 {
@@ -164,17 +170,17 @@ You can use the following policy to disable access to any Azure AI Foundry deplo
 - SKU name in code: `DeveloperTier`
 
 > [!IMPORTANT]
-> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
 Fine-tuned models support a `Developer` deployment designed to support custom model evaluation. It doesn't offer data residency guarantees or an SLA. To learn more about using the `Developer` deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test.md).
 
 ## Deploy models
 
-:::image type="content" source="../../openai/media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with a deployment type highlighted.":::
+:::image type="content" source="../../openai/media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Foundry portal with a deployment type highlighted.":::
 
 To learn about creating resources and deploying models, refer to the [Resource creation guide](../../openai/how-to/create-resource.md).
 
 ## Related content
 
 - [Quotas & limits](../../model-inference/quotas-limits.md)
-- [Data privacy, and security for Azure AI Foundry Models](../../how-to/concept-data-privacy.md)
+- [Data privacy, and security for Foundry Models](../../how-to/concept-data-privacy.md)

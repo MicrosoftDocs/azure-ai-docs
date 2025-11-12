@@ -1,12 +1,12 @@
 ---
 title: Document Intelligence container image tags and release notes
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: A listing of all Document Intelligence container image tags.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: reference
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

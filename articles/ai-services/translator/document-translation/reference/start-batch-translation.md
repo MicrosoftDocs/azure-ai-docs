@@ -1,13 +1,13 @@
 ---
 title: Start translation
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Start a document translation request with the Document translation service.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ---
 
 # Start batch translation
@@ -15,7 +15,7 @@ ms.date: 04/14/2025
 <!-- markdownlint-disable MD036 -->
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 
@@ -26,7 +26,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X POST "{document-translation-endpoint}/translator/document/batches?api-version={date}"
@@ -39,7 +39,7 @@ Request headers are:
 
 |Headers|Description|Condition|
 |--- |--- |---|
-|**Ocp-Apim-Subscription-Key**|Your Translator service API key from the Azure portal.|***Required***|
+|**Ocp-Apim-Subscription-Key**|Your Translator API key from the Azure portal.|***Required***|
 |**Ocp-Apim-Subscription-Region**|The region where your resource was created. |***Required*** when using a regional (geographic) resource like **West US**.</br>&bullet.|
 |**Content-Type**|The content type of the payload. The accepted value is **application/json** or **charset=UTF-8**.|***Required***|
 
@@ -290,7 +290,7 @@ The following are the possible HTTP status codes that a request returns.
 |--- |--- |--- |
 |code|`string`|Enums containing high-level error codes. Accepted values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized|
 |message|`string`|Gets high-level error message.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
 |inner.Errorcode|`string`|Gets code error string.|
 |innerError.message|`string`|Gets high-level error message.|
 |innerError.target|`string`|Gets the source of the error. For example, it would be `documents` or `document id` if the document is invalid.|

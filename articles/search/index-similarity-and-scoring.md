@@ -137,7 +137,7 @@ In Azure AI Search, for keyword search and the text portion of a hybrid query, y
 > [!NOTE]
 > The `featuresMode` parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents for text (Keyword) search that's BM25-ranked.
 
-[Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true) requests support a `featuresMode` parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index).
+[Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) requests support a `featuresMode` parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index).
 
 Valid values for featuresMode:
 
@@ -155,7 +155,7 @@ This parameter is especially useful when you're trying to understand why certain
 For a query that targets a "description" field, a request might look like this:
 
 ```http
-POST {{baseUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-08-01-preview  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 

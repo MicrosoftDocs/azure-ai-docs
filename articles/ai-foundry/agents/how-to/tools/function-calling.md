@@ -1,6 +1,6 @@
 ---
-title: 'How to use Azure AI Foundry Agent Service with function calling'
-titleSuffix: Azure AI Foundry
+title: 'How to use Foundry Agent Service with function calling'
+titleSuffix: Microsoft Foundry
 description: Learn how to use Azure AI Agents with function calling.
 services: cognitive-services
 manager: nitinme
@@ -12,6 +12,7 @@ author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Agents function calling
@@ -20,7 +21,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 > [!NOTE]
 > * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
-> * Although function calling isn't supported in the Azure AI Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
+> * Although function calling isn't supported in the Microsoft Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
 
 ### Usage support
 

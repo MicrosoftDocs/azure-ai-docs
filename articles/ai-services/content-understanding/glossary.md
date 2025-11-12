@@ -1,6 +1,6 @@
 ---
 title: Content Understanding Glossary
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Quick reference, detailed description on Content Understanding Terms and Definition
 author: PatrickFarley 
 ms.author: pafarley
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding terminology
+# Azure Content Understanding in Foundry Tools terminology
 
 | Term | Description |
 |:---------|:----------|

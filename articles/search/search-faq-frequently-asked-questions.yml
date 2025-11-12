@@ -29,7 +29,7 @@ sections:
       - question: |
           Are "Azure Search" and "Azure Cognitive Search" and "Azure AI Search" the same product?
         answer: |
-          Azure Search was renamed to Azure Cognitive Search in October 2019 to reflect the expanded (yet optional) use of cognitive skills and AI processing in service operations. Azure Cognitive Search was renamed to Azure AI Search in October 2023 to align with Azure AI services. 
+          Azure Search was renamed to Azure Cognitive Search in October 2019 to reflect the expanded (yet optional) use of cognitive skills and AI processing in service operations. Azure Cognitive Search was renamed to Azure AI Search in October 2023 to align with Foundry Tools. 
 
       - question: |
           What languages are supported?
@@ -206,7 +206,7 @@ sections:
       - question: |
           Does Azure AI Search process customer data in other regions?
         answer: |
-          Processing (vectorization or applied AI transformations) is performed in the Geo that hosts the Azure AI services used by skills, or the Azure apps or functions hosting custom skills, or the Azure OpenAI or Azure AI Foundry region that hosts your deployed models. These resources are specified by you, so you can choose whether to deploy them in the same Geo as your search service or not.
+          Processing (vectorization or applied AI transformations) is performed in the Geo that hosts the Foundry Tools used by skills, or the Azure apps or functions hosting custom skills, or the Azure OpenAI or Microsoft Foundry region that hosts your deployed models. These resources are specified by you, so you can choose whether to deploy them in the same Geo as your search service or not.
           
           If you send data to external (non-Azure) models or services, the processing location is determined by the external service. 
 

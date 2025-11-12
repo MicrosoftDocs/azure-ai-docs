@@ -1,7 +1,7 @@
 ---
 title: Use Azure Policies with hubs and projects
-titleSuffix: Azure AI Foundry
-description: Learn how to use Azure Policy with Azure AI Foundry to make sure your hubs and projects are compliant with your requirements.
+titleSuffix: Microsoft Foundry
+description: Learn how to use Azure Policy with Microsoft Foundry to make sure your hubs and projects are compliant with your requirements.
 ms.author: jburchel 
 author: jonburchel 
 ms.date: 10/01/2025
@@ -12,25 +12,25 @@ ms.topic: how-to
 ms.reviewer: aashishb
 reviewer: aashishb_microsoft
 ai-usage: ai-assisted
-# Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Azure AI Foundry Services so that I can ensure compliance with my organization's requirements.
+# Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Microsoft Foundry Services so that I can ensure compliance with my organization's requirements.
 ---
 
-# Audit and manage Azure AI Foundry hubs and projects
+# Audit and manage Microsoft Foundry hubs and projects
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 
-## Policies for Azure AI Foundry hubs and projects
+## Policies for Foundry hubs and projects
 
 [Azure Policy](/azure/governance/policy/) is a governance tool that allows you to ensure that Azure resources are compliant with your policies.
 
-Azure Policy provides a set of policies that you can use for common scenarios with Azure AI Foundry hubs and projects. You can assign these policy definitions to your existing subscription or use them as the basis to create your own [custom definitions](#create-custom-definitions).
+Azure Policy provides a set of policies that you can use for common scenarios with Foundry hubs and projects. You can assign these policy definitions to your existing subscription or use them as the basis to create your own [custom definitions](#create-custom-definitions).
 
-The following table lists the built-in policies that apply to both Azure AI Foundry and Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
+The following table lists the built-in policies that apply to both Foundry and Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
 
 > [!IMPORTANT]
-> Once a policy is assigned, it's applied to both Azure AI Foundry and Azure Machine Learning workspaces. For example, a policy at the subscription level that disables public network access would apply to all Azure AI Foundry hubs and projects, and Azure Machine Learning workspaces.
+> Once a policy is assigned, it's applied to both Foundry and Azure Machine Learning workspaces. For example, a policy at the subscription level that disables public network access would apply to all Foundry hubs and projects, and Azure Machine Learning workspaces.
 
 |Name<br /><sub>(Azure portal)</sub> |Description |Effects |Version<br /><sub>(GitHub)</sub> |
 |---|---|---|---|
@@ -43,10 +43,10 @@ The following table lists the built-in policies that apply to both Azure AI Foun
 |[Hubs should use private link](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F45e05259-1eb5-4f70-9574-baf73e9d219b) |Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to hubs, data leakage risks are reduced. Learn more about private links at: [https://learn.microsoft.com/azure/ai-studio/how-to/configure-private-link](configure-private-link.md). |Audit, Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/Workspace_PrivateEndpoint_Audit_V2.json) |
 |[Hubs should use user-assigned managed identity](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F5f0c7d88-c7de-45b8-ac49-db49e72eaa78) |Manage access to hubs and associated resources, Azure Container Registry, KeyVault, Storage, and App Insights using user-assigned managed identity. By default, system-assigned managed identity is used by a hub to access the associated resources. User-assigned managed identity allows you to create the identity as an Azure resource and maintain the life cycle of that identity. |Audit, Deny, Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/Workspace_UAIEnabled_Audit.json) |
 |[Computes to disable local authentication methods](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fa6f9a2d0-cff7-4855-83ad-4cd750666512) |Disable location authentication methods so that your computes require Microsoft Entra ID identities exclusively for authentication. Learn more at: [https://aka.ms/azure-ml-aad-policy](https://aka.ms/azure-ml-aad-policy). |Modify, Disabled |[2.1.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/DisableLocalAuth_Modify.json) |
-|[Configure hubs to use private DNS zones](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fee40564d-486e-4f68-a5ca-7a621edae0fb) |Use private DNS zones to override the DNS resolution for a private endpoint. A private DNS zone links to your virtual network to resolve to Azure AI Foundry hubs. |DeployIfNotExists, Disabled |[1.1.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/Workspace_PrivateDnsZones_DINE.json) |
+|[Configure hubs to use private DNS zones](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fee40564d-486e-4f68-a5ca-7a621edae0fb) |Use private DNS zones to override the DNS resolution for a private endpoint. A private DNS zone links to your virtual network to resolve to Foundry hubs. |DeployIfNotExists, Disabled |[1.1.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/Workspace_PrivateDnsZones_DINE.json) |
 |[Configure hubs to disable public network access](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fa10ee784-7409-4941-b091-663697637c0f) |Disable public network access for hubs and projects so that they aren't accessible over the public internet. This helps protect the workspaces against data leakage risks. You can control exposure of your workspaces by creating private endpoints instead. Learn more at: [https://learn.microsoft.com/azure/ai-studio/how-to/configure-private-link](configure-private-link.md). |Modify, Disabled |[1.0.3](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/Workspace_PublicNetworkAccessDisabled_Modify.json) |
 |[Configure Azure hubs with private endpoints](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F7838fd83-5cbb-4b5d-888c-bfa240972597) |Private endpoints connect your virtual network to Azure services without a public IP address at the source or destination. By mapping private endpoints to your hub, you can reduce data leakage risks. Learn more about private links at: [https://learn.microsoft.com/azure/ai-studio/how-to/configure-private-link](configure-private-link.md). |DeployIfNotExists, Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/Workspace_PrivateEndpoint_DINE.json) |
-|[Configure diagnostic settings for hubs to Log Analytics workspace](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff59276f0-5740-4aaf-821d-45d185aa210e) |Deploys the diagnostic settings for Azure AI Foundry hubs to stream resource logs to a Log Analytics Workspace when any hub which is missing this diagnostic setting is created or updated. |DeployIfNotExists, Disabled |[1.0.1](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/AuditDiagnosticLog_DINE.json) |
+|[Configure diagnostic settings for hubs to Log Analytics workspace](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff59276f0-5740-4aaf-821d-45d185aa210e) |Deploys the diagnostic settings for Foundry hubs to stream resource logs to a Log Analytics Workspace when any hub which is missing this diagnostic setting is created or updated. |DeployIfNotExists, Disabled |[1.0.1](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/AuditDiagnosticLog_DINE.json) |
 |[Resource logs in hubs should be enabled](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fafe0c3be-ba3b-4544-ba52-0c99672a8ad6) |Resource logs enable recreating activity trails to use for investigation purposes when a security incident occurs or when your network is compromised. |AuditIfNotExists, Disabled |[1.0.1](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Machine%20Learning/AuditDiagnosticLog_Audit.json) |
 
 Policies can be set at different scopes, such as at the subscription or resource group level. For more information, see the [Azure Policy documentation](/azure/governance/policy/overview).
@@ -65,13 +65,13 @@ Assign policies by using [Azure PowerShell](/azure/governance/policy/assign-poli
 
 ## Conditional access policies
 
-Control access to Azure AI Foundry hubs and projects by using [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview). For hubs, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to these apps:
+Control access to Foundry hubs and projects by using [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview). For hubs, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to these apps:
 
 | App name | App ID | Description |
 |---|---|---|
-| Azure AI Foundry App | cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Controls access to the Azure AI Foundry portal. |
+| Foundry App | cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Controls access to the Foundry portal. |
 | Azure Machine Learning Web App | d7304df8-741f-47d3-9bc2-df0e24e2071f | Controls access to Azure Machine Learning studio. |
-| Azure Machine Learning | 0736f41a-0425-bdb5-1563eff02385 | Controls direct access to the Azure Machine Learning API (for example, when using the SDK or REST API). Azure AI Foundry hub-based projects rely on this API. |
+| Azure Machine Learning | 0736f41a-0425-bdb5-1563eff02385 | Controls direct access to the Azure Machine Learning API (for example, when using the SDK or REST API). Foundry hub-based projects rely on this API. |
 
 ## Configure built-in policies
 

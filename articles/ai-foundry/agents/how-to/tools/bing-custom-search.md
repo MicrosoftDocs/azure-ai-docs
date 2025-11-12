@@ -1,5 +1,5 @@
 ---
-title: 'How to use Custom Bing Search with Azure AI Foundry Agent Service'
+title: 'How to use Custom Bing Search with Foundry Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Custom Bing Search results.
 services: cognitive-services
@@ -11,13 +11,14 @@ ms.date: 09/26/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Grounding with Bing Custom Search (preview)
 
 Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal. 
 
-Once the resource is deployed, go to **Configurations** in the Azure AI Foundry portal, and create a configuration instance to include content only from websites that your users care about. Instructions about how to create your custom configuration can be found in the [setup section](#setup).
+Once the resource is deployed, go to **Configurations** in the Microsoft Foundry portal, and create a configuration instance to include content only from websites that your users care about. Instructions about how to create your custom configuration can be found in the [setup section](#setup).
 
 Once the tool is configured, you can connect it to your Azure AI Agent. When a user sends a query, the agent will decide if Grounding with Bing Custom Search should be leveraged or not. If so, it will use Bing to search over the domains you specify and return relevant chunks. Lastly, Azure AI Agents will use the returned chunks to generate a response to return to the user 
 
@@ -25,7 +26,7 @@ Once the tool is configured, you can connect it to your Azure AI Agent. When a u
 >  
 > * Your usage of Grounding with Bing Custom Search can incur costs. See the pricing page for details. 
 > * By creating and using a Grounding with Bing Custom Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the [terms of use](https://www.microsoft.com/bing/apis/grounding-legal), which may be updated periodically. 
-> * When you use Grounding with Bing Custom Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search isn't subject to the same data processing terms (including location of processing) and doesn't have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether use of Grounding with Bing Custom Search in your agent meets your needs and requirements. 
+> * When you use Grounding with Bing Custom Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search isn't subject to the same data processing terms (including location of processing) and doesn't have the same compliance standards and certifications as the Foundry Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether use of Grounding with Bing Custom Search in your agent meets your needs and requirements. 
 
 ## How Grounding with Bing Custom Search works 
 
@@ -36,7 +37,7 @@ When a user sends a query, the customer's AI model deployment first processes it
 > [!NOTE]
 > When using Grounding with Bing Custom Search, the Bing Custom Search query, the configuration instance, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
-The authorization will happen between Grounding with Bing Custom Search service and Azure AI Foundry Agent service. Any Bing Custom Search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key and configuration instance, outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether the use of Grounding with Bing Custom Search in your agent meets your needs and requirements. 
+The authorization will happen between Grounding with Bing Custom Search service and Foundry Agent service. Any Bing Custom Search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key and configuration instance, outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether the use of Grounding with Bing Custom Search in your agent meets your needs and requirements. 
 
 Developers and end users don't have access to raw content returned from Grounding with Bing Custom Search. The model response, however, includes citations with links to the websites used to generate the response and is allowed to be stored using the mechanisms provided by the Agents Service. You can retrieve the model response by accessing the data in the thread that was created. These references must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Custom Search's Use and Display Requirements. 
 
@@ -84,9 +85,9 @@ When you create or update a configuration, enter the following information:
 1. Adjust ranking if needed. 
 
 
-1. Navigate to the **Agents** screen for your agent in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+1. Navigate to the **Agents** screen for your agent in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot of the agents screen in the AI Foundry portal.":::
+    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot of the agents screen in the Foundry portal.":::
 
 1. Select the **Grounding with Bing Custom Search** tool.  
 

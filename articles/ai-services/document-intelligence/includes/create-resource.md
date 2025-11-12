@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -12,7 +12,7 @@ Go to the Azure portal and <a href="https://portal.azure.com/#create/Microsoft.C
 |--|--|
 | **Subscription** | Select the Azure subscription which has been granted access. |
 | **Resource group** | The Azure resource group that contains your resource. You can create a new group or add it to a pre-existing group. |
-| **Region** | The location of your Azure AI Foundry resource. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
+| **Region** | The location of your AI Services resource. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
 | **Name** | A descriptive name for your resource. We recommend using a descriptive name, for example *MyNameFormRecognizer*. |
 | **Pricing tier** | The cost of your resource depends on the pricing tier you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/).|
 |**Review + create** | Select the Review + create button to deploy your resource on the Azure portal. |

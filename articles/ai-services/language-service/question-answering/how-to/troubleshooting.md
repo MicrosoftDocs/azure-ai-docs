@@ -5,9 +5,8 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: troubleshooting
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ---
-
 # Troubleshooting for custom question answering
 
 The curated list of the most frequently asked questions regarding custom question answering will help you adopt the feature faster and with better results.

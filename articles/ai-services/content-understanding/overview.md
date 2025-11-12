@@ -1,7 +1,7 @@
 ﻿---
-title: What is Azure AI Content Understanding?
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
+title: What is Azure Content Understanding in Foundry Tools?
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -123,6 +123,7 @@ Developers using the Content Understanding service should review Microsoft's pol
 
 Our quickstart guides help you quickly start using the Content Understanding service:
 
+* [**Microsoft Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Content Understanding Studio quickstart**](quickstart/content-understanding-studio.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 

@@ -1,16 +1,15 @@
-﻿---
+---
 title: Tag Utterances in Conversational Language Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to tag your utterances in conversational language understanding projects.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Label your utterances in Azure AI Foundry
 
 After you [build a schema](build-schema.md) for your fine-tuning task, you add training utterances to your project. The utterances should be similar to what your users use when they interact with the project. When you add an utterance, you have to assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities.
@@ -57,7 +56,7 @@ Use the following steps to label your utterances:
 
 1. By using the top tabs, you can change the view to **Training set** or **Testing set**. Learn more about [training and testing sets](train-model.md#data-splitting) and how they're used for model training and evaluation.
 
-    :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot that shows the page for tagging utterances in Language Studio." lightbox="../media/tag-utterances.png":::
+    :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot that shows the page for tagging utterances in Azure AI Foundry." lightbox="../media/tag-utterances.png":::
 
     > [!TIP]
     > If you plan to use **Automatically split the testing set from training data** splitting, add all your utterances to the training set.
@@ -78,7 +77,7 @@ Use the following steps to label your utterances:
     * **Unique utterances per labeled entity:** Each utterance is counted if it contains at least one labeled instance of this entity.
     * **Utterances per intent:** You can view the count of utterances per intent.
 
-    :::image type="content" source="../media/label-distribution.png" alt-text="A screenshot that shows entity distribution in Language Studio." lightbox="../media/label-distribution.png":::
+    :::image type="content" source="../media/label-distribution.png" alt-text="A screenshot that shows entity distribution in Azure AI Foundry." lightbox="../media/label-distribution.png":::
 
   > [!NOTE]
   > List, regex, and prebuilt components aren't shown on the data labeling page. All labels here apply to the learned component only.

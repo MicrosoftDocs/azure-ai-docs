@@ -1,7 +1,7 @@
 ---
-title: How to generate embeddings with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI Foundry Models
+title: How to generate embeddings with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to generate embeddings with Microsoft Foundry Models
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-foundry
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use embeddings API with models deployed in Azure AI Foundry Models.
+This article explains how to use embeddings API with models deployed in Microsoft Foundry Models.
 
 ## Prerequisites
 

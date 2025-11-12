@@ -46,10 +46,20 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. Use a project to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
+* An Azure AI Foundry project in a supported region. For a full list of supported regions, check out [language and region support](../language-region-support.md). See the instructions below to learn how to create your first project.
 
-[!INCLUDE [hub based project required](../../../ai-foundry/includes/uses-hub-only.md)]
+## Create your first project
 
+To get started with Content Understanding in the AI Foundry portal, follow these steps to create a project. A project lets you organize your work and save state while building customized AI apps. All work with Content Understanding happens in a project.
+
+1. From the home page of [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), select "Create new" in the top right corner.
+
+1. AI Foundry supports two project types: `AI Foundry resource` and `AI hub resource`. Both project types work with Content Understanding. For the most up-to-date experience, use the `AI Foundry resource`. For more context on the project types, see [Create a project for Azure AI Foundry](../../../ai-foundry/how-to/create-projects.md).
+
+    - If you're creating a **Foundry project**, select `Advanced options` and choose a [supported region](../language-region-support.md).
+
+    - If you're creating a **hub-based project**, select or create a hub to proceed. Ensure that the hub is in a [supported region](../language-region-support.md). If you don't have a hub or your hub isn't in a supported region, select the option at the top of the dropdown to create a new hub and fill out the required inputs.
+    
 # [Standard mode](#tab/standard)
 
 ## Create your single-file task powered by Content Understanding Standard mode
@@ -57,7 +67,7 @@ To get started, make sure you have the following resources and permissions:
 Follow these steps to create a custom task in the Azure AI Foundry. Use this task to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Select your hub-based project. You might need to select **View all resources** to see your project.
+1. Select your project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
 1. Select to create a `Single-file task` that uses Content Understanding Standard mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
@@ -113,7 +123,7 @@ You've successfully built your first Content Understanding analyzer and are read
 Follow these steps to create a custom task in Azure AI Foundry. Use this task to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Select your hub-based project. You might need to select **View all resources** to see your project.
+1. Select your project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
 1. Select to create a `Multi-file task` that uses Content Understanding Pro mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
