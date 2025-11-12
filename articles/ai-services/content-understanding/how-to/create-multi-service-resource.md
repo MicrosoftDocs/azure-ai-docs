@@ -19,7 +19,7 @@ ms.custom:
 To use Content Understanding, you need an Azure AI Foundry resource.
 
 > [!IMPORTANT]
-> The steps below explain how to create a resource for use with the [REST API](../quickstart/use-rest-api.md). To use Content Understanding in the Azure AI Foundry portal, see the [AI Foundry quickstart](../quickstart/use-ai-foundry.md).
+> The steps below explain how to create a resource for use with the [REST API](../quickstart/use-rest-api.md). To use Content Understanding in the Content Understanding Studio, see the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
 
 
 ## Prerequisites
