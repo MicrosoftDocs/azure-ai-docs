@@ -17,7 +17,7 @@ ms.custom:
   - build-aifnd
   - build-2025
 keywords:
-  - Azure AI services
+  - Foundry Tools
   - cognitive
 # customer intent: As a developer, I want to understand what Microsoft Foundry is so that I can use it to build AI applications.
 ---
@@ -204,11 +204,11 @@ Microsoft Foundry is monetized through individual products customer access and c
 
 The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using Microsoft Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](./how-to/costs-plan-manage.md).
+Using Microsoft Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./how-to/costs-plan-manage.md).
 
 ## Region availability
 
-Microsoft Foundry is available in most regions where Azure AI services are available. For more information, see [region support for Microsoft Foundry](reference/region-support.md).
+Microsoft Foundry is available in most regions where Foundry Tools are available. For more information, see [region support for Microsoft Foundry](reference/region-support.md).
 
 ## How to get access
 

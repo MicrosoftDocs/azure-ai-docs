@@ -1,7 +1,7 @@
 ---
-title: 'How-to configure guardrails and controls in Azure AI Foundry'
-titleSuffix: Azure AI Foundry
-description: How-to guide for creating, configuring, and managing guardrails and controls in Azure AI Foundry, including UI instructions and API configuration.
+title: 'How-to configure guardrails and controls in Microsoft Foundry'
+titleSuffix: Microsoft Foundry
+description: How-to guide for creating, configuring, and managing guardrails and controls in Microsoft Foundry, including UI instructions and API configuration.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -10,12 +10,12 @@ author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
 ms.custom: azure-ai-guardrails
-# customer intent: As a developer, I want a comprehensive guide to guardrails and controls in Azure AI Foundry so that I can implement complete safety measures for my models and agents.
+# customer intent: As a developer, I want a comprehensive guide to guardrails and controls in Microsoft Foundry so that I can implement complete safety measures for my models and agents.
 ---
 
-# How to configure guardrails and controls in Azure AI Foundry
+# How to configure guardrails and controls in Microsoft Foundry
 
-This comprehensive guide walks you through every aspect of creating, configuring, and managing guardrails and controls in Azure AI Foundry. From basic setup to advanced features, this article covers both UI instructions and API configuration methods.
+This comprehensive guide walks you through every aspect of creating, configuring, and managing guardrails and controls in Microsoft Foundry. From basic setup to advanced features, this article covers both UI instructions and API configuration methods.
 
 ## Prerequisites 
 
@@ -23,9 +23,9 @@ This comprehensive guide walks you through every aspect of creating, configuring
 - An [Azure AI resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AIServices). 
 
 
-## Create a guardrail in Azure AI Foundry
+## Create a guardrail in Foundry
 
-1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project.
+1. Go to [Foundry](https://ai.azure.com) and navigate to your project.
 2. Select **Build** in the top right menu.
 3. Select the **Guardrails** page from the left navigation.
 4. Select **Create Guardrail** in the top right.
@@ -88,7 +88,7 @@ After adding, editing, and/or deleting controls as desired:
    > [!NOTE]
    > Microsoft Default guardrails, such as Default.V2, cannot be edited.
 
-4. Follow the same instructions as in [Create a guardrail](#create-a-guardrail-in-azure-ai-foundry) to edit, add, or remove controls; assign or re-assign agents and/or models; and rename the guardrail, as needed.
+4. Follow the same instructions as in [Create a guardrail](#create-a-guardrail-in-foundry) to edit, add, or remove controls; assign or re-assign agents and/or models; and rename the guardrail, as needed.
 
 ## Assign a guardrail
 
@@ -145,7 +145,7 @@ To test the behavior of a particular guardrail:
 
 ## API instructions
 
-### Creating a Guardrail in Azure AI Foundry 
+### Creating a Guardrail in Foundry 
 A guardrail is represented as an RaiPolicy in the resource manager. Use the [RAI Policies page](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) to create or update a new guardrail through code. 
 
 
@@ -156,7 +156,7 @@ Assign an existing guardrail to a model via the [model deployment properties](/r
 
 ## Work with annotations
 
-Azure AI Foundry provides annotations to help you understand the guardrail results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
+Foundry provides annotations to help you understand the guardrail results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
 
 ### Standard guardrail annotations
 

@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
-description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Azure AI Foundry."
+description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 11/18/2025
@@ -13,11 +13,8 @@ ai.usage: ai-assisted
 
 # Tutorial: Idea to prototype - Build and evaluate an enterprise agent
 
-[!INCLUDE [code-preview](../includes/code-preview.md)] 
 
-[!INCLUDE [agent-v2-switch](../includes/agent-v2-switch.md)]
-
-This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You will build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
+This tutorial covers the first stage of the Microsoft Foundry developer journey: from an initial idea to a working prototype. You will build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Microsoft Foundry SDK.
 
 **Business scenario**: Create an AI assistant that helps employees by combining:
 
@@ -38,17 +35,21 @@ This tutorial covers the first stage of the Azure AI Foundry developer journey: 
 
 This minimal sample demonstrates enterprise-ready patterns with realistic business scenarios.
 
+
+[!INCLUDE [code-preview](../includes/code-preview.md)] 
+
+
 ## Prerequisites 
 
 - Azure subscription and CLI authentication (`az login`)
 - Azure CLI 2.67.0 or later (check with `az version`)
-- An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)).
+- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)).
 - Python 3.10 or later
 - SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
 - (Optional) Git installed for cloning the sample repository
 
 > [!NOTE]
-> To configure your Azure AI Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
+> To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
 
 > [!TIP]
 > Get your tenant ID quickly:
@@ -58,7 +59,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 ### Understanding portal endpoints
 
-In the Azure AI Foundry portal you might see multiple endpoints (for example: resource endpoint, project endpoint, model endpoint). For this sample:
+In the Foundry portal you might see multiple endpoints (for example: resource endpoint, project endpoint, model endpoint). For this sample:
 - Use the **Project endpoint** in `PROJECT_ENDPOINT`.
 - Do NOT use the parent resource endpoint (for example the cognitive services account endpoint).
 - Use the model deployment name (for example `gpt-4o-mini`) rather than a raw base model name.
@@ -72,6 +73,8 @@ If unsure, in the portal open your project, select **Deployments**, choose the d
 Instead of navigating a large repository tree, use one of these approaches:
 
 #### Option A (clone entire samples repo)
+
+[!INCLUDE [agent-v2](../includes/agent-v2.md)]
 
 ```bash
 git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
@@ -145,7 +148,7 @@ pip install -r requirements.txt
 Copy `.env.template` to `.env` and configure:
 
 ```bash
-# Azure AI Foundry Configuration  
+# Foundry Configuration  
 PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
 MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
@@ -256,13 +259,13 @@ The code breaks down into the following main sections, ordered as they appear in
 
 ### Imports and authentication setup
 
-The code uses several client libraries from the Azure AI Foundry SDK to create a robust enterprise agent.
+The code uses several client libraries from the Microsoft Foundry SDK to create a robust enterprise agent.
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="imports_and_includes":::
 
 ### Configure authentication in Azure
 
-Before you can create your agent, set up authentication to the Azure AI Foundry.
+Before you can create your agent, set up authentication to the Foundry.
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
 
@@ -294,8 +297,8 @@ When you run the agent you will see output similar to the following, demonstrati
 
 ```bash
 $ python main.py
-✅ Connected to Azure AI Foundry
-🚀 Azure AI Foundry - Modern Workplace Assistant
+✅ Connected to Foundry
+🚀 Foundry - Modern Workplace Assistant
 Tutorial 1: Building Enterprise Agents with Agent SDK v2
 ======================================================================
 🤖 Creating Modern Workplace Assistant...
@@ -418,7 +421,7 @@ When you run the evaluation script you will see output similar to the following,
 
 ```bash
 python evaluate.py
-✅ Connected to Azure AI Foundry
+✅ Connected to Foundry
 🧪 Modern Workplace Assistant - Evaluation (Agent SDK v2)
 ======================================================================
 🤖 Creating Modern Workplace Assistant...
@@ -538,7 +541,7 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 ## Related content
 
-- [Azure AI Foundry Agent Service overview](../../agents/overview.md)
+- [Foundry Agent Service overview](../../agents/overview.md)
 - [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md)
 - [MCP tool integration](../../agents/how-to/tools/model-context-protocol.md)
 - [Multi-agent patterns](../../agents/how-to/connected-agents.md)

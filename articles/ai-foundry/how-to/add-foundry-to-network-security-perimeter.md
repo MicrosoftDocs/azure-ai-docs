@@ -1,6 +1,6 @@
 ---
-title: Add Azure AI Foundry to a network security perimeter
-description: Quickly learn how to associate an Azure AI Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management.
+title: Add Microsoft Foundry to a network security perimeter
+description: Quickly learn how to associate a Microsoft Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management.
 monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
@@ -11,11 +11,11 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Add Azure AI Foundry to a network security perimeter (preview)
+# Add Microsoft Foundry to a network security perimeter (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Use a network security perimeter (NSP) to restrict data‑plane access to your Azure AI Foundry resource and group it with other protected PaaS resources. An NSP lets you:
+Use a network security perimeter (NSP) to restrict data‑plane access to your Microsoft Foundry resource and group it with other protected PaaS resources. An NSP lets you:
 
 - Enforce inbound and outbound access rules instead of broad public exposure.
 - Reduce data exfiltration risk by containing traffic within a logical boundary.
@@ -25,11 +25,11 @@ This article gives only the Foundry-specific pointers you need. All procedural d
 
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)]
 
-:::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram of the NSP for Azure AI Foundry." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
+:::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram of the NSP for Foundry." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
 
 ## Limitations and considerations
 
-- Some Azure AI Foundry capabilities (for example fine-tuning and Assistants APIs) may be unavailable inside an enforced NSP boundary. 
+- Some Foundry capabilities (for example fine-tuning and Assistants APIs) may be unavailable inside an enforced NSP boundary. 
 - NSP governs data plane traffic. Control plane (management) operations may still succeed unless separately restricted.
 - Use a managed identity (system or user‑assigned) with appropriate role assignments for any data source access (for example Azure Blob Storage used for batch inputs/outputs).
 - Co-locate dependent services (Azure OpenAI, Azure Storage, Azure AI Search, etc.) in the same NSP when you need mutual access with minimal outbound allow rules.
@@ -40,16 +40,16 @@ For more information, see [Network security perimeter concepts](/azure/private-l
 
 ## Prerequisites
 
-Create an existing Azure AI Foundry resource (or plan to create one) and required managed identity assignments.
+Create an existing Foundry resource (or plan to create one) and required managed identity assignments.
 
 If any prerequisite behavior is unclear or changes, consult the latest Azure OpenAI + NSP article for parity details in [Azure OpenAI NSP guidance](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
-## Associate your Azure AI Foundry resource
+## Associate your Foundry resource
 
 Portal (summary):
 1. Open the Azure portal and navigate to your Network security perimeter resource.
 2. Select **Associated resources** (or **Resources** depending on UI iteration) > **Add / Associate**.
-3. Choose the target profile, pick your Azure AI Foundry resource, set access mode (start with Learning), and confirm.
+3. Choose the target profile, pick your Foundry resource, set access mode (start with Learning), and confirm.
 
 CLI (for automation) and full creation steps: see the NSP quickstarts (CLI or PowerShell):
 - [Create a network security perimeter (CLI)](/azure/private-link/create-network-security-perimeter-cli)
@@ -107,7 +107,7 @@ List only required FQDNs (principle of least privilege). Keep dependent Azure se
 1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
 2. Add or refine inbound/outbound rules.
 3. Switch to Enforced mode.
-4. Open [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and perform a model deployment or chat test. Success indicates required traffic is permitted.
+4. Open [Foundry](https://ai.azure.com/?cid=learnDocs) and perform a model deployment or chat test. Success indicates required traffic is permitted.
 5. If blocked, revert to Learning or add rules and retry.
 
 ::: moniker-end
@@ -134,8 +134,8 @@ Always confirm the latest API version in the reference before scripting.
 
 ## Related content
 
-- [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md)
+- [Role-based access control for Foundry](../concepts/rbac-azure-ai-foundry.md)
 - [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
 - [Azure OpenAI NSP article](/azure/ai-foundry/openai/how-to/network-security-perimeter)
 - [Azure CLI network perimeter reference](/cli/azure/network/perimeter?view=azure-cli-latest&preserve-view=true)
-- [What is Azure AI Foundry Agent Service?](../agents/overview.md)
+- [What is Foundry Agent Service?](../agents/overview.md)

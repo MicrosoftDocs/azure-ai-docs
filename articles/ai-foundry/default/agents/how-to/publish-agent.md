@@ -1,7 +1,7 @@
 ---
-title: Publish Agents in Azure AI Foundry
-description: Learn how to publish agents in Azure AI Foundry, configure authentication, manage permissions, and provide stable endpoints for seamless integration.
-#customer intent: As a developer, I want to publish an agent in Azure AI Foundry so that I can provide a stable endpoint for external consumption.
+title: Publish Agents in Microsoft Foundry
+description: Learn how to publish agents in Microsoft Foundry, configure authentication, manage permissions, and provide stable endpoints for seamless integration.
+#customer intent: As a developer, I want to publish an agent in Microsoft Foundry so that I can provide a stable endpoint for external consumption.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: amandafoster
@@ -11,21 +11,21 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ---
 
-# Publish and share agents in Azure AI Foundry
+# Publish and share agents in Microsoft Foundry
 
 Publishing promotes an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. This article shows you how to publish an agent, configure its authentication and permissions, update published versions, and consume the agent through its stable endpoint. 
 
-When you publish an agent, Azure AI Foundry creates an Agent Application resource with a dedicated invocation URL and its own Entra agent identity blueprint and Entra agent identity. A deployment is created under the application that references your agent version and registers it in the Entra Agent Registry for discovery and governance. 
+When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Entra agent identity blueprint and Entra agent identity. A deployment is created under the application that references your agent version and registers it in the Entra Agent Registry for discovery and governance. 
 
 Publishing enables you to share agents with teammates, your organization, or customers without granting access to your Foundry project or source code. The stable endpoint remains consistent as you iterate and deploy new agent versions. 
 
 ## Prerequisites
 
-- An [Azure AI Foundry project](../../../how-to/create-projects.md) with at least one agent version created
+- A [Foundry project](../../../how-to/create-projects.md) with at least one agent version created
 - [Azure AI Project Manager role](../../../concepts/rbac-azure-ai-foundry.md) on the Foundry project scope to publish agents
 - [Azure AI User role](../../../concepts/rbac-azure-ai-foundry.md) on the Agent Application scope to chat with a published agent
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
-- Familiarity with [Agent identity concepts in Azure AI Foundry](../concepts/agent-identity.md) 
+- Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md) 
 - For tool authentication: Knowledge of which Azure resources your agent accesses
 
 [!INCLUDE [code-preview](../../includes/code-preview.md)]
@@ -50,7 +50,7 @@ It’s also a prerequisite for:
 
 Before publishing, it's important to understand the relationship between projects, agent versions, applications, and deployments.
 
-:::image type="content" source="../../media/publish-agent/azure-agent-identity-overview.png" alt-text="Diagram illustrating how Azure AI Foundry projects organize agent versions, applications, and deployments, highlighting governance and RBAC roles.":::
+:::image type="content" source="../../media/publish-agent/azure-agent-identity-overview.png" alt-text="Diagram illustrating how Foundry projects organize agent versions, applications, and deployments, highlighting governance and RBAC roles.":::
 
 A Foundry **project** is a work organization concept that groups related resources such as agents, files, and indexes. An **agent** represents a composable unit — defined by its instructions, model, and tools. An **agent version** captures a specific immutable snapshot of an agent. Every time you make changes to your agent, such as updating the prompt or adding tools, a new agent version is created. When you create an agent version, it's exposed under the project where developers with project access can create, run, and test it.
 
@@ -126,9 +126,9 @@ Note that API key authentication is not supported for agents through projects or
 
 Note that an agent does not have an intrinsic identity; its tool invocation, when using the "agentic identity" authentication option, is, in fact, using the identity of its serving entity - the project's, for unpublished agents, and the respective application's, for published ones. As a consequence, permissions assigned to a project identity do not transfer to an application upon publishing an agent; you must explicitly (re)assign the necessary privileges to the publishing application's identity.
 
-### Azure AI Foundry portal
+### Foundry portal
 
-This section shows you how to publish an agent using the Azure AI Foundry portal interface.
+This section shows you how to publish an agent using the Foundry portal interface.
 
 1. In the Agent Builder, create or select an agent version you want to publish.
 
@@ -227,7 +227,7 @@ Content-Type: application/json
 
 When you need to roll out a new version of your agent, update the existing application and deployment to reference the new agent version.
 
-### Azure AI Foundry portal
+### Foundry portal
 1. In the Agent Builder, navigate to the specific agent version you want to publish.
 
 2. Select **Publish Updates**.
@@ -294,5 +294,5 @@ This approach authenticates using Azure credentials and requires the caller to h
 
 ## Related content
 
-- Learn about [Agent identity concepts in Azure AI Foundry](../concepts/agent-identity.md)
+- Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 

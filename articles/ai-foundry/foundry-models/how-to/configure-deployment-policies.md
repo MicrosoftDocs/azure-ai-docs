@@ -1,7 +1,7 @@
 ---
 title: Control model deployment with custom policies
-titleSuffix: Azure AI Foundry
-description: "Learn how to use custom Azure Policies to control Azure AI Foundry and Azure OpenAI in Foundry Models deployment with Azure AI Foundry."
+titleSuffix: Microsoft Foundry
+description: "Learn how to use custom Azure Policies to control Microsoft Foundry and Azure OpenAI in Foundry Models deployment with Microsoft Foundry."
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Control model deployment with custom policies
 
-When using models from Azure AI Foundry (formerly known Azure AI Services) and Azure OpenAI with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you might need to use custom policies to control which [type of deployment](../../model-inference/concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
+When using models from Microsoft Foundry (formerly known Azure AI Services) and Azure OpenAI with [Foundry](https://ai.azure.com/?cid=learnDocs), you might need to use custom policies to control which [type of deployment](../../model-inference/concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
 
 > [!TIP]
 > The steps in this article apply to both a [!INCLUDE [fdp](../../includes/fdp-project-name.md)] and [!INCLUDE [hub](../../includes/hub-project-name.md)].
@@ -39,7 +39,7 @@ Follow these steps to create and assign an example custom policy to control mode
 3. In the **Policy Definition** form, use the following values:
 
     - **Definition location**: Select the subscription or management group where you want to store the policy definition.
-    - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Azure AI services and Azure OpenAI models`.
+    - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Foundry Tools and Azure OpenAI models`.
     - **Description**: Enter a description for the policy definition.
     - **Category**: You can either create a new category or use an existing one. For example, "AI model governance."
 
@@ -85,7 +85,7 @@ Follow these steps to create and assign an example custom policy to control mode
 
     # [Enforce specific deployment types](#tab/deployments)
 
-    The following policy allows you to control which types of deployments are allowed in the Azure AI Services or Azure OpenAI Resources. For example, you might want to prevent developers from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating global processing deployment types.
+    The following policy allows you to control which types of deployments are allowed in the Foundry Tools or Azure OpenAI Resources. For example, you might want to prevent developers from creating deployments that result in data processed in a different region. Follow these steps to create a policy that denies creating global processing deployment types.
 
     ```json
     {
@@ -113,7 +113,7 @@ Follow these steps to create and assign an example custom policy to control mode
     ---
 
     > [!TIP]
-    > Azure AI services was originally named Azure Cognitive Services. This name is still used internally by Azure, such as this custom policy where you see a value of `Microsoft.CognitiveServices`. Azure OpenAI is part of Azure AI services, so this policy also applies to Azure OpenAI models.
+    > Foundry Tools was originally named Azure Cognitive Services. This name is still used internally by Azure, such as this custom policy where you see a value of `Microsoft.CognitiveServices`. Azure OpenAI is part of Foundry Tools, so this policy also applies to Azure OpenAI models.
 
 5. Select **Save** to save the policy definition. After saving, you arrive at the policy definition's overview page.
 
@@ -135,7 +135,7 @@ Follow these steps to create and assign an example custom policy to control mode
     From the **Parameters** tab, set **Allowed AI models** to the list of models that you want to allow. The list should be a comma-separated list of model names and approved versions, surrounded by square brackets. For example, `["gpt-4,0613", "gpt-35-turbo,0613"]`.
 
     > [!TIP]
-    > You can find the model names and their versions in the [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
+    > You can find the model names and their versions in the [Foundry model catalog](https://ai.azure.com/explore/models). Select the model to view the details, and then copy the model name and their version in the title.
 
     # [Enforce specific deployment types](#tab/deployments)
 

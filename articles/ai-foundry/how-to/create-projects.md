@@ -1,7 +1,7 @@
 ---
 title: Create a project
-titleSuffix: Azure AI Foundry
-description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
+titleSuffix: Microsoft Foundry
+description: This article describes how to create a Microsoft Foundry project so you can work with generative AI in the cloud.
 monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ms.author: sgilley
@@ -16,14 +16,14 @@ ms.custom:
   - build-aifnd
   - build-2025
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
+# customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
 ---
 
-# Create a project for Azure AI Foundry
+# Create a project for Microsoft Foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article describes how to create a Foundry project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work—such as agents, evaluations, and files—as you build stateful apps and explore new ideas.
+This article describes how to create a Foundry project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work—such as agents, evaluations, and files—as you build stateful apps and explore new ideas.
 
 ::: moniker range="foundry-classic"
 
@@ -54,16 +54,16 @@ If your organization requires customized Azure configurations like alternative n
 
 Use the following tabs to select the method you'll use to create a Foundry project:
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/ai-foundry)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry-classic"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
 :::moniker-end
 
 :::moniker range="foundry"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator create a project for you.
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator create a project for you.
 :::moniker-end
 
 # [Python SDK](#tab/python)
@@ -124,7 +124,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 
 ## Create a Foundry project
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/ai-foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -136,7 +136,7 @@ To create a Foundry project, follow these steps:
 
 1. [!INCLUDE [create-project-access](../includes/create-project-access.md)]
 
-1. Select **Azure AI Foundry resource**, and then select **Next**.
+1. Select **Foundry resource**, and then select **Next**.
 1. Provide a name for your project and select **Create**. Or see the next section for advanced options.
 
 ::: moniker-end
@@ -212,7 +212,7 @@ CLI commands not currently available for creating a Foundry project.
 
 ## View project settings
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/ai-foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -274,6 +274,6 @@ To delete the AI Foundry resource and all its projects:
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md)
-- [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md)
+- [Quickstart: Get started with Foundry](../quickstarts/get-started-code.md)
+- [What is Foundry?](../what-is-azure-ai-foundry.md)
 

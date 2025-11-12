@@ -1,7 +1,7 @@
 ---
 title: MCP server authentication
-titleSuffix: Azure AI Foundry
-description: Learn about ways of adding authentication to the MCP server tool in the Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Learn about ways of adding authentication to the MCP server tool in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -46,13 +46,13 @@ When the agent invokes the MCP server, it will retrieve the credentials from you
 
 You can use your agent’s Agent Identity to authenticate with MCP servers that support authenticating with Agent Identity. If your agent is created with AI Foundry Agent Service, your agent will automatically be assigned an Agent Identity. All agents in your AI Foundry Project will share the same Agent Identity before publishing. After you publish an agent, your agent will be assigned a unique Agent Identity. When you choose to authenticate with Agent Identity, AI Foundry Agent Service will use the shared Agent Identity if the agent hasn’t been published and therefore doesn’t have a unique Agent Identity; it will use the unique Agent Identity if the agent has been published and has a unique Agent Identity.  
 
-You need to make sure your Agent Identity has the proper RBAC role to the underlying service powering the MCP server.<!--(please refer to the MCP server documentation for specific RBAC roles needed)--> When you're connecting an MCP server to your agent, you need to specify the scope URI of the service, for example, when you're connecting to the Azure AI Foundry MCP server, the scope URI is `http://ai.azure.com`.  
+You need to make sure your Agent Identity has the proper RBAC role to the underlying service powering the MCP server.<!--(please refer to the MCP server documentation for specific RBAC roles needed)--> When you're connecting an MCP server to your agent, you need to specify the scope URI of the service, for example, when you're connecting to the Microsoft Foundry MCP server, the scope URI is `http://ai.azure.com`.  
 
 When the agent invokes the MCP server, it will use the available Agent Identity to get its authorization token from the scope URI and pass it to the MCP server for authentication.  
 
 #### AI Foundry project managed identity 
 
-You can use your AI Foundry project's Managed Identity to authenticate with MCP servers that support authenticating with Managed Identity. You need to make sure your AI Foundry project's Managed Identity has the proper RBAC role to the underlying service powering the MCP server.<!--(please refer to the MCP server documentation for specific RBAC roles needed)--> When you're connecting the MCP server to your agent, you need to specify the scope URI of the service, for example, when you're connecting to Azure AI Foundry MCP server, the scope URI is `http://ai.azure.com`.  
+You can use your AI Foundry project's Managed Identity to authenticate with MCP servers that support authenticating with Managed Identity. You need to make sure your AI Foundry project's Managed Identity has the proper RBAC role to the underlying service powering the MCP server.<!--(please refer to the MCP server documentation for specific RBAC roles needed)--> When you're connecting the MCP server to your agent, you need to specify the scope URI of the service, for example, when you're connecting to Foundry MCP server, the scope URI is `http://ai.azure.com`.  
 
 When the agent invokes the MCP server, it will use the AI Foundry Project's Managed Identity to get its authorization token from the scope URI and pass it to the MCP server for authentication. 
 
@@ -98,7 +98,7 @@ This is supported if the MCP server doesn’t require authentication.
 
 ## Setup
 
-1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an `mcp` tool with the following information:
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an `mcp` tool with the following information:
 
    1. `server_url`: The URL of the MCP server. For example, `https://api.githubcopilot.com/mcp/`.
    2. `server_label`: A unique identifier of this MCP server to the agent; for example, `github`.
@@ -113,7 +113,7 @@ This is supported if the MCP server doesn’t require authentication.
 
 ## Host a local MCP server
 
-The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+The Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
 
 |Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 |:---------:|:---------:|:---------:|

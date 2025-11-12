@@ -1,7 +1,7 @@
 ---
-title: Monitoring dashboard insights in Azure AI Foundry with Ask AI
-titleSuffix: Azure AI Foundry 
-description: Discover how to use Ask AI in Azure AI Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making.
+title: Monitoring dashboard insights in Microsoft Foundry with Ask AI
+titleSuffix: Microsoft Foundry 
+description: Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 11/18/2025
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 ---
  
 
-# Monitoring dashboard insights in Azure AI Foundry with Ask AI (preview)
+# Monitoring dashboard insights in Microsoft Foundry with Ask AI (preview)
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
@@ -24,7 +24,7 @@ This article describes the integrated user experience and system behavior for ge
 
 Before you begin:
 
-- You have access to the **Azure AI Foundry portal**.
+- You have access to the **Microsoft Foundry portal**.
 - You have one or more published agents.
 - You have access to **Ask AI** (the chat assistant).
 

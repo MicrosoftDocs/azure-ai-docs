@@ -1,7 +1,7 @@
 ---
-title: 'Generate synthetic data with Azure AI Foundry (Preview)'
-titleSuffix: Azure AI Foundry
-description: Learn how to generate synthetic data using the Azure AI Foundry portal. Create high-quality training datasets for fine-tuning models (Preview).
+title: 'Generate synthetic data with Microsoft Foundry (Preview)'
+titleSuffix: Microsoft Foundry
+description: Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview).
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.custom: ignite-2025
@@ -14,9 +14,9 @@ ai-usage: ai-assisted
 ---
 
 
-# Generate synthetic data for fine-tuning in Azure AI Foundry (Preview)
+# Generate synthetic data for fine-tuning in Microsoft Foundry (Preview)
 
-Learn to generate synthetic data in Azure AI Foundry for fine-tuning. Synthetic data helps you:
+Learn to generate synthetic data in Microsoft Foundry for fine-tuning. Synthetic data helps you:
 
 - Create large, diverse datasets when real data is scarce
 - Preserve privacy while retaining useful structure
@@ -27,7 +27,7 @@ Create domain-specific data that refines foundation models for your needs—enab
 
 This article covers:
 
-- Generate synthetic data in the Azure AI Foundry portal.
+- Generate synthetic data in the Foundry portal.
 - Prepare and upload a reference file.
 - Configure generation parameters.
 - Review and download results.
@@ -42,12 +42,12 @@ This article covers:
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
-- An Azure AI Foundry project. For more information, see [create a project with Azure AI Foundry](../../how-to/create-projects.md)
-- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Azure AI Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-azure-ai-foundry.md)
+- A Foundry project. For more information, see [create a project with Foundry](../../how-to/create-projects.md)
+- A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-azure-ai-foundry.md)
 
 ## Generate synthetic data for fine-tuning
 
-Azure AI Foundry provides generators that turn a reference file into task‑ready training data aligned to your fine‑tuning goal.
+Foundry provides generators that turn a reference file into task‑ready training data aligned to your fine‑tuning goal.
 
 ### Overview of synthetic data generators
 
@@ -78,7 +78,7 @@ In this preview, only one reference file is supported. If you have multiple docu
 
 ### Generate synthetic data in the portal
 
-1. Navigate to Azure AI Foundry (new) Synthetic Data Generation from the left menu under Data
+1. Navigate to Foundry (new) Synthetic Data Generation from the left menu under Data
 :::image type="content" source="../media/data-generation/generate-data.png" alt-text="A screenshot showing an example of the generate data button in Foundry." lightbox="../media/data-generation/generate-data.png":::
 3. Select **Generate data** button 
 4. Use the synthetic data generation wizard to create a new data generation job:
@@ -95,7 +95,7 @@ In this preview, only one reference file is supported. If you have multiple docu
 
 ### Use your generated synthetic data for fine-tuning
 
-After your synthetic data generation job is complete, you can use the generated dataset for fine-tuning your models. The generated data is formatted as JSONL files compatible with Azure AI Foundry fine-tuning workflows. 
+After your synthetic data generation job is complete, you can use the generated dataset for fine-tuning your models. The generated data is formatted as JSONL files compatible with Foundry fine-tuning workflows. 
 
 You can download this dataset for post-processing or use it directly in fine-tuning by clicking the "Use this dataset" button in the right preview panel.
 

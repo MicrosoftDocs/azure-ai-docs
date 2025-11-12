@@ -1,6 +1,6 @@
 ---
-title: "Discover tools in the Azure AI Foundry tool catalog"
-description: "Learn about the tool catalog in Azure AI Foundry to extend your AI agents and workflows."
+title: "Discover tools in the Microsoft Foundry tool catalog"
+description: "Learn about the tool catalog in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
 ms.date: 10/27/2025
@@ -11,9 +11,9 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Discover tools in the Azure AI Foundry tool catalog (preview)
+# Discover tools in the Microsoft Foundry tool catalog (preview)
 
-The Azure AI Foundry tool catalog is a central hub for discovering tools to extend your AI agents
+The Microsoft Foundry tool catalog is a central hub for discovering tools to extend your AI agents
 
 The tool catalog enables you to: 
 
@@ -33,7 +33,7 @@ The MCP tool allows you to pass custom headers, such as authentication keys or s
 
 ## Public and private tool catalogs
 
-The Azure AI Foundry provides both public and private tool catalogs. The public tool catalog is an enterprise-ready curated list of MCP servers available to all AI Foundry developers for building AI agents. You can also build an organizational tool catalog with tools that appear only in your organization by creating a [private tool catalog](../how-to/private-tool-catalog.md). 
+The Foundry provides both public and private tool catalogs. The public tool catalog is an enterprise-ready curated list of MCP servers available to all AI Foundry developers for building AI agents. You can also build an organizational tool catalog with tools that appear only in your organization by creating a [private tool catalog](../how-to/private-tool-catalog.md). 
 
 ## Find the right tools from the tool catalog
 

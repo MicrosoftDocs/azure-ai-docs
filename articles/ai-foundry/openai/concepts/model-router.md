@@ -1,7 +1,7 @@
 ---
-title: Model router for Azure AI Foundry concepts
+title: Model router for Microsoft Foundry concepts
 titleSuffix: Azure OpenAI
-description: Learn about the model router feature in Azure OpenAI in Azure AI Foundry Models.
+description: Learn about the model router feature in Azure OpenAI in Microsoft Foundry Models.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -15,9 +15,9 @@ monikerRange: 'foundry-classic || foundry'
 
 ---
 
-# Model router for Azure AI Foundry
+# Model router for Microsoft Foundry
 
-Model router for Azure AI Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. Thus, it delivers high performance while saving on compute costs where possible, all packaged as a single model deployment.
+Model router for Microsoft Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. Thus, it delivers high performance while saving on compute costs where possible, all packaged as a single model deployment.
 
 ## Why use model router?
 

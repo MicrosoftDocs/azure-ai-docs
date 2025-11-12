@@ -1,7 +1,7 @@
 ---
-title: 'Guardrails and controls overview in Azure AI Foundry'
-titleSuffix: Azure AI Foundry
-description: Learn about safety and security guardrails that can be applied to models and agents in Azure AI Foundry, including risks, intervention points, and response actions.
+title: 'Guardrails and controls overview in Microsoft Foundry'
+titleSuffix: Microsoft Foundry
+description: Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: conceptual
@@ -10,12 +10,12 @@ author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
 ms.custom: azure-ai-guardrails
-# customer intent: As a developer, I want to understand how guardrails work in Azure AI Foundry so that I can implement appropriate safety measures for my models and agents.
+# customer intent: As a developer, I want to understand how guardrails work in Microsoft Foundry so that I can implement appropriate safety measures for my models and agents.
 ---
 
-# Guardrails and controls overview in Azure AI Foundry
+# Guardrails and controls overview in Microsoft Foundry
 
-Azure AI Foundry offers safety and security guardrails that can be applied to core models, including image generation models, and agents. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. For example, a risk detection could be the annotation of the risk or blocking the model or agent from further output.
+Microsoft Foundry offers safety and security guardrails that can be applied to core models, including image generation models, and agents. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. For example, a risk detection could be the annotation of the risk or blocking the model or agent from further output.
 
 Risks are flagged via a set of classification models designed to detect and prevent the output of undesirable behavior and/or harmful content. Four intervention points are currently supported: user input, tool call (Preview), tool response (Preview), and output. Tool call and tool responses intervention points are applicable to agents only and scan the tool call made as well as content sent to the tool, and the output back from the tool, respectively.
 

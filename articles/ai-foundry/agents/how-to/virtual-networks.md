@@ -1,7 +1,7 @@
 ---
-title: 'How to use a virtual network with the Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
-description: Learn how to use your own virtual network with the Azure AI Foundry Agent Service. 
+title: 'How to use a virtual network with the Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to use your own virtual network with the Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -17,7 +17,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # Create a new network-secured environment with user-managed identity
 
-Azure AI Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
 > [!TIP]
 > See the [FAQ article](../faq.yml#virtual-networking) for common questions when working with Virtual Networks.
@@ -39,7 +39,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ### Known limitations
 
 - **Subnet IP address limitation**: both subnets must have IP ranges under `10.0.0.0/16`, `172.16.0.0/12` or `192.168.0.0/16`, which are class A, B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/README.md).
-- **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Azure AI Foundry resources. Each AI Foundry must use a dedicated agent subnet.
+- **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Microsoft Foundry resources. Each AI Foundry must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environment`. For more on the subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 - **Agent subnet egress firewall allowlisting**: If you are integrating an Azure Firewall with your private network secured standard agent, please allowlist the Fully Qualified Domain Names (FQDNs) listed under __Managed Identity__ in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag __AzureActiveDirectory__.
     - Verify no TLS inspection happens in the Firewall that could be adding a self-signed certificate. During failures, inspect if there is any traffic landing on the Firewall and what traffic is being blocked by the Firewall. 
@@ -112,7 +112,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ## Configure a new network-secured environment 
 
 > [!NOTE]
-> - Programmatic deployment is required to set up a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure portal is currently not supported.
+> - Programmatic deployment is required to set up a network-secured environment for Agent Service. Deployment through the Azure portal is currently not supported.
 > - If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your AI Foundry resource.
 > - In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
 
@@ -165,7 +165,7 @@ These rules apply to **all protocols**, including REST and WebSocket. Even inter
 
 For Agents, private endpoints ensure secure, internal-only connectivity for the following Azure resources:
 
-- Azure AI Foundry
+- Foundry
 - Azure AI Search
 - Azure Storage
 - Azure Cosmos DB
@@ -175,7 +175,7 @@ For Agents, private endpoints ensure secure, internal-only connectivity for the 
 
 | Private Link Resource Type | Sub Resource | Private DNS Zone Name | Public DNS Zone Forwarders |
 |----------------------------|--------------|------------------------|-----------------------------|
-| **Azure AI Foundry**       | account      | `privatelink.cognitiveservices.azure.com`<br>`privatelink.openai.azure.com`<br>`privatelink.services.ai.azure.com` | `cognitiveservices.azure.com`<br>`openai.azure.com`<br>`services.ai.azure.com` |
+| **Foundry**       | account      | `privatelink.cognitiveservices.azure.com`<br>`privatelink.openai.azure.com`<br>`privatelink.services.ai.azure.com` | `cognitiveservices.azure.com`<br>`openai.azure.com`<br>`services.ai.azure.com` |
 | **Azure AI Search**        | searchService| `privatelink.search.windows.net` | `search.windows.net` |
 | **Azure Cosmos DB**        | Sql          | `privatelink.documents.azure.com` | `documents.azure.com` |
 | **Azure Storage**          | blob         | `privatelink.blob.core.windows.net` | `blob.core.windows.net` |
@@ -206,7 +206,7 @@ Our goal is to accelerate the development and deployment of AI agents without co
 
 ## Troubleshooting guide 
 
-Refer to this guide to resolve errors regarding the standard secured agent template deployment errors or errors post template deployment in the Azure AI Foundry portal.  
+Refer to this guide to resolve errors regarding the standard secured agent template deployment errors or errors post template deployment in the Foundry portal.  
 
 ### Template deployment errors 
 

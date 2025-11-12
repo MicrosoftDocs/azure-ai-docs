@@ -12,7 +12,7 @@ ms.date: 09/12/2025
 recommendations: false
 ---
 
-## Add your data using Azure AI Foundry portal
+## Add your data using Microsoft Foundry portal
 
 > [!TIP]
 > Alternatively, you can [use the Azure Developer CLI](../how-to/azure-developer-cli.md) to programmatically create the resources needed for Azure OpenAI On Your Data.
@@ -20,7 +20,7 @@ recommendations: false
 To add your data using the portal:
 
 1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
-1. Select your Azure OpenAI resource. If you have an Azure AI Foundry resource, you can [create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md).
+1. Select your Azure OpenAI resource. If you have a Foundry resource, you can [create a Foundry project](../../../ai-foundry/how-to/create-projects.md).
 
 1. From the left pane, select **Playgrounds** > **Chat**.
 
@@ -28,7 +28,7 @@ To add your data using the portal:
 
 1. Select **Add your data** > **Add a data source**.
 
-    :::image type="content" source="../media/use-your-data/chat-playground.png" alt-text="A screenshot of the chat playground in  Azure AI Foundry." lightbox="../media/use-your-data/chat-playground.png":::
+    :::image type="content" source="../media/use-your-data/chat-playground.png" alt-text="A screenshot of the chat playground in  Foundry." lightbox="../media/use-your-data/chat-playground.png":::
 
 1. On the **Data source** page:
 
@@ -48,7 +48,7 @@ To add your data using the portal:
     
     1. Select **Next**.
 
-    :::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Azure AI Foundry portal." lightbox="../media/quickstarts/add-your-data-source.png":::
+    :::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Foundry portal." lightbox="../media/quickstarts/add-your-data-source.png":::
 
 1. On the **Upload files** page:
 

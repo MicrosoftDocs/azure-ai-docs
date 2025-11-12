@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics, accuracy, and limitations when using Image Analysis service.
 
 author: PatrickFarley
@@ -15,7 +15,7 @@ ms.date: 10/04/2022
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-Image Analysis service is part of Azure AI services and provides pre-built AI features that are fundamental building blocks of image processing applications. In this section, you will learn about what accuracy means for Image Analysis, and how to assess accuracy for your specific use case and application.
+Image Analysis service is part of Foundry Tools and provides pre-built AI features that are fundamental building blocks of image processing applications. In this section, you will learn about what accuracy means for Image Analysis, and how to assess accuracy for your specific use case and application.
 
 ## Accuracy for Image Analysis
 
@@ -37,7 +37,7 @@ The above categories are then used to calculate precision and recall.
 
 The precision and recall definitions imply that in certain cases, it can be hard to optimize for both at the same time. Depending on your specific scenario, you might need to prioritize one over the other. For example, if you're developing a solution to detect only the most accurate tags/labels in the content such as for displaying image search results, you'd need to optimize for higher precision. But if you're trying tag all possible visual content from the images for indexing or internal cataloging, you'd need to optimize for higher recall.
 
-As an image processing system owner, it is recommended that you collect ground-truth evaluation data, which is data collected and tagged by human judges to evaluate a system. The pre-built AI models provided in Azure AI Vision service might not satisfy the requirements of your use-case. With the use-case specific evaluation dataset, you can make an informed decision on whether the pre-built Image Analysis models are right for your use-case. You can also use the data to determine how the confidence threshold affects the achievement of your goals.
+As an image processing system owner, it is recommended that you collect ground-truth evaluation data, which is data collected and tagged by human judges to evaluate a system. The pre-built AI models provided in Azure Vision in Foundry Tools service might not satisfy the requirements of your use-case. With the use-case specific evaluation dataset, you can make an informed decision on whether the pre-built Image Analysis models are right for your use-case. You can also use the data to determine how the confidence threshold affects the achievement of your goals.
 
 You can compare ground-truth labels to the output of the system to establish the overall accuracy and error rates, and the distribution of errors helps you set the right threshold for your scenario. Ground-truth evaluation data should include adequate sampling of representative images, so that you can understand performance differences and take corrective action. Based on the results of this evaluation, you can iteratively adjust the threshold until the trade-off between precision and recall meets your objectives.
 

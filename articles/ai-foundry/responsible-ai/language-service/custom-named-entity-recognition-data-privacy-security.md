@@ -1,6 +1,6 @@
 ---
 title: Data and privacy for custom NER
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Data and privacy for custom named entity recognition
 author: laujan
 ms.author: lajanuar

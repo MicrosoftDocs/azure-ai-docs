@@ -1,6 +1,6 @@
 ---
 title: Evaluation Cluster Analysis 
-titleSuffix: Azure AI Foundry 
+titleSuffix: Microsoft Foundry 
 description: Learn how to run and interact with an evaluation cluster analysis. 
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -23,7 +23,7 @@ This article explains how to generate and interact with an evaluation cluster an
 
 Before you begin:
 
-- Make sure you have access to the **Azure AI Foundry portal**.
+- Make sure you have access to the **Microsoft Foundry portal**.
 - Ensure you have one or more deployed agents.
 - Verify that you have one or more evaluation runs in one evaluation group.
 
@@ -139,4 +139,4 @@ Use the insights discovered here to:
 
 ## Related content
 
-- [See evaluation results in the Azure AI Foundry portal](../../../how-to/evaluate-results.md?view=foundry&preserve-view=true)
+- [See evaluation results in the Foundry portal](../../../how-to/evaluate-results.md?view=foundry&preserve-view=true)

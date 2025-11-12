@@ -1,7 +1,7 @@
 ---
 title: Agent Tracing Overview
-titleSuffix: Azure AI Foundry
-description: "Discover how Azure AI Foundry's tracing tools simplify debugging AI agents by capturing inputs, outputs, and tool usage for better observability."
+titleSuffix: Microsoft Foundry
+description: "Discover how Microsoft Foundry's tracing tools simplify debugging AI agents by capturing inputs, outputs, and tool usage for better observability."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -12,7 +12,7 @@ ms.topic: how-to
 ---
 # Agent tracing overview
 
-Azure AI Foundry provides an observability platform for monitoring and tracing AI agents. It captures everything happening during an agent run: inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
+Microsoft Foundry provides an observability platform for monitoring and tracing AI agents. It captures everything happening during an agent run: inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
 - There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
 - The sequence of steps might vary based on user input.
@@ -23,7 +23,7 @@ Trace results solve this by allowing you to view the inputs and outputs of each 
 
 ## OpenTelemetry in AI Foundry
 
-OpenTelemetry (OTel) provides standardized protocols for collecting and routing telemetry data. Azure AI Foundry supports multiple ways to collect and analyze tracing data from OpenTelemetry-instrumented agents, whether you’re using AI Foundry infrastructure or a vendor-neutral setup.
+OpenTelemetry (OTel) provides standardized protocols for collecting and routing telemetry data. Foundry supports multiple ways to collect and analyze tracing data from OpenTelemetry-instrumented agents, whether you’re using AI Foundry infrastructure or a vendor-neutral setup.
 
 ## Trace key concepts overview
 
@@ -43,7 +43,7 @@ Microsoft, in collaboration with Cisco Outshift, has introduced new semantic con
 
 These enhancements are integrated into:
 
-- Azure AI Foundry
+- Foundry
 - Microsoft Agent Framework
 - Semantic Kernel
 - LangChain

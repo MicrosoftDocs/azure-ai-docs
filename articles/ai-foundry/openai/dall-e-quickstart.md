@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models'
+title: 'Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to get started generating images with Azure OpenAI by using the Python SDK, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to get started generating images with Azure OpenAI by using the Python SDK, the REST APIs, or Microsoft Foundry portal.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-dall-e
 ---
 
-# Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
+# Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: 'How to use structured outputs with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use structured outputs with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your model responses with structured outputs
 services: cognitive-services

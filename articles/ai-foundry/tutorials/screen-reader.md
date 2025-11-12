@@ -1,7 +1,7 @@
 ---
-title: Use a screen reader with Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
+title: Use a screen reader with Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: This quickstart guides you in how to get oriented and navigate Microsoft Foundry with a screen reader.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
@@ -16,19 +16,19 @@ ms.custom:
   - build-2025
 ---
 
-# Use a screen reader with Azure AI Foundry
+# Use a screen reader with Microsoft Foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's VoiceOver. In this quickstart, you learn about the basic structure of Azure AI Foundry and how to navigate around efficiently. 
+This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's VoiceOver. In this quickstart, you learn about the basic structure of Microsoft Foundry and how to navigate around efficiently. 
 
-## Get oriented in Azure AI Foundry portal 
+## Get oriented in Foundry portal 
 
 ::: moniker range="foundry-classic"
 
 Most [!INCLUDE [classic-link](../includes/classic-link.md)] pages have the following landmark structure: 
 
-- Banner (has Azure AI Foundry app title, settings, and profile information)
+- Banner (has Foundry app title, settings, and profile information)
     - Sometimes has a breadcrumb navigation element 
 - Navigation - Three different states:
     - Outside a project - there's no left navigation until you're in a project. The page is divided into sections. Once you have projects, the top section is a list of recent projects.
@@ -41,7 +41,7 @@ Most [!INCLUDE [classic-link](../includes/classic-link.md)] pages have the follo
 Most [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] pages have the following landmark structure: 
 
 - Banner has 
-    - Azure AI Foundry application title
+    - Foundry application title
     - Project selector
     - Search
     - Ask AI toggle
@@ -58,10 +58,10 @@ For efficient navigation, navigating by landmarks can help you move between thes
 :::moniker range="foundry"
 ## Projects 
 
-When using the Azure AI Foundry portal, you always have a project selected to work with. Navigation sections **Home**, **Discover**, and **Build**  display content for your selected project. The **Operate** section is different—it shows information for all your projects.
+When using the Foundry portal, you always have a project selected to work with. Navigation sections **Home**, **Discover**, and **Build**  display content for your selected project. The **Operate** section is different—it shows information for all your projects.
 
 To create or switch projects:
-1. In [!INCLUDE [foundry-link](../default/includes/foundry-link.md)], on the top banner, select **Azure AI Foundry**.
+1. In [!INCLUDE [foundry-link](../default/includes/foundry-link.md)], on the top banner, select **Foundry**.
 1. Press <kbd>Tab</kbd> until you hear a project name.
 1. Use the down-arrow to scroll through the list of recent projects.
 1. At the end of the list of recent projects are options to **View all projects**, **Create new project**, and **View legacy resources**.
@@ -90,12 +90,12 @@ You can customize the left pane for each project or resource.
 * At the top of the **More** list is a shortcut to **Pin all**. If all items are already pinned, the option changes to **Unpin all**.
 * The **Management center** is always available at the bottom of the left pane and can't be unpinned.
 
-For more information about the navigation, see [What is Azure AI Foundry](../what-is-azure-ai-foundry.md).
+For more information about the navigation, see [What is Foundry](../what-is-azure-ai-foundry.md).
 
 ## Projects 
 
-To work in the Azure AI Foundry portal, first [create a project](../how-to/create-projects.md): 
-1. In [!INCLUDE [classic-link](../includes/classic-link.md)], select **Azure AI Foundry** from the top breadcrumbs.
+To work in the Foundry portal, first [create a project](../how-to/create-projects.md): 
+1. In [!INCLUDE [classic-link](../includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
 1. Press <kbd>Tab</kbd> until you hear *Create an agent*, and then select this button. This action creates a project for use with an agent.
 1. Enter the information requested in the **Create a project** dialog. 
 1. When the project is ready, you're prompted to select a model to use for your agent.
@@ -103,7 +103,7 @@ To work in the Azure AI Foundry portal, first [create a project](../how-to/creat
 
 If you already have some projects, you can also create a new project without also creating an agent.
 
-1. In [!INCLUDE [classic-link](../includes/classic-link.md)], select **Azure AI Foundry** from the top breadcrumbs.
+1. In [!INCLUDE [classic-link](../includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
 1. Press <kbd>Tab</kbd> until you hear *Create new*. This path creates a project but doesn't deploy a model.
 1. When the project is created, you are in the project home page.
 
@@ -124,7 +124,7 @@ The chat session pane is where you can chat to the model and test out your assis
 
 ## Distinguishing project types
 
-Azure AI Foundry has two different project types—see [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md#project-types). The type appears in the **Type** column in the **All resources** view. In the recent resources picker, the type is in a second line under the project name.
+Foundry has two different project types—see [What is Foundry?](../what-is-azure-ai-foundry.md#project-types). The type appears in the **Type** column in the **All resources** view. In the recent resources picker, the type is in a second line under the project name.
 
 - Look for either **(AI Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]. 
 - Look for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
@@ -138,7 +138,7 @@ Prompt flow is a tool that creates executable flows by linking LLMs, prompts, an
 
 After you select a project, go to the navigation landmark. Press the Down arrow until you hear *Prompt flow*, and then select this link.
 
-The prompt flow UI in Azure AI Foundry portal is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
+The prompt flow UI in Foundry portal is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
 
 ### Flow section 
 
@@ -191,5 +191,5 @@ If you're a government, commercial, or enterprise customer, contact the Enterpri
 
 ## Related content
 
-* Learn how to build generative AI applications in the [Azure AI Foundry](../what-is-azure-ai-foundry.md).
+* Learn how to build generative AI applications in the [Foundry](../what-is-azure-ai-foundry.md).
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

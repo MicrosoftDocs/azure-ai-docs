@@ -1,6 +1,6 @@
 ---
 title: Agent Evaluation with the Azure AI Evaluation SDK
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
@@ -72,7 +72,7 @@ pip install azure-ai-evaluation
 
 ::: moniker range="foundry"
 
-Install the package from the Azure AI Foundry SDK:
+Install the package from the Microsoft Foundry SDK:
 
 ```python
     pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
@@ -81,8 +81,8 @@ Install the package from the Azure AI Foundry SDK:
 Set these environment variables with your values in a `.env` file:
 
 ```python
-AZURE_AI_PROJECT_ENDPOINT="<your-endpoint>" # The Azure AI Project endpoint, as found in the Home page of your Azure AI Foundry portal.
-AZURE_AI_MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>" # The deployment name of the AI model, as found under the "Build" page in the "Models" tab in your Azure AI Foundry project.
+AZURE_AI_PROJECT_ENDPOINT="<your-endpoint>" # The Azure AI Project endpoint, as found in the Home page of your Microsoft Foundry portal.
+AZURE_AI_MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>" # The deployment name of the AI model, as found under the "Build" page in the "Models" tab in your Foundry project.
 ```
 
 ::: moniker-end
@@ -124,7 +124,7 @@ For complex evaluation that requires refined reasoning, use a strong reasoning m
 
 However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
-This example shows how to build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
+This example shows how to build and evaluate an Azure AI agent. Separately from evaluation, Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
 
 ### Create agent threads and runs
 
@@ -164,10 +164,10 @@ toolset.add(functions)
 AGENT_NAME = "Seattle Tourist Assistant"
 ```
 
-If you use an [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry), create an agent with the toolset as follows:
+If you use a [Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry), create an agent with the toolset as follows:
 
 > [!NOTE]
-> If you're using a [Foundry Hub-based project](../hub-create-projects.md?tabs=ai-foundry) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
+> If you're using a [Foundry Hub-based project](../hub-create-projects.md?tabs=ai-foundry) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-microsoft-foundry-projects).
 
 Create an agent with the toolset as follows:
 
@@ -179,9 +179,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# Create an Azure AI Client from an endpoint, copied from your Foundry project.
 # You need to login to Azure subscription via Azure CLI and set the environment variables
-# Azure AI Foundry project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+# Foundry project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 project_endpoint = os.environ["AZURE_AI_PROJECT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
 # Create an AIProjectClient instance
@@ -288,7 +288,7 @@ quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model
 # Other evaluators you might NOT want to use with reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
-## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+## Using Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential()) for evaluator in [ContentSafetyEvaluator, IndirectAttackEvaluator, CodeVulnerabilityEvaluator]}
@@ -374,7 +374,7 @@ response = evaluate(
     data=filename,
     evaluation_name="agent demo - batch run",
     evaluators=quality_and_safety_evaluators,
-    # optionally, log your results to your Azure AI Foundry project for rich visualization 
+    # optionally, log your results to your Foundry project for rich visualization 
     azure_ai_project=os.environ.get("AZURE_AI_PROJECT"),  # example: https://your-account.services.ai.azure.com/api/projects/your-project
 )
 # Inspect the average scores at a high level.
@@ -558,7 +558,7 @@ To further improve intelligibility, all evaluators accept a binary threshold (un
 
 After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Use "reason" fields and pass/fail to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
-Use the Azure AI Foundry SDK Python client library to evaluate your Azure AI agents, enabling observability and transparency in agent workflows.
+Use the Microsoft Foundry SDK Python client library to evaluate your Azure AI agents, enabling observability and transparency in agent workflows.
 
 ::: moniker-end
 
@@ -566,7 +566,7 @@ Use the Azure AI Foundry SDK Python client library to evaluate your Azure AI age
 
 ::: moniker range="foundry-classic"
 
-If you're using agents outside Azure AI Foundry Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
+If you're using agents outside Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
 
 ::: moniker-end
 
@@ -1240,7 +1240,7 @@ tool_definitions = [
 
 ::: moniker-end
 
-This evaluation schema helps parse agent data outside Azure AI Foundry Agent Service, enabling the use of built-in evaluators to support observability in agent workflows.
+This evaluation schema helps parse agent data outside Agent Service, enabling the use of built-in evaluators to support observability in agent workflows.
 
 ## Sample notebooks
 
@@ -1272,7 +1272,7 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [Learn about simulating test datasets for evaluation](./simulator-interaction-data.md)
 - [View evaluation results in an Azure AI project](../../how-to/evaluate-results.md)
-- [Get started building a chat app using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
+- [Get started building a chat app using the Microsoft Foundry SDK](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
 
 ::: moniker-end

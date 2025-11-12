@@ -1,7 +1,7 @@
 ---
-title: 'What are tools in Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
-description: Learn how to use the various tools available in the Azure AI Foundry Agent Service.
+title: 'What are tools in Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to use the various tools available in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +13,7 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# What are tools in Azure AI Foundry Agent Service?
+# What are tools in Foundry Agent Service?
 
 To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
@@ -68,7 +68,7 @@ There are various ways to influence how your AI agent invokes tools:
 
 ## Built-in tools 
 
-The Foundry Agent Service provides the following built-in tools. You can use them with the REST API, SDK, and Azure AI Foundry portal.  
+The Foundry Agent Service provides the following built-in tools. You can use them with the REST API, SDK, and Microsoft Foundry portal.  
 
 |Tool  |Description  |
 |---------|---------|

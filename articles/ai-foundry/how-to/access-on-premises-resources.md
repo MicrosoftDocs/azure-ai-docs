@@ -1,7 +1,7 @@
 ---
 title: How to access on-premises resources
-titleSuffix: Azure AI Foundry
-description: Learn how to configure an Azure AI Foundry managed network to securely allow access to your on-premises resources.
+titleSuffix: Microsoft Foundry
+description: Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources.
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -12,25 +12,25 @@ ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
 ai-usage: ai-assisted
-# Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure AI Foundry.
+# Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Microsoft Foundry.
 ---
 
-# Access on-premises resources from your Azure AI Foundry managed network
+# Access on-premises resources from your Microsoft Foundry managed network
 
 [!INCLUDE [hub-only](../includes/uses-hub-only.md)]
 
-Configure an Azure Application Gateway to let your managed virtual network in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) reach non-Azure resources in another virtual network or on-premises. The gateway provides a secure, private end-to-end path to those resources.
+Configure an Azure Application Gateway to let your managed virtual network in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) reach non-Azure resources in another virtual network or on-premises. The gateway provides a secure, private end-to-end path to those resources.
 
 Azure Application Gateway is a load balancer that makes routing decisions based on the URL of an HTTPS request. Azure Machine Learning supports using an application gateway to securely communicate with non-Azure resources. For more on Application Gateway, see [What is Azure Application Gateway](/azure/application-gateway/overview).
 
-Set up the application gateway in your Azure virtual network for inbound access to the Azure AI Foundry hub. After you configure the gateway, create a private endpoint from the hub's managed virtual network to the gateway. The private endpoint keeps the entire end-to-end path private and off the internet.
+Set up the application gateway in your Azure virtual network for inbound access to the Foundry hub. After you configure the gateway, create a private endpoint from the hub's managed virtual network to the gateway. The private endpoint keeps the entire end-to-end path private and off the internet.
 
 :::image type="content" source="../media/how-to/network/ai-studio-app-gateway.png" alt-text="Diagram that shows a managed virtual network using Azure Application Gateway and a private endpoint to reach on-premises resources securely." lightbox="../media/how-to/network/ai-studio-app-gateway.png":::
 
 ## Prerequisites
 
 - Read [How an application gateway works](/azure/application-gateway/how-application-gateway-works) to learn how Application Gateway secures connections to non-Azure resources.
-- Set up your Azure AI Foundry hub's managed virtual network and select an isolation mode: Allow Internet Outbound or Allow Only Approved Outbound. Learn more in [Managed virtual network isolation](configure-managed-network.md).
+- Set up your Foundry hub's managed virtual network and select an isolation mode: Allow Internet Outbound or Allow Only Approved Outbound. Learn more in [Managed virtual network isolation](configure-managed-network.md).
 - Get the resource's private HTTP(S) endpoint.
 
 ## Supported resources
@@ -47,7 +47,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
 1. On the __Basics__ tab, review and apply the following settings.
 
     - Ensure your Application Gateway is in the same region as the selected Azure Virtual Network.
-    - Azure AI Foundry supports only IPv4 for Application Gateway.
+    - Foundry supports only IPv4 for Application Gateway.
     - In your virtual network, select one dedicated subnet for Application Gateway. Don't deploy other resources in this subnet.
 
 1. On the __Frontends__ tab, Application Gateway doesn't support only a private frontend IP address, so select or create a public IP address. Add private IP addresses for backend resources within the subnet range you selected on the Basics tab.
@@ -73,7 +73,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
 
 ## Configure private link
 
-1. After you create the Application Gateway frontend IP and backend pools, configure the private endpoint from the managed virtual network to the Application Gateway. In the [Azure portal](https://portal.azure.com), go to your Azure AI Foundry hub, select __Networking__, then select __Workspace managed outbound access__ > __+ Add user-defined outbound rules__. 
+1. After you create the Application Gateway frontend IP and backend pools, configure the private endpoint from the managed virtual network to the Application Gateway. In the [Azure portal](https://portal.azure.com), go to your Foundry hub, select __Networking__, then select __Workspace managed outbound access__ > __+ Add user-defined outbound rules__. 
 1. In the __Workspace Outbound rules__ form, set the following values to create the private endpoint:
 
     - Rule name: Enter a name for the private endpoint to Application Gateway.
@@ -82,7 +82,7 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - Resource Type: `Microsoft.Network/applicationGateways`
     - Resource name: The name of your Application Gateway resource.
     - Subresource: `appGwPrivateFrontendIpIPv4`
-    - FQDNs: Enter the FQDN aliases to use in the Azure AI Foundry portal. They're resolved to the managed private endpoint private IP address that targets the Application Gateway. Add multiple FQDNs if you need to reach multiple resources through the Application Gateway.
+    - FQDNs: Enter the FQDN aliases to use in the Foundry portal. They're resolved to the managed private endpoint private IP address that targets the Application Gateway. Add multiple FQDNs if you need to reach multiple resources through the Application Gateway.
       - All added FQDNs use the same IP address for the targeted Application Gateway.
       - The IP address is in the managed virtual network range, not the customer's VNet range.
 

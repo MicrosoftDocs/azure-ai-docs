@@ -1,6 +1,6 @@
 ---
 title: Agent Evaluators for Generative AI
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -23,7 +23,7 @@ ms.custom:
 
 ::: moniker range="foundry-classic"
 
-Agents are powerful productivity assistants. They plan, make decisions, and execute actions. Agents typically [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to satisfy user requests, and [complete tasks](#task-adherence) according to instructions. Azure AI Foundry supports these agent-specific evaluators for agentic workflows:
+Agents are powerful productivity assistants. They plan, make decisions, and execute actions. Agents typically [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to satisfy user requests, and [complete tasks](#task-adherence) according to instructions. Microsoft Foundry supports these agent-specific evaluators for agentic workflows:
 
 - [Intent resolution](#intent-resolution)
 - [Tool call accuracy](#tool-call-accuracy)
@@ -33,7 +33,7 @@ Agents are powerful productivity assistants. They plan, make decisions, and exec
 
 Agents emit messages, and providing inputs typically requires parsing these messages to extract relevant information. If you're building agents using Azure AI Agent Service, the service provides native integration for evaluation that directly takes their agent messages. For an example, see [Evaluate AI agents](https://aka.ms/e2e-agent-eval-sample).
 
-In addition to `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`, which are specific to agentic workflows, you can assess other quality and safety aspects of these workflows using a comprehensive suite of built-in evaluators. Azure AI Foundry supports this list of evaluators for Azure AI agent messages from our converter:
+In addition to `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`, which are specific to agentic workflows, you can assess other quality and safety aspects of these workflows using a comprehensive suite of built-in evaluators. Foundry supports this list of evaluators for Azure AI agent messages from our converter:
 
 - **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, and `Fluency`
 - **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, and `ProtectedMaterials`
@@ -107,7 +107,7 @@ The numerical score uses a Likert scale (integer 1 to 5), where a higher score i
 
 ```
 
-If you build agents outside Azure AI Foundry Agent Service, this evaluator accepts a schema typical for agent messages. To explore a sample notebook, see [Intent Resolution](https://aka.ms/intentresolution-sample).
+If you build agents outside Foundry Agent Service, this evaluator accepts a schema typical for agent messages. To explore a sample notebook, see [Intent Resolution](https://aka.ms/intentresolution-sample).
 
 ## Tool call accuracy
 
@@ -119,7 +119,7 @@ If you build agents outside Azure AI Foundry Agent Service, this evaluator accep
 
 ### Tool call evaluation support
 
-`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Foundry Agent Service for the following tools:
+`ToolCallAccuracyEvaluator` supports evaluation in Agent Service for the following tools:
 
 - File Search
 - Azure AI Search
@@ -315,7 +315,7 @@ AI agents are powerful productivity assistants that can create workflows for bus
 
 An agent workflow typically involves reasoning through user intents, calling relevant tools, and using tool results to complete tasks like updating a database or drafting a report. To build production-ready agentic applications, you need to evaluate not just the final output, but also the quality and efficiency of each step in the workflow.
 
-Azure AI Foundry provides built-in agent evaluators that function like unit tests for agentic systems—they take agent messages as input and output binary Pass/Fail scores (or scaled scores converted to binary scores based on thresholds). These evaluators support two best practices for agent evaluation:
+Foundry provides built-in agent evaluators that function like unit tests for agentic systems—they take agent messages as input and output binary Pass/Fail scores (or scaled scores converted to binary scores based on thresholds). These evaluators support two best practices for agent evaluation:
 
 - System evaluation - to examine the end-to-end outcomes of the agentic system.
 - Process evaluation - to verify the step-by-step execution to achieve the outcomes.
@@ -374,7 +374,7 @@ For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models]
 
 ### Tool evaluators support
 
-Evaluators including tool_call_accuracy, tool_selection, tool_input_accuracy, tool_output_utilization support evaluation in Azure AI Foundry Agent Service for the following tools:
+Evaluators including tool_call_accuracy, tool_selection, tool_input_accuracy, tool_output_utilization support evaluation in Agent Service for the following tools:
 
 - File Search
 - Azure AI Search

@@ -1,7 +1,7 @@
 ---
-title: 'Harm categories and severity levels in Azure AI Foundry'
-titleSuffix: Azure AI Foundry
-description: Learn about the harm categories and severity levels used by the content safety system in Azure AI Foundry to detect and filter harmful content.
+title: 'Harm categories and severity levels in Microsoft Foundry'
+titleSuffix: Microsoft Foundry
+description: Learn about the harm categories and severity levels used by the content safety system in Microsoft Foundry to detect and filter harmful content.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: conceptual
@@ -10,12 +10,12 @@ author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
 ms.custom: azure-ai-content-safety
-# customer intent: As a developer, I want to understand the harm categories and severity levels in Azure AI Foundry so that I can properly handle content filtering in my applications.
+# customer intent: As a developer, I want to understand the harm categories and severity levels in Microsoft Foundry so that I can properly handle content filtering in my applications.
 ---
 
-# Harm categories and severity levels in Azure AI Foundry
+# Harm categories and severity levels in Microsoft Foundry
 
-The content safety system integrated in Azure AI Foundry contains neural multiclass classification models aimed at detecting and filtering harmful content. The models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
+The content safety system integrated in Microsoft Foundry contains neural multiclass classification models aimed at detecting and filtering harmful content. The models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 
 The system also includes other optional classification models aimed at detecting jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model may be required for Customer Copyright Commitment coverage.
 
@@ -24,7 +24,7 @@ The system also includes other optional classification models aimed at detecting
 
 ## Harm category descriptions
 
-The following table summarizes the harm categories supported by Azure AI Foundry guardrails:
+The following table summarizes the harm categories supported by Foundry guardrails:
 
 | Category | Description |
 |----------|-------------|

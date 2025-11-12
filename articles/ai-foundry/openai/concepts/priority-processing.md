@@ -1,7 +1,7 @@
 ---
-title: Priority processing for Azure AI Foundry Models (preview)
-titleSuffix: Azure AI Foundry
-description: Learn how to enable priority processing for Azure AI Foundry models to achieve low latency and high availability for time-sensitive workloads.
+title: Priority processing for Microsoft Foundry Models (preview)
+titleSuffix: Microsoft Foundry
+description: Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: conceptual
@@ -12,10 +12,10 @@ ms.reviewer: seramasu
 reviewer: rsethur
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
-#customerIntent: As a developer or data scientist working with latency-sensitive AI applications, I want to understand and implement priority processing for Azure AI Foundry models so that I can achieve predictable low latency and high availability for time-critical workloads without requiring long-term commitments or provisioned capacity.
+#customerIntent: As a developer or data scientist working with latency-sensitive AI applications, I want to understand and implement priority processing for Microsoft Foundry models so that I can achieve predictable low latency and high availability for time-critical workloads without requiring long-term commitments or provisioned capacity.
 ---
 
-# Priority processing for Azure AI Foundry models (preview)
+# Priority processing for Microsoft Foundry models (preview)
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -88,9 +88,9 @@ You can enable priority processing at the deployment level and [(optionally) at 
 
 ::: moniker range="foundry-classic"
 
-In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can enable priority processing during deployment setup. Turn on the **Priority processing (preview)** toggle on the deployment details page when creating the deployment or update the setting by editing the deployment details of a deployed model.
+In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), you can enable priority processing during deployment setup. Turn on the **Priority processing (preview)** toggle on the deployment details page when creating the deployment or update the setting by editing the deployment details of a deployed model.
 
-:::image type="content" source="../media/priority-processing/enable-priority-processing.png" alt-text="Screenshot showing how to enable priority processing by updating the settings of a deployed model in the Azure AI Foundry portal." lightbox="../media/priority-processing/enable-priority-processing.png":::
+:::image type="content" source="../media/priority-processing/enable-priority-processing.png" alt-text="Screenshot showing how to enable priority processing by updating the settings of a deployed model in the Foundry portal." lightbox="../media/priority-processing/enable-priority-processing.png":::
 
 ::: moniker-end
 
@@ -98,7 +98,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can e
 
 In the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal, you can enable priority processing during deployment setup. Turn on the **Priority processing (preview)** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
 
-:::image type="content" source="../media/priority-processing/enable-priority-processing-foundry.png" alt-text="Screenshot showing how to enable priority processing during model deployment in the Azure AI Foundry portal." lightbox="../media/priority-processing/enable-priority-processing-foundry.png":::
+:::image type="content" source="../media/priority-processing/enable-priority-processing-foundry.png" alt-text="Screenshot showing how to enable priority processing during model deployment in the Foundry portal." lightbox="../media/priority-processing/enable-priority-processing-foundry.png":::
 ::: moniker-end
 
 > [!NOTE]

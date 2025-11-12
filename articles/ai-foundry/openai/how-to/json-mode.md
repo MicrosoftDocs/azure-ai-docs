@@ -1,5 +1,5 @@
 ---
-title: 'How to use JSON mode with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use JSON mode with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your chat completions with Azure OpenAI JSON mode
 services: cognitive-services

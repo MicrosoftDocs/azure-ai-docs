@@ -24,7 +24,7 @@ There are various authentication methods for the different connection types. Whe
 
 ## [Azure OpenAI](#tab/aoai)
 
-The following example uses the [AzureOpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureopenaiconnection) class to create an Azure OpenAI in Azure AI Foundry Models connection.
+The following example uses the [AzureOpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureopenaiconnection) class to create an Azure OpenAI in Microsoft Foundry Models connection.
 
 > [!TIP]
 > To connect to Azure OpenAI and more AI services with one connection, you can use the AI services connection instead.
@@ -52,7 +52,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## [AI services](#tab/ai-services)
 
-The following example uses the [AzureAIServicesConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureaiservicesconnection) class to create an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports Azure OpenAI.
+The following example uses the [AzureAIServicesConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureaiservicesconnection) class to create a Foundry Tools connection. This example creates one connection for the AI services documented in the [Connect to Foundry Tools](../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports Azure OpenAI.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection

@@ -1,7 +1,7 @@
 ---
-title: Build a Workflow in Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: This article explains how to build a Workflow in Azure AI Foundry using agents. 
+title: Build a Workflow in Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: This article explains how to build a Workflow in Microsoft Foundry using agents. 
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
@@ -15,7 +15,7 @@ author: ssalgadodev
 #customer intent: As a developer, I want to learn how to build a workflow.
 ---
 
-# Build a workflow in Azure AI Foundry
+# Build a workflow in Microsoft Foundry
 
 Workflows is a UI-based tool in Foundry to create declarative, predefined sequences of actions including agents, as in Microsoft Agent Framework Workflows.
 
@@ -24,11 +24,11 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 ## Prerequisites
 
 * [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
-* A **project in Azure AI Foundry** 
+* A **project in Microsoft Foundry** 
 
 ## Create a workflow
 
-In Azure AI Foundry, you can choose to create a blank workflow or choose from one of the premade configured options. For this tutorial, we'll be creating a Sequential workflow. If you want to learn more about different types of workflows, see the [workflow concepts](#workflow-concepts) section of this article. 
+In Foundry, you can choose to create a blank workflow or choose from one of the premade configured options. For this tutorial, we'll be creating a Sequential workflow. If you want to learn more about different types of workflows, see the [workflow concepts](#workflow-concepts) section of this article. 
 
 ### Create a sequential workflow
 

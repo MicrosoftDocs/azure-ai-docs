@@ -1,6 +1,6 @@
 ---
 title: Use cases for Speech to text
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This Transparency Note discusses Speech to text and the key considerations for making use of this technology responsibly.
 author: PatrickFarley
 ms.author: pafarley
@@ -22,7 +22,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of speech to text
 
-Speech to text, also known as automatic speech recognition (ASR), is a feature under the Azure Speech in Foundry Tools service, which is a part of Azure AI services. [Speech to text](/azure/cognitive-services/speech-service/Speech-to-Text) converts spoken audio into text. Speech to text in Azure supports more than 140 locales for input. For the latest list of supported locales, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
+Speech to text, also known as automatic speech recognition (ASR), is a feature under the Azure Speech in Foundry Tools service, which is a part of Foundry Tools. [Speech to text](/azure/cognitive-services/speech-service/Speech-to-Text) converts spoken audio into text. Speech to text in Azure supports more than 140 locales for input. For the latest list of supported locales, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
 
 ### Key terms
 
@@ -60,7 +60,7 @@ When you use batch transcription, you can choose to use the Whisper model instea
 
 #### Speech translation API
 
-This API converts audio input to text, and then translates it into another language. The translated transcription output can be returned in text format, or you can choose to have the text synthesized into audible speech by using [text to speech](/azure/cognitive-services/speech-service/text-to-speech). For more information, see [What is Azure AI Translator?](/azure/ai-services/translator/translator-overview)
+This API converts audio input to text, and then translates it into another language. The translated transcription output can be returned in text format, or you can choose to have the text synthesized into audible speech by using [text to speech](/azure/cognitive-services/speech-service/text-to-speech). For more information, see [What is Azure Translator in Foundry Tools?](/azure/ai-services/translator/translator-overview)
 
 
 

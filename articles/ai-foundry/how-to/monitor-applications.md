@@ -1,6 +1,6 @@
 ---
 title: Monitor your Generative AI Applications
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously monitor Generative AI Applications.
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -21,9 +21,9 @@ Monitoring your generative AI applications has never been more important, due to
 
 ## How to enable monitoring
 
-To use monitoring capabilities in Azure AI Foundry, you need to connect an Application Insights resource to your Azure AI Foundry project.
+To use monitoring capabilities in Microsoft Foundry, you need to connect an Application Insights resource to your Foundry project.
 
-1. Navigate to **Monitoring** in the left navigation pane of the Azure AI Foundry portal.
+1. Navigate to **Monitoring** in the left navigation pane of the Foundry portal.
 2. Select the **Application analytics** tab.
 3. Create a new Application Insights resource if you don't already have one.
 4. Connect the resource to your AI Foundry project.
@@ -38,13 +38,13 @@ From here, you want to begin collecting telemetry for your application that you 
 
 ## Viewing monitoring results
 
-In Azure AI Foundry portal, the **Application analytics** dashboard view uses signals from [Azure Monitor Application Insights](/azure/azure-monitor/app/overview-dashboard), querying it through [Azure Workbooks](/azure/azure-monitor/visualize/workbooks-overview) and creating visualizations.
+In Foundry portal, the **Application analytics** dashboard view uses signals from [Azure Monitor Application Insights](/azure/azure-monitor/app/overview-dashboard), querying it through [Azure Workbooks](/azure/azure-monitor/visualize/workbooks-overview) and creating visualizations.
 
 These views are designed to bring key metrics - token consumption, latency, exceptions, response quality into a single pane of glass that provides transparency to teams to track operational health and quality, understand trends, and assess continuously to improve their application.
 
 Follow these steps to access and utilize the built-in monitoring view in your AI Foundry Project:
 
-1. Navigate to your AI Foundry Project in the Azure AI Foundry portal.
+1. Navigate to your AI Foundry Project in the Foundry portal.
 2. Select **Monitoring** from the left navigation pane.
 3. Under the **Application analytics** tab, review the overview of your application's health.
 4. Use filters to specify a time range, application, and/or model to extract detailed insights.

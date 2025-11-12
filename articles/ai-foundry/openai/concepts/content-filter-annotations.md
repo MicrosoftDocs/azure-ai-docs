@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Guardrail annotations
 
-Azure AI Foundry Models provide annotations to help you understand the Guardrail (previously content filtering) results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content. 
+Microsoft Foundry Models provide annotations to help you understand the Guardrail (previously content filtering) results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content. 
 
 ## Standard guardrail annotations 
 
@@ -23,7 +23,7 @@ When annotations are enabled as shown in the code snippets below, the following 
 - the severity level (safe, low, medium, or high) within each content category 
 - filtering status (true or false).
 
-Azure OpenAI in Azure AI Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
+Azure OpenAI in Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
 
 ## Optional model annotations
 

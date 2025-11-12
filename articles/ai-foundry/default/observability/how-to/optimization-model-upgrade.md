@@ -1,6 +1,6 @@
 ---
-title: Upgrade/Switch Models in Azure AI Foundry with Ask AI 
-titleSuffix: Azure AI Foundry 
+title: Upgrade/Switch Models in Microsoft Foundry with Ask AI 
+titleSuffix: Microsoft Foundry 
 description: Learn how to use Ask AI for an easy and smooth model upgrade or switch for the agents.  
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -11,7 +11,7 @@ author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Upgrade/switch models in Azure AI Foundry with Ask AI (preview)
+# Upgrade/switch models in Microsoft Foundry with Ask AI (preview)
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
@@ -25,7 +25,7 @@ This article describes the integrated user experience and system behavior when y
 
 Before you begin:
 
-- Have access to the **Azure AI Foundry portal**.
+- Have access to the **Microsoft Foundry portal**.
 - Have one or more deployed models or agents.
 - Have access to **Ask AI** (the chat assistant).
 - Have at least one evaluation dataset in CSV or JSONL format.
@@ -49,7 +49,7 @@ Ask Ask AI questions like:
 
 :::image type="content" source="../../media/observability/model-upgrade-ask-ai.png" alt-text="Screenshot of Ask AI answering a question." lightbox="../../media/observability/model-upgrade-ask-ai.png":::
 
-It gives responses and options for recommended models. Select a model to view details in the model catalog, or go to the model deployment page to deploy a model. To learn how to deploy a model, see [Add and configure models to Azure AI Foundry Models](../../../foundry-models/how-to/create-model-deployments.md).
+It gives responses and options for recommended models. Select a model to view details in the model catalog, or go to the model deployment page to deploy a model. To learn how to deploy a model, see [Add and configure models to Foundry Models](../../../foundry-models/how-to/create-model-deployments.md).
 
 :::image type="content" source="../../media/observability/model-upgrade-selected-model.png" alt-text="Screenshot of a selected model page with Ask AI offering other detailed model links to view next." lightbox="../../media/observability/model-upgrade-selected-model.png":::
 
@@ -71,4 +71,4 @@ Chat with Ask AI to scan your project, find agents in similar situations, and ap
 
 ## Related content
 
-- [Model versions in Azure AI Foundry Models](../../../foundry-models/concepts/model-versions.md?view=foundry&preserve-view=true)
+- [Model versions in Foundry Models](../../../foundry-models/concepts/model-versions.md?view=foundry&preserve-view=true)

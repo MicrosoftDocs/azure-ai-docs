@@ -1,7 +1,7 @@
 ---
 title: How to get started with an AI template
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to use an AI template to get started with Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to use an AI template to get started with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -80,7 +80,7 @@ Available templates:
 
 ## Benefits of AI solution templates
 
-AI templates in Azure AI Foundry provide:
+AI templates in Microsoft Foundry provide:
 
 * **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly
 * **Reduced engineering overhead**: Pre-integrated Azure services eliminate deployment friction
@@ -129,8 +129,8 @@ The README also includes information about the application, such as the use case
 
 ## Deploy templates quickly
 
-With quick-deploy options, you can launch any Azure AI Foundry template in minutes. These architectures and implementations are customizable while staying Well-Architected Framework (WAF) aligned using Azure Verified Modules. Use tools such as PSRule and TFlint to test that your modified implementation is production-ready.
+With quick-deploy options, you can launch any Foundry template in minutes. These architectures and implementations are customizable while staying Well-Architected Framework (WAF) aligned using Azure Verified Modules. Use tools such as PSRule and TFlint to test that your modified implementation is production-ready.
 
 ## Next step
 
-- [Quickstart: Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)
+- [Quickstart: Get started with Foundry](../../quickstarts/get-started-code.md)

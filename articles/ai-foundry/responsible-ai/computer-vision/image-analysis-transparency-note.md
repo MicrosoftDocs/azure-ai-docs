@@ -1,6 +1,6 @@
 ---
 title: Transparency Note and use cases for Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains Image Analysis Responsible AI basics, use cases, and terms.
 author: PatrickFarley
 ms.author: pafarley
@@ -26,7 +26,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 Organizations are building solutions to process media assets such as digital files and images and extract actionable insights. These insights include visual features from images such as objects, people, and image descriptions that can be used to power knowledge mining, business process automation, and accessibility of content for everyone.
 
-Accessible through Azure AI services, Image Analysis APIs offer pre-trained machine learning models to assign labels to images and classify them into thousands of predefined categories. The APIs extract many visual features from images, including objects, people, adult content, and auto-generated image captions. Using the Customization feature, customers can quickly train vision models using their own data and defining their own categories.
+Accessible through Foundry Tools, Image Analysis APIs offer pre-trained machine learning models to assign labels to images and classify them into thousands of predefined categories. The APIs extract many visual features from images, including objects, people, adult content, and auto-generated image captions. Using the Customization feature, customers can quickly train vision models using their own data and defining their own categories.
 
 ### Key terms
 
@@ -43,7 +43,7 @@ Accessible through Azure AI services, Image Analysis APIs offer pre-trained mach
 | **Object detection** | This feature takes an image as an input, and outputs a set of class accuracy pairs that also includes the bounding box coordinates for where in the image those classes were detected. For example, the model might detect the bounding box coordinates for where a vehicle is found in the image. |
 | **Bounding box** | A set of four numerical values representing the x,y pixel coordinates of the top left corner of the detected object relative to the top left corner of the image, the width of the detected object. |
 | **Confidence** | An Image Analysis operation returns confidence values in the range of 0 to 1 for all extracted output. The confidence value represents the estimate of the likelihood of a tag.|
-| **Florence** | Florence is the name of a new foundation AI model, part of an Azure AI Vision initiative, trained with billions of text-image pairs that powers many of the quality improvements in the v4.0 release of the Azure AI Vision service. It has the ability to recognize millions of object categories out of the box, and enables faster, lower-cost customization to recognize specific patterns with fewer training images in the model customization service. |
+| **Florence** | Florence is the name of a new foundation AI model, part of an Azure Vision in Foundry Tools initiative, trained with billions of text-image pairs that powers many of the quality improvements in the v4.0 release of the Vision service. It has the ability to recognize millions of object categories out of the box, and enables faster, lower-cost customization to recognize specific patterns with fewer training images in the model customization service. |
 | **Planogram** | A planogram is a document or diagram that describes the placement of products on shelves or displays in a retail store. It's used to help retailers and manufacturers optimize the placement of products to increase sales. In product recognition scenarios, the planogram is represented as a JSON document.|
 
 ## Capabilities
@@ -122,7 +122,7 @@ These event categories are used to calculate precision and recall:
 
 The precision and recall definitions imply that, in certain cases, it can be hard to optimize for both precision and recall at the same time. Depending on your scenario, you might need to prioritize one over the other. For example, if you are developing a solution to detect only the most accurate tags or labels in the content, such as to display image search results, you would optimize for higher precision. But if you're trying to tag all possible visual content in the images for indexing or internal cataloging, you would optimize for higher recall.
 
-If you are the owner of an image processing system, we recommend that you collect ground-truth evaluation data, which is data that is collected and tagged by human judges to evaluate a system. The pre-built AI models provided in the Azure AI Vision service might not satisfy the requirements of your use case. By using the evaluation dataset that is specific to your use case, you can make an informed decision on whether the pre-built Image Analysis models are right for your scenario. If the pre-built Image Analysis models are not right for your scenario, you can build your own models using the Customization feature described below. You can also use the data to determine how the confidence threshold affects the achievement of your goals.
+If you are the owner of an image processing system, we recommend that you collect ground-truth evaluation data, which is data that is collected and tagged by human judges to evaluate a system. The pre-built AI models provided in the Vision service might not satisfy the requirements of your use case. By using the evaluation dataset that is specific to your use case, you can make an informed decision on whether the pre-built Image Analysis models are right for your scenario. If the pre-built Image Analysis models are not right for your scenario, you can build your own models using the Customization feature described below. You can also use the data to determine how the confidence threshold affects the achievement of your goals.
 
 You can compare ground-truth labels to the output of the system to establish overall accuracy and error rates. Error distribution helps you set the right threshold for your scenario. Ground-truth evaluation data should include an adequate sampling of representative images so that you can understand performance differences and take corrective action. Based on the results of your evaluation, you can iteratively adjust the threshold until the trade-off between precision and recall meets your objectives.
 
@@ -169,7 +169,7 @@ We have rigorously tested all our Image Analysis AI models for fairness to ident
 
 In some rare instances, image tagging, and image captioning models have made fairness errors by returning incorrect gender and age labels for people that appear in input images. These instances are very rare, and we continue to improve our models so that newer models are less likely to produce such errors. We recommend that customers don't use Image Analysis models for gender and age classifications.
 
-We ask customers to report any fairness errors and to share their feedback on these issues through the [Azure Portal](https://portal.azure.com/?feature.customportal=false#home) so that we can keep identifying areas of improvement as we seek to ensure that our models work well for everyone. Customers who train their own models using the Customization feature will need to perform additional testing to ensure fairness.
+We ask customers to report any fairness errors and to share their feedback on these issues through the [Azure portal](https://portal.azure.com/?feature.customportal=false#home) so that we can keep identifying areas of improvement as we seek to ensure that our models work well for everyone. Customers who train their own models using the Customization feature will need to perform additional testing to ensure fairness.
 
 ## Evaluating and integrating Image Analysis for your use
 
@@ -226,7 +226,7 @@ When you're ready to use your model, you can make a model prediction by sending 
 
 #### Intended uses
 
-You might use Customization, a feature of Azure AI services Image Analysis for the following scenarios:
+You might use Customization, a feature of Foundry Tools Image Analysis for the following scenarios:
 
 - **Automated visual alerts**: The ability to monitor a video stream and have alerts triggered when certain circumstances are detected. For example, you might want an alert when there is steam detected, or foam on a river, or an animal is present.
 - **Improved efficiency of manual inspection**: In retail, product recognition enables you to reduce the time you or associates spend counting unique SKUs or identifying whether all SKUs that should be on a shelf are present.

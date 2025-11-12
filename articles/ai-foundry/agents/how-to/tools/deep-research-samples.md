@@ -1,7 +1,7 @@
 ---
 title: 'How to use the deep research tool'
-titleSuffix: Azure AI Foundry
-description: Find code samples and instructions for using deep research in the Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Find code samples and instructions for using deep research in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -25,7 +25,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 ## Prerequisites
 
 * The requirements in the [Deep Research overview](./deep-research.md).
-* Your Azure AI Foundry Project endpoint.
+* Your Microsoft Foundry Project endpoint.
 
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
@@ -43,7 +43,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
 :::zone pivot="csharp"
 
-* The connection ID for your Grounding with Bing Search resource. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
+* The connection ID for your Grounding with Bing Search resource. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
     
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
 
@@ -181,7 +181,7 @@ client.Administration.DeleteAgent(agentId: agent.Id);
 
 :::zone pivot="typescript"
 
-* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Select **Connected resources**, then select your Grounding with Bing Search resource.
+* The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Select **Connected resources**, then select your Grounding with Bing Search resource.
     
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
 
@@ -412,7 +412,7 @@ main().catch((err) => {
 
 :::zone pivot="python"
 
-* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
+* The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
     
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
 
@@ -575,7 +575,7 @@ with project_client:
 
 > [!NOTE]
 > * Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
-> * Currently, Azure AI Foundry Agent Playground UI only supports starting runs in streaming mode, and as a result, users might experience connection drops and timeouts. Use the supported methods above which uses runs in non-streaming mode.
+> * Currently, Foundry Agent Playground UI only supports starting runs in streaming mode, and as a result, users might experience connection drops and timeouts. Use the supported methods above which uses runs in non-streaming mode.
 
 ## Next steps
 

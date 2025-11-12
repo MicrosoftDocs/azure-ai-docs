@@ -38,7 +38,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-create-agent.sh":::
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Microsoft Foundry portal](#tab/portal)
 
 Now create an agent and interact with it.
 1. Still in the **Build** section, select **Agents** in the left pane.

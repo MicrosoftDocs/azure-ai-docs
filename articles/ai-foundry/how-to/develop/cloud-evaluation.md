@@ -1,6 +1,6 @@
 ---
-title: Cloud Evaluation with the Azure AI Foundry SDK
-titleSuffix: Azure AI Foundry
+title: Cloud Evaluation with the Microsoft Foundry SDK
+titleSuffix: Microsoft Foundry
 description: The Azure AI Evaluation SDK supports running evaluations locally or in the cloud. Learn how to evaluate a generative AI application.
 ms.service: azure-ai-foundry
 ms.custom:
@@ -11,12 +11,12 @@ ms.date: 11/18/2025
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to run evaluations in the cloud using the Azure AI Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
+# customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Run evaluations in the cloud by using the Azure AI Foundry SDK
+# Run evaluations in the cloud by using the Microsoft Foundry SDK
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -30,7 +30,7 @@ When you use the Foundry SDK, it logs evaluation results in your Azure AI projec
 
 ## Prerequisites
 
-- Azure AI Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have a project, create one. See [Create a project for Azure AI Foundry](../create-projects.md?tabs=ai-studio).
+- Microsoft Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have a project, create one. See [Create a project for Foundry](../create-projects.md?tabs=ai-studio).
 - Azure OpenAI deployment with GPT model supporting `chat completion`, such as `gpt-4`.
 - Sign in to your Azure subscription by running `az login`.
 
@@ -44,7 +44,7 @@ When you use the Foundry SDK, it logs evaluation results in your Azure AI projec
 
 ::: moniker range="foundry-classic"
 
-1. Install the Azure AI Foundry SDK project client to run evaluations in the cloud:
+1. Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
 
    ```python
    uv install azure-ai-projects azure-identity
@@ -53,7 +53,7 @@ When you use the Foundry SDK, it logs evaluation results in your Azure AI projec
    > [!NOTE]
    > For more information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
-1. Set environment variables for your Azure AI Foundry resources:
+1. Set environment variables for your Foundry resources:
 
    ```python
    import os
@@ -87,7 +87,7 @@ When you use the Foundry SDK, it logs evaluation results in your Azure AI projec
 
 ::: moniker range="foundry"
 
-1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud:
+1. Install the Microsoft Foundry SDK project client that runs the evaluations in the cloud:
 
    ```python
 
@@ -98,7 +98,7 @@ When you use the Foundry SDK, it logs evaluation results in your Azure AI projec
    > [!NOTE]
    > For more information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
-1. Set your environment variables for your Azure AI Foundry resources:
+1. Set your environment variables for your Foundry resources:
 
     ``` python
     
@@ -223,7 +223,7 @@ print("Status:", evaluation_response.status)
 ## Specify custom evaluators
 
 > [!NOTE]
-> Azure AI Foundry projects aren't supported for this feature. Use an Azure AI Foundry hub project instead.
+> Foundry projects aren't supported for this feature. Use a Foundry hub project instead.
 
 ### Code-based custom evaluators
 
@@ -266,7 +266,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After you register your custom evaluator, view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Azure AI Foundry project, select **Evaluation**, then select **Evaluator library**.
+After you register your custom evaluator, view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
 
 
 ### Prompt-based custom evaluators
@@ -315,7 +315,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Azure AI Foundry project, select **Evaluation**, then select **Evaluator library**.
+After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
 
 ::: moniker-end
 
@@ -893,7 +893,7 @@ For aggregate results over multiple data examples (a dataset), the average rate 
 
 ### Troubleshooting: Job Stuck in Running State
 
-Your evaluation job might remain in the **Running** state for an extended period when using Azure AI Foundry Project or Hub. The Azure OpenAI model you select might not have enough capacity.
+Your evaluation job might remain in the **Running** state for an extended period when using Foundry Project or Hub. The Azure OpenAI model you select might not have enough capacity.
 
 **Resolution**
 
@@ -908,8 +908,8 @@ Your evaluation job might remain in the **Running** state for an extended period
 - [Evaluate your generative AI applications locally](./evaluate-sdk.md)
 - [Monitor your generative AI applications](../monitor-applications.md)
 - [Learn about simulating test datasets for evaluation](./simulator-interaction-data.md)
-- [See evaluation results in the Azure AI Foundry portal](../../how-to/evaluate-results.md)
-- [Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)
+- [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
+- [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
 
 ::: moniker-end
@@ -918,7 +918,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators)
 - [Evaluate your AI agents continuously](../continuous-evaluation-agents.md)
-- [See evaluation results in the Azure AI Foundry portal](../../how-to/evaluate-results.md)
-- [Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)
+- [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
+- [Get started with Foundry](../../quickstarts/get-started-code.md)
 
 ::: moniker-end

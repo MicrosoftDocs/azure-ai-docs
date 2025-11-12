@@ -1,5 +1,5 @@
 ---
-title: 'How to create Assistants with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to create Assistants with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to create helpful AI Assistants with tools like Code Interpreter.
 services: cognitive-services
@@ -18,7 +18,7 @@ recommendations: false
 # Getting started with Azure OpenAI Assistants (Preview)
 
 > [!NOTE]
-> The [Azure AI Foundry Agent Service](../../agents/overview.md) is now Generally Available and includes additional tools and capabilities that extend beyond what Assistants provides. 
+> The [Foundry Agent Service](../../agents/overview.md) is now Generally Available and includes additional tools and capabilities that extend beyond what Assistants provides. 
 
 Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions. In this article, we provide an in-depth walkthrough of getting started with the Assistants API.
 

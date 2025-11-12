@@ -1,7 +1,7 @@
 ---
-title: Rerank tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Rerank tool for flows in Azure AI Foundry portal.
+title: Rerank tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Rerank tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.topic: reference
@@ -15,7 +15,7 @@ ms.update-cycle: 180-days
 ---
 
 
-# Rerank tool for flows in Azure AI Foundry portal
+# Rerank tool for flows in Microsoft Foundry portal
 
 The prompt flow Rerank tool improves search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
@@ -27,10 +27,10 @@ The prompt flow Rerank tool improves search quality of relevant documents given 
 
 ## Use the Rerank tool
 
-1. Create or open a flow in Azure AI Foundry portal. For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in Microsoft Foundry portal. For more information, see [Create a flow](../flow-develop.md).
 1. Select **+More tools** > **Rerank tool** to add the Rerank tool to your flow.
 
-     :::image type="content" source="../../media/prompt-flow/rerank-tool.png" alt-text="Screenshot that shows the rerank tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/rerank-tool.png":::
+     :::image type="content" source="../../media/prompt-flow/rerank-tool.png" alt-text="Screenshot that shows the rerank tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/rerank-tool.png":::
 
 1. Enter values for the Rerank tool input parameters.
 1. Add more tools to your flow as needed, or select **Run** to run the flow.

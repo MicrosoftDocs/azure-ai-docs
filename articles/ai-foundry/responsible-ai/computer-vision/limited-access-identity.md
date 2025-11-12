@@ -1,6 +1,6 @@
 ---
 title: Limited Access features of Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Face features that are in limited access.
 author: PatrickFarley
 ms.author: pafarley

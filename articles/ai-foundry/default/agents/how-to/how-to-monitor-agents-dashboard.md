@@ -1,5 +1,5 @@
 ---
-title: Monitor AI Agents with Azure AI Foundry Dashboard
+title: Monitor AI Agents with Microsoft Foundry Dashboard
 description: Gain insights into your AI agents' performance with the Agent Monitoring Dashboard. Optimize operations, evaluate responses, and ensure compliance.
 #customer intent: As an AI operations manager, I want to monitor the performance of my AI agents in real time so that I can ensure optimal functionality and compliance.
 author: sonalim-0
@@ -14,18 +14,18 @@ ai-usage: ai-assisted
 
 # Monitor AI Agents with the Agent Monitoring Dashboard
 
-The Agent Monitoring Dashboard in Azure AI Foundry provides real-time insights into the operational health, performance, and compliance of your AI agents. Use this dashboard to track token usage, latency, evaluation metrics, and security posture across multi-agent systems.
+The Agent Monitoring Dashboard in Microsoft Foundry provides real-time insights into the operational health, performance, and compliance of your AI agents. Use this dashboard to track token usage, latency, evaluation metrics, and security posture across multi-agent systems.
 
 ## Prerequisites
 
-- An Azure AI Foundry project. For more information, see [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
-- At least one deployed agent in your Azure AI Foundry project.
+- A Foundry project. For more information, see [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
+- At least one deployed agent in your Foundry project.
 - An Application Insights resource connected to your project.
 - Azure role-based access control (RBAC): At minimum, "Reader" role on the Application Insights resource to view monitoring data.
 
 ## View agent metrics in the portal
 
-To view metrics for your agent in the Azure AI Foundry portal:
+To view metrics for your agent in the Foundry portal:
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)].
 
@@ -35,9 +35,9 @@ To view metrics for your agent in the Azure AI Foundry portal:
 
 ## View agent metrics
 
- :::image type="content" source="../media/how-to-monitor-agents-dashboard/foundry-metrics-dashboard.png" alt-text="Screenshot of the Agent Monitoring Dashboard in Azure AI Foundry showing summary cards at the top with high-level metrics and charts below displaying evaluation scores, agent run success rates, and token usage over time.":::
+ :::image type="content" source="../media/how-to-monitor-agents-dashboard/foundry-metrics-dashboard.png" alt-text="Screenshot of the Agent Monitoring Dashboard in Foundry showing summary cards at the top with high-level metrics and charts below displaying evaluation scores, agent run success rates, and token usage over time.":::
 
-The Agent Monitoring Dashboard in Azure AI Foundry is designed for quick insights and deep analysis of your AI agents' performance. It consists of two main areas:
+The Agent Monitoring Dashboard in Foundry is designed for quick insights and deep analysis of your AI agents' performance. It consists of two main areas:
 
 - Summary Cards at the top for high-level metrics. These cards provide an at-a-glance view of key metrics.
 
@@ -47,7 +47,7 @@ The Agent Monitoring Dashboard in Azure AI Foundry is designed for quick insight
 
 The Monitor Settings panel allows you to enable and customize telemetry, evaluations, and security checks for your AI agents. These settings ensure that the dashboard displays accurate operational and quality metrics.
 
-:::image type="content" source="../media/how-to-monitor-agents-dashboard/monitor-settings-panel.png" alt-text="Screenshot showing the Monitor Settings panel in Azure AI Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration.":::
+:::image type="content" source="../media/how-to-monitor-agents-dashboard/monitor-settings-panel.png" alt-text="Screenshot showing the Monitor Settings panel in Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration.":::
 
 The following table describes the monitoring features available in the Monitor Settings panel:
 
@@ -63,5 +63,5 @@ The following table describes the monitoring features available in the Monitor S
 ## Next steps
 
 - [Continuously evaluate your AI agents (preview)](/azure/ai-foundry/how-to/continuous-evaluation-agents)
-- [Trace and observe AI agents in Azure AI Foundry (preview)](/azure/ai-foundry/how-to/develop/trace-agents-sdk)
+- [Trace and observe AI agents in Foundry (preview)](/azure/ai-foundry/how-to/develop/trace-agents-sdk)
 - [Monitor your generative AI applications (preview)](/azure/ai-foundry/how-to/monitor-applications)

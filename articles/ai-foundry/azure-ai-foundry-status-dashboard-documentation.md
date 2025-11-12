@@ -1,6 +1,6 @@
 ---
-title: Azure AI Foundry Status Dashboard (Preview)
-description: Discover the Azure AI Foundry Status Dashboard (Preview) for real-time updates on service health, incident reports.
+title: Microsoft Foundry Status Dashboard (Preview)
+description: Discover the Microsoft Foundry Status Dashboard (Preview) for real-time updates on service health, incident reports.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 author: jonburchel
@@ -9,14 +9,14 @@ ms.reviewer: nisi
 ms.date: 09/30/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
-# customer intent: As a developer, I want to monitor the status of Azure AI Foundry services so I can stay informed about service health and plan around incidents.
+# customer intent: As a developer, I want to monitor the status of Microsoft Foundry services so I can stay informed about service health and plan around incidents.
 ---
 
-# Azure AI Foundry status dashboard
+# Microsoft Foundry status dashboard
 
 [!INCLUDE [version-banner](includes/version-banner.md)]
 
-The [Azure AI Foundry Status Dashboard](https://status.ai.azure.com/) provides visibility into the health and availability of key Foundry services. It's intended to help customers monitor service status, stay informed about ongoing incidents, and plan around scheduled maintenance windows.
+The [Microsoft Foundry Status Dashboard](https://status.ai.azure.com/) provides visibility into the health and availability of key Foundry services. It's intended to help customers monitor service status, stay informed about ongoing incidents, and plan around scheduled maintenance windows.
 
 This dashboard is currently in **Preview**, which means we're still expanding coverage and improving the experience based on customer feedback.
 
@@ -49,6 +49,6 @@ We welcome feedback on this dashboard as we work towards General Availability. I
 
 ## Related content
 
-- [Azure AI Foundry documentation](/azure/ai-foundry/)
+- [Foundry documentation](/azure/ai-foundry/)
 - [Azure status history](https://status.azure.com/status)
 - [Azure Service Health](https://azure.microsoft.com/status/)

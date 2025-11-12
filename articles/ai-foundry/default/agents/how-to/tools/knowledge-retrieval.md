@@ -1,7 +1,7 @@
 ---
 title: Connect Agents to Knowledge Bases using MCP
-titleSuffix: Azure AI Foundry
-description: Learn how to connect Azure AI Foundry agents to Azure AI Search knowledge bases using Model Context Protocol (MCP) for grounded retrieval and citation-backed responses.
+titleSuffix: Microsoft Foundry
+description: Learn how to connect Microsoft Foundry agents to Azure AI Search knowledge bases using Model Context Protocol (MCP) for grounded retrieval and citation-backed responses.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
@@ -10,11 +10,11 @@ ms.topic: how-to
 ms.date: 11/10/2025
 ---
 
-# Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service
+# Use knowledge to improve retrieval quality in Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
-In this article, you learn how to connect an Azure AI Foundry agent to an Azure AI Search knowledge base using Model Context Protocol (MCP). When invoked by the agent, the knowledge base orchestrates the following retrieval operations:
+In this article, you learn how to connect a Microsoft Foundry agent to an Azure AI Search knowledge base using Model Context Protocol (MCP). When invoked by the agent, the knowledge base orchestrates the following retrieval operations:
 
 + Plans and decomposes a user query into subqueries.
 + Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
@@ -23,12 +23,12 @@ In this article, you learn how to connect an Azure AI Foundry agent to an Azure 
 
 The agent uses the response to ground its answers in your proprietary content, ensuring factual accuracy and transparency through source attribution.
 
-For an end-to-end example of integrating Azure AI Search and Azure AI Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
+For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
 
 ## Prerequisites
 
 + An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-knowledge-source-overview) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
-+ An [Azure AI Foundry project](../../../../how-to/create-projects.md) with an [LLM deployment](../../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
++ A [Foundry project](../../../../how-to/create-projects.md) with an [LLM deployment](../../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 + [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 + The latest preview Python SDK or the 2025-11-01-preview REST API version.
 
@@ -36,13 +36,13 @@ For an end-to-end example of integrating Azure AI Search and Azure AI Foundry Ag
 
 We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
-#### [Azure AI Foundry](#tab/foundry)
+#### [Foundry](#tab/foundry)
 
-+ On the parent resource of your Azure AI Foundry project, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
++ On the parent resource of your Foundry project, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
-+ On the parent resource of your Azure AI Foundry project, you must have the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
++ On the parent resource of your Foundry project, you must have the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
 
-+ On your Azure AI Foundry project, create a system-assigned managed identity for interactions with Azure AI Search.
++ On your Foundry project, create a system-assigned managed identity for interactions with Azure AI Search.
 
 #### [Azure AI Search](#tab/search)
 
@@ -60,13 +60,13 @@ Knowledge enables agent grounding and reasoning over enterprise content by integ
 
 + [Azure AI Search](/azure/search/search-what-is-azure-search) provides knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
 
-  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Azure AI Foundry Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
+  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
 
-+ [Azure AI Foundry Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
++ [Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
 
 ## Create a project connection
 
-Start by creating a `RemoteTool` connection on your Azure AI Foundry project. This connection uses key-based authentication to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
+Start by creating a `RemoteTool` connection on your Foundry project. This connection uses key-based authentication to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
 
 ### [Python](#tab/python)
 
@@ -161,7 +161,7 @@ The next step is to create an agent that integrates the knowledge base as an MCP
 Add the knowledge base MCP tool with the project connection you previously created. This tool orchestrates query planning, decomposition, and retrieval across configured knowledge sources. The agent uses this tool to answer queries.
 
 > [!NOTE]
-> Azure AI Search knowledge bases expose the `knowledge_base_retrieve` MCP tool for agent integration. This is the only tool currently supported for use with Azure AI Foundry Agent Service.
+> Azure AI Search knowledge bases expose the `knowledge_base_retrieve` MCP tool for agent integration. This is the only tool currently supported for use with Agent Service.
 
 ### [Python](#tab/python)
 
@@ -212,13 +212,13 @@ print(f"Agent '{agent_name}' created or updated successfully.")
 
 ### [REST](#tab/rest)
 
-Obtain an access token for Azure AI Foundry:
+Obtain an access token for Foundry:
 
 ```azurecli
 az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv
 ```
 
-Create the agent by making a `POST` request to Azure AI Foundry Agent Service:
+Create the agent by making a `POST` request to Agent Service:
 
 ```HTTP
 POST {project_endpoint}/agents/{agent_name}/versions?api-version=2025-11-15-preview
@@ -377,5 +377,5 @@ Authorization: Bearer {management_access_token}
 
 + [Create a knowledge source in Azure AI Search](/azure/search/agentic-knowledge-source-overview)
 + [Create a knowledge base in Azure AI Search](/azure/search/agentic-retrieval-how-to-create-knowledge-base)
-+ [Create an agent in Azure AI Foundry](/azure/ai-foundry/agents/quickstart)
++ [Create an agent in Foundry](/azure/ai-foundry/agents/quickstart)
 + [Tutorial: Build an end-to-end agentic retrieval solution](/azure/search/agentic-retrieval-how-to-create-pipeline)

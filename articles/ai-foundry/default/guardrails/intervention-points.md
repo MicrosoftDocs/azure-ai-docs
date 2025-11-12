@@ -1,6 +1,6 @@
 ---
 title: "Intervention points concepts"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Agentic AI intervention points.
 services: ai-services
 author: PatrickFarley
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # Intervention points
 
-Agentic AI expands both capability and attack surface. As soon as an agent can call external tools, write to databases, or trigger downstream processes, malfunctions or malicious attacks can lead to steering it off course, leaking sensitive data, or executing harmful actions. Relying solely on guardrails applied to models can leave these vectors exposed. To close this gap Azure AI Foundry allows guardrails to be applied directly to agents and allows the individual controls within those guardrails to be applied to four different intervention points:
+Agentic AI expands both capability and attack surface. As soon as an agent can call external tools, write to databases, or trigger downstream processes, malfunctions or malicious attacks can lead to steering it off course, leaking sensitive data, or executing harmful actions. Relying solely on guardrails applied to models can leave these vectors exposed. To close this gap Microsoft Foundry allows guardrails to be applied directly to agents and allows the individual controls within those guardrails to be applied to four different intervention points:
 
 | Intervention Point | Description | Example Control at this Intervention Point |
 |-------------------|-------------|-------------------------------------------|

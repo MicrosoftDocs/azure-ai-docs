@@ -1,6 +1,6 @@
 ---
 title: Transparency Note and use cases for Content Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains Content Understanding Responsible AI basics, use cases, terms, and provides guidelines for responsible usage.
 author: PatrickFarley
 ms.author: pafarley
@@ -24,7 +24,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ### Introduction
 
-Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
+Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview), and [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
 
 
 ### Key terms
@@ -310,18 +310,18 @@ When you're getting ready to integrate Content Understanding to your product or 
 ## Learn more about Content Understanding
 
 - [Azure OpenAI overview](/azure/ai-foundry/openai/overview )
-- [Azure AI Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
+- [Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
 - [Azure Speech overview](/azure/ai-services/speech-service/overview )
-- [Azure AI Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )
+- [Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )
 - [Azure AI Face service overview](/azure/ai-services/computer-vision/overview-identity)
 - [Azure AI Video Indexer overview](/azure/azure-video-indexer/video-indexer-overview)
 
 ### Additional transparency notes for underlying services
 
 - [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note) 
-- [Azure AI Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
+- [Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
 - [Azure Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
-- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note) 
+- [Vision](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note) 
 - [Azure AI Face](/azure/ai-foundry/responsible-ai/face/transparency-note)  
 - [Azure AI Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext ) 
 

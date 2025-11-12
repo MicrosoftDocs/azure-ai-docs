@@ -1,6 +1,6 @@
 ---
-title: Transparency Note for Azure OpenAI in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
+title: Transparency Note for Azure OpenAI in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
 description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
@@ -247,7 +247,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
 GPT-4 Turbo with Vision and GPT-4o use natural language and image prompts to generate natural language or code responses. The models accept text only, image only, and interleaved text and image inputs. These models are part of the GPT family and are extensions of GPT-4.
 
-The Azure AI Vision Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
+The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
 
 | **Example prompt** | **Example completion** |
 |---|---|
@@ -700,6 +700,6 @@ The OpenAI Whisper model is also available within Azure Speech services, enhanci
 
 ## Learn more about Azure OpenAI
 
-- [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
+- [Limited access to Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
 - [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)
+- [Data, privacy, and security for Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)

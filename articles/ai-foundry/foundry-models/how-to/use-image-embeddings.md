@@ -1,7 +1,7 @@
 ---
-title: How to generate image embeddings with Azure AI Foundry Models service
-titleSuffix: Azure AI Foundry
-description: Learn how to generate image embeddings with Azure AI Foundry Models
+title: How to generate image embeddings with Microsoft Foundry Models service
+titleSuffix: Microsoft Foundry
+description: Learn how to generate image embeddings with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -14,7 +14,7 @@ ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to generate image embeddings with Azure AI Foundry Models
+# How to generate image embeddings with Microsoft Foundry Models
 
 
 ::: zone pivot="programming-language-python"

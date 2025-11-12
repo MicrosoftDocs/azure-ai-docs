@@ -1,5 +1,5 @@
 ---
-title: What is Azure OpenAI in Azure AI Foundry Models?
+title: What is Azure OpenAI in Microsoft Foundry Models?
 description: Apply advanced language models to variety of use cases with Azure OpenAI
 manager: nitinme
 author: mrbullwinkle
@@ -12,7 +12,7 @@ ms.custom: build-2023, build-2023-dataai
 recommendations: false
 ---
 
-# What is Azure OpenAI in Azure AI Foundry Models?
+# What is Azure OpenAI in Microsoft Foundry Models?
 
 Azure OpenAI provides REST API access to OpenAI's powerful language models including gpt-5 series, o4-mini, o3, gpt-4.1, o3-mini, o1, o1-mini, GPT-4o, GPT-4o mini, GPT-4 Turbo with Vision, GPT-4, GPT-3.5-Turbo, and Embeddings model series. These models can be easily adapted to your specific task including but not limited to content generation, summarization, image understanding, semantic search, and natural language to code translation. Users can access the service through REST APIs, [Python/C#/JS/Java/Go SDKs](/azure/ai-foundry/openai/supported-languages).
 
@@ -25,7 +25,7 @@ Azure OpenAI provides REST API access to OpenAI's powerful language models inclu
 | Price | [Available here](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) <br> For details on vision-enabled chat models, see the [special pricing information](../openai/concepts/gpt-with-vision.md#special-pricing-information).|
 | Virtual network support & private link support | Yes.  |
 | Managed Identity| Yes, via Microsoft Entra ID | 
-| UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for model exploration and fine-tuning |
+| UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) for model exploration and fine-tuning |
 | Model regional availability | [Model availability](./concepts/models.md) |
 | Content filtering | Prompts and completions are evaluated against our content policy with automated systems. High severity content is filtered. |
 
@@ -42,7 +42,7 @@ Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-reso
 1. When you have an Azure OpenAI resource, you can deploy a model such as GPT-4o.
 1. When you have a deployed model, you can:
 
-    - Try out the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) playgrounds to explore the capabilities of the models. 
+    - Try out the [Foundry portal](https://ai.azure.com/?cid=learnDocs) playgrounds to explore the capabilities of the models. 
     - You can also just start making API calls to the service using the REST API or SDKs.
     
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) in the playgrounds or via code.
@@ -150,4 +150,4 @@ Learn more about each model on our [models concept page](./concepts/models.md).
 ## Related content
 
 - Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
-- [Upgrade from Azure OpenAI to Azure AI Foundry](../how-to/upgrade-azure-openai.md)
+- [Upgrade from Azure OpenAI to Foundry](../how-to/upgrade-azure-openai.md)

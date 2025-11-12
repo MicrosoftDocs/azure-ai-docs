@@ -1,5 +1,5 @@
 ---
-title: 'How to use block lists in Azure AI Foundry models'
+title: 'How to use block lists in Microsoft Foundry models'
 titleSuffix: Azure OpenAI
 description: Learn how to use block lists with Azure OpenAI
 manager: nitinme
@@ -13,11 +13,11 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# How to use block lists in Azure AI Foundry models
+# How to use block lists in Microsoft Foundry models
 
 ::: moniker range="foundry"
 
-The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Azure AI Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
+The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
 
 ::: moniker-end
 
@@ -76,7 +76,7 @@ The response code should be `201` (created a new list) or `200` (updated an exis
 
 ### Apply a blocklist to a content filter
 
-If you haven't yet created a content filter, you can do so in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). See [Content filtering](/azure/ai-foundry/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
+If you haven't yet created a content filter, you can do so in [Foundry](https://ai.azure.com/?cid=learnDocs). See [Content filtering](/azure/ai-foundry/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
 
 To apply a **completion** blocklist to a content filter, use the following cURL command: 
 
@@ -246,7 +246,7 @@ If the completion itself is blocked, the response returns `200`, as the completi
 ```
 
 
-#### [Azure AI Foundry](#tab/foundry)
+#### [Foundry](#tab/foundry)
 
 [!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
 
@@ -256,6 +256,6 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview). 
 
-- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry models. 
+- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Foundry models. 
 
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming) article. 

@@ -1,6 +1,6 @@
 ---
 title: 'Agent runtime components'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn about how agents work, including the conversation response loop.
 services: cognitive-services
 manager: nitinme
@@ -14,7 +14,7 @@ ms.author: aahi
 
 # Agent runtime components 
 
-Azure AI Foundry Agent Service enables response generation and persistent conversations, which are key for interacting with users and maintaining conversation states. 
+Foundry Agent Service enables response generation and persistent conversations, which are key for interacting with users and maintaining conversation states. 
 
 ## Agent Components 
 
@@ -35,7 +35,7 @@ When you work with an agent, these steps are involved:
 ## Agent 
 
 An agent is a persisted orchestration definition that combines AI models, instructions, code, tools, parameters, and optional safety or governance controls. 
-Agents are stored as named, versioned assets in Azure AI Foundry. During response generation, the agent definition works with interaction history (conversation or previous response) to process and respond to user input. 
+Agents are stored as named, versioned assets in Microsoft Foundry. During response generation, the agent definition works with interaction history (conversation or previous response) to process and respond to user input. 
 
 ## Conversation 
 

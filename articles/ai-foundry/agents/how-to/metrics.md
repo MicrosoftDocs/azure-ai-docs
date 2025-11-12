@@ -1,6 +1,6 @@
 ---
-title: Monitor Azure AI Foundry Agent Service
-description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Foundry Agent Service.
+title: Monitor Foundry Agent Service
+description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Foundry Agent Service.
 ms.date: 09/24/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-foundry-agent-service
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Monitor Azure AI Foundry Agent Service
+# Monitor Foundry Agent Service
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
@@ -20,11 +20,11 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 [!INCLUDE [Feature preview](../../openai/includes/preview-feature.md)]
 
 > [!IMPORTANT]
-> Monitoring support is currently limited to Azure AI Foundry hubs. Azure AI Foundry projects are not supported.
+> Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects are not supported.
 
 ## Dashboards
 
-Azure AI Foundry Agent Service provides out-of-box dashboards. There are two key dashboards to monitor your resource: 
+Foundry Agent Service provides out-of-box dashboards. There are two key dashboards to monitor your resource: 
 
 - The metrics dashboard in the AI Foundry resource view 
 - The dashboard in the overview pane within the Azure portal 
@@ -46,8 +46,8 @@ Azure Monitor provides platform metrics for most services. These metrics are:
 
 For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).
 
-## Azure AI Foundry Agent Service metrics
-Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. Here's a list of currently available metrics on Azure Monitor:
+## Agent Service metrics
+Agent Service has commonality with a subset of Foundry Tools. Here's a list of currently available metrics on Azure Monitor:
 
 
 | Metric        | Name in REST API        | Unit  | Aggregation                             | Dimensions                                                | Time Grains | DS Export |
@@ -86,9 +86,9 @@ The common alert schema standardizes the consumption of Azure Monitor alert noti
 
 Every organization's alerting needs vary and can change over time. Generally, all alerts should be actionable and have a specific intended response if the alert occurs. If an alert doesn't require an immediate response, the condition can be captured in a report rather than an alert. Some use cases might require alerting anytime certain error conditions exist. In other cases, you might need alerts for errors that exceed a certain threshold for a designated time period.
 
-Depending on what type of application you're developing with your use of Azure AI Foundry Agent Service, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
+Depending on what type of application you're developing with your use of Agent Service, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
 
-### Azure AI Foundry Agent Service alert rules
+### Agent Service alert rules
 
 You can set alerts for any metric listed in the [monitoring data reference](../reference/monitor-service.md).
 
@@ -96,5 +96,5 @@ You can set alerts for any metric listed in the [monitoring data reference](../r
 
 ## Related content
 
-- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics and other important values created for Azure AI Foundry Agent Service.
+- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics and other important values created for Agent Service.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.

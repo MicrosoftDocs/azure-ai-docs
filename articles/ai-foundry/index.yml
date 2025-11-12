@@ -63,13 +63,13 @@ productDirectory:
         - url: ./concepts/fine-tuning-overview.md
           text: Learn how to fine-tune models
     # Card
-    - title: Microsoft Foundry Agent Service
+    - title: Foundry Agent Service
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
       links:
         - url: ../ai-services/agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
         - url: ../ai-services/agents/quickstart.md
-          text: Create a custom AI agent using Microsoft Foundry Agent Service
+          text: Create a custom AI agent using Agent Service
         - url: /azure/developer/ai/get-started-multi-agents
           text: Azure AI app template for agents
         - url: ./concepts/ai-red-teaming-agent.md

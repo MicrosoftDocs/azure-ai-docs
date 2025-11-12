@@ -1,8 +1,8 @@
 ---
 title: Build and register a Model Context Protocol (MCP) server
 ms.reviewer: samuelzhang
-description: Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Azure AI Foundry Agent Service.
-#customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Azure AI Foundry Agent Service.
+description: Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service.
+#customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
 author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
@@ -13,13 +13,13 @@ ms.custom: ai-assisted
 
 # Build and register a Model Context Protocol (MCP) server
 
-Model Context Protocol (MCP) provides a standard interface for AI agents to interact with APIs and external services. When you need to integrate private or internal enterprise systems that don't have existing MCP server implementations, you can build your own custom server. This article shows you how to create a remote MCP server using Azure Functions, register it in a private organizational tool catalog using Azure API Center, and connect it to Azure AI Foundry Agent Service.
+Model Context Protocol (MCP) provides a standard interface for AI agents to interact with APIs and external services. When you need to integrate private or internal enterprise systems that don't have existing MCP server implementations, you can build your own custom server. This article shows you how to create a remote MCP server using Azure Functions, register it in a private organizational tool catalog using Azure API Center, and connect it to Foundry Agent Service.
 
-This approach enables you to securely integrate internal APIs and services into the Azure AI Foundry ecosystem, allowing agents to call your enterprise-specific tools through a standardized MCP interface.
+This approach enables you to securely integrate internal APIs and services into the Microsoft Foundry ecosystem, allowing agents to call your enterprise-specific tools through a standardized MCP interface.
 
 ## Prerequisites
 
-- An Azure AI Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Azure AI Foundry Agent Service](../../agents/quickstart.md).
+- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](../../agents/quickstart.md).
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
 - [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.
 - [Azure Developer CLI](https://aka.ms/azd) installed for deployment automation.
@@ -97,14 +97,14 @@ To register your MCP server:
    b. Select **Add configuration**.
    
    c. Choose the security scheme that matches your MCP server requirements:
-      - **API Key**: Developers provide the API key during tool configuration in Azure AI Foundry
+      - **API Key**: Developers provide the API key during tool configuration in Foundry
       - **OAuth**: Configure OAuth 2.0 authentication parameters
       - **HTTP**: Configure bearer token authorization
    
    d. Provide the required authentication details for your selected scheme.
 
    > [!NOTE]
-   > If you choose API Key authentication, the key you store in Azure Key Vault isn't automatically used in Azure AI Foundry. Developers must provide the API key when configuring the MCP server connection.
+   > If you choose API Key authentication, the key you store in Azure Key Vault isn't automatically used in Foundry. Developers must provide the API key when configuring the MCP server connection.
 
 1. Configure access management (optional):
 
@@ -114,17 +114,17 @@ To register your MCP server:
    
    c. Configure which users or groups can access this MCP server through the organizational catalog.
 
-After registration, your MCP server appears in the Azure AI Foundry tool catalog with the governance and authentication settings you configured.
+After registration, your MCP server appears in the Foundry tool catalog with the governance and authentication settings you configured.
 
-## Connect the MCP server to Azure AI Foundry Agent Service
+## Connect the MCP server to Agent Service
 
-You can connect your MCP server to Azure AI Foundry Agent Service through the organizational tool catalog (if you registered it) or as a custom MCP tool.
+You can connect your MCP server to Agent Service through the organizational tool catalog (if you registered it) or as a custom MCP tool.
 
 ### Connect using the organizational tool catalog
 
 If you registered your MCP server in Azure API Center, users with appropriate access can discover and configure it:
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), go to your project.
+1. In [Foundry portal](https://ai.azure.com), go to your project.
 
 1. Go to **Build** > **Tools** or open Agent Builder.
 
@@ -136,7 +136,7 @@ If you registered your MCP server in Azure API Center, users with appropriate ac
 
 If you don't register your MCP server in the organizational catalog, add it directly as a custom tool:
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), go to your project.
+1. In [Foundry portal](https://ai.azure.com), go to your project.
 
 1. Go to **Build** > **Tools** or open Agent Builder.
 
@@ -151,13 +151,13 @@ If you don't register your MCP server in the organizational catalog, add it dire
 
 1. Select **Connect** to register the custom MCP tool.
 
-For detailed configuration steps, see [Connect to a Model Context Protocol server endpoint in Azure AI Foundry Agent Service](../../agents/how-to/tools/model-context-protocol.md).
+For detailed configuration steps, see [Connect to a Model Context Protocol server endpoint in Agent Service](../../agents/how-to/tools/model-context-protocol.md).
 
-After connecting your MCP server, agents in your Azure AI Foundry project can call the tools and functions exposed by your custom server. Test the connection by creating an agent and verifying it can successfully invoke your MCP server's capabilities.
+After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server. Test the connection by creating an agent and verifying it can successfully invoke your MCP server's capabilities.
 
 ## Related content
 
-- [Get started with Azure AI Foundry Agent Service](../../agents/quickstart.md)
+- [Get started with Agent Service](../../agents/quickstart.md)
 - [Connect to Model Context Protocol servers](../../agents/how-to/tools/model-context-protocol.md)
 - [Add environments and deployments in Azure API Center](/azure/api-center/configure-environments-deployments)
 - [Azure Functions Python developer guide](/azure/azure-functions/functions-reference-python)

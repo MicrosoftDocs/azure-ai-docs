@@ -1,5 +1,5 @@
 ---
-title: 'Prompt caching with Azure OpenAI in Azure AI Foundry Models'
+title: 'Prompt caching with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to use prompt caching with Azure OpenAI
 services: cognitive-services

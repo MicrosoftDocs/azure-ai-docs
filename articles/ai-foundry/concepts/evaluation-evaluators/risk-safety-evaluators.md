@@ -1,6 +1,6 @@
 ---
 title: Risk and Safety Evaluators for Generative AI
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -23,7 +23,7 @@ ms.custom:
 
 Risk and safety evaluators draw on insights gained from our previous large language model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.
 
-These evaluators are generated through the Azure AI Foundry Evaluation service, which employs a set of language models. Each model assesses specific risks that could be present in the response from your AI system. Specific risks include sexual content, violent content, and other content. These evaluator models are provided with risk definitions and annotate accordingly. Currently, we support the following risks for assessment:
+These evaluators are generated through the Microsoft Foundry Evaluation service, which employs a set of language models. Each model assesses specific risks that could be present in the response from your AI system. Specific risks include sexual content, violent content, and other content. These evaluator models are provided with risk definitions and annotate accordingly. Currently, we support the following risks for assessment:
 
 ::: moniker range="foundry-classic"
 
@@ -64,9 +64,9 @@ You can also use the [Content Safety Evaluator](#content-safety-composite-evalua
 
 ::: moniker-end
 
-## Azure AI Foundry project configuration and region support
+## Foundry project configuration and region support
 
-The risk and safety evaluators use hosted evaluation language models in the Azure AI Foundry evaluation service. They require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+The risk and safety evaluators use hosted evaluation language models in the Foundry evaluation service. They require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
 
 | Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Protected material |
 |--|--|--|
@@ -78,7 +78,7 @@ The risk and safety evaluators use hosted evaluation language models in the Azur
 
 ::: moniker range="foundry-classic"
 
-For reference in the following code snippet, the risk and safety evaluators use the Azure AI Foundry project configuration as follows:
+For reference in the following code snippet, the risk and safety evaluators use the Foundry project configuration as follows:
 
 ```python
 import os
@@ -86,7 +86,7 @@ from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 load_dotenv()
 
-# Using Azure AI Foundry Hub
+# Using Foundry Hub
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),

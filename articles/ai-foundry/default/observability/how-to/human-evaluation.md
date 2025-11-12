@@ -1,10 +1,10 @@
 ---
-title: Human Evaluation for Azure AI Foundry Agents
-titleSuffix: Azure AI Foundry
+title: Human Evaluation for Microsoft Foundry Agents
+titleSuffix: Microsoft Foundry
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 11/18/2025
-description: Learn how to set up human evaluation for your Azure AI Foundry agents, create templates, and analyze results to improve agent performance.
+description: Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: peichengshi
@@ -19,7 +19,7 @@ In this article, you’ll learn how to set up human evaluation for your Foundry 
 
 Before you begin:
 
-- You have access to the **Azure AI Foundry portal**.
+- You have access to the **Microsoft Foundry portal**.
 - You have one or more agents built.
 - You have configured Application Insights for your project
 

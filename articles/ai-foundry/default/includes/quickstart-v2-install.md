@@ -84,8 +84,8 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Microsoft Foundry portal](#tab/portal)
 
-No installation is necessary to use the Azure AI Foundry portal.
+No installation is necessary to use the Foundry portal.
 
 ---
