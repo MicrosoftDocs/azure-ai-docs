@@ -47,9 +47,7 @@ To call the synchronous translation feature via the REST API, include the follow
 
 ## Request parameters
 
-Query string parameters:
-
-### Required parameters
+### Required Query parameters
 
 |Query parameter | Description |
 | --- | --- |
@@ -57,7 +55,7 @@ Query string parameters:
 |**targetLanguage**|_Required parameter_.<br>Specifies the language of the output document. The target language must be one of the supported languages included in the translation scope.|
 
 
-### Optional parameters
+### Optional Query parameters
 
 |Query parameter | Description |
 | --- | --- |
@@ -109,7 +107,7 @@ Query string parameters:
 ```bash
 curl --request POST \
   --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=fr' \
-  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>'
+  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
   --form 'document=@<path-to-your-document>/your-document-file.docx' \
   --output translated-document-fr.docx
   

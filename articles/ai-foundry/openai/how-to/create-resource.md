@@ -24,7 +24,7 @@ This article describes how to get started with Azure OpenAI and provides step-by
 - The REST APIs, the Azure CLI, PowerShell, or client libraries
 - Azure Resource Manager (ARM) templates
 
-In this article, you review examples for creating and deploying resources in the Azure portal and with the Azure CLI.
+In this article, you review examples for creating and deploying resources in the Azure portal, with the Azure CLI, and with PowerShell.
 
 ::: zone pivot="web-portal"
 

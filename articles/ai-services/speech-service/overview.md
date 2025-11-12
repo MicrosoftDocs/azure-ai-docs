@@ -56,6 +56,14 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 [Speech translation](speech-translation.md) enables real-time, multilingual translation of speech to your applications, tools, and devices. Use this feature for speech to speech and speech to text translation.
 
+### LLM speech (preview)
+
+[LLM speech](llm-speech.md) currently supports the following speech tasks:
+- `transcribe`: Convert pre-recorded audio into text.
+- `translate`: Convert pre-recorded audio into text in a specified target language.
+  
+LLM speech uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It shares the same ultra-fast inference performance as fast transcription, making it ideal for use cases such as generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+
 ### Language identification
 
 [Language identification](language-identification.md) is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md). Use language identification by itself, with speech to text recognition, or with speech translation.
