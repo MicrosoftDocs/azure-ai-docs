@@ -1,7 +1,7 @@
 ---
-title: 'How to use function calling with the new agent API'
+title: 'How to use function calling with the agent API'
 titleSuffix: Microsoft Foundry
-description: Learn how to use function calling with the new agent API.
+description: Learn how to use function calling with the agent API.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +13,7 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Function calling for the new agent API
+# Function calling for agents
 
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 

@@ -1,7 +1,7 @@
 ---
-title: Connect to a Model Context Protocol Server Endpoint for new agents (Preview)
+title: Connect to a Model Context Protocol Server Endpoint for agents (Preview)
 titleSuffix: Microsoft Foundry
-description: Learn how to add MCP servers to new agents.
+description: Learn how to add MCP servers to agents.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -17,7 +17,7 @@ ms.author: aahi
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 
 > [!NOTE]
-> When using a [Network Secured Microsoft Foundry](../../how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
+> When using a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
 
@@ -34,6 +34,8 @@ We recommend that you carefully review and track what MCP servers you add to Fou
 The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with remote MCP servers and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
 
 ## Code example
+
+Use the following code sample to create an agent and call the function. You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ```python
 import os
