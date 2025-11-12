@@ -25,4 +25,4 @@ Agentic AI expands both capability and attack surface. As soon as an agent can c
 | Output | The final content sent back to the end user in response to their query. | **Risk:** Protected Material for Text<br>**Action:** Annotate only<br><br>When this control is specified, the final content meant to be displayed to the user is scanned for certain types of copyrighted text. If detected, there is a flag in the annotation response for the API used to call this model or agent. |
 
 > [!IMPORTANT]
-> Only certain types of tools are subject to controls at the tool call and tool response intervention points. Currently, Azure AI Search, Azure Functions, OpenAPI, Sharepoint Foudning, Fabric Data Agent, Bing Grounding, Bing Custom Search, and Browser Automation support moderation. 
+> Only certain types of tools are subject to controls at the tool call and tool response intervention points. Currently, Azure AI Search, Azure Functions, OpenAPI, Sharepoint Grounding, Fabric Data Agent, Bing Grounding, Bing Custom Search, and Browser Automation support moderation. 
