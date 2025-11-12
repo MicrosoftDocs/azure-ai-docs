@@ -234,11 +234,11 @@ with project_client:
         definition=PromptAgentDefinition(
             model='gpt-4o-mini,
             instructions="""\
-You are a helpful agent that can use a Python code interpreter to assist users. Use the `python_tool` MCP
-server to perform any calculations or numerical analyses. ALWAYS call the `launchShell` tool first before
-calling the `runPythonCodeInRemoteEnvironment` tool. If you need to display any non-text output to the
-user, return it as a data URI. NEVER provide a path to a file in the remote environment to the user.
-""",
+            You are a helpful agent that can use a Python code interpreter to assist users. Use the `python_tool` MCP
+            server to perform any calculations or numerical analyses. ALWAYS call the `launchShell` tool first before
+            calling the `runPythonCodeInRemoteEnvironment` tool. If you need to display any non-text output to the
+            user, return it as a data URI. NEVER provide a path to a file in the remote environment to the user.
+            """,
             temperature=0,
         ),
     )
