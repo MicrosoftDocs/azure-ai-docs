@@ -197,6 +197,8 @@ items:
             displayName: avatar
         - name: Customize avatar gestures with SSML
           href: text-to-speech-avatar/avatar-gestures-with-ssml.md
+      - name: Standard avatars
+        href: text-to-speech-avatar/standard-avatars.md
       - name: Custom text to speech avatar
         items:
         - name: Custom text to speech avatar overview
