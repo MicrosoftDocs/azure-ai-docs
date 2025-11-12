@@ -30,7 +30,7 @@ items:
 - name: Vector stores for file search
   href: ../../agents/concepts/vector-stores.md
 - name: Function calling
-  href: ../../../agents/how-to/tools/function-calling.md
+  href: ../../agents/how-to/tools/function-calling.md
 - name: Grounding with Bing tools
   href: ../../agents/how-to/tools/bing-tools.md
 - name: Image generation (preview)
