@@ -128,7 +128,7 @@ This table summarizes features available in the two project types:
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Partner & Community Models sold through Marketplace - Stability, Cohere, etc. | ✅ | Available via connections |
 | Models deployed on managed compute (e.g. HuggingFace) |  | ✅ |
-| AI Foundry SDK and API | ✅ | Limited* |
+| Foundry SDK and API | ✅ | Limited* |
 | OpenAI SDK and API | ✅ | Available via connections |
 | Evaluations | ✅ (preview) | ✅ |
 | Playgrounds | ✅ | ✅ |
@@ -150,14 +150,14 @@ Here are some of the ways to identify your project type:
 
 * From the **breadcrumb navigation** section
 
-    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** on the second line
+    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(Foundry)** on the second line
     * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** on the second line
 
     :::image type="content" source="media/how-to/projects/breadcrumb.png" alt-text="Screenshot shows both a Foundry and hub-based project in the breadcrumb navigation.":::
 
 * From the **All resources** page
 
-    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** as the parent resource
+    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(Foundry)** as the parent resource
     * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** as the parent resource
 
     :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub-based project in the All Resources page.":::
@@ -222,7 +222,7 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 :::moniker range="foundry-classic"
 
-You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new AI Foundry** on.
+You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
 
 :::moniker-end
 

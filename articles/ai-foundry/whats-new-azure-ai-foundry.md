@@ -15,8 +15,7 @@ ms.date: 11/04/2025
 Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for November 2025.
 
 ## New articles
-- [Authentication and authorization options in Foundry](../ai-foundry/concepts/authentication-options-ai-foundry.md)
-- [Azure OpenAI in AI Foundry Models webhooks](../ai-foundry/openai/how-to/webhooks.md)
+- [Azure OpenAI in Foundry Models webhooks](../ai-foundry/openai/how-to/webhooks.md)
 - [Connect to your own storage](../ai-foundry/how-to/bring-your-own-azure-storage-foundry.md)
 - [Connect your own storage for Speech and Language services (Preview)](../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)
 - [Create custom policies for Foundry](../ai-foundry/how-to/custom-policy-definition.md)

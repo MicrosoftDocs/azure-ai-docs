@@ -1,12 +1,11 @@
 ---
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ---
-
 ## Reference documentation and code samples
 
 As you use this feature in your applications, see the following reference documentation and samples for Azure AI Language:

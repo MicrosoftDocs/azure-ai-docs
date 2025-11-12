@@ -23,7 +23,7 @@ For [vector](vector-search-overview.md) and [multimodal search](multimodal-searc
 + [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
 
 > [!NOTE]
-> This skill isn't bound to Azure AI services and has no Azure AI services key requirement.
+> This skill isn't bound to Foundry Tools and has no Foundry Tools key requirement.
 >
 > This skill extracts text and images. Text extraction is free. Image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/). On a free search service, the cost of 20 transactions per indexer per day is absorbed so that you can complete quickstarts, tutorials, and small projects at no charge. For basic and higher tiers, image extraction is billable.
 >
@@ -40,7 +40,7 @@ The DocumentExtractionSkill can extract text from the following document formats
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs | Allowed Values | Description |
 |-----------------|----------------|-------------|

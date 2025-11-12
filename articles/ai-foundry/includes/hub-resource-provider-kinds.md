@@ -1,5 +1,5 @@
 ---
-title: Resource types for AI Foundry
+title: Resource types for Foundry
 description: Include file that describes Azure AI resource types and kinds.
 author: Blackmist
 ms.author: larryfr

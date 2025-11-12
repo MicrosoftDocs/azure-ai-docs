@@ -1,6 +1,6 @@
 ---
-title: "Find similar faces using Azure AI services"
-titleSuffix: Azure AI services
+title: "Find similar faces using Foundry Tools"
+titleSuffix: Foundry Tools
 description: Learn how to use the Azure Face service to find similar faces in a set of images, performing face search by image for various applications.
 #customer intent: As a developer, I want to find similar faces in images so that I can perform face recognition tasks.
 author: PatrickFarley

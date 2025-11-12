@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
-ms.date: 02/12/2021
+ms.date: 10/15/2025
 ---
 
 # Transparency note and use cases for optical character recognition

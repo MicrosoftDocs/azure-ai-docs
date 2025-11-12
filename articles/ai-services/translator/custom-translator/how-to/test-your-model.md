@@ -1,27 +1,28 @@
 ---
-title: View Azure AI Custom Translator model details and test translation
-titleSuffix: Azure AI services
-description: How to test your Azure AI Custom Translator model BLEU score and evaluate translations
+title: View Custom Translator model details and test translation
+titleSuffix: Foundry Tools
+description: How to test your Custom Translator model BLEU score and evaluate translations
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Test your Azure AI Custom Translator
 
-Once your Azure AI Custom Translator model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure AI Translator model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard Azure AI Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
+# Test your Custom Translator
+
+Once your Azure Translator Custom Translator model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure Translator model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard Azure Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
 
 ## BLEU score
 
-BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that is machine translated from one language to another. Custom Translator uses the BLEU metric as one way of conveying translation accuracy.
+BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that's machine translated from one language to another. Custom Translator uses the BLEU metric as one way of conveying translation accuracy.
 
-A BLEU score is a number between zero and 100. A score of zero indicates a low-quality translation where nothing in the translation matched the reference. A score of 100 indicates a perfect translation that is identical to the reference. It's not necessary to attain a score of 100—a BLEU score between 40 and 60 indicates a high-quality translation.
+A BLEU score is a number between zero and 100. A score of zero indicates a low-quality translation where nothing in the translation matched the reference. A score of 100 indicates a perfect translation that's identical to the reference. It's not necessary to attain a score of 100—a BLEU score between 40 and 60 indicates a high-quality translation.
 
 [Read more](../concepts/bleu-score.md?WT.mc_id=aiml-43548-heboelma)
 
-## Azure AI Custom Translator Model details
+## Custom Translator Model details
 
 1. Select the **Model details** blade.
 
@@ -43,5 +44,5 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 ## Next steps
 
-- Learn [how to publish/deploy an Azure AI Custom Translator model](publish-model.md).
-- Learn [how to translate documents with an Azure AI Custom Translator model](translate-with-custom-model.md).
+- Learn [how to publish/deploy a Custom Translator model](publish-model.md).
+- Learn [how to translate documents with a Custom Translator model](translate-with-custom-model.md).

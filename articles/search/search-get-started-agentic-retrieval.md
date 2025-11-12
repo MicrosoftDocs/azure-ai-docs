@@ -1,14 +1,14 @@
 ---
 title: "Quickstart: Agentic Retrieval"
 titleSuffix: Azure AI Search
-description: Learn how to use agentic retrieval to create a knowledge agent that processes multi-turn conversations.
+description: Learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 08/26/2025
+ms.date: 10/21/2025
 zone_pivot_groups: search-get-started-agentic-retrieval
-# Customer intent: I want to learn how to use agentic retrieval to create a knowledge agent that processes multi-turn conversations. The agent should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI chat completion model to synthesize answers.
+# Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI chat completion model to synthesize answers.
 ---
 
 # Quickstart: Use agentic retrieval in Azure AI Search
@@ -40,6 +40,6 @@ zone_pivot_groups: search-get-started-agentic-retrieval
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Use a knowledge agent to retrieve data](agentic-retrieval-how-to-retrieve.md)
-+ [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Use a knowledge base to retrieve data](agentic-retrieval-how-to-retrieve.md)
++ [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md)

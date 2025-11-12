@@ -272,7 +272,7 @@ You can use IP network rules to allow access to your secured hub from specific p
 
 # [Portal](#tab/azure-portal)
 
-1. From the [Azure portal](https://portal.azure.com), select your Azure Machine AI Foundry hub.
+1. From the [Azure portal](https://portal.azure.com), select your Azure Machine Foundry hub.
 1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
 1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
 
@@ -336,7 +336,7 @@ The following restrictions apply to IP address ranges:
 
 - When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
 
-- You can only set the IP addresses for the AI Foundry hub after the hub is created.
+- You can only set the IP addresses for the Foundry hub after the hub is created.
 
 ## Private storage configuration
 

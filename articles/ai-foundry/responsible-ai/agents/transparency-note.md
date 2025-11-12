@@ -112,7 +112,7 @@ Developers can connect an Agent to external systems, APIs, and services through 
 * **Computer Use**: (a tool to perform tasks by interacting with computer systems and applications through their UIs)   
 * **Browser Automation Tool** (a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention in the middle)
 * **Image Generation** (a tool to generate and edit images)
-* **Agent2Agent** (a custom service connected using the agent-to-agent protocol through an existing agent endpoint to an AI Foundry agent). 
+* **Agent2Agent** (a custom service connected using the agent-to-agent protocol through an existing agent endpoint to a Foundry agent). 
 
 #### Orchestrating multi-agent systems
 

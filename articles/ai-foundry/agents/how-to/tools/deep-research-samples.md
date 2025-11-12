@@ -18,7 +18,7 @@ zone_pivot_groups: selection-deep-research
 
 > [!NOTE]
 > * The `o3-deep-research` model is available for use **only with the Deep Research tool**. It is **not** available in the Azure OpenAI Chat Completions and Responses APIs.
-> * The **parent** AI Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
+> * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
 
 Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
 
@@ -34,7 +34,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
 * The deployment names of your `o3-deep-research-model` and `gpt-4o` models. You can find them in **Models + Endpoints** in the left navigation menu.
 
-   :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
+   :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
     
     Save the name of your `o3-deep-research` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and the `gpt-4o` deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`.
 

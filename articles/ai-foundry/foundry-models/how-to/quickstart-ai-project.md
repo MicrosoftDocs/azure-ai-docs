@@ -36,7 +36,7 @@ To complete this tutorial, you need:
 
 * An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md).
 
-* A Foundry resource. For more information, see [Create your first AI Foundry resource](../../../ai-services/multi-service-resource.md).
+* A Foundry resource. For more information, see [Create your first Foundry resource](../../../ai-services/multi-service-resource.md).
 
 * A Foundry project and hub. For more information, see [How to create and manage a Foundry hub](../../../ai-foundry/how-to/create-azure-ai-resource.md).
 

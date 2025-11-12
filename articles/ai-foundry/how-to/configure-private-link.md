@@ -103,7 +103,7 @@ In some situations, you might want to allow someone to connect to your secured p
 
 When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)] to build Agents and run Evaluations, we recommend the following network architecture for the most secure end-to-end configuration:
 
-:::image type="content" source="../media/how-to/network/agent-eval-networking.png" alt-text="Diagram of the recommended network isolation for AI Foundry." lightbox="../media/how-to/network/agent-eval-networking.png":::
+:::image type="content" source="../media/how-to/network/agent-eval-networking.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-networking.png":::
 
 1. Set the public network access (PNA) flag of each of your resources to `Disabled`. Disabling public network access locks down inbound access from the public internet to the resources.
 

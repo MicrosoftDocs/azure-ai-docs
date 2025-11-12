@@ -60,7 +60,7 @@ The Foundry resource has built-in roles that are available by default for both t
 :::image type="content" source="../media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../media/how-to/network/detailed-rbac-diagram.png":::
 
 >[!NOTE]
->To view and purge deleted AI Foundry accounts, you must have Contributor role assigned at the subscription scope.
+>To view and purge deleted Foundry accounts, you must have Contributor role assigned at the subscription scope.
 
 In addition to these built-in role assignments, there are Azure privileged administrator roles like Owner, Contributor, and Reader. These roles aren't specific to Foundry resource permissions, so use the previously described built-in roles for least privilege access.
  
@@ -122,7 +122,7 @@ The Azure AI User role is the least-privilege access role in Foundry, granting o
 
 The Azure AI Project Manager role uses conditional Azure role assignment delegation.
 With conditional delegation, the role can assign only the Azure AI User role to user principals in the resource group.
-Conditional delegation lets your admin delegate role assignments so teams can start building AI Foundry projects.
+Conditional delegation lets your admin delegate role assignments so teams can start building Foundry projects.
 To learn more, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal). 
 
 Here are the permissions for the **Azure AI Project Manager** role:
@@ -164,7 +164,7 @@ Here are the permissions for the **Azure AI Project Manager** role:
 
 ## Azure AI Account Owner
 
-The Azure AI Account Owner role utilizes delegated Azure role assignment management to others with conditions. Because of the conditional delegation, the Azure AI Account Owner role can assign only the Azure AI User role to other user principals in the resource group. Conditional delegation allows the admin of your enterprise to delegate the work of role assignments to get started building and developing with AI Foundry projects. For more information on role assignments with conditions, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
+The Azure AI Account Owner role utilizes delegated Azure role assignment management to others with conditions. Because of the conditional delegation, the Azure AI Account Owner role can assign only the Azure AI User role to other user principals in the resource group. Conditional delegation allows the admin of your enterprise to delegate the work of role assignments to get started building and developing with Foundry projects. For more information on role assignments with conditions, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
 
 The full set of permissions for the new Azure AI Account Owner role is:
 
@@ -296,12 +296,12 @@ Therefore you should...
 * Grant your project manager the **Azure AI Project Manager** role on account level
 
 
-## Access resources created outside AI Foundry
+## Access resources created outside Foundry
 
-When you create an AI Foundry resource, built-in role-based access control (RBAC) permissions give you access to the resource. To use resources created outside AI Foundry, make sure both of the following are true:
+When you create a Foundry resource, built-in role-based access control (RBAC) permissions give you access to the resource. To use resources created outside Foundry, make sure both of the following are true:
 
 - The resource has permissions that let you access it.
-For example, to use a new Azure Blob Storage account, add the AI Foundry account resource's managed identity to the Storage Blob Data Reader role on that storage account. To use a new Azure AI Search source, add AI Foundry to the Azure AI Search role assignments.
+For example, to use a new Azure Blob Storage account, add the Foundry account resource's managed identity to the Storage Blob Data Reader role on that storage account. To use a new Azure AI Search source, add Foundry to the Azure AI Search role assignments.
 
 ## Manage access with roles for projects
 

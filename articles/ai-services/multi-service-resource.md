@@ -1,10 +1,11 @@
 ﻿---
 title: Create an AI Foundry resource
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Create and manage an AI Foundry resource.
-author: jonburchel
-ms.author: jburchel
-ms.date: 10/07/2025
+author: laujan
+ms.author: lajanuar
+manager: nitinme
+ms.date: 10/02/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.custom:
@@ -26,13 +27,15 @@ Learn how to create and manage an Azure AI Foundry resource. It's the [primary A
 
 An Azure resource is required to use and manage services in Azure. It defines the scope for configuring access, security such as networking, billing, and monitoring. 
 
-Azure AI Foundry resource is the next version and renaming of former "Azure AI Services". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
+Azure AI Foundry resource is the next version and renaming of former "Foundry Tools". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
 
 An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
 
-Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md).
+Looking to configure Foundry with advanced security settings? See [advanced Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
+
+Looking to use [Azure Search skills?](../search/tutorial-skillset.md) See [Use Foundry with Azure Search skills](multi-services-resource-search-skills.md).
 
 ## Create your first resource
 
@@ -122,8 +125,8 @@ Explore some of the services that come bundled with your resource:
 | Service | Description | 
 | --- | --- | 
 | ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
-| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. |
-| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | 
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. |
+| ![Azure OpenAI in Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | 
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | 
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. |
 | ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. |
@@ -136,4 +139,4 @@ Explore some of the services that come bundled with your resource:
 - [Connect tools](../ai-foundry/how-to/connections-add.md) to build more rich applications.
 - Learn about [access control in AI Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
 - [Secure your resource using private networking](../ai-foundry/how-to/configure-private-link.md)
-- [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md)
+- [Use Azure AI Foundry with Azure Search skills](multi-services-resource-search-skills.md)

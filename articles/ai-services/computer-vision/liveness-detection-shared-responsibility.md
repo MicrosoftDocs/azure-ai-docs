@@ -1,6 +1,6 @@
 ---
 title: Shared responsibility for Face liveness detection 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Azure and customers share responsibility for liveness detection solutions, covering connections, client apps, devices, and abuse monitoring.
 author: JinyuID
 ms.author: lijiny

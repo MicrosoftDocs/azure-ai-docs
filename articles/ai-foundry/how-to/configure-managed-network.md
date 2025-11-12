@@ -69,7 +69,7 @@ The following diagram shows a managed virtual network configured to _allow only 
 :::image type="content" source="../media/how-to/network/only-approved-outbound.svg" alt-text="Diagram that shows a managed virtual network configured to allow only approved outbound traffic." lightbox="../media/how-to/network/only-approved-outbound.png":::
 
 > [!NOTE]
-> To access a private storage account from a public AI Foundry hub, use AI Foundry from within your storage account's virtual network. Accessing AI Foundry from within the virtual network ensures that you can perform actions such as uploading files to the private storage account. The private storage account is independent of your AI Foundry hub's networking settings. See [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security).
+> To access a private storage account from a public Foundry hub, use Foundry from within your storage account's virtual network. Accessing Foundry from within the virtual network ensures that you can perform actions such as uploading files to the private storage account. The private storage account is independent of your Foundry hub's networking settings. See [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security).
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
 ---
 title: Performance evaluations for Embedded Speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to evaluate performance of embedded speech models on your target devices.
 author: PatrickFarley
 manager: nitinme

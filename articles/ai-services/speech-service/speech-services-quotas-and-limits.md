@@ -1,7 +1,7 @@
 ---
 title: Speech service quotas and limits
-titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Azure AI services.
+titleSuffix: Foundry Tools
+description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -9,12 +9,12 @@ ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 7/15/2025
 ms.reviewer: jagoerge
-#Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Azure AI services.
+#Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Foundry Tools.
 ---
 
 # Speech service quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for the Speech service in Azure AI services. The information applies to all [pricing tiers](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) of the service. It also contains some best practices to avoid request throttling.
+This article contains a quick reference and a detailed description of the quotas and limits for the Speech service in Foundry Tools. The information applies to all [pricing tiers](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) of the service. It also contains some best practices to avoid request throttling.
 
 For the free (F0) pricing tier, see also the monthly allowances at the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 

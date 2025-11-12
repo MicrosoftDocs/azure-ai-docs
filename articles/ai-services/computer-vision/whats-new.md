@@ -1,7 +1,7 @@
 ---
-title: What's new in Azure AI Vision?
-titleSuffix: Azure AI services
-description: Stay up to date on recent releases and updates to Azure AI Vision.
+title: What's new in Azure Vision in Foundry Tools?
+titleSuffix: Foundry Tools
+description: Stay up to date on recent releases and updates to Azure Vision in Foundry Tools.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -9,13 +9,13 @@ ms.custom:
   - build-2023
   - ignite-2023
 ms.topic: whats-new
-ms.date: 06/30/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
-# What's new in Azure AI Vision
+# What's new in Azure Vision in Foundry Tools
 
-Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
+Learn what's new in Azure Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
 ## August 2025
 
@@ -62,7 +62,7 @@ For more information, see the [SDK release notes](https://github.com/Azure-Sampl
 The Face liveness detection feature is now generally available (GA).
 
 * Server-side API: [Face API v1.2](/rest/api/face/operation-groups?view=rest-face-v1.2&preserve-view=true)
-* Client-side SDK: [Azure AI Vision SDK 1.0.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0)
+* Client-side SDK: [Azure Vision in Foundry Tools SDK 1.0.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0)
 
 This SDK allows developers to utilize face liveness checks on both native-mobile applications and web-browsers applications for identity-verification scenarios.
 
@@ -161,9 +161,9 @@ Independent software vendors (ISVs) can manage the Face API usage of their clien
 
 ## March 2023
 
-### Azure AI Vision Image Analysis 4.0 SDK public preview
+### Azure Vision Image Analysis 4.0 SDK public preview
 
-The [Florence foundation model](https://www.microsoft.com/en-us/research/project/projectflorence/) is now integrated into Azure AI Vision. The improved Vision services enable developers to create market-ready, responsible Azure AI Vision applications across various industries. Customers can now seamlessly digitize, analyze, and connect their data to natural language interactions, unlocking powerful insights from their image and video content to support accessibility, drive acquisition through SEO, protect users from harmful content, enhance security, and improve incident response times. For more information, see [Announcing Microsoft's Florence foundation model](https://aka.ms/florencemodel).
+The [Florence foundation model](https://www.microsoft.com/en-us/research/project/projectflorence/) is now integrated into Azure Vision. The improved Vision services enable developers to create market-ready, responsible Azure Vision applications across various industries. Customers can now seamlessly digitize, analyze, and connect their data to natural language interactions, unlocking powerful insights from their image and video content to support accessibility, drive acquisition through SEO, protect users from harmful content, enhance security, and improve incident response times. For more information, see [Announcing Microsoft's Florence foundation model](https://aka.ms/florencemodel).
 
 ### Image Analysis 4.0 SDK (public preview)
 
@@ -189,24 +189,24 @@ The [Multimodal embeddings APIs](./how-to/image-retrieval.md), part of the Image
 
 As part of the Image Analysis 4.0 API, the [Background removal API](./concept-background-removal.md) lets you remove the background of an image. This operation can either output an image of the detected foreground object with a transparent background, or a grayscale alpha matte image showing the opacity of the detected foreground object.
 
-### Azure AI Vision 3.0 & 3.1 previews deprecation
+### Azure Vision 3.0 & 3.1 previews deprecation
 
-The preview versions of the Azure AI Vision 3.0 and 3.1 APIs are scheduled to be retired on September 30, 2023. Customers won't be able to make any calls to these APIs past this date. Customers are encouraged to migrate their workloads to the generally available (GA) 3.2 API instead. Mind the following changes when migrating from the preview versions to the 3.2 API:
+The preview versions of Azure Vision 3.0 and 3.1 APIs are scheduled to be retired on September 30, 2023. Customers won't be able to make any calls to these APIs past this date. Customers are encouraged to migrate their workloads to the generally available (GA) 3.2 API instead. Mind the following changes when migrating from the preview versions to the 3.2 API:
 - The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
 - The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls also return a `model-version` field in successful API responses. This field reports which model was used.
-- Azure AI Vision 3.2 API uses a different error-reporting format. See the [API reference documentation](/rest/api/computervision/operation-groups) to learn how to adjust any error-handling code.
+- Azure Vision 3.2 API uses a different error-reporting format. See the [API reference documentation](/rest/api/computervision/operation-groups) to learn how to adjust any error-handling code.
 
 ## October 2022
 
-### Azure AI Vision Image Analysis 4.0 (public preview)
+### Azure Vision Image Analysis 4.0 (public preview)
 
 Image Analysis 4.0 has been released in public preview. The new API includes image captioning, image tagging, object detection, smart crops, people detection, and Read OCR functionality, all available through one Analyze Image operation. The OCR is optimized for general non-document images in a performance-enhanced synchronous API that makes it easier to embed OCR-powered experiences in your workflows.
 
 ## September 2022
 
-### Azure AI Vision 3.0/3.1 Read previews deprecation
+### Azure Vision 3.0/3.1 Read previews deprecation
 
-The preview versions of the Azure AI Vision 3.0 and 3.1 Read API are scheduled to be retired on January 31, 2023. Customers are encouraged to refer to the [How-To](./how-to/call-read-api.md) and [QuickStarts](./quickstarts-sdk/client-library.md?tabs=visual-studio&pivots=programming-language-csharp) to get started with the generally available (GA) version of the Read API instead. The latest GA versions provide the following benefits:
+The preview versions of Azure Vision 3.0 and 3.1 Read API are scheduled to be retired on January 31, 2023. Customers are encouraged to refer to the [How-To](./how-to/call-read-api.md) and [QuickStarts](./quickstarts-sdk/client-library.md?tabs=visual-studio&pivots=programming-language-csharp) to get started with the generally available (GA) version of the Read API instead. The latest GA versions provide the following benefits:
 * 2022 latest generally available OCR model
 * Significant expansion of OCR language coverage including support for handwritten text
 * Improved OCR quality 
@@ -215,7 +215,7 @@ The preview versions of the Azure AI Vision 3.0 and 3.1 Read API are scheduled t
 
 ### Vision Studio launch
 
-Vision Studio is UI tool that lets you explore, build, and integrate features from Azure AI Vision into your applications.
+Vision Studio is UI tool that lets you explore, build, and integrate features from Azure Vision into your applications.
 
 Vision Studio provides you with a platform to try several service features, and see what they return in a visual manner. Using the Studio, you can get started without needing to write code, and then use the available client libraries and REST APIs in your application.
 
@@ -235,9 +235,9 @@ Vision Studio provides you with a platform to try several service features, and 
 
 #### Limited Access policy
 
-* As a part of aligning Face to the updated Responsible AI Standard, a new [Limited Access policy](https://aka.ms/AAh91ff) has been implemented for the Face API and Azure AI Vision. Existing customers have one year to apply and receive approval for continued access to the facial recognition services based on their provided use cases. See details on Limited Access for Face [here](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity).
+* As a part of aligning Face to the updated Responsible AI Standard, a new [Limited Access policy](https://aka.ms/AAh91ff) has been implemented for the Face API and Azure Vision. Existing customers have one year to apply and receive approval for continued access to the facial recognition services based on their provided use cases. See details on Limited Access for Face [here](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity).
 
-### Azure AI Vision 3.2-preview deprecation
+### Azure Vision 3.2-preview deprecation
 
 The preview versions of the 3.2 API are scheduled to be retired in December of 2022. Customers are encouraged to use the generally available (GA) version of the API instead. Mind the following changes when migrating from the 3.2-preview versions:
 1. The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls now take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
@@ -248,7 +248,7 @@ The preview versions of the 3.2 API are scheduled to be retired in December of 2
 
 ### OCR (Read) API model is generally available (GA)
 
-Azure AI Vision's [OCR (Read) API](overview-ocr.md) latest model with [164 supported languages](language-support.md) is now generally available as a cloud service and container.
+Azure Vision's [OCR (Read) API](overview-ocr.md) latest model with [164 supported languages](language-support.md) is now generally available as a cloud service and container.
 
 * OCR support for print text expands to 164 languages including Russian, Arabic, Hindi and other languages using Cyrillic, Arabic, and Devanagari scripts.
 * OCR support for handwritten text expands to 9 languages with English, Chinese Simplified, French, German, Italian, Japanese, Korean, Portuguese, and Spanish.
@@ -267,7 +267,7 @@ See the [OCR how-to guide](how-to/call-read-api.md) to learn how to use the GA m
 
 ### OCR (Read) API Public Preview supports 164 languages
 
-Azure AI Vision's [OCR (Read) API](overview-ocr.md) expands [supported languages](language-support.md) to 164 with its latest preview:
+Azure Vision's [OCR (Read) API](overview-ocr.md) expands [supported languages](language-support.md) to 164 with its latest preview:
 
 * OCR support for print text expands to 42 new languages including Arabic, Hindi, and other languages using Arabic and Devanagari scripts.
 * OCR support for handwritten text expands to Japanese and Korean in addition to English, Chinese Simplified, French, German, Italian, Portuguese, and Spanish.
@@ -286,7 +286,7 @@ See the [OCR how-to guide](how-to/call-read-api.md) to learn how to use the new 
 
 ### OCR (Read) API Public Preview supports 122 languages
 
-Azure AI Vision's [OCR (Read) API](overview-ocr.md) expands [supported languages](language-support.md) to 122 with its latest preview:
+Azure Vision's [OCR (Read) API](overview-ocr.md) expands [supported languages](language-support.md) to 122 with its latest preview:
 
 * OCR support for print text in 49 new languages including Russian, Bulgarian, and other Cyrillic and more Latin languages.
 * OCR support for handwritten text in 6 new languages that include English, Chinese Simplified, French, German, Italian, Portuguese, and Spanish.
@@ -325,9 +325,9 @@ A new version of the [Spatial Analysis container](spatial-analysis-container.md)
 
 ## April 2021
 
-### Azure AI Vision v3.2 GA
+### Azure Vision v3.2 GA
 
-The Azure AI Vision API v3.2 is now generally available with the following updates:
+Azure Vision API v3.2 is now generally available with the following updates:
 
 * Improved image tagging model: analyzes visual content and generates relevant tags based on objects, actions, and content displayed in the image. This model is available through the [Tag Image API](/rest/api/computervision/operation-groups). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
 * Updated content moderation model: detects presence of adult content and provides flags to filter images containing adult, racy, and gory visual content. This model is available through the [Analyze API](/rest/api/computervision/analyze-image). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
@@ -335,7 +335,7 @@ The Azure AI Vision API v3.2 is now generally available with the following updat
 * [OCR (Read)](./overview-ocr.md) also available as a [Distroless container](./computer-vision-how-to-install-containers.md?tabs=version-3-2) for on-premises deployment.
 
 > [!div class="nextstepaction"]
-> [See Azure AI Vision v3.2 GA](/rest/api/computervision/recognize-printed-text)
+> [See Azure Vision v3.2 GA](/rest/api/computervision/recognize-printed-text)
 
 ### PersonDirectory data structure (preview)
 
@@ -344,18 +344,18 @@ The Azure AI Vision API v3.2 is now generally available with the following updat
 
 ## March 2021
 
-### Azure AI Vision 3.2 Public Preview update
+### Azure Vision 3.2 Public Preview update
 
-The Azure AI Vision API v3.2 public preview has been updated. The preview release has all Azure AI Vision features along with updated Read and Analyze APIs.
+Azure Vision API v3.2 public preview has been updated. The preview release has all Azure Vision features along with updated Read and Analyze APIs.
 
 > [!div class="nextstepaction"]
-> [See Azure AI Vision v3.2 public preview 3](/rest/api/computervision/operation-groups)
+> [See Azure Vision v3.2 public preview 3](/rest/api/computervision/operation-groups)
 
 ## February 2021
 
 ### Read API v3.2 Public Preview with OCR support for 73 languages
 
-The Azure AI Vision Read API v3.2 public preview, available as cloud service and Docker container, includes these updates:
+Azure Vision Read API v3.2 public preview, available as cloud service and Docker container, includes these updates:
 
 * [OCR for 73 languages](./language-support.md#optical-character-recognition-ocr) including Simplified and Traditional Chinese, Japanese, Korean, and Latin languages.
 * Natural reading order for the text line output (Latin languages only)
@@ -405,19 +405,19 @@ A new version of the [Spatial Analysis container](spatial-analysis-container.md)
 
 ## October 2020
 
-### Azure AI Vision API v3.1 GA
+### Azure Vision API v3.1 GA
 
-The Azure AI Vision API in General Availability has been upgraded to v3.1.
+Azure Vision API in General Availability has been upgraded to v3.1.
 
 ## September 2020
 
 ### Spatial Analysis container preview
 
-The [Spatial Analysis container](spatial-analysis-container.md) is now in preview. The Spatial Analysis feature of Azure AI Vision lets you analyze real-time streaming video to understand spatial relationships between people and their movement through physical environments. Spatial Analysis is a Docker container you can use on-premises.
+The [Spatial Analysis container](spatial-analysis-container.md) is now in preview. The Spatial Analysis feature of Azure Vision lets you analyze real-time streaming video to understand spatial relationships between people and their movement through physical environments. Spatial Analysis is a Docker container you can use on-premises.
 
 ### Read API v3.1 Public Preview adds OCR for Japanese
 
-The Azure AI Vision Read API v3.1 public preview adds these capabilities:
+Azure Vision Read API v3.1 public preview adds these capabilities:
 
 * OCR for Japanese language
 * For each text line, indicate whether the appearance is Handwriting or Print style, along with a confidence score (Latin languages only).
@@ -438,7 +438,7 @@ See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 ### Read API v3.1 Public Preview with OCR for Simplified Chinese
 
-The Azure AI Vision Read API v3.1 public preview adds support for Simplified Chinese.
+The Azure Vision in Foundry Tools Read API v3.1 public preview adds support for Simplified Chinese.
 
 * This preview version of the Read API supports English, Dutch, French, German, Italian, Portuguese, Simplified Chinese, and Spanish languages.
 
@@ -449,7 +449,7 @@ See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 ## May 2020
 
-Azure AI Vision API v3.0 entered General Availability, with updates to the Read API:
+Azure Vision API v3.0 entered General Availability, with updates to the Read API:
 
 * Support for English, Dutch, French, German, Italian, Portuguese, and Spanish
 * Improved accuracy
@@ -464,7 +464,7 @@ See the [OCR overview](overview-ocr.md) to learn more.
 
 ## March 2020
 
-* TLS 1.2 is now enforced for all HTTP requests to this service. For more information, see [Azure AI services security](../security-features.md).
+* TLS 1.2 is now enforced for all HTTP requests to this service. For more information, see [Foundry Tools security](../security-features.md).
 
 ## January 2020
 
@@ -563,6 +563,6 @@ Follow an [Extract text quickstart](https://github.com/Azure-Samples/cognitive-s
 * Deprecated the V0 endpoint of Face API on June 30, 2016.
 
 
-## Azure AI services updates
+## Foundry Tools updates
 
-[Azure update announcements for Azure AI services](https://azure.microsoft.com/updates/?product=cognitive-services)
+[Azure update announcements for Foundry Tools](https://azure.microsoft.com/updates/?product=cognitive-services)

@@ -159,13 +159,13 @@ This section supplements the [skill reference](cognitive-search-predefined-skill
 
 1. [Create or update a skillset](/rest/api/searchservice/skillsets/create) to add skills.
 
-1. Add templates for OCR and Image Analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
+1. Add templates for OCR and image analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
 
-1. If necessary, [include a multi-service key](cognitive-search-attach-cognitive-services.md) in the Azure AI services property of the skillset. Azure AI Search makes calls to a billable Azure AI services resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Azure AI services must be in the same region as your search service.
+1. If necessary, [include a Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md) in the skillset. Azure AI Search makes calls to a billable Foundry resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). The Foundry resource must be in the same region as your search service.
 
 1. If original images are embedded in PDF or application files like PPTX or DOCX, you need to add a Text Merge skill if you want image output and text output together. Working with embedded images is discussed further on in this article.
 
-Once the basic framework of your skillset is created and Azure AI services is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
+Once the basic framework of your skillset is created and Foundry Tools is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
 
 > [!NOTE]
 > For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](tutorial-skillset.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
@@ -347,14 +347,14 @@ Skill outputs include `text` (OCR), `layoutText` (OCR), `merged_content`, `capti
         },
         {
             "@search.score": 1,
-            "metadata_storage_name": "Azure AI services and Content Intelligence.pptx",
+            "metadata_storage_name": "Foundry Tools and Content Intelligence.pptx",
             "text": [
                 "",
                 "Microsoft",
                 "",
                 "",
                 "",
-                "Azure AI Search and Augmentation Combining Microsoft Azure AI services and Azure Search"
+                "Azure AI Search and Augmentation Combining Foundry Tools and Azure Search"
             ]
         }
     ]

@@ -36,7 +36,7 @@ This article describes how to plan for and manage costs for [!INCLUDE [classic-l
 > [!TIP]
 > Foundry doesn't have a specific page in the Azure pricing calculator. Foundry is composed of several other Azure services, some of which are optional. This article shows how to use the pricing calculator to estimate costs for these services.
 
-You use Foundry Tools in Foundry portal. Costs for  AI Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all services and resources used in your Azure subscription, including third-party services. You can also review forecasted costs and identify spending trends to find areas where you might want to act.
+You use Foundry Tools in Foundry portal. Costs for  Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all services and resources used in your Azure subscription, including third-party services. You can also review forecasted costs and identify spending trends to find areas where you might want to act.
 
 ## Prerequisites
 
@@ -64,9 +64,9 @@ When you create a Foundry resource, you pay to use services like Azure OpenAI, S
 
 Foundry Tools run on Azure infrastructure that accrues costs when you deploy the new resource. It's important to understand that extra infrastructure can accrue cost. You need to manage that cost when you make changes to deployed resources.
 
-When you create or use AI Foundry Tools resources, you're charged based on the services that you use. Two billing models are available for AI Foundry Tools:
+When you create or use Foundry Tools resources, you're charged based on the services that you use. Two billing models are available for Foundry Tools:
 
- - **Serverless API**: With serverless API pricing, you're billed according to the AI Foundry Tools offering you use, based on its billing information.
+ - **Serverless API**: With serverless API pricing, you're billed according to the Foundry Tools offering you use, based on its billing information.
 
  - **Commitment tiers**: With commitment tier pricing, you commit to using several service features for a fixed fee, so you have a predictable total cost based on the needs of your workload. You're billed based on the plan you choose. For information on available services, how to sign up, and considerations when buying a plan, see [Quickstart: Purchase commitment tier pricing](/azure/ai-services/commitment-tier).
 
@@ -245,11 +245,11 @@ When you select the **View More Details** or the **Azure Cost Management** link,
 Here's an example of how to monitor costs in the Azure portal. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/)
-1. You can view costs for a resource group or for an individual AI Foundry resource. 
+1. You can view costs for a resource group or for an individual Foundry resource. 
 
     [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. In the Azure portal, for either your resource group or AI Foundry resource, select **Cost analysis** under **Cost Management**.
+1. In the Azure portal, for either your resource group or Foundry resource, select **Cost analysis** under **Cost Management**.
 
 1. You see the cost overview. You can also add filters such as deployment level tags and user defined tags. For example, to see the costs based on model deployment:
 
@@ -310,11 +310,11 @@ You can get more detailed billing information by grouping costs by resource:
 
 1. Azure OpenAI models and Microsoft models are displayed as meters under each Foundry Tool resource.
 
-1. Some providers' models are displayed as meters under Global resources. The word *Global* **isn't** related to the SKU of the model deployment (for instance, *Global standard*). If you have multiple AI Foundry Tool resources, your bill contains one entry **for each model for each AI Foundry Tool resource**. The resource meters have the format *[model-name]-[GUID]* where *[GUID]* is an identifier unique an associated with a given Foundry Tools resource. You notice billing meters accounting for inputs and outputs for each model you consumed.
+1. Some providers' models are displayed as meters under Global resources. The word *Global* **isn't** related to the SKU of the model deployment (for instance, *Global standard*). If you have multiple Foundry Tool resources, your bill contains one entry **for each model for each Foundry Tool resource**. The resource meters have the format *[model-name]-[GUID]* where *[GUID]* is an identifier unique an associated with a given Foundry Tools resource. You notice billing meters accounting for inputs and outputs for each model you consumed.
 
    :::image type="content" source="../foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry Tools resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../foundry-models/media/manage-cost/cost-by-resource-saas.png":::
 
-It's important to understand scope when you evaluate costs associated with AI Foundry Tools. If your resources are part of the same resource group, you can scope Cost Analysis at that level to understand the effect on costs. If your resources are spread across multiple resource groups, you can scope to the subscription level.
+It's important to understand scope when you evaluate costs associated with Foundry Tools. If your resources are part of the same resource group, you can scope Cost Analysis at that level to understand the effect on costs. If your resources are spread across multiple resource groups, you can scope to the subscription level.
 
 When scoped at a higher level, you often need to add more filters to focus on Azure OpenAI usage. When scoped at the subscription level, you see many other resources that you might not care about in the context of Azure OpenAI cost management. When you scope at the subscription level, navigate to the full **Cost analysis tool** under the **Cost Management** service.
 
@@ -331,7 +331,7 @@ The cost analysis dashboard shows the accumulated costs that are analyzed depend
 
 :::image type="content" source="../openai/media/manage-costs/subscription.png" alt-text="Screenshot of cost analysis dashboard with scope set to subscription." lightbox="../openai/media/manage-costs/subscription.png":::
 
-If you try to add a filter by service, you can't find Azure OpenAI in the list. This situation occurs because Azure OpenAI has commonality with a subset of AI Foundry Tools where the service level filter is **Cognitive Services**. If you want to see all Azure OpenAI resources across a subscription without any other type of AI Foundry Tool resources, instead scope to **Service tier: Azure OpenAI**:
+If you try to add a filter by service, you can't find Azure OpenAI in the list. This situation occurs because Azure OpenAI has commonality with a subset of Foundry Tools where the service level filter is **Cognitive Services**. If you want to see all Azure OpenAI resources across a subscription without any other type of Foundry Tool resources, instead scope to **Service tier: Azure OpenAI**:
 
 :::image type="content" source="../openai/media/manage-costs/service-tier.png" alt-text="Screenshot of cost analysis dashboard with service tier highlighted." lightbox="../openai/media/manage-costs/service-tier.png":::
 

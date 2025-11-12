@@ -21,7 +21,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Microsoft Foundry provides a comprehensive set of tools to support development teams in building, customizing, evaluating, and operating AI Agents and its composing models and tools.
 
-This article is intended to provide IT security teams with details on the Azure service architecture, its components, and its relation with related Azure resource types. Use this information to guide how to [customize](../how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For more information on how to roll out AI Foundry in your organization, see [Foundry Rollout](planning.md).
+This article is intended to provide IT security teams with details on the Azure service architecture, its components, and its relation with related Azure resource types. Use this information to guide how to [customize](../how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For more information on how to roll out Foundry in your organization, see [Foundry Rollout](planning.md).
 
 ## Azure AI resource types and providers
 
@@ -103,7 +103,7 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
   By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Data is encrypted and decrypted using FIPS 140-2 compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
 * **Bring your own Key Vault**:
-  By default, AI Foundry stores all API key-based connection secrets in a managed Azure Key Vault. For users that prefer to manage this themselves, they can connect to their key vault to the Foundry resource. One Azure Key Vault connection will manage all project and resource level connection secrets. Go to learn [how to set up an Azure Key Vault connection to AI Foundry](../how-to/set-up-key-vault-connection.md).
+  By default, Foundry stores all API key-based connection secrets in a managed Azure Key Vault. For users that prefer to manage this themselves, they can connect to their key vault to the Foundry resource. One Azure Key Vault connection will manage all project and resource level connection secrets. Go to learn [how to set up an Azure Key Vault connection to Foundry](../how-to/set-up-key-vault-connection.md).
 
   When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys.
   

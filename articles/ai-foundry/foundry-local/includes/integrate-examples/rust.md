@@ -6,6 +6,11 @@ ms.author: samkemp
 author: samuel100
 ---
 
+## Prerequisites
+
+- Foundry Local installed and running. For installation instructions, see [Get started with Foundry Local](../../get-started.md).
+- [Rust and Cargo](https://www.rust-lang.org/tools/install) installed.
+
 ## Create project
 
 Create a new Rust project and navigate into it:

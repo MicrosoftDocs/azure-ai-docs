@@ -18,14 +18,14 @@ ai-usage: ai-assisted
 
 # Use Terraform to manage Microsoft Foundry resources
 
-In this article, you use Terraform to manage a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource. You learn how to use Terraform to manage AI Foundry management configurations including projects, deployments, and connections. 
+In this article, you use Terraform to manage a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource. You learn how to use Terraform to manage Foundry management configurations including projects, deployments, and connections. 
 
 You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/overview-azapi-provider) or [AzureRM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) to manage Foundry resources. While the AzAPI provider lets you access all Foundry control plane configurations including preview features, the AzureRM variant is limited to core management capabilities:
 
 |Action|AzAPI Provider|AzureRM Provider|
 | --- | --- | --- |
 | Create a resource group | ✅ | ✅ |
-| Create an AI Foundry resource | ✅ | ✅ |
+| Create a Foundry resource | ✅ | ✅ |
 | Configure deployments | ✅ | ✅ |
 | Configure projects | ✅ | - |
 | Configure a connection to knowledge and tools | ✅ | - |
@@ -40,7 +40,7 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 
-## Implement a basic AI Foundry configuration using Terraform code
+## Implement a basic Foundry configuration using Terraform code
 
 # [AzAPI Provider](#tab/azapi)
 
@@ -90,14 +90,14 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 ## Customize with security and compliance controls
 
-To meet security and compliance requirements, you may customize AI Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you may opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
+To meet security and compliance requirements, you may customize Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you may opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
 
 Refer to the below repositories for advanced setup samples:
 
 - [Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform) repository contains example Terraform configurations for the most common enterprise security configurations.
 - [Terraform Azure Verified Module (Cognitive Services account)](https://registry.terraform.io/modules/Azure/avm-res-cognitiveservices-account/azurerm/latest) is a generic module set to manage the Azure resource type used by Foundry, Azure OpenAI, Azure Speech, Azure Language.
-- [Terraform Azure Verified Pattern Module (AI Foundry)](https://registry.terraform.io/modules/Azure/avm-ptn-aiml-ai-foundry/azurerm/latest) is a reference implementation for Foundry.
-- [Terraform Azure Verified Pattern Module (Azure AI and ML Landing Zone)](hhttps://registry.terraform.io/modules/Azure/avm-ptn-aiml-landing-zone/azurerm/latest) provides a reference for the set of resources typically created alongside Foundry for an end-to-end sample.
+- [Terraform Azure Verified Pattern Module (Foundry)](https://registry.terraform.io/modules/Azure/avm-ptn-aiml-ai-foundry/azurerm/latest) is a reference implementation for Foundry.
+- [Terraform Azure Verified Pattern Module (Azure AI and ML Landing Zone)](https://registry.terraform.io/modules/Azure/avm-ptn-aiml-landing-zone/azurerm/latest) provides a reference for the set of resources typically created alongside Foundry for an end-to-end sample.
 
 ## Clean up resources
 

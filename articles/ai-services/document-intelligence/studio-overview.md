@@ -1,12 +1,12 @@
 ---
 title: Document Intelligence Studio
-titleSuffix: Azure AI services
-description: Learn how to set up Document Intelligence Studio to test Azure AI Document Intelligence features.
+titleSuffix: Foundry Tools
+description: Learn how to set up Document Intelligence Studio to test Azure Document Intelligence in Foundry Tools features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 03/18/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -18,7 +18,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](includes/applies-to-v40-v31-v30.md)]
 
-Azure AI Document Intelligence Studio is an online tool that you can use to visually explore, understand, train, and integrate features from Document Intelligence into your applications. The studio provides a platform for you to experiment with the different Document Intelligence models. You can also sample returned data in an interactive manner without the need to write code. You can use the studio experience to:
+Azure Document Intelligence in Foundry Tools Studio is an online tool that you can use to visually explore, understand, train, and integrate features from Document Intelligence into your applications. The studio provides a platform for you to experiment with the different Document Intelligence models. You can also sample returned data in an interactive manner without the need to write code. You can use the studio experience to:
 
 * Learn more about the different capabilities in Document Intelligence.
 * Use your Document Intelligence resource to test models on sample documents or upload your own documents.
@@ -27,11 +27,11 @@ Azure AI Document Intelligence Studio is an online tool that you can use to visu
 * Train custom extraction models to extract fields from documents.
 * Get sample code for the language-specific SDKs to integrate into your applications.
 
-Currently, features are migrating from [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
+Currently, features are migrating from [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) to the new [Foundry portal](https://ai.azure.com/explore/aiservices/vision). There are some differences in the offerings for the two studios, which determine the correct studio for your use case.
 
 ## Choose the correct studio experience
 
-Currently, there are two studios for building and validating Document Intelligence models: the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision) and [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio). As the experiences migrate to the new Azure AI Foundry portal, some experiences are available in both studios. Other experiences and models are available in only one of the studios.
+Currently, there are two studios for building and validating Document Intelligence models: the [Foundry portal](https://ai.azure.com/explore/aiservices/vision) and [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio). As the experiences migrate to the new Foundry portal, some experiences are available in both studios. Other experiences and models are available in only one of the studios.
 
 The following guidelines help you to choose the studio experience for your needs. All the [prebuilt models](overview.md#prebuilt-models) and [general extraction models](overview.md#document-analysis-models) are available for both studios.
 
@@ -41,9 +41,9 @@ Document Intelligence Studio contains all the features released on or before Nov
 
 Document Intelligence Studio provides a visual experience for labeling, training, and validating custom models. For custom document field-extraction models, use Document Intelligence Studio for template and neural models. You can train and use custom classification models only on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out generally available versions of the models from version v3.0, v3.1, and v4.0.
 
-### When to use the Azure AI Foundry portal
+### When to use the Foundry portal
 
-Start with Azure AI Foundry and try any of the prebuilt document models from the 2024-11-30 version, including general extraction models like read or layout.
+Start with Foundry and try any of the prebuilt document models from the 2024-11-30 version, including general extraction models like read or layout.
 
 ## Learn more about Document Intelligence Studio
 
@@ -72,16 +72,16 @@ Use the help wizard, labeling interface, training step, and interactive visualiz
 * **Custom classification models**: Document classification is a new scenario supported by Document Intelligence. The document classifier API supports classification and splitting scenarios. Train a classification model to identify the different types of documents that your application supports. The input file for the classification model can contain multiple documents and classifies each document within an associated page range. To learn more, see [Custom classification models](train/custom-classifier.md).
 * **Add-on capabilities**: Document Intelligence supports more sophisticated analysis capabilities. You can enable and disable these optional capabilities in the studio by using **Analyze Options** on each model page. Four add-on capabilities are available: `highResolution`, `formula`, `font`, and `barcode extraction`. To learn more, see [Add-on capabilities](concept-add-on-capabilities.md).
 
-### [Azure AI Foundry portal](#tab/ai-foundry)
+### [Foundry portal](#tab/ai-foundry)
 
-Document Intelligence is part of the Azure AI services offerings in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Each of the Azure AI services helps developers and organizations rapidly create intelligent and responsible applications. Developers can use the prebuilt and customizable APIs and models to make their applications.
+Document Intelligence is part of the Foundry Tools offerings in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Each of the Foundry Tools helps developers and organizations rapidly create intelligent and responsible applications. Developers can use the prebuilt and customizable APIs and models to make their applications.
 
-Learn how to [connect your AI services hub](../../ai-services/connect-services-ai-foundry-portal.md) with AI services and start using Document Intelligence.
+Learn how to [connect your AI services hub](../../ai-services/connect-services-ai-foundry-portal.md) with Foundry Tools and start using Document Intelligence.
 
 ---
 
 ## Related content
 
 * See [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
-* See the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision).
+* See the [Microsoft Foundry portal](https://ai.azure.com/explore/aiservices/vision).
 * Get started with the [Document Intelligence Studio quickstart](quickstarts/get-started-studio.md).

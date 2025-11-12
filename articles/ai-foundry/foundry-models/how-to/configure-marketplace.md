@@ -30,7 +30,7 @@ Users can access models from partners and community with pay-as-you-go billing o
 
 ## Troubleshooting
 
-Use the following troubleshooting guide to find and solve errors when deploying third-party models in AI Foundry Models:
+Use the following troubleshooting guide to find and solve errors when deploying third-party models in Foundry Models:
 
 | Error | Description |
 |-------|-------------|

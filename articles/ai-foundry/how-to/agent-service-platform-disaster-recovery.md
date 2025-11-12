@@ -47,7 +47,7 @@ If your clients' configurations are outside your control, add a layer of indirec
 
 **Scenario:** The primary region hosting your Foundry account and dependencies is unavailable because of a platform provider outage that renders all resources in your primary region unavailable.
 
-**During the incident:** Complete outage. You can't create, delete, modify, or invoke agents in any projects. Data plane API calls error or time-out. The AI Foundry portal is unavailable for the whole account.
+**During the incident:** Complete outage. You can't create, delete, modify, or invoke agents in any projects. Data plane API calls error or time-out. The Foundry portal is unavailable for the whole account.
 
 ### Fail over to secondary region
 
@@ -64,13 +64,13 @@ For *each project* you choose to recover, follow these steps:
 
 1. Create the project's user-assigned managed identity. Give it access to the new regional dependencies.
 
-1. Create the project in the standby AI Foundry account via IaC and assign the managed identity. Point the project's capability host to the new regional dependencies. Apply role assignments for clients, operators, and automation principals.
+1. Create the project in the standby Foundry account via IaC and assign the managed identity. Point the project's capability host to the new regional dependencies. Apply role assignments for clients, operators, and automation principals.
 
 1. Redeploy agents (definitions, knowledge files, and tool connections) from source control or application code. They're new agents with new IDs and have **no access** to prior threads or files.
 
 1. Recover any client components, if part of the workload, per their recovery playbooks.
 
-1. Update clients to use the new AI Foundry account fully qualified domain name (FQDN) and new agent IDs.
+1. Update clients to use the new Foundry account fully qualified domain name (FQDN) and new agent IDs.
 
    If an AI gateway pattern is used, then clients will continue to use the gateway's FQDN. The gateway configuration will instead need to be updated to route requests to the newly created project on behalf of it clients.
 
@@ -91,7 +91,7 @@ When the primary region is stable and fully operational, return traffic there an
 
 For each failed-over project:
 
-1. Delete the project from the failover (standby) AI Foundry account. This action orphans all agents and threads created during the failover.
+1. Delete the project from the failover (standby) Foundry account. This action orphans all agents and threads created during the failover.
 
 1. Delete the project's managed identity.
 
@@ -100,7 +100,7 @@ For each failed-over project:
       > [!IMPORTANT]
    > This step permanently deletes all state created during the failover period. There's no recovery or merge capability for this data.
 
-1. If clients still point to the failover (standby) AI Foundry account, update them to use the original project's FQDN and original agent IDs.
+1. If clients still point to the failover (standby) Foundry account, update them to use the original project's FQDN and original agent IDs.
 
 **Results:**
 

@@ -87,9 +87,9 @@ Keep this terminal open to run scripts after signing in.
 The Azure Developer CLI (azd) is an open-source tool that helps you set up and deploy app resources on Azure. It provides simple commands for key stages of development, whether you use a terminal, IDE, or CI/CD pipelines.
 [Install the Azure Developer CLI for your platform](/azure/developer/azure-developer-cli/install-azd?tabs=winget-windows%2Cbrew-mac%2Cscript-linux&pivots=os-windows).
 
-## Install The AI Foundry VS Code Extension
+## Install The Foundry VS Code Extension
 
-The Foundry extension for Visual Studio Code lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Install The AI Foundry VS Code Extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+The Foundry extension for Visual Studio Code lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Install The Foundry VS Code Extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
 ## Install Git
 

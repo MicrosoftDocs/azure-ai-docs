@@ -13,7 +13,7 @@ You can use Microsoft Foundry Models in your projects in Foundry to create rich 
 The following article explains how to create a connection to the Foundry resource (formerly known Azure AI Services) to use Foundry Models.
 
 
-:::image type="content" source="../../media/configure-project-connection/azure-marketplace-3p.png" alt-text="A diagram with the overall architecture of Azure Marketplace integration with AI Foundry Models." lightbox="../../media/configure-project-connection/azure-marketplace-3p.png":::
+:::image type="content" source="../../media/configure-project-connection/azure-marketplace-3p.png" alt-text="A diagram with the overall architecture of Azure Marketplace integration with Foundry Models." lightbox="../../media/configure-project-connection/azure-marketplace-3p.png":::
 
 ## Prerequisites
 

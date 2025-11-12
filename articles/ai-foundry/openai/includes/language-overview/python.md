@@ -35,10 +35,10 @@ pip install openai --upgrade
 
 ::: moniker range="foundry-classic"
 
-Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [Foundry portal](https://ai.azure.com/?cid=learnDocs):
 
 - Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**.
-- Sign in to [AI Foundry portal](https://ai.azure.com/?cid=learnDocs) > select your resource.
+- Sign in to [Foundry portal](https://ai.azure.com/?cid=learnDocs) > select your resource.
 
 ::: moniker-end
 
@@ -89,7 +89,7 @@ If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_AP
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 ```python
 from openai import OpenAI

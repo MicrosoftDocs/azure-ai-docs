@@ -1,11 +1,11 @@
 ---
-title: Develop Azure AI services applications with Azure Key Vault
-description: Learn how to develop Azure AI services applications securely by using Azure Key Vault.
+title: Develop Azure AI Foundry Tools applications with Azure Key Vault
+description: Learn how to develop Azure AI Foundry Tools applications securely by using Azure Key Vault.
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 zone_pivot_groups: programming-languages-set-twenty-eight
 ms.custom:
   - devx-track-extended-java
@@ -14,9 +14,9 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Develop Azure AI services applications with Azure Key Vault
+# Develop Azure AI Foundry Tools applications with Azure Key Vault
 
-Learn how to develop Azure AI services applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
+Learn how to develop Azure AI Foundry Tools applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
 
 Key Vault reduces the risk that secrets may be accidentally leaked, because you avoid storing security information in your application. 
 
@@ -327,7 +327,7 @@ python ./program.py
 
 If you're using a multi-service resource or Language resource, you can update [your application](#create-a-python-application) by following these steps to send an example Named Entity Recognition call by retrieving a key and endpoint from your key vault.   
 
-1. Install the Language service library:
+1. Install Azure Language service library:
 
     ```console
     pip install azure-ai-textanalytics==5.1.0
@@ -339,7 +339,7 @@ If you're using a multi-service resource or Language resource, you can update [y
     from azure.ai.textanalytics import TextAnalyticsClient
     # Authenticate the key vault secrets client using your key and endpoint 
     azure_key_credential = AzureKeyCredential(retrieved_key)
-    # Now you can use key vault credentials with the Language service
+    # Now you can use key vault credentials with Azure Language service
     language_service_client = TextAnalyticsClient(
         endpoint=retrieved_endpoint, 
         credential=azure_key_credential)

@@ -28,7 +28,7 @@ If you have already created your blob storage account, you can skip this section
 
 Foundry evaluations use the user's blob storage account to store datasets for use in evaluations. To create the storage account, follow the below steps:
 
-1. Go to your AI Foundry Project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This takes you to the resource group in Azure portal.
+1. Go to your Foundry Project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This takes you to the resource group in Azure portal.
 1. Select **Create** on the Resource Group page.
 1. Search "Storage Account" and select the Storage Account option that is published by Microsoft.
 
@@ -82,7 +82,7 @@ The final step to setting up this storage account to store your datasets for eva
     1. Select **Select** button at the bottom.
 1. Select **Review + assign** twice.
 
-You have now provided your project with write access to your blob storage account. After a few minutes, you'll be able to add data during an evaluation in AI Foundry.
+You have now provided your project with write access to your blob storage account. After a few minutes, you'll be able to add data during an evaluation in Foundry.
 
 ## Related content
 
