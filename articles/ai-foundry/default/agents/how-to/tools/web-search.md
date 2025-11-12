@@ -131,12 +131,8 @@ Web search supports two primary modes. Choose the mode based on the depth and sp
 
 Deep Research can run for several minutes and is best for background-style workloads that prioritize completeness over speed.
 
-### Usage support
-
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | - | - | - |  ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
-
+> [!NOTE]
+> You can only use file upload with a basic agent setup. With a standard agent setup you can use file upload or bring your own blob storage.
 
 ## Admin control for web search tool
 You can enable or disable the web search tool in Foundry Agent Service at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription. 
