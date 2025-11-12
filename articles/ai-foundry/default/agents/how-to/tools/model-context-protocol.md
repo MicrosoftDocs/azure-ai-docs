@@ -129,15 +129,7 @@ For more information on using MCP, see:
 * [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
 * [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
 
-## Usage support
-
-|Azure AI foundry support  | Python SDK |  C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
-|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|---------:|
-| - | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
-
 ## Setup
-
-1. Create a Foundry agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an `mcp` tool with the following information:
 
@@ -173,7 +165,3 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 | **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
-
-## Related content
-
-* [Code samples for the Model Context Protocol tool](./model-context-protocol-samples.md)

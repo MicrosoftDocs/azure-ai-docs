@@ -11,6 +11,7 @@ ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+zone_pivot_groups: selection-function-calling-new
 ---
 
 # Function calling for agents
@@ -24,10 +25,9 @@ Microsoft Foundry agents support function calling, which allows you to describe 
 > * Although function calling isn't supported in the Microsoft Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
 
 ## Example agent code
-<!--
-> [!NOTE]
-> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
--->
+
+::: zone pivot="python"
+
 Use the following code sample to create an agent and call the function. You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ```python
@@ -119,3 +119,102 @@ with project_client:
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
 ```
+::: zone end
+
+::: zone pivot="rest"
+There are two ways to use function calling in Foundry Agent Service.
+1. You can create just `response` and when you need the agent to call this function again, you can create another `response`
+1. You can create on `conversation` and within this conversation, you can create multiple `conversation items`. Each conversation item will correspond to one `response`. You will be able to organize your responses and function calling more consistently.
+
+## Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. See the other SDK languages for example functions.
+
+
+## Create an agent version
+
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "description": "Test agent version with code interpreter tool",
+    "metadata": { "env": "test", "owner": "user" },
+    "definition": {
+      "kind": "prompt",
+      "model": {{model}},
+      "instructions": "You are a helpful agent.",
+      "tools": [
+        {
+          "type": "function",
+          "name": "getCurrentWeather",
+          "description": "Get the current weather in a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
+              "unit": {"type": "string", "enum": ["c", "f"]}
+            },
+            "required": ["location"]
+          }
+        }
+      ]
+    }
+  }'
+```
+
+
+## Create a conversation
+
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/conversations?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+## Create a response
+
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": {{model}},
+    "conversation": {{conversation.id}},
+    "input": [{
+        "type": "message",
+        "role": "user",
+        "content": [
+            {
+                "type": "input_text",
+                "text": "What's the weather in Dar es Salaam, Tanzania?"
+            }
+        ]
+    }],
+    "tools": [
+      {
+        "type": "function",
+        "name": "getCurrentWeather",
+        "description": "Get the current weather in a location",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
+            "unit": {"type": "string", "enum": ["c", "f"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ],
+    "stream": true
+  }
+'
+```
+
+::: zone-end

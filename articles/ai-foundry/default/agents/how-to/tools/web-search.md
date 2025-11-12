@@ -64,12 +64,13 @@ agent = project_client.agents.create_version(
 :::zone-end
 
 :::zone pivot="rest-api"
+
 ### Create an agent with the web search tool
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
+  -H 'Content-Type: application/json' \
   -d '{
   "description": "Test agent version description",
   "definition": {
@@ -77,11 +78,36 @@ curl --request POST \
     "model": "{{model}}",
     "tools": [
       {
-        "type": "web_search_preview"
+        "type": "web_search"
       }
     ],
     "instructions": "You are a helpful assistant that can search the web for current information. When users ask questions that require up-to-date information, use the web search tool to find relevant results."
   }
+}'
+```
+### Create a response with the web search tool
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "agent": {
+    "type": "agent_reference",
+    "name": "{{agentVersion.name}}",
+    "version": "{{agentVersion.version}}"
+  },
+  "input": [{
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "how is the weather in seattle today?"
+      }
+    ]
+  }],
+  "stream": true
 }'
 ```
 :::zone-end
