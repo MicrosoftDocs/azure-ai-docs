@@ -136,7 +136,7 @@ with project_client:
 
     print(f"Initial response received (ID: {response.id})")
 ```
-### Perform multiple iterations.
+### Perform multiple iterations
 Make sure you have reviewed each iteration and action. The following code sample shows a basic API request. Once the initial API request is sent, you would perform a loop where the specified action is performed in your application code, sending a screenshot with each turn so the model can evaluate the updated state of the environment. You can see an example integration for a similar API in the [Azure OpenAI documentation](../../../../openai/how-to/computer-use.md#playwright-integration).
 ```python
 
