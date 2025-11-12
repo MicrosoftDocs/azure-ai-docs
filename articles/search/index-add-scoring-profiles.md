@@ -9,19 +9,21 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 11/06/2025
 ms.update-cycle: 365-days
 ---
 
 # Add scoring profiles to boost search scores
 
-Scoring profiles are used to boost the ranking of matching documents based on criteria. In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. You can create scoring profiles based on:
+Scoring profiles are used to boost or suppress the ranking of matching documents based on criteria. In this article, learn how to specify and assign a scoring profile that boosts a search score based on parameters that you provide. You can create scoring profiles based on:
 
 + Weighted string fields, where boosting is based on a match found in a designated field. For example, matches found in a "Subject" field are considered more relevant than the same match found in a "Description" field.
 
 + Functions for numeric fields, including dates and geographic coordinates. Functions for numeric content support boosting on distance (applies to geographic coordinates), freshness (applies to datetime fields), range, and magnitude.
 
 + Functions for string collections (tags). A tags function boosts a document's search score if any item in the collection is matched by the query.
+
++ (preview) [An aggregation of distinct boosts](#example-function-aggregation). Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product"`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
 
 You can add a scoring profile to an index by editing its JSON definition in the Azure portal or programmatically through APIs like [Create or Update Index REST](/rest/api/searchservice/indexes/create-or-update) or equivalent index update APIs in any Azure SDK. There's no index rebuild requirements so you can add, modify, or delete a scoring profile with no effect on indexed documents.
 
@@ -204,7 +206,7 @@ Freshness and distance scoring are special cases of magnitude-based scoring, whe
 
 Interpolations set the shape of the slope used for boosting freshness and distance. 
 
-When the boost value is positive, scoring is high to low, and the slope is always decreasing. With negative boosts, the slope is increasing (newer documents get higher scores). The interpolation values determines the curve of the upward or downward slope and how aggressively the boost score changes in response to date or distance changes. The following interpolations can be used:  
+When the boost value is positive, scoring is high to low, and the slope is always decreasing. With negative boosts, the slope is increasing (newer documents get higher scores). The interpolation values determine the curve of the upward or downward slope and how aggressively the boost score changes in response to date or distance changes. The following interpolations can be used:  
 
 | Interpolation | Description |  
 |-|-|  
@@ -342,4 +344,222 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
     }  
   ]
 }  
-```  
+```
+
+## Example: function aggregation 
+
+> [!NOTE]
+> This capability is currently in preview, available through the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.
+
+Within a single scoring profile, you can specify multiple scoring functions, and then set `"functionAggregation": "product"`. Documents that score highly across all functions are prioritized, while those that score weak in one or more fields are suppressed.
+
+In this example, create a scoring profile that includes two boosting functions that boost by `rating` and `baseRate`, and then set `functionAggregation` to `product`.
+
+```http
+### Create a new index
+PUT {{url}}/indexes/hotels-scoring?api-version=2025-11-01-preview
+Content-Type: application/json
+api-key: {{key}}
+
+{
+    "name": "hotels-scoring",  
+    "fields": [
+        {"name": "HotelId", "type": "Edm.String", "key": true, "filterable": true, "facetable": true},
+        {"name": "HotelName", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": true, "facetable": true},
+        {"name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": false, "facetable": true, "analyzer": "en.lucene"},
+        {"name": "Category", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
+        {"name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "sortable": false, "facetable": true},
+        {"name": "ParkingIncluded", "type": "Edm.Boolean", "filterable": true, "sortable": true, "facetable": true},
+        {"name": "LastRenovationDate", "type": "Edm.DateTimeOffset", "filterable": true, "sortable": true, "facetable": true},
+        {"name": "Rating", "type": "Edm.Double", "filterable": true, "sortable": true, "facetable": true},
+        {"name": "BaseRate", "type": "Edm.Double", "filterable": true, "sortable": true, "facetable": true },
+        {"name": "Address", "type": "Edm.ComplexType", 
+            "fields": [
+            {"name": "StreetAddress", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": true, "searchable": true},
+            {"name": "City", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
+            {"name": "StateProvince", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
+            {"name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true}
+            ]
+        }
+    ],
+    "scoringProfiles": [
+        {
+            "name": "productAggregationProfile",
+            "functions": [
+                {
+                    "type": "magnitude",
+                    "fieldName": "Rating",
+                    "boost": 2.0,
+                    "interpolation": "linear",
+                    "magnitude": {
+                        "boostingRangeStart": 1.0,
+                        "boostingRangeEnd": 5.0,
+                        "constantBoostBeyondRange": false
+                    }
+                },
+                {
+                    "type": "magnitude",
+                    "fieldName": "BaseRate",
+                    "boost": 1.5,
+                    "interpolation": "linear",
+                    "magnitude": {
+                        "boostingRangeStart": 50.0,
+                        "boostingRangeEnd": 400.0,
+                        "constantBoostBeyondRange": false
+                    }
+                }
+            ],
+            "functionAggregation": "product"
+        }
+    ],
+    "defaultScoringProfile": "productAggregationProfile"
+}
+```
+
+This next request loads the index with searchable content that tests the profile.
+
+```http
+### Upload documents to the index
+POST {{url}}/indexes/hotels-scoring/docs/index?api-version=2025-11-01-preview
+Content-Type: application/json
+api-key: {{key}}
+
+  {
+        "value": [
+        {
+        "@search.action": "upload",
+        "HotelId": "1",
+        "HotelName": "Stay-Kay City Hotel",
+        "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+        "Category": "Boutique",
+        "Tags": [ "view", "air conditioning", "concierge" ],
+        "ParkingIncluded": false,
+        "LastRenovationDate": "2022-01-18T00:00:00Z",
+        "Rating": 3.60,
+        "BaseRate": 200.0,
+        "Address": 
+            {
+            "StreetAddress": "677 5th Ave",
+            "City": "New York",
+            "StateProvince": "NY",
+            "PostalCode": "10022"
+            } 
+        },
+        {
+        "@search.action": "upload",
+        "HotelId": "2",
+        "HotelName": "Old Century Hotel",
+        "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+         "Category": "Boutique",
+        "Tags": [ "pool", "free wifi", "concierge" ],
+        "ParkingIncluded": false,
+        "LastRenovationDate": "2019-02-18T00:00:00Z",
+        "Rating": 3.60,
+        "BaseRate": 150.0,
+        "Address": 
+            {
+            "StreetAddress": "140 University Town Center Dr",
+            "City": "Sarasota",
+            "StateProvince": "FL",
+            "PostalCode": "34243"
+            } 
+        },
+        {
+        "@search.action": "upload",
+        "HotelId": "3",
+        "HotelName": "Gastronomic Landscape Hotel",
+        "Description": "The Gastronomic Landscape Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+        "Category": "Suite",
+        "Tags": [ "restaurant", "bar", "continental breakfast" ],
+        "ParkingIncluded": true,
+        "LastRenovationDate": "2015-09-20T00:00:00Z",
+        "Rating": 4.80,
+        "BaseRate": 350.0,
+        "Address": 
+            {
+            "StreetAddress": "3393 Peachtree Rd",
+            "City": "Atlanta",
+            "StateProvince": "GA",
+            "PostalCode": "30326"
+            } 
+        },
+        {
+        "@search.action": "upload",
+        "HotelId": "4",
+        "HotelName": "Sublime Palace Hotel",
+        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+        "Tags": [ "concierge", "view", "air conditioning" ],
+        "ParkingIncluded": true,
+        "LastRenovationDate": "2020-02-06T00:00:00Z",
+        "Rating": 4.60,
+        "BaseRate": 275.0,
+        "Address": 
+            {
+            "StreetAddress": "7400 San Pedro Ave",
+            "City": "San Antonio",
+            "StateProvince": "TX",
+            "PostalCode": "78216"
+            }
+        }
+    ]
+}
+```
+
+Run a query that uses the criteria in the scoring profile to boost results based on a high rating and high base rate. The boosting scores are aggregated to further promote results that score high in both functions.
+
+```http
+### Search with boost
+POST {{url}}/indexes/hotels-scoring/docs/search?api-version=2025-11-01-preview
+Content-Type: application/json
+api-key: {{key}}
+
+{
+    "search": "expensive and good hotels",
+    "count": true,
+    "select": "HotelId, HotelName, Description, Rating, BaseRate",
+    "scoringProfile": "productAggregationProfile"
+}
+```
+
+The top response for this query is "Gastronomic Landscape Hotel" with a search score that is almost twice as high as next closest match. This particular hotel has both the highest rating and the highest base rate, so the compounding of both functions promotes this match to the top.
+
+```json
+{
+  "@odata.count": 4,
+  "value": [
+    {
+      "@search.score": 1.0541908,
+      "HotelId": "3",
+      "HotelName": "Gastronomic Landscape Hotel",
+      "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel\u2019s restaurant services.",
+      "Rating": 4.8,
+      "BaseRate": 350.0
+    },
+    {
+      "@search.score": 0.53451097,
+      "HotelId": "2",
+      "HotelName": "Old Century Hotel",
+      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+      "Rating": 3.6,
+      "BaseRate": 150.0
+    },
+    {
+      "@search.score": 0.53185254,
+      "HotelId": "1",
+      "HotelName": "Stay-Kay City Hotel",
+      "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+      "Rating": 3.6,
+      "BaseRate": 200.0
+    },
+    {
+      "@search.score": 0.44853577,
+      "HotelId": "4",
+      "HotelName": "Sublime Palace Hotel",
+      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+      "Rating": 4.6,
+      "BaseRate": 275.0
+    }
+  ]
+}
+```
+

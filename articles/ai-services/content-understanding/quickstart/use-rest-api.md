@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Azure AI Content Understanding REST APIs"
-titleSuffix: Azure AI services
+title: "Quickstart: Azure Content Understanding in Foundry Tools REST APIs"
+titleSuffix: Foundry Tools
 description: Learn about Content Understanding REST APIs
 author: PatrickFarley 
 ms.author: paulhsu
@@ -12,16 +12,14 @@ ms.custom:
   - build-2025
 ---
 
-# Quickstart: Use Azure AI Content Understanding REST API
+# Quickstart: Use Azure Content Understanding in Foundry Tools REST API
 
-* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
-
-* Try [Content Understanding with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
+* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-11-01&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
 ## Prerequisites
 
 * To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+* Once you have your Azure subscription, create an [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 * In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
@@ -37,39 +35,45 @@ Before running the following cURL command, make the following changes to the HTT
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document.
+2. Replace `{analyzerId}` with  `prebuilt-document`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`. This analyzer generates a description of the image.
+2. Replace `{analyzerId}` with  `prebuilt-image`. This analyzer generates a description of the image.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`. This analyzer extracts the audio transcript, generates a summary, and performs speaker labeling.
+2. Replace `{analyzerId}` with  `prebuilt-audio`. This analyzer extracts the audio transcript, generates a summary, and performs speaker labeling.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`. This analyzer extracts keyframes, transcript, and chapter segments from video.
+2. Replace `{analyzerId}` with  `prebuilt-video`. This analyzer extracts keyframes, transcript, and chapter segments from video.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 ---
 
 #### POST request
 
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
+  -d '{
+        "inputs":[
+          {
+            "url": "{fileUrl}"
+          }
+        ]
+      }'  
 ```
 
 #### POST response
-The response includes a `request-id`, which you use to retrieve the results of the asynchronous analysis operation. Additionally, the `Operation-Location` header provides the direct URL to access the analysis result.
+The response `header` includes a ```Operation-Location```, which you use to retrieve the results of the asynchronous analysis operation. 
 
 ```
 HTTP/1.1 202 Accepted
@@ -77,25 +81,24 @@ Transfer-Encoding: chunked
 Content-Type: application/json
 request-id: aaa-bbb-ccc-ddd
 x-ms-request-id: aaa-bbb-ccc-ddd
-Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview
-api-supported-versions: 2024-12-01-preview,2025-05-01-preview,2025-10-01
+Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01
+api-supported-versions: 2024-12-01-preview,2025-05-01-preview,2025-11-01
 x-envoy-upstream-service-time: 800
 apim-request-id: {request-id}
 Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 x-content-type-options: nosniff
 x-ms-region: West US
+Date: Fri, 31 Oct 2025 05:30:17 GMT
+Connection: close
 ```
 
 ### Get analyze result
 
-Use the `request-id` from the [`POST` response](#post-response) and retrieve the result of the analysis.
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-2. Replace `{request-id}` with the `request-id` from the `POST` response, or use the complete URL from the `Operation-Location` response header.
+Use the `Operation-Location` from the [`POST` response](#post-response) and retrieve the result of the analysis.
 
 #### GET request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -110,12 +113,13 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "<request-id>",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-documentAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "analyzerId": "prebuilt-document",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
+        "path": "input1",
         "markdown": "CONTOSO LTD.\n\n\n# INVOICE\n\nContoso Headquarters\n123 456th St...",
         "fields": {
           "Summary": {
@@ -130,67 +134,13 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "pages": [
           {
             "pageNumber": 1,
-            "angle": -0.0039,
+            "angle": 0,
             "width": 8.5,
             "height": 11,
-            "spans": [ { "offset": 0, "length": 1650 } ],
-            "words": [
-              {
-                "content": "CONTOSO",
-                "span": { "offset": 0, "length": 7 },
-                "confidence": 0.998,
-                "source": "D(1,0.5739,0.6582,1.7446,0.6595,1.7434,0.8952,0.5729,0.8915)"
-              }, ...
-            ],
-            "lines": [
-              {
-                "content": "CONTOSO LTD.",
-                "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
-                "span": { "offset": 0, "length": 12 }
-              }, ...
-            ]
           }
         ],
-        "paragraphs": [
-          {
-            "content": "CONTOSO LTD.",
-            "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
-            "span": { "offset": 0, "length": 12 }
-          },
-          {
-            "role": "title",
-            "content": "INVOICE",
-            "source": "D(1,7.0515,0.5614,8.0064,0.5628,8.006,0.791,7.0512,0.7897)",
-            "span": { "offset": 15, "length": 9 }
-          }, ...
-        ],
-        "sections": [
-          {
-            "span": { "offset": 0, "length": 1649 },
-            "elements": [ "/sections/1", "/sections/2" ]
-          }, ...
-        ],
-        "tables": [
-          {
-            "rowCount": 2,
-            "columnCount": 6,
-            "cells": [
-              {
-                "kind": "columnHeader",
-                "rowIndex": 0,
-                "columnIndex": 0,
-                "rowSpan": 1,
-                "columnSpan": 1,
-                "content": "SALESPERSON",
-                "source": "D(1,0.5389,4.5514,1.7505,4.5514,1.7505,4.8364,0.5389,4.8364)",
-                "span": { "offset": 512, "length": 11 },
-                "elements": [ "/paragraphs/19" ]
-              }, ...
-            ],
-            "source": "D(1,0.4885,4.5543,8.0163,4.5539,8.015,5.1207,0.4879,5.1209)",
-            "span": { "offset": 495, "length": 228 }
-          }, ...
-        ]
+        "analyzerId": "prebuilt-document",
+        "mimeType": "application/pdf"
       }
     ]
   },
@@ -198,8 +148,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 		"documentPages": 1,
 		"tokens": {
 			"contextualization": 1000,
-			"input": 1866,
-			"output": 87
 		}
 	}
 }
@@ -212,12 +160,13 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "<request-id>",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-imageAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "analyzerId": "prebuilt-image",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
+        "path": "input1",
         "markdown": "![image](image)\n",
         "fields": {
           "Summary": {
@@ -255,13 +204,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "<request-id>",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-audioAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "analyzerId": "prebuilt-audio",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "stringEncoding": "utf8",
     "warnings": [],
     "contents": [
       {
+        "path": "input1",
         "markdown": "# Audio: 00:00.000 => 01:54.670\n\nTranscript\n```\nWEBVTT\n\n00:00.080 --> 00:02.160\n<v Speaker 1>Thank you for calling Woodgrove Travel...",
         "fields": {
           "Summary": {
@@ -272,29 +222,15 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "kind": "audioVisual",
         "startTimeMs": 0,
         "endTimeMs": 114670,
-        "transcriptPhrases": [
-          {
-            "speaker": "Speaker 1",
-            "startTimeMs": 80,
-            "endTimeMs": 2160,
-            "text": "Thank you for calling Woodgrove Travel.",
-            "words": [
-              {
-                "startTimeMs": 80,
-                "endTimeMs": 280,
-                "text": "Thank"
-              }, ...
-            ]
-          }, ...
-        ]
+        "analyzerId": "prebuilt-audio",
+        "mimeType": "audio/wav"
       }
     ]
   },
   "usage": {
-		"tokens": {
-			"contextualization": 1000,
-			"input": 1866,
-			"output": 87
+		"audioHours": 0.032,
+    "tokens": {
+      "contextualization": 3194.445
 		}
 	}
 }
@@ -307,8 +243,8 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "<request-id>",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-videoAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "analyzerId": "prebuilt-video",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
@@ -335,34 +271,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "endTimeMs": 43866,
         "width": 1080,
         "height": 608,
-        "KeyFrameTimesMs": [ 726, 2046, ... ],
-        "transcriptPhrases": [
-          {
-            "speaker": "Speaker 1",
-            "startTimeMs": 1400,
-            "endTimeMs": 6560,
-            "text": "When it comes to the neural TTS, in order to get a good voice, it's better to have good data.",
-            "words": []
-          }, ...
-        ],
-        "cameraShotTimesMs": [ 1467, 3233, ... ],
-        "segments": [
-          {
-            "startTimeMs": 0,
-            "endTimeMs": 7367,
-            "description": "The video begins with a scenic aerial view featuring the Flight Simulator and Microsoft Azure AI logos...",
-            "segmentId": "1"
-          }, ...
-        ]
+        "mimeType": "video/x-m4v"
       }
     ]
   },
   "usage": {
-		"tokens": {
-			"contextualization": 1000,
-			"input": 1866,
-			"output": 87
-		}
+		"videoHours": 0.013,
+    "tokens": {
+      "contextualization": 12222.223
 	}
 }
 ```
@@ -371,7 +287,4 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next step
 
-Learn more about creating [custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.
-
-
-
+Now that you know how to invoke the analysis operation, learn more about building [custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.

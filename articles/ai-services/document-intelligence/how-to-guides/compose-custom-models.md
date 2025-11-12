@@ -1,12 +1,12 @@
 ---
 title: "How to guide: create and compose custom models with Document Intelligence "
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to create, use, and manage Document Intelligence custom and composed models
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: sfi-image-nochange
 ---

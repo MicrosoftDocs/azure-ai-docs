@@ -1,5 +1,9 @@
 items:
 - name: Tool catalog (preview)
+  href: ../../../agents/how-to/tools/overview.md
+- name: Memory (preview)
+  href: ../../agents/concepts/agent-memory.md
+- name: AI Foundry tool catalog (preview)
   href: ../../agents/concepts/tool-catalog.md
 - name: Create a private tool catalog (preview)
   href: ../../agents/how-to/private-tool-catalog.md

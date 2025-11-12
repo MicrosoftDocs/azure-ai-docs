@@ -1,6 +1,6 @@
 ﻿---
-title: "Azure AI Services docs: What's new for November 2025"
-description: Discover key changes and updates in Azure AI Services documentation for November 2025.
+title: "Azure AI Foundry Tools docs: What's new for November 2025"
+description: Discover key changes and updates in Microsoft Foundry Tools documentation for November 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -9,7 +9,7 @@ ms.custom: November-2025
 ms.date: 11/04/2025
 ---
 
-# What's new in Azure AI Services documentation?
+# What's new in Azure AI Foundry Tools documentation?
 
 Welcome! This article highlights key changes and updates in Azure AI Services documentation for November 2025.
 

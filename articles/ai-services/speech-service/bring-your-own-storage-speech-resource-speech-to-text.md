@@ -1,6 +1,6 @@
 ---
 title: Use Bring your own storage (BYOS) Speech resource for Speech to text
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Bring your own storage (BYOS) Speech resource with Speech to text.
 manager: nitinme
 ms.service: azure-ai-speech

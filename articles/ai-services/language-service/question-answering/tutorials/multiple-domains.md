@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 08/07/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering, cogserv-non-critical-language
 ---
-
 # Add multiple categories to your FAQ bot
 
 In this tutorial, you learn how to:

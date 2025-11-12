@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
@@ -18,7 +17,7 @@ ms.author: lajanuar
 Before you can use custom named entity recognition (NER), you need to create an Azure AI Language resource, which gives you the credentials that you need to create a project and start training a model. You also need an Azure storage account, where you can upload your dataset that is used in building your model.
 
 > [!IMPORTANT]
-> To get started quickly, we recommend creating a new Azure AI Language resource. Use the steps provided in this article, to create the Language resource, and create and/or connect a storage account at the same time. Creating both at the same time is easier than doing it later.
+> To get started quickly, we recommend creating a new Azure AI Language resource. Use the steps provided in this article, to create Azure Language resource, and create and/or connect a storage account at the same time. Creating both at the same time is easier than doing it later.
 >
 > If you have a preexisting resource that you'd like to use, you need to connect it to storage account. See [create project](../../how-to/create-project.md)  for information.
 
@@ -40,7 +39,7 @@ Before you can use custom named entity recognition (NER), you need to create an 
 
 ## Create a custom NER project
 
-Once your resource and storage account are configured, create a new custom NER project. A project is a work area for building your custom ML models based on your data. Your project is accessed you and others who have access to the Language resource being used.
+Once your resource and storage account are configured, create a new custom NER project. A project is a work area for building your custom ML models based on your data. Your project is accessed you and others who have access to Azure Language resource being used.
 
 Use the tags file you downloaded from the [sample data](https://github.com/Azure-Samples/cognitive-services-sample-data-files) in the previous step and add it to the body of the following request. 
 

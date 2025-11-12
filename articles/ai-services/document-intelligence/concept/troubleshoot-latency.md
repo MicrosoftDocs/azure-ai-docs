@@ -1,16 +1,16 @@
 ---
 title: Troubleshoot latency issues with Document Intelligence API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn troubleshooting tips, remedial solutions, and best practices for addressing Document Intelligence latency issues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: troubleshooting
-ms.date: 02/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Troubleshooting latency issues in Azure AI Document Intelligence
+# Troubleshooting latency issues in Azure Document Intelligence in Foundry Tools
 
 This article presents troubleshooting tips, remedial solutions, and best practices to address Document Intelligence latency issues. Latency refers to the duration an API server takes to handle and process an incoming request before delivering the response to the client. The time required to analyze a document varies based on its size (such as the number of pages) and the content on each page. 
 
@@ -18,7 +18,7 @@ Document Intelligence operates as a multitenant service, ensuring that latency f
 
 > [!NOTE]
 >
-> * Azure AI services don't provide a Service Level Agreement (SLA) for latency.
+> * Foundry Tools don't provide a Service Level Agreement (SLA) for latency.
 > * The Document Intelligence API offers asynchronous functionality, allowing you to access results up to 24 hours after sending your request to our backend. 
 > * Use the request ID provided by the POST operation to retrieve these results. If you encounter issues during your standard polling sequence, save the request ID and try again later before considering a retry. For further assistance, refer to our [service page](../service-limits.md#detailed-description-quota-adjustment-and-best-practices).
 
@@ -32,7 +32,7 @@ When you're experiencing latency issues, the first step is to check [Azure statu
 
 * All active events are listed under the `Current Impact` tab.
 
-* You can also check your resource in the host region. Go to Geography → Products And Services → AI + Machine Learning → Azure AI Document Intelligence and check the status for your region:
+* You can also check your resource in the host region. Go to Geography → Products And Services → AI + Machine Learning → Azure Document Intelligence and check the status for your region:
 
    :::image type="content" source="../media/latency/azure-status.png" alt-text="Screenshot of the Microsoft Azure status page." lightbox="../media/latency/azure-status.png":::
 

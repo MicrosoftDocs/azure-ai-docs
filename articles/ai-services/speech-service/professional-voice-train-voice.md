@@ -1,6 +1,6 @@
 ---
 title: Train your professional voice model - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to train your professional voice model. 
 author: PatrickFarley
 manager: nitinme

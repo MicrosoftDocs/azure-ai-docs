@@ -69,9 +69,9 @@ Once content is extracted, the [skillset](../../cognitive-search-working-with-sk
       DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net
       ```
 
-### Azure AI services
+### Foundry Tools
 
-Built-in AI enrichment is backed by Azure AI services, including Language service and Azure AI Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of 20 transactions per indexer. For larger workloads, [attach an Azure AI Services multi-region resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
+Built-in AI enrichment is backed by Foundry Tools, including Azure Language and Azure Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of 20 transactions per indexer. For larger workloads, [attach a Microsoft Foundry resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
 
 ### Copy a search service URL and API key
 
@@ -468,7 +468,7 @@ private static SearchIndexerSkillset CreateOrUpdateDemoSkillSet(SearchIndexerCli
 {
     SearchIndexerSkillset skillset = new SearchIndexerSkillset("demoskillset", skills)
     {
-        // Azure AI services was formerly known as Cognitive Services.
+        // Foundry Tools was formerly known as Cognitive Services.
         // The APIs still use the old name, so we need to create a CognitiveServicesAccountKey object.
         Description = "Demo skillset",
         CognitiveServicesAccount = new CognitiveServicesAccountKey(azureAiServicesKey)
@@ -742,7 +742,7 @@ private static void CheckIndexerOverallStatus(SearchIndexerClient indexerClient,
         switch (demoIndexerExecutionInfo.Value.Status)
         {
             case IndexerStatus.Error:
-                ExitProgram("Indexer has error status. Check the Azure Portal to further understand the error.");
+                ExitProgram("Indexer has error status. Check the Azure portal to further understand the error.");
                 break;
             case IndexerStatus.Running:
                 Console.WriteLine("Indexer is running");

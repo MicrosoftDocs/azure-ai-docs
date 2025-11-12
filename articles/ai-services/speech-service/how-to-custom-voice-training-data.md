@@ -1,6 +1,6 @@
 ---
 title: "Professional voice fine-tuning data - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: "Learn about the data types that you can use for professional voice fine-tuning."
 author: PatrickFarley
 manager: nitinme

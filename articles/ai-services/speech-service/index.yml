@@ -5,8 +5,8 @@ summary: Recognize speech, synthesize speech, get real-time translations, transc
 brand: azure
 
 metadata:
-  title: Speech service documentation - Tutorials, API Reference - Azure AI services | Microsoft Docs
-  titleSuffix: Azure AI services
+  title: Speech service documentation - Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  titleSuffix: Foundry Tools
   description: Recognize speech, synthesize speech, get real-time translations, transcribe conversations, or integrate speech into your bot experiences.
   author: PatrickFarley
   manager: nitinme

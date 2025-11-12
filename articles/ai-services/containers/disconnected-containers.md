@@ -1,20 +1,20 @@
 ---
 title: Use Docker containers in disconnected environments
-titleSuffix: Azure AI services
-description: Learn how to run Azure AI services Docker containers disconnected from the internet.
+titleSuffix: Azure AI Foundry Tools
+description: Learn how to run Azure AI Foundry Tools Docker containers disconnected from the internet.
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 07/28/2023
+ms.date: 10/02/2025
 ms.author: aahi
 ---
 
 # Use Docker containers in disconnected environments
 
-Containers enable you to run Azure AI services APIs in your own environment, and are great for your specific security and data governance requirements. Disconnected containers enable you to use several of these APIs disconnected from the internet. Currently, the following containers can be run in this manner:
+Containers enable you to run Azure AI Foundry Tools APIs in your own environment, and are great for your specific security and data governance requirements. Disconnected containers enable you to use several of these APIs disconnected from the internet. Currently, the following containers can be run in this manner:
 
 * [Speech to text](../speech-service/speech-container-howto.md?tabs=stt)
 * [Custom Speech to text](../speech-service/speech-container-howto.md?tabs=cstt)
@@ -57,7 +57,7 @@ Access is limited to customers that meet the following requirements:
 
 ### Create a new resource
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Azure AI services listed.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Azure AI Foundry Tools listed.
 
 2. Enter the applicable information to create your resource. Be sure to select **Commitment tier disconnected containers** as your pricing tier.
 

@@ -1,16 +1,15 @@
 ---
 title: How to build an orchestration project schema
 description: Learn how to define intents for your orchestration workflow project.
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # How to build your project schema for orchestration workflow
  
 In orchestration workflow projects, the *schema* is defined as the combination of intents within your project. Schema design is a crucial part of your project's success. When creating a schema, you want think about which intents that should be included in your project.
@@ -38,7 +37,7 @@ To build a project schema within [Language Studio](https://aka.ms/languageStudio
 
 3. To connect your intent to other existing projects, select **Yes, I want to connect it to an existing project** option. You can alternatively create a non-connected intent by selecting the **No, I don't want to connect to a project** option. 
 
-4. If you choose to create a connected intent, choose from **Connected service** the service you are connecting to, then choose the **project name**. You can connect your intent to only one project from the following services: [CLU](../../conversational-language-understanding/overview.md) , [LUIS](../../../luis/what-is-luis.md) or [Question answering](../../question-answering/overview.md).
+4. If you choose to create a connected intent, choose from **Connected service** the service you're connecting to, then choose the **project name**. You can connect your intent to only one project from the following services: [CLU](../../conversational-language-understanding/overview.md) , [LUIS](../../../luis/what-is-luis.md) or [Question answering](../../question-answering/overview.md).
   
    :::image type="content" source="../media/build-schema-page.png" alt-text="A screenshot showing the schema creation page in Language Studio." lightbox="../media/build-schema-page.png":::
    

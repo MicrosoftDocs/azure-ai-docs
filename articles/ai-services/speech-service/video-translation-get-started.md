@@ -1,6 +1,6 @@
 ---
 title: How to use video translation - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to use video translation. 
 author: PatrickFarley
 manager: nitinme

@@ -1,14 +1,13 @@
 ---
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom named entity recognition (NER).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 You can use an existing Language resource to get started with custom NER as long as this resource meets the below requirements:
 
 |Requirement  |Description  |
