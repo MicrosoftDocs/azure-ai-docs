@@ -22,6 +22,12 @@ Prebuilt analyzers are ready-to-use tools that streamline common content process
 
 Azure AI Content Understanding provides several categories of analyzers to support different scenarios:
 
+- **[Content extraction analyzers](#content-extraction-analyzers)** - Focus on OCR and layout analysis with progressively richer extraction capabilities for basic text extraction, layout analysis, and barcode detection.
+- **[Base analyzers](#base-analyzers)** - Fundamental content processing capabilities for each modality, used as parent analyzers when creating custom analyzers for document, image, audio, and video content.
+- **[RAG analyzers](#retrieval-augmented-generation-rag-analyzers)** - Optimized for retrieval-augmented generation scenarios with semantic analysis and markdown extraction for document ingestion, search applications, and knowledge bases.
+- **[Domain-specific analyzers](#domain-specific-analyzer-reference)** - Preconfigured analyzers for common document categories with specialized field extraction for invoice processing, tax forms, ID verification, mortgage documents, and contracts.
+- **[Utility analyzers](#utility-analyzers)** - Specialized tools for schema generation and field extraction to discover document structure and extract key-value pairs.
+
 ### Content extraction analyzers
 
 Content extraction analyzers focus on optical character recognition and layout analysis. These analyzers are built on top of `prebuilt-document` and provide progressively richer extraction capabilities.

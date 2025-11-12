@@ -239,7 +239,7 @@ The `config` object contains all processing options that control how content is 
 
 ##### `estimateFieldSourceAndConfidence`
 - **Default:** false (varies by analyzer)
-- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value. Only available for fields whose method is `extract` or `generate`.
+- **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value.
 - **When to use:**
   - Validation and quality assurance workflows
   - Understanding extraction accuracy
@@ -286,13 +286,14 @@ The `config` object contains all processing options that control how content is 
   - **`enableSegment: true`:** Content is split into segments based on the category descriptions. Each segment is classified into one of the defined categories. Returns segment metadata in the original content object, plus more content objects for segments with `analyzerId` specified.
   - **`enableSegment: false`:** The entire content is classified as a whole into one category and routed accordingly. Useful for hierarchical classification without splitting.
 - **Category matching:** If an "other" or "default" category isn't defined, content is forced to classify into one of the listed categories. Include an "other" category to handle unmatched content gracefully.
+- **Supported by:** Document and video analyzers. For video, only you can only define one contentCategory.
 
 ##### `enableSegment`
 - **Default:** false
 - **Description:** Enables content segmentation, breaking the file into chunks based on the categories specified in `contentCategories`. Each segment is then classified into one of the defined categories for selective processing.
 - **Segmentation behavior:** The service divides content into logical units by analyzing the content against the category descriptions. Segment boundaries are determined using:
   - **Documents:** Category descriptions combined with content structure (pages, sections, formatting changes)
-  - **Videos:** Category descriptions combined with visual cues (shot changes, scene transitions, temporal boundaries)
+  - **Videos:** Category descriptions combined with visual cues (shot changes, scene transitions, temporal boundaries). Only one contentCategory is supported.
 - **When to use:**
   - Processing mixed-content batches where different parts need different handling (for example, a PDF containing both invoices and receipts)
   - Splitting long documents into categorized chunks for selective analysis
@@ -336,7 +337,7 @@ The `config` object contains all processing options that control how content is 
     }
   }
   ```
-- **Supported by:** Document and video analyzers
+- **Supported by:** Document analyzers
 
 ## Field configuration
 
@@ -419,7 +420,7 @@ For information about writing effective field descriptions, see [Best practices 
 
 ##### `estimateSourceAndConfidence`
 - **Default:** false
-- **Description:** Returns source location (page number, bounding box) and confidence score for this field value. Must be true for fields with `method` = extract.
+- **Description:** Returns source location (page number, bounding box) and confidence score for this field value. Must be true for fields with `method` = extract. This property will override the analyzer level `estimateFieldSourceAndConfidence` property. 
 - **When to use:**
   - Validation and quality assurance workflows
   - Understanding extraction accuracy
