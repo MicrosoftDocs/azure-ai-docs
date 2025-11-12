@@ -70,7 +70,7 @@ With field extraction, you can extract, classify, and generate structured data f
 
 For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices. You can also identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can use prebuilt analyzer templates, such as templates that are tailored for invoices. You can also design bespoke analyzers from scratch to enhance precision through the labeling of more sample documents.
 
-The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence` as `true`.
+The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field. 
 
 #### Field extraction methods
 

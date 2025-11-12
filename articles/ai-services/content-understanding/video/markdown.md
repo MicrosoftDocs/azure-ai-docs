@@ -24,11 +24,11 @@ Azure Content Understanding in Foundry Tools converts unstructured audio and vid
 
 ## Overview
 
-The markdown representation enables large language models to better comprehend audio and video context and temporal relationships for AI-powered analysis and generation tasks. Content Understanding generates structured markdown that includes timing information, transcripts, visual elements (for video), and content descriptions, making it ready for use in retrieval-augmented generation (RAG) workflows without post-processing.
+The markdown representation from Content Understanding generates structured markdown that includes timing information, and transcripts.
 
 The markdown format differs based on input type:
 - **Audio inputs**: Focus on transcript content, timing, and speaker information
-- **Video inputs**: Include all audio elements plus visual metadata, segments, and key frames
+- **Video inputs**: Include all audio elements plus key frames
 
 ## Document structure and metadata
 
@@ -81,53 +81,6 @@ Speakers are identified using the `<v Speaker N>` or `<Speaker N>` format within
 
 ## Visual elements (video only)
 
-### Segmentation
-
-> [!NOTE]
-> Segmentation is only available for video inputs when segmentation is enabled in the analyzer configuration.
-
-Video content can be segmented based on categories that you define into logical temporal units. You can define what fields are extracted from each segment. Segments are output as multiple markdown files, one for each segment. 
-
-**Segment example:**
-````markdown
-# Video: 00:00.737 => 00:48.246
-Width: 1280
-Height: 720
-
-Transcript
-```
-WEBVTT
-
-00:14.680 --> 00:28.680
-<Speaker 1>Stuck on you Got this feeling down deep in my soul That I just can't lose Guess I'm on my way Mighty glad you stayed
-
-...
-```
-
-Key Frames
-- 00:00.737 ![](keyFrame.737.jpg)
-...
-
-# Video: 00:48.246 => 01:29.283
-Width: 1280
-Height: 720
-
-Transcript
-```
-WEBVTT
-
-00:51.800 --> 00:54.200
-<Speaker 1>And I know just where I'm going.
-
-...
-```
-
-Key Frames
-- 00:48.246 ![](keyFrame.48246.jpg)
-````
-
-Segments will just cause the standard output format to be emitted for each segment. All the same outputs are available.
-
 ### Key frames
 
 Key frames represent significant visual moments extracted from the video timeline. They are embedded as markdown image references with precise timestamps.
@@ -152,7 +105,6 @@ The following is a complete example fo the markdown generated for a video
 
 ````markdown
 # Video: 00:00.960 => 00:25.040
-The video shows the Xbox interface with step-by-step instructions for code redemption.
 
 Key Frames
 - 00:08.040 ![](keyFrame.8040.jpg)

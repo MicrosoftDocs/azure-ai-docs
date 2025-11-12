@@ -14,12 +14,9 @@ ms.custom:
 
 # Tutorial: Use Azure Content Understanding in Foundry Tools in a robotic process automation (RPA) solution
 
-## Overview
-
 Robotic Process Automation (RPA) enables organizations to automate repetitive tasks by orchestrating workflows across systems. When combined with **Azure Content Understanding**, RPA can handle complex content ingestion scenarios across documents, images, audio, and video.
 
 The **goal of any RPA solution is Straight Through Processing (STP)**—automating end-to-end workflows with minimal human intervention to **reduce costs and lower latency**. Achieving STP requires **confidence scores** and **grounding information** to ensure data accuracy and compliance. These capabilities allow systems to make decisions automatically while maintaining transparency and trust.
-
 
 ---
 

@@ -22,12 +22,14 @@ Azure Content Understanding allows you to generate a standard set of video metad
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
 
-The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
+The **pre-built video analyzer** (`prebuilt-videoAnalysis`) outputs RAG-ready output. In Markdown it outputs the following:
 
 - **Transcript:** Inline transcripts in standard WEBVTT format
+- **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
+
+And the JSON schema contains more details from the visual analysis. 
 - **Description:** Natural-language segment descriptions with visual and speech context
 - **Segmentation:** Automatic scene segmentation breaking the video into logical chunks based on categories you define
-- **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
 
 This format can drop straight into a vector store to enable an agent or RAG workflow—no post-processing is required.
 
@@ -187,7 +189,7 @@ The field extraction capability can optionally be enhanced to provide detailed d
 > Setting segmentation will use the generative model, consuming tokens even if no fields are defined.
 
 
-Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `enableSegment` property on a custom analyzer.
+Content Understanding offers two ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `enableSegment` property on a custom analyzer.
 
 * **Whole-video** – `enableSegment : false`
   The service treats the entire video file as a single segment and extracts metadata across its full duration.
@@ -197,25 +199,24 @@ Content Understanding offers three ways to slice a video, letting you get the ou
     * full-length descriptive summaries
 
 * **Custom segmentation** – `enableSegment : true` 
-  You describe the logic in natural language and the model creates segments to match. Set `contentCategories` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt.
+  You describe the logic in natural language and the model creates segments to match. Set `contentCategories` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt. In this version, video only supports one `contentCategories` object. 
 
   **Example:**
     Break a news broadcast up into stories.
 
-     ```json
+  ```json
   {
     "config": {
       "enableSegment": true,
       "contentCategories": {
-        "news-story": { "description": "news story on a specific topic", "analyzerId": "myNewsMetadata" },
-        "ad": { "description": "an advertizement or commercial. Typically 30 sec or less", "analyzerId": "myAdMetadata" },
-        "other": { }  // Categorize but don't process
+        "news-story": { 
+        "description": "Segment the video based on each distinct news segment. Use the timestamp of each image to identify the start and end time of each segment, no overlap segments. Ignore non-news segments like ads or promotion.",
+        "analyzerId": "NewsAnalyzer"
+        }         
       }
     }
   }
   ```
-
-
 
 ## Key benefits
 

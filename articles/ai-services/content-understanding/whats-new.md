@@ -29,7 +29,7 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 
 ### Analyzer updates
 
-- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` configuration setting. This selective approach reduces response payload sizes and lowers processing costs and latency by computing confidence metrics only when required. Confidence scores are only supported for document files.
+- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateSourceAndConfidence` configuration setting. This selective approach reduces response payload sizes and lowers processing costs and latency by computing confidence metrics only when required. Confidence scores are only supported for document files.
 - **Classification is now integrated** with the analyzer API now supporting classification with the `contentCategories` property. Now the number of supported categories expands from 50 to 200, enabling precise classification and routing of diverse file types within a single analyzer—no separate classifier required. See [build a robotic process automation solution](tutorial/robotic-process-automation.md) for an example.
 - **Analyzer lifecycle APIs** extend to support copy, delete, and replace to give you complete control over analyzer versions. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
 - **Delete Analyze Results** - You can now explicitly delete the analyzer results once successfully retrieved, giving you full control over the data retention for compliance and privacy requirements. See [delete analyze response](/rest/api/contentunderstanding/content-analyzers/get-result-file?view=rest-contentunderstanding-2025-11-01).
@@ -76,10 +76,10 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 ### Other improvements
 
-- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See[prebuilt analyzers](concepts/prebuilt-analyzers.md)
+- `prebuilt-read` and `prebuilt-layout` analyzers now bring key Document Intelligence capabilities to Content Understanding. See [prebuilt analyzers](concepts/prebuilt-analyzers.md)
 - `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting and summarizing charts, diagrams, and images with their context. See [prebuilt analyzers](concepts/prebuilt-analyzers.md)
 - When analyzing content, you can now provide a **page range** to only analyze specific pages of the input document.
-- Segmentation and classification (contentCategories) let you send sections to purpose-built analyzers during a single run. For example, `prebuilt-idDocument` classifies pages and routes them to specific analyzers (such as passport and driver's license analyzers), each with their own schemas—all within a single run.
+- Segmentation and classification (`contentCategories`) let you send sections to purpose-built analyzers during a single run. For example, `prebuilt-idDocument` classifies pages and routes them to specific analyzers (such as passport and driver's license analyzers), each with their own schemas—all within a single run.
 
 ### Region expansion and availability
 
