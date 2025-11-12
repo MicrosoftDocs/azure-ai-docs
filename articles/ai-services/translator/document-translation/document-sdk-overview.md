@@ -1,13 +1,13 @@
 ---
 title: Document translation SDKs
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Document translation software development kits (SDKs) expose Document translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -19,7 +19,7 @@ recommendations: false
 
 # Document translation SDKs
 
-Document translation is a cloud-based REST API feature of the Azure Translator service. The Document translation API enables quick and accurate source-to-target whole document translations, asynchronously, in supported languages and various file formats. The Document translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document translation REST API capabilities into your applications.
+Document translation is a cloud-based REST API feature of the Azure Translator. The Document translation API enables quick and accurate source-to-target whole document translations, asynchronously, in supported languages and various file formats. The Document translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document translation REST API capabilities into your applications.
 
 ## Supported languages
 

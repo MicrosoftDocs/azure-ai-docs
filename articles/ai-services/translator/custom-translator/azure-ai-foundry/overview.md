@@ -1,11 +1,11 @@
 ---
-title: What is Azure AI Foundry Tools custom translation?
-titleSuffix: Azure AI Foundry Tools
+title: What is Foundry Tools custom translation?
+titleSuffix: Foundry Tools
 description: Azure AI Foundry custom translation offers similar capabilities to what Azure Translator in Foundry Tools Hub does for Statistical Machine Translation (SMT), but exclusively for Neural Machine Translation (NMT) systems.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: overview
 ---
@@ -34,7 +34,7 @@ Custom translation provides different features to build custom translation syste
 
 ## Get better translations
 
-Azure Translator released [Neural Machine Translation (NMT)](https://www.microsoft.com/translator/blog/2016/11/15/microsoft-translator-launching-neural-network-based-translations-for-all-its-speech-languages/) in 2016. NMT provided major advances in translation quality over the industry-standard [Statistical Machine Translation (SMT)](https://en.wikipedia.org/wiki/Statistical_machine_translation) technology. Because NMT better captures the context of full sentences before translating them, it provides higher quality, more human-sounding, and more fluent translations. [Custom translation](https://ai.azure.com/?cid=learnDocs) provides NMT for your custom models resulting in better translation quality.
+Azure Translator in Foundry Tools released [Neural Machine Translation (NMT)](https://www.microsoft.com/translator/blog/2016/11/15/microsoft-translator-launching-neural-network-based-translations-for-all-its-speech-languages/) in 2016. NMT provided major advances in translation quality over the industry-standard [Statistical Machine Translation (SMT)](https://en.wikipedia.org/wiki/Statistical_machine_translation) technology. Because NMT better captures the context of full sentences before translating them, it provides higher quality, more human-sounding, and more fluent translations. [Custom translation](https://ai.azure.com/?cid=learnDocs) provides NMT for your custom models resulting in better translation quality.
 
 Custom translation also accepts data that's parallel at the document level to make data collection and preparation more effective. If users have access to versions of the same content in multiple languages but in separate documents, custom translation is able to automatically match sentences across documents. For a list of supported document format, *see* [Custom translation document formats and naming convention](concepts/document-formats-naming-convention.md).
 

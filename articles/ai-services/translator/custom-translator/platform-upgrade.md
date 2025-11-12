@@ -1,11 +1,11 @@
 ---
 title: "Platform upgrade - Custom Translator"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Custom Translator v1.0 upgrade
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: reference
 ---
@@ -46,4 +46,4 @@ Following measured and consistent high-quality results using models trained on t
 
 ## Next steps
 
-For more support, visit [Azure AI Foundry Tools support and help options](../../cognitive-services-support-options.md).
+For more support, visit [Foundry Tools support and help options](../../cognitive-services-support-options.md).

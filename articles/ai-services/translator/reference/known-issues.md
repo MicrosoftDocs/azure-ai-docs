@@ -1,17 +1,17 @@
 ---
 title: Azure Translator in Foundry Tools known issues
-titlesuffix: Azure AI Foundry Tools
+titlesuffix: Foundry Tools
 description: Known and common issues with Azure Translator in Foundry Tools.
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure Translator known issues
+# Azure Translator in Foundry Tools known issues
 
-Azure Translator is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure Translator and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
+Azure Translator in Foundry Tools is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure Translator and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 ## Active known issues
 

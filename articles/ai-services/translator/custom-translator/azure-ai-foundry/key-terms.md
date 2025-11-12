@@ -1,11 +1,11 @@
 ---
-title: Azure AI Foundry Tools custom translation key terms
-titleSuffix: Azure AI Foundry Tools
+title: Foundry Tools custom translation key terms
+titleSuffix: Foundry Tools
 description: List of key terms used in Azure AI Foundry custom translation articles.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: reference
 ---

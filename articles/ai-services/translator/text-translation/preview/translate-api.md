@@ -1,12 +1,12 @@
 ---
 title: Azure Translator in Foundry Tools 2025-05-01-preview translate method
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator 2025-05-01-preview translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -74,7 +74,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate
 
 ### Private endpoint
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
+For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
 ## Request headers
 
@@ -436,7 +436,7 @@ Using an `LLM` model requires you to have an Azure AI Foundry resource. For more
 
 #### Text translation request applying adaptive custom translation with dataset
 
-Adaptive custom translation deploys on Translator service infrastructure. Charges are based on source characters.
+Adaptive custom translation deploys on Translator infrastructure. Charges are based on source characters.
 
 ***Request***
 

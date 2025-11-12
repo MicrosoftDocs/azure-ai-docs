@@ -1,11 +1,11 @@
 ---
 title: Create and manage a Custom Translator project
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: How to create and manage a project in the Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

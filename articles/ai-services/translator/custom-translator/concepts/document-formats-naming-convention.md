@@ -1,11 +1,11 @@
 ---
 title: "Document formats and naming conventions - Custom Translator"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator

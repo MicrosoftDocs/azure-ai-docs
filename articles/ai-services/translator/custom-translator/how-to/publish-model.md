@@ -1,11 +1,11 @@
 ---
 title: Publish a Custom Translator model
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article explains how to publish a Custom Translator model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

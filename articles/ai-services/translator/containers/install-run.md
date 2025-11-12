@@ -1,12 +1,12 @@
 ---
 title: Install and run Translator container using Docker API
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use the Translator container and API to translate text and documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -153,9 +153,9 @@ All Azure containers require the following input values:
 
 ## Container images and tags
 
-The Azure AI Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. Azure Translator container resides within the azure-cognitive-services/translator repository and is named `text-translation`. The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`.
+The Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. Azure Translator container resides within the azure-cognitive-services/translator repository and is named `text-translation`. The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`.
 
-To use the latest version of the container, use the latest tag. You can view the full list of [Azure AI Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
+To use the latest version of the container, use the latest tag. You can view the full list of [Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
 
 ## Use containers
 
@@ -163,7 +163,7 @@ Select a tab to choose your Azure Translator container environment:
 
 ### [**Connected containers**](#tab/connected)
 
-Azure Translator containers enable you to run the Azure Translator service `on-premise` in your own environment. Connected containers run locally and send usage information to the cloud for billing.
+Azure Translator containers enable you to run the Azure Translator `on-premise` in your own environment. Connected containers run locally and send usage information to the cloud for billing.
 
 ## Download and run container image
 
@@ -262,7 +262,7 @@ Disconnected containers enable you to use the Azure Translator API by exporting 
 
 ## Gather required parameters
 
-There are three required parameters for all Azure AI Foundry Tools' containers:
+There are three required parameters for all Foundry Tools' containers:
 
 * The end-user license agreement (EULA) must be present with a value of *accept*.
 
@@ -353,7 +353,7 @@ docker run --rm -it -p 5000:5000 \
 [image]
 ```
 
-### Translator translation models and container configuration
+### Azure Translator in Foundry Tools translation models and container configuration
 
 After you  [configured the container](#configure-the-container-to-run-in-a-disconnected-environment), the values for the downloaded translation models and container configuration will be generated and displayed in the container output:
 
@@ -525,15 +525,15 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
    >
    > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).
 
-### Translator and supporting container images and tags
+### Azure Translator in Foundry Tools and supporting container images and tags
 
-The Azure AI Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
+The Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
-|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI Foundry Tools Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
-|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI Foundry Tools Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
+|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Foundry Tools Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
+|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Foundry Tools Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
 
 ## Other parameters and commands
 

@@ -1,11 +1,11 @@
 ---
-title: Train an Azure AI Foundry Tools custom translation model
-titleSuffix: Azure AI Foundry Tools
+title: Train an Foundry Tools custom translation model
+titleSuffix: Foundry Tools
 description: How to train a custom translation model in Azure AI Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

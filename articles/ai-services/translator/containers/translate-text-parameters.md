@@ -1,16 +1,16 @@
 ---
 title: "Container: Translate text"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator container translate document operation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure Translator container: translate text
+# Azure Translator in Foundry Tools container: translate text
 
 **Translate text**.
 
@@ -404,14 +404,14 @@ The following table lists the required supporting containers for your text and d
 
 ##### Container images and tags
 
-The Azure AI Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
+The Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Translator: Document translation|**TODO**| **TODO**|
-|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI Foundry Tools Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
-|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI Foundry Tools Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
+|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Foundry Tools Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
+|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Foundry Tools Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
 
 ### Create your application
 

@@ -1,13 +1,13 @@
 ---
 title: Get translations status
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The get translations status method returns a list of batch requests submitted and the status for each request.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
 
 # Get status for all translation jobs
@@ -66,7 +66,7 @@ Request headers are:
 
 |Headers|Description|Condition|
 |--- |--- |---|
-|**Ocp-Apim-Subscription-Key**|Your Translator service API key from the Azure portal.|***Required***|
+|**Ocp-Apim-Subscription-Key**|Your Translator API key from the Azure portal.|***Required***|
 |**Ocp-Apim-Subscription-Region**|The region where your resource was created. |***Required*** when using a regional (geographic) resource like **West US**.</br>&bullet.|
 |**Content-Type**|The content type of the payload. The accepted value is **application/json** or **charset=UTF-8**.|***Required***|
 
@@ -112,7 +112,7 @@ The following information is returned in a successful response.
 |code|string|Enums containing high-level error codes. Accepted values:<br/>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
 |target|string|Gets the source of the error. For example, it would be `documents` or `document id` if there was an invalid document.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI Foundry Tools API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|
 |innerError.code|string|Gets code error string.|
 |innerError.message|string|Gets high-level error message.|
 |innerError.target|string|Gets the source of the error. For example, it would be `documents` or `document id` if there was an invalid document.|

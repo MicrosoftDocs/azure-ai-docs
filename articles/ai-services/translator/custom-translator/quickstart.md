@@ -1,18 +1,18 @@
 ---
 title: "Quickstart: Build, deploy, and use a custom model - Custom Translator"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: A step-by-step guide to building a translation system using the Custom Translator portal v2.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: quickstart
 ---
 
 # Quickstart: Build, publish, and translate with Custom Translator
 
-Translator is a cloud-based neural machine translation service that's part of the Azure AI Foundry Tools family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../../language-support.md).
+Translator is a cloud-based neural machine translation service that's part of the Foundry Tools family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../../language-support.md).
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Translator is a cloud-based neural machine translation service that's part of th
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have an Azure subscription, [create a Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-  * You need the key and endpoint from the resource to connect your application to the Translator service. Paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page:
+  * You need the key and endpoint from the resource to connect your application to the Translator. Paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page:
 
     :::image type="content" source="../media/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
 

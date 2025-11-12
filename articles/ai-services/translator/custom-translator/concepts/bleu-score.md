@@ -1,12 +1,12 @@
 ---
 title: "What is a BLEU score? - Custom Translator"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: BLEU is a measurement of the differences between machine translation and human-created reference translations of the same source sentence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to understand how BLEU score works so that I understand system test outcome better.

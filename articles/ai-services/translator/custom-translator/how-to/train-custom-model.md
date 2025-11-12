@@ -1,11 +1,11 @@
 ---
 title: Train a Custom Translator model
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: How to train a custom model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

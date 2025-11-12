@@ -1,11 +1,11 @@
 ---
 title: Create and configure Azure resources for Translator
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to create and configure Azure resources for translation services.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-translator
 ms.topic: how-to
 
@@ -15,7 +15,7 @@ ms.topic: how-to
 
 Azure Translator in Foundry Tools is a cloud-based neural machine translation (NMT) service that allows you to add multilingual capabilities to your applications and workflows. The service supports both instant translation and batch processing, making it suitable for a wide range of business needs.
 
-If you already have an Azure Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Azure AI Foundry Tools](../../connect-services-ai-foundry-portal.md).
+If you already have an Azure Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Foundry Tools](../../connect-services-ai-foundry-portal.md).
 
 By default, Azure Translator utilizes neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have an Azure AI Foundry resource**.
 
@@ -24,7 +24,7 @@ The following table provides an overview of the resource solutions for Translato
 |AI Service|Scope|Use cases|
 |---------|------------|---------|
 | [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is the recommended resource for building, deploying, and managing generative AI applications and agents in Azure AI Foundry. |The Azure AI Foundry resource is suitable for scenarios requiring orchestration of multiple AI models, custom AI agent development, and advanced AI application lifecycle management. |
-|[Azure AI Foundry Tools resource](../../../ai-services/what-are-ai-services.md)|This multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like translation, language understanding, speech recognition, and computer vision.|An Azure AI Foundry Tools resource allows you to integrate advanced features such as text translation, speech transcription,  and image recognition into your applications. You can also enhance models within the Azure AI Foundry portal using prebuilt AI capabilities.|
+|[Foundry Tools resource](../../../ai-services/what-are-ai-services.md)|This multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like translation, language understanding, speech recognition, and computer vision.|An Foundry Tools resource allows you to integrate advanced features such as text translation, speech transcription,  and image recognition into your applications. You can also enhance models within the Azure AI Foundry portal using prebuilt AI capabilities.|
 | [Azure Translator services resource](../overview.md) | The Azure Translator resource offers access to cloud-based neural machine translation capabilities and the ability to create customized translation models using Custom Translator.|  Azure Translator is production-ready and can seamlessly scale up or down based on translation needs, accommodating both small and large volumes of text or documents across multiple languages.|
 
 ## Step 1: create your resource
@@ -39,7 +39,7 @@ The following table provides an overview of the resource solutions for Translato
 
 ## [Azure Translator resource](#tab/translator)
 
-An Azure Translator resource is an instance of the service that you create. All API requests to Azure AI Foundry Tools can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
+An Azure Translator resource is an instance of the service that you create. All API requests to Foundry Tools can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
 
 ### Prerequisites
 
@@ -47,15 +47,15 @@ To get started, you need an active [**Azure account**](https://azure.microsoft.c
 
 ### Create your Azure Translator resource
 
-With your Azure account, you can access the Translator service through two different resource types:
+With your Azure account, you can access the Translator through two different resource types:
 
 * [**Single-service**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) resource types enable access to a single service API key and endpoint.
 
-* [**Multi-service**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) resource types enable access to multiple Azure AI Foundry Tools by using a single API key and endpoint.
+* [**Multi-service**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) resource types enable access to multiple Foundry Tools by using a single API key and endpoint.
 
 ## Complete your project and instance details
 
-After you decide which resource type you want use to access the Translator service, you can enter the details for your project and instance.
+After you decide which resource type you want use to access the Translator, you can enter the details for your project and instance.
 
 1. **Subscription**. Select one of your available Azure subscriptions.
 
@@ -86,7 +86,7 @@ After you decide which resource type you want use to access the Translator servi
 
 ### Authentication keys and endpoint URL
 
-The quickest method for authenticating your Azure AI Foundry Tools API requests is to include your endpoint URL and a read-only key in an authentication header. For more information, *see* [Authentication and authorization](../../authentication.md#authenticate-with-a-single-service-resource-key)
+The quickest method for authenticating your Foundry Tools API requests is to include your endpoint URL and a read-only key in an authentication header. For more information, *see* [Authentication and authorization](../../authentication.md#authenticate-with-a-single-service-resource-key)
 
 * **Authentication keys**. Your key is a unique string that's passed on every request to the Translation service. You can pass your key through a query-string parameter or by specifying it in the HTTP request header.
 
@@ -122,10 +122,10 @@ Text translation supports both [global and regional endpoints](#complete-your-pr
 
 ## Get started with Azure Translator REST APIs
 
-In our quickstart, learn how to use the Translator service with REST APIs.
+In our quickstart, learn how to use the Translator with REST APIs.
 
 > [!div class="nextstepaction"]
-> [Get Started with Translator](../text-translation/quickstart/rest-api.md)
+> [Get Started with the Translator](../text-translation/quickstart/rest-api.md)
 
 ---
 

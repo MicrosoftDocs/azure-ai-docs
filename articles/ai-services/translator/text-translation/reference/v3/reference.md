@@ -1,16 +1,16 @@
 ---
 title: Translator V3.0 Reference
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator v3.0
+# Azure Translator in Foundry Tools v3.0
 
 ## What's new?
 
@@ -57,7 +57,7 @@ Custom Translator isn't currently available in Switzerland.
 
 ## Virtual Network support
 
-The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI Foundry Tools virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
+The Translator is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Foundry Tools virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 Once you turn on this capability, you must use the custom endpoint to call the Translator. You can't use the global translator endpoint ("api.cognitive.microsofttranslator.com") and you can't authenticate with an access token.
 

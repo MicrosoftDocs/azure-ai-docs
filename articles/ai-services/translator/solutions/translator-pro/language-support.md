@@ -1,12 +1,12 @@
 ---
 title: Language support - Microsoft Translator Pro
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Language support for Microsoft Translator Pro speech-to-speech application.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

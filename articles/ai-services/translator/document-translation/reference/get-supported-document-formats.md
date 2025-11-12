@@ -1,13 +1,13 @@
 ---
 title: Get supported document formats method
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The get supported document formats method returns a list of supported document formats.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
 
 # Get supported document formats
@@ -68,7 +68,7 @@ The following information is returned in a successful response.
 |--- |--- |--- |
  |code|string|Enums containing high-level error codes. Accepted values: &bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI Foundry Tools API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details(key value pair), inner error(it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details(key value pair), inner error(it can be nested).|
 |innerError.code|string|Gets code error string.|
 |innerError.message|string|Gets high-level error message.|
 |innerError.target|string|Gets the source of the error. For example, it would be `documents` or `document id` for an invalid document.|

@@ -12,7 +12,7 @@ items:
     href: whats-new.md
   - name: Configure Azure resources
     displayName: endpoint,key,portal,azure,authentication,delete,resource
-    href: create-translator-resource.md
+    href: how-to/create-translator-resource.md
   - name: Language Support
     displayName: iso,language code,translation,transliteration,detection,detect,pdf,document
     href: language-support.md
@@ -26,7 +26,7 @@ items:
     href: service-limits.md
   - name: Azure Translator FAQ
     displayName: character,count,usage,attribution, cognitive
-    href: translator-faq.md
+    href: faq.md
   - name: Secure deployment guide
     displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
     href: secure-deployment.md  
@@ -41,7 +41,7 @@ items:
     href: text-translation/reference/v3/reference.md
   - name: Text translation SDK
     displayName: get started,sdk,keys,endpoint
-    href: text-sdk-overview.md
+    href: text-translation/sdk-overview.md
   - name: Text translation REST APIs
     items:
     - name: Text translation REST API guide
@@ -68,10 +68,10 @@ items:
     items:
     - name: Translator text translation SDK
       displayName: get started,sdk,keys,endpoint,headers,c#,go,java,javascript,python,setup
-      href: quickstart-text-sdk.md
+      href: text-translation/quickstart/client-library-sdk.md
     - name:  Translator text translation REST APIs
       displayName: get started,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
-      href: quickstart-text-rest-api.md
+      href: text-translation/quickstart/rest-api.md
   - name: How-to guides
     items:
     - name: Use text translation APIs
@@ -416,7 +416,7 @@ items:
   - name: Azure Translator in sovereign clouds
     displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
     href: reference/sovereign-clouds.md
-  - name: Modifications to Azure Translator Service
+  - name: Modifications to Azure Translator
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
   - name: Azure Translator known issues

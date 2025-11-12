@@ -6,10 +6,10 @@ ms.author: lajanuar
 ms.service: azure-ai-translator
 ms.topic: conceptual
 ms.custom: horz-security
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
 
-# Azure Translator security guidelines
+# Azure Translator in Foundry Tools security guidelines
 
 Azure Translator in Foundry Tools is a powerful cloud-based service designed to deliver real-time translation capabilities for a wide range of scenarios, including applications, websites, and business workflows. When organizations integrate this service, they can enhance global communication and user engagement across multiple languages and dialects.
 
@@ -27,10 +27,10 @@ This document offers detailed guidelines and practical recommendations for estab
 
  ## Service-specific security
 
-Azure Translator service requires careful consideration of specific security challenges and requirements to maintain the confidentiality and integrity of translation workflows. By taking a proactive approach to these security concerns, you can protect sensitive information during translation and reduce the risk of unauthorized access or data breaches.
+Azure Translator requires careful consideration of specific security challenges and requirements to maintain the confidentiality and integrity of translation workflows. By taking a proactive approach to these security concerns, you can protect sensitive information during translation and reduce the risk of unauthorized access or data breaches.
 
 * **Text translation**: For public-facing translation services, it's important to apply content filtering as necessary. Additionally, consider implementing extra filtering measures to prevent the translation of harmful or inappropriate content.<br> 
-For more information, *see* [Prevent translation with the Translator service](/azure/ai-services/translator/prevent-translation).
+For more information, *see* [Prevent translation with the Translator](/azure/ai-services/translator/prevent-translation).
 
 * **Document translation**: When translating documents, ensure secure workflows are established. Utilize secure storage containers with appropriate access controls and encryption to safeguard both the original documents and the translated outputs.<br>
 For more information, *see* [What is Document Translation?](/azure/ai-services/translator/document-translation/how-to-guides/use-rest-api-programmatically).
@@ -59,14 +59,14 @@ For more information, *see* [About Azure Key Vault](/azure/key-vault/general/ove
 For Custom Translator implementation, *see* [Encryption key management](/azure/ai-services/translator/custom-translator/concepts/encrypt-data-at-rest)<br><br>
 
    > [!TIP]
-   > ✔️ **Rotate API keys regularly**: Keys in Azure Key Vault can be configured with rotation policies that automatically generate new key versions at specified frequencies. Regularly rotating your Translator service API keys mitigates the risk of compromised credentials being used to access your services. For more information, *see* [Key autorotation](/azure/key-vault/general/autorotation).
+   > ✔️ **Rotate API keys regularly**: Keys in Azure Key Vault can be configured with rotation policies that automatically generate new key versions at specified frequencies. Regularly rotating your Translator API keys mitigates the risk of compromised credentials being used to access your services. For more information, *see* [Key autorotation](/azure/key-vault/general/autorotation).
 
 ## Network security
 
 Azure Translator processes sensitive data from your applications. Therefore, it's essential to establish strong network isolation measures to prevent unauthorized access and ensure that translated content remains secure. The following list outlines key practices to help you manage secure access effectively:
 
 * **Configure private endpoints**: Increase shielding by configuring private endpoints for API requests. This approach strengthens security and provides enhanced network isolation for your Azure Translator resources.<br>
-For more information, *see* [Use private endpoints with Azure AI Foundry Tools](/azure/ai-services/cognitive-services-virtual-networks#use-private-endpoints).
+For more information, *see* [Use private endpoints with Foundry Tools](/azure/ai-services/cognitive-services-virtual-networks#use-private-endpoints).
 
 * **Implement virtual network service endpoints**: Augment safeguards by restricting network access to allow only traffic originating from your Azure virtual network. At the same time, ensure that you maintain optimal routing by utilizing the Microsoft backbone network for all communications.<br> 
 For more information, *see* [Enable custom Translator through Azure Virtual Network](/azure/ai-services/translator/custom-translator/how-to/enable-vnet-service-endpoint).
@@ -89,15 +89,15 @@ For more information, *see* [Azure Translator encryption of data at rest](/azure
 * **Review details of the No-Trace policy**: Translator doesn't retain customer data submitted for text translation; it processes the data without storing it. For document translation, data is stored only temporarily during processing and isn't kept afterward.<br> 
 For more information, *see* [Data, privacy, and security for Azure Translator](/azure/ai-foundry/responsible-ai/translator/data-privacy-security).
 
-* **Follow data residency requirements**: To ensure that your deployment adheres to regional data residency regulations, select the designated geographical endpoints for your Translator service. Use these endpoints to remain compliant with local requirements.<br>
+* **Follow data residency requirements**: To ensure that your deployment adheres to regional data residency regulations, select the designated geographical endpoints for your Translator. Use these endpoints to remain compliant with local requirements.<br>
 For more information, *see* [Use Azure Translator behind firewalls](/azure/ai-services/translator/how-to/use-firewalls).
 
 ## Logging and monitoring
 
 Establishing robust logging and monitoring is critical for identifying potential security threats and resolving issues within your Azure Translator deployment. By ensuring that all relevant activities and anomalies are thoroughly tracked, you can enhance your overall security posture and streamline troubleshooting processes throughout your cloud-based translation environment.
 
-* **Enable diagnostic logging**: Configure Azure Monitor to collect and analyze logs from your Translator service to identify potential security issues, track usage patterns, and troubleshoot problems.<br>
-For more information, *see* [Azure Monitor for Azure AI Foundry Tools](/azure/azure-monitor/platform/monitor-azure-resource).
+* **Enable diagnostic logging**: Configure Azure Monitor to collect and analyze logs from your Translator to identify potential security issues, track usage patterns, and troubleshoot problems.<br>
+For more information, *see* [Azure Monitor for Foundry Tools](/azure/azure-monitor/platform/monitor-azure-resource).
 
 * **Set up alerts for unusual activity**: Create Azure Monitor alerts to notify you of abnormal usage patterns, potential security breaches, or service disruptions affecting your Translator resources.<br>
 For more information, *see* [Create, view, and manage metric alerts using Azure Monitor](/azure/azure-monitor/alerts/alerts-metric).
@@ -113,12 +113,12 @@ For more information, *see* [Service and request limits for Azure Translator](/a
 To ensure the secure operation of Azure Translator services, you need to put a robust governance framework in place and consistently comply with all relevant standards. By establishing thorough policies and procedures, you can effectively protect your systems, maintain regulatory compliance, and minimize potential risks, ultimately delivering reliable and secure service.
 
 * **Review Azure Policy for AI services**: Implement Azure Policy to enforce organization-wide security standards for your AI services, including network isolation requirements.<br>
-For more information, *see* [Azure Policy Regulatory Compliance controls for Azure AI Foundry Tools](/azure/ai-services/security-controls-policy#microsoft-cloud-security-benchmark).
+For more information, *see* [Azure Policy Regulatory Compliance controls for Foundry Tools](/azure/ai-services/security-controls-policy#microsoft-cloud-security-benchmark).
 
 * **Conduct regular security assessments**: Continuously assess the security status of your Translator deployments and ensure they align with industry standards and organizational policies. Promptly detect and address any potential vulnerabilities as they arise.<br>
 For more information, *see* [Microsoft cloud security benchmark](/security/benchmark/azure/introduction).
 
-* **Maintain regulatory compliance**: Configure your Translator service to comply with all relevant laws and regulations that apply to your industry and geographic area. Make sure to pay special attention to any requirements related to data privacy and protection.<br> 
+* **Maintain regulatory compliance**: Configure your Translator to comply with all relevant laws and regulations that apply to your industry and geographic area. Make sure to pay special attention to any requirements related to data privacy and protection.<br> 
 For more information, *see* [Azure Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note).
 
 * **Implement human oversight**: For sensitive translation scenarios, implement a human review workflow to verify translation accuracy. This process ensures that all content complies with organizational standards before wide distribution.<br>
@@ -130,6 +130,6 @@ For more information, *see* [Azure Translator Transparency Note](/azure/ai-found
 ## Related content
 
 * [Azure Translator documentation](/azure/ai-services/translator/)
-* [Microsoft Cloud Security Benchmark – Azure AI Foundry Tools](/security/benchmark/azure/baselines/azure-openai-security-baseline)
+* [Microsoft Cloud Security Benchmark – Foundry Tools](/security/benchmark/azure/baselines/azure-openai-security-baseline)
 * [Well-Architected Framework – AI workloads](/azure/well-architected/ai/design-principles)
-* [Security documentation for Azure AI Foundry Tools](/azure/ai-services/security-features)
+* [Security documentation for Foundry Tools](/azure/ai-services/security-features)

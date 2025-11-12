@@ -1,19 +1,19 @@
 ---
 title: Configure containers - Azure Translator
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The Azure Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
 
 # Configure Azure Translator Docker containers
 
-Azure AI Foundry Tools offer a unified configuration framework for all containers. You can easily configure your Translator containers to create a Translator application architecture that's optimized for both robust cloud features and edge locality deployment.
+Foundry Tools offer a unified configuration framework for all containers. You can easily configure your Translator containers to create a Translator application architecture that's optimized for both robust cloud features and edge locality deployment.
 
 The **Azure Translator** container runtime environment is configured using the `docker run` command arguments. This container includes both required and optional settings. The required settings specific to the container are the billing settings.
 
@@ -57,7 +57,7 @@ This setting can be found in the following place:
 
 | Required | Name | Data type | Description |
 | -------- | ---- | --------- | ----------- |
-| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [gathering required parameters](translator-how-to-install-container.md#required-input). For more information and a complete list of regional endpoints, see [Custom subdomain names for Azure AI Foundry Tools](../../cognitive-services-custom-subdomains.md). |
+| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [gathering required parameters](translator-how-to-install-container.md#required-input). For more information and a complete list of regional endpoints, see [Custom subdomain names for Foundry Tools](../../cognitive-services-custom-subdomains.md). |
 
 ## EULA setting
 

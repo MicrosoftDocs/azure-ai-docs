@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Azure Translator in Foundry Tools client libraries"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: "Learn to translate text with the Translator service SDks in a programming language of your choice: C#, Java, JavaScript, or Python."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -22,7 +22,7 @@ zone_pivot_groups:  programming-languages-set-translator-sdk
 
 # Quickstart: Translator text translation SDKs
 
-In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
+In this quickstart, get started using the Translator to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 * After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
 
-  * Get the key, endpoint, and region from the resource and connect your application to the Translator service. Paste these values into the code later in the quickstart. You can find them on the Azure portal **Keys and Endpoint** page:
+  * Get the key, endpoint, and region from the resource and connect your application to the Translator. Paste these values into the code later in the quickstart. You can find them on the Azure portal **Keys and Endpoint** page:
 
     :::image type="content" source="../../media/quickstarts/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
 
@@ -63,4 +63,4 @@ That's it, congratulations! In this quickstart, you used a Text translation SDK 
 Learn more about Text translation development options:
 
 > [!div class="nextstepaction"]
->[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation V3 reference](../reference/v3/reference.md)
+>[Text translation SDK overview](../sdk-overview.md) </br></br>[Text translation V3 reference](../reference/v3/reference.md)

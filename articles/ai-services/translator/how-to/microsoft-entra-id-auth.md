@@ -6,7 +6,7 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
 
 # Enable Microsoft Entra ID authentication
@@ -27,7 +27,7 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 
 ## Prerequisites
 
-Before you get started, you need an Azure account and an Azure AI Foundry Tools subscription.
+Before you get started, you need an Azure account and an Foundry Tools subscription.
 
 * An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -152,7 +152,7 @@ Now that your application has the proper authentication credentials, we add perm
 
 ## Add API permissions
 
-Next, let's add a permission that allows the application to access the Azure AI Foundry Tools (Cognitive Services) APIs, including Azure Translator, as a user.
+Next, let's add a permission that allows the application to access the Foundry Tools (Cognitive Services) APIs, including Azure Translator, as a user.
 
 1. In the left navigation menu, navigate to **`API permissions`** then select **`Add a permission`** from the main window.
 

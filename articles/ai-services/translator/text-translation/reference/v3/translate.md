@@ -1,16 +1,16 @@
 ---
 title: Translator Translate Method
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator to translate text method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: Translate
+# Azure Translator in Foundry Tools 3.0: Translate
 
 Translates text.
 
@@ -22,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/translate?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -259,7 +259,7 @@ The response body is:
 
 ### Handle profanity
 
-Normally, the Translator service retains profanity that's present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures, and as a result the degree of profanity in the target language can be amplified or reduced.
+Normally, the Translator retains profanity that's present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures, and as a result the degree of profanity in the target language can be amplified or reduced.
 
 If you want to avoid getting profanity in the translation, regardless of the presence of profanity in the source text, you can use the profanity filtering option. The option allows you to choose whether you want to see profanity deleted, marked with appropriate tags (giving you the option to add your own post-processing), or with no action taken. The accepted values of `ProfanityAction` are `Deleted`, `Marked`, and `NoAction` (default).
 

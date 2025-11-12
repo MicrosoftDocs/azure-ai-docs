@@ -1,12 +1,12 @@
 ---
 title: What are Azure Translator prebuilt solutions?
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Integrate the Azure Translator prebuilt solutions into your applications, websites, tools, and other solutions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -15,7 +15,7 @@ ms.author: lajanuar
  Azure Translator's prebuilt solutions enable effortless integration of translation features and AI intelligence into your applications and workflows, across all [supported languages](../language-support.md). These prebuilt solutions offer a fast and effective method to embed translation functionalities into your applications, removing the necessity for coding and model training.
 
 
-## Translator solutions
+## Azure Translator in Foundry Tools solutions
 
 Azure Translator offers the following prebuilt solutions:
 
@@ -23,7 +23,7 @@ Azure Translator offers the following prebuilt solutions:
 
 * [**Language Studio**](../document-translation/language-studio.md). Azure Translator in the [Azure AI Language Studio](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage. 
 
-* [**Translator v3 connector for documents**](../connector/document-translation-flow.md) and [**Translator v3 connector for text**](../solutions/connector/text-translator-flow.md). The Microsoft Translator v3 connectors create a link between your Translator Service instance and Microsoft Power Automate enabling you to incorporate one or more prebuilt operations into your apps and workflows.
+* [**Translator v3 connector for documents**](../connector/document-translation-flow.md) and [**Translator v3 connector for text**](../solutions/connector/text-translator-flow.md). The Microsoft Translator v3 connectors create a link between your Translator instance and Microsoft Power Automate enabling you to incorporate one or more prebuilt operations into your apps and workflows.
 
 
 ## Next steps

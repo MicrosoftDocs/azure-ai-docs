@@ -1,16 +1,16 @@
 ---
 title: Translator BreakSentence Method
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: The Translator BreakSentence method identifies the positioning of sentence boundaries in a piece of text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: BreakSentence
+# Azure Translator in Foundry Tools 3.0: BreakSentence
 
 Identifies the positioning of sentence boundaries in a piece of text.
 
@@ -23,7 +23,7 @@ https://api.cognitive.microsofttranslator.com/breaksentence?api-version=3.0
 
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 

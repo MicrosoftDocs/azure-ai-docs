@@ -1,12 +1,12 @@
 ---
-title: Azure AI Foundry Tools custom translation project?
-titleSuffix: Azure AI Foundry Tools
+title: Foundry Tools custom translation project?
+titleSuffix: Foundry Tools
 description: In This article, learn the differences about creating projects, project categories, and labels for the custom translation service.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator

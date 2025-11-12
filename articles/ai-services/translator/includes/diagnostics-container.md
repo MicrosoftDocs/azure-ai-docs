@@ -1,14 +1,14 @@
 ---
 
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author:laujan
 ms.service: azure-ai-services
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-If you're having trouble running an Azure AI Foundry Tools container, you can try using the Microsoft diagnostics container. Use this container to diagnose common errors in your deployment environment that might prevent Azure containers from functioning as expected.
+If you're having trouble running an Foundry Tools container, you can try using the Microsoft diagnostics container. Use this container to diagnose common errors in your deployment environment that might prevent Azure containers from functioning as expected.
 
 To get the container, use the following `docker pull` command:
 
