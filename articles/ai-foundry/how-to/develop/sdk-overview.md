@@ -72,9 +72,17 @@ The [Foundry Projects SDK for Python](/python/api/overview/azure/ai-projects-rea
 
 * Install the project client library 
 
+::: moniker range="foundry-classic"
     ```bash
-    pip install azure-ai-projects azure-identity
+    pip install azure-ai-projects azure-identity openai
     ```
+::: moniker-end
+::: moniker range="foundry"
+    ```bash
+    pip install --pre azure-ai-projects
+    pip install azure-identity openai
+    ```
+::: moniker-end
 
 * Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpoint string value.
 
@@ -192,16 +200,76 @@ The OpenAI SDK lets you interact with the Azure OpenAI service. It offers a simp
 
 ::: zone pivot="programming-language-python"
 
+::: moniker range="foundry-classic"
 ```python
-
 # Use the AIProjectClient to create an OpenAI client for your project
-openai_client = project.get_openai_client()
+openai_client = project.get_openai_client(api_version="api_version")
+response = openai_client.responses.create(
+    model="gpt-4.1-mini",
+    input="What is the size of France in square miles?",
+)
+print(f"Response output: {response.output_text}")
 ```
 
-::: moniker range="foundry-classic"
+The following code snippet demonstrates how to use the Azure OpenAI v1 endpoint with the OpenAI client for responses.
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.responses.create(
+    model="model_deployment_name",
+    input= "What is the size of France in square miles?" 
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
+
+```python
+# Use the AIProjectClient to create an OpenAI client for your project
+openai_client = project.get_openai_client()
+response = openai_client.responses.create(
+    model="gpt-4.1-mini",
+    input="What is the size of France in square miles?",
+)
+print(f"Response output: {response.output_text}")
+```
+
+The following code snippet demonstrates how to use the Azure OpenAI v1 endpoint with the OpenAI client for responses.
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.responses.create(
+    model="model_deployment_name",
+    input= "What is the size of France in square miles?" 
+)
+
+print(response.model_dump_json(indent=2)) 
+```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
 ::: moniker-end
 
@@ -211,9 +279,8 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-
 ```java
-// Use the ProjectsClient to create an OpenAI client for your project
+// 
 OpenAIClient openAIClient = projectClient.getOpenAIClient();
 ```
 ::: moniker range="foundry-classic"
