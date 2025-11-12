@@ -1,17 +1,15 @@
 ---
 title: Evaluate a Custom Named Entity Recognition (NER) model
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to evaluate and score your Custom Named Entity Recognition (NER) model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
-
 # View the custom NER model's evaluation and details
 
 After your model has finished training, you can view the model performance and see the extracted entities for the documents in the test set. 

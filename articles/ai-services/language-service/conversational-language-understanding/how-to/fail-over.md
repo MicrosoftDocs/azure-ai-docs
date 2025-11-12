@@ -1,16 +1,15 @@
 ---
 title: Back up and recover your conversational language understanding models
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to save and recover your conversational language understanding models.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Back up and recover your conversational language understanding models
 
 When you create a Language resource in the Azure portal, you specify a region for it to be created in. From then on, your resource and all of the operations related to it take place in the specified Azure server region. It's rare, but not impossible, to encounter a network issue that hits an entire region. If your solution needs to always be available, then you should design it to either fail-over into another region. This process requires two Azure AI Language resources in different regions and the ability to sync your `CLU` models across regions. 

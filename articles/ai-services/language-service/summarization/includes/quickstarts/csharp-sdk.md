@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -10,7 +10,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 # [Text summarization](#tab/text-summarization)
 
 [Reference documentation](/dotnet/api/azure.ai.textanalytics?view=azure-dotnet&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.TextAnalytics_5.3.0/sdk/textanalytics/Azure.AI.TextAnalytics/samples) |  [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.TextAnalytics/5.3.0) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics) 

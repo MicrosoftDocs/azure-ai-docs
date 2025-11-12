@@ -1,15 +1,14 @@
 ---
 title: Use Azure Machine Learning labeling in Language Studio
-description: Learn how to label your data in Azure Machine Learning, and import it for use in the Language service.
-titleSuffix: Azure AI Foundry Tools
+description: Learn how to label your data in Azure Machine Learning, and import it for use in Azure Language service.
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Use Azure Machine Learning labeling in Language Studio
 
 Labeling data is an important part of preparing your dataset. Using the labeling experience in Azure Machine Learning, you can experience easier collaboration, more flexibility, and the ability to [outsource labeling tasks](/azure/machine-learning/how-to-outsource-data-labeling) to external labeling vendors from the [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/consulting-services?search=AzureMLVend). You can use Azure Machine Learning labeling for:
@@ -29,7 +28,7 @@ Before you can connect your labeling project to Azure Machine Learning, you need
 ## Limitations
 
 * Connecting your labeling project to Azure Machine Learning is a one-to-one connection. If you disconnect your project, you can't connect your project back to the same Azure Machine Learning project
-* You can't label in the Language Studio and Azure Machine Learning simultaneously. The labeling experience is enabled in one studio at a time.
+* You can't label in Azure Language Studio and Azure Machine Learning simultaneously. The labeling experience is enabled in one studio at a time.
 * The testing and training files in the labeling experience you switch away from is ignored when training your model.
 * Only Azure Machine Learning's JSONL file format can be imported into Language Studio.
 * Projects with the multi-lingual option enabled can't be connected to Azure Machine Learning, and not all languages are supported.
@@ -95,7 +94,7 @@ For information on how to label the text, see [Azure Machine Learning how to lab
 
 When you switch to labeling using Azure Machine Learning, you can still train, evaluate, and deploy your model in Language Studio. To train your model using updated labels from Azure Machine Learning:
 
-1. Select **Training jobs** from the navigation menu on the left of the Language studio screen for your project.
+1. Select **Training jobs** from the navigation menu on the left of Azure Language studio screen for your project.
 
 1. Select **Import latest labels from Azure Machine Learning** from the **Choose label origin** section in the training page. This step synchronizes the labels from Azure Machine Learning before starting the training job.
 
@@ -122,7 +121,7 @@ To switch back to labeling with Language Studio:
 
 Disconnecting your project from Azure Machine Learning is a permanent, irreversible process and can't be undone. You can no longer be able to access your labels in Azure Machine Learning, and you won't be able to reconnect the Azure Machine Learning project to any Language Studio project in the future. To disconnect from Azure Machine Learning:
 
-1. Ensure that any updated labels you want to maintain are synchronized with Azure Machine Learning by switching the labeling experience back to the Language Studio.
+1. Ensure that any updated labels you want to maintain are synchronized with Azure Machine Learning by switching the labeling experience back to Azure Language Studio.
 1. Select **Project settings** from the navigation menu on the left in Language Studio.
 1. Select the **Disconnect from Azure Machine Learning** button from the **Manage Azure Machine Learning connections** section.
 

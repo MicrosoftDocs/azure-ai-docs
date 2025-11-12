@@ -1,16 +1,15 @@
 ---
 title: Use summarization Docker containers on-premises
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use Docker containers for the summarization API to summarize text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
-
 # Use summarization Docker containers on-premises
 
 Containers enable you to host the Summarization API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Summarization remotely, then containers might be a good option.

@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Submit a **POST** request using the following URL, headers, and JSON body to import your labels file. Make sure that your labels file follow the [accepted format](../../concepts/data-formats.md).
 
 If a project with the same name already exists, the data of that project is replaced.

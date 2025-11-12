@@ -1,16 +1,15 @@
 ---
 title: How to view conversational language understanding models details
 description: Use this article to learn about viewing the details for a conversational language understanding model.
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # View conversational language understanding model details
 
 After model training is completed, you can view your model details and see how well it performs against the test set. 

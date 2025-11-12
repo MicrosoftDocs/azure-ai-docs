@@ -1,17 +1,16 @@
 ---
 title: How to prepare data and define a custom classification schema
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about data selection, preparation, and creating a schema for custom text classification projects.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # How to prepare data and define a text classification schema
 
 In order to create a custom text classification model, you will need quality data to train it. This article covers how you should select and prepare your data, along with defining a schema. Defining the schema is the first step in [project development lifecycle](../overview.md#project-development-lifecycle), and it defines the classes that you need your model to classify your text into at runtime.

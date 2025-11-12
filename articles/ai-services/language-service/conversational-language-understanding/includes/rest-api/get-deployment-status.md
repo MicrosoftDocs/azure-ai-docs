@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 When you send a successful deployment request, the full request URL for checking the job's status (including your endpoint, project name, and job ID) is contained in the response's `operation-location` header. 
 
 Use the following **GET** request to get the status of your deployment job. Replace the placeholder values with your own values. 

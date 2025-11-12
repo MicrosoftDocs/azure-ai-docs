@@ -1,16 +1,15 @@
 ---
 title: Entity resolutions provided by Named Entity Recognition
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about entity resolutions in the Named Entity Recognition feature.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---
-
 # Resolve entities to standard formats
 
 A resolution is a standard format for an entity. Entities can be expressed in various forms and resolutions provide standard predictable formats for common quantifiable types. For example, "eighty" and "80" should both resolve to the integer `80`.

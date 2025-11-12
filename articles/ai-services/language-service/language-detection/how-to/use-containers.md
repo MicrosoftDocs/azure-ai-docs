@@ -1,20 +1,19 @@
 ---
 title: Use language detection Docker containers on-premises
-titleSuffix: Azure AI Foundry Tools
-description: Use Docker containers for the Language Detection API to determine the language of written text, on-premises.
+titleSuffix: Foundry Tools
+description: Use Docker containers for Azure Language Detection API to determine the language of written text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-language-detection
 keywords: on-premises, Docker, container
 ---
-
 # Use language detection Docker containers on-premises 
 
-Containers enable you to host the Language Detection API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Language Detection remotely, then containers might be a good option.
+Containers enable you to host Azure Language Detection API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Language Detection remotely, then containers might be a good option.
 
 ## Prerequisites
 

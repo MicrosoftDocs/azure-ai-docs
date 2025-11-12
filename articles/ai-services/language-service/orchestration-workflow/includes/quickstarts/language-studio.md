@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -22,7 +21,7 @@ ms.author: lajanuar
 
 ## Create an orchestration workflow project
 
-Once you have a Language resource created, create an orchestration workflow project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Language resource being used.
+Once you have a Language resource created, create an orchestration workflow project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to Azure Language resource being used.
 
 For this quickstart, complete the [conversational language understanding](../../../conversational-language-understanding/quickstart.md) quickstart to create a conversational language understanding project used later.
 

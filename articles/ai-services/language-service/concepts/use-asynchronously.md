@@ -1,18 +1,17 @@
 ---
 title: "How to: Use Language service features asynchronously"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to send Language service API requests asynchronously.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
+# How to use Language features asynchronously
 
-# How to use Language service features asynchronously
-
-The Language service enables you to send API requests asynchronously, using either the REST API or client library. You can also include multiple different Language service features in your request, to be performed on your data at the same time. 
+The Language enables you to send API requests asynchronously, using either the REST API or client library. You can also include multiple different Language features in your request, to be performed on your data at the same time. 
 
 Currently, the following features are available to be used asynchronously:
 * Entity linking
@@ -35,7 +34,7 @@ To submit an asynchronous job, review the [reference documentation](/rest/api/la
 1. In the `tasks` object, include the operations you want performed on your data. For example, if you wanted to perform sentiment analysis, you would include the `SentimentAnalysisLROTask` object.
 1. You can optionally:
     1. Choose a specific [version of the model](model-lifecycle.md) used on your data.
-    1. Include added Language service features in the `tasks` object, to be performed on your data at the same time.   
+    1. Include added Language features in the `tasks` object, to be performed on your data at the same time.   
 
 Once you create the JSON body for your request, add your key to the `Ocp-Apim-Subscription-Key` header. Then send your API request to job creation endpoint. For example:
 

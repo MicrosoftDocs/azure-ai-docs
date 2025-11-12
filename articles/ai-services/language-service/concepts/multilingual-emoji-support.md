@@ -1,20 +1,19 @@
 ---
 title: Multilingual and emoji support in Azure Language in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about offsets caused by multilingual and emoji encodings in Language service features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-# Multilingual and emoji support in Language service features
+# Multilingual and emoji support in Language features
 
 Multilingual and emoji support results in Unicode encodings that use more than one [code point](https://wikipedia.org/wiki/Code_point) to represent a single displayed character, called a grapheme. For example, emojis like 🌷 and 👍 may use several characters to compose the shape with added characters for visual attributes, such as skin tone. Similarly, the Hindi word `अनुच्छेद` is encoded as five letters and three combining marks.
 
-Because of the different lengths of possible multilingual and emoji encodings, Language service features may return offsets in the response.
+Because of the different lengths of possible multilingual and emoji encodings, Language features may return offsets in the response.
 
 ## Offsets in the API response
 
@@ -30,7 +29,7 @@ Offsets can cause problems when using character-based substring methods, for exa
 
 In .NET, consider using the [StringInfo](/dotnet/api/system.globalization.stringinfo) class, which enables you to work with a string as a series of textual elements, rather than individual character objects. You can also look for grapheme splitter libraries in your preferred software environment. 
 
-The Language service features returns these textual elements as well, for convenience.
+The Language features returns these textual elements as well, for convenience.
 
 Endpoints that return an offset support the `stringIndexType` parameter. This parameter adjusts the `offset` and `length` attributes in the API output to match the requested string iteration scheme. Currently, we support three types:
 
@@ -42,4 +41,4 @@ If the `stringIndexType` requested matches the programming environment of choice
 
 ## See also
 
-* [Language service overview](../overview.md)
+* [Language overview](../overview.md)

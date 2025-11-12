@@ -9,7 +9,7 @@ ms.author: pafarley
 In this C# quickstart, you perform sentiment analysis and conversation summarization of [call center](../../../call-center-overview.md) transcriptions. The sample will automatically identify, categorize, and redact sensitive information. The quickstart implements a cross-service scenario that uses features of the [Azure Cognitive Speech](../../../index.yml) and [Azure Cognitive Language](../../../../language-service/index.yml) services.
 
 > [!TIP]
-> Try the [Language Studio](https://language.cognitive.azure.com) or [Speech Studio](https://aka.ms/speechstudio/callcenter) for a demonstration on how to use the Language and Speech services to analyze call center conversations. 
+> Try the [Language Studio](https://language.cognitive.azure.com) or [Speech Studio](https://aka.ms/speechstudio/callcenter) for a demonstration on how to use Azure Language and Speech services to analyze call center conversations. 
 > 
 > To deploy a call center transcription solution to Azure with a no-code approach, try the [Ingestion Client](../../../ingestion-client.md).
 

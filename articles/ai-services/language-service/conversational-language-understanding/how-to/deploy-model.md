@@ -1,16 +1,15 @@
 ---
 title: How to deploy a model for conversational language understanding
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use this article to learn how to deploy models for conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu,
 ---
-
 # Deploy a model 
 
 Once you're satisfied with how your model performs, it's ready to be deployed, and query it for predictions from utterances. Deploying a model makes it available for use through the [prediction API](/rest/api/language/2023-04-01/conversation-analysis-runtime/analyze-conversation).

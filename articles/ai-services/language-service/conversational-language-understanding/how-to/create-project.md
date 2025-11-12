@@ -1,16 +1,15 @@
 ---
 title: Create a CLU fine-tuning task in Azure AI Foundry or with the REST API
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article shows you how to create CLU fine-tuning task projects the Azure AI Foundry or using the REST API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Create a fine-tuning task project
 
 A Conversational Language Understanding (CLU) fine-tuning task is a workspace project where you customize a language model to identify user intent and extract key information (entities) from user input (utterances). In this workspace, you define the intents and entities relevant to your application, label sample user utterances accordingly, and use this labeled data to fine-tune the model. This process tailors the model to better understand the specific needs and nuances of your conversational application. In this guide, we walk you through configuring a fine-tuning workspace in the Azure AI Foundry or using the REST API.

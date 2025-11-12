@@ -3,11 +3,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-1. Sign into the [Language Studio](https://aka.ms/languageStudio). A window appears to let you select your subscription and Language resource. Select the Language resource you created in the above step. 
+1. Sign into the [Language Studio](https://aka.ms/languageStudio). A window appears to let you select your subscription and Language resource. Select Azure Language resource you created in the above step. 
 
 2. Select the feature you want to use in Language Studio.
 

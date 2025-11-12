@@ -1,16 +1,15 @@
 ---
 title: How to use autolabeling in custom text classification
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use autolabeling in custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # How to use autolabeling for Custom Text Classification
 
 [Labeling process](tag-data.md) is an important part of preparing your dataset. Since this process requires much time and effort, you can use the autolabeling feature to automatically label your documents with the classes you want to categorize them into. You can currently start autolabeling jobs based on a model using GPT models where you may immediately trigger an autolabeling job without any prior model training. This feature can save you the time and effort of manually labeling your documents.

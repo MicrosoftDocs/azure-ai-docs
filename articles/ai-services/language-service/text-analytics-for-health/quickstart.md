@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Use the Text Analytics for health REST API and client library"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -15,7 +15,6 @@ ms.custom: language-service-health, mode-api, devx-track-extended-java, devx-tra
 keywords: text mining, health, text analytics for health
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
 # Quickstart: Using Text Analytics for health client library and REST API
 
 This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python and the REST API.

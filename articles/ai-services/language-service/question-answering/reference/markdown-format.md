@@ -5,9 +5,8 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ---
-
 # Markdown format supported in answer text
 
 Custom question answering stores answer text as markdown. There are many flavors of markdown. In order to make sure the answer text is returned and displayed correctly, use this reference.

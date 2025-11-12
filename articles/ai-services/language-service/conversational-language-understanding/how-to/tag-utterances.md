@@ -1,16 +1,15 @@
-﻿---
+---
 title: Tag Utterances in Conversational Language Understanding
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article shows you how to tag your utterances in conversational language understanding projects.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Label your utterances in Azure AI Foundry
 
 After you [build a schema](build-schema.md) for your fine-tuning task, you add training utterances to your project. The utterances should be similar to what your users use when they interact with the project. When you add an utterance, you have to assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities.

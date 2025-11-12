@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 #  Network isolation and private endpoints
 
 The following steps describe how to restrict public access to custom question answering resources as well as how to enable Azure Private Link. Protect an AI Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).

@@ -1,16 +1,15 @@
 ---
 title: How to build an orchestration project schema
 description: Learn how to define intents for your orchestration workflow project.
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # How to build your project schema for orchestration workflow
  
 In orchestration workflow projects, the *schema* is defined as the combination of intents within your project. Schema design is a crucial part of your project's success. When creating a schema, you want think about which intents that should be included in your project.

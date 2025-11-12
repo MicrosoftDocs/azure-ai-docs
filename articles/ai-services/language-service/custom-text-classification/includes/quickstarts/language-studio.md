@@ -4,11 +4,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -20,7 +19,7 @@ ms.custom: language-service-custom-classification
 Before you can use custom text classification, you need to create an Azure AI Language resource, which gives you the credentials that you need to create a project and start training a model. You also need an Azure storage account, where you can upload your dataset that is used to build your model.
 
 > [!IMPORTANT]
-> To quickly get started, we recommend creating a new Azure AI Language resource using the steps provided in this article. Using the steps in this article lets you create the Language resource and storage account at the same time, which is easier than doing it later.
+> To quickly get started, we recommend creating a new Azure AI Language resource using the steps provided in this article. Using the steps in this article lets you create Azure Language resource and storage account at the same time, which is easier than doing it later.
 >
 > If you have a [preexisting resource](../../how-to/create-project.md#using-a-preexisting-language-resource) that you'd like to use, you need to connect it to storage account.
 >
@@ -38,7 +37,7 @@ Before you can use custom text classification, you need to create an Azure AI La
 
 ## Create a custom text classification project
 
-Once your resource and storage container are configured, create a new custom text classification project. A project is a work area for building your custom ML models based on your data. Your project is only accessible to you and others who have access to the Language resource being used.
+Once your resource and storage container are configured, create a new custom text classification project. A project is a work area for building your custom ML models based on your data. Your project is only accessible to you and others who have access to Azure Language resource being used.
 
 [!INCLUDE [Create a project using Language Studio](../language-studio/create-project.md)]
     

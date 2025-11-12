@@ -1,18 +1,16 @@
 ---
 title: Custom text classification FAQ
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about Frequently asked questions when using the custom text classification API.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
-
 # Frequently asked questions
 
 Find answers to commonly asked questions about concepts, and scenarios related to custom text classification in Azure AI Language.
@@ -86,7 +84,7 @@ After deploying your model, you [call the prediction API](how-to/call-api.md), u
 
 ## Data privacy and security
 
-For more information, *see* [Data, privacy, and security for Azure Language](/azure/ai-foundry/responsible-ai/language-service/data-privacy).
+For more information, *see* [Data, privacy, and security for Azure Language in Foundry Tools](/azure/ai-foundry/responsible-ai/language-service/data-privacy).
 
 ## How to clone my project?
 

@@ -1,15 +1,14 @@
 ---
 title: How to use autolabeling in custom named entity recognition
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use autolabeling in custom named entity recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # How to use autolabeling for Custom Named Entity Recognition
 
 [Labeling process](tag-data.md) is an important part of preparing your dataset. Since this process requires both time and effort, you can use the autolabeling feature to automatically label your entities. You can start autolabeling jobs based on a model you previously trained or using `GPT` models. With autolabeling based on a model you previously trained, you can start labeling a few of your documents, train a model, then create an autolabeling job to produce entity labels for other documents based on that model. With autolabeling with `GPT`, you may immediately trigger an autolabeling job without any prior model training. This feature can save you the time and effort of manually labeling your entities.

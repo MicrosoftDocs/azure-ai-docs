@@ -1,17 +1,16 @@
 ---
 title: View a custom text classification model evaluation - Azure AI services
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to view the evaluation scores for a custom text classification model
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # View your text classification model's evaluation and details
 
 After your model has finished training, you can view the model performance and see the predicted classes for the documents in the test set. 

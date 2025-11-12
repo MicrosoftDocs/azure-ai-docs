@@ -1,15 +1,14 @@
 ---
 title: Create an Azure Language in Foundry Tools resource
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to create an Azure Language in Foundry Tools resource.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ## Create an Azure Language in Foundry Tools resource
 
 1. Sign in to the [Azure portal](https://portal.azure.com).

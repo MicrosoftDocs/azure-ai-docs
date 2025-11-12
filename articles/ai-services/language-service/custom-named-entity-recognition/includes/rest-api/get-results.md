@@ -3,11 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 Use the following **GET** request to query the status/results of the custom entity recognition task. 
 
 ```rest

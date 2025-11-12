@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Locate the files to upload to your storage account
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it.

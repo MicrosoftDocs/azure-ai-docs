@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Add guided conversations with multi-turn prompts
 
 In this tutorial, you learn how to:
@@ -28,7 +27,7 @@ If you have never created a custom question answering project before we recommen
 
 For this example, let's assume that users are asking for additional details about the Surface Pen product, particularly how to troubleshoot their Surface Pen, but they are not getting the correct answers. So, we add more prompts to support additional scenarios and guide the users to the correct answers using multi-turn prompts.
 
-Multi-turn prompts that are associated with question and answer pairs, can be viewed by selecting **Show columns** > **Context**. By default this should already be enabled on the **Edit project** page in the Language Studio custom question answering interface.
+Multi-turn prompts that are associated with question and answer pairs, can be viewed by selecting **Show columns** > **Context**. By default this should already be enabled on the **Edit project** page in Azure Language Studio custom question answering interface.
 
 > [!div class="mx-imgBorder"]
 > [ ![Screenshot of show columns UI with context highlighted in red]( ../media/guided-conversations/context.png) ]( ../media/guided-conversations/context.png#lightbox)

@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
 
 Use this quickstart to send language detection requests using the REST API. In the following example, you use cURL to identify the language that a text sample was written in.

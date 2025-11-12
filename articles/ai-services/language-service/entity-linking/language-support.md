@@ -1,16 +1,15 @@
 ---
 title: Language support for key phrase analysis
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: A list of natural languages supported by the entity linking API
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-entity-linking
 ---
-
 # Entity linking language support 
 
 > [!IMPORTANT]

@@ -5,13 +5,12 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom:
   - language-service-question-answering
   - cogserv-non-critical-language
   - sfi-image-nochange
 ---
-
 # Tutorial: Create an FAQ bot
 
 Create an FAQ Bot with custom question answering and Azure [Bot Service](https://azure.microsoft.com/services/bot-service/) with no code.

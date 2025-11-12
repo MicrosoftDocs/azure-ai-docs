@@ -1,14 +1,12 @@
 ---
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 To get Custom sentiment analysis project details, submit a **GET** request using the following URL and headers. Replace the placeholder values with your own values.   
 
 ```rest

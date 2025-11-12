@@ -1,16 +1,15 @@
 ---
 title: How to tag utterances in an orchestration workflow project
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use this article to tag utterances
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # Add utterances in Language Studio
 
 Once you have [built a schema](build-schema.md), you should add training and testing utterances to your project. The utterances should be similar to what your users will use when interacting with the project. When you add an utterance, you have to assign which intent it belongs to.

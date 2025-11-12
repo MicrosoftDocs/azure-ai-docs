@@ -1,16 +1,15 @@
 ---
 title: Supported prebuilt entity components
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about which entities can be detected automatically in Conversational Language Understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Supported prebuilt entity components
 
 Conversational Language Understanding allows you to add prebuilt components to entities. Prebuilt components automatically predict common types from utterances. See the [entity components](concepts/entity-components.md) article for information on components.

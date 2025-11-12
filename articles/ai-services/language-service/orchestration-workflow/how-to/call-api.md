@@ -1,18 +1,17 @@
 ---
 title: How to send requests to orchestration workflow
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about sending requests for orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: language-service-clu
 ---
-
 # Query deployment for intent predictions
 
 After the deployment is added successfully, you can query the deployment for intent and entities predictions from your utterance based on the model you assigned to the deployment.

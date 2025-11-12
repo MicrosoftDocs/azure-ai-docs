@@ -327,7 +327,7 @@ python ./program.py
 
 If you're using a multi-service resource or Language resource, you can update [your application](#create-a-python-application) by following these steps to send an example Named Entity Recognition call by retrieving a key and endpoint from your key vault.   
 
-1. Install the Language service library:
+1. Install Azure Language service library:
 
     ```console
     pip install azure-ai-textanalytics==5.1.0
@@ -339,7 +339,7 @@ If you're using a multi-service resource or Language resource, you can update [y
     from azure.ai.textanalytics import TextAnalyticsClient
     # Authenticate the key vault secrets client using your key and endpoint 
     azure_key_credential = AzureKeyCredential(retrieved_key)
-    # Now you can use key vault credentials with the Language service
+    # Now you can use key vault credentials with Azure Language service
     language_service_client = TextAnalyticsClient(
         endpoint=retrieved_endpoint, 
         credential=azure_key_credential)

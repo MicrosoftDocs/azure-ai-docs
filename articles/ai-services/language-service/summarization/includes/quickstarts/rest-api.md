@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # [Text summarization](#tab/text-summarization)
 
 # [Conversation summarization](#tab/conversation-summarization)
@@ -453,7 +452,7 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 
     * Replace {**jobId**} with the Operation-Location header from the POST response.
 
-    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language service instance in the Azure portal.
+    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language instance in the Azure portal.
 
 ### Get request
 

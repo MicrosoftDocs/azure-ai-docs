@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 To start training your model from within the [Language Studio](https://aka.ms/languageStudio):
 
 1. Select **Train model** from the left side menu.

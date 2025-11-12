@@ -1,16 +1,15 @@
 ---
 title: Definitions used in conversational language understanding
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about definitions used in conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # Terms and definitions used in conversation language understanding 
 
 Use this article to learn about some of the definitions and terms you may encounter when using conversation language understanding. 

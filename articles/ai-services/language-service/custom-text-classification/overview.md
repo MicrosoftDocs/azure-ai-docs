@@ -1,17 +1,16 @@
 ---
 title: Custom text classification
-titleSuffix: Azure AI Foundry Tools
-description: Customize an AI model to classify documents and other content using Azure AI Foundry Tools.
+titleSuffix: Foundry Tools
+description: Customize an AI model to classify documents and other content using Foundry Tools.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # What is custom text classification?
 
 Custom text classification is one of the custom features offered by [Azure Language in Foundry Tools](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build custom models for text classification tasks. 
@@ -63,7 +62,7 @@ Follow these steps to get the most out of your model:
 
 ## Reference documentation and code samples
 
-As you use custom text classification, see the following reference documentation and samples for Azure Language:
+As you use custom text classification, see the following reference documentation and samples for Azure Language in Foundry Tools:
 
 | Development option / language | Reference documentation | Samples |
 |--|--|--|

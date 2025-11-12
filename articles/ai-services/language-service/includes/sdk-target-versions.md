@@ -9,7 +9,6 @@
  ms.author: lajanuar
  ms.custom: include
 ---
-
 This table shows the relationship between SDK versions and supported API versions of the service:
 
 |SDK version  |Supported API version of service  |

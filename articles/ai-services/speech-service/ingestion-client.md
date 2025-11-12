@@ -63,5 +63,5 @@ The tool is built to show customers results quickly. You can customize the tool 
 ## Next steps
 
 * [Learn more about Azure AI services features for call center](./call-center-overview.md)
-* [Explore the Language service features](../language-service/overview.md#available-features)
+* [Explore Azure Language service features](../language-service/overview.md#available-features)
 * [Explore the Speech service features](./overview.md)

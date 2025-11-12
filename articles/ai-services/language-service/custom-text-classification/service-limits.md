@@ -1,17 +1,16 @@
 ---
 title: Custom text classification limits
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the data and rate limits when using custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
-
 # Custom text classification limits
 
 Use this article to learn about the data and service limits when using custom text classification.
@@ -40,7 +39,7 @@ See [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/lan
 
 ## Regional availability 
 
-See [Language service regional availability](../concepts/regional-support.md#custom-text-classification).
+See [Language regional availability](../concepts/regional-support.md#custom-text-classification).
 
 ## API limits
 

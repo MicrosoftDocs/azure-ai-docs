@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Create projects in multiple languages
 
 In this tutorial, you learn how to:

@@ -1,16 +1,15 @@
 ---
 title: Create orchestration workflow projects and use Azure resources
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Use this article to learn how to create projects in orchestration workflow
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # How to create projects in orchestration workflow
 
 Orchestration workflow allows you to create projects that connect your applications to:

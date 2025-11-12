@@ -1,16 +1,15 @@
 ---
-title: Conversational Language Understanding - Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+title: Conversational Language Understanding - Foundry Tools
+titleSuffix: Foundry Tools
 description: Customize an AI model to predict the intentions of utterances, and extract important information from them.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # What is conversational language understanding?
 
 Conversational language understanding is one of the custom features offered by [Azure AI Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 

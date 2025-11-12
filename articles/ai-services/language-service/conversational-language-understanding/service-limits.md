@@ -1,16 +1,15 @@
 ---
 title: Conversational Language Understanding limits
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the data, region, and throughput limits for Conversational Language Understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, references_regions
 ---
-
 # Conversational language understanding limits
 
 Use this article to learn about the data and service limits when using conversational language understanding.
@@ -33,7 +32,7 @@ For more information, *see* [pricing](https://azure.microsoft.com/pricing/detail
 
 ### Regional availability
 
-See [Language service regional availability](../concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).
+See [Language regional availability](../concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).
 
 ## API limits
 

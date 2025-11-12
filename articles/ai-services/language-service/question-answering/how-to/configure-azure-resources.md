@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Configure your environment for Azure AI resources
 
 In this guide, we walk you through configuring your Azure AI resources and permissions for custom question and answering projects, enabling you to fine-tune models with Azure AI Search and Custom Question Answering (CQA). Completing this setup is essential for fully integrating your environment with Azure AI services resources. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered question answering capabilities.

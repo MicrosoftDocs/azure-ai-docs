@@ -1,19 +1,18 @@
 ---
-title: Custom named entity recognition - Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+title: Custom named entity recognition - Foundry Tools
+titleSuffix: Foundry Tools
 description: Customize an AI model to label and extract information from documents using Azure Language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
 # What is custom named entity recognition?
 
-Custom named entity recognition (NER) is a cloud-based API service that uses machine learning to help you build models designed for your unique entity recognition requirements. It's one of the specialized features available through [Azure Language](../overview.md). With custom NER, you can create AI models that extract domain-specific entities from unstructured text, such as contracts or financial documents. When you start a Custom NER project, you can repeatedly label data, train and evaluate your model, and improve its performance before deploying it. The quality of your labeled data is essential, as it directly impacts the model's accuracy.
+Custom named entity recognition (NER) is a cloud-based API service that uses machine learning to help you build models designed for your unique entity recognition requirements. It's one of the specialized features available through [Azure Language in Foundry Tools](../overview.md). With custom NER, you can create AI models that extract domain-specific entities from unstructured text, such as contracts or financial documents. When you start a Custom NER project, you can repeatedly label data, train and evaluate your model, and improve its performance before deploying it. The quality of your labeled data is essential, as it directly impacts the model's accuracy.
 
 To simplify building and customizing your model, the service offers a custom web platform that can be accessed through the [Azure AI Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md).
 

@@ -1,17 +1,16 @@
 ---
 title: Conversational Language Understanding Project Versioning
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how versioning works in conversational language understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ms.reviewer: haelhamm
 ---
-
 # Project versioning
 
 > [!NOTE]
@@ -23,7 +22,7 @@ ms.reviewer: haelhamm
 
 Building your project typically happens in increments. You may add, remove, or edit intents, entities, labels, and data at each stage. Every time you train, a snapshot of your current project state is taken to produce a model. That model saves the snapshot to be loaded back at any time. Every model acts as its own version of the project.
 
-For example, if your project has 10 intents and/or entities, with 50 training documents or utterances, it can be trained to create a model named **v1**. Afterwards, you might make changes to the project to alter the numbers of training data. The project can be trained again to create a new model named **v2**. If you don't like the changes you made in **v2** and would like to continue from where you left off in model **v1**, then you would just need to load the model data from **v1** back into the project. Loading a model's data is possible through both the Language Studio and API. Once complete, the project has the original amount and types of training data.
+For example, if your project has 10 intents and/or entities, with 50 training documents or utterances, it can be trained to create a model named **v1**. Afterwards, you might make changes to the project to alter the numbers of training data. The project can be trained again to create a new model named **v2**. If you don't like the changes you made in **v2** and would like to continue from where you left off in model **v1**, then you would just need to load the model data from **v1** back into the project. Loading a model's data is possible through both Azure Language Studio and API. Once complete, the project has the original amount and types of training data.
 
 If the project data isn't saved in a trained model, it can be lost. For example, if you loaded model **v1**, your project now has the data that was used to train it. If you then made changes, didn't train, and loaded model **v2**, you would lose those changes as they weren't saved to any specific snapshot.
 

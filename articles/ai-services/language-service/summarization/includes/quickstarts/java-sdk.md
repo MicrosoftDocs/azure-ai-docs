@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -10,7 +10,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 [Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-preview&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.3.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
 
 Use this quickstart to create a text summarization application with the client library for Java. In the following example, you'll create a Java application that can summarize documents.

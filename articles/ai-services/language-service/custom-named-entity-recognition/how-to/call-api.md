@@ -1,18 +1,17 @@
 ---
 title: Send a Named Entity Recognition (NER) request to your custom model
 description: Learn how to send requests for custom NER.
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: language-service-custom-ner
 ---
-
 # Query your custom model
 
 After the deployment is added successfully, you can query the deployment to extract entities from your text based on the model you assigned to the deployment.

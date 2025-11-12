@@ -3,15 +3,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-1. Sign into the [Language Studio](https://aka.ms/languageStudio). A window appears to let you select your subscription and Language resource. Select the Language resource you created in the previous step. 
+1. Sign into the [Language Studio](https://aka.ms/languageStudio). A window appears to let you select your subscription and Language resource. Select Azure Language resource you created in the previous step. 
 
 2. Under the **Extract information** section of Language Studio, select **Custom named entity recognition**.
 
-    :::image type="content" source="../../media/select-custom-ner.png" alt-text="A screenshot showing the location of custom named entity recognition (NER) in the Language Studio landing page." lightbox="../../media/select-custom-ner.png":::
+    :::image type="content" source="../../media/select-custom-ner.png" alt-text="A screenshot showing the location of custom named entity recognition (NER) in Azure Language Studio landing page." lightbox="../../media/select-custom-ner.png":::
 
 3. Select **Create new project** from the top menu in your projects page. Creating a project lets you tag data, train, evaluate, improve, and deploy your models. 
 
