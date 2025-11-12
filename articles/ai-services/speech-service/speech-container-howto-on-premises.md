@@ -1,6 +1,6 @@
 ---
 title: Use Speech service containers with Kubernetes and Helm
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Using Kubernetes and Helm to define the speech to text and text to speech container images, we create a Kubernetes package. This package is deployed to a Kubernetes cluster on-premises.
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: Voice and sound with Speech Synthesis Markup Language (SSML) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how you can use Speech Synthesis Markup Language (SSML) elements to customize what your Speech service voice sounds like.
 author: PatrickFarley
 manager: nitinme

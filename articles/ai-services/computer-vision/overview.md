@@ -1,6 +1,6 @@
 ---
 title: What is Azure Vision in Foundry Tools?
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Azure Vision in Foundry Tools provides you with access to advanced algorithms for processing images and returning information.
 author: PatrickFarley
 manager: nitinme
@@ -25,7 +25,7 @@ Azure Vision gives you access to advanced algorithms that process images and ret
 
 ## Azure Vision for digital asset management
 
-Azure Vision can power many digital asset management (DAM) scenarios. DAM is the business process of organizing, storing, and retrieving rich media assets and managing digital rights and permissions. For example, a company might want to group and identify images based on visible logos, faces, objects, colors, and so on. Or, you might want to automatically generate captions for images <!--[generate captions for images](./Tutorials/storage-lab-tutorial.md)--> and attach keywords so they're searchable. For an all-in-one DAM solution using Azure AI Foundry Tools, Azure AI Search, and intelligent reporting, see the [Knowledge Mining Solution Accelerator Guide](https://github.com/Azure-Samples/azure-search-knowledge-mining) on GitHub. For other DAM examples, see the [Azure Vision Solution Templates](https://github.com/Azure-Samples/Cognitive-Services-Vision-Solution-Templates) repository.
+Azure Vision can power many digital asset management (DAM) scenarios. DAM is the business process of organizing, storing, and retrieving rich media assets and managing digital rights and permissions. For example, a company might want to group and identify images based on visible logos, faces, objects, colors, and so on. Or, you might want to automatically generate captions for images <!--[generate captions for images](./Tutorials/storage-lab-tutorial.md)--> and attach keywords so they're searchable. For an all-in-one DAM solution using Foundry Tools, Azure AI Search, and intelligent reporting, see the [Knowledge Mining Solution Accelerator Guide](https://github.com/Azure-Samples/azure-search-knowledge-mining) on GitHub. For other DAM examples, see the [Azure Vision Solution Templates](https://github.com/Azure-Samples/Cognitive-Services-Vision-Solution-Templates) repository.
 
 ## Get started
 
@@ -47,7 +47,7 @@ Azure Vision can analyze images that meet the following requirements:
 
 ## Data privacy and security
 
-As with all of the Azure AI Foundry Tools, developers using Azure Vision should be aware of Microsoft's policies on customer data. See the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
+As with all of the Azure AI Foundry Tools, developers using Azure Vision should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
 
 ## Next steps
 

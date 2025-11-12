@@ -1,6 +1,6 @@
 ---
 title: Object detection - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn concepts related to the object detection feature of Azure Vision in Foundry Tools API - usage and limits.
 author: PatrickFarley
 manager: nitinme

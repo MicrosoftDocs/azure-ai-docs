@@ -1,6 +1,6 @@
 ---
 title: Use the fast transcription API - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Azure Speech in Foundry Tools for fast transcriptions, where you submit audio get the transcription results faster than real-time.
 manager: nitinme
 author: goergenj
@@ -53,7 +53,8 @@ In the sections below, inline audio upload is used as an example.
 ## Use the fast transcription API
 
 > [!TIP]
-> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Microsoft Foundry portal](https://aka.ms/fasttranscription/studio).
+
 We learn how to use the fast transcription API (via [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 - [Language identification on](?tabs=language-identification-on): Transcribe an audio file with language identification on. If you're not sure about the locale of the audio file, you can turn on language identification to let the Speech service identify the locale (one locale per audio).

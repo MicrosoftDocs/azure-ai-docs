@@ -1,7 +1,7 @@
 ---
-title: Azure AI services for Call Center Overview
-titleSuffix: Azure AI services
-description: Azure AI services for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
+title: Foundry Tools for Call Center Overview
+titleSuffix: Foundry Tools
+description: Foundry Tools for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 08/07/2025
@@ -14,7 +14,7 @@ ms.reviewer: jagoerge
 
 Azure AI Language and Azure Speech in Foundry Tools can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels. With Azure Language and Speech services, you can further analyze call center transcriptions, extract and redact conversation   (PII), summarize the transcription, and detect the sentiment.
 
-Some example scenarios for the implementation of Azure AI services in call and contact centers are:
+Some example scenarios for the implementation of Foundry Tools in call and contact centers are:
 - Virtual agents: Conversational AI-based telephony-integrated voice bots and voice-enabled chatbots
 - Agent-assist: Real-time transcription and analysis of a call to improve the customer experience by providing insights and suggest actions to agents
 - Post-call analytics: Post-call analysis to create insights into customer conversations to improve understanding and support continuous improvement of call handling, optimization of quality assurance and compliance control as well as other insight driven optimizations.
@@ -24,7 +24,7 @@ Some example scenarios for the implementation of Azure AI services in call and c
 > 
 > To deploy a call center transcription solution to Azure with a no-code approach, try the [Ingestion Client](./ingestion-client.md).
 
-## Azure AI services features for call centers
+## Foundry Tools features for call centers
 
 A holistic call center implementation typically incorporates technologies from Azure Language and Speech services. 
 

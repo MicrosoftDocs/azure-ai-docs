@@ -1,6 +1,6 @@
 ---
 title: What is personal voice?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: With personal voice, you can get AI generated replication of your voice (or users of your application) in a few seconds.
 author: goergenj
 reviewer: patrickfarley

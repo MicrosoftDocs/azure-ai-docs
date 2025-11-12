@@ -1,7 +1,7 @@
 ﻿---
 title: What are OpenAI text to speech voices?
-titleSuffix: Azure AI services
-description: Learn about OpenAI voices that you can use for text to speech in Azure AI services.
+titleSuffix: Foundry Tools
+description: Learn about OpenAI voices that you can use for text to speech in Foundry Tools.
 author: goergenj
 reviewer: patrickfarley
 ms.author: jagoerge
@@ -13,7 +13,7 @@ ms.topic: overview
 ms.custom:
   - references_regions
   - build-2025
-# customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
+# customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Foundry Tools.
 ---
 
 # What are OpenAI text to speech voices? 
@@ -25,13 +25,13 @@ OpenAI text to speech voices are available via two model variants: `Neural` and 
 - `Neural`: Optimized for real-time use cases with the lowest latency, but lower quality than `NeuralHD`.
 - `NeuralHD`: Optimized for quality.
 
-## Available text to speech voices in Azure AI services
+## Available text to speech voices in Foundry Tools
 
-You might ask: If I want to use an OpenAI text to speech voice, should I use it via the Azure OpenAI in Azure AI Foundry Models or via Azure Speech? What are the scenarios that guide me to use one or the other?
+You might ask: If I want to use an OpenAI text to speech voice, should I use it via the Azure OpenAI in Microsoft Foundry Models or via Azure Speech? What are the scenarios that guide me to use one or the other?
 
-Each voice model offers distinct features and capabilities, allowing you to choose the one that best suits your specific needs. You want to understand the options and differences between available text to speech voices in Azure AI services.
+Each voice model offers distinct features and capabilities, allowing you to choose the one that best suits your specific needs. You want to understand the options and differences between available text to speech voices in Foundry Tools.
 
-You can choose from the following text to speech voices in Azure AI services:
+You can choose from the following text to speech voices in Foundry Tools:
 
 - OpenAI text to speech voices in [Azure OpenAI](../openai/reference.md#text-to-speech-preview). For the current list of supported regions, see the [Speech service regions table](regions.md?tabs=tts).
 - OpenAI text to speech voices in [Azure Speech](./language-support.md?tabs=tts#multilingual-voices). For the current list of supported regions, see the [Speech service regions table](regions.md?tabs=tts).

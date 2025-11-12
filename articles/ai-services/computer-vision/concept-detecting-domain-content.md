@@ -1,6 +1,6 @@
 ---
 title: Domain-specific content - Azure Vision in Foundry Tools
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to specify an image categorization domain to return more detailed information about an image.
 author: PatrickFarley
 manager: nitinme

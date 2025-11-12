@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Optical character recognition (OCR)"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use Optical character recognition (OCR) in your application through a native client library in the language of your choice.
 author: PatrickFarley
 manager: nitinme

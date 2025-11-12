@@ -1,6 +1,6 @@
 ---
 title: Text to speech overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the text to speech feature of the Speech service.
 author: PatrickFarley
 manager: nitinme
@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is text to speech?
 
-In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Azure AI services.
+In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Foundry Tools.
 
 Text to speech enables your applications, tools, or devices to convert text into human like synthesized speech. The text to speech capability is also known as speech synthesis. Use human like standard voices out of the box, or create a custom voice that's unique to your product or brand. For a full list of supported voices, languages, and locales, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
@@ -24,7 +24,7 @@ Text to speech includes the following features:
 | Feature | Summary | Demo |
 | --- | --- | --- |
 | Standard voice (called *Neural* on the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)) | Highly natural out-of-the-box voices. Create an Azure subscription and Speech resource, and then use the [Speech SDK](./get-started-text-to-speech.md) or visit the [Speech Studio portal](https://speech.microsoft.com/portal) and select standard voices to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. |
-| Custom voice | Easy-to-use self-service for creating a natural brand voice, with limited access for responsible use. Create an Azure subscription and Azure AI Foundry resource and then [apply to use custom voice](https://aka.ms/customneural). After you're granted access, go to the [professional voice fine-tuning documentation](./professional-voice-create-project.md) to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [voice samples](https://aka.ms/customvoice). |
+| Custom voice | Easy-to-use self-service for creating a natural brand voice, with limited access for responsible use. Create an Azure subscription and Microsoft Foundry resource and then [apply to use custom voice](https://aka.ms/customneural). After you're granted access, go to the [professional voice fine-tuning documentation](./professional-voice-create-project.md) to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [voice samples](https://aka.ms/customvoice). |
 
 ### More about neural text to speech features
 

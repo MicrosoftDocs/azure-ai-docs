@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis 4.0 REST API"
-titleSuffix: "Azure AI Foundry Tools"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Image Analysis 4.0 REST API.
 author: PatrickFarley
 manager: nitinme

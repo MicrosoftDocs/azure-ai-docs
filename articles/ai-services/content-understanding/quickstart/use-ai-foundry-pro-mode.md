@@ -1,7 +1,7 @@
 ---
-title: "Create an Azure Content Understanding in Foundry Tools multi-file task in the Azure AI Foundry portal"
-titleSuffix: Azure AI services
-description: Create an Azure Content Understanding in Foundry Tools multi-file task in the Azure AI Foundry portal
+title: "Create an Azure Content Understanding in Foundry Tools multi-file task in the Microsoft Foundry portal"
+titleSuffix: Foundry Tools
+description: Create an Azure Content Understanding in Foundry Tools multi-file task in the Microsoft Foundry portal
 author: PatrickFarley 
 ms.author: kabrow
 manager: nitinme
@@ -12,7 +12,7 @@ ms.date: 05/29/2025
 
 # Quickstart: Use Content Understanding with multiple files
 
-This quickstart shows you how to use the Content Understanding service in the [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding) to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
+This quickstart shows you how to use the Content Understanding service in the [**Microsoft Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding) to extract structured information from your data. Microsoft Foundry enables you to build and deploy generative AI applications and APIs responsibly.
 
 Suppose you have document files and you want to automatically extract key information from them, while also comparing to reference data to infer conclusions from your files. Using Content Understanding, you can create a task to streamline your data processing, define a field schema to specify the information to extract or generate, and develop an analyzer that applies reasoning to your data, delivering key insights and conclusions. The analyzer becomes an API endpoint that you can integrate into your applications or workflows.
 
@@ -26,19 +26,19 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
+* An [Microsoft Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
 
 [!INCLUDE [hub based project required](../../../ai-foundry/includes/uses-hub-only.md)]
 
 ## Create your multi-file task powered by Content Understanding Pro mode
 
-Follow these steps to create a custom task in the Azure AI Foundry. This task is used to build your first analyzer.
+Follow these steps to create a custom task in the Microsoft Foundry. This task is used to build your first analyzer.
 
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Go to the **Home** page of [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-2. In this guide, we use a `multi-file task` utilizing Content Understanding Pro mode, but if you're interested in creating a single-file task utilizing Standard mode, refer to [Create an Azure Content Understanding single-file task in the Azure AI Foundry portal](./use-ai-foundry.md). For more information on which mode is right for your scenario, check out [Azure Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+2. In this guide, we use a `multi-file task` utilizing Content Understanding Pro mode, but if you're interested in creating a single-file task utilizing Standard mode, refer to [Create an Azure Content Understanding single-file task in the Microsoft Foundry portal](./use-ai-foundry.md). For more information on which mode is right for your scenario, check out [Azure Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 

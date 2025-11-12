@@ -1,6 +1,6 @@
 ---
 title: What's new - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Discover the latest updates, features, and improvements in Azure Speech in Foundry Tools, including SDK, CLI, and service releases.
 manager: nitinme
 author: PatrickFarley

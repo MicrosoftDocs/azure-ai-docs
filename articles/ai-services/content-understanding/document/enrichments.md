@@ -1,6 +1,6 @@
 ---
 title: "Document analysis with confidence, grounding, and in-context learning"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools's value add-ons that improve model extraction quality and performance
 author: PatrickFarley 
 ms.author: pafarley
@@ -105,7 +105,7 @@ In-context learning helps:
 - Rapidly onboard new templates without labeling data within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
-To add a label sample, go to a document extraction result page in the Azure AI Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label predicts all the fields out of the box.
+To add a label sample, go to a document extraction result page in the Microsoft Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label predicts all the fields out of the box.
 
 :::image type="content" source="../media/document/in-context-learning.png" lightbox="../media/document/in-context-learning.png" alt-text="Screenshot of auto labeling an invoice sample.":::
 
@@ -114,7 +114,7 @@ Then you can edit the fields by selecting the correct values. Once you save it, 
 :::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels.":::
 
 > [!NOTE]
-> Labeled samples can be added in the Azure AI Foundry portal. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`)
+> Labeled samples can be added in the Microsoft Foundry portal. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`)
 
 ### Example
 

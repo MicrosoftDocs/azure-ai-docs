@@ -1,6 +1,6 @@
 ---
 title: Get facial position with viseme
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about visemes that represent key poses in observed speech, such as the position of the lips, jaw, and tongue when producing a particular phoneme.
 author: PatrickFarley
 ms.author: pafarley

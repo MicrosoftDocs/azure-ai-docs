@@ -104,7 +104,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
       * TranslationRecognizer (via SpeechTranslationConfig)
       * ConversationTranscriber
       * SpeechSynthesizer
-    * You can now use the endpoint from the Azure portal for Speech and Azure AI Foundry resources to construct a SpeechConfig object.
+    * You can now use the endpoint from the Azure portal for Speech and Microsoft Foundry resources to construct a SpeechConfig object.
     * All other methods to construct a SpeechConfig continue to function and are supported.
   
 ##### Bug fixes

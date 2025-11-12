@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools Classifier Overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
 author: PatrickFarley 
 ms.author: pafarley
@@ -79,5 +79,5 @@ Developers who use Content Understanding should review Microsoft policies on cus
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).

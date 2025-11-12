@@ -1,6 +1,6 @@
 ---
 title: Image retrieval using multimodal embeddings
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use the image retrieval API to vectorize images and search terms, enabling text-based image searches without metadata.
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: "Display text format training data - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to prepare display text format training data for custom speech.
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: Azure Speech in Foundry Tools known issues
-titlesuffix: Azure AI services
+titlesuffix: Foundry Tools
 description: Known and common issues with Azure Speech in Foundry Tools.
 manager: heikora
 ms.service: azure-ai-speech

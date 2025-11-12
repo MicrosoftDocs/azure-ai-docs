@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis 4.0"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to read text from images in your application using Image Analysis 4.0 through a native client SDK in the language of your choice.
 author: PatrickFarley
 manager: nitinme

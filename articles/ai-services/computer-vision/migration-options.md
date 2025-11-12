@@ -44,9 +44,9 @@ The Face service offers Face detection capabilities, as well as a more comprehen
 
 ### Image embeddings scenarios
 
-#### Cohere Embed v3 in Azure AI Foundry
+#### Cohere Embed v3 in Microsoft Foundry
 * **Best for**: Customers who need image + text embeddings supported on Azure.
-* **Features**: A multilingual multimodal embedding model supported in the Azure AI Foundry portal. It is capable of transforming different modalities such as images, texts, and interleaved images and texts into a single vector representation.
+* **Features**: A multilingual multimodal embedding model supported in the Microsoft Foundry portal. It is capable of transforming different modalities such as images, texts, and interleaved images and texts into a single vector representation.
 * **Learn more** about Cohere Embed v4:
     * [Embed-v-4-0](https://ai.azure.com/resource/models/embed-v-4-0/version/5/registry/azureml-cohere)
 
@@ -61,13 +61,13 @@ The Face service offers Face detection capabilities, as well as a more comprehen
 
 There are multiple additional alternative services that can support the remaining scenarios supported in the Image Analysis API. 
 
-#### GPT model series in the Azure AI Foundry
+#### GPT model series in Microsoft Foundry
 
 * **Best for**: Customers who are flexible in their approach to creating a solution for customized vision capabilities.
 * **Features**: Flexibility to build custom solutions based on different Generative AI models.
-* **Learn more** about Generative AI models in the Azure AI Foundry:
-    *	[Explore Azure AI Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
-    *	[Azure OpenAI in Azure AI Foundry models](../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
+* **Learn more** about Generative AI models in the Microsoft Foundry:
+    *	[Explore Microsoft Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
+    *	[Azure OpenAI in Microsoft Foundry models](../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
 
 #### Azure Content Understanding in Foundry Tools (preview)
 * **Best for**: Customers wanting a managed generative solution for image analysis scenarios.

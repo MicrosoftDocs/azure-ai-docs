@@ -1,6 +1,6 @@
 ---
 title: What's new in Azure Vision in Foundry Tools?
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Stay up to date on recent releases and updates to Azure Vision in Foundry Tools.
 author: PatrickFarley
 manager: nitinme
@@ -438,7 +438,7 @@ See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 ### Read API v3.1 Public Preview with OCR for Simplified Chinese
 
-The Azure AI Vision Read API v3.1 public preview adds support for Simplified Chinese.
+The Azure Vision in Foundry Tools Read API v3.1 public preview adds support for Simplified Chinese.
 
 * This preview version of the Read API supports English, Dutch, French, German, Italian, Portuguese, Simplified Chinese, and Spanish languages.
 
@@ -449,7 +449,7 @@ See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 ## May 2020
 
-Azure AI Vision API v3.0 entered General Availability, with updates to the Read API:
+Azure Vision API v3.0 entered General Availability, with updates to the Read API:
 
 * Support for English, Dutch, French, German, Italian, Portuguese, and Spanish
 * Improved accuracy
@@ -464,7 +464,7 @@ See the [OCR overview](overview-ocr.md) to learn more.
 
 ## March 2020
 
-* TLS 1.2 is now enforced for all HTTP requests to this service. For more information, see [Azure AI Foundry Tools security](../security-features.md).
+* TLS 1.2 is now enforced for all HTTP requests to this service. For more information, see [Foundry Tools security](../security-features.md).
 
 ## January 2020
 
@@ -563,6 +563,6 @@ Follow an [Extract text quickstart](https://github.com/Azure-Samples/cognitive-s
 * Deprecated the V0 endpoint of Face API on June 30, 2016.
 
 
-## Azure AI Foundry Tools updates
+## Foundry Tools updates
 
-[Azure update announcements for Azure AI Foundry Tools](https://azure.microsoft.com/updates/?product=cognitive-services)
+[Azure update announcements for Foundry Tools](https://azure.microsoft.com/updates/?product=cognitive-services)

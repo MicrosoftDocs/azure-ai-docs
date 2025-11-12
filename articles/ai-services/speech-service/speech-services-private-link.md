@@ -1,6 +1,6 @@
 ---
 title: How to use private endpoints with Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Speech service with private endpoints provided by Azure Private Link.
 author: goergenj
 ms.author: jagoerge
@@ -20,7 +20,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 This article explains how to set up and use Private Link and private endpoints with the Speech service. This article then describes how to remove private endpoints later, but still use the Speech resource.
 
 > [!NOTE]
-> Before you proceed, review [how to use virtual networks with Azure AI services](../cognitive-services-virtual-networks.md).
+> Before you proceed, review [how to use virtual networks with Foundry Tools](../cognitive-services-virtual-networks.md).
 
 
 Setting up an AI Foundry resource for Speech for the private endpoint scenarios requires performing the following tasks:
@@ -62,7 +62,7 @@ Use these parameters instead of the parameters in the article that you chose:
 | Resource            | **\<your-speech-resource-name>**         |
 | Target sub-resource | **account**                              |
 
-**DNS for private endpoints:** Review the general principles of [DNS for private endpoints in Azure AI Foundry resources](../cognitive-services-virtual-networks.md#apply-dns-changes-for-private-endpoints). Then confirm that your DNS configuration is working correctly by performing the checks described in the following sections.
+**DNS for private endpoints:** Review the general principles of [DNS for private endpoints in Microsoft Foundry resources](../cognitive-services-virtual-networks.md#apply-dns-changes-for-private-endpoints). Then confirm that your DNS configuration is working correctly by performing the checks described in the following sections.
 
 ### Resolve DNS from the virtual network
 
@@ -147,7 +147,7 @@ The next subsections describe both cases.
 
 #### Speech to text REST API
 
-Usually, Speech resources use [Azure AI services regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the [Speech to text REST API](rest-speech-to-text.md). These resources have the following naming format: <p/>`{region}.api.cognitive.microsoft.com`.
+Usually, Speech resources use [Foundry Tools regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the [Speech to text REST API](rest-speech-to-text.md). These resources have the following naming format: <p/>`{region}.api.cognitive.microsoft.com`.
 
 This is a sample request URL:
 
@@ -178,7 +178,7 @@ After you turn on a custom domain name for an AI Foundry resource for Speech, yo
 #### Speech to text REST API for short audio and Text to speech REST API
 
 The [Speech to text REST API for short audio](rest-speech-to-text-short.md) and the [Text to speech REST API](rest-text-to-speech.md) use two types of endpoints:
-- [Azure AI services regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the Azure AI services REST API to obtain an authorization token
+- [Foundry Tools regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the Foundry Tools REST API to obtain an authorization token
 - Special endpoints for all other operations
 
 > [!NOTE]
@@ -310,9 +310,9 @@ This section explains how to use an AI Foundry resource for Speech with a custom
 
 ### DNS configuration
 
-Remember how a custom domain DNS name of the private-endpoint-enabled Speech resource is [resolved from public networks](#resolve-dns-from-other-networks). In this case, the IP address resolved points to a proxy endpoint for a virtual network. That endpoint is used for dispatching the network traffic to the private-endpoint-enabled Azure AI Foundry resource.
+Remember how a custom domain DNS name of the private-endpoint-enabled Speech resource is [resolved from public networks](#resolve-dns-from-other-networks). In this case, the IP address resolved points to a proxy endpoint for a virtual network. That endpoint is used for dispatching the network traffic to the private-endpoint-enabled Microsoft Foundry resource.
 
-However, when *all* resource private endpoints are removed (or right after the enabling of the custom domain name), the CNAME record of the Speech resource is reprovisioned. It now points to the IP address of the corresponding [Azure AI services regional endpoint](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
+However, when *all* resource private endpoints are removed (or right after the enabling of the custom domain name), the CNAME record of the Speech resource is reprovisioned. It now points to the IP address of the corresponding [Foundry Tools regional endpoint](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
 
 So the output of the `nslookup` command looks like this:
 ```dos

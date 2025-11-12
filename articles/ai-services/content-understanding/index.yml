@@ -24,13 +24,13 @@ highlightedContent:
     - title: Try the REST API
       itemType: quickstart
       url: quickstart/use-rest-api.md
-    - title: Try Azure AI Foundry
+    - title: Try Microsoft Foundry
       itemType: quickstart
       url: quickstart/use-ai-foundry.md
 
 conceptualContent:
   items:
-    - title: Azure AI Foundry
+    - title: Microsoft Foundry
       links:
         - itemType: quickstart
           text: "Quickstart: Content Understanding with a single file"

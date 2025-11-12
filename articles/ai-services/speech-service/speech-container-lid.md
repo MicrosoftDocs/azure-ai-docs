@@ -1,6 +1,6 @@
 ---
 title: Language identification containers - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Install and run language identification containers with Docker to perform speech recognition, transcription, generation, and more on-premises.
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: "Face liveness quick link - Face"
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: This article explains the concept of Face liveness quick link, its usage flow, and related concepts. 
 author: JinyuID
 manager: nitinme

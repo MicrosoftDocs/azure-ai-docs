@@ -1,6 +1,6 @@
 ﻿---
 title: Build a retrieval-augmented generation solution with Azure Content Understanding in Foundry Tools
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
 author: PatrickFarley 
 ms.author: paulhsu
@@ -29,7 +29,7 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
+* Once you have your Azure subscription, create an [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 
    * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
 
@@ -71,7 +71,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Load and validate Azure AI Services configs
+# Load and validate Foundry Tools configs
 AZURE_AI_SERVICE_ENDPOINT = os.getenv("AZURE_AI_SERVICE_ENDPOINT")
 AZURE_AI_SERVICE_API_VERSION = os.getenv("AZURE_AI_SERVICE_API_VERSION") or "2024-12-01-preview"
 AZURE_DOCUMENT_INTELLIGENCE_API_VERSION = os.getenv("AZURE_DOCUMENT_INTELLIGENCE_API_VERSION") or "2024-11-30"

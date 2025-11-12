@@ -1,6 +1,6 @@
 ﻿---
 title: Content Understanding region and language support
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Azure Content Understanding in Foundry Tools region and language support
 author: PatrickFarley 
 ms.author: pafarley

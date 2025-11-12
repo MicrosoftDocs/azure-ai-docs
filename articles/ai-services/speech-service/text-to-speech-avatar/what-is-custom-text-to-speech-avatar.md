@@ -1,6 +1,6 @@
 ---
 title: Custom text to speech avatar overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the custom text to speech avatar feature of speech service, which allows you to create a customized, one-of-a-kind synthetic talking avatar for your application.
 manager: nitinme
 ms.service: azure-ai-speech
@@ -75,7 +75,7 @@ There are two kinds of custom voice for a custom avatar:
 
 If you fine-tune a professional voice and want to use it together with the custom avatar, pay attention to the following points:
 
-- Ensure that the custom voice endpoint is created in the same Azure AI Foundry resource as the custom avatar endpoint. As needed, refer to [train your professional voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to copy the custom voice model to the same Azure AI Foundry resource as the custom avatar endpoint.
+- Ensure that the custom voice endpoint is created in the same Microsoft Foundry resource as the custom avatar endpoint. As needed, refer to [train your professional voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to copy the custom voice model to the same Microsoft Foundry resource as the custom avatar endpoint.
 - You can see the custom voice option in the voices list of the [avatar content generation page](https://speech.microsoft.com/portal/talkingavatar) and [live chat voice settings](https://speech.microsoft.com/portal/livechat).
 - If you're using batch synthesis for avatar API, add the `"customVoices"` property to associate the deployment ID of the custom voice model with the voice name in the request. For more information, see the [text to speech properties](batch-synthesis-avatar-properties.md#text-to-speech-properties).
 - If you're using real-time synthesis for avatar API, refer to our sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) to set the custom voice.

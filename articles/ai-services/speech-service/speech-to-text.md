@@ -1,6 +1,6 @@
 ---
 title: Speech to text overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the speech to text feature of the Speech service.
 author: PatrickFarley
 manager: nitinme

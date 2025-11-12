@@ -244,7 +244,7 @@ Added 4 more multilingual voices in `en-US` with emotions support.
 | `en-US`           | `DavisMultilingualNeural` (Male)  | `empathetic`, `funny`, `relieved` |
 | `en-US`           | `NancyMultilingualNeural` (Female) | `excited`, `friendly`, `funny`, `relieved`, `shy` |
 
-#### Azure OpenAI in Azure AI Foundry Models turbo voices (Generally Available)
+#### Azure OpenAI in Microsoft Foundry Models turbo voices (Generally Available)
 
 These 6 turbo voices are now generally available:
 

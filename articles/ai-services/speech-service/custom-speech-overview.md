@@ -1,6 +1,6 @@
 ---
 title: Custom speech overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Custom speech is allows you to evaluate and improve the speech to text accuracy for your applications, tools, and products.
 author: PatrickFarley
 manager: nitinme

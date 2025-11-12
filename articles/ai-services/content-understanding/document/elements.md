@@ -1,6 +1,6 @@
 ---
 title: 'Document Analysis: Extract Structured Content with Azure Content Understanding in Foundry Tools'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
 ms.author: paulhsu
@@ -406,7 +406,7 @@ Page numbers are one indexed. The bounding polygon describes a sequence of point
 
 ## Related content
 
-* Process your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Process your document content by using Content Understanding in [Microsoft Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content with [analyzer templates](../quickstart/use-ai-foundry.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review the code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

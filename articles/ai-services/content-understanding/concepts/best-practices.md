@@ -1,6 +1,6 @@
 ---
 title: Best practices for using Content Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to best use Azure Content Understanding in Foundry Tools for document, image, video, and audio file content and field extractions.
 author: PatrickFarley 
 ms.author: jfilcik
