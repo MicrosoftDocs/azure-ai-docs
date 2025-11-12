@@ -7,6 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
 ms.date: 11/18/2025
+ms.custom: references_regions
 ---
 
 > [!IMPORTANT]
