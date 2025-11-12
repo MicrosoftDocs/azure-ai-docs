@@ -1,7 +1,7 @@
 ---
-title: 'How to use the file search tool for the Microsoft Foundry agents v2 API'
+title: 'How to use the file search tool for Microsoft Foundry agents'
 titleSuffix: Azure AI Foundry
-description: Learn how to use Agents file search tool for the agents v2 API.
+description: Learn how to use Agents file search tool for agents.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +13,7 @@ ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
 ---
 
-# File search tool for the Agents v2 API
+# File search tool for agents
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 

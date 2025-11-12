@@ -1,7 +1,7 @@
 ---
-title: "How to use the data agents in Microsoft Fabric for the Microsoft AI Foundry Agent Service v2 API"
+title: "How to use the data agents in Microsoft Fabric for the Microsoft AI Foundry Agent Service"
 titleSuffix: Azure AI Foundry
-description: Learn how to perform data analytics in Microsoft Foundry with the Fabric data agent and agent v2 API.
+description: Learn how to perform data analytics in Microsoft Foundry with the Fabric data agent.
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -14,7 +14,7 @@ ms.custom:
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
-# Use the Microsoft Fabric data agent for the Agents v2 API (preview)
+# Use the Microsoft Fabric data agent (preview)
 
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 

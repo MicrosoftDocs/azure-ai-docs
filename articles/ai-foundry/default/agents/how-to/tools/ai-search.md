@@ -1,7 +1,7 @@
 ---
-title: 'How to use an AI Search index with the agents v2 API'
+title: 'How to use an AI Search index with the agents API'
 titleSuffix: Azure AI Foundry
-description: Learn how to use Agents Azure AI Search tool for the agents v2 API.
+description: Learn how to use Agents Azure AI Search tool for the agents API.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,7 +14,7 @@ ms.reviewer: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Azure AI Search tool for the Agents v2 API 
+# Azure AI Search tool for agents 
 
 > [!NOTE]
 > There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service](./knowledge-retrieval.md).

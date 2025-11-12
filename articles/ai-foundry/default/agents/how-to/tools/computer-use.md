@@ -1,5 +1,5 @@
 ---
-title: 'How to use the computer use tool for the Microsoft Foundry agents v2 API'
+title: 'How to use the computer use tool for the Microsoft Foundry agents'
 titleSuffix: Azure AI Foundry
 description: Learn how to useMicrosoft AI Foundry Agent Service Computer Use Tool
 services: cognitive-services
@@ -13,7 +13,7 @@ ms.author: aahi
 ms.custom: references_regions
 ---
 
-# Computer use tool for the Agents v2 API (Preview)
+# Computer use tool for agents (Preview)
 
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).

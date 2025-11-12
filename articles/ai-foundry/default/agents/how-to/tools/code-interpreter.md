@@ -1,7 +1,7 @@
 ---
-title: 'How to use Code Interpreter for the Microsoft Foundry agents v2 API'
+title: 'How to use Code Interpreter for the Microsoft Foundry agents'
 titleSuffix: Microsoft AI Foundry
-description: Learn how to use Microsoft AI Foundry Agent Service Code Interpreter for the agents v2 API
+description: Learn how to use Microsoft AI Foundry Agent Service Code Interpreter for the agents API
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,9 +13,9 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ms.custom: references_regions
 ---
-# Code Interpreter tool for the Agents v2 API
+# Code Interpreter tool for agents
 
-Use this article to learn how to use the Code Interpreter tool for the Agents v2 API.
+Use this article to learn how to use the Code Interpreter tool for agents.
 
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 
