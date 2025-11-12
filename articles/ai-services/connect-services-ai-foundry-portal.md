@@ -24,10 +24,10 @@ This article describes how to use new or existing Foundry Tools resources in an 
 ## Usage scenarios
 
 Depending on the AI service and model you want to use, you can use them in Azure AI Foundry portal via:
-- [Bring your existing Foundry Tools resources](#connect-azure-ai-foundry-tools-after-you-create-a-project) into a project. You can use your existing Foundry Tools resources in an Azure AI Foundry project by creating a connection to the resource.
-- The [model catalog](#discover-azure-ai-models-in-the-model-catalog). You don't need a project to browse and discover Foundry Models. Some of the Foundry Tools are available for you to try via the model catalog without a project. Some Foundry Tools require a project to use them in the playgrounds.
-- The [project-level playgrounds](#try-azure-ai-foundry-tools-in-the-project-level-playgrounds).
-- [Fine-tune](#fine-tune-azure-ai-foundry-tools) models. You can fine-tune a subset of Foundry Tools models in Azure AI Foundry portal.
+- [Bring your existing Foundry Tools resources](#connect-foundry-tools-after-you-create-a-project) into a project. You can use your existing Foundry Tools resources in an Azure AI Foundry project by creating a connection to the resource.
+- The [model catalog](#discover-foundry-models-in-the-model-catalog). You don't need a project to browse and discover Foundry Models. Some of the Foundry Tools are available for you to try via the model catalog without a project. Some Foundry Tools require a project to use them in the playgrounds.
+- The [project-level playgrounds](#try-foundry-tools-in-the-project-level-playgrounds).
+- [Fine-tune](#fine-tune-foundry-tools) models. You can fine-tune a subset of Foundry Tools models in Azure AI Foundry portal.
 - [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Foundry Tools models are already deployed and ready to use.
 - 
 - ### Connect Foundry Tools after you create a project
