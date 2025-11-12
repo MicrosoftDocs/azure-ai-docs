@@ -16,8 +16,6 @@ zone_pivot_groups: selection-function-calling-new
 
 # Function calling for agents
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 Microsoft Foundry agents support function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]

@@ -14,8 +14,6 @@ ms.author: aahi
 
 # Connect to Model Context Protocol servers (preview)
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 > [!NOTE]
 > When using a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 

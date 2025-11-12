@@ -17,8 +17,6 @@ ai-usage: ai-assisted
 
 Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search and Grounding with Bing Custom Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 The grounding process involves several key steps:
 
 1. **Query formulation**: The agent identifies information gaps and constructs search queries

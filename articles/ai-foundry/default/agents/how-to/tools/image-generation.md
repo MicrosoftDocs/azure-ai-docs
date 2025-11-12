@@ -17,16 +17,12 @@ zone_pivot_groups: selection-image-generation
 
 # Image generation tool (preview) 
 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
 >[!IMPORTANT] 
 > The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image). 
 
 The Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
-
-## Usage support
-
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | - | - | - |  ✔️ | ✔️ | ✔️ | 
 
 :::zone pivot="python"
 Before you start, make sure you have run `pip install "azure-ai-projects>=2.0.0" azure-identity load_dotenv`
