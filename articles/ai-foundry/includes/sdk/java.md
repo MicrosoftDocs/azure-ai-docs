@@ -6,11 +6,11 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 11/10/2025
+ms.date: 11/11/2025
 ms.custom: include
 ---
 
-### Java supported services
+### Java supported Foundry Tools
 
 | Service | Description | Quickstarts and reference documentation |
 | --- | --- | --- |
