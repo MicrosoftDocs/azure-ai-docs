@@ -23,6 +23,24 @@ This article shows you how to create memory stores, attach them to agents, add a
 
 Memory stores act as persistent storage that define what types of information are relevant to each agent. You control access through the `scope` parameter, which ensures secure and isolated experiences by segmenting memory across users.
 
+## Common memory use cases
+
+The following examples illustrate how memory can enhance various types of agents:
+
+### Conversational Agent
+
+- A customer support agent that remembers your name, previous issues and resolution, ticket numbers, and whether you prefer chat, email, or a call-back. This memory prevents the user from having to repeat themselves, ensuring continuity and increasing customer satisfaction.
+- A personal shopping assistant that remembers your size in specific brands, preferred color, past returns, and recent purchases to offer highly relevant suggestions immediately upon starting a new session and avoid recommending items you already own.
+ 
+### Planning Agent
+  
+- A travel agent that knows your flight preference (window/aisle), seat selection, food preference, non-stop vs. connecting flights, loyalty programs, and past destination feedback to build an optimized itinerary quickly.
+- An architectural design agent that remembers the local building codes, the material costs from past bids, and initial client feedback to iteratively refine design, ensuring the final plan is both feasible and meets all constraints. 
+  
+## Research Agent
+
+A medical research agent that remembers which compounds were previously tested (and failed), the key findings from different labs, and the complex relationships between various proteins to suggest a novel, untested research hypothesis.
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
@@ -98,7 +116,7 @@ The memory store creation returns an ID that you use in subsequent operations. S
 
 Add memories by providing conversation content to the memory store. The system performs preprocessing and postprocessing, including memory extraction and consolidation, to optimize the agent's memory. This long-running operation might take about one minute to complete.
 
-There are three methods to update a memory store. You can add an array of conversation items, reference an existing conversation ID, or use a previous update ID for incremental updates.
+You can update a memory store in three ways: add an array of conversation items, reference an existing conversation ID, or use a previous update ID for incremental updates.
 
 # [Python](#tab/python)
 
@@ -179,8 +197,13 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:update_memories?api-vers
     ],
     "update_delay": 0
   }'
-```
 
+
+# Get add memory status by polling the update_id
+# Use the "update_id" from previous response
+UPDATE_ID=<your_update_id>
+curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-version=${API_VERSION}" -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
 ---
 
 The system extracts relevant information from the conversation items and consolidates it into durable memories. You can check the operation status by using the returned operation ID if needed.
@@ -437,10 +460,19 @@ curl -X POST "${ENDPOINT}/agents?api-version=${API_VERSION}" \
         {
           "type": "memory_search",
           "memory_store_id": "user-conversation-memory",
-          "scope": "user-12345"
+          "scope": "user-123"
         }
       ]
     }
+  }'
+
+# Converse with the agent
+curl --include -X POST "${ENDPOINT}/openai/responses?api-version=2025-11-15-preview" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -d '{
+        "agent": {"type": "agent_reference", "name": "customer-support-agent", "version": "1"},
+        "input": [ {"role": "user", "content": "Hello"} ]
   }'
 ```
 
@@ -458,13 +490,20 @@ Microsoft Foundry memory is designed for long-term memory. It extracts meaningfu
 ## Understand `Scope`
 `Scope` defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
-As a developer, you decide the “key” used to store and retrieve these memory items - such as a UUID or an email address (provided it is unique and permanent in your system).
+As a developer, you decide the key used to store and retrieve these memory items - such as a UUID or an email address (provided it is unique and permanent in your system).
 
-The memory store supports the `{{$userId}}` variable, which is replaced at runtime with the actual user OID. This allows you to leverage the memory store for scoping when using Microsoft Entra for authenticating your end users. If you manage your own user identities, you are responsible for setting this value for every end user interacting with your agent.
+The memory store supports the `{{$userId}}` variable, which is replaced at runtime with the actual user OID. This support allows you to leverage the memory store for scoping when using Microsoft Entra for authenticating your end users. If you manage your own user identities, you are responsible for setting this value for every end user interacting with your agent.
+
+## Customize memory
+To ensure an agent's memory is efficient, relevant, and privacy-respecting, you should actively customize what information is prioritized and stored. The `user_profile_details` parameter allows you to explicitly indicate the types of data that are critical to the agent's core function. 
+
+For a planning agent, this parameter might include setting `user_profile_details` to prioritize "flight carrier preference and dietary restrictions". This focused approach ensures that when new information is encountered during an interaction, the memory system knows which details to extract, summarize, and commit to long-term memory.
+
+You can also leverage the same parameter to inform the memory not to focus on certain type of data, ensuring the memory remains lean and compliant with privacy requirement. Refer to best practices section for more.
 
 ## Pricing 
 
-In this public preview, the use of memory features is free. However, you’re billed for use of the chat completion model and embedding model. 
+In this public preview, the use of memory features is free. However, you're billed for use of the chat completion model and embedding model. 
 
 ## Best practices
 
@@ -478,9 +517,9 @@ When you implement memory in your agents, consider the following practices:
 - **Version your memory stores**: Use metadata to track versions and configurations of memory stores, making it easier to manage updates and troubleshoot issues.
 ## Security risks of prompt injection
  
-When working with memory in Foundry Agent Service, it’s essential to safeguard memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing future decisions and actions.
+When you work with memory in Foundry Agent Service, protect memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing future decisions and actions.
  
-To strengthen memory security, you can consider the following:
+To strengthen memory security, consider the following actions:
  
 - **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety)**: Validate all prompts entering or leaving the memory system to prevent malicious content.
 - **Perform attack and adversarial testing**: Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
