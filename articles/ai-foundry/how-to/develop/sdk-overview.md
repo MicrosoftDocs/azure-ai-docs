@@ -72,17 +72,17 @@ The [Foundry Projects SDK for Python](/python/api/overview/azure/ai-projects-rea
 
 * Install the project client library 
 
-::: moniker range="foundry-classic"
-   ```bash
-   pip install azure-ai-projects azure-identity openai
-   ```
-::: moniker-end
-::: moniker range="foundry"
-   ```bash
-   pip install --pre azure-ai-projects
-   pip install azure-identity openai
-```
-::: moniker-end
+    ::: moniker range="foundry-classic"
+    ```bash
+    pip install azure-ai-projects azure-identity openai
+    ```
+    ::: moniker-end
+    ::: moniker range="foundry"
+    ```bash
+    pip install --pre azure-ai-projects
+    pip install azure-identity openai
+    ```
+    ::: moniker-end
 
 * Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpoint string value.
 
