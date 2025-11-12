@@ -12,7 +12,9 @@ author: aahill
 ms.author: aahi
 ---
 
-# Custom code interpreter tool for agents
+# Custom code interpreter tool for agents (preview)
+
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 With a Custom code interpreter for your agent, you can customize the resources, available Python packages, and Container Apps environment that is used to run the Python code that the agent writes. The code interpreter container is exposed via a Model Context Protocol (MCP) server.
 
