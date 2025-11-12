@@ -11,6 +11,7 @@ ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
+zone_pivot_groups: selection-file-search-upload-new
 ---
 
 # File search tool for agents
@@ -37,7 +38,7 @@ File search augments agents with knowledge from outside its model, such as propr
 ## Code example
 
 
-<!--:::zone pivot="python"-->
+:::zone pivot="python"
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -82,7 +83,7 @@ with project_client:
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
             model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can search through product information.",
+            instructions="You are a helpful agent that can search through product information.",
             tools=[FileSearchTool(vector_store_ids=[vector_store.id])],
         ),
         description="File search agent for product information queries.",
@@ -124,9 +125,6 @@ The maximum file size is 512 MB. Each file should contain no more than 5,000,000
 
 openai_client.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
-
 ```
 
 ## Managing costs with expiration policies
@@ -145,7 +143,7 @@ vector_store = openai_client.vector_stores.create_and_poll(
   }
 )
 ```
-<!--
+
 ::: zone-end
 
 :::zone pivot="rest"

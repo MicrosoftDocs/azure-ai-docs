@@ -1,7 +1,7 @@
 ---
 title: 'How to use the computer use tool for the Microsoft Foundry agents'
 titleSuffix: Azure AI Foundry
-description: Learn how to useMicrosoft AI Foundry Agent Service Computer Use Tool
+description: Learn how to use the computer use tool for agents
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -18,13 +18,13 @@ ms.custom: references_regions
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 
 > [!WARNING]
-> The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> The computer use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-Use this article to learn how to work with the Computer Use Tool in Azure AI Foundry Agent Service. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With Computer Use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
+Use this article to learn how to work with the computer use tool in Azure AI Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
 
 ## Features 
 
-* Autonomous navigation: For example, Computer Use can open applications, click buttons, fill out forms, and navigate multi-page workflows. 
+* Autonomous navigation: For example, computer use can open applications, click buttons, fill out forms, and navigate multi-page workflows. 
 
 * Dynamic adaptation: Interpreting UI changes and adjusting actions accordingly. 
 
@@ -46,9 +46,13 @@ To request access, see the [application form](https://aka.ms/oai/cuaaccess).
 Once access has been granted, you will need to create a deployment for the model. 
 
 
-Before you start, make sure you have run `pip install "azure-ai-projects>=2.0.0" azure-identity python-dotenv`
+## Code Samples
+> [!WARNING] 
+> We strongly recommend using the computer use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-### Start with a screenshot to represent the Computer Use tool execution
+To run this code you will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
+### Start with a screenshot to represent the computer use tool execution
 ```python
 import os
 from dotenv import load_dotenv
@@ -191,11 +195,11 @@ while True:
 print("Agent deleted")
 ```
 
-## Differences between Browser Automation and Computer Use
+## Differences between browser automation and computer use
 
-The following table lists some of the differences between the Computer Use Tool and [Browser Automation](../../../../agents/how-to/tools/browser-automation.md) Tool.
+The following table lists some of the differences between the computer use tool and [browser automation](../../../../agents/how-to/tools/browser-automation.md) tool.
 
-| Feature                        | Browser Automation          | Computer Use Tool          |
+| Feature                        | Browser Automation          | computer use tool          |
 |--------------------------------|-----------------------------|----------------------------|
 | Model support                  | All GPT models              | `Computer-use-preview` model only |
 | Can I visualize what's happening?     | No                          | Yes                        |
@@ -207,16 +211,16 @@ The following table lists some of the differences between the Computer Use Tool 
 
 ## Regional support 
 
-In order to use the Computer Use Tool, you need to have a [Computer Use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The Computer Use model is available in the following regions: 
+In order to use the computer use tool, you need to have a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions: 
 * `eastus2` 
 * `swedencentral` 
 * `southindia` 
 
-## Understanding the Computer Use integration 
+## Understanding the computer use integration 
 
-When working with the Computer Use tool, you typically would perform the following to integrate it into your application. 
+When working with the computer use tool, you typically would perform the following to integrate it into your application. 
 
-1. Send a request to the model that includes a call to the Computer Use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
+1. Send a request to the model that includes a call to the computer use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
 
 1. Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be screenshot so the model can assess the current state with an updated screenshot, or click with X/Y coordinates indicating where the mouse should be moved. 
 
@@ -238,9 +242,9 @@ If you don't use this parameter, you should make sure to include all the items r
 ## Safety checks 
 
 > [!WARNING] 
-> Computer Use carries substantial security and privacy risks and user responsibility. Computer Use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
+> Computer use carries substantial security and privacy risks and user responsibility. Computer use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
 > 
-> We strongly recommend using the Computer Use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> We strongly recommend using the computer use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
 The API has safety checks to help protect against prompt injection and model mistakes. These checks include: 
 
@@ -315,7 +319,3 @@ In all cases where `pending_safety_checks` are returned, actions should be hande
 `malicious_instructions` and `irrelevant_domain`: end users should review model actions and confirm that the model is behaving as intended. 
 
 `sensitive_domain`: ensure an end user is actively monitoring the model actions on these sites. Exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there is active end user engagement with the application. 
-
-## Code Samples
-> [!WARNING] 
-> We strongly recommend using the Computer Use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
