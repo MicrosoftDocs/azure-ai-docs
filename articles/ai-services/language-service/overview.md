@@ -1,22 +1,52 @@
 ---
 title: What is Azure AI Language
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
 # What is Azure AI Language?
 
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server-), which is available both as a remote server in the **Azure AI Foundry Tool Catalog** and as a local server for self-hosted environments.
+
+## Available tools
+
+Azure Language provides specialized tools that enable seamless integration between AI agents and language processing services through standardized protocols.
+
+### Azure Language MCP server 🆕
+
+The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
+
+Azure Language provides both remote and local MCP server options:
+* **Remote server**: Available through Azure AI Foundry Tool Catalog for cloud-hosted deployments.
+* **Local server**: Available for developers who prefer to host the server in their own environment.
+
+For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-).
+
+## Available agents
+
+Azure Language offers prebuilt agents that handle specific conversational AI scenarios with built-in governance, routing logic, and quality control mechanisms.
+
+### Azure Language Intent Routing agent 🆕
+
+The Intent Routing agent intelligently manages conversation flows by understanding user intentions and delivering accurate responses in conversational AI applications. This agent uses predictable decision-making processes combined with controlled response generation to ensure consistent, reliable interactions that organizations can trust and monitor. 
+
+For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-).
+
+### Azure Language Exact Question Answering agent 🆕
+
+The Exact Question Answering agent provides reliable, word-for-word responses to your most important business questions. This agent automates frequently asked questions while maintaining human oversight and quality control to ensure accuracy and compliance.
+
+For more information, *see* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-).
 
 ## Available features
 
-This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
+This Language service unifies the following previously available Azure AI Foundry Tools: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
 
 The Language service also provides several new features as well, which can either be:
 
@@ -42,12 +72,16 @@ The Language service also provides several new features as well, which can eithe
 
 ### Personal and health data information detection
 
+> [!IMPORTANT]
+> The Azure AI Language Text Personally Identifiable Information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
 :::row:::
    :::column span="":::
       :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Azure AI Foundry." lightbox="media/overview/conversation-pii.png":::
       :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
+
       [Personally Identifiable Information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
    :::column-end:::
@@ -106,7 +140,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 ### Entity linking
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
+> Entity Linking is retiring from Azure Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
 
 
 :::row:::
@@ -212,7 +246,7 @@ This section helps you decide which Language service feature you should use for 
 
 ## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
 
-Azure AI Language unifies three individual language services in Azure AI services - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure AI Language. For instructions see [Migrating to Azure AI Language](concepts/migrate.md).
+Azure Language unifies three individual language services in Azure AI Foundry Tools - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure Language. For instructions see [Migrating to Azure Language](concepts/migrate.md).
 
 ## Tutorials
 
