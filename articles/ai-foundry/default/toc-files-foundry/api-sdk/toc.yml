@@ -1,5 +1,5 @@
 items:
-  - name: Client libraries
+  - name: Microsoft Foundry SDKs
     href: ../../../how-to/develop/sdk-overview.md
   - name: Endpoints for Foundry Models
     href: ../../../foundry-models/concepts/endpoints.md

@@ -1,7 +1,7 @@
 ---
-title: How to get started with Microsoft Foundry SDK and Endpoints
+title: Get started with Microsoft Foundry SDKs and Endpoints
 titleSuffix: Microsoft Foundry
-description: This article provides an overview of the Microsoft Foundry SDK and endpoints and how to get started using it.
+description: This article provides an overview of the Microsoft Foundry SDKs and endpoints and how to get started using them.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
