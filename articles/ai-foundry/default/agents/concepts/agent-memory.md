@@ -499,7 +499,7 @@ To ensure an agent's memory is efficient, relevant, and privacy-respecting, you 
 
 For a planning agent, this parameter might include setting `user_profile_details` to prioritize "flight carrier preference and dietary restrictions". This focused approach ensures that when new information is encountered during an interaction, the memory system knows which details to extract, summarize, and commit to long-term memory.
 
-You can also leverage the same parameter to inform the memory not to focus on certain type of data, ensuring the memory remains lean and compliant with privacy requirement. Refer to best practices section for more.
+You can also leverage the same parameter to inform the memory not to focus on certain type of data, ensuring the memory remains lean and compliant with privacy requirement. For example, you can set `user_profile_details` to "avoid irrelevant or sensitive data (age, financials, precise location, credentials etc.)"
 
 ## Pricing 
 
