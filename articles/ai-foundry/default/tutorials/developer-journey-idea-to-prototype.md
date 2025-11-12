@@ -13,9 +13,6 @@ ai.usage: ai-assisted
 
 # Tutorial: Idea to prototype - Build and evaluate an enterprise agent
 
-[!INCLUDE [code-preview](../includes/code-preview.md)] 
-
-[!INCLUDE [agent-v2](../includes/agent-v2.md)]
 
 This tutorial covers the first stage of the Microsoft Foundry developer journey: from an initial idea to a working prototype. You will build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Microsoft Foundry SDK.
 
@@ -37,6 +34,11 @@ This tutorial covers the first stage of the Microsoft Foundry developer journey:
 > - Prepare foundation for governance and production deployment.
 
 This minimal sample demonstrates enterprise-ready patterns with realistic business scenarios.
+
+
+[!INCLUDE [code-preview](../includes/code-preview.md)] 
+
+[!INCLUDE [agent-v2](../includes/agent-v2.md)]
 
 ## Prerequisites 
 
