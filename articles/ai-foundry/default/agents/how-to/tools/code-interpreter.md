@@ -11,6 +11,7 @@ ms.date: 10/14/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+ms.custom: references_regions
 ---
 # Code Interpreter tool for the Agents v2 API
 
@@ -27,6 +28,9 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
+> [!NOTE]
+> The code interpreter tool is not available in [some regions](#regional-restrictions).
 
 ## Code samples
 
@@ -115,6 +119,17 @@ with project_client:
     #project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     #print("Agent deleted")
 ```
+
+## Regional restrictions
+
+The code interpreter tool for the agents v2 API is not available in the following regions:
+
+* Canada central
+* Central US
+* Japan east
+* South central US
+* Southeast Asia
+* Spain central
 
 ### Supported file types
 
