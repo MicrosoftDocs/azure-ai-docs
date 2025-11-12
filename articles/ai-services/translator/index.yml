@@ -52,7 +52,7 @@ landingContent:
           - text: Text translation quickstart
             url: text-translation/quickstart/rest-api.md
           - text: Document translation quickstart
-            url: document-translation/quickstart/rest-api.md
+            url: document-translation/quickstarts/rest-api.md
           - text: Custom Translator quickstart
             url: custom-translator/quickstart.md
   # Card 3
