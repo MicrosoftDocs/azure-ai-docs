@@ -100,7 +100,7 @@ Once you have a project, several Foundry Tools are already deployed and ready to
 
 You don't deploy Foundry Tools from the **Models + endpoints** page. Foundry Tools models are already deployed and ready to use.
 
-However, you can deploy [fine-tuned Azure AI Foundry tools](#fine-tune-azure-ai-foundry-tools). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
+However, you can deploy [fine-tuned Azure AI Foundry tools](#fine-tune-foundry-tools). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
 
 ## Related content
 
