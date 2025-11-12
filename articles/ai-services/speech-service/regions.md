@@ -255,8 +255,6 @@ Verify and check actions taken: Computer Use might make mistakes and perform uni
 # [Speech MCP server](#tab/mcp)
 
 
-# [Speech to text](#tab/stt)
-
 | **Region** | **Speech MCP server agent tool** | 
 |-----|-----|
 | australiaeast | ✅ |
