@@ -1,7 +1,7 @@
 ---
-title: 'How to use Microsoft SharePoint content with the agent v2 API'
+title: 'How to use Microsoft SharePoint content with the new agent API'
 titleSuffix: Azure OpenAI
-description: Learn how to ground Azure AI Agents using Microsoft SharePoint content using the agent v2 API.
+description: Learn how to ground Azure AI Agents using Microsoft SharePoint content using the new agent API.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -12,7 +12,7 @@ author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
-# Use the Microsoft SharePoint tool with the agents v2 API (preview)
+# Use the Microsoft SharePoint tool with the new agent API (preview)
 
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 

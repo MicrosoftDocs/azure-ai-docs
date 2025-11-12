@@ -1,5 +1,5 @@
 ---
-title: 'Grounding with Bing Search overview for the Agents v2 API'
+title: 'Grounding with Bing Search overview for the new agents API'
 titleSuffix: Microsoft Foundry
 description: Learn about the options available to let agents search the web using standard and custom Bing Search grounding tools.
 services: cognitive-services
@@ -13,7 +13,7 @@ ms.author: aahi
 ai-usage: ai-assisted
 ---
 
-# Grounding with Bing Search tools in the Agents v2 API
+# Grounding with Bing Search tools in the new agent API
 
 Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search and Grounding with Bing Custom Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
 
