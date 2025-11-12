@@ -10,14 +10,13 @@ ms.topic: how-to
 ms.date: 10/14/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents
-ms.custom: references_regions
+ms.custom: azure-ai-agents, references_regions
 ---
 # Code Interpreter tool for agents
 
-Use this article to learn how to use the Code Interpreter tool for agents.
-
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
+
+Use this article to learn how to use the Code Interpreter tool for agents.
 
 Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 

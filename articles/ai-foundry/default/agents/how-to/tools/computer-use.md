@@ -15,14 +15,12 @@ ms.custom: references_regions
 
 # Computer use tool for agents (Preview)
 
+[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
+
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
-> [!NOTE]
-> Computer Use tool is only available via SDK and API. 
 
 Use this article to learn how to work with the Computer Use Tool in Azure AI Foundry Agent Service. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With Computer Use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
-
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 
 ## Features 
 

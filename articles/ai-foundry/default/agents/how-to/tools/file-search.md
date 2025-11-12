@@ -15,9 +15,9 @@ ms.custom: azure-ai-agents, references_regions
 
 # File search tool for agents
 
-File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
-
 [!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
+
+File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
 > [!NOTE]
 > Using the standard agent setup, the improved file search tool ensures your files remain in your own storage, and your Azure AI Search resource is used to ingest them, ensuring you maintain complete control over your data.   
@@ -38,8 +38,7 @@ File search augments agents with knowledge from outside its model, such as propr
 
 
 <!--:::zone pivot="python"-->
-## Set up
-Set up with your Foundry project. Before running the sample, make sure you have `pip install "azure-ai-projects>=2.0.0" azure-identity load_dotenv` 
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient

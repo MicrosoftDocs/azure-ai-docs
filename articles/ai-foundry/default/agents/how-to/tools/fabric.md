@@ -11,7 +11,6 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
-zone_pivot_groups: selection-fabric-data-agent
 ---
 
 # Use the Microsoft Fabric data agent (preview)
