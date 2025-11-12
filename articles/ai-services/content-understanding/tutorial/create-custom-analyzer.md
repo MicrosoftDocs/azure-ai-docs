@@ -10,6 +10,7 @@ ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
+ai-usage: ai-assisted
 ---
 
 # Create a custom analyzer via REST APIs
@@ -17,6 +18,13 @@ ms.custom:
 Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
 
 In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
+
+## Prerequisite
+To get started, make sure you have the following resources and permissions:
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
+* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Azure AI Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 
 ## Define an analyzer schema
 
@@ -159,7 +167,7 @@ Create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample customer support call analyzer",
-  "baseAnalyzerId": "prebuilt-callCenter",
+  "baseAnalyzerId": "prebuilt-audio",
   "config": {
     "locales": ["en-US", "fr-FR"],
     "returnDetails": true,
@@ -319,39 +327,100 @@ You can now use the custom analyzer you created to process files and extract the
 
 Before running the cURL command, make the following changes to the HTTP request:
 
-# [Document](#tab/document)
-
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer you created with the `categorize.json` file.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png`.
-
-# [Image](#tab/image)
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
-
-# [Audio](#tab/audio)
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
-
-# [Video](#tab/video)
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
+1. Replace `{CompletionDeploymentName}` with the name of your GPT-4.1 completion model deployment.
+1. Replace `{embeddingDeploymentName}` with the name of your text-embedding-3-large embedding model deployment.
 
 ---
 
 #### POST Request
+
+# [Document](#tab/document)
+
+This example uses the custom analyzer you created with the `categorize.json` file to analyze a receipt.
+
 ```bash
 curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png"
+          }          
+        ],
+        "modelDeployments": {
+          "gpt-4.1": "{CompletionDeploymentName}",
+          "text-embedding-3-large": "{embeddingDeploymentName}"
+        }
+      }'  
 ```
+
+# [Image](#tab/image)
+
+This example uses the custom analyzer you created to analyze a chart or graph image.
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg"
+          }          
+        ],
+        "modelDeployments": {
+          "gpt-4.1": "{CompletionDeploymentName}",
+          "text-embedding-3-large": "{embeddingDeploymentName}"
+        }
+      }'  
+```
+
+# [Audio](#tab/audio)
+
+This example uses the custom analyzer you created to analyze a customer support call recording.
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav"
+          }          
+        ],
+        "modelDeployments": {
+          "gpt-4.1": "{CompletionDeploymentName}",
+          "text-embedding-3-large": "{embeddingDeploymentName}"
+        }
+      }'  
+```
+
+# [Video](#tab/video)
+
+This example uses the custom analyzer you created to analyze a product demo video.
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4"
+          }          
+        ],
+        "modelDeployments": {
+          "gpt-4.1": "{CompletionDeploymentName}",
+          "text-embedding-3-large": "{embeddingDeploymentName}"
+        }
+      }'  
+```
+
+---
 
 #### POST Response
 
