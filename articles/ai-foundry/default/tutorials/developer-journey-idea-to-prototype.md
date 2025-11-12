@@ -38,7 +38,6 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 [!INCLUDE [code-preview](../includes/code-preview.md)] 
 
-[!INCLUDE [agent-v2](../includes/agent-v2.md)]
 
 ## Prerequisites 
 
@@ -74,6 +73,8 @@ If unsure, in the portal open your project, select **Deployments**, choose the d
 Instead of navigating a large repository tree, use one of these approaches:
 
 #### Option A (clone entire samples repo)
+
+[!INCLUDE [agent-v2](../includes/agent-v2.md)]
 
 ```bash
 git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
