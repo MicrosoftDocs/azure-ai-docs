@@ -38,7 +38,7 @@ Use asynchronous document processing to translate multiple documents and large f
   |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
   |[**Translate text embedded within images in documents** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.|
   |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-custom-translator) models.|
+  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
   |**Apply custom glossaries**|Translate documents using custom glossaries.|
   |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
   |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
@@ -104,7 +104,7 @@ Document translation supports the following glossary file types:
 | ---------| -------------|
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-custom-translator) models.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
 |**Single language translation**|Translate to and from one [supported language](../language-support.md).|
 |**Automatically detect document language**|Let the Document translation service determine the language of the document.|

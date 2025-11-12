@@ -37,7 +37,7 @@ In this tutorial:
 
 ## Prerequisites
 
-Here's what you need to get started: [**Translator resource**](#translator-resource), [**Azure storage account**](#azure-storage) with at least two containers, and a [**system-assigned managed identity**](#managed-identity-with-rbac) with role-based access.
+Here's what you need to get started: [**Translator resource**](#azure-translator-in-foundry-tools-resource), [**Azure storage account**](#azure-storage) with at least two containers, and a [**system-assigned managed identity**](#managed-identity-with-rbac) with role-based access.
 
 ### Azure Translator in Foundry Tools resource
 
