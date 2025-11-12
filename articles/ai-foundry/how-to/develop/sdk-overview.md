@@ -248,35 +248,35 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
     ```
 The following code snippet demonstrates how to create the OpenAI client directly using the Azure OpenAI v1 endpoint.
 
-    ```csharp
-    using Azure.Identity;
-    using Azure.Core;
-    using Azure.Core.Pipeline;   
-    using OpenAI;
-    using System;
-    using System.ClientModel.Primitives;
+```csharp
+using Azure.Identity;
+using Azure.Core;
+using Azure.Core.Pipeline;   
+using OpenAI;
+using System;
+using System.ClientModel.Primitives;
 
-    endpointUrl = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/"
+endpointUrl = "https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/"
 
-    DefaultAzureCredential credential = new();
-    BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
-    
-    OpenAIClientOptions clientOptions = new()
-    {
-        Endpoint = new Uri(endpointUrl)
-    };
+DefaultAzureCredential credential = new();
+BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
 
-    // The PerRetry position ensures the authentication policy is applied to every retry attempt.
-    // This is important for robust authentication in distributed/cloud environments.
-    clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
-    
-    var projectClient = new ResponseClient(
-        endpointUrl, 
-        credential,
-        clientOptions
-    );
-    // The ResponseClient lets you interact with models and services in your project.
-    ```
+OpenAIClientOptions clientOptions = new()
+{
+    Endpoint = new Uri(endpointUrl)
+};
+
+// The PerRetry position ensures the authentication policy is applied to every retry attempt.
+// This is important for robust authentication in distributed/cloud environments.
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
+var projectClient = new ResponseClient(
+    endpointUrl, 
+    credential,
+    clientOptions
+);
+// The ResponseClient lets you interact with models and services in your project.
+```
 
 ::: moniker range="foundry-classic"
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet&preserve-view=true).
