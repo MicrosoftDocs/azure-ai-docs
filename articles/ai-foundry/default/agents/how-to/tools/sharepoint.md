@@ -118,12 +118,6 @@ with project_client:
 > * The SharePoint tool only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
 > * Your SharePoint site and Microsoft Foundry agent need to be in the same tenant.
 
-1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
-
-1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
-
-   :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
-
 1. Select **SharePoint** and follow the prompts to add the tool. You can only add one per agent.
 
 1. Click to add a new connection. Once you have added a connection, you can directly select from existing list.
@@ -136,7 +130,6 @@ with project_client:
 
 ## Next steps
 
-* [How to use the SharePoint tool](./sharepoint-samples.md)
 * Reference articles for content retrieval used by the tool:
     * [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
     * [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot)

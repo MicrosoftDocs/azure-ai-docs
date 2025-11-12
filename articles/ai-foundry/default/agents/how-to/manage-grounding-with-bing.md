@@ -16,7 +16,7 @@ As an admin, you can disable Grounding With Bing in Microsoft Foundry and Azure 
 
 ## Foundry Agent Service
 
-See [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](../concepts/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
+See [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](../how-to/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
 
 ## Web search tool
 

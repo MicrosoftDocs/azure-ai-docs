@@ -21,7 +21,7 @@ Web search enables models to retrieve and ground responses with real-time inform
 > * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When using Grounding with Bing Search and/or Grounding with Bing Custom Search, data will be transferred outside compliance and geographic boundaries.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
-> * See the [Bing Search tool documentation](../../concepts/bing-tools.md#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
+> * See the [management section](#admin-control-for-web-search-tool) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
 
 :::zone pivot="python"
 > [!NOTE]
@@ -77,7 +77,7 @@ curl --request POST \
     "model": "{{model}}",
     "tools": [
       {
-        "type": "web_search"
+        "type": "web_search_preview"
       }
     ],
     "instructions": "You are a helpful assistant that can search the web for current information. When users ask questions that require up-to-date information, use the web search tool to find relevant results."
