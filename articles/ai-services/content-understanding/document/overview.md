@@ -57,6 +57,7 @@ Content extraction forms the foundation of Content Understanding document analys
   - **Image elements**: Locates and extracts images, figures, diagrams, and charts along with their related captions and annotations.
   - **Hyperlink elements**: Detects hyperlinks embedded within the document.
   - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, highlight.
+  - **Figure elements**: Detects and extracts figure elements into structured output.
 - Structure analysis
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
   - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multipage layouts.
