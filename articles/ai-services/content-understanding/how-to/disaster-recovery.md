@@ -95,4 +95,4 @@ Operation-Location: {targetEndpoint}/contentunderstanding/analyzers/{targetAnaly
 
 In this guide, you learned how to use the Copy API to back up your custom models to a secondary Content Understanding resource. Next, explore the API reference docs to see what else you can do with Content Understanding.
 
-* [REST API reference documentation](../reference/rest-api-resources.md)
+* [REST API reference documentation](/rest/api/contentunderstanding/operation-groups)
