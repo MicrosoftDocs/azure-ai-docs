@@ -31,8 +31,11 @@ With a Custom code interpreter for your agent, you can customize the resources, 
 ```console
 az feature register --namespace Microsoft.App --name SessionPoolsSupportMCP
 az provider register -n Microsoft.App
+```
+
 ### Create a dynamic session pool with a code interpreter image
 
+In the Azure [Custom deployment tool](https://ms.portal.azure.com/?l=en.en-us#create/Microsoft.Template), click "Build your own template in the editor", and paste the ARM template into the editor. Save, and then fill out the parameters appropriately.
 ```ARM
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
