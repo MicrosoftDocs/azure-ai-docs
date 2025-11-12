@@ -1,7 +1,7 @@
 ---
-title: Use environment variables with Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
-description: This guide shows you how to set and retrieve environment variables for your Azure AI Foundry Tools credentials when you test applications.
+title: Use environment variables with Foundry Tools
+titleSuffix: Foundry Tools
+description: This guide shows you how to set and retrieve environment variables for your Foundry Tools credentials when you test applications.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
@@ -10,9 +10,9 @@ ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Use environment variables with Azure AI Foundry Tools
+# Use environment variables with Foundry Tools
 
-This guide shows you how to set and retrieve environment variables for your Azure AI Foundry Tools credentials when you test applications.
+This guide shows you how to set and retrieve environment variables for your Foundry Tools credentials when you test applications.
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
@@ -186,4 +186,4 @@ NSString* value =
 
 ## Next steps
 
-* Explore [Azure AI services](./what-are-ai-services.md) and choose a service to get started.
+* Explore [Foundry Tools](./what-are-ai-services.md) and choose a service to get started.

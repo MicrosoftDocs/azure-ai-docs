@@ -1,7 +1,7 @@
 ---
 title: Enable diagnostic logging
-titleSuffix: Azure AI Foundry Tools
-description: This guide provides step-by-step instructions to enable diagnostic logging for an Azure AI Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
+titleSuffix: Foundry Tools
+description: This guide provides step-by-step instructions to enable diagnostic logging for an Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
@@ -10,9 +10,9 @@ ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Enable diagnostic logging for Azure AI Foundry Tools
+# Enable diagnostic logging for Foundry Tools
 
-This guide provides step-by-step instructions to enable diagnostic logging for an Azure AI Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging. Before you continue, you must have an Azure account with a subscription to at least one Azure AI Foundry Tools, such as [Azure Speech](./speech-service/overview.md).
+This guide provides step-by-step instructions to enable diagnostic logging for an Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging. Before you continue, you must have an Azure account with a subscription to at least one Foundry Tools, such as [Azure Speech](./speech-service/overview.md).
 
 ## Prerequisites
 
@@ -65,7 +65,7 @@ Follow these instructions to explore log analytics data for your resource.
 
 Here are a few basic Kusto queries you can use to explore your log data.
 
-Run this query for all diagnostic logs from Azure AI services for a specified time period:
+Run this query for all diagnostic logs from Foundry Tools for a specified time period:
 
 ```kusto
 AzureDiagnostics
