@@ -58,7 +58,7 @@ Azure AI Search needs access to the LLM. We recommend Microsoft Entra ID for aut
 
 ### [**Use roles**](#tab/rbac)
 
-1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
+1. [Configure Azure AI Search to use a managed identity](../../search-how-to-managed-identities.md).
 
 1. On your model provider, such as Foundry Models, ensure you have **Owner** or **User Access Administrator** permissions. This is required to assign roles.
 
