@@ -41,7 +41,7 @@ You can start a chat with Ask AI from any page in the Foundry portal.
 
 ## Get recommendations on model replacement or upgrade
 
-Ask Ask AI questions like:
+Ask AI questions like:
 
 - "Is any model I’m using deprecated?"
 - "Should I upgrade my model?"
@@ -59,9 +59,9 @@ After deploying a new model, ask Ask AI to start an evaluation of the model usin
 
 :::image type="content" source="../../media/observability/model-upgrade-evaluations.png" alt-text="Screenshot of submit a new evaluation page with Ask AI showing a workflow and a creation wizard option." lightbox="../../media/observability/model-upgrade-evaluations.png":::
 
-After the evaluation is complete, view the result on the evaluation group detail page to check if the new model performs better than the current model. Use [compare](../../../how-to/evaluate-results.md?view=foundry&preserve-view=true#compare-the-evaluation-results) or [cluster analysis](cluster-analysis.md) to gain deeper insights into the evaluation result.
+After the evaluation is complete, view the result on the evaluation detail page to check if the new model performs better than the current model. Use [compare](../../../how-to/evaluate-results.md?view=foundry&preserve-view=true#compare-the-evaluation-results) or [cluster analysis](cluster-analysis.md) to gain deeper insights into the evaluation result.
 
-If the new model isn't satisfactory, test other models and repeat the steps to create new evaluation runs. The new run is added to the evaluation group when you create the first evaluation.
+If the new model isn't satisfactory, test other models and repeat the steps to create new evaluation runs. The new run is added to the evaluation when you create the first evaluation.
 
 ## Update your agent with the new model
 
