@@ -19,6 +19,8 @@ items:
   href: ../../../agents/how-to/tools/azure-ai-speech.md
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
+- name: Browser automation (preview)
+  href: ../../../agents/how-to/tools/browser-automation.md
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
 - name: Custom code interpreter (preview)
@@ -45,6 +47,8 @@ items:
   href: ../../mcp/build-your-own-mcp-server.md
 - name: Knowledge (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
+- name: OpenAPI defined tools
+  href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint (preview)
   href: ../../agents/how-to/tools/sharepoint.md 
 - name: Web search (preview)
