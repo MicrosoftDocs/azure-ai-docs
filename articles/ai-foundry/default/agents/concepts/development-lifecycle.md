@@ -1,6 +1,6 @@
 ---
 title: 'Understanding the agent development lifecycle'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Understanding the agent development lifecycle
 services: cognitive-services
 manager: nitinme
@@ -14,7 +14,7 @@ ms.author: aahi
 
 # Understanding the agent development lifecycle
 
-The agent building experience in Azure AI Foundry brings many development and observability features, from agent creation to embedding your agent into your applications. You can use the Azure AI Foundry portal, or code, to build, customize, and test your agent's behavior, and then iterate with capabilities like tracing, evaluation, and monitoring to improve your agent's performance. When you're ready, you can publish your agent to preview, share, and see your agent in action within your applications.
+The agent building experience in Microsoft Foundry brings many development and observability features, from agent creation to embedding your agent into your applications. You can use the Microsoft Foundry portal, or code, to build, customize, and test your agent's behavior, and then iterate with capabilities like tracing, evaluation, and monitoring to improve your agent's performance. When you're ready, you can publish your agent to preview, share, and see your agent in action within your applications.
 
 ## Types of agents
 
@@ -22,9 +22,9 @@ The agent building experience in Azure AI Foundry brings many development and ob
 * Workflows
 <!--* Hosted-->
 
-You can create prompt-based agents and workflows in the Azure AI Foundry portal or your own development environment using the CLI, SDK, or REST API. See the [quickstart](../../../quickstarts/get-started-code.md) for more information.
+You can create prompt-based agents and workflows in the Microsoft Foundry portal or your own development environment using the CLI, SDK, or REST API. See the [quickstart](../../../quickstarts/get-started-code.md) for more information.
 
-A **prompt-based agent** is a declaratively defined single agent that combines model configuration, instruction, tools, and natural language prompts to drive behavior. You can also make your agent even more powerful by attaching knowledge and memory capabilities. Prompt-based agents can be edited, versioned, tested, evaluated, monitored and published from the [agent playground](../../../concepts/concept-playgrounds.md) in the Azure AI Foundry portal.
+A **prompt-based agent** is a declaratively defined single agent that combines model configuration, instruction, tools, and natural language prompts to drive behavior. You can also make your agent even more powerful by attaching knowledge and memory capabilities. Prompt-based agents can be edited, versioned, tested, evaluated, monitored and published from the [agent playground](../../../concepts/concept-playgrounds.md) in the Microsoft Foundry portal.
 
 If you want to develop a more advanced agentic workflow that consists of a sequence of actions, or orchestrate multiple agents together, you can do so with **Workflows**. **Workflows** have their own development interface in the portal, but the same lifecycle applies. See the [workflow article](../../agents/concepts/workflow.md) for details.
 
