@@ -1,6 +1,6 @@
 ---
 title: Recover or purge deleted Microsoft Foundry resources
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: This article provides instructions on how to recover or purge an already-deleted Microsoft Foundry resource.
 author: PatrickFarley
 manager: nitinme
@@ -18,7 +18,7 @@ This article provides instructions on how to recover or purge a Foundry resource
 Once you delete a resource, you can't create another one with the same name for 48 hours. To create a resource with the same name, you need to purge the deleted resource.
 
 > [!NOTE]
-> * The instructions in this article are applicable to both a multi-service resource and a single-service resource. A multi-service resource enables access to multiple Microsoft Foundry Tools using a single key and endpoint. On the other hand, a single-service resource enables access to just that specific Foundry Tools for which the resource was created.
+> * The instructions in this article are applicable to both a multi-service resource and a single-service resource. A multi-service resource enables access to multiple Foundry Tools using a single key and endpoint. On the other hand, a single-service resource enables access to just that specific Foundry Tools for which the resource was created.
 >
 > * Charges for provisioned deployments on a deleted resource continue until the resource is purged. To prevent unnecessary charges, delete a resource's deployment before deleting the resource.
 

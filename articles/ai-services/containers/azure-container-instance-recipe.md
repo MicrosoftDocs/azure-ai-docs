@@ -1,6 +1,6 @@
 ---
 title: Azure Container Instance recipe
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to deploy Azure AI containers on Azure Container Instance
 author: aahill
 manager: nitinme
@@ -9,12 +9,12 @@ ms.service: azure-ai-services
 ms.topic: how-to
 ms.date: 10/02/2025
 ms.author: aahi
-#Customer intent: As a potential customer, I want to know more about how Microsoft Foundry Tools provides and supports Docker containers for each service.
+#Customer intent: As a potential customer, I want to know more about how Foundry Tools provides and supports Docker containers for each service.
 ---
 
 # Deploy and run containers on Azure Container Instance
 
-With the following steps, scale Microsoft Foundry Tools applications in the cloud easily with Azure [Container Instances](/azure/container-instances/). Containerization helps you focus on building your applications instead of managing the infrastructure. For more information on using containers, see [features and benefits](../cognitive-services-container-support.md#features-and-benefits).
+With the following steps, scale Foundry Tools applications in the cloud easily with Azure [Container Instances](/azure/container-instances/). Containerization helps you focus on building your applications instead of managing the infrastructure. For more information on using containers, see [features and benefits](../cognitive-services-container-support.md#features-and-benefits).
 
 ## Prerequisites
 

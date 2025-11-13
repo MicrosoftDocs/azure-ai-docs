@@ -1,6 +1,6 @@
 ---
 title: Use the Azure portal to configure customer-managed keys
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to use the Azure portal to configure customer-managed keys with Azure Key Vault. Customer-managed keys enable you to create, rotate, disable, and revoke access controls.
 author: erindormier
 
@@ -12,7 +12,7 @@ ms.author: egeaney
 
 ## Customer-managed keys with Azure Key Vault
 
-When you use customer-managed keys, you must use Azure Key Vault to store them. You can either create your own keys and store them in a key vault, or you can use the Key Vault APIs to generate keys. The Microsoft Foundry Tools resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+When you use customer-managed keys, you must use Azure Key Vault to store them. You can either create your own keys and store them in a key vault, or you can use the Key Vault APIs to generate keys. The Foundry Tools resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
 When you create a new Foundry Tools resource, it's always encrypted by using Microsoft-managed keys. It's not possible to enable customer-managed keys when you create the resource. Customer-managed keys are stored in Key Vault. The key vault needs to be provisioned with access policies that grant key permissions to the managed identity that's associated with the Foundry Tools resource. The managed identity is available only after the resource is created by using the pricing tier that's required for customer-managed keys.
 

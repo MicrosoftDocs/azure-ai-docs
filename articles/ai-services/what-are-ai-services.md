@@ -1,10 +1,10 @@
 ---
-title: What are Microsoft Foundry Tools?
-titleSuffix: Microsoft Foundry Tools
-description: Microsoft Foundry Tools are cloud-based artificial intelligence (AI) services that help developers build cognitive intelligence into applications without having direct AI or data science skills or knowledge.
+title: What are Foundry Tools?
+titleSuffix: Foundry Tools
+description: Foundry Tools are cloud-based artificial intelligence (AI) services that help developers build cognitive intelligence into applications without having direct AI or data science skills or knowledge.
 author: nitinme
 manager: nitinme
-keywords: Microsoft Foundry Tools, cognitive
+keywords: Foundry Tools, cognitive
 ms.service: azure-ai-services
 ms.topic: overview
 ms.date: 10/02/2025
@@ -15,11 +15,11 @@ ms.custom:
   - ignite-2023
 ---
 
-# What are Microsoft Foundry Tools?
+# What are Foundry Tools?
 
 [!INCLUDE [About AI services](./includes/ai-services-intro.md)]
 
-## Available Microsoft Foundry Tools
+## Available Foundry Tools
 
 When building AI applications, use the following Foundry Tools:
 

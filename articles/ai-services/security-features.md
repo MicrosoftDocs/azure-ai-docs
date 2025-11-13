@@ -1,7 +1,7 @@
 ---
-title: Security for Microsoft Foundry Tools
-titleSuffix: Microsoft Foundry Tools
-description: Learn about the security considerations and features available for securely using Microsoft Foundry Tools, ensuring your applications are protected.
+title: Security for Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn about the security considerations and features available for securely using Foundry Tools, ensuring your applications are protected.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
@@ -11,9 +11,9 @@ ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
 
-# Security for Microsoft Foundry Tools
+# Security for Foundry Tools
 
-Security should be considered a top priority in the development of all applications, and with the growth of artificial-intelligence-enabled applications, security is even more important. This article outlines various security features available for Microsoft Foundry Tools. Each feature addresses a specific liability, so multiple features can be used in the same workflow.
+Security should be considered a top priority in the development of all applications, and with the growth of artificial-intelligence-enabled applications, security is even more important. This article outlines various security features available for Foundry Tools. Each feature addresses a specific liability, so multiple features can be used in the same workflow.
 
 For a comprehensive list of Azure service security recommendations, see the [Foundry Tools security baseline](/security/benchmark/azure/baselines/cognitive-services-security-baseline?toc=%2Fazure%2Fcognitive-services%2FTOC.json) article.
 

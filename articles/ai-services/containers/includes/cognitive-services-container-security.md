@@ -1,6 +1,6 @@
 ---
 title: Container security
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to secure your container
 author: aahill
 manager: nitinme
@@ -10,7 +10,7 @@ ms.date: 12/17/2020
 ms.author: aahi
 ---
 
-## Microsoft Foundry Tools container security
+## Foundry Tools container security
 
 Security should be a primary focus whenever you're developing applications. The importance of security is a metric for success. When you're architecting a software solution that includes Azure AI containers, it's vital to understand the limitations and capabilities available to you. For more information about network security, see [Configure Foundry Tools virtual networks][az-security].
 

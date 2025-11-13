@@ -15,7 +15,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## November 2025
 
-**Azure Language integrates with Microsoft Foundry Tools**. Azure Language now provides specialized tools and agents for building conversational AI applications in Foundry:
+**Azure Language integrates with Foundry Tools**. Azure Language now provides specialized tools and agents for building conversational AI applications in Foundry:
 * [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-). Connects AI agents to Azure Language services through the Model Context Protocol.
 * [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-). Manages conversation flows by combining intent classification with answer delivery.
 * [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-). Delivers consistent responses to frequently asked business questions.

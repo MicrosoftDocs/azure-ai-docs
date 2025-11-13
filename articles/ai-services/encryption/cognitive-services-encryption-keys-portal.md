@@ -1,7 +1,7 @@
 ---
-title: Customer-Managed Keys for Microsoft Foundry Tools
-titleSuffix: Microsoft Foundry Tools
-description: Learn about using customer-managed keys to improve data security with Microsoft Foundry Tools.
+title: Customer-Managed Keys for Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn about using customer-managed keys to improve data security with Foundry Tools.
 author: PatrickFarley
 ms.service: azure-ai-services
 ms.custom:
@@ -47,7 +47,7 @@ These Microsoft-managed resources are located in a new Azure resource group is c
 
 ## Enable customer-managed keys
 
-The process to enable customer-managed keys with Azure Key Vault for Microsoft Foundry Tools varies by product. Use these links for service-specific instructions:
+The process to enable customer-managed keys with Azure Key Vault for Foundry Tools varies by product. Use these links for service-specific instructions:
 
 * [Azure OpenAI](../../ai-foundry/openai/encrypt-data-at-rest.md)
 * [Azure Custom Vision ](../custom-vision-service/encrypt-data-at-rest.md)

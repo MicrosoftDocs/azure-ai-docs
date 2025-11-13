@@ -1,7 +1,7 @@
 ---
 title: Overview of Responsible use of AI
-titleSuffix: Microsoft Foundry Tools
-description: Learn how to responsibly use Microsoft Foundry Tools with guidelines and links to articles for different services within the Azure AI suite.
+titleSuffix: Foundry Tools
+description: Learn how to responsibly use Foundry Tools with guidelines and links to articles for different services within the Azure AI suite.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
@@ -10,9 +10,9 @@ ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Responsible use of AI with Microsoft Foundry Tools
+# Responsible use of AI with Foundry Tools
 
-Microsoft Foundry Tools provides information and guidelines on how to responsibly use artificial intelligence in applications. Below are the articles that provide this guidance for the specific services within the Foundry Tools suite. 
+Foundry Tools provides information and guidelines on how to responsibly use artificial intelligence in applications. Below are the articles that provide this guidance for the specific services within the Foundry Tools suite. 
 
 ## Generative AI
 - [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note)

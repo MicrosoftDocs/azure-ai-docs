@@ -1,7 +1,7 @@
 ---
-title: Microsoft Foundry Tools REST API reference
-titleSuffix: Microsoft Foundry Tools
-description: Provides an overview of available Microsoft Foundry Tools REST APIs with links to reference documentation.
+title: Foundry Tools REST API reference
+titleSuffix: Foundry Tools
+description: Provides an overview of available Foundry Tools REST APIs with links to reference documentation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-services
@@ -10,9 +10,9 @@ ms.date: 10/02/2025
 ms.author: lajanuar
 ---
 
-# Microsoft Foundry Tools REST API reference
+# Foundry Tools REST API reference
 
-This article lists the REST API reference documentation for Microsoft Foundry Tools.
+This article lists the REST API reference documentation for Foundry Tools.
 
 ## Available Foundry Tools
 

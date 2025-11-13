@@ -1,6 +1,6 @@
 ---
-title: Develop Microsoft Foundry Tools applications with Azure Key Vault
-description: Learn how to develop Microsoft Foundry Tools applications securely by using Azure Key Vault.
+title: Develop Foundry Tools applications with Azure Key Vault
+description: Learn how to develop Foundry Tools applications securely by using Azure Key Vault.
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-services
@@ -14,9 +14,9 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Develop Microsoft Foundry Tools applications with Azure Key Vault
+# Develop Foundry Tools applications with Azure Key Vault
 
-Learn how to develop Microsoft Foundry Tools applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
+Learn how to develop Foundry Tools applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
 
 Key Vault reduces the risk that secrets may be accidentally leaked, because you avoid storing security information in your application. 
 

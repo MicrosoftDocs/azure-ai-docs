@@ -1,6 +1,6 @@
 ---
 title: Use Docker Compose to deploy multiple containers
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to deploy multiple Azure AI containers. This article shows you how to orchestrate multiple Docker container images by using Docker Compose.
 author: aahill
 manager: nitinme
@@ -29,7 +29,7 @@ This procedure requires several tools that must be installed and run locally:
 * An Azure resource with the correct pricing tier. Only the following pricing tiers work with this container:
   * **Azure Vision in Foundry Tools** resource with F0 or Standard pricing tier only.
   * **Document Intelligence** resource with F0 or Standard pricing tier only.
-  * **Microsoft Foundry Tools** resource with the S0 pricing tier.
+  * **Foundry Tools** resource with the S0 pricing tier.
 * If you're using a gated preview container, You will need to complete the [online request form](https://aka.ms/csgate/) to use it.
 
 ## Docker Compose file

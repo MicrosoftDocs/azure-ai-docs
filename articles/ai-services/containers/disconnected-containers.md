@@ -1,7 +1,7 @@
 ---
 title: Use Docker containers in disconnected environments
-titleSuffix: Microsoft Foundry Tools
-description: Learn how to run Microsoft Foundry Tools Docker containers disconnected from the internet.
+titleSuffix: Foundry Tools
+description: Learn how to run Foundry Tools Docker containers disconnected from the internet.
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -14,7 +14,7 @@ ms.author: aahi
 
 # Use Docker containers in disconnected environments
 
-Containers enable you to run Microsoft Foundry Tools APIs in your own environment, and are great for your specific security and data governance requirements. Disconnected containers enable you to use several of these APIs disconnected from the internet. Currently, the following containers can be run in this manner:
+Containers enable you to run Foundry Tools APIs in your own environment, and are great for your specific security and data governance requirements. Disconnected containers enable you to use several of these APIs disconnected from the internet. Currently, the following containers can be run in this manner:
 
 * [Speech to text](../speech-service/speech-container-howto.md?tabs=stt)
 * [Custom Speech to text](../speech-service/speech-container-howto.md?tabs=cstt)
