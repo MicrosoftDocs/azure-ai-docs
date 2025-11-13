@@ -34,6 +34,8 @@ In this tutorial, you’ll learn how to run a frontend application with an app s
 
 
 > [!TIP]
+> [!IMPORTANT]
+> Tap the screen ten times until you see the "Settings" option to allow you to enter the API key and endpoint to start the liveenss session.
 > After you complete the prerequisites, you can try the iOS liveness experience from [iOS App Store](https://aka.ms/face/liveness/demo/ios), the Android liveness experience from the [Android Google Play Store](https://aka.ms/face/liveness/demo/android) and the Web liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
 
 ## Prepare the frontend application
