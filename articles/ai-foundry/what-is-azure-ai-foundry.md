@@ -232,7 +232,7 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 :::moniker-end
 
-:::moniker range="foundry-classic"
+:::moniker range="foundry"
 
 You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
 
