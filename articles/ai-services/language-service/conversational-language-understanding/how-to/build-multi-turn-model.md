@@ -57,7 +57,7 @@ To enable secure access, create a connection between your Language resource and 
 
 1. Navigate to [Foundry (classic)](https://ai.azure.com/).
 
-1. Access your existing Azure AI project for this tutorial.
+1. Access your existing Foundry project for this tutorial.
 
 1. Select **Management center** from the left navigation menu.
 

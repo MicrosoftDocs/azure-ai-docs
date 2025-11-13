@@ -98,7 +98,7 @@ You can access, view, and manage all of your project details via the REST API.
 
 ---
 
-## Import an existing Azure AI project
+## Import an existing Foundry project
 
 Importing the configuration file allows you to bring your existing settings directly into the platform, making it easier to set up and customize your service based on your predefined preferences.
 

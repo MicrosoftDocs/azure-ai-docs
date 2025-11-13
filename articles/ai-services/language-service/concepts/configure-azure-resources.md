@@ -117,7 +117,7 @@ Foundry offers a unified platform where you can easily build, manage, and deploy
 
    :::image type="content" source="../conversational-language-understanding/media/configure-resources/connect-language-resource.png" alt-text="Screenshot of connect search resource selector in the Foundry.":::
 
-## Import an existing Azure AI project
+## Import an existing Foundry project
 
 Foundry allows you to connect to your existing Foundry Tools resources. This means you can establish a connection within your Foundry project to the Azure Language resource where your custom models are stored.
 

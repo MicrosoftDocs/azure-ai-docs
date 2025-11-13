@@ -124,7 +124,7 @@ For complex evaluation that requires refined reasoning, use a strong reasoning m
 
 However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
-This example shows how to build and evaluate an Azure AI agent. Separately from evaluation, Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
+This example shows how to build and evaluate an Azure AI agent. Separately from evaluation, Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, a Foundry project connection string, and the supported models.
 
 ### Create agent threads and runs
 
@@ -383,7 +383,7 @@ print(response["metrics"])
 print(f'Foundry URL: {response.get("studio_url")}')
 ```
 
-After selecting the URL, you are redirected to Foundry. View your evaluation results in your Azure AI project and debug your application. Use reason fields and pass/fail results to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
+After selecting the URL, you are redirected to Foundry. View your evaluation results in your Foundry project and debug your application. Use reason fields and pass/fail results to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
 Use the Azure AI Evaluation SDK client library to evaluate your Azure AI agents with converter support, enabling observability and transparency into agent workflows.
 
@@ -556,7 +556,7 @@ To further improve intelligibility, all evaluators accept a binary threshold (un
 - `{metric_name}_threshold`: A numerical binarization threshold set by default or by the user.
 
 
-After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Use "reason" fields and pass/fail to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
+After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Foundry project and debug your application. Use "reason" fields and pass/fail to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
 Use the Microsoft Foundry SDK Python client library to evaluate your Azure AI agents, enabling observability and transparency in agent workflows.
 
@@ -1271,7 +1271,7 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 - [Learn about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [Learn about simulating test datasets for evaluation](./simulator-interaction-data.md)
-- [View evaluation results in an Azure AI project](../../how-to/evaluate-results.md)
+- [View evaluation results in a Foundry project](../../how-to/evaluate-results.md)
 - [Get started building a chat app using the Microsoft Foundry SDK](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
 
@@ -1281,6 +1281,6 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 
 - [Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
-- [View evaluation results in an Azure AI project](../../how-to/evaluate-results.md)
+- [View evaluation results in a Foundry project](../../how-to/evaluate-results.md)
 
 ::: moniker-end
