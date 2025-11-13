@@ -34,7 +34,7 @@ Custom speech fine-tuning includes models, training and testing datasets, and de
 
 In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Foundry Tools models. For example, you can fine-tune a model for custom speech. Each custom model is specific to a [locale](language-support.md?tabs=stt). For example, you might fine-tune a model for English in the United States.
 
-1. Go to your project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create an Microsoft Foundry project](../../ai-foundry/how-to/create-projects.md).
+1. Go to your project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](../../ai-foundry/how-to/create-projects.md).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 

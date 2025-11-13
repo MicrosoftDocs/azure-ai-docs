@@ -75,11 +75,11 @@ As you refine the model and collaborate with others throughout the rest of the M
 
 Azure Machine Learning includes tools to help you build Generative AI applications powered by Large Language Models (LLMs). The solution includes a model catalog, prompt flow, and a suite of tools to streamline the development cycle of AI applications.
 
-Both Azure Machine Learning studio and Azure AI Foundry allow you to work with LLMs. Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
+Both Azure Machine Learning studio and Microsoft Foundry allow you to work with LLMs. Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
 
 ### Model catalog
 
-The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models trained by Microsoft. Models from providers other than Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.
+The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models trained by Microsoft. Models from providers other tha Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.
 
 ### Prompt flow
 

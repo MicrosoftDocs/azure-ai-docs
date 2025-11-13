@@ -21,7 +21,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Our portal offers the ability to ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, simply click on its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
 
-:::image type="content" source="../media/ask-foundry-agent/ask-foundry.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry classic portal.":::
+:::image type="content" source="../media/ask-foundry-agent/ask-foundry.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry (classic) portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

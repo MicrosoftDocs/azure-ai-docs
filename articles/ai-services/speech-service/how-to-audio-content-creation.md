@@ -30,7 +30,7 @@ You have easy access to a broad portfolio of [languages and voices](language-sup
 The audio content creation tool is free to access; you pay only for Speech service usage.
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [AI Foundry include](includes/how-to/audio-content-creation/ai-foundry.md)]
+[!INCLUDE [Foundry include](includes/how-to/audio-content-creation/ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="speech-studio"

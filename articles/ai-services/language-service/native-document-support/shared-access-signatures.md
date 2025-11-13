@@ -46,7 +46,7 @@ To get started, you need the following resources:
 
 * An active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [Azure AI Language](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource.
+* An [Azure Language in Foundry Tools](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource.
 
 * A **standard performance** [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to create containers to store and organize your files within your storage account. If you don't know how to create an Azure storage account with a storage container, follow these quickstarts:
 

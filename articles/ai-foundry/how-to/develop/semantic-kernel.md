@@ -24,13 +24,13 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ::: moniker range="foundry-classic"
 
-- An Azure AI project as explained at [Create a project in Foundry portal](../create-projects.md).
+- A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-- An Azure AI project as explained at [Create a project in Foundry portal](../create-projects.md).
+- A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
 
 ::: moniker-end
 

@@ -34,7 +34,7 @@ To get started, you need the following resources:
 
 * An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [**single-service Azure AI Language**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource created in a regional location.
+* An [**single-service Azure Language in Foundry Tools**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource created in a regional location.
 
 * A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 

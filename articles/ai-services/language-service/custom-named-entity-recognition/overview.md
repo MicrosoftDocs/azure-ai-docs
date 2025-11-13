@@ -14,7 +14,7 @@ ms.custom: language-service-custom-ner
 
 Custom named entity recognition (NER) is a cloud-based API service that uses machine learning to help you build models designed for your unique entity recognition requirements. It's one of the specialized features available through [Azure Language in Foundry Tools](../overview.md). With custom NER, you can create AI models that extract domain-specific entities from unstructured text, such as contracts or financial documents. When you start a Custom NER project, you can repeatedly label data, train and evaluate your model, and improve its performance before deploying it. The quality of your labeled data is essential, as it directly impacts the model's accuracy.
 
-To simplify building and customizing your model, the service offers a custom web platform that can be accessed through the [Azure AI Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md).
+To simplify building and customizing your model, the service offers a custom web platform that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md).
 
 This documentation contains the following article types:
 
@@ -63,7 +63,7 @@ Using custom NER typically involves several different steps.
 
 ## Reference documentation and code samples
 
-As you use custom NER, see the following reference documentation and samples for Azure AI Language:
+As you use custom NER, see the following reference documentation and samples for Azure Language in Foundry Tools:
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|

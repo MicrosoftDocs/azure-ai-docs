@@ -331,7 +331,7 @@ ms.author: lajanuar
 
 Add more capabilities to your apps and workflows by utilizing other Foundry Tools with the Translator. Language support for other services:
 
-* [Azure AI Vision](../computer-vision/language-support.md)
+* [Azure Vision in Foundry Tools](../computer-vision/language-support.md)
 * [Speech](../speech-service/language-support.md)
 * [Language service](../language-service/concepts/language-support.md)
 

@@ -141,7 +141,7 @@ The avatar talent’s video signatures created from the recorded acknowledgement
 
 #### [Custom neural voice](#tab/cnv)
 
-While customers maintain the exclusive usage rights to their custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Microsoft Foundry Tools.
+While customers maintain the exclusive usage rights to their custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Foundry Tools.
 
 Microsoft will secure and store a copy of voice talent’s recorded acknowledgement statement and custom neural voice models with the same high-level security that it uses for its other Azure Services. Learn more at Microsoft Trust Center.
 

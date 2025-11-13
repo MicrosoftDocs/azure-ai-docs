@@ -14,7 +14,7 @@ ms.reviewer: haelhamm
 # Project versioning
 
 > [!NOTE]
-> This article applies to the following custom features in Azure AI Language:
+> This article applies to the following custom features in Azure Language in Foundry Tools:
 > * Conversational language understanding
 > * Custom text classification
 > * Custom named entity recognition (NER)

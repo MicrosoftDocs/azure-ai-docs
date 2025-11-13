@@ -12,7 +12,7 @@ ms.custom: language-service-custom-ner
 ---
 # Accepted custom NER data formats
 
-If you're trying to [import your data](../how-to/create-project.md#import-project) into custom NER, it has to follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use [Azure AI Foundry](https://ai.azure.com/) to label your documents.
+If you're trying to [import your data](../how-to/create-project.md#import-project) into custom NER, it has to follow a specific format. If you don't have data to import, you can [create your project](../how-to/create-project.md) and use [Microsoft Foundry](https://ai.azure.com/) to label your documents.
 
 ## Labels file format
 

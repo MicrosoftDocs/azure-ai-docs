@@ -31,7 +31,7 @@ Start by [downloading the sample dataset for Custom sentiment analysis projects]
 
 [!INCLUDE [Uploading sample data for Custom sentiment analysis](../../../../includes/custom/language-studio/upload-data-to-storage.md)]
 
-[!INCLUDE [Get keys and endpoint Azure Portal](../../../../includes/get-key-endpoint.md)]
+[!INCLUDE [Get keys and endpoint Azure portal](../../../../includes/get-key-endpoint.md)]
 
 ## Create a Custom sentiment analysis project
 

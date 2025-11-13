@@ -1,6 +1,6 @@
 ---
 title: Try Document translation in Language Studio
-description: "Document translation in Azure AI Language Studio."
+description: "Document translation in Azure Language in Foundry Tools Studio."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -19,7 +19,7 @@ recommendations: false
 >
 > * Currently, virtual network connectivity isn't supported for the Document translation feature in Azure Language Studio.
 
- Document translation in [**Azure AI Language Studio**](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage.
+ Document translation in [**Azure Language in Foundry Tools Studio**](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage.
 
 ## Supported regions
 
@@ -54,7 +54,7 @@ Document translation in Language Studio requires the following resources:
 
 * An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* A [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource) with [**system-assigned managed identity**](how-to-guides/create-use-managed-identities.md#enable-a-system-assigned-managed-identity) enabled and a [**Storage Blob Data Contributor**](how-to-guides/create-use-managed-identities.md#grant-storage-account-access-for-your-translator-resource) role assigned. For more information, *see* [**Managed identities for Document translation**](how-to-guides/create-use-managed-identities.md). Also, make sure the region and pricing sections are completed as follows:
+* A [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Microsoft Foundry resource) with [**system-assigned managed identity**](how-to-guides/create-use-managed-identities.md#enable-a-system-assigned-managed-identity) enabled and a [**Storage Blob Data Contributor**](how-to-guides/create-use-managed-identities.md#grant-storage-account-access-for-your-translator-resource) role assigned. For more information, *see* [**Managed identities for Document translation**](how-to-guides/create-use-managed-identities.md). Also, make sure the region and pricing sections are completed as follows:
 
   * **Resource Region**. For this project, choose a geographic region such as **East US**. For Document translation, [system-assigned managed identity](how-to-guides/create-use-managed-identities.md) isn't supported for the **Global** region.
 
@@ -150,7 +150,7 @@ While still in the **files and destination** section, select **Download translat
 
    :::image type="content" source="media/language-studio/job-history.png" alt-text="Screenshot of the job history page.":::
 
-That's it! You now know how to translate documents using Azure AI Language Studio.
+That's it! You now know how to translate documents using Language Studio.
 
 ## Next steps
 

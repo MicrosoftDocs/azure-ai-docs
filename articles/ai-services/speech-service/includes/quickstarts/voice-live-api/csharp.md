@@ -18,7 +18,7 @@ In this article, you learn how to use Azure Speech in Foundry Tools voice live w
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
 - [.NET SDK](https://dotnet.microsoft.com/download) version 6.0 or later installed.
 
 <!--
@@ -77,7 +77,7 @@ Follow these steps to create a console application and install the Speech SDK.
     The sample code in this quickstart uses either Microsoft Entra ID or an API key for authentication. You can set the script argument to be either your API key or your access token. 
     We recommend using Microsoft Entra ID authentication instead of setting the `ApiKey` value and running the quickstart with the `--use-token-credential` argument.
 
-    Replace the `ApiKey` value (optional) with your AI Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
+    Replace the `ApiKey` value (optional) with your Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
   
     Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
 

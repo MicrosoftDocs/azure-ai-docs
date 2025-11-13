@@ -30,13 +30,13 @@ Foundry Tools offers commitment tier pricing, allowing discounted rates compared
 For more information, see [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 > [!NOTE]
-> You cannot use commitment tier pricing with an Foundry Tools or an Azure AI Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
+> You cannot use commitment tier pricing with a Foundry Tools or a Microsoft Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
 
 ## Create a new resource
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Foundry Tools or Foundry Tools listed.
 
-2. Enter the applicable information to create your AI Foundry resource. Be sure to select the standard pricing tier.
+2. Enter the applicable information to create your Foundry resource. Be sure to select the standard pricing tier.
 
     > [!NOTE]
     > If you intend to purchase a commitment tier for disconnected container usage, you will need to request separate access and select the **Commitment tier disconnected containers** pricing tier. For more information, see [disconnected containers](./containers/disconnected-containers.md).

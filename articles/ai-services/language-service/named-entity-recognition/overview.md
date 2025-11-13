@@ -42,5 +42,5 @@ All these interconnected elements shape the effectiveness and outcomes of AI. Re
 ## Next steps
 
 There are two ways to get started using the Named Entity Recognition (NER) feature:
-* [Azure AI Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Language features without needing to write code.
+* [Microsoft Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.

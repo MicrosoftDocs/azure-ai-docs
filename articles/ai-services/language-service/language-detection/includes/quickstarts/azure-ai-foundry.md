@@ -8,14 +8,14 @@ ms.author: lajanuar
 ---
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects)
+* [Create a Project in Foundry in the Microsoft Foundry portal](/azure/ai-foundry/how-to/create-projects)
 
-### [Azure AI Foundry (classic)](#tab/foundry-classic)
+### [Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::
+> This content refers to the [Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Foundry (classic), make sure the version toggle in the portal banner is in the **off** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::
 
-You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
+You can use [Foundry (classic)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -24,13 +24,13 @@ You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 > * Create and run an agent
 > * Upload files to your agent
 
-## [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
+## [Foundry (classic)](https://ai.azure.com/) Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use Language Detection in the Azure AI Foundry Playground
+## Use Language Detection in the Foundry Playground
 
 The **Language Playground** consists of four sections:
 
@@ -62,14 +62,14 @@ After your operation is completed, the **Details** section contains the followin
 |Script Name| The name of the most detected script in the text.
 |ISO 15924 Script Code| The ISO 15924 script code for the most detected script.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
-### [Azure AI Foundry (new)](#tab/foundry-new)
+### [Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
-You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
+You can use [Foundry (new)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -77,14 +77,14 @@ You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 > * Create and run an agent
 > * Upload files to the agent
 
-## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
+## Navigate to [Foundry (new)](https://ai.azure.com/)
 
  The project you're working on appears in the upper-left corner.  
 * You can select to create a new project from the drop-down menu:
   * Select the provided project name or create a new project name.
   * Finally, select **Create project**.
 
-   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the AI Foundry (new) homepage":::
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage":::
 
 There are two ways to access the Language Detection interface:
 
@@ -100,7 +100,7 @@ There are two ways to access the Language Detection interface:
 
 ## Use playground: detect language in text
 
-The Azure AI Foundry playground is an interactive environment where you can engage with deployed AI models.
+The Foundry playground is an interactive environment where you can engage with deployed AI models.
 
 The **Detect Language** feature identifies the language used in written content.
 

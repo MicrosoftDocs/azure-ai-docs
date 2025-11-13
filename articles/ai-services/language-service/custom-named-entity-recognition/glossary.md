@@ -51,7 +51,7 @@ Here's a list of actions you can take:
 * **Build and train your model**: The core step of your project, where your model starts learning from your labeled data. 
 * **View model evaluation details**: Review your model performance to decide if there's room for improvement, or you're satisfied with the results.
 * **Deployment**: After you review the model's performance and decided it can be used in your environment, you need to assign it to a deployment to use it. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger). 
-* **Test model**: After deploying your model, test your deployment in [Azure AI Foundry](https://ai.azure.com/) to see how it would perform in production.
+* **Test model**: After deploying your model, test your deployment in [Microsoft Foundry](https://ai.azure.com/) to see how it would perform in production.
 
 ## Recall
 Measures the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and what was tagged. The recall metric reveals how many of the predicted classes are correct.

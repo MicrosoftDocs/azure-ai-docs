@@ -14,7 +14,7 @@ ms.custom:
 
 # Best practices for Azure Content Understanding in Foundry Tools
 
-Azure AI Content Understanding uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This guide provides best practices to maximize accuracy and efficiency.
+Azure Content Understanding in Foundry Tools uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This guide provides best practices to maximize accuracy and efficiency.
 
 ## Define effective field schemas
 

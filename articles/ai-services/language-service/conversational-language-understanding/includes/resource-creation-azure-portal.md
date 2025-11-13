@@ -8,7 +8,7 @@ ms.author: lajanuar
 ---
 ### Create a new resource from the Azure portal
 
-1. Sign in to the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) to create a new Azure AI Language resource.
+1. Sign in to the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) to create a new Azure Language in Foundry Tools resource.
 
 1. Select **Create a new resource**.
 

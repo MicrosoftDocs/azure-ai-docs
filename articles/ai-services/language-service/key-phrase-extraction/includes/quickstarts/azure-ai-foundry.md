@@ -8,15 +8,15 @@ ms.author: lajanuar
 ---
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
+* [Create a Project in Foundry in the Microsoft Foundry portal](../../../../../ai-foundry/how-to/create-projects.md)
 
-## Navigate to the Azure AI Foundry Playground
+## Navigate to the Foundry Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use Key Phrase Extraction in the Azure AI Foundry Playground
+## Use Key Phrase Extraction in the Foundry Playground
 
 The **Language Playground** consists of four sections:
 
@@ -45,4 +45,4 @@ After your operation is completed, each entity is underlined in the center pane 
 |------|----------------------------|
 |Extracted key phrases|A list of the extracted key phrases.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png" alt-text="A screenshot of an example of Extract key phrases in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png" alt-text="A screenshot of an example of Extract key phrases in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/key-phrase-extraction.png":::

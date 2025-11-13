@@ -18,7 +18,7 @@ ms.custom:
 
 Foundry Tools provide a layered security model. This model enables you to secure your Foundry Tools accounts to a specific subset of networks​. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with *request filtering*, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview).
 
-An application that accesses an AI Foundry resource when network rules are in effect requires authorization. Authorization is supported with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) credentials or with a valid API key.
+An application that accesses a Foundry resource when network rules are in effect requires authorization. Authorization is supported with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) credentials or with a valid API key.
 
 > [!IMPORTANT]
 > Turning on firewall rules for your Foundry Tools account blocks incoming requests for data by default. To allow requests through, one of the following conditions needs to be met:
@@ -54,7 +54,7 @@ Virtual networks are supported in [regions where Foundry Tools are available](ht
 > - Translator
 
 > [!NOTE]
-> If you use Azure OpenAI, LUIS, Speechs, or Languages, the `CognitiveServicesManagement` tag only enables you to use the service by using the SDK or REST API. To access and use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), LUIS portal, Speech Studio, or Language Studio from a virtual network, you need to use the following tags:
+> If you use Azure OpenAI, LUIS, Speechs, or Languages, the `CognitiveServicesManagement` tag only enables you to use the service by using the SDK or REST API. To access and use the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), LUIS portal, Speech Studio, or Language Studio from a virtual network, you need to use the following tags:
 >
 > - `AzureActiveDirectory`
 > - `AzureFrontDoor.Frontend`
@@ -63,7 +63,7 @@ Virtual networks are supported in [regions where Foundry Tools are available](ht
 > - `CognitiveServicesFrontEnd`
 > - `Storage` (Speech Studio only)
 > 
-> For information on [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) configurations, see the [Azure AI Foundry documentation](../ai-foundry/how-to/configure-private-link.md).
+> For information on [Foundry portal](https://ai.azure.com/?cid=learnDocs) configurations, see the [Foundry documentation](../ai-foundry/how-to/configure-private-link.md).
 
 ## Change the default network access rule
 
@@ -184,7 +184,7 @@ Each Foundry Tools resource supports up to 100 virtual network rules, which can 
 
 ### Set required permissions
 
-To apply a virtual network rule to an AI Foundry resource, you need the appropriate permissions for the subnets to add. The required permission is the default *Contributor* role or the *Cognitive Services Contributor* role. Required permissions can also be added to custom role definitions.
+To apply a virtual network rule to a Foundry resource, you need the appropriate permissions for the subnets to add. The required permission is the default *Contributor* role or the *Cognitive Services Contributor* role. Required permissions can also be added to custom role definitions.
 
 The Foundry Tools resource and the virtual networks that are granted access might be in different subscriptions, including subscriptions that are part of a different Microsoft Entra tenant.
 
@@ -520,7 +520,7 @@ Applications in the virtual network can connect to the service over the private 
 
 Private endpoints can be created in subnets that use service endpoints. Clients in a subnet can connect to one Foundry Tools resource using private endpoint, while using service endpoints to access others. For more information, see [Virtual Network service endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview).
 
-When you create a private endpoint for an AI Foundry resource in your virtual network, Azure sends a consent request for approval to the Foundry Tools resource owner. If the user who requests the creation of the private endpoint is also an owner of the resource, this consent request is automatically approved.
+When you create a private endpoint for a Foundry resource in your virtual network, Azure sends a consent request for approval to the Foundry Tools resource owner. If the user who requests the creation of the private endpoint is also an owner of the resource, this consent request is automatically approved.
 
 Foundry Tools resource owners can manage consent requests and the private endpoints through the **Private endpoint connection** tab for the Foundry Tools resource in the [Azure portal](https://portal.azure.com).
 

@@ -43,7 +43,7 @@ Here's what you need to get started: [**Translator resource**](#azure-translator
 
 * If you don't have an active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn), you can [**create one for free**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource). As you complete the Translator project and instance details fields, pay special attention to the following entries:
+* Create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Microsoft Foundry resource). As you complete the Translator project and instance details fields, pay special attention to the following entries:
 
   * **Resource Region**. Choose  a **geographic** region like **West US** (**not** the *Global* region).
 

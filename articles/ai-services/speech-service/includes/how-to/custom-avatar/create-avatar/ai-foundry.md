@@ -13,7 +13,7 @@ Getting started with a custom text to speech avatar is a straightforward process
 
 ## Prerequisites
 
-You need an Microsoft Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) AI Foundry or Speech resources.
+You need a Microsoft Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) Foundry or Speech resources.
 
 You need a video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
 
@@ -26,7 +26,7 @@ You need video recordings of your avatar talent as training data. You upload the
 
 To fine-tune a custom avatar, follow these steps:
 
-1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create an Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
+1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Content Understanding region and language support
 titleSuffix: Foundry Tools
 description: Azure Content Understanding in Foundry Tools region and language support
@@ -193,7 +193,7 @@ The preview API version `2025-05-01-preview` includes managed capacity for gener
 
 ### Region support
 
-To use Azure AI Content Understanding with the preview API, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding in Foundry Tools with the preview API, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|

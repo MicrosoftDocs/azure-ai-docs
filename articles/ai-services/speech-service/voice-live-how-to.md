@@ -1,4 +1,4 @@
-﻿---
+---
 title: How to use the Voice live API
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API for real-time voice agents.
@@ -26,7 +26,7 @@ For a table of supported models and regions, see the [Voice live API overview](.
 
 ## Authentication
 
-An [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
+A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
 
 > [!NOTE]
 > Using Voice Live API is optimized for Microsoft Foundry resources. We recommend using Microsoft Foundry resources for full feature availability and best Microsoft Foundry integration experience.        
@@ -43,7 +43,7 @@ For example, an endpoint for a resource with a custom domain would be `wss://<yo
 
 The Voice live API supports two authentication methods:
 
-- **Microsoft Entra** (recommended): Use token-based authentication for an Microsoft Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
+- **Microsoft Entra** (recommended): Use token-based authentication for a Microsoft Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
 - **API key**: An `api-key` can be provided in one of two ways:
   - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
   - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.

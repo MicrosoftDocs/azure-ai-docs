@@ -12,7 +12,7 @@ ms.custom: language-service-pii
 ---
 # Detect and redact Personally Identifying Information in conversations
 
-Azure AI Language conversation PII API analyzes audio discourse to identify and redact sensitive information (PII) using various predefined categories. This API works on both transcribed text (referred to as transcripts) and chats. For transcripts, it also facilitates the redaction of audio segments containing PII by providing the timing information for those segments.
+Azure Language in Foundry Tools conversation PII API analyzes audio discourse to identify and redact sensitive information (PII) using various predefined categories. This API works on both transcribed text (referred to as transcripts) and chats. For transcripts, it also facilitates the redaction of audio segments containing PII by providing the timing information for those segments.
 
 ## Determine how to process the data (optional)
 

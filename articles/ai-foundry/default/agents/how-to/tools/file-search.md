@@ -16,8 +16,6 @@ zone_pivot_groups: selection-file-search-upload-new
 
 # File search tool for agents
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
 > [!NOTE]

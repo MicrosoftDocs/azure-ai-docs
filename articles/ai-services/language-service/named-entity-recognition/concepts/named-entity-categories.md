@@ -1,5 +1,5 @@
 ---
-title: Entity categories recognized by Named Entity Recognition in Azure AI Language
+title: Entity categories recognized by Named Entity Recognition in Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about the entities the NER feature can recognize from unstructured text.
 author: laujan

@@ -53,12 +53,6 @@ In this article, you learn to streamline your model selection process in the Mic
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
-
 
 ### Compare models in the trade-off charts
 
@@ -71,12 +65,6 @@ Trade-off charts allow you to compare models based on the criteria that you care
 1. Select **Compare between metrics** to access comparisons between more pairs of these dimensions.
 
 :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-trade-off.png" alt-text="Screenshot showing the trade-off charts in quality, cost, and performance." lightbox="../media/how-to/model-benchmarks/leaderboard-trade-off.png":::
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
 
 ::: moniker-end
 
@@ -93,11 +81,6 @@ Once you've explored the leaderboards, you can decide on a model to use.
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end 
 
 ## View benchmarks from the model card
 
@@ -117,11 +100,6 @@ Insert NextGen content
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 ## Analyze benchmark results
 
@@ -149,11 +127,6 @@ To access benchmark results for a specific metric and dataset:
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 
 ## Evaluate benchmark results with your data
@@ -169,11 +142,6 @@ The previous sections showed the benchmark results calculated by Microsoft, usin
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 ## Related content
 

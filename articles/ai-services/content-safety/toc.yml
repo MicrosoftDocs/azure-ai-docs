@@ -29,7 +29,7 @@ items:
     href: concepts/custom-categories.md
   - name: Harm categories
     href: concepts/harm-categories.md
-  - name: Azure AI Foundry portal
+  - name: Microsoft Foundry portal
     href: /azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context
 - name: Quickstarts
   items:
@@ -75,7 +75,7 @@ items:
     href: how-to/use-blocklist.md
   - name: Mitigate false results
     href: how-to/improve-performance.md
-  - name: Use Content Safety in AI Foundry portal
+  - name: Use Content Safety in Foundry portal
     href: how-to/foundry.md
   - name: Containers (preview)
     items:

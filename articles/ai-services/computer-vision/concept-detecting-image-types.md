@@ -1,6 +1,6 @@
 ---
 title: Image type detection - Azure Vision in Foundry Tools
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: Concepts related to the image type detection feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme

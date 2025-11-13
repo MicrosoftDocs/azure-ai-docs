@@ -15,10 +15,10 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 
-Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. Document summarization uses natural language processing to generate extractive (salient sentence extraction) or abstractive (contextual word extraction) summaries for documents. Both `AbstractiveSummarization` and `ExtractiveSummarization` APIs support native document processing. A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure AI Language resource capabilities. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
+Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. Document summarization uses natural language processing to generate extractive (salient sentence extraction) or abstractive (contextual word extraction) summaries for documents. Both `AbstractiveSummarization` and `ExtractiveSummarization` APIs support native document processing. A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Language resource capabilities. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
 ## Supported document formats
 
@@ -66,7 +66,7 @@ Azure AI Language is a cloud-based service that applies Natural Language Process
   * **Source container**. This container is where you upload your native files for analysis (required).
   * **Target container**. This container is where your analyzed files are stored (required).
 
-* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI Foundry resource):
+* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Microsoft Foundry resource):
 
   **Complete Azure Language resource project and instance details fields as follows:**
 
@@ -122,7 +122,7 @@ The extractive summarization API uses natural language processing techniques to 
 
 Extractive summarization returns a rank score as a part of the system response along with extracted sentences and their position in the original documents. A rank score is an indicator of how relevant a sentence is determined to be, to the main idea of a document. The model gives a score between 0 and 1 (inclusive) to each sentence and returns the highest scored sentences per request. For example, if you request a three-sentence summary, the service returns the three highest scored sentences.
 
-There's another feature in Azure AI Language, [key phrase extraction](./../../key-phrase-extraction/how-to/call-api.md), that can extract key information. To decide between key phrase extraction and extractive summarization, here are helpful considerations:
+There's another feature in Language, [key phrase extraction](./../../key-phrase-extraction/how-to/call-api.md), that can extract key information. To decide between key phrase extraction and extractive summarization, here are helpful considerations:
 
 * Key phrase extraction returns phrases while extractive summarization returns sentences.
 * Extractive summarization returns sentences together with a rank score, and top ranked sentences are returned per request.
