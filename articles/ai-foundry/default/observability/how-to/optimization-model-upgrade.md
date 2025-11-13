@@ -41,7 +41,7 @@ You can start a chat with Ask AI from any page in the Foundry portal.
 
 ## Get recommendations on model replacement or upgrade
 
-Ask Ask AI questions like:
+Ask AI questions like:
 
 - "Is any model I’m using deprecated?"
 - "Should I upgrade my model?"
