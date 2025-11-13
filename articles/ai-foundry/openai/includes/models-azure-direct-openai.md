@@ -449,10 +449,6 @@ This table doesn't include fine-tuning regional availability information. Consul
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
-### GPT-4 and GPT-4 Turbo model availability
-
-### GPT-3.5 models
-
 To learn about how Azure OpenAI handles model version upgrades, see [Model versions](../concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments, see [Working with models](../how-to/working-with-models.md).
 
 # [Embeddings](#tab/standard-embeddings)
