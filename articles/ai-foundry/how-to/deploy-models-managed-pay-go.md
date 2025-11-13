@@ -203,7 +203,7 @@ You can refer to the _last updated time_ for the NIM on the right pane of the mo
 
 | Model | Task |
 |--|--|
-| [voyage-3.5](https://ai.azure.com/explore/models/voyage-3.5/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
+| [voyage-3.5-embedding-model]([https://ai.azure.com/explore/models/voyage-3.5/version/1/registry/azureml-voyage](https://ai.azure.com/explore/models/voyage-3.5-embedding-model/version/1/registry/azureml-voyage)/?cid=learnDocs) | Embeddings |
 
 ## Related content
 
