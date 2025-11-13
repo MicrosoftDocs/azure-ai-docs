@@ -96,13 +96,6 @@ The numerical score uses a Likert scale (integer 1 to 5), where a higher score i
     "intent_resolution_result": "pass",
     "intent_resolution_threshold": 3,
     "intent_resolution_reason": "The response provides the opening hours of the Eiffel Tower clearly and accurately, directly addressing the user's query. It includes specific times, which fully resolves the user's request for information about the opening hours.",
-    "additional_details": {
-        "conversation_has_intent": True,
-        "agent_perceived_intent": "inquire about opening hours",
-        "actual_user_intent": "find out the opening hours of the Eiffel Tower",
-        "correct_intent_detected": True,
-        "intent_resolved": True
-    }
 }
 
 ```
