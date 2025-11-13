@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/13/2025
 ---
 
 # Create an indexed SharePoint knowledge source
@@ -45,7 +45,7 @@ The following JSON is an example response for an indexed SharePoint knowledge so
 
 ```json
 {
-  "name": "my-demo-indexed-sharepoint-ks",
+  "name": "my-indexed-sharepoint-ks",
   "kind": "indexedSharePoint",
   "description": "A sample indexed SharePoint knowledge source",
   "encryptionKey": null,
@@ -74,10 +74,10 @@ The following JSON is an example response for an indexed SharePoint knowledge so
       "aiServices": null
     },
     "createdResources": {
-      "datasource": "my-demo-indexed-sharepoint-ks-datasource",
-      "indexer": "my-demo-indexed-sharepoint-ks-indexer",
-      "skillset": "my-demo-indexed-sharepoint-ks-skillset",
-      "index": "my-demo-indexed-sharepoint-ks-index"
+      "datasource": "my-indexed-sharepoint-ks-datasource",
+      "indexer": "my-indexed-sharepoint-ks-indexer",
+      "skillset": "my-indexed-sharepoint-ks-skillset",
+      "index": "my-indexed-sharepoint-ks-index"
     }
   },
   "indexedOneLakeParameters": null
@@ -90,6 +90,68 @@ The following JSON is an example response for an indexed SharePoint knowledge so
 ## Create a knowledge source
 
 To create an indexed SharePoint knowledge source:
+
+### [Python](#tab/python)
+
+```python
+# Create an indexed SharePoint knowledge source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import IndexedSharePointKnowledgeSource, IndexedSharePointKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = IndexedSharePointKnowledgeSource(
+    name = "my-indexed-sharepoint-ks",
+    description= "A sample indexed SharePoint knowledge source.",
+    encryption_key = None,
+    indexed_share_point_parameters = IndexedSharePointKnowledgeSourceParameters(
+        connection_string = "connection_string",
+        container_name = "container_name",
+        query = None,
+        ingestion_parameters = KnowledgeSourceIngestionParameters(
+            identity = None,
+            disable_image_verbalization = False,
+            chat_completion_model = KnowledgeBaseAzureOpenAIModel(
+                azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
+                    # TRIMMED FOR BREVITY
+                )
+            ),
+            embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
+                azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
+                    # TRIMMED FOR BREVITY
+                )
+            ),
+            content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
+            ingestion_schedule = None,
+            ingestion_permission_options = None
+        )
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+### Source-specific properties
+
+You can pass the following properties to create an indexed SharePoint knowledge source.
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `indexed_share_point_parameters` | Parameters specific to indexed SharePoint knowledge sources: `connection_string`, `container_name`, and `query`. | Object | No | No |
+| `connection_string` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
+| `container_name` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
+| `query` | Ignore for now. | String | Yes | No |
+
+### `ingestion_parameters` properties
+
+[!INCLUDE [Python ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters-python.md)]
+
+### [REST](#tab/rest)
 
 1. Set environment variables at the top of your file.
 
@@ -106,12 +168,12 @@ To create an indexed SharePoint knowledge source:
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    POST {{search-url}}/knowledgesources/my-demo-indexed-sharepoint-ks?api-version=2025-11-01-preview
+    POST {{search-url}}/knowledgesources/my-indexed-sharepoint-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-        "name": "my-demo-indexed-sharepoint-ks",
+        "name": "my-indexed-sharepoint-ks",
         "kind": "indexedSharePoint",
         "description": "A sample indexed SharePoint knowledge source.",
         "encryptionKey": null,
@@ -140,15 +202,8 @@ To create an indexed SharePoint knowledge source:
     }
     ```
 
-   An embedding model is used to create a vector field counterpart to the primary chunked textual content, which adds vector query support to the agentic pipeline. You can omit the embedding model if you don't need vectors.
-
-   A chat completion model is used in the generated skillset. If you enable image verbalization and specify a chat completion model, the model is used to verbalize image content on the SharePoint site. You can omit the chat completion model if you don't need this capability.
-
-   Content extraction mode is also used in the generated skillset. It calls the [Content Understanding skill](cognitive-search-skill-content-understanding.md), which uses document analyzers from Azure Content Understanding in Foundry Tools to analyze unstructured documents and other content types.
-
 1. Select **Send Request**.
 
-<!-- Can't find an explanation of the query parameter in the spec. -->
 ### Source-specific properties
 
 You can pass the following properties to create an indexed SharePoint knowledge source.
@@ -159,13 +214,16 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 | `kind` | The kind of knowledge source, which is `indexedSharePoint` in this case. | String | No | Yes |
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `indexedSharePointParameters` | Parameters specific to indexed SharePoint knowledge sources: `connectionString`, `containerName`, and `query`. | Object | No | No |
+| `indexedSharePointParameters` | Parameters specific to indexed SharePoint knowledge sources: `connectionString`, `containerName`, and `query`. | Object | No | Yes |
 | `connectionString` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes |No |
+| `container_name` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
 | `query` | Ignore for now. | String | Yes | No |
 
 ### `ingestionParameters` properties
 
-[!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
+[!INCLUDE [REST ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters-rest.md)]
+
+---
 
 ## Check ingestion status
 

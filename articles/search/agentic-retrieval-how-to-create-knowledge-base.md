@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/13/2025
 ---
 
 # Create a knowledge base in Azure AI Search
@@ -121,93 +121,43 @@ You can use API keys if you don't have permission to create role assignments.
 
 ## Check for existing knowledge bases
 
-The following request lists knowledge bases by name. Within the knowledge bases collection, all knowledge bases must be uniquely named. It's helpful to know about existing knowledge bases for reuse or for naming new bases.
+All knowledge bases must be uniquely named within the knowledge bases collection. Knowing about existing knowledge bases is helpful for either reuse or naming new objects.
 
 Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases collection.
 
-### [**Python**](#tab/python-get-agents)
+### [**Python**](#tab/python)
 
-The Python code snippets in this article assume you installed necessary libraries and have environment variables for endpoints and object names. For more information about these tasks, see [Quickstart: Use agentic retrieval](search-get-started-agentic-retrieval.md?pivots=programming-language-python).
+List knowledge bases by name.
 
 ```python
-# List existing knowledge bases on the search service
-from azure.search.documents.indexes import SearchIndexClient
+# List knowledge bases by name
+import requests
+import json
 
-index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+endpoint = "{search_url}/knowledgebases"
+params = {"api-version": "2025-11-01-preview", "$select": "name"}
+headers = {"api-key": "{api_key}"}
 
-try:
-    knowledgebases = {kb.name: kb for kb in index_client.list_knowledge_bases(api_version=search_api_version)}
-    print(f"\nKnowledge bases on search service '{search_endpoint}':")
-
-    if knowledgebases:
-        print(f"Found {len(knowledgebases)} knowledge base(s):")
-        for i, (name, knowledgebases) in enumerate(sorted(knowledgebases.items()), 1):
-            print(f"{i}. Name: {name}")
-            if knowledgebases.knowledge_sources:
-                ks_names = [ks.name for ks in knowledgebases.knowledge_sources]
-                print(f"   Knowledge Sources: {', '.join(ks_names)}")
-            print()
-    else:
-        print("No knowledge bases found.")
-        
-except Exception as e:
-    print(f"Error listing knowledge bases: {str(e)}")
+response = requests.get(endpoint, params = params, headers = headers)
+print(json.dumps(response.json(), indent = 2))
 ```
 
 You can also return a single knowledge base by name to review its JSON definition.
 
 ```python
-# Get a specific knowledge base definition
-from azure.search.documents.indexes import SearchIndexClient
+# Get a knowledge base definition
+import requests
 import json
 
-index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+endpoint = "{search_url}/knowledgebases/{knowledge_base_name}"
+params = {"api-version": "2025-11-01-preview"}
+headers = {"api-key": "{api_key}"}
 
-try:
-    knowledgebase = index_client.get_knowledge_base(knowledge_base_name, api_version=search_api_version)
-    
-    print(f"Knowledge base: '{knowledge_base_name}'")
-    print(f"Name: {knowledgebase.name}")
-    
-    if knowledgebase.description:
-        print(f"Description: {knowledgebase.description}")
-    
-    if knowledgebase.models:
-        print(f"\nModels ({len(knowledgebase.models)}):")
-        for i, model in enumerate(knowledgebase.models, 1):
-            print(f"  {i}. {type(model).__name__}")
-            if hasattr(model, 'azure_open_ai_parameters'):
-                params = model.azure_open_ai_parameters
-                print(f"     Resource: {params.resource_url}")
-                print(f"     Deployment: {params.deployment_name}")
-                print(f"     Model: {params.model_name}")
-    
-    if knowledgebase.knowledge_sources:
-        print(f"\nKnowledge Sources ({len(knowledgebase.knowledge_sources)}):")
-        for i, ks in enumerate(knowledgebase.knowledge_sources, 1):
-            print(f"  {i}. {ks.name}")
-    
-    if knowledgebase.output_mode:
-        print(f"\nOutput Mode: {knowledgebase.output_mode}")
-    
-    # Full JSON definition
-    print(f"\n{'='*60}")
-    print("JSON Definition:")
-    print('='*60)
-    print(json.dumps(knowledgebase.as_dict(), indent=2))
-    
-except Exception as e:
-    print(f"Error: {str(e)}")
-    
-    # Show available knowledge bases
-    try:
-        knowledgebase = {kb.name: kb for kb in index_client.knowledge_bases(api_version=search_api_version)}
-        print(f"\nAvailable bases: {list(knowledgebase.keys())}")
-    except Exception:
-        print("Could not list available bases.")
+response = requests.get(endpoint, params = params, headers = headers)
+print(json.dumps(response.json(), indent = 2))
 ```
 
-### [**REST**](#tab/rest-get-agents)
+### [**REST**](#tab/rest)
 
 ```http
 # List knowledge bases
@@ -225,34 +175,34 @@ GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01
    Authorization: Bearer {{accessToken}}
 ```
 
-A response might look like the following example:
+---
+
+The following JSON is an example response for a knowledge base.
 
 ```json
 {
 
-  "name": "my-knowledge-base",
-  "description": "This knowledge source uses a search index and omits a completion model for query planning and answer generation.",
+  "name": "my-kb",
+  "description": "A sample knowledge base.",
   "retrievalInstructions": null,
   "answerInstructions": null,
   "outputMode": null,
   "knowledgeSources": [
     {
-      "name": "my-knowledge-source"
+      "name": "my-blob-ks"
     }
   ],
   "models": [],
   "encryptionKey": null,
   "retrievalReasoningEffort": {
-    "kind": "minimal"
+    "kind": "low"
   }
 }
 ```
 
----
-
 ## Create a knowledge base
 
-A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
+A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots.
 
 Its composition consists of connections between *knowledge sources* (searchable content) and chat completion models that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
 
@@ -260,36 +210,58 @@ To create a knowledge base, use the 2025-11-01-preview data plane REST API or an
 
 Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to assign to the knowledge base.
 
-### [**Python**](#tab/python-create-agent)
+### [**Python**](#tab/python)
 
 ```python
-from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
+# Create a knowledge base
+from azure.core.credentials import AzureKeyCredential
 from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
 
 aoai_params = AzureOpenAIVectorizerParameters(
-    resource_url=aoai_endpoint,
-    deployment_name=aoai_gpt_deployment,
-    model_name=aoai_gpt_model,
+    resource_url = "aoai_endpoint",
+    deployment_name = "aoai_gpt_deployment",
+    model_name = "aoai_gpt_model",
 )
 
 knowledge_base = KnowledgeBase(
-    name=knowledge_base_name,
-    models=[KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
-    knowledge_sources=[
-        KnowledgeSourceReference(
-            name=knowledge_source_name
-        )
+    name = "my-kb",
+    description = "This knowledge base handles questions directed at two unrelated sample indexes.",
+    retrieval_instructions = "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
+    answer_instructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
+    output_mode = KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
+    knowledge_sources = [
+        KnowledgeSourceReference(name = "hotels-ks"),
+        KnowledgeSourceReference(name = "earth-at-night-ks"),
     ],
-    output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
-    answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
+    models = [KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters = aoai_params)],
+    encryption_key = None,
+    retrieval_reasoning_effort = KnowledgeRetrievalLowReasoningEffort,
 )
 
-index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
 index_client.create_or_update_knowledge_base(knowledge_base)
-print(f"Knowledge base '{knowledge_base_name}' created or updated successfully.")
+print(f"Knowledge base '{knowledge_base.name}' created or updated successfully.")
 ```
 
-### [**REST**](#tab/rest-create-kb)
+### Knowledge base properties
+
+You can pass the following properties to create a knowledge base.
+
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
+| `retrieval_instructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query, which is recommended when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
+| `answer_instructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | Yes |
+| `output_mode` | Valid values are `answer_synthesis` for an LLM-formulated answer or `extracted_data` for full search results that you can pass to an LLM as a downstream step. | String | Yes |
+| `knowledge_sources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
+| `models` | A connection to a [supported chat completion model](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
+| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
+| `retrieval_reasoning_effort` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
+
+### [**REST**](#tab/rest)
 
 To create a knowledge base:
 
@@ -312,17 +284,17 @@ To create a knowledge base:
        Authorization: Bearer {{accessToken}}
     
     {
-        "name" : "{{knowledge-base-name}}",
-        "description": "This knowledge base handles questions directed at two unrelated sample indexes."
+        "name" : "my-kb",
+        "description": "This knowledge base handles questions directed at two unrelated sample indexes.",
         "retrievalInstructions": "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
         "answerInstructions": null,
         "outputMode": "answerSynthesis",
         "knowledgeSources": [
             {
-                "name": "earth-at-night-blob-ks"
+                "name": "hotels-ks"
             },
             {
-                "name": "hotels-index-ks"
+                "name": "earth-at-night-ks"
             }
         ],
         "models" : [ 
@@ -353,13 +325,13 @@ You can pass the following properties to create a knowledge base.
 |--|--|--|--|
 | `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
-| `retrievalInstructions` | A prompt to the LLM to determine whether a knowledge source should be in scope for a query, recommended for query planning when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). | String | Yes |
-| `answerInstructions` | Use for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null. | String | Yes |
-| `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer, or `extractedData` if you want full search results that you can pass to an LLM as a downstream step. | String | Yes |
+| `retrievalInstructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query, which is recommended when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
+| `answerInstructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | Yes |
+| `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | Yes |
 | `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
-| `models` | A connection to a [supported chat completion model](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
+| `models` | A connection to a [supported chat completion model](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium` (see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md)). | Object | No |
+| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
 
 ---
 
@@ -369,7 +341,7 @@ Call the **retrieve** action on the knowledge base object to confirm the model c
 
 Replace "where does the ocean look green?" with a query string that's valid for your search index.
 
-### [**Python**](#tab/python-query-agent)
+### [**Python**](#tab/python)
 
 Start with instructions.
 
@@ -390,43 +362,45 @@ messages = [
 Then send the query.
 
 ```python
-from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
-from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
+# Send grounding request
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient; from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
 
-kb_client = KnowledgeBaseRetrievalClient(endpoint=search_endpoint, knowledge_base_name=knowledge_base_name, credential=credential)
+kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
+                                         
 query_1 = """
-    Where does the ocean look green?
-    """
+Where does the ocean look green?
+"""
 
 messages.append({
     "role": "user",
     "content": query_1
 })
 
-req = KnowledgeBaseRetrievalRequest(
-    messages=[
+request = KnowledgeBaseRetrievalRequest(
+    messages = [
         KnowledgeBaseMessage(
-            role=m["role"],
-            content=[KnowledgeBaseMessageTextContent(text=m["content"])]
+            role = m["role"],
+            content = [KnowledgeBaseMessageTextContent(text=m["content"])]
         ) for m in messages if m["role"] != "system"
     ],
-    knowledge_source_params=[
+    knowledge_source_params = [
         SearchIndexKnowledgeSourceParams(
-            knowledge_source_name=knowledge_source_name,
-            include_references=True,
-            include_reference_source_data=True,
-            always_query_source=True
+            knowledge_source_name = "knowledge_source_name",
+            include_references = True,
+            include_reference_source_data = True,
+            always_query_source = True
         )
     ],
-    include_activity=True,
-    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
+    include_activity = True,
+    retrieval_reasoning_effort = KnowledgeRetrievalLowReasoningEffort
 )
 
-result = kb_client.retrieve(retrieval_request=req)
+result = kb_client.retrieve(request)
 print(f"Retrieved content from '{knowledge_base_name}' successfully.")
 ```
 
-### [**REST**](#tab/rest-query-kb)
+### [**REST**](#tab/rest)
 
 ```http
 # Send grounding request
@@ -489,21 +463,24 @@ The response to the previous query might look like this:
 
 If you no longer need the knowledge base, or if you need to rebuild it on the search service, use this request to delete the current object.
 
-### [**Python**](#tab/python-delete-kb)
+### [**Python**](#tab/python)
 
 ```python
+# Delete a knowledge base
+from azure.core.credentials import AzureKeyCredential 
 from azure.search.documents.indexes import SearchIndexClient
 
-index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-index_client.delete_knowledge_base(knowledge_base_name)
-print(f"Knowledge base '{knowledge_base_name}' deleted successfully.")
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+index_client.delete_knowledge_base("knowledge_base_name")
+print(f"Knowledge base deleted successfully.")
 ```
 
-### [**REST**](#tab/rest-delete-kb)
+### [**REST**](#tab/rest)
+
 ```http
-# Delete knowledge base
+# Delete a knowledge base
 DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
-   Authorization: Bearer {{accessToken}}
+Authorization: Bearer {{accessToken}}
 ```
 
 ---

@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/03/2025
+ms.date: 11/13/2025
 ---
 
 # Create a search index knowledge source
@@ -52,6 +52,54 @@ The following JSON is an example response for a search index knowledge source. N
 ## Create a knowledge source
 
 To create a search index knowledge source:
+
+### [Python](#tab/python)
+
+```python
+# Create a search index knowledge source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = SearchIndexKnowledgeSource(
+    name = "my-search-index-ks",
+    description= "This knowledge source pulls from an existing index designed for agentic retrieval.",
+    encryption_key = None,
+    search_index_parameters = SearchIndexKnowledgeSourceParameters(
+        search_index_name = "search_index_name",
+        semantic_configuration_name = "semantic_configuration_name",
+        source_data_fields = [
+            SearchIndexFieldReference(name="description"),
+            SearchIndexFieldReference(name="category"),
+        ],
+        search_fields = [
+            SearchIndexFieldReference(name="id")
+        ],
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+### Source-specific properties
+
+You can pass the following properties to create a search index knowledge source.
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `search_index_parameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, and `searchFields`. | Object | Yes | Yes |
+| `search_index_name` | The name of the existing search index. | String | Yes | Yes |
+| `semantic_configuration_name` | Overrides the default semantic configuration for the search index. | String | Yes | No |
+| `source_data_fields` | The index fields returned when you specify `include_reference_source_data` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
+| `search_fields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
+
+### [REST](#tab/rest)
 
 1. Set environment variables at the top of your file.
 
@@ -103,6 +151,8 @@ You can pass the following properties to create a search index knowledge source.
 | `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
 | `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
 | `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
+
+---
 
 ## Assign to a knowledge base
 

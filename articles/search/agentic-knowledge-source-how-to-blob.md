@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/13/2025
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
@@ -102,6 +102,70 @@ The following JSON is an example response for a blob knowledge source.
 
 To create a blob knowledge source:
 
+### [Python](#tab/python)
+
+```python
+# Create a blob knowledge source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import AzureBlobKnowledgeSource, AzureBlobKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = AzureBlobKnowledgeSource(
+    name = "my-blob-ks",
+    description = "This knowledge source pulls from a blob storage container.",
+    encryption_key = None,
+    azure_blob_parameters = AzureBlobKnowledgeSourceParameters(
+        connection_string = "blob_connection_string",
+        container_name = "blob_container_name",
+        folder_path = None,
+        is_adls_gen2 = False,
+        ingestion_parameters = KnowledgeSourceIngestionParameters(
+            identity = None,
+            disable_image_verbalization = False,
+            chat_completion_model = KnowledgeBaseAzureOpenAIModel(
+                azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
+                    # TRIMMED FOR BREVITY
+                )
+            ),
+            embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
+                azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
+                    # TRIMMED FOR BREVITY
+                )
+            ),
+            content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
+            ingestion_schedule = None,
+            ingestion_permission_options = None
+        )
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+### Source-specific properties
+
+You can pass the following properties to create a blob knowledge source.
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `azure_blob_parameters` | Parameters specific to blob knowledge sources: `connection_string`, `container_name`, `folder_path`, and `is_adls_gen2`. | Object |  | No |
+| `connection_string` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
+| `container_name` | The name of the blob storage container. | String | No | Yes |
+| `folder_path` | A folder within the container. | String | No | No |
+| `is_adls_gen2` | The default is `False`. Set to `True` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
+
+### `ingestionParameters` properties
+
+[!INCLUDE [Python ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters-python.md)]
+
+### [REST](#tab/rest)
+
 1. Set environment variables at the top of your file.
 
     ```http
@@ -159,7 +223,9 @@ You can pass the following properties to create a blob knowledge source.
 
 ### `ingestionParameters` properties
 
-[!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
+[!INCLUDE [REST ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters-rest.md)]
+
+---
 
 ## Check ingestion status
 

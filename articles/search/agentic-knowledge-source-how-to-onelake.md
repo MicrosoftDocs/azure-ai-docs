@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/13/2025
 ---
 
 # Create a OneLake knowledge source
@@ -99,6 +99,68 @@ The following JSON is an example response for a OneLake knowledge source.
 
 To create a OneLake knowledge source:
 
+### [Python](#tab/python)
+
+```python
+# Create a OneLake knowledge source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import IndexedOneLakeKnowledgeSource, IndexedOneLakeKnowledgeSourceParameters, KnowledgeBaseAzureOpenAIModel, AzureOpenAIVectorizerParameters, KnowledgeSourceAzureOpenAIVectorizer, KnowledgeSourceContentExtractionMode, KnowledgeSourceIngestionParameters
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = IndexedOneLakeKnowledgeSource(
+    name = "my-onelake-ks",
+    description= "This knowledge source pulls content from a lakehouse.",
+    encryption_key = None,
+    indexed_one_lake_parameters = IndexedOneLakeKnowledgeSourceParameters(
+        fabric_workspace_id = "fabric_workspace_id",
+        lakehouse_id = "lakehouse_id",
+        target_path = None,
+        ingestion_parameters = KnowledgeSourceIngestionParameters(
+            identity = None,
+            disable_image_verbalization = False,
+            chat_completion_model = KnowledgeBaseAzureOpenAIModel(
+                azure_open_ai_parameters = AzureOpenAIVectorizerParameters(
+                    # TRIMMED FOR BREVITY
+                )
+            ),
+            embedding_model = KnowledgeSourceAzureOpenAIVectorizer(
+                azure_open_ai_parameters=AzureOpenAIVectorizerParameters(
+                    # TRIMMED FOR BREVITY
+                )
+            ),
+            content_extraction_mode = KnowledgeSourceContentExtractionMode.MINIMAL,
+            ingestion_schedule = None,
+            ingestion_permission_options = None
+        )
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+### Source-specific properties
+
+You can pass the following properties to create a OneLake knowledge source.
+
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryption` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `indexed_one_lake_parameters` | Parameters specific to OneLake knowledge sources: `fabric_workspace_id`, `lakehouse_id`, and `target_path`. | Object |  | Yes |
+| `fabric_workspace_id` | The GUID of the workspace that contains the lakehouse. | String | No | Yes |
+| `lakehouse_id` | The GUID of the lakehouse. | String | No | Yes |
+| `target_path` | A folder or shortcut within the lakehouse. When unspecified, the entire lakehouse is indexed. | String | No | No |
+
+### `ingestionParameters` properties
+
+[!INCLUDE [Python ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters-python.md)]
+
+### [REST](#tab/rest)
+
 1. Set environment variables at the top of your file.
 
     ```http
@@ -153,7 +215,9 @@ You can pass the following properties to create a OneLake knowledge source.
 
 ### `ingestionParameters` properties
 
-[!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
+[!INCLUDE [REST ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters-rest.md)]
+
+---
 
 ## Check ingestion status
 
