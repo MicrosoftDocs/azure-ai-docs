@@ -158,7 +158,7 @@ Batch deployments distribute work at the file level. This distribution means tha
 
 ### Relationship between the degree of parallelism and the scoring script
 
-Your deployment configuration controls both the size of each mini-batch and the number of workers on each node. This configuration matters when you decide whether to read the entire mini-batch to perform inference, run inference file by file, or run the inference row by row (for tabular). For more information, see [Running inference at the mini-batch, file or the row level](#running-inference-at-the-mini-batch-file-or-the-row-level).
+Your deployment configuration controls both the size of each mini-batch and the number of workers on each node. This configuration matters when you decide whether to read the entire mini-batch to perform inference, run inference file by file, or run the inference row by row (for tabular). For more information, see [Running inference at the mini-batch, file, or row level](#running-inference-at-the-mini-batch-file-or-row-level).
 
 When you run multiple workers on the same instance, remember that all the workers share memory. If you increase the number of workers per node, you should generally decrease the mini-batch size or change the scoring strategy if data size and compute SKU remain the same.
 
