@@ -235,27 +235,6 @@ To learn more about advanced o-series models, see [Getting started with reasonin
 
 GPT-4o integrates text and images in a single model, which enables it to handle multiple data types simultaneously. This multimodal approach enhances accuracy and responsiveness in human-computer interactions. GPT-4o matches GPT-4 Turbo in English text and coding tasks while offering superior performance in non-English language tasks and vision tasks, setting new benchmarks for AI capabilities.
 
-### How do I access the GPT-4o and GPT-4o mini models?
-
-GPT-4o and GPT-4o mini are available for Standard and Global Standard model deployment.
-
-You need to [create](../how-to/create-resource.md) or use an existing resource in a [supported Standard](#gpt-4-and-gpt-4-turbo-model-availability) or [Global Standard](#global-standard-model-availability) region where the model is available.
-
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o models. If you're performing a programmatic deployment, the model names are:
-
-- `gpt-4o` *version* `2024-11-20`
-- `gpt-4o` *version* `2024-08-06`
-- `gpt-4o` *version* `2024-05-13`
-- `gpt-4o-mini` *version* `2024-07-18`
-
-### GPT-4 Turbo
-
-GPT-4 Turbo is a large multimodal model (accepting text or image inputs and generating text) that can solve difficult problems with greater accuracy than any of OpenAI's previous models. Like GPT-3.5 Turbo, and older GPT-4 models, GPT-4 Turbo is optimized for chat and works well for traditional completions tasks.
-
-## GPT-4
-
-GPT-4 is the predecessor to GPT-4 Turbo. Both the GPT-4 and GPT-4 Turbo models have a base model name of `gpt-4`. You can distinguish between the GPT-4 and Turbo models by examining the model version.
-
 ## GPT-4 and GPT-4 Turbo models
 
 These models can be used only with the Chat Completions API.
