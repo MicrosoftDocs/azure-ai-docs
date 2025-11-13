@@ -38,4 +38,4 @@ You can disable Web Knowledge Source access for all search services in a subscri
 
 + [Grounding with Bing Search tools for agents](./tools/bing-tools.md)
 + [Web search tool (preview)](../how-to/tools/web-search.md)
-+ [Create a Web Knowledge Source resource](../../../../search/agentic-knowledge-source-how-to-web)
++ [Create a Web Knowledge Source resource](../../../../search/agentic-knowledge-source-how-to-web.md)
