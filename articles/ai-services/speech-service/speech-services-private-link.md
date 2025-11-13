@@ -26,7 +26,7 @@ This article explains how to set up and use Private Link and private endpoints w
 Setting up a Foundry resource for Speech for the private endpoint scenarios requires performing the following tasks:
 1. [Create a custom domain name](#create-a-custom-domain-name)
 1. [Turn on private endpoints](#turn-on-private-endpoints)
-1. [Adjust existing applications and solutions](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-with-a-private-endpoint)
+1. [Adjust existing applications and solutions](#adjust-an-application-to-use-a-foundry-resource-for-speech-with-a-private-endpoint)
 
 [!INCLUDE [](includes/speech-vnet-service-enpoints-private-endpoints.md)]
 
@@ -34,7 +34,7 @@ This article describes the usage of the private endpoints with Speech service. U
 
 ## Create a custom domain name
 > [!CAUTION]
-> A Foundry resource for Speech with a custom domain name enabled uses a different way to interact with Speech service. You might have to adjust your application code for both of these scenarios: [with private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-with-a-private-endpoint) and [*without* private endpoint](#adjust-an-application-to-use-a-foundry-resource-for-speech-without-private-endpoints).
+> A Foundry resource for Speech with a custom domain name enabled uses a different way to interact with Speech service. You might have to adjust your application code for both of these scenarios: [with private endpoint](#adjust-an-application-to-use-a-foundry-resource-for-speech-with-a-private-endpoint) and [*without* private endpoint](#adjust-an-application-to-use-a-foundry-resource-for-speech-without-private-endpoints).
 >
 
 [!INCLUDE [Custom Domain include](includes/how-to/custom-domain.md)]
