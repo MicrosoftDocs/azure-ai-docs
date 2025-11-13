@@ -252,7 +252,7 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ## Delete a knowledge source
 
-[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]
+[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 

@@ -267,7 +267,7 @@ A better question to ask is "what is the keynote doc for Ignite 2024". The respo
 
 ## Delete a knowledge source
 
-[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]
+[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 
