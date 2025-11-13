@@ -16,8 +16,6 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool for agents 
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 > [!NOTE]
 > There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service](./knowledge-retrieval.md).
 
