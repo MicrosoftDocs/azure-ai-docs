@@ -165,7 +165,7 @@ Some special things to note about NIMs are:
 | [Cosmos-reason1-NIM-microservice](https://ai.azure.com/explore/models/Cosmos-reason1-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Task-completion-verification, Action-affordance, Next-plausible-action-prediction |
 | [Evo2-40b-NIM-microservice](https://ai.azure.com/explore/models/Evo2-40b-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Genomics |
 | [Boltz2-NIM-microservice](https://ai.azure.com/explore/models/Boltz2-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Structure-Prediction |
-| [Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice](https://int.ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Summarization |
+| [Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Summarization |
 
 #### Consume NVIDIA NIM deployments
 
