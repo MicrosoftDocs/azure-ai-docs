@@ -6,16 +6,18 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/13/2025
 author: aahill
 ms.author: aahi
 recommendations: false
 ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-connected-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Build collaborative, multi-agent systems with Connected Agents
+
+> [!NOTE]
+> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../default/agents/concepts/workflow.md) for multi-agent orchestration.
 
 Connected agents in Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 

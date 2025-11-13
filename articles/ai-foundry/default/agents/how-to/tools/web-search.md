@@ -80,7 +80,7 @@ curl --request POST \
     "model": "{{model}}",
     "tools": [
       {
-        "type": "web_search"
+        "type": "web_search_preview"
       }
     ],
     "instructions": "You are a helpful assistant that can search the web for current information. When users ask questions that require up-to-date information, use the web search tool to find relevant results."

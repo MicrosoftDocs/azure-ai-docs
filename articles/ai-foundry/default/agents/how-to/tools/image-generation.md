@@ -25,7 +25,7 @@ zone_pivot_groups: selection-image-generation
 The Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
 
 :::zone pivot="python"
-Before you start, make sure you have run `pip install "azure-ai-projects>=2.0.0" azure-identity load_dotenv`
+Before you start, make sure you have the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ## Create an agent with the image generation tool
 ```python

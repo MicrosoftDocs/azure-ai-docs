@@ -41,11 +41,11 @@ Creating an application for an agent enables:
 - **Distinct identity**: The agent has its own identity, RBAC rules, and audit trail separate from the project-level default identity 
 - **User data isolation**: The inputs and interactions one user has with the agent aren’t available to any other users by default 
 - **Azure Policy integration**: As an ARM resource the application can be governed by Azure Policy 
-
+<!--
 It’s also a prerequisite for: 
 - **M365 publishing**: Distributing your agent through Teams and Microsoft 365 Copilot 
-- **Agent365 digital workers**: Distributing your agent as a hirable digital worker that can interact through Teams, email, and M365 applications. 
-
+- **Agent365 digital workers**: Distributing your agent as a digital worker that can interact through Teams, email, and M365 applications. 
+-->
 ## Understand Agent Applications and deployments
 
 Before publishing, it's important to understand the relationship between projects, agent versions, applications, and deployments.
@@ -118,9 +118,10 @@ For applications this is exposed at: https://{accountName}.services.ai.azure.com
 ### Authentication
 There are two options for inbound end-user authentication that can be configured on the application: 
 - Default: The caller must have the Azure RBAC (Role-Based Access Control) permission /applications/invoke/action on the application resource. 
+<!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
-
-Note that API key authentication is not supported for agents through projects or through applications. 
+-->
+API key authentication is not supported for agents through projects or through applications. 
 
 ## Publish an agent  
 
@@ -138,7 +139,9 @@ This section shows you how to publish an agent using the Foundry portal interfac
 
    - By default, the authentication type is set to RBAC (Role-Based Access Control)
    - End users calling the agent must have Azure RBAC permissions on the application resource
+   <!--
    - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
+    -->
 
 4. Assign permissions for tool authentication:
 
@@ -149,7 +152,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 5. After publishing, you can:
    
    - Open app to chat with your published agent application and easily share it with others in the UI (Note: sharing the application automatically grants them the Azure AI User role on the Agent Application resource) 
-   - Publish it to Teams and Microsoft 365 Copilot
+   <!-- - Publish it to Teams and Microsoft 365 Copilot -->
    - Share the published endpoint with external consumers
 
 ### REST API
