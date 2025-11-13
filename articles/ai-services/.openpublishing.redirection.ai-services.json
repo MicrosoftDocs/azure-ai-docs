@@ -1361,6 +1361,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to/voice-live-how-to-proactive-and-pregenerated-messages.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-quickstart",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
       "redirect_document_id": true
