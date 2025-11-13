@@ -16,7 +16,7 @@ ms.custom:
 
 # Quickstart: Try out Content Understanding Studio
 
-Content Understanding Studio is designed to help you quickly try out prebuilt analyzers, build and test your custom analyzers, and improve analyzer performance over time quickly and easily. This quickstart guide will walk you through the basic steps to get started so you can begin exploring all of the ways Content Understanding can improve your data-heavy workflows.
+[Content Understanding Studio](https://aka.ms/cu-studio) is designed to help you quickly try out prebuilt analyzers, build and test your custom analyzers, and improve analyzer performance over time quickly and easily. This quickstart guide will walk you through the basic steps to get started so you can begin exploring all of the ways Content Understanding can improve your data-heavy workflows.
 
 ## Prerequisites
 To get started, make sure you have the following resources and permissions:
@@ -25,13 +25,13 @@ To get started, make sure you have the following resources and permissions:
 * A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 
 ## Explore Content Understanding Studio
-If you are familiar with the Document Intelligence service, you may recognize the classic features of Document Intelligence, now coupled with the new features that Content Understanding brings to analyze data of all modalities. When you arrive in Content Understanding Studio, you have the option to select between the classic Document Intelligence Studio, and the new features of Content Understanding, shown below. Select “Content Understanding” to get started.
+If you are familiar with the Document Intelligence service, you may recognize the classic features of Document Intelligence, now coupled with the new features that Content Understanding brings to analyze data of all modalities. When you arrive in [Content Understanding Studio](https://aka.ms/cu-studio), you have the option to select between the classic Document Intelligence Studio, and the new features of Content Understanding, shown below. Select “Content Understanding” to get started.
 
 ## Try out Content Understanding prebuilt analyzers
 
-Get started by trying out the prebuilt analyzers offered through the Content Understanding API.
+Get started by trying out the prebuilt analyzers offered through the Content Understanding. Start by opening [Content Understanding Studio](https://aka.ms/cu-studio).
 
-1.	**Browse prebuilt analyzers**: Select the option to view all prebuilt analyzers from the home page of Content Understanding Studio.
+1.	**Browse prebuilt analyzers**: Select the option to view all prebuilt analyzers from the home page of [Content Understanding Studio](https://aka.ms/cu-studio).
 
 2.	**Select a prebuilt to try**: Content Understanding offers an extensive list of prebuilt analyzers that support scenarios across all modalities. Select an option based on your data needs to explore what features it offers.
  

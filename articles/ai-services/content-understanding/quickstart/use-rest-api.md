@@ -303,49 +303,249 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "<request-id>",
+  "id": "2689a699-fa3a-4ddf-9a27-c34ceaa6c597",
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-videoAnalyzer",
     "apiVersion": "2025-11-01",
-    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
+    "createdAt": "2025-11-13T16:11:17Z",
     "warnings": [],
     "contents": [
       {
-        "markdown": "# Video: 00:00.000 => 00:43.866\nWidth: 1080\nHeight: 608\n\n## Segment 1: 00:00.000 => 00:07.367\nThe video begins with a scenic aerial view featuring the Flight Simulator and Microsoft Azure AI logos...\n\nTranscript\n```\nWEBVTT\n\n00:01.400 --> 00:06.560\n<Speaker 1 Speaker>When it comes to the neural TTS, in order to get a good voice, it's better to have good data.\n```\n\nKey Frames\n- 00:00.726 ![](keyFrame.726.jpg)...",
+        "markdown": "# Video: 00:00.733 => 00:15.467\nWidth: 1080\nHeight: 608\n\nTranscript\n```\nWEBVTT\n\n00:01.360 --> 00:06.640\n<Speaker 1>When it comes to the neural TTS, in order to get a good voice, it's better to have good data.\n\n00:07.120 --> 00:13.320\n<Speaker 2>To achieve that, we build a universal TTS model based on 3,000 hours of data.\n\n00:13.440 --> 00:23.680\n<Speaker 1>We actually accumulated tons of the data so that this universal model is able to capture the nuance of the audio and generate a more natural voice for the algorithm.\n```\n\nKey Frames\n- 00:00.733 ![](keyFrame.733.jpg)\n- 00:02.067 ![](keyFrame.2067.jpg)\n...\n- 00:14.833 ![](keyFrame.14833.jpg)\n- 00:15.467 ![](keyFrame.15467.jpg)",
         "fields": {
-          "Segments": {
-            "type": "array",
-            "valueArray": [
-              {
-                "type": "object",
-                "valueObject": {
-                  "SegmentId": {
-                    "type": "string",
-                    "valueString": "1"
-                  }
-                }
-              }, ...
-            ]
+          "Summary": {
+            "type": "string",
+            "valueString": "The video opens with a Flight Simulator logo alongside Microsoft Azure AI branding, followed by an interview with a man discussing the importance of good data for neural text-to-speech (TTS) technology. He explains the creation of a universal TTS model trained on 3,000 hours of data to capture audio nuances and produce natural-sounding voices. Visuals include audio waveform displays and shots of data centers and server rooms, emphasizing the technological infrastructure behind the TTS model."
           }
         },
         "kind": "audioVisual",
-        "startTimeMs": 0,
-        "endTimeMs": 43866,
+        "startTimeMs": 733,
+        "endTimeMs": 15467,
         "width": 1080,
         "height": 608,
+        "KeyFrameTimesMs": [
+          733,
+          2067
+          /*... (14 additional keyframes)*/
+        ],
+        "transcriptPhrases": [
+          {
+            "speaker": "Speaker 1",
+            "startTimeMs": 1360,
+            "endTimeMs": 6640,
+            "text": "When it comes to the neural TTS, in order to get a good voice, it's better to have good data.",
+            "confidence": 0.937,
+            "words": [
+              {
+                "startTimeMs": 1360,
+                "endTimeMs": 1600,
+                "text": "When"
+              },
+              {
+                "startTimeMs": 1600,
+                "endTimeMs": 1760,
+                "text": "it"
+              }
+              /*... (18 additional words)*/
+            ],
+            "locale": "en-US"
+          },
+          {
+            "speaker": "Speaker 2",
+            "startTimeMs": 7120,
+            "endTimeMs": 13320,
+            "text": "To achieve that, we build a universal TTS model based on 3,000 hours of data.",
+            "confidence": 0.937,
+            "words": [
+              {
+                "startTimeMs": 7120,
+                "endTimeMs": 7360,
+                "text": "To"
+              },
+              {
+                "startTimeMs": 7560,
+                "endTimeMs": 7880,
+                "text": "achieve"
+              }
+              /*... (13 additional words)*/
+            ],
+            "locale": "en-US"
+          },
+          {
+            "speaker": "Speaker 1",
+            "startTimeMs": 13440,
+            "endTimeMs": 23680,
+            "text": "We actually accumulated tons of the data so that this universal model is able to capture the nuance of the audio and generate a more natural voice for the algorithm.",
+            "confidence": 0.937,
+            "words": [
+              {
+                "startTimeMs": 13440,
+                "endTimeMs": 13600,
+                "text": "We"
+              },
+              {
+                "startTimeMs": 13600,
+                "endTimeMs": 14000,
+                "text": "actually"
+              }
+              /*... (28 additional words)*/
+            ],
+            "locale": "en-US"
+          }
+        ],
+        "cameraShotTimesMs": [
+          1467,
+          3233
+          /*... (13 additional camera shots)*/
+        ],
         "mimeType": "video/x-m4v"
+      },
+      {
+        "markdown": "# Video: 00:15.467 => 00:23.100\nWidth: 1080\nHeight: 608\n\n\n\nKey Frames\n- 00:15.467 ![](keyFrame.15467.jpg)\n- 00:16.933 ![](keyFrame.16933.jpg)\n...\n- 00:22.367 ![](keyFrame.22367.jpg)\n- 00:23.100 ![](keyFrame.23100.jpg)",
+        "fields": {
+          "Summary": {
+            "type": "string",
+            "valueString": "The video transitions to scenic aerial views from the Flight Simulator, showcasing detailed landscapes including coastlines, mountains, and castles. This segment highlights the realistic graphics and immersive experience of the Flight Simulator, demonstrating the integration of advanced AI technologies to enhance the simulation."
+          }
+        },
+        "kind": "audioVisual",
+        "startTimeMs": 15467,
+        "endTimeMs": 23100,
+        "width": 1080,
+        "height": 608,
+        "KeyFrameTimesMs": [
+          15467,
+          16933
+          /*... (7 additional keyframes)*/
+        ],
+        "transcriptPhrases": [],
+        "cameraShotTimesMs": [
+          1467,
+          3233
+          /*... (13 additional camera shots)*/
+        ]
+      },
+      {
+        "markdown": "# Video: 00:23.100 => 00:43.233\nWidth: 1080\nHeight: 608\n\nTranscript\n```\nWEBVTT\n\n00:24.040 --> 00:29.120\n<Speaker 3>What we liked about cognitive services offerings were that they had a much higher fidelity.\n\n00:29.600 --> 00:32.880\n<Speaker 3>And they sounded a lot more like an actual human voice.\n\n00:33.680 --> 00:37.200\n<Speaker 4>Orlando ground 9555 requesting the end of pushback.\n\n00:38.680 --> 00:41.280\n<Speaker 4>9555 request to end pushback received.\n```\n\nKey Frames\n- 00:23.100 ![](keyFrame.23100.jpg)\n- 00:24.833 ![](keyFrame.24833.jpg)\n...\n- 00:42.633 ![](keyFrame.42633.jpg)\n- 00:43.233 ![](keyFrame.43233.jpg)",
+        "fields": {
+          "Summary": {
+            "type": "string",
+            "valueString": "The focus shifts back to an interview with another man discussing the high fidelity and human-like quality of voices produced by cognitive services offerings. The segment concludes with visuals of an airplane on the tarmac, ground crew directing the plane, and the plane preparing for pushback, accompanied by realistic audio communications between ground control and the aircraft."
+          }
+        },
+        "kind": "audioVisual",
+        "startTimeMs": 23100,
+        "endTimeMs": 43233,
+        "width": 1080,
+        "height": 608,
+        "KeyFrameTimesMs": [
+          23100,
+          24833
+          /*... (19 additional keyframes)*/
+        ],
+        "transcriptPhrases": [
+          {
+            "speaker": "Speaker 3",
+            "startTimeMs": 24040,
+            "endTimeMs": 29120,
+            "text": "What we liked about cognitive services offerings were that they had a much higher fidelity.",
+            "confidence": 0.937,
+            "words": [
+              {
+                "startTimeMs": 24040,
+                "endTimeMs": 24240,
+                "text": "What"
+              },
+              {
+                "startTimeMs": 24240,
+                "endTimeMs": 24320,
+                "text": "we"
+              }
+              /*... (13 additional words)*/
+            ],
+            "locale": "en-US"
+          },
+          {
+            "speaker": "Speaker 3",
+            "startTimeMs": 29600,
+            "endTimeMs": 32880,
+            "text": "And they sounded a lot more like an actual human voice.",
+            "confidence": 0.823,
+            "words": [
+              {
+                "startTimeMs": 29600,
+                "endTimeMs": 30080,
+                "text": "And"
+              },
+              {
+                "startTimeMs": 30080,
+                "endTimeMs": 30160,
+                "text": "they"
+              }
+              /*... (9 additional words)*/
+            ],
+            "locale": "en-US"
+          },
+          {
+            "speaker": "Speaker 4",
+            "startTimeMs": 33680,
+            "endTimeMs": 37200,
+            "text": "Orlando ground 9555 requesting the end of pushback.",
+            "confidence": 0.823,
+            "words": [
+              {
+                "startTimeMs": 33680,
+                "endTimeMs": 34160,
+                "text": "Orlando"
+              },
+              {
+                "startTimeMs": 34160,
+                "endTimeMs": 34600,
+                "text": "ground"
+              }
+              /*... (6 additional words)*/
+            ],
+            "locale": "en-US"
+          },
+          {
+            "speaker": "Speaker 4",
+            "startTimeMs": 38680,
+            "endTimeMs": 41280,
+            "text": "9555 request to end pushback received.",
+            "confidence": 0.823,
+            "words": [
+              {
+                "startTimeMs": 38680,
+                "endTimeMs": 39600,
+                "text": "9555"
+              },
+              {
+                "startTimeMs": 39600,
+                "endTimeMs": 40080,
+                "text": "request"
+              }
+              /*... (4 additional words)*/
+            ],
+            "locale": "en-US"
+          }
+        ],
+        "cameraShotTimesMs": [
+          1467,
+          3233
+          /*... (13 additional camera shots)*/
+        ]
       }
     ]
   },
   "usage": {
-		"videoHours": 0.013,
+    "videoHours": 0.013,
+    "contextualizationTokens": 12222,
     "tokens": {
-      "gpt-4.1-input": 1234, 
-      "gpt-4.1-output": 2345,
+      "gpt-4.1-mini-input": 8976,
+      "gpt-4.1-mini-output": 439
     }
-  {
-}
+  }
 }
 ```
 

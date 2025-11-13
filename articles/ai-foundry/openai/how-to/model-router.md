@@ -19,10 +19,16 @@ ai-usage: ai-assisted
 
 # Use model router for Microsoft Foundry
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-4. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
+
+::: moniker range="foundry-classic"
+> [!TIP]
+> The [Microsoft Foundry (new)](../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+::: moniker-end
 
 ## Deploy a model router model
 
@@ -34,6 +40,9 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 
 ::: moniker range="foundry"
 In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings"* for the **balanced** routing mode and route between all supported models. To enable more configuration options, choose the **Custom settings* option.
+
+:::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
+
 ::: moniker-end
 
 > [!NOTE]
@@ -48,11 +57,15 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 
 Use the **Routing mode** dropdown to select a routing profile. This sets the routing logic for your deployment.
 
+:::image type="content" source="media/working-with-models/model-router-routing-mode.png" alt-text="Screenshot of model router routing mode selection.":::
+
 ## Select your model subset
 
 The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. 
 
 In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable.
+
+:::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
 
 New models introduced later are excluded by default until explicitly added.
 

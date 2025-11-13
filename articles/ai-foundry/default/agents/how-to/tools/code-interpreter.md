@@ -7,14 +7,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/14/2025
+ms.date: 11/13/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
 ---
 # Code Interpreter tool for agents
-
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
 
 Use this article to learn how to use the Code Interpreter tool for agents.
 

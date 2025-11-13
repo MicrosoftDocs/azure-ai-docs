@@ -78,7 +78,7 @@ Ocp-Apim-Subscription-Key: {Auth key}
 You can then validate that the analyzer was copied by calling the GET analyzer on the resource if this copy was within the resource, or on the target resource if this copy was across resources.
 
 ```
-GET https://mmi-usw3-eft-foundry.services.ai.azure.com/contentunderstanding/analyzers/{target analyzer id}?api-version=2025-11-01
+GET https://{target resource}.services.ai.azure.com/contentunderstanding/analyzers/{target analyzer id}?api-version=2025-11-01
 Ocp-Apim-Subscription-Key: {Auth key}
 
 ```

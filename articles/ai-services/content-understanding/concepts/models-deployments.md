@@ -22,19 +22,7 @@ The service requires a `chat completion` model and `embeddings` model and suppor
 
 ## Supported models
 
-The service is periodically updated to add support for more models. The currently supported models are:
-
-| Model Type | Model | Version |
-|--|--|--|
-|Chat Completion | gpt-4o | `2024-08-06` |
-|Chat Completion | gpt-4o | `2024-11-20` |
-|Chat Completion | gpt-4o-mini | `2024-11-20` |
-|Chat Completion | gpt-4.1 | `2024-11-20` |
-|Chat Completion | gpt-4.1-mini | `2024-11-20` |
-|Chat Completion |gpt-4.1-nano | `2024-11-20` |
-|Embeddings | text-embedding-3-small |  |
-|Embeddings | text-embedding-3-large |  |
-|Embeddings | text-embedding-ada-002 |  |
+The service is periodically updated to add support for more models. The currently supported models can be found at [Service Limits - Supported generative models](../service-limits.md#supported-generative-models). 
 
 ## Define models for your analyzer
 

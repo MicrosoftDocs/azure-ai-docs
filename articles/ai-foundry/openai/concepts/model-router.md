@@ -17,7 +17,14 @@ monikerRange: 'foundry-classic || foundry'
 
 # Model router for Microsoft Foundry
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 Model router for Microsoft Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. Thus, it delivers high performance while saving on compute costs where possible, all packaged as a single model deployment.
+
+::: moniker range="foundry-classic"
+> [!TIP]
+> The [Microsoft Foundry (new)](../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+::: moniker-end
 
 ## Why use model router?
 
