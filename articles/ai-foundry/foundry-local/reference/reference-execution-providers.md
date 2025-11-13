@@ -28,7 +28,7 @@ The CPU execution providers uses [Microsoft Linear Algebra Subroutines (MLAS)](h
 The WebGPU execution provider uses [Dawn](https://github.com/google/dawn), the native implementation of the web-based API, for acceleration on any GPU, and is the GPU fallback for Foundry Local.
 
 
-## Downloadable execution providers
+## Plugin execution providers
 
 The execution providers listed in the table are available (depending on device and driver compatibility) for dynamic download and registration on Windows and are subject to the license terms specified.
 
