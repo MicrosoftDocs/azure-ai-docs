@@ -879,8 +879,6 @@ print(response.model_dump_json(indent=2))
 
 ## Availability
 
-### Region availability
-
 | Model | Region | Limited access |
 |---|---|---|
 | `gpt-5.1`| East US2 & Sweden Central (Global Standard & DataZone Standard)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
