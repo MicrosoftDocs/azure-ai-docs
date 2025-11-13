@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Foundry Tools docs: What's new for November 2025"
-description: Discover key changes and updates in Microsoft Foundry Tools documentation for November 2025.
+description: Discover key changes and updates in Foundry Tools documentation for November 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
