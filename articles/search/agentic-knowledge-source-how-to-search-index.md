@@ -29,7 +29,7 @@ To try the examples in this article, we recommend [Visual Studio Code](https://c
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a search index knowledge source. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
 

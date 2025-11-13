@@ -38,7 +38,7 @@ Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a blob knowledge source.
 

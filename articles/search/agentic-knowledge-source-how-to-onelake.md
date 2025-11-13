@@ -39,7 +39,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a OneLake knowledge source.
 

@@ -61,7 +61,7 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a remote SharePoint knowledge source.
 

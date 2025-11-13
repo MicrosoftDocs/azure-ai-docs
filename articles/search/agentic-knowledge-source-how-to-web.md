@@ -47,7 +47,7 @@ When you use Web Knowledge Source, keep the following in mind:
 
 ## Check for existing knowledge sources
 
-[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for Web Knowledge Source.
 
