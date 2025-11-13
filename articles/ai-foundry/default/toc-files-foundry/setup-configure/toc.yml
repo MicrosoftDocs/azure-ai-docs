@@ -25,7 +25,7 @@ items:
   - name: Connect to your own storage for Speech/Language
     href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md 
   - name: Manage Grounding with Bing
-    href: ../../agents/how-to/manage-grounding-with-bing.md
+    href: ../../../agents/how-to/manage-grounding-with-bing.md
 
 - name: Quota and service limits
   items: 
