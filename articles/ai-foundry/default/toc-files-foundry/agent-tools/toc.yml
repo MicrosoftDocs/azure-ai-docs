@@ -19,8 +19,6 @@ items:
   href: ../../../agents/how-to/tools/azure-ai-speech.md
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
-- name: Browser automation (preview)
-  href: ../../agents/how-to/tools/browser-automation.md
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
 - name: Custom code interpreter (preview)
