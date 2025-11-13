@@ -33,3 +33,9 @@ You can disable the web search tool for all accounts in a subscription. For more
 ## Disable web knowledge
 
 You can disable Web Knowledge Source access for all search services in a subscription. For more information, see [Disable use of Web Knowledge Source](../../../../search/agentic-knowledge-source-how-to-web-manage.md#disable-use-of-web-knowledge-source).
+
+## Related content
+
++ [Grounding with Bing Search tools for agents](./tools/bing-tools.md)
++ [Web search tool (preview)](../how-to/tools/web-search.md)
++ [Create a Web Knowledge Source resource](../../../../search/agentic-knowledge-source-how-to-web)
