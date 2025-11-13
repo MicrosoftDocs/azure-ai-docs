@@ -21,7 +21,11 @@ Execution providers are hardware-specific acceleration libraries that run models
 
 ## Built-in execution providers
 
-Foundry Local includes the CPU execution provider and the WebGPU execution provider.
+Foundry Local includes the CPU execution provider and the WebGPU execution provider. 
+
+The CPU execution providers uses (MLAS)[Microsoft Linear Algebra Subroutines] to run on any CPU and is the CPU fallback for Foundry Local.
+
+The WebGPU execution provider uses (Dawn)[], the native implementation of the web-based API, for acceleration on any GPU, and is the GPU fallback for Foundry Local.
 
 
 ## Downloadable execution providers
