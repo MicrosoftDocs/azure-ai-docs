@@ -34,7 +34,7 @@ To delete a knowledge source:
 
    ```json
     {
-        "@odata.context": "https://my-demo-search-service.search.windows.net/$metadata#knowledgebases(name)",
+        "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",
         "value": [
         {
             "name": "my-kb"
@@ -121,7 +121,7 @@ To delete a knowledge source:
 
    ```json
     {
-        "@odata.context": "https://my-demo-search-service.search.windows.net/$metadata#knowledgebases(name)",
+        "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",
         "value": [
         {
             "name": "my-kb"

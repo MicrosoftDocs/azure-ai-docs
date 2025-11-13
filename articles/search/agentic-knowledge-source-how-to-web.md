@@ -43,7 +43,7 @@ When you use Web Knowledge Source, keep the following in mind:
 
 + An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).  The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as Web Knowledge Source isn't supported in private or sovereign clouds.
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support.
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the latest knowledge source REST APIs. Currently, there's no portal support for this knowledge source.
 
 ## Check for existing knowledge sources
 
@@ -92,6 +92,8 @@ knowledge_source = WebKnowledgeSource(
 index_client.create_or_update_knowledge_source(knowledge_source)
 print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
 ```
+
+### Source-specific properties
 
 You can pass the following properties to create a Web Knowledge Source resource.
 

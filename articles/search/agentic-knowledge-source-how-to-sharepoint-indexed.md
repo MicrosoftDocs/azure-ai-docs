@@ -35,7 +35,7 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
   + [Step 2: Choose between delegated or application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires)
   + [Step 3: Application registration step for Microsoft Entra ID authentication](search-how-to-index-sharepoint-online.md#step-3-create-a-microsoft-entra-application-registration).
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support for this knowledge source.
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the latest knowledge source REST APIs. Currently, there's no portal support for this knowledge source.
 
 ## Check for existing knowledge sources
 

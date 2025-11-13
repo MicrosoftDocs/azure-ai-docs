@@ -32,11 +32,11 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + SharePoint in a Microsoft 365 tenant, under the same Microsoft Entra ID tenant as Azure.
 
-+ A personal access token for local development or a user's identity from a client application. 
++ A personal access token for local development or a user's identity from a client application.
+
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the latest knowledge source REST APIs. Currently, there's no portal support for this knowledge source.
 
 For local development, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
-
-To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
 <!-- invalid filter expression will return a 400 soon, so we should be able to remove this limitation -->
 ## Limitations
