@@ -155,7 +155,7 @@ The following table lists the supported languages/locales for **handwritten** te
 
 Content Understanding applies Azure Speech in Foundry Tools [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to transcribe spoken words in the input synchronously and faster than real-time audio. 
 
-Content Understanding supports the full set of languages/locales supported by fast transcription. See the Fast transcription column here - [Azure Speech Regions](../speech-service/regions?tabs=stt).
+Content Understanding supports the full set of languages/locales supported by fast transcription. See the Fast transcription column here - [Azure Speech Regions](../speech-service/regions.md?tabs=stt).
 
 ### Field value normalization
 
