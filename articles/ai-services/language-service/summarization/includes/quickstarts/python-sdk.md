@@ -1,7 +1,7 @@
 ---
 author: laujan
 ms.author: lajanuar
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -9,7 +9,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 # [Text summarization](#tab/text-summarization)
 
 [Reference documentation](/python/api/azure-ai-textanalytics/azure.ai.textanalytics?view=azure-python&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples) | [Package (PyPi)](https://pypi.org/project/azure-ai-textanalytics/5.3.0/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics) 
@@ -33,7 +32,7 @@ Use this quickstart to create a text summarization application with the client l
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.x](https://www.python.org/)
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You'll need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 * To use the Analyze feature, you'll need a Language resource with the standard (S) pricing tier.

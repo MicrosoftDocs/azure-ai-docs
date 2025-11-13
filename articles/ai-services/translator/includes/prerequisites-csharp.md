@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 07/18/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

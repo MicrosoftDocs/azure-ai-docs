@@ -12,7 +12,7 @@ reviewer: balapv
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Microsoft Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 

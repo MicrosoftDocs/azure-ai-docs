@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 08/21/2025
+ms.date: 10/21/2025
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -17,7 +17,7 @@ ms.custom:
 # Example of shapes and projections in a knowledge store
 
 > [!NOTE]
-> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 This article provides a detailed example that supplements [high-level concepts](knowledge-store-projection-overview.md) and [syntax-based articles](knowledge-store-projections-examples.md) by walking you through the shaping and projection steps required for fully expressing the output of a rich skillset in a [knowledge store](knowledge-store-concept-intro.md) in Azure Storage.
 
@@ -25,7 +25,7 @@ If your application requirements call for multiple skills and projections, this 
 
 ## Set up sample data
 
-Sample documents aren't included with the Projections collection, but the [AI enrichment demo data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) contain text and images that work with the projections described in this example. If you use this sample data, you can skip step that [attaches an Azure AI multi-service account](cognitive-search-attach-cognitive-services.md) because you stay under the daily indexer limit for free enrichments.
+Sample documents aren't included with the Projections collection, but the [AI enrichment demo data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) contain text and images that work with the projections described in this example. If you use this sample data, you can skip step that [attaches a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) because you stay under the daily indexer limit for free enrichments.
 
 Create a blob container in Azure Storage and upload all 14 items.
 
@@ -184,7 +184,7 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
     ],
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-        "description": "An Azure AI services resource in the same region as Search.",
+        "description": "A Foundry resource in the same region as Search.",
         "key": ""
     },
     "knowledgeStore": null
@@ -192,7 +192,7 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
 ```
 
 > [!NOTE]
-> Under `"cognitiveServices"`, the key field is unspecified because the indexer can use an Azure AI multi-service account in the same region as your search service and process up to 20 transactions daily at no charge. The sample data for this example stays under the 20 transaction limit.
+> Under `"cognitiveServices"`, the key field is unspecified because the indexer can use a Foundry resource in the same region as your search service and process up to 20 transactions daily at no charge. The sample data for this example stays under the 20 transaction limit.
 
 ## Example Shaper skill
 

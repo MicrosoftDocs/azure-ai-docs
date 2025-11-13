@@ -1,11 +1,11 @@
 ---
 title: "Batch analysis and processing"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Document Intelligence Batch analysis API
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/28/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---

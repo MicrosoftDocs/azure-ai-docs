@@ -1,6 +1,6 @@
 ---
 title: Regions - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
 author: goergenj
 manager: nitinme
@@ -23,7 +23,7 @@ Keep in mind the following points:
 - Keys created for a region are valid only in that region. If you attempt to use them with other regions, you get authentication errors.
 
 > [!NOTE]
-> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create an AI Foundry resource for Speech in the `westus` region, the data is only in the `westus` region.
+> Speech service doesn't store or process your data outside the region of your Speech resource. The data is only stored or processed in the region where the resource is created. For example, if you create a Foundry resource for Speech in the `westus` region, the data is only in the `westus` region.
 
 ## Regions
 
@@ -226,9 +226,9 @@ The regions in these tables support most of the core features of the Speech serv
 |westeurope| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - | - | - |
 | westus2 | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Regional | Regional | ✅ | - |
 
-<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
+<sup>1</sup> The Microsoft Foundry resource must be in Central India. Azure Speech in Foundry Tools features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
 
-<sup>2</sup> The resource must be in West US 2. Azure AI Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
+<sup>2</sup> The resource must be in West US 2. Azure Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
 
 # [Keyword recognition](#tab/keyword-recognition)
 
@@ -251,6 +251,45 @@ The regions in these tables support most of the core features of the Speech serv
 | westus2  | ✅ | ✅ |
 
 Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
+
+# [Speech MCP server](#tab/mcp)
+
+
+| **Region** | **Speech MCP server agent tool** | 
+|-----|-----|
+| australiaeast | ✅ |
+| brazilsouth | ✅ |
+| canadacentral | ✅ |
+| canadaeast | ✅ |
+| centralindia | ✅ |
+| centralus  | ✅ |
+| eastasia | ✅ |
+| eastus | ✅ |
+| eastus2  | ✅ |
+| francecentral | ✅ |
+| germanywestcentral | ✅ |
+| italynorth | ✅ |
+| japaneast  | ✅ |
+| japanwest  | ✅ |
+| koreacentral   | ✅ |
+| northcentralus   | ✅ |
+| northeurope | ✅ |
+| norwayeast | ✅ |
+| qatarcentral | ✅ |
+| southafricanorth | ✅ |
+| southcentralus | ✅ |
+| southeastasia | ✅ |
+| swedencentral | ✅ |
+| switzerlandnorth | ✅ |
+| switzerlandwest  | ✅ |
+| uaenorth | ✅ |
+| uksouth  | ✅ |
+| ukwest | ✅ |
+| westcentralus | ✅ |
+| westeurope | ✅ |
+| westus | ✅ |
+| westus2  | ✅ |
+| westus3  | ✅ |
 
 ---
 

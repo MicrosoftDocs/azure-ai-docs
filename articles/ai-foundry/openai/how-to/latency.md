@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models performance & latency
+title: Azure OpenAI in Microsoft Foundry Models performance & latency
 titleSuffix: Azure OpenAI
 description: Learn about performance and latency with Azure OpenAI
 manager: nitinme
@@ -11,6 +11,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom:
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Performance and latency
@@ -41,7 +42,7 @@ When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Compl
 
 ##### Estimating TPM from request data
 
-A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI in Azure AI Foundry Models chat completions request.
+A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI in Microsoft Foundry Models chat completions request.
 
 ```json
 {

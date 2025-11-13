@@ -1,18 +1,17 @@
 ---
 title: Translator Dictionary Examples Method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Translator Dictionary Examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Dictionary Examples
+# Azure Translator in Foundry Tools 3.0: Dictionary Examples
 
 Provides examples that show how terms in the dictionary are used in context. This operation is used in tandem with [Dictionary lookup](dictionary-lookup.md).
 
@@ -24,7 +23,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -57,7 +56,7 @@ An example is:
 
 ```json
 [
-    {"Text":"fly", "Translation":"volar"}
+    {"text":"fly", "Translation":"volar"}
 ]
 ```
 

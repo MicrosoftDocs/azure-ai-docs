@@ -1,7 +1,7 @@
 ---
-title: Azure AI Speech known issues
-titlesuffix: Azure AI services
-description: Known and common issues with Azure AI Speech.
+title: Azure Speech in Foundry Tools known issues
+titlesuffix: Foundry Tools
+description: Known and common issues with Azure Speech in Foundry Tools.
 manager: heikora
 ms.service: azure-ai-speech
 ms.topic: reference
@@ -10,9 +10,9 @@ author: goergenj
 ms.author: jagoerge
 ---
 
-# Azure AI Speech known issues
+# Azure Speech in Foundry Tools known issues
 
-Azure AI Speech is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Speech and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
+Azure Speech is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure Speech and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
@@ -63,4 +63,4 @@ Fixed known issues are organized in this section in descending order by fixed da
 
 * [Azure Service Health Portal](/azure/service-health/service-health-portal-update)
 * [Azure Status overview](/azure/service-health/azure-status-overview)
-* [What's new in Azure AI Translator?](./releasenotes.md)
+* [What's new in Azure Translator in Foundry Tools?](./releasenotes.md)

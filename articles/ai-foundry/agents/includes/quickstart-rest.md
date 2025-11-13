@@ -29,7 +29,7 @@ az account get-access-token --resource 'https://ai.azure.com' | jq -r .accessTok
 ```
 Set the access token as an environment variable named `AGENT_TOKEN`.
 
-To successfully make REST API calls to Azure AI Foundry Agent Service, you will need to use your project's endpoint:
+To successfully make REST API calls to Foundry Agent Service, you will need to use your project's endpoint:
 
 `https://<your_ai_service_name>.services.ai.azure.com/api/projects/<your_project_name>`
 

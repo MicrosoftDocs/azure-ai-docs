@@ -1,6 +1,6 @@
 ---
 title: Create an Azure Kubernetes Service cluster resource
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to create an Azure Kubernetes Service (AKS) resource.
 author: aahill
 manager: nitinme

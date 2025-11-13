@@ -27,7 +27,7 @@ In this tutorial, you learn how to:
 > + Create and run an indexer to ingest permission information into an index from a data source
 > + Search the index you just created
 
-Use a REST client to complete this tutorial and the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Currently, there's no support for ACL indexing in the Azure portal.
+Use a REST client to complete this tutorial and the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true). Currently, there's no support for ACL indexing in the Azure portal.
 
 ## Prerequisites
 
@@ -79,7 +79,7 @@ As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-r
 
 [Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
 
-Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
+Be sure to use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
 For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
 
@@ -190,7 +190,7 @@ Now that documents are loaded, you can issue queries against them by using [Docu
 The URI is extended to include a query input, which is specified by using the `/docs/search` operator. The query token is passed in the request header. For more information, see [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-08-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-11-01-preview
 Authorization: Bearer {{search-token}}
 x-ms-query-source-authorization: {{search-token}}
 Content-Type: application/json

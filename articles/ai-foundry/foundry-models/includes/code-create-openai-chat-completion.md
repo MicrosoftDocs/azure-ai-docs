@@ -66,7 +66,7 @@ for (ChatChoice choice : chatCompletions.getChoices()) {
 }
 ```
 
-Here, `deepseek-v3-0324` is the name of a model deployment in the Azure AI Foundry resource.
+Here, `deepseek-v3-0324` is the name of a model deployment in the Microsoft Foundry resource.
 
 # [REST](#tab/rest)
 
@@ -93,6 +93,6 @@ Content-Type: application/json
 }
 ```
 
-Here, `deepseek-v3-0324` is the name of a model deployment in the Azure AI Foundry resource.
+Here, `deepseek-v3-0324` is the name of a model deployment in the Foundry resource.
 
 ---

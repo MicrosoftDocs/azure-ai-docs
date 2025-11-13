@@ -304,4 +304,4 @@ foundry cache cd ./foundry/cache/models
 ## Related content
 
 - [Olive documentation](https://microsoft.github.io/Olive/)
-- [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)
+- [Use chat completions via REST server with Foundry Local](how-to-integrate-with-inference-sdks.md)

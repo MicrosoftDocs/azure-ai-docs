@@ -1,12 +1,12 @@
 ---
 title: Create Document Intelligence Studio custom projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about form and document processing, data extraction, and analysis by using Document Intelligence Studio.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: quickstart
-ms.date: 03/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -18,7 +18,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 
-[Azure AI Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/) is an online tool that you can use to visually explore, understand, and integrate features from Document Intelligence into your applications. This quickstart aims to show you how to set up a custom project in Document Intelligence Studio.
+[Azure Document Intelligence in Foundry Tools Studio](https://formrecognizer.appliedai.azure.com/) is an online tool that you can use to visually explore, understand, and integrate features from Document Intelligence into your applications. This quickstart aims to show you how to set up a custom project in Document Intelligence Studio.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ For information on subscription, resource, and authentication setup, see [Get st
 
 ## Prerequisites for new users
 
-In addition to an Azure account and the Document Intelligence or Azure AI Foundry resource, you need an Azure Blob Storage container and Azure role assignments.
+In addition to an Azure account and the Document Intelligence or Microsoft Foundry resource, you need an Azure Blob Storage container and Azure role assignments.
 
 ### Azure Blob Storage container
 
@@ -40,7 +40,7 @@ You need a standard performance [Azure Blob Storage account](https://portal.azur
 For custom projects, the following role assignments are required for different scenarios:
 
 * Basic
-  * **Cognitive Services User**: You need this role for the Document Intelligence or Azure AI Foundry resource to train the custom model or do analysis with trained models.
+  * **Cognitive Services User**: You need this role for the Document Intelligence or Microsoft Foundry resource to train the custom model or do analysis with trained models.
   * **Storage Blob Data Contributor**: You need this role for the storage account to create a project and label data.
 * Advanced
   * **Storage Account Contributor**: You need this role for the storage account to set up cross-origin resource sharing (CORS) settings. (This action is a one-time effort if the same storage account is reused.)

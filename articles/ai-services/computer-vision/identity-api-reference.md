@@ -1,6 +1,6 @@
 ---
 title: API Reference - Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: API reference provides information about the Person, LargePersonGroup/PersonGroup, LargeFaceList/FaceList, and Face Algorithms APIs.
 author: PatrickFarley
 manager: nitinme

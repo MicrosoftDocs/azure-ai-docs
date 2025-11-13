@@ -57,7 +57,7 @@ Let's look at the diagram in more detail.
 
 ## RAG with Azure Machine Learning (preview)
 
-Azure Machine Learning enables RAG through integration with Azure OpenAI in Azure AI Foundry Models for large language models and vectorization. It supports Faiss and Azure AI Search (formerly Cognitive Search) as vector stores. It also supports open source offerings, tools, and frameworks such as LangChain for data chunking. 
+Azure Machine Learning enables RAG through integration with Azure OpenAI in Microsoft Foundry Models for large language models and vectorization. It supports Faiss and Azure AI Search (formerly Cognitive Search) as vector stores. It also supports open source offerings, tools, and frameworks such as LangChain for data chunking. 
 
 To implement RAG, you must meet a few key requirements. First, format data in a manner that allows efficient searchability before sending it to the LLM, which ultimately reduces token consumption. To ensure the effectiveness of RAG, regularly update your data on a periodic basis. Furthermore, having the capability to evaluate the output from the LLM using your data enables you to measure the efficacy of your techniques. Azure Machine Learning not only allows you to get started easily on these aspects, but also enables you to improve and productionize RAG. Azure Machine Learning offers: 
 

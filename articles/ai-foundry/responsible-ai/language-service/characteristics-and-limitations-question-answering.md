@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations of question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations of question answering
 author: laujan
 ms.author: lajanuar

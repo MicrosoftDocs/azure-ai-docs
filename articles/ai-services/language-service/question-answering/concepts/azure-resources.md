@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 author: laujan
 ms.author: lajanuar
-ms.date: 07/22/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Azure resources for custom question answering
 
 Custom question answering uses several Azure sources, each with a different purpose. Understanding how they're used individually allows you to plan for and select the correct pricing tier or know when to change your pricing tier. Understanding how resources are used _in combination_ allows you to find and fix problems when they occur.
@@ -70,7 +69,7 @@ Use these keys when making requests to the service through APIs.
 
 |Name|Location|Purpose|
 |--|--|--|
-|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)|These keys are used to access the Language service APIs). These APIs let you edit the questions and answers in your project, and publish your project. These keys are created when you create a new resource.<br><br>Find these keys on the **Azure AI services** resource on the **Keys and Endpoint** page.|
+|Authoring/Subscription key|[Azure portal](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)|These keys are used to access Azure Language APIs). These APIs let you edit the questions and answers in your project, and publish your project. These keys are created when you create a new resource.<br><br>Find these keys on the **Azure AI services** resource on the **Keys and Endpoint** page.|
 |Azure AI Search Admin Key|[Azure portal](/azure/search/search-security-api-keys)|These keys are used to communicate with the Azure AI Search service deployed in the user's Azure subscription. When you associate an Azure AI Search resource with the custom question answering feature, the admin key is automatically passed to custom question answering. <br><br>You can find these keys on the **Azure AI Search** resource on the **Keys** page.|
 
 ### Find authoring keys in the Azure portal

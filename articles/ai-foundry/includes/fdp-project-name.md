@@ -10,4 +10,4 @@ ms.date: 03/25/2025
 ms.custom: include
 ---
 
-Azure AI Foundry project
+Foundry project

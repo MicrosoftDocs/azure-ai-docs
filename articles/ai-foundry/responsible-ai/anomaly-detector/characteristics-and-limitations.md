@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for using Anomaly Detector and Metrics Advisor
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations of using Anomaly Detector and Metrics Advisor
 author: mrbullwinkle
 ms.author: mbullwin

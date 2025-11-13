@@ -1,6 +1,6 @@
 ---
 title: Continuously Evaluate your AI agents
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -8,9 +8,13 @@ ms.date: 07/31/2025
 ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -25,13 +29,54 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
-3. Connect your Application Insights resource to the project.
+::: moniker range="foundry-classic"
 
-## Azure AI Foundry project configuration and region support
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 
-Since the evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
+
+1. Connect your Application Insights resource to the project.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+To view continuous evaluations in Foundry: 
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+
+1. Select **Build** from the upper-right navigation. 
+
+1. Select **Agents** from the left pane. Select the agent you'd like to evaluate. 
+
+1. Select the **Monitor** tab to view the agent monitoring dashboard.
+
+1. Open the **Settings** wizard to begin configuring continuous evaluations.
+
+1. Use the Add Evaluator dropdown to include one or more evaluators. You can add evaluators in two ways: 
+
+    - **Evaluator Name**
+    
+        - Select evaluators by name from your available list. 
+    
+    - **Importing from Past Evaluation**
+    
+        - Reuse evaluators from previous evaluation runs for consistency. 
+
+1. Set Sample Rate by defining how many runs per hour will be evaluated
+
+1. Apply Changes 
+
+1. Click Verify + Submit to save your configuration. 
+
+
+After configuring your continuous evaluation settings, you will be able to view top-level metrics on the summary cards and associated charts with more granular data. 
+
+::: moniker-end
+
+## Microsoft Foundry project configuration and region support
+
+Since the evaluators use hosted evaluation LLMs in the Foundry evaluation service, they require your Foundry project information to be instantiated. The Foundry project must be in a supported region:
 
 > [!div class="mx-tdCol2BreakAll"]
 > | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
@@ -45,7 +90,7 @@ Since the evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluati
 > | Norway East | Supported  |
 > | Sweden Central| Supported  | 
 
-## Set up continuous evaluations with Azure AI projects client library
+## Set up continuous evaluations with Azure AI Projects client library
 
 ```python
 pip install azure-ai-projects azure-identity
@@ -212,7 +257,7 @@ project_client.evaluation.create_agent_evaluation(
 
 ## Viewing continuous evaluation results
 
-After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Azure AI Foundry and Azure Monitor](./monitor-applications.md).
+After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Foundry and Azure Monitor](./monitor-applications.md).
 
 ## Related content
 

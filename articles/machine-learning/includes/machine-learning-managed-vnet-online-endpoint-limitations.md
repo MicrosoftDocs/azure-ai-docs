@@ -14,7 +14,7 @@ ms.author: scottpolly
   > To see the creation date of a workspace, you can check the workspace properties.
   >
   > 1. In Azure Machine Learning studio, go to the upper-right corner and select the name of your workspace.
-  > 1. In the Directory + Subscription + Workspace window, select **View all properties in Azure Portal**.
+  > 1. In the Directory + Subscription + Workspace window, select **View all properties in Azure portal**.
   > 1. In the Azure portal Overview page, go to the upper-right corner and select **JSON View**.
   > 1. In the Resource JSON window, under **API Versions**, select the latest API version.
   > 1. In the `properties` section of the JSON code, check the `creationTime` value.

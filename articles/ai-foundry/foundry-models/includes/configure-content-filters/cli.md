@@ -15,6 +15,6 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## Add a model deployment with custom content filtering
 
-We recommend creating content filters using either Azure AI Foundry portal or in code using Bicep. Creating custom content filters or applying them to deployments is not supported using the Azure CLI.
+We recommend creating content filters using either Microsoft Foundry portal or in code using Bicep. Creating custom content filters or applying them to deployments is not supported using the Azure CLI.
 
 [!INCLUDE [code](code.md)]

@@ -1,19 +1,18 @@
 ---
-title: What is key phrase extraction in Azure AI Language?
-titleSuffix: Azure AI services
-description: An overview of key phrase extraction in Azure AI services, which helps you identify main concepts in unstructured text
+title: What is key phrase extraction in Azure Language in Foundry Tools?
+titleSuffix: Foundry Tools
+description: An overview of key phrase extraction in Foundry Tools, which helps you identify main concepts in unstructured text
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
+# What is key phrase extraction in Azure Language in Foundry Tools?
 
-# What is key phrase extraction in Azure AI Language?
-
-Key phrase extraction is one of the features offered by [Azure AI Language](../overview.md). This capability is part of a suite of cloud-based machine learning and AI tools designed for building intelligent applications that process written language. Use key phrase extraction to quickly identify the main concepts in text. For example, in the text "*The food was delicious and the staff were wonderful.*", key phrase extraction returns the main topics: "*food*" and "*wonderful staff*."
+Key phrase extraction is one of the features offered by [Azure Language in Foundry Tools](../overview.md). This capability is part of a suite of cloud-based machine learning and AI tools designed for building intelligent applications that process written language. Use key phrase extraction to quickly identify the main concepts in text. For example, in the text "*The food was delicious and the staff were wonderful.*", key phrase extraction returns the main topics: "*food*" and "*wonderful staff*."
 
 This documentation contains the following types of articles:
 
@@ -38,5 +37,5 @@ An AI system includes the technology, the individuals who operate the system, th
 ## Next steps
 
 There are two ways to get started using the entity linking feature:
-* [Azure AI Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Azure AI Language features without needing to write code.
+* [Microsoft Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.  

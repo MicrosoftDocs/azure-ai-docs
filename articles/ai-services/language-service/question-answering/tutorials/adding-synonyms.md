@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Improve quality of response with synonyms
 
 In this tutorial, you learn how to:

@@ -96,7 +96,7 @@ The following connectors are useful for indexing unstructured data, as a complem
 
 ### Supported actions
 
-Logic apps integration includes the following indexing actions. For more information, see [Connect to Azure AI services from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai#ingest-data-workflow).
+Logic apps integration includes the following indexing actions. For more information, see [Connect to Foundry Tools from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai#ingest-data-workflow).
 
 + Check for new data.
 + Get the data. An HTTP action that retrieves the uploaded document using the file URL from the trigger output.
@@ -189,6 +189,6 @@ The wizard creates templates and workflows when you specify a Logic Apps indexer
 
 + [Indexers](search-indexer-overview.md)
 
-+ [Connect to Azure AI services from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai)
++ [Connect to Foundry Tools from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai)
 
 + [Manage logic apps](/azure/logic-apps/manage-logic-apps-with-azure-portal)

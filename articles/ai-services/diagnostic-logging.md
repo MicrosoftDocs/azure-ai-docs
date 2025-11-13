@@ -1,18 +1,18 @@
 ---
 title: Enable diagnostic logging
-titleSuffix: Azure AI services
-description: This guide provides step-by-step instructions to enable diagnostic logging for an Azure AI service. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
+titleSuffix: Foundry Tools
+description: This guide provides step-by-step instructions to enable diagnostic logging for a Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Enable diagnostic logging for Azure AI services
+# Enable diagnostic logging for Foundry Tools
 
-This guide provides step-by-step instructions to enable diagnostic logging for an Azure AI service. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging. Before you continue, you must have an Azure account with a subscription to at least one Azure AI service, such as [Azure AI Speech](./speech-service/overview.md).
+This guide provides step-by-step instructions to enable diagnostic logging for a Foundry Tools. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging. Before you continue, you must have an Azure account with a subscription to at least one Foundry Tools, such as [Azure Speech](./speech-service/overview.md).
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ Start by enabling diagnostic logging using the [Azure portal](https://portal.azu
 > [!NOTE]
 > To enable this feature using PowerShell or the Azure CLI, use the instructions provided in [Collect and consume log data from your Azure resources](/azure/azure-monitor/essentials/platform-logs-overview).
 
-1. Navigate to the [Azure portal](https://portal.azure.com). Then locate and select an [AI Foundry resource](./multi-service-resource.md). 
+1. Navigate to the [Azure portal](https://portal.azure.com). Then locate and select a [Foundry resource](./multi-service-resource.md). 
 1. Next, from the left-hand navigation menu, locate **Monitoring**, and select **Diagnostic settings**. This screen contains all previously created diagnostic settings for this resource.
 1. If there is a previously created resource that you'd like to use, you can select it now. Otherwise, select **+ Add diagnostic setting**.
 1. Enter a name for the setting. Then select **Archive to a storage account** and **Send to log Analytics**.
@@ -65,7 +65,7 @@ Follow these instructions to explore log analytics data for your resource.
 
 Here are a few basic Kusto queries you can use to explore your log data.
 
-Run this query for all diagnostic logs from Azure AI services for a specified time period:
+Run this query for all diagnostic logs from Foundry Tools for a specified time period:
 
 ```kusto
 AzureDiagnostics

@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Foundry Agent Service in Visual Studio Code
-titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use Azure AI Foundry Agent Service directly in Visual Studio Code.
+title: Work with Foundry Agent Service in Visual Studio Code
+titleSuffix: Microsoft Foundry
+description: Use this article to learn how to use Foundry Agent Service directly in Visual Studio Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -9,15 +9,16 @@ content_well_notification:
 ai-usage: ai-assisted
 ms.topic: how-to
 zone_pivot_groups: ai-foundry-vsc-extension-languages
-ms.date: 10/16/2025
+ms.date: 10/22/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+monikerRange: foundry-classic || foundry
 ---
 
-# Work with Azure AI Foundry Agent Service in Visual Studio Code (preview)
+# Work with Foundry Agent Service in Visual Studio Code (preview)
 
-After you [get started with the Azure AI Foundry for Visual Studio Code extension](./get-started-projects-vs-code.md), use [Azure AI Foundry Agent Service](/azure/ai-services/agents/overview) to build agents. Agents are microservices that:
+After you [get started with the Microsoft Foundry for Visual Studio Code extension](./get-started-projects-vs-code.md), use [Foundry Agent Service](/azure/ai-services/agents/overview) to build agents. Agents are microservices that:
 
 - Answer questions by using their training data or search other sources with retrieval-augmented generation (RAG).
 - Perform specific actions.
@@ -25,7 +26,7 @@ After you [get started with the Azure AI Foundry for Visual Studio Code extensio
 
 Agents combine AI models with tools to access and interact with your data.
 
-Azure AI Foundry developers can stay productive by developing, testing, and deploying agents in the familiar environment of Visual Studio Code (VS Code).
+Foundry developers can stay productive by developing, testing, and deploying agents in the familiar environment of Visual Studio Code (VS Code).
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -39,7 +40,7 @@ Follow these steps to create an Azure AI agent:
 
 1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) to use with your agent.
 
-1. In the **Azure AI Foundry Extension** view, find the **Resources** section.
+1. In the **Foundry Extension** view, find the **Resources** section.
 
 1. Select the plus (**+**) icon next to the **Agents** subsection to create a new AI agent.
 
@@ -91,7 +92,7 @@ tools: []
 
 ## Add tools to the Azure AI agent
 
-Azure AI Foundry Agent Service has the following set of tools that you can use to interact with your data sources. These tools are available in the Azure AI Foundry for Visual Studio Code extension.
+Agent Service has the following set of tools that you can use to interact with your data sources. These tools are available in the Foundry for Visual Studio Code extension.
 
 - [Grounding with Bing search](/azure/ai-foundry/agents/how-to/tools/bing-grounding)
 - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview)
@@ -99,7 +100,7 @@ Azure AI Foundry Agent Service has the following set of tools that you can use t
 - [OpenAPI specified tools](/azure/ai-foundry/agents/how-to/tools/openapi-spec)
 - [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol)
 
-For more information about using MCP tools, see [Work with Azure AI Foundry Agent Service and MCP server tools in Visual Studio Code (preview)](./vs-code-agents-mcp.md).
+For more information about using MCP tools, see [Work with Agent Service and MCP server tools in Visual Studio Code (preview)](./vs-code-agents-mcp.md).
 
 ### Add a tool to the AI agent
 
@@ -129,13 +130,13 @@ For more information about using MCP tools, see [Work with Azure AI Foundry Agen
 
 When you add a tool, you can also add any new assets that it needs. For example, if you add a file search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
 
-## Create an Azure AI agent on Azure AI Foundry
+## Create an Azure AI agent on Foundry
 
-Create your agent directly on Azure AI Foundry by using the following steps:
+Create your agent directly on Foundry by using the following steps:
 
-1. In the designer, select the **Create Agent on Azure AI Foundry** button.
+1. In the designer, select the **Create Agent on Foundry** button.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the agent designer with the button for creating an agent on Azure AI Foundry highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the agent designer with the button for creating an agent on Foundry highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
 
 1. In VS Code, refresh the **Azure Resources** view. The deployed agent appears in the **Agents** subsection.
 
@@ -157,9 +158,9 @@ Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only
 
 1. Edit the agent's configuration, such as the model, tools, and instructions.
 
-1. After you finish editing, select the **Update Agent on Azure AI Foundry** button to save your changes.
+1. After you finish editing, select the **Update Agent on Foundry** button to save your changes.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences, with the Update Agent on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences, with the Update Agent on Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
 
 ## Create a sample code file
 
@@ -181,7 +182,7 @@ Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only
 
 ### Explore the sample code file
 
-The following Python sample code file demonstrates a basic call to interact with the agent through the Azure AI Foundry Projects API.
+The following Python sample code file demonstrates a basic call to interact with the agent through the Foundry Projects API.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png" alt-text="Screenshot of a generated agent sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png":::
 
@@ -229,13 +230,13 @@ To view run information in a JSON file, select the **View run info** button on t
 
 ## Work with multi-agent workflows
 
-You can use the Azure AI Foundry for Visual Studio Code extension to create multi-agent workflows. A multi-agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
+You can use the Foundry for Visual Studio Code extension to create multi-agent workflows. A multi-agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
 
 ### Create a new multi-agent workflow
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run this command: `>Azure AI Foundry: Create a New Multi-agent Workflow`.
+1. Run this command: `>Foundry: Create a New Multi-agent Workflow`.
 
 1. Select a programming language.
 
@@ -264,7 +265,7 @@ Install the following packages from the source:
 
 #### Prerequisites
 
-To run the sample multi-agent workflow C# project, ensure that you have an Azure AI Foundry project or an Azure OpenAI resource.
+To run the sample multi-agent workflow C# project, ensure that you have a Foundry project or an Azure OpenAI resource.
 
 #### Setup and installation
 
@@ -298,7 +299,7 @@ To run the sample multi-agent workflow C# project, ensure that you have an Azure
 
 ::: zone pivot="csharp"
 
-Before you run `dotnet run` locally, set up the required environment variables. You can get these values from the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+Before you run `dotnet run` locally, set up the required environment variables. You can get these values from the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Set up your environment variables based on your operating system:
 
@@ -355,7 +356,7 @@ python workflow.py
 
 ### Visualize multi-agent workflow execution
 
-By using the Azure AI Foundry for Visual Studio Code extension, you can visualize the interactions between agents and how they collaborate to achieve your desired outcome.
+By using the Foundry for Visual Studio Code extension, you can visualize the interactions between agents and how they collaborate to achieve your desired outcome.
 
 Enable visualization in your workflows by adding the following code snippet:
 
@@ -368,7 +369,7 @@ To monitor and visualize your multi-agent workflow execution in real time (curre
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run this command: `>Azure AI Foundry: Visualize the Multi-Agent Workflow`.
+1. Run this command: `>Foundry: Visualize the Multi-Agent Workflow`.
 
 A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
 
@@ -398,11 +399,11 @@ The Azure resources that you created in this article are billed to your Azure su
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
+1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
 
 1. Select the agent that you want to delete, and then select **Delete**.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Azure AI Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 

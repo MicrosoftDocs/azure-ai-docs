@@ -1,6 +1,6 @@
 ---
 title: Guidance for integration and responsible use with Language Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for how to deploy Language Understanding responsibly, based on the knowledge and understanding from the team that created this product.
 author: laujan
 ms.author: lajanuar

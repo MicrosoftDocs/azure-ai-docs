@@ -1,16 +1,15 @@
 ---
 title: How to view conversational language understanding models details
 description: Use this article to learn about viewing the details for a conversational language understanding model.
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # View conversational language understanding model details
 
 After model training is completed, you can view your model details and see how well it performs against the test set. 
@@ -29,7 +28,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Model details
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
+### [Microsoft Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Model performance](../includes/language-studio/model-performance.md)]
 
@@ -41,7 +40,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Load or export model data
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
+### [Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Load export model](../includes/language-studio/load-export-model.md)]
 
@@ -54,7 +53,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Delete model
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
+### [Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
 
