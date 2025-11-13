@@ -38,7 +38,7 @@ Microsoft Foundry unifies agents, models, and tools under a single management gr
 :::moniker-end
 :::moniker range="foundry"
 > [!TIP]
-> Azure AI Foundry is now Microsoft Foundry.
+> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation are in the process of being updated.
 >
 :::moniker-end
 
