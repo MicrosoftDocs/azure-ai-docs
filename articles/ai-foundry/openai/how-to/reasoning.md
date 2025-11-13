@@ -70,7 +70,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
-<sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.
+<sup>4</sup> `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1` keep in mind that you may need to update your code to explicitly pass a reasoning_effort level if you want reasoning_effort to occur.<br><br>
 <sup>5</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.
 
 
