@@ -1,21 +1,23 @@
 ---
-title: Connect to a Model Context Protocol Server Endpoint in Foundry Agent Service (Preview)
+title: Connect to a Model Context Protocol Server Endpoint for agents (Preview)
 titleSuffix: Microsoft Foundry
-description: Learn how to add MCP servers to Foundry Agent Service.
+description: Learn how to add MCP servers to agents.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 11/12/2025
 author: aahill
 ms.author: aahi
 ---
 
 # Connect to Model Context Protocol servers (preview)
 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
 > [!NOTE]
-> When using a [Network Secured Microsoft Foundry](../../how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
+> When using a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
 
@@ -31,6 +33,89 @@ We recommend that you carefully review and track what MCP servers you add to Fou
 
 The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with remote MCP servers and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
 
+## Code example
+
+Use the following code sample to create an agent and call the function. You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, MCPTool, Tool
+from openai.types.responses.response_input_param import McpApprovalResponse, ResponseInputParam
+
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+# Get the OpenAI client for responses and conversations
+openai_client = project_client.get_openai_client()
+
+mcp_tool = MCPTool(
+    server_label="api-specs",
+    server_url="https://gitmcp.io/Azure/azure-rest-api-specs",
+    require_approval="always",
+)
+
+# Create tools list with proper typing for the agent definition
+tools: list[Tool] = [mcp_tool]
+
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+            tools=tools,
+        ),
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    # Create a conversation thread to maintain context across multiple interactions
+    conversation = openai_client.conversations.create()
+    print(f"Created conversation (id: {conversation.id})")
+
+    # Send initial request that will trigger the MCP tool
+    response = openai_client.responses.create(
+        conversation=conversation.id,
+        input="Please summarize the Azure REST API specifications Readme",
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    # Process any MCP approval requests that were generated
+    input_list: ResponseInputParam = []
+    for item in response.output:
+        if item.type == "mcp_approval_request":
+            if item.server_label == "api-specs" and item.id:
+                # Automatically approve the MCP request to allow the agent to proceed
+                # In production, you might want to implement more sophisticated approval logic
+                input_list.append(
+                    McpApprovalResponse(
+                        type="mcp_approval_response",
+                        approve=True,
+                        approval_request_id=item.id,
+                    )
+                )
+
+    print("Final input:")
+    print(input_list)
+
+    # Send the approval response back to continue the agent's work
+    # This allows the MCP tool to access the GitHub repository and complete the original request
+    response = openai_client.responses.create(
+        input=input_list,
+        previous_response_id=response.id,
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    print(f"Response: {response.output_text}")
+```
+
 ## How it works
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
@@ -44,15 +129,7 @@ For more information on using MCP, see:
 * [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
 * [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
 
-## Usage support
-
-|Azure AI foundry support  | Python SDK |  C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
-|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|---------:|
-| - | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
-
 ## Setup
-
-1. Create a Foundry agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an `mcp` tool with the following information:
 
@@ -88,7 +165,3 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 | **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
-
-## Related content
-
-* [Code samples for the Model Context Protocol tool](./model-context-protocol-samples.md)

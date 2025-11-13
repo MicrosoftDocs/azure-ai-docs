@@ -1,18 +1,20 @@
 ---
-title: 'How to use Microsoft SharePoint content with Azure AI Agent Service'
+title: 'How to use Microsoft SharePoint content with the agent API'
 titleSuffix: Azure OpenAI
-description: Learn how to ground Azure AI Agents using Microsoft SharePoint content.
+description: Learn how to ground Azure AI Agents using Microsoft SharePoint content using the agent API.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/09/2025
+ms.date: 11/12/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
-# Use the Microsoft SharePoint tool (preview)
+# Use the Microsoft SharePoint tool with the agent API (preview)
+
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
@@ -26,17 +28,87 @@ Instead of requiring developers to export SharePoint content, build a custom sem
 
 Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control, allowing end users to receive responses generated from SharePoint documents they have permission to access. With OBO authentication, the Foundry Agent service uses the end user’s identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users. 
 
-## Usage support
-
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
-
 ## Prerequisites
 
 * Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
 * Developers and end users have at least `Azure AI User` RBAC role. 
 * Developers and end users have at least `READ` access to the SharePoint site.
+* The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
+## Code example
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    SharepointAgentTool,
+    SharepointGroundingToolParameters,
+    ToolProjectConnection,
+)
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+# Get the OpenAI client for responses and conversations
+openai_client = project_client.get_openai_client()
+
+sharepoint_tool = SharepointAgentTool(
+    sharepoint_grounding_preview=SharepointGroundingToolParameters(
+        project_connections=[
+            ToolProjectConnection(project_connection_id=os.environ["SHAREPOINT_PROJECT_CONNECTION_ID"])
+        ]
+    )
+)
+
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
+            Use the available SharePoint tools to answer questions and perform tasks.""",
+            tools=[sharepoint_tool],
+        ),
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    # Send initial request that will trigger the SharePoint tool
+    stream_response = openai_client.responses.create(
+        stream=True,
+        input="Please summarize the last meeting notes stored in SharePoint.",
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    for event in stream_response:
+        if event.type == "response.created":
+            print(f"Follow-up response created with ID: {event.response.id}")
+        elif event.type == "response.output_text.delta":
+            print(f"Delta: {event.delta}")
+        elif event.type == "response.text.done":
+            print(f"\nFollow-up response done!")
+        elif event.type == "response.output_item.done":
+            if event.item.type == "message":
+                item = event.item
+                if item.content[-1].type == "output_text":
+                    text_content = item.content[-1]
+                    for annotation in text_content.annotations:
+                        if annotation.type == "url_citation":
+                            print(
+                                f"URL Citation: {annotation.url}, "
+                                f"Start index: {annotation.start_index}, "
+                                f"End index: {annotation.end_index}"
+                            )
+        elif event.type == "response.completed":
+            print(f"\nFollow-up completed!")
+            print(f"Full response: {event.response.output_text}")
+```
 
 ## Setup  
 
@@ -45,12 +117,6 @@ Customers rely on data security in SharePoint to access, create, and share docum
 > > * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents.
 > * The SharePoint tool only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
 > * Your SharePoint site and Microsoft Foundry agent need to be in the same tenant.
-
-1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
-
-1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
-
-   :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **SharePoint** and follow the prompts to add the tool. You can only add one per agent.
 
@@ -64,7 +130,6 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 ## Next steps
 
-* [How to use the SharePoint tool](./sharepoint-samples.md)
 * Reference articles for content retrieval used by the tool:
     * [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
     * [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot)
