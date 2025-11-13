@@ -24,7 +24,7 @@ Batch transcription completion can take several minutes to hours, depending on t
 
 ## Prerequisites
 
-You need an [Microsoft Foundry resource for Speech](../multi-service-resource.md). 
+You need a [Microsoft Foundry resource for Speech](../multi-service-resource.md). 
 
 ## Create a transcription job
 
@@ -283,7 +283,7 @@ curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/b
 ::: zone-end
 
 ::: zone pivot="speech-cli"
-Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Foundry resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
+Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for a Foundry resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
 
 Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 

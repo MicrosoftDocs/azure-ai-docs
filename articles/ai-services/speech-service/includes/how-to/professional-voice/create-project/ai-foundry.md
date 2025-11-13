@@ -14,7 +14,7 @@ In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), you can 
 
 To fine-tune a professional voice model, follow these steps:
 
-1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create an Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
+1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 

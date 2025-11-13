@@ -28,7 +28,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Model details
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
+### [Microsoft Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Model performance](../includes/language-studio/model-performance.md)]
 
@@ -40,7 +40,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Load or export model data
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
+### [Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Load export model](../includes/language-studio/load-export-model.md)]
 
@@ -53,7 +53,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Delete model
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
+### [Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
 

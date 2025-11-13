@@ -122,7 +122,7 @@ The key phrase extraction feature functionality currently isn't changed outside 
 
 ## See also
 
-* [What is Azure AI Language?](../overview.md)
+* [What is Azure Language in Foundry Tools?](../overview.md)
 * [Language developer guide](developer-guide.md)
 * See the following reference documentation for information on previous API versions.
     * [Version 2.1](https://westcentralus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v2-1/operations/56f30ceeeda5650db055a3c9)

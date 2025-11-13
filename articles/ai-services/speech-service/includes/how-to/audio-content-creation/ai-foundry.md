@@ -10,7 +10,7 @@ ms.date: 8/5/2025
 
 - An active Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Permission to create resources in your subscription.
-- An Microsoft Foundry project. For more information, see [Create an Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
+- A Microsoft Foundry project. For more information, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Use the audio content creation tool
 

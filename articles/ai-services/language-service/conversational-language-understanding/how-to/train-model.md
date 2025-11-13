@@ -28,7 +28,7 @@ Model evaluation is triggered automatically after training is completed successf
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
-* **A project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](../../../../ai-foundry/how-to/create-projects.md).
+* **A project created in the Microsoft Foundry**. For more information, *see* [Create a Foundry project](../../../../ai-foundry/how-to/create-projects.md).
 * [**Your labeled utterances**](tag-utterances.md) tagged for your fine tuning task.
 
 
@@ -85,23 +85,23 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
 ## Train your model
 
-# [Azure AI Foundry](#tab/ai-foundry)
+# [Foundry](#tab/ai-foundry)
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
+1. Navigate to the [Foundry](https://ai.azure.com/).
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
-1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
+1. Once signed in, you can create or access your existing projects within Foundry.
 1. If you're not already at your project for this task, select it.
 1. Select Fine-tuning from the left navigation panel.
 
-   :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Azure AI Foundry.":::
+   :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Foundry.":::
 
 1. Select **the AI Service fine-tuning** tab and then **+ Fine-tune** button.
 
-   :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tuning button in the Azure AI Foundry.":::
+   :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tuning button in the Foundry.":::
 
 1. From **Create service fine-tuning** window, choose the **Conversational language understanding** tab then select **Next**.
 
-   :::image type="content" source="../media/select-project.png" alt-text="Screenshot of conversational language understanding tab in the Azure AI Foundry.":::
+   :::image type="content" source="../media/select-project.png" alt-text="Screenshot of conversational language understanding tab in the Foundry.":::
 
 1. In **Create CLU fine tuning task** window, select your **Connected service** from the drop-down menu, then complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
 
@@ -115,7 +115,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
 1. From the immediate left navigation panel, choose **Train model**.
 
-   :::image type="content" source="../media/train-fine-tuning-model.png" alt-text="Screenshot of the train model selection in the Azure AI Foundry.":::
+   :::image type="content" source="../media/train-fine-tuning-model.png" alt-text="Screenshot of the train model selection in the Foundry.":::
 
 1. Next, select the **+ Train model** button from the main window.
 1. In the **Train a new model** window, select one of the following:
@@ -124,7 +124,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
    * **Overwrite an existing model name**. Replace an existing model trained on the new data.
 1. Select **Your current training version**. The training version is the algorithm that determines how your model learns from your data. The machine learning used to train models is regularly updated. We recommend using the latest version for training, as it underwent thorough testing and provides the most balanced model predictions from your data.
 
-   :::image type="content" source="../media/select-mode.png" alt-text="Screenshot of select a mode options in the Azure AI Foundry." :::
+   :::image type="content" source="../media/select-mode.png" alt-text="Screenshot of select a mode options in the Foundry." :::
 
 1. Select **Next**.
 
@@ -133,7 +133,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
    * **Automatically split the testing set from training data** enables the system to split your utterances between the training and testing sets, according to the specified percentages.
    * **Use a manual split of training and testing data** enables the system to use the training and testing sets that you assigned and labeled to create your custom model. ***This option is only available if you added utterances to your testing set when you labeled your utterances**.
 
-      :::image type="content" source="../media/data-splitting.png" alt-text="Screenshot of data splitting option in the Azure AI Foundry.":::
+      :::image type="content" source="../media/data-splitting.png" alt-text="Screenshot of data splitting option in the Foundry.":::
 
 1. Select **Next** and then select **Create**.
 
@@ -160,14 +160,14 @@ Training could take some time depending on the size of your training data and co
 
 ### Cancel training job
 
-# [Azure AI Foundry](#tab/ai-foundry)
+# [Foundry](#tab/ai-foundry)
 
 When you're done with your custom model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if needed:
 
 * To delete your custom model, on the left navigation pane select **My assets** → **Models + endpoints**. Choose the custom model to delete from the **Model deployments** tab, and then select **Delete**.
 * To delete your training and validation files uploaded for training, on the left navigation pane select **Data + indexes**. Choose the file to delete, and then select **Delete**.
 
-  :::image type="content" source="../media/my-assets.png" alt-text="Screenshot of my assets section in the Azure AI Foundry.":::
+  :::image type="content" source="../media/my-assets.png" alt-text="Screenshot of my assets section in the Foundry.":::
 
 # [REST APIs](#tab/rest-api)
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: How to invoke a proactive greeting and pregenerated messages with Voice live
 titleSuffix: Azure AI services
 description: Learn how to invoke a proactive greeting or generate pregenerated messages with the Voice live API

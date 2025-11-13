@@ -113,10 +113,10 @@ These properties uniquely identify and describe your analyzer:
 These properties control which AI models the analyzer uses for processing. 
 
 ### `supportedModels`
-- **Description:** Declares which Azure AI Foundry catalog model names this analyzer type is compatible with. Lists the model names that are supported for use with this analyzer.
+- **Description:** Declares which Microsoft Foundry catalog model names this analyzer type is compatible with. Lists the model names that are supported for use with this analyzer.
 - **Properties:**
-  - `completion` - Array of completion model names from Azure AI Foundry catalog that can be used for text generation and field extraction
-  - `embedding` - Array of embedding model names from Azure AI Foundry catalog that can be used for semantic search and similarity
+  - `completion` - Array of completion model names from Foundry catalog that can be used for text generation and field extraction
+  - `embedding` - Array of embedding model names from Foundry catalog that can be used for semantic search and similarity
 - **Purpose:** Use this list to validate which model names you can specify in the `models` property
 - **Important:** These are model names (for example, `gpt-4o`), not deployment names. The actual deployments are configured separately at the resource level.
 - **Example:**
@@ -126,15 +126,15 @@ These properties control which AI models the analyzer uses for processing.
     "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
   }
   ```
-- **Limitations:** Can only include model names from the Azure AI Foundry catalog that the service supports.
+- **Limitations:** Can only include model names from the Foundry catalog that the service supports.
 
 ### `models`
-- **Description:** Specifies which Azure AI Foundry catalog model names to use by default when processing with this analyzer. These are the default model names (not deployment names) that the service uses.
+- **Description:** Specifies which Foundry catalog model names to use by default when processing with this analyzer. These are the default model names (not deployment names) that the service uses.
 - **Properties:**
   - `completion` - Model name for completion tasks (content extraction, field generation, classification)
   - `embedding` - Model name for embedding tasks (semantic search, vector indexing)
 - **Validation:** Each model name must be one of the model names listed in the corresponding `supportedModels` category (for example, if `supportedModels.completion` includes `"gpt-4.1"`, then `"gpt-4.1"` can be specified in `models.completion`)
-- **Important:** These are model names from the Azure AI Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
+- **Important:** These are model names from the Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
 - **Example:**
   ```json
   {
@@ -666,4 +666,4 @@ Different content types support different configuration options. Here's a quick 
 * Create your own analyzer by following the [custom analyzer tutorial](../tutorial/create-custom-analyzer.md) 
 * Understand [best practices](best-practices.md) for optimal extraction results
 * Review [document elements](../document/elements.md) and [video elements](../video/elements.md) for details on extracted content
-* Get started by create and test analyzers in [Azure AI Foundry](../quickstart/use-ai-foundry.md)
+* Get started by create and test analyzers in [Foundry](../quickstart/use-ai-foundry.md)

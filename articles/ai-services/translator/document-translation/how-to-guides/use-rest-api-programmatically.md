@@ -117,7 +117,7 @@ The following headers are included with each Document translation API request:
 
 |HTTP header|Description|
 |---|--|
-|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI Foundry resource.|
+|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Microsoft Foundry resource.|
 |Content-Type|**Required**: Specifies the content type of the payload. Accepted values are application/json or charset=UTF-8.|
 
 ### POST request body properties
@@ -188,10 +188,10 @@ The following headers are included with each Document translation API request:
 > [!Note]
 >
 > * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure Vision in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
 > * This feature is currently available only with the Batch Document translation API.
 > * The Supported file format is `.docx` only.
-> * An Azure AI Foundry resource (not the standalone Translator resource) is required to use this feature.
+> * A Foundry resource (not the standalone Translator resource) is required to use this feature.
 
 ### Request configuration
 

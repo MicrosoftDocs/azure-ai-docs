@@ -91,7 +91,7 @@ Delete deployment or project when done to avoid charges.
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+> [Microsoft Foundry client library overview](../how-to/develop/sdk-overview.md)
 
 ## Related content
 

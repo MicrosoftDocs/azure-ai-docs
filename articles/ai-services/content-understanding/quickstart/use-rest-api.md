@@ -20,10 +20,10 @@ This quickstart shows you how to use the [Content Understanding REST API](/rest/
 ## Prerequisites
 
 * To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create an [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
-     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
-* Once you have a Foundry resource, create a Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For details on how to deploy these models, see [Create model deployments in Azure AI Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+   * This resource is listed under **Foundry** > **Foundry** in the portal.
+     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the Foundry resource page in the Azure portal.":::
+* Once you have a Foundry resource, create a Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For details on how to deploy these models, see [Create model deployments in Microsoft Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 * In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
 
 ## Get started with a prebuilt analyzer
@@ -35,7 +35,7 @@ This quickstart uses prebuilt invoice, image, audio, and video analyzers to help
 
 Before running the following cURL command, make the following changes to the HTTP request:
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Foundry instance in the Azure portal.
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Foundry instance in the Azure portal.
 2. Replace `{CompletionDeploymentName}` with the name of your GPT-4.1 completion model deployment name.
 3. Replace `{embeddingDeploymentName}` with the name of your text-embedding-3-large embedding model deployment name.
 

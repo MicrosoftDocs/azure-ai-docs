@@ -64,7 +64,7 @@ Update the endpoint URL in your API call to include your BYOM configuration:
 wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>
 ```
 
-Get the `<your-model-deployment>` value from the AI Foundry portal. It corresponds to the name you gave the model at deployment time.
+Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
 
 #### [Python SDK](#tab/python)
 

@@ -21,7 +21,7 @@ Text to speech avatar can be used in the Voice live API to create a more persona
 You need:
 
 - **Azure subscription:** [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- **AI Foundry resource:** [Create an Azure AI Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions. For more information about region availability, see [Text to speech avatar regions](../regions.md).
+- **Foundry resource:** [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions. For more information about region availability, see [Text to speech avatar regions](../regions.md).
 
  Or, if you use Speech Studio:
 - **Speech resource:** [Create a speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Select the **Standard S0** pricing tier to access avatars.

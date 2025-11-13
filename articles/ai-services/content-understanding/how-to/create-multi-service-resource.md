@@ -14,9 +14,9 @@ ms.custom:
   - build-2025
 ---
 
-# Create an Microsoft Foundry resource
+# Create a Microsoft Foundry resource
 
-To use Content Understanding, you need an Microsoft Foundry resource.
+To use Content Understanding, you need a Microsoft Foundry resource.
 
 > [!IMPORTANT]
 > The steps below explain how to create a resource for use with the [REST API](../quickstart/use-rest-api.md). To use Content Understanding in the Content Understanding Studio, see the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
@@ -36,7 +36,7 @@ To use the Azure Content Understanding in Foundry Tools service, you must create
 | Sweden Central | swedencentral |
 | Australia East | australiaeast |
 
-1. Complete the **AI Foundry** resource fields with the following values:
+1. Complete the **Foundry** resource fields with the following values:
 
     * **Subscription**. Select one of your available Azure subscriptions.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.

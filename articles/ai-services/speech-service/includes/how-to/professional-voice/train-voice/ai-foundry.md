@@ -12,9 +12,9 @@ ms.custom: include
 In this article, you learn how to fine-tune a professional voice through the Microsoft Foundry portal.
 
 > [!IMPORTANT]
-> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to an Microsoft Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to a Microsoft Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
-Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. With an Microsoft Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
+Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. With a Microsoft Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
 > [!NOTE]
 > Although the total number of hours required per [training method](#choose-a-training-method) varies, the same unit price applies to each. For more information, see the [custom neural training pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
@@ -271,7 +271,7 @@ To learn more about the capabilities and limits of this feature, and the best pr
 ## Copy your voice model to another project
 
 > [!NOTE]
-> In this context "project" refers to a fine-tuning task rather than an Microsoft Foundry project. 
+> In this context "project" refers to a fine-tuning task rather than a Microsoft Foundry project. 
 
 After training you can copy your voice model to another project for the same region or another region. 
 
@@ -280,7 +280,7 @@ For example, you can copy a proffessional voice model that was trained in one re
 To copy your custom voice model to another project:
 
 1. On the **Train model** tab, select a voice model that you want to copy, and then select **Copy to project**.
-1. Select the **Subscription**, **Target region**, **Connected AI Service resource** (AI Foundry resource), and **Target fine-tuning task** where you want to copy the model. 
+1. Select the **Subscription**, **Target region**, **Connected AI Service resource** (Foundry resource), and **Target fine-tuning task** where you want to copy the model. 
 1. Select **Copy to** to copy the model.
 1. Select **View model** under the notification message for the successful copying.
 

@@ -1,7 +1,7 @@
 ---
 title: What is Foundry Tools custom translation?
 titleSuffix: Foundry Tools
-description: Azure AI Foundry custom translation offers similar capabilities to what Azure Translator in Foundry Tools Hub does for Statistical Machine Translation (SMT), but exclusively for Neural Machine Translation (NMT) systems.
+description: Microsoft Foundry custom translation offers similar capabilities to what Azure Translator in Foundry Tools Hub does for Statistical Machine Translation (SMT), but exclusively for Neural Machine Translation (NMT) systems.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,10 +12,10 @@ ms.topic: overview
 
 # What are Foundry Tools custom translations?
 
-Azure AI Foundry custom translation, formerly known as Custom Translator, empowers businesses, app developers, and language service providers to craft tailored neural machine translation (NMT) systems. Integrated within the [Azure Translator in Foundry Tools](../../overview.md) service, it allows users to adapt translations to suit specific requirements and contexts. The custom translation feature provides translation solutions that effortlessly integrate with your current applications, workflows, and websites.
+Microsoft Foundry custom translation, formerly known as Custom Translator, empowers businesses, app developers, and language service providers to craft tailored neural machine translation (NMT) systems. Integrated within the [Azure Translator in Foundry Tools](../../overview.md) service, it allows users to adapt translations to suit specific requirements and contexts. The custom translation feature provides translation solutions that effortlessly integrate with your current applications, workflows, and websites.
 
 
-Azure AI Foundry custom translation is built on the robust, cloud-based Translator Text API—the same secure, high-performance platform that powers billions of translations daily—Custom translation enables you to fine-tune and deploy translation systems to and from English. It supports over 100 languages, directly mapping to the extensive NMT capabilities available in the service. For a complete list of supported languages, *see* to [Translator language support](../../language-support.md).
+Foundry custom translation is built on the robust, cloud-based Translator Text API—the same secure, high-performance platform that powers billions of translations daily—Custom translation enables you to fine-tune and deploy translation systems to and from English. It supports over 100 languages, directly mapping to the extensive NMT capabilities available in the service. For a complete list of supported languages, *see* to [Translator language support](../../language-support.md).
 
 Custom translation makes building and deploying a custom translation system effortless—even if you have no programming experience. Its intuitive user interface lets you seamlessly upload data, train and test your models, and securely deploy them to a production environment. Depending on your training data size, your translation system can be up and running at scale within a few hours.
 

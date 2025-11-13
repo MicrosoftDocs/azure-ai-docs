@@ -1,7 +1,7 @@
 ---
 title: Azure Translator in Foundry Tools custom translation for beginners
 titleSuffix: Foundry Tools
-description: User guide for understanding the end-to-end customized machine translation process using Azure AI Foundry.
+description: User guide for understanding the end-to-end customized machine translation process using Microsoft Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

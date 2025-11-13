@@ -1,7 +1,7 @@
 ---
-title: Azure AI Foundry custom translation document formats and naming conventions
+title: Microsoft Foundry custom translation document formats and naming conventions
 titleSuffix: Foundry Tools
-description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Azure AI Foundry custom translation.
+description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Microsoft Foundry custom translation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

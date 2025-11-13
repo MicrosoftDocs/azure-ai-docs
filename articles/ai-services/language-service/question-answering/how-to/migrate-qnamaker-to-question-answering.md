@@ -23,7 +23,7 @@ ms.custom: language-service-question-answering
 **Intended Audience:** Existing QnA Maker customers
 
 > [!IMPORTANT]
-> Custom question Answering, a feature of Azure AI Language was introduced in November 2021 with several new capabilities including enhanced relevance using a deep learning ranker, precise answers, and end-to-end region support. Each Custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration:
+> Custom question Answering, a feature of Azure Language in Foundry Tools was introduced in November 2021 with several new capabilities including enhanced relevance using a deep learning ranker, precise answers, and end-to-end region support. Each Custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration:
 >
 >  - Automatic RBAC to Language project (not resource)
 >  - Automatic enabling of analytics.
@@ -49,7 +49,7 @@ In addition to a new set of features, custom question answering provides many te
 |Support for unstructured documents|➖|✔️|Users can now ingest unstructured documents as input sources and query the content for responses|
 |.NET SDK|✔️|✔️| |
 |API|✔️|✔️| |
-|Unified Authoring experience|➖|✔️|A single authoring experience across all Azure AI Language|
+|Unified Authoring experience|➖|✔️|A single authoring experience across all Language|
 |Multi region support|➖|✔️|
 
 ## Pricing

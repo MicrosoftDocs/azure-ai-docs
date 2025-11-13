@@ -1,7 +1,7 @@
 ---
-title: Copy an Foundry Tools custom translation model to another project.
+title: Copy a Foundry Tools custom translation model to another project.
 titleSuffix: Foundry Tools
-description: This article explains how to copy an Azure AI Foundry custom translation model to another custom translation project.
+description: This article explains how to copy a Microsoft Foundry custom translation model to another custom translation project.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,7 +12,7 @@ ms.topic: how-to
 
 # Copy a Foundry Tools custom translation model
 
-Copying an Azure AI Foundry custom translation model to other project enables model lifecycle management (for example, development → test → production) and increases usage scalability while reducing the training cost.
+Copying a Microsoft Foundry custom translation model to other project enables model lifecycle management (for example, development → test → production) and increases usage scalability while reducing the training cost.
 
 ## Copy custom translation model to another project
 

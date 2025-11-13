@@ -31,7 +31,7 @@ When you submit input text to be processed, you can specify which of [the suppor
 
 > [!IMPORTANT]
 >
-> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 
 ### Redaction policies

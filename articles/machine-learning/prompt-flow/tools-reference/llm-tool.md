@@ -1,4 +1,4 @@
-﻿---
+---
 title: LLM tool in Azure Machine Learning prompt flow
 titleSuffix: Azure Machine Learning
 description: The prompt flow LLM tool enables you to take advantage of widely used large language models like OpenAI or Azure OpenAI for natural language processing.
@@ -18,7 +18,7 @@ ms.update-cycle: 365-days
 
 # LLM tool
 
-The large language model (LLM) tool in prompt flow enables you to use widely used large language models like [OpenAI](https://platform.openai.com/), [Azure OpenAI in Azure AI Foundry Models](../../../ai-foundry/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
+The large language model (LLM) tool in prompt flow enables you to use widely used large language models like [OpenAI](https://platform.openai.com/), [Azure OpenAI in Microsoft Foundry Models](../../../ai-foundry/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides several large language model APIs:
 

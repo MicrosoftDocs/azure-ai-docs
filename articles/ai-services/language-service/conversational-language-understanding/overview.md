@@ -14,7 +14,7 @@ ms.custom: language-service-clu
 
 Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
 
-Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. Developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption by creating a CLU project. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Azure AI Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
+Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. Developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption by creating a CLU project. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
 This documentation contains the following article types:
 
@@ -60,7 +60,7 @@ Creating a CLU project typically involves several different steps.
 :::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path." lightbox="media/llm-quick-deploy.png":::
 
 > [!NOTE]
-> In the Azure AI Foundry, you create a fine-tuning task as your workspace for customizing your CLU model. Previously, a CLU fine-tuning task was referred to as a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
+> In the Foundry, you create a fine-tuning task as your workspace for customizing your CLU model. Previously, a CLU fine-tuning task was referred to as a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
 
 CLU offers two paths for you to get the most out of your implementation.
 
