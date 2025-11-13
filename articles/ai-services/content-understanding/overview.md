@@ -89,7 +89,7 @@ The Content Understanding framework processes unstructured content through multi
 ## Content Understanding experiences
 Content Understanding is a Foundry service. To use Content Understanding, you must create a Foundry Azure Resource. Content Understanding Studio complements the Foundry experience for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Foundry vs Content Understanding Studio](foundry-vs-content-understanding-studio.md)
 
-* **Content Understanding in Foundry NextGen portal (coming soon)**: The Foundry NextGen portal offers the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
+* **Content Understanding in Foundry (new) portal (coming soon)**: The Foundry NextGen portal offers the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
 * **Content Understanding Studio**: A complementary UX experience, Content Understanding Studio enables a smooth transition for customers transitioning from Document Intelligence. It offers an experience optimized for analyzer performance improvement including improving custom analyzers using data labeling techniques. It also supports building classification-based custom analyzers.
 
 ## Responsible AI

@@ -22,7 +22,7 @@ Azure Content Understanding in Foundry Tools is a service that transforms unstru
 ## Quick comparison 
 Foundry portal and Content Understanding Studio have parity in most all features. See the chart below to understand the key differences.
 
-| Feature Category | Foundry NextGen (Coming soon) | Foundry Classic |	Content Understanding Studio |
+| Feature Category | Foundry (new) (Coming soon) | Foundry (classic) |	Content Understanding Studio |
 |------------------|-----------------|-----------------|-----------------|
 | **API version support** | 2025-11-01 GA API support | 2025-05-01-preview | 2025-11-01 GA API support |
 | **Supports agent building?** |	✅ | ❌	| ❌ |
@@ -30,13 +30,13 @@ Foundry portal and Content Understanding Studio have parity in most all features
 
 ## What is offered in Foundry vs Content Understanding Studio?
 
-Content Understanding is available in Foundry Classic and is coming soon to the updated Foundry NextGen portal. 
+Content Understanding is available in Foundry (classic) and is coming soon to the updated Foundry (new) portal. 
 
-The **Foundry NextGen portal** (coming soon) will offer the ability to:
+The **Foundry (new) portal** (coming soon) will offer the ability to:
 * Build advanced, comprehensive agentic workflows with the Content Understanding Tool
 
 > [!NOTE]
-> In Foundry Classic, the supported Content Understanding API is 2025-05-01-preview. The updated Foundry NextGen platform will soon support all the new features of the Content Understanding GA API 2025-11-01.
+> In Foundry (classic), the supported Content Understanding API is 2025-05-01-preview. The updated Foundry (new) platform will soon support all the new features of the Content Understanding GA API 2025-11-01.
 
 **Content Understanding Studio** is a complementary UX experience designed to create a smooth transition path for Document Intelligence customers. It brings familiar studio-based workflows—including testing, model refinement, and labeling—while extending capabilities to new multimodal capabilities and adding the power of generative AI models. Content Understanding Studio offers the following key capabilities:
 * Improve custom analyzers using data labeling techniques to optimize performance
@@ -50,8 +50,8 @@ The **Foundry NextGen portal** (coming soon) will offer the ability to:
 
 ## Summary
 
-* **Foundry NextGen** is coming soon, and is ideal for users seeking a comprehensive agent-building experience through the Foundry portal.
-* **Foundry Classic** supports the preview API, 2025-05-01-preview. It includes some preview features, like Pro mode, that aren't yet available in the GA API. Migrate to the new GA API when possible to continue getting the best experience from Content Understanding.
+* **Foundry (new)** is coming soon, and is ideal for users seeking a comprehensive agent-building experience through the Foundry portal.
+* **Foundry (classic)** supports the preview API, 2025-05-01-preview. It includes some preview features, like Pro mode, that aren't yet available in the GA API. Migrate to the new GA API when possible to continue getting the best experience from Content Understanding.
 * **Content Understanding Studio** is best suited for users focused on building and refining analyzers, with a streamlined interface and guided setup. It's the ideal choice for Document Intelligence customers transitioning to Content Understanding, offering the same studio-based approach you already know while extending to analyze documents, images, audio, and video with enhanced classification and in-context learning capabilities.
 
 

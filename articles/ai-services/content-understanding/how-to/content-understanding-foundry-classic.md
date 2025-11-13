@@ -1,7 +1,7 @@
 ---
-title: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry Classic portal
+title: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
 titleSuffix: Azure AI services
-description: Utilize the Foundry classic portal to create Content Understanding custom tasks
+description: Utilize the Foundry (classic) portal to create Content Understanding custom tasks
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,14 +14,14 @@ ms.custom:
   - ignite-2025
 ---
 
-# Create Content Understanding Standard and Pro tasks in the Microsoft Foundry Classic portal (Preview)
+# Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal (Preview)
 
 Suppose you have files of different types—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
 
-This guide shows you how to use Content Understanding Standard and Pro modes in the Microsoft Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data.
+This guide shows you how to use Content Understanding Standard and Pro modes in the Microsoft Foundry (classic) portal to build and test a custom analyzer that extracts structured information from your data.
 
 > [!NOTE]
-> Foundry Classic portal uses a preview API (`2025-05-01-preview`). 
+> Foundry (classic) portal uses a preview API (`2025-05-01-preview`). 
 
 ## Choosing between Standard and Pro modes (Preview)
 
