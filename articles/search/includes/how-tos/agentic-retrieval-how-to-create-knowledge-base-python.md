@@ -9,7 +9,7 @@ ms.date: 11/13/2025
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In Azure AI Search, a *knowledge base* is a top-level resource in agentic retrieval workloads. It specifies the knowledge sources used for retrieval, and, if applicable, represents a connection to a large language model (LLM). A knowledge base is used by the [retrieve method](../../agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
+In Azure AI Search, a *knowledge base* is a top-level resource in agentic retrieval workloads. It specifies the knowledge sources used for retrieval and, if applicable, represents a connection to a large language model (LLM). A knowledge base is used by the [retrieve method](../../agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
 
 A knowledge base specifies:
 
@@ -34,7 +34,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 + Permissions on your search service. **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries.
 
-+ The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or a preview Azure SDK package that provides the knowledge base APIs: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ The latest preview package of the [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 > [!NOTE]
 > Although you can use the Azure portal to create knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](../../agentic-retrieval-how-to-migrate.md).
@@ -75,9 +75,6 @@ Azure AI Search needs access to the LLM. We recommend Microsoft Entra ID for aut
     Authorization: Bearer {{access-token}}
     ```
 
-> [!IMPORTANT]
-> If you use role-based authentication, be sure to remove all references to the API key in your requests. In a request that specifies both approaches, the API key is used instead of roles.
-
 ### [**Use keys**](#tab/keys)
 
 1. [Copy an Azure AI Search admin API key](../../search-security-api-keys.md#find-existing-keys) from the Azure portal.
@@ -97,6 +94,9 @@ Azure AI Search needs access to the LLM. We recommend Microsoft Entra ID for aut
    ```
 
 ---
+
+> [!IMPORTANT]
+> If you use role-based authentication, be sure to remove all references to the API key in your requests. In a request that specifies both approaches, the API key is used instead of roles.
 
 ## Check for existing knowledge bases
 
