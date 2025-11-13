@@ -148,8 +148,6 @@ An example flow would be:
 
         * **Key**: [Get the Playwright access token](https://aka.ms/pww/docs/generate-access-token)
 
-    For more information on creating a connection, see [Create a connection](../../../how-to/connections-add.md).
-
 1. Configure your client by adding a Browser Automation tool using the Azure Playwright connection ID.
 
 ## Transparency note
