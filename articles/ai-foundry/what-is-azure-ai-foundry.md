@@ -32,7 +32,7 @@ keywords:
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
 > [!NOTE]
-> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation might still show the Azure name.
+> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation are in the process of being updated"
 
 [!INCLUDE [foundry-portals](includes/foundry-portals.md)]
 
