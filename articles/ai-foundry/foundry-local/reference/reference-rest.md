@@ -281,8 +281,10 @@ Load a model into memory for faster inference.
 
 - Request URI
   ```http
-GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
-```
+  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
+  ```
+
+````
 
 ### GET /openai/unload/{name}
 
@@ -290,17 +292,17 @@ Unload a model from memory.
 
 **URI Parameters:**
 
-- `name` (string)  
+- `name` (string)
   The model name to unload.
 
 **Query Parameters:**
 
-- `force` (boolean, optional)  
+- `force` (boolean, optional)
   If `true`, ignores TTL settings and unloads immediately.
 
 **Response:**
 
-- 200 OK  
+- 200 OK
   Empty response body
 
 **Example:**
@@ -308,7 +310,7 @@ Unload a model from memory.
 - Request URI
   ```http
 GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-```
+````
 
 ### GET /openai/unloadall
 
@@ -362,8 +364,10 @@ Set the active GPU device.
 
 - Request URI
   ```http
-GET /openai/setgpudevice/1
-```
+  GET /openai/setgpudevice/1
+  ```
+
+````
 
 ### POST /openai/download
 
@@ -375,35 +379,35 @@ Download a model to local storage.
 **Request Body:**
 
 - `model` (`WorkspaceInferenceModel` object)
-  - `Uri` (string)  
+  - `Uri` (string)
     The model URI to download.
   - `Name` (string)
     The model name.
-  - `ProviderType` (string, optional)  
+  - `ProviderType` (string, optional)
     The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
-  - `Path` (string, optional)  
+  - `Path` (string, optional)
     Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
-  - `PromptTemplate` (`Dictionary<string, string>`, optional)  
+  - `PromptTemplate` (`Dictionary<string, string>`, optional)
     Includes:
-    - `system` (string, optional)  
+    - `system` (string, optional)
       The template for the system message.
     - `user` (string, optional)
       The template for the user's message.
-    - `assistant` (string, optional)  
+    - `assistant` (string, optional)
       The template for the assistant's response.
-    - `prompt` (string, optional)  
+    - `prompt` (string, optional)
       The template for the user-assistant interaction.
-  - `Publisher` (string, optional)  
+  - `Publisher` (string, optional)
      The publisher of the model.
-- `token` (string, optional)  
+- `token` (string, optional)
   Authentication token for protected models (GitHub or Hugging Face).
-- `progressToken` (object, optional)  
+- `progressToken` (object, optional)
   For AITK only. Token to track download progress.
-- `customDirPath` (string, optional)  
+- `customDirPath` (string, optional)
   Custom download directory (used for CLI, not needed for AITK).
-- `bufferSize` (integer, optional)  
-  HTTP download buffer size in KB. No effect on NIM or Azure Foundry models.
-- `ignorePipeReport` (boolean, optional)  
+- `bufferSize` (integer, optional)
+  HTTP download buffer size in KB. No effect on NIM or Microsoft Foundry models.
+- `ignorePipeReport` (boolean, optional)
   If `true`, forces progress reporting via HTTP stream instead of pipe.
   Defaults to `false` for AITK and `true` for Foundry Local.
 
@@ -413,7 +417,7 @@ During download, the server streams progress updates in the format:
 
 ```text
 ("file name", percentage_complete)
-```
+````
 
 **Final Response body:**
 
@@ -446,13 +450,15 @@ During download, the server streams progress updates in the format:
 - Response stream
 
   ```text
-("genai_config.json", 0.01)
-("genai_config.json", 0.2)
-("model.onnx.data", 0.5)
-("model.onnx.data", 0.78)
-...
-("", 1)
-```
+  ("genai_config.json", 0.01)
+  ("genai_config.json", 0.2)
+  ("model.onnx.data", 0.5)
+  ("model.onnx.data", 0.78)
+  ...
+  ("", 1)
+  ```
+
+````
 
 - Final response
   ```json
@@ -460,7 +466,7 @@ During download, the server streams progress updates in the format:
     "Success": true,
     "ErrorMessage": null
   }
-  ```
+````
 
 ### GET /openai/status
 
