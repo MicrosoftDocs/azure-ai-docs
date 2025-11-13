@@ -42,7 +42,7 @@ items:
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-    - name: Create CU Task in AI Foundry (classic) (Preview)
+    - name: Create CU Task in Foundry (classic) (Preview)
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: how-to/content-understanding-foundry-classic.md
   - name: Concepts
@@ -123,7 +123,7 @@ items:
         href: tutorial/build-rag-solution.md
       - name: Build a robotic process automation solution
         href: tutorial/robotic-process-automation.md
-      - name: Create an Azure AI Foundry resource
+      - name: Create a Microsoft Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
       - name: Build a face-data person directory (preview)
