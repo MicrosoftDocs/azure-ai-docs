@@ -90,7 +90,7 @@ Since the evaluators use hosted evaluation LLMs in the Foundry evaluation servic
 > | Norway East | Supported  |
 > | Sweden Central| Supported  | 
 
-## Set up continuous evaluations with Foundry projects client library
+## Set up continuous evaluations with Azure AI Projects client library
 
 ```python
 pip install azure-ai-projects azure-identity
