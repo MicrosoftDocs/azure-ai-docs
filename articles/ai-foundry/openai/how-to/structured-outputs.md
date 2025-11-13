@@ -26,6 +26,10 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## Supported models
 
+- `gpt-5.1` version: `2025-11-13`
+- `gpt-5.1-chat` version: `2025-11-13`
+- `gpt-5.1-codex` version: `2025-11-13`
+- `gpt-5.1-codex mini` version: `2025-11-13`
 - `gpt-5-pro` version `2025-10-06`
 - `gpt-5-codex` version `2025-09-11`
 - `gpt-5` version `2025-08-07`
