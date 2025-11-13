@@ -32,6 +32,8 @@ The WebGPU execution provider uses [Dawn](https://github.com/google/dawn), the n
 
 The execution providers listed in the table are available (depending on device and driver compatibility) for dynamic download and registration on Windows and are subject to the license terms specified.
 
+Foundry Local automatically downloads these execution providers on first run. The plugin execution providers are automatically updated when new versions are available.
+
 | Name (Vendor) | Requirements | License Terms |
 |---------------|--------------|---------------|
 | "CUDAExecutionProvider" (Nvidia) | NVIDIA GeForce RTX 30XX and above with minimum recommended driver version 32.0.15.5585 + Cuda version 12.5 | [License Agreement for NVIDIA Software Development Kits—EULA](https://docs.nvidia.com/cuda/eula/index.html) | 
