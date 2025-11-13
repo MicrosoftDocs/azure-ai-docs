@@ -47,7 +47,7 @@ To try out the voice live demo, follow these steps:
 
 1. Switch the **Enable voice live for this agent** toggle **On**. Now your agent is connected voice live.
 
-1. Expand the right pane, which contains the voice live settings. Optionally choose a voice, adjust the VAD settings, set the voice temperature and speed, and other settings to configure voice behavior.
+1. Expand the right pane, which contains the voice live settings. Optionally choose a voice, adjust the VAD settings, set the voice temperature and speed, and other settings to configure voice behavior. The **Proactive engagement** toggle allows the agent to speak first in the conversation.
  
 1. Select **Start** to start speaking and select **End** to end the chat session.
 
@@ -64,7 +64,7 @@ To try out the voice live demo, follow these steps:
 
    :::image type="content" source="../../../media/voice-live/foundry-portal/casual-chat-bring-agent-select.png" alt-text="Screenshot of the option to bring an agent for voice live in the speech playground." lightbox="../../../media/voice-live/foundry-portal/casual-chat-bring-agent-select.png":::
 
-1. Edit other settings as needed, such as the **Voice**, **Speaking rate**, and **Voice activity detection (VAD)**.
+1. Edit other settings as needed, such as the **Voice**, **Speaking rate**, and **Voice activity detection (VAD)**. The **Proactive engagement** toggle allows the agent to speak first in the conversation.
 
 1. Select **Start** to start speaking and select **End** to end the chat session.
 
