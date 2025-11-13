@@ -34,6 +34,9 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 
 ::: moniker range="foundry"
 In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings"* for the **balanced** routing mode and route between all supported models. To enable more configuration options, choose the **Custom settings* option.
+
+:::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
+
 ::: moniker-end
 
 > [!NOTE]
@@ -48,11 +51,15 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 
 Use the **Routing mode** dropdown to select a routing profile. This sets the routing logic for your deployment.
 
+:::image type="content" source="media/working-with-models/model-router-routing-mode.png" alt-text="Screenshot of model router routing mode selection.":::
+
 ## Select your model subset
 
 The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. 
 
 In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable.
+
+:::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
 
 New models introduced later are excluded by default until explicitly added.
 
