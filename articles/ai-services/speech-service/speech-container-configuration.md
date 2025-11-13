@@ -1,6 +1,6 @@
 ---
 title: Configure Speech containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Speech service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
 author: PatrickFarley
 manager: nitinme
@@ -46,7 +46,7 @@ This setting can be found in the following place:
 
 | Required | Name | Data type | Description |
 | -------- | ---- | --------- | ----------- |
-| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [billing](speech-container-overview.md#billing). For more information and a complete list of regional endpoints, see [Custom subdomain names for Azure AI services](../cognitive-services-custom-subdomains.md). |
+| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [billing](speech-container-overview.md#billing). For more information and a complete list of regional endpoints, see [Custom subdomain names for Foundry Tools](../cognitive-services-custom-subdomains.md). |
 
 ## Eula setting
 

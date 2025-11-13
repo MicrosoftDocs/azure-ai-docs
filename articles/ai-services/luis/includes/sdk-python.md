@@ -7,7 +7,7 @@ ms.subservice: azure-ai-luis
 ms.date: 07/16/2025
 ms.topic: include
 ---
-Use the Language Understanding client libraries for Python to:
+Use Azure Language Understanding client libraries for Python to:
 
 * Create an app
 * Add an intent, a machine-learned entity, with an example utterance
@@ -41,7 +41,7 @@ Use the Language Understanding client libraries for Python to:
 
 ### Install the client library with Pip
 
-Within the application directory, install the Language Understanding  client library for Python with the following command:
+Within the application directory, install Azure Language Understanding  client library for Python with the following command:
 
 ```console
 pip install azure-cognitiveservices-language-luis

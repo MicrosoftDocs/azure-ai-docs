@@ -20,11 +20,11 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-create-agent.py":::
 
-<!-- # [C#](#tab/csharp)
+# [C#](#tab/csharp2)
 
-Not yet available
+:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-create-agent.cs":::
 
-# [TypeScript](#tab/typescript)
+<!-- # [TypeScript](#tab/typescript)
 
 Not yet available
 
@@ -36,9 +36,9 @@ Not yet available -->
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="create_agent":::
+:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-create-agent.sh":::
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Microsoft Foundry portal](#tab/portal)
 
 Now create an agent and interact with it.
 1. Still in the **Build** section, select **Agents** in the left pane.

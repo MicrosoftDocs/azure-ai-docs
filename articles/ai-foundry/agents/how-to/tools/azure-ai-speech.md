@@ -1,7 +1,7 @@
 ---
 title: 'How to connect the Azure Speech tool to an agent'
-titleSuffix: Azure AI Foundry
-description: Learn how to use Agents Azure AI Speech tool.
+titleSuffix: Microsoft Foundry
+description: Learn how to use Agents Azure Speech in Foundry Tools tool.
 services: azure-ai-speech
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,24 +14,29 @@ ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure AI Speech tool
+# Azure Speech in Foundry Tools tool
 
-The Azure AI Speech tool allows agents to interact with users through speech. By integrating this model context protocol (MCP), AI agents can convert text responses into spoken words and process spoken user inputs into text.
+The Azure Speech in Foundry Tools tool allows agents to interact with users through speech. By integrating this model context protocol (MCP), AI agents can convert text responses into spoken words and process spoken user inputs into text.
+
+> [!IMPORTANT]
+> The speech MCP tool doesn't support [Network-secured Microsoft Foundry](/azure/ai-foundry/agents/how-to/virtual-networks). For more information, see [Connect to an MCP server](/azure/ai-foundry/agents/how-to/tools/model-context-protocol).
 
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a supported region. Your Azure AI Foundry resource includes speech capabilities and will be used by the Speech MCP server
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a [supported region](../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and will be used by the Speech MCP server
 
 ## Set up storage
 
-You need an Azure Storage account to store input audio files for speech-to-text processing and receive output audio files from text-to-speech processing. [Create an Azure blob storage account](/azure/storage/common/storage-account-create?tabs=azure-portal).
+You need an Azure Storage account to store input audio files for speech-to-text processing and receive output audio files from text-to-speech processing. [Create an Azure blob storage account](/azure/storage/common/storage-account-create?tabs=azure-portal). 
+
+Ensure your user account has the **Storage Blob Data Contributor** role assigned for the storage account, so you can create SAS URLs later on.
 
 Create one or more blob containers to store the input and output audio files.
 
 ## Create an agent
 
-1. Go to the [New Foundry portal](https://ai.azure.com?view=foundry).
+1. Go to the [!INCLUDE [foundry-link](../../../default/includes/foundry-link.md)].
 1. In the top right menu, go to **Build**
 1. On the left pane, select **Agents**, and select the **Create agent** button.  
 1. Create a new agent by providing a name and description, then select **Create**. You don't need to configure your agent any further for this scenario.
@@ -43,8 +48,8 @@ Create one or more blob containers to store the input and output audio files.
 1. In the **Select a tool** dialog, go to the **Catalog** tab. Search for and select Azure Speech MCP Server, then select **Create**.
 1. On the setup page, fill in the following fields:  
 
-    - Parameters -> `foundry-resource-name`: Enter the name of the Azure AI Foundry resource you created in the Prerequisites section. 
-    - Authorization -> `Bearer` (API Key): Enter the API key from your Azure AI Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure portal. 
+    - Parameters -> `foundry-resource-name`: Enter the name of the Foundry resource you created in the Prerequisites section. 
+    - Authorization -> `Bearer` (API Key): Enter the API key from your Foundry resource. You can use either KEY1 or KEY2 from the **Keys and Endpoint** section of your resource's page in the Azure portal. 
     - Authorization -> `X-Blob-Container-Url`: Generate a SAS URL for your storage container, with read and write permissions, and enter it here. This location is where the service will store audio output files.
     
 1. Select **Connect** to add the remote Speech MCP server as a tool for your agent.
@@ -60,7 +65,7 @@ The agent lists its available capabilities, including the newly added Speech Cap
 
 ### Test the speech to text capability
 
-The Speech tool supports converting an audio file (stored in Azure blob storage and accessible with a SAS URL) into text. Follow these steps to test it:
+The Speech tool supports converting an audio file into text. The audio input file can be stored in Azure blob storage and accessible with a SAS URL, or it can be any publicly accessible URL to an audio file. Follow these steps to test speech to text:
 
 1. Upload your audio file to your Azure blob storage container.  
 1. Generate a SAS URL for the specific file: Select your uploaded audio file and go to the **Properties** section. Select **Generate SAS**. Adjust the URL's expiration time if necessary. Select **Generate SAS token and URL**. 

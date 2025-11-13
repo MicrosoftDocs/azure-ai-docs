@@ -1,6 +1,6 @@
 ---
 title: "Configure the Speech CLI output options - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to configure output options with the Speech CLI.
 author: PatrickFarley
 manager: nitinme

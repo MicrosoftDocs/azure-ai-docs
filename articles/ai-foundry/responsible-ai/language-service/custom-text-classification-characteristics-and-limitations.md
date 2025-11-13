@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for using custom text classification
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about characteristics and limitations for using custom text classification.
 author: laujan
 ms.author: lajanuar

@@ -1,11 +1,11 @@
 ---
-title: Synchronous Azure AI Translator translation REST API guide
+title: Synchronous Azure Translator translation REST API guide
 description: "Synchronous translation HTTP REST API guide"
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -19,7 +19,7 @@ recommendations: false
 # Synchronous document translation
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 
@@ -29,7 +29,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ## Request URL
 
@@ -43,13 +43,11 @@ To call the synchronous translation feature via the REST API, include the follow
 
 |Header|Value| Condition  |
 |---|:--- |:---|
-|**Ocp-Apim-Subscription-Key** |Your Translator service key from the Azure portal.|&bullet; ***Required***|
+|**Ocp-Apim-Subscription-Key** |Your Translator key from the Azure portal.|&bullet; ***Required***|
 
 ## Request parameters
 
-Query string parameters:
-
-### Required parameters
+### Required Query parameters
 
 |Query parameter | Description |
 | --- | --- |
@@ -57,7 +55,7 @@ Query string parameters:
 |**targetLanguage**|_Required parameter_.<br>Specifies the language of the output document. The target language must be one of the supported languages included in the translation scope.|
 
 
-### Optional parameters
+### Optional Query parameters
 
 |Query parameter | Description |
 | --- | --- |
@@ -109,7 +107,7 @@ Query string parameters:
 ```bash
 curl --request POST \
   --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=fr' \
-  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>'
+  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
   --form 'document=@<path-to-your-document>/your-document-file.docx' \
   --output translated-document-fr.docx
   

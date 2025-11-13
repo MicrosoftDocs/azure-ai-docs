@@ -12,7 +12,7 @@ reviewer: balapv
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Microsoft Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -40,7 +40,7 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 ```
 
 > [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Azure AI Model Inference API. `Deepseek-R1` is also available as serverless API deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
+> Verify that you have deployed the model to Foundry Tools resource with the Azure AI Model Inference API. `Deepseek-R1` is also available as serverless API deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Foundry Tools**.
 
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 

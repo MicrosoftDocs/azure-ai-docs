@@ -1,6 +1,6 @@
 ---
-title: Retrieval augmented generation in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
+title: Retrieval augmented generation in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
 description: This article introduces retrieval augmented generation for use in generative AI applications.
 ms.service: azure-ai-foundry
 ms.custom:
@@ -61,4 +61,4 @@ The Azure AI index uses [Azure AI Search](/azure/search/search-what-is-azure-sea
 
 ## Related content
 
-- [Azure AI Foundry Agent Service file search tool](../agents/how-to/tools/file-search.md)
+- [Foundry Agent Service file search tool](../agents/how-to/tools/file-search.md)

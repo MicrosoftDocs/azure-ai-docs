@@ -1,7 +1,7 @@
 ---
-title: How to use chat completions with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI Foundry Models
+title: How to use chat completions with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to generate chat completions with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# How to generate chat completions with Azure AI Foundry Models
+# How to generate chat completions with Microsoft Foundry Models
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -942,7 +942,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 - [Use embeddings models](use-embeddings.md)
 - [Use image embeddings models](use-image-embeddings.md)
 - [Use reasoning models](use-chat-reasoning.md)
-- [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
+- [Basic Microsoft Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
 
 ::: moniker range="foundry-classic"
 

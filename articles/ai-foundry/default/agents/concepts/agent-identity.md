@@ -1,6 +1,6 @@
 ---
 title: Manage Agent Identities with Microsoft Entra ID
-description: Explore how Azure AI Foundry automates Agent Identity management, streamlining permissions and enhancing security throughout the AI agent lifecycle.
+description: Explore how Microsoft Foundry automates Agent Identity management, streamlining permissions and enhancing security throughout the AI agent lifecycle.
 #customer intent: As a security administrator, I want to know how Agent Identity eliminates the need for passwords and certificates so that I can reduce security risks in my environment.
 author: sdgilley
 ms.author: sgilley
@@ -12,11 +12,11 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Agent identity concepts in Azure AI Foundry
+# Agent identity concepts in Microsoft Foundry
 
 **Agent Identity** is a specialized identity type in Microsoft Entra ID designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services, enabling agents to securely access resources, interact with users, and communicate with other systems.
 
-Agent identities integrate seamlessly with Azure AI Foundry, automatically provisioning and managing identities for agents throughout their lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
+Microsoft Foundry integrates automatically with Microsoft Entra Agent ID, creating and managing agent identities for agents throughout their lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production. 
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ The Agent ID platform framework introduces formal **agent identity blueprints** 
 
 ## Agent identity
 
-Agent identities are first-class accounts within Microsoft Entra ID that provide unique identification and authentication capabilities for AI agents. Agent identities enable scalable deployment of autonomous AI systems that function securely in your enterprise.
+An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. 
 
 ### Security benefits
 
@@ -43,17 +43,14 @@ Agent identities help address specific security challenges posed by AI agents:
 
 ### Authentication capabilities
 
-Agent identities support three key authentication scenarios:
+Agent identities support two key authentication scenarios:
 
-* **Autonomous access**: Agents can act independently using access rights assigned directly to the agent identity, including Microsoft Graph permissions, Azure RBAC roles, Microsoft Entra ID directory roles, and app roles
-* **Delegated access**: Agents can act on behalf of human users, using access rights delegated by the user to the agent identity
-* **Authenticate incoming messages**: Agents can accept requests from other clients, users, and agents secured using access tokens issued by Microsoft Entra ID
-
-Unlike traditional service principals, agent identities don't use passwords, certificates, or client secrets. Instead, they authenticate by presenting access tokens issued to the service or platform hosting the agent. Agent identities operate within a single Microsoft Entra tenant and can't access resources in other tenants.
+* **Attended (delegated access / On-Behalf-Of flow)**: The agent operates on behalf of a human user, leveraging delegated permissions granted by that user. This enables scenarios where the agent acts under the user’s authority, accessing resources or APIs as that user. 
+* **Unattended**: The agent acts under its own authority, either as a service or application identity (using its app-assigned roles, RBAC, or Graph permissions), or as an **agentic user** — an autonomous identity with user-like claims that allow the agent to authenticate and operate independently. 
 
 ## Agent identity blueprint
 
-An agent identity blueprint serves as the reusable, governing template from which all agent identities are created. It defines the "kind" or "type" of agent, records metadata shared across all instances of that kind, and establishes consistent security and management across an organization's AI agents.
+An agent identity blueprint serves as the reusable, governing template from which all associated agent identities are created. It corresponds to a "kind", "type", or “class” of agents, and acts as the management object for all agent identity instances of that class. 
 
 ### Blueprint functions
 
@@ -77,11 +74,9 @@ For example, an organization might use an AI agent called the "Contoso Sales Age
 * The roles the agent might perform: "sales manager" or "sales rep"
 * Microsoft Graph permissions or delegated scopes: "read the signed-in user's calendar"
 
-When multiple teams deploy versions of the Contoso Sales Agent for different regions or segments, each deployment receives its own agent identity, all derived from the same blueprint. This shared blueprint enables consistent management and governance across all agent instances.
+## Foundry integration
 
-## Azure AI Foundry integration
-
-Azure AI Foundry automatically integrates with Microsoft Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default agent identity blueprint and a default agent identity for your project.
+Foundry automatically integrates with Microsoft Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default agent identity blueprint and a default agent identity for your project.
 
 ### Shared project identity
 
@@ -192,7 +187,7 @@ When the agent invokes the MCP server, it uses the available agent identity to o
 
 ## Manage agent identities
 
-You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Navigate to the [agent identities tab](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Azure AI Foundry agents, Copilot Studio agents, and others.
+You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Navigate to the [agent identities tab](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Foundry agents, Copilot Studio agents, and others.
 
 :::image type="content" source="../media/agent-identity/entra-admin-center-agent-identities.png" alt-text="Screenshot of the Microsoft Entra admin center showing the agent identities tab with an inventory of all agents in the tenant." lightbox="../media/agent-identity/entra-admin-center-agent-identities.png":::
 
@@ -207,4 +202,4 @@ For more information about Microsoft Entra Agent ID features, see the [Microsoft
 
 ## Next steps
 
-* [Publish agents in Azure AI Foundry](../how-to/publish-agent.md)
+* [Publish agents in Foundry](../how-to/publish-agent.md)

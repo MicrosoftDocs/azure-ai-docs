@@ -1,5 +1,5 @@
 ---
-title: 'Use your own data to generate text using Azure OpenAI in Azure AI Foundry Models'
+title: 'Use your own data to generate text using Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
 manager: nitinme
@@ -18,7 +18,7 @@ recommendations: false
 
 Start exploring Azure OpenAI capabilities with a no-code approach through the chat playground. It's simply a text box where you can submit a prompt to generate a completion. From this page, you can quickly iterate and experiment with the capabilities. 
 
-:::image type="content" source="../media/quickstarts/chat-playground-new.png" alt-text="Screenshot of the playground page of the Azure AI Foundry portal with sections highlighted." lightbox="../media/quickstarts/chat-playground-new.png":::
+:::image type="content" source="../media/quickstarts/chat-playground-new.png" alt-text="Screenshot of the playground page of the Microsoft Foundry portal with sections highlighted." lightbox="../media/quickstarts/chat-playground-new.png":::
 
 The playground gives you options to tailor your chat experience. On the top menu, you can select **Deploy** to determine which model generates a response using the search results from your index. You choose the number of past messages to include as conversation history for future generated responses. [Conversation history](../concepts/use-your-data.md#conversation-history-for-better-results) gives context to generate related responses but also consumes [token usage](../concepts/use-your-data.md#token-usage-estimation-for-azure-openai-on-your-data). The input token progress indicator keeps track of the token count of the question you submit. 
 
@@ -38,6 +38,6 @@ Send your first query. The chat models perform best in question and answer exerc
 
 Queries that require data analysis would probably fail, such as "*Which health plan is most popular?*". Queries that require information about all of your data will also likely fail, such as "*How many documents have I uploaded?*". Remember that the search engine looks for chunks having exact or similar terms, phrases, or construction to the query. And while the model might understand the question, if search results are chunks from the data set, it's not the right information to answer that kind of question.
 
-Chats are constrained by the number of documents (chunks) returned in the response (limited to 3-20 in Azure AI Foundry portal playground). As you can imagine, posing a question about "all of the titles" requires a full scan of the entire vector store.
+Chats are constrained by the number of documents (chunks) returned in the response (limited to 3-20 in Foundry portal playground). As you can imagine, posing a question about "all of the titles" requires a full scan of the entire vector store.
 
 [!INCLUDE [deploy-web-app](deploy-web-app.md)]

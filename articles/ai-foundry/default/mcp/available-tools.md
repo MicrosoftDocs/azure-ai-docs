@@ -1,6 +1,6 @@
 ---
-title:  Explore available tools and example prompts for Azure AI Foundry MCP Server (preview) 
-description: Learn about the available tools and example prompts for Azure AI Foundry MCP Server (preview) 
+title:  Explore available tools and example prompts for Microsoft Foundry MCP Server (preview) 
+description: Learn about the available tools and example prompts for Microsoft Foundry MCP Server (preview) 
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
@@ -10,9 +10,9 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Available tools and example prompts for Azure AI Foundry MCP Server (preview) 
+# Available tools and example prompts for Microsoft Foundry MCP Server (preview) 
 
-Use the following sections to find available tools and example prompts for Azure AI Foundry MCP Server (preview). Azure AI Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Azure AI Foundry services. 
+Use the following sections to find available tools and example prompts for Microsoft Foundry MCP Server (preview). Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Foundry services. 
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
@@ -84,7 +84,7 @@ Example prompts include:
 
 **model_catalog_list (read)**
 
-List models from the Azure AI Foundry Model Catalog.
+List models from the Foundry model catalog.
 
 Example prompts include:
 
@@ -95,7 +95,7 @@ Example prompts include:
 
 **model_details_get (read)**
 
-Get full model details and code sample from Azure AI Foundry.
+Get full model details and code sample from Foundry.
 
 Example prompts include:
 
@@ -107,7 +107,7 @@ Example prompts include:
 
 **model_deploy (write)**
 
-Create or update a model deployment in the specified Azure AI Foundry account.
+Create or update a model deployment in the specified Foundry account.
 
 Example prompts include:
 
@@ -117,13 +117,13 @@ Example prompts include:
 
 **model_deployment_get (read)**
 
-Get one or more model deployments from an Azure AI Foundry account.
+Get one or more model deployments from a Foundry account.
 
 Example prompts include:
 
 - "Show me all my current model deployments."
 - "Get details for my 'production-chatbot' deployment."
-- "List all deployments in my Azure AI Foundry account."
+- "List all deployments in my Foundry account."
 
 **model_deployment_delete (write)**
 
@@ -139,7 +139,7 @@ Example prompts include:
 
 **model_benchmark_get (read)**
 
-Fetch benchmark data for Azure AI Foundry models.
+Fetch benchmark data for Foundry models.
 
 Example prompts include:
 

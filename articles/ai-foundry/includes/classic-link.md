@@ -12,4 +12,4 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-[Azure AI Foundry (classic)](https://ai.azure.com/?cid=learnDocs)
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs)

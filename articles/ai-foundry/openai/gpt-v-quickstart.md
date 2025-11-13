@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Azure AI Foundry Models'
+title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model or other vision-enabled models. 
 services: cognitive-services
@@ -18,7 +18,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # Quickstart: Use images in your AI chats
 
-Get started using images in your chats with Azure OpenAI in Azure AI Foundry Models.
+Get started using images in your chats with Azure OpenAI in Microsoft Foundry Models.
 
 
 > [!IMPORTANT]
@@ -27,7 +27,7 @@ Get started using images in your chats with Azure OpenAI in Azure AI Foundry Mod
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry portal quickstart](includes/gpt-v-studio.md)]
+[!INCLUDE [Foundry portal quickstart](includes/gpt-v-studio.md)]
 
 ::: zone-end
 

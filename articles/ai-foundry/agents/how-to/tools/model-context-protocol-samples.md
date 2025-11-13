@@ -1,7 +1,7 @@
 ---
 title: Code Samples for the Model Context Protocol Tool (Preview)
-titleSuffix: Azure AI Foundry
-description: Find code samples to connect Azure AI Foundry Agent Service with MCP servers.
+titleSuffix: Microsoft Foundry
+description: Find code samples to connect Foundry Agent Service with MCP servers.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,7 +16,7 @@ ms.custom: azure-ai-agents-code
 
 # How to use the Model Context Protocol tool (preview)
 
-Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
+Use this article to find code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
 ---
-title: Explore Azure AI Foundry MCP Server best practices and security guidance
-description: Learn about Azure AI Foundry MCP Server best practices and security guidance
+title: Explore Microsoft Foundry MCP Server best practices and security guidance
+description: Learn about Microsoft Foundry MCP Server best practices and security guidance
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
@@ -10,15 +10,15 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Azure AI Foundry MCP Server best practices and security guidance
+# Microsoft Foundry MCP Server best practices and security guidance
 
-Use Azure AI Foundry MCP Server (preview) tools to automate read and write operations across Azure AI Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
+Use Microsoft Foundry MCP Server (preview) tools to automate read and write operations across Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
 ## Impact of write operations
 
-Write operations have a critical impact on Azure AI Foundry resources. Proceed with caution and proper planning when you interact with Azure AI Foundry MCP Server (preview), just as you would when using the portal, SDKs, or REST APIs. For example:
+Write operations have a critical impact on Foundry resources. Proceed with caution and proper planning when you interact with Foundry MCP Server (preview), just as you would when using the portal, SDKs, or REST APIs. For example:
 
 - Deployments: Immediately affect live apps and billing.
 - Deletions: Permanently remove resources and can break dependent services.
@@ -68,21 +68,21 @@ This section summarizes identity, access control, policy, network isolation, and
 
 ### Identity and access management
 
-Authenticate to Azure AI Foundry MCP Server (preview) using a Microsoft Entra token scoped to `https://mcp.ai.azure.com`.
+Authenticate to Foundry MCP Server (preview) using a Microsoft Entra token scoped to `https://mcp.ai.azure.com`.
 
-Azure role-based access control (RBAC) applies to all operations on Azure AI Foundry resources supported by Azure AI Foundry MCP Server (preview). Operations run according to the authenticated user's permissions.
+Azure role-based access control (RBAC) applies to all operations on Foundry resources supported by Foundry MCP Server (preview). Operations run according to the authenticated user's permissions.
 
 ### Allow tenant admin control via Azure Policy
 
-Tenant admins can use Azure Policy to grant or block access to Azure AI Foundry MCP Server (preview) for selected users or workload identities.
+Tenant admins can use Azure Policy to grant or block access to Foundry MCP Server (preview) for selected users or workload identities.
 
-1. Materialize the service principal for Azure AI Foundry MCP Server (preview) application ID by running `az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`. The application ID used in this command represents Azure AI Foundry MCP Server (preview).
+1. Materialize the service principal for Foundry MCP Server (preview) application ID by running `az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`. The application ID used in this command represents Foundry MCP Server (preview).
 
-1. Find the enterprise application for Azure AI Foundry MCP Server (preview) using the application ID.
+1. Find the enterprise application for Foundry MCP Server (preview) using the application ID.
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
-1. Add a conditional access policy that targets Azure AI Foundry MCP Server (preview) and specifies the users or workload identities.
+1. Add a conditional access policy that targets Foundry MCP Server (preview) and specifies the users or workload identities.
 
     :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
 
@@ -94,14 +94,14 @@ After the policy is in place, designated users and groups can't obtain the Entra
 
 ### Network isolation
 
-Azure AI Foundry MCP Server (preview) currently doesn't support network isolation. It exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Azure AI Foundry resource through its public endpoint. If your Azure AI Foundry resources use Azure Private Links, the server can't reach them and operations fail.
+Foundry MCP Server (preview) currently doesn't support network isolation. It exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Foundry resource through its public endpoint. If your Foundry resources use Azure Private Links, the server can't reach them and operations fail.
 
 ### Data Residency
 
-Azure AI Foundry MCP Server (preview) uses a global stateless proxy architecture. Data created by backend services stays encrypted at rest in the region you select. The server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.
+Foundry MCP Server (preview) ("MCP Server") uses a global stateless proxy architecture. Data created by backend services that interact with MCP Server stays encrypted at rest in the region you select. MCP Server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.  
 
 > [!IMPORTANT]
-> By using this preview feature, you are acknowledging and consenting to any cross-region processing that may occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, do not use the Azure AI Foundry MCP Server (preview) or restrict its use to scenarios that remain within your selected region.
+> By using this preview feature, you are acknowledging and consenting to any cross-region processing that may occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, do not use the Foundry MCP Server (preview) or restrict its use to scenarios that remain within your selected region.
 
 ## Troubleshooting and FAQs
 
@@ -113,7 +113,7 @@ Check your permissions in Entra ID and confirm your access token is valid. Sign 
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see Role-based access control for Azure AI Foundry.
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see Role-based access control for Foundry.
 
 ### Server connectivity issues
 

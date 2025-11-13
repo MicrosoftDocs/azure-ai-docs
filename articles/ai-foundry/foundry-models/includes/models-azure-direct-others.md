@@ -38,7 +38,7 @@ You can run these models through the BFL service provider API and through the [i
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs).
+See [this model collection in Microsoft Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs).
 
 ## DeepSeek models sold directly by Azure
 
@@ -66,7 +66,7 @@ The DeepSeek family of models includes DeepSeek-R1, which excels at reasoning ta
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek/?cid=learnDocs).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek/?cid=learnDocs).
 
 ## Meta models sold directly by Azure
 
@@ -94,7 +94,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available [from partners and community](../concepts/models-from-partners.md#meta).
+See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available [from partners and community](../concepts/models-from-partners.md#meta).
 
 ## Microsoft models sold directly by Azure
 
@@ -116,7 +116,33 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 ::: moniker-end
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
+See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
+
+### Model router
+
+Model router is a large language model that intelligently selects from a set of underlying chat models to respond to a given prompt. For more information, see the [Model router overview](/azure/ai-foundry/openai/how-to/model-router).
+
+#### Region availability
+
+| Model | Region |
+|---|---|
+| `model-router` (2025-08-07) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+| `model-router` (2025-05-19) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+| `model-router` (2025-11-18) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+
+*Billing for Data Zone Standard model router deployments will begin no earlier than November 1, 2025.*
+
+#### Capabilities
+
+|  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `model-router` (2025-08-07) | A model that intelligently selects from a set of underlying models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`)</br> 128,000 (`gpt-5 reasoning models`) </br> 16,384 (`gpt-5-chat`) | - |
+| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`) | May 31, 2024 |
+| `model-router` (2025-11-18) | A model that intelligently selects from a configurable set of underlying chat models to respond to a given prompt. | TBD | TBD | TBD |
+
+Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
+
+
 
 ## Mistral models sold directly by Azure
 
@@ -136,11 +162,11 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 ::: moniker-end
 
-See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs).  You can also find several Mistral models available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
+See [the Mistral model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs).  You can also find several Mistral models available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 
 ## xAI models sold directly by Azure
 
-xAI's Grok models in Azure AI Foundry Models include a diverse set of models designed to excel in various enterprise domains with different capabilities and price points, including: 
+xAI's Grok models in Foundry Models include a diverse set of models designed to excel in various enterprise domains with different capabilities and price points, including: 
 
 - Grok 3, a non-reasoning model pretrained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is adept at drawing connections across domains and languages.
  
@@ -181,7 +207,7 @@ benchmarks. [Registration is required for access to the grok-4 model](https://ak
 
 ::: moniker-end
 
-See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI/?cid=learnDocs).
+See [the xAI model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI/?cid=learnDocs).
 
 ## Model region availability by deployment type
 
@@ -190,7 +216,7 @@ Foundry Models gives you choices for the hosting structure that fits your busine
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing you to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments perform the same inference operations, but the billing, scale, and performance differ. For more information about deployment types, see [Deployment types in Azure AI Foundry Models](../concepts/deployment-types.md).
+All deployments perform the same inference operations, but the billing, scale, and performance differ. For more information about deployment types, see [Deployment types in Foundry Models](../concepts/deployment-types.md).
 
 # [Global Standard](#tab/global-standard)
 
@@ -221,9 +247,9 @@ All deployments perform the same inference operations, but the billing, scale, a
 ## Related content
 
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
-- [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
-- [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
-- [Deployment types in Azure AI Foundry Models](../concepts/deployment-types.md)
+- [Deployment overview for Foundry Models](../../concepts/deployments-overview.md)
+- [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
+- [Deployment types in Foundry Models](../concepts/deployment-types.md)
 
 ::: moniker range="foundry-classic"
 

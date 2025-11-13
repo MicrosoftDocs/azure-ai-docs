@@ -1,6 +1,6 @@
 monikerRange: 'foundry'
 items:
-- name: What is Azure AI Foundry (new)?
+- name: What is Microsoft Foundry (new)?
   href: ../what-is-azure-ai-foundry.md
 
 - name: Get started
@@ -30,14 +30,14 @@ items:
 - name: Observability, evaluation, & tracing
   href: toc-files-foundry/observability-evaluation-tracing/toc.yml
 
-- name: Developer environment 
+- name: Developer experience 
   href: toc-files-foundry/developer-environment/toc.yml
 
 - name: API & SDK
   href: toc-files-foundry/api-sdk/toc.yml
 
 - name: Guardrails and controls
-  href: toc-files/guardrails/toc.yml
+  href: toc-files-foundry/guardrails/toc.yml
 
 - name: Responsible AI
   href: toc-files-foundry/responsible-ai/toc.yml

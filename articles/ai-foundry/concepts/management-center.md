@@ -1,7 +1,7 @@
 ---
 title: Manage projects and resources
-titleSuffix: Azure AI Foundry
-description: "The management center in Azure AI Foundry portal provides a centralized hub for governance and management activities."
+titleSuffix: Microsoft Foundry
+description: "The management center in Microsoft Foundry portal provides a centralized hub for governance and management activities."
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: aashishb
@@ -21,9 +21,9 @@ ai-usage: ai-assisted
 
 :::moniker range="foundry-classic"
 
-The management center is part of the Azure AI Foundry portal that streamlines governance and management activities. From the management center, you can manage:
+The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
-- Azure AI Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
+- Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
 - Azure AI [!INCLUDE [FDP](../includes/fdp-project-name.md)]s
 - Quotas for models and virtual machines (VMs)
 
@@ -32,21 +32,21 @@ The management center is part of the Azure AI Foundry portal that streamlines go
 
 - User management and role assignment
 
-To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select a project, then select **Management center** from the bottom of left menu. (You might have to scroll down to find it.)
+To access the management center, sign in to [Foundry](https://ai.azure.com/?cid=learnDocs), select a project, then select **Management center** from the bottom of left menu. (You might have to scroll down to find it.)
 
-:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Foundry with the management center selected." :::
+:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Foundry with the management center selected." :::
 
 
 ## Manage Foundry projects
 
-Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the AI Foundry resource.
+Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the Foundry resource.
 
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
 For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md).
 
 
-### Manage Azure AI Foundry hubs and hub-based projects
+### Manage Foundry hubs and hub-based projects
 
 You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. The management center lists them in the **All resources** section. When you select a hub, the portal displays it in the left menu.
 
@@ -64,28 +64,10 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 :::moniker range="foundry"
 
-[!INCLUDE [foundry-link](../default/includes/foundry-link.md)] provides project management capabilities that streamline how you work with Foundry projects. You can switch between projects, manage project settings, and govern access to resources. 
-
-## Prerequisites
-
-* One or more [Foundry projects](../how-to/create-projects.md).
-
-## Switch projects
-
-In the Azure AI Foundry (new) portal, the project you're working with appears in the upper-left corner.  
-1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
-1. To switch to another recently used project, select the project name in the upper-left corner, then select the other project. 
-1. To see all of your Foundry projects, select **View all projects**. Then select one of them to switch to that project.
-
-## Find other resources
-
-The Azure AI Foundry (new) portal displays only Foundry projects, not other resources or hub-based projects you might have created in [!INCLUDE [classic-link](../includes/classic-link.md)]. 
-
-To find these other resources, select **View all resources**.  A new browser tab opens the Azure AI Foundry (classic) portal.  [Switch to Azure AI Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources in the Azure AI Foundry (classic) portal.
 
 ## Manage projects
 
-Most of your work in the Azure AI Foundry (new) portal is performed in the context of the project shown in the upper-left corner. But when you navigate to the **Operate** section, the project name disappears. This section allows you to view and manage all of your Foundry projects.
+Most of your work in the Foundry (new) portal is performed in the context of the project shown in the upper-left corner. But when you navigate to the **Operate** section, the project name disappears. This section allows you to view and manage all of your Foundry projects.
 
 1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
 1. Select **Operate** in the upper-right navigation.
@@ -124,9 +106,9 @@ After you select a project or parent resource link, use the __Users__ tab to vie
 :::moniker-end
 
 > [!NOTE]
-> You can only assign built-in roles for Azure AI Foundry here.
+> You can only assign built-in roles for Foundry here.
 
-For more information, see [Role-based access control](rbac-azure-ai-foundry.md#azure-ai-foundry-project-roles).
+For more information, see [Role-based access control](rbac-azure-ai-foundry.md#foundry-project-roles).
 
 ## Connect resources
 

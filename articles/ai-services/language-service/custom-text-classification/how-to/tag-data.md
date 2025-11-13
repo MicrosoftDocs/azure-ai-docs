@@ -1,20 +1,19 @@
 ---
 title: How to label your data for custom classification - Azure AI services
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to label your data for use with the custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # Label text data for training your model 
 
-Before training your model, you need to label your documents with the classes you want to categorize them into. Data labeling  is a crucial step in development lifecycle; in this step you can create the classes you want to categorize your data into and label your documents with these classes. This data will be used in the next step when training your model so that your model can learn from the labeled data. If you already labeled your data, you can directly [import](create-project.md) it into your project but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md).
+Before training your model, you need to label your documents with the classes you want to categorize them into. Data labeling  is a crucial step in development lifecycle; in this step you can create the classes you want to categorize your data into and label your documents with these classes. This data is used in the next step when training your model so that your model can learn from the labeled data. If you already labeled your data, you can directly [import](create-project.md) it into your project but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md).
 
 Before creating a custom text classification model, you need to have labeled data first. If your data isn't labeled already, you can label it in the [Language Studio](https://aka.ms/languageStudio). Labeled data informs the model how to interpret text, and is used for training and evaluation.
 
@@ -25,11 +24,11 @@ Before you can label data, you need:
 * [A successfully created project](create-project.md) with a configured Azure blob storage account, 
 * Documents containing the [uploaded](design-schema.md#data-preparation) text data in your storage account.
 
-See the [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+See the [project development lifecycle](../overview.md#project-development-lifecycle).
 
 ## Data labeling guidelines
 
-After [preparing your data, designing your schema](design-schema.md) and [creating your project](create-project.md), you will need to label your data. Labeling your data is important so your model knows which documents will be associated with the classes you need. When you label your data in [Language Studio](https://aka.ms/languageStudio) (or import labeled data), these labels are stored in the JSON file in your storage container that you've connected to this project. 
+After [preparing your data, designing your schema](design-schema.md) and [creating your project](create-project.md), you need to label your data. Labeling your data is important so your model knows which documents will be associated with the classes you need. When you label your data in [Language Studio](https://aka.ms/languageStudio) (or import labeled data), these labels are stored in the JSON file in your storage container that you've connected to this project. 
 
 As you label your data, keep in mind:
 

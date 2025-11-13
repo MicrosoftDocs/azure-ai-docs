@@ -1,7 +1,7 @@
 ---
-title: Explore model leaderboards in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces benchmarking capabilities and model leaderboards (preview) in Azure AI Foundry portal.
+title: Explore model leaderboards in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces benchmarking capabilities and model leaderboards (preview) in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
@@ -12,10 +12,10 @@ ms.author: lagayhar
 author: lgayhardt
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
-# customer intent: As a developer or data scientist, I want to understand model leaderboards and benchmarking capabilities in Azure AI Foundry portal so I can compare and select the best models for my AI solutions.
+# customer intent: As a developer or data scientist, I want to understand model leaderboards and benchmarking capabilities in Microsoft Foundry portal so I can compare and select the best models for my AI solutions.
 ---
 
-# Model leaderboards in Azure AI Foundry portal (preview)
+# Model leaderboards in Microsoft Foundry portal (preview)
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
+Model leaderboards (preview) in Microsoft Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
 
 - [Quality, safety, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, safety, cost, or throughput);
 - [Trade-off charts](../how-to/benchmark-model-in-catalog.md#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
@@ -35,7 +35,7 @@ Whenever you find a model to your liking, you can select it and zoom into the **
 
 ::: moniker range="foundry"
 
-Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. Insert NextGen content
+Model leaderboards (preview) in Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. Insert NextGen content
 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
@@ -202,14 +202,14 @@ Prompt construction follows best practices for each dataset, as specified by the
 
 ::: moniker range="foundry-classic"
 
-- [Compare and select models using the model leaderboard in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
-- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
+- [Compare and select models using the model leaderboard in Foundry portal](../how-to/benchmark-model-in-catalog.md)
+- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-- [Compare and select models using the model leaderboard in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
-- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
+- [Compare and select models using the model leaderboard in Foundry portal](../how-to/benchmark-model-in-catalog.md)
+- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)
 
 ::: moniker-end

@@ -18,7 +18,7 @@ monikerRange: 'foundry-classic || foundry'
 
 ::: moniker range="foundry-classic"
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation and select the **Blocklists** tab.
+1. Go to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation and select the **Blocklists** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/select-blocklists.png" lightbox="../media/content-safety/content-filter/select-blocklists.png" alt-text="Screenshot of the Blocklists page tab.":::
 
@@ -42,6 +42,6 @@ monikerRange: 'foundry-classic || foundry'
 ::: moniker-end
 
 ::: moniker range="foundry"
-Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions
+Go to [Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions
 
 ::: moniker-end

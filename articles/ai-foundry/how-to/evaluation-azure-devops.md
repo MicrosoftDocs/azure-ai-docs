@@ -1,6 +1,6 @@
 ---
 title: How to run an evaluation in Azure DevOps
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -14,8 +14,6 @@ ai-usage: ai-assisted
 
 # How to run an evaluation in Azure DevOps (preview)
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
-
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.md), an Azure DevOps extension is also available in the Azure DevOps Marketplace. This extension enables offline evaluation of AI agents within your CI/CD pipelines.
@@ -24,18 +22,7 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
 
 ## Prerequisites
 
-::: moniker range="foundry-classic"
-
 - Foundry project or Hubs based project. To learn more, see [Create a project](create-projects.md).
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
-
 - Install Azure AI evaluation extension.
   - Go to [Azure DevOps Marketplace](https://marketplace.visualstudio.com/azuredevops).
   - Search for Azure AI evaluation and install the extension into your Azure DevOps organization.
@@ -50,7 +37,7 @@ Insert NextGen content
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
       - Queries (required).
-    - Agent IDs  Retrieve agent identifiers from AI Foundry.
+    - Agent IDs  Retrieve agent identifiers from Foundry.
 
   See the following sample dataset:
 
@@ -72,8 +59,6 @@ Insert NextGen content
     ] 
   } 
   ```
-
-
 
 A sample YAML file:
 
@@ -171,19 +156,7 @@ Commit and run the pipeline in Azure DevOps.
 
 - Select the run and go to "Azure AI Evaluation" tab.
 - The results are shown in this format:
-
-::: moniker range="foundry-classic"
-
-  - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Azure AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to Azure AI Foundry portal to view individual result in detail.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
-
+  - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Microsoft Foundry portal. You can also select the link for Evaluation Results, and it directs you to Foundry portal to view individual result in detail.
   - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Evaluation results and comparisons from multiple AI agents:
@@ -194,5 +167,5 @@ Single agent evaluation result:
 
 ## Related content
 
-- [How to evaluate generative AI models and applications with Azure AI Foundry](./evaluate-generative-ai-app.md)
-- [How to view evaluation results in Azure AI Foundry portal](./evaluate-results.md)
+- [How to evaluate generative AI models and applications with Foundry](./evaluate-generative-ai-app.md)
+- [How to view evaluation results in Foundry portal](./evaluate-results.md)

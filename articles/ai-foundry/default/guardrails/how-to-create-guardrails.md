@@ -1,7 +1,7 @@
 ---
-title: 'How-to configure guardrails and controls in Azure AI Foundry'
-titleSuffix: Azure AI Foundry
-description: How-to guide for creating, configuring, and managing guardrails and controls in Azure AI Foundry, including UI instructions and API configuration.
+title: 'How-to configure guardrails and controls in Microsoft Foundry'
+titleSuffix: Microsoft Foundry
+description: How-to guide for creating, configuring, and managing guardrails and controls in Microsoft Foundry, including UI instructions and API configuration.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -10,12 +10,12 @@ author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
 ms.custom: azure-ai-guardrails
-# customer intent: As a developer, I want a comprehensive guide to guardrails and controls in Azure AI Foundry so that I can implement complete safety measures for my models and agents.
+# customer intent: As a developer, I want a comprehensive guide to guardrails and controls in Microsoft Foundry so that I can implement complete safety measures for my models and agents.
 ---
 
-# How to configure guardrails and controls in Azure AI Foundry
+# How to configure guardrails and controls in Microsoft Foundry
 
-This comprehensive guide walks you through every aspect of creating, configuring, and managing guardrails and controls in Azure AI Foundry. From basic setup to advanced features, this article covers both UI instructions and API configuration methods.
+This comprehensive guide walks you through every aspect of creating, configuring, and managing guardrails and controls in Microsoft Foundry. From basic setup to advanced features, this article covers both UI instructions and API configuration methods.
 
 ## Prerequisites 
 
@@ -23,9 +23,9 @@ This comprehensive guide walks you through every aspect of creating, configuring
 - An [Azure AI resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AIServices). 
 
 
-## Create a guardrail in Azure AI Foundry
+## Create a guardrail in Foundry
 
-1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project.
+1. Go to [Foundry](https://ai.azure.com) and navigate to your project.
 2. Select **Build** in the top right menu.
 3. Select the **Guardrails** page from the left navigation.
 4. Select **Create Guardrail** in the top right.
@@ -38,7 +38,7 @@ Default controls are displayed in the right pane when you create a new guardrail
 2. **Choose intervention points and actions**: Recommended intervention points and actions for that risk is shown. Select one or many intervention points and one action to configure your control.
 
    > [!NOTE]
-   > Some intervention points will not be available for a risk if that is inapplicable at that intervention point. For example, by definition, user input attacks are malicious content added to the user input. So, that risk can be scanned only at that intervention point. Additionally, Task Adherence analyzes tool calls and therefore can only be specified at the tool call intervention point.
+   > Some intervention points will not be available for a risk if that is inapplicable at that intervention point. For example, by definition, user input attacks are malicious content added to the user input. So, that risk can be scanned only at that intervention point. 
 
 3. Select **Add control**. The control is added to the table on the right.
 
@@ -88,7 +88,7 @@ After adding, editing, and/or deleting controls as desired:
    > [!NOTE]
    > Microsoft Default guardrails, such as Default.V2, cannot be edited.
 
-4. Follow the same instructions as in [Create a guardrail](#create-a-guardrail-in-azure-ai-foundry) to edit, add, or remove controls; assign or re-assign agents and/or models; and rename the guardrail, as needed.
+4. Follow the same instructions as in [Create a guardrail](#create-a-guardrail-in-foundry) to edit, add, or remove controls; assign or re-assign agents and/or models; and rename the guardrail, as needed.
 
 ## Assign a guardrail
 
@@ -106,7 +106,7 @@ There are two paths to assigning a guardrail to a model or agent:
 
 1. Select **Build** in the top right menu.
 2. Select **Agents** or **Models** in the left navigation.
-3. Select the individual agent or model that needs updating.
+3. Select the individual agent or model that needs to update.
 4. A section for **Guardrails** appears in the left panel of the Agent Playground or Chat Playground.
 5. Select **Manage** at the bottom of the Guardrails section.
 6. Select **Assign a new guardrail**.
@@ -145,8 +145,8 @@ To test the behavior of a particular guardrail:
 
 ## API instructions
 
-### Creating a Guardrail in Azure AI Foundry 
-A guardrail is represented as an RaiPolicy in the resource manager. Use the [RAI Policies page](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) to create or update a new guardrail through code. 
+### Creating a Guardrail in Foundry 
+A guardrail is represented as a RaiPolicy in the Resource Manager. Use the [RAI Policies page](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) to create or update a new guardrail through code. 
 
 
 ### Assigning a Guardrail to a Model 
@@ -156,7 +156,7 @@ Assign an existing guardrail to a model via the [model deployment properties](/r
 
 ## Work with annotations
 
-Azure AI Foundry provides annotations to help you understand the guardrail results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
+Foundry provides annotations to help you understand the guardrail results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
 
 ### Standard guardrail annotations
 
@@ -178,7 +178,7 @@ Optional models can be set to annotate mode (returns information when content is
 | Protected material code | - detected (true or false)<br>- filtered (true or false)<br>- Example citation of public GitHub repository where code snippet was found<br>- The license of the repository |
 | Personally identifiable information (PII) | - detected (true or false)<br>- filtered (true or false)<br>- redacted (true or false) |
 | Groundedness | - detected (true or false)<br>- filtered (true or false, with details)<br>- (Annotate mode only) details:(completion_end_offset, completion_start_offset) |
-| Task adherence | - detected (true or false)<br>- filtered (true or false) |
+
 
 > [!IMPORTANT]
 > When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
@@ -201,7 +201,7 @@ The following table shows annotation mode availability in each API version:
 | Profanity blocklist | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Custom blocklist | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Groundedness¹ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
-| Task adherence | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
 
 ¹ Not available in non-streaming scenarios; only available for streaming scenarios. 
 

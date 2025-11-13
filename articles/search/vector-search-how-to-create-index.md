@@ -33,7 +33,7 @@ This article uses REST for illustration. After you understand the basic workflow
 
 ## Prerequisites
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with Azure AI skills and vectorizers, Azure AI Search must be in the same region as the embedding models hosted on Azure AI Vision.
++ An [Azure AI Search service](search-create-service-portal.md) in any region and on any tier. If you plan to use [integrated vectorization](vector-search-integrated-vectorization.md) with Azure AI skills and vectorizers, Azure AI Search must be in the same region as the embedding models hosted on Azure Vision in Foundry Tools.
 
 + Your source documents must have [vector embeddings](vector-search-how-to-generate-embeddings.md) to upload to the index. You can also use [integrated vectorization](vector-search-integrated-vectorization.md) for this step.
 
@@ -365,8 +365,8 @@ Pull APIs refer to indexers that automate multiple indexing steps, from data ret
 
   + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md)
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
-  + [Azure AI Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
-  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Azure AI Foundry model catalog. For more information, see [Use embedding models from Azure AI Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md).
+  + [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)
+  + [AML skill (preview)](cognitive-search-aml-skill.md) to generate embeddings for models hosted in the Microsoft Foundry model catalog. For more information, see [Use embedding models from Foundry model catalog for integrated vectorization](vector-search-integrated-vectorization-ai-studio.md).
 
 + Indexes provide the vector field definitions and vector search configurations. This article describes those definitions.
 

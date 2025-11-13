@@ -1,7 +1,7 @@
 ---
 title: Enforce token limits with AI Gateway
-titleSuffix: Azure AI Foundry
-description: Enable AI Gateway with Azure API Management to apply tokens-per-minute limits and token quotas to model deployments in Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Enable AI Gateway with Azure API Management to apply tokens-per-minute limits and token quotas to model deployments in Microsoft Foundry.
 #customer intent: As an IT admin, I want to enforce token limits on AI model deployments so that I can prevent excessive usage and align with organizational policies.
 author: jonburchel
 ms.author: jburchel
@@ -14,12 +14,12 @@ ai-usage: ai-assisted
 
 # Enforce token limits with AI Gateway
 
-Use AI Gateway in Azure AI Foundry to enforce tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope. This integration uses Azure API Management behind the scenes and applies limits per project to prevent runaway token consumption and align usage with organizational guardrails. Only token rate limiting and quota enforcement are in scope for this release. You configure all settings in the Azure AI Foundry portal.
+Use AI Gateway in Microsoft Foundry to enforce tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope. This integration uses Azure API Management behind the scenes and applies limits per project to prevent runaway token consumption and align usage with organizational guardrails. Only token rate limiting and quota enforcement are in scope for this release. You configure all settings in the Foundry portal.
 
 ## Prerequisites
 
 - Azure subscription ([create one for free](https://azure.microsoft.com/free)) with permission to create or reuse an Azure API Management (APIM) instance.
-- Access to the Azure AI Foundry portal (**Admin console**) for the target Azure AI Foundry resource.
+- Access to the Foundry portal (**Admin console**) for the target Foundry resource.
 - Reference material for [AI Gateway capabilities in APIM](/azure/api-management/genai-gateway-capabilities).
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.
 
@@ -31,19 +31,19 @@ An AI Gateway sits between clients and model deployments. All requests flow thro
 
 ## Choose API Management usage model
 
-When you create a new AI Gateway, you need to decide whether to create a new APIM instance (isolated governance, predictable usage boundary), or reuse an existing APIM instance (centralized management, shared cost). You can use any existing APIM instance in the same Azure region as the AI Foundry resource.
+When you create a new AI Gateway, you need to decide whether to create a new APIM instance (isolated governance, predictable usage boundary), or reuse an existing APIM instance (centralized management, shared cost). You can use any existing APIM instance in the same Azure region as the Foundry resource.
 
-When you create a new instance from the Azure AI Foundry portal flow, the SKU defaults to Basic v2. Refer to [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/) to learn more about associated costs and pricing for the API Management service.
+When you create a new instance from the Foundry portal flow, the SKU defaults to Basic v2. Refer to [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/) to learn more about associated costs and pricing for the API Management service.
 
 ## Create an AI Gateway
 
-Follow these steps in the Azure AI Foundry portal to enable AI Gateway for a resource.
+Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. [!INCLUDE [foundry-sign-in](../../default/includes/foundry-sign-in.md)]
 1. Select **Operate** > **Admin console**.
 1. Open the **AI Gateway** tab.
 1. Select **Add AI Gateway**.
-1. Select the AI Foundry resource you want to connect with the gateway.
+1. Select the Foundry resource you want to connect with the gateway.
 1. Select **Create new** or **Use existing** APIM.
 1. If creating new, review the [Basic v2 SKU limitation and trial cost details](#limitations).
 1. Name the gateway, and select **Add** to create or associate the APIM instance.
@@ -114,7 +114,7 @@ If the Admin console is slow, retry after a brief interval.
 
 ## Limitations
 
-- You can configure settings only through the Azure AI Foundry portal; no support yet for CLI, ARM, or API.
+- You can configure settings only through the Foundry portal; no support yet for CLI, ARM, or API.
 - Dedicated APIM isolates governance, while shared APIM centralizes operations.
 - Enforcement of token quotas is project-scoped; resource-level global limits aren't managed by the AI gateway.
 

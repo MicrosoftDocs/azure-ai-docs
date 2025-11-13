@@ -9,7 +9,7 @@ ms.date: 06/12/2025
 ms.topic: include
 ms.custom: include file, devx-track-js
 ---
-Use the Language Understanding (LUIS) client libraries for Node.js to:
+Use Azure Language Understanding (LUIS) client libraries for Node.js to:
 
 * Create an app
 * Add an intent, a machine-learned entity, with an example utterance

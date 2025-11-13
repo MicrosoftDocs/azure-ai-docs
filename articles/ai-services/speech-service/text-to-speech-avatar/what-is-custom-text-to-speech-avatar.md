@@ -1,6 +1,6 @@
 ---
 title: Custom text to speech avatar overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the custom text to speech avatar feature of speech service, which allows you to create a customized, one-of-a-kind synthetic talking avatar for your application.
 manager: nitinme
 ms.service: azure-ai-speech
@@ -15,10 +15,14 @@ ms.custom: references_regions
 
 # What is custom text to speech avatar?
 
-Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. The avatar is even more realistic if you also use a [professional voice or voice sync for avatar](#custom-voice-and-custom-text-to-speech-avatar) for the same actor.
+Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand. Custom video avatar is created by your provided video recording data of your selected actors, and custom photo avatar is created by your provided image. The avatar is even more realistic if you also use a [professional voice or voice sync for avatar](#custom-voice-and-custom-text-to-speech-avatar) for the same actor.
 
 > [!IMPORTANT]
 > Custom text to speech avatar access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+ 
+> [!Note]
+> Custom photo avatar training is not yet available as a self-service option and currently requires a manual offline process.
+> 
 
 ## How does it work?
 
@@ -75,7 +79,7 @@ There are two kinds of custom voice for a custom avatar:
 
 If you fine-tune a professional voice and want to use it together with the custom avatar, pay attention to the following points:
 
-- Ensure that the custom voice endpoint is created in the same Azure AI Foundry resource as the custom avatar endpoint. As needed, refer to [train your professional voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to copy the custom voice model to the same Azure AI Foundry resource as the custom avatar endpoint.
+- Ensure that the custom voice endpoint is created in the same Microsoft Foundry resource as the custom avatar endpoint. As needed, refer to [train your professional voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to copy the custom voice model to the same Microsoft Foundry resource as the custom avatar endpoint.
 - You can see the custom voice option in the voices list of the [avatar content generation page](https://speech.microsoft.com/portal/talkingavatar) and [live chat voice settings](https://speech.microsoft.com/portal/livechat).
 - If you're using batch synthesis for avatar API, add the `"customVoices"` property to associate the deployment ID of the custom voice model with the voice name in the request. For more information, see the [text to speech properties](batch-synthesis-avatar-properties.md#text-to-speech-properties).
 - If you're using real-time synthesis for avatar API, refer to our sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) to set the custom voice.

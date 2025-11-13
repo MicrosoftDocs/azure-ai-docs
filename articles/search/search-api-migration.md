@@ -11,7 +11,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 09/27/2025
+ms.date: 11/04/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -23,24 +23,24 @@ Here are the most recent versions of the REST APIs:
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
 | Data plane | [`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) | Stable |
-| Data plane | [`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2025-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
-Upgrade instructions focus on code changes that get you through breaking changes from previous versions so that existing code runs the same as before, but on the newer API version. Once your code is in working order, you can decide whether to adopt newer features. To learn more about new features, see [vector code samples](https://github.com/Azure/azure-search-vector-samples) and [What's New](whats-new.md).
+Upgrade instructions focus on code changes that get you through breaking changes from previous versions so that existing code runs the same as before, but on the newer API version. Once your code is in working order, you can decide whether to adopt newer features. To learn more about new features, see [What's New](whats-new.md).
 
 We recommend upgrading API versions in succession, working through each version until you get to the newest one.
 
 `2023-07-01-preview` was the first REST API for vector support. **Do not use this API version**. It's now deprecated and you should migrate to either stable or newer preview REST APIs immediately.
 
 > [!NOTE]
-> REST API reference docs are now versioned. For version-specific content, open a reference page and then use the selector located to the right, above the table of contents, to pick your version.
+> REST API reference docs are now versioned. For version-specific content, open a reference page and then use the selector located above the table of contents, to pick your version.
 
 ## When to upgrade
 
 Azure AI Search breaks backward compatibility as a last resort. Upgrade is necessary when:
 
-+ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
++ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-11-01-preview`](#breaking-changes-for-agentic-retrieval) for agentic retrieval, [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
 
 + Your code fails when unrecognized properties are returned in an API response. As a best practice, your application should ignore properties that it doesn't understand.
 
@@ -62,9 +62,17 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 
 The following breaking changes apply to data operations.
 
+### Breaking changes for agentic retrieval
+
+The latest `2025-11-01-preview` refactors the APIs for knowledge agents (bases), knowledge sources, and the retrieve action. The latest `2025-11-01-preview` renames knowledge agents to knowledge bases and relocates several properties. Several properties are replaced or relocated to other objects. 
+
+For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+
 ### Breaking changes for knowledge agents
 
-[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. In `2025-08-01-preview`, `targetIndexes` was replaced with a new knowledge source object and `defaultMaxDocsForReranker` was replaced with other APIs. More breaking changes are introduced in `2025-11-01-preview`.
+
+For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 
@@ -89,6 +97,17 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 ## Data plane upgrades
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2025-11-01-preview
+
+[`2025-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview) introduces the following breaking changes to agentic retrieval as implemented in the `2025-08-01-preview`:
+
++ Replaces `agents` with `knowledgebases`. Several properties related to knowledge sources moved out of the knowledge base definition and to the retrieve action.
++ Knowledge source properties are refactored, implementing a new `ingestionParameters` object for knowledge sources that generate an indexer pipeline.
+
+For more information on changes and code migration, see [breaking changes in 2025-11-01-preview](agentic-retrieval-how-to-migrate.md#version-specific-changes) and [How to migrate](agentic-retrieval-how-to-migrate.md#how-to-migrate).
+
+For all other existing APIs, there are no behavior changes. You can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2025-09-01
 
@@ -381,7 +400,7 @@ Features that became generally available in this API version include:
 + [Autocomplete](index-add-suggesters.md) is a typeahead feature that completes a partially specified term input.
 + [Complex types](search-howto-complex-data-types.md) provides native support for structured object data in search index.
 + [JsonLines parsing modes](search-how-to-index-azure-blob-json.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
-+ [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Azure AI services.
++ [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Foundry Tools.
 
 #### Breaking changes
 
@@ -399,7 +418,7 @@ Code written against an earlier API version breaks on `2019-05-06` and later if 
 
 API version `2019-05-06` added formal support for complex types. If your code implemented previous recommendations for complex type equivalency in 2017-11-11-Preview or 2016-09-01-Preview, there are some new and changed limits starting in version `2019-05-06` of which you need to be aware:
 
-+ The limits on the depth of subfields and the number of complex collections per index have been lowered. If you created indexes that exceed these limits using the preview api-versions, any attempt to update or recreate them using API version `2019-05-06` will fail. If you find yourself in this situation, you need to redesign your schema to fit within the new limits and then rebuild your index.
++ The limits on the depth of subfields and the number of complex collections per index have been lowered. If you created indexes that exceed these limits using the preview api-versions, any attempt to update or recreate them using API version `2019-05-06` fails. If you find yourself in this situation, you need to redesign your schema to fit within the new limits and then rebuild your index.
 
 + There's a new limit starting in api-version `2019-05-06` on the number of elements of complex collections per document. If you created indexes with documents that exceed these limits using the preview api-versions, any attempt to reindex that data using api-version `2019-05-06` fails. If you find yourself in this situation, you need to reduce the number of complex collection elements per document before reindexing your data.
 

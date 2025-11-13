@@ -1,6 +1,6 @@
 ---
 title: How to Use Image Generation Models from OpenAI
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today.
 author: PatrickFarley
 ms.author: pafarley
@@ -292,7 +292,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 > [!NOTE]
-> WEBP images aren't supported in the Azure OpenAI in Azure AI Foundry Models.
+> WEBP images aren't supported in the Azure OpenAI in Microsoft Foundry Models.
 
 #### Compression
 

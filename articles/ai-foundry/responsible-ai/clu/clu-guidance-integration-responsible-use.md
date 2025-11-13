@@ -1,6 +1,6 @@
 ---
 title: Guidance for integration and responsible use with conversational language understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for how to deploy conversational language understanding responsibly, based on the knowledge and understanding from the team that created this product.
 author: laujan
 ms.author: lajanuar

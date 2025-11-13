@@ -19,11 +19,11 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-responses.py":::
 
-<!-- # [C#](#tab/csharp)
+ # [C#](#tab/csharp2)
 
-Not yet available
+:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-responses.cs":::
 
-# [TypeScript](#tab/typescript)
+<!-- # [TypeScript](#tab/typescript)
 
 Not yet available
 
@@ -35,9 +35,9 @@ Not yet available -->
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart.sh" id="generate_response":::
+:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-responses.sh":::
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Microsoft Foundry portal](#tab/portal)
 
 1. After the model deploys, you're automatically moved from **Home** to the **Build** section. Your new model is selected and ready for you to try out.
 

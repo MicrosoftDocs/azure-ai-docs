@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 09/15/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 > [!NOTE]
 >
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. 
@@ -32,13 +31,13 @@ Let's begin:
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
 1. If you're not already at your project for this task, select it.
-1. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and then choose the **Try the Language playground** button.
+1. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and then choose the **Try Azure Language playground** button.
 
   :::image type="content" source="../../media/quickstarts/try-playground.png" alt-text="Screenshot of the Try Language Playground selection in Azure AI Foundry.":::
 
-## Try the Language playground
+## Try Azure Language playground
 
-The top section of the Language playground is where you can view and select the available Language services. 
+The top section of Azure Language playground is where you can view and select the available Languages. 
 
 1. Select the **Conversational language understanding** tile.
 
@@ -84,7 +83,7 @@ After project creation, the next steps are [schema construction](../../how-to/bu
 
 ## Deploy your model
 
-Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in the Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry:
+Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in Azure Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry:
 
 1. Select **Deploy model** from the left-side menu.
 1. Next, select **➕Deploy a trained model** from the **Deploy your model** window.
@@ -110,8 +109,8 @@ Typically, after training a model, you review its evaluation details. For this q
 
     :::image type="content" source="../../media/quickstarts/deployed-model-succeeded.png" alt-text="Screenshot of your successfully deployed model status page in Azure AI Foundry.":::
 
-1. From the far-left menu, navigate to the Language playground.<br>
-   **Playgrounds** → **Language playground (Try the Language playground)**.
+1. From the far-left menu, navigate to Azure Language playground.<br>
+   **Playgrounds** → **Language playground (Try Azure Language playground)**.
 1. Select the **Conversational language understanding** card.
 1. A **Configuration** window with your deployed model should appear in the main/center window.
 1. In the text box, enter an utterance to test. For example, if you used our [sample project](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json) application for email-related utterances you could enter ***Check email***.

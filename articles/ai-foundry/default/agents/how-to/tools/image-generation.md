@@ -1,13 +1,13 @@
 ---
-title: 'How to use Azure AI Foundry Agent Service with image generation'
-titleSuffix: Azure AI Foundry
+title: 'How to use Foundry Agent Service with image generation'
+titleSuffix: Microsoft Foundry
 description: Learn how to use Azure AI Agents with image generation.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/29/2025
+ms.date: 11/12/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-image-generation
@@ -17,16 +17,12 @@ zone_pivot_groups: selection-image-generation
 
 # Image generation tool (preview) 
 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
 >[!IMPORTANT] 
 > The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image). 
 
-The Azure AI Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
-
-## Usage support
-
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | - | - | - |  ✔️ | ✔️ | ✔️ | 
+The Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
 
 :::zone pivot="python"
 Before you start, make sure you have run `pip install "azure-ai-projects>=2.0.0" azure-identity load_dotenv`
@@ -131,7 +127,7 @@ curl --request POST \
 
 ## When to use the image generation tool
 
-Compared to Azure OpenAI's Image API, the image generation tool in Azure AI Foundry Agent Service offers several advantages: 
+Compared to Azure OpenAI's Image API, the image generation tool in Agent Service offers several advantages: 
 
 **Streaming**: Display partial image outputs during generation to improve perceived latency. 
 

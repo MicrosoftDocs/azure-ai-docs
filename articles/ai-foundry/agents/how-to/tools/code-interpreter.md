@@ -1,7 +1,7 @@
 ---
-title: 'How to use Azure AI Foundry Agent Service Code Interpreter'
-titleSuffix: Azure AI Foundry
-description: Learn how to use Azure AI Foundry Agent Service Code Interpreter
+title: 'How to use Foundry Agent Service Code Interpreter'
+titleSuffix: Microsoft Foundry
+description: Learn how to use Foundry Agent Service Code Interpreter
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -11,10 +11,9 @@ ms.date: 10/14/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 zone_pivot_groups: selection-code-interpreter
 ---
-# Azure AI Foundry Agent Service Code Interpreter
+# Foundry Agent Service Code Interpreter
 
 Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 
@@ -28,7 +27,7 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 
 ## Code samples
 <!--
-Use the following file search tool samples to implement it in your agents. You can also add this tool to agents [using the Azure AI Foundry portal](./overview.md#add-tools-to-your-agents-in-the-azure-ai-foundry-portal).
+Use the following file search tool samples to implement it in your agents. You can also add this tool to agents [using the Microsoft Foundry portal](./overview.md#add-tools-to-your-agents-in-the-azure-ai-foundry-portal).
 -->
 
 :::zone pivot="python"

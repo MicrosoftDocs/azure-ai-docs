@@ -1,7 +1,7 @@
-﻿---
-title: How to deploy Azure OpenAI in Foundry Models with Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Learn how to deploy and use Azure OpenAI models in Azure AI Foundry, including model region availability and quota management.
+---
+title: How to deploy Azure OpenAI in Foundry Models with Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy and use Azure OpenAI models in Microsoft Foundry, including model region availability and quota management.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -16,16 +16,16 @@ manager: nitinme
 author: msakande
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or data scientist, I want to deploy and interact with Azure OpenAI in AI Foundry Models using the AI Foundry portal so that I can build, test, and integrate advanced AI capabilities into my applications efficiently and securely.
+#CustomerIntent: As a developer or data scientist, I want to deploy and interact with Azure OpenAI in Foundry Models using the Foundry portal so that I can build, test, and integrate advanced AI capabilities into my applications efficiently and securely.
 ---
 
-# How to deploy Azure OpenAI models with Azure AI Foundry
+# How to deploy Azure OpenAI models with Microsoft Foundry
 
-In this article, you learn how to create deployments for Azure OpenAI in Azure AI Foundry Models, using the Azure AI Foundry portal.
+In this article, you learn how to create deployments for Azure OpenAI in Microsoft Foundry Models, using the Foundry portal.
 
-Azure OpenAI in Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in the Azure AI Foundry portal, you can consume the deployments by using prompt flow or another tool. Model availability varies by region. For more information about the details of each model, see [Azure OpenAI models](../openai/concepts/models.md).
+Azure OpenAI in Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in the Foundry portal, you can consume the deployments by using prompt flow or another tool. Model availability varies by region. For more information about the details of each model, see [Azure OpenAI models](../openai/concepts/models.md).
 
-To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you first need to deploy a base Azure OpenAI model to your project. After you deploy the model and make it available in your project, you can consume its REST API endpoint as-is or customize it further with your own data and other components, such as embeddings and indexes.  
+To modify and interact with an Azure OpenAI model in the [Foundry](https://ai.azure.com/?cid=learnDocs) playground, you first need to deploy a base Azure OpenAI model to your project. After you deploy the model and make it available in your project, you can consume its REST API endpoint as-is or customize it further with your own data and other components, such as embeddings and indexes.  
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](http
 
 ## Deploy an Azure OpenAI model from the model catalog
 
-Follow the steps in this section to deploy an Azure OpenAI model, such as `gpt-4o-mini`, to a real-time endpoint from the Azure AI Foundry portal [model catalog](./model-catalog-overview.md):
+Follow the steps in this section to deploy an Azure OpenAI model, such as `gpt-4o-mini`, to a real-time endpoint from the Foundry portal [model catalog](./model-catalog-overview.md):
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
@@ -53,11 +53,11 @@ Follow the steps in this section to deploy an Azure OpenAI model, such as `gpt-4
 
 ## Deploy an Azure OpenAI model from your project
 
-You can also start deployment from your project in Azure AI Foundry portal.
+You can also start deployment from your project in Foundry portal.
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Go to your project in Azure AI Foundry portal.
+1. Go to your project in Foundry portal.
 1. From the left sidebar of your project, go to **My assets** > **Models + endpoints**.
 1. Select **+ Deploy model** > **Deploy base model**.
 1. Search for and select a model such as `gpt-4o-mini` from the list of models.
@@ -71,7 +71,7 @@ You can also start deployment from your project in Azure AI Foundry portal.
 
 To perform inferencing on the deployed model, use the playground or code samples. The playground is a web-based interface that lets you interact with the model in real-time. Use the playground to test the model with different prompts and see the model's responses.
 
-For more examples of how to consume the deployed model in your application, see the [Get started using chat completions with Azure OpenAI in Azure AI Foundry Models quickstart](../openai/chatgpt-quickstart.md).
+For more examples of how to consume the deployed model in your application, see the [Get started using chat completions with Azure OpenAI in Foundry Models quickstart](../openai/chatgpt-quickstart.md).
 
 ## Regional availability and quota limits of a model
 
@@ -79,16 +79,16 @@ For Azure OpenAI models, the default quota for models varies by model and region
 
 ## Quota for deploying and inferencing a model
 
-For Azure OpenAI models, deploying and inferencing consume quota that Azure assigns to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Azure AI Foundry, you receive default quota for most of the available models. Then, you assign TPM to each deployment as you create it, which reduces the available quota for that model. You can continue to create deployments and assign them TPMs until you reach your quota limit.
+For Azure OpenAI models, deploying and inferencing consume quota that Azure assigns to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Foundry, you receive default quota for most of the available models. Then, you assign TPM to each deployment as you create it, which reduces the available quota for that model. You can continue to create deployments and assign them TPMs until you reach your quota limit.
 
 When you reach your quota limit, you can only create new deployments of that model if you:
 
 - Request more quota by submitting a [quota increase form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu).
 - Adjust the allocated quota on other model deployments to free up tokens for new deployments on the [Azure OpenAI Portal](https://oai.azure.com/portal).
 
-For more information about quota, see [Azure AI Foundry quota](./quota.md) and [Manage Azure OpenAI quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
+For more information about quota, see [Foundry quota](./quota.md) and [Manage Azure OpenAI quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

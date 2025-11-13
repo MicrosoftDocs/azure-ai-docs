@@ -1,5 +1,5 @@
 ---
-title: 'How to use GPT Realtime API for speech and audio with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use GPT Realtime API for speech and audio with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to use GPT Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
@@ -66,7 +66,7 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry portal quickstart](includes/realtime-portal.md)]
+[!INCLUDE [Microsoft Foundry portal quickstart](includes/realtime-portal.md)]
 
 ::: zone-end
 

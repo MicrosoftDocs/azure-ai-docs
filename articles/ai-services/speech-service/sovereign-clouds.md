@@ -1,6 +1,6 @@
 ---
 title: Sovereign Clouds - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Sovereign Clouds
 author: PatrickFarley
 ms.author: pafarley

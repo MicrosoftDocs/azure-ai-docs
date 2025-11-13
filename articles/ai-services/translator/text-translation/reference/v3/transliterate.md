@@ -1,17 +1,16 @@
 ---
 title: Translator Transliterate Method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator 3.0: Transliterate
+# Azure Translator in Foundry Tools 3.0: Transliterate
 
 The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 
@@ -23,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -51,8 +50,8 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    {"Text":"こんにちは"},
-    {"Text":"さようなら"}
+    {"text":"こんにちは"},
+    {"text":"さようなら"}
 ]
 ```
 

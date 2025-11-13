@@ -1,7 +1,7 @@
 ---
-title: Develop application with LlamaIndex and Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: This article explains how to use LlamaIndex with models deployed in Azure AI Foundry portal to build advance intelligent applications.
+title: Develop application with LlamaIndex and Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: This article explains how to use LlamaIndex with models deployed in Microsoft Foundry portal to build advance intelligent applications.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -14,11 +14,11 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# Develop applications with LlamaIndex and Azure AI Foundry
+# Develop applications with LlamaIndex and Microsoft Foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
+In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
 
 ::: moniker range="foundry-classic"
 Models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] can be used with LlamaIndex in two ways:
@@ -29,7 +29,7 @@ Models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.
 ::: moniker-end
 
 
-- **Using the Azure AI Model Inference API:** All models deployed to Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
+- **Using the Azure AI Model Inference API:** All models deployed to Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
@@ -87,7 +87,7 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model deployment is hosted in Azure OpenAI in Foundry Models or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-foundry-models-service).
+> If your model deployment is hosted in Azure OpenAI in Foundry Models or Foundry Tools resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-foundry-models-service).
 
 
 If your endpoint is serving more than one model, like with the [Foundry Models service](../../model-inference/overview.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
@@ -149,7 +149,7 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-For Azure OpenAI in Azure AI Foundry Models:
+For Azure OpenAI in Foundry Models:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel

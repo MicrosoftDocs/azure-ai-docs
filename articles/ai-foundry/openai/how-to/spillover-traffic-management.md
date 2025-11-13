@@ -1,6 +1,6 @@
 ---
 title: Manage traffic with spillover for Provisioned deployments
-description: Article outlining how to use the spillover feature to manage traffic bursts for Azure OpenAI in Azure AI Foundry Models provisioned deployments
+description: Article outlining how to use the spillover feature to manage traffic bursts for Azure OpenAI in Microsoft Foundry Models provisioned deployments
 author: msakande
 ms.author: mopeakande
 ms.service: azure-ai-foundry
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Azure AI Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
+Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Microsoft Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
 
 > [!NOTE]
 > Spillover is currently not available for the [responses API](./responses.md).
@@ -31,7 +31,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 - The data processing level of your standard deployment must match your provisioned deployment (for example, a global provisioned deployment must be used with a global standard spillover deployment).
 
 ## When to enable spillover on provisioned deployments
-To maximize the utilization of your provisioned deployment, you can enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service. This capability reduces the risk of experiencing disruptions when a provisioned deployment is fully utilized. Alternatively, spillover is configurable per-request to provide flexibility across different scenarios and workloads. Spillover can also now be used for the [Azure AI Foundry Agent Service](../../agents/overview.md).  
+To maximize the utilization of your provisioned deployment, you can enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service. This capability reduces the risk of experiencing disruptions when a provisioned deployment is fully utilized. Alternatively, spillover is configurable per-request to provide flexibility across different scenarios and workloads. Spillover can also now be used for the [Foundry Agent Service](../../agents/overview.md).  
 
 ## When does spillover come into effect?
 When you enable spillover for a deployment or configure it for a given inference request, spillover initiates when a specific non-`200` response code is received for a given inference request as a result of one of these scenarios:
@@ -66,11 +66,11 @@ Since spillover uses a combination of provisioned and standard deployments to ma
 
 ## Enable spillover for all requests on a provisioned deployment
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Foundry portal](#tab/portal)
 
 ::: moniker range="foundry-classic"
 
-To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left navigation menu, then select **Deployments**.
+To deploy a model with the spillover capability, navigate to the [Foundry](https://ai.azure.com/?cid=learnDocs). On the left navigation menu, then select **Deployments**.
 
 
 Select **Deploy model**. In the menu that appears, select **Customize**.

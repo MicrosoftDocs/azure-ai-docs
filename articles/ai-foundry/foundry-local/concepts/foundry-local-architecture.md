@@ -74,7 +74,7 @@ The model cache stores downloaded AI models locally on your device, which ensure
 
 #### Model lifecycle
 
-1. **Download**: Download models from the Azure AI Foundry model catalog and save them to your local disk.
+1. **Download**: Download models from the Foundry model catalog and save them to your local disk.
 2. **Load**: Load models into the Foundry Local service memory for inference. Set a TTL (time-to-live) to control how long the model stays in memory (default: 10 minutes).
 3. **Run**: Execute model inference for your requests.
 4. **Unload**: Remove models from memory to free up resources when no longer needed.
@@ -82,7 +82,7 @@ The model cache stores downloaded AI models locally on your device, which ensure
 
 #### Model compilation using Olive
 
-Before models can be used with Foundry Local, they must be compiled and optimized in the [ONNX](https://onnx.ai) format. Microsoft provides a selection of published models in the Azure AI Foundry Model Catalog that are already optimized for Foundry Local. However, you aren't limited to those models - by using [Olive](https://microsoft.github.io/Olive/). Olive is a powerful framework for preparing AI models for efficient inference. It converts models into the ONNX format, optimizes their graph structure, and applies techniques like quantization to improve performance on local hardware.
+Before models can be used with Foundry Local, they must be compiled and optimized in the [ONNX](https://onnx.ai) format. Microsoft provides a selection of published models in the Foundry model catalog that are already optimized for Foundry Local. However, you aren't limited to those models - by using [Olive](https://microsoft.github.io/Olive/). Olive is a powerful framework for preparing AI models for efficient inference. It converts models into the ONNX format, optimizes their graph structure, and applies techniques like quantization to improve performance on local hardware.
 
 > [!TIP]
 > To learn more about compiling models for Foundry Local, read [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md).

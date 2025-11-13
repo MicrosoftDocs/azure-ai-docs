@@ -1,7 +1,7 @@
 ---
-title: Content Safety tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Content Safety tool for flows in Azure AI Foundry portal.
+title: Content Safety tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Content Safety tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,11 +17,11 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Guardrails & controls tool for flows in Azure AI Foundry portal
+# Guardrails & controls tool for flows in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The prompt flow Content Safety tool enables you to use Azure AI Content Safety in Azure AI Foundry portal.
+The prompt flow Content Safety tool enables you to use Azure AI Content Safety in Microsoft Foundry portal.
 
 Azure AI Content Safety is a content moderation service that helps detect harmful content from different modalities and languages. For more information, see [Azure AI Content Safety](/azure/ai-services/content-safety/).
 
@@ -31,17 +31,17 @@ Azure AI Content Safety is a content moderation service that helps detect harmfu
 
 To create an Azure Content Safety connection:
 
-1. Sign in to [Azure AI Foundry](https://ml.azure.com/).
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 1. Go to **Project settings** > **Connections**.
 1. Select **+ New connection**.
-1. Complete all steps in the **Create a new connection** dialog. You can use an Azure AI Foundry hub or Azure AI Content Safety resource. We recommend that you use a hub that supports multiple Azure AI services.
+1. Complete all steps in the **Create a new connection** dialog. You can use a Foundry hub or Azure AI Content Safety resource. We recommend that you use a hub that supports multiple Foundry Tools.
 
 ## Build with the Content Safety tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Content Safety (Text)** to add the Content Safety tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/content-safety-tool.png" alt-text="Screenshot that shows the Content Safety tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/content-safety-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/content-safety-tool.png" alt-text="Screenshot that shows the Content Safety tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/content-safety-tool.png":::
 
 1. Select the connection to one of your provisioned resources. For example, select **AzureAIContentSafetyConnection** if you created a connection with that name. For more information, see [Prerequisites](#prerequisites).
 1. Enter values for the Content Safety tool input parameters described in the [Inputs table](#inputs).

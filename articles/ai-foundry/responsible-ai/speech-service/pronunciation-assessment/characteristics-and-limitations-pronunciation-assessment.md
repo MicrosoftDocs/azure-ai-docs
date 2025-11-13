@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations of Pronunciation Assessment
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article provides information on the characteristics and limitations of using Pronunciation Assessment and the considerations you should make for it's responsible use.
 author: PatrickFarley
 ms.author: pafarley
@@ -54,6 +54,6 @@ In our evaluations, Microsoft Pronunciation Assessment has performed >0.5 Pearso
 
 Pronunciation Assessment's performance will vary depending on the real-world uses that customers implement. In order to ensure optimal performance in their scenarios, customers should conduct their own evaluations of the solutions they implement using Pronunciation Assessment.
 
-- Before using Pronunciation Assessment in your applications, consider whether this product performs well in your scenario. Collect real-life data from the target scenario, test how Pronunciation Assessment performs, and make sure Speech-To-Text and Pronunciation Assessment can deliver the accuracy you need, see [Evaluate and improve Azure AI services Custom Speech accuracy](/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data).
+- Before using Pronunciation Assessment in your applications, consider whether this product performs well in your scenario. Collect real-life data from the target scenario, test how Pronunciation Assessment performs, and make sure Speech-To-Text and Pronunciation Assessment can deliver the accuracy you need, see [Evaluate and improve Foundry Tools Custom Speech accuracy](/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data).
 - Select suitable thresholds per the target scenario. Pronunciation Assessment provides accuracy scores at different levels and you may need to consider the threshold employed in real-use. For example, the grading method for children's learning might not be as strict as that for adult learning. Consider setting a higher mispronunciation detection threshold for adult learning.
 

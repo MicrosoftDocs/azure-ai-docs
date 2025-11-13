@@ -1,7 +1,7 @@
 ---
 title: Manage and increase quotas for resources
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to manage and increase quotas for resources with Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to manage and increase quotas for resources with Microsoft Foundry.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.custom:
@@ -16,10 +16,10 @@ ms.author: mopeakande
 author: msakande 
 manager: nitinme
 ai-usage: ai-assisted
-# Customer intent: As an Azure AI Foundry user, I want to know how to manage and increase quotas for resources with Azure AI Foundry.
+# Customer intent: As a Microsoft Foundry user, I want to know how to manage and increase quotas for resources with Microsoft Foundry.
 ---
 
-# Manage and increase quotas for resources with Azure AI Foundry (Foundry projects)
+# Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
@@ -28,13 +28,13 @@ ai-usage: ai-assisted
 > [!TIP]
 > An alternate hub-focused quota article is available: [Manage and increase quotas for hub resources](hub-quota.md).
 
-Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure AI Foundry Models (Foundry projects). Hub-level quota guidance has moved to `hub-quota.md`.
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Microsoft Foundry Models (Foundry projects). Hub-level quota guidance has moved to `hub-quota.md`.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure AI Foundry Models (Foundry projects).
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Foundry Models (Foundry projects).
 
 ::: moniker-end
 
@@ -45,13 +45,13 @@ In this article, you learn about:
 - Viewing your quotas and limits 
 - Requesting quota and limit increases 
 
-## Azure AI Foundry shared quota 
+## Foundry shared quota 
 
-Azure AI Foundry provides a pool of shared quota that different users across various regions can use concurrently. Depending on availability, users can temporarily access quota from the shared pool and use the quota to perform testing for a limited amount of time. The specific time duration depends on the use case. By temporarily using quota from the quota pool, you no longer need to file a support ticket for a short-term quota increase or wait for your quota request to be approved before you can proceed with your workload. 
+Foundry provides a pool of shared quota that different users across various regions can use concurrently. Depending on availability, users can temporarily access quota from the shared pool and use the quota to perform testing for a limited amount of time. The specific time duration depends on the use case. By temporarily using quota from the quota pool, you no longer need to file a support ticket for a short-term quota increase or wait for your quota request to be approved before you can proceed with your workload. 
 
-You can use the shared quota pool for testing inferencing for Foundry Models from the model catalog. Use the shared quota only for creating temporary test endpoints, not production endpoints. For endpoints in production, you should [request dedicated quota](#view-and-request-quotas-in-azure-ai-foundry-portal). Billing for shared quota is usage-based. 
+You can use the shared quota pool for testing inferencing for Foundry Models from the model catalog. Use the shared quota only for creating temporary test endpoints, not production endpoints. For endpoints in production, you should [request dedicated quota](#view-and-request-quotas-in-foundry-portal). Billing for shared quota is usage-based. 
 
-## View and request quotas in Azure AI Foundry portal
+## View and request quotas in Foundry portal
 
 Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../includes/fdp-project-name.md)]s in the same subscription.
 
@@ -69,7 +69,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 1. To request quota from the quota view, expand any of the groupings listed in the deployment column until you see the model deployments and their associated information.
  
-    :::image type="content" source="../media/cost-management/project-model-quota.png" alt-text="Screenshot of the Model quota page for a Foundry project in Azure AI Foundry portal, with one of the groupings expanded." lightbox="../media/cost-management/project-model-quota.png":::
+    :::image type="content" source="../media/cost-management/project-model-quota.png" alt-text="Screenshot of the Model quota page for a Foundry project in Foundry portal, with one of the groupings expanded." lightbox="../media/cost-management/project-model-quota.png":::
 
     - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
     - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, or **Quota type, Model & Region**, or **None**. The **None** option displays a flat list of model deployments, rather than a nested list.

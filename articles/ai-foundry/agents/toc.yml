@@ -155,5 +155,5 @@ items:
   items:
     - name: Transparency note
       href: ../../ai-foundry/responsible-ai/agents/transparency-note.md
-    - name: Data, privacy, and security For Azure AI Foundry Agent Service
+    - name: Data, privacy, and security For Microsoft Foundry Agent Service
       href: ../../ai-foundry/responsible-ai/agents/data-privacy-security.md

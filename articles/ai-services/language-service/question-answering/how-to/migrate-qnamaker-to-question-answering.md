@@ -6,7 +6,7 @@ ms.author: lajanuar
 author: laujan
 ms.manager: nitinme
 ms.topic: how-to
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
 # Migrate from QnA Maker to Custom question answering 
@@ -65,7 +65,7 @@ When you're looking at migrating to custom question answering, consider the foll
 
 - Users may select a higher tier with higher capacity, which will impact overall price they pay. It doesn’t impact the price on language component of custom question answering.
 
-- "Text Records" in custom question answering features refers to the query submitted by the user to the runtime, and it's a concept common to all features within Language service. Sometimes a query may have more text records when the query length is higher. 
+- "Text Records" in custom question answering features refers to the query submitted by the user to the runtime, and it's a concept common to all features within Language. Sometimes a query may have more text records when the query length is higher. 
 
 **Example price estimations**
 
@@ -84,7 +84,7 @@ The [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) 
 
 ## Simplified Provisioning and Development Experience
 
-With the Language service, QnA Maker customers now benefit from a single service that provides Text Analytics, LUIS, and custom question answering as features of the language resource. The Language service provides:
+With Azure Language, QnA Maker customers now benefit from a single service that provides Text Analytics, LUIS, and custom question answering as features of the language resource. The Language provides:
 
 - One Language resource to access all above capabilities
 - A single pane of authoring experience across capabilities

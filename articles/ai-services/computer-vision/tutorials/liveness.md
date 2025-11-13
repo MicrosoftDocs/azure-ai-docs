@@ -7,7 +7,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 08/21/2025
+ms.date: 09/26/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
@@ -28,7 +28,7 @@ In this tutorial, you’ll learn how to run a frontend application with an app s
 - Your Azure account must have a **Cognitive Services Contributor** role assigned in order for you to agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
-- Access to the gated artifacts required for the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. 
+- Access to the gated artifacts required for Azure Vision in Foundry Tools Face Client SDK for Mobile (IOS and Android) and Web. 
     - To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
@@ -284,11 +284,11 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
 1. The SDK then starts the camera, guides the user to position correctly, and then prepares the payload to call the liveness detection service endpoint. 
  
-1. The SDK calls the Azure AI Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed. Note: the service response will not contain the liveness decision, and this will need to be queried from the app server.
+1. The SDK calls Azure Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed. Note: the service response will not contain the liveness decision, and this will need to be queried from the app server.
 
 1. The frontend application relays the liveness check completion to the app server. 
 
-1. The app server can now query for the liveness detection result from the Azure AI Vision Face service. 
+1. The app server can now query for the liveness detection result from Azure Vision Face service. 
 
     #### [C#](#tab/csharp)
     ```csharp
@@ -1061,15 +1061,13 @@ Optionally, you can do further face operations after the liveness check, such as
 1. You can now either download the session-image (referenced in [Liveness Get Session Image Operation API](/rest/api/face/liveness-session-operations/get-session-image)), or provide the "sessionImageId" in the [Detect from Session Image ID API](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue to perform other face analysis or face identity operations. 
 For more information on these operations, see [Face detection concepts](../concept-face-detection.md) and [Face Recognition concepts](../concept-face-recognition.md). 
 
-
 ## Support options
 
-In addition to using the main [Azure AI services support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
-
+In addition to using the main [Foundry Tools support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
 ## Related content
 
-To learn how to integrate the liveness solution into your existing application, see the Azure AI Vision SDK reference.
+To learn how to integrate the liveness solution into your existing application, see the Azure Vision SDK reference.
 
 - [Kotlin (Android)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme)
 - [Swift (iOS)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme)
@@ -1078,4 +1076,3 @@ To learn how to integrate the liveness solution into your existing application, 
 To learn more about the features available to orchestrate the liveness solution, see the Session REST API reference.
 
 - [Liveness Session Operations](/rest/api/face/liveness-session-operations)
-

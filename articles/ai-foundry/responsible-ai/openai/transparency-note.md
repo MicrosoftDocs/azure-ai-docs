@@ -1,6 +1,6 @@
 ---
-title: Transparency Note for Azure OpenAI in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
+title: Transparency Note for Azure OpenAI in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
 description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
@@ -23,7 +23,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of the Azure OpenAI Models
 
-Azure OpenAI provides customers with a fully managed AI service that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed content filtering and abuse detection models. Learn more about content filtering [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+Azure OpenAI provides customers with a fully managed AI service that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed Guardrails (previously content filters) and abuse detection models. Learn more about Guardrails (previously content filters) [here](/azure/ai-foundry/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
 
 ### Introduction
@@ -229,7 +229,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
     Prompt transformation is applied to every Azure OpenAI DALL·E 3 generation.
 
     
-    After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step prior to image generation; see [Content Filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new) for more information.  
+    After prompt transformation is applied to the original prompt, Guardrails (previously content filters) is applied as a secondary step prior to image generation; see [Guardrails (previously content filters)](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new) for more information.  
     
     Learn more about image generation prompting in [OpenAI's documentation](https://platform.openai.com/docs/guides/images/introduction). 
 
@@ -247,7 +247,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
 GPT-4 Turbo with Vision and GPT-4o use natural language and image prompts to generate natural language or code responses. The models accept text only, image only, and interleaved text and image inputs. These models are part of the GPT family and are extensions of GPT-4.
 
-The Azure AI Vision Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
+The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
 
 | **Example prompt** | **Example completion** |
 |---|---|
@@ -542,7 +542,7 @@ Large-scale natural language, image, and speech models trained with such data ca
 - **Stereotyping:** These models can reinforce stereotypes. For example, when translating "He is a nurse" and "She is a doctor" into a genderless language such as Turkish and then back into English, many machine translation systems yield the stereotypical (and incorrect) results of "She is a nurse" and "He is a doctor." With DALL·E, when generating an image based on the prompt "Fatherless children," the model could generate images of Black children only, reinforcing harmful stereotypes that might exist in publicly available images. The GPT-4 vision models might also reinforce stereotypes based on the contents of the input image, by relying on components of the image and making assumptions that might not always be true.
 - **Demeaning:** The natural language and vision models in the Azure OpenAI service can demean people. For example, an open-ended content generation system with inappropriate or insufficient mitigations might produce content that is offensive or demeaning to a particular group of people. 
 - **Overrepresentation and underrepresentation:** The natural language and vision models in the Azure OpenAI service can over- or under-represent groups of people, or even erase their representation entirely. For example, if text prompts that contain the word "gay" are detected as potentially harmful or offensive, this identification could lead to the underrepresentation or even erasure of legitimate image generations by or about the LGBTQIA+ community.
-- **Inappropriate or offensive content:** The natural language and vision models in the Azure OpenAI service can produce other types of inappropriate or offensive content. Examples include the ability to generate text that is inappropriate in the context of the text or image prompt; the ability to create images that potentially contain harmful artifacts such as hate symbols; images that elicit harmful connotations; images that relate to contested, controversial, or ideologically polarizing topics; images that are manipulative; images that contain sexually charged content that is not caught by sexual-related content filters; and images that relate to sensitive or emotionally charged topics. For example, a well-intentioned text prompt aimed to create an image of the New York skyline with clouds and airplanes flying over it might unintentionally generate images that illicit sentiments related to the events surrounding 9/11. 
+- **Inappropriate or offensive content:** The natural language and vision models in the Azure OpenAI service can produce other types of inappropriate or offensive content. Examples include the ability to generate text that is inappropriate in the context of the text or image prompt; the ability to create images that potentially contain harmful artifacts such as hate symbols; images that elicit harmful connotations; images that relate to contested, controversial, or ideologically polarizing topics; images that are manipulative; images that contain sexually charged content that is not caught by sexual-related guardrails; and images that relate to sensitive or emotionally charged topics. For example, a well-intentioned text prompt aimed to create an image of the New York skyline with clouds and airplanes flying over it might unintentionally generate images that illicit sentiments related to the events surrounding 9/11. 
 - **Disinformation and misinformation about sensitive topics:** Because DALL·E and GPT-image-1 are powerful image generation models, they can be used to produce disinformation and misinformation that can be harmful. For example, a user could prompt the model to generate an image of a political leader engaging in activity of a violent or sexual (or simply inaccurate) nature that might lead to consequential harms, including but not limited to public protests, political change, or fake news. The GPT-4 visions models could also be used in a similar vein. The model might reinforce disinformation or misinformation about sensitive topics if the prompt contains such information without mitigation.
 - **Information reliability:** Language and vision model responses can generate nonsensical content or fabricate content that might sound reasonable but is inaccurate with respect to external validation sources. Even when drawing responses from trusted source information, responses might misrepresent that content. Transcriptions or translations might result in inaccurate text. 
 - **False information:** Azure OpenAI doesn't fact-check or verify content that is provided by customers or users. Depending on how you have developed your application, it might produce false information unless you have built in mitigations (**see Best practices for improving system performance**). 
@@ -555,7 +555,7 @@ When customers fine-tune Azure OpenAI models, it can improve model performance a
 - **Regurgitation**: While your training data is not available to Microsoft or any third-party customers, poorly fine-tuned models may regurgitate, or directly repeat, training data. Customers are responsible for removing any PII or otherwise protected information from their training data and should assess their fine-tuned models for over-fitting or otherwise low-quality responses. To avoid regurgitation, customers are encouraged to provide large and diverse datasets.  
 - **Model transparency and explainability**: The model's logic and reasoning can become more opaque and difficult to understand after fine-tuning, especially if the data is complex or abstract. A fine-tuned model can produce outputs that are unexpected, inconsistent, or contradictory, and customers may not be able to explain how or why the model arrived at those outputs. For example, if the data is about legal or medical terms, the model can generate outputs that are inaccurate or misleading, and customers may not be able to verify or justify them. Customers should monitor and audit the model's outputs and behavior and provide clear and accurate information and guidance to the end-users of the model.
 
-To help mitigate the risks associated with advanced fine-tuned models, we have implemented additional [evaluation steps](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai%2Cturbo%2Cpython-new&pivots=programming-language-studio#safety-evaluation-gpt-4-gpt-4o-and-gpt-4o-mini-fine-tuning---public-preview) to help detect and prevent harmful content in the training and outputs of fine-tuned models. The fine-tuned model evaluation filters are set to predefined thresholds and cannot be modified by customers; they aren't tied to any custom content filtering configuration you may have created.
+To help mitigate the risks associated with advanced fine-tuned models, we have implemented additional [evaluation steps](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai%2Cturbo%2Cpython-new&pivots=programming-language-studio#safety-evaluation-gpt-4-gpt-4o-and-gpt-4o-mini-fine-tuning---public-preview) to help detect and prevent harmful content in the training and outputs of fine-tuned models. The fine-tuned model evaluation filters are set to predefined thresholds and cannot be modified by customers; they aren't tied to any custom guardrails and control configuration you may have created.
 
 ### Reasoning model limitations
 
@@ -578,7 +578,6 @@ For more best practices, see the [OpenAI 4o System Card](https://openai.com/inde
 
 - The 4.1-series models introduce the ability to create inference requests with up to 1M context tokens, including images. Due to the extended length, there may be differences in system behavior and risks when compared to other models.
 - Users should thoroughly evaluate and test their applications and use cases that leverage this longer context capability and should account for this additional effort when developing applications.
-
 
 
 ### Risk and limitations of Computer Use (Preview) 
@@ -701,6 +700,6 @@ The OpenAI Whisper model is also available within Azure Speech services, enhanci
 
 ## Learn more about Azure OpenAI
 
-- [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
+- [Limited access to Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
 - [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)
+- [Data, privacy, and security for Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)

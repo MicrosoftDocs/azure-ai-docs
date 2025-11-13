@@ -6,8 +6,8 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/06/2025
 ms.custom: include
 ---
 
-Sign in to the [Azure AI Foundry (new) portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
+Sign in to [!INCLUDE [foundry-link](foundry-link.md)].  Make sure the **New Foundry** toggle is on.  :::image type="icon" source="../media/version-banner/new-foundry.png" border="false"::: These steps refer to **Foundry (new)**.

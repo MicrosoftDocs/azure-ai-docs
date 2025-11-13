@@ -1,9 +1,9 @@
 ---
-title: Develop Applications with Semantic Kernel and Azure AI Foundry
-titleSuffix: Azure AI Foundry
+title: Develop Applications with Semantic Kernel and Microsoft Foundry
+titleSuffix: Microsoft Foundry
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
-description: Learn how to Develop applications with Semantic Kernel and Azure AI Foundry with models deployed from the Azure AI model catalog.
+description: Learn how to Develop applications with Semantic Kernel and Microsoft Foundry with models deployed from the Foundry model catalog.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
@@ -12,11 +12,11 @@ ms.topic: how-to
 ms.service: azure-ai-foundry
 ---
 
-# Develop applications with Semantic Kernel and Azure AI Foundry
+# Develop applications with Semantic Kernel and Microsoft Foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
+In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
 
 ## Prerequisites
 
@@ -24,13 +24,13 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ::: moniker range="foundry-classic"
 
-- An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
+- An Azure AI project as explained at [Create a project in Foundry portal](../create-projects.md).
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-- An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
+- An Azure AI project as explained at [Create a project in Foundry portal](../create-projects.md).
 
 ::: moniker-end
 
@@ -53,7 +53,7 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ## Configure the environment
 
-To use language models deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
+To use language models deployed in Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
 
 ::: moniker range="foundry-classic"
 

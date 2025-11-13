@@ -13,23 +13,11 @@ items:
   - name: Recover or purge deleted resources
     href: ../../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 
+- name: Manage Grounding with Bing
+  href: ../../agents/how-to/manage-grounding-with-bing.md
+
 - name: Create and manage projects
   href: ../../../how-to/create-projects.md
-
-- name: Manage deployments
-  items:
-  - name: Deployment offers and types
-    href: ../../../foundry-models/concepts/deployment-types.md
-  - name: Provisioned deployment offer
-    items:
-      - name: Provisioned Throughput offering (PTU)
-        href: ../../../openai/concepts/provisioned-throughput.md
-      - name: Understanding and calculating PTU costs
-        href: ../../../openai/how-to/provisioned-throughput-onboarding.md
-      - name: Get started with Provisioned Deployments
-        href: ../../../openai/how-to/provisioned-get-started.md
-      - name: Provisioned spillover
-        href: ../../../openai/how-to/spillover-traffic-management.md
 
 - name: Connect services and tools
   items: 

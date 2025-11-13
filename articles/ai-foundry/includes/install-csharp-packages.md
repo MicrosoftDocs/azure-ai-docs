@@ -13,7 +13,7 @@ ms.custom:
   - build-aifnd
 ---
 
-To work with Azure AI services in your .NET project, you'll need to install several NuGet packages. Add NuGet packages using the .NET CLI in the integrated terminal:
+To work with Foundry Tools in your .NET project, you'll need to install several NuGet packages. Add NuGet packages using the .NET CLI in the integrated terminal:
     
 ```bash
 # Add Azure AI SDK packages

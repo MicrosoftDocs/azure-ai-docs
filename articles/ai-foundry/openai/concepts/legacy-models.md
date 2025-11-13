@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models retired models
+title: Azure OpenAI in Microsoft Foundry Models retired models
 titleSuffix: Azure OpenAI
 description: Learn about the deprecated models in Azure OpenAI.
 ms.service: azure-ai-foundry
@@ -11,9 +11,10 @@ manager: nitinme
 author: mrbullwinkle 
 ms.author: mbullwin 
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure OpenAI in Azure AI Foundry Models retired models
+# Azure OpenAI in Microsoft Foundry Models retired models
 
 Azure OpenAI offers a variety of models for different use cases. The following models are no longer available for deployment.
 

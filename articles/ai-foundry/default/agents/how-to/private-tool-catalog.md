@@ -1,5 +1,5 @@
 ---
-title: "Create a private tool catalog in Azure AI Foundry Agent Service"
+title: "Create a private tool catalog in Foundry Agent Service"
 description: "Learn how to create a private tool catalog for developers in your organization."
 author: aahill
 ms.author: aahi
@@ -33,7 +33,7 @@ Use this article to learn how to build a private [tool catalog](../concepts/tool
 1. Select **add configuration** and set the security scheme to be `API Key`, `OAuth` or `HTTP` (bearer token authorization) and provide the required information.
 
     > [!NOTE] 
-    > If you choose `API key` the key you provide in the Azure Key Vault won't be used in Azure AI Foundry to configure the MCP server. Developers need to provide the API key during configuration.   
+    > If you choose `API key` the key you provide in the Azure Key Vault won't be used in Microsoft Foundry to configure the MCP server. Developers need to provide the API key during configuration.   
 
 1. Select the MCP server > **details** > **versions** > **Manage Access (preview)**
 
@@ -43,4 +43,4 @@ Use this article to learn how to build a private [tool catalog](../concepts/tool
 
 ## Give access to your organization. 
 
-For developers to see the MCP servers in the Azure AI Foundry tool catalog, you need to give them at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) or equivalent role. The private tool catalog will be available in the Azure AI Foundry portal for developers with this role.
+For developers to see the MCP servers in the Foundry tool catalog, you need to give them at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) or equivalent role. The private tool catalog will be available in the Foundry portal for developers with this role.

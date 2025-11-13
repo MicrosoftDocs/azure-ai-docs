@@ -11,19 +11,15 @@ ms.custom: include
 ---
 ::: moniker range="foundry-classic"
 > [!NOTE]
-> This document refers to the [Azure AI Foundry (classic)](https://ai.azure.com/?cid=learnDocs) portal.
+> This document refers to the [Microsoft Foundry (classic)](../what-is-azure-ai-foundry.md#portals) portal.
 >
-> 🔍 Look for the toggle :::image type="icon" source="../default/media/version-banner/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
->
-> 🔄 [Switch to the Azure AI Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+<!-- > 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal. -->
 >
 ::: moniker-end
 
 ::: moniker range="foundry"
 > [!NOTE]
-> This document refers to the [Azure AI Foundry (new)](https://aka.ms/nexgen-canary) portal.
+> This document refers to the [Microsoft Foundry (new)](../what-is-azure-ai-foundry.md#portals) portal.
 >
-> 🔍 Look for toggle :::image type="icon" source="../default/media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
->
-> 🔄 [Switch to the Azure AI Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal.
+<!-- > 🔄 [Switch to the Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal. -->
 ::: moniker-end

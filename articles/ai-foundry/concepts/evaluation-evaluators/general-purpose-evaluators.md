@@ -1,6 +1,6 @@
 ---
 title: General Purpose Evaluators for Generative AI
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -19,7 +19,7 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Azure AI Foundry supports evaluating:
+AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating:
 
 - [Coherence](#coherence)
 - [Fluency](#fluency)
@@ -48,7 +48,7 @@ model_config = AzureOpenAIModelConfiguration(
 
 ### Evaluator model support
 
-Azure AI Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
+Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|

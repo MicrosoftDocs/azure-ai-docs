@@ -27,7 +27,7 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/python/quickstart)
 
-<!-- # [C#](#tab/csharp)
+# [C#](#tab/csharp2)
 
 1. Install packages:
 
@@ -35,15 +35,19 @@ Follow along below or get the code:
         
     ```bash
     dotnet add package Azure.AI.Agents --prerelease
+    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.Identity
+    dotnet add package OpenAI --version 2.6.*
     ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
-Follow along below or get the code:
+> Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/csharp/quickstart)
 
-# [TypeScript](#tab/typescript)
+
+<!-- # [TypeScript](#tab/typescript)
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Install packages:
@@ -80,8 +84,8 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
-# [Azure AI Foundry portal](#tab/portal)
+# [Microsoft Foundry portal](#tab/portal)
 
-No installation is necessary to use the Azure AI Foundry portal.
+No installation is necessary to use the Foundry portal.
 
 ---
