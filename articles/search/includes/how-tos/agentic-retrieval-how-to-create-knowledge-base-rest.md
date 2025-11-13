@@ -1,20 +1,15 @@
 ---
-title: Create a Knowledge Base
-titleSuffix: Azure AI Search
-description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
-author: HeidiSteen
+author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: how-to
+ms.topic: include
 ms.date: 11/13/2025
 ---
 
-# Create a knowledge base in Azure AI Search
+[!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-In Azure AI Search, a *knowledge base* is a top-level resource in agentic retrieval workloads. It specifies the knowledge sources used for retrieval and, if applicable, represents a connection to a large language model (LLM). A knowledge base is used by the [retrieve method](agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
+In Azure AI Search, a *knowledge base* is a top-level resource in agentic retrieval workloads. It specifies the knowledge sources used for retrieval and, if applicable, represents a connection to a large language model (LLM). A knowledge base is used by the [retrieve method](../../agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
 
 A knowledge base specifies:
 
@@ -25,24 +20,24 @@ A knowledge base specifies:
 After you create a knowledge base, you can update its properties at any time. If the knowledge base is in use, updates take effect on the next retrieval.
 
 > [!IMPORTANT]
-> 2025-11-01-preview renames the 2025-08-01-preview *knowledge agent* to *knowledge base*. This is a breaking change. We recommend [migrating existing code](agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
+> 2025-11-01-preview renames the 2025-08-01-preview *knowledge agent* to *knowledge base*. This is a breaking change. We recommend [migrating existing code](../../agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
 
 ## Prerequisites
 
-+ Familiarity with [agentic retrieval concepts](agentic-retrieval-overview.md).
-
-+ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
++ Familiarity with [agentic retrieval concepts](../../agentic-retrieval-overview.md).
++ 
++- Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). If you're using a [managed identity](../../search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
 + Azure OpenAI with a [supported LLM](#supported-models).
 
-+ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources) on your search service.
++ One or more [knowledge sources](../../agentic-knowledge-source-overview.md#supported-knowledge-sources) on your search service.
 
 + Permissions on your search service. **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries.
 
 + The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or a preview Azure SDK package that provides the knowledge base APIs: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 > [!NOTE]
-> Although you can use the Azure portal to create knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+> Although you can use the Azure portal to create knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](../../agentic-retrieval-how-to-migrate.md).
 
 ### Supported models
 
@@ -69,7 +64,7 @@ Azure AI Search needs access to the LLM. We recommend Microsoft Entra ID for aut
 
 1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
 
-1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to get a personal access token for a specific subscription and tenant. Paste your token into an `@access-token` variable in requests. A request that connects using your personal identity should look similar to the following example:
+1. For local testing, follow the steps in [Quickstart: Connect without keys](../../search-get-started-rbac.md) to get a personal access token for a specific subscription and tenant. Paste your token into an `@access-token` variable in requests. A request that connects using your personal identity should look similar to the following example:
 
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
@@ -85,7 +80,7 @@ Azure AI Search needs access to the LLM. We recommend Microsoft Entra ID for aut
 
 ### [**Use keys**](#tab/keys)
 
-1. [Copy an Azure AI Search admin API key](search-security-api-keys.md#find-existing-keys) from the Azure portal.
+1. [Copy an Azure AI Search admin API key](../../search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
 1. Paste your key into an `@api-key` variable in requests.
 
@@ -113,7 +108,7 @@ Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases
 # List knowledge bases
 GET {{search-url}}/knowledgebases?api-version=2025-11-01-preview&$select=name
    Content-Type: application/json
-   Authorization: Bearer {{accessToken}}
+   Authorization: Bearer {{access-token}}
 ```
 
 You can also return a single knowledge base by name to review its JSON definition.
@@ -122,7 +117,7 @@ You can also return a single knowledge base by name to review its JSON definitio
 # Get knowledge base
 GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
    Content-Type: application/json
-   Authorization: Bearer {{accessToken}}
+   Authorization: Bearer {{access-token}}
 ```
 
 ---
@@ -146,7 +141,7 @@ The following JSON is an example response for a knowledge base.
   "encryptionKey": null,
   "retrievalReasoningEffort": {
     "kind": "low"
-  }
+  For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge base in Azure AI Search](../../agentic-retrieval-how-to-retrieve.md).
 }
 ```
 
@@ -158,7 +153,7 @@ Its composition consists of connections between *knowledge sources* (searchable 
 
 To create a knowledge base, use the 2025-11-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
-Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to assign to the knowledge base.
+Recall that you must have an existing [knowledge source](../../agentic-knowledge-source-overview.md) to assign to the knowledge base.
 
 To create a knowledge base:
 
@@ -169,7 +164,7 @@ To create a knowledge base:
     @knowledge-base-name=<YOUR KNOWLEDGE BASE NAME>
     @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
     @model-api-key=<YOUR AZURE OPENAI API KEY>
-    @accessToken = <a long GUID>
+    @access-token = <a long GUID>
     ```
 
 1. Use the 2025-11-01-preview of [Knowledge Bases - Create or Update (REST API)](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
@@ -178,7 +173,7 @@ To create a knowledge base:
     # Create knowledge base
     PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
        Content-Type: application/json
-       Authorization: Bearer {{accessToken}}
+       Authorization: Bearer {{access-token}}
     
     {
         "name" : "my-kb",
@@ -223,16 +218,16 @@ You can pass the following properties to create a knowledge base.
 | `name` | The name of the knowledge base, which must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
 | `retrievalInstructions` | A prompt for the LLM to determine whether a knowledge source should be in scope for a query, which is recommended when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning, such as instructions that result in bypassing an essential knowledge source. | String | Yes |
-| `answerInstructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md). | String | Yes |
+| `answerInstructions` | Custom instructions to shape synthesized answers. The default is null. For more information, see [Use answer synthesis for citation-backed responses](../../agentic-retrieval-how-to-answer-synthesis.md). | String | Yes |
 | `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer or `extractedData` for full search results that you can pass to an LLM as a downstream step. | String | Yes |
-| `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
+| `knowledgeSources` | One or more [supported knowledge sources](../../agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
 | `models` | A connection to a [supported LLM](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Foundry portal or a command-line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
-| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
+| `encryptionKey` | A [customer-managed key](../../search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
+| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](../../agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
 
 ## Query the knowledge base
 
-Call the **retrieve** action on the knowledge base object to confirm the model connection and return a response. Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge base in Azure AI Search](agentic-retrieval-how-to-retrieve.md).
+Call the **retrieve** action on the knowledge base object to confirm the model connection and return a response. Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge base in Azure AI Search](../../agentic-retrieval-how-to-retrieve.md).
 
 Replace "where does the ocean look green?" with a query string that's valid for your search index.
 
@@ -240,7 +235,7 @@ Replace "where does the ocean look green?" with a query string that's valid for 
 # Send grounding request
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
    Content-Type: application/json
-   Authorization: Bearer {{accessToken}}
+   Authorization: Bearer {{access-token}}
 
 {
     "messages" : [
@@ -298,11 +293,5 @@ If you no longer need the knowledge base, or if you need to rebuild it on the se
 ```http
 # Delete a knowledge base
 DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
-Authorization: Bearer {{accessToken}}
+Authorization: Bearer {{access-token}}
 ```
-
-## Related content
-
-+ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
