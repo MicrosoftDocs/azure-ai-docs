@@ -47,7 +47,6 @@ The following table summarizes which risks are applicable to models and agents:
 | Protected material for text | ✅ | ✅ |
 | Groundedness | ✅ | ❌ |
 | Personally identifiable information | ✅ | ✅ |
-| Task Adherence | ❌ | ✅ |
 
 ### Intervention point applicability
 
@@ -66,7 +65,7 @@ The following table summarizes which actions are applicable to models and agents
 
 | Action | Applicable to Models | Applicable to Agents |
 |--------|---------------------|---------------------|
-| Annotate | ✅ | ✅ |
+| Annotate | ✅ | ❌ |
 | Annotate and block | ✅ | ✅ |
 
 ### Guardrail inheritance and override

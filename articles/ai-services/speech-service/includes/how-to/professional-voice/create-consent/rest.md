@@ -9,7 +9,7 @@ ms.date: 5/19/2025
 ms.custom: include
 ---
 
-With the professional voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure AI Speech resource owner) will create and use their voice.
+With the professional voice feature, it's required that every voice be created with explicit consent from the user. A recorded statement from the user is required acknowledging that the customer (Azure Speech in Foundry Tools resource owner) will create and use their voice.
 
 To add voice talent consent to the professional voice project, you get the prerecorded consent audio file from a publicly accessible URL ([Consents_Create](/rest/api/aiservices/speechapi/consents/create)) or upload the audio file ([Consents_Post](/rest/api/aiservices/speechapi/consents/post)). In this article, you add consent from a URL. 
 

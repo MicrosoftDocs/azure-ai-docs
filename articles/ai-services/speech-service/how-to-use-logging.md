@@ -1,6 +1,6 @@
 ---
 title: Speech SDK logging - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to enable logging in the Speech SDK (C++, C#, Python, Objective-C, Java).
 author: PatrickFarley
 ms.author: pafarley

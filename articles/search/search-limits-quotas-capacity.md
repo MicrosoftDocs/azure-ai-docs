@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 04/30/2025
+ms.date: 11/06/2025
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
@@ -129,7 +129,7 @@ Maximum running times exist to provide balance and stability to the service as a
 | Blob indexer: maximum blob size, MB |16 |16 |128 |256 |256 |N/A  |256 |256 |
 | Blob indexer: maximum characters of content extracted from a blob <sup>6</sup> |32,000 |64,000 |4&nbsp;million |8&nbsp;million |16&nbsp;million |N/A |4&nbsp;million |4&nbsp;million |
 
-<sup>1</sup> Free services have indexer maximum execution time of 3 minutes for blob sources and 1 minute for all other data sources. Indexer invocation is once every 180 seconds. For AI indexing that calls into Azure AI services, free services are limited to 20 free transactions per indexer per day, where a transaction is defined as a document that successfully passes through the enrichment pipeline (tip: you can reset an indexer to reset its count).
+<sup>1</sup> Free services have indexer maximum execution time of 3 minutes for blob sources and 1 minute for all other data sources. Indexer invocation is once every 180 seconds. For AI indexing that calls into Foundry Tools, free services are limited to 20 free transactions per indexer per day, where a transaction is defined as a document that successfully passes through the enrichment pipeline (tip: you can reset an indexer to reset its count).
 
 <sup>2</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexers, data sources, and skillsets.
 
@@ -156,7 +156,7 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 | Maximum private endpoints | N/A | 10 or 30 | 100 | 400 | 400 | N/A | 20 | 20 |
 | Maximum distinct resource types <sup>3</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
 
-<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On Basic services, private connections to an Azure AI services multi-service resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024. Indexers with more than 2 Azure OpenAI Embedding or Azure AI Vision multimodal embeddings skills will be restricted from running in private environment, and private connections will not be available.
+<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On Basic services, private connections to a Microsoft Foundry resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024. Indexers with more than 2 Azure OpenAI Embedding or Azure Vision multimodal embeddings skills will be restricted from running in private environment, and private connections will not be available.
 
 <sup>2</sup> Private connections to an embedding model are supported on Basic and S1 high-capacity search services created after April 3, 2024, with the [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) for storage and computational processing.
 
@@ -166,25 +166,36 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 
 Maximum number of synonym maps varies by tier. Each rule can have up to 20 expansions, where an expansion is an equivalent term. For example, given "cat", association with "kitty", "feline", and "felis" (the genus for cats) would count as 3 expansions.
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
+| Resource | Free | Basic | S1 | S2 | S3 | S3HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
 | Maximum synonym maps |3 |3|5 |10 |20 |20 | 10 | 10 |
 | Maximum number of rules per map |5000 |20000|20000 |20000 |20000 |20000 | 20000 | 20000  |
 
 ## Index alias limits
 
-Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). In all tiers, if the service was created after October 2022 the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
+Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). On all tiers, if the service was created after October 2022, the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
-| Service Creation Date | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
+| Service creation date | Free | Basic | S1 | S2 | S3 | S3HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
 | Before October 2022 | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 |
 | After October 2022 | 6 | 30 | 100 | 400 | 400 | 2000 per partition or 6000 per service | 20 | 20 |
 
-<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes
+<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes.
+
+## Agentic retrieval limits
+
+Each [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) contains [knowledge sources](agentic-knowledge-source-overview.md), which are data source connections, and configurations that agents consume for [agentic retrieval](agentic-retrieval-overview.md). The following limits apply to knowledge sources and knowledge bases per service tier.
+
+| Resource | Free | Basic <sup>1</sup> | S1 | S2 | S3 | S3HD | L1 | L2 |
+|--|--|--|--|--|--|--|--|--|
+| Maximum knowledge sources | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+| Maximum knowledge bases | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+
+<sup>1</sup> Basic services created before April 3, 2024 have lower limits (5 instead of 15) on knowledge sources and knowledge bases.
 
 ## Data limits (AI enrichment)
 
-An [AI enrichment pipeline](cognitive-search-concept-intro.md) that makes calls to an Azure AI Language resource for [entity recognition](cognitive-search-skill-entity-recognition-v3.md), [entity linking](cognitive-search-skill-entity-linking-v3.md), [key phrase extraction](cognitive-search-skill-keyphrases.md), [sentiment analysis](cognitive-search-skill-sentiment-v3.md), [language detection](cognitive-search-skill-language-detection.md), and [personal-information detection](cognitive-search-skill-pii-detection.md) is subject to data limits. The maximum size of a record should be 50,000 characters as measured by [`String.Length`](/dotnet/api/system.string.length). If you need to break up your data before sending it to the sentiment analyzer, use the [Text Split skill](cognitive-search-skill-textsplit.md).
+An [AI enrichment pipeline](cognitive-search-concept-intro.md) that makes calls to an Azure Language in Foundry Tools for [entity recognition](cognitive-search-skill-entity-recognition-v3.md), [entity linking](cognitive-search-skill-entity-linking-v3.md), [key phrase extraction](cognitive-search-skill-keyphrases.md), [sentiment analysis](cognitive-search-skill-sentiment-v3.md), [language detection](cognitive-search-skill-language-detection.md), and [personal-information detection](cognitive-search-skill-pii-detection.md) is subject to data limits. The maximum size of a record should be 50,000 characters as measured by [`String.Length`](/dotnet/api/system.string.length). If you need to break up your data before sending it to the sentiment analyzer, use the [Text Split skill](cognitive-search-skill-textsplit.md).
 
 ## Throttling limits
 
@@ -215,7 +226,7 @@ Total semantic ranker queries per second varies based on the following factors:
 
 The following table describes the semantic ranker throttling limits by tier, subject to available capacity in the region. You can contact Microsoft support to request a limit increase.
 
-| Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
+| Resource | Basic | S1 | S2 | S3 | S3HD | L1 | L2 |
 |----------|-------|----|----|----|-------|----|----|
 | Maximum Concurrent Requests (per Search Unit) | 2 | 3 | 4 | 4 | 4 | 4 | 4 |
 | Maximum Request Queue Size (per Search Unit) | 4 | 6 | 8 | 8 | 8 | 8 | 8 |

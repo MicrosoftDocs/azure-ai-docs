@@ -1,26 +1,22 @@
 ---
-title: 'Document Analysis: Extract Structured Content with Azure AI Content Understanding'
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document layout analysis and data extraction capabilities.
+title: 'Document Analysis: Extract Structured Content with Azure Content Understanding in Foundry Tools'
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
-ms.author: paulhsu
+ms.author: jppark
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 10/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
-  - build-2025
+  - ignite-2025
 ---
 
 # Document analysis: Extract structured content
 
-> [!IMPORTANT]
->
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
 ## Overview
 
-Azure AI Content Understanding analysis capabilities help you transform unstructured data into structured, machine-readable information. By precisely identifying and extracting elements while preserving their structural relationships, you can build powerful processing workflows for a wide range of applications.
+Azure Content Understanding analysis capabilities help you transform unstructured data into structured, machine-readable information. By precisely identifying and extracting elements while preserving their structural relationships, you can build powerful processing workflows for a wide range of applications.
 
 The `contents` object with the kind `document` supports output for a range of different input files, including document, image, text, and structured files. You can use these outputs to extract meaningful content from your files, preserve document structures, and unlock the full potential of your data.
 
@@ -59,7 +55,9 @@ The Content Understanding API returns analysis results in a structured JSON form
         "paragraphs": [ /* paragraph elements */ ],
         "sections": [ /* section elements */ ],
         "tables": [ /* table elements */ ],
-        "figures": [ /* figure elements */ ]
+        "figures": [ /* figure elements */ ],
+        "hyperlinks": [ /* hyperlink elements */ ],
+        "annotations": [ /* annotation elements */ ]
       }
     ]
   }
@@ -68,21 +66,24 @@ The Content Understanding API returns analysis results in a structured JSON form
 
 ## Document elements
 
-You can extract the following document elements through content extraction:
+You can extract the following document elements through document analysis:
 
 * [Markdown](#markdown-content-elements)
-* Content elements
+* Page objects
   * [Words](#words)
   * [Selection marks](#selection-marks)
   * [Barcodes](#barcodes)
   * [Formulas](#formulas)
   * [Figures](#figures)
-* Layout elements
+  * [Hyperlinks](#hyperlinks)
+  * [Annotations](#annotations)
+* Document structure
   * [Pages](#pages)
   * [Paragraphs](#paragraphs)
   * [Lines](#lines)
   * [Tables](#tables)
   * [Sections](#sections)
+  
 
 Not all content and layout elements are applicable or currently supported by all document file types.
 
@@ -182,12 +183,16 @@ JSON example:
 
 A *formula* is a content element that represents mathematical expressions in the document. It might be an inline formula embedded with other text or a display formula that takes up an entire line. Multiline formulas are represented as multiple display formula elements grouped into paragraphs to preserve mathematical relationships.
 
+Formula can be of kind `inline` or `display` depending on the placement of the formula within the document. 
+
 JSON example:
 
 ```json
 {
   "formulas": [
     {
+      "kind": "inline",
+      "value": "x = \\frac { - b \\pm \\sqrt { b ^ { 2 } - 4 a c } } { 2 a }",
       "confidence": 0.708,
       "source": "D(1,3.4282,7.0195,4.0452,7.0307,4.0425,7.1803,3.4255,7.1691)",
       "span": {
@@ -201,23 +206,122 @@ JSON example:
 
 #### Figures
 
-A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding extracts any embedded text from the images and any associated captions and footnotes.
+A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding generates summary of detected figures, converts select images into chart.js representation, and extracts any embedded text from the images and any associated captions and footnotes. Charts are represented in figure content using chart.js syntax and diagrams are represented in figure content using a string in mermaid syntax. This is an optional feature you can turn on in the analyzer configuration by setting `enableFigureAnalysis` and `enableFigureDescription` as `true`.
+
+The following figure types are currently supported:
+
+| Figure type | Representation |
+|--------------|-------------|
+| `Bar chart` | Chart.js |
+| `Line chart` | Chart.js |
+| `Pie chart` | Chart.js |
+| `Radar chart` | Chart.js |
+| `Scatter chart` | Chart.js |
+| `Bubble chart` | Chart.js |
+| `Quadrant chart` | Chart.js |
+| `Mixed chart (e.g. combined bar and line chart)` | Mermaid.js |
+| `Flow chart` | Mermaid.js |
+| `Sequence diagrams` | Mermaid.js |
+| `Gantt chart` | Mermaid.js |
 
 JSON example:
 
 ```json
 {
   "figures": [
+     {
+      // enableFigureDescription = True
+      "description": "This figure illustrates the sales revenue over the year 2023.",
+
+      // enableFigureAnalysis = True
+      "kind": "chart",
+      "content": {
+        "type": "line",
+        "data": {
+          "labels": ["January", "February", "March", "April", "May", "June", "July"],
+          "datasets": [
+            {
+              "label": "A",
+              "data": [93, -29, -17, -8, 73, 98, 40]
+            },
+            {
+              "label": "B",
+              "data": [20, 85, -79, 93, 27, -81, -22]
+            }
+          ]
+        },
+        "options": {
+          "title": { "text": "Title" }
+        }
+      }
+    },
     {
-      "source": "D(2,1.3465,1.8481,3.4788,1.8484,3.4779,3.8286,1.3456,3.8282)",
-      "span": {
-        "offset": 658,
-        "length": 42
-      },
-      "elements": [
-        "/paragraphs/14"
-      ],
-      "id": "2.1"
+      "kind": "mermaid",
+      "content": "xychart-beta\n    title \"Sales Revenue\"\n    x-axis [jan, feb, mar, apr]..."
+    },
+  ]
+}
+```
+
+#### Hyperlinks
+
+A *hyperlink* is a content element that represents an embedded link that connects to another resource such as web page in the document. Content Understanding represents hyperlinks by using its embedded link.
+
+JSON example:
+
+```json
+{
+  "hyperlinks": [
+        {
+          "content": "Microsoft",
+          "url": "https://www.microsoft.com",
+          "span": {...},
+          "source": "..."
+        }
+  ]
+}
+```
+
+#### Annotations
+
+*Annotations* are additional metadata on the document to provide extra information, clarification, or feedback without changing the main content itself. There are many types of annotations that can range specific spans of content, or even refer to specific bounding boxes. Below are the list of annotation types we support. 
+
+> [!NOTE]
+> Note that annotations are currently only supported in digital PDF inputs.
+
+| Annotation kind |
+|--------------|
+| `highlight` |
+| `underline` |
+| `strikethrough` |
+| `rectangle` |
+| `circle` |
+| `drawing` |
+| `comments` |
+| `other` |
+
+JSON example:
+
+```json
+{
+  "annotations": [
+    {
+      "id": "underline-1",
+      "kind": "underline",
+      "spans": [...],
+      "source": "D(pageNumber,l,t,w,h)",
+      "comments": [
+        {
+          "message": "Hi",
+          "author": "johndoe",
+          "createdAt": "2023-10-01T12:00:00Z",
+          "tags": ["approved"]
+        }
+      ]
+      "author": "paulhsu",
+      "createdAt": "2023-10-01T12:00:00Z",
+      "lastModifiedAt": "2023-10-02T12:00:00Z",
+      "tags": [ ... ],
     }
   ]
 }
@@ -317,12 +421,11 @@ A table caption specifies content that explains the table. A table can also have
 
 A table might span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Typically, no intervening content comes between the initial table and its continuations except for page headers, footers, and page numbers.
 
-The span for tables covers only the core content and excludes associated captions and footnotes.
 
 A table might span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Other than page headers, footers, and page numbers, there's generally no intervening content between the initial table and its continuations.
 
 > [!NOTE]
-> The span for tables covers only the core content and excludes associated captions and footnotes.
+> The span for tables will cover both the core content and its associated captions and footnotes.
 
 JSON example:
 
@@ -344,13 +447,24 @@ JSON example:
           "span": {
             "offset": 798,
             "length": 8
-          }
+          },
+          "elements": [
+            "/paragraphs/7"
+          ]
         }
       ],
       "source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
       "span": {
         "offset": 781,
         "length": 280
+      },
+      "caption": {
+        "content": "Table 1: This is a table",
+        "source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
+        "span": {
+          "offset": 335,
+          "length": 30
+        }
       }
     }
   ]
@@ -382,6 +496,7 @@ JSON example:
 }
 ```
 
+
 ### Element properties
 
 Documents consist of various components that are categorized into structural, textual, and form-related elements. These elements define the organization and presentation of the document. You can systematically identify and extract the elements for further analysis or application.
@@ -406,8 +521,9 @@ Page numbers are one indexed. The bounding polygon describes a sequence of point
 
 ## Related content
 
-* Process your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content with [analyzer templates](../quickstart/use-ai-foundry.md).
+* Try processing your document content by using [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn to analyze document content using [analyzer templates](../concepts/analyzer-templates.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review the code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 
@@ -428,7 +544,7 @@ The following example shows the complete JSON response structure from analyzing 
     "warnings": [],
     "contents": [
       {
-        "markdown": "# Example Document\n\n\n## 1. Selection Marks (Checkboxes)\n\nEmployee Preferences Form\n☐\nRemote\n☒\nHybrid\n☐\nOn-site\n\n\n## 2. Barcodes\n\nGo check out Azure AI Content Understanding at the below link\n\n\n## 3. Formulas\n\nBayesian Inference (Posterior Probability):\n\n$$P \\left( \\theta \\mid D \\right) = \\frac { P \\left( D \\mid \\theta \\right) \\cdot P \\left( \\theta \\right) } { P \\left( D \\right) }$$\n\nWhere:\n\n$$P \\left( \\theta \\mid D \\right)$$\nis the posterior\n\n$P \\left( D \\mid \\theta \\right)$ is the likelihood\n$P \\left( \\theta \\right)$ is the prior\n\n$$P \\left( D \\right) i s \\quad t h e \\quad e v i d e n c e$$\n\n<!-- PageBreak -->\n\n\n## 4. Images\n\nSample Product Image\n\n\n<figure>\n\nContent\nUnderstanding\n\n</figure>\n\n\nImage Description: \"A ceramic coffee mug with company logo.\"\n\n\n## 5. Tables\n\n\n<table>\n<tr>\n<th>Category</th>\n<th>Amount ($)</th>\n</tr>\n<tr>\n<td>Rent</td>\n<td>1,200</td>\n</tr>\n<tr>\n<td>Utilities</td>\n<td>150</td>\n</tr>\n<tr>\n<td>Groceries</td>\n<td>300</td>\n</tr>\n<tr>\n<td>Transportation</td>\n<td>100</td>\n</tr>\n<tr>\n<td>Total</td>\n<td>1,750</td>\n</tr>\n</table>\n\n\n## 6. Paragraphs\n\nOur company is committed to fostering a productive and inclusive work environment. All\nemployees are expected to comply with the outlined policies and demonstrate mutual\nrespect in day-to-day operations. Regular reviews will ensure that these policies remain\nrelevant and effective.\n",
+        "markdown": "# Example Document\n\n\n## 1. Selection Marks (Checkboxes)\n\nEmployee Preferences Form\n☐\nRemote\n☒\nHybrid\n☐\nOn-site\n\n\n## 2. Barcodes\n\nGo check out Azure Content Understanding at the below link\n\n\n## 3. Formulas\n\nBayesian Inference (Posterior Probability):\n\n$$P \\left( \\theta \\mid D \\right) = \\frac { P \\left( D \\mid \\theta \\right) \\cdot P \\left( \\theta \\right) } { P \\left( D \\right) }$$\n\nWhere:\n\n$$P \\left( \\theta \\mid D \\right)$$\nis the posterior\n\n$P \\left( D \\mid \\theta \\right)$ is the likelihood\n$P \\left( \\theta \\right)$ is the prior\n\n$$P \\left( D \\right) i s \\quad t h e \\quad e v i d e n c e$$\n\n<!-- PageBreak -->\n\n\n## 4. Images\n\nSample Product Image\n\n\n<figure>\n\nContent\nUnderstanding\n\n</figure>\n\n\nImage Description: \"A ceramic coffee mug with company logo.\"\n\n\n## 5. Tables\n\n\n<table>\n<tr>\n<th>Category</th>\n<th>Amount ($)</th>\n</tr>\n<tr>\n<td>Rent</td>\n<td>1,200</td>\n</tr>\n<tr>\n<td>Utilities</td>\n<td>150</td>\n</tr>\n<tr>\n<td>Groceries</td>\n<td>300</td>\n</tr>\n<tr>\n<td>Transportation</td>\n<td>100</td>\n</tr>\n<tr>\n<td>Total</td>\n<td>1,750</td>\n</tr>\n</table>\n\n\n## 6. Paragraphs\n\nOur company is committed to fostering a productive and inclusive work environment. All\nemployees are expected to comply with the outlined policies and demonstrate mutual\nrespect in day-to-day operations. Regular reviews will ensure that these policies remain\nrelevant and effective.\n",
         "fields": {
           "EmployeePreferences": {
             "type": "string",

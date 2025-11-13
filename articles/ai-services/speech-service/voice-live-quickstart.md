@@ -1,7 +1,7 @@
 ---
-title: Get started with Azure AI Speech voice live for real-time voice agents
-titleSuffix: Azure AI services
-description: Learn how to use Voice live API for real-time voice agents with Azure AI Speech.
+title: Get started with Azure Speech in Foundry Tools voice live for real-time voice agents
+titleSuffix: Foundry Tools
+description: Learn how to use Voice live API for real-time voice agents with Azure Speech in Foundry Tools.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -25,6 +25,10 @@ recommendations: false
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-api/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-api/java.md)]
 ::: zone-end
 
 ## Related content

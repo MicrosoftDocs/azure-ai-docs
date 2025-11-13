@@ -4,12 +4,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
-After you have created an Azure storage account and connected it to your Language resource, you will need to upload the documents from the sample dataset to the root directory of your container. These documents will later be used to train your model.
+After you create an Azure storage account and connected it to your Language resource, you need to upload the documents from the sample dataset to the root directory of your container. These documents are used to train your model.
 
 # [Multi label classification](#tab/multi-classification)
 
@@ -37,18 +35,18 @@ The provided sample dataset contains about 210 documents, each of which is an ab
 * "Mechanical_engineering"
 * "Civil_engineering"
 * "Medical"
-* "Biochemistry".
+* "Biochemistry"
 
 ---
 
-2. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it. You can do this by clicking **Storage accounts** and typing your storage account name into **Filter for any field**.
+2. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it by selecting **Storage accounts** and typing your storage account name into **Filter for any field**.
 
-    if your resource group does not show up, make sure the **Subscription equals** filter is set to **All**.
+    if your resource group doesn't show up, make sure the **Subscription equals** filter is set to **All**.
 
 3. In your storage account, select **Containers** from the left menu, located below **Data storage**. On the screen that appears, select **+ Container**. Give the container the name **example-data** and leave the default **Public access level**.
 
     :::image type="content" source="../../media/storage-screen.png" alt-text="A screenshot showing the main page for a storage account." lightbox="../../media/storage-screen.png":::
 
-4. After your container has been created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
+4. After your container is created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
 
     :::image type="content" source="../../media/file-upload-screen.png" alt-text="A screenshot showing the button for uploading files to the storage account." lightbox="../../media/file-upload-screen.png":::

@@ -1,6 +1,6 @@
 ---
 title: Speech to text REST API - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get reference documentation for Speech to text REST API.
 manager: nitinme
 ms.service: azure-ai-speech

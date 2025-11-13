@@ -12,7 +12,6 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Search tool
@@ -179,9 +178,9 @@ ml_client.connections.create_or_update(my_connection)
 ```
 
 #### [Foundry](#tab/azureaifoundry)
-
+<!--
 1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
-
+-->
 Select your project.
 
 1. On the **Overview** page, select **Open in management center**.

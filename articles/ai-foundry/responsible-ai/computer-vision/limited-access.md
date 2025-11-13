@@ -2,12 +2,13 @@
 title: Limited Access features of Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about Azure Vision in Foundry Tools features that are in limited access.
+ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
-ms.date: 06/17/2022
+ms.date: 10/15/2025
 ---
 
 # Limited Access features of Azure Vision in Foundry Tools

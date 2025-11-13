@@ -1,19 +1,19 @@
 ---
-title: "Frequently asked questions - Azure AI Custom Translator"
-titleSuffix: Azure AI services
-description: This article contains answers to frequently asked questions about the Azure AI Custom Translator.
+title: "Frequently asked questions - Custom Translator"
+titleSuffix: Foundry Tools
+description: This article contains answers to frequently asked questions about the Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: faq
 ms.custom: cogserv-non-critical-translator
 ---
 
-# Azure AI Custom Translator frequently asked questions
+# Custom Translator frequently asked questions
 
-This article contains answers to frequently asked questions about [Azure AI Custom Translator](https://portal.customtranslator.azure.ai).
+This article contains answers to frequently asked questions about [Custom Translator](https://portal.customtranslator.azure.ai).
 
 ## What are the current restrictions in Custom Translator?
 
@@ -51,4 +51,4 @@ Ensure that the TMX conforms to the [TMX 1.4b Specification](https://www.ttt.org
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Try Azure AI Custom Translator quickstart](quickstart.md)
+> [Try Custom Translator quickstart](quickstart.md)

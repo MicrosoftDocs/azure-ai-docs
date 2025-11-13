@@ -1,6 +1,6 @@
 ---
 title: Batch synthesis properties - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties that are available for text to speech avatar.
 manager: nitinme
 ms.service: azure-ai-speech

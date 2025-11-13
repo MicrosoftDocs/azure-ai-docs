@@ -246,10 +246,6 @@ items:
           href: ../../openai/concepts/content-filter-prompt-shields.md
         - name: Groundedness detection
           href: ../../openai/concepts/content-filter-groundedness.md
-        - name: Task Aherence quickstart
-          href: ../../default/guardrails/how-to-task-adherence.md
-        - name: Task Aherence overview
-          href: ../../default/guardrails/task-adherence.md
         - name: Protected material detection
           href: ../../openai/concepts/content-filter-protected-material.md
         - name: Personally identifiable information (PII) detection

@@ -15,15 +15,11 @@ reviewer: samuel100
 ai-usage: ai-assisted
 ---
 
-# Integrate inferencing SDKs with Foundry Local
+# Use chat completions via REST server with Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local integrates with inference SDKs such as OpenAI, Azure OpenAI, and LangChain. This article shows you how to connect your app to local AI models using popular SDKs.
-
-## Prerequisites
-
-- Install Foundry Local. See [Get started with Foundry Local](../get-started.md) for instructions.
+Foundry Local integrates with other SDKs such as OpenAI, Azure OpenAI, and LangChain via a local REST server. This article shows you how to connect your app to local AI models using popular SDKs.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]

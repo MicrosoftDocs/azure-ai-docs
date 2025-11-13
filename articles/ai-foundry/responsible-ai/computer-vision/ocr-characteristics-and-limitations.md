@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
-ms.date: 02/12/2021
+ms.date: 10/15/2025
 ---
 
 # Capabilities and limitations of optical character recognition

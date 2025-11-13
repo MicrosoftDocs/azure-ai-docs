@@ -1,6 +1,6 @@
 ---
 title: How to configure Microsoft Entra authentication
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to authenticate using Microsoft Entra authentication
 author: PatrickFarley
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: Set up the Bring your own storage (BYOS) Speech resource
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to set up Bring your own storage (BYOS) Speech resource.
 manager: nitinme
 ms.service: azure-ai-speech
@@ -19,7 +19,7 @@ In BYOS scenarios, all traffic between the Speech resource and the Storage accou
 
 There's one exception: if you use Text to speech, and your Speech resource and the associated Storage account are located in different Azure regions, then public internet is used for the operations, involving [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). See details in [this section](#configure-storage-account-security-settings-for-text-to-speech).
 
-BYOS can be used with several Azure AI services. For Speech, it can be used in the following scenarios:
+BYOS can be used with several Foundry Tools. For Speech, it can be used in the following scenarios:
 
 **Speech to text**
 

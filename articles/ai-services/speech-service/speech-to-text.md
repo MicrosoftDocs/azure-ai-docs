@@ -1,6 +1,6 @@
 ---
 title: Speech to text overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the speech to text feature of the Speech service.
 author: PatrickFarley
 manager: nitinme
@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is speech to text?
 
-Azure AI Speech service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
+Azure Speech in Foundry Tools service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
 
 ## Core Features 
 
@@ -78,7 +78,7 @@ For details about customization options per language and locale, see the [langua
 
 ## Usage Examples 
 
-Here are some practical examples of how you can utilize Azure AI speech to text: 
+Here are some practical examples of how you can utilize Azure Speech to text: 
 
 | Use case | Scenario | Solution |
 | --- | --- | --- |

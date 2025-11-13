@@ -25,7 +25,7 @@ You can create and manage aliases in Azure AI Search service via HTTP requests (
 Before using an alias, your application sends requests directly to `hotel-samples-index`.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2025-08-01-preview
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-11-01-preview
 {
     "search": "pool spa +airport",
     "select": "HotelId, HotelName, Category, Description",
@@ -36,7 +36,7 @@ POST /indexes/hotel-samples-index/docs/search?api-version=2025-08-01-preview
 After using an alias, your application sends requests to `my-alias`, which maps to `hotel-samples-index`.
 
 ```http
-POST /indexes/my-alias/docs/search?api-version=2025-08-01-preview
+POST /indexes/my-alias/docs/search?api-version=2025-11-01-preview
 {
     "search": "pool spa +airport",
     "select": "HotelId, HotelName, Category, Description",
@@ -62,10 +62,10 @@ The maximum number of aliases that you can create varies by pricing tier. For mo
 
 ### [**REST API**](#tab/rest)
 
-You can use the [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to create an index alias.
+You can use the [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create an index alias.
 
 ```http
-POST /aliases?api-version=2025-08-01-preview
+POST /aliases?api-version=2025-11-01-preview
 {
     "name": "my-alias",
     "indexes": ["hotel-samples-index"]
@@ -107,7 +107,7 @@ Aliases can be used for all document operations including querying, indexing, su
 This query sends the request to `my-alias`, which is mapped to an actual index on your search service. 
 
 ```http
-POST /indexes/my-alias/docs/search?api-version=2025-08-01-preview
+POST /indexes/my-alias/docs/search?api-version=2025-11-01-preview
 {
     "search": "pool spa +airport",
     "searchMode": any,
@@ -137,10 +137,10 @@ api-key: [admin key]
 
 The most common update to an alias is changing the index name when the underlying index is replaced with a newer version.
 
-PUT is required for alias updates as described in [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+PUT is required for alias updates as described in [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
 ```http
-PUT /aliases/my-alias?api-version=2025-08-01-preview
+PUT /aliases/my-alias?api-version=2025-11-01-preview
 {
     "name": "my-alias",
     "indexes": ["hotel-samples-index2"]

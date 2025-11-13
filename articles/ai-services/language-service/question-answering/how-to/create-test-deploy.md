@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 09/15/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering, mode-other
 ---
-
 # Create, test, and deploy: CQA knowledge base
 
 This guide walks you through the essential steps needed to create, test, and deploy a custom question answering (CQA) knowledge base in the Azure AI Foundry. Whether you're transitioning from Language Studio or starting from scratch, this guide is for you. It provides clear and actionable instructions to achieve a fast and successful CQA deployment in the Azure AI Foundry.

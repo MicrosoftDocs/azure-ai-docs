@@ -1,12 +1,12 @@
 ---
 title: What's new in Document Intelligence
-titleSuffix: Azure AI services
-description: Learn the latest updates to the Document Intelligence API.
+titleSuffix: Foundry Tools
+description: Learn the latest updates to the Azure Document Intelligence in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: whats-new
-ms.date: 03/07/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -18,7 +18,7 @@ ms.custom:
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD049 -->
 
-# What's new in Azure AI Document Intelligence
+# What's new in Azure Document Intelligence?
 
 [!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
 
@@ -102,7 +102,7 @@ For more information, *see* client libraries for the following supported program
 
 The Document Intelligence [**2024-07-31-preview**](/rest/api/aiservices/document-models?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) REST API is now available. This preview API introduces new and updated capabilities:
 
-* Public preview version [**2024-07-31-preview**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) is currently available only in the following Azure regions. The new document field extraction model in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) is only available in North Central US region:
+* Public preview version [**2024-07-31-preview**](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-07-31-preview&preserve-view=true) is currently available only in the following Azure regions. The new document field extraction model in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) is only available in North Central US region:
 
 * **East US**
 * **West US2**

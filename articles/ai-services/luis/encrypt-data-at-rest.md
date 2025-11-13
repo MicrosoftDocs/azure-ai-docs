@@ -10,7 +10,7 @@ ms.subservice: azure-ai-luis
 ms.topic: conceptual
 ms.date: 06/12/2025
 ms.author: egeaney
-#Customer intent: As a user of the Language Understanding (LUIS) service, I want to learn how encryption at rest works.
+#Customer intent: As a user of Azure Language Understanding (LUIS) service, I want to learn how encryption at rest works.
 ---
 
 # Language Understanding service encryption of data at rest
