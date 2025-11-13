@@ -127,7 +127,7 @@ with project_client:
 
 + The Azure AI Search tool can only target one index.
   
-+ An Microsoft Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
++ A Microsoft Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
 + Your Azure AI Search resource and Microsoft Foundry Agent need to be in the same tenant.
 
