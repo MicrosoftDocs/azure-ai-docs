@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 # What is Azure Language in Foundry Tools?
 
-Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server-), which is available both as a remote server in the **Azure AI Foundry Tool Catalog** and as a local server for self-hosted environments.
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.  For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server-), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
 
 ## Available tools
 
@@ -22,7 +22,7 @@ Azure Language provides specialized tools that enable seamless integration betwe
 The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
 
 Azure Language provides both remote and local MCP server options:
-* **Remote server**: Available through Azure AI Foundry Tool Catalog for cloud-hosted deployments.
+* **Remote server**: Available through Foundry Tool Catalog for cloud-hosted deployments.
 * **Local server**: Available for developers who prefer to host the server in their own environment.
 
 For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-).
@@ -45,7 +45,7 @@ For more information, *see* [Azure Language Exact Question Answering agent](conc
 
 ## Available features
 
-This Language service unifies the following previously available Azure AI Foundry Tools: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
+This Language service unifies the following previously available Foundry Tools: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
 
 The Language also provides several new features as well, which can either be:
 
@@ -55,13 +55,13 @@ The Language also provides several new features as well, which can either be:
 > [!TIP]
 > Unsure which feature to use? See [Which Language feature should I use](#which-language-feature-should-i-use) to help you decide.
 
-[**Azure AI Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
+[**Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Azure AI Foundry."lightbox="media/overview/named-entity-recognition.png":::
+      :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry."lightbox="media/overview/named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
       [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
@@ -72,12 +72,12 @@ The Language also provides several new features as well, which can either be:
 ### Personal and health data information detection
 
 > [!IMPORTANT]
-> The Azure AI Language Text Personally Identifiable Information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+> The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Azure AI Foundry." lightbox="media/overview/conversation-pii.png":::
-      :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
+      :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
+      :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
 
@@ -90,7 +90,7 @@ The Language also provides several new features as well, which can either be:
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Azure AI Foundry." lightbox="media/overview/language-detection.png":::
+      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Foundry." lightbox="media/overview/language-detection.png":::
    :::column-end:::
    :::column span="":::
       [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
@@ -102,7 +102,7 @@ The Language also provides several new features as well, which can either be:
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Azure AI Foundry." lightbox="media/overview/sentiment-analysis.png":::
+      :::image type="content" source="media/overview/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Foundry." lightbox="media/overview/sentiment-analysis.png":::
    :::column-end:::
    :::column span="":::
       [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) preconfigured features that help you understand public perception of your brand or topic. These features analyze text to identify positive or negative sentiments and can link them to specific elements within the text.
@@ -114,9 +114,9 @@ The Language also provides several new features as well, which can either be:
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Azure AI Foundry." lightbox="media/overview/conversation-summarization.png":::
-      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Azure AI Foundry." lightbox="media/overview/call-center-summarization.png":::
-      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
+      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Foundry." lightbox="media/overview/conversation-summarization.png":::
+      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Foundry." lightbox="media/overview/call-center-summarization.png":::
+      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
       [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
@@ -129,7 +129,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Azure AI Foundry." lightbox="media/overview/key-phrase-extraction.png":::
+      :::image type="content" source="media/overview/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Foundry." lightbox="media/overview/key-phrase-extraction.png":::
    :::column-end:::
    :::column span="":::
       [Key phrase extraction](./key-phrase-extraction/overview.md) is a preconfigured feature that evaluates and returns the main concepts in unstructured text, and returns them as a list.
@@ -155,7 +155,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Azure AI Foundry." lightbox="media/overview/text-analytics-for-health.png":::
+      :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Foundry." lightbox="media/overview/text-analytics-for-health.png":::
    :::column-end:::
    :::column span="":::
       [Text analytics for health](./text-analytics-for-health/overview.md) Extracts and labels relevant health information from unstructured text.

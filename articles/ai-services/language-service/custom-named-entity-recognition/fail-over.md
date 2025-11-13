@@ -12,7 +12,7 @@ ms.custom: language-service-custom-ner
 ---
 # Back up and recover your custom NER models
 
-When you create a Language resource, you specify a region for it to be created in. From then on, your resource and all of the operations related to it take place in the specified Azure server region. It's rare, but not impossible, to encounter a network issue that affects an entire region. If your solution needs to always be available, then you should design it to fail over into another region. This process requires two Azure AI Language resources in different regions and synchronizing custom models across them. 
+When you create a Language resource, you specify a region for it to be created in. From then on, your resource and all of the operations related to it take place in the specified Azure server region. It's rare, but not impossible, to encounter a network issue that affects an entire region. If your solution needs to always be available, then you should design it to fail over into another region. This process requires two Azure Language in Foundry Tools resources in different regions and synchronizing custom models across them. 
 
 If your app or business depends on the use of a custom NER model, we recommend that you create a replica of your project in another supported region. If a regional outage occurs, you can then access your model in the other fail-over region where you replicated your project.
 
@@ -22,14 +22,14 @@ In this article, you learn to how to use the export and import APIs to replicate
 
 ##  Prerequisites
 
-* Two Azure AI Language resources in different Azure regions. [Create your resources](./how-to/create-project.md#create-a-language-resource) and connect them to an Azure storage account. We recommend that you connect each of your Language resources to different storage accounts. Each storage account should be located in the same respective regions that your separate Language resources are in. You can follow the [quickstart](./quickstart.md?pivots=rest-api#create-a-new-azure-ai-language-resource-and-azure-storage-account) to create another Language resource and storage account.
+* Two Language resources in different Azure regions. [Create your resources](./how-to/create-project.md#create-a-language-resource) and connect them to an Azure storage account. We recommend that you connect each of your Language resources to different storage accounts. Each storage account should be located in the same respective regions that your separate Language resources are in. You can follow the [quickstart](./quickstart.md?pivots=rest-api#step-3-connect-your-language-resource) to create another Language resource and storage account.
 
 
 ## Get your resource keys endpoint
 
 Use the following steps to get the keys and endpoint of your primary and secondary resources.
 
-[!INCLUDE [Get keys and endpoint Azure Portal](./includes/get-keys-endpoint-azure.md)]
+[!INCLUDE [Get keys and endpoint Azure portal](./includes/get-keys-endpoint-azure.md)]
 
 > [!TIP]
 > Keep a note of keys and endpoints for both primary and secondary resources as well as the primary and secondary container names. Use these values to replace the following placeholders:

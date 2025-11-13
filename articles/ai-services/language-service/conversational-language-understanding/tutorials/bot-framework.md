@@ -26,7 +26,7 @@ This tutorial will explain how to integrate your own conversational language und
 ## Import a project in conversational language understanding
 
 1. Download the [FlightBooking.json](https://aka.ms/clu-botframework-json) file in the **Core Bot with CLU** sample, in the _Cognitive Models_ folder.
-2. Sign into the [Azure AI Foundry](https://ai.azure.com/) with your Azure credentials and select your project.
+2. Sign into the [Microsoft Foundry](https://ai.azure.com/) with your Azure credentials and select your project.
 3. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and choose **Try Azure Language playground**. Select the **Conversational language understanding** tile, then select **Fine-tune**. Create a new fine-tuning task and import the FlightBooking.json file with the project name as **FlightBooking**. This will automatically import the CLU project with all the intents, entities, and utterances. 
     
     :::image type="content" source="../media/import.png" alt-text="A screenshot showing where to import a J son file." lightbox="../media/import.png":::

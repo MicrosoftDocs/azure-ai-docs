@@ -369,7 +369,7 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 
 ### [Microsoft Foundry](#tab/vectorize-text-catalog)
 
-1. On the **Vectorize your text** page, select **AI Foundry Hub catalog models** for the kind.
+1. On the **Vectorize your text** page, select **Foundry Hub catalog models** for the kind.
 
 1. Select your Azure subscription.
 
@@ -413,7 +413,7 @@ However, if your content includes useful images, you can apply AI in one or both
 
 1. On the **Vectorize and enrich your images** page, select the **Vectorize images** checkbox.
 
-1. For the kind, select your model provider: **AI Foundry Hub catalog models** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Foundry Hub catalog models** or **AI Vision vectorization**.
 
    If Azure Vision is unavailable, make sure your search service and Foundry resource are both in a [region that supports the Azure Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
 

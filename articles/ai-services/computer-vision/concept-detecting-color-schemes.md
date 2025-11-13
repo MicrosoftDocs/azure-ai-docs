@@ -1,6 +1,6 @@
 ---
 title: Color scheme detection - Azure Vision in Foundry Tools
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: Concepts related to detecting the color scheme in images using Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme

@@ -80,7 +80,7 @@ The **Read** API takes images and documents as input. The images and documents m
 
 ## OCR data privacy and security
 
-As with all of the AI Foundry Tools, developers using the Azure Vision service should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
+As with all of the Foundry Tools, developers using the Azure Vision service should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
 
 ## Next steps
 

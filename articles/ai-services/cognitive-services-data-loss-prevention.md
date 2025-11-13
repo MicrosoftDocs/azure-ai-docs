@@ -17,11 +17,11 @@ Foundry Tools data loss prevention capabilities allow customers to configure the
 
 ## Prerequisites
 
-Before you make a request, you need an Azure account and an Foundry Tools subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an AI Foundry resource](multi-service-resource.md?pivots=azportal).
+Before you make a request, you need an Azure account and a Foundry Tools subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create a Foundry resource](multi-service-resource.md?pivots=azportal).
 
 ## Access control guidance for Foundry Tools
 
-* You can limit inbound and outbound access to Azure OpenAI by implementing a [network security perimeter](/azure/private-link/network-security-perimeter-concepts). For additional information on how to implement a network security perimeter for Foundry Tools, see [Add network security perimeter (preview) to Azure OpenAI](../ai-foundry/openai/how-to/network-security-perimeter.md). For additional information on how to implement a network security perimeter for Azure AI Foundry-based projects, see [Add Azure AI Foundry to a network security perimeter (preview)](../ai-foundry/how-to/add-foundry-to-network-security-perimeter.md).
+* You can limit inbound and outbound access to Azure OpenAI by implementing a [network security perimeter](/azure/private-link/network-security-perimeter-concepts). For additional information on how to implement a network security perimeter for Foundry Tools, see [Add network security perimeter (preview) to Azure OpenAI](../ai-foundry/openai/how-to/network-security-perimeter.md). For additional information on how to implement a network security perimeter for Microsoft Foundry-based projects, see [Add Foundry to a network security perimeter (preview)](../ai-foundry/how-to/add-foundry-to-network-security-perimeter.md).
 
 * Define the permitted FQDNs for outbound connections from the AI services resource and apply egress controls accordingly using the information in this guide.
 
@@ -101,7 +101,7 @@ There are two parts to enable data loss prevention. First, the resource property
 The following services support data loss prevention configuration:
 
 * Azure OpenAI
-* Azure AI Foundry (Foundry-based projects)
+* Foundry (Foundry-based projects)
 * Azure Vision
 * Content Moderator
 * Custom Vision

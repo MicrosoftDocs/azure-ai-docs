@@ -28,7 +28,7 @@ You can thoroughly assess the performance of your generative AI application by a
 
 When you provide either a test dataset or a target, your generative AI application outputs are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
-In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI Evaluation SDK locally. Then, you learn to track the results and evaluation logs in an Azure AI project.
+In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI Evaluation SDK locally. Then, you learn to track the results and evaluation logs in a Foundry project.
 
 ## Get started
 
@@ -361,7 +361,7 @@ For AI-assisted quality evaluators, except for `GroundednessProEvaluator` previe
 >
 > Make sure that you have at least the `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with the API key. To learn more about permissions, see [Permissions for an Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
 
-For all risk and safety evaluators and `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the back end evaluation service by using your Azure AI project.
+For all risk and safety evaluators and `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the back end evaluation service by using your Foundry project.
 
 #### Prompts for AI-assisted built-in evaluators
 
@@ -413,13 +413,13 @@ result = evaluate(
     },
     # Optionally, provide your Foundry project information to track your evaluation results in your project portal.
     azure_ai_project = azure_ai_project,
-    # Optionally, provide an output path to dump a JSON file of metric summary, row-level data, and the metric and Azure AI project URL.
+    # Optionally, provide an output path to dump a JSON file of metric summary, row-level data, and the metric and Foundry project URL.
     output_path="./myevalresults.json"
 )
 ```
 
 > [!TIP]
-> Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Azure AI project.
+> Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Foundry project.
 
 The evaluator outputs results in a dictionary, which contains aggregate `metrics` and row-level data and metrics. See the following example output:
 
@@ -462,7 +462,7 @@ The evaluator outputs results in a dictionary, which contains aggregate `metrics
 
 ### Requirements for `evaluate()`
 
-The `evaluate()` API has a few requirements for the data format that it accepts and how it handles evaluator parameter key names so that the charts of the evaluation results in your Azure AI project show up properly.
+The `evaluate()` API has a few requirements for the data format that it accepts and how it handles evaluator parameter key names so that the charts of the evaluation results in your Foundry project show up properly.
 
 #### Data format
 
@@ -479,7 +479,7 @@ The `evaluate()` API accepts only data in JSONL format. For all built-in evaluat
 
 #### Evaluator parameter format
 
-When you pass in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
+When you pass in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Foundry project.
 
 | Evaluator                 | Keyword parameter     |
 |---------------------------|-------------------|

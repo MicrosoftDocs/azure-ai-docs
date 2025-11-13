@@ -13,7 +13,7 @@ ms.custom: language-service-clu, ignite-2024
 # Deploy custom language projects to multiple regions
 
 > [!NOTE]
-> This article applies to the following custom features in Azure AI Language:
+> This article applies to the following custom features in Azure Language in Foundry Tools:
 >
 > * [Conversational language understanding](../../conversational-language-understanding/overview.md)
 > * [Custom text classification](../../custom-text-classification/overview.md)

@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding prebuilt analyzers
+title: Azure Content Understanding in Foundry Tools prebuilt analyzers
 titleSuffix: Foundry Tools
-description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure AI Content Understanding.
+description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
@@ -14,13 +14,13 @@ ms.custom:
 
 # Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
-Azure AI Content Understanding prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
+Azure Content Understanding in Foundry Tools prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
 
 Prebuilt analyzers are ready-to-use tools that streamline common content processing tasks. You can use them for content ingestion in search and retrieval-augmented generation (RAG) workflows. You can also use them for intelligent document processing (IDP) to extract data from invoices or analyze call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract other fields or refine outputs to better fit your specific workflow requirements.
 
 ## Analyzer types
 
-Azure AI Content Understanding provides several categories of analyzers to support different scenarios:
+Content Understanding provides several categories of analyzers to support different scenarios:
 
 - **[Content extraction analyzers](#content-extraction-analyzers)** - Focus on OCR and layout analysis with progressively richer extraction capabilities for basic text extraction, layout analysis, and barcode detection.
 - **[Base analyzers](#base-analyzers)** - Fundamental content processing capabilities for each modality, used as parent analyzers when creating custom analyzers for document, image, audio, and video content.

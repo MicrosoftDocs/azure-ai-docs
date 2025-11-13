@@ -111,11 +111,11 @@ These properties uniquely identify and describe your analyzer:
 ## Model configuration
 
 ### `models`
-- **Description:** Specifies which Azure AI Foundry model names to use when processing with this analyzer. These are the model names (not deployment names) that the service uses. They must match one of the `supportedModels` from the base analyzer. The full list of models supported by Content Understanding is list at [supported models](../service-limits.md#supported-generative-models). 
+- **Description:** Specifies which Foundry model names to use when processing with this analyzer. These are the model names (not deployment names) that the service uses. They must match one of the `supportedModels` from the base analyzer. The full list of models supported by Content Understanding is list at [supported models](../service-limits.md#supported-generative-models). 
 - **Properties:**
   - `completion` - Model name for completion tasks (field extraction, segmentation, figure analysis etc.)
   - `embedding` - Model name for embedding tasks (using a knowledge base)
-- **Important:** These are model names from the Azure AI Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
+- **Important:** These are model names from the Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
 - **Example:**
   ```json
   {
@@ -643,4 +643,4 @@ Different content types support different configuration options. Here's a quick 
 * Create your own analyzer by following the [custom analyzer tutorial](../tutorial/create-custom-analyzer.md) 
 * Understand [best practices](best-practices.md) for optimal extraction results
 * Review [document elements](../document/elements.md) and [video elements](../video/elements.md) for details on extracted content
-* Get started by create and test analyzers in [Azure AI Foundry](../quickstart/use-ai-foundry.md)
+* Get started by create and test analyzers in [Foundry](../quickstart/use-ai-foundry.md)

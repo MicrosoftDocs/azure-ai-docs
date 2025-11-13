@@ -98,7 +98,7 @@ The currently supported models are:
 
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
-| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Uploading video files directly in the API request body using the analyzeBinary API. This method is used by the Azure AI Foundry UX and Content Understanding Studio UX.  |
+| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Uploading video files directly in the API request body using the analyzeBinary API. This method is used by the Microsoft Foundry UX and Content Understanding Studio UX.  |
 | analyze API (file reference) | Max: 4 GB | Max: 2 hours | Referencing video files via URL from Azure Blob Storage or similar storage when using the analyze API |
 
 > [!NOTE]

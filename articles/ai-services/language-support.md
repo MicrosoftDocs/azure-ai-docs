@@ -47,5 +47,5 @@ These Foundry Tools are language agnostic and don't have limitations based on hu
 
 * [What are Foundry Tools?](./what-are-ai-services.md)
 
-* [What  is Azure AI Foundry?](../ai-foundry/model-inference/overview.md)
+* [What  is Microsoft Foundry?](../ai-foundry/model-inference/overview.md)
 

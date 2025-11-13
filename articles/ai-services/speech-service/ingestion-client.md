@@ -18,13 +18,13 @@ The Ingestion Client is a tool released by Microsoft on GitHub that helps you qu
 > [!TIP]
 > You can use the tool and resulting solution in production to process a high volume of audio.
 
-Ingestion Client uses the [Azure AI Language](../language-service/index.yml), [Azure Speech in Foundry Tools](./index.yml), [Azure storage](https://azure.microsoft.com/product-categories/storage/), and [Azure Functions](https://azure.microsoft.com/services/functions/). 
+Ingestion Client uses the [Azure Language in Foundry Tools](../language-service/index.yml), [Azure Speech in Foundry Tools](./index.yml), [Azure storage](https://azure.microsoft.com/product-categories/storage/), and [Azure Functions](https://azure.microsoft.com/services/functions/). 
 
 ## Get started with the Ingestion Client
 
 An Azure account and a multi-service Microsoft Foundry resource are needed to run the Ingestion Client.
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create an AI Foundry resource"  target="_blank">Create an AI Foundry resource</a> in the Azure portal.
+* <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create a Foundry resource"  target="_blank">Create a Foundry resource</a> in the Azure portal.
 * Get the resource key and region. After your resource is deployed, select **Go to resource** to view and manage keys. For more information about Microsoft Foundry resources, see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal). 
 
 

@@ -22,11 +22,11 @@ Orchestration workflow allows you to create projects that connect your applicati
 Before you start using orchestration workflow, you will need several things:
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* An Azure AI Language resource 
+* An Azure Language in Foundry Tools resource 
 
 ### Create a Language resource 
 
-Before you start using orchestration workflow, you will need an Azure AI Language resource.
+Before you start using orchestration workflow, you will need a Language resource.
 
 > [!NOTE]
 >  * You need to have an **owner** role assigned on the resource group to create a Language resource.

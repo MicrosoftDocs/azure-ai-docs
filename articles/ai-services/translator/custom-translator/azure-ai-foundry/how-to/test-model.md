@@ -12,7 +12,7 @@ ms.topic: how-to
 
 # Test your Foundry Tools custom translation model
 
-Once your Azure AI Foundry custom translation model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure Translator model or your custom translation model, you should evaluate the delta between your custom translation model [**BLEU score**](#bleu-score) and our standard Azure Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
+Once your Microsoft Foundry custom translation model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure Translator model or your custom translation model, you should evaluate the delta between your custom translation model [**BLEU score**](#bleu-score) and our standard Azure Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
 
 ## BLEU score
 

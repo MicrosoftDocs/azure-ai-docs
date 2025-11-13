@@ -20,13 +20,13 @@ Every Content Understanding resource provides access to all prebuilt analyzers b
 
 The copy operation on analyzers supports a few different scenarios:
 * **Copy within resource** to create a copy of an existing analyzer in the same resource as a backup or a version you can iteratively make changes from. 
-* **Copy across resources** copy an analyzer from one AI Foundry resource to another. This supports failover scenarios and sharing of analyzers across teams.
+* **Copy across resources** copy an analyzer from one Foundry resource to another. This supports failover scenarios and sharing of analyzers across teams.
 
 > [!IMPORTANT]
 >
 > The copy operation for copying across resources supports copying analyzers across subscriptions and even Azure tenants.
 
-## Copy within an AI Foundry resource
+## Copy within a Foundry resource
 
 The copy operation within a Foundry resource is a simple, single step operation. Specify the analyzer you want to copy to as the resource you want to create and provide the analyzer you want to copy from in the request body. 
 
@@ -41,9 +41,9 @@ Ocp-Apim-Subscription-Key: {Auth key}
 }
 ```
 
-## Copy across AI Foundry resources
+## Copy across Foundry resources
 
-Copying the analyzer across AI Foundry resources is a multi-step process because a service principal likely doesn't have permissions on both resources:
+Copying the analyzer across Foundry resources is a multi-step process because a service principal likely doesn't have permissions on both resources:
 
 1. Get a copy authorization on the source analyzer by providing the fully qualified resource ID for the copy target and the target region. 
 1. Copy the resulting response and use it as the body of the next request.

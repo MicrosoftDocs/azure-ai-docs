@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 # Language role-based access control
 
-Azure AI Language supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions for your projects authoring resources. For more information, *see* the [Azure RBAC documentation](/azure/role-based-access-control/).
+Azure Language in Foundry Tools supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions for your projects authoring resources. For more information, *see* the [Azure RBAC documentation](/azure/role-based-access-control/).
 
 <a name='enable-azure-active-directory-authentication'></a>
 

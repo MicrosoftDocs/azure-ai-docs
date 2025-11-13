@@ -15,16 +15,16 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## November 2025
 
-**Azure Language integrates with Azure AI Foundry Tools**. Azure Language now provides specialized tools and agents for building conversational AI applications in Azure AI Foundry:
+**Azure Language integrates with Foundry Tools**. Azure Language now provides specialized tools and agents for building conversational AI applications in Foundry:
 * [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-). Connects AI agents to Azure Language services through the Model Context Protocol.
 * [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-). Manages conversation flows by combining intent classification with answer delivery.
 * [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-). Delivers consistent responses to frequently asked business questions.
 
-**Azure Language capabilities now available in Azure AI Foundry**. Several Azure Language capabilities are now available with the Azure AI Foundry:
+**Azure Language capabilities now available in Foundry**. Several Azure Language capabilities are now available with the Foundry:
 * [Conversational Language Understanding multi-turn conversations](conversational-language-understanding/concepts/multi-turn-conversations.md). Enable natural, context-aware dialogues through entity slot filling → Azure Foundry (new).
 * [Language detection](conversational-language-understanding/concepts/multiple-languages.md). Automatically detect the language of user utterances in conversational applications → Azure Foundry (new).
  * [PII detection for text](personally-identifiable-information/how-to/redact-text-pii.md). Detect and redact personally identifiable information in text documents→ Azure Foundry (new).
-* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). Test, train, and deploy custom NER models directly in the Azure AI Foundry playground → Azure Foundry (classic).
+* [Custom Named Entity Recognition](custom-named-entity-recognition/quickstart.md). Test, train, and deploy custom NER models directly in the Foundry playground → Azure Foundry (classic).
 * [PII detection for conversations](personally-identifiable-information/how-to/redact-conversation-pii.md). Identify and redact personally identifiable information in conversations → Azure Foundry (classic).
 
 **Text PII detection enhancements (2025-11-15-preview API)**. The preview API introduces several new feature parameters for [PII detection](personally-identifiable-information/overview.md):
@@ -59,11 +59,11 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## September 2025
 
-**Introducing CQA deploy-to-agent**. Custom Question Answering (CQA) projects can now be [deployed as intelligent agents](question-answering/how-to/deploy-agent.md) directly within the Azure AI Foundry playground through a streamlined deployment experience.
+**Introducing CQA deploy-to-agent**. Custom Question Answering (CQA) projects can now be [deployed as intelligent agents](question-answering/how-to/deploy-agent.md) directly within the Foundry playground through a streamlined deployment experience.
   * This feature enables users to transform fine-tuned CQA knowledge bases into production-ready agents with minimal configuration steps.
   * The deployment process provides parity with CLU workflows and accelerates the agent development timeline within the unified Foundry environment.
 
-**Custom Named Entity Recognition (NER) capabilities integrated into Language Playground**. Users can now access a testing playground for custom Named Entity Recognition (NER) within Azure AI Foundry.
+**Custom Named Entity Recognition (NER) capabilities integrated into Language Playground**. Users can now access a testing playground for custom Named Entity Recognition (NER) within Foundry.
   * This interactive interface allows training, deployment, testing, and fine-tuning for custom models while experimenting with custom NER capabilities in real-time.
   * The playground accelerates the onboarding process and provides enhanced debugging capabilities for custom NER implementations. For more information, *see* [Quickstart: Custom named entity recognition](custom-named-entity-recognition/quickstart.md).
 
@@ -112,7 +112,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 **New version of the Conversational Language Understanding (CLU) training configuration**. This new version is aimed at minimizing over-predictions of the [None intent](conversational-language-understanding/concepts/none-intent.md)—particularly in multilingual contexts—is now available via the REST API using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/train-model.md?tabs=rest-api#request-body).
 
-**Updated [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project**. The update includes a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Azure AI Foundry Agent Service. It utilizes Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing. Additionally, these tools help deliver precise answers to specific questions. For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
+**Updated [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project**. The update includes a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Foundry Agent Service. It utilizes Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing. Additionally, these tools help deliver precise answers to specific questions. For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
 
 **[.NET SDKs](/dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet&preserve-view=true) support**. The following `.NET SDK`s are now available, and support the latest REST API version **2025-15-05-preview**:
 
@@ -137,8 +137,8 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 *  [Specify values to exclude from PII output](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude).
 *  [Use entity synonyms for tailored PII detection](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynonyms-parameter).
 
-**Enhanced CLU and CQA Capabilities in Azure AI Foundry**. Azure AI Foundry now offers enhanced capabilities for fine-tuning with custom conversational language understanding (CLU) and conversational question-and-answer (CQA) AI features:
-*    CLU and CQA authoring tools are now available in Azure AI Foundry.
+**Enhanced CLU and CQA Capabilities in Foundry**. Foundry now offers enhanced capabilities for fine-tuning with custom conversational language understanding (CLU) and conversational question-and-answer (CQA) AI features:
+*    CLU and CQA authoring tools are now available in Foundry.
 *    CLU offers a quick deploy option powered by large language models (LLMs) for rapid deployment.
 *    CQA incorporates the QnA Maker scoring algorithm for more accurate responses.
 *    CQA enables exact match answering for precise query resolutions.
@@ -171,7 +171,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 ## February 2025
 
 * Document and text abstractive summarization is now powered by fine-tuned Phi-3.5-mini! Check out the [Announcing Blog](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/exciting-update-abstractive-summarization-in-azure-ai-language-now-powered-by-ph/4369025) for more information.
-* More skills are available in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs): Extract key phrase, Extract named entities, Analyze sentiment, and Detect language. More skills are yet to come.
+* More skills are available in [Foundry](https://ai.azure.com/?cid=learnDocs): Extract key phrase, Extract named entities, Analyze sentiment, and Detect language. More skills are yet to come.
 
 ## January 2025
 
@@ -191,7 +191,7 @@ Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this pa
 
 ## November 2024
 
-* Azure Language is moving to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). These skills are now available in AI Foundry playground: Extract health information, Extract PII from conversation, Extract PII from text, Summarize text, Summarize conversation, Summarize for call center. More skills follow.
+* Azure Language is moving to [Foundry](https://ai.azure.com/?cid=learnDocs). These skills are now available in Foundry playground: Extract health information, Extract PII from conversation, Extract PII from text, Summarize text, Summarize conversation, Summarize for call center. More skills follow.
 * Runtime Container for Conversational Language Understanding (CLU) is available for on-premises connections.
 * Both our [Text PII redaction service](personally-identifiable-information/overview.md?tabs=text-pii) and our Conversational PII service preview API (version 2024-11-15-preview) now support the option to mask detected sensitive entities with a label beyond just redaction characters. Customers can specify if personal data content such as names and phone numbers, that is, "John Doe received a call from 424-878-9192" are masked with a redaction character, that is, "******** received a call from ************" or masked with an entity label, that is, "`PERSON_1` received a call from `PHONENUMBER_1`." More on how to specify the redaction policy style for your outputs can be found in our [how-to guides](personally-identifiable-information/how-to-call.md).
 * Native document support gating is removed with the latest API version, 2024-11-15-preview, allowing customers to access native document support for PII redaction and summarization. Key updates in this version include:

@@ -11,7 +11,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An Azure AI project with an AI Hub.
+* A Foundry project with an AI Hub.
 
 * Install the [Azure CLI](/cli/azure/).
 

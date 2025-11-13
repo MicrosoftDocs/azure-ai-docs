@@ -2,7 +2,7 @@ items:
 - name: Plan rollout
   href: ../../../concepts/planning.md
 
-- name: Manage AI Foundry resources
+- name: Manage Foundry resources
   items:
   - name: Create your first resource
     href: ../../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
@@ -30,7 +30,7 @@ items:
 
 - name: Quota and service limits
   items: 
-  - name: Manage quotas for AI Foundry resources
+  - name: Manage quotas for Foundry resources
     href: ../../../how-to/quota.md
   - name: Foundry Models quotas and limits
     href: ../../../foundry-models/quotas-limits.md

@@ -12,7 +12,7 @@ ms.custom: language-service-clu
 ---
 # Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)
 
-[Conversational language understanding (CLU)](../overview.md) is a cloud-based AI offering in Azure AI Language. It's the newest generation of [Language Understanding (LUIS)](../../../luis/what-is-luis.md) and offers backwards compatibility with previously created LUIS applications. CLU employs state-of-the-art machine learning intelligence to allow users to build a custom natural language understanding model for predicting intents and entities in conversational utterances.
+[Conversational language understanding (CLU)](../overview.md) is a cloud-based AI offering in Azure Language in Foundry Tools. It's the newest generation of [Language Understanding (LUIS)](../../../luis/what-is-luis.md) and offers backwards compatibility with previously created LUIS applications. CLU employs state-of-the-art machine learning intelligence to allow users to build a custom natural language understanding model for predicting intents and entities in conversational utterances.
 
 CLU offers the following advantages over `LUIS`:
 

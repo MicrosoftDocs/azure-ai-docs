@@ -1,7 +1,7 @@
-﻿---
-title: Azure AI Foundry Tools REST API reference
-titleSuffix: Azure AI Foundry Tools
-description: Provides an overview of available Azure AI Foundry Tools REST APIs with links to reference documentation.
+---
+title: Foundry Tools REST API reference
+titleSuffix: Foundry Tools
+description: Provides an overview of available Foundry Tools REST APIs with links to reference documentation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-services
@@ -10,11 +10,11 @@ ms.date: 10/02/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Foundry Tools REST API reference
+# Foundry Tools REST API reference
 
-This article lists the REST API reference documentation for Azure AI Foundry Tools.
+This article lists the REST API reference documentation for Foundry Tools.
 
-## Available Azure AI Foundry Tools
+## Available Foundry Tools
 
 Select a service from the table to learn how it can help you meet your development goals.
 
@@ -23,7 +23,7 @@ Select a service from the table to learn how it can help you meet your developme
 | Service documentation | Description | Reference documentation |
 | :--- | :--- | :--- |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps | [Azure AI Search API](/rest/api/searchservice) |
-| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks | **Azure OpenAI APIs**<br>&bullet; [resource creation & deployment](/rest/api/cognitiveservices/accountmanagement/deployments/create-or-update) </br>&bullet; [completions & embeddings](../../ai-foundry/openai/reference.md)</br>&bullet; [fine-tuning](/rest/api/azureopenai/fine-tuning) |
+| ![Azure OpenAI in Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks | **Azure OpenAI APIs**<br>&bullet; [resource creation & deployment](/rest/api/cognitiveservices/accountmanagement/deployments/create-or-update) </br>&bullet; [completions & embeddings](../../ai-foundry/openai/reference.md)</br>&bullet; [fine-tuning](/rest/api/azureopenai/fine-tuning) |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](../content-safety/index.yml) | An AI service that detects unwanted contents | [Content Safety API](/rest/api/contentsafety/operation-groups?view=rest-contentsafety-2024-09-01&preserve-view=true) |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](../custom-vision-service/index.yml) | Customize image recognition for your business applications. |**Custom Vision APIs**<br>&bullet; [prediction](https://westus2.dev.cognitive.microsoft.com/docs/services/Custom_Vision_Prediction_3.1/operations/5eb37d24548b571998fde5f3)<br>&bullet; [training](https://westus2.dev.cognitive.microsoft.com/docs/services/Custom_Vision_Training_3.3/operations/5eb0bcc6548b571998fddebd)|
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](../document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions | [Document Intelligence API](/rest/api/aiservices/document-models?view=rest-aiservices-2023-07-31&preserve-view=true) |

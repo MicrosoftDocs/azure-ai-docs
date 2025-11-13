@@ -36,7 +36,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 In this guide, learn how to add Document Intelligence models to your applications and workflows. Use a programming language SDK of your choice or the REST API.
 
-Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry Tools service that uses machine learning to extract key text and structure elements from documents. We recommend that you use the free service while you learn the technology. Remember that the number of free pages is limited to 500 per month.
+Azure Document Intelligence in Foundry Tools is a cloud-based Foundry Tools service that uses machine learning to extract key text and structure elements from documents. We recommend that you use the free service while you learn the technology. Remember that the number of free pages is limited to 500 per month.
 
 Choose from the following Document Intelligence models and analyze and extract data and values from forms and documents:
 

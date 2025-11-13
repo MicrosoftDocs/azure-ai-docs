@@ -14,7 +14,7 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 ## Prerequisites
 
 - An Azure subscription.
-- An AI Foundry project. If you need to create a project, see [Create an Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
+- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
 ## Try real-time speech to text
 

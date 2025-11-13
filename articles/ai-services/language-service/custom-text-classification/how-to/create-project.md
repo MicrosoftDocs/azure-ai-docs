@@ -23,7 +23,7 @@ Before you start using custom text classification, you need:
 
 ## Create a Language resource 
 
-Before you start using custom text classification, you need an Azure AI Language resource. We recommended that you create your Language resource and connect a storage account to it in the Azure portal. Creating a resource in the Azure portal lets you create an Azure storage account at the same time, with all of the required permissions preconfigured. You can also read further in the article to learn how to use a preexisting resource, and configure it to work with custom text classification.
+Before you start using custom text classification, you need an Azure Language in Foundry Tools resource. We recommended that you create your Language resource and connect a storage account to it in the Azure portal. Creating a resource in the Azure portal lets you create an Azure storage account at the same time, with all of the required permissions preconfigured. You can also read further in the article to learn how to use a preexisting resource, and configure it to work with custom text classification.
 
 You also need an Azure storage account where to upload your `.txt` documents that are used to train a model to classify text.
 

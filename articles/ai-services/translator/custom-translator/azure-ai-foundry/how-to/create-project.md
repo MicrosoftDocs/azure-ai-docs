@@ -1,5 +1,5 @@
 ---
-title: Create an Foundry Tools fine-tuning project - custom translation
+title: Create a Foundry Tools fine-tuning project - custom translation
 titleSuffix: Foundry Tools
 description: How to create and manage a fine-tuning project
 author: laujan
@@ -13,9 +13,9 @@ ms.topic: how-to
 
 # Create a Foundry Tools fine-tuning project
 
-Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint. In the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Foundry Tools models, for example, custom translation, Custom speech, etc. For custom translation, you can fine-tune a model for a language pair, *say* English to French.
+Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint. In the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Foundry Tools models, for example, custom translation, Custom speech, etc. For custom translation, you can fine-tune a model for a language pair, *say* English to French.
 
-1. Go to your project in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](../../azure-ai-foundry/how-to/create-project.md).
+1. Go to your project in the [Foundry](https://ai.azure.com/?cid=learnDocs) portal. If you need to create a project, *see* [Create a Foundry project](../../azure-ai-foundry/how-to/create-project.md).
 
 1. Select **Fine-tuning** from the left pane.
 

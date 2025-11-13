@@ -1,7 +1,7 @@
 ---
-title: Azure AI Foundry Tools SDK reference
-titleSuffix: Azure AI Foundry Tools
-description: Provides an overview of available Azure AI Foundry Tools client libraries and packages with links to reference documentation.
+title: Foundry Tools SDK reference
+titleSuffix: Foundry Tools
+description: Provides an overview of available Foundry Tools client libraries and packages with links to reference documentation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-services
@@ -12,11 +12,11 @@ ms.author: lajanuar
 zone_pivot_groups: programming-languages-reference-ai-services
 ---
 
-# Azure AI Foundry Tools SDK reference
+# Foundry Tools SDK reference
 
-This article provides an overview of available Azure AI Foundry Tools client libraries and packages with links to service and feature level reference documentation. 
+This article provides an overview of available Foundry Tools client libraries and packages with links to service and feature level reference documentation. 
 
-## Available Azure AI Foundry Tools
+## Available Foundry Tools
 
 Select a service from the table and learn how Azure AI can help you meet your development goals.
 

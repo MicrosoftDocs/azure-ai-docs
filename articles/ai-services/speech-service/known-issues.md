@@ -63,4 +63,4 @@ Fixed known issues are organized in this section in descending order by fixed da
 
 * [Azure Service Health Portal](/azure/service-health/service-health-portal-update)
 * [Azure Status overview](/azure/service-health/azure-status-overview)
-* [What's new in Azure AI Translator?](./releasenotes.md)
+* [What's new in Azure Translator in Foundry Tools?](./releasenotes.md)

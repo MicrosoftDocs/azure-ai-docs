@@ -8,15 +8,15 @@ ms.author: lajanuar
 ---
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
+* [Create a Project in Foundry in the Microsoft Foundry portal](../../../../../ai-foundry/how-to/create-projects.md)
 
-## Navigate to the Azure AI Foundry Playground
+## Navigate to the Foundry Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use NER in the Azure AI Foundry Playground
+## Use NER in the Foundry Playground
 
 The **Language Playground** consists of four sections:
 
@@ -52,4 +52,4 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="A screenshot of an example of extract named entities in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="A screenshot of an example of extract named entities in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::

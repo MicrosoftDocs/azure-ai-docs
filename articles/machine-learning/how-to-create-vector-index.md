@@ -38,7 +38,7 @@ When you create a vector index, Azure Machine Learning chunks the data, creates 
 
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Access to Azure OpenAI in Azure AI Foundry Models.
+* Access to Azure OpenAI in Microsoft Foundry Models.
 
 * Prompt flows enabled in your Azure Machine Learning workspace. You can enable prompt flows by turning on **Build AI solutions with Prompt flow** on the **Manage preview features** panel.
 

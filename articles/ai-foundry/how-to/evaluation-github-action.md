@@ -47,11 +47,11 @@ The input of ai-agent-evals includes:
 
 # [Foundry project](#tab/foundry-project)
 
-- `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-ai-project-endpoint`: The endpoint of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
 # [Hub-based project](#tab/hub-project)
 
-- `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-aiproject-connection-string`: The connection string of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
 ---
 - `deployment-name`: the deployed model name for evaluation judgement.
