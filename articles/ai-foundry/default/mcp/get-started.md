@@ -49,12 +49,12 @@ Install Foundry MCP Server in your user profile so it's available to all workspa
 1. Search for **MCP:Add Server**.
 1. Select the **HTTP (Http or Server-Sent Events)** option.
 1. Enter `https://mcp.ai.azure.com` as the URL.
-1. Enter a friendly name such as *azure-ai-foundry-mcp-preview*, then press <kbd>Enter</kbd>. Visual Studio Code adds the following server entry under your user profile:
+1. Enter a friendly name such as *foundry-mcp-remote*, then press <kbd>Enter</kbd>. Visual Studio Code adds the following server entry under your user profile:
 
     ```json
     { 
       "servers": { 
-        "azure-ai-foundry-mcp-preview": { 
+        "foundry-mcp-remote": { 
           "type": "http", 
           "url": "https://mcp.ai.azure.com" 
         } 

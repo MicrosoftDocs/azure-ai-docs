@@ -252,6 +252,45 @@ The regions in these tables support most of the core features of the Speech serv
 
 Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
 
+# [Speech MCP server](#tab/mcp)
+
+
+| **Region** | **Speech MCP server agent tool** | 
+|-----|-----|
+| australiaeast | ✅ |
+| brazilsouth | ✅ |
+| canadacentral | ✅ |
+| canadaeast | ✅ |
+| centralindia | ✅ |
+| centralus  | ✅ |
+| eastasia | ✅ |
+| eastus | ✅ |
+| eastus2  | ✅ |
+| francecentral | ✅ |
+| germanywestcentral | ✅ |
+| italynorth | ✅ |
+| japaneast  | ✅ |
+| japanwest  | ✅ |
+| koreacentral   | ✅ |
+| northcentralus   | ✅ |
+| northeurope | ✅ |
+| norwayeast | ✅ |
+| qatarcentral | ✅ |
+| southafricanorth | ✅ |
+| southcentralus | ✅ |
+| southeastasia | ✅ |
+| swedencentral | ✅ |
+| switzerlandnorth | ✅ |
+| switzerlandwest  | ✅ |
+| uaenorth | ✅ |
+| uksouth  | ✅ |
+| ukwest | ✅ |
+| westcentralus | ✅ |
+| westeurope | ✅ |
+| westus | ✅ |
+| westus2  | ✅ |
+| westus3  | ✅ |
+
 ---
 
 ## Related content

@@ -39,7 +39,6 @@ When annotations are enabled as shown in the code snippets below, the following 
 |protected material code|detected (true or false), </br>filtered (true or false), </br>Example citation of public GitHub repository where code snippet was found, </br>The license of the repository|
 |Personally identifiable information (PII)|detected (true or false)</br>filtered (true or false) </br>redacted (true or false) |
 |Groundedness | detected (true or false)</br>filtered (true or false, with details) </br>(Annotate mode only) details:(`completion_end_offset`, `completion_start_offset`) |
-| Task adherence | Detected (true or false) </br> Filtered (true or false) |
 
 When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
 

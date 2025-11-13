@@ -283,6 +283,9 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/overview/azure/ai-voicelive-readme
+          - name: Java (Preview)
+            displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
+            href: /java/api/overview/azure/ai-voicelive-readme?view=azure-java-preview
 
 - name: Keyword recognition
   items:

@@ -323,7 +323,7 @@ After you register your custom evaluator, you can view it in your [Evaluator lib
 
 ## Create an evaluation
 
-This section explains how to create an evaluation, which is a container for organizing multiple evaluation runs. The example payload shows how to define a custom data schema and set up diverse testing criteria, like text similarity checks, string comparisons, model-based scoring, and built-in evaluators. Setting up an evaluation group ensures consistency and scalability for managing complex evaluation workflows.
+This section explains how to create an evaluation, which is a container for organizing multiple evaluation runs. The example payload shows how to define a custom data schema and set up diverse testing criteria, like text similarity checks, string comparisons, model-based scoring, and built-in evaluators. Setting up an evaluation ensures consistency and scalability for managing complex evaluation workflows.
 
 # [Python](#tab/python)
 
