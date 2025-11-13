@@ -7,7 +7,7 @@ ms.subservice: inferencing
 author: dem108
 ms.author: sehan
 ms.reviewer: mopeakande
-ms.date: 10/31/2025
+ms.date: 11/13/2025
 reviewer: msakande
 ms.topic: concept-article
 ms.custom: how-to, devplatv2, cliv2, sdkv2
@@ -20,12 +20,12 @@ ms.custom: how-to, devplatv2, cliv2, sdkv2
 In this article, you learn about the different ways to specify models that you want to use in online deployments. When deploying a model to an Azure Machine Learning online endpoint, you need to specify the model in one of two ways:
 
 - Provide the path to the model's location on your local computer
-- Provide a reference to a versioned model that is already registered in your workspace.
+- Provide a reference to a versioned model that you already registered in your workspace
 
-How you specify your model for an online endpoint's deployment depends on where the model is stored.
-In Azure Machine Learning, after you create your deployment, the environment variable `AZUREML_MODEL_DIR` points to the storage location within Azure where your model is stored.
+How you specify your model for an online endpoint's deployment depends on where you store the model.
+In Azure Machine Learning, after you create your deployment, the environment variable `AZUREML_MODEL_DIR` points to the storage location within Azure where you store your model.
 
-## Deployment for models that are stored locally
+## Deployment for models that you store locally
 
 This section uses this example of a local folder structure to show how you can specify models for use in an online deployment:
 
@@ -121,7 +121,7 @@ instance_type: Standard_DS3_v2
 instance_count: 1 
 ```
 
-For this example, consider that `local-multimodel:3` contains the following model artifacts, which can be viewed from the **Models** tab in the Azure Machine Learning studio:
+For this example, consider that `local-multimodel:3` contains the following model artifacts, which you can view from the **Models** tab in the Azure Machine Learning studio:
 
 :::image type="content" source="media/concept-online-deployment-model-specification/multi-models-3.png" alt-text="A screenshot of a folder structure showing the model artifacts of  a registered model." lightbox="media/concept-online-deployment-model-specification/multi-models-3.png":::
 
