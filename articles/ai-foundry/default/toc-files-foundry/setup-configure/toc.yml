@@ -13,9 +13,6 @@ items:
   - name: Recover or purge deleted resources
     href: ../../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 
-- name: Manage Grounding with Bing
-  href: ../../agents/how-to/manage-grounding-with-bing.md
-
 - name: Create and manage projects
   href: ../../../how-to/create-projects.md
 
@@ -27,6 +24,8 @@ items:
     href: ../../../how-to/bring-your-own-azure-storage-foundry.md
   - name: Connect to your own storage for Speech/Language
     href: ../../../how-to/bring-your-own-azure-storage-speech-language-services.md 
+  - name: Manage Grounding with Bing
+    href: ../../agents/how-to/manage-grounding-with-bing.md
 
 - name: Quota and service limits
   items: 
