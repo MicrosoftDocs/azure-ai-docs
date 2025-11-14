@@ -7,7 +7,7 @@ ms.custom:
   - build-2025
   - code01
 ms.topic: tutorial
-ms.date: 10/25/2025
+ms.date: 11/05/2025
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: nitinme
