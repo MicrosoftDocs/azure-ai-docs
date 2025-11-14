@@ -175,8 +175,6 @@ The following table summarizes the commands for managing the local cache where m
 
 ## Execution providers
 
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
-
 Execution providers are hardware-specific acceleration libraries that run models as efficiently as possible on device.
 
 ### Built-in execution providers
