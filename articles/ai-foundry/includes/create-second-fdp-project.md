@@ -37,7 +37,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
 | Indexes | ✅ | ✅ |
 | Foundry SDK and API | ✅ | ✅ |
 | Content understanding | ✅ | ✅ |
-| OpenAI SDK and API | ✅ | - |
+| OpenAI SDK and API | ✅ | Responses, Files, Conversations |
 | OpenAI Batch, Fine-tuning, Stored completions | ✅ | - |
 | Language fine-tuning | ✅ | ✅ |
 | Speech fine-tuning | ✅ | - |
