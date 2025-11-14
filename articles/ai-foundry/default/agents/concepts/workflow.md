@@ -142,15 +142,15 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 :::image type="content" source="../../media/workflows/ask-a-question-node.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/ask-a-question-node.png":::
 
-:::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instatiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
-
 1. Add a **Send message** action. Then in the side settings panel enter `{Upper(Local.Var01)}`. Select **Done**.
 
 :::image type="content" source="../../media/workflows/variable-message.png" alt-text="A screenshot showing the variable instatiation for the send a message action." lightbox="../../media/workflows/variable-message.png":::
 
 1. Select **Preview**
 
-1. Send a message to the agent in the side panel to invoke the workflow. 
+1. Send a message to the agent in the side panel to invoke the workflow.
+
+:::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instatiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
 
 
 
