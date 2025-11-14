@@ -26,7 +26,7 @@ Levels of reasoning effort include:
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
 
 + Familiarity with [agentic retrieval concepts and workflow](agentic-retrieval-overview.md).
 

@@ -25,7 +25,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). If you're using a [managed identity](../../search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). If you're using a [managed identity](../../search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
 + Azure OpenAI with a [supported LLM](#supported-models) deployment.
 
@@ -90,9 +90,9 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 ## Check for existing knowledge bases
 
-Knowing about existing knowledge bases is helpful for either reuse or naming new objects. Any 2025-08-01-preview knowledge agents are returned in the knowledge bases collection.
+A knowledge base is a top-level, reusable object. Knowing about existing knowledge bases is helpful for either reuse or naming new objects. Any 2025-08-01-preview knowledge agents are returned in the knowledge bases collection.
 
-Use [Knowledge Bases - List (REST API)](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to list knowledge sources by name and type.
+Use [Knowledge Bases - List (REST API)](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to list knowledge bases by name and type.
 
 ```http
 # List knowledge bases
@@ -198,7 +198,7 @@ You can pass the following properties to create a knowledge base.
 
 Call the `retrieve` action on the knowledge base to verify the LLM connection and return results. For more information about the `retrieve` request and response schema, see [Retrieve data using a knowledge base in Azure AI Search](../../agentic-retrieval-how-to-retrieve.md).
 
-Use [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+Use [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request. Replace "Where does the ocean look green?" with a query string that's valid for your knowledge sources.
 
 ```http
 # Send grounding request
@@ -236,7 +236,7 @@ api-key: {{search-api-key}}
 }
 ```
 
-**Key notes:**
+**Key points:**
 
 + [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just the `user` role that provides the query.
 

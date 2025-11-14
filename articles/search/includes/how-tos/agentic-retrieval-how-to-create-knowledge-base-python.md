@@ -25,7 +25,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). If you're using a [managed identity](../../search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). If you're using a [managed identity](../../search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
 + Azure OpenAI with a [supported LLM](#supported-models) deployment.
 
@@ -148,6 +148,8 @@ A knowledge base drives the agentic retrieval pipeline. In application code, it'
 
 A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source establish defaults that inform query execution and the response.
 
+Run the following code to create a knowledge base.
+
 ```python
 # Create a knowledge base
 from azure.core.credentials import AzureKeyCredential
@@ -201,9 +203,13 @@ You can pass the following properties to create a knowledge base.
 
 Call the `retrieve` action on the knowledge base to verify the LLM connection and return results. For more information about the `retrieve` request and response schema, see [Retrieve data using a knowledge base in Azure AI Search](../../agentic-retrieval-how-to-retrieve.md).
 
-Start by creating instructions that define the behavior of the knowledge base. `messages` is required, but you can run this example using just the "user" role that provides the query.
+Replace "Where does the ocean look green?" with a query string that's valid for your knowledge sources.
 
 ```python
+import json
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient; from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams, KnowledgeRetrievalLowReasoningEffort
+
 # Define messages
 messages = [
     {
@@ -215,15 +221,8 @@ messages = [
         "content": "Where does the ocean look green?"
     }
 ]
-```
 
-You can then send a query. Replace "Where does the ocean look green?" with a query string that's valid for your knowledge sources. `knowledge_source_params` specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
-
-```python
 # Send grounding request
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient; from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams, KnowledgeRetrievalLowReasoningEffort
-
 kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
                                          
 query_1 = """
@@ -244,10 +243,10 @@ request = KnowledgeBaseRetrievalRequest(
     ],
     knowledge_source_params = [
         SearchIndexKnowledgeSourceParams(
-            knowledge_source_name = "knowledge_source_name",
+            knowledge_source_name = "my-blob-ks",
             include_references = True,
             include_reference_source_data = True,
-            always_query_source = False
+            always_query_source = True
         )
     ],
     include_activity = True,
@@ -255,7 +254,40 @@ request = KnowledgeBaseRetrievalRequest(
 )
 
 result = kb_client.retrieve(request)
-print(f"Retrieved content from '{knowledge_base.name}' successfully.")
+
+# Display the results
+def simple_display(result):
+    if isinstance(result, (dict, list)):
+        print(json.dumps(result, indent = 2))
+    elif hasattr(result, "http_response"):
+        print(result.http_response.text())
+    elif hasattr(result, "as_dict"):
+        print(json.dumps(result.as_dict(), indent = 2))
+    else:
+        print(result)
+
+simple_display(result)
+```
+
+**Key points:**
+
++ [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just the `user` role that provides the query.
+
++ [`knowledge_source_params`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
+
+The response to the sample query might look like the following example:
+
+```http
+  "response": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "The ocean appears green off the coast of Antarctica due to phytoplankton flourishing in the water, particularly in Granite Harbor near Antarctica’s Ross Sea, where they can grow in large quantities during spring, summer, and even autumn under the right conditions [ref_id:0]. Additionally, off the coast of Namibia, the ocean can also look green due to blooms of phytoplankton and yellow-green patches of sulfur precipitating from bacteria in oxygen-depleted waters [ref_id:1]. In the Strait of Georgia, Canada, the waters turned bright green due to a massive bloom of coccolithophores, a type of phytoplankton [ref_id:5]. Furthermore, a milky green and blue bloom was observed off the coast of Patagonia, Argentina, where nutrient-rich waters from different currents converge [ref_id:6]. Lastly, a large bloom of cyanobacteria was captured in the Baltic Sea, which can also give the water a green appearance [ref_id:9]."
+        }
+      ]
+    }
+  ]
 ```
 
 ## Delete a knowledge base

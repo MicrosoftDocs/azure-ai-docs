@@ -9,7 +9,7 @@ ms.date: 11/13/2025
 
 A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
 
-Run the following code to list existing knowledge sources by name and type.
+Run the following code to list knowledge sources by name and type.
 
 ```python
 # List knowledge sources by name and type

@@ -20,7 +20,7 @@ Unlike a [search index knowledge source](../../agentic-knowledge-source-how-to-s
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 + An [Azure Blob Storage](/azure/storage/common/storage-account-create) or [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) account.
 
@@ -97,7 +97,6 @@ The following JSON is an example response for a blob knowledge source.
 
 Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a blob knowledge source.
 
-```http
 ```http
 PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2025-11-01-preview
 api-key: {{api-key}}

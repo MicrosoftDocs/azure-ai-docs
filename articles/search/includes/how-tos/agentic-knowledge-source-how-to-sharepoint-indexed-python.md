@@ -20,7 +20,7 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 + Completion of the [SharePoint indexer prerequisites](../../search-how-to-index-sharepoint-online.md#prerequisites).
 
@@ -96,11 +96,11 @@ index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyC
 
 knowledge_source = IndexedSharePointKnowledgeSource(
     name = "my-indexed-sharepoint-ks",
-    description= "A sample indexed SharePoint knowledge source.",
+    description = "A sample indexed SharePoint knowledge source.",
     encryption_key = None,
     indexed_share_point_parameters = IndexedSharePointKnowledgeSourceParameters(
         connection_string = "connection_string",
-        container_name = "container_name",
+        container_name = "defaultSiteLibrary",
         query = None,
         ingestion_parameters = KnowledgeSourceIngestionParameters(
             identity = None,

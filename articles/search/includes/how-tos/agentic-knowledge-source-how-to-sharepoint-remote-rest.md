@@ -23,7 +23,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). 
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). 
 
 + SharePoint in a Microsoft 365 tenant that's under the same Microsoft Entra ID tenant as Azure.
 
@@ -118,7 +118,7 @@ You can pass the following properties to create a remote SharePoint knowledge so
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](../../search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
 | `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No | No |
-| `filterExpression` | An expression written in the SharePoint [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), which is used to specify sites and paths to content. | String | Yes |No |
+| `filterExpression` | An expression written in the SharePoint [KQL](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), which is used to specify sites and paths to content. | String | Yes |No |
 | `resourceMetadata` | A comma-delimited list of standard metadata fields: author, file name, creation date, content type, and file type. | Array | Yes | No |
 | `containerTypeId` | Container ID for the SharePoint Embedded connection. When unspecified, SharePoint Online is used. | String | Yes | No |
 

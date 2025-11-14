@@ -13,7 +13,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). 
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). 
 
 + A search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](../../agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge base.
 
@@ -86,29 +86,11 @@ You can pass the following properties to create a search index knowledge source.
 | `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryption_key` | A [customer-managed key](../../search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `search_index_parameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, and `searchFields`. | Object | Yes | Yes |
+| `search_index_parameters` | Parameters specific to search index knowledge sources: `search_index_name`, `semantic_configuration_name`, `source_data_fields`, and `search_fields`. | Object | Yes | Yes |
 | `search_index_name` | The name of the existing search index. | String | Yes | Yes |
 | `semantic_configuration_name` | Overrides the default semantic configuration for the search index. | String | Yes | No |
 | `source_data_fields` | The index fields returned when you specify `include_reference_source_data` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
 | `search_fields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
-
-### Source-specific properties
-
-You can pass the following properties to create a search index knowledge source.
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
-| `kind` | The kind of knowledge source, which is `searchIndex` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](../../search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `searchIndexParameters` | Parameters specific to search index knowledge sources: `searchIndexName`, `semanticConfigurationName`, `sourceDataFields`, and `searchFields`. | Object | Yes | Yes |
-| `searchIndexName` | The name of the existing search index. | String | Yes | Yes |
-| `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
-| `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
-| `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
-
----
 
 ## Assign to a knowledge base
 

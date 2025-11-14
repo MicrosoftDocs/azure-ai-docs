@@ -13,7 +13,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). 
++ Azure AI Search in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). 
 
 + A search index containing plain text or vector content with a semantic configuration. Review the [index criteria for agentic retrieval](../../agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge base.
 
@@ -46,7 +46,7 @@ The following JSON is an example response for a search index knowledge source. N
 
 ## Create a knowledge source
 
-Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a OneLake knowledge source.
+Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a search index knowledge source.
 
 ```http
 POST {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview
