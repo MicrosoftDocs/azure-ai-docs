@@ -5,12 +5,12 @@ description: Learn about different ways to scale forecasting model training
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: erwright
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv2
-ms.date: 10/31/2025
+ms.date: 11/14/2025
 show_latex: true
 ---
 
