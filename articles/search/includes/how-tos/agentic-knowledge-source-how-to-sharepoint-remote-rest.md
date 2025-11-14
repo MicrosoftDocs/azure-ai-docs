@@ -82,7 +82,7 @@ The following JSON is an example response for a remote SharePoint knowledge sour
 
 Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a remote SharePoint knowledge source.
 
-[API keys](search-security-api-keys.md) are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint in Microsoft 365 on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](../../search-get-started-rbac.md).
+[API keys](../../search-security-api-keys.md) are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint in Microsoft 365 on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](../../search-get-started-rbac.md).
 
 > [!NOTE]
 > You can also use your personal access token to access Azure AI Search and Azure OpenAI if you [set up role assignments on each resource](../../search-security-rbac.md). Using API keys allows you to omit this step in this example.
