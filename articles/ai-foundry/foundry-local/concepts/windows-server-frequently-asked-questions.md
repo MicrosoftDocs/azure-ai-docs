@@ -46,6 +46,10 @@ Foundry Local on Windows Server 2025 lets you run selected Azure AI Foundry mode
 
     The [Foundry Local SDK](../reference/reference-sdk.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
 
+## Sample code
+
+The [Medical report summary tool](https://github.com/microsoft/foundry-local-on-windowsserver-samples) demonstrates a medical report summarizer and translator using Foundry Local running in a remote Windows Server.
+
 ## Related content
 
 - [Get started with Foundry Local](../get-started.md)
