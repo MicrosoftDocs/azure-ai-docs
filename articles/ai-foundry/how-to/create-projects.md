@@ -325,7 +325,7 @@ client.accounts.begin_delete(resource_group_name, foundry_resource_name).wait()
 Run the following command:
 
 ```azurecli
-az cognitiveservices account project delete
+az cognitiveservices account project delete \
 --name {foundry_resource_name} \
 --project-name {my_project_name}
 ```
