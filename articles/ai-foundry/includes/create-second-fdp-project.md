@@ -45,7 +45,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
 
 * To add a project to a Foundry resource:
     
-    # [Microsof Foundry portal](#tab/foundry)
+    # [Foundry portal](#tab/foundry)
     
     ::: moniker range="foundry-classic"
     
