@@ -38,8 +38,8 @@ Azure Content Understanding in Foundry Tools is now Generally Available with API
 
 RAG analyzers are optimized for retrieval-augmented generation scenarios, extracting content with layout as markdown and performing semantic analysis to enhance retrieval quality for downstream applications.
 
-- **Documents**: `prebuilt-documentAnalyzer` extracts paragraphs, tables, and figure descriptions from documents, enables textual descriptions of images, charts, and diagrams, captures hand-written annotations, generates content summaries, and supports a wide range of file formats including PDF, images, Office documents, and text files.
-- **Multimodal support**: Extends to video, image, and audio with `prebuilt-videoAnalyzer` for transcript extraction and segment-based summaries with automatic scene detection, `prebuilt-imageAnalyzer` for visual content descriptions and insights, and `prebuilt-audioAnalyzer` for conversation transcription with speaker diarization and multilingual support.
+- **Documents**: `prebuilt-documentSearch` extracts paragraphs, tables, and figure descriptions from documents, enables textual descriptions of images, charts, and diagrams, captures hand-written annotations, generates content summaries, and supports a wide range of file formats including PDF, images, Office documents, and text files.
+- **Multimodal support**: Extends to video, image, and audio with `prebuilt-videoSearch` for transcript extraction and segment-based summaries with automatic scene detection, `prebuilt-imageSearch` for visual content descriptions and insights, and `prebuilt-audioSearch` for conversation transcription with speaker diarization and multilingual support.
 
 Review the full analyzer catalog in [Prebuilt analyzers in Content Understanding](concepts/prebuilt-analyzers.md).
 

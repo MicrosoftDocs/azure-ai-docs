@@ -15,9 +15,7 @@ recommendations: false
 
 ---
 
-# Quickstart: Create a voice live real-time voice agent with Microsoft Foundry Agent Service (Preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Quickstart: Create a voice live real-time voice agent with Microsoft Foundry Agent Service
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]

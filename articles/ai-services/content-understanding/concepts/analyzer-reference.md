@@ -27,7 +27,7 @@ Analyzers are the core building blocks of Content Understanding. They combine co
 Content Understanding provides several types of analyzers:
 
 - **Base analyzers**: Foundational analyzers that provide core processing capabilities for each content type (`prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, `prebuilt-image`). These analyzers are typically used as building blocks for custom analyzers.
-- **RAG analyzers**: Optimized for retrieval-augmented generation scenarios, extracting content with semantic understanding for search and AI applications (ex. `prebuilt-documentAnalyzer`, `prebuilt-videoAnalyzer`).
+- **RAG analyzers**: Optimized for retrieval-augmented generation scenarios, extracting content with semantic understanding for search and AI applications (ex. `prebuilt-documentSearch`, `prebuilt-videoSearch`).
 - **Domain-specific analyzers**: Preconfigured for specific document types and industries, like invoices, receipts, ID documents, and contracts (ex. `prebuilt-invoice`, `prebuilt-receipt`, `prebuilt-idDocument`).
 - **Custom analyzers**: Analyzers you create by extending base analyzers with custom field schemas and configurations to meet your specific requirements.
 
