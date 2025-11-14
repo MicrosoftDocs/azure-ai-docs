@@ -316,4 +316,4 @@ print(f"Index '{index_name}' deleted successfully")
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)

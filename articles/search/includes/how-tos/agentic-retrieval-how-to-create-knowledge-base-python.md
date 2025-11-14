@@ -1,21 +1,22 @@
 ---
 manager: nitinme
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/13/2025
+ms.date: 11/14/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In Azure AI Search, a *knowledge base* is a top-level resource in agentic retrieval workloads. It specifies the knowledge sources used for retrieval and, if applicable, represents a connection to a large language model (LLM). A knowledge base is used by the [retrieve method](../../agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
+In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](../../agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](../../agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
 
 A knowledge base specifies:
 
 + One or more knowledge sources that point to searchable content.
-+ An LLM that provides reasoning capabilities for query planning and answer formulation.
-+ A default retrieval reasoning effort to control the cost, latency, and quality of the final response.
++ An optional LLM that provides reasoning capabilities for query planning and answer formulation.
++ A retrieval reasoning effort that determines whether an LLM is invoked and manages cost, latency, and quality.
++ Custom properties that control routing, source selection, output format, and object encryption.
 
 After you create a knowledge base, you can update its properties at any time. If the knowledge base is in use, updates take effect on the next retrieval.
 
@@ -24,17 +25,15 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ## Prerequisites
 
-+ Familiarity with [agentic retrieval concepts](../../agentic-retrieval-overview.md).
-
 + Azure AI Search, in any [region that provides agentic retrieval](../../search-region-support.md). You must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md). If you're using a [managed identity](../../search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
-+ Azure OpenAI with a [supported LLM](#supported-models).
++ Azure OpenAI with a [supported LLM](#supported-models) deployment.
 
 + One or more [knowledge sources](../../agentic-knowledge-source-overview.md#supported-knowledge-sources) on your search service.
 
 + Permissions on your search service. **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries.
 
-+ The latest preview package of the [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ The latest preview version of the [`azure-search-documents` client library](https://pypi.org/project/azure-search-documents/11.7.0b2/) for Python.
 
 > [!NOTE]
 > Although you can use the Azure portal to create knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](../../agentic-retrieval-how-to-migrate.md).
@@ -54,57 +53,44 @@ Use one of the following LLMs from Azure OpenAI or an equivalent open-source mod
 
 ## Configure access
 
-Azure AI Search needs access to the LLM. We recommend Microsoft Entra ID for authentication and role-based access for authorization, but you can also use keys.
+Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner or User Access Administrator** to assign roles. If roles aren't feasible, use key-based authentication instead.
 
 ### [**Use roles**](#tab/rbac)
 
 1. [Configure Azure AI Search to use a managed identity](../../search-how-to-managed-identities.md).
 
-1. On your model provider, such as Foundry Models, ensure you have **Owner** or **User Access Administrator** permissions. This is required to assign roles.
+1. On your model provider, such as Foundry Models, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
 
-1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
+1. For local testing, follow the steps in [Quickstart: Connect without keys](../../search-get-started-rbac.md) to sign in to a specific subscription and tenant. Use `DefaultAzureCredential` instead of `AzureKeyCredential` in each request, which should look similar to the following example:
 
-1. For local testing, follow the steps in [Quickstart: Connect without keys](../../search-get-started-rbac.md) to get a personal access token for a specific subscription and tenant. Paste your token into an `@access-token` variable in requests. A request that connects using your personal identity should look similar to the following example:
-
-    ```http
-    @search-url = <YOUR SEARCH SERVICE URL>
-    @access-token = <YOUR PERSONAL ID>
-    
-    # List indexes
-    GET https://{{search-url}}/indexes?api-version=2025-11-01-preview
-    Authorization: Bearer {{access-token}}
+    ```python
+    # Authenticate using roles
+    from azure.identity import DefaultAzureCredential
+    index_client = SearchIndexClient(endpoint = "search_url", credential = DefaultAzureCredential())
     ```
-
+    
 ### [**Use keys**](#tab/keys)
 
 1. [Copy an Azure AI Search admin API key](../../search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
-1. Paste your key into an `@api-key` variable in requests.
+1. Use `AzureKeyCredential` to specify the API key in each request, which should look similar to the following example:
 
-1. Specify an API key on each request. A request that connects using an API key should look similar to the following example:
-
-   ```http
-    @search-url = <YOUR SEARCH SERVICE URL>
-    @search-api-key = <YOUR SEARCH SERVICE ADMIN API KEY>
-
-   # List indexes
-   GET {{search-url}}/indexes?api-version=2025-11-01-preview
-   Content-Type: application/json
-   @api-key: {{search-api-key}}
-   ```
-
+    ```python
+    # Authenticate using keys
+    from azure.core.credentials import AzureKeyCredential
+    index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+    ```
+    
 ---
 
 > [!IMPORTANT]
-> If you use role-based authentication, be sure to remove all references to the API key in your requests. In a request that specifies both approaches, the API key is used instead of roles.
+> Code snippets in this article use API keys. If you use role-based authentication, update each request accordingly. In a request that specifies both approaches, the API key takes precedence.
 
 ## Check for existing knowledge bases
 
-All knowledge bases must be uniquely named within the knowledge bases collection. Knowing about existing knowledge bases is helpful for either reuse or naming new objects.
+Knowing about existing knowledge bases is helpful for either reuse or naming new objects. Any 2025-08-01-preview knowledge agents are returned in the knowledge bases collection.
 
-Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases collection.
-
-List knowledge bases by name.
+Run the following code to list existing knowledge bases by name.
 
 ```python
 # List knowledge bases by name
@@ -138,7 +124,6 @@ The following JSON is an example response for a knowledge base.
 
 ```json
 {
-
   "name": "my-kb",
   "description": "A sample knowledge base.",
   "retrievalInstructions": null,
@@ -159,13 +144,9 @@ The following JSON is an example response for a knowledge base.
 
 ## Create a knowledge base
 
-A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots.
+A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chatbots.
 
-Its composition consists of connections between *knowledge sources* (searchable content) and LLMs that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
-
-To create a knowledge base, use the 2025-11-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
-
-Recall that you must have an existing [knowledge source](../../agentic-knowledge-source-overview.md) to assign to the knowledge base.
+A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source establish defaults that inform query execution and the response.
 
 ```python
 # Create a knowledge base
@@ -216,34 +197,32 @@ You can pass the following properties to create a knowledge base.
 | `encryption_key` | A [customer-managed key](../../search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
 | `retrieval_reasoning_effort` | Determines the level of LLM-related query processing. Valid values are `minimal`, `low` (default), and `medium`. For more information, see [Set the retrieval reasoning effort](../../agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). | Object | No |
 
-## Query the knowledge base
+## Query a knowledge base
 
-Call the **retrieve** action on the knowledge base object to confirm the model connection and return a response. Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge base in Azure AI Search](../../agentic-retrieval-how-to-retrieve.md).
+Call the `retrieve` action on the knowledge base to verify the LLM connection and return results. For more information about the `retrieve` request and response schema, see [Retrieve data using a knowledge base in Azure AI Search](../../agentic-retrieval-how-to-retrieve.md).
 
-Replace "where does the ocean look green?" with a query string that's valid for your search index.
-
-Start with instructions.
+Start by creating instructions that define the behavior of the knowledge base. `messages` is required, but you can run this example using just the "user" role that provides the query.
 
 ```python
-instructions = """
-A Q&A agent that can answer questions about the Earth at night.
-If you don't have the answer, respond with "I don't know".
-"""
-
+# Define messages
 messages = [
     {
-        "role": "system",
-        "content": instructions
+        "role": "assistant",
+        "content": "Use the earth at night index to answer the question. If you can't find relevant content, say you don't know."
+    },
+    {
+        "role": "user",
+        "content": "Where does the ocean look green?"
     }
 ]
 ```
 
-Then send the query.
+You can then send a query. Replace "Where does the ocean look green?" with a query string that's valid for your knowledge sources. `knowledge_source_params` specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
 
 ```python
 # Send grounding request
 from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient; from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient; from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams, KnowledgeRetrievalLowReasoningEffort
 
 kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
                                          
@@ -268,7 +247,7 @@ request = KnowledgeBaseRetrievalRequest(
             knowledge_source_name = "knowledge_source_name",
             include_references = True,
             include_reference_source_data = True,
-            always_query_source = True
+            always_query_source = False
         )
     ],
     include_activity = True,
@@ -276,12 +255,12 @@ request = KnowledgeBaseRetrievalRequest(
 )
 
 result = kb_client.retrieve(request)
-print(f"Retrieved content from '{knowledge_base_name}' successfully.")
+print(f"Retrieved content from '{knowledge_base.name}' successfully.")
 ```
 
 ## Delete a knowledge base
 
-If you no longer need the knowledge base, or if you need to rebuild it on the search service, use this request to delete the current object.
+If you no longer need the knowledge base or need to rebuild it on your search service, use this request to delete the object.
 
 ```python
 # Delete a knowledge base

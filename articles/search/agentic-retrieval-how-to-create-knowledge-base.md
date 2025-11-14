@@ -14,10 +14,10 @@ zone_pivot_groups: agentic-retrieval-pivots
 
 <!--
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/agentic-retrieval-how-to-create-knowledge-base-csharp.md)]
+[!INCLUDE [C#](includes/how-tos/file-name.md)]
 ::: zone-end
 
-Add C# to zone-pivot-groups.yml, and then uncomment this section.
+Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
 -->
 
 ::: zone pivot="python"
@@ -31,5 +31,5 @@ Add C# to zone-pivot-groups.yml, and then uncomment this section.
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-+ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-+ [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
++ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
