@@ -75,14 +75,16 @@ The following section provides you with a quick guide to the default quotas and 
 
 ## GPT-5 Series
 
-| Model       | Global Default<br>Tokens per minute (TPM)  | Global Enterprise and MCA-E <br>Tokens per minute (TPM)  | Data Zone Default <br>Tokens per minute (TPM)  | Data Zone Enterprise and MCA-E <br>Tokens per minute (TPM) |
-|-------------|----------------|-------------------|-------------------|----------------------|
-| `gpt-5`       | 1 M             | 10 M               | 300 K              | 3 M                   |
-| `gpt-5-mini`  | 1 M             | 10 M               | 300 K              | 3 M                   |
-| `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
-| `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
-| `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
-| `gpt-5-pro`   | 160 K            | 1.6 M | N/A | N/A |
+| Model              | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:-------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| gpt-5.1            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
+| gpt-5.1            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
+| gpt-5.1-chat       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
+
+<!--
+| gpt-5.1-codex      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
+| gpt-5.1-codex-mini | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
+-->
 
 | Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
 |-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
