@@ -22,7 +22,7 @@ landingContent:
         links:
           - text: What is Immersive Reader?
             url: overview.md
-          - text: What are Azure AI services?
+          - text: What are Foundry Tools?
             url: ../../ai-services/what-are-ai-services.md
       - linkListType: video
         links:

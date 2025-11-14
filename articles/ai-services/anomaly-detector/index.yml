@@ -6,7 +6,7 @@ summary: Starting on the 20th of September, 2023 you won’t be able to create n
 
 metadata:
   title: Anomaly Detector API - Tutorials, quickstarts, API reference
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Use the Azure AI Anomaly Detector univariate and multivariate APIs to monitor data over time and detect anomalies with machine learning. Get insight into your data, regardless of volume, industry, or scenario. 
   author: mrbullwinkle
   manager: nitinme

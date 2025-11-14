@@ -4,7 +4,7 @@ title: Custom Vision documentation # < 60 chars
 summary: Azure AI Custom Vision lets you build, deploy, and improve your own image classifiers. An image classifier is an AI service that applies content labels to images based on their visual characteristics.  # < 160 chars
 
 metadata:
-  title: Custom Vision documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
+  title: Custom Vision documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
   description: Custom Vision lets you build, deploy, and improve your own image classifiers. An image classifier is an AI service that applies labels (which represent classes) to images, based on their visual characteristics.
   ms.service: azure-ai-custom-vision
   ms.topic: landing-page
