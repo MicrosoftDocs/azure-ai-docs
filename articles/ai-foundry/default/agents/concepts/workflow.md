@@ -154,7 +154,7 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 
 ## Next Steps
-* [Microsoft Foundry Agents FAQ](../agents/faq.md)
+* [Microsoft Foundry Agents FAQ](../../../ai-foundry/agents/faq.md)
 
 
 
