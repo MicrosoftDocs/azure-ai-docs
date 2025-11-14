@@ -10,6 +10,8 @@ items:
   items:
   - name: Foundry Local Architecture
     href: concepts/foundry-local-architecture.md
+  - name: Foundry Local on Windows Server 2025
+    href: concepts/windows-server-frequently-asked-questions.md
 - name: How-to guides
   expanded: true
   items:

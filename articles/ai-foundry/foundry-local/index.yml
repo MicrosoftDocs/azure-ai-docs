@@ -50,6 +50,8 @@ landingContent:
             url: how-to/how-to-chat-application-with-open-web-ui.md
           - text: Compile Hugging Face models to run on Foundry Local
             url: how-to/how-to-compile-hugging-face-models.md
+          - text: Foundry Local on Windows Server 2025
+            url: concepts/windows-server-frequently-asked-questions.md
   
   # Card
   - title: Reference
