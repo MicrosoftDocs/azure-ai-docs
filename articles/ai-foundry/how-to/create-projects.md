@@ -295,7 +295,7 @@ To delete the Foundry resource and all its projects:
 
 # [Python SDK](#tab/python)
 
-This code uses the `bariables and `client connection` from the Prerequisites. First create the client connection:
+This code uses the variables and `client connection` from the Prerequisites. First create the client connection:
 
 ```python
 client.projects.begin_delete(
