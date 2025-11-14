@@ -255,6 +255,22 @@ Add a new item to the conversation context. This can include messages, function 
 }
 ```
 
+#### Example with MCP call
+```json
+{
+  "type": "conversation.item.create",
+  "item": {
+    "type": "mcp_call",
+    "approval_request_id": null,
+    "arguments": "",
+    "server_label": "deepwiki",
+    "name": "ask_question",
+    "output": null,
+    "error": null
+  }
+}
+```
+
 ### conversation.item.retrieve
 
 Retrieve a specific item from the conversation history. This is useful for inspecting processed audio after noise cancellation and VAD.
@@ -2440,6 +2456,8 @@ Output timestamp types supported in audio response content.
 
 ### Tool Configuration
 
+We support two types of tools: function calling and MCP tools which allow you connect to a mcp server.
+
 #### RealtimeTool
 
 Tool definition for function calling.
@@ -2461,7 +2479,7 @@ This can be:
 - `"required"` - Must use a tool
 - `{ "type": "function", "name": "function_name" }` - Use specific function
 
-#### MCP Tool
+#### MCPTool
 MCP tool configuration.
 
 | Field | Type | Description |
