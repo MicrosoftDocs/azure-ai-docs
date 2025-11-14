@@ -41,7 +41,7 @@ The following table summarizes the commands related to managing and running mode
 > [!NOTE]
 > You can specify the `model` argument by its **alias** or **model ID**. Using an alias:
 >
-> - Selects the _best model_ for your available hardware. For example, if you have an Nvidia CUDA GPU available, Foundry Local selects the CUDA model. If you have a supported NPU available, Foundry Local selects the NPU model.
+> - Selects the _best model_ for your available hardware automatically. For example, if you have an Nvidia GPU available, Foundry Local selects the best GPU model. If you have a supported NPU available, Foundry Local selects the NPU model.
 > - Lets you use a shorter name without needing to remember the model ID.
 >
 > If you want to run a specific model, use the model ID. For example, to run the `qwen2.5-0.5b` on CPU - irrespective of your available hardware - use: `foundry model run qwen2.5-0.5b-instruct-generic-cpu`.
@@ -59,6 +59,10 @@ The following table summarizes the commands related to managing and running mode
 | `foundry model download <model>`            | Downloads a model to the local cache without running it.                                                       |
 | `foundry model load <model>`                | Loads a model into the service.                                                                                |
 | `foundry model unload <model>`              | Unloads a model from the service.                                                                              |
+
+### Model list ordering
+
+When there are multiple model ID variants available for an alias, the model list is presented in priority order. The first model in the list is the model that is run when you specify the model by `alias`.
 
 ### Model list filtering
 
