@@ -1,13 +1,13 @@
 ---
 title: "Use Document Intelligence client library or REST API "
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Document Intelligence client libraries or REST API and create apps to extract key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 02/07/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -36,7 +36,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 In this guide, learn how to add Document Intelligence models to your applications and workflows. Use a programming language SDK of your choice or the REST API.
 
-Azure AI Document Intelligence is a cloud-based Azure AI service that uses machine learning to extract key text and structure elements from documents. We recommend that you use the free service while you learn the technology. Remember that the number of free pages is limited to 500 per month.
+Azure Document Intelligence in Foundry Tools is a cloud-based Foundry Tools service that uses machine learning to extract key text and structure elements from documents. We recommend that you use the free service while you learn the technology. Remember that the number of free pages is limited to 500 per month.
 
 Choose from the following Document Intelligence models and analyze and extract data and values from forms and documents:
 
@@ -142,7 +142,7 @@ Congratulations! You learned to use Document Intelligence models to analyze vari
 ::: moniker-end
 
 ::: moniker range="doc-intel-2.1.0"
-In this how-to guide, you learn how to add Document Intelligence to your applications and workflows. Use a programming language of your choice or the REST API. Azure AI Document Intelligence is a cloud-based Azure AI service that uses machine learning to extract key-value pairs, text, and tables from your documents. We recommend that you use the free service while you learn the technology. Remember that the number of free pages is limited to 500 per month.
+In this how-to guide, you learn how to add Document Intelligence to your applications and workflows. Use a programming language of your choice or the REST API. Azure Document Intelligence is a cloud-based Foundry Tools service that uses machine learning to extract key-value pairs, text, and tables from your documents. We recommend that you use the free service while you learn the technology. Remember that the number of free pages is limited to 500 per month.
 
 You use the following APIs to extract structured data from forms and documents:
 

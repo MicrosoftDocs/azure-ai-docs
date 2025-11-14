@@ -1,6 +1,6 @@
 ---
 title: Use the Microsoft Audio Stack (MAS) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of the features, capabilities, and restrictions for audio processing using the Speech Software Development Kit (SDK).
 manager: nitinme
 ms.service: azure-ai-speech

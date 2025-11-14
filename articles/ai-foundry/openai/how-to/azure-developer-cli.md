@@ -1,6 +1,6 @@
 ---
 title: 'Use the Azure Developer CLI to deploy resources for Azure OpenAI On Your Data'
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Use this article to learn how to automate resource deployment for Azure OpenAI On Your Data.
 manager: nitinme
 ms.service: azure-ai-foundry

@@ -1,7 +1,7 @@
 ---
-title: Azure AI Foundry known issues
-titlesuffix: Azure AI Foundry
-description: Known and common issues with Azure AI Foundry.
+title: Microsoft Foundry known issues
+titlesuffix: Microsoft Foundry
+description: Known and common issues with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.date: 11/07/2025
@@ -10,9 +10,9 @@ ms.author: scottpolly
 ms.reviewer: bgilmore
 ---
 
-# Azure AI Foundry known issues
+# Microsoft Foundry known issues
 
-Azure AI Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
+Microsoft Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
@@ -84,7 +84,7 @@ This table lists the current known issues for the Speech SDK/Runtime feature.
 
 ### AI Translator
 
-The following tables describe the current known issues for Azure AI Translator. 
+The following tables describe the current known issues for Azure Translator in Foundry Tools. 
 
 #### Text Translation active known issues
 

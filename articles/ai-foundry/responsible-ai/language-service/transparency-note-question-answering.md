@@ -1,6 +1,6 @@
 ---
 title: Use cases for question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency note for question answering.
 author: laujan
 ms.author: lajanuar

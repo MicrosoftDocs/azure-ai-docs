@@ -10,7 +10,7 @@ ms.topic: include
 ms.custom: include file, devx-track-dotnet
 ---
 
-Use the Language Understanding (LUIS) client libraries for .NET to:
+Use Azure Language Understanding (LUIS) client libraries for .NET to:
 * Create an app
 * Add an intent, a machine-learned entity, with an example utterance
 * Train and publish app
@@ -61,7 +61,7 @@ Create a new .NET Core application in your preferred editor or IDE.
 
 ### Install the NuGet libraries
 
-Within the application directory, install the Language Understanding (LUIS) client libraries for .NET with the following commands:
+Within the application directory, install Azure Language Understanding (LUIS) client libraries for .NET with the following commands:
 
 ```dotnetcli
 dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Authoring --version 3.2.0-preview.3

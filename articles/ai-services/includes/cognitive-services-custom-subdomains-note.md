@@ -7,4 +7,4 @@ ms.author: erhopf
 ---
 
 > [!NOTE]
-> New resources created after July 1, 2019, will use custom subdomain names. For more information and a complete list of regional endpoints, see [Custom subdomain names for Azure AI services](/azure/cognitive-services/cognitive-services-custom-subdomains).
+> New resources created after July 1, 2019, will use custom subdomain names. For more information and a complete list of regional endpoints, see [Custom subdomain names for Foundry Tools](/azure/cognitive-services/cognitive-services-custom-subdomains).

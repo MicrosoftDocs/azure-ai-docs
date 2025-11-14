@@ -1,12 +1,12 @@
 ---
 title: 'How to use connected agents'
-titleSuffix: Azure AI Foundry
-description: Learn how to create multi-agentic systems using connected agents in the Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Learn how to create multi-agentic systems using connected agents in the Foundry Agent Service.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/13/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -16,7 +16,10 @@ zone_pivot_groups: selection-connected-agents
 
 # Build collaborative, multi-agent systems with Connected Agents
 
-Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+> [!NOTE]
+> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../default/agents/concepts/workflow.md) for multi-agent orchestration.
+
+Connected agents in Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
 Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
 
@@ -86,7 +89,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 2. Select an existing agent from the list or create a new one.
 3. Scroll down to the **Connected agents** section in the agent's set up panel and select **Add +**.
 
-:::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
+:::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Microsoft Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
 
 4. In the dialog that appears, choose an agent for the main agent to delegate tasks to, and describe:
    - Select an **existing agent** from the dropdown. This is the connected agent that the main agent will delegate tasks to.

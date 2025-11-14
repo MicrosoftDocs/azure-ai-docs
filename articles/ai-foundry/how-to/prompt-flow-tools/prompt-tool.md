@@ -1,7 +1,7 @@
-﻿---
-title: Prompt tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Prompt tool for flows in Azure AI Foundry portal.
+---
+title: Prompt tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Prompt tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Prompt tool for flows in Azure AI Foundry portal
+# Prompt tool for flows in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -49,10 +49,10 @@ For more information and best practices, see [Prompt engineering techniques](../
 
 ## Build with the Prompt tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Prompt** to add the Prompt tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/prompt-tool.png" alt-text="Screenshot that shows the Prompt tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/prompt-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/prompt-tool.png" alt-text="Screenshot that shows the Prompt tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/prompt-tool.png":::
 
 1. Enter values for the Prompt tool input parameters described in the [Inputs table](#inputs). For information about how to prepare the prompt input, see [Prerequisites](#prerequisites).
 1. Add more tools (such as the [LLM tool](llm-tool.md)) to your flow, as needed. Or select **Run** to run the flow.

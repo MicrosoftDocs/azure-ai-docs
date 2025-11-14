@@ -1,25 +1,29 @@
 ---
-title: Content Filter Annotations
+title: Guardrail annotations 
 description: Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models.
-author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Content filtering annotations
+# Guardrail annotations
 
-Azure OpenAI in Azure AI Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
+Microsoft Foundry Models provide annotations to help you understand the Guardrail (previously content filtering) results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content. 
 
-## Standard content filter annotations
+## Standard guardrail annotations 
 
-When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm:
-- content filtering category (hate, sexual, violence, self_harm)
-- the severity level (safe, low, medium, or high) within each content category
+When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm: 
+- risk category (hate, sexual, violence, self_harm) 
+- the severity level (safe, low, medium, or high) within each content category 
 - filtering status (true or false).
+
+Azure OpenAI in Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
 
 ## Optional model annotations
 

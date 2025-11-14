@@ -1,10 +1,10 @@
 ---
 
 title: Choose the right Azure AI tool for document processing
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools, Azure Document Intelligence in Foundry Tools and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
-ms.author: admaheshwari
+ms.author: pafarley
 manager: nitinme
 ms.date: 07/16/2025
 ms.service: azure-ai-content-understanding
@@ -12,12 +12,16 @@ ms.topic: overview
 ---
  
 
-# Choose the right Azure AI tool for document processing: Azure Document Intelligence, Azure AI Content Understanding, and Azure OpenAI
+# Choose the right Foundry tool for document processing: Azure Document Intelligence, Content Understanding, and Foundry models
 
-As organizations increasingly rely on Generative AI to manage documents and unstructured data, selecting the right tools is essential for building robust, secure, and scalable document processing workflows. Let's review a comparative overview of the leading Azure AI solutions for intelligent document processing (IDP), helping you evaluate and choose the most effective approach for your business requirements. 
+As organizations increasingly rely on Generative AI to manage documents and unstructured data, selecting the right tools is essential for building robust, secure, and scalable document processing workflows. Let's review a comparative overview of the leading Azure AI solutions for intelligent document processing (IDP), helping you evaluate and choose the most effective approach for your business requirements. This article compares the following key options:
 
-## Azure AI Document Intelligence 
-Azure AI Document Intelligence is the trusted choice for many document-centric scenarios. Customers rely on its industry leading OCR capability and structure extraction, including table recognition, figures, paragraphs, selection marks, sections, and more output in markdown format for easy integrations with LLMs for ingestion in RAG, field extraction, and document chat scenarios. Document Intelligence has the tools to build scalable and flexible IDP solutions with classification and conditional routing for high-accuracy extraction from prebuilt models like invoices, receipts, tax forms, and identification cards. For any custom template, you can label a few samples to train a custom extraction model on any document type. Document Intelligence models have some limitations like supporting only extracting results, limited generalization of custom models across many template variations, and limited semantic understanding capabilities. With confidence scores and grounded results, you can build an effective, low latency, consistent extractive document processing solution for most scenarios. Document Intelligence provides the following models:
+* **Azure Document Intelligence in Foundry Tools** - Trusted service for extracting text, tables, and structured fields from documents with industry-leading OCR and proven accuracy.
+* **Azure Content Understanding in Foundry Tools** - Multimodal service with industry-leading content extraction (ex. OCR, speech-to-text), multimodal processing of documents, images, audio, and video, and  generative AI capabilities for complex field extraction.
+* **Azure-hosted LLMs (Azure Foundry models)** - Flexible platform for building custom AI solutions with maximum control over models, prompts, and workflows.
+
+## Document Intelligence 
+Document Intelligence is the trusted choice for many document-centric scenarios. Customers rely on its industry leading OCR capability and structure extraction, including table recognition, figures, paragraphs, selection marks, sections, and more output in markdown format for easy integrations with LLMs for ingestion in RAG, field extraction, and document chat scenarios. Document Intelligence has the tools to build scalable and flexible IDP solutions with classification and conditional routing for high-accuracy extraction from prebuilt models like invoices, receipts, tax forms, and identification cards. For any custom template, you can label a few samples to train a custom extraction model on any document type. Document Intelligence models have some limitations like supporting only extracting results, limited generalization of custom models across many template variations, and limited semantic understanding capabilities. With confidence scores and grounded results, you can build an effective, low latency, consistent extractive document processing solution for most scenarios. Document Intelligence provides the following models:
 
 * Document digitization or [Optical Character Recognition (OCR)](/azure/ai-services/document-intelligence/prebuilt/read) to extract printed or handwritten text from documents.
 
@@ -28,19 +32,26 @@ Azure AI Document Intelligence is the trusted choice for many document-centric s
 * Document field extraction with [prebuilt models](/azure/ai-services/document-intelligence/model-overview) for predefined schema extraction from standard document types like tax, mortgage, bank checks, forms with higher variations like invoices, receipts, and ID, and [custom models](/azure/ai-services/document-intelligence/train/custom-model) to label and train your own model. 
 
 
-## Azure AI Content Understanding 
+## Azure Content Understanding in Foundry Tools 
 
-Azure AI Content Understanding, built on the same foundational capabilities as Document Intelligence, extends document scenarios to images and embedded content, expanding to multimodal scenarios with audio and video. Content Understanding is built for content processing with Generative AI, improving your ability to generate the specific output you need with inferred fields, enrichments, validations, and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero-shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, wherever applicable. Content Understanding provides a rich set of tools among others that can be configured to solve most document processing challenges.
+Azure Content Understanding, built on the same foundational capabilities as Document Intelligence, extends document scenarios to images and embedded content, expanding to multimodal scenarios with audio and video. Content Understanding is built for content processing with Generative AI, improving your ability to generate the specific output you need with inferred fields, enrichments, validations, and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero-shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, wherever applicable. Content Understanding provides a rich set of tools among others that can be configured to solve most document processing challenges.
 
-* Inferred fields & enrichments: Output required that aren't always directly present in the document, like the total tax on an invoice or the jurisdiction on a contract that can be inferred from the parties’ addresses or clause wording. 
-* Multi-file input: Process multiple input files in the same request and extract a unified schema across all the input files.
-* Classification & Splitting: Parse large files into individual documents for routing and schema extraction. 
-* Reasoning: Intelligent document processing typically is a multi-step process with extraction, validation, aggregation, and reviews. Content Understanding is built for IDP, simplifying everything into a single step process. 
-* Post processing & validations: Use the description to define any post processing rules like converting date formats, currency codes, and consistency checks. 
+* **Updated Read and Layout**: Content Understanding Layout has a few updated features, including multi-page tables, hyperlink extraction and more. Learn more about [the new features in Layout](whats-new.md#content-extraction). The models for Read and Layout are updated with AI quality improvements.
+* **Improved Layout pricing**: Content Understanding has a new and lower pricing for Layout, see [pricing for more details](https://azure.microsoft.com/pricing/details/content-understanding/).
+* **Inferred fields and enrichments**: Generate output fields that aren't explicitly present in the document. For example, calculate total tax on an invoice, determine jurisdiction on a contract from parties' addresses, or derive insights from clause wording.
+* **Classification and splitting**: Parse large files to identify and split individual segments for intelligent routing and targeted schema extraction. Targets include all analyzers including prebuilt and custom.
+* **Post-processing and validations**: Define post-processing rules directly in field descriptions, such as converting date formats, normalizing currency codes, and performing consistency checks.
+* **Model choice**: Content Understanding supports multiple Gen AI models for use, providing you with the flexibility to select the model that provides the best result quality/cost trade off. Learn more about the [models suuported](./concepts/models-deployments.md).
+* **Multi-file input (preview)**: Process multiple input files in a single request and extract a unified schema across all inputs, enabling cross-document validation and aggregation.
+* **Reasoning (preview)**: Simplify complex intelligent document processing workflows. Instead of building multi-step processes for extraction, validation, aggregation, and reviews, Content Understanding handles everything in a single unified operation.
 
-## Azure-hosted LLMs (Azure OpenAI)
+> [!NOTE]
+>
+> Starting with the GA version, Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](./concepts/models-deployments.md) page.
 
-For organizations requiring niche AI workflows, custom solutions built with Azure OpenAI Service or any other Azure-based LLM services offer maximum flexibility. Developers can combine models like GPT-4o, Vision, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence or Azure AI Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility but requires users to evaluate models, update models as needed, manage the prompts, and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. 
+## Azure-hosted LLMs (Foundry models) 
+
+For organizations requiring niche AI workflows, custom solutions built with Foundry models directly offer maximum flexibility. Developers can combine models like GPT-4.1, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence or Azure Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility but requires users to evaluate models, update models as needed, manage the prompts, and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. Confidence scores and source or citation is a critical gap that requires significant engineering investment or human review.
 
 ## Overview of services
 
@@ -48,9 +59,9 @@ Here’s a summary of the three available services:
 
 |Service | What it Does | Ideal For | Strengths | Core Features |
 |--------|---------------|-----------|-----------|----------------|
-| Azure AI Document Intelligence | Extracts text, key-value pairs, tables, and layout from structured, semi and unstructured documents, field extraction with grounding, confidence, support for classification and splitting | Standard forms, invoices, receipts, purchase orders, IDs, contracts, legal documents | Proven, high-accuracy extraction, consistency, low latency, confidence score and grounding, predefined schemas for many document types | OCR/Read/Layout models, Prebuilt Models (invoice, tax, receipt, etc.), Custom model (extraction and classification) |
-| Azure AI Content Understanding | Processes documents, images, audio, and video; integrated reasoning for complex tasks, richer field extraction with built-in support for validation, enrichment, and post processing | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs with zero shot model Unified process for multimodal inputs, handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Support for content extraction(OCR, layout), field extraction, inferred fields and classification for handling complex, large documents with high variations, reasoning with multi-file inputs and knowledge base |
-| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that requires fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component |
+| Document Intelligence | Extracts text, key-value pairs, tables, and layout  (structure) from documents, field extraction with grounding, confidence, support for classification and splitting | Standard forms, invoices, receipts, purchase orders, IDs, contracts, legal documents | Proven, high-accuracy extraction, consistency, confidence score and grounding, predefined schemas for many templated document types | OCR/Read/Layout models, Prebuilt Models (invoice, tax, receipt, etc.), Custom model (field extraction and classification) |
+| Content Understanding | Processes documents, images, audio, and video; richer field extraction  and inference, built-in support for validation, enrichment, and post processing, integrated reasoning for complex tasks (preview) | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs, start with no labeling. Handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Enhanced support for content extraction(OCR, layout), field extraction, inferred fields and classification, tackle large documents with high variations, configure your Gen AI model for control over quality an price. |
+| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that requires fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component. Requires engineering investment in model upgrades, quality and reliability. |
 
 
 ## Service capabilities
@@ -59,35 +70,37 @@ Here's a capabilities overview for all three services.
 | Capabilities             | Document Intelligence                              | Content Understanding                              | Build Your Own with AOAI                          |
 |--------------------------|----------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
 | OCR                      | Industry leading OCR                               | Industry leading OCR                               | Requires preprocessing                            |
-| Complex document structure | Layout with tables, sections, selection marks, figures, and more   | Layout with tables, sections, selection marks, figures, and more   | Requires preprocessing  |
+| Complex document structure | Layout with tables, sections, selection marks, figures, and more   | Enhanced layout with multi-page tables, sections, selection marks, figures, and more   | Requires preprocessing  |
 | Extract fields           | Yes                                                | Yes                                                | Yes                                               |
-| Confidence and Grounding | Yes                                                | Yes                                                | No, requires extra implementation            |
-| Inferred fields          | No                                                 | Yes, has support for generative and classify fields  | Yes                                               |
+| Confidence scores | Yes                                                | Yes                                                | No, requires extra implementation            |
+| Source grounding | Yes                                                | Yes                                                | No, requires extra implementation            |
+| Inferred fields          | No                                                 | Yes, with generative and classify fields  | Yes                                               |
 | Generate metadata        | No                                                 | Yes                                                | Yes                                               |
 | Post-processing          | Limited                                            | Custom with limitations                            | User defined process                                    |
 | Process large files      | Yes                                                | Yes                                                | Requires chunking and other strategies to get optimal performance      |
-| Ease of use              | Requires labeling and training to build a custom model, can directly use layout and prebuilt models  | Simple schema definition without  any labeling required to get zero shot results          | Optimize results with prompt engineering                     |
-| Scale for use            | Managed                                            | Managed                                            | Manually scale components as needed               |
+| Ease of use              | Requires labeling and training to build a custom model, can directly use layout and prebuilt models  | Simple schema definition without  any labeling required to get started. Label to improve.          | Optimize results with prompt engineering                     |
+| Scale for use            | Managed                                            | Managed with connected Gen AI deployment                                            | Manually scale components as needed               |
 | Latency                  | Low                                                | Medium                                             | Depends on PTUs deployed                          |
-| Multi-file inputs        | No                                                 | Yes, support in multi file analysis or Pro Mode    | No                                                |
-| Knowledge base           | No                                                 | Yes                                                | Complex and requires engineering                  |
-| Reasoning                | No                                                 | Yes, support in multi file analysis or Pro Mode  | Complex and requires engineering                  |
+| Multi-file inputs        | No                                                 | Yes, support in Pro Mode (preview)    | No                                                |
+| Knowledge base           | No                                                 | Yes  (preview)                                              | Complex and requires engineering                  |
+| Reasoning                | No                                                 | Yes, support in Pro Mode (preview) | Complex and requires engineering                  |
 
 ---
 
 ## When to choose Content Understanding over build your own model
 
-| Advantage | Azure AI Content Understanding | Build your own model |
+| Advantage | Azure Content Understanding | Build your own model |
 |-----------|-------------------------------|------------------|
 | Unified, multimodal pipeline | ✅ Supports docs, images, audio, video | ❌ Requires orchestration |
-| Enterprise reasoning workflows | ✅ In-built reasoning capabilities | ❌ Custom chaining |
 | Prebuilt enrichments and schema normalization | ✅ Prebuilt templates available | ❌ Requires implementation |
 | Simplified pricing | ✅ Token based pricing |  ✅ Token based pricing |
 | Enterprise governance & security | ✅ Azure security compliance | ❌ Custom implementation |
-| Confidence and Grounding | ✅ In-built scores | ❌ Custom implementation |
+| Confidence Scores | ✅ In-built scores | ❌ Custom implementation |
+| Source Grounding | ✅ In-built scores | ❌ Custom implementation |
 | Chunking & normalization | ✅ Built-in algorithms | ❌ Custom implementation |
 | Prompt tuning | ✅ Optimized automatically | ❌ Needs engineering |
 | Context window | ✅ Optimized for long files | ❌ Manual handling |
+| Enterprise reasoning workflows | ✅ In-built reasoning capabilities(preview) | ❌ Custom chaining |
 
 ---
 
@@ -117,7 +130,7 @@ Extract fixed fields like Name, Date of Birth, Address, Account Number, and othe
 :::image type="content" source="media/overview/simple-form.png" alt-text="Scan of a sample W2 form." :::
 
 **Recommendation**:
-* This class of documents would be served by either Document Intelligence or Content Understanding. Document Intelligence would provide a lower latency, consistent solution while Content Understanding would offer an easier getting started experience. Both services would provide confidence scores and grounding to ensure you minimize your human review costs and scale. 
+* This class of documents would be served by either Content Understanding ```(recommended)``` or Document Intelligence . Content Understanding would offer an easier getting started experience. Both services would provide confidence scores and grounding to ensure you minimize your human review costs and scale. 
 
 ---
 
@@ -135,8 +148,8 @@ Extract consistent fields (name, amount, policy number, claim date) across a sma
 
 **Recommendation**:
 
-* Azure AI Document Intelligence: Train custom models with at least five samples of each variant and combine variants into a single model if differences are minor. The outputs are consistent with confidence scores and grounding. 
-* Azure AI Content Understanding: Start with the recommended schema or define your schema and the analyzer extracts the fields across all variations with no labeling required. A generalized solution with confidence scores and grounding. 
+* Content Understanding ```(Recommended)```: Start with the prebuilt invoice analyzer. A generalized solution with confidence scores and grounding. With improved layout and OCR capabilities, and semantic understanding of documents, Content Understanding should provide the best results.
+* Document Intelligence: Train custom models with at least five samples of each variant and combine variants into a single model if differences are minor. The outputs are consistent with confidence scores and grounding. 
 * Build a custom solution: Build and configure the components needed for parsing the documents (Layout), extracting the fields and any build any post-processing needed. The solution needs to be tested and verified with different variations and you'll need to scale and manage the deployed solution. With no confidence scores, you either accept all results or review all results based on the expected error rate, or you can build your own confidence model to score the output. 
 
 ---
@@ -155,8 +168,8 @@ Extract key fields like Invoice Number, Vendor Name, Total Amount, Line Items, a
 :::image type="content" source="media/overview/invoice-2.png" alt-text="Scan of a sample invoice form with a vertical layout." :::
 
 **Recommendation**:
-* Azure AI Document Intelligence Prebuilt Model if they're applicable or you can build your own custom models with multiple labeling to get grounded, low latency, consistent output. 
-* Azure AI Content Understanding: With a simple getting started experience and analyzers that can generalize across templates and variations in language, Content Understanding is best equipped to provide a high quality output with minimal management overhead.  
+* Content Understanding ```(Recommended)```: With a simple getting started experience and analyzers that can generalize across templates and variations in language, Content Understanding is best equipped to provide a high quality output with minimal management overhead.  
+* Document Intelligence: Prebuilt Model if they're applicable, or you can build your own custom models with multiple labeling to get grounded, low latency, consistent output. 
 * Build a custom solution: Build and configure the components needed for parsing the documents (Layout), extracting the fields and any build any post-processing needed. The solution needs to be tested and verified with different variations and you'll need to scale and manage the deployed solution. With no confidence scores, you either accept all results or review all results based on the expected error rate. 
 ---
 
@@ -173,7 +186,7 @@ Extract, generate abstract details like obligations, summaries, inferencing deta
 :::image type="content" source="media/overview/contracts.png" alt-text="Scan of a sample web hosting agreement contract." :::
 
 **Recommendation**:
-* Azure AI Content Understanding: The ideal service for this use case. Content Understanding can extract inferred fields, enriched with reasoning, multi-file input support with knowledge base for insight extraction with quick getting started experience without labeling.
+* Content Understanding ```(Recommended)```: The ideal service for this use case. Content Understanding can extract inferred fields, like a end date of a contract with start date and duration, total tax or geography
 * Build a custom solution: Build and configure the components needed for parsing the documents (Layout), extracting the fields and any build any post-processing needed. The solution needs to be tested and verified with different variations, and you'll need to scale and manage the deployed solution. With no confidence scores, you either accept all results or review all results based on the expected error rate. 
 
 ---
@@ -191,21 +204,19 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 :::image type="content" source="media/overview/receipt-mixed.png" alt-text="Scan of a sample receipt form." lightbox="media/overview/receipt-mixed.png":::
 
 **Recommendation**:
-* Azure AI Content Understanding: With pro mode, Content Understanding can accept multiple input documents in the same request, reason over the content and reference data and generate the required output schema.  
+* Content Understanding: With pro mode (preview), Content Understanding can accept multiple input documents in the same request, reason over the content and reference data and generate the required output schema.  
 * Build a custom solution: This scenario requires an agentic solution where the different input files need to be parsed and collectively reasoned over. The solution requires complex processing to determine document types and expected values and generate a unified output.
 
 ---
 
 ## Summary
 
-Choosing the right document processing service is dependent on the complexity of the task, format or template diversity, reasoning needs, latency sensitivity, human review needs, and enterprise integration requirements. 
-For new applications and workloads, Content Understanding matches Document Intelligence capabilities and have more feature set to handle complex diverse documents.  
+Choosing the right document processing service is dependent on the complexity of the task, format or template diversity, reasoning needs, latency sensitivity, human review needs, and enterprise integration requirements. Building on Document Intelligence, Content Understanding delivers improved OCR, layout, and field extraction capabilities with built-in postprocessing. It fully matches Document Intelligence functionality while extending support for more complex and varied document types.
+Start with Content Understanding for most IDP scenarios.  
 
-Start with Azure AI Document Intelligence for well-defined forms and simple workflows if you have a latency sensitive workload and need to rely on the consistency of the outputs. Move to Azure AI Content Understanding for reasoning, multi-format content, or complex business logic. Both services have grounding and confidence scores for quality. 
+Use Foundry models for custom, experimental, or conversational AI workflows where managed services aren’t a fit. Layout from Content Understanding can be used as preprocessing service for all input documents. 
 
-Use Azure OpenAI Service for custom, experimental, or conversational AI workflows where managed services aren’t a fit. Layout from Document Intelligence or Content Understanding can be used as preprocessing service for all input documents. 
-
-Many enterprises combine these services into hybrid solutions—using Document Intelligence/Content Understanding for extraction integrated as tools with AI agent based solutions. 
+In the past, many enterprises combine these services into hybrid solutions—using Document Intelligence for layout or content extraction integrated as preprocessing step, now Content Understanding provides a solution for most of these scenarios. 
 
 
 

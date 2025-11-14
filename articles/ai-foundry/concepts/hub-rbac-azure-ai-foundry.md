@@ -1,7 +1,7 @@
 ---
-title: Role-based access control for Azure AI Foundry (Hubs and Projects)
-titleSuffix: Azure AI Foundry
-description: This article introduces role-based access control in Azure AI Foundry portal (hub-focused version).
+title: Role-based access control for Microsoft Foundry (Hubs and Projects)
+titleSuffix: Microsoft Foundry
+description: This article introduces role-based access control in Microsoft Foundry portal (hub-focused version).
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -15,24 +15,24 @@ author: jonburchel
 ai-usage: ai-assisted
 # Hub-focused copy of RBAC article. Project-only content remains in rbac-azure-ai-foundry.md
 ---
-# Role-based access control for Azure AI Foundry (hub-focused)
+# Role-based access control for Microsoft Foundry (hub-focused)
 
-> [!NOTE]
-> An alternate Foundry project-focused RBAC article is available: [Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md).
+> [!TIP]
+> An alternate Foundry project-focused RBAC article is available: [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
 
-In this article, you learn how to manage access at the hub and project levels of Azure AI Foundry. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources. Azure provides built-in roles and lets you create custom roles.
+In this article, you learn how to manage access at the hub and project levels of Foundry. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources. Azure provides built-in roles and lets you create custom roles.
 
-## Azure AI Foundry hub vs project
+## Foundry hub vs project
 
-In the Azure AI Foundry portal, access has two levels: the hub and the project. The hub hosts infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies). It’s where you configure Azure AI services. Hub access lets you modify infrastructure, create hubs, and create projects. Projects are a subset of the hub and act as workspaces to build and deploy AI systems. In a project, develop flows, deploy models, and manage project assets. Project access lets you build and deploy AI end to end while using the hub infrastructure.
+In the Foundry portal, access has two levels: the hub and the project. The hub hosts infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies). It’s where you configure Foundry Tools. Hub access lets you modify infrastructure, create hubs, and create projects. Projects are a subset of the hub and act as workspaces to build and deploy AI systems. In a project, develop flows, deploy models, and manage project assets. Project access lets you build and deploy AI end to end while using the hub infrastructure.
 
-:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram that shows the relationship between Azure AI Foundry resources.":::
+:::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram that shows the relationship between Foundry resources.":::
 
 A key benefit of the hub and project relationship is that developers can create projects that inherit hub security settings. Some developers are contributors to a project and can't create new projects.
 
 ## Default roles for the hub 
 
-The Azure AI Foundry hub has built-in roles that are available by default. 
+The Foundry hub has built-in roles that are available by default. 
 
 | Role | Description | 
 | --- | --- |
@@ -174,7 +174,7 @@ Ensure the hub managed identity is granted required roles on external services (
 
 ## Manage access
 
-Use the Azure AI Foundry portal (Users blade) or Azure portal IAM / CLI to assign roles.
+Use the Foundry portal (Users blade) or Azure portal IAM / CLI to assign roles.
 
 Example CLI:
 
@@ -189,8 +189,8 @@ Define custom roles when built-in roles don't meet needs. Example subscription-l
 ```json
 {
   "properties": {
-    "roleName": "Azure AI Foundry Developer",
-    "description": "Custom role for Azure AI Foundry. At subscription level",
+    "roleName": "Foundry Developer",
+    "description": "Custom role for Foundry. At subscription level",
     "assignableScopes": ["/subscriptions/<your-subscription-id>"],
     "permissions": [ { "actions": ["Microsoft.MachineLearningServices/workspaces/write", "Microsoft.MachineLearningServices/workspaces/endpoints/write"], "notActions": [], "dataActions": ["Microsoft.CognitiveServices/accounts/OpenAI/*/read"], "notDataActions": [] } ]
   }
@@ -214,6 +214,6 @@ If new hubs using Azure AI Administrator identity role encounter issues, you can
 
 ## Next steps
 
-- [Create an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md)
+- [Create a Foundry hub](../how-to/create-azure-ai-resource.md)
 - [Create a project](../how-to/create-projects.md)
 - [Add a connection](../how-to/connections-add.md)

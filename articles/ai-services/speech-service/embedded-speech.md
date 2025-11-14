@@ -1,6 +1,6 @@
 ---
 title: Embedded Speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Embedded Speech is designed for on-device scenarios where cloud connectivity is intermittent or unavailable.
 author: PatrickFarley
 manager: nitinme
@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-set-thirteen
 Embedded Speech is designed for on-device [speech to text](speech-to-text.md) and [text to speech](text-to-speech.md) scenarios where cloud connectivity is intermittent or unavailable. For example, you can use embedded speech in industrial equipment, a voice enabled air conditioning unit, or a car that might travel out of range. You can also develop hybrid cloud and offline solutions. For scenarios where your devices must be in a secure environment like a bank or government entity, you should first consider [disconnected containers](../containers/disconnected-containers.md).
 
 > [!IMPORTANT]
-> Microsoft limits access to embedded speech. You can apply for access through the Azure AI Speech [embedded speech limited access review](https://aka.ms/csgate-embedded-speech). For more information, see [Limited access for embedded speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech).
+> Microsoft limits access to embedded speech. You can apply for access through the Azure Speech in Foundry Tools [embedded speech limited access review](https://aka.ms/csgate-embedded-speech). For more information, see [Limited access for embedded speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech).
 
 ## Platform requirements
 
@@ -164,7 +164,7 @@ All text to speech locales [here](language-support.md?tabs=tts) (except fa-IR, P
 
 ## Embedded speech configuration
 
-For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and endpoint. For embedded speech, you don't use an AI Foundry resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
+For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and endpoint. For embedded speech, you don't use a Foundry resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
 
 Use the `EmbeddedSpeechConfig` object to set the location of the models or voices. If your application is used for both speech to text and text to speech, you can use the same `EmbeddedSpeechConfig` object to set the location of the models and voices.
 

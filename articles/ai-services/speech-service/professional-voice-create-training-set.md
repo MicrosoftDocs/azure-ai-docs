@@ -1,6 +1,6 @@
 ---
 title: Add a professional voice training dataset - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to upload a training dataset for professional voice. 
 author: PatrickFarley
 manager: nitinme

@@ -1,13 +1,13 @@
 ---
 title: 'How to use an existing AI Search index with the Azure AI Search tool'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use Agents Azure AI Search tool.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 11/04/2025
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
@@ -16,13 +16,16 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool
 
-The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Azure AI Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
+> [!NOTE]
+> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Foundry Agent Service](../../../default/agents/how-to/tools/knowledge-retrieval.md).
+
+The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
 This article describes how to set up the Azure AI Search tool, including creating a project connection and adding the tool to your agent.
 
 ## Prerequisites
 
-+ An [Azure AI Foundry agent](../../quickstart.md).
++ A [Microsoft Foundry agent](../../quickstart.md).
 
 + An [Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors.md). The index must include:
 
@@ -31,7 +34,7 @@ This article describes how to set up the Azure AI Search tool, including creatin
     + One or more `Collection(Edm.Single)` (vector) fields attributed as searchable.
 
 > [!TIP]
-> Instead of using an existing index, you can create an index without leaving the Azure AI Foundry portal. For more information, see the [Add the tool to an agent](#add-the-tool-to-an-agent) section.
+> Instead of using an existing index, you can create an index without leaving the Foundry portal. For more information, see the [Add the tool to an agent](#add-the-tool-to-an-agent) section.
 
 ## Usage support
 
@@ -41,17 +44,17 @@ This article describes how to set up the Azure AI Search tool, including creatin
 
 ## Limitations
 
-+ To use the Azure AI Search tool in the Azure AI Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
++ To use the Azure AI Search tool in the Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
 
 + The Azure AI Search tool can only target one index. To use multiple indexes, consider using [connected agents](../connected-agents.md), each with a configured index.
   
-+ An Azure AI Foundry resource with basic agent deployments do not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
++ A Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
-+ Your Azure AI Search resource and Azure AI Foundry Agent need to be in the same tenant.
++ Your Azure AI Search resource and Foundry Agent need to be in the same tenant.
 
 ## Setup
 
-In this section, you create a connection between the Azure AI Foundry project that contains your agent and the Azure AI Search service that contains your index.
+In this section, you create a connection between the Foundry project that contains your agent and the Azure AI Search service that contains your index.
 
 If you already connected your project to your search service, skip this section. 
 
@@ -174,13 +177,15 @@ my_connection = AzureAISearchConnection(name=my_connection_name,
 ml_client.connections.create_or_update(my_connection)
 ```
 
-#### [Azure AI Foundry](#tab/azureaifoundry)
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
+#### [Foundry](#tab/azureaifoundry)
+<!--
+1. [!INCLUDE [version-sign-in](../../../includes/version-sign-in.md)]
+-->
+Select your project.
 
 1. On the **Overview** page, select **Open in management center**.
 
-    :::image type="content" source="../../media/tools/ai-search\project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search\project-studio.png":::
+    :::image type="content" source="../../media/tools/ai-search\project-studio.png" alt-text="A screenshot of a project in Foundry." lightbox="../../media/tools/ai-search\project-studio.png":::
 
 1. From the left pane, select **Connected resources**, and then select **New Connection**.
      
@@ -204,7 +209,7 @@ ml_client.connections.create_or_update(my_connection)
 
 ## Add the tool to an agent
 
-You can add the Azure AI Search tool to an agent programmatically or through the Azure AI Foundry portal. For programmatic examples, see [Use an existing index with the Azure AI Search tool](azure-ai-search-samples.md).
+You can add the Azure AI Search tool to an agent programmatically or through the Foundry portal. For programmatic examples, see [Use an existing index with the Azure AI Search tool](azure-ai-search-samples.md).
 
 To add the tool through the portal:
 
@@ -212,11 +217,11 @@ To add the tool through the portal:
 
 1. Select your agent from the list, and then select **Knowledge** > **Add**.
 
-    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
 1. Select **Azure AI Search**. 
 
-    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
 1. Under **Connect to an index**, select **Indexes that are not part of this project**.
 
@@ -243,7 +248,7 @@ To add the tool through the portal:
 
 1. Select **Connect** to add the Azure AI Search tool to your agent.
 
-    :::image type="content" source="../../media/tools/ai-search/connect-tool.png" alt-text="A screenshot of the Connect button in the Azure AI Foundry portal." lightbox="../../media/tools/ai-search/connect-tool.png":::
+    :::image type="content" source="../../media/tools/ai-search/connect-tool.png" alt-text="A screenshot of the Connect button in the Foundry portal." lightbox="../../media/tools/ai-search/connect-tool.png":::
 
 ## Next step
 

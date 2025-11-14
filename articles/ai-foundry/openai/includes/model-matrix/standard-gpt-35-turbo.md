@@ -1,6 +1,6 @@
 ---
 title: Standard GPT-35-Turbo models
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Standard GPT-35-Turbo model availability
 manager: nitinme
 ms.service: azure-ai-foundry

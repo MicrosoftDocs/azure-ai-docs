@@ -1,16 +1,15 @@
 ---
 title: Extract information in Excel using Power Automate
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---
-
 # Extract information in Excel using Named Entity Recognition(NER) and Power Automate 
 
 In this tutorial, you create a Power Automate flow to extract text in an Excel spreadsheet without having to write code. 
@@ -95,7 +94,7 @@ Select **Select an output from previous step**. In the Dynamic content box that 
 
 If you haven't already, you need to create a [Language resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
 
-### Create a Language service connection
+### Create a Language connection
 
 In the **Apply to each**, select **Add an action**. Go to your Language resource's **key and endpoint** page in the Azure portal, and get the key and endpoint for your Language resource.
 
@@ -175,7 +174,7 @@ In the **If yes** condition, add an **Update a row** action. Then enter the info
 
 ## Get the plumbing issues
 
-Minimize **Apply to each 4** by clicking on the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
+Minimize **Apply to each 4** by selecting the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-plumbing.png" alt-text="Create another apply to each action" lightbox="../media/tutorials/excel/add-apply-action-plumbing.png":::
 

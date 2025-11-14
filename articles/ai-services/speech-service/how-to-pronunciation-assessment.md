@@ -1,6 +1,6 @@
-﻿---
+---
 title: Use pronunciation assessment
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
 author: PatrickFarley
 manager: nitinme
@@ -54,7 +54,7 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone pivot="programming-language-python"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py#:~:text=def%20pronunciation_assessment_from_stream()), or try the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py#:~:text=def%20pronunciation_assessment_from_stream()), or try the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
 ::: zone-end
 
@@ -102,7 +102,7 @@ If your audio file exceeds 30 seconds, use continuous mode for processing. In co
 
 ::: zone pivot="programming-language-python"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py) under the function `pronunciation_assessment_continuous_from_file`, or try the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py) under the function `pronunciation_assessment_continuous_from_file`, or try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
 ::: zone-end
 
@@ -1108,7 +1108,7 @@ This formula provides a weighted calculation based on the importance of each sco
 ## Content assessment
 
 > [!IMPORTANT]
-> Content assessment (preview) is retired from Speech SDK versions 1.46.0 and later. As an alternative, you can use Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
+> Content assessment (preview) is retired from Speech SDK versions 1.46.0 and later. As an alternative, you can use Azure OpenAI in Microsoft Foundry Models to get content assessment results as described in this section.
 
 For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI models](../../ai-foundry/openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
 

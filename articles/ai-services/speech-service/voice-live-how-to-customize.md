@@ -1,6 +1,6 @@
-﻿---
+---
 title: How to customize voice live input and output
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API with customized models.
 manager: nitinme
 author: goergenj
@@ -67,9 +67,8 @@ Example session configuration with custom speech models. In this example when th
 ```
 
 > [!NOTE]
-> In order to use a custom speech model with Voice live API, the model must be available on the same Azure AI Foundry resource you're using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource, you have to copy the model to the resource you're using to call the Voice live API.
-> You pay separately for custom speech training and model hosting.
-> For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=stt).
+> In order to use a custom speech model with Voice live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice live API. If you trained the model on a different Microsoft Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice live API.
+> You pay separately for custom speech training and model hosting. 
 
 ## Speech output customization
 
@@ -107,9 +106,10 @@ You can use a custom voice for audio output. For information about how to create
 > Custom voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 
 > [!NOTE]
-> In order to use a custom voice model with Voice live API, the model must be available on the same Azure AI Foundry resource you're using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource, you have to copy it to the resource you're using to call the Voice live API.
+> In order to use a custom voice model with Voice live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice live API. If you trained the model on a different Microsoft Foundry or Azure Speech resource you have to copy the model to the resource you are using to call the Voice live API.
 > You pay separately for custom voice training and model hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=tts).
+
 
 ### Azure custom avatar
 
@@ -121,7 +121,7 @@ The configuration for a custom avatar doesn't differ from the configuration of a
 > Custom text to speech avatar access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 
 > [!NOTE]
-> In order to use a custom avatar with Voice live API, the avatar must be available on the same Azure AI Foundry resource you're using to call the Voice live API. If you trained the avatar on a different Azure AI Foundry or Azure AI Speech resource, you have to copy the model to the resource you're using to call the Voice live API.
+> In order to use a custom voice model with Voice live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice live API. If you trained the model on a different Microsoft Foundry or Azure Speech resource you have to copy the model to the resource you are using to call the Voice live API.
 > You pay separately for custom avatar training and model hosting. 
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=ttsavatar).
 

@@ -1,20 +1,20 @@
 ---
-title: Azure AI Translator custom translation for beginners
-titleSuffix: Azure AI services
-description: User guide for understanding the end-to-end customized machine translation process using Azure AI Foundry.
+title: Azure Translator in Foundry Tools custom translation for beginners
+titleSuffix: Foundry Tools
+description: User guide for understanding the end-to-end customized machine translation process using Microsoft Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.topic: overview
 ---
 
-# Azure AI Translator custom translation for beginners
+# Foundry Tools custom translation for beginners
 
  [Custom translation](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../../text-translation/reference/v3/translate.md) service that powers billions of translations every day.
 
-[Custom translation](overview.md) empowers you to build a translation system that truly captures your business's unique language, industry terminology, and domain-specific style. With an intuitive interface, training, testing, and deploying your custom model is simple and requires no programming expertise. Seamlessly integrate your tailored translation system into your existing applications, workflows, and websites—all backed by the cloud-based [Azure AI Translator Text Translation API](../../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations each day.
+[Custom translation](overview.md) empowers you to build a translation system that truly captures your business's unique language, industry terminology, and domain-specific style. With an intuitive interface, training, testing, and deploying your custom model is simple and requires no programming expertise. Seamlessly integrate your tailored translation system into your existing applications, workflows, and websites—all backed by the cloud-based [Azure Translator Text Translation API](../../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations each day.
 
 The platform enables users to build and publish custom translation systems to and from English. The Custom Translator supports more than 100 languages that map directly to the languages available for Neural machine translation (NMT). For a complete list, *see* [Translator language support](../../../language-support.md).
 
@@ -76,9 +76,9 @@ Finding in-domain quality data is often a challenging task that varies based on 
 
 ## What is a BLEU score?
 
-BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that is machine translated from one language to another. Custom translation uses the BLEU metric as one way of conveying translation accuracy.
+BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that's machine translated from one language to another. Custom translation uses the BLEU metric as one way of conveying translation accuracy.
 
-A BLEU score is a number between zero and 100. A score of zero indicates a low quality translation where nothing in the translation matched the reference. A score of 100 indicates a perfect translation that is identical to the reference. It's not necessary to attain a score of 100 - a BLEU score between 40 and 60 indicates a high-quality translation.
+A BLEU score is a number between zero and 100. A score of zero indicates a low quality translation where nothing in the translation matched the reference. A score of 100 indicates a perfect translation that's identical to the reference. It's not necessary to attain a score of 100 - a BLEU score between 40 and 60 indicates a high-quality translation.
 
 [Read more](concepts/bleu-score.md?WT.mc_id=aiml-43548-heboelma)
 

@@ -1,6 +1,6 @@
 ---
 title: How to use vision-enabled chat models
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to use vision-enabled chat models in Azure OpenAI, including how to call the Chat Completion API and process images.
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
@@ -10,6 +10,10 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Use vision-enabled chat models
@@ -301,7 +305,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 
 ### Create a video retrieval index
 
-1. Get an Azure AI Vision resource in the same region as the Azure OpenAI resource you're using.
+1. Get an Azure Vision in Foundry Tools resource in the same region as the Azure OpenAI resource you're using.
 1. Create an index to store and organize the video files and their metadata. The example command below demonstrates how to create an index named `my-video-index` using the **[Create Index](/azure/ai-services/computer-vision/reference-video-search)** API. Save the index name to a temporary location; you'll need it in later steps. 
 
     > [!TIP]

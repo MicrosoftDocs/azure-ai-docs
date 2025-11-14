@@ -190,12 +190,12 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 * Azure Storage
 * Azure Machine Learning workspace
 * Azure Machine Learning registry
-* Azure AI Foundry
+* Microsoft Foundry
 * Azure Key Vault
 * Azure Cosmos DB
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
-* Azure AI Services
+* Foundry Tools
 * Azure Cache for Redis
 * Container Registry
 * API Management
@@ -1116,7 +1116,7 @@ If you plan to use __Azure Machine Learning batch endpoints__ for deployment or 
 
 ### Scenario: Use prompt flow with Azure OpenAI, content safety, and Azure AI Search
 
-* Private endpoint to Azure AI Services
+* Private endpoint to Foundry Tools
 * Private endpoint to Azure AI Search
 
 ### Scenario: Use HuggingFace models
@@ -1196,12 +1196,12 @@ Here's the list of private endpoint target resource types covered by the Azure A
 * Azure Storage
 * Azure Machine Learning workspace
 * Azure Machine Learning registry
-* Azure AI Foundry
+* Foundry
 * Azure Key Vault
 * Azure Cosmos DB
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
-* Azure AI Services
+* Foundry Tools
 * Azure Cache for Redis
 * Container Registry
 * API Management

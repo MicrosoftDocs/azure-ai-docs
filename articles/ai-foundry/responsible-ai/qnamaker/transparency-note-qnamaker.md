@@ -1,6 +1,6 @@
 ---
 title: Use cases for QnA Maker
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency note for QnA Maker.
 author: laujan
 ms.author: lajanuar

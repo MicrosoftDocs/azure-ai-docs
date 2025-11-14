@@ -1,12 +1,12 @@
 ---
 title: Service quotas and limits - Document Intelligence
-titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices for working within Azure AI Document Intelligence service Quotas and Limits
+titleSuffix: Foundry Tools
+description: Quick reference, detailed description, and best practices for working within Azure Document Intelligence in Foundry Tools Quotas and Limits
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 04/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -22,7 +22,7 @@ monikerRange: '<=doc-intel-4.0.0'
 [!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
 ::: moniker-end
 
-This article contains both a quick reference and detailed description of Azure AI Document Intelligence service Quotas and Limits for all [pricing tiers](https://azure.microsoft.com/pricing/details/form-recognizer/). It also contains some best practices to avoid request throttling.
+This article contains both a quick reference and detailed description of Azure Document Intelligence in Foundry Tools Quotas and Limits for all [pricing tiers](https://azure.microsoft.com/pricing/details/form-recognizer/). It also contains some best practices to avoid request throttling.
 
 ## Model usage
 
@@ -55,7 +55,7 @@ For Document Intelligence v4.0 `2024-11-30` (GA) supports page and line features
 
 ## Billing
 
-Document Intelligence billing is calculated monthly based on the model type and the number of pages analyzed. You can find usage metrics on the metrics dashboard in the Azure portal. The dashboard displays the number of pages that Azure AI Document Intelligence processes. You can check the estimated cost spent on the resource by using the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). For detailed instructions, see [Check usage and estimate cost](how-to-guides/estimate-cost.md). Here are some details:
+Document Intelligence billing is calculated monthly based on the model type and the number of pages analyzed. You can find usage metrics on the metrics dashboard in the Azure portal. The dashboard displays the number of pages that Azure Document Intelligence processes. You can check the estimated cost spent on the resource by using the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). For detailed instructions, see [Check usage and estimate cost](how-to-guides/estimate-cost.md). Here are some details:
 
 - When you submit a document for analysis, the service analyzes all pages unless you specify a page range by using the `pages` parameter in your request. When the service analyzes Microsoft Excel and PowerPoint documents through the read, OCR, or layout model, it counts each Excel worksheet and PowerPoint slide as one page.
 

@@ -1,6 +1,6 @@
 ---
 title: "Face detection, attributes, and input data - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn more about face detection; face detection is the action of locating human faces in an image and optionally returning different kinds of face-related data.
 author: PatrickFarley
 manager: nitinme
@@ -29,7 +29,7 @@ You use the [Detect] API to detect faces in an image. To get started using the R
 
 Each detected face corresponds to a *faceRectangle* field in the response. This is a set of pixel coordinates for the left, top, width, and height of the detected face. Using these coordinates, you can get the location and size of the face. In the API response, faces are listed in size order from largest to smallest.
 
-Try out the capabilities of face detection quickly and easily by using Azure AI Vision Studio.
+Try out the capabilities of face detection quickly and easily by using Azure Vision Studio.
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 

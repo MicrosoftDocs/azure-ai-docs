@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding audio overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding audio solutions
+title: Azure Content Understanding in Foundry Tools audio overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools audio solutions
 author: PatrickFarley 
 ms.author: jagoerge
 manager: nitinme
@@ -12,14 +12,14 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding audio solutions (preview)
+# Azure Content Understanding in Foundry Tools audio solutions (preview)
 
 > [!IMPORTANT]
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to start generating results.
+Audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) to start generating results.
 
 Here are common scenarios for conversational audio data processing:
 
@@ -49,7 +49,7 @@ The following table provides an overview of the options controlled via the 'loca
 |**single locale**|≤ 1 GB and/or ≤ 4 hours|Single language transcription|All supported locales[^1]|&bullet; ≤ 300 MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300 MB and >2 HR ≤ 4 hours: Regular|
 |**multiple locales**|≤ 1 GB and/or ≤ 4 hours|Single language transcription (based on language detection)|All supported locales[^1]|&bullet; ≤ 300 MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300 MB and >2 HR ≤ 4 hours: Regular|
 
-[^1]: Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../speech-service/language-support.md).
+[^1]: Content Understanding supports the full set of [Azure Speech in Foundry Tools Speech to text languages](../../speech-service/language-support.md).
 For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
 * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
@@ -219,7 +219,7 @@ The following prebuilt analyzers are available:
 }
 ```
 
-**Conversation analysis (prebuilt-audioAnalyzer)**. Analyze recordings to generate:
+**Conversation analysis (prebuilt-audioSearch)**. Analyze recordings to generate:
 - conversation transcripts
 - conversation summary
 
@@ -229,7 +229,7 @@ The following prebuilt analyzers are available:
   "id": "9624cc49-b6b3-4ce5-be6c-e895d8c2484d",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-audioAnalyzer",
+    "analyzerId": "prebuilt-audioSearch",
     "apiVersion": "2025-05-01-preview",
     "createdAt": "2025-05-06T23:00:12Z",
     "stringEncoding": "utf8",
@@ -277,7 +277,7 @@ You can also customize prebuilt analyzers for more fine-grained control of the o
 ## Conversational Knowledge Mining Solution Accelerator
 For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
 
-Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI in Azure AI Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Microsoft Foundry, Azure Content Understanding in Foundry Tools, Azure OpenAI in Microsoft Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
 
 Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
 
@@ -297,8 +297,8 @@ Developers using this service should review Microsoft's policies on customer dat
 
 ## Next steps
 
-* Try processing your audio content in the [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
-* Learn how to analyze audio content with [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Try processing your audio content in the [**Microsoft Foundry portal**](https://aka.ms/cu-landing).
+* Learn how to analyze audio content with [**analyzer templates**](../how-to/content-understanding-foundry-classic.md).
 * Review code samples: 
   * [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
   * [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

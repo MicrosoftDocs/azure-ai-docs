@@ -1,20 +1,18 @@
 ---
 title: Custom Named Entity Recognition (NER) FAQ
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Frequently asked questions when using custom Named Entity Recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 09/18/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
-
 # Frequently asked questions for Custom Named Entity Recognition
 
-Find answers to commonly asked questions about concepts, and scenarios related to custom NER in Azure AI Language.
+Find answers to commonly asked questions about concepts, and scenarios related to custom NER in Azure Language in Foundry Tools.
 
 ## How do I get started with the service?
 
@@ -42,7 +40,7 @@ When you're ready to start [using your model to make predictions](#how-do-i-use-
 
 ## What is the recommended CI/CD process?
 
-Here's a list of actions you take within [Azure AI Foundry](https://ai.azure.com/):
+Here's a list of actions you take within [Microsoft Foundry](https://ai.azure.com/):
 
 * Train multiple models on the same dataset within a single project.
 * View your model's performance.
@@ -97,7 +95,7 @@ After deploying your model, you [call the prediction API](how-to/call-api.md), u
 
 ## Data privacy and security
 
-Your data is only stored in your Azure Storage account. Custom NER only has access to read from it during training. Custom NER users have full control to view, export, or delete any user content either through the [Azure AI Foundry](https://ai.azure.com/) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob). For more information, *see* [Data, privacy, and security for Azure AI Language](/azure/ai-foundry/responsible-ai/language-service/data-privacy)
+Your data is only stored in your Azure Storage account. Custom NER only has access to read from it during training. Custom NER users have full control to view, export, or delete any user content either through the [Foundry](https://ai.azure.com/) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob). For more information, *see* [Data, privacy, and security for Language](/azure/ai-foundry/responsible-ai/language-service/data-privacy)
 
 
 ## How to clone my project?

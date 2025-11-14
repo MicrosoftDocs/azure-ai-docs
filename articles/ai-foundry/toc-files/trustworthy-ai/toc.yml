@@ -3,7 +3,7 @@ items:
   href: ../../responsible-use-of-ai-overview.md
 - name: Content filtering
   items:
-   - name: Azure AI Content Safety in AI Foundry portal overview
+   - name: Azure AI Content Safety in Foundry portal overview
      href: ../../ai-services/content-safety-overview.md
    - name: Guardrails + Controls for models deployed with serverless APIs
      href: ../../concepts/model-catalog-content-safety.md
@@ -17,7 +17,7 @@ items:
      href: ../../foundry-models/concepts/default-safety-policies.md
    - name: Use blocklists
      href: ../../foundry-models/how-to/use-blocklists.md
-- name: Transparency notes for Azure AI Services
+- name: Transparency notes for Foundry Tools
   href: ../../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
 - name: Limited Access features
   href: ../../../ai-services/cognitive-services-limited-access.md?context=/azure/ai-foundry/context/context

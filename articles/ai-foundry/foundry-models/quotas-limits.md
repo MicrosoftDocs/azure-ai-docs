@@ -1,7 +1,9 @@
-﻿---
-title: Azure AI Foundry Models quotas and limits
-titleSuffix: Azure AI Foundry
-description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI Foundry service.
+---
+title: Microsoft Foundry Models quotas and limits
+titleSuffix: Microsoft Foundry
+description: Quick reference, detailed description, and best practices on the quotas and limits for the Microsoft Foundry service.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -13,19 +15,19 @@ ms.reviewer: haakar
 reviewer: haakar
 ---
 
-# Azure AI Foundry Models quotas and limits
+# Microsoft Foundry Models quotas and limits
 
-This article provides a quick reference and detailed description of the quotas and limits for Azure AI Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for Microsoft Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
-Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Azure AI model inference service in Azure AI Foundry:
+Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Azure AI model inference service in Foundry:
 
 ### Resource limits
 
 | Limit name | Limit value |
 |--|--|
-| Azure AI Foundry resources per region per Azure subscription | 100 |
+| Foundry resources per region per Azure subscription | 100 |
 | Max projects per resource | 250 |
 | Max deployments per resource | 32 | 
 
@@ -47,7 +49,7 @@ The following table lists limits for Foundry Models for the following rates:
 
 To increase your quota:
 
-- For Azure OpenAI, use [Azure AI Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. 
+- For Azure OpenAI, use [Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. 
 - For other models, see [request increases to the default limits](#request-increases-to-the-default-limits). 
  
 Due to high demand, we evaluate limit increase requests per request.
@@ -81,4 +83,4 @@ To minimize issues related to rate limits, use the following techniques:
 
 ## Next steps
 
-* Learn more about the [models available in Azure AI Foundry Models](../model-inference/concepts/models.md)
+* Learn more about the [models available in Foundry Models](../model-inference/concepts/models.md)

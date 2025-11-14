@@ -1,16 +1,15 @@
 ---
 title: Create orchestration workflow projects and use Azure resources
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this article to learn how to create projects in orchestration workflow
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # How to create projects in orchestration workflow
 
 Orchestration workflow allows you to create projects that connect your applications to:
@@ -23,15 +22,15 @@ Orchestration workflow allows you to create projects that connect your applicati
 Before you start using orchestration workflow, you will need several things:
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* An Azure AI Language resource 
+* An Azure Language in Foundry Tools resource 
 
 ### Create a Language resource 
 
-Before you start using orchestration workflow, you will need an Azure AI Language resource.
+Before you start using orchestration workflow, you will need a Language resource.
 
 > [!NOTE]
 >  * You need to have an **owner** role assigned on the resource group to create a Language resource.
->  * If you are planning to use question answering, you have to enable question answering in resource creation
+>  * If you're planning to use question answering, you have to enable question answering in resource creation
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 
@@ -39,7 +38,7 @@ Before you start using orchestration workflow, you will need an Azure AI Languag
 
 ## Sign in to Language Studio
 
-To create a new intent, select *+Add* button and start by giving your intent a **name**. You will see two options, to connect to a project or not. You can connect to (LUIS, question answering, or Conversational Language Understanding) projects, or choose the **no** option.
+To create a new intent, select *+Add* button and start by giving your intent a **name**. You can see two options, to connect to a project or not. You can connect to (LUIS, question answering, or Conversational Language Understanding) projects, or choose the **no** option.
 
 
 ## Create an orchestration workflow project
@@ -59,7 +58,7 @@ Once you have a Language resource created, create an orchestration workflow proj
 
 ### [Language Studio](#tab/language-studio)
 
-You can export an orchestration workflow project as a JSON file at any time by going to the orchestration workflow projects page, selecting a project, and from the top menu, clicking on **Export**.
+You can export an orchestration workflow project as a JSON file at any time by going to the orchestration workflow projects page, selecting a project, and from the top menu, selecting **Export**.
 
 That project can be reimported as a new project. If you import a project with the exact same name, it replaces the project's data with the newly imported project's data.
 

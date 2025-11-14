@@ -1,0 +1,8 @@
+items:
+
+- name: Quickstart
+  href: ../../../quickstarts/get-started-code.md
+- name: "Tutorial: Idea to prototype"
+  href: ../../tutorials/developer-journey-idea-to-prototype.md
+- name: Ask AI
+  href: ../../../foundry-agent/ask-foundry-agent.md

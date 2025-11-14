@@ -2,6 +2,6 @@
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: AI Foundry
-    tocHref: /azure/ai-foundry/
+  - name: Microsoft Foundry
+    tocHref: /azure/ai-foundry/default
     topicHref: /azure/ai-foundry/index

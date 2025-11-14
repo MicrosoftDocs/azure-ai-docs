@@ -6,9 +6,8 @@ ms.topic: how-to
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.date: 08/29/2025
+ms.date: 11/18/2025
 ---
-
 # Project best practices
 
 The following list of QnA pairs are used to represent a project to highlight best practices when authoring in custom question answering. 

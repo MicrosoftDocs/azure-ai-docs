@@ -1,6 +1,6 @@
 ---
 title: How to run an evaluation in GitHub Action 
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -8,6 +8,7 @@ ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
 ---
 
 # How to run an evaluation in GitHub Action (preview)
@@ -16,7 +17,7 @@ author: lgayhardt
 
 This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It's designed to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
 
-Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and appropriateness. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
+Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and appropriateness. After you select a model in the [Foundry model catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
 
 [!INCLUDE [features](../includes/evaluation-github-action-azure-devops-features.md)]
 
@@ -30,7 +31,7 @@ Foundry project or Hubs based project. To learn more, see [Create a project](cre
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
-- If your application is already using AI Foundry agents, **ai-agent-evals** is well-suited as it offers a simplified setup process and direct integration with agent-based workflows.
+- If your application is already using Foundry agents, **ai-agent-evals** is well-suited as it offers a simplified setup process and direct integration with agent-based workflows.
 - **genai-evals** is intended for evaluating generative AI models outside of the agent framework.
 
 > [!NOTE]
@@ -46,11 +47,11 @@ The input of ai-agent-evals includes:
 
 # [Foundry project](#tab/foundry-project)
 
-- `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-ai-project-endpoint`: The endpoint of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
 # [Hub-based project](#tab/hub-project)
 
-- `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-aiproject-connection-string`: The connection string of the Foundry project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
 ---
 - `deployment-name`: the deployed model name for evaluation judgement.
@@ -61,7 +62,6 @@ The input of ai-agent-evals includes:
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
   - When multiple `agent-ids` are specified, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
-
 
 **Optional:**
 
@@ -188,7 +188,8 @@ Evaluation results are outputted to the summary section for each AI evaluation G
 
 The result includes two main parts:
 
-- The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to AI Foundry portal to view individual result in detail.
+- The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Foundry portal. You can also select the link for Evaluation Results, and it directs you to Foundry portal to view individual result in detail.
+
 - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Multi agent evaluation result:
@@ -302,5 +303,5 @@ The results include three parts:
 
 ## Related content
 
-- [How to evaluate generative AI models and applications with Azure AI Foundry](./evaluate-generative-ai-app.md)
-- [How to view evaluation results in Azure AI Foundry portal](./evaluate-results.md)
+- [How to evaluate generative AI models and applications with Microsoft Foundry](./evaluate-generative-ai-app.md)
+- [How to view evaluation results in Foundry portal](./evaluate-results.md)

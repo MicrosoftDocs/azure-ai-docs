@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Deploy an enterprise chat web app in the Azure AI Foundry portal playground"
-titleSuffix: Azure AI Foundry
-description: Use this article to deploy an enterprise chat web app in the Azure AI Foundry portal playground.
+title: "Tutorial: Deploy an enterprise chat web app in the Microsoft Foundry portal playground"
+titleSuffix: Microsoft Foundry
+description: Use this article to deploy an enterprise chat web app in the Microsoft Foundry portal playground.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -14,12 +14,12 @@ ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to deploy an enterprise chat web app in the Azure AI Foundry portal playground so that I can use my own data with a large language model.
+# customer intent: As a developer, I want to deploy an enterprise chat web app in the Microsoft Foundry portal playground so that I can use my own data with a large language model.
 ---
 
 # Tutorial: Deploy an enterprise chat web app
 
-In this article, you deploy an enterprise chat web app that uses your data with a large language model in Azure AI Foundry portal.
+In this article, you deploy an enterprise chat web app that uses your data with a large language model in Microsoft Foundry portal.
 
 Your data source grounds the model with specific data. Grounding means the model uses your data to understand the context of your question. You don't change the deployed model itself. Your data stays separate and secure in your original data source.
 
@@ -35,7 +35,7 @@ The steps in this tutorial are:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Finish the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you don't have one.
+- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Finish the [Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you don't have one.
 
 - A Search service connection to index the sample product data. If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
 
@@ -45,11 +45,11 @@ The steps in this tutorial are:
 
 - Necessary permissions to add role assignments in your Azure subscription. Only the Owner of the specific Azure resources can grant permissions by role assignment.
 
-## Azure AI Foundry portal and Azure portal 
+## Foundry portal and Azure portal 
 
-In this tutorial, you perform some tasks in the Azure AI Foundry portal and some tasks in the Azure portal.
+In this tutorial, you perform some tasks in the Foundry portal and some tasks in the Azure portal.
 
-The Azure AI Foundry portal is a web-based environment for building, training, and deploying AI models. As a developer, it's where you build and deploy your chat web application.
+The Foundry portal is a web-based environment for building, training, and deploying AI models. As a developer, it's where you build and deploy your chat web application.
 
 The Azure portal lets an admin manage and monitor Azure resources. As an admin, you use the portal to set up settings for different Azure services required for access from the web app.
 
@@ -60,9 +60,9 @@ The Azure portal lets an admin manage and monitor Azure resources. As an admin, 
 
 To make the resources work correctly in a web app, set up the correct permissions in the Azure portal.
 
-First, identify the resources you need to set up in the Azure AI Foundry portal.
+First, identify the resources you need to set up in the Foundry portal.
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), then select the hub-based project you used to deploy the Azure OpenAI chat model.
+1. Open the [Foundry portal](https://ai.azure.com/?cid=learnDocs), then select the hub-based project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
 1. Identify the three resources you need to configure:  the **Azure OpenAI**, the **Azure AI Search**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
@@ -76,7 +76,7 @@ First, identify the resources you need to set up in the Azure AI Foundry portal.
 
 
 1. Search for each of these names in the [Azure portal](https://portal.azure.com). Open each one in a new browser tab so that you can switch between them.
-1. When you're done, you have three new browser tabs open: **Search service**, **Azure AI Foundry**, and **blobstore Container**. Keep all three tabs open because you switch between them to set up the resources.
+1. When you're done, you have three new browser tabs open: **Search service**, **Foundry**, and **blobstore Container**. Keep all three tabs open because you switch between them to set up the resources.
 
 ### Enable managed identity
 
@@ -86,7 +86,7 @@ In the browser tab for the **Search service** resource in the Azure portal, enab
 1. Switch **Status** to **On**.
 1. Select **Save**.
 
-In the browser tab for the **Azure AI Foundry** resource in the Azure portal, enable managed identity:
+In the browser tab for the **Foundry** resource in the Azure portal, enable managed identity:
 
 1. In the left pane, under **Resource Management**, select **Identity**.
 1. Switch **Status** to **On**.
@@ -109,18 +109,18 @@ Repeat this pattern for each resource in the steps below.
 Use these steps to assign roles for the resources you set up in this tutorial:
 
 * Assign these roles in the browser tab for **Search service** in the Azure portal:
-    * **Search Index Data Reader** to the **Azure AI Foundry** managed identity
-    * **Search Service Contributor** to the **Azure AI Foundry** managed identity
+    * **Search Index Data Reader** to the **Foundry** managed identity
+    * **Search Service Contributor** to the **Foundry** managed identity
     * **Contributor** to yourself (to find **Contributor**, switch to the **Privileged administrator roles** tab at the top. All other roles are in the **Job function roles** tab.)
 
-* Assign these roles in the browser tab for **Azure AI Foundry** in the Azure portal:
+* Assign these roles in the browser tab for **Foundry** in the Azure portal:
 
     * **Cognitive Services OpenAI Contributor** to the **Search service** managed identity
     * **Contributor** to yourself.
 
 * Assign these roles in the browser tab for **Azure Blob storage** in the Azure portal:
 
-    * **Storage Blob Data Contributor** to the **Azure AI Foundry** managed identity
+    * **Storage Blob Data Contributor** to the **Foundry** managed identity
     * **Storage Blob Data Reader** to the **Search service** managed identity
     * **Contributor** to yourself
 
@@ -128,25 +128,25 @@ You're done setting up resources. You can close the Azure portal browser tabs no
 
 ## Add your data and try the chat model again
 
-In the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), you see how your model responds without your data. Add your data to the model so it can answer questions about your products.
+In the [Foundry playground quickstart](../quickstarts/get-started-playground.md) (that's a prerequisite for this tutorial), you see how your model responds without your data. Add your data to the model so it can answer questions about your products.
 
 [!INCLUDE [Chat with your data](../includes/chat-with-data.md)]
 
 ## Deploy your web app
 
-When you're satisfied with the experience in the Azure AI Foundry portal, deploy the model as a standalone web application.
+When you're satisfied with the experience in the Foundry portal, deploy the model as a standalone web application.
 
 ### Find your resource group in the Azure portal
 
-In this tutorial, deploy your web app to the same resource group as your [Azure AI Foundry hub](../how-to/create-secure-ai-hub.md). You'll set up authentication for the web app in the Azure portal.
+In this tutorial, deploy your web app to the same resource group as your [Foundry hub](../how-to/create-secure-ai-hub.md). You'll set up authentication for the web app in the Azure portal.
 
 Follow these steps to go to your resource group in the Azure portal:
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Select **Management center** from the left pane.
+1. Go to your project in [Foundry](https://ai.azure.com/?cid=learnDocs). Select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
 1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-sdg-ai`.
 
-    :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Azure AI Foundry portal." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
+    :::image type="content" source="../media/tutorials/chat/resource-group-manage-page.png" alt-text="Screenshot of the resource group in the Foundry portal." lightbox="../media/tutorials/chat/resource-group-manage-page.png":::
 
 1. You're now in the Azure portal, viewing the contents of the resource group where you deployed the hub. Note the resource group name and location. You'll use this information in the next section.
 1. Keep this page open in a browser tab. You'll return to it later.
@@ -160,7 +160,7 @@ To deploy the web app:
 > [!IMPORTANT]
 > Register [**Microsoft.Web** as a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1) before you deploy to a web app. 
 
-1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. You can deploy a web app with or without your own data, but you need a deployed model as described in the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md).
+1. Complete the steps in the previous section to [add your data](#add-your-data-and-try-the-chat-model-again) to the playground. You can deploy a web app with or without your own data, but you need a deployed model as described in the [Foundry playground quickstart](../quickstarts/get-started-playground.md).
 
 1. Select **Deploy > ...as a web app**.
 
@@ -207,11 +207,11 @@ By default, only you can access the web app. In this tutorial, add authenticatio
 You're almost there. Now you can test the web app.
 
 1. If you changed settings, wait about 10 minutes for the authentication settings to take effect.
-1. Return to the browser tab with the chat playground page in the Azure AI Foundry portal.
+1. Return to the browser tab with the chat playground page in the Foundry portal.
 1. Select **Launch** to open the deployed web app. If prompted, accept the permissions request.
 1. If you don't see **Launch** in the playground, select **Web apps** from the left pane, then select your app from the list to open it.
 
-    *If the authentication settings aren't active yet, close the browser tab for your web app and return to the chat playground in the Azure AI Foundry portal. Wait a little longer, then try again.*
+    *If the authentication settings aren't active yet, close the browser tab for your web app and return to the chat playground in the Foundry portal. Wait a little longer, then try again.*
 
 1. In your web app, ask the same question as before ("How much are the TrailWalker hiking shoes"). This time, the app uses information from your data to construct the response. Expand the **reference** button to see the data used.
 

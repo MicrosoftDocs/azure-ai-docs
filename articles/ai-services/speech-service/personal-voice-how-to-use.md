@@ -1,6 +1,6 @@
 ---
 title: Use personal voice in your application
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to integrate personal voice in your application.
 author: PatrickFarley
 manager: nitinme

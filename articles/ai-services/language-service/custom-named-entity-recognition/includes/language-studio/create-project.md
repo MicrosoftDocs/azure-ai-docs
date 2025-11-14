@@ -3,21 +3,20 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-1. Sign into the [Language Studio](https://aka.ms/languageStudio). A window appears to let you select your subscription and Language resource. Select the Language resource you created in the previous step. 
+1. Sign into the [Language Studio](https://aka.ms/languageStudio). A window appears to let you select your subscription and Language resource. Select Azure Language resource you created in the previous step. 
 
 2. Under the **Extract information** section of Language Studio, select **Custom named entity recognition**.
 
-    :::image type="content" source="../../media/select-custom-ner.png" alt-text="A screenshot showing the location of custom named entity recognition (NER) in the Language Studio landing page." lightbox="../../media/select-custom-ner.png":::
+    :::image type="content" source="../../media/select-custom-ner.png" alt-text="A screenshot showing the location of custom named entity recognition (NER) in Azure Language Studio landing page." lightbox="../../media/select-custom-ner.png":::
 
 3. Select **Create new project** from the top menu in your projects page. Creating a project lets you tag data, train, evaluate, improve, and deploy your models. 
 
     :::image type="content" source="../../media/create-project.png" alt-text="A screenshot of the project creation page." lightbox="../../media/create-project.png":::
 
-4.  After you select, **Create new project**, a window will appear to let you connect your storage account. If you already connected a storage account, the connected storage accounted appears in the window. If not, choose your storage account from the dropdown that appears and select **Connect storage account**; this sets the required roles for your storage account. This step can return an error if you aren't assigned as **owner** on the storage account.
+4.  After you select, **Create new project**, a window appears to let you connect your storage account. If you already connected a storage account, the connected storage accounted appears in the window. If not, choose your storage account from the dropdown that appears and select **Connect storage account**; this sets the required roles for your storage account. This step can return an error if you aren't assigned as **owner** on the storage account.
 
     >[!NOTE]
     > * You only need to do this step once for each new resource you use. 

@@ -1,18 +1,17 @@
 ---
 title: How to use Text Analytics for health containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to extract and label medical information on premises using Text Analytics for health Docker container.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli
 ---
-
 # Use Text Analytics for health containers
 
 Containers enable you to host the Text Analytics for health API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Text Analytics for health remotely, then containers might be a good option.
@@ -135,8 +134,8 @@ $resources_location = ""                   # This is the location you wish the A
                                            #    get the list of available locations and location code names.
 $appservice_plan_name = ""                 # This is the AppServicePlan name you wish to have.
 $appservice_name = ""                      # This is the AppService resource name you wish to have.
-$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from the Language resource.
-$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from the Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from Azure Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from Azure Language resource.
 $DOCKER_IMAGE_NAME = "mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:latest"
 
 az login
@@ -166,8 +165,8 @@ $resources_location = ""                   # This is the location you wish the w
                                            # You can use the "az account list-locations -o table" command to
                                            # Get the list of available locations and location code names.
 $azure_container_instance_name = ""        # This is the AzureContainerInstance name you wish to have.
-$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from the Language resource.
-$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from the Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from Azure Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from Azure Language resource.
 $DNS_LABEL = ""                            # This is the DNS label name you wish your ACI will have
 $DOCKER_IMAGE_NAME = "mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:latest"
 

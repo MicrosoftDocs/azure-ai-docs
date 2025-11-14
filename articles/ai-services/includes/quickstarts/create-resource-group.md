@@ -10,4 +10,4 @@ ms.author: pafarley
 
 ## Create a resource group
 
-Before you create an AI Foundry resource, your account must have an Azure resource group to contain the resource. If you don't already have a resource group, create one in the [Azure portal](https://portal.azure.com/) before continuing.
+Before you create a Foundry resource, your account must have an Azure resource group to contain the resource. If you don't already have a resource group, create one in the [Azure portal](https://portal.azure.com/) before continuing.

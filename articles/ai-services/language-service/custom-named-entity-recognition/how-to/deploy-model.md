@@ -1,16 +1,15 @@
 ---
 title: How to deploy a custom named entity recognition (NER) model
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to deploy a model for custom NER.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
 # Deploy a model and extract entities from text using the runtime API
 
 Once you're satisfied with how your model performs, it's ready to be deployed and used to recognize entities in text. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).
@@ -28,9 +27,9 @@ Once you're satisfied with how your model performs, it's ready to be deployed an
 
 After you review your model's performance and decided it can be used in your environment, you need to assign it to a deployment. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).  We recommend that you create a deployment named *production* to which you assign the best model you built so far and use it in your system. You can create another deployment called *staging* to which you can assign the model you're currently working on to be able to test it. You can have a maximum of 10 deployments in your project. 
 
-# [Azure AI Foundry](#tab/azure-ai-foundry)
+# [Microsoft Foundry](#tab/azure-ai-foundry)
 
-For information on how to deploy your custom model in the Azure AI Foundry, *see* [Deploy your fine-tuned model ](/azure/ai-foundry/openai/how-to/fine-tuning-deploy?tabs=portal#deploy-your-fine-tuned-model).
+For information on how to deploy your custom model in the Foundry, *see* [Deploy your fine-tuned model ](/azure/ai-foundry/openai/how-to/fine-tuning-deploy?tabs=portal#deploy-your-fine-tuned-model).
    
 # [REST APIs](#tab/rest-api)
 
@@ -48,7 +47,7 @@ For information on how to deploy your custom model in the Azure AI Foundry, *see
 
 After you're done testing a model assigned to one deployment and you want to assign this model to another deployment, you can swap these two deployments. Swapping deployments involves taking the model assigned to the first deployment, and assigning it to the second deployment. Then taking the model assigned to second deployment, and assigning it to the first deployment. You can use this process to swap your *production* and *staging* deployments when you want to take the model assigned to *staging* and assign it to *production*. 
 
-# [Azure AI Foundry](#tab/azure-ai-foundry)
+# [Foundry](#tab/azure-ai-foundry)
 
 To replace a deployed model, you can exchange the deployed model with a different model in the same region:
 
@@ -67,11 +66,11 @@ To replace a deployed model, you can exchange the deployed model with a differen
 
 ## Delete deployment
 
-# [Azure AI Foundry](#tab/azure-ai-foundry)
-If you no longer need your project, you can delete it from the Azure AI Foundry.
+# [Foundry](#tab/azure-ai-foundry)
+If you no longer need your project, you can delete it from the Foundry.
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
-1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
+1. Navigate to the [Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
+1. Select the project that you want to delete from the **Keep building with Foundry**
 1. Select **Management center**.
 1. Select **Delete project**.
 
@@ -92,7 +91,7 @@ To delete the hub along with all its projects:
 
 You can [deploy your project to multiple regions](../../concepts/custom-features/multi-region-deployment.md) by assigning different Language resources that exist in different regions.
 
-# [Azure AI Foundry](#tab/azure-ai-foundry)
+# [Foundry](#tab/azure-ai-foundry)
 
 For more information on how to deploy you custom model, *see* [Deploy your fine-tuned model](/azure/ai-foundry/openai/how-to/fine-tuning-deploy?tabs=python#deploy-your-fine-tuned-model)
 
@@ -106,12 +105,12 @@ For more information on how to deploy you custom model, *see* [Deploy your fine-
 
 To unassign or remove a deployment resource from a project, you also delete all the deployments for to that resource region.
 
-# [Azure AI Foundry](#tab/azure-ai-foundry)
+# [Foundry](#tab/azure-ai-foundry)
 
-If you no longer need your project, you can delete it from the Azure AI Foundry.
+If you no longer need your project, you can delete it from the Foundry.
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
-1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
+1. Navigate to the [Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
+1. Select the project that you want to delete from the **Keep building with Foundry**
 1. Select **Management center**.
 1. Select **Delete project**.
 
