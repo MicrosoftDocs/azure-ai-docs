@@ -153,5 +153,9 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 :::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instatiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
 
 
+## Next Steps
+* [Microsoft Foundry Agents FAQ](../agents/faq.md)
+
+
 
  
