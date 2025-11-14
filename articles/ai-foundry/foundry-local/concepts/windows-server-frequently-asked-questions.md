@@ -40,13 +40,13 @@ Foundry Local on Windows Server 2025 lets you run selected Azure AI Foundry mode
     Foundry Local **detects the partitioned GPU inside a GPU-P VM** and picks up a CUDA-enabled model when one is available. Otherwise, it falls back appropriately. The execution provider is also automatically selected based on the availability of GPU inside the VM.
 
 1.  **What are the concurrency limitations of Foundry Local on server?**
-    Foundry Local isn't optimized to serve multiple users as a shared on-premises endpoint. It doesn't yet support concurrent inference requests. Requests to one Foundry Local endpoint are processed sequentially. You must manage parallel execution across multiple endpoints at the application level. As concurrent requests increase, throughput drops and latency increases. There's no continuous batching in the Local runtime, so request coalescing doesn't happen under load. For multiple users or spiky traffic, move to [Microsoft Foundry](../ai-foundry/).
+    Foundry Local isn't optimized to serve multiple users as a shared on-premises endpoint. It doesn't yet support concurrent inference requests. Requests to one Foundry Local endpoint are processed sequentially. You must manage parallel execution across multiple endpoints at the application level. As concurrent requests increase, throughput drops and latency increases. There's no continuous batching in the Local runtime, so request coalescing doesn't happen under load. For multiple users or spiky traffic, move to [Microsoft Foundry](../).
 
 1.  **How is Foundry Local SDK different from the Foundry Local service?**
 
-    The [Foundry Local SDK](reference/reference-sdk.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
+    The [Foundry Local SDK](../reference/reference-sdk.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
 
 ## Related content
 
-- [Get started with Foundry Local](get-started.md)
-- [Foundry Local architecture](concepts/foundry-local-architecture.md)
+- [Get started with Foundry Local](../get-started.md)
+- [Foundry Local architecture](../concepts/foundry-local-architecture.md)
