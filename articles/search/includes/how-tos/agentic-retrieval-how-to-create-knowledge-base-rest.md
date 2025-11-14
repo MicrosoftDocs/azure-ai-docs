@@ -226,7 +226,7 @@ api-key: {{search-api-key}}
     "includeActivity": true,
     "knowledgeSourceParams": [
         {
-            "knowledgeSourceName": "earth-at-night-blob-ks",
+            "knowledgeSourceName": "earth-at-night-ks",
             "kind": "searchIndex",
             "includeReferences": true,
             "includeReferenceSourceData": true,

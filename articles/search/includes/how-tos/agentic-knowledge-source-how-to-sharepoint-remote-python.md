@@ -145,7 +145,7 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-## Retrieve content
+## Query a knowledge base
 
 The [retrieve action](../../agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
 
@@ -153,35 +153,34 @@ Azure AI Search uses the access token to call the Copilot Retrieval API on behal
 
 Make sure that you [generate an access token](../../search-get-started-rbac.md?pivots=rest#get-token) for the tenant that has your search service.
 
-```http
-POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
-api-key: {{api-key}}
-Content-Type: application/json
-x-ms-query-source-authorization: {{access-token}}
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, KnowledgeBaseRetrievalRequest, RemoteSharePointKnowledgeSourceParams
 
-{
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                { "type": "text", "text": "what was covered in the keynote doc for Ignite 2024" }
-            ]
-        }
+kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
+
+sharepoint_ks_params = RemoteSharePointKnowledgeSourceParams(
+    knowledge_source_name = "my-remote-sharepoint-ks",
+    filter_expression_add_on = "ModifiedBy:\"Adele Vance\"",
+    include_references = True,
+    include_reference_source_data = True
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    messages = [
+        KnowledgeBaseMessage(role = "user", content = [KnowledgeBaseMessageTextContent(text="What was covered in the keynote doc for Ignite 2024?")])
     ],
-    "includeActivity": true,
-    "knowledgeSourceParams": [
-        {
-            "filterExpressionAddOn": "ModifiedBy:\"Adele Vance\"",
-            "knowledgeSourceName": "remote-sp-kb",
-            "kind": "remoteSharePoint",
-            "includeReferences": true,
-            "includeReferenceSourceData": true
-        }
+    knowledge_source_params = [
+        sharepoint_ks_params
     ]
-}
+)
+
+result = kb_client.retrieve(request)
+print(result.response[0].content[0].text)
 ```
 
-The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filterExpressionAddOn`) in case you want to apply constraints at query time. If you specify `filterExpressionAddOn` on both the knowledge source and knowledge base retrieve action, the filters are AND'd together.
+The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filter_expression_add_on`) if you want to apply constraints at query time. If you specify `filter_expression_add_on` on both the knowledge source and knowledge base retrieve action, the filters are AND'd together.
 
 Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "Where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
 

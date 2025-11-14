@@ -206,67 +206,37 @@ Call the `retrieve` action on the knowledge base to verify the LLM connection an
 Replace "Where does the ocean look green?" with a query string that's valid for your knowledge sources.
 
 ```python
-import json
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient; from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams, KnowledgeRetrievalLowReasoningEffort
-
-# Define messages
-messages = [
-    {
-        "role": "assistant",
-        "content": "Use the earth at night index to answer the question. If you can't find relevant content, say you don't know."
-    },
-    {
-        "role": "user",
-        "content": "Where does the ocean look green?"
-    }
-]
-
 # Send grounding request
-kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
-                                         
-query_1 = """
-Where does the ocean look green?
-"""
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, KnowledgeBaseRetrievalRequest, RemoteSharePointKnowledgeSourceParams
 
-messages.append({
-    "role": "user",
-    "content": query_1
-})
+kb_client = KnowledgeBaseRetrievalClient(endpoint = "search_url", knowledge_base_name = "knowledge_base_name", credential = AzureKeyCredential("api_key"))
 
 request = KnowledgeBaseRetrievalRequest(
-    messages = [
+    messages=[
         KnowledgeBaseMessage(
-            role = m["role"],
-            content = [KnowledgeBaseMessageTextContent(text=m["content"])]
-        ) for m in messages if m["role"] != "system"
+            role = "assistant",
+            content = [KnowledgeBaseMessageTextContent(text = "Use the earth at night index to answer the question. If you can't find relevant content, say you don't know.")]
+        ),
+        KnowledgeBaseMessage(
+            role = "user",
+            content = [KnowledgeBaseMessageTextContent(text = "Where does the ocean look green?")]
+        ),
     ],
-    knowledge_source_params = [
+    knowledge_source_params=[
         SearchIndexKnowledgeSourceParams(
-            knowledge_source_name = "my-blob-ks",
+            knowledge_source_name = "earth-at-night-ks",
             include_references = True,
             include_reference_source_data = True,
-            always_query_source = True
+            always_query_source = False,
         )
     ],
     include_activity = True,
-    retrieval_reasoning_effort = KnowledgeRetrievalLowReasoningEffort
 )
 
 result = kb_client.retrieve(request)
-
-# Display the results
-def simple_display(result):
-    if isinstance(result, (dict, list)):
-        print(json.dumps(result, indent = 2))
-    elif hasattr(result, "http_response"):
-        print(result.http_response.text())
-    elif hasattr(result, "as_dict"):
-        print(json.dumps(result.as_dict(), indent = 2))
-    else:
-        print(result)
-
-simple_display(result)
+print(result.response[0].content[0].text)
 ```
 
 **Key points:**

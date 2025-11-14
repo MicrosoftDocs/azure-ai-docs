@@ -143,7 +143,7 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-## Retrieve content
+## Query a knowledge base
 
 The [retrieve action](../../agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
 
@@ -162,7 +162,7 @@ x-ms-query-source-authorization: {{access-token}}
         {
             "role": "user",
             "content": [
-                { "type": "text", "text": "what was covered in the keynote doc for Ignite 2024" }
+                { "type": "text", "text": "What was covered in the keynote doc for Ignite 2024?" }
             ]
         }
     ],
@@ -170,7 +170,7 @@ x-ms-query-source-authorization: {{access-token}}
     "knowledgeSourceParams": [
         {
             "filterExpressionAddOn": "ModifiedBy:\"Adele Vance\"",
-            "knowledgeSourceName": "remote-sp-kb",
+            "knowledgeSourceName": "my-remote-sharepoint-ks",
             "kind": "remoteSharePoint",
             "includeReferences": true,
             "includeReferenceSourceData": true
@@ -179,7 +179,7 @@ x-ms-query-source-authorization: {{access-token}}
 }
 ```
 
-The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filterExpressionAddOn`) in case you want to apply constraints at query time. If you specify `filterExpressionAddOn` on both the knowledge source and knowledge base retrieve action, the filters are AND'd together.
+The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filterExpressionAddOn`) if you want to apply constraints at query time. If you specify `filterExpressionAddOn` on both the knowledge source and knowledge base retrieve action, the filters are AND'd together.
 
 Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "Where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
 
