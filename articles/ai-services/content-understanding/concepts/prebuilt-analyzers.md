@@ -67,7 +67,7 @@ Base analyzers provide fundamental content processing capabilities specific to a
 
 Content understanding provides a set of analyzers optimized for retrieval-augmented generation (RAG) scenarios. These analyzers extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
 
-#### `prebuilt-documentAnalyzer`
+#### `prebuilt-documentSearch`
 
 * Extracts various content and layout elements such as paragraphs, tables, and figures from documents
 * Provides detailed figure descriptions with textual explanations of images, charts, and diagrams<sup>1</sup>
@@ -79,20 +79,20 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 
 <sup>1</sup> Figure analysis is only supported for PDF and image file formats.
 
-#### `prebuilt-imageAnalyzer`
+#### `prebuilt-imageSearch`
 
 * Analyzes images to generate descriptions and insights
 * Generates a one-paragraph description of the image content
 * Extracts visual content for search and retrieval applications
 
-#### `prebuilt-audioAnalyzer`
+#### `prebuilt-audioSearch`
 
 * Transcribes conversations from audio and video files
 * Generates a one-paragraph summary of the conversation content
 * Supports multiple locales for international content processing
 * Optimized for conversation analysis and content extraction
 
-#### `prebuilt-videoAnalyzer`
+#### `prebuilt-videoSearch`
 
 * Analyzes videos to extract transcripts and descriptions for each segment
 * Automatically segments videos into meaningful sections based on topic shifts, scene changes, or visual cues

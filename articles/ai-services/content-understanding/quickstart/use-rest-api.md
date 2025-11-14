@@ -62,10 +62,10 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-invoice:anal
 
 # [Image](#tab/image)
 
-This example uses the `prebuilt-imageAnalyzer` analyzer to generate a description of the image.
+This example uses the `prebuilt-imageSearch` analyzer to generate a description of the image.
 
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-imageAnalyzer:analyze?api-version=2025-11-01" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-imageSearch:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -83,10 +83,10 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-imageAnalyze
 
 # [Audio](#tab/audio)
 
-This example uses the `prebuilt-audioAnalyzer` analyzer to extract the audio transcript, generate a summary, and perform speaker labeling.
+This example uses the `prebuilt-audioSearch` analyzer to extract the audio transcript, generate a summary, and perform speaker labeling.
 
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-audioAnalyzer:analyze?api-version=2025-11-01" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-audioSearch:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -104,10 +104,10 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-audioAnalyze
 
 # [Video](#tab/video)
 
-This example uses the `prebuilt-videoAnalyzer` analyzer to extract keyframes, transcript, and chapter segments from video.
+This example uses the `prebuilt-videoSearch` analyzer to extract keyframes, transcript, and chapter segments from video.
 
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-videoAnalyzer:analyze?api-version=2025-11-01" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/prebuilt-videoSearch:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -478,7 +478,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "fe6bb69d-1d6b-4698-a50c-ce798bacdd95",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-imageAnalyzer",
+    "analyzerId": "prebuilt-imageSearch",
     "apiVersion": "2025-11-01",
     "createdAt": "2025-11-13T20:11:50Z",
     "warnings": [],
@@ -502,7 +502,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
             "spans": []
           }
         ],
-        "analyzerId": "prebuilt-imageAnalyzer",
+        "analyzerId": "prebuilt-imageSearch",
         "mimeType": "image/jpeg"
       }
     ]
@@ -524,7 +524,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "<request-id>",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-audioAnalyzer",
+    "analyzerId": "prebuilt-audioSearch",
     "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "stringEncoding": "utf8",
@@ -542,7 +542,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "kind": "audioVisual",
         "startTimeMs": 0,
         "endTimeMs": 114670,
-        "analyzerId": "prebuilt-audioAnalyzer",
+        "analyzerId": "prebuilt-audioSearch",
         "mimeType": "audio/wav"
       }
     ]
@@ -567,7 +567,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "id": "2689a699-fa3a-4ddf-9a27-c34ceaa6c597",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-videoAnalyzer",
+    "analyzerId": "prebuilt-videoSearch",
     "apiVersion": "2025-11-01",
     "createdAt": "2025-11-13T16:11:17Z",
     "warnings": [],

@@ -34,7 +34,7 @@ The analyzer definition might look something like this if it was created with th
 {
   "analyzerId": "my-custom-invoice-analyzer",
   "description": "Extracts vendor information, line items, and totals from commercial invoices",
-  "baseAnalyzerId": "prebuilt-documentAnalyzer",
+  "baseAnalyzerId": "prebuilt-documentSearch",
   "config": {
     /*...*/
   },
