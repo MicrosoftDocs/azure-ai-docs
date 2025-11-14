@@ -27,6 +27,7 @@ To use Azure Content Understanding, create your Azure AI Service resource in a s
 | `australiaeast` | Australia East | Australia | Australia |
 | `eastus` | East US | United States | US |
 | `eastus2` | East US 2 | United States | US |
+| `japaneast` | Japan East | Japan | Asia |
 | `northeurope` | North Europe | Europe | Europe |
 | `southcentralus` | South Central US | United States | US |
 | `southeastasia` | Southeast Asia | Asia Pacific | Asia |
