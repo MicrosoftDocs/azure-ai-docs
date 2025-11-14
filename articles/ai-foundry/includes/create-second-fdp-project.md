@@ -15,6 +15,7 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+# Used with ../how-to/create-projects
 ---
 
 Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
@@ -44,7 +45,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
 
 * To add a project to a Foundry resource:
     
-    # [Microsof Foundry portal](#tab/ai-foundry)
+    # [Microsof Foundry portal](#tab/foundry)
     
     ::: moniker range="foundry-classic"
     

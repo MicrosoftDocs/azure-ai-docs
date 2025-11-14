@@ -54,7 +54,7 @@ If your organization requires customized Azure configurations like alternative n
 
 Use the following tabs to select the method you'll use to create a Foundry project:
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
@@ -128,11 +128,12 @@ Use the following tabs to select the method you'll use to create a Foundry proje
     # Set default resource group
     az config set defaults.group={resource-group-name}
    ```
+
 ---
 
 ## Create a Foundry project
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -229,7 +230,7 @@ To create a Foundry project:
 
 ## View project settings
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -266,7 +267,7 @@ az cognitiveservices account connection show \
 ## Delete projects
 
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 ::: moniker range="foundry-classic"
 
