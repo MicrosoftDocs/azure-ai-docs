@@ -35,8 +35,6 @@ Foundry Local on Windows Server 2025 lets you run selected Azure AI Foundry mode
     - Windows Server 2025 Datacenter
     - Windows Server 2025 Standard
 
-1.  **Which GPU models are supported on the server?**
-
 1.  **Does Foundry Local run on virtual machines with GPU-P?**
 
     Foundry Local **detects the partitioned GPU inside a GPU-P VM** and picks up a CUDA-enabled model when one is available. Otherwise, it falls back appropriately. The execution provider is also automatically selected based on the availability of GPU inside the VM.
