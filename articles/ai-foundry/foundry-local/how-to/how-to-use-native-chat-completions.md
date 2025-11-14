@@ -26,6 +26,10 @@ This article explains how to use the native chat completions API in the Foundry 
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
 
+## Samples repository
+
+The sample in this article can be found in the [Foundry Local C# SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+
 ## Set up project
 
 To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
