@@ -124,44 +124,6 @@ This is supported if the MCP server doesn’t require authentication.
 
 ## Setup
 
-1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an `mcp` tool with the following information:
-
-   1. `server_url`: The URL of the MCP server. For example, `https://api.githubcopilot.com/mcp/`.
-   2. `server_label`: A unique identifier of this MCP server to the agent. For example, `github`.
-   3. `require_approval`: Optionally determine whether approval is required. Supported values are:
-      * `always`: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.
-      * `never`: No approval is required.
-      * `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
-      * `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
-   1. `project_connection_id`: the connection name that stores the MCP server endpoint, auth you select and relevant information. If you provide different endpoints in connection vs `server_url`, the endpoint in connection will be used.
-   
-1. If the model tries to invoke a tool in your MCP server with approval required or require sign in for OAuth identity passthrough, you will get an output with the consent link (type: `oauth_consent_request`) or `tool_calling` to get approval (type: `mcp_approval_request`). After the user is logged in or it's approved, submit another response to continue.
-
-## Host a local MCP server
-
-The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
-
-|Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
-|:---------:|:---------:|:---------:|
-| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
-| **Code changes** | The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
-| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
-| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
-| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
-| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
-| **State** | Stateless only. | Stateless only. |
-| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |  
-
-### Unauthenticated 
-
-This is supported if the MCP server doesn’t require authentication.  
-
-## Prerequisites
-
-* A configured agent
-
-## Setup
-
 1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an `mcp` tool with the following information:
 
    1. `server_url`: The URL of the MCP server. For example, `https://api.githubcopilot.com/mcp/`.
