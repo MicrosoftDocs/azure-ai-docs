@@ -5,7 +5,7 @@ description: Learn how to deploy protected AI models from partners and community
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 10/25/2025
+ms.date: 11/14/2025
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
