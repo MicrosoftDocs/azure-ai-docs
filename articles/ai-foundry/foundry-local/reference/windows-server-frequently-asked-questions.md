@@ -44,7 +44,7 @@ Foundry Local on Windows Server 2025 lets you run selected Azure AI Foundry mode
 
 1.  **How is Foundry Local SDK different from the Foundry Local service?**
 
-    The [Foundry Local SDK](../reference/reference-sdk.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
+    The [Foundry Local SDK](reference-sdk.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
 
 ## Sample code
 
