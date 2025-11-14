@@ -81,209 +81,169 @@ var config = new Configuration
 
 In the previous version of the Foundry Local C# SDK, you couldn't configure these settings directly through the SDK, which limited your ability to customize the behavior of the service.
 
+### Project setup guide
 
-### Project setup
+There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have *the same API surface* but are optimised for different platforms: 
 
-To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow these instructions to create a new C# console application and add the necessary dependencies:
+- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that is specific to Windows applications, which uses the Windows Machine Learning (WinML) framework to deliver optimal performance and user experience on Windows devices.
+- **Cross-Platform**: Use the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
+
+Depending on your target platform, follow these instructions to create a new C# applications and add the necessary dependencies:
 
 #### [Windows](#tab/windows)
 
-First, create a new C# project and navigate into it:
+> [!TIP]
+> For Windows applications, we recommend using the `Microsoft.AI.Foundry.Local.WinML` package to take advantage of the Windows Machine Learning (ML) framework for optimal performance and user experience.
 
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
+Your `csproj` file should include the following settings:
+
+- Set the `TargetFramework` to a Windows-specific target (e.g. `net8.0-windows10.0.26100`).
+- Set the `WindowsAppSDKSelfContained` property to `true` to ensure that the Windows App SDK is bundled with your application.
+- Include a `PackageReference` to the `Microsoft.AI.Foundry.Local.WinML` package.
+- Optionally, include an `Import` statement to exclude superfluous ONNX Runtime and IHV libraries from your published application - For more details, read [Reduce application package size](#reduce-application-package-size). This step is recommended to reduce the size of your application package.
+
+Here is an example `csproj` file for a Windows application using the Foundry Local WinML SDK:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <Platforms>x64;ARM64</Platforms>
+  </PropertyGroup>
+
+  <!-- Use WinML package for local Foundry SDK on Windows -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" />
+  </ItemGroup>
+
+  <!-- On Publish: Exclude superfluous ORT and IHV libs -->
+  <Import Project="ExcludeExtraLibs.props" Condition="'$(PublishDir)' != ''" />
+
+</Project>
 ```
 
-Next, open the `hello-foundry-local.csproj` file and modify it to include the required WinAppSDK parameters (such as `TargetFramework` and `WindowsAppSDKSelfContained`) and NuGet packages for Foundry Local and OpenAI SDK:
+#### [Cross-platform](#tab/cross-platform)
+
+Your `csproj` file should include the following settings:
+
+- Set the `TargetFramework` to a cross-platform target (e.g. `net9.0`).
+- Include a `PackageReference` to the `Microsoft.AI.Foundry.Local` package.
+- Optionally, include an `Import` statement to exclude superfluous ONNX Runtime and IHV libraries from your published application - For more details, read [Reduce application package size](#reduce-application-package-size). This step is recommended to reduce the size of your application package.
+
+Here is an example `csproj` file for a cross-platform application using the Foundry Local SDK:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
-    <RootNamespace>hello-foundry-local</RootNamespace>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
 
+  <!-- Cross-Platform Foundry SDK -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
-    <PackageReference Include="OpenAI" Version="2.5.0" />
+    <PackageReference Include="Microsoft.AI.Foundry.Local" />
   </ItemGroup>
+
+  <!-- (Optional) On Publish: Exclude superfluous ORT and IHV libs -->
+  <Import Project="ExcludeExtraLibs.props" Condition="'$(PublishDir)' != ''" />
 
 </Project>
 ```
 
-The Windows-specific package `Microsoft.AI.Foundry.Local.WinML` includes support for Windows ML hardware acceleration. On initialization, Foundry Local automatically detects compatible hardware and uses it for model inference. If the host machine is missing the correct runtimes and drivers for the available hardware, Foundry Local automatically downloads and installs them on initialization. You can also override the automatic runtime/driver download behavior and manage the download in your application logic. By keeping the runtimes and drivers separated from the Foundry Local SDK package, we ensure only the necessary components are installed on the host machine, which reduces your application's size.
-
-For an up-to-date list of supported hardware accelerators, see [Supported execution providers in Windows ML](/windows/ai/new-windows-ml/supported-execution-providers).
-
-#### [macOS](#tab/macos)
-
-First, create a new C# project and navigate into it:
-
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
-
-Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
-```
-
-On macOS, Foundry Local supports hardware acceleration for Apple Silicon CPU and GPU (default). Foundry Local uses [Apple Metal](https://developer.apple.com/metal/) for acceleration via the WebGPU execution provider in ONNX Runtime. The WebGPU execution provider uses a library called Dawn that converts from the WebGPU shader language to Metal.
-
-#### [Linux](#tab/linux)
-
-First, create a new C# project and navigate into it:
-
-```bash
-dotnet new console -n hello-foundry-local
-cd hello-foundry-local
-```
-
-Next, add the required NuGet packages for Foundry Local and OpenAI SDK:
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local --version 0.8.0
-dotnet add package OpenAI --version 2.5.0
-```
-
-On Linux, Foundry Local supports hardware acceleration for CPU and Nvidia CUDA-enabled GPUs. For Nvidia GPUs, you need to install the appropriate CUDA drivers and libraries.
-
 ---
 
-### Example usage
+### Reduce application package size
 
-After [Project setup](#project-setup), you can use the following example code to get started with Foundry Local:
+The Foundry Local SDK will pull in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package as a dependency. The `Microsoft.ML.OnnxRuntime.Foundry` package provides the *inference runtime bundle*, which is the set of libraries required to efficiently run inference on specific vendor hardware devices. The inference runtime bundle includes the following components:
 
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-using Microsoft.Extensions.Logging;
+- **ONNX Runtime library**: The core inference engine (`onnxruntime.dll`).
+- **ONNX Runtime Execution Provider (EP) library**. A hardware-specific backend in ONNX Runtime that optimises and executes parts of a machine learning model a hardware accelerator. For example:
+    - CUDA EP: `onnxruntime_providers_cuda.dll`
+    - QNN EP: `onnxruntime_providers_qnn.dll`
+- **Independent Hardware Vendor (IHV) libraries**. For example:
+    - WebGPU: DirectX dependencies (`dxcompiler.dll`, `dxil.dll`)
+    - QNN: Qualcomm QNN dependencies (`QnnSystem.dll`, etc.)
 
-CancellationToken ct = new CancellationToken();
+The following table summarises what EP and IHV libraries will be bundled with your application and what WinML will download/install at runtime:
 
-var config = new Configuration
-{
-    AppName = "my-app-name",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Debug
-};
+![EP Bundle table](../../media/ep-bundle.png)
 
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
-});
-var logger = loggerFactory.CreateLogger<Program>();
+In all platform/architecture, the CPU EPU is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend *excluding* these EPs from your application package and allowing WinML to download/install them at runtime if the end user has compatible hardware.
 
-// Initialize the singleton instance.
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
+> [!NOTE]
+> We are working on removing the CUDA and QNN EPs from the `Microsoft.ML.OnnxRuntime.Foundry` package in future releases so that you do not need to include an `ExcludeExtraLibs.props` file to remove them from your application package.
 
-// Get the model catalog
-var catalog = await mgr.GetCatalogAsync();
+To reduce the size of your application package, you can create an `ExcludeExtraLibs.props` file in your project directory with the following content, which will exclude the CUDA and QNN EP and IHV libraries when you publish your application:
 
-// List available models
-Console.WriteLine("Available models for your hardware:");
-var models = await catalog.ListModelsAsync();
-foreach (var availableModel in models)
-{
-    foreach (var variant in availableModel.Variants)
-    {
-        Console.WriteLine($"  - Alias: {variant.Alias} (Id: {string.Join(", ", variant.Id)})");
-    }
-}
+```xml
+<Project>
+  <!-- Ensure we're using the onnxruntime libraries from Foundry Local Core so 
+  we delete the WindowsAppSdk versions once they're unzipped. -->
+  <Target Name="ExcludeOnnxRuntimeLibs" AfterTargets="ExtractMicrosoftWindowsAppSDKMsixFiles">
+    <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime.dll"/>
+    <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime_providers_shared.dll"/>
+    <Message Importance="Normal" Text="Deleted onnxruntime libraries from $(MicrosoftWindowsAppSDKMsixContent)." />
+  </Target>
 
-// Get a model using an alias
-var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
+  <!-- Remove CUDA EP and IHV libraries on Windows x64 -->
+  <Target Name="ExcludeCudaLibs" Condition="'$(RuntimeIdentifier)'=='win-x64'" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <!-- match onnxruntime*cuda.* (we're matching %(Filename) which excludes the extension) -->
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
+                                      '^onnxruntime.*cuda.*', RegexOptions.IgnoreCase))" />
+    </ItemGroup>
+    <Message Importance="Normal" Text="Excluded onnxruntime CUDA libraries from package." />
+  </Target>
 
-// is model cached
-Console.WriteLine($"Is model cached: {await model.IsCachedAsync()}");
+  <!-- Remove QNN EP and IHV libraries on Windows arm64 -->
+  <Target Name="ExcludeQnnLibs" Condition="'$(RuntimeIdentifier)'=='win-arm64'" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)%(Extension)', 
+                                      '^QNN.*\.dll', RegexOptions.IgnoreCase))" />
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+                            Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
+                                      '^libQNNhtp.*', RegexOptions.IgnoreCase))" />
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+                            Condition="'%(FileName)%(Extension)' == 'onnxruntime_providers_qnn.dll'" />
+    </ItemGroup>
+    <Message Importance="Normal" Text="Excluded onnxruntime QNN libraries from package." />
+  </Target>
 
-// print out cached models
-var cachedModels = await catalog.GetCachedModelsAsync();
-Console.WriteLine("Cached models:");
-foreach (var cachedModel in cachedModels)
-{
-    Console.WriteLine($"- {cachedModel.Alias} ({cachedModel.Id})");
-}
-
-// Download the model (the method skips download if already cached)
-await model.DownloadAsync(progress =>
-{
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f)
-    {
-        Console.WriteLine();
-    }
-});
-
-// Load the model
-await model.LoadAsync();
-
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-// Create a chat message
-List<ChatMessage> messages = new()
-{
-    new ChatMessage { Role = "user", Content = "Why is the sky blue?" }
-};
-
-
-var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
-await foreach (var chunk in streamingResponse)
-{
-    Console.Write(chunk.Choices[0].Message.Content);
-    Console.Out.Flush();
-}
-Console.WriteLine();
-
-// Tidy up - unload the model
-await model.UnloadAsync();
+</Project>
 ```
 
-To run the example, execute the following command in your project directory:
+#### Linux: CUDA dependencies
 
-### [Windows](#tab/windows)
+Whilst the CUDA EP will be pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, we do not include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you will need *add* the following CUDA IHV libraries to your application:
 
-If your architecture is `x64`, use the following command:
+- CUBLAS 12.8.4 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcublas/windows-x86_64/libcublas-windows-x86_64-12.8.4.1-archive.zip))
+    - cublas64_12.dll
+    - cublasLt64_12.dll
+- CUDA RT 12.8.90 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/windows-x86_64/cuda_cudart-windows-x86_64-12.8.90-archive.zip))
+    - cudart64_12.dll
+- CUDNN 9.8.0 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-9.8.0.87_cuda12-archive.zip))
+    - cudnn_graph64_9.dll
+    - cudnn_ops64_9.dll
+    - cudnn64_9.dll
+- CUDA FFT 11.3.3.83 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcufft/windows-x86_64/libcufft-windows-x86_64-11.3.3.83-archive.zip))
+    - cufft64_11.dll
 
-```bash
-dotnet run -r:win-x64
-```
+> [!WARNING]
+> Adding the CUDA EP and IHV libraries to your application will increase the size of your application package by approximately 1GB.
 
-If your architecture is `arm64`, use the following command:
+### Samples
 
-```bash
-dotnet run -r:win-arm64
-```
-
-
-### [macOS](#tab/macos)
-
-For macOS, use the following command:
-
-```bash
-dotnet run -r:osx-arm64
-```
-
-### [Linux](#tab/linux)
-
-For Linux, use the following command:
-
-```bash
-dotnet run -r:linux-x64
-```
-
----
+- For sample applications that demonstrate how to use the Foundry Local C# SDK, see the [Foundry Local C# SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
 
 ### API reference
 
