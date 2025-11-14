@@ -10,16 +10,11 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 10/31/2025
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 ---
 
 # Manage projects and resources
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
-
-:::moniker range="foundry-classic"
 
 The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
@@ -60,50 +55,9 @@ View and manage quotas and usage metrics across multiple projects and Azure subs
 
 For more information, see [Manage and increase quotas for resources](../how-to/quota.md).
 
-:::moniker-end
-
-:::moniker range="foundry"
-
-
-## Manage projects
-
-Most of your work in the Foundry (new) portal is performed in the context of the project shown in the upper-left corner. But when you navigate to the **Operate** section, the project name disappears. This section allows you to view and manage all of your Foundry projects.
-
-1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
-1. Select **Operate** in the upper-right navigation.
-1. Select **Admin** in the left pane.
-
-The **All projects** tab lists all of your Foundry projects.  From here you can:
-
-* View quick information about a project by selecting the radio button next to a row in the table.  
-* Add users or connected resources to a project by selecting the project link in the first column. 
-* Add users or connected resources to a parent resource by selecting the parent resource link in the second column. 
-
-## Manage in Azure portal
-
-To delete a resource or project, or for more management activities, open the Azure portal from the parent resource:
-
-1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
-1. Select **Operate** in the upper-right navigation.
-1. Select **Admin** in the left pane.
-1. Select the parent resource link for your project in the second column.
-1. Select the link **Manage this resource in the Azure portal** to open the Azure portal for the resource.
-
-
-::: moniker-end
-
 ## Govern access
 
-:::moniker range="foundry-classic"
-
 With a project selected, use the __Users__ entry in the left menu to view and manage users and their roles.
-
-:::moniker-end
-:::moniker range="foundry"
-
-After you select a project or parent resource link, use the __Users__ tab to view and manage users and their roles.
-
-:::moniker-end
 
 > [!NOTE]
 > You can only assign built-in roles for Foundry here.
