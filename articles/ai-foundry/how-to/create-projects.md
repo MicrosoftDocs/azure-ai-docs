@@ -220,13 +220,11 @@ To create a Foundry project:
     --project-name {your-project-name} \
     --location eastus
     ```
+---
 
-::: moniker range="foundry-classic"
 ## <a name="create-multiple"></a> Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
-
-::: moniker-end
 
 ## View project settings
 
