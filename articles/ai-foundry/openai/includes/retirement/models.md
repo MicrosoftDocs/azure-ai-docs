@@ -15,7 +15,7 @@ ms.custom: references_regions, build-2025
 
 ### Text generation
 
-| Model                     | Version			| Lifecycle<br>Status	| Retirement date                    | Replacement model                    |
+| Model                     | Version			| Lifecycle<br>Status	| Deprecationdate                    | Replacement model                    |
 | --------------------------|-------------------|:----------------------|------------------------------------|--------------------------------------|
 | `gpt-35-turbo`            | 1106				| Generally Available   | November 11, 2025                  | `gpt-4.1-mini`                       |
 | `gpt-35-turbo`            | 0125				| Generally Available   | November 11, 2025                  | `gpt-4.1-mini`                       |
