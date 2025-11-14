@@ -42,9 +42,11 @@ Custom categories let you route your data to a specific analyzer so you get the 
 
 1.	**Create routing rules**: Under the **Routing rules** tab, select `Add category`. Give the category a name and description, and select an analyzer to correspond to that route. For example, if you're analyzing invoices from multiple clients that each require custom schemas, you can route to the custom analyzer that was built for that specific invoice type. The tool allows you to preview the schema for each analyzer to ensure you have the right one.
 
-:::image type="content" source="../media/quickstarts/classify-define-routes.png" alt-text="Screenshot of routes UX for classification." lightbox="../media/quickstarts/classify-define-routes.png" :::
+    :::image type="content" source="../media/quickstarts/classify-define-routes.png" alt-text="Screenshot of routes UX for classification." lightbox="../media/quickstarts/classify-define-routes.png" :::
 
 1.	**Test your classification workflow**: When your custom routing rules are ready for testing, select **Run analysis** to see the output of the rules on your data. You can optionally upload additional pieces of sample data for testing to see how it performs with multiple different rules.
+
+    :::image type="content" source="../media/quickstarts/classify-test.png" lightbox="../media/quickstarts/classify-test.png" alt-text="Screenshot of Content Understanding Studio with the Test button highlighted.":::
 
 1. **Build your classification analyzer**: When you’re satisfied with the output, select the **Build analyzer** button at the top of the page. Give the analyzer a name and select **Save**.
 
