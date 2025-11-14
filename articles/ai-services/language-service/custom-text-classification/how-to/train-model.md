@@ -1,5 +1,5 @@
 ---
-title: How to train your custom text classification model - Azure AI services
+title: How to train your custom text classification model - Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about how to train your model for custom text classification.
 #services: cognitive-services

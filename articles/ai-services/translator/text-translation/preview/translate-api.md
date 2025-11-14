@@ -1,6 +1,6 @@
 ---
 title: Azure Translator in Foundry Tools 2025-10-01-preview translate method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure Translator in Foundry Tools 2025-10-01-preview translate method.
 author: laujan
 manager: nitinme

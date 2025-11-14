@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Authentication and authorization
 
-Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you can explore ways to authenticate a request and the requirements for each.
+Each request to a Foundry Tool must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you can explore ways to authenticate a request and the requirements for each.
 
 * Authenticate with a [single-service regional](#authenticating-with-a-regional-resource), [single-service-global](#authenticating-with-a-global-resource) or [multi-service](#authenticating-with-a-multi-service-resource) resource key.
 * Authenticate with a [bearer token](#authenticating-with-an-access-token).

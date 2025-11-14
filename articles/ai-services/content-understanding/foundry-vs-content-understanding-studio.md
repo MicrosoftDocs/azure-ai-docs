@@ -1,6 +1,6 @@
 ---
 title: Feature comparison Content Understanding in Microsoft Foundry vs Content Understanding Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the available options in Foundry and Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley

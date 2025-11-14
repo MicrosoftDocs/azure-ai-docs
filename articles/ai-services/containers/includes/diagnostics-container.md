@@ -1,6 +1,6 @@
 ---
 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 author: aahill
 ms.service: azure-ai-services
 ms.topic: include

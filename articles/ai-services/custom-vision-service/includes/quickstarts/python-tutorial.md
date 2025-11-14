@@ -106,7 +106,7 @@ To add the sample images to the project, insert the following code after the tag
 [!code-python[](~/cognitive-services-quickstart-code/python/CustomVision/ImageClassification/CustomVisionQuickstart.py?name=snippet_upload)]
 
 > [!NOTE]
-> You need to change the path to the images based on where you downloaded the Azure AI services Python SDK Samples repo.
+> You need to change the path to the images based on where you downloaded the Foundry Tools Python SDK Samples repo.
 
 ## Train the project
 

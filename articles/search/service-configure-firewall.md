@@ -80,7 +80,7 @@ Network rules are scoped to data plane operations against the search service's p
    + `Microsoft.CognitiveServices` for Azure OpenAI and Foundry Tools
    + `Microsoft.MachineLearningServices` for Azure Machine Learning
 
-   When you enable this exception, you take a dependency on Microsoft Entra ID authentication, managed identities, and role assignments. Any Azure AI service or AML feature that has a valid role assignment on your search service can bypass the firewall. See [Grant access to trusted services](#grant-access-to-trusted-azure-services) for more details.
+   When you enable this exception, you take a dependency on Microsoft Entra ID authentication, managed identities, and role assignments. Any Foundry Tool or AML feature that has a valid role assignment on your search service can bypass the firewall. See [Grant access to trusted services](#grant-access-to-trusted-azure-services) for more details.
 
 1. **Save** your changes.
 

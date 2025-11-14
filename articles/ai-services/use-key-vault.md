@@ -62,7 +62,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 ::: zone-end
 
 > [!NOTE]
-> Review the documentation and quickstart articles for the Azure AI service you're using to get an understanding of:
+> Review the documentation and quickstart articles for the Foundry Tool you're using to get an understanding of:
 > * The credentials and other information you will need to send API calls.
 > * The packages and code you will need to run your application.
 
@@ -75,7 +75,7 @@ Before you add your credential information to your Azure key vault, you need to 
 
     :::image type="content" source="language-service/custom-text-classification/media/get-endpoint-azure.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal." lightbox="language-service/custom-text-classification/media/get-endpoint-azure.png":::
 
-Some Azure AI services require different information to authenticate API calls, such as a key and region. Make sure to retrieve this information before continuing on.
+Some Foundry Tools require different information to authenticate API calls, such as a key and region. Make sure to retrieve this information before continuing on.
 
 ## Add your credentials to your key vault
 
@@ -564,7 +564,7 @@ node index.js
 
 If you're using a multi-service resource or Language resource, you can update [your application](#create-a-new-nodejs-application) by following these steps to send an example Named Entity Recognition call by retrieving a key and endpoint from your key vault.   
 
-1. Install the Azure AI service for Language library, [@azure/ai-text-analytics](https://www.npmjs.com/package/@azure/ai-text-analytics/) to send API requests to the [Language service](./language-service/overview.md).
+1. Install the Foundry Tool for Language library, [@azure/ai-text-analytics](https://www.npmjs.com/package/@azure/ai-text-analytics/) to send API requests to the [Language service](./language-service/overview.md).
 
     ```terminal
     npm install @azure/ai-text-analytics@5.1.0
@@ -598,8 +598,8 @@ If you're using a multi-service resource or Language resource, you can update [y
 
 ## Next steps
 
-* See [What are Azure AI services](./what-are-ai-services.md) for available features you can develop along with [Azure Key Vault](/azure/key-vault/general/).  
+* See [What are Foundry Tools](./what-are-ai-services.md) for available features you can develop along with [Azure Key Vault](/azure/key-vault/general/).  
 * For additional information on secure application development, see:
     * [Best practices for using Azure Key Vault](/azure/key-vault/general/best-practices)
-    * [Azure AI services security](security-features.md)
-    * [Azure security baseline for Azure AI services](/security/benchmark/azure/baselines/cognitive-services-security-baseline?toc=/azure/ai-services/TOC.json)
+    * [Foundry Tools security](security-features.md)
+    * [Azure security baseline for Foundry Tools](/security/benchmark/azure/baselines/cognitive-services-security-baseline?toc=/azure/ai-services/TOC.json)

@@ -1,6 +1,6 @@
 ---
 title: Container support
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to create an Azure container instance resource from the Azure CLI.
 author: aahill
 manager: nitinme

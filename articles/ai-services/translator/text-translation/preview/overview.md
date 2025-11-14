@@ -1,6 +1,6 @@
 ---
 title: Azure Translator in Foundry Tools 2025-10-01-preview reference
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Reference documentation for Azure Translator in Foundry Tools 2025-10-01-preview operations and capabilities.
 author: laujan
 manager: nitinme

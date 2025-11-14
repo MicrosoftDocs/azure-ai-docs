@@ -1,6 +1,6 @@
 ---
 title: Connect your Content Understanding resource with Foundry models
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Describes the requirements and flexibility of specifying Gen AI model and deployment information for Content Understanding analyzers 
 author: PatrickFarley 
 ms.author: pafarley

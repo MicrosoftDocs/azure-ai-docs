@@ -1,6 +1,6 @@
 ---
 title: Azure Content Understanding in Foundry Tools standard and pro modes (preview)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools standard and pro modes.
 author: PatrickFarley 
 ms.author: kabrow

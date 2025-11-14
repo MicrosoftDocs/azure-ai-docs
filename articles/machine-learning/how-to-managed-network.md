@@ -1159,7 +1159,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Storage (all sub resource types)
 * Azure Container Registry
 * Azure Key Vault
-* Azure AI services
+* Foundry Tools
 * Azure AI Search (formerly Cognitive Search)
 * Azure SQL Server
 * Azure Data Factory

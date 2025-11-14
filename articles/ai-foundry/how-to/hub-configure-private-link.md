@@ -342,13 +342,13 @@ The following restrictions apply to IP address ranges:
 
 If your storage account is private (uses a private endpoint to communicate with your project), you perform the following steps:
 
-1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
+1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Foundry Tool and Azure AI Search, then configure role-based access control for each managed identity.
 
     | Role | Managed Identity | Resource | Purpose | Reference |
     |--|--|--|--|--|
     | `Reader` | Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
     | `Storage File Data Privileged Contributor` | Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
+    | `Storage Blob Data Contributor` | Foundry Tool | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
     > [!TIP]

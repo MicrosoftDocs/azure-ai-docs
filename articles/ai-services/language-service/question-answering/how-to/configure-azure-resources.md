@@ -10,7 +10,7 @@ ms.custom: language-service-question-answering
 ---
 # Configure your environment for Azure AI resources
 
-In this guide, we walk you through configuring your Azure AI resources and permissions for custom question and answering projects, enabling you to fine-tune models with Azure AI Search and Custom Question Answering (CQA). Completing this setup is essential for fully integrating your environment with Azure AI services resources. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered question answering capabilities.
+In this guide, we walk you through configuring your Azure AI resources and permissions for custom question and answering projects, enabling you to fine-tune models with Azure AI Search and Custom Question Answering (CQA). Completing this setup is essential for fully integrating your environment with Foundry Tools resources. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered question answering capabilities.
 
 In addition, we show you how to assign the correct roles and permissions within the Azure portal. These steps help you get started quickly and effectively with Azure Language in Foundry Tools.
 

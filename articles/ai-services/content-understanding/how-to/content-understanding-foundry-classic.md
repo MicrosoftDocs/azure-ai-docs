@@ -1,6 +1,6 @@
 ---
 title: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Utilize the Foundry (classic) portal to create Content Understanding custom tasks
 author: PatrickFarley 
 ms.author: pafarley

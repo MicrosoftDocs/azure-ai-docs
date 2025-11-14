@@ -26,7 +26,7 @@ The template used in this article can be found at [https://github.com/Azure/azur
 - Azure Key Vault
 - Azure Container Registry
 - Azure Application Insights
-- Azure AI services (required for Foundry, and can be dropped for Azure Machine Learning use cases)
+- Foundry Tools (required for Foundry, and can be dropped for Azure Machine Learning use cases)
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
 ---
 title: Copy and back up Custom Vision projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the ExportProject and ImportProject APIs to copy and back up your Custom Vision projects.
 author: PatrickFarley
 manager: nitinme

@@ -1,20 +1,20 @@
 ---
 title: Control AI model deployment with custom policies
 titleSuffix: Azure Machine Learning
-description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure Machine Learning."
+description: "Learn how to use custom Azure Policies to control Foundry Tools and Azure OpenAI model deployment with Azure Machine Learning."
 author: s-polly
 ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to #Don't change
 ms.date: 02/19/2025
 
-#customer intent: As an admin, I want control what Azure AI services and Azure OpenAI models can be deployed by my developers.
+#customer intent: As an admin, I want control what Foundry Tools and Azure OpenAI models can be deployed by my developers.
 
 ---
 
 # Control AI model deployment with custom policies in Azure Machine Learning
 
-When using models from Azure AI services and Azure OpenAI with Azure Machine Learning, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
+When using models from Foundry Tools and Azure OpenAI with Azure Machine Learning, you might need to use custom policies to control what models your developers can deploy. Custom Azure Policies allow you to create policy definitions that meet your organization's unique requirements. This article shows you how to create and assign an example custom policy to control model deployment.
 
 ## Prerequisites
 
@@ -29,13 +29,13 @@ When using models from Azure AI services and Azure OpenAI with Azure Machine Lea
 1. In the **Policy Definition** form, use the following values:
 
     - **Definition location**: Select the subscription or management group where you want to store the policy definition.
-    - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Azure AI services and Azure OpenAI models`.
+    - **Name**: Enter a unique name for the policy definition. For example, `Custom allowed Foundry Tools and Azure OpenAI models`.
     - **Description**: Enter a description for the policy definition.
     - **Category**: You can either create a new category or use an existing one. For example, "AI model governance."
-    - **Policy rule**: Enter the policy rule in JSON format. The following example shows a policy rule that allows the deployment of specific Azure AI services and Azure OpenAI models:
+    - **Policy rule**: Enter the policy rule in JSON format. The following example shows a policy rule that allows the deployment of specific Foundry Tools and Azure OpenAI models:
 
         > [!TIP]
-        > Azure AI services was originally named Azure Cognitive Services. This name is still used internally by Azure, such as this custom policy where you see a value of `Microsoft.CognitiveServices`. Azure OpenAI is part of Azure AI services, so this policy also applies to Azure OpenAI models.
+        > Foundry Tools was originally named Azure Cognitive Services. This name is still used internally by Azure, such as this custom policy where you see a value of `Microsoft.CognitiveServices`. Azure OpenAI is part of Foundry Tools, so this policy also applies to Azure OpenAI models.
 
         ```json
         {
@@ -124,5 +124,5 @@ To update an existing policy assignment with new models, follow these steps:
 
 - [Azure Policy overview](/azure/governance/policy/overview)
 - [Azure Machine Learning model catalog](concept-model-catalog.md)
-- [Azure AI services documentation](/azure/ai-services)
+- [Foundry Tools documentation](/azure/ai-services)
 

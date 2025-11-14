@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Create a Foundry resource in the Azure portal"
-titleSuffix: Azure AI services
-description: Get started with Azure AI services by creating a Foundry resource in the Azure portal.
+titleSuffix: Foundry Tools
+description: Get started with Foundry Tools by creating a Foundry resource in the Azure portal.
 manager: nitinme
 ms.date: 09/15/2025
 ms.service: azure-ai-services
@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - build-2025
 keywords:
-  - Azure AI services
+  - Foundry Tools
   - cognitive intelligence
   - cognitive solutions
   - ai services
@@ -45,7 +45,7 @@ To create a Foundry resource in the Azure portal follow these instructions:
     |--|--|
     | **Subscription** | Select one of your available Azure subscriptions. |
     | **Resource group** | The Azure resource group that will contain your Foundry resource. You can create a new group or add it to a preexisting group. |
-    | **Region** | The location of your Azure AI service instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
+    | **Region** | The location of your Foundry Tool instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
     | **Name** | A descriptive name for your Foundry resource. For example, *MyAIServicesResource*. |
 
 1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.

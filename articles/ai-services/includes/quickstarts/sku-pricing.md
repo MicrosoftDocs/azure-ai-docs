@@ -1,5 +1,5 @@
 ---
-title: "Azure AI services products and pricing"
+title: "Foundry Tools products and pricing"
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: include

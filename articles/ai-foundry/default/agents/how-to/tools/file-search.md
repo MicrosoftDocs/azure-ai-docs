@@ -1,6 +1,6 @@
 ---
 title: 'How to use the file search tool for Microsoft Foundry agents'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use Agents file search tool for agents.
 services: cognitive-services
 manager: nitinme

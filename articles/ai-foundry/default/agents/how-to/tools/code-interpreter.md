@@ -1,7 +1,7 @@
 ---
 title: 'How to use Code Interpreter for the Microsoft Foundry agents'
-titleSuffix: Microsoft AI Foundry
-description: Learn how to use Microsoft AI Foundry Agent Service Code Interpreter for the agents API
+titleSuffix: Microsoft Foundry
+description: Learn how to use Microsoft Foundry Agent Service Code Interpreter for the agents API
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry

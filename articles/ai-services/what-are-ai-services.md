@@ -124,16 +124,16 @@ Foundry Tools provide a layered security model, including [authentication](authe
 
 ## Certifications and compliance
 
-Azure AI services awarded certifications include Cloud Security Alliance STAR Certification, FedRAMP Moderate, and HIPAA BAA.
+Foundry Tools awarded certifications include Cloud Security Alliance STAR Certification, FedRAMP Moderate, and HIPAA BAA.
 
 To understand privacy and data management, go to the [Trust Center](https://servicetrust.microsoft.com/ "Trust Center").
 
 ## Help and support
 
-Azure AI services provide several support options to help you move forward with creating intelligent applications. Azure AI services also have a strong community of developers that can help answer your specific questions. For a full list of support options available to you, see [Azure AI services support and help options](cognitive-services-support-options.md).
+Foundry Tools provide several support options to help you move forward with creating intelligent applications. Foundry Tools also have a strong community of developers that can help answer your specific questions. For a full list of support options available to you, see [Foundry Tools support and help options](cognitive-services-support-options.md).
 
 ## Related content
 
 * Learn how to [get started with Azure](https://azure.microsoft.com/get-started/)
-* [Try Azure AI services and more in the Foundry portal](../ai-foundry/what-is-azure-ai-foundry.md)
-* [Plan and manage costs for Azure AI services](plan-manage-costs.md)
+* [Try Foundry Tools and more in the Foundry portal](../ai-foundry/what-is-azure-ai-foundry.md)
+* [Plan and manage costs for Foundry Tools](plan-manage-costs.md)

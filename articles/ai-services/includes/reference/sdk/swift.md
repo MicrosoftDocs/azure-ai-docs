@@ -1,6 +1,6 @@
 ---
 title: Azure AI SDK for Swift
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Provides an overview with links to available Azure AI client libraries for Swift.
 manager: nitinme
 ms.service: azure-ai-services

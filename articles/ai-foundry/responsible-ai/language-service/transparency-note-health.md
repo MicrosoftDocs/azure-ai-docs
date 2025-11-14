@@ -1,7 +1,7 @@
 ---
 title: Transparency note - Health feature of Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
-description: Azure AI service for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents.
+description: Foundry Tool for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents.
 author: laujan
 ms.author: lajanuar
 manager: nitinme

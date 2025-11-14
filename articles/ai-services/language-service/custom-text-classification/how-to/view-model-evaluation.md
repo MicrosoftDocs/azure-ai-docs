@@ -1,5 +1,5 @@
 ---
-title: View a custom text classification model evaluation - Azure AI services
+title: View a custom text classification model evaluation - Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn how to view the evaluation scores for a custom text classification model
 #services: cognitive-services

@@ -1,6 +1,6 @@
 ---
 title: Conversational language understanding (CLU) entity slot filling in multi-turn conversations
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how CLU handles entity slot-filling across multi-turn conversations.
 author: laujan
 manager: nitinme

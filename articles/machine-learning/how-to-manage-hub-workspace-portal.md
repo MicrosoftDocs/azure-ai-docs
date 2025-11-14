@@ -47,7 +47,7 @@ Use the following steps to create a hub from the Azure portal:
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png" alt-text="Screenshot of the option to set Azure AI hub basic information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png":::
 
-1. Select an existing **Azure AI services** resource or create a new one. New Azure AI services include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use Foundry.
+1. Select an existing **Foundry Tools** resource or create a new one. New Foundry Tools include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use Foundry.
 
     > [!TIP]
     > You can skip selecting Foundry Tools if you plan to only work in Azure Machine Learning studio. Foundry Tools is required for Foundry, and provides access to pre-built AI models for use in prompt flow.
@@ -67,7 +67,7 @@ Use the following steps to create a hub from the Azure portal:
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-identity.png" alt-text="Screenshot of the Create an Azure AI hub with the option to select a managed identity." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-identity.png":::
    
     >[!Note]
-    >If you select **User assigned identity** and also selected an Azure AI Service, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new Azure AI hub.
+    >If you select **User assigned identity** and also selected a Foundry Tool, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new Azure AI hub.
     
 1. Add tags.
 
@@ -100,9 +100,9 @@ Hub networking settings can be set during resource creation or changed in the **
 
 At hub creation, select between the networking isolation modes: **Public**, **Private with Internet Outbound**, and **Private with Approved Outbound**. To secure your resource, select either **Private with Internet Outbound** or Private with Approved Outbound for your networking needs. For the private isolation modes, a private endpoint should be created for inbound access. For more information on network isolation, see [Managed virtual network isolation](/azure/ai-studio/how-to/configure-managed-network). To create a secure hub, see [Create a secure Azure AI hub](/azure/ai-studio/how-to/create-secure-ai-hub). 
 
-At hub creation in the Azure portal, creation of associated Azure AI services, Storage account, Key vault, Application insights, and Container registry is given. These resources are found on the Resources tab during creation. 
+At hub creation in the Azure portal, creation of associated Foundry Tools, Storage account, Key vault, Application insights, and Container registry is given. These resources are found on the Resources tab during creation. 
 
-To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in [Foundry portal](https://ai.azure.com/?cid=learnDocs), create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Azure AI services connections, see [Azure AI services and virtual networks](/azure/ai-services/cognitive-services-virtual-networks). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
+To connect to Foundry Tools (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in [Foundry portal](https://ai.azure.com/?cid=learnDocs), create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Foundry Tools connections, see [Foundry Tools and virtual networks](/azure/ai-services/cognitive-services-virtual-networks). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
 
 ### Encryption
 
