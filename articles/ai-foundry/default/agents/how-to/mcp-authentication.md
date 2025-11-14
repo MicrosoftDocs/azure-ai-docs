@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 11/14/2025
 author: aahill
 ms.author: aahi
 ---
@@ -86,7 +86,71 @@ There are usually two tokens involved in OAuth flow: refresh token and access to
 Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**. With managed OAuth, the OAuth App is managed by Microsoft or the MCP server publisher. With custom OAuth, you bring your own OAuth App. The OAuth App is a client application that registers with an OAuth provider (such as Microsoft or GitHub) and uses the flow above to get the necessary OAuth token. The benefit of custom OAuth is that you can customize the consent link content for your organization and application. For example, with custom OAuth, Contoso can ask users of its agent to give permission to Contoso to pass the user’s credentials to the MCP server. If you want to use custom OAuth, you will need to provide all required information, including a client ID, client secret, authorization URL, token URL, refresh URL, and suggested scopes.  
 
 > [!NOTE]
-> If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.  
+> If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.
+
+#### Bring your own Microsoft Entra app registration
+
+To use with Microsoft services and identity passthrough, you can bring your own [Microsoft Entra app registration](/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you can control what permissions you give to your entra app. Let's use the Agents 365 MCP server as an example:
+1. Follow the [app registration guide](/entra/identity-platform/quickstart-register-app) to create a Microsoft Entra app and get the client ID and client secret. 
+
+1. Grant [scoped permissions](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis) to your Microsoft Entra app. For Agents 365 MCP servers, you can go to **Manage** > **API Permissions** and search for **Agent 365 Tools**. Then assign permissions you need and select them to grant admin consent for your tenant. Here is a list of what permissions you need for each MCP server:
+- Microsoft Outlook Mail MCP Server (Frontier): `McpServers.Mail.All`
+- Microsoft Outlook Calendar MCP Server (Frontier): `McpServers.Calendar.All`
+- Microsoft Teams MCP Server (Frontier): `McpServers.Teams.All`
+- Microsoft 365 User Profile MCP Server (Frontier): `McpServers.Me.All`
+- Microsoft SharePoint and OneDrive MCP Server (Frontier): `McpServers.OneDriveSharepoint.All`
+- Microsoft SharePoint Lists MCP Server (Frontier): `McpServers.SharepointLists.All`
+- Microsoft Word MCP Server (Frontier): `McpServers.Word.All`
+- Microsoft 365 Copilot (Search) MCP Server (Frontier): `McpServers.CopilotMCP.All`
+- Microsoft 365 Admin Center MCP Server (Frontier): `McpServers.M365Admin.All`
+- Microsoft Dataverse MCP Server (Frontier): `McpServers.Dataverse.All`
+
+1. Go back to [Foundry portal](https://ai.azure.com/build/tools) and configure your MCP server. Click to connect a tool, go to **custom** and then select **MCP**. Provide a name, MCP server endpoint and select **OAuth Identity Passthrough** for authentication:
+- The client ID and client secret that you got in the previous step.
+- token url: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+- auth url: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
+- refresh url: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+- scopes: `11111111-aaaa-2222-bbbb-333333333333/{permission above}`
+
+1. Once you finish this process, you will get a [redirect URL](/entra/identity-platform/how-to-add-redirect-uri) that you'll need to add back to your Microsoft Entra app. 
+
+### Unauthenticated 
+
+This is supported if the MCP server doesn’t require authentication.  
+
+## Prerequisites
+
+* A configured agent
+
+## Setup
+
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an `mcp` tool with the following information:
+
+   1. `server_url`: The URL of the MCP server. For example, `https://api.githubcopilot.com/mcp/`.
+   2. `server_label`: A unique identifier of this MCP server to the agent. For example, `github`.
+   3. `require_approval`: Optionally determine whether approval is required. Supported values are:
+      * `always`: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.
+      * `never`: No approval is required.
+      * `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
+      * `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
+   1. `project_connection_id`: the connection name that stores the MCP server endpoint, auth you select and relevant information. If you provide different endpoints in connection vs `server_url`, the endpoint in connection will be used.
+   
+1. If the model tries to invoke a tool in your MCP server with approval required or require sign in for OAuth identity passthrough, you will get an output with the consent link (type: `oauth_consent_request`) or `tool_calling` to get approval (type: `mcp_approval_request`). After the user is logged in or it's approved, submit another response to continue.
+
+## Host a local MCP server
+
+The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+
+|Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|:---------:|:---------:|:---------:|
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
+| **Code changes** | The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
+| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+| **State** | Stateless only. | Stateless only. |
+| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |  
 
 ### Unauthenticated 
 

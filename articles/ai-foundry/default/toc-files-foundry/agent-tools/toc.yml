@@ -45,6 +45,8 @@ items:
   href: ../../agents/how-to/mcp-authentication.md
 - name: Build your own MCP server
   href: ../../mcp/build-your-own-mcp-server.md
+- name: Tool governance
+  href: ../../agents/how-to/tools/governance.md
 - name: Knowledge (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
 - name: SharePoint (preview)
