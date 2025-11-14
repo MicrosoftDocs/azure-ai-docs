@@ -30,6 +30,10 @@ Foundry Local on Windows Server 2025 lets you run selected Azure AI Foundry mode
 
     It runs as a service on a Windows Server machine. You can install it by using winget.
 
+    ```bash
+    winget install Microsoft.FoundryLocal
+    ```
+    
 1.  **Which versions of server support Foundry Local?**
 
     - Windows Server 2025 Datacenter
