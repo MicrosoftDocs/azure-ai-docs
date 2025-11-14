@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/14/2025
+zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create a search index knowledge source

@@ -137,7 +137,7 @@ You can pass the following properties to create a blob knowledge source.
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](../../search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object |  | No |
-| `connectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
+| `connectionString` | A key-based [connection string](../../search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
 | `containerName` | The name of the blob storage container. | String | No | Yes |
 | `folderPath` | A folder within the container. | String | No | No |
 | `isADLSGen2` | The default is `false`. Set to `true` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
@@ -171,4 +171,4 @@ After the knowledge base is configured, use the [retrieve action](../../agentic-
 
 ## Delete a knowledge source
 
-[!INCLUDE [Delete knowledge source using REST](includes/how-tos/knowledge-source-delete.md)]
+[!INCLUDE [Delete knowledge source using REST](knowledge-source-delete-rest.md)]

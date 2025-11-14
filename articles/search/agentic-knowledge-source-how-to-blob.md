@@ -8,6 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/14/2025
+zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2

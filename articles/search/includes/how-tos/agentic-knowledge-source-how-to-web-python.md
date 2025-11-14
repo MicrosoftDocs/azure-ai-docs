@@ -106,4 +106,4 @@ After the knowledge base is configured, use the [retrieve action](../../agentic-
 
 ## Delete a knowledge source
 
-[!INCLUDE [Delete knowledge source using Python](includes/how-tos/knowledge-source-delete-python.md)]
+[!INCLUDE [Delete knowledge source using Python](knowledge-source-delete-python.md)]

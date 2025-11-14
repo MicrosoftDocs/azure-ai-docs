@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2025
 ms.topic: how-to
 ms.date: 11/14/2025
+zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create a OneLake knowledge source
