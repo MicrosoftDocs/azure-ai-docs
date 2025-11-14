@@ -140,7 +140,7 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for example `Var01`. Select **Done**.
 
-:::image type="content" source="../../media/workflows/as-a-question-node.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/as-a-question-node.png":::
+:::image type="content" source="../../media/workflows/ask-a-question-node.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/ask-a-question-node.png":::
 
 :::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instatiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
 
