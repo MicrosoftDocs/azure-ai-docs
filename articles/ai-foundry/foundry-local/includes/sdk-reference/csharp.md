@@ -222,6 +222,21 @@ To reduce the size of your application package, you can create an `ExcludeExtraL
 </Project>
 ```
 
+Import the `ExcludeExtraLibs.props` file in your project file (`csproj`) to apply the exclusions when you publish your application. For example:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  ...
+
+  <!-- On Publish: Exclude superfluous ORT and IHV libs -->
+  <Import Project="ExcludeExtraLibs.props" Condition="'$(PublishDir)' != ''" />
+
+</Project>
+```
+
+
+
 #### Linux: CUDA dependencies
 
 Whilst the CUDA EP will be pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, we do not include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you will need *add* the following CUDA IHV libraries to your application:
