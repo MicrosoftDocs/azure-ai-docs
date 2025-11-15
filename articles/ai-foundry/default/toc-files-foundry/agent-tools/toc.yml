@@ -1,14 +1,12 @@
 items:
 - name: Tool catalog (preview)
   href: ../../agents/concepts/tool-catalog.md
-- name: Memory (preview)
-  href: ../../agents/concepts/agent-memory.md
-- name: Foundry tool catalog (preview)
-  href: ../../agents/concepts/tool-catalog.md
-- name: Browser automation (preview)
-  href: ../../agents/how-to/browser-automation.md
 - name: Create a private tool catalog (preview)
   href: ../../agents/how-to/private-tool-catalog.md
+- name: Browser automation (preview)
+  href: ../../agents/how-to/browser-automation.md
+- name: Memory (preview)
+  href: ../../agents/concepts/agent-memory.md
 - name: Agent2Agent (A2A) tool (preview)
   href: ../../agents/how-to/tools/agent-to-agent.md
 - name: Agent2Agent (A2A) authentication (preview)
@@ -23,8 +21,6 @@ items:
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
-- name: Custom code interpreter (preview)
-  href: ../../agents/how-to/tools/custom-code-interpreter.md
 - name: Computer Use (preview)
   href: ../../agents/how-to/tools/computer-use.md
 - name: Fabric data agent (preview)
