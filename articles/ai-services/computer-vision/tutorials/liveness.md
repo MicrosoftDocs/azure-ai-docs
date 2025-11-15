@@ -32,17 +32,12 @@ In this tutorial, you’ll learn how to run a frontend application with an app s
     - To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
-
-> [!TIP]
-> After you complete the prerequisites, you can try the iOS liveness experience from [iOS App Store](https://aka.ms/face/liveness/demo/ios), the Android liveness experience from the [Android Google Play Store (tap the app screen 10 times after installation to enter developer mode)](https://aka.ms/face/liveness/demo/android) and the Web liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection).<br>
-> Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
-
 > [!TIP]
 > After completing the prerequisites, you can try the liveness experience on the following platforms:<br>
 > - iOS: [iOS App Store](https://aka.ms/face/liveness/demo/ios) — tap the app screen 10 times after installation to enable developer mode.<br>
 > - Android: [Google Play Store](https://aka.ms/face/liveness/demo/android) — tap the app screen 10 times after installation to enable developer mode.<br>
 > - Web: Try it directly in [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection).<br>
-<br>
+
 > You can also build and run a complete frontend sample (iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.<br>
 
 ## Prepare the frontend application
