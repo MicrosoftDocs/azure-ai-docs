@@ -465,7 +465,7 @@ Saved video.mp4
 
 ### Video generation from reference source
 
-The `input_refernce` parameter allows you to transform existing images and videos using Sora 2. The resolution of the source image/video and final video must match. Supported values are `720x1280`, `1280x720`, `1024x1792`, and `1792x1024`.
+The `input_refernce` parameter allows you to transform existing images using Sora 2. The resolution of the source image and final video must match. Supported values are `720x1280`, `1280x720`, `1024x1792`, and `1792x1024`.
 
 # [Microsoft Entra ID](#tab/python-entra)
 
