@@ -84,8 +84,8 @@ The tool catalog contains three sections:
     |[Code Interpreter](../../../agents/how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
     |[Computer Use (preview)](../../../agents/how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
     |[File Search](../../../agents/how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
-    |[Grounding with Bing Search](../../../agents/how-to/tools/bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
-    | [Grounding with Bing Custom Search (preview)](../../../agents/how-to/tools/bing-custom-search.md) | Enhance your Agent response with selected web domains |
+    |[Grounding with Bing Search](../../../agents/how-to/tools/bing-tools.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
+    | [Grounding with Bing Custom Search (preview)](../../../agents/how-to/tools/bing-tools.md) | Enhance your Agent response with selected web domains |
     | [Image Generation (preview)](../how-to/tools/image-generation.md) | Enables image generation as part of conversations and multi-step workflows |
     | [Microsoft Fabric (preview)](../../../agents/how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
     | [SharePoint (preview)](../../../agents/how-to/tools/sharepoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
@@ -94,14 +94,14 @@ The tool catalog contains three sections:
 
 - **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
 
-- **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, functions, or Azure Functions.
+- **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, or functions.
     
     |Tool  |Description  |
     |---------|---------|
-    |[Azure Functions](../../../agents/how-to/tools/azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
     |[Function calling](../../../agents/how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
     | [Model Context Protocol (preview)](../../../agents/how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
-    | [OpenAPI 3.0 Specified tool](../../../agents/how-to/tools/openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
+    | [OpenAPI 3.0 Specified tool](../../../agents/how-to/tools/openapi-spec.md) | Connect your Foundry agents to external APIs using functions with an OpenAPI 3.0 specification. |
+    | [A2A tool](../../../agents/how-to/tools/agent-to-agent.md) | Connect your Foundry agents to another A2A compatible agents |
     
 ## Next steps
 
