@@ -80,11 +80,9 @@ The following section provides you with a quick guide to the default quotas and 
 | gpt-5.1            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
 | gpt-5.1            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
 | gpt-5.1-chat       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
-
-<!--
 | gpt-5.1-codex      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
 | gpt-5.1-codex-mini | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
--->
+
 
 ## GPT-5 series
 
