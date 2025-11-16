@@ -83,9 +83,9 @@ In the previous version of the Foundry Local C# SDK, you couldn't configure thes
 
 ### Project setup guide
 
-There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have *the same API surface* but are optimised for different platforms: 
+There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have *the same API surface* but are optimized for different platforms: 
 
-- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that is specific to Windows applications, which uses the Windows Machine Learning (WinML) framework to deliver optimal performance and user experience on Windows devices.
+- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework to deliver optimal performance and user experience on Windows devices.
 - **Cross-Platform**: Use the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
 
 Depending on your target platform, follow these instructions to create a new C# applications and add the necessary dependencies:
@@ -94,26 +94,26 @@ Depending on your target platform, follow these instructions to create a new C# 
 
 ### Reduce application package size
 
-The Foundry Local SDK will pull in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package as a dependency. The `Microsoft.ML.OnnxRuntime.Foundry` package provides the *inference runtime bundle*, which is the set of libraries required to efficiently run inference on specific vendor hardware devices. The inference runtime bundle includes the following components:
+The Foundry Local SDK pulls in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package as a dependency. The `Microsoft.ML.OnnxRuntime.Foundry` package provides the *inference runtime bundle*, which is the set of libraries required to efficiently run inference on specific vendor hardware devices. The inference runtime bundle includes the following components:
 
 - **ONNX Runtime library**: The core inference engine (`onnxruntime.dll`).
-- **ONNX Runtime Execution Provider (EP) library**. A hardware-specific backend in ONNX Runtime that optimises and executes parts of a machine learning model a hardware accelerator. For example:
+- **ONNX Runtime Execution Provider (EP) library**. A hardware-specific backend in ONNX Runtime that optimizes and executes parts of a machine learning model a hardware accelerator. For example:
     - CUDA EP: `onnxruntime_providers_cuda.dll`
     - QNN EP: `onnxruntime_providers_qnn.dll`
 - **Independent Hardware Vendor (IHV) libraries**. For example:
     - WebGPU: DirectX dependencies (`dxcompiler.dll`, `dxil.dll`)
     - QNN: Qualcomm QNN dependencies (`QnnSystem.dll`, etc.)
 
-The following table summarises what EP and IHV libraries will be bundled with your application and what WinML will download/install at runtime:
+The following table summarizes what EP and IHV libraries are bundled with your application and what WinML will download/install at runtime:
 
 ![EP Bundle table](../../media/ep-bundle.png)
 
-In all platform/architecture, the CPU EPU is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend *excluding* these EPs from your application package and allowing WinML to download/install them at runtime if the end user has compatible hardware.
+In all platform/architecture, the CPU EPU is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend *excluding* these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
 
 > [!NOTE]
-> We are working on removing the CUDA and QNN EPs from the `Microsoft.ML.OnnxRuntime.Foundry` package in future releases so that you do not need to include an `ExcludeExtraLibs.props` file to remove them from your application package.
+> We're working on removing the CUDA and QNN EPs from the `Microsoft.ML.OnnxRuntime.Foundry` package in future releases so that you don't need to include an `ExcludeExtraLibs.props` file to remove them from your application package.
 
-To reduce the size of your application package, you can create an `ExcludeExtraLibs.props` file in your project directory with the following content, which will exclude the CUDA and QNN EP and IHV libraries when you publish your application:
+To reduce the size of your application package, you can create an `ExcludeExtraLibs.props` file in your project directory with the following content, which excludes the CUDA and QNN EP and IHV libraries when you publish your application:
 
 ```xml
 <Project>
@@ -154,7 +154,7 @@ To reduce the size of your application package, you can create an `ExcludeExtraL
 </Project>
 ```
 
-Import the `ExcludeExtraLibs.props` file in your project file (`csproj`) to apply the exclusions when you publish your application. For example:
+Import the `ExcludeExtraLibs.props` file in your project file (`csproj`):
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -171,22 +171,22 @@ Import the `ExcludeExtraLibs.props` file in your project file (`csproj`) to appl
 
 #### Linux: CUDA dependencies
 
-Whilst the CUDA EP will be pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, we do not include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you will need *add* the following CUDA IHV libraries to your application:
+The CUDA EP is pulled into your Linux application via `Microsoft.ML.OnnxRuntime.Foundry`, but we don't include the IHV libraries. If you want to allow your end users with CUDA-enabled devices to benefit from higher performance, you need *add* the following CUDA IHV libraries to your application:
 
-- CUBLAS 12.8.4 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcublas/windows-x86_64/libcublas-windows-x86_64-12.8.4.1-archive.zip))
+- CUBLAS v12.8.4 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcublas/windows-x86_64/libcublas-windows-x86_64-12.8.4.1-archive.zip))
     - cublas64_12.dll
     - cublasLt64_12.dll
-- CUDA RT 12.8.90 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/windows-x86_64/cuda_cudart-windows-x86_64-12.8.90-archive.zip))
+- CUDA RT v12.8.90 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/windows-x86_64/cuda_cudart-windows-x86_64-12.8.90-archive.zip))
     - cudart64_12.dll
-- CUDNN 9.8.0 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-9.8.0.87_cuda12-archive.zip))
+- CUDNN v9.8.0 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/windows-x86_64/cudnn-windows-x86_64-9.8.0.87_cuda12-archive.zip))
     - cudnn_graph64_9.dll
     - cudnn_ops64_9.dll
     - cudnn64_9.dll
-- CUDA FFT 11.3.3.83 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcufft/windows-x86_64/libcufft-windows-x86_64-11.3.3.83-archive.zip))
+- CUDA FFT v11.3.3.83 ([download from NVIDIA Developer](https://developer.download.nvidia.com/compute/cuda/redist/libcufft/windows-x86_64/libcufft-windows-x86_64-11.3.3.83-archive.zip))
     - cufft64_11.dll
 
 > [!WARNING]
-> Adding the CUDA EP and IHV libraries to your application will increase the size of your application package by approximately 1GB.
+> Adding the CUDA EP and IHV libraries to your application increase the size of your application package by 1GB.
 
 ### Samples
 

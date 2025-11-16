@@ -10,7 +10,7 @@ ms.date: 05/19/2025
 ms.custom: include file
 ---
 
-To use Foundry Local in your C# project, you need to set up your project with the appropriate NuGet packages. Depending on your target platform, follow the instructions below to create a new C# console application and add the necessary dependencies.
+Use Foundry Local in your C# project by following these Windows-specific or Cross-Platform (macOS/Linux/Windows) instructions:
 
 ### [Windows](#tab/windows)
 
@@ -19,7 +19,7 @@ To use Foundry Local in your C# project, you need to set up your project with th
     dotnet new console -n app-name
     cd app-name
     ```
-1. Open the `app-name.csproj` file and modify to the following:
+1. Open and edit the `app-name.csproj` file to:
     ```xml
     <Project Sdk="Microsoft.NET.Sdk">
     
@@ -67,7 +67,7 @@ To use Foundry Local in your C# project, you need to set up your project with th
     dotnet new console -n app-name
     cd app-name
     ```
-1. Open the `app-name.csproj` file and modify to the following:
+1. Open and edit the `app-name.csproj` file to:
     ```xml
     <Project Sdk="Microsoft.NET.Sdk">
     
