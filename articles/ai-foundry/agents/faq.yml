@@ -109,3 +109,7 @@ sections:
           What additional configuration is needed if I want to add tools to my agents? 
         answer: |
           The template provides support for the built-in tools: Code Interpreter, File Search, Azure AI Search, Cosmos DB (all tools that use the Bring-Your-Own (BYO) resource connections). To configure tools that require the creation of a new connection, you must create a private endpoint from your `peSubnet`` and create a private link from the Azure Resource. 
+      - question: |
+          In hub-spoke like topology, If I have Private DNS zone(s) linked to my hub Vnet, do I still need to link them to spoke Vnet(s) such as Agent Vnet?
+        answer: |
+          Yes, you need to link the spoke VNet to the private DNS zone to resolve DNS names from the spoke network. Linking the hub VNet to the private DNS zone is not enough, as VNet peering does not automatically propagate the DNS zone link. To ensure resources in spoke VNets can resolve private endpoints, each spoke VNet (Agent Vnet) must have a link to the private DNS zone.    
