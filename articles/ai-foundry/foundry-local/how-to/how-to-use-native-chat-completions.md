@@ -32,7 +32,7 @@ The sample in this article can be found in the [Foundry Local C# SDK Samples Git
 
 ## Set up project
 
-[!INCLUDE [project-setup](./../csharp-project-setup.md)]
+[!INCLUDE [project-setup](../includes/csharp-project-setup.md)]
 
 ## Use native chat completions API    
 

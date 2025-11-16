@@ -30,7 +30,7 @@ The sample in this article can be found in the [Foundry Local C# SDK Samples Git
 
 ## Create project
 
-[!INCLUDE [project-setup](./../csharp-project-setup.md)]
+[!INCLUDE [project-setup](../includes/csharp-project-setup.md)]
 
 ## Use audio transcription API
 
