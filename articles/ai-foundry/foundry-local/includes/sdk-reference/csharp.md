@@ -67,7 +67,7 @@ The API allows Foundry Local to be more configurable over the web server, loggin
 ```csharp
 var config = new Configuration
 {
-    AppName = "my-app-name",
+    AppName = "app-name",
     LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
     Web = new Configuration.WebService
     {
@@ -90,75 +90,7 @@ There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-pla
 
 Depending on your target platform, follow these instructions to create a new C# applications and add the necessary dependencies:
 
-#### [Windows](#tab/windows)
-
-> [!TIP]
-> For Windows applications, we recommend using the `Microsoft.AI.Foundry.Local.WinML` package to take advantage of the Windows Machine Learning (ML) framework for optimal performance and user experience.
-
-Your `csproj` file should include the following settings:
-
-- Set the `TargetFramework` to a Windows-specific target (e.g. `net8.0-windows10.0.26100`).
-- Set the `WindowsAppSDKSelfContained` property to `true` to ensure that the Windows App SDK is bundled with your application.
-- Include a `PackageReference` to the `Microsoft.AI.Foundry.Local.WinML` package.
-- Optionally, include an `Import` statement to exclude superfluous ONNX Runtime and IHV libraries from your published application - For more details, read [Reduce application package size](#reduce-application-package-size). This step is recommended to reduce the size of your application package.
-
-Here is an example `csproj` file for a Windows application using the Foundry Local WinML SDK:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-  
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
-    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-    <Platforms>x64;ARM64</Platforms>
-  </PropertyGroup>
-
-  <!-- Use WinML package for local Foundry SDK on Windows -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" />
-  </ItemGroup>
-
-  <!-- On Publish: Exclude superfluous ORT and IHV libs -->
-  <Import Project="ExcludeExtraLibs.props" Condition="'$(PublishDir)' != ''" />
-
-</Project>
-```
-
-#### [Cross-platform](#tab/cross-platform)
-
-Your `csproj` file should include the following settings:
-
-- Set the `TargetFramework` to a cross-platform target (e.g. `net9.0`).
-- Include a `PackageReference` to the `Microsoft.AI.Foundry.Local` package.
-- Optionally, include an `Import` statement to exclude superfluous ONNX Runtime and IHV libraries from your published application - For more details, read [Reduce application package size](#reduce-application-package-size). This step is recommended to reduce the size of your application package.
-
-Here is an example `csproj` file for a cross-platform application using the Foundry Local SDK:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <!-- Cross-Platform Foundry SDK -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AI.Foundry.Local" />
-  </ItemGroup>
-
-  <!-- (Optional) On Publish: Exclude superfluous ORT and IHV libs -->
-  <Import Project="ExcludeExtraLibs.props" Condition="'$(PublishDir)' != ''" />
-
-</Project>
-```
-
----
+[!INCLUDE [project-setup](./../csharp-project-setup.md)]
 
 ### Reduce application package size
 
