@@ -15,7 +15,7 @@ ms.custom: azure-ai-guardrails
 
 # Guardrails and controls overview in Microsoft Foundry
 
-Microsoft Foundry offers safety and security guardrails that can be applied to core models, including image generation models, and agents. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. For example, a risk detection could be the annotation of the risk or blocking the model or agent from further output.
+Microsoft Foundry offers safety and security guardrails that can be applied to core models, including image generation models, and agents.  Agent guardrails are in preview. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. For example, a risk detection could be the annotation of the risk or blocking the model or agent from further output.
 
 Risks are flagged via a set of classification models designed to detect and prevent the output of undesirable behavior and/or harmful content. Four intervention points are currently supported: user input, tool call (Preview), tool response (Preview), and output. Tool call and tool responses intervention points are applicable to agents only and scan the tool call made as well as content sent to the tool, and the output back from the tool, respectively.
 
@@ -34,7 +34,7 @@ Some risks in Preview are not yet supported for agents. When controls involving 
 
 The following table summarizes which risks are applicable to models and agents:
 
-| Risk | Applicable to Models | Applicable to Agents |
+| Risk | Applicable to Models | Applicable to Agents (Preview) |
 |------|---------------------|---------------------|
 | Hate | ✅ | ✅ |
 | Sexual | ✅ | ✅ |
@@ -42,28 +42,28 @@ The following table summarizes which risks are applicable to models and agents:
 | Violence | ✅ | ✅ |
 | User prompt attacks | ✅ | ✅ |
 | Indirect attacks | ✅ | ✅ |
-| Spotlighting | ✅ | ❌ |
+| Spotlighting (Preview) | ✅  | ❌ |
 | Protected material for code | ✅ | ✅ |
 | Protected material for text | ✅ | ✅ |
-| Groundedness | ✅ | ❌ |
-| Personally identifiable information | ✅ | ✅ |
+| Groundedness (Preview) | ✅ | ❌ |
+| Personally identifiable information (Preview) | ✅ | ✅ |
 
 ### Intervention point applicability
 
 The following table summarizes which intervention points are applicable to models and agents:
 
-| Intervention point | Applicable to Models | Applicable to Agents |
+| Intervention point | Applicable to Models | Applicable to Agents (Preview) |
 |-------------------|---------------------|---------------------|
 | User input (prompt) | ✅ | ✅ |
-| Tool call | ❌ | ✅ |
-| Tool response | ❌ | ✅ |
+| Tool call (Preview) | ❌ | ✅ |
+| Tool response (Preview) | ❌ | ✅ |
 | Output (completion) | ✅ | ✅ |
 
 ### Action applicability
 
 The following table summarizes which actions are applicable to models and agents:
 
-| Action | Applicable to Models | Applicable to Agents |
+| Action | Applicable to Models | Applicable to Agents (Preview) |
 |--------|---------------------|---------------------|
 | Annotate | ✅ | ❌ |
 | Annotate and block | ✅ | ✅ |
@@ -89,20 +89,6 @@ By default, models are assigned the **Microsoft.DefaultV2** guardrail. For more 
 
 Unless another custom guardrail is specified upon creation, agents are assigned by default the guardrails of the model deployment being used by that agent. In other words, if no custom guardrails are specified for an agent, and that agent leverages a GPT-4o mini deployment using a guardrail named "MyCustomGuardrails," the agent will also use "MyCustomGuardrails" until another guardrail is specifically assigned to the agent. An agent will only inherit the Microsoft Default guardrails if its model is using that guardrail or of it is specifically assigned the default manually.
 
-### Supported capabilities
-
-You can create a custom security profile linked to your Prisma AIRS API key [here](https://docs.paloaltonetworks.com/ai-runtime-security/administration/prevent-network-security-threats/create-ai-security-profile). The following capabilities are supported:
-
-| Risk Type | Description |
-|-----------|-------------|
-| Toxic content | Detects and blocks harmful or abusive language. |
-| Prompt injection | Blocks malicious prompts that override model intent. |
-| Malicious URL | Detects and filters harmful links in AI interactions. |
-| Sensitive data loss (DLP) | Prevents exposure of private or regulated data. |
-| Malicious code / Code injection | Stops code-based attacks embedded in model inputs. |
-| AI Agent behavior / Tool chaining abuse | Monitors AI agents for unauthorized actions and tool access. |
-| Custom topic guardrails | Applies specialized policies for topic-specific control. |
-| Database Security | Detects and blocks malicious database queries. |
 
 ## Next steps
 
