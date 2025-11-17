@@ -35,7 +35,6 @@ To use Azure Content Understanding, create your Azure AI Service resource in a s
 | `uksouth` | UK South | United Kingdom | UK |
 | `westeurope` | West Europe | Europe | Europe |
 | `westus` | West US | United States | US |
-| `westus2` | West US 2 | United States | US |
 | `westus3` | West US 3 | United States | US |
 
 
