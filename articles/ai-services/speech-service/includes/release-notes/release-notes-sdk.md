@@ -36,7 +36,7 @@ ms.reviewer: pafarley
 
 #### Breaking changes:
   * Removed intent recognition support due to the service retirement.
-    * See [Migration Guide](../../migrate-intent-recognition) and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
+    * See [Migration Guide](../../migrate-intent-recognition.md) and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
   * Removed speaker recognition support due to the service retirement.
 
 ### Speech SDK 1.46: 2025-September release

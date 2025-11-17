@@ -13,7 +13,7 @@ Updated to use Speech SDK 1.47.0
 * none
 #### Breaking changes:
   * Removed intent recognition support due to the service retirement.
-    * See [Migration Guide](../../migrate-intent-recognition) and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
+    * See [Migration Guide](../../migrate-intent-recognition.md) and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
   * Removed speaker recognition support due to the service retirement.
 
 ### Speech CLI 1.46.0: 2025-September release
