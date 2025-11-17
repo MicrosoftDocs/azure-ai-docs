@@ -100,8 +100,8 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 
    :::image type="content" source="../../media/workflows/response-format.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/response-format.png":::
 
-   ```json
-   {
+```json
+{
   "name": "math_response",
   "schema": {
     "type": "object",
