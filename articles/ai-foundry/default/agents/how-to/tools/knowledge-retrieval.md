@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 11/17/2025
 ---
 
-# Use Foundry IQ to improve retrieval quality
+# Use knowledge to improve retrieval quality in Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
@@ -23,7 +23,7 @@ In this article, you learn how to use Foundry IQ for sophisticated knowledge ret
 
 The agent uses the response to ground its answers in your proprietary content, ensuring factual accuracy and transparency through source attribution.
 
-For an end-to-end example of using Foundry IQ for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
+For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
 
 ## Prerequisites
 
