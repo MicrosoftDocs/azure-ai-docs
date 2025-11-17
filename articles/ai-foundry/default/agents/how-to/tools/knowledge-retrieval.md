@@ -1,5 +1,5 @@
 ---
-title: Connect Agents to Knowledge Bases Using MCP
+title: Connect Agents to Knowledge Bases
 titleSuffix: Microsoft Foundry
 description: Learn how to use Foundry IQ, which connects Microsoft Foundry agents to Azure AI Search knowledge bases using Model Context Protocol (MCP) for grounded retrieval and citation-backed responses.
 author: haileytap
@@ -10,18 +10,18 @@ ms.topic: how-to
 ms.date: 11/17/2025
 ---
 
-# Use knowledge to improve retrieval quality in Foundry Agent Service
+# Connect a Foundry IQ knowledge base to Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
-In this article, you learn how to use Foundry IQ for sophisticated knowledge retrieval. Foundry IQ uses Model Context Protocol (MCP) to connect an agent in Microsoft Foundry to a knowledge base in Azure AI Search. When invoked by the agent, the knowledge base orchestrates the following retrieval operations:
+In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in Azure AI Search using Model Context Protocol (MCP). When invoked by the agent, the knowledge base orchestrates the following retrieval operations:
 
 + Plans and decomposes a user query into subqueries.
 + Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
 + Applies semantic reranking to identify the most relevant results.
 + Synthesizes the results into a unified response with source references.
 
-The agent uses the response to ground its answers in your proprietary content, ensuring factual accuracy and transparency through source attribution.
+The agent uses the response to ground its answers in enterprise data or web sources, ensuring factual accuracy and transparency through source attribution.
 
 For an end-to-end example of integrating Azure AI Search and Foundry Agent Service for knowledge retrieval, see the [agentic-retrieval-pipeline-example](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-foundry/samples/agentic-retrieval-pipeline) Python sample on GitHub.
 
@@ -54,9 +54,9 @@ We recommend role-based access control for production deployments. If roles aren
 
 ---
 
-## Understand Foundry IQ
+## Understand knowledge
 
-Foundry IQ enables agent grounding and reasoning over enterprise content by integrating the following services:
+Knowledge enables agent grounding and reasoning over enterprise content by integrating the following services:
 
 + [Azure AI Search](/azure/search/search-what-is-azure-search) provides knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
 
