@@ -29,6 +29,7 @@ If you still require IP filtering, you can obtain the [IP addresses details usin
    >
    > * Once you enable **Selected Networks and Private Endpoints**, you must use the **Virtual Network** endpoint to call the Translator. You can't use the standard translator endpoint (`api.cognitive.microsofttranslator.com`) and you can't authenticate with an access token.
    > * For more information, *see* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support).
+   > * You can also use a regional endpoint. Regional endpoints follow this format: https://{region}.api.cognitive.microsoft.com Replace {region} with the Azure region where your Translator resource is deployed.
 
 1. To grant access to an internet IP range, enter the IP address or address range (in [`CIDR` notation](https://tools.ietf.org/html/rfc4632)) under **Firewall** > **Address Range**. Only valid public IP (`non-reserved`) addresses are accepted.
 
