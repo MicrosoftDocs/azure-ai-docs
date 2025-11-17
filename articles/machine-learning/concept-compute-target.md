@@ -173,7 +173,8 @@ See the following table to learn more about supported series.
 | [NV](/azure/virtual-machines/nv-series) | GPU | Compute clusters and instance |
 | [NVv3](/azure/virtual-machines/nvv3-series) | GPU | Compute clusters and instance |
 | [NCasT4_v3](/azure/virtual-machines/nct4-v3-series) | GPU | Compute clusters and instance |
-| [NDasrA100_v4](/azure/virtual-machines/nda100-v4-series) | GPU | Compute clusters and instance |
+| [ND-H100-v5](/azure/virtual-machines/sizes/gpu-accelerated/ndh100v5-series) | GPU | Compute clusters and instance |
+| [ND-H200-v5](/azure/virtual-machines/sizes/gpu-accelerated/nd-h200-v5-series) | GPU | Compute clusters and instance |
 
 While Azure Machine Learning supports these VM series, they might not be available in all Azure regions. To check whether VM series are available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines).
 
