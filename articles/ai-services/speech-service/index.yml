@@ -77,6 +77,9 @@ conceptualContent:
           url: pronunciation-assessment-tool.md
     - title: Tools
       links:
+        - itemType: quickstart
+          text: Speech MCP tool in Microsoft Foundry
+          url: /azure/ai-foundry/agents/how-to/tools/azure-ai-speech?view=foundry
         - itemType: overview
           text: About Speech Studio
           url: speech-studio-overview.md
@@ -91,14 +94,20 @@ conceptualContent:
       - itemType: quickstart
         text: Get started with speech translation
         url: get-started-speech-translation.md         
-    - title: Azure OpenAI
+    - title: Voice live
       links:
         - itemType: overview
-          text: What is the Whisper model?
-          url: whisper-overview.md
-        - itemType: overview
-          text: What are OpenAI text to speech voices?     
-          url: openai-voices.md
+          text: What is Voice live?
+          url: /azure/ai-services/speech-service/voice-live
+        - itemType: quickstart
+          text: Get started with Voice live models
+          url: https://review.learn.microsoft.com/en-us/azure/ai-services/speech-service/voice-live-quickstart
+        - itemType: quickstart
+          text: Get started with Voice live in Foundry agents
+          url: /azure/ai-services/speech-service/voice-live-agents-quickstart
+        - itemType: how-to-guide
+          text: Customize Voice live
+          url: /azure/ai-services/speech-service/voice-live-how-to-customize
     - title: Hosting
       links:
         - itemType: how-to-guide
