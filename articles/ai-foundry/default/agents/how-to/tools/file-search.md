@@ -34,7 +34,8 @@ File search augments agents with knowledge from outside its model, such as propr
 
 
 ## Code example
-
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 :::zone pivot="python"
 
