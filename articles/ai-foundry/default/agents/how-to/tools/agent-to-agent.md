@@ -14,6 +14,7 @@ ms.custom: azure-ai-agents
 ---
 
 # Agent2Agent (A2A) tool (preview)
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
