@@ -17,6 +17,8 @@ items:
   href: ../../agents/concepts/runtime-components.md
 - name: Use the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents.md
+- name: Publish to Microsoft 365 Copilot and Teams
+  href: ../../agents/how-to/publish-copilot.md
 - name: Use MCP Tools in the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents-mcp.md
 - name: Microsoft Foundry MCP Server (preview)
