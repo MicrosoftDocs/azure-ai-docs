@@ -18,6 +18,7 @@ ms.custom: azure-ai-agents
 
 > [!NOTE]
 > There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Microsoft Foundry Agent Service](./knowledge-retrieval.md).
+> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microsoft Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
