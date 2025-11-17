@@ -11,16 +11,16 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Create a private tool catalog (preview)
+# Create a private tools catalog (preview)
 
-Use this article to learn how to build a private [tool catalog](../concepts/tool-catalog.md) that is restricted to developers in your organization, using the [Azure API center](/azure/api-center/register-discover-mcp-server).
+Use this article to learn how to build a private tools catalog that is restricted to developers in your organization, using the [Azure API center](/azure/api-center/register-discover-mcp-server).
 
 ## Prerequisites 
 
 * An [Azure API Center](/azure/api-center/set-up-api-center) 
 
     > [!NOTE]
-    > The API Center name is your private tool catalog name shown in the registry filter so make sure you provide an informative name. 
+    > The API Center name is your private tools catalog name shown in the registry filter so make sure you provide an informative name. 
 
 * One or more remote MCP servers that you want to share with your organization that have been [Registered with API Center](/azure/api-center/tutorials/configure-environments-deployments)
 
@@ -43,4 +43,4 @@ Use this article to learn how to build a private [tool catalog](../concepts/tool
 
 ## Give access to your organization. 
 
-For developers to see the MCP servers in the Foundry tool catalog, you need to give them at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) or equivalent role. The private tool catalog will be available in the Foundry portal for developers with this role.
+For developers to see the MCP servers in the private tools, you need to give them at least the [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) or equivalent role. The private tools catalog will be available in the Foundry portal for developers with this role.
