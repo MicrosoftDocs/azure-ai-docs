@@ -101,7 +101,7 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
    :::image type="content" source="../../media/workflows/response-format.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/response-format.png":::
 
    ```json
-    {
+   {
   "name": "math_response",
   "schema": {
     "type": "object",
@@ -137,7 +137,7 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
   },
   "strict": true
 }
-   ```
+```
 
 7. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
 8. Select **Create new variable**. Choose a variable name. Select **Done**.
