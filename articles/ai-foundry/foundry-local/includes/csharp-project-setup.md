@@ -25,7 +25,7 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
     
       <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0-windows10.0.26100</TargetFramework>
+        <TargetFramework>net9.0-windows10.0.26100</TargetFramework>
         <RootNamespace>app-name</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>

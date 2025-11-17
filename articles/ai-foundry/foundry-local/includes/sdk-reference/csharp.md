@@ -117,7 +117,7 @@ To reduce the size of your application package, you can create an `ExcludeExtraL
 
 ```xml
 <Project>
-  <!-- Ensure we're using the onnxruntime libraries from Foundry Local Core so 
+  <!-- we want to ensure we're using the onnxruntime libraries from Foundry Local Core so 
   we delete the WindowsAppSdk versions once they're unzipped. -->
   <Target Name="ExcludeOnnxRuntimeLibs" AfterTargets="ExtractMicrosoftWindowsAppSDKMsixFiles">
     <Delete Files="$(MicrosoftWindowsAppSDKMsixContent)\onnxruntime.dll"/>
@@ -129,7 +129,7 @@ To reduce the size of your application package, you can create an `ExcludeExtraL
   <Target Name="ExcludeCudaLibs" Condition="'$(RuntimeIdentifier)'=='win-x64'" AfterTargets="ResolvePackageAssets">
     <ItemGroup>
       <!-- match onnxruntime*cuda.* (we're matching %(Filename) which excludes the extension) -->
-      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
                             Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
                                       '^onnxruntime.*cuda.*', RegexOptions.IgnoreCase))" />
     </ItemGroup>
@@ -139,34 +139,41 @@ To reduce the size of your application package, you can create an `ExcludeExtraL
   <!-- Remove QNN EP and IHV libraries on Windows arm64 -->
   <Target Name="ExcludeQnnLibs" Condition="'$(RuntimeIdentifier)'=='win-arm64'" AfterTargets="ResolvePackageAssets">
     <ItemGroup>
-      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
                             Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)%(Extension)', 
                                       '^QNN.*\.dll', RegexOptions.IgnoreCase))" />
-      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
                             Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', 
                                       '^libQNNhtp.*', RegexOptions.IgnoreCase))" />
-      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" 
+      <NativeCopyLocalItems Remove="@(NativeCopyLocalItems)"
                             Condition="'%(FileName)%(Extension)' == 'onnxruntime_providers_qnn.dll'" />
     </ItemGroup>
     <Message Importance="Normal" Text="Excluded onnxruntime QNN libraries from package." />
   </Target>
 
+  <!-- need to manually copy on linux-x64 due to the nuget packages not having the correct props file setup -->
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
+    <!-- 'Update' as the Core package will add these dependencies, but we want to be explicit about the version -->
+    <PackageReference Update="Microsoft.ML.OnnxRuntime.Gpu" />
+    <PackageReference Update="Microsoft.ML.OnnxRuntimeGenAI.Cuda" />
+    <OrtNativeLibs Include="$(NuGetPackageRoot)microsoft.ml.onnxruntime.gpu.linux/$(OnnxRuntimeVersion)/runtimes/$(RuntimeIdentifier)/native/*" />
+    <OrtGenAINativeLibs Include="$(NuGetPackageRoot)microsoft.ml.onnxruntimegenai.cuda/$(OnnxRuntimeGenAIVersion)/runtimes/$(RuntimeIdentifier)/native/*" />
+  </ItemGroup>
+
+  <Target Name="CopyOrtNativeLibs" AfterTargets="Build" Condition=" '$(RuntimeIdentifier)' == 'linux-x64'">
+    <Copy SourceFiles="@(OrtNativeLibs)" DestinationFolder="$(OutputPath)"></Copy>
+    <Copy SourceFiles="@(OrtGenAINativeLibs)" DestinationFolder="$(OutputPath)"></Copy>
+  </Target>
 </Project>
 ```
 
-Import the `ExcludeExtraLibs.props` file in your project file (`csproj`):
+In your project file (`.csproj`), add the following line to import the `ExcludeExtraLibs.props` file:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-  ...
-
-  <!-- On Publish: Exclude superfluous ORT and IHV libs -->
-  <Import Project="ExcludeExtraLibs.props" Condition="'$(PublishDir)' != ''" />
-
-</Project>
+<!-- other project file content -->
+  
+<Import Project="ExcludeExtraLibs.props" />
 ```
-
 
 
 #### Linux: CUDA dependencies
