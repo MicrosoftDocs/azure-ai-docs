@@ -101,7 +101,7 @@ with (
 <!-- :::zone-pivot="rest-api"-->
 ## Create the remote A2A Foundry connection 
 
-Use the following examples to store your authentication information. Adding an agent card path is optional. 
+Use the following examples to store your authentication information.
 
 ### Key-based
 
