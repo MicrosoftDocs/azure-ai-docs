@@ -247,7 +247,7 @@ mcp_kb_tool = MCPTool(
     server_url = mcp_endpoint,
     require_approval = "never",
     allowed_tools = ["knowledge_base_retrieve"],
-    project_connection_id = project_connection_name
+    project_connection_id = project_connection_name,
     headers = {
         "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
     }
