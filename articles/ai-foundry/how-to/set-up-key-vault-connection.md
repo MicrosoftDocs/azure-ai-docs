@@ -56,6 +56,8 @@ Create a connection to Azure Key Vault.
    :::image type="content" source="../media/setup-key-vault-connection/azure-key-vault-connection.jpeg" alt-text="Screenshot of the Azure Key Vault selection dialog with Azure Key Vault selected.":::
 
 1. Select your **Azure Key Vault**, then select **Connect**.
+1. It may take a few minutes after these steps are completed before you can use the connection.
+
 
 ::: zone-end
 ::: zone pivot="bicep"
