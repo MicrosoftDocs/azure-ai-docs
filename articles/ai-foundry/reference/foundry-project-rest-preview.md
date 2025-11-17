@@ -2019,7 +2019,7 @@ Create a new EvaluatorVersion with auto incremented version id
 | └─ metrics | object | List of output metrics produced by this evaluator | No |  |
 | └─ type | [EvaluatorDefinitionType](#evaluatordefinitiontype) | The type of evaluator definition | No |  |
 | description | string | The asset description text. | No |  |
-| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in AI Foundry. It does not need to be unique. | No |  |
+| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in Foundry. It does not need to be unique. | No |  |
 | evaluator_type | object | The type of the evaluator | Yes |  |
 | metadata | object | Metadata about the evaluator | No |  |
 | tags | object | Tag dictionary. Tags can be added, removed, and updated. | No |  |
@@ -2153,7 +2153,7 @@ Update an existing EvaluatorVersion with the given version id
 |------|------|-------------|----------|---------|
 | categories | array | The categories of the evaluator | No |  |
 | description | string | The asset description text. | No |  |
-| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in AI Foundry. It does not need to be unique. | No |  |
+| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in Foundry. It does not need to be unique. | No |  |
 | metadata | object | Metadata about the evaluator | No |  |
 | tags | object | Tag dictionary. Tags can be added, removed, and updated. | No |  |
 
@@ -4999,7 +4999,7 @@ A AI Search Index resource.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| filter | string | filter string for search resource. [Learn more here](https://learn.microsoft.com/azure/search/search-filters). | No |  |
+| filter | string | filter string for search resource. [Learn more here](/azure/search/search-filters). | No |  |
 | index_asset_id | string | Index asset id for search resource. | No |  |
 | index_name | string | The name of an index in an IndexResource attached to this agent. | No |  |
 | project_connection_id | string | An index connection ID in an IndexResource attached to this agent. | No |  |
@@ -5564,7 +5564,7 @@ A bing custom search configuration.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | count | integer | The number of search results to return in the bing api response | No |  |
-| freshness | string | Filter search results by a specific time range. See [accepted values here](https://learn.microsoft.com/bing/search-apis/bing-web-search/reference/query-parameters). | No |  |
+| freshness | string | Filter search results by a specific time range. See [accepted values here](/bing/search-apis/bing-web-search/reference/query-parameters). | No |  |
 | instance_name | string | Name of the custom configuration instance given to config. | Yes |  |
 | market | string | The market where the results come from. | No |  |
 | project_connection_id | string | Project connection id for grounding with bing search | Yes |  |
@@ -5595,7 +5595,7 @@ Search configuration for Bing Grounding
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | count | integer | The number of search results to return in the bing api response | No |  |
-| freshness | string | Filter search results by a specific time range. See [accepted values here](https://learn.microsoft.com/bing/search-apis/bing-web-search/reference/query-parameters). | No |  |
+| freshness | string | Filter search results by a specific time range. See [accepted values here](/bing/search-apis/bing-web-search/reference/query-parameters). | No |  |
 | market | string | The market where the results come from. | No |  |
 | project_connection_id | string | Project connection id for grounding with bing search | Yes |  |
 | set_lang | string | The language to use for user interface strings when calling Bing API. | No |  |
@@ -6552,7 +6552,7 @@ Evaluator Definition
 | └─ init_parameters |  | The JSON schema (Draft 2020-12) for the evaluator's input parameters. This includes parameters like type, properties, required. | No |  |
 | └─ metrics | object | List of output metrics produced by this evaluator | No |  |
 | └─ type | [EvaluatorDefinitionType](#evaluatordefinitiontype) | The type of evaluator definition | No |  |
-| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in AI Foundry. It does not need to be unique. | No |  |
+| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in Foundry. It does not need to be unique. | No |  |
 | evaluator_type | object | The type of the evaluator | Yes |  |
 | id | string | Asset ID, a unique identifier for the asset | No |  |
 | metadata | object | Metadata about the evaluator | No |  |
@@ -6573,7 +6573,7 @@ Evaluator Definition
 | └─ metrics | object | List of output metrics produced by this evaluator | No |  |
 | └─ type | [EvaluatorDefinitionType](#evaluatordefinitiontype) | The type of evaluator definition | No |  |
 | description | string | The asset description text. | No |  |
-| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in AI Foundry. It does not need to be unique. | No |  |
+| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in Foundry. It does not need to be unique. | No |  |
 | evaluator_type | object | The type of the evaluator | Yes |  |
 | metadata | object | Metadata about the evaluator | No |  |
 | tags | object | Tag dictionary. Tags can be added, removed, and updated. | No |  |
@@ -6586,7 +6586,7 @@ Evaluator Definition
 |------|------|-------------|----------|---------|
 | categories | array | The categories of the evaluator | No |  |
 | description | string | The asset description text. | No |  |
-| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in AI Foundry. It does not need to be unique. | No |  |
+| display_name | string | Display Name for evaluator. It helps to find the evaluator easily in Foundry. It does not need to be unique. | No |  |
 | metadata | object | Metadata about the evaluator | No |  |
 | tags | object | Tag dictionary. Tags can be added, removed, and updated. | No |  |
 
@@ -10729,13 +10729,13 @@ This component uses the property `type` to discriminate between different types:
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | object | Authentication type for OpenApi endpoint. Allowed types are:<br>- Anonymous (no authentication required)<br>- Project Connection (requires project_connection_id to endpoint, as setup in AI Foundry)<br>- Managed_Identity (requires audience for identity based auth) | Yes |  |
+| type | object | Authentication type for OpenApi endpoint. Allowed types are:<br>- Anonymous (no authentication required)<br>- Project Connection (requires project_connection_id to endpoint, as setup in Foundry)<br>- Managed_Identity (requires audience for identity based auth) | Yes |  |
 
 ### OpenApiAuthType
 
 Authentication type for OpenApi endpoint. Allowed types are:
 - Anonymous (no authentication required)
-- Project Connection (requires project_connection_id to endpoint, as setup in AI Foundry)
+- Project Connection (requires project_connection_id to endpoint, as setup in Foundry)
 - Managed_Identity (requires audience for identity based auth)
 
 | Property | Value |
