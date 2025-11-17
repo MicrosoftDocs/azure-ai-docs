@@ -11,6 +11,7 @@ ms.date: 11/17/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+zone_pivot_groups: selection-agent-to-agent
 ---
 
 # Agent2Agent (A2A) tool (preview)
@@ -100,7 +101,7 @@ with (
     print("Agent deleted")
 ```
 
-:::zone end
+:::zone-end
 
 :::zone-pivot="rest-api"
 ## Create the remote A2A Foundry connection 
@@ -285,7 +286,7 @@ curl --request POST \
   }
 }'
 ```
-:::zone end
+:::zone-end
 
 ## Considerations for using non-Microsoft services and servers 
 
