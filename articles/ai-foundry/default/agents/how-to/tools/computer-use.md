@@ -15,6 +15,8 @@ ms.custom: references_regions
 
 # Computer use tool for agents (Preview)
 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
 > [!WARNING]
 > The computer use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
