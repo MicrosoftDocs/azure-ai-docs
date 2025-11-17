@@ -38,12 +38,18 @@ conceptualContent:
         - itemType: quickstart
           text: Get started with speech to text
           url: get-started-speech-to-text.md
-        - itemType: overview
-          text: Improve accuracy with custom speech
-          url: custom-speech-overview.md
         - itemType: how-to-guide
-          text: Use batch transcription
-          url: batch-transcription.md  
+          text: Real-time transcription
+          url: /azure/ai-services/speech-service/how-to-recognize-speech
+        - itemType: how-to-guide
+          text: Fast transcription
+          url: /azure/ai-services/speech-service/fast-transcription-create?branch=release-ignite-2025-release&tabs=locale-specified
+        - itemType: how-to-guide
+          text: Batch transcription
+          url: batch-transcription.md
+        - itemType: overview
+          text: Custom speech to text models
+          url: /azure/ai-services/speech-service/custom-speech-overview
       footerLink:
         text: More
         url: index-speech-to-text.yml
