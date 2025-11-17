@@ -88,6 +88,62 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 5. Configure the agent in the invoke an agent window.
 6. Select **Save**.
 
+## Configure output response format for Invoke Agent 
+
+1. Create an **Invoke agent** node.
+2. Select create a new an agent in the Invoke agent configuration window.
+3. Configure the agent to output as JSON Schema in the configuration window. Select **Details**. Select the parameter icon. Then select JSON Schema as the **Text Format**.
+
+  :::image type="content" source="../../media/workflows/select-parameters.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/select-parameters.png":::
+
+5. Copy and paste the desired JSON Schema in the **Add response format** window. You can use the math example example for this tutorial. Select **Save**.
+
+   :::image type="content" source="../../media/workflows/response-format.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/response-format.png":::
+
+   ```json
+    {
+  "name": "math_response",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "steps": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string"
+            },
+            "output": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "explanation",
+            "output"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "final_answer": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "steps",
+      "final_answer"
+    ]
+  },
+  "strict": true
+}
+   ```
+
+7. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
+8. Select **Create new variable**. Choose a variable name. Select **Done**.
+
+   :::image type="content" source="../../media/workflows/save-output.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/save-output.png":::
+
 ## Additional features
 
 - **YAML Visualizer View toggle**: The workflow will be stored in a YAML file, it can be modified in the visualizer and the YAML view. Saving will create a new version; you have access to the version history. The visualizer and the YAML are editable. You can edit the YAML file and any changes to the file will be reflected in the visualizer.
