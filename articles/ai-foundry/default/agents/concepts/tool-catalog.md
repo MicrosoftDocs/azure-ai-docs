@@ -1,6 +1,6 @@
 ---
-title: "Discover tools in the Microsoft Foundry tool catalog"
-description: "Learn about the tool catalog in Microsoft Foundry to extend your AI agents and workflows."
+title: "Discover tools in the Microsoft Foundry Tools"
+description: "Learn about the Foundry Tools in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
 ms.date: 11/12/2025
@@ -11,11 +11,11 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Discover tools in the Microsoft Foundry tool catalog (preview)
+# Discover tools in the Microsoft Foundry Tools (preview)
 
-The Microsoft Foundry tool catalog is a central hub for discovering tools to extend your AI agents
+The Microsoft Foundry Tools is a central hub for discovering tools to extend your AI agents
 
-The tool catalog enables you to: 
+The Foundry Tools enables you to: 
 
 * Browse and use Model Context Protocol (MCP) tool servers created by Microsoft and non-Microsoft services, for various use cases such as data integration, productivity and more. 
 * Streamline integration between tool configuration and adding to an agent or workflow. 
@@ -31,15 +31,15 @@ We recommend that you carefully review and track the MCP servers you add to Foun
 
 The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with Non-Microsoft services, including remote MCP servers, and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data. 
 
-## Public and private tool catalogs
+## Foundry Tools and private tools catalog
 
-The Foundry provides both public and private tool catalogs. The public tool catalog is an enterprise-ready curated list of MCP servers available to all Foundry developers for building AI agents. You can also build an organizational tool catalog with tools that appear only in your organization by creating a [private tool catalog](../how-to/private-tool-catalog.md). 
+Foundry provides both Foundry Tools and private tools catalogs. Foundry Tools is an enterprise-ready curated list of MCP servers available to all Foundry developers for building AI agents. You can also build a private tools catalog with tools that appear only in your organization by creating a [private tools catalog](../how-to/private-tool-catalog.md). 
 
-## Find the right tools from the tool catalog
+## Find the right tools from Foundry Tools
 
 ### Tool types
 
-There are three types of MCP tool servers in the public tool catalog:
+There are three types of MCP tool servers in Foundry Tools:
 
 **Remote MCP server**: The MCP server publisher has already hosted the server and provided a static or dynamic MCP server endpoint. Foundry developers need to follow the configuration guidance to provide the appropriate information to finish the setup. 
 
@@ -50,20 +50,20 @@ There are three types of MCP tool servers in the public tool catalog:
 
 ### Filter and search
 
-The Foundry tool catalog provides the following filters to help you find the right tools for your agents:
+Foundry Tools provides the following filters to help you find the right tools for your agents:
 
 | Filter | Description |
 |--------|-------------|
 | Publisher | Microsoft and Partner: non-Microsoft service |
 | Category | Categorize tools by different industries and use cases, such as databases, analytics, web, and more |
-| Registry | **Public**: This is the registry for all public remote MCP servers and local MCP servers in the catalog<br>**Logic app connectors**: This is the registry for all Azure Logic App Connectors that need to be converted to remote MCP servers to use a private tool catalog you built. You can have multiple private tool catalogs in your Foundry Tool Catalog. |
+| Registry | **Public**: This is the registry for all public remote MCP servers and local MCP servers in the catalog<br>**Logic app connectors**: This is the registry for all Azure Logic App Connectors that need to be converted to remote MCP servers to use a private tools catalog you built. You can have multiple private tools catalogs. |
 | Supported Authentication | You can also filter by the authentication method an MCP server supports. For more information see [Authentication methods](https://aka.ms/FoundryMCPAuth). |
 
 :::image type="content" source="../media/tool-catalog/tool-example.png" alt-text="An example tool in the Foundry portal." lightbox="../media/tool-catalog/tool-example.png":::
 
 When you select a specific tool you are interested, you can see the details for setting it up.
 
-## Tool catalog in the Foundry
+## Foundry Tools
 
 In your tools list <!--(https://ai.azure.com/nextgen/build/tools)--> you can find the list of tools you have configured, along with details such as MCP server endpoints, and authentication information. You can also delete or add your tools to existing agents. If you delete a tool, affect agents currently using them.
 
@@ -73,7 +73,7 @@ In your tools list <!--(https://ai.azure.com/nextgen/build/tools)--> you can fin
 
 To see a full list of available tools, you can use the Agent playground. You can view recently used tools, and add new ones.
 
-The tool catalog contains three sections:
+Foundry Tools contains three sections:
 
 - **Configured**: Configured tools are ready to use with your configured authentication, configuration or setup. You can also find built-in tools:
 
