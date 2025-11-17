@@ -12,13 +12,15 @@ ms.date: 11/17/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+zone_pivot_groups: ai-foundry-vsc-extension-languages
 ---
 
 # Work with Hosted (Pro-code) Agents in Visual Studio Code (preview)
 
 In this article, you learn how to add and use hosted Foundry Agent workflows with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
-After you [build an agent in Foundry Agent Service](./vs-code-agents.md) by using this Visual Studio Code (VS Code) extension, you can add hosted agent workflows to your agent.
+After you [build an agent in Foundry Agent Service](
+/azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&tabs=windows-powershell&pivots=python&preserve-view=true) by using this Visual Studio Code (VS Code) extension, you can add hosted agent workflows to your agent.
 
 Foundry developers can stay productive by developing, testing, and deploying hosted agent workflows in the familiar environment of VS Code.
 
@@ -103,13 +105,13 @@ Grant the project's managed identity the required permissions by assigning the b
 ::: zone pivot="python"
 The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Azure OpenAI credentials:
 
-    ```
-    # Your Azure OpenAI endpoint
-    AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
-       
-    # Your model deployment name in Azure OpenAI
-    MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
-    ```
+```
+# Your Azure OpenAI endpoint
+AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
+    
+# Your model deployment name in Azure OpenAI
+MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+```
 
 > [!IMPORTANT]
 > Never commit the `.env` file to version control. Add it to your `.gitignore` file.

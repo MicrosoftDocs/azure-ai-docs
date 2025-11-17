@@ -16,9 +16,10 @@ author: ms-johnalex
 
 # Work with Declarative (Low-code) Agent workflows in Visual Studio Code (preview)
 
-In this article, you learn how to add and use [Foundry Agent workflows](./concepts/workflow.md) with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+In this article, you learn how to add and use [Foundry Agent workflows](../concepts/workflow.md) with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
-After you [build an agent in Foundry Agent Service](./vs-code-agents.md) by using this Visual Studio Code (VS Code) extension, you can add workflows to your agent.
+After you [build an agent in Foundry Agent Service](
+/azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&tabs=windows-powershell&pivots=python&preserve-view=true) by using this Visual Studio Code (VS Code) extension, you can add workflows to your agent.
 
 Foundry Workflows is a UI-based tool in Foundry that creates declarative, predefined sequences of actions including agents, as in Microsoft Agent Framework Workflows.
 
