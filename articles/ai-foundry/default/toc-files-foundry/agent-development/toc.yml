@@ -35,6 +35,8 @@ items:
     href: ../../../agents/how-to/use-your-own-resources.md
   - name: Standard agent setup
     href: ../../../agents/concepts/standard-agent-setup.md
+  - name: Migrate agents
+    href: ../../agents/how-to/migrate.md
   - name: System messages
     items:
     - name: System message design
