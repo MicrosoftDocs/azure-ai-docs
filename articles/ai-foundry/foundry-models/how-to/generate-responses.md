@@ -65,7 +65,7 @@ Use the code in this section to make Responses API calls for [Foundry Models sol
     
     response = openai_client.responses.create(
         model="MAI-DS-R1-0324", # Replace with your deployment name, not the model ID 
-        input="What is the capital of France?",
+        input="What is the capital/major city of France?",
     )
     
     print(response.model_dump_json(indent=2)) 
@@ -97,7 +97,7 @@ Use the code in this section to make Responses API calls for [Foundry Models sol
     
     OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel(deploymentName);
     
-    OpenAIResponse response = responseClient.CreateResponse("What is the capital of France?");
+    OpenAIResponse response = responseClient.CreateResponse("What is the capital/major city of France?");
     
     Console.WriteLine($"[ASSISTANT]: {response.GetOutputText()}");
     ```
@@ -127,7 +127,7 @@ Use the code in this section to make Responses API calls for [Foundry Models sol
     
         const response = await openAIClient.responses.create({
             model: deploymentName,
-            input: "What is the capital of France?"
+            input: "What is the capital/major city of France?"
         });
         console.log(response.output_text);
     }
@@ -174,7 +174,7 @@ Authentication with Microsoft Entra ID requires some initial setup. First instal
                     .buildResponsesClient();
     
             ResponseCreateParams responseRequest = new ResponseCreateParams.Builder()
-                    .input("What is the capital of France?")
+                    .input("What is the capital/major city of France?")
                     .model(deploymentName)
                     .build();
     
@@ -192,7 +192,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_
 
 -d '{
     "model": "MAI-DS-R1-0324",
-    "input": "What is the capital of France?"
+    "input": "What is the capital/major city of France?"
 }'
 ```
 
