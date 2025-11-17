@@ -5,6 +5,17 @@ ms.topic: include
 ms.date: 08/01/2024
 ms.author: pafarley
 ---
+### Speech CLI 1.47.0: 2025-September release
+Updated to use Speech SDK 1.47.0
+#### New features
+* none
+#### Bug fixes
+* none
+#### Breaking changes:
+  * Removed intent recognition support due to the service retirement.
+    * See https://learn.microsoft.com/azure/ai-services/speech-service/migrate-intent-recognition and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
+  * Removed speaker recognition support due to the service retirement.
+  
 ### Speech CLI 1.46.0: 2025-September release
 Updated to use Speech SDK 1.46.0
 #### New features

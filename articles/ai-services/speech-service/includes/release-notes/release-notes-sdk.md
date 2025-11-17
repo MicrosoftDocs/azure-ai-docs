@@ -9,7 +9,35 @@ ms.reviewer: pafarley
 ---
 
 > [!IMPORTANT]
-> Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+> Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.47: 2025-November release
+> [!IMPORTANT]
+> Windows 32-bit support is dropped due to the end of mainstream support for Windows 10 and thus 32-bit x86 and ARM (https://support.microsoft.com/windows/windows-10-support-has-ended-on-october-14-2025-2ca8b313-1946-43d3-b55c-2b95b107f281).
+
+#### New features:
+  * Changed the default policy to ignore errors due to network conditions preventing access to online certificate revocation information on Linux clients.
+  * [JavaScript] Added support for specifying the base model name for photo avatars.
+  
+#### Bug fixes:
+  * Fixed a libxml2 vulnerability in embedded TTS.
+  * Fixed custom endpoints not working with ConversationTranscriber.
+  * Fixed incorrect TTS word boundary events when processing special characters (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2359).
+  * [C#] Fixed a missing MonoPInvokeCallback attribute (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2948).
+  * [iOS] Fixed a .NET 9 project linker error (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2939).
+  * [Java] Fixed handling of recognition result characters in the "modified UTF-8" range.
+  * [Python] Fixed SpeechServiceConnection_EnableAudioLogging of speech_config not working in ConversationTranscriber.
+  * [Windows] Fixed a memory leak in WebSocket connections when using TLS (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2925).
+
+#### Sample updates:
+  * Removed intent recognition samples (except the standalone implementation of intent recognition in C++) due to the service retirement.
+  * Removed speaker recognition samples due to the service retirement.
+  * Removed Unity samples as the last Speech SDK Unity packages were published for the 1.44 release and there is no direct support anymore.
+
+#### Breaking changes:
+  * Removed intent recognition support due to the service retirement.
+    * See https://learn.microsoft.com/azure/ai-services/speech-service/migrate-intent-recognition and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
+  * Removed speaker recognition support due to the service retirement.
 
 ### Speech SDK 1.46: 2025-September release
 

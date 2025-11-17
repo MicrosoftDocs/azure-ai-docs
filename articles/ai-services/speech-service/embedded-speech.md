@@ -45,7 +45,7 @@ Requires 10.14 or newer on x64 or Arm64 hardware.
 
 # [Windows](#tab/windows-target)
 
-Requires Windows 10 or newer on x64 or Arm64 hardware.
+Requires Windows 11 or newer on x64 or Arm64 hardware.
 
 The latest [Microsoft Visual C++ Redistributable for Visual Studio 2015-2022](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) must be installed regardless of the programming language used with the Speech SDK.
 
