@@ -137,7 +137,6 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
   },
   "strict": true
 }
-```
 
 7. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
 8. Select **Create new variable**. Choose a variable name. Select **Done**.
