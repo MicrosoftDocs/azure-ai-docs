@@ -19,6 +19,10 @@ items:
   href: ../../../how-to/develop/vs-code-agents.md
 - name: Use MCP Tools in the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents-mcp.md
+- name: Use declarative agent workflows in the Visual Studio Code extension
+  href: ../../../agents/how-to/vs-code-agents-workflow-low-code.md
+- name: Use hosted agent workflows in the Visual Studio Code extension
+  href: ../../../agents/how-to/vs-code-agents-workflow-pro-code.md
 - name: Microsoft Foundry MCP Server (preview)
   items:
   - name: Get started with Microsoft Foundry MCP Server
