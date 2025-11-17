@@ -22,6 +22,8 @@ ms.custom: azure-ai-agents
 The Browser Automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
 
 ## Code example
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ```python
 import os
