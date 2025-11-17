@@ -34,6 +34,9 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 
 :::zone pivot="python"
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+```python
 import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
@@ -97,6 +100,7 @@ with (
     print("\nCleaning up...")
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
+```python
 
 :::zone end
 
