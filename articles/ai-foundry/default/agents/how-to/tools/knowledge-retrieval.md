@@ -1,5 +1,5 @@
 ---
-title: Connect Agents to Knowledge Bases using MCP
+title: Connect Agents to Knowledge Bases Using MCP
 titleSuffix: Microsoft Foundry
 description: Learn how to use Foundry IQ, which connects Microsoft Foundry agents to Azure AI Search knowledge bases using Model Context Protocol (MCP) for grounded retrieval and citation-backed responses.
 author: haileytap
