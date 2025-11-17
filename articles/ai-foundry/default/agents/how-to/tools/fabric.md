@@ -15,6 +15,8 @@ ms.custom:
 
 # Use the Microsoft Fabric data agent (preview)
 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
 > [!NOTE]
 > Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
 
