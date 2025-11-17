@@ -27,7 +27,7 @@ Web search enables models to retrieve and ground responses with real-time inform
 
 :::zone pivot="python"
 > [!NOTE]
-> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 ```python
 import os

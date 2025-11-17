@@ -18,7 +18,7 @@ ms.custom:
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
-> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 

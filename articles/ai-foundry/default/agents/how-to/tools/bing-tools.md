@@ -37,7 +37,7 @@ The grounding process involves several key steps:
 |Grounding with Bing Search     | Gives agents standard access to Bing's search capabilities.        | Scenarios requiring broad knowledge access.        |
 |Grounding with Bing Custom Search (preview)  | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information management.        |
 > [!NOTE]
-> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 ## Code examples
 

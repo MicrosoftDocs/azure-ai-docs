@@ -3,6 +3,8 @@ items:
   href: ../../agents/concepts/tool-catalog.md
 - name: Create a private tool catalog (preview)
   href: ../../agents/how-to/private-tool-catalog.md
+- name: Tool best practices
+  href: ../../agents/concepts/tool-best-practice.md
 - name: Browser automation (preview)
   href: ../../agents/how-to/browser-automation.md
 - name: Memory (preview)

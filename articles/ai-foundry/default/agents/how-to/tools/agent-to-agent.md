@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 11/17/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -56,12 +56,9 @@ with (
     AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
-
-    # [START tool_declaration]
     tool = A2ATool(
         project_connection_id=os.environ["A2A_PROJECT_CONNECTION_ID"],
     )
-    # [END tool_declaration]
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
@@ -101,7 +98,7 @@ with (
     print("\nCleaning up...")
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
-```python
+```
 
 :::zone end
 
@@ -288,7 +285,7 @@ curl --request POST \
   }
 }'
 ```
-<!--:::zone end-->
+:::zone end
 
 ## Considerations for using non-Microsoft services and servers 
 

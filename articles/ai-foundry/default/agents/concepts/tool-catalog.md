@@ -79,16 +79,15 @@ Foundry Tools contains three sections:
 
     |Tool  |Description  |
     |---------|---------|
-    |[Azure AI Search](../../../agents/how-to/tools/azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
-    |[Browser Automation (preview)](../../../agents/how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
-    |[Code Interpreter](../../../agents/how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
-    |[Computer Use (preview)](../../../agents/how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
-    |[File Search](../../../agents/how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
-    |[Grounding with Bing Search](../../../agents/how-to/tools/bing-tools.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
-    | [Grounding with Bing Custom Search (preview)](../../../agents/how-to/tools/bing-tools.md) | Enhance your Agent response with selected web domains |
+    |[Azure AI Search](../how-to/tools/ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
+    |[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
+    |[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+    |[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
+    |[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
+    | [Grounding with Bing tools](../how-to/tools/bing-tools.md) | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
     | [Image Generation (preview)](../how-to/tools/image-generation.md) | Enables image generation as part of conversations and multi-step workflows |
-    | [Microsoft Fabric (preview)](../../../agents/how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
-    | [SharePoint (preview)](../../../agents/how-to/tools/sharepoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
+    | [Microsoft Fabric (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
+    | [SharePoint (preview)](../how-to/tools/sharepoint.md) | Integrate your agents with the Microsoft SharePoint to chat with your private documents securely. |
     |[Web Search (preview)](../how-to/tools/web-search.md)     | Enables models to retrieve and ground responses with real-time information from the public web before generating output.         |
 
 
@@ -98,10 +97,9 @@ Foundry Tools contains three sections:
     
     |Tool  |Description  |
     |---------|---------|
-    |[Function calling](../../../agents/how-to/tools/function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
-    | [Model Context Protocol (preview)](../../../agents/how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
-    | [OpenAPI 3.0 Specified tool](../../../agents/how-to/tools/openapi-spec.md) | Connect your Foundry agents to external APIs using functions with an OpenAPI 3.0 specification. |
-    | [A2A tool](../../../agents/how-to/tools/agent-to-agent.md) | Connect your Foundry agents to another A2A compatible agents |
+    | [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
+    | [OpenAPI 3.0 Specified tool](../how-to/tools/openapi.md) | Connect your Foundry agents to external APIs using functions with an OpenAPI 3.0 specification. |
+    | [Agen2Agent tool](../how-to/tools/agent-to-agent.md) | Connect your Foundry agents to another A2A compatible agents |
     
 ## Next steps
 
