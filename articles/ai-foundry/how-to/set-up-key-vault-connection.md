@@ -9,7 +9,7 @@ ms.date: 08/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
-zone_pivot_groups: set-up-key-vault
+# zone_pivot_groups: set-up-key-vault
 ---
 
 # Set up an Azure Key Vault connection in Microsoft Foundry (Preview)
@@ -35,13 +35,15 @@ If you bring your own Azure Key Vault, review these limitations:
 
 ::: moniker range="foundry-classic"
 
-::: zone pivot="ai-foundry-portal"
+<!-- ::: zone pivot="ai-foundry-portal" -->
 
-## Create an Azure Key Vault connection
+## Use the Foundry (classic) portal
 
-Create a connection to Azure Key Vault.
+Create a connection to Azure Key Vault in the Foundry (classic) portal.
 
-1. Go to your project in the Foundry portal. If you don't have a project, create one.
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. Select or create your project. 
+1. Select **Management center** in the lower left pane.  You may have to scroll to find it.
 
 1. Check that there are no connections in the **Resource** or **Project** sections. If connections exist, **Azure Key Vault** isn't available.
 
@@ -59,19 +61,18 @@ Create a connection to Azure Key Vault.
 1. It may take a few minutes after these steps are completed before you can use the connection.
 
 
-::: zone-end
-::: zone pivot="bicep"
+<!-- ::: zone-end -->
+<!-- ::: zone pivot="bicep" -->
 ::: moniker-end
 
-## Create a Key Vault connection
+## Use a Bicep template
 
 Use this template:
 
 :::code language="bicep" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/01-connections/connection-key-vault.bicep"
 
-::: moniker range="foundry-classic"
-::: zone-end
-::: moniker-end
+<!-- ::: zone-end -->
+
 
 ## Key Vault connection management
 
