@@ -45,6 +45,9 @@ The new agents provide the following benefits:
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
 | Assistants / agents | agents (new) | Support for enterprise ready prompt workflow and hosted agents, stateful context by default to use with any Azure Foundry Model | 
 
+> [!TIP]
+> You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents. 
+
 ## Threads to conversations 
 
 Threads stored messages on the server-side. A conversation can store items – including messages, tool calls, tool outputs, and other data
