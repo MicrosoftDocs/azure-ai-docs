@@ -88,7 +88,7 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 5. Configure the agent in the invoke an agent window.
 6. Select **Save**.
 
-## Configure output response format for Invoke Agent 
+### Configure output response format for Invoke Agent 
 
 1. Create an **Invoke agent** node.
 2. Select create a new an agent in the Invoke agent configuration window.
