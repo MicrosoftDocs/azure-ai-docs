@@ -69,3 +69,5 @@ items:
       href: ../../observability/how-to/trace-agent-framework.md
 - name: Create a workflow
   href: ../../agents/concepts/workflow.md
+- name: Agent 365
+  href: ../../agents/how-to/agent-365.md
