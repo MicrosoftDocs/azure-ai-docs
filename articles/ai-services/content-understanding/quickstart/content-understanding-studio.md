@@ -21,7 +21,7 @@ ms.custom:
 ## Prerequisites
 To get started, make sure you have the following resources and permissions:
 *	An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-*	A Microsoft Foundry resource created in a supported region. Use a project to organize your work and save state while building customized AI apps. You can create a project from the home page of Content Understanding Studio.
+*	A Microsoft Foundry resource created in a [supported region](../language-region-support.md#region-support).
 * A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 
 ## Explore Content Understanding Studio
