@@ -32,7 +32,7 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 |---------|---------|---------|---------|---------|---------|---------|---------|
 | ✔️  | ✔️ | - | - | - |  ✔️ | ✔️ | ✔️ | 
 
-<!--
+
 :::zone pivot="python"
 import os
 from dotenv import load_dotenv
@@ -99,9 +99,8 @@ with (
     print("Agent deleted")
 
 :::zone end
--->
 
-<!-- :::zone-pivot="rest-api"-->
+:::zone-pivot="rest-api"
 ## Create the remote A2A Foundry connection 
 
 Use the following examples to store your authentication information.
