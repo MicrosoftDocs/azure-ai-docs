@@ -397,14 +397,16 @@ More information about how to use ARM template can be found from [ARM template d
 
 | Date | Version |Version description |
 |---|---|---|
-|Apr 6, 2025 | 1.1.76|  Fix vulnerable image. Updated nginx-ingress-controller to v1.12.1 |
-|Jan 28, 2025 | 1.1.71|  Fix vulnerable image. |
-|Jan 20, 2025 | 1.1.70|  Fix compatible issue with AKS autoscale for AKS 1.30. |
-|Sep 26, 2024 | 1.1.64|  Fixed vulnerabilities. |
-|Nov 21, 2023 | 1.1.39|  Fixed vulnerabilities. Refined error message. Increased stability for relayserver API. |
-|Nov 1, 2023 | 1.1.37|  Update data plane envoy version. |
-|Oct 11, 2023 | 1.1.35|  Fix vulnerable image. Bug fixes. |
-|Aug 25, 2023 | 1.1.34|  Fix vulnerable image. Return more detailed identity error. Bug fixes. |
+|Oct 8, 2025 | 1.1.88 |  Fix vulnerable image. |
+|June 30, 2025 | 1.1.83 |  Fix vulnerable image. |
+|Apr 6, 2025 | 1.1.76 |  Fix vulnerable image. Updated nginx-ingress-controller to v1.12.1 |
+|Jan 28, 2025 | 1.1.71 |  Fix vulnerable image. |
+|Jan 20, 2025 | 1.1.70 |  Fix compatible issue with AKS autoscale for AKS 1.30. |
+|Sep 26, 2024 | 1.1.64 |  Fixed vulnerabilities. |
+|Nov 21, 2023 | 1.1.39 |  Fixed vulnerabilities. Refined error message. Increased stability for relayserver API. |
+|Nov 1, 2023 | 1.1.37 |  Update data plane envoy version. |
+|Oct 11, 2023 | 1.1.35 |  Fix vulnerable image. Bug fixes. |
+|Aug 25, 2023 | 1.1.34 |  Fix vulnerable image. Return more detailed identity error. Bug fixes. |
 |July 18, 2023 | 1.1.29|  Add new identity operator errors. Bug fixes. |
 |June 4, 2023 | 1.1.28 | Improve auto-scaler to handle multiple node pool. Bug fixes. |
 | Apr 18 , 2023| 1.1.26 | Bug fixes and vulnerabilities fix. | 
