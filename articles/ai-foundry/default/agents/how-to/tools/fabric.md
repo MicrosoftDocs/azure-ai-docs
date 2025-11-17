@@ -15,6 +15,9 @@ ms.custom:
 
 # Use the Microsoft Fabric data agent (preview)
 
+> [!NOTE]
+> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
+
 Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
 You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
