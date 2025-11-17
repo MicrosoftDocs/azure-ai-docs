@@ -30,7 +30,7 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 
 In Foundry, you can choose to create a blank workflow or choose from one of the premade configured options. For this tutorial, we'll be creating a Sequential workflow. If you want to learn more about different types of workflows, see the [workflow concepts](#workflow-concepts) section of this article. 
 
-### Create a sequential workflow
+### Build a workflow quickstart
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Select **Build** in the upper-right navigation.
@@ -50,10 +50,10 @@ To start creating a new workflow, you can begin with a blank workflow or select 
 
 | Pattern    | Description                                                        | Typical Use Case                                         |
 |------------|--------------------------------------------------------------------|----------------------------------------------------------|
-| Concurrent | Broadcasts a task to all agents, collects results independently.   | Parallel analysis, independent subtasks, ensemble decision making. |
+| Human in the loop  | Asks user a question and awaits user input to proceed. | Create approval requests during workflow execution and wait for human approval, obtain information form the user. |
 | Sequential | Passes the result from one agent to the next in a defined order.   | Step-by-step workflows, pipelines, multi-stage processing. |
-| Handoff    | Dynamically passes control between agents based on context or rules.| Dynamic workflows, escalation, fallback, or expert handoff scenarios. |
-| Magentic   | Inspired by [MagenticOne](https://microsoft.github.io/autogen/stable//user-guide/agentchat-user-guide/magentic-one.html).                                           | Complex, generalist multi-agent collaboration.           |
+| Group chat    | Dynamically passes control between agents based on context or rules.| Dynamic workflows, escalation, fallback, or expert handoff scenarios. |
+
 
 ## Add nodes to your workflow
 
