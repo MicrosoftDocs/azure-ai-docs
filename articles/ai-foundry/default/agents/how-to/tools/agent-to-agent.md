@@ -27,17 +27,81 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | - | - | - | - |  ✔️ | ✔️ | ✔️ | 
+| ✔️  | ✔️ | - | - | - |  ✔️ | ✔️ | ✔️ | 
 
 <!--
 :::zone pivot="python"
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    A2ATool,
+)
+
+load_dotenv()
+
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+
+    # [START tool_declaration]
+    tool = A2ATool(
+        project_connection_id=os.environ["A2A_PROJECT_CONNECTION_ID"],
+    )
+    # [END tool_declaration]
+
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful assistant.",
+            tools=[tool],
+        ),
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    user_input = input("Enter your question (e.g., 'What can the secondary agent do?'): \n")
+
+    stream_response = openai_client.responses.create(
+        stream=True,
+        tool_choice="required",
+        input=user_input,
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    for event in stream_response:
+        if event.type == "response.created":
+            print(f"Follow-up response created with ID: {event.response.id}")
+        elif event.type == "response.output_text.delta":
+            print(f"Delta: {event.delta}")
+        elif event.type == "response.text.done":
+            print(f"\nFollow-up response done!")
+        elif event.type == "response.output_item.done":
+            item = event.item
+            if item.type == "remote_function_call":  # TODO: support remote_function_call schema
+                print(f"Call ID: {getattr(item, 'call_id')}")
+                print(f"Label: {getattr(item, 'label')}")
+        elif event.type == "response.completed":
+            print(f"\nFollow-up completed!")
+            print(f"Full response: {event.response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
+
 :::zone end
 -->
 
 <!-- :::zone-pivot="rest-api"-->
 ## Create the remote A2A Foundry connection 
 
-Use the following examples to store your authentication information. Adding an agent card path is optional. If not provided, `/.well-known/agent-card.json` is used by default.
+Use the following examples to store your authentication information. Adding an agent card path is optional. 
 
 ### Key-based
 
@@ -65,8 +129,7 @@ curl --request PUT \
     },
     "metadata": {
       "ApiType": "Azure"
-    },
-    "agentCardPath": "" //optional
+    }
   }
 }'
 ```
@@ -96,8 +159,7 @@ curl --request PUT \
     },
     "metadata": {
       "ApiType": "Azure"
-    },
-    "agentCardPath": "" //optional
+    }
   }
 }'
 ```
@@ -135,8 +197,7 @@ curl --request PUT \
     },
     "metadata": {
       "ApiType": "Azure"
-    },
-    "agentCardPath": "" //optional
+    }
   }
 }'
 ```
@@ -164,12 +225,11 @@ curl --request PUT \
     },
     "metadata": {
       "ApiType": "Azure"
-    },
-    "agentCardPath": "" //optional
+    }
   }
 }'
 ```
-### Agentic Identity
+### Agent Identity
 ```bash
 curl --request PUT \
   --url 'https://{{region}}.management.azure.com:443/subscriptions/{{subscription_id}}//resourcegroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
@@ -193,8 +253,7 @@ curl --request PUT \
     },
     "metadata": {
       "ApiType": "Azure"
-    },
-    "agentCardPath": "" //optional
+    }
   }
 }'
 ```
@@ -215,7 +274,6 @@ curl --request POST \
       {
          "type": "a2a_preview",
          "base_url": "{{a2a_endpoint}}",
-         "agent_card_path": {{agent_card_path_directory}} //optional
          "project_connection_id": "{{project_connection_name_above}}"
       }
     ],
