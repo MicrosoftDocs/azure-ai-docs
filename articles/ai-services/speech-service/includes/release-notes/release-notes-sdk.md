@@ -18,7 +18,7 @@ ms.reviewer: pafarley
 #### New features:
   * Changed the default policy to ignore errors due to network conditions preventing access to online certificate revocation information on Linux clients.
   * [JavaScript] Added support for specifying the base model name for photo avatars.
-  
+
 #### Bug fixes:
   * Fixed a libxml2 vulnerability in embedded TTS.
   * Fixed custom endpoints not working with ConversationTranscriber.
@@ -36,7 +36,7 @@ ms.reviewer: pafarley
 
 #### Breaking changes:
   * Removed intent recognition support due to the service retirement.
-    * See https://learn.microsoft.com/azure/ai-services/speech-service/migrate-intent-recognition and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
+    * See [Migration Guide](../../migrate-intent-recognition) and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
   * Removed speaker recognition support due to the service retirement.
 
 ### Speech SDK 1.46: 2025-September release
