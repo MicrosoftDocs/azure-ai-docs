@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: fsunavala
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/17/2025
 ---
 
 # Use knowledge to improve retrieval quality in Foundry Agent Service
@@ -28,7 +28,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 ## Prerequisites
 
 + An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-knowledge-source-overview) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
-+ A [Foundry project](../../../../how-to/create-projects.md) with an [LLM deployment](../../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
++ A [Microsoft Foundry project](../../../../how-to/create-projects.md) with an [LLM deployment](../../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 + [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 + The latest preview Python SDK or the 2025-11-01-preview REST API version.
 
@@ -36,13 +36,13 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
-#### [Foundry](#tab/foundry)
+#### [Microsoft Foundry](#tab/foundry)
 
-+ On the parent resource of your Foundry project, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
++ On the parent resource of your project, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
-+ On the parent resource of your Foundry project, you must have the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
++ On the parent resource of your project, you must have the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
 
-+ On your Foundry project, create a system-assigned managed identity for interactions with Azure AI Search.
++ On your project, create a system-assigned managed identity for interactions with Azure AI Search.
 
 #### [Azure AI Search](#tab/search)
 
@@ -60,57 +60,52 @@ Knowledge enables agent grounding and reasoning over enterprise content by integ
 
 + [Azure AI Search](/azure/search/search-what-is-azure-search) provides knowledge sources (*what* to retrieve) and knowledge bases (*how* to retrieve). The knowledge base plans and executes subqueries and outputs formatted results with citations.
 
-  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
+  Although knowledge bases support [answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis), we recommend the extractive data output mode for integration with Foundry Agent Service. This mode ensures that the agent receives verbatim content instead of pre-generated answers, providing full control over the response format and quality.
 
-+ [Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
++ [Foundry Agent Service](../../../../agents/overview.md) orchestrates calls to the knowledge base via the MCP tool and synthesizes the final answer. At runtime, the agent calls only the knowledge base, not the data platform (such as Azure Blob Storage or Microsoft OneLake) that underlies the knowledge source. The knowledge base handles all retrieval operations.
 
 ## Create a project connection
 
-Start by creating a `RemoteTool` connection on your Foundry project. This connection uses key-based authentication to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
+Start by creating a `RemoteTool` connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
 
 ### [Python](#tab/python)
 
 ```python
-from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-from azure.mgmt.cognitiveservices.models import ConnectionPropertiesV2BasicResource, CustomKeysConnectionProperties, CustomKeys
-from azure.mgmt.core.tools import parse_resource_id
-from azure.identity import DefaultAzureCredential
-
-# Provide resource ID of your project
-project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
-parsed = parse_resource_id(project_resource_id)
-subscription_id = parsed['subscription']
-resource_group = parsed['resource_group']
-account_name = parsed['name']
-project_name = parsed['child_name_1']
+import requests
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 # Provide connection details
 credential = DefaultAzureCredential()
+project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
 mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
-search_api_key = "{search_api_key}"
+
+# Get bearer token for authentication
+bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
+headers = {
+  "Authorization": f"Bearer {bearer_token_provider()}",
+}
 
 # Create project connection
-mgmt_client = CognitiveServicesManagementClient(credential, subscription_id)
-resource = mgmt_client.project_connections.create(
-    resource_group_name = resource_group,
-    account_name = account_name,
-    project_name = project_name,
-    connection_name = project_connection_name,
-    connection = ConnectionPropertiesV2BasicResource(
-        properties = CustomKeysConnectionProperties(
-            category = "RemoteTool",
-            target = mcp_endpoint,
-            is_shared_to_all = True,
-            metadata = { "ApiType": "Azure" },
-            credentials = CustomKeys(
-                keys = { "api-key": search_api_key }
-            )
-        )
-    )
+response = requests.put(
+  f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
+  headers = headers,
+  json = {
+    "name": "project_connection_name",
+    "type": "Microsoft.MachineLearningServices/workspaces/connections",
+    "properties": {
+      "authType": "ProjectManagedIdentity",
+      "category": "RemoteTool",
+      "target": mcp_endpoint,
+      "isSharedToAll": True,
+      "audience": "https://search.azure.com/",
+      "metadata": { "ApiType": "Azure" }
+    }
+  }
 )
 
-print(f"Project connection '{resource.name}' created or updated successfully.")
+response.raise_for_status()
+print(f"Connection '{project_connection_name}' created or updated successfully.")
 ```
 
 ### [REST](#tab/rest)
@@ -124,27 +119,19 @@ az account get-access-token --scope https://management.azure.com/.default --quer
 Create the project connection by making a `PUT` request to Azure API Management:
 
 ```HTTP
-PUT https://management.azure.com/{project_resource_id}/connections/{project_connection_name}?api-version=2025-07-01-preview
-Content-Type: application/json
+PUT https://management.azure.com/{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview
 Authorization: Bearer {management_access_token}
+Content-Type: application/json
 
 {
-  "tags": null,
-  "location": null,
   "name": "{project_connection_name}",
   "type": "Microsoft.MachineLearningServices/workspaces/connections",
   "properties": {
-    "authType": "CustomKeys",
+    "authType": "ProjectManagedIdentity",
     "category": "RemoteTool",
-    "expiryTime": null,
-    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview",
+    "target": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview", // This endpoint enables the MCP connection between the agent and knowledge base
     "isSharedToAll": true,
-    "sharedUserList": [],
-    "Credentials": {
-        "Keys": {
-            "api-key": "{search_api_key}"
-        }
-    },
+    "audience": "https://search.azure.com/",
     "metadata": {
       "ApiType": "Azure"
     }
@@ -161,7 +148,7 @@ The next step is to create an agent that integrates the knowledge base as an MCP
 Add the knowledge base MCP tool with the project connection you previously created. This tool orchestrates query planning, decomposition, and retrieval across configured knowledge sources. The agent uses this tool to answer queries.
 
 > [!NOTE]
-> Azure AI Search knowledge bases expose the `knowledge_base_retrieve` MCP tool for agent integration. This is the only tool currently supported for use with Agent Service.
+> Azure AI Search knowledge bases expose the `knowledge_base_retrieve` MCP tool for agent integration. This is the only tool currently supported for use with Foundry Agent Service.
 
 ### [Python](#tab/python)
 
@@ -212,18 +199,18 @@ print(f"Agent '{agent_name}' created or updated successfully.")
 
 ### [REST](#tab/rest)
 
-Obtain an access token for Foundry:
+Obtain an access token for Microsoft Foundry:
 
 ```azurecli
 az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv
 ```
 
-Create the agent by making a `POST` request to Agent Service:
+Create the agent by making a `POST` request to Foundry Agent Service:
 
 ```HTTP
 POST {project_endpoint}/agents/{agent_name}/versions?api-version=2025-11-15-preview
-Content-Type: application/json
 Authorization: Bearer {foundry_access_token}
+Content-Type: application/json
 
 {
   "definition": {
@@ -248,6 +235,55 @@ Authorization: Bearer {foundry_access_token}
 
 ---
 
+### Connect to a remote SharePoint knowledge source
+
+If your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+
+#### [Python](#tab/python)
+
+```python
+mcp_kb_tool = MCPTool(
+    server_label = "knowledge-base",
+    server_url = mcp_endpoint,
+    require_approval = "never",
+    allowed_tools = ["knowledge_base_retrieve"],
+    project_connection_id = project_connection_name
+    headers = {
+        "x-ms-query-source-authorization": get_bearer_token_provider(credential, "https://search.azure.com/.default")()
+    }
+)
+```
+
+#### [REST](#tab/rest)
+
+Obtain an access token for Azure AI Search:
+
+```azurecli
+az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+```
+
+Provide the header and token in the MCP tool configuration:
+
+```HTTP
+    "tools": [
+      {
+        "server_label": "knowledge-base",
+        "server_url": "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview",
+        "require_approval": "never",
+        "allowed_tools": [
+          "knowledge_base_retrieve"
+        ],
+        "project_connection_id": "{project_connection_name}",
+        "type": "mcp",
+        "headers": {
+            "x-ms-query-source-authorization": "{search-bearer-token}"
+        }
+      }
+    ]
+```
+
+---
+
 ## Invoke the agent with a query
 
 Create a conversation session and send a user query to the agent. When appropriate, the agent orchestrates calls to the MCP tool to retrieve relevant content from the knowledge base. The agent then synthesizes this content into a natural-language response that cites the source documents.
@@ -263,12 +299,12 @@ conversation = openai_client.conversations.create()
 
 # Send request to trigger the MCP tool
 response = openai_client.responses.create(
-    conversation=conversation.id,
-    input="""
+    conversation = conversation.id,
+    input = """
         Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
         Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body = {"agent": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response: {response.output_text}")
@@ -313,9 +349,9 @@ Content-Type: application/json
 {
     "conversation": "{conversation_id}",
     "input": "\nWhy do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?\nWhy is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?\n",
-    "agent":{
-        "name":"{agent_name}",
-        "type":"agent_reference"
+    "agent": {
+        "name": "{agent_name}",
+        "type": "agent_reference"
     }
 }
 ```
@@ -364,7 +400,7 @@ DELETE {project_endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
 Authorization: Bearer {foundry_access_token}
 
 ### Delete the project connection
-DELETE https://management.azure.com/{project_resource_id}/connections/{project_connection_name}?api-version=2025-07-01-preview
+DELETE https://management.azure.com/{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview
 Authorization: Bearer {management_access_token}
 ```
 
