@@ -17,3 +17,9 @@ items:
       href: ../../../responsible-ai/openai/data-privacy.md
     - name: Customer Copyright Commitment
       href: ../../../responsible-ai/openai/customer-copyright-commitment.md
+- name: Agents
+  items:
+    - name: Transparency note
+      href: ../../../responsible-ai/agents/transparency-note.md
+    - name: Data, privacy, and security for agents
+      href: ../../../responsible-ai/agents/transparency-note.md
