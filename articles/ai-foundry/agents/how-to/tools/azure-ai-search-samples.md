@@ -18,7 +18,7 @@ zone_pivot_groups: selection-azure-ai-search
 # How to use an existing index with the Azure AI Search tool
 
 > [!NOTE]
-> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Foundry Agent Service](../../../default/agents/how-to/tools/knowledge-retrieval.md).
+> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use Foundry IQ to improve retrieval quality](../../../default/agents/how-to/tools/knowledge-retrieval.md).
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 
