@@ -120,7 +120,7 @@ Exporting your configuration file enables you to save the current state of your 
 
 ### [Foundry](#tab/azure-ai-foundry)
 
-You can download an Azure Foundry fine fine-tuning task project as a **config.json** file:
+You can download a Microsoft Foundry fine-tuning task project as a **config.json** file:
 
 1. Navigate to your project home page.
 1. At the top of the page, select your project from the right page ribbon area.
