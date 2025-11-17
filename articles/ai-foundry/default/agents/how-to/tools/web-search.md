@@ -23,11 +23,11 @@ Web search enables models to retrieve and ground responses with real-time inform
 > * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When using Grounding with Bing Search and/or Grounding with Bing Custom Search, data will be transferred outside compliance and geographic boundaries.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
-> * See the [management section](#admin-control-for-web-search-tool) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
+> * See the [management section](#admin-control-for-web-search-tool) for information about how Azure admins can manage access to use of web search.
 
 :::zone pivot="python"
 > [!NOTE]
-> Before you start, make sure you have run `pip install "azure-ai-projects>=2.0.0" azure-identity load_dotenv`
+> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
 
 ```python
 import os
