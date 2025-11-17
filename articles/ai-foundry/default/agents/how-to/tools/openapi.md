@@ -192,7 +192,7 @@ To set up authenticating with Managed Identity:
 
 1. Ensure that your Azure AI Foundry resource has system assigned managed identity enabled.
 
-    :::image type="content" source="../../media\tools\managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../media\tools\managed-identity-portal.png":::
+    :::image type="content" source="../../../../agents/media/tools/managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../../../agents/media/tools/managed-identity-portal.png":::
 
 1. Create a resource of the service you want to connect to through OpenAPI spec.
 
@@ -201,7 +201,7 @@ To set up authenticating with Managed Identity:
        
     1. Click **Add** and then **add role assignment** at the top of the screen.
 
-        :::image type="content" source="../../media\tools\role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../media\tools\role-assignment-portal.png":::
+        :::image type="content" source="../../../../agents/media/tools/role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../../../agents/media/tools/role-assignment-portal.png":::
         
     1. Select the proper role assignment needed, usually it will require at least *READER* role. Then click **Next**.
 

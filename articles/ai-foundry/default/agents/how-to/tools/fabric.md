@@ -100,8 +100,8 @@ with project_client:
     print(f"Response output: {response.output_text}")
 ```
 
-    > [!NOTE]
-    > * Make sure you have **published** the data agent in Fabric.
+> [!NOTE]
+> * Make sure you have **published** the data agent in Fabric.
 
 ## Next steps
 

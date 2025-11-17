@@ -6,7 +6,7 @@ items:
 - name: Tool best practices
   href: ../../agents/concepts/tool-best-practice.md
 - name: Browser automation (preview)
-  href: ../../agents/how-to/browser-automation.md
+  href: ../../agents/how-to/tools/browser-automation.md
 - name: Memory (preview)
   href: ../../agents/concepts/agent-memory.md
 - name: Agent2Agent (A2A) tool (preview)

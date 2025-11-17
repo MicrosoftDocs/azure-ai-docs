@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
-> Check out the [best practice of using tools](../../concepts/tool-best-practice.md)
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 You can extend the capabilities of your Microsoft Foundry agent by connecting it to agent endpoints that support the [Agent2Agent (A2A) protocol](https://a2a-protocol.org/latest/) by using the A2A Tool. Developers and organizations maintain these agent endpoints. The A2A Tool makes sharing context between Foundry agents and external agent endpoints easier through a standardized protocol. 
 
