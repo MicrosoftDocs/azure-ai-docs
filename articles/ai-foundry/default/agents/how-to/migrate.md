@@ -46,7 +46,7 @@ The new agents provide the following benefits:
 | Assistants / agents | agents (new) | Support for enterprise ready prompt workflow and hosted agents, stateful context by default to use with any Azure Foundry Model | 
 
 > [!TIP]
-> You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents. 
+> You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents.
 
 ## Threads to conversations 
 
@@ -192,7 +192,7 @@ while run.status in ("queued", "in_progress"):
       "content": [
         {
           "annotations": [],
-          "text": "Of course! Here's a simple plot for the line with a slope of 4 and a y-intercept of 9.\\n\\nThe equation of the line is:\\n\\n\\\\[ y = 4x + 9 \\\\]\\n\\nLet's draw a graph for it:\\n\\n---\\n\\n```plaintext\\n  |\\n20|                     *\\n  |                  *\\n  |               *\\n  |            *\\n10|         *\\n  |      *\\n  |   *\\n  |*\\n  +---------------------------\\n   -2 -1  0  1  2  3\\n```\\n\\n**Key points:**\\n- The y-intercept is **9**, so at \\\\(x = 0\\\\), \\\\(y = 9\\\\) (point: (0,9))\\n- For each step right (increase in x), y goes up 4 units (slope \\\\(m = 4\\\\))\\n  - For \\\\(x = 1\\\\): \\\\(y = 4(1) + 9 = 13\\\\) (point: (1,13))\\n  - For \\\\(x = -1\\\\): \\\\(y = 4(-1) + 9 = 5\\\\) (point: (-1,5))\\n\\nIf you'd like a precise graph or want to visualize it interactively, let me know!",
+          "text": "Of course! Here's a simple plot for the line with a rate of change of 4 and a y-intercept of 9.\\n\\nThe equation of the line is:\\n\\n\\\\[ y = 4x + 9 \\\\]\\n\\nLet's draw a graph for it:\\n\\n---\\n\\n```plaintext\\n  |\\n20|                     *\\n  |                  *\\n  |               *\\n  |            *\\n10|         *\\n  |      *\\n  |   *\\n  |*\\n  +---------------------------\\n   -2 -1  0  1  2  3\\n```\\n\\n**Key points:**\\n- The y-intercept is **9**, so at \\\\(x = 0\\\\), \\\\(y = 9\\\\) (point: (0,9))\\n- For each step right (increase in x), y goes up 4 units (rate of change \\\\(m = 4\\\\))\\n  - For \\\\(x = 1\\\\): \\\\(y = 4(1) + 9 = 13\\\\) (point: (1,13))\\n  - For \\\\(x = -1\\\\): \\\\(y = 4(-1) + 9 = 5\\\\) (point: (-1,5))\\n\\nIf you'd like a precise graph or want to visualize it interactively, let me know!",
 
           "type": "output_text",
           "logprobs": []
@@ -375,7 +375,7 @@ thread = project_client.agents.threads.create()
 message = project_client.agents.messages.create( 
     thread_id=thread.id, 
     role="user",  # Role of the message sender 
-    content="Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.",  # Message content 
+    content="Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9.",  # Message content 
 ) 
 run = project_client.agents.runs.create_and_process( 
     thread_id=thread.id, 
@@ -400,7 +400,7 @@ agent = project_client.agents.create_version(
     } 
 )
 conversation = openai_client.conversations.create( 
-    items=[{"type": "message", "role": "user", "content": "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9."}], 
+    items=[{"type": "message", "role": "user", "content": "Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9."}], 
 ) 
 response = openai_client.responses.create( 
     conversation=conversation.id,
