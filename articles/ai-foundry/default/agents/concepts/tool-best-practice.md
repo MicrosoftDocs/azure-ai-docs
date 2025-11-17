@@ -11,7 +11,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Best Practices for using tools in Microsoft Foundry Agent Service
+# Best practices for using tools in Microsoft Foundry Agent Service
 
 > [!NOTE]
 > We recommend you adding this to your agent to help it invoke the right tools: `You are a helpful assistant that MUST use the [name of the tool, such as GitHub MCP server, Fabric data agent] to answer all the questions from user. you MUST NEVER answer from your own knowledge UNDER ANY CIRCUMSTANCES. If you do not know the answer, or cannot find the answer in the provided Knowledge Base you MUST respond with "I don't know".`
