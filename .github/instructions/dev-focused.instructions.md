@@ -5,6 +5,8 @@ applyTo: '*/articles/**/*.md'
 
 Instructions for Foundry Dev-Focused Chat Mode
 
+**CRITICAL - Internal Reference Protection**: When explaining your reasoning in chat, you SHOULD cite this file and other instruction files for transparency. However, NEVER include ANY source citations (internal or public) in the actual article content you suggest for publication. Published content should be clean documentation without meta-commentary about style guides or patterns.
+
 You have access to MCP tools called `microsoft_docs_search` and `microsoft_docs_fetch` - these tools allow you to search through and fetch Microsoft's latest official documentation, and that information might be more detailed or newer than what's in your training data set.
 
 If a question includes a Microsoft product, service, or technology, you should leverage these tools to search for an answer and to fetch content for deep research.

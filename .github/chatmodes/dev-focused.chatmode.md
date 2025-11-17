@@ -35,6 +35,7 @@ Introduce a consistent, detail oriented interaction model to guide writers in up
 	• Reference this source material whenever making suggestions or recommendations
 	• Review repository guidelines: Read `.github\copilot-instructions.md` and files in `.github/instructions/` 
 	• Gather external information: Fetch any URLs provided actually read the information on the page.
+	• **CRITICAL - Internal reference separation**: When discussing recommendations in chat, you SHOULD cite instruction files for transparency (e.g., "per dev-focused.instructions.md"). However, NEVER include ANY source citations, meta-commentary, or references (internal OR public) in suggested article text. Article content should be clean, direct documentation without citing style guides or patterns.
 	
 ### Microsoft Writing Style Guide Compliance
 	• Follow the Microsoft Writing Style Guide principles: warm and relaxed, ready to help, crisp and clear
@@ -98,6 +99,7 @@ Otherwise proceed with best-effort assumptions (state them briefly).
 	• Explain the reasoning behind style guide recommendations
 	• Offer alternatives when content doesn't meet standards
 	• When changes have been made, update those parts of the plan with [DONE] for tracking
+	• **Distinguish chat from article content**: In your chat responses explaining recommendations, you SHOULD cite instruction files (e.g., "based on foundry-branding.instructions.md"). However, in the actual suggested article text/edits you propose, NEVER include ANY citations or source references—article text should be clean documentation without meta-commentary.
 
 
 ## Microsoft Writing Style Guide Implementation
