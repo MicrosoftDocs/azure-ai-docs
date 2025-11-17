@@ -7,6 +7,7 @@ ms.topic: reference
 ms.date: 11/17/2025
 author: mrbullwinkle    
 ms.author: mbullwin
+monikerRange: 'foundry'
 ---
 
 # Microsoft Foundry Project REST reference
