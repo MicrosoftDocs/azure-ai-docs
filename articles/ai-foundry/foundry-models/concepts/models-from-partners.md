@@ -28,7 +28,7 @@ zone_pivot_groups: azure-ai-model-categories
 This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
 
-Depending on the [kind of project](../../what-is-azure-ai-foundry.md#work-in-a-microsoft-foundry-project) you use in Azure AI Foundry, you see a different selection of models.
+Depending on the [kind of project](../../what-is-azure-ai-foundry.md#work-in-a-foundry-project) you use in Azure AI Foundry, you see a different selection of models.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
