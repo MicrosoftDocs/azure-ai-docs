@@ -29,6 +29,12 @@ items:
       href: /azure/ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations?context=/azure/ai-foundry/context/context
     - name: Redact PII from text 
       href: /azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii?context=/azure/ai-foundry/context/context
+- name: Azure Translator in Foundry Tools
+  items:
+    - name: Text translation
+      href: /azure/ai-services/translator/text-translation/overview?context=/azure/ai-foundry/context/context
+    - name: Document translation  
+      href: /azure/ai-services/translator/document-translation/overview
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Code interpreter
