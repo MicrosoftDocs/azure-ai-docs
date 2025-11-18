@@ -31,9 +31,6 @@ Foundry supports Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models
 
 For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
 
-> [!NOTE]
-> Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
-
 #### Claude Sonnet 4.5
 
 Claude Sonnet 4.5 is Anthropic's most capable model to date for building real-world agents and handling complex, long-horizon tasks. It balances the right speed and cost for high-volume use cases. It's also Anthropic's most accurate model for computer use, enabling developers to direct Claude to use computers the way people do.
@@ -59,9 +56,14 @@ After deployment, you can use the [Foundry playground](../../concepts/concept-pl
 
 ## Work with Claude models
 
-Once deployed, you can interact with Claude models by using the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and [Claude's Messages API](https://docs.claude.com/en/api/messages).
+Once deployed, you can interact with Claude models by using the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
 
-The following examples show how to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
+- [Messages API](https://docs.claude.com/en/api/messages) to send a structured list of input messages with text and/or image content, and the model generates the next message in the conversation.
+- [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
+- [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
+- [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
+
+The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
@@ -88,7 +90,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     export AZURE_CLIENT_SECRET="<AZURE_CLIENT_SECRET>"
     ```
 
-1. **Install dependencies:** Install the Anthropic SDK using pip (requires: Python >=3.8)
+1. **Install dependencies:** Install the Anthropic SDK by using pip (requires: Python >=3.8).
 
     ```bash
     pip install -U "anthropic"
@@ -398,6 +400,37 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
     ```
 
 ---
+
+## Agent support
+
+- Claude models are supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
+- The [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
+- You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
+
+## Claude advanced features and capabilities
+
+Claude in Foundry Models supports advanced features and capabilities. For more details about the advanced features and capabilities listed, see [Features overview](https://docs.claude.com/en/docs/build-with-claude/overview).
+
+**Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. These capabilities include:
+
+| **Feature** | **Description** |
+|--|--|
+| **1 million token context window** | An extended context window that allows you to process much larger documents, maintain longer conversations, and work with more extensive codebases. |
+| **Agent skills** | Extend Claude's capabilities with Skills. Use pre-built Skills (PowerPoint, Excel, Word, PDF) or create custom Skills with instructions and scripts. Skills use progressive disclosure to efficiently manage context. |
+| **Citations** | Ground Claude's responses in source documents. With Citations, Claude can provide detailed references to the exact sentences and passages it uses to generate responses, leading to more verifiable, trustworthy outputs. |
+| **Context editing** | Automatically manage conversation context with configurable strategies. Supports clearing tool results when approaching token limits and managing thinking blocks in extended thinking conversations. |
+| **Extended thinking** | Enhanced reasoning capabilities for complex tasks, providing transparency into Claude's step-by-step thought process before delivering its final answer. |
+| **PDF support** | Process and analyze text and visual content from PDF documents. |
+| **Prompt caching** | Provide Claude with more background knowledge and example outputs to reduce costs and latency. |
+
+**Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. These tools include:
+
+| **Tool** | **Description** |
+|--|--|
+| **MCP connector** | Enables you to connect to remote MCP servers directly from the Messages API without a separate MCP client. |
+| **Memory** | Enables Claude to store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions. |
+| **Web fetch** | Retrieves full content from specified web pages and PDF documents for in-depth analysis. |
+
 
 ## API quotas and limits
 
