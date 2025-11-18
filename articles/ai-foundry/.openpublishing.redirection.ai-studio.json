@@ -1284,6 +1284,11 @@
           "redirect_document_id": false
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/agents/how-to/browser-automation.md",
+          "redirect_url": "/azure/ai-foundry/agents/how-to/tools/browser-automation",
+          "redirect_document_id": false
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools/code-interpreter-samples.md",
           "redirect_url": "/azure/ai-foundry/agents/how-to/tools/code-interpreter",
           "redirect_document_id": true

@@ -17,7 +17,8 @@ ms.custom: azure-ai-agents
 # Azure AI Search tool for agents 
 
 > [!NOTE]
-> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Microsoft Foundry Agent Service](./knowledge-retrieval.md).
+> - There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Microsoft Foundry Agent Service](./knowledge-retrieval.md).
+> - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microsoft Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
@@ -32,6 +33,9 @@ The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microso
     + One or more `Collection(Edm.Single)` (vector) fields attributed as searchable.
 
 ## Code example
+> [!NOTE]
+> - You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> - Your connection id should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
 ```python
 import os

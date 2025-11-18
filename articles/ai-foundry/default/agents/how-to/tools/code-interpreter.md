@@ -31,6 +31,9 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 
 ## Code samples
 
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
 ```python
 import os
 import httpx
