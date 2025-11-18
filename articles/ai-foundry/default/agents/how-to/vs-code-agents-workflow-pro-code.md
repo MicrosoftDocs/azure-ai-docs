@@ -47,9 +47,9 @@ Install the required dependencies for your hosted agent project. The dependencie
 
 #### Prerequisites
 
-To run the sample hosted agent Python project, ensure that you have Python 3.10 or higher installed. You also need a Foundry project with a deployed model, or an Azure OpenAI resource. 
+To run the sample hosted agent Python project, make sure you install Python 3.10 or higher. You also need a Foundry project with a deployed model, or an Azure OpenAI resource. 
 
-Grant the project's managed identity the required permissions by assigning the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) role.
+Give the project's managed identity the required permissions. Assign the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles.
 
 #### Setup and installation
 
@@ -84,9 +84,9 @@ Grant the project's managed identity the required permissions by assigning the b
 
 #### Prerequisites
 
-To run the sample hosted agent C# project, ensure that you have a Foundry project with a deployed model, or an Azure OpenAI resource. 
+To run the sample hosted agent C# project, make sure you have a Foundry project with a deployed model, or an Azure OpenAI resource. 
 
-Grant the project's managed identity the required permissions by assigning the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) role.
+Give the project's managed identity the required permissions. Assign the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles.
 
 >[!IMPORTANT]
 > Check to make sure that your region supports hosted agents. For the latest information on supported regions, see [Region Availability](/azure/ai-foundry/agents/concepts/hosted-agents?view=foundry&#region-availability&preserve-view=true). 
@@ -105,13 +105,11 @@ Grant the project's managed identity the required permissions by assigning the b
 ## Run your hosted workflow locally
 
 ::: zone pivot="python"
-The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Azure OpenAI credentials:
+The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
 
 ```
-# Your Azure OpenAI endpoint
-AZURE_AI_PROJECT_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
-    
-# Your model deployment name in Azure OpenAI
+AZURE_AI_PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
+
 AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 ```
 
@@ -154,14 +152,14 @@ To run the hosted agent in container mode:
 
 ::: zone pivot="csharp"
 
-The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Azure OpenAI credentials:
+The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
 
 1. Set up your environment variables based on your operating system:
 
    #### [Windows (PowerShell)](#tab/windows-powershell)
 
    ```powershell
-   $env:AZURE_AI_PROJECT_ENDPOINT="https://your-resource-name.openai.azure.com/"
+   $env:AZURE_AI_PROJECT_ENDPOINT="https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>"
    $env:AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
    ```
 
@@ -340,7 +338,7 @@ var otlpEndpoint =
 To deploy the hosted agent:
 
 >[!IMPORTANT]
-> Ensure that you have given the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to obtain the required role assignments. 
+> Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments. 
 
 ::: zone pivot="python"
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
