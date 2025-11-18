@@ -10,4 +10,5 @@ ms.date: 11/04/2025
 ms.custom: include
 ---
 
-ℹ️ Code uses **Agents v1 API** and is incompatible with Agents v2 API (preview).
+> [!TIP]
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview).
