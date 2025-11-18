@@ -1,7 +1,7 @@
 ---
 title: 'Tools governance'
 titleSuffix: Microsoft Foundry
-description: Learn how to use AI Gateway to provide a governed entrypoint for authenticaiton policies.
+description: Learn how to use AI Gateway to provide a governed entrypoint for authentication policies.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -46,7 +46,7 @@ To enable governance for tools using AI Gateway in Microsoft Foundry:
 
 To add a tool to be governed, use the Microsoft Foundry portal. You can add a tool using the tool catalog by selecting **Tools** > **Catalog**, then choosing an MCP server to add: 
 
-You can also add a custom tool in the Microsoft Foundry by selecting **Build** > **Tools** > **Custom** > **Model Context Protocol**. Then paste your MCP server endpoint, and select an authenticaiton type:
+You can also add a custom tool in the Microsoft Foundry by selecting **Build** > **Tools** > **Custom** > **Model Context Protocol**. Then paste your MCP server endpoint, and select an authentication type:
 
 ### Confirm routing
 
