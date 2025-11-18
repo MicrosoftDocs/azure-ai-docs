@@ -1,7 +1,7 @@
 ---
 title: "Use an ONNX model with Windows ML - Custom Vision Service"
-titleSuffix: Azure AI services
-description: Learn how to create a Windows UWP app that uses an ONNX model exported from Azure AI services.
+titleSuffix: Foundry Tools
+description: Learn how to create a Windows UWP app that uses an ONNX model exported from Foundry Tools.
 author: PatrickFarley
 manager: nitinme
 
@@ -29,7 +29,7 @@ The included application is a generic Universal Windows Platform (UWP) app. It a
 
 ## Get the application
 
-The example application is available at the [Azure AI services ONNX Custom Vision Sample](https://github.com/Azure-Samples/cognitive-services-onnx-customvision-sample) repo on GitHub. Clone it to your local machine and open *SampleOnnxEvaluationApp.sln* in Visual Studio.
+The example application is available at the [Foundry Tools ONNX Custom Vision Sample](https://github.com/Azure-Samples/cognitive-services-onnx-customvision-sample) repo on GitHub. Clone it to your local machine and open *SampleOnnxEvaluationApp.sln* in Visual Studio.
 
 ## Test the application
 
