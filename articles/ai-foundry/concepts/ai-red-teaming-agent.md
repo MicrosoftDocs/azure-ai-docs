@@ -60,7 +60,7 @@ In production, we recommend implementing **safety mitigations** such as [Azure A
 - Pre-deployment: Before deploying GenAI applications and agents to production.
 - Post-deployment: Monitor your Gen AI applications and agents after deployment with scheduled continuous red teaming runs on synthetic adversarial data.
 
-In production, we recommend implementing **safety guardrails** such as [Azure AI Content Safety filters](../../ai-services/content-safety/overview.md) or implementing safety system messages using our [templates](../openai/concepts/safety-system-message-templates.md). For agentic workflows, we recommend leveraging [Foundry Control Plane](NEED/TO/LINK) to apply guardrails and govern your fleet of agents.
+In production, we recommend implementing **safety guardrails** such as [Azure AI Content Safety filters](../../ai-services/content-safety/overview.md) or implementing safety system messages using our [templates](../openai/concepts/safety-system-message-templates.md). For agentic workflows, we recommend leveraging [Foundry Control Plane](../default/control-plane/overview.md) to apply guardrails and govern your fleet of agents.
 
 ::: moniker-end
 
@@ -161,7 +161,7 @@ The AI Red Teaming Agent currently supported red teaming Foundry agents with Azu
 | Connected Agent tool calls              | Not Supported |
 | Computer Use tool calls                  | Not Supported |
 
-For a comprehensive list of tools, see [Tools](../../agents/how-to/tools/overview).
+For a comprehensive list of tools, see [Tools](../../agents/how-to/tools/overview.md).
 
 ::: moniker-end
 
