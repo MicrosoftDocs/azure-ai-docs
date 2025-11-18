@@ -1,6 +1,6 @@
 ---
 title: View or delete your data - Custom Vision Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: You maintain full control over your data. This article explains how you can view, export or delete your data in the Custom Vision Service.
 author: PatrickFarley
 manager: nitinme

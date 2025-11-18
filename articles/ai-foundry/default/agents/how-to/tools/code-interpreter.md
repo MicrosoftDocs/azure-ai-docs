@@ -1,7 +1,7 @@
 ---
 title: 'How to use Code Interpreter for the Microsoft Foundry agents'
-titleSuffix: Microsoft AI Foundry
-description: Learn how to use Microsoft AI Foundry Agent Service Code Interpreter for the agents API
+titleSuffix: Microsoft Foundry
+description: Learn how to use Microsoft Foundry Agent Service Code Interpreter for the agents API
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -30,6 +30,9 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 > The code interpreter tool is not available in [some regions](#regional-restrictions).
 
 ## Code samples
+
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ```python
 import os

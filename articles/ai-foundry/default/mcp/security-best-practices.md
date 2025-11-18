@@ -1,6 +1,6 @@
 ---
-title: Explore Microsoft Foundry MCP Server best practices and security guidance
-description: Learn about Microsoft Foundry MCP Server best practices and security guidance
+title: Explore Foundry MCP Server best practices and security guidance
+description: Learn about Foundry MCP Server best practices and security guidance
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
@@ -10,11 +10,15 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Microsoft Foundry MCP Server best practices and security guidance
+# Foundry MCP Server best practices and security guidance
 
-Use Microsoft Foundry MCP Server (preview) tools to automate read and write operations across Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools. (Source: foundry-branding.instructions.md / dev-focused.instructions.md)
+Use Foundry MCP Server (preview) tools to automate read and write operations across Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
+
+## Interpreting the response
+
+MCP Server provides output that is passed to the language model selected for your agent (for example, Visual Studio Code with GitHub Copilot). The language model combines this output with the conversation context to generate a final response based on its capabilities. Always verify the accuracy of the language model’s response. It may include details that are inferred or generated beyond the MCP Server’s original output.
 
 ## Impact of write operations
 

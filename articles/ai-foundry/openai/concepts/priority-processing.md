@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 > [!IMPORTANT]
-> Priority processing is in preview and available by invitation only. [Register your interest](https://aka.ms/priority-register-interest) to request access. You'll receive notification when this feature becomes available for public use.
+> Priority processing is in preview and available by invitation only. [Register here](https://aka.ms/priority-register-interest) to be notified when it becomes more broadly available.
 >
 > This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 

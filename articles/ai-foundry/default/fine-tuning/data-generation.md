@@ -45,6 +45,20 @@ This article covers:
 - A Foundry project. For more information, see [create a project with Foundry](../../how-to/create-projects.md)
 - A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-azure-ai-foundry.md)
 
+- Use one of the **supported regions** for synthetic data generation:
+  - `eastus2`
+  - `eastus`
+  - `westus`
+  - `northcentralus`
+  - `southcentralus`
+  - `swedencentral`
+  - `germanywestcentral`
+  - `francecentral`
+  - `uksouth`
+  - `uaenorth`
+  - `japaneast`
+  - `australiaeast`
+
 ## Generate synthetic data for fine-tuning
 
 Foundry provides generators that turn a reference file into task‑ready training data aligned to your fine‑tuning goal.

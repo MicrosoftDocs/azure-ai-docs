@@ -291,7 +291,7 @@ var client = new TextAnalyticsClient("http://localhost:5000", "your-text-analyti
 
 If you run the container with an output [mount](configure-containers.md#mount-settings) and logging enabled, the container generates log files. These log files are useful for troubleshooting issues that may occur while the container is starting or running.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

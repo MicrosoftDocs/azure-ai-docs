@@ -11,9 +11,7 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Add Microsoft Foundry to a network security perimeter (preview)
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+# Add Microsoft Foundry to a network security perimeter
 
 Use a network security perimeter (NSP) to restrict data‑plane access to your Microsoft Foundry resource and group it with other protected PaaS resources. An NSP lets you:
 

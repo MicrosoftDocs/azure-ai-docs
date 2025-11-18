@@ -1,6 +1,6 @@
 ---
 title: Pricing for Azure Content Understanding in Foundry Tools
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Understand the pricing model for Azure Content Understanding in Foundry Tools, including what you're charged for, how to estimate costs, and pricing examples.
 author: jfilcik
 ms.author: jfilcik
@@ -276,7 +276,7 @@ Here are detailed examples showing how pricing works across different scenarios:
 
 ### Example 1: Document processing for RAG workflows
 
-**Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentAnalyzer` to extract text, layout, and figure descriptions.
+**Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentSearch` to extract text, layout, and figure descriptions.
  
 **Input**:
 - 1,000 pages
@@ -340,7 +340,7 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 #### Example 3: Analyzing video content with segment-level field extraction
  
-**Scenario**: You're extracting a structured representation of video content for a RAG application. To extract structured data per segment of video, you can use the `prebuilt-videoAnalyzer`. Segments are short clips of 15-30 seconds on average, resulting in numerous output segments with a single summary field per segment.
+**Scenario**: You're extracting a structured representation of video content for a RAG application. To extract structured data per segment of video, you can use the `prebuilt-videoSearch`. Segments are short clips of 15-30 seconds on average, resulting in numerous output segments with a single summary field per segment.
  
 **Input**:
 - 60 minutes (1 hour) of video
@@ -404,7 +404,7 @@ Here are detailed examples showing how pricing works across different scenarios:
 
 #### Example 5: Processing images with captions
  
-**Scenario**: You're generating descriptive captions for product images using `prebuilt-imageAnalyzer`.
+**Scenario**: You're generating descriptive captions for product images using `prebuilt-imageSearch`.
  
 **Input**:
 - 1,000 images

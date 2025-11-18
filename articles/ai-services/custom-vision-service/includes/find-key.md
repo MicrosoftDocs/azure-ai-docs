@@ -1,6 +1,6 @@
 ---
 title: "Find your training key and endpoint"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 author: PatrickFarley
 manager: nitinme
 

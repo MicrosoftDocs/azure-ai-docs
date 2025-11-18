@@ -1,6 +1,6 @@
 ---
 title: Build a robotic process automation (RPA) solution with Azure Content Understanding in Foundry Tools
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn to build a robotic process automation solution with Content Understanding
 author: PatrickFarley
 ms.author: pafarley

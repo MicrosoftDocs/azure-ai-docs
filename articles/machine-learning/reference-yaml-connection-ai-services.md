@@ -41,7 +41,7 @@ ms.reviewer: ambadal
 There are two ways to create connections to Foundry Tools:
 
 - One connection for all Foundry Tools except Azure AI Search.
-- One connection for each individual Azure AI Service.
+- One connection for each individual Foundry Tool.
 
 The schema described in this article is for **one connection for all Foundry Tools except Azure AI Search**.
 
