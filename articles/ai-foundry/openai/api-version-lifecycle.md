@@ -280,6 +280,9 @@ For Azure OpenAI models we recommend using the [Responses API](./supported-langu
 
 `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
+> [!NOTE]
+> Responses API also works with Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../foundry-models/how-to/generate-responses.md).
+
 # [Python](#tab/python)
 
 ```python
@@ -295,7 +298,7 @@ client = OpenAI(
   api_key=token_provider,
 )
 completion = client.chat.completions.create(
-  model="grok-3-mini", # Replace with your model deployment name.
+  model="MAI-DS-R1", # Replace with your model deployment name.
   messages=[
     {"role": "system", "content": "You are a helpful assistant."},
     {"role": "user", "content": "Tell me about the attention is all you need paper"}
@@ -321,7 +324,7 @@ BearerTokenPolicy tokenPolicy = new(
     "https://cognitiveservices.azure.com/.default");
 
 ChatClient client = new(
-    model: "grok-3-mini", // Replace with your model deployment name.
+    model: "MAI-DS-R1", // Replace with your model deployment name.
     authenticationPolicy: tokenPolicy,
     options: new OpenAIClientOptions() { 
     
@@ -344,7 +347,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -356,7 +359,7 @@ const messages = [
 // Make the API request with top-level await
 const result = await client.chat.completions.create({ 
     messages, 
-    model: 'grok-3-mini', // model deployment name
+    model: 'MAI-DS-R1', // model deployment name
     max_tokens: 100 
 });
 
@@ -370,23 +373,25 @@ console.log('Response content:', result.choices[0].message.content);
 # [Go](#tab/go)
 
 ```go
+
 package main
 
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/azure"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
+	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
 	// Create an Azure credential
 	tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
 	if err != nil {
-		panic(fmt.Sprintf("Failed to create credential: %v", err))
+		log.Fatalf("Failed to create credential: %s", err)
 	}
 
 	// Create a client with Azure OpenAI endpoint and token credential
@@ -400,10 +405,10 @@ func main() {
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.UserMessage("Explain what the bitter lesson is?"),
 		},
-		Model: "grok-3-mini", // Use your deployed model name on Azure
+		Model: "MAI-DS-R1", // Use your deployed model name on Azure
 	})
 	if err != nil {
-		panic(err.Error())
+		log.Fatalf("Failed to get chat completions: %s", err)
 	}
 
 	fmt.Println(chatCompletion.Choices[0].Message.Content)
@@ -426,7 +431,7 @@ public class OpenAITest {
         // Get API key from environment variable for security
         String apiKey = System.getenv("OPENAI_API_KEY");
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
+        String modelDeploymentName = "MAI-DS-R1"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -451,7 +456,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-      "model": "grok-3-mini",
+      "model": "MAI-DS-R1",
       "messages": [
       {
         "role": "developer",

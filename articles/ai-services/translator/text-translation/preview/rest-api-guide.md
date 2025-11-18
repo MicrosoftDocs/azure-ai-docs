@@ -18,7 +18,7 @@ ms.author: lajanuar
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Text translation is a cloud-based feature of the Azure Translator in Foundry Tools service and is part of the Azure AI service family of REST APIs. The Text translation API translates text between language pairs across all [supported languages and dialects](../../../language-support.md). If you already have a Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Microsoft Foundry portal for NMT deployment. 
+Text translation is a cloud-based feature of the Azure Translator in Foundry Tools service and is part of the Foundry Tool family of REST APIs. The Text translation API translates text between language pairs across all [supported languages and dialects](../../../language-support.md). If you already have a Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Microsoft Foundry portal for NMT deployment. 
 
 By default, Azure Translator utilizes neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, using an LLM model requires you to have a Foundry Tools resource. For more information, *see*, [Configure Azure resources](../../how-to/create-translator-resource.md).
 

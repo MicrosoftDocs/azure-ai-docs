@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 11/18/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -25,7 +25,7 @@ There are some limitations you should be aware of when you plan to use existing 
 
 ### If you are using a hub-based project or Azure OpenAI Assistants
 
-At this time, there is no direct upgrade path to migrate existing agents or their associated data assets such as files, threads, or vector stores from a hub-based project to a Microsoft Foundry project. There is also no upgrade path to convert existing Azure OpenAI Assistants into Foundry Agents, nor a way to automatically migrate Assistants' files, threads, or vector stores.
+At this time, there is no direct upgrade path to migrate existing agents or their associated data assets such as files, conversations, or vector stores from a hub-based project to a Microsoft Foundry project. There is also no upgrade path to convert existing Azure OpenAI Assistants into Foundry Agents, nor a way to automatically migrate Assistants' files, conversations, or vector stores.
 
 You can reuse your existing model deployments and quota from Foundry Tools or Azure OpenAI resources within a Foundry project.
 
@@ -42,7 +42,7 @@ If you want to continue using your hub-based project and connection string, you 
     * [C#](https://github.com/Azure/azure-sdk-for-net/tree/feature/azure-ai-agents/sdk/ai/Azure.AI.Projects/samples): `1.0.0-beta.2` or earlier
     * [Python](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects-beta10/sdk/ai/azure-ai-projects/samples/agents): `1.0.0b10` or earlier
 
-### Azure Cosmos DB for NoSQL to store threads 
+### Azure Cosmos DB for NoSQL to store conversations
 
 - Your existing Azure Cosmos DB for NoSQL account used in a [standard setup](#choose-basic-or-standard-agent-setup) must have a total throughput limit of at least 3000 RU/s. Both provisioned throughput and serverless are supported.
 - Three containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s
@@ -90,7 +90,7 @@ This setup is compatible with OpenAI Assistants and manages agent states using t
 
 **Standard Setup**
 
-Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, threads, and vector stores are stored in your own Azure resources, giving you full ownership and control.
+Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, conversations, and vector stores are stored in your own Azure resources, giving you full ownership and control.
 
 ## Basic agent setup: Use an existing Azure OpenAI resource 
 
@@ -147,7 +147,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
     aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
     ```
 
-### Use an existing Azure Cosmos DB for NoSQL account for thread storage
+### Use an existing Azure Cosmos DB for NoSQL account for conversation storage
 
 An Azure Cosmos DB for NoSQL account is created for each Foundry account.
 

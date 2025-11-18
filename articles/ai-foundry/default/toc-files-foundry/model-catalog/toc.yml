@@ -16,8 +16,8 @@ items:
       href: ../../../foundry-models/whats-new-model-router.md
     - name: Get started with model router
       href: ../../../openai/how-to/model-router.md
-  - name: Work with chat models
-    href: ../../../foundry-models/how-to/use-chat-completions.md
+  - name: Responses API with Foundry Models
+    href: ../../../foundry-models/how-to/generate-responses.md
   - name: Image and video models
     items:
       - name: Image generation

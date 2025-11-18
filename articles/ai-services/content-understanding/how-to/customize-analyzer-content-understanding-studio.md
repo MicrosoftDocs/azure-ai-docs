@@ -1,6 +1,6 @@
 ---
 title: Create and improve your custom analyzer in Content Understanding Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Create custom analyzers and apply in context learning to improve them using Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley

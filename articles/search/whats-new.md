@@ -1,10 +1,10 @@
 ---
 title: What's new in Azure AI Search
 description: Announcements of new and enhanced features, including a service rename of Azure Cognitive Search to Azure AI Search.
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
-ms.date: 11/10/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -27,17 +27,20 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the data plane operations described in this table. |
 | [Semantic ranker and agentic retrieval on free tiers](semantic-search-overview.md) | Both semantic ranker and agentic retrieval are now available on free tiers in [select regions](search-region-support.md), subject to limits on query volume. |
 | [Knowledge agents renamed to knowledge bases](agentic-retrieval-overview.md) | Knowledge agents are now known as knowledge bases. Knowledge sources remain unchanged. This rename introduces breaking changes to REST API routes and properties. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
-| [Knowledge bases (preview)](agentic-retrieval-overview.md) | After being renamed from knowledge agents, knowledge bases now support new `retrievalInstructions` and `outputConfiguration` properties for improved query planning and execution control. It also provides a new [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) for control over LLM processing. |
+| [Knowledge bases (preview)](agentic-retrieval-how-to-create-knowledge-base.md) | After being renamed from knowledge agents, knowledge bases now support new `retrievalInstructions` and `outputConfiguration` properties for improved query planning and execution control. It also provides a new [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) for control over LLM processing. |
 | [Knowledge sources (preview)](agentic-knowledge-source-overview.md) | New types of knowledge sources: [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md), [remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md), and [web](agentic-knowledge-source-how-to-web.md). For indexed knowledge sources, the new `ingestionParameters` object provides properties to control content ingestion and processing, including `contentExtractionMode` for use of the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) and `ingestionPermissionOptions` for use of ACLs in the generated indexer. |
 | [Knowledge retrieval (preview)](agentic-retrieval-how-to-retrieve.md) | Execute retrieval operations with support for [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md), zero-model-call mode for efficiency, and partial responses. |
 | [Portal support for knowledge sources and knowledge bases (preview)](get-started-portal-agentic-retrieval.md) | Use the Azure portal to create and manage knowledge sources and knowledge bases, with a new chat playground for sending retrieval requests. These portal-generated objects use the 2025-08-01-preview schema and have breaking changes with the 2025-11-01-preview. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
+| [Foundry IQ (preview)](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) | New integration that allows agents in Foundry Agent Service to invoke knowledge bases in Azure AI Search. Foundry IQ offloads complex retrieval operations to the knowledge base, enabling the agent to provide accurate, citation-backed responses based on enterprise data and web sources. |
 | [Azure Content Understanding skill (preview)](cognitive-search-skill-content-understanding.md) | New skill that wraps Azure Content Understanding in Foundry Tools to extract structured Markdown from text, images, PDFs, Microsoft PowerPoint, Microsoft Word, and more. This skill provides advanced document parsing with better table extraction (including cross-page tables), image descriptions, and semantic chunking. For indexed knowledge sources, this skill is available through the `contentExtractionMode` property within `ingestionParameters`. |
 | [SharePoint indexer ACL support (preview)](search-indexer-sharepoint-access-control-lists.md) | Extended ACL support to flow basic SharePoint permissions to indexed documents, enabling document-level access control. |
-| [Elevated read permissions for ACLs (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | New capability to assign elevated read permissions to specific users or groups within ACL configurations for fine-grained access control. |
+| [Elevated read permissions for ACLs (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | New capability to assign elevated read permissions to administrators for investigating problems with ACL configurations used in document access control. |
 | [Document-level sensitivity label indexing (preview)](search-indexer-sensitivity-labels.md) | New integration with Microsoft Purview to sync document sensitivity labels to the index, honoring their labels and protection at query time for data governance. |
 | [SharePoint indexing updates (preview)](search-how-to-index-sharepoint-online.md) | New SharePoint indexer capabilities, including improved authentication options, incremental updates, and basic handling of document permissions. |
 | [Scoring function aggregation (preview)](index-add-scoring-profiles.md#example-function-aggregation) | New capability to combine and aggregate multiple scoring functions, enabling more sophisticated relevance customization and weighted signal combination. |
 | [Facet aggregations (preview)](search-faceted-navigation-examples.md#facet-aggregation-example) | New facet aggregation operations, including minimum, maximum, average, and cardinality, provide enhanced analytics in faceted search experiences. |
+| `azure-api.net` endpoint support (preview) | The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) and [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) now accept `azure-api.net` endpoints for Azure API Management (not custom endpoints). |
+| `services.ai.azure.com` endpoint support | The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md), and [AI enrichment](cognitive-search-concept-intro.md) now accept `services.ai.azure.com` endpoints for Microsoft Foundry resources. When you [upgrade from Azure OpenAI to Foundry](/azure/ai-foundry/how-to/upgrade-azure-openai), a new project is automatically created and becomes available for RAG and multimodal RAG in the [**Import data (new)** wizard](search-import-data-portal.md). |
 
 ## September 2025
 
@@ -199,7 +202,7 @@ This service has had multiple names over the years. Here they are in reverse chr
 
 ## Service updates
 
-[Service update announcements](https://azure.microsoft.com/updates/?product=search&status=all) for Azure AI Search can be found on the Azure web site.
+You can find [service update announcements](https://azure.microsoft.com/updates/?product=search&status=all) for Azure AI Search on the Azure website.
 
 ## Feature rename
 

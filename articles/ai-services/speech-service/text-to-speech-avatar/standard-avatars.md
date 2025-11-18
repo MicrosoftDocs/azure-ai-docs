@@ -1,6 +1,6 @@
 ---
 title: Supported standard text to speech avatar
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Supported standard avatars, avatar styles and gestures
 author: melindam
 reviewer: patrickfarley

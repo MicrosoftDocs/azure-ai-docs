@@ -1,6 +1,6 @@
 ---
 title: Build multi-turn conversational language understanding (CLU) models with entity slot filling
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to create a CLU model for multi-turn interactions using slot-filling
 author: laujan
 manager: nitinme

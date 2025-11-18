@@ -1,6 +1,6 @@
 ---
 title: Build a person directory with Azure Content Understanding in Foundry Tools Face APIs (preview)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn to build a person directory with Content Understanding Face APIs
 author: PatrickFarley 
 ms.author: pafarley
