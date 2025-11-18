@@ -27,6 +27,7 @@ To use Azure Content Understanding, create your Foundry Tool resource in a suppo
 | `australiaeast` | Australia East | Australia | Australia |
 | `eastus` | East US | United States | US |
 | `eastus2` | East US 2 | United States | US |
+| `japaneast` | Japan East | Japan | Asia |
 | `northeurope` | North Europe | Europe | Europe |
 | `southcentralus` | South Central US | United States | US |
 | `southeastasia` | Southeast Asia | Asia Pacific | Asia |
@@ -34,7 +35,6 @@ To use Azure Content Understanding, create your Foundry Tool resource in a suppo
 | `uksouth` | UK South | United Kingdom | UK |
 | `westeurope` | West Europe | Europe | Europe |
 | `westus` | West US | United States | US |
-| `westus2` | West US 2 | United States | US |
 | `westus3` | West US 3 | United States | US |
 
 
