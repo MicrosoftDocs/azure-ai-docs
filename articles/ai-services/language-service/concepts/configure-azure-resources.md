@@ -12,7 +12,7 @@ ms.custom: language-service-question-answering
 
 In this guide, we walk you through configuring your Azure AI resources and permissions for Microsoft Foundry tasks. We present two options:
 
-* [**Option 1: Configure a Foundry resource**](#option-1-configure-a-foundry-resource). Foundry offers a unified environment for building generative AI applications and using Azure AI services. All essential tools are together in one environment for all stages of AI app development.
+* [**Option 1: Configure a Foundry resource**](#option-1-configure-a-foundry-resource). Foundry offers a unified environment for building generative AI applications and using Foundry Tools. All essential tools are together in one environment for all stages of AI app development.
 
 * [**Option 2: Configure Azure Language in Foundry Tools and Azure OpenAI resources**](#option-2-configure-azure-language-resource-and-azure-openai-resources). Azure OpenAI allows users to access OpenAI's language models within the Azure platform, providing security, regulatory compliance, and integration with other Azure services.
 

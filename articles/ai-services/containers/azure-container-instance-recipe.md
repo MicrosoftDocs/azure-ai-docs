@@ -18,9 +18,9 @@ With the following steps, scale Foundry Tools applications in the cloud easily w
 
 ## Prerequisites
 
-The recipe works with any Foundry Tools container. The Foundry resource must be created before using the recipe. Each Azure AI service that supports containers has a "How to install" article for installing and configuring the service for a container. Some services require a file or set of files as input for the container, it is important that you understand and have used the container successfully before using this solution.
+The recipe works with any Foundry Tools container. The Foundry resource must be created before using the recipe. Each Foundry Tool that supports containers has a "How to install" article for installing and configuring the service for a container. Some services require a file or set of files as input for the container, it is important that you understand and have used the container successfully before using this solution.
 
-* An Azure resource for the Azure AI service that you're using.
+* An Azure resource for the Foundry Tool that you're using.
 * Azure resource **endpoint URL** - review your specific service's "How to install" for the container, to find where the endpoint URL is from within the Azure portal, and what a correct example of the URL looks like. The exact format can change from service to service.
 * Azure resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 84 alpha-numeric characters.
 

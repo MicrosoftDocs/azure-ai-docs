@@ -19,8 +19,9 @@ zone_pivot_groups: selection-image-generation
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
->[!IMPORTANT] 
-> The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image). 
+> [!IMPORTANT] 
+> - The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image).
+> - You also need to have a compatible Azure OpenAI model deployed in the same Foundry project that you are using, including `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.
 
 The Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
 
@@ -132,9 +133,6 @@ Compared to Azure OpenAI's Image API, the image generation tool in Agent Service
 **Streaming**: Display partial image outputs during generation to improve perceived latency. 
 
 **Flexible inputs**: Accept image file IDs as inputs, in addition to raw image bytes. 
-
-> [!NOTE]
-> * The image generation tool only supported by the `gpt-image-1` model. You can however call this model from the following supported models: gpt-4o, gpt-4o-mini, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, o3. 
 
 ## Optional parameters
 

@@ -14,7 +14,7 @@ ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure Speech in Foundry Tools tool
+# Azure Speech in Foundry Tools MCP server
 
 The Azure Speech in Foundry Tools tool allows agents to interact with users through speech. By integrating this model context protocol (MCP), AI agents can convert text responses into spoken words and process spoken user inputs into text.
 

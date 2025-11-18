@@ -1,7 +1,7 @@
 ---
-title: How to use Azure Functions with the Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn how to use Azure functions with Azure AI Agents.
+title: How to use Azure Functions with Azure Storage Queues
+titleSuffix: Azure AI Foundry
+description: Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry

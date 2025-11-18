@@ -106,7 +106,7 @@ Use the host, `http://localhost:5000`, for container APIs.
 
 If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

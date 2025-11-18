@@ -1,10 +1,10 @@
 ---
 title: Create a Foundry resource using the Azure CLI
-titleSuffix: Azure AI services
-description: Get started with Azure AI services by using Azure CLI commands to create a Foundry resource.
+titleSuffix: Foundry Tools
+description: Get started with Foundry Tools by using Azure CLI commands to create a Foundry resource.
 manager: nitinme
 ms.service: azure-ai-services
-keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
+keywords: Foundry Tools, cognitive intelligence, cognitive solutions, ai services
 ms.topic: quickstart
 ms.date: 8/1/2024
 ms.custom:
@@ -37,11 +37,11 @@ az login
 
 Before you create a Foundry resource, you must have an Azure resource group to contain the resource. When you create a new resource, you can either create a new resource group, or use an existing one. This article shows how to create a new resource group.
 
-To create a resource, you'll need one of the Azure locations available for your subscription. You can retrieve a list of available locations with the [az account list-locations](/cli/azure/account#az-account-list-locations) command. Most Azure AI services can be accessed from several locations. Choose the one closest to you, or see which locations are available for the service.
+To create a resource, you'll need one of the Azure locations available for your subscription. You can retrieve a list of available locations with the [az account list-locations](/cli/azure/account#az-account-list-locations) command. Most Foundry Tools can be accessed from several locations. Choose the one closest to you, or see which locations are available for the service.
 
 > [!IMPORTANT]
 > * Remember your Azure location, as you will need it when calling the Microsoft Foundry resources.
-> * The availability of some Azure AI services can vary by region. For more information, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services).
+> * The availability of some Foundry Tools can vary by region. For more information, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services).
 
 ```azurecli-interactive
 az account list-locations --query "[].{Region:name}" --out table
@@ -58,7 +58,7 @@ az group create --name ai-services-resource-group --location westus2
 To create and subscribe to a new Foundry resource, use the [az cognitiveservices account create](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-create) command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the kind of service you want to use, along with its pricing tier (or SKU) and an Azure location.
 
 > [!IMPORTANT]
-> Azure provides more than one resource kinds for Azure AI services. Be sure to create one with the `kind` of `AIServices`.
+> Azure provides more than one resource kinds for Foundry Tools. Be sure to create one with the `kind` of `AIServices`.
 
 You can create a Foundry resource named `foundry-multi-service-resource` with the command below.
 
