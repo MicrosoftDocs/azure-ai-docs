@@ -50,7 +50,7 @@ The new agents provide the following benefits:
 
 ## Threads to conversations 
 
-Threads stored messages on the server-side. A conversation can store items – including messages, tool calls, tool outputs, and other data
+Threads stored messages on the server-side. A conversation can store items – including messages, tool calls, tool outputs, and other data.
 
 ### Requests
 
@@ -362,7 +362,7 @@ You can use the provided tool available on GitHub to migrate your agents and ass
 
 The following is an example of the previous and current format. 
 
-**previous**
+**Previous**
 
 ```python
 agent = project_client.agents.create_agent( 
