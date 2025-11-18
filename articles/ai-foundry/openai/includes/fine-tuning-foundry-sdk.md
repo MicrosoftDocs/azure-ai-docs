@@ -1,3 +1,18 @@
+---
+title: "Customize a Microsoft Foundry model with the Foundry Python SDK"
+titleSuffix: Microsoft Foundry
+description: Learn how to create your own customized model with Microsoft Foundry by using the Foundry Python SDK.
+author: mrbullwinkle
+ms.author: mbullwin
+manager: nitinme
+ms.date: 09/01/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
+ms.topic: include
+ms.custom:
+  - build-2025
+---
+
 ## Prerequisites
 
 - Read the [When to use AI Foundry fine-tuning guide](../concepts/fine-tuning-considerations.md).
