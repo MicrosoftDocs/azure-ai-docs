@@ -9,118 +9,26 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 11/10/2025
+zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create a Web Knowledge Source resource
 
-> [!IMPORTANT]
-> + Web Knowledge Source, which uses Grounding with Bing Search and/or Grounding with Bing Custom Search, is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
->
-> + The [Microsoft Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) doesn't apply to data sent to Web Knowledge Source. When Customer uses Web Knowledge Source, Customer Data flows outside the Azure compliance and Geo boundary. This also means use of Web Knowledge Source waives all elevated Government Community Cloud security and compliance commitments to include data sovereignty and screened/citizenship-based support, as applicable.
->
-> + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
->
-> + Learn more about how Azure admins can [manage access to use of Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md).
+<!--
+::: zone pivot="csharp"
+[!INCLUDE [C#](includes/how-tos/file-name.md)]
+::: zone-end
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
+-->
 
-*Web Knowledge Source* enables retrieval of real-time web data from Microsoft Bing in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
+::: zone pivot="python"
+[!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-web-python.md)]
+::: zone-end
 
-Bing Custom Search is always the search provider for Web Knowledge Source. Although you can't specify alternative search providers or engines, you can include or exclude specific *domains*, such as https://learn.microsoft.com. When no domains are specified, Web Knowledge Source has unrestricted access to the entire public internet.
-
-Web Knowledge Source works best alongside other knowledge sources. Use Web Knowledge Source when your proprietary content doesn't provide complete, up-to-date answers or when you want to supplement results with information from a commercial search engine.
-
-When you use Web Knowledge Source, keep the following in mind:
-
-+ The response is always a single, formulated answer to the query instead of raw search results from the web.
-
-+ Because Web Knowledge Source doesn't support extractive data, your knowledge base must use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [low or medium reasoning effort](agentic-retrieval-how-to-create-knowledge-base.md#create-a-knowledge-base). You also can't define answer instructions.
-
-## Prerequisites
-
-+ An Azure subscription with [access to Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md). By default, access is enabled. Contact your admin if access is disabled.
-
-+ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).  The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as Web Knowledge Source isn't supported in private or sovereign clouds.
-
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support.
-
-## Check for existing knowledge sources
-
-[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
-
-The following JSON is an example response for Web Knowledge Source.
-
-```json
-{
-  "name": "my-web-ks",
-  "kind": "web",
-  "description": "A sample Web Knowledge Source.",
-  "encryptionKey": null,
-  "webParameters": {
-    "domains": null
-  }
-}
-```
-
-## Create a knowledge source
-
-To create a Web Knowledge Source resource:
-
-1. Set environment variables at the top of your file.
-
-    ```http
-    @search-url = <YOUR SEARCH SERVICE URL>
-    @api-key = <YOUR ADMIN API KEY>
-    ```
-
-1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
-
-    ```http
-    PUT {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
-    Content-Type: application/json
-    api-key: {{api-key}}
-
-    {
-      "name": "my-web-ks",
-      "kind": "web",
-      "description": "This knowledge source pulls content from the web.",
-      "encryptionKey": null,
-      "webParameters": {
-        "domains": {
-          "allowedDomains": [ { "address": "learn.microsoft.com", "includeSubpages": true } ],
-          "blockedDomains": [ { "address": "bing.com", "includeSubpages": false } ]
-        }
-      }
-    }
-    ```
-
-1. Select **Send Request**.
-
-### Source-specific properties
-
-You can pass the following properties to create a Web Knowledge Source resource.
-
-| Name | Description | Type | Editable | Required |
-|--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
-| `kind` | The kind of knowledge source, which is `web` in this case. | String | No | Yes |
-| `description` | A description of the knowledge source. When unspecified, Azure AI Search applies a default description. | String | Yes | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | Yes | No |
-| `webParameters` | Parameters specific to Web Knowledge Source. Currently, this is only `domains`. | Object | Yes | No |
-| `domains` | Domains to allow or block from the search space. By default, the knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) to search the entire public internet. When you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to restrict results to the specified domains. In both cases, Bing Custom Search is the search provider. | Object | Yes | No |
-| `allowedDomains` | Domains to include in the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | Yes | No |
-| `blockedDomains` | Domains to exclude from the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | Yes | No |
-
-## Assign to a knowledge base
-
-If you're satisfied with the Web Knowledge Source resource, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
-
-After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
-
-## Delete a knowledge source
-
-[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]
+::: zone pivot="rest"
+[!INCLUDE [REST](includes/how-tos/agentic-knowledge-source-how-to-web-rest.md)]
+::: zone-end
 
 ## Related content
 

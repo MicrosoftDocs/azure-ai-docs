@@ -1713,3 +1713,12 @@ groups:
     title: Python
   - id: csharp
     title: C#
+# Owner: haileytapia
+- id: agentic-retrieval-pivots
+  title: Agentic retrieval pivots
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
