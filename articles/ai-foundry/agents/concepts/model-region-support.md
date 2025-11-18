@@ -167,8 +167,12 @@ The following [models sold directly by Azure](../../foundry-models/concepts/mode
 - **DeepSeek-R1-0528** — advanced long-form and multi-step reasoning
 - **gpt-oss-120b** — open-ecosystem model supporting transparency and reproducibility
 
+The following [models from partners](../../foundry-models/concepts/models-from-partners.md) are available for use by your agents:
 
- 
-## Next steps
+- **Claude-Opus-4-1** — frontier reasoning for the most complex problem-solving 
+- **Claude-Sonnet-4-5** — balanced performance for multimodal and agentic workflows 
+- **Claude-Haiku-4-5** — lightweight, high-speed generation for interactive scenarios
+
+## Next step
 
 [Create a new Agent project](../quickstart.md)
