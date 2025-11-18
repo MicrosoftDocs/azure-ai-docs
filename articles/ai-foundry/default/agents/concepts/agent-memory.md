@@ -12,10 +12,10 @@ ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
 
-# Manage memory in Foundry Agent Service (preview)
+# Manage memory in Microsoft Foundry Agent Service (preview)
 
 > [!IMPORTANT]
-> Memory (preview) in Microsoft Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA) ("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Memory (preview) in Microsoft Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Memory in Microsoft Foundry Agent Service (preview) is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
@@ -47,8 +47,10 @@ Agent memory typically falls into two categories:
 
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
-## Understand `scope`
-`scope` defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
+Microsoft Foundry memory is designed for long-term memory.  It extracts meaningful information from conversations and consolidates it into durable knowledge, and makes it available across sessions.
+
+## Understand scope
+The `scope` parameter defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
 As a developer, you decide the key used to store and retrieve these memory items - such as a UUID or a unique user ID in your system.
 
@@ -75,7 +77,7 @@ You can also leverage the same parameter to inform the memory not to focus on ce
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- Python 3.8 or later with [configured environment](../../../quickstarts/get-started-code?tabs=python#set-up-your-environment), or access to the REST API.
+- Python 3.8 or later with [configured environment](../../../quickstarts/get-started-code.md?tabs=python#set-up-your-environment), or access to the REST API.
 
 ## Create a memory store
 
@@ -84,6 +86,7 @@ Create a dedicated memory store for each agent to establish clear boundaries for
 # [Python](#tab/python)
 
 ```python
+import os
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MemoryStoreDefaultDefinition, MemoryStoreDefaultOptions
 from azure.identity import DefaultAzureCredential
@@ -97,7 +100,7 @@ client = AIProjectClient(
 # Create memory store
 definition = MemoryStoreDefaultDefinition(
     chat_model="gpt-4.1",  # Your chat model deployment name
-    embedding_model="text-embedding-3-small"  # Your embedding model deployment name
+    embedding_model="text-embedding-3-small",  # Your embedding model deployment name
     options=MemoryStoreDefaultOptions(user_profile_enabled=True, chat_summary_enabled=True)
 )
 
@@ -144,7 +147,7 @@ Add memories by providing conversation content to the memory store. The system p
 
 You must decide how to segment memory across users by specifying the `scope` parameter. You can scope the memory to a specific end user, a team, or other identifier that fits your use case.
 
-You can update a memory store with content from an array of conversation items across multiple turns. Or you can update after each conversation turn with only the messages from the current turn and the update ID of the previous update to chain the updates together.
+You can update a memory store with content from an array of conversation items across multiple turns. Or you can update after each conversation turn with only the messages from the current turn and specify the ID of the previous update operation to chain the updates together.
 
 # [Python](#tab/python)
 
@@ -228,15 +231,12 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 ## Search for memories in a memory store
 
-Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow down the search to specific users or groups. 
+Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow down the search to the specified scope. 
 
 # [Python](#tab/python)
 
 ```python
 from azure.ai.projects.models import MemorySearchOptions
-
-# Set scope to associate the memories with
-scope = "user_123"
 
 # Search memories by a query
 query_message = ResponsesUserMessageItemParam(content="What are my coffee preferences?")
@@ -287,17 +287,18 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-vers
 
 ## Update a memory store
 
-Update memory store properties, such as `description` or `metadata`, to reflect changes in your application or organizational requirements.
+Update memory store properties, such as `description` or `metadata`, to better manage memory stores.
 
 # [Python](#tab/python)
 
 ```python
 # Update memory store properties
 updated_store = client.memory_stores.update(
+    name="my_memory_store",
     description="Updated description"
 )
 
-print(f"Updated: {updated_store.name}")
+print(f"Updated: {updated_store.description}")
 ```
 
 # [REST API](#tab/rest)
@@ -422,7 +423,7 @@ In this public preview, the use of memory features is free. However, you're bill
 
 When you implement memory in your agents, consider the following practices:
 
-- **Implement per-user access controls**: Avoid giving agents access to memories across all users. Use the `scope` property to partition the memory store by user. When sharing `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
+- **Implement per-user access controls**: Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When sharing `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
 - **Minimize and protect sensitive data**: Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, consider redacting or removing other content that may be used to trace back to an individual.
 - **Support privacy and compliance**: Implement mechanisms that provide users with transparency, including options to access and delete their data. All deletions should be recorded in a tamper-evident audit trail. Additionally, ensure the system adheres to local compliance requirements and regulatory standards.
 - **Segment data and isolate memory**: In multi-agent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
@@ -434,7 +435,7 @@ When working with memory in Microsoft Foundry Agent Service, LLM will extract an
  
 We strongly advise performing input validation to prevent prompt injection. You should consider the following actions:
  
-- **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](https://learn.microsoft.com/en-us/rest/api/contentsafety/text-operations/detect-text-prompt-injection-options)**: Validate all prompts entering or leaving the memory system to prevent malicious content.
+- **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../../ai-services/content-safety/concepts/jailbreak-detection.md)**: Validate all prompts entering or leaving the memory system to prevent malicious content.
 - **Perform attack and adversarial testing**: Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
 
 ## Related content
