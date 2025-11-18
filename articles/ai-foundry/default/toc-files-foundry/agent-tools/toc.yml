@@ -45,7 +45,7 @@ items:
   href: ../../agents/how-to/mcp-authentication.md
 - name: Build your own MCP server
   href: ../../mcp/build-your-own-mcp-server.md
-- name: Knowledge (preview)
+- name: Foundry IQ (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
 - name: SharePoint (preview)
   href: ../../agents/how-to/tools/sharepoint.md 

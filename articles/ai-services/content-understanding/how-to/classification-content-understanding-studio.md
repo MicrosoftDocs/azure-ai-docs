@@ -1,6 +1,6 @@
 ---
 title: Classify and route your data using Content Understanding Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to classify and route your data using Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley

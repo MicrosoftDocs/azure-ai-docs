@@ -280,6 +280,9 @@ For Azure OpenAI models we recommend using the [Responses API](./supported-langu
 
 `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
+> [!NOTE]
+> Responses API also works with Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models. To learn how to use the Responses API with these models, see [How to generate text responses with Microsoft Foundry Models](../foundry-models/how-to/generate-responses.md).
+
 # [Python](#tab/python)
 
 ```python

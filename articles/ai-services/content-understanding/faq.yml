@@ -20,7 +20,7 @@ sections:
       - question: |
          What is Content Understanding?
         answer: |
-          Content Understanding is a new Azure AI Service designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
+          Content Understanding is a new Foundry Tool designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
       - question: |
          How does Content Understanding work?
         answer: |

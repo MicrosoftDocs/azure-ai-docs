@@ -30,7 +30,7 @@ A retrieve request can include instructions for query processing that override t
 
 + A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) represents one or more knowledge sources, plus a chat completion model if you want intelligent query planning and answer formulation.
 
-+ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
 
 + Permissions on Azure AI Search. Roles for retrieving content include **Search Index Data Reader** for running queries. To support an outbound call from a search service to a chat completion model, you must configure a managed identity for the search service, and it must have **Cognitive Services User** permissions on the Azure OpenAI resource. For more information about local testing and obtaining access tokens, see [Quickstart: Connect without keys](search-get-started-rbac.md).
 
@@ -352,7 +352,5 @@ Here's an example of the references array.
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-
-+ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-
-+ [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
++ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)

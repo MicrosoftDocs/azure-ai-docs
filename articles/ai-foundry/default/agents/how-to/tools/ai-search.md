@@ -207,7 +207,7 @@ Select the tab for your desired authentication method.
 
 The next step is to create the project connection using the search service details you gathered. The connection name must be the name of your search index.
 
-You can use the Microsoft AI Foundry portal, or one of the following options.
+You can use the Microsoft Foundry portal, or one of the following options.
 
 #### [Azure CLI](#tab/azurecli)
 

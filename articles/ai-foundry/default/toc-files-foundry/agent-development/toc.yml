@@ -15,10 +15,18 @@ items:
   href: ../../agents/concepts/development-lifecycle.md
 - name: Agent runtime components
   href: ../../agents/concepts/runtime-components.md
+- name: Hosted agents
+  href: ../../agents/concepts/hosted-agents.md
 - name: Use the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents.md
+- name: Publish to Microsoft 365 Copilot and Teams
+  href: ../../agents/how-to/publish-copilot.md
 - name: Use MCP Tools in the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents-mcp.md
+- name: Use declarative agent workflows in the Visual Studio Code extension
+  href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
+- name: Use hosted agent workflows in the Visual Studio Code extension
+  href: ../../agents/how-to/vs-code-agents-workflow-pro-code.md
 - name: Microsoft Foundry MCP Server (preview)
   items:
   - name: Get started with Microsoft Foundry MCP Server
@@ -35,6 +43,8 @@ items:
     href: ../../../agents/how-to/use-your-own-resources.md
   - name: Standard agent setup
     href: ../../../agents/concepts/standard-agent-setup.md
+  - name: Migrate agents
+    href: ../../agents/how-to/migrate.md
   - name: System messages
     items:
     - name: System message design
@@ -65,3 +75,5 @@ items:
       href: ../../observability/how-to/trace-agent-framework.md
 - name: Create a workflow
   href: ../../agents/concepts/workflow.md
+- name: Agent 365
+  href: ../../agents/how-to/agent-365.md
