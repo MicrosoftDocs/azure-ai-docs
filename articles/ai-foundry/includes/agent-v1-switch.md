@@ -10,5 +10,5 @@ ms.date: 11/04/2025
 ms.custom: include
 ---
 
-> [!CAUTION]
+> [!TIP]
 > Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). [Switch to (new)](?view=foundry&preserve-view=true) for the Agents v2 API (preview) version.
