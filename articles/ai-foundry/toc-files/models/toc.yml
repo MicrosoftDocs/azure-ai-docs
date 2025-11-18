@@ -17,7 +17,7 @@ items:
   items:
   - name: Model leaderboards
     href: ../../concepts/model-benchmarks.md
-  - name: Compare models in leaderboards
+  - name: Compare models
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
