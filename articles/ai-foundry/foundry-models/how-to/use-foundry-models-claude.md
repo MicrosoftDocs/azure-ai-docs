@@ -94,7 +94,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     pip install -U "anthropic"
     ```
 
-1. **Run a basic code sample:** This sample does the following tasks:
+1. **Run a basic code sample:** This sample completes the following tasks:
 
     1. Creates a client with the Anthropic SDK, using Microsoft Entra ID authentication.
     1. Makes a basic call to the Messages API. The call is synchronous.
@@ -133,15 +133,15 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
-1. **Install dependencies:** Install the Anthropic SDK using pip (requires: Python >=3.8):
+1. **Install dependencies:** Install the Anthropic SDK by using pip (requires: Python >=3.8):
 
     ```bash
     pip install -U "anthropic"
     ```
 
-1. **Run a basic code sample:** This sample does the following tasks:
+1. **Run a basic code sample:** This sample completes the following tasks:
 
-    1. Creates a client with the Anthropic SDK, by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
+    1. Creates a client with the Anthropic SDK by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
     1. Makes a basic call to the Messages API. The call is synchronous.
 
     ```python
@@ -273,7 +273,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
 
 1. **Run a basic code sample.** This sample completes the following tasks:
 
-    1. Creates a client with the Anthropic SDK, by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
+    1. Creates a client with the Anthropic SDK by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
     1. Makes a basic call to the Messages API. The call is synchronous.
 
     ```javascript
@@ -329,7 +329,7 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
     set AZURE_AUTH_TOKEN = <your-entra-id-key>
     ```
 
-1. Run the following cURL command. For cURL, you use your deployment's target URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages`.
+1. Run the following cURL command. For cURL, use your deployment's target URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages`.
 
     ```sh
     curl -X POST https://<resource-name>.services.ai.azure.com/anthropic/v1/messages \
