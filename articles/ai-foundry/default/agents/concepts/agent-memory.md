@@ -17,56 +17,59 @@ ai-usage: ai-assisted
 > [!IMPORTANT]
 > Memory (preview) in Microsoft Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Memory in Microsoft Foundry Agent Service (preview) is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
+Memory in Microsoft Foundry Agent Service (preview) is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
-This article shows you how to create memory stores, add memories, search memories, and implement best practices for security and privacy. Memory stores act as persistent storage that define what types of information are relevant to each agent. You control access through the `scope` parameter, which ensures secure and isolated experiences by segmenting memory across users.
+This article explains how to create memory stores, add and search memories, and follow best practices for security and privacy. Memory stores act as persistent storage, defining which types of information are relevant to each agent. You control access using the `scope` parameter, which segments memory across users to ensure secure and isolated experiences.
 
 ## Common memory use cases
 
 The following examples illustrate how memory can enhance various types of agents.
 
-**Conversational Agent**
+**Conversational agent**
 
-- A customer support agent that remembers your name, previous issues and resolution, ticket numbers, and whether you prefer chat, email, or a call-back. This memory prevents the user from having to repeat themselves, ensuring continuity and increasing customer satisfaction.
-- A personal shopping assistant that remembers your size in specific brands, preferred color, past returns, and recent purchases to offer highly relevant suggestions immediately upon starting a new session and avoid recommending items you already own.
- 
-**Planning Agent**
-  
-- A travel agent that knows your flight preference (window/aisle), seat selection, food preference, non-stop vs. connecting flights, loyalty programs, and past destination feedback to build an optimized itinerary quickly.
-- An architectural design agent that remembers the local building codes, the material costs from past bids, and initial client feedback to iteratively refine design, ensuring the final plan is both feasible and meets all constraints. 
-  
-**Research Agent**
+- A customer support agent that remembers your name, previous issues and resolutions, ticket numbers, and your preferred contact method (chat, email, or call back). This memory lets you avoid repeating information, so conversations are more efficient and satisfying.
+- A personal shopping assistant that remembers your size in specific brands, preferred colors, past returns, and recent purchases. The agent can suggest relevant items as soon as you start a session and avoids recommending products you already own.
 
-- A medical research agent that remembers which compounds were previously tested (and failed), the key findings from different labs, and the complex relationships between various proteins to suggest a novel, untested research hypothesis.
+**Planning agent**
+
+- A travel agent that knows your flight preferences (window or aisle), seat selections, food choices, nonstop versus connecting flights, loyalty programs, and feedback from past trips. The agent uses this information to quickly build an optimized itinerary.
+- An architectural design agent that remembers local building codes, material costs from previous bids, and initial client feedback. The agent refines designs iteratively, ensuring the final plan is feasible and meets all requirements.
+
+**Research agent**
+
+- A medical research agent that remembers which compounds were previously tested and failed, key findings from different labs, and complex relationships between proteins. The agent uses this knowledge to suggest new, untested research hypotheses.
 
 ## Understand memory types
 
-Agent memory typically falls into two categories:
+Agent memory falls into two categories:
 
-- **Short-term memory** tracks the current session's conversation, maintaining immediate context for ongoing interactions. Agent orchestration frameworks like [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) typically manage this memory as part of the session context.
+- **Short-term memory** tracks the current session's conversation and maintains immediate context for ongoing interactions. Agent orchestration frameworks, like [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview), typically manage this memory as part of the session context.
 
-- **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
+- **Long-term memory** retains distilled knowledge across sessions. The model can recall and build on previous user interactions over time. Long-term memory requires a persistent system that extracts, consolidates, and manages knowledge.
 
-Microsoft Foundry memory is designed for long-term memory.  It extracts meaningful information from conversations and consolidates it into durable knowledge, and makes it available across sessions.
+Microsoft Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions.
 
 ## Understand scope
-The `scope` parameter defines how memory is partitioned. Each scope in the memory store maintains an isolated collection of memory items. For example, when you create a customer support agent with memory, you want each customer to have their own individual memory.
 
-As a developer, you decide the key used to store and retrieve these memory items - such as a UUID or a unique user ID in your system.
+The `scope` parameter controls how memory is partitioned. Each scope in the memory store keeps an isolated collection of memory items. For example, if you create a customer support agent with memory, each customer should have their own individual memory.
+
+As a developer, you choose the key used to store and retrieve memory items, such as a UUID or a unique user ID in your system.
 
 ## Customize memory
-To ensure an agent's memory is efficient, relevant, and privacy-respecting, you should actively customize what information is prioritized and stored. The `user_profile_details` parameter allows you to explicitly indicate the types of data that are critical to the agent's core function. 
 
-For a planning agent, this parameter might include setting `user_profile_details` to prioritize "flight carrier preference and dietary restrictions". This focused approach ensures that when new information is encountered during an interaction, the memory system knows which details to extract, summarize, and commit to long-term memory.
+Customize what information the agent stores to keep memory efficient, relevant, and privacy-respecting. Use the `user_profile_details` parameter to specify the types of data that are critical to the agent's function.
 
-You can also leverage the same parameter to inform the memory not to focus on certain type of data, ensuring the memory remains lean and compliant with privacy requirement. For example, you can set `user_profile_details` to contain "avoid irrelevant or sensitive data (age, financials, precise location, credentials etc.)"
+For example, set `user_profile_details` to prioritize "flight carrier preference and dietary restrictions" for a travel agent. This focused approach helps the memory system know which details to extract, summarize, and commit to long-term memory.
+
+You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data (age, financials, precise location, credentials, etc.)."
 
 ## Current limitations & quota
-- The memory feature works with Azure OpenAI models only.
-- Developer has to set explicit `scope` value; the parameter is not yet supported to be automatically populated from request header.
-- During preview phase, we recommend the following limits:
-  - Max scope per memory store: 100
-  - Max memories per scope = 10,000
+
+- Memory works only with Azure OpenAI models.
+- You must set the `scope` value explicitly. Populating the value from the user identity specified in the request header isn't supported yet.
+- During preview, the following limits apply:
+  - Maximum scopes per memory store: 100
+  - Maximum memories per scope: 10,000
   - Search memories: 1,000 requests per minute
   - Update memories: 1,000 requests per minute
 
@@ -143,11 +146,11 @@ curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
 
 ## Add memories to a memory store
 
-Add memories by providing conversation content to the memory store. The system performs preprocessing and postprocessing, including memory extraction and consolidation, to optimize the agent's memory. This long-running operation might take about one minute to complete.
+Add memories by providing conversation content to the memory store. The system preprocesses and postprocesses the data, including memory extraction and consolidation, to optimize the agent's memory. This long-running operation might take about one minute.
 
-You must decide how to segment memory across users by specifying the `scope` parameter. You can scope the memory to a specific end user, a team, or other identifier that fits your use case.
+Decide how to segment memory across users by specifying the `scope` parameter. You can scope the memory to a specific end user, a team, or another identifier.
 
-You can update a memory store with content from an array of conversation items across multiple turns. Or you can update after each conversation turn with only the messages from the current turn and specify the ID of the previous update operation to chain the updates together.
+You can update a memory store with content from multiple conversation turns, or update after each turn and chain updates using the previous update operation ID.
 
 # [Python](#tab/python)
 
@@ -231,7 +234,7 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 ## Search for memories in a memory store
 
-Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow down the search to the specified scope. 
+Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow the search.
 
 # [Python](#tab/python)
 
@@ -415,28 +418,29 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 
 ---
 
-## Pricing 
 
-In this public preview, the use of memory features is free. However, you're billed for use of the chat completion model and embedding model. 
+## Pricing
+
+In this public preview, memory features are free. You're only billed for use of the chat completion model and embedding model.
 
 ## Best practices
 
-When you implement memory in your agents, consider the following practices:
+When you implement memory in your agents, follow these practices:
 
-- **Implement per-user access controls**: Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When sharing `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
-- **Minimize and protect sensitive data**: Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, consider redacting or removing other content that may be used to trace back to an individual.
-- **Support privacy and compliance**: Implement mechanisms that provide users with transparency, including options to access and delete their data. All deletions should be recorded in a tamper-evident audit trail. Additionally, ensure the system adheres to local compliance requirements and regulatory standards.
-- **Segment data and isolate memory**: In multi-agent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
-- **Monitor memory usage**: Track token usage and memory operations to understand costs and optimize performance.
+- **Implement per-user access controls**. Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When sharing `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
+- **Minimize and protect sensitive data**. Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, redact or remove other content that could be used to trace back to an individual.
+- **Support privacy and compliance**. Provide users with transparency, including options to access and delete their data. Record all deletions in a tamper-evident audit trail. Ensure the system adheres to local compliance requirements and regulatory standards.
+- **Segment data and isolate memory**. In multi-agent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
+- **Monitor memory usage**. Track token usage and memory operations to understand costs and optimize performance.
 
 ## Security risks of prompt injection
- 
-When working with memory in Microsoft Foundry Agent Service, LLM will extract and consolidate memories based on conversations. It is important to protect memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory. These attacks can potentially influencing agent response and actions, leading to corrupted memory and security issues for your customers.
- 
-We strongly advise performing input validation to prevent prompt injection. You should consider the following actions:
- 
-- **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../../ai-services/content-safety/concepts/jailbreak-detection.md)**: Validate all prompts entering or leaving the memory system to prevent malicious content.
-- **Perform attack and adversarial testing**: Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
+
+When working with memory in Microsoft Foundry Agent Service, the LLM extracts and consolidates memories based on conversations. Protect memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing agent responses and actions.
+
+Perform input validation to prevent prompt injection. Consider these actions:
+
+- **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../../ai-services/content-safety/concepts/jailbreak-detection.md)**. Validate all prompts entering or leaving the memory system to prevent malicious content.
+- **Perform attack and adversarial testing**. Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
 
 ## Related content
 
