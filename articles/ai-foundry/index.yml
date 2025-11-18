@@ -44,7 +44,7 @@ productDirectory:
       links:
         - url: ./quickstarts/get-started-code.md?view=foundry
           text: Quickstart for Microsoft Foundry (new)
-        - url: ./how-to/develop/ai-template-get-started.md?view=foundry-classic
+        - url: ./quickstarts/get-started-code.md?view=foundry-classic
           text: Quickstart for Microsoft Foundry (classic)
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
