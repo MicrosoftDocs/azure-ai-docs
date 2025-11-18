@@ -13,7 +13,7 @@ Your application must be authenticated to access Microsoft Foundry resources. To
 For production, use a secure way of storing and accessing your credentials, such as a password-protected secret vault. For test, writing to an environment variable is standard practice, but keep in mind that environment variables are stored in clear text on the local machine.
 
 > [!TIP]
-> Don't include the key directly in your code, and never post it publicly. See the Azure AI services [security](../../security-features.md) article for more authentication options like [Azure Key Vault](../../use-key-vault.md). 
+> Don't include the key directly in your code, and never post it publicly. See the Foundry Tools [security](../../security-features.md) article for more authentication options like [Azure Key Vault](../../use-key-vault.md). 
 
 
 

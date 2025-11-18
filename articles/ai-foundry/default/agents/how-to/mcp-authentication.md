@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 11/14/2025
 author: aahill
 ms.author: aahi
 ---
@@ -86,7 +86,33 @@ There are usually two tokens involved in OAuth flow: refresh token and access to
 Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**. With managed OAuth, the OAuth App is managed by Microsoft or the MCP server publisher. With custom OAuth, you bring your own OAuth App. The OAuth App is a client application that registers with an OAuth provider (such as Microsoft or GitHub) and uses the flow above to get the necessary OAuth token. The benefit of custom OAuth is that you can customize the consent link content for your organization and application. For example, with custom OAuth, Contoso can ask users of its agent to give permission to Contoso to pass the user’s credentials to the MCP server. If you want to use custom OAuth, you will need to provide all required information, including a client ID, client secret, authorization URL, token URL, refresh URL, and suggested scopes.  
 
 > [!NOTE]
-> If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.  
+> If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.
+
+#### Bring your own Microsoft Entra app registration
+
+To use with Microsoft services and identity passthrough, you can bring your own [Microsoft Entra app registration](/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you can control what permissions you give to your Entra app. Let's use the Agents 365 MCP server as an example:
+1. Follow the [app registration guide](/entra/identity-platform/quickstart-register-app) to create a Microsoft Entra app and get the client ID and client secret. 
+
+1. Grant [scoped permissions](/entra/identity-platform/quickstart-configure-app-access-web-apis) to your Microsoft Entra app. For Agents 365 MCP servers, you can go to **Manage** > **API Permissions** and search for **Agent 365 Tools**. Then assign permissions you need and select them to grant admin consent for your tenant. Here is a list of what permissions you need for each MCP server:
+- Microsoft Outlook Mail MCP Server (Frontier): `McpServers.Mail.All`
+- Microsoft Outlook Calendar MCP Server (Frontier): `McpServers.Calendar.All`
+- Microsoft Teams MCP Server (Frontier): `McpServers.Teams.All`
+- Microsoft 365 User Profile MCP Server (Frontier): `McpServers.Me.All`
+- Microsoft SharePoint and OneDrive MCP Server (Frontier): `McpServers.OneDriveSharepoint.All`
+- Microsoft SharePoint Lists MCP Server (Frontier): `McpServers.SharepointLists.All`
+- Microsoft Word MCP Server (Frontier): `McpServers.Word.All`
+- Microsoft 365 Copilot (Search) MCP Server (Frontier): `McpServers.CopilotMCP.All`
+- Microsoft 365 Admin Center MCP Server (Frontier): `McpServers.M365Admin.All`
+- Microsoft Dataverse MCP Server (Frontier): `McpServers.Dataverse.All`
+
+1. Go back to [Foundry portal](https://ai.azure.com/build/tools) and configure your MCP server. Click to connect a tool, go to **custom** and then select **MCP**. Provide a name, MCP server endpoint and select **OAuth Identity Passthrough** for authentication:
+- The client ID and client secret that you got in the previous step.
+- token url: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+- auth url: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize`
+- refresh url: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
+- scopes: `11111111-aaaa-2222-bbbb-333333333333/{permission above}`
+
+1. Once you finish this process, you will get a [redirect URL](/entra/identity-platform/how-to-add-redirect-uri) that you'll need to add back to your Microsoft Entra app. 
 
 ### Unauthenticated 
 

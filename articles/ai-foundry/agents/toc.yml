@@ -45,7 +45,7 @@ items:
             - name: Overview
               href: how-to/tools/azure-functions.md
               displayName: azure functions, functions
-            - name: How to use Azure Functions
+            - name: How to use Azure Functions with queues
               href: how-to/tools/azure-functions-samples.md
         - name: Browser automation (preview)
           items:

@@ -1,6 +1,6 @@
 ---
-title: "How to use the data agents in Microsoft Fabric for the Microsoft AI Foundry Agent Service"
-titleSuffix: Azure AI Foundry
+title: "How to use the data agents in Microsoft Fabric for the Microsoft Foundry Agent Service"
+titleSuffix: Microsoft Foundry
 description: Learn how to perform data analytics in Microsoft Foundry with the Fabric data agent.
 author: aahill
 ms.author: aahi
@@ -15,29 +15,39 @@ ms.custom:
 
 # Use the Microsoft Fabric data agent (preview)
 
-Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
+> [!NOTE]
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
+
+Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Question/Answer systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
 You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
 
 ## Prerequisites
-* You have created and published a Fabric data agent endpoint
+> [!NOTE]
+> * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
+
+* You have created and published a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 
 * Developers and end users have at least `Azure AI User` RBAC role. 
 
 * Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
 
-* Your Fabric Data Agent and Azure AI Foundry Agent need to be in the same tenant.
+* Your Fabric Data Agent and Foundry Agent need to be in the same tenant.
 
 * The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
 
-* Your Azure AI Foundry Project endpoint.
+* Your Foundry Project endpoint.
 
 * The name of your Microsoft Fabric connection name. 
 
 ## Code example
 
 > [!NOTE]
-> To run this code you will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> - To run this code you will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
 ```python
 import os
@@ -90,17 +100,10 @@ with project_client:
     print(f"Response output: {response.output_text}")
 ```
 
-
-## Setup  
-
 > [!NOTE]
-> * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * Make sure you have **published** the [data agent](https://go.microsoft.com/fwlink/?linkid=2312910) in Fabric.
+> * The model you selected in Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
 > * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
-
-- Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
-
-    > [!NOTE]
-    > * Make sure you have **published** the data agent in Fabric.
 
 ## Next steps
 

@@ -6,7 +6,7 @@ ms.topic: include
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-Assigning deployment resources programmatically requires Microsoft Entra authentication. Microsoft Entra ID is used to confirm you have access to the resources you're interested in assigning to your project for multi-region deployment. To programmatically use Microsoft Entra authentication when making REST API calls, learn more from the [Azure AI services documentation](../../../../../authentication.md?source=docs&tabs=powershell&tryIt=true#authenticate-with-azure-active-directory).
+Assigning deployment resources programmatically requires Microsoft Entra authentication. Microsoft Entra ID is used to confirm you have access to the resources you're interested in assigning to your project for multi-region deployment. To programmatically use Microsoft Entra authentication when making REST API calls, learn more from the [Foundry Tools documentation](../../../../../authentication.md?source=docs&tabs=powershell&tryIt=true#authenticate-with-azure-active-directory).
 
 ### Assign resource 
 

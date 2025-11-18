@@ -3,8 +3,12 @@ items:
   href: ../../agents/concepts/tool-catalog.md
 - name: Create a private tool catalog (preview)
   href: ../../agents/how-to/private-tool-catalog.md
+- name: Tool best practices
+  href: ../../agents/concepts/tool-best-practice.md
+- name: Tool governance
+  href: ../../agents/how-to/tools/governance.md
 - name: Browser automation (preview)
-  href: ../../agents/how-to/browser-automation.md
+  href: ../../agents/how-to/tools/browser-automation.md
 - name: Memory (preview)
   href: ../../agents/concepts/agent-memory.md
 - name: Agent2Agent (A2A) tool (preview)
@@ -35,13 +39,15 @@ items:
   href: ../../agents/how-to/tools/bing-tools.md
 - name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
+- name: OpenAPI tool
+  href: ../../agents/how-to/tools/openapi.md
 - name: Model Context Protocol (MCP)
   href: ../../agents/how-to/tools/model-context-protocol.md
 - name: MCP authentication
   href: ../../agents/how-to/mcp-authentication.md
 - name: Build your own MCP server
   href: ../../mcp/build-your-own-mcp-server.md
-- name: Knowledge (preview)
+- name: Foundry IQ (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
 - name: SharePoint (preview)
   href: ../../agents/how-to/tools/sharepoint.md 
