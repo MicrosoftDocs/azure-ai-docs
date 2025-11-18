@@ -1,5 +1,5 @@
 ---
-title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the Python SDK"
+title: "Customize a model with Azure OpenAI in Microsoft Foundry Models and the Python SDK"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the Python SDK.
 author: mrbullwinkle
@@ -21,7 +21,7 @@ ms.custom:
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - The OpenAI Python library.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
+- If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
 
@@ -113,7 +113,7 @@ client = OpenAI(
   base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
-# Upload the training and validation dataset files to Azure AI Foundry with the SDK.
+# Upload the training and validation dataset files to Microsoft Foundry with the SDK.
 training_file_name = 'training_set.jsonl'
 validation_file_name = 'validation_set.jsonl'
 
@@ -137,7 +137,7 @@ response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14", # Enter base model name.
-    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Azure AI Foundry the model cannot contain dot/period characters.
+    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Microsoft Foundry the model cannot contain dot/period characters.
     seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
     extra_body={ "trainingType": "GlobalStandard" } # Change this to your preferred training type. Other options are `Standard` and `Developer`.
 )
@@ -257,7 +257,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Azure AI Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Microsoft Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that can indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
@@ -344,7 +344,7 @@ print(response.model_dump_json(indent=2))
 
 We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
-If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Azure AI Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
+If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Microsoft Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -356,14 +356,14 @@ When you're done with your customized model, you can delete the deployment and m
 
 You can use various methods to delete the deployment for your customized model:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
+- [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
 - The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
 Similarly, you can use various methods to delete your customized model:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
+- [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
 
 > [!NOTE]
 > You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
@@ -372,7 +372,7 @@ Similarly, you can use various methods to delete your customized model:
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
+- [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
 - The [REST APIs](/rest/api/azureopenai/files/delete)
 - The Python SDK
 
