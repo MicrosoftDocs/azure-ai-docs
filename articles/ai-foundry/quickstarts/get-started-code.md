@@ -80,7 +80,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 1. Install these packages:
 
     ```
-    pip install openai azure-ai-projects azure-identity
+    pip install openai azure-identity azure-ai-projects==1.0.0
     ```
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
@@ -196,6 +196,8 @@ Store the endpoint as an environment variable.  Also set these values for use in
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+
 # [Python](#tab/python)
 
 Substitute your endpoint for the `endpoint` in this code:
@@ -244,6 +246,8 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 ::: moniker range="foundry-classic"
 
 Create an agent and chat with it.
+
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
 
 # [Python](#tab/python)
 
@@ -296,6 +300,8 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 Agents have powerful capabilities through the use of tools. Let's add a file search tool that enables us to do knowledge retrieval.
 
 * Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/data/product_info_1.md) to give to your agent.
+
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
 
 # [Python](#tab/python)
 
