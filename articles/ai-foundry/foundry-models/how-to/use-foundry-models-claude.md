@@ -48,14 +48,14 @@ Claude Opus 4.1 is an industry leader for coding. It delivers sustained performa
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../../how-to/create-projects.md) in one of the supported regions: **East US2** and **Sweden Central**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) creain one of the supported regions: **East US2** and **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](configure-marketplace.md).
 
 ## Deploy Claude models
 
-Claude models in Foundry are available for [global standard deployment](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/deployment-types#global-standard). To deploy a Claude model, follow the instructions in [Add and configure models to Foundry Models](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/create-model-deployments).
+Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). To deploy a Claude model, follow the instructions in [Add and configure models to Foundry Models](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/create-model-deployments).
 
-After deployment, you can use the [Foundry playground](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/concept-playgrounds) to interactively test the model.
+After deployment, you can use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model.
 
 ## Work with Claude models
 
@@ -307,7 +307,7 @@ For a list of supported runtimes, see [Requirements to use Anthropic TypeScript 
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` with Microsoft Entra ID authentication.
 
-If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://cognitiveservices.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [configure authentication with Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest&pivots=programming-language-cli#use-microsoft-entra-id-in-your-code).
+If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://cognitiveservices.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [configure authentication with Microsoft Entra ID](https://learn.microsoft.com/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest&pivots=programming-language-cli#use-microsoft-entra-id-in-your-code).
 
 1. Export your Microsoft Entra ID token to an environment variable:
 
@@ -409,7 +409,7 @@ Claude models in Foundry have the following rate limits:
 | Claude Haiku 4.5 | 450,000 | 1,000 |
 | Claude Opus 4.1 | 450,000 | 1,000 |
 
-To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/quotas-limits#request-increases-to-the-default-limits).
+To increase your quota beyond the default limits, submit a request through the [quota increase request form](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Rate limit best practices
 
@@ -424,7 +424,7 @@ To optimize your usage and avoid rate limiting:
 
 When using Claude models in Foundry, consider these responsible AI practices:
 
-- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see [Configure content filtering for Foundry Models](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/configure-content-filters).
+- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see [Configure content filtering for Foundry Models](configure-content-filters.md).
 
 - Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/acceptable-use). Also, see details of safety evaluations for [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
 
@@ -456,7 +456,7 @@ Choose the appropriate Claude model based on your specific requirements:
 
 ## Related content
 
-- [Monitor model usage and costs](../how-to/costs-plan-manage.md)
-- [Explore the Foundry model catalog](../concepts/model-catalog.md)
-- [Responsible AI for Foundry](../responsible-ai/overview.md)
+- [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
+- [Responsible AI for Foundry](../../responsible-ai/openai/overview.md)
 - [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
+- [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)

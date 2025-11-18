@@ -28,7 +28,7 @@ zone_pivot_groups: azure-ai-model-categories
 This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
 
-Depending on the [kind of project](../../what-is-azure-ai-foundry.md#work-in-an-azure-ai-foundry-project) you use in Azure AI Foundry, you see a different selection of models.
+Depending on the [kind of project](../../what-is-azure-ai-foundry.md#work-in-a-microsoft-foundry-project) you use in Azure AI Foundry, you see a different selection of models.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
@@ -40,7 +40,7 @@ To learn more about attributes of Foundry Models from partners and community, se
 
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
-To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude-classic.md). 
+To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
 
 Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
 
