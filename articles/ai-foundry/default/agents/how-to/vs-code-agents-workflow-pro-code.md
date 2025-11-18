@@ -358,5 +358,3 @@ To deploy the hosted agent:
 ::: zone-end
 
 For more information about publishing hosted agents, see [Publish and share agents in Microsoft Foundry](./publish-agent.md).
-
-## Next steps

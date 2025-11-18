@@ -83,5 +83,3 @@ To customize your YAML-based workflows, convert it to Agent Framework code using
 1. Review and modify the generated code as needed to fit your requirements.
 1. Right-click the generated code file and select **Deploy to Foundry** to deploy the code back to your Foundry project.
 1. In Foundry, navigate to your project and verify that the code has been successfully deployed.
-
-## Next steps
