@@ -5,7 +5,7 @@ description: Learn how to deploy protected AI models from partners and community
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 11/14/2025
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -165,6 +165,7 @@ Some special things to note about NIMs are:
 | [Cosmos-reason1-NIM-microservice](https://ai.azure.com/explore/models/Cosmos-reason1-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Task-completion-verification, Action-affordance, Next-plausible-action-prediction |
 | [Evo2-40b-NIM-microservice](https://ai.azure.com/explore/models/Evo2-40b-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Genomics |
 | [Boltz2-NIM-microservice](https://ai.azure.com/explore/models/Boltz2-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Structure-Prediction |
+| [Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1.5-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Summarization |
 
 #### Consume NVIDIA NIM deployments
 
@@ -198,7 +199,11 @@ NVIDIA ensures the security and reliability of NVIDIA NIM container images throu
 
 You can refer to the _last updated time_ for the NIM on the right pane of the model's overview page. You can redeploy to consume the latest version of NIM from NVIDIA on Azure AI Foundry. 
 
+### Voyage AI
 
+| Model | Task |
+|--|--|
+| [voyage-3.5-embedding-model](https://ai.azure.com/explore/models/voyage-3.5-embedding-model/version/1/registry/azureml-voyage/?cid=learnDocs) | Embeddings |
 
 ## Related content
 

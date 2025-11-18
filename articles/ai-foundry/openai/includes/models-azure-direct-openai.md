@@ -25,6 +25,35 @@ ms.topic: include
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
 
+## GPT-5.1
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `gpt-5.1` | East US2 & Sweden Central (Global Standard & DataZone Standard)  |
+| `gpt-5.1-chat` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.1-codex` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.1-codex-mini` | East US2 & Sweden Central (Global Standard) |
+
+
+- **[Registration is required for access to gpt-5.1, and gpt-5.1-codex](https://aka.ms/oai/gpt5access).**
+
+Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.1` (2025-11-13) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024  |
+| `gpt-5.1-chat` (2025-11-13) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | September 30, 2024 |
+| `gpt-5.1-codex` (2025-11-13) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.  <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
+| `gpt-5.1-codex-mini` (2025-11-13) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
+
+
+> [!IMPORTANT]
+> - `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur.
+>
+> - `gpt-5.1-chat` adds built-in reasoning capabilities. Like other [reasoning models](../how-to/reasoning.md) it does not support parameters like `temperature`. If you upgrade from using `gpt-5-chat` (which is not a reasoning model) to `gpt-5.1-chat` make sure you remove any custom parameters like `temperature` from your code which are not supported by reasoning models.
+
 ## GPT-5
 
 ### Region availability
@@ -209,27 +238,6 @@ To learn more about advanced o-series models, see [Getting started with reasonin
 ## GPT-4o and GPT-4 Turbo
 
 GPT-4o integrates text and images in a single model, which enables it to handle multiple data types simultaneously. This multimodal approach enhances accuracy and responsiveness in human-computer interactions. GPT-4o matches GPT-4 Turbo in English text and coding tasks while offering superior performance in non-English language tasks and vision tasks, setting new benchmarks for AI capabilities.
-
-### How do I access the GPT-4o and GPT-4o mini models?
-
-GPT-4o and GPT-4o mini are available for Standard and Global Standard model deployment.
-
-You need to [create](../how-to/create-resource.md) or use an existing resource in a [supported Standard](#gpt-4-and-gpt-4-turbo-model-availability) or [Global Standard](#global-standard-model-availability) region where the model is available.
-
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o models. If you're performing a programmatic deployment, the model names are:
-
-- `gpt-4o` *version* `2024-11-20`
-- `gpt-4o` *version* `2024-08-06`
-- `gpt-4o` *version* `2024-05-13`
-- `gpt-4o-mini` *version* `2024-07-18`
-
-### GPT-4 Turbo
-
-GPT-4 Turbo is a large multimodal model (accepting text or image inputs and generating text) that can solve difficult problems with greater accuracy than any of OpenAI's previous models. Like GPT-3.5 Turbo, and older GPT-4 models, GPT-4 Turbo is optimized for chat and works well for traditional completions tasks.
-
-## GPT-4
-
-GPT-4 is the predecessor to GPT-4 Turbo. Both the GPT-4 and GPT-4 Turbo models have a base model name of `gpt-4`. You can distinguish between the GPT-4 and Turbo models by examining the model version.
 
 ## GPT-4 and GPT-4 Turbo models
 
@@ -457,10 +465,6 @@ This table doesn't include fine-tuning regional availability information. Consul
 > `o1-mini` is currently available to all customers for Global Standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
-
-### GPT-4 and GPT-4 Turbo model availability
-
-### GPT-3.5 models
 
 To learn about how Azure OpenAI handles model version upgrades, see [Model versions](../concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments, see [Working with models](../how-to/working-with-models.md).
 

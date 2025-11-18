@@ -5,7 +5,7 @@ description: Learn about Azure AI Foundry Models sold directly by Azure, their c
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 09/05/2025
+ms.date: 11/13/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: conceptual
