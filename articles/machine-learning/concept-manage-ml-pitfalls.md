@@ -32,7 +32,7 @@ Consider the following trained models and their corresponding train and test acc
 
 - Model **A**: The test for this model produces slightly less accuracy than the model training. There's a common misconception that if test accuracy on unseen data is lower than training accuracy, the model is overfitted. However, test accuracy should always be less than training accuracy. The distinction between overfitting versus appropriately fitting data comes down to measuring _how much_ less is the accuracy.
 
-- Model **A**** versus model **B**: Model **A** is a better model because it has higher test accuracy. Although the test accuracy is slightly lower at 95%, it's not a significant difference that suggests overfitting is present. Model **B** isn't preferred because the train and test accuracies are similar.
+- Model **A** versus model **B**: Model **A** is a better model because it has higher test accuracy. Although the test accuracy is slightly lower at 95%, it's not a significant difference that suggests overfitting is present. Model **B** isn't preferred because the train and test accuracies are similar.
 
 - Model **C**: This model represents a clear case of overfitting. The training accuracy is high and the test accuracy is low. This distinction is subjective, but comes from knowledge of your problem and data, and what are the acceptable magnitudes of error.
 

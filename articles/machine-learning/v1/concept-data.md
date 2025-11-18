@@ -69,7 +69,7 @@ You can register these supported Azure cloud-based storage services as datastore
 >[!TIP]
 > You can create datastores with credential-based authentication to access storage services, such as a service principal or a shared access signature (SAS) token. Users with *Reader* access to the workspace can access these credentials.
 >
-> If this concern, see [create a datastore that uses identity-based data access](../how-to-identity-based-data-access.md) for more information about connections to storage services.
+> If this is a concern, see [create a datastore that uses identity-based data access](../how-to-identity-based-data-access.md) for more information about connections to storage services.
 
 ## Reference data in storage with datasets
 
