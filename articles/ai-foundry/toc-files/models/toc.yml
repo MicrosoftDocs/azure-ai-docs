@@ -76,6 +76,8 @@ items:
       href: ../../foundry-models/how-to/use-image-embeddings.md
   - name: Work with image models
     href: ../../how-to/use-image-models.md
+  - name: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
   - name: Develop with LangChain and LangGraph
     href: ../../how-to/develop/langchain.md
   - name: Develop with Llama-Index

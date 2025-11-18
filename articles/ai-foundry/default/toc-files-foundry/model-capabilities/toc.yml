@@ -1,6 +1,8 @@
 items:
   - name: Azure OpenAI in Foundry Models
     href: ../../../openai/supported-languages.md
+  - name: Claude in Foundry Models
+    href: ../../../foundry-models/how-to/use-foundry-models-claude.md
   - name: Deployment types
     href: ../../../foundry-models/concepts/deployment-types.md
   - name: Priority processing

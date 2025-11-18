@@ -336,16 +336,18 @@ Example of explicit recursion:
     ]
 }
 ```
-
 > [!NOTE]
 > Currently structured outputs are not supported with:
->
 > - [Bring your own data](../concepts/use-your-data.md) scenarios.
-> - [Assistants](../how-to/assistant.md) or [Azure AI Agents Service](../../agents/overview.md).
+> - [Assistants](../how-to/assistant.md) or [Foundry Agents Service](../../agents/overview.md).
 > - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
 
 ## Supported models
 
+- `gpt-5.1-codex` version: `2025-11-13`
+- `gpt-5.1-codex mini` version: `2025-11-13`
+- `gpt-5.1` version: `2025-11-13`
+- `gpt-5.1-chat` version: `2025-11-13`
 - `gpt-5-pro` version `2025-10-06`
 - `gpt-5-codex` version `2025-09-11`
 - `gpt-5` version `2025-08-07`
@@ -363,6 +365,7 @@ Example of explicit recursion:
 - `gpt-4.1-mini` version: `2025-04-14`
 - `o4-mini` version: `2025-04-16`
 - `o3` version: `2025-04-16`
+
 
 ## API support
 

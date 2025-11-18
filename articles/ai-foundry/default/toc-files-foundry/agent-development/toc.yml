@@ -5,8 +5,6 @@ items:
   href: ../../../agents/faq.yml
 - name: Agent identity
   href: ../../agents/concepts/agent-identity.md
-- name: Voice live agents
-  href: ../../../../ai-services/speech-service/voice-live-agents-quickstart.md?pivots=ai-foundry-portal&toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Publish and share agents
   href: ../../agents/how-to/publish-agent.md
 - name: Model and region support
@@ -17,8 +15,12 @@ items:
   href: ../../agents/concepts/development-lifecycle.md
 - name: Agent runtime components
   href: ../../agents/concepts/runtime-components.md
+- name: Hosted agents
+  href: ../../agents/concepts/hosted-agents.md
 - name: Use the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents.md
+- name: Publish to Microsoft 365 Copilot and Teams
+  href: ../../agents/how-to/publish-copilot.md
 - name: Use MCP Tools in the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents-mcp.md
 - name: Microsoft Foundry MCP Server (preview)
@@ -67,3 +69,5 @@ items:
       href: ../../observability/how-to/trace-agent-framework.md
 - name: Create a workflow
   href: ../../agents/concepts/workflow.md
+- name: Agent 365
+  href: ../../agents/how-to/agent-365.md
