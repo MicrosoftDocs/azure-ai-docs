@@ -159,7 +159,7 @@ Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to c
 
 To use a variable in a Power Fx formula, you must add a prefix to its name to indicate the variable's scope:
 
-- For [system variables](/microsoft-copilot-studio/authoring-variables-about?tabs=webApp), use `System.`
+- For [system variables](#system-variables), use `System.`
 - For local variables, use `Local.`
 
 ### Use literal values in a formula
@@ -208,6 +208,28 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 :::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instatiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
 
+### System variables
+
+| Name | Description |
+|------|-------------|
+| Activity | Information about the current activity |
+| Bot | Information about the agent |
+| Conversation | Information about the current conversation |
+| Conversation.Id | The unique ID of the current conversation |
+| Conversation.LocalTimeZone | Name of the time zone to be used by the user in the IANA Time Zone database format |
+| Conversation.LocalTimeZoneOffset | The time offset from UTC for the current local time zone |
+| Conversation.InTestMode | Boolean flag that represents if the conversation is happening in test canvas |
+| ConversationId | The unique ID of the current conversation |
+| InternalId | Internal identifier for the system |
+| LastMessage | Information about the previous message sent by the user |
+| LastMessage.Id | The ID of the previous message sent by the user |
+| LastMessage.Text | The previous message sent by the user |
+| LastMessageId | The ID of the previous message sent by the user |
+| LastMessageText | The previous message sent by the user |
+| Recognizer | Information about intent recognition and triggering message |
+| User | Information about the user currently talking to the agent |
+| User.Language | Used to set the user language locale per conversation |
+| UserLanguage | Used to set the user language locale per conversation |
 
 ## Next Steps
 * [Microsoft Foundry Agents FAQ](../../../agents/faq.yml)
