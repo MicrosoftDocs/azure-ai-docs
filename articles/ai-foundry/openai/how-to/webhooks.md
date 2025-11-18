@@ -499,17 +499,20 @@ Webhook-Signature: v1,Sample Signature
 
 The following event types are available for webhook registration:
 
-| Category        | Event Type               | Description                     |
-| --------------- | ------------------------ | ------------------------------- |
-| Response Events | `response.completed`     | Response successfully completed |
-|                 | `response.failed`        | Response failed                 |
-|                 | `response.cancelled`     | Response canceled              |
-|                 | `response.incomplete`    | Response incomplete             |
-| Batch Events    | `batch.completed`        | Batch successfully completed    |
-|                 | `batch.failed`           | Batch failed                    |
-|                 | `batch.cancelled`        | Batch canceled                 |
-|                 | `batch.expired`          | Batch expired                   |
-| Real-time Events | `realtime.call.incoming` | Incoming call event             |
+| Category          | Event Type               | Description                     |
+| ----------------- | ------------------------ | ------------------------------- |
+| Response Events   | `response.completed`     | Response successfully completed |
+|                   | `response.failed`        | Response failed                 |
+|                   | `response.cancelled`     | Response canceled               |
+|                   | `response.incomplete`    | Response incomplete             |
+| Batch Events      | `batch.completed`        | Batch successfully completed    |
+|                   | `batch.failed`           | Batch failed                    |
+|                   | `batch.cancelled`        | Batch canceled                  |
+|                   | `batch.expired`          | Batch expired                   |
+| Fine-tuning Events| `fine_tuning.job.succeeded` | Fine-tuning job succeeded    |
+|                   | `fine_tuning.job.failed`    | Fine-tuning job failed       |
+|                   | `fine_tuning.job.cancelled` | Fine-tuning job canceled     |
+| Real-time Events  | `realtime.call.incoming` | Incoming call event             |
 
 ### Example payload
 
