@@ -215,7 +215,7 @@ The authorization will happen between the Grounding with Bing Search or Groundin
 
 Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
 
-Developers and end users don't have access to raw content returned from Grounding with Bing Search. The model response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. You can retrieve the **model response** by accessing the data in the thread that was created. These two *references* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-search-results) section for details.
+Developers and end users don't have access to raw content returned from Grounding with Bing Search. The model response, however, includes citations with links to the websites used to generate the response, and a link to the Bing query used for the search. You can retrieve the **model response** by accessing the data in the conversation that was created. These two *references* must be retained and displayed in the exact form provided by Microsoft, as per Grounding with Bing Search's [Use and Display Requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise#use-and-display-requirements). See the [how to display Grounding with Bing Search results](#how-to-display-search-results) section for details.
 
 ## How to display search results
 
