@@ -26,9 +26,9 @@ Variations in API configurations and application design might affect completions
 
 ## Guardrails for agents vs models
 
-An individual Foundry guardrail can be applied to one or many models and one or many agents in a project. Some controls within a guardrail may not be relevant to models because the risk, intervention point, or action is specific to agentic behavior or tool calls. Those controls are not run on models using that guardrail.
+An individual Foundry guardrail can be applied to one or many models and one or many agents in a project. Some controls within a guardrail may not be relevant to models because the risk, intervention point, or action is specific to agentic behavior or tool calls. Those controls aren't run on models using that guardrail.
 
-Some risks in Preview are not yet supported for agents. When controls involving that risks are created in a guardrail, and the guardrail is applied to an agent, that control will not take effect in that agent. It is still applied to models using the same guardrail.
+Some risks in Preview aren't yet supported for agents. When controls involving that risks are created in a guardrail, and the guardrail is applied to an agent, that control won't take effect in that agent. It's still applied to models using the same guardrail.
 
 ### Risk applicability
 
@@ -71,7 +71,7 @@ The following table summarizes which actions are applicable to models and agents
 ### Guardrail inheritance and override
 
 > [!IMPORTANT]
-> Risks are detected in an agent based on the guardrail it is assigned, not the guardrail of its underlying model. The agentic guardrail fully overrides the model's guardrail.
+> Risks are detected in an agent based on the guardrail it's assigned, not the guardrail of its underlying model. The agentic guardrail fully overrides the model's guardrail.
 
 **Example scenario:**
 - A model deployment has a control with Violence detection set to **High** for user input and output
@@ -87,7 +87,7 @@ The following table summarizes which actions are applicable to models and agents
 
 By default, models are assigned the **Microsoft.DefaultV2** guardrail. For more information on what is included in the Microsoft Default, see Default safety policy.
 
-Unless another custom guardrail is specified upon creation, agents are assigned by default the guardrails of the model deployment being used by that agent. In other words, if no custom guardrails are specified for an agent, and that agent leverages a GPT-4o mini deployment using a guardrail named "MyCustomGuardrails," the agent will also use "MyCustomGuardrails" until another guardrail is specifically assigned to the agent. An agent will only inherit the Microsoft Default guardrails if its model is using that guardrail or of it is specifically assigned the default manually.
+Unless another custom guardrail is specified upon creation, agents are assigned by default the guardrails of the model deployment being used by that agent. In other words, if no custom guardrails are specified for an agent, and that agent leverages a GPT-4o mini deployment using a guardrail named "MyCustomGuardrails," the agent will also use "MyCustomGuardrails" until another guardrail is specifically assigned to the agent. An agent will only inherit the Microsoft Default guardrails if its model is using that guardrail or if it's specifically assigned the default manually.
 
 
 ## Next steps
