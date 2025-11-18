@@ -26,7 +26,9 @@ The Text transliteration API maps your source language script or alphabet to a t
 
 **Send a `POST` request to**:
 
-```bash
+***Windows***
+
+```cmd
 curl -X POST 'https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn' ^
   --header 'Content-Type: application/json' ^
   --header 'Ocp-Apim-Subscription-Key: <your-resource-key>' ^
@@ -63,7 +65,7 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/transliterate?api-ve
 
 ***Windows***
 
-```bash
+```cmd
 curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn&language=ru' ^
   --header 'content-type: application/json' ^
   --header 'ocp-apim-subscription-key: <your-resource-key>' ^
