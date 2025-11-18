@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Build an image classification model with the Custom Vision portal"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Custom Vision web portal to create, train, and test an image classification model.
 author: PatrickFarley
 manager: nitinme

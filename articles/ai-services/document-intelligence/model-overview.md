@@ -1,12 +1,12 @@
 ---
 title: Document Processing Models - Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Document processing models for OCR, document layout, invoices, identity, custom models, and more to extract text, structure, and key/value pairs.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 03/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: sfi-image-nochange
 ---
@@ -37,7 +37,7 @@ ms.custom: sfi-image-nochange
 ::: moniker-end
 
 ::: moniker range=">=doc-intel-2.1.0"
- Azure AI Document Intelligence supports various models that you can use to add intelligent document processing to your apps and flows. You can use a prebuilt domain-specific model or train a custom model tailored to your specific business needs and use cases. You can use Document Intelligence with the REST API or Python, C#, Java, and JavaScript client libraries.
+ Azure Document Intelligence in Foundry Tools supports various models that you can use to add intelligent document processing to your apps and flows. You can use a prebuilt domain-specific model or train a custom model tailored to your specific business needs and use cases. You can use Document Intelligence with the REST API or Python, C#, Java, and JavaScript client libraries.
 ::: moniker-end
 
 > [!NOTE]

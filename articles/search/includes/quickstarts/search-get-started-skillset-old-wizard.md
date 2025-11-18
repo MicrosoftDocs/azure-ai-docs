@@ -25,7 +25,7 @@ Before you run the wizard, you create a few resources and upload sample files.
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. Therefore, you don't need to create an Azure AI services multi-service resource.
+> This quickstart uses [Foundry Tools](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is small, Foundry Tools is tapped behind the scenes for free processing up to 20 transactions. Therefore, you don't need to create a Microsoft Foundry resource.
 
 ## Prepare sample data
 
@@ -83,11 +83,11 @@ To add the skills:
 
 1. Expand the **Attach Cognitive Services** section.
 
-1. Select **Free (Limited enrichments)** to use a free Azure AI services multi-service resource.
+1. Select **Free (Limited enrichments)** to use a free Foundry resource.
 
-   :::image type="content" source="../../media/search-get-started-skillset/cog-search-attach.png" alt-text="Screenshot of the Attach Azure AI services tab." border="true" lightbox="../../media/search-get-started-skillset/cog-search-attach.png":::
+   :::image type="content" source="../../media/search-get-started-skillset/cog-search-attach.png" alt-text="Screenshot of the Attach Foundry tab." border="true" lightbox="../../media/search-get-started-skillset/cog-search-attach.png":::
 
-   The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient.
+   The sample data consists of 14 files, so the free allotment of 20 transactions on Foundry is sufficient.
 
 1. Expand the **Add enrichments** section.
 

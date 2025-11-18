@@ -31,7 +31,7 @@ Depending on your setup and scenario, RAG workflows in Azure Machine Learning ma
 
 ## Prerequisites
 * An Azure subscription.
-* Access to Azure OpenAI in Azure AI Foundry Models.
+* Access to Azure OpenAI in Microsoft Foundry Models.
 * A secure Azure Machine Learning workspace: either with Workspace Managed Virtual Network or "Bring Your Own" Virtual Network setup.
 * Prompt flows enabled in your Azure Machine Learning workspace. You can enable prompt flows by turning on Build AI solutions with Prompt flow on the Manage preview features panel.
 

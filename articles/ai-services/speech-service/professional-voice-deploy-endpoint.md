@@ -1,6 +1,6 @@
 ---
 title: Deploy your professional voice model as an endpoint - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to deploy your professional voice model as an endpoint. 
 author: PatrickFarley
 manager: nitinme

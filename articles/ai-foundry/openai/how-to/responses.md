@@ -12,6 +12,7 @@ ms.topic: include
 ms.custom:
   - references_regions
   - build-2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure OpenAI Responses API

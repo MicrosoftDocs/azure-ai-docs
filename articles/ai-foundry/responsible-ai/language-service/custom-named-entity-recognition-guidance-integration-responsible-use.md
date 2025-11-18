@@ -1,6 +1,6 @@
 ---
 title: Guidance for integration and responsible use with custom NER
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for integration and responsible use with custom named entity recognition
 author: laujan
 ms.author: lajanuar

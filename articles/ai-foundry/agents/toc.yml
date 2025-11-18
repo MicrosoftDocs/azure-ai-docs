@@ -45,7 +45,7 @@ items:
             - name: Overview
               href: how-to/tools/azure-functions.md
               displayName: azure functions, functions
-            - name: How to use Azure Functions
+            - name: How to use Azure Functions with queues
               href: how-to/tools/azure-functions-samples.md
         - name: Browser automation (preview)
           items:
@@ -55,12 +55,7 @@ items:
           - name: How to use browser automation
             href: how-to/tools/browser-automation-samples.md
         - name: Code interpreter
-          items:
-            - name: Overview
-              href: how-to/tools/code-interpreter.md
-              displayName: code interpreter
-            - name: How to use code interpreter
-              href: how-to/tools/code-interpreter-samples.md
+          href: how-to/tools/code-interpreter.md
         - name: Computer Use (preview)
           items:
             - name: Overview
@@ -160,5 +155,5 @@ items:
   items:
     - name: Transparency note
       href: ../../ai-foundry/responsible-ai/agents/transparency-note.md
-    - name: Data, privacy, and security For Azure AI Foundry Agent Service
+    - name: Data, privacy, and security For Microsoft Foundry Agent Service
       href: ../../ai-foundry/responsible-ai/agents/data-privacy-security.md

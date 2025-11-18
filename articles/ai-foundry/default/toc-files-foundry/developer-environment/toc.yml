@@ -1,0 +1,9 @@
+items:
+  - name: Playgrounds and quick evaluation
+    href: ../../../concepts/concept-playgrounds.md
+  - name: Set up your developer environment
+    href: ../../../how-to/develop/install-cli-sdk.md
+  - name: Start with an AI template
+    href: ../../../how-to/develop/ai-template-get-started.md
+  - name: Work in VS Code
+    href: ../../../how-to/develop/get-started-projects-vs-code.md

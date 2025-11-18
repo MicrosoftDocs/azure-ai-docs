@@ -167,7 +167,7 @@ You can skip this step if you're using built-in roles or other pre-made custom r
     > - user access administrator
     > - a custom role that allows `Microsoft.Authorization/roleAssignments/write` permission (to assign custom roles) and `Microsoft.Authorization/roleAssignments/read` (to view role assignments).
     >
-    > For more information on the different Azure roles and their permissions, see [Azure roles](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) and [Assigning Azure roles using Azure Portal](/azure/role-based-access-control/role-assignments-portal).
+    > For more information on the different Azure roles and their permissions, see [Azure roles](/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) and [Assigning Azure roles using Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 1. Confirm the role assignment:
 

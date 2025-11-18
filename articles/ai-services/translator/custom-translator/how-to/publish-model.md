@@ -1,17 +1,18 @@
 ---
-title: Publish an Azure AI Custom Translator model
-titleSuffix: Azure AI services
-description: This article explains how to publish an Azure AI Custom Translator model.
+title: Publish a Custom Translator model
+titleSuffix: Foundry Tools
+description: This article explains how to publish a Custom Translator model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Publish an Azure AI Custom Translator model
 
-Publishing your Custom Translator model makes it available for use with the Azure AI Translator API. A project might have one or many successfully trained models. You can only publish one model per project; however, you can publish  a model to one or multiple regions depending on your needs. For more information, see [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#pricing).
+# Publish a Custom Translator model
+
+Publishing your Custom Translator model makes it available for use with the Azure Translator API. A project might have one or many successfully trained models. You can only publish one model per project; however, you can publish  a model to one or multiple regions depending on your needs. For more information, see [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#pricing).
 
 ## Publish your trained model
 
@@ -40,4 +41,4 @@ To replace a published model, you can exchange the published model with a differ
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to translate with Azure AI Custom Translator models](../quickstart.md)
+> [Learn how to translate with Custom Translator models](../quickstart.md)

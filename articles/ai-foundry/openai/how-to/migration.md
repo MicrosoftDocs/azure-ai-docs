@@ -1,6 +1,6 @@
 ---
 title: How to migrate to OpenAI Python v1.x
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn about migrating to the latest release of the OpenAI Python library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
@@ -353,7 +353,7 @@ aoai_deployment_id = os.environ.get("AZURE_OPEN_AI_DEPLOYMENT_ID")
 setup_byod(aoai_deployment_id)
 
 completion = openai.ChatCompletion.create(
-    messages=[{"role": "user", "content": "What are the differences between Azure Machine Learning and Azure AI services?"}],
+    messages=[{"role": "user", "content": "What are the differences between Azure Machine Learning and Foundry Tools?"}],
     deployment_id=os.environ.get("AZURE_OPEN_AI_DEPLOYMENT_ID"),
     dataSources=[  # camelCase is intentional, as this is the format the API expects
         {

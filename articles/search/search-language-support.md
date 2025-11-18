@@ -43,7 +43,7 @@ Non-string fields and non-searchable string fields don't undergo lexical analysi
 
 ## Add text translation
 
-This article assumes translated strings already exist. If that's not the case, you can attach Azure AI services to an [enrichment pipeline](cognitive-search-concept-intro.md), invoking text translation during indexing. Text translation takes a dependency on the indexer feature and Azure AI services, but all setup is done within Azure AI Search. 
+This article assumes translated strings already exist. If that's not the case, you can attach Foundry Tools to an [enrichment pipeline](cognitive-search-concept-intro.md), invoking text translation during indexing. Text translation takes a dependency on the indexer feature and Foundry Tools, but all setup is done within Azure AI Search. 
 
 To add text translation, follow these steps:
 
@@ -57,7 +57,7 @@ To add text translation, follow these steps:
 
 1. Create an index that includes fields for translated strings. Most of this article covers index design and field definitions for indexing and querying multi-language content.
 
-1. [Attach a multi-region Azure AI services resource](cognitive-search-attach-cognitive-services.md) to your skillset.
+1. [Attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your skillset.
 
 1. [Create and run the indexer](search-howto-create-indexers.md), and then apply the guidance in this article to query just the fields of interest.
 

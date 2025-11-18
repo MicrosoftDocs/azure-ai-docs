@@ -1,23 +1,22 @@
 ---
 title: "Quickstart: Detect Personally Identifying Information (PII) in text"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using the PII detection API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/15/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-pii, mode-other, devx-track-extended-java, devx-track-js, devx-track-python
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
 # Quickstart: Detect Personally Identifiable Information (PII)
 
 > [!NOTE]
-> This quickstart only covers PII detection in documents. To learn more about detecting PII in conversations, see [How to detect and redact PII in conversations](how-to-call-for-conversations.md).
+> This quickstart guides you through the process of identifying personally identifiable information (PII) in documents. To learn about detecting PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To learn about detecting PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -51,7 +50,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

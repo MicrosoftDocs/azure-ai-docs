@@ -1,6 +1,6 @@
 ---
 title: "Post-call transcription and analytics quickstart - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you perform sentiment analysis and conversation summarization of call center transcriptions.
 manager: nitinme
 ms.service: azure-ai-speech

@@ -1,12 +1,12 @@
 ---
-title: What Is Azure AI Document Intelligence?
-titleSuffix: Azure AI services
-description: Azure AI Document Intelligence is a machine-learning based OCR and intelligent document processing service to automate extraction of key data from forms and documents.
+title: What Is Azure Document Intelligence in Foundry Tools?
+titleSuffix: Foundry Tools
+description: Azure Document Intelligence in Foundry Tools is a machine-learning based OCR and intelligent document processing service to automate extraction of key data from forms and documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 02/06/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -17,7 +17,7 @@ monikerRange: '<=doc-intel-4.0.0'
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 
-# What is Azure AI Document Intelligence?
+# What is Azure Document Intelligence in Foundry Tools?
 
  :::moniker range="doc-intel-4.0.0"
 
@@ -41,7 +41,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 :::moniker-end
 
-Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-services/index.yml) that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Document Intelligence to effectively manage the speed at which data is collected and processed. Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
+Azure Document Intelligence in Foundry Tools is a cloud-based [Foundry Tools](../../ai-services/index.yml) service that you can use to build intelligent document processing solutions. Massive amounts of data, spanning various data types, are stored in forms and documents. You can use Azure Document Intelligence to effectively manage the speed at which data is collected and processed. Azure Document Intelligence is key to improved operations, informed data-driven decisions, and enlightened innovation. For information on region access, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).</br></br>
 
 | ✔️ [Document analysis models](#document-analysis-models) | ✔️ [Prebuilt models](#prebuilt-models) | ✔️ [Custom models](#custom-model-overview) |
 
@@ -591,7 +591,7 @@ Use Document Intelligence to automate document processing in applications and wo
 
  :::moniker range="doc-intel-2.1.0"
 
-Azure AI Document Intelligence is a cloud-based [Azure AI service](../../ai-services/index.yml) for developers to build intelligent document processing solutions. Document Intelligence applies optical character recognition (OCR) based on machine learning along with document understanding technologies to extract text, tables, structure, and key/value pairs from documents. You can also label and train custom models to automate data extraction from structured, semistructured, and unstructured documents. To learn more about each model, see the concepts articles.
+Azure Document Intelligence is a cloud-based [Foundry Tools](../../ai-services/index.yml) for developers to build intelligent document processing solutions. Azure Document Intelligence applies optical character recognition (OCR) based on machine learning along with document understanding technologies to extract text, tables, structure, and key/value pairs from documents. You can also label and train custom models to automate data extraction from structured, semistructured, and unstructured documents. To learn more about each model, see the concepts articles.
 
 | Model type | Model name |
 |------------|-----------|
@@ -629,7 +629,7 @@ To learn more about each model and browse the API references, use the links in t
 
 ## Data privacy and security
 
- As with all AI services, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
+ As with all Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
 
 ## Related content
 

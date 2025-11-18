@@ -1,6 +1,6 @@
 ---
 title: Speech phonetic alphabets - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article presents Speech service phonetic alphabet and International Phonetic Alphabet (IPA) examples.
 author: PatrickFarley
 ms.author: pafarley

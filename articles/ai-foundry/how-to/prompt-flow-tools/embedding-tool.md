@@ -1,7 +1,7 @@
 ---
-title: Embedding tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Embedding tool for flows in Azure AI Foundry portal.
+title: Embedding tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Embedding tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Embedding tool for flows in Azure AI Foundry portal
+# Embedding tool for flows in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -32,10 +32,10 @@ The prompt flow Embedding tool enables you to convert text into dense vector rep
 
 ## Build with the Embedding tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Embedding** to add the Embedding tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/embedding-tool.png" alt-text="Screenshot that shows the Embedding tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/embedding-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/embedding-tool.png" alt-text="Screenshot that shows the Embedding tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/embedding-tool.png":::
 
 1. Select the connection to one of your provisioned resources. For example, select **Default_AzureOpenAI**.
 1. Enter values for the Embedding tool input parameters described in the [Inputs table](#inputs).

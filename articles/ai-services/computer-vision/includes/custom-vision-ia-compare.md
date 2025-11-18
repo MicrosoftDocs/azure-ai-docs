@@ -1,6 +1,6 @@
 ---
 title: "Custom Vision Image Analysis comparison table"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 services: cognitive-services
 author: PatrickFarley
 manager: nitinme

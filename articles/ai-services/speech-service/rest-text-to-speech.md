@@ -1,6 +1,6 @@
 ---
 title: Text to speech API reference (REST) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the REST API to convert text into synthesized speech.
 author: goergenj
 reviewer: patrickfarley

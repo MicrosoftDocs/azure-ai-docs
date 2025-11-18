@@ -25,7 +25,7 @@ Secret injection in the context of an online endpoint is a process of retrieving
 
 ## Problem statement
 
-When you create an online deployment, you might want to use secrets from within the deployment to access external services. Some of these external services include Microsoft Azure OpenAI service, Azure AI Services, and Azure AI Content Safety.
+When you create an online deployment, you might want to use secrets from within the deployment to access external services. Some of these external services include Microsoft Azure OpenAI service, Foundry Tools, and Azure AI Content Safety.
 
 To use the secrets, you have to find a way to securely pass them to your user container that runs inside the deployment. We don't recommend that you include secrets as part of the deployment definition, since this practice would expose the secrets in the deployment definition. 
 
