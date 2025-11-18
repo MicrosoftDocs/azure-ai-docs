@@ -15,10 +15,9 @@ ms.custom:
   - build-aifnd
   - build-2025
 # customer intent: As a developer, I want to evaluate my generative AI application locally using the Azure AI Evaluation SDK so I can measure quality and safety metrics with built-in or custom evaluators.
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
-# Evaluate your generative AI application locally with the Azure AI Evaluation SDK
+# Evaluate your generative AI application locally with the Azure AI Evaluation SDK (preview)
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
