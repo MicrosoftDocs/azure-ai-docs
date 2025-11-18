@@ -12,7 +12,7 @@ ms.topic: how-to
 ---
 # Agent tracing overview (preview)
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 Microsoft Foundry provides an observability platform for monitoring and tracing AI agents. It captures everything happening during an agent run: inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
