@@ -64,7 +64,7 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 **Microsoft Foundry (new)** delivers a modernized experience with powerful enhancements designed for flexibility and scale:
 
 * **[Multi-Agent Orchestration and Workflows](default/agents/concepts/workflow.md?view=foundry&preserve-view=true)** – Build advanced automation using SDKs for C# and Python that enable collaborative agent behavior and complex workflow execution.
-* **[Expanded Integration Options]()** – Publish agents to Microsoft 365, Teams, and BizChat, plus leverage containerized deployments for greater portability.
+* **[Expanded Integration Options](default/agents/how-to/publish-copilot.md?view=foundry&preserve-view=true)** – Publish agents to Microsoft 365, Teams, and BizChat, plus leverage containerized deployments for greater portability.
 * **[Expanded Tool Access](default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true)** – Access the Foundry tool catalog (preview) with a public tool catalog and your own private catalogs, connecting over 1,400 tools in Microsoft Foundry.
 * **[Enhanced Memory Capabilities](default/agents/concepts/agent-memory.md?view=foundry&preserve-view=true)** – Use memory to help your agent retain and recall contextual information across interactions. Memory maintains continuity, adapts to user needs, and delivers tailored experiences without requiring repeated input.
 * **[Knowledge Integration](default/agents/how-to/tools/knowledge-retrieval.md?view=foundry&preserve-view=true)** – Connect your agent to an Azure AI Search knowledge base to ground responses in enterprise content. This integration provides reliable, citation-backed answers for multi-turn conversations.
