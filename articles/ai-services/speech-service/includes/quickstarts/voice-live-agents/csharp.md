@@ -91,9 +91,6 @@ Follow these steps to create a console application and install the Speech SDK.
 
 1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
 
-    > [!NOTE]
-    > If you want to use the Foundry Agent V2 (Preview) API with Voice live, replace the `agent-id` and the related `agentId`/`agentIdOption` variable with `agent-name` and `agentName`/`agentNameOption`.
-
     ```csharp
     // Copyright (c) Microsoft Corporation. All rights reserved.
     // Licensed under the MIT License.
