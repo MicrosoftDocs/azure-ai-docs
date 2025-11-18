@@ -1,7 +1,7 @@
 ---
 title: "Use liveness detection with network isolation - Face"
-titleSuffix: Azure AI services
-description: Learn how to use the face liveness detection feature when your resource has public network access disabled. This guide shows how you can support end users on public networks while keeping your Azure AI services private.
+titleSuffix: Foundry Tools
+description: Learn how to use the face liveness detection feature when your resource has public network access disabled. This guide shows how you can support end users on public networks while keeping your Foundry Tools private.
 author: dipidoo
 manager: 
 #customer intent: As a developer, I want to use Face API Liveness Detection but also want to disable public network access to satisfy network isolation requirements of my organization or industry.
@@ -10,7 +10,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 06/10/2025
+ms.date: 10/31/2025
 ms.author: pradiphe
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -21,17 +21,17 @@ Disabling public network access to internal resources is often part of your netw
 
 ## About network isolation
 
-If a Face or Azure AI services resource's public access is disabled, any direct call from a public client (like a mobile app on the internet) is blocked. The face liveness detection feature, which normally relies on direct client-to-service calls, doesn't work by default in this configuration.
+If a Face or Foundry Tools resource's public access is disabled, any direct call from a public client (like a mobile app on the internet) is blocked. The face liveness detection feature, which normally relies on direct client-to-service calls, doesn't work by default in this configuration.
 
 ## Prerequisites
 
 Before proceeding, make sure you have the following prerequisites in place:
 
-* __Face API resource with Limited Access enabled__ – You need a Face or Azure AI services resource within a subscription approved for the Face Liveness Detection Limited Access feature. For more information, see the [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
-* __Private network configuration__ – The Face or Azure AI services resource should be configured so that __Public network access__ is __Disabled__. Ensure that your networking setup is complete and tested (for example, your app server or proxy can communicate with the Face or Azure AI services resource over the [private link](../../cognitive-services-virtual-networks.md#use-private-endpoints)).
-* __Reverse proxy with a custom domain__ – Deploy a reverse proxy service that acts as a bridge between public clients and your Face or Azure AI services resource. Host this proxy in a network that can access your Face resource, such as the same virtual network or through a private endpoint. Expose the proxy using a public domain name that you control.
+* __Face API resource with Limited Access enabled__ – You need a Face or Foundry Tools resource within a subscription approved for the Face Liveness Detection Limited Access feature. For more information, see the [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
+* __Private network configuration__ – The Face or Foundry Tools resource should be configured so that __Public network access__ is __Disabled__. Ensure that your networking setup is complete and tested (for example, your app server or proxy can communicate with the Face or Foundry Tools resource over the [private link](../../cognitive-services-virtual-networks.md#use-private-endpoints)).
+* __Reverse proxy with a custom domain__ – Deploy a reverse proxy service that acts as a bridge between public clients and your Face or Foundry Tools resource. Host this proxy in a network that can access your Face resource, such as the same virtual network or through a private endpoint. Expose the proxy using a public domain name that you control.
 
-    Configure your proxy to forward Face liveness routes without changing existing headers or payloads. Make sure the proxy passes requests directly to your Face or Azure AI services resource's private endpoint. All authorization headers, query parameters, and body content must remain unchanged.
+    Configure your proxy to forward Face liveness routes without changing existing headers or payloads. Make sure the proxy passes requests directly to your Face or Foundry Tools resource's private endpoint. All authorization headers, query parameters, and body content must remain unchanged.
 
     The proxy must support the following REST paths used by the liveness feature. These paths are for creating a session, ending a session attempt, performing a liveness check, and performing a liveness check with face verification:
 
@@ -41,24 +41,24 @@ Before proceeding, make sure you have the following prerequisites in place:
     * `/face/[version]/detectLivenessWithVerify/singleModal`
 
 * Domain Name System (DNS) administration access – Because you need to prove ownership of the proxy's domain, you should have the ability to create DNS records (specifically, TXT records) for that domain.
-* Azure support plan – The process for enabling a reverse proxy with a private Face or Azure AI services resource currently involves coordination with Microsoft support. Make sure you have the appropriate support access for creating an Azure support request.
+* Azure support plan – The process for enabling a reverse proxy with a private Face or Foundry Tools resource currently involves coordination with Microsoft support. Make sure you have the appropriate support access for creating an Azure support request.
 
 With these prerequisites satisfied, you're ready to proceed with configuring liveness detection in a network-isolated setup.
 
 ## Solution overview
 
-Using the Face Liveness Detection feature with Face or Azure AI services resource within isolated network involves a few key steps. At a high level, you register your proxy's information with Microsoft via a support request, verify domain ownership, update your client application to use the new proxy endpoint, and then test the end-to-end functionality.
+Using the Face Liveness Detection feature with Face or Foundry Tools resource within isolated network involves a few key steps. At a high level, you register your proxy's information with Microsoft via a support request, verify domain ownership, update your client application to use the new proxy endpoint, and then test the end-to-end functionality.
 
-1. Submit Reverse Proxy Registration – Begin registration of your custom proxy domain for Face Liveness Detection by opening an Azure support request. Include details of your Face or Azure AI services resource and proxy hostname.
+1. Submit Reverse Proxy Registration – Begin registration of your custom proxy domain for Face Liveness Detection by opening an Azure support request. Include details of your Face or Foundry Tools resource and proxy hostname.
 1. Verify Domain Ownership – Azure support provides a verification code. You prove ownership by adding a DNS TXT record on a specific subdomain of your proxy's domain.
-1. Wait for Azure to Enable Proxy Access – Azure verifies the DNS record and configure your Face or Azure AI services resource to recognize the proxy. Once completed, the service is aware of your proxy domain for liveness detection traffic.
+1. Wait for Azure to Enable Proxy Access – Azure verifies the DNS record and configure your Face or Foundry Tools resource to recognize the proxy. Once completed, the service is aware of your proxy domain for liveness detection traffic.
 1. Test the Liveness Detection Workflow – Ensure the setup works by running a liveness detection session from a client device. Verify that the client's requests go through the proxy and that you receive a successful liveness result.
 
 The following sections provide detailed instructions for each step.
 
 ## Step 1: Register your reverse proxy by submitting a support request
 
-To begin the process of enabling liveness detection with network isolation, your goal is to register your reverse proxy domain with Microsoft. Open an Azure support request to initiate this registration for your Face or Azure AI services resource. Navigate to your Face or Azure AI services resource in the Azure portal, and in the left-hand menu, find __Support + Troubleshooting__ (which may appear as a help icon).
+To begin the process of enabling liveness detection with network isolation, your goal is to register your reverse proxy domain with Microsoft. Open an Azure support request to initiate this registration for your Face or Foundry Tools resource. Navigate to your Face or Foundry Tools resource in the Azure portal, and in the left-hand menu, find __Support + Troubleshooting__ (which may appear as a help icon).
 
 1. In the textbox for a brief issue description, enter a clear summary such as: __"Request to register a reverse proxy domain for Face API Liveness Detection with public network access disabled."__
 1. In the choice of service, choose: __Cognitive Services (Cognitive Services-Face API)__.
@@ -104,11 +104,11 @@ Using your DNS provider's management portal or CLI, add the new TXT record as in
 
 The support engineer confirms DNS record verification after successful validation.
 
-## Step 3: Microsoft configures your Face or Azure AI services resource for the proxy
+## Step 3: Microsoft configures your Face or Foundry Tools resource for the proxy
 
-After Microsoft confirms your domain ownership, the support engineer enables the reverse proxy setting on your Face or Azure AI services resource. The support request is updated once configuration is complete. You can then use the liveness detection feature through your proxy.
+After Microsoft confirms your domain ownership, the support engineer enables the reverse proxy setting on your Face or Foundry Tools resource. The support request is updated once configuration is complete. You can then use the liveness detection feature through your proxy.
 
-At this point, the Face or Azure AI services resource continues to deny all direct public network access, but your proxy handles those calls and then connect privately to the Face service. This design ensures that you maintain a locked-down resource, meeting your security requirements.
+At this point, the Face or Foundry Tools resource continues to deny all direct public network access, but your proxy handles those calls and then connect privately to the Face service. This design ensures that you maintain a locked-down resource, meeting your security requirements.
 
 ## Step 4: Test the end-to-end liveness detection flow
 
@@ -148,7 +148,7 @@ By using a custom reverse proxy for Face API, you're effectively taking on more 
 
 ## Related content
 
-* For guidance on how to secure Azure AI service resources (like Face API) using network isolation, see [Use private endpoints section of Configure Azure AI services virtual networks](../../cognitive-services-virtual-networks.md#use-private-endpoints) page.
+* For guidance on how to secure Foundry Tools resources (like Face API) using network isolation, see [Use private endpoints section of Configure Foundry Tools virtual networks](../../cognitive-services-virtual-networks.md#use-private-endpoints) page.
 
 * For details on Limited Access Features of Azure Face API, see [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
 

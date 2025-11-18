@@ -1,16 +1,15 @@
 ---
 title: How to perform sentiment analysis and opinion mining
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to detect sentiment, and mine for opinions in text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
-
 # How to: Use Sentiment analysis and Opinion Mining 
 
 Sentiment analysis and opinion mining are two ways of detecting positive and negative sentiment. Using sentiment analysis, you can get sentiment labels (such as "negative" "neutral" and "positive") and confidence scores at the sentence and document-level. Opinion Mining provides granular information about the opinions related to words (such as the attributes of products or services) in the text.

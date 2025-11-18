@@ -277,7 +277,7 @@ index_projections = SearchIndexerIndexProjection(
     ),  
 ) 
 
-cognitive_services_account = CognitiveServicesAccountKey(key=AZURE_AI_MULTISERVICE_KEY)
+cognitive_services_account = CognitiveServicesAccountKey(key=AZURE_AI_FOUNDRY_KEY)
 
 skills = [split_skill, embedding_skill, entity_skill]
 

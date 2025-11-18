@@ -1,6 +1,6 @@
 ---
 title: Speech SDK audio input stream concepts
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of the capabilities of the Speech SDK audio input stream.
 author: PatrickFarley
 manager: nitinme

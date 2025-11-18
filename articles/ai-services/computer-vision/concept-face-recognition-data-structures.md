@@ -1,6 +1,6 @@
 ---
 title: "Face recognition data structures - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Face recognition data structures, which store data on faces and persons.
 author: PatrickFarley
 manager: nitinme

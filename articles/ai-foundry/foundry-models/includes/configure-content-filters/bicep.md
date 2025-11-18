@@ -19,11 +19,11 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Foundry Tools resource name.
 
-  * The resource group where you deployed the Azure AI Services resource.
+  * The resource group where you deployed the Foundry Tools resource.
 
-  * The model name, provider, version, and SKU you want to deploy. You can use the Azure AI Foundry portal or the Azure CLI to find this information. In this example, deploy the following model:
+  * The model name, provider, version, and SKU you want to deploy. You can use the Microsoft Foundry portal or the Azure CLI to find this information. In this example, deploy the following model:
 
     * **Model name:**: `Phi-4-mini-instruct`
     * **Provider**: `Microsoft`

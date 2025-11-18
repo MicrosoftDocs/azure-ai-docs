@@ -1,6 +1,6 @@
 ---
 title: Pronunciation with Speech Synthesis Markup Language (SSML) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 author: PatrickFarley
 manager: nitinme

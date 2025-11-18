@@ -1,6 +1,6 @@
 ---
 title: "Real-time diarization quickstart - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you convert speech to text continuously from a file. The Speech service transcribes the speech and identifies one or more speakers.
 author: PatrickFarley
 manager: nitinme

@@ -1,31 +1,48 @@
 ---
-title: What's new in Azure AI Translator?
-titleSuffix: Azure AI services
-description: Learn about the latest changes to the Azure AI Translator Service API.
+title: What's new in Azure Translator in Foundry Tools?
+titleSuffix: Foundry Tools
+description: Learn about the latest changes to the Azure Translator API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 06/03/2025
+ms.date: 09/30/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 
-# What's new in Azure AI Translator?
+# What's new in Azure Translator?
 
 Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
-Azure AI Translator is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. 
+Azure Translator in Foundry Tools is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. 
 
-Azure AI Translator service supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## November 2025
+
+### Microsoft Foundry (new)
+
+* The Foundry portal streamlines access to models, agents, and tools for Foundry projects.
+
+* For text translation, you have three model options: Azure-MT (neural machine translation), GPT-4o, and GPT-4o mini. These models allow you to generate translations tailored to a specific gender or tone, and you can refine your results using your domain-specific data and terminology.
+
+* Document translation is available through a built-in playground, where you can select or provide a source document or text, specify the target language, and receive your translated output.
+
+### Azure Translator in Foundry Tools 2025-10-01-preview
+
+Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from a variety of generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
+
+For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
+
 
 ## September 2025
 
-### Azure AI Translator 2025-05-01-preview
+### Azure Translator in Foundry Tools 2025-05-01-preview
 
-Azure AI Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. You can choose between general neural machine translation (NMT) or select from a list of generative AI large language models (LLMs) at the request level. The service enables robust and scalable translation capabilities, making it suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md).
+Azure Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. You can choose between general neural machine translation (NMT) or select from a list of generative AI large language models (LLMs) at the request level. The service enables robust and scalable translation capabilities, making it suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md).
 
 ## July 2025
 
@@ -38,11 +55,11 @@ Azure AI Translator `2025-05-01-preview` is our latest cloud-based, multilingual
 
 ### Document Translation new feature update
 
-Azure AI Translator [Document translation feature](document-translation/overview.md#batch-key-features) now supports [translating text embedded in images](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) within documents.
+Azure Translator [Document translation feature](document-translation/overview.md#batch-key-features) now supports [translating text embedded in images](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) within documents.
 
 * This feature is optional and must be enabled for each translation request.
 * Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.
-* An [Azure AI Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
+* A [Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
 
 ## May 2025
 
@@ -92,5 +109,5 @@ The Document translation API now supports two translation operations:
 
 ## Related content
 
-[Azure AI Translator release history](release-history.md)
+[Azure Translator release history](release-history.md)
 

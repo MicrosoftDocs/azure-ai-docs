@@ -1,5 +1,5 @@
 ---
-title: 'How to generate reproducible output with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to generate reproducible output with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services

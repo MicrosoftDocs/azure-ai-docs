@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis 4.0 REST API"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Image Analysis 4.0 REST API.
 author: PatrickFarley
 manager: nitinme
@@ -20,7 +20,7 @@ Use the Image Analysis REST API to read text and generate captions for the image
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) 
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="create a Computer Vision resource"  target="_blank">create a Computer Vision resource</a> in the Azure portal to get your key and endpoint. In order to use the captioning feature in this quickstart, you must create your resource in certain Azure regions. See [Region availability](./../overview-image-analysis.md#region-availability). After it deploys, select **Go to resource**.
-  * You'll need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service. You'll paste your key and endpoint into the code below later in the quickstart.
+  * You'll need the key and endpoint from the resource you create to connect your application to Azure Vision in Foundry Tools. You'll paste your key and endpoint into the code below later in the quickstart.
   * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 * [cURL](https://curl.haxx.se/) installed
 

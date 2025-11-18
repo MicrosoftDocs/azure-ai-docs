@@ -30,7 +30,7 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
    ```http
    ### List existing indexes by name (verify the connection)
-    GET  {{searchUrl}}/indexes?api-version=2025-08-01-preview&$select=name  HTTP/1.1
+    GET  {{searchUrl}}/indexes?api-version=2025-11-01-preview&$select=name  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
    ```
 
@@ -64,7 +64,7 @@ To update an index using the REST API, you must provide the entire schema, plus 
 1. Formulate a POST request specifying the index name, operation, and full JSON schema. All required elements of the schema must be present. This request includes the full schema for hotels-sample-index plus the semantic configuration.
 
     ```http
-    POST  {{searchUrl}}/indexes?api-version=2025-08-01-preview  HTTP/1.1
+    POST  {{searchUrl}}/indexes?api-version=2025-11-01-preview  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -154,14 +154,14 @@ Required semantic parameters include `query_type` and `semantic_configuration_na
 1. Test the connection with a GET request that returns the hotels-sample-index.
 
     ```http
-    GET  {{searchUrl}}/indexes/hotels-sample-index?api-version=2025-08-01-preview  HTTP/1.1
+    GET  {{searchUrl}}/indexes/hotels-sample-index?api-version=2025-11-01-preview  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
     ```
 
 1. Send a query that includes the semantic query type and configuration name.
 
    ```http
-    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-08-01-preview  HTTP/1.1
+    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -241,7 +241,7 @@ Optionally, you can add captions to extract portions of the text and apply hit h
 1. Add the `captions` parameter and send the request.
 
     ```http
-    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-08-01-preview  HTTP/1.1
+    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -284,7 +284,7 @@ To produce a semantic answer, the question and answer must be closely aligned, a
 1. Formulate the request using a search string that asks a question.
 
     ```http
-    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-08-01-preview  HTTP/1.1
+    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     

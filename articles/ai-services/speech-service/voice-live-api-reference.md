@@ -1,6 +1,6 @@
 ---
 title: Voice live API Reference
-titleSuffix: Azure AI Services
+titleSuffix: Foundry Tools
 description: Complete reference for the Voice live API events, models, and configuration options.
 manager: nitinme
 ms.service: azure-ai-services

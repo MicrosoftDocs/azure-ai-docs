@@ -551,6 +551,11 @@
        "redirect_document_id": false
      },
      {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/analyzer-templates.md",
+       "redirect_url": "/azure/ai-services/content-understanding/concepts/prebuilt-analyzers",
+       "redirect_document_id": false
+     },
+     {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-analyze.md",
        "redirect_url": "/azure/ai-services/computer-vision/overview",
        "redirect_document_id": false
@@ -1356,6 +1361,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to/voice-live-how-to-proactive-and-pregenerated-messages.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-quickstart",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
       "redirect_document_id": true
@@ -1862,8 +1872,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/deployment-types.md",
-      "redirect_url": "/azure/ai-foundry/openai/how-to/deployment-types",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/dotnet-migration.md",
@@ -2871,11 +2881,6 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/standard-avatars.md",
-      "redirect_url": "/azure/ai-services/speech-service",
-      "redirect_document_id": false
-    },
-    {
       "source_path_from_root": "/articles/ai-services/openai/tutorials/embeddings.md",
       "redirect_url": "/azure/ai-foundry/openai/tutorials/embeddings",
       "redirect_document_id": true
@@ -2929,7 +2934,21 @@
       "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
       "redirect_url": "/azure/ai-services/language-service/concepts/configure-azure-resources",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/multi-services-resource-search-skills.md",
+      "redirect_url": "/azure/ai-services/multi-service-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry.md",
+      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry-pro-mode.md",
+      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
+      "redirect_document_id": false
     }
-
   ]
 }

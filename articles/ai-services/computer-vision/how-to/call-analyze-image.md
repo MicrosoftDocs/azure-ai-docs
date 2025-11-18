@@ -1,13 +1,13 @@
 ---
 title: Call the Image Analysis 3.2 API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to call the Image Analysis API and configure its behavior.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 09/26/2025
 ---
 
 # Call the Image Analysis 3.2 API
@@ -65,7 +65,7 @@ To analyze a local image, see the [ComputerVisionClientOperationsMixin](/python/
 
 ### Select visual features
 
-The Analyze API gives you access to all of the service's image analysis features. Choose which operations to do based on your own use case. For a description of each feature, see the [Azure AI Vision overview](../overview.md). The examples in the following sections add all of the available visual features, but for practical usage you likely only need one or two.
+The Analyze API gives you access to all of the service's image analysis features. Choose which operations to do based on your own use case. For a description of each feature, see the [Azure Vision overview](../overview.md). The examples in the following sections add all of the available visual features, but for practical usage you likely only need one or two.
 
 #### [REST](#tab/rest)
 
@@ -308,7 +308,7 @@ The following code calls the Image Analysis API and prints the results to the co
 ---
 
 > [!TIP]
-> While working with Azure AI Vision, you might encounter transient failures caused by [rate limits](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/) enforced by the service, or other transient problems like network outages. For information about handling these types of failures, see the [Retry pattern](/azure/architecture/patterns/retry) in the Cloud Design Patterns guide, and the related [Circuit Breaker pattern](/azure/architecture/patterns/circuit-breaker).
+> While working with Azure Vision, you might encounter transient failures caused by [rate limits](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/) enforced by the service, or other transient problems like network outages. For information about handling these types of failures, see the [Retry pattern](/azure/architecture/patterns/retry) in the Cloud Design Patterns guide, and the related [Circuit Breaker pattern](/azure/architecture/patterns/circuit-breaker).
 
 
 ## Related content

@@ -1,8 +1,8 @@
 ---
 
 title: Create a secure hub
-titleSuffix: Azure AI Foundry
-description: Create an Azure AI Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
+titleSuffix: Microsoft Foundry
+description: Create a Microsoft Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -12,15 +12,15 @@ ms.date: 07/08/2025
 ms.reviewer: meerakurup 
 ms.author: sgilley
 author: sdgilley
-# Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Foundry hub and project resources.
+# Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Microsoft Foundry hub and project resources.
 
 ---
 
-# How to create a secure Azure AI Foundry hub and project with a managed virtual network
+# How to create a secure Microsoft Foundry hub and project with a managed virtual network
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-You can secure your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
+You can secure your [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
 
 > [!IMPORTANT]
 > The managed virtual network doesn't provide inbound connectivity for your clients. For more information, see the [Connect to the hub](#connect-to-the-hub) section. 
@@ -32,11 +32,11 @@ You can secure your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub,
 
 ## Create a hub
 
-1. From the [Azure portal](https://portal.azure.com), search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the [Azure portal](https://portal.azure.com), search for `Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
-    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
-1. Enter your hub name, subscription, resource group, and location details. For **Azure AI services base models**, select an existing AI services resource or create a new one. Azure AI services include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
+1. Enter your hub name, subscription, resource group, and location details. For **Foundry Tools base models**, select an existing AI services resource or create a new one. Foundry Tools include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
     
     :::image type="content" source="../media/how-to/network/ai-hub-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="../media/how-to/network/ai-hub-basics.png":::
 
@@ -48,7 +48,7 @@ You can secure your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub,
  
     :::image type="content" source="../media/how-to/network/inbound-access.png" alt-text="Screenshot of the inbound access tab with public network access disabled." lightbox="../media/how-to/network/inbound-access.png":::
 
-1. Select the **Outbound access** to configure the managed virtual network that Azure AI Foundry uses to secure its hub and projects. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
+1. Select the **Outbound access** to configure the managed virtual network that Foundry uses to secure its hub and projects. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
     
     > [!TIP]
     > To provision the virtual network during hub creation, select **Provision managed virtual network**. If this option isn't selected, the network isn't provisioned until you create a compute resource. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
@@ -72,5 +72,5 @@ There are multiple methods that you might use to connect clients to the Azure Vi
 ## Next steps
 
 - [Create a project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
-- [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)
+- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry hubs](../concepts/ai-resources.md)

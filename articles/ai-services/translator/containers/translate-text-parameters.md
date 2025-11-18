@@ -1,17 +1,16 @@
 ---
 title: "Container: Translate text"
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator container translate document operation.
+titleSuffix: Foundry Tools
+description: Understand the parameters, headers, and body messages for the Azure Translator container translate document operation.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Container: Translate Text
+# Azure Translator in Foundry Tools container: translate text
 
 **Translate text**.
 
@@ -83,7 +82,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    {"Text":"I would really like to drive your car around the block a few times."}
+    {"text":"I would really like to drive your car around the block a few times."}
 ]
 ```
 
@@ -129,7 +128,7 @@ If an error occurs, the request returns a JSON error response. The error code is
 >
 > * Each sample runs on the `localhost` that you specified with the `docker run` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that'sn't already in use in your host environment.
 
 
 ### Translate a single input
@@ -154,7 +153,7 @@ The response body is:
 
 The `translations` array includes one element, which provides the translation of the single piece of text in the input.
 
-### Query Azure AI Translator endpoint (text)
+### Query Azure Translator endpoint (text)
 
 Here's an example cURL HTTP request using localhost:5000 that you specified with the `docker run` command:
 
@@ -394,7 +393,7 @@ Docker compose is a tool enables you to configure multi-container applications u
 
 If you installed Docker Desktop CLI, it includes Docker compose and its prerequisites. If you don't have Docker Desktop, see the [Installing Docker Compose overview](https://docs.docker.com/compose/install/).
 
-The following table lists the required supporting containers for your text and document translation operations. The Translator container sends billing information to Azure via the Azure AI Translator resource on your Azure account.
+The following table lists the required supporting containers for your text and document translation operations. The Translator container sends billing information to Azure via the Azure Translator resource on your Azure account.
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
@@ -405,14 +404,14 @@ The following table lists the required supporting containers for your text and d
 
 ##### Container images and tags
 
-The Azure AI services container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
+The Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Translator: Document translation|**TODO**| **TODO**|
-|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
-|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
+|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Foundry Tools Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
+|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Foundry Tools Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
 
 ### Create your application
 

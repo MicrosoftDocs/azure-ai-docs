@@ -12,7 +12,7 @@ recommendations: false
 
 
 
-Azure OpenAI in Azure AI Foundry Models includes default safety settings applied to all models (excluding audio API models such as Whisper). These configurations provide you with a responsible experience by default, including content filtering models, blocklists, prompt transformation, [content credentials](../concepts/content-credentials.md), and others. [Read more about it here](/azure/ai-foundry/openai/concepts/default-safety-policies). 
+Azure OpenAI in Microsoft Foundry Models includes default safety settings applied to all models (excluding audio API models such as Whisper). These configurations provide you with a responsible experience by default, including content filtering models, blocklists, prompt transformation, [content credentials](../concepts/content-credentials.md), and others. [Read more about it here](/azure/ai-foundry/openai/concepts/default-safety-policies). 
 
 All customers can also configure content filters and create custom content policies that are tailored to their use case requirements. The configurability feature allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below. Content detected at the 'safe' severity level is labeled in annotation output but isn't subject to filtering and isn't configurable.
 
@@ -28,6 +28,6 @@ All customers can also configure content filters and create custom content polic
 
 Configurable content filters for inputs (prompts) and outputs (completions) are available for all Azure OpenAI models.
 
-Content filtering configurations are created within a Resource in Azure AI Foundry portal, and can be associated with Deployments. [Learn more about configuring content filters here](../how-to/content-filters.md).  
+Content filtering configurations are created within a Resource in Foundry portal, and can be associated with Deployments. [Learn more about configuring content filters here](../how-to/content-filters.md).  
 
 Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-foundry/openai/context/context). 

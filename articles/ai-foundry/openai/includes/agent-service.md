@@ -9,4 +9,4 @@ author: aahill
 ---
 
 > [!NOTE]
-> The [Azure AI Foundry Agent Service](../../agents/overview.md) is now generally available, which provides more tools and better enterprise features. We recommend using the new service for the latest feature updates and improvements.
+> The [Foundry Agent Service](../../agents/overview.md) is now generally available, which provides more tools and better enterprise features. We recommend using the new service for the latest feature updates and improvements.
