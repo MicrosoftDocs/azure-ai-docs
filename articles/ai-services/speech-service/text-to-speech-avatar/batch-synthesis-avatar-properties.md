@@ -1,6 +1,6 @@
 ---
 title: Batch synthesis properties - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties that are available for text to speech avatar.
 manager: nitinme
 ms.service: azure-ai-speech
@@ -22,8 +22,8 @@ The following table describes the avatar properties.
 
 | Property  | Description |
 |------------------------------------------|------------------------------------------|
-| avatarConfig.talkingAvatarCharacter      | The character name of the talking avatar.<br/><br/>For standard avatar, the supported avatar characters can be found [here](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures). <br/>For custom avatar, specify the avatar model name.<br/><br/>This property is required.|
-| avatarConfig.talkingAvatarStyle          | The style name of the talking avatar.<br/><br/>For standard avatar, the supported avatar styles can be found [here](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures). <br/>For custom avatar, this property should be omitted.<br/><br/>This property is required for standard avatar.|
+| avatarConfig.talkingAvatarCharacter      | The character name of the talking avatar.<br/><br/>For standard avatar, the supported avatar characters can be found [here](standard-avatars.md). <br/>For custom avatar, specify the avatar model name.<br/><br/>This property is required.|
+| avatarConfig.talkingAvatarStyle          | The style name of the talking avatar.<br/><br/>For standard avatar, the supported avatar styles can be found [here](standard-avatars.md). <br/>For custom avatar, this property should be omitted.<br/><br/>This property is required for standard avatar.|
 | avatarConfig.customized                  | A bool value indicating whether the avatar to be used is customized avatar or not. True for customized avatar, and false for standard avatar.<br/><br/>This property is optional, and the default value is `false`.|
 | avatarConfig.videoFormat                 | The format for output video file could be mp4 or webm.<br/><br/>The `webm` format is required for a transparent background.<br/><br/>This property is optional, and the default value is mp4.|
 | avatarConfig.videoCodec                  | The codec for output video, could be h264, hevc, vp9 or av1.<br/><br/>Vp9 is required for a transparent background. The synthesis speed is slower with the vp9 codec because vp9 encoding is slower.<br/><br/>This property is optional, and the default value is hevc.|

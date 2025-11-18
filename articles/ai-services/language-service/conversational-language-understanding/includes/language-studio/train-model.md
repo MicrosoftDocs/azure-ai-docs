@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 To start training your model from within the [Language Studio](https://aka.ms/languageStudio):
 
 1. Select **Train model** from the left side menu.
@@ -18,7 +17,7 @@ To start training your model from within the [Language Studio](https://aka.ms/la
 4. Select training mode. You can choose **Standard training** for faster training, but it is only available for English. Or you can choose **Advanced training** which is supported for other languages and multilingual projects, but it involves longer training times. Learn more about [training modes](../../how-to/train-model.md#training-modes).
     
 
-5. Select a [data splitting](../../how-to/train-model.md#data-splitting) method. You can choose **Automatically splitting the testing set from training data** where the system will split your utterances between the training and testing sets, according to the specified percentages. Or you can **Use a manual split of training and testing data**, this option is only enabled if you have added utterances to your testing set when you [labeled your utterances](../../how-to/tag-utterances.md). 
+5. Select a [data splitting](../../how-to/train-model.md#data-splitting) method. You can choose **Automatically splitting the testing set from training data** where the system will split your utterances between the training and testing sets, according to the specified percentages. Or you can **Use a manual split of training and testing data**, this option is only enabled if you added utterances to your testing set when you [labeled your utterances](../../how-to/tag-utterances.md). 
 
 6. Select the **Train** button.
 

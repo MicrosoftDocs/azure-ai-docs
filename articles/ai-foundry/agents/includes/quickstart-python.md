@@ -52,7 +52,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import CodeInterpreterTool
 
-# Create an AIProjectClient from an endpoint, copied from your Azure AI Foundry project.
+# Create an AIProjectClient from an endpoint, copied from your Microsoft Foundry project.
 # You need to login to Azure subscription via Azure CLI and set the environment variables
 project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 

@@ -127,7 +127,7 @@ Try it out:
 * **Databricks widget for the Azure Machine Learning SDK and automated machine learning**: The Azure Machine Learning SDK widget isn't supported in a Databricks notebook because the notebooks can't parse HTML widgets. You can view the widget in the portal by using this Python code in your Azure Databricks notebook cell:
 
     ```
-    displayHTML("<a href={} target='_blank'>Azure Portal: {}</a>".format(local_run.get_portal_url(), local_run.id))
+    displayHTML("<a href={} target='_blank'>Azure portal: {}</a>".format(local_run.get_portal_url(), local_run.id))
     ```
 
 * **Failure when installing packages**

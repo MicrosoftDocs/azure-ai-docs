@@ -1,12 +1,12 @@
 ---
-title: Deploy a user-managed glossary in Azure AI Translator container
-titleSuffix: Azure AI services
-description: How to deploy a user-managed glossary in the Azure AI Translator container environment.
+title: Deploy a user-managed glossary in Azure Translator container
+titleSuffix: Foundry Tools
+description: How to deploy a user-managed glossary in the Azure Translator container environment.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -16,7 +16,7 @@ recommendations: false
 
 # Deploy a user-managed glossary
 
-Azure AI Translator containers allow you to use many of the Translator service's features within your own environment, making them ideal for meeting specific security and data governance needs.
+Azure Translator in Foundry Tools containers allow you to use many of the Translator's features within your own environment, making them ideal for meeting specific security and data governance needs.
 
 Sometimes, when operating a container with a complex ingestion process, you may encounter the need to update sentence or phrase files. Because the default sentence and phrase files are encrypted and loaded directly into memory at runtime, you need a rapid engineering solution to allow for dynamic updates. You can address this need by implementing our user-managed glossary feature:
 

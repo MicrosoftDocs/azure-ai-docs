@@ -1,6 +1,6 @@
 ---
-title: 'How to use Azure AI Foundry Agent Service with OpenAPI Specified Tools'
-titleSuffix: Azure AI Foundry
+title: 'How to use Foundry Agent Service with OpenAPI Specified Tools'
+titleSuffix: Microsoft Foundry
 description: Learn how to use Azure AI Agents with OpenAPI Specified Tools.
 services: cognitive-services
 manager: nitinme
@@ -11,8 +11,9 @@ ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
-# How to use Azure AI Foundry Agent Service with OpenAPI Specified Tools
+# How to use Foundry Agent Service with OpenAPI Specified Tools
 
 You can now connect your Azure AI Agent to an external API using an OpenAPI 3.0 specified tool, 
 allowing for scalable interoperability with various applications. Enable your custom tools 
@@ -68,7 +69,7 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 1. Create a `custom keys` connection to store your API key.
 
-    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the AI Project. Select **connected resources**.
+    1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the AI Project. Select **connected resources**.
     :::image type="content" source="../../media\tools\bing\project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media\tools\bing\project-settings-button.png":::
 
     1. Select **+ new connection** in the settings page. 
@@ -100,11 +101,11 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 ## Authenticating with managed identity (Microsoft Entra ID)
 
-[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. Microsoft Entra ID allows you to authenticate your APIs with additional security without the need to pass in API keys. Once you have set up managed identity authentication, it will authenticate through the Azure AI Service your agent is using. 
+[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. Microsoft Entra ID allows you to authenticate your APIs with additional security without the need to pass in API keys. Once you have set up managed identity authentication, it will authenticate through the Foundry Tool your agent is using. 
 
 To set up authenticating with Managed Identity:
 
-1. Ensure that your Azure AI Foundry resource has system assigned managed identity enabled.
+1. Ensure that your Foundry resource has system assigned managed identity enabled.
 
     :::image type="content" source="../../media\tools\managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../media\tools\managed-identity-portal.png":::
 
@@ -121,8 +122,8 @@ To set up authenticating with Managed Identity:
 
     1. Select **Managed identity** and then click **select members**.
 
-    1. In the managed identity dropdown menu, search for **Azure AI services** and then select the AI Service of your agent.
+    1. In the managed identity dropdown menu, search for **Foundry Tools** and then select the AI Service of your agent.
 
     1. Click **Finish**.
 
-1. Once the setup is done, you can continue by using the tool through the Azure AI Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.

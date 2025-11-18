@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch Python
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.date: 10/15/2024
@@ -120,7 +120,7 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 ## Upload batch file
 
-Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Azure AI Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 

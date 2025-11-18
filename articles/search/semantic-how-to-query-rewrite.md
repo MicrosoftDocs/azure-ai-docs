@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2024
   - references_regions
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 11/05/2025
 ---
 
 # Rewrite queries with semantic ranker in Azure AI Search (Preview)
@@ -35,13 +35,11 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 
 ## Prerequisites
 
-- A search service, Basic tier or higher, in **North Europe** or **Southeast Asia**.
-
-- [Semantic ranker must be enabled](semantic-how-to-enable-disable.md). It's enabled by default on newer search services. Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
+- [Azure AI Search](search-create-service-portal.md), in any [region that provides query rewrite](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 - An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content. The examples in this guide use the [hotels-sample-index](search-get-started-portal.md) sample data to demonstrate query rewriting. You can use your own data and index to test query rewriting.
 
-- To follow the instructions in this article, you need a web client that supports REST API requests. The examples in this guide were tested with [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension. 
+- To follow the instructions in this article, you need a web client that supports REST API requests. The examples in this guide were tested with [Visual Studio Code](https://code.visualstudio.com/download) and the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension. 
 
 > [!TIP]
 > Content that includes explanations or definitions work best for semantic ranking. 

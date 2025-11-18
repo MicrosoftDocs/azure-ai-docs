@@ -22,7 +22,7 @@ The custom web API vectorizer is called `WebApiVectorizer` in the REST API. Use 
 
 ## Vectorizer parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|

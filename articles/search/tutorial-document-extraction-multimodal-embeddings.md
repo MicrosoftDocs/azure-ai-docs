@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Vectorize images and text'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and Azure AI Vision for embeddings.
+description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and Azure Vision for embeddings.
 manager: arjagann
 author: mdonovan
 ms.author: mdonovan
@@ -25,7 +25,7 @@ In this tutorial, you use:
 
 + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting normalized images and text. The [Text Split skill](cognitive-search-skill-textsplit.md) chunks the data.
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
++ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
 
 + A search index configured to store extracted text and image content. Some content is vectorized for vector-based similarity search.
 
@@ -36,9 +36,9 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 ## Prerequisites
 
-+ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills). This account provides access to the Azure AI Vision multimodal embedding model used in this tutorial. You must use an Azure AI multi-service account for skillset access to this resource.
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to the Azure Vision multimodal embedding model used in this tutorial. You must use a Foundry resource for skillset access to this resource.
 
-+ [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity for connections to Azure Storage and Azure AI Vision. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier. 
++ [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity for connections to Azure Storage and Azure Vision. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
 + [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
@@ -46,7 +46,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 ## Limitations
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you install the multi-service account, choose a region that provides multimodal embeddings. For an updated list of regions that provide multimodal embeddings, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you create a Foundry resource, choose a region that provides multimodal embeddings. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 ## Prepare data
 
@@ -84,9 +84,9 @@ The following instructions apply to Azure Storage which provides the sample data
 
 ## Prepare models
 
-This tutorial assumes you have an existing Azure AI multiservice account through which the skill calls the Azure AI Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+This tutorial assumes you have an existing Foundry resource through which the skill calls the Azure Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
-1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI multiservice account. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
+1. Sign in to the Azure portal (not the Foundry portal) and find the Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 1. Select **Access control (IAM)**.
 
@@ -110,7 +110,7 @@ For authenticated connections that occur during indexer and skillset processing,
     @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
     @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
     @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-    @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-MULTI-SERVICE-ENDPOINT-HERE
+    @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-FOUNDRY-ENDPOINT-HERE
     @modelVersion = 2023-04-15
     @imageProjectionContainer=sustainable-ai-pdf-images
    ```
@@ -130,7 +130,7 @@ To get the Azure AI Search endpoint and API key:
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
-POST {{searchUrl}}/datasources?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -159,7 +159,7 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-08-01-preview -Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-11-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -197,7 +197,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{searchUrl}}/indexes?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -342,11 +342,11 @@ Key points:
 
 ## Create a skillset
 
-[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the built-in Document Extraction skill to extract text and images. It uses Text Split skill to chunk large text. It uses Azure AI Vision multimodal embeddings skill to vectorize image and text content.
+[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the built-in Document Extraction skill to extract text and images. It uses Text Split skill to chunk large text. It uses Azure Vision multimodal embeddings skill to vectorize image and text content.
 
 ```http
 ### Create a skillset
-POST {{searchUrl}}/skillsets?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -568,7 +568,7 @@ Key points:
 
 + `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
-+ The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
++ The Azure Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 ## Create and run an indexer
 
@@ -576,7 +576,7 @@ Key points:
 
 ```http
 ### Create and run an indexer
-POST {{searchUrl}}/indexers?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -609,7 +609,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -645,7 +645,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview "
 }
 ```
 100 documents are returned in the response.
@@ -657,7 +657,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ```http
 ### Query for only images
-POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -670,7 +670,7 @@ POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -688,19 +688,19 @@ Indexers can be reset to clear the high-water mark, which allows a full rerun. T
 
 ```http
 ### Reset the indexer
-POST {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/reset?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/run?api-version=2025-08-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/status?api-version=2025-08-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
@@ -714,7 +714,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
-* [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
+* [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 * [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)

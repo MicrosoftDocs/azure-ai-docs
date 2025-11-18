@@ -1,6 +1,6 @@
 ---
 title: Data zone provisioned managed  model availability
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for data zone provisioned managed models
 manager: nitinme
 ms.service: azure-ai-foundry

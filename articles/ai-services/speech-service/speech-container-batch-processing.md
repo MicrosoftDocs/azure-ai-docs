@@ -1,6 +1,6 @@
 ---
 title: Batch processing kit for Speech containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the Batch processing kit to scale Speech container requests. 
 author: PatrickFarley
 manager: nitinme

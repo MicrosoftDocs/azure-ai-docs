@@ -1,18 +1,17 @@
 ---
 title: Quickstart - Custom text classification
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Quickly start building an AI model to identify and apply labels (classify) unstructured text.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 04/29/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, mode-other
 zone_pivot_groups: usage-custom-language-features
 ---
-
 # Quickstart: Custom text classification
 
 Use this article to get started with creating a custom text classification project where you can train custom models for text classification. A model is artificial intelligence software that's trained to do a certain task. For this system, the models classify text, and are trained by learning from tagged data.

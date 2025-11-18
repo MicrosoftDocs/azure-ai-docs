@@ -28,7 +28,7 @@ Create OpenAI resources:
     - Sign up your account on the [OpenAI website](https://openai.com/).
     - Sign in and [find your personal API key](https://platform.openai.com/account/api-keys).
 
-- **Azure OpenAI in Azure AI Foundry Models**:
+- **Azure OpenAI in Microsoft Foundry Models**:
 
     Create Azure OpenAI resources with [these instructions](/azure/ai-services/openai/how-to/create-resource).
 

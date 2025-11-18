@@ -1,7 +1,7 @@
 ---
 title: Speech service quotas and limits
-titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Azure AI services.
+titleSuffix: Foundry Tools
+description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -9,12 +9,12 @@ ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 7/15/2025
 ms.reviewer: jagoerge
-#Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Azure AI services.
+#Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Foundry Tools.
 ---
 
 # Speech service quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for the Speech service in Azure AI services. The information applies to all [pricing tiers](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) of the service. It also contains some best practices to avoid request throttling.
+This article contains a quick reference and a detailed description of the quotas and limits for the Speech service in Foundry Tools. The information applies to all [pricing tiers](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) of the service. It also contains some best practices to avoid request throttling.
 
 For the free (F0) pricing tier, see also the monthly allowances at the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
@@ -25,7 +25,7 @@ The following sections provide you with a quick guide to the quotas and limits t
 For information about adjustable quotas for Standard (S0) Speech resources, see [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#speech-to-text-increase-real-time-speech-to-text-concurrent-request-limit). The quotas and limits for Free (F0) Speech resources aren't adjustable. 
 
 > [!IMPORTANT]
-> If you switch an AI Foundry resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
+> If you switch a Foundry resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
 
 ### Speech to text quotas and limits per resource
 

@@ -1,7 +1,7 @@
 ---
-title: Audio concepts in Azure AI Speech
-titleSuffix: Azure AI services
-description: An overview of audio concepts in Azure AI Speech.
+title: Audio concepts in Azure Speech in Foundry Tools
+titleSuffix: Foundry Tools
+description: An overview of audio concepts in Azure Speech in Foundry Tools.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
@@ -11,7 +11,7 @@ ms.author: pafarley
 author: PatrickFarley
 ---
 
-# Audio concepts in Azure AI Speech
+# Audio concepts in Azure Speech in Foundry Tools
 
 The Speech service accepts and provides audio in multiple formats, and the area of audio is a complex topic but some background information can be helpful.
 

@@ -1,6 +1,6 @@
 ---
 title: How to use the online transcription editor for custom speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The online transcription editor allows you to create or edit audio + human-labeled transcriptions for custom speech.
 author: goergenj
 manager: nitinme

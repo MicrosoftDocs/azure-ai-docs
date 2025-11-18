@@ -1,12 +1,12 @@
 ---
-title: Create and use a glossary with Azure AI Translator Document translation
+title: Create and use a glossary with Azure Translator Document translation
 description: How to create and use a glossary with Document translation.
 ms.topic: how-to
 ms.service: azure-ai-translator
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 07/29/2025
+ms.date: 11/18/2025
 ---
 
 # Use glossaries with Document translation
@@ -52,7 +52,7 @@ A glossary is a list of terms with definitions that you create for the Document 
 
 ### Case sensitivity
 
-By default, Azure AI Translator service API is **case-sensitive**, meaning that it matches terms in the source text based on case.
+By default, Azure Translator API is **case-sensitive**, meaning that it matches terms in the source text based on case.
 
 * **Partial sentence application**. When your glossary is applied to **part of a sentence**, the Document translation API checks whether the glossary term matches the case in the source text. If the casing doesn't match, the glossary isn't applied.
 

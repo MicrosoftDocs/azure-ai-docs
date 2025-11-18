@@ -44,7 +44,7 @@ Starting with previously encrypted whole documents (unstructured text) such as P
 Custom skill deployment creates an Azure Function app and an Azure Storage account. These resources are created for you, so they aren't listed as a prerequisite. When you finish this tutorial, remember to clean up the resources so that you aren't billed for services you're not using.
 
 > [!NOTE]
-> Skillsets often require [attaching an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md). As written, this skillset has no dependency on Azure AI services, so no key is required. If you later add enrichments that invoke built-in skills, remember to update your skillset accordingly.
+> Skillsets often require [attaching a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). As written, this skillset has no dependency on Foundry, so no key is required. If you later add enrichments that invoke built-in skills, remember to update your skillset accordingly.
 
 ## Deploy the custom skill
 

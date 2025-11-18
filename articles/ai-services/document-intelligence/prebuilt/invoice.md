@@ -1,12 +1,12 @@
 ---
 title: Invoice data extraction – Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Automate invoice data extraction with Document Intelligence's invoice model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions
 ---

@@ -37,7 +37,7 @@ cd azureai-model-inference-bicep/infra
 
 Follow these steps:
 
-1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Services resource:
+1. Use the template `modules/ai-services-template.bicep` to describe your Foundry Tools resource:
 
     __modules/ai-services-template.bicep__
 
@@ -55,7 +55,7 @@ Follow these steps:
 
     :::code language="json" source="~/azureai-model-inference-bicep/infra/models.json" range="1-7":::
 
-4. If you plan to use projects (recommended), you need the templates for creating a project, hub, and a connection to the Azure AI Services resource:
+4. If you plan to use projects (recommended), you need the templates for creating a project, hub, and a connection to the Foundry Tools resource:
 
     __modules/project-hub-template.bicep__
 
@@ -93,7 +93,7 @@ Follow these steps:
       --template-file deploy-with-project.bicep
     ```
 
-5. If you want to deploy only the Azure AI Services resource and the model deployments, use the following deployment file:
+5. If you want to deploy only the Foundry Tools resource and the model deployments, use the following deployment file:
 
     __deploy.bicep__
 
@@ -109,7 +109,7 @@ Follow these steps:
       --template-file deploy.bicep
     ```
 
-7. The template outputs the Azure AI Foundry Models endpoint that you can use to consume any of the model deployments you have created.
+7. The template outputs the Microsoft Foundry Models endpoint that you can use to consume any of the model deployments you have created.
 
 ## Next steps
 

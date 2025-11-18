@@ -1,6 +1,6 @@
 ---
 title: Use cases for Voice live
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This Transparency Note discusses Voice live and the key considerations for making use of this technology responsibly.
 author: PatrickFarley
 ms.author: pafarley
@@ -42,9 +42,9 @@ The Voice Live API enables developers to build low-latency speech-to-speech expe
 ### System behavior
 
 Voice Live API provides developers with choices on multiple dimensions for achieving low-latency speech-to-speech experiences:
-- **Choice of language model**: Developers can choose from a list of different natively supported language models like GPT-Realtime, GPT-5, GPT-4.1, GPT-4o and GPT-4o-mini; incorporate an agent they have built using the Azure AI Foundry Agent Service to give the agent speech-in and speech-out capabilities; or bring their own model of choice deployed in Azure AI Foundry.  
-- **Choice of audio input processing**: Developers can choose between audio input being processed natively through multimodal language models like GPT-Realtime or processed through Azure AI Speech’s speech-to-text capabilities.  
-- **Choice of audio output processing**: Developers can choose between audio output being generated natively through multimodal language models like GPT-Realtime or generated through Azure AI Speech’s text-to-speech capabilities.
+- **Choice of language model**: Developers can choose from a list of different natively supported language models like GPT-Realtime, GPT-5, GPT-4.1, GPT-4o and GPT-4o-mini; incorporate an agent they have built using the Foundry Agent Service to give the agent speech-in and speech-out capabilities; or bring their own model of choice deployed in Microsoft Foundry.  
+- **Choice of audio input processing**: Developers can choose between audio input being processed natively through multimodal language models like GPT-Realtime or processed through Azure Speech in Foundry Tools’s speech-to-text capabilities.  
+- **Choice of audio output processing**: Developers can choose between audio output being generated natively through multimodal language models like GPT-Realtime or generated through Azure Speech’s text-to-speech capabilities.
 
 For any combination of choices made by the developer, the API also provides the developer the ability to enable conversational enhancement capabilities like start of speech and end of speech detection, background noise suppression, echo cancellation, and more.  
 
@@ -77,7 +77,7 @@ Natural language and speech models trained with such data can potentially behave
 
 Find more details about the technical limitations of Azure Speech options in the [Azure Speech to Text Transparency Note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note#limitations) and [Azure Text to Speech Transparency Note](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note?tabs=prebuilt-voice#limitations).
 
-If you choose to bring your own Foundry Agent to Voice Live, learn the [limitations of the Azure AI Foundry Agent Service](/azure/ai-foundry/responsible-ai/agents/transparency-note#limitations).   
+If you choose to bring your own Foundry Agent to Voice Live, learn the [limitations of the Agent Service](/azure/ai-foundry/responsible-ai/agents/transparency-note#limitations).   
 
 
 ## System performance
@@ -92,7 +92,7 @@ To learn the best practices for improving speech input and output processing, go
 
 Each component of Voice Live API can be evaluated separately. Learn more about [Evaluation of speech to text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note#evaluation-of-speech-to-text), [Evaluation of text to speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note?tabs=prebuilt-voice#evaluation-of-text-to-speech), and [Evaluation of Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use).  
 
-If you choose to bring your own Foundry Agent to Voice Live, learn about the [evaluation of the Azure AI Foundry Agent Service](/azure/ai-foundry/responsible-ai/agents/transparency-note#evaluating-and-integrating-azure-ai-agent-service-for-your-use).
+If you choose to bring your own Foundry Agent to Voice Live, learn about the [evaluation of the Agent Service](/azure/ai-foundry/responsible-ai/agents/transparency-note#evaluating-and-integrating-azure-ai-agent-service-for-your-use).
 
 ### Evaluating and integrating Voice Live API for your use 
 

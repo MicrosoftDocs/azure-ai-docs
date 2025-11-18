@@ -17,15 +17,24 @@ items:
   items:
   - name: Model leaderboards
     href: ../../concepts/model-benchmarks.md
-  - name: Compare models in leaderboards
+  - name: Compare models
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
   - name: GPT-5 vs GPT-4.1
     href: ../../foundry-models/how-to/model-choice-guide.md
+- name: Model router
+  items:
+  - name: Overview
+    href: ../../openai/concepts/model-router.md
+    displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
+  - name: What's new
+    href: ../../foundry-models/whats-new-model-router.md
+  - name: Get started with model router
+    href: ../../openai/how-to/model-router.md
 - name: Deploy Foundry Models
   items:
-  - name: Deployment options in Azure AI Foundry portal
+  - name: Deployment options in Microsoft Foundry portal
     href: ../../concepts/deployments-overview.md
   - name: Deployment types
     href: ../../foundry-models/concepts/deployment-types.md   
@@ -35,7 +44,7 @@ items:
     href: ../../foundry-models/how-to/create-model-deployments.md
   - name: Deploy Azure OpenAI in Foundry Models
     href: ../../how-to/deploy-models-openai.md
-  - name: Upgrade from GitHub Models to Azure AI Foundry Models
+  - name: Upgrade from GitHub Models to Microsoft Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
     href: ../../how-to/troubleshoot-deploy-and-monitor.md
@@ -49,10 +58,10 @@ items:
     href: ../../how-to/model-inference-to-openai-migration.md?tabs=openai&pivots=programming-language-python
   - name: Azure AI Inference SDK
     href: ../../foundry-models/supported-languages.md
+  - name: Responses API with Foundry Models
+    href: ../../foundry-models/how-to/generate-responses.md
   - name: Work with chat models
     items:
-    - name: Work with chat models
-      href: ../../foundry-models/how-to/use-chat-completions.md
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md
     - name: Work with multimodal models
@@ -67,6 +76,8 @@ items:
       href: ../../foundry-models/how-to/use-image-embeddings.md
   - name: Work with image models
     href: ../../how-to/use-image-models.md
+  - name: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
   - name: Develop with LangChain and LangGraph
     href: ../../how-to/develop/langchain.md
   - name: Develop with Llama-Index
@@ -75,7 +86,7 @@ items:
     href: ../../how-to/develop/semantic-kernel.md
 - name: Deployment in AI hub
   items:
-  - name: Connect your AI hub to the Azure AI Foundry resource
+  - name: Connect your AI hub to the Microsoft Foundry resource
     href: ../../foundry-models/how-to/configure-project-connection.md
   - name: Managed compute endpoints
     items:
@@ -95,7 +106,7 @@ items:
         href: ../../how-to/healthcare-ai/deploy-medimageparse.md
   - name: Serverless API endpoints
     items:
-    - name: Configure AI projects to work with Azure AI Foundry Models
+    - name: Configure AI projects to work with Microsoft Foundry Models
       href: ../../foundry-models/how-to/quickstart-ai-project.md
     - name: Deploy models via serverless API
       href: ../../how-to/deploy-models-serverless.md
@@ -181,13 +192,10 @@ items:
       - name: Computer Use
         href: ../../openai/how-to/computer-use.md
         displayName: cua, computer using model
-      - name: Model router
-        items:
-        - name: Getting started with model router
-          href: ../../openai/how-to/model-router.md
-        - name: Model router concepts
-          href: ../../openai/concepts/model-router.md
-          displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
+      - name: Deep research
+        href: ../../openai/how-to/deep-research.md
+      - name: Web search
+        href: ../../openai/how-to/web-search.md
       - name: Function calling
         href: ../../openai/how-to/function-calling.md
       - name: Predicted outputs
@@ -230,8 +238,6 @@ items:
         href: ../../openai/concepts/abuse-monitoring.md
       - name: Audio
         href: ../../openai/concepts/audio.md
-      - name: Model router
-        href: ../../openai/concepts/model-router.md
       - name: Content filtering
         items:
         - name: Content filtering overview

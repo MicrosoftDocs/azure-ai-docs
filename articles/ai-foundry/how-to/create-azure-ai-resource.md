@@ -1,7 +1,7 @@
 ---
-title: How to create and manage an Azure AI Foundry hub
-titleSuffix: Azure AI Foundry
-description: Learn how to create and manage an Azure AI Foundry hub from the Azure portal or from the Azure AI Foundry portal. Your developers can then create projects from the hub.
+title: How to create and manage a Microsoft Foundry hub
+titleSuffix: Microsoft Foundry
+description: Learn how to create and manage a Microsoft Foundry hub from the Azure portal or from the Microsoft Foundry portal. Your developers can then create projects from the hub.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -13,31 +13,31 @@ ms.date: 09/15/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
-# Customer Intent: As an admin, I need to create and manage an Azure AI Foundry hub so that my team can use it to create projects for collaboration.
+# Customer Intent: As an admin, I need to create and manage a Microsoft Foundry hub so that my team can use it to create projects for collaboration.
 ---
 
-# How to create and manage an Azure AI Foundry hub
+# How to create and manage a Microsoft Foundry hub
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal, and then your developers can create projects from the hub.
+In [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal, and then your developers can create projects from the hub.
 
-In this article, you learn how to create and manage a hub in Azure AI Foundry portal with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
+In this article, you learn how to create and manage a hub in Foundry portal with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
 
 > [!TIP]
-> If you're an individual developer and not an admin, dev lead, or part of a larger effort that requires a hub, you can create a project directly from the Azure AI Foundry portal without creating a hub first. For more information, see [Create a project](create-projects.md).
+> If you're an individual developer and not an admin, dev lead, or part of a larger effort that requires a hub, you can create a project directly from the Foundry portal without creating a hub first. For more information, see [Create a project](create-projects.md).
 > 
-> If you're an admin or dev lead and would like to create your Azure AI Foundry hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
+> If you're an admin or dev lead and would like to create your Foundry hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
 
 ## Create a secure hub in the Azure portal
 
-If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using Azure AI Foundry for resource creation. 
+If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using Foundry for resource creation. 
 
-1. From the [Azure portal](https://portal.azure.com), search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the [Azure portal](https://portal.azure.com), search for `Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
-    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
-1. Enter your hub name, subscription, resource group, and location details. For **Azure AI services base models**, select an existing AI services resource or create a new one. Azure AI services include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
+1. Enter your hub name, subscription, resource group, and location details. For **Foundry Tools base models**, select an existing AI services resource or create a new one. Foundry Tools include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
     
     :::image type="content" source="../media/how-to/hubs/resource-create-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="../media/how-to/hubs/resource-create-basics.png":::
 
@@ -64,7 +64,7 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
 ## Manage access control
 
-You can add and remove users from the [Azure AI Foundry portal](https://ai.azure.com?cid=LearnDocs) management center. Both the hub and projects within the hub have a **Users** entry in the left-menu that allows you to add and remove users. When adding users, you can assign them built-in roles.
+You can add and remove users from the [Foundry portal](https://ai.azure.com?cid=LearnDocs) management center. Both the hub and projects within the hub have a **Users** entry in the left-menu that allows you to add and remove users. When adding users, you can assign them built-in roles.
 
 :::image type="content" source="../media/how-to/hubs/studio-user-management.png" alt-text="Screenshot of the users area of the management center for a hub." lightbox="../media/how-to/hubs/studio-user-management.png":::
 
@@ -72,7 +72,7 @@ For custom role assignments, use **Access control (IAM)** within the Azure porta
 
 To add grant users permissions from the Azure portal, see the [Azure role assignments](/azure/role-based-access-control/role-assignments-portal) article.
 
-## Manage your hub from the Azure AI Foundry portal
+## Manage your hub from the Foundry portal
 
 ### Networking
 
@@ -80,9 +80,9 @@ Hub networking settings can be set during resource creation or changed in the **
 
 At hub creation, select between the networking isolation modes: **Public**, **Private with Internet Outbound**, and **Private with Approved Outbound**. To secure your resource, select either **Private with Internet Outbound** or **Private with Approved Outbound** for your networking needs. For the private isolation modes, a private endpoint should be created for inbound access. For more information on network isolation, see [Managed virtual network isolation](configure-managed-network.md). To create a secure hub, see [Create a secure hub](create-secure-ai-hub.md). 
 
-At hub creation in the Azure portal, creation of associated Azure AI services, Storage account, Key vault (optional), Application insights (optional), and Container registry (optional) is given. These resources are found on the Resources tab during creation. 
+At hub creation in the Azure portal, creation of associated Foundry Tools, Storage account, Key vault (optional), Application insights (optional), and Container registry (optional) is given. These resources are found on the Resources tab during creation. 
 
-To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in Azure AI Foundry portal, create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Azure AI services connections, see [Virtual networks for Azure AI Services](../../ai-services/cognitive-services-virtual-networks.md). You can optionally bring your own Azure AI Search, but it requires a private endpoint connection from your virtual network.
+To connect to Foundry Tools (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in Foundry portal, create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Foundry Tools connections, see [Virtual networks for Foundry Tools](../../ai-services/cognitive-services-virtual-networks.md). You can optionally bring your own Azure AI Search, but it requires a private endpoint connection from your virtual network.
 
 ### Encryption
 Projects that use the same hub, share their encryption configuration. Encryption mode can be set only at the time of hub creation between Microsoft-managed keys and Customer-managed keys (CMK). 
@@ -95,7 +95,7 @@ For hubs that use CMK encryption mode, you can update the encryption key to a ne
 
 ### Update Azure Application Insights and Azure Container Registry
 
-To use custom environments for Prompt Flow, you're required to configure an Azure Container Registry for your hub. To use Azure Application Insights for Prompt Flow deployments, a configured Azure Application Insights resource is required for your hub. Updating the workspace-attached Azure Container Registry or Application Insights resources might break lineage of previous jobs, deployed inference endpoints, or your ability to rerun earlier jobs in the workspace. After association with an Azure AI Foundry hub, Azure Container Registry and Application Insights resources can't be disassociated (set to null).
+To use custom environments for Prompt Flow, you're required to configure an Azure Container Registry for your hub. To use Azure Application Insights for Prompt Flow deployments, a configured Azure Application Insights resource is required for your hub. Updating the workspace-attached Azure Container Registry or Application Insights resources might break lineage of previous jobs, deployed inference endpoints, or your ability to rerun earlier jobs in the workspace. After association with a Foundry hub, Azure Container Registry and Application Insights resources can't be disassociated (set to null).
 
 You can use the Azure portal, Azure SDK/CLI options, or the infrastructure-as-code templates to update both Azure Application Insights and Azure Container Registry for the hub.
 
@@ -136,7 +136,7 @@ az ml workspace update -n "myexamplehub" -g "{MY_RESOURCE_GROUP}" -a "APPLICATIO
 
 ### Choose how credentials are stored
 
-Select scenarios in Azure AI Foundry portal store credentials on your behalf. For example, when you create a connection in Azure AI Foundry portal to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose Microsoft Entra ID identity-based authentication.
+Select scenarios in Foundry portal store credentials on your behalf. For example, when you create a connection in Foundry portal to access an Azure Storage account with stored account key, access Azure Container Registry with admin password, or when you create a compute instance with enabled SSH keys. No credentials are stored with connections when you choose Microsoft Entra ID identity-based authentication.
 
 You can choose where credentials are stored:
 
@@ -146,19 +146,19 @@ You can choose where credentials are stored:
 
 After your hub is created, it isn't possible to switch between Your Azure Key Vault and using a Microsoft-managed credential store.
 
-## Delete an Azure AI Foundry hub
+## Delete a Foundry hub
 
-To delete a hub from [Azure AI Foundry](https://ai.azure.com?cid=LearnDocs), select the hub and then select **Delete hub** from the **Hub properties** section of the page.
+To delete a hub from [Foundry](https://ai.azure.com?cid=LearnDocs), select the hub and then select **Delete hub** from the **Hub properties** section of the page.
 
 :::image type="content" source="../media/how-to/hubs/studio-delete-hub.png" alt-text="Screenshot of the delete hub link in hub properties." lightbox="../media/how-to/hubs/studio-delete-hub.png":::
 
 > [!NOTE]
 > You can also delete the hub from the [Azure portal](https://portal.azure.com).
 
-Deleting a hub deletes all associated projects. When a project is deleted, all nested endpoints for the project are also deleted. You can optionally delete connected resources; however, make sure that no other applications are using this connection. For example, another Azure AI Foundry deployment might be using it.
+Deleting a hub deletes all associated projects. When a project is deleted, all nested endpoints for the project are also deleted. You can optionally delete connected resources; however, make sure that no other applications are using this connection. For example, another Foundry deployment might be using it.
 
 ## Related content
 
 - [Create a hub project](hub-create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

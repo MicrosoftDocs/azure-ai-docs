@@ -1,24 +1,25 @@
 ---
-title: Codex with Azure OpenAI in AI Foundry Models
-description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and AI Foundry with gpt-5-codex
+title: Codex with Azure OpenAI in Foundry Models
+description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and Foundry with gpt-5-codex
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/23/2025
+ms.date: 11/13/2025
 author: mrbullwinkle    
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 
-# Codex with Azure OpenAI in Azure AI Foundry Models
+# Codex with Azure OpenAI in Microsoft Foundry Models
 
-OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT’s Codex. You can run this coding agent entirely on Azure infrastructure, while keeping your data inside your compliance boundary with the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that can be triggered from your terminal, VS Code, or from a GitHub Actions runner. Codex allows you to automatically open pull requests, refactor files, and write tests with the credentials of your AI Foundry project and Azure OpenAI deployments.
+OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT’s Codex. You can run this coding agent entirely on Azure infrastructure, while keeping your data inside your compliance boundary with the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that can be triggered from your terminal, VS Code, or from a GitHub Actions runner. Codex allows you to automatically open pull requests, refactor files, and write tests with the credentials of your Foundry project and Azure OpenAI deployments.
 
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-- Contributor permissions in [Azure AI Foundry](https://ai.azure.com/).
+- Contributor permissions in [Microsoft Foundry](https://ai.azure.com/).
 - [`homebrew`](https://brew.sh/) or [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for installing the Codex CLI or VS Code with the Codex extension.
 
 | Requirements      | Details      |
@@ -27,10 +28,10 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 | Git (optional, recommended) | 2.23+ for built-in pull request helpers |
 | RAM | 4-GB minimum (8-GB recommended) |
 
-## Deploy a model in Azure AI Foundry
+## Deploy a model in Foundry
 
-1. Go to [Azure AI Foundry](https://ai.azure.com) and create a new project.
-2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
+1. Go to [Foundry](https://ai.azure.com) and create a new project.
+2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
 3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select **deploy model**.
 4. Copy the endpoint **URL** and the **API Key**.
 
@@ -135,10 +136,10 @@ You can give Codex extra instructions and guidance using `AGENTS.md` files. Code
 - `AGENTS.md` at your repository’s root – shared project notes.
 - `AGENTS.md` in the current working directory – subfolder/feature specifics.
 
-For example, to help Codex understand how to write code for Azure AI Foundry Agents, you could create an `AGENTS.md` in your project root with the following content, derived from the Azure AI Agents SDK documentation:
+For example, to help Codex understand how to write code for Foundry Agents, you could create an `AGENTS.md` in your project root with the following content, derived from the Azure AI Agents SDK documentation:
 
 ```markdown
-# Instructions for working with Azure AI Foundry Agents
+# Instructions for working with Foundry Agents
 
 You are an expert in the Azure AI Agents client library for Python.
 

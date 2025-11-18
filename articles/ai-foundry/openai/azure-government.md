@@ -57,7 +57,7 @@ To request quota increases for these models, submit a request at [https://aka.ms
 <br>
 
 ### Model Retirements
-In some cases, models are retired in Azure Governmen ahead of dates in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Azure AI Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
+In some cases, models are retired in Azure Governmen ahead of dates in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
 
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date             |
 | --------------------------|-------------------|:--------------------------|------------------------------------|
@@ -89,5 +89,5 @@ The following feature differences exist when comparing Azure OpenAI in Azure Gov
 | Data Storage | In Azure Government, there are no Azure OpenAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Government to support use of the same policies in Azure Government as in Public cloud. Note also that if Azure OpenAI features that store customer data are enabled in Azure Government in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../azure/ai-foundry/responsible-ai/openai/data-privacy).|
 | Compliance | View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
 | Service Endpoints | openai.azure.us |
-| Key Portals | <ul><li>AI Foundry Portal - ai.azure.us</li><li>Azure OpenAI Studio - aoai.azure.us</li><li>Azure portal - portal.azure.us</li></ul> |
+| Key Portals | <ul><li>Foundry portal - ai.azure.us</li><li>Azure OpenAI Studio - aoai.azure.us</li><li>Azure portal - portal.azure.us</li></ul> |
 
