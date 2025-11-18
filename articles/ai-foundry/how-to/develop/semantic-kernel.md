@@ -44,7 +44,7 @@ To use language models deployed in Foundry portal, you need the endpoint and cre
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Sign in to [!INCLUDE [classic-link](classic-link.md)].
+1. Sign in to [!INCLUDE [classic-link](../../includes/classic-link.md)].
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.
