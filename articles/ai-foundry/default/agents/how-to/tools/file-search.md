@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
