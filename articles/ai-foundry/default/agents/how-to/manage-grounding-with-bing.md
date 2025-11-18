@@ -7,21 +7,35 @@ ms.author: haileytapia
 ms.reviewer: magottei
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/13/2025
 ---
 
 # Manage Grounding With Bing in Microsoft Foundry and Azure
 
-As an admin, you can disable Grounding With Bing in Microsoft Foundry and Azure by following the steps in this article.
+Grounding with Bing enables agents to retrieve and incorporate real-time public web data into model-generated responses. It supports summarization, question answering, conversational assistance, and other scenarios by using Grounding with Bing Search or Grounding with Bing Custom Search to fill knowledge gaps.
 
-## Foundry Agent Service
+Grounding is available across features in Foundry Agent Service and Azure AI Search. You might need to disable access to these features to meet compliance, privacy, or data governance requirements.
 
-See [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](./tools/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
+As an admin, you can manage access to Grounding with Bing in the following ways:
 
-## Web search tool
++ [Disable Grounding with Bing Search tools](#disable-grounding-with-bing-search-tools) in Foundry Agent Service.
++ [Disable web search tool](#disable-web-search-tool) in Foundry Agent Service.
++ [Disable web knowledge](#disable-web-knowledge) in Azure AI Search.
 
-See [Disable Bing Web Search](../how-to/tools/web-search.md#disable-bing-web-search).
+## Disable Grounding with Bing Search tools
 
-## Web knowledge
+You can disable Grounding with Bing Search and/or Grounding with Bing Custom Search at the subscription or resource group level. For more information, see [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](./tools/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
 
-See [Disable use of Web Knowledge Source](../../../../search/agentic-knowledge-source-how-to-web-manage.md#disable-use-of-web-knowledge-source).
+## Disable web search tool
+
+You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Bing Web Search](../how-to/tools/web-search.md#disable-bing-web-search).
+
+## Disable web knowledge
+
+You can disable Web Knowledge Source access for all search services in a subscription. For more information, see [Disable use of Web Knowledge Source](../../../../search/agentic-knowledge-source-how-to-web-manage.md#disable-use-of-web-knowledge-source).
+
+## Related content
+
++ [Grounding with Bing Search tools for agents](./tools/bing-tools.md)
++ [Web search tool (preview)](../how-to/tools/web-search.md)
++ [Create a Web Knowledge Source resource](../../../../search/agentic-knowledge-source-how-to-web.md)
