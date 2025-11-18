@@ -140,9 +140,9 @@ If your data source has a field with a different data type than the field you're
 
 There are two cases under which you might encounter this error message, each of which should be treated differently. Follow the instructions below depending on what skill returned this error for you.
 
-### Built-in Azure AI services skills
+### Built-in Foundry Tools skills
 
-Many of the built-in cognitive skills, such as language detection, entity recognition, or OCR, are backed by an Azure AI services API endpoint. Sometimes there are transient issues with these endpoints and a request will time out. For transient issues, there's no remedy except to wait and try again. As a mitigation, consider setting your indexer to [run on a schedule](search-howto-schedule-indexers.md). Scheduled indexing picks up where it left off. Assuming transient issues are resolved, indexing and cognitive skill processing should be able to continue on the next scheduled run.
+Many of the built-in cognitive skills, such as language detection, entity recognition, or OCR, are backed by a Foundry Tools API endpoint. Sometimes there are transient issues with these endpoints and a request will time out. For transient issues, there's no remedy except to wait and try again. As a mitigation, consider setting your indexer to [run on a schedule](search-howto-schedule-indexers.md). Scheduled indexing picks up where it left off. Assuming transient issues are resolved, indexing and cognitive skill processing should be able to continue on the next scheduled run.
 
 If you continue to see this error on the same document for a built-in cognitive skill, file a [support ticket](https://portal.azure.com/#create/Microsoft.Support) to get assistance, as this isn't expected.
 
@@ -232,7 +232,7 @@ This error occurs when the indexer is attempting to [project data into a knowled
 
 ## `Error: The cognitive service for skill '<skill-name>' has been throttled`
 
-Skill execution failed because the call to Azure AI services was throttled. Typically, this class of failure occurs when too many skills are executing in parallel. If you're using the Microsoft.Search.Documents client library to run the indexer, you can use the [SearchIndexingBufferedSender](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample05_IndexingDocuments.md#searchindexingbufferedsender) to get automatic retry on failed steps. Otherwise, you can [reset and rerun the indexer](search-howto-run-reset-indexers.md).
+Skill execution failed because the call to Foundry Tools was throttled. Typically, this class of failure occurs when too many skills are executing in parallel. If you're using the Microsoft.Search.Documents client library to run the indexer, you can use the [SearchIndexingBufferedSender](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample05_IndexingDocuments.md#searchindexingbufferedsender) to get automatic retry on failed steps. Otherwise, you can [reset and rerun the indexer](search-howto-run-reset-indexers.md).
 
 ## `Error: Expected IndexAction metadata`
 
@@ -409,7 +409,7 @@ Collections with [Lazy](/azure/cosmos-db/index-policy#indexing-mode) indexing po
 
 ## `Warning: The document contains very long words (longer than 64 characters). These words may result in truncated and/or unreliable model predictions.`
 
-This warning is passed from the Language service of Azure AI services. In some cases, it's safe to ignore this warning, for example if the long string is just a long URL. Be aware that when a word is longer than 64 characters, it's 'truncated to 64 characters which can affect model predictions.
+This warning is passed from the Language service of Foundry Tools. In some cases, it's safe to ignore this warning, for example if the long string is just a long URL. Be aware that when a word is longer than 64 characters, it's 'truncated to 64 characters which can affect model predictions.
 
 ## `Error: Cannot write more bytes to the buffer than the configured maximum buffer size`
 
@@ -427,7 +427,7 @@ Check the data type for the 'High Water Mark' column in the source and update th
 ## `Error: Access denied to Virtual Network/Firewall rules.`
 
 This error typically occurs due to one of the following:
-- Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)) or AI Services / AI Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
+- Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)), or Microsoft Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
 - Private endpoint configurations that block access from the indexer to those resources.
 
 Ensure that the indexer has access to your setup components by reviewing your resource configurations to confirm they allow traffic to all required services:

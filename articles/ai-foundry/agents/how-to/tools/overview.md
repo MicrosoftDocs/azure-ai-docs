@@ -1,7 +1,7 @@
 ---
-title: 'What are tools in Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
-description: Learn how to use the various tools available in the Azure AI Foundry Agent Service.
+title: 'What are tools in Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to use the various tools available in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,9 +13,9 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# What are tools in Azure AI Foundry Agent Service?
+# What are tools in Foundry Agent Service?
 
-To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
+To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
 ## Knowledge tools
 
@@ -29,7 +29,7 @@ To keep your AI agent informed with richer context from various data sources. Th
 
 ## Action tools
 
-To streamline workflows with your AI agent with capabilities to take actions. The Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
+To streamline workflows with your AI agent with capabilities to take actions, the Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
 
 - **Deep Research tool**: Web-based integrated deep research pipeline with the `o3-deep-research` model and Grounding with Bing Search.
 - **Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent
@@ -64,11 +64,11 @@ There are various ways to influence how your AI agent invokes tools:
 ## Prerequisites 
 
 * [A created agent](../../quickstart.md)
-* Make sure your AI model has enough Tokens-Per-Minute (TPM) allocated. We recommend having a minimum of 30k TPM. You can change the TPM allocation by going to **models + endpoints** in the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and edit your model.
+* Make sure your AI model has enough Tokens-Per-Minute (TPM) allocated. We recommend having a minimum of 30k TPM. You can change the TPM allocation by going to **models + endpoints** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and edit your model.
 
 ## Built-in tools 
 
-The Foundry Agent Service provides the following built-in tools. You can use them with the REST API, SDK, and Azure AI Foundry portal.  
+The Foundry Agent Service provides the following built-in tools. You can use them with the REST API, SDK, and Microsoft Foundry portal.  
 
 |Tool  |Description  |
 |---------|---------|

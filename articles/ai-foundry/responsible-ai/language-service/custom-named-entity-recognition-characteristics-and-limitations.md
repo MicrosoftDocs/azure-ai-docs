@@ -1,6 +1,6 @@
 ---
 title: Characteristics and limitations for custom NER
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations for using custom named entity recognition
 author: laujan
 ms.author: lajanuar

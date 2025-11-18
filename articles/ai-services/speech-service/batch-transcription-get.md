@@ -1,6 +1,6 @@
 ---
 title: Get batch transcription results - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: With batch transcription, the Speech service transcribes the audio data and stores the results in a storage container. You can then retrieve the results from the storage container.
 manager: nitinme
 author: PatrickFarley
@@ -23,7 +23,7 @@ To get transcription results, first check the [status](#get-transcription-status
 To get the status of the transcription job, call the [Transcriptions - Get](/rest/api/speechtotext/transcriptions/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes for a transcription job to start processing and up to 24 hours to complete. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
 Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 

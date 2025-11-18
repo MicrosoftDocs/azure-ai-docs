@@ -6,10 +6,10 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/30/2025
+ms.date: 11/06/2025
 ---
 
-In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
+In this article, you learn how to use Azure Speech in Foundry Tools voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
 
 [!INCLUDE [Header](../../common/voice-live-python.md)]
 
@@ -19,10 +19,10 @@ In this article, you learn how to use Azure AI Speech voice live with [Azure AI 
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
 
 > [!TIP]
-> To use voice live, you don't need to deploy an audio model with your Azure AI Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
+> To use voice live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -94,6 +94,10 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 1. Create the `voice-live-quickstart.py` file with the following code:
 
     ```python
+    # -------------------------------------------------------------------------
+    # Copyright (c) Microsoft Corporation. All rights reserved.
+    # Licensed under the MIT License.
+    # -------------------------------------------------------------------------
     from __future__ import annotations
     import os
     import sys
@@ -349,7 +353,8 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             self.connection: Optional["VoiceLiveConnection"] = None
             self.audio_processor: Optional[AudioProcessor] = None
             self.session_ready = False
-            self.conversation_started = False
+            self._active_response = False
+            self._response_api_done = False
     
         async def start(self):
             """Start the voice assistant session."""
@@ -392,7 +397,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             """Configure the VoiceLive session for audio conversation."""
             logger.info("Setting up voice conversation session...")
     
-            # Create strongly typed voice configuration
+            # Create voice configuration
             voice_config: Union[AzureStandardVoice, str]
             if self.voice.startswith("en-US-") or self.voice.startswith("en-CA-") or "-" in self.voice:
                 # Azure voice
@@ -401,13 +406,13 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                 # OpenAI voice (alloy, echo, fable, onyx, nova, shimmer)
                 voice_config = self.voice
     
-            # Create strongly typed turn detection configuration
+            # Create turn detection configuration
             turn_detection_config = ServerVad(
                 threshold=0.5,
                 prefix_padding_ms=300,
                 silence_duration_ms=500)
     
-            # Create strongly typed session configuration
+            # Create session configuration
             session_config = RequestSession(
                 modalities=[Modality.TEXT, Modality.AUDIO],
                 instructions=self.instructions,
@@ -455,14 +460,18 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                 logger.info("User started speaking - stopping playback")
                 print("🎤 Listening...")
     
-                # skip queued audio
                 ap.skip_pending_audio()
     
-                # Cancel any ongoing response
-                try:
-                    await conn.response.cancel()
-                except Exception:
-                    logger.exception("No response to cancel")
+                # Only cancel if response is active and not already done
+                if self._active_response and not self._response_api_done:
+                    try:
+                        await conn.response.cancel()
+                        logger.debug("Cancelled in-progress response due to barge-in")
+                    except Exception as e:
+                        if "no active response" in str(e).lower():
+                            logger.debug("Cancel ignored - response already completed")
+                        else:
+                            logger.warning("Cancel failed: %s", e)
     
             elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STOPPED:
                 logger.info("🎤 User stopped speaking")
@@ -470,9 +479,10 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
             elif event.type == ServerEventType.RESPONSE_CREATED:
                 logger.info("🤖 Assistant response created")
+                self._active_response = True
+                self._response_api_done = False
     
             elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
-                # Stream audio response to speakers
                 logger.debug("Received audio delta")
                 ap.queue_audio(event.delta)
     
@@ -482,16 +492,23 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
             elif event.type == ServerEventType.RESPONSE_DONE:
                 logger.info("✅ Response complete")
+                self._active_response = False
+                self._response_api_done = True
     
             elif event.type == ServerEventType.ERROR:
-                logger.error("❌ VoiceLive error: %s", event.error.message)
-                print(f"Error: {event.error.message}")
+                msg = event.error.message
+                if "Cancellation failed: no active response" in msg:
+                    logger.debug("Benign cancellation error: %s", msg)
+                else:
+                    logger.error("❌ VoiceLive error: %s", msg)
+                    print(f"Error: {msg}")
     
             elif event.type == ServerEventType.CONVERSATION_ITEM_CREATED:
                 logger.debug("Conversation item created: %s", event.item.id)
     
             else:
                 logger.debug("Unhandled event type: %s", event.type)
+    
     
     def parse_arguments():
         """Parse command line arguments."""
@@ -511,7 +528,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--endpoint",
             help="Azure VoiceLive endpoint",
             type=str,
-            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
+            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "https://your-resource-name.services.ai.azure.com/"),
         )
     
         parser.add_argument(
@@ -540,12 +557,13 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         )
     
         parser.add_argument(
-            "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true", default=True
+            "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true", default=False
         )
     
         parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
     
         return parser.parse_args()
+    
     
     def main():
         """Main function."""
@@ -641,7 +659,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 1. Run the Python file.
 
     ```shell
-    python voice-live-quickstart.py
+    python voice-live-quickstart.py --use-token-credential
     ```
 
 1. The Voice Live API starts to return audio with the model's initial response. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.

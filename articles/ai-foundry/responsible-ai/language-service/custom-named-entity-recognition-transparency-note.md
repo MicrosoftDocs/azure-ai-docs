@@ -1,6 +1,6 @@
 ---
 title: Transparency note for custom NER
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency note for custom named entity recognition
 author: laujan
 ms.author: lajanuar

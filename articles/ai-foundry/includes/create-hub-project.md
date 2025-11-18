@@ -21,7 +21,7 @@ A [!INCLUDE [hub-project-name](hub-project-name.md)] exists inside a hub. A hub 
 When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
 
 > [!TIP]
-> While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
+> While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage a Microsoft Foundry hub](../how-to/create-azure-ai-resource.md).
 
 When you create a new hub as part of the project creation, default settings are provided. If you want to customize these settings, do so before you create the project:
 
@@ -34,6 +34,6 @@ When you create a new hub as part of the project creation, default settings are 
     > [!TIP]
     > Especially for getting started we recommend you create a new resource group for your project. The resource group allows you to easily manage the project and all of its resources together. When you create a project, several resources are created in the resource group, including a hub, a container registry, and a storage account.
 
-1. Select a **Location** or use the default. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
+1. Select a **Location** or use the default. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Foundry Tools availability differs per region. For example, certain models might not be available in certain regions.
 
 1. Select **Create a project**. You see progress of the resource creation. The project is created when the process is complete.

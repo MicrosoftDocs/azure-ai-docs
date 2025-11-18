@@ -1,17 +1,16 @@
 ---
 title: Orchestration workflow none intent
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the default None intent in orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:  language-service-orchestration
 ms.reviewer: haelhamm
 ---
-
 # The "None" intent in orchestration workflow
 
 Every project in orchestration workflow includes a default None intent. The None intent is a required intent and can't be deleted or renamed. The intent is meant to categorize any utterances that do not belong to any of your other custom intents. 

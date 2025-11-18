@@ -7,7 +7,7 @@ ms.subservice: inferencing
 author: dem108
 ms.author: sehan
 ms.reviewer: mopeakande
-ms.date: 08/14/2024
+ms.date: 10/31/2025
 reviewer: msakande
 ms.topic: concept-article
 ms.custom: how-to, devplatv2, cliv2, sdkv2
@@ -100,7 +100,7 @@ def init():
 For an example of how to deploy several models to one deployment, see [Deploy multiple models to one deployment (CLI example)](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/custom-container/minimal/multimodel) and [Deploy multiple models to one deployment (SDK example)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/custom-container/online-endpoints-custom-container-multimodel.ipynb).
 
 > [!TIP]
-> If you have more than 1500 files to register, consider compressing the files or subdirectories as .tar.gz when registering the models. To consume the models, you can unpack the files or subdirectories in the `init()` function of the scoring script. Alternatively, when you register the models, set the `azureml.unpack` property to `True`, to automatically unpack the files or subdirectories. In either case, unpacking the files happens once in the initialization stage.
+> If you have more than 1,500 files to register, consider compressing the files or subdirectories as .tar.gz when registering the models. To consume the models, you can unpack the files or subdirectories in the `init()` function of the scoring script. Alternatively, when you register the models, set the `azureml.unpack` property to `True`, to automatically unpack the files or subdirectories. In either case, unpacking the files happens once in the initialization stage.
 
 ## Deployment for models that are registered in your workspace
 

@@ -1,16 +1,16 @@
 ---
 title: Translator V3.0 Reference
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator v3.0
+# Azure Translator in Foundry Tools v3.0
 
 ## What's new?
 
@@ -24,7 +24,7 @@ Version 3.0 of the Translator provides a modern JSON-based Web API. It improves 
 
 ## Base URLs
 
-Requests to Translator are, in most cases, handled by the datacenter that is closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
+Requests to Translator are, in most cases, handled by the datacenter that's closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
 
 To force the request to be handled within a specific geography, use the desired geographical endpoint. All requests are processed among the datacenters within the geography.
 
@@ -57,7 +57,7 @@ Custom Translator isn't currently available in Switzerland.
 
 ## Virtual Network support
 
-The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
+The Translator is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Foundry Tools virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 Once you turn on this capability, you must use the custom endpoint to call the Translator. You can't use the global translator endpoint ("api.cognitive.microsofttranslator.com") and you can't authenticate with an access token.
 

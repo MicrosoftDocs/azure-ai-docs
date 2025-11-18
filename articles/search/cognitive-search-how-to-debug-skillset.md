@@ -34,7 +34,7 @@ For background on how a debug session works, see [Debug sessions in Azure AI Sea
 
 Debug sessions work with all generally available [indexer data sources](search-data-sources-gallery.md) and most preview data sources, with the following exceptions:
 
-+ SharePoint Online indexer.
++ SharePoint indexer.
 
 + Azure Cosmos DB for MongoDB indexer.
 

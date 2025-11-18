@@ -1,22 +1,22 @@
 ---
-title: 'Configure content filters (preview)'
+title: 'Configure content filters'
 titleSuffix: Azure OpenAI
-description: Learn how to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
+description: Learn how to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 8/29/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 10/29/2025
+author: ssalgadodev
+ms.author: ssalgado
 recommendations: false
 ms.custom: FY25Q1-Linter
-# customer intent: As a developer, I want to learn how to configure content filters with Azure AI Foundry so that I can ensure that my applications comply with our Code of Conduct.
+# customer intent: As a developer, I want to learn how to configure content filters with Microsoft Foundry so that I can ensure that my applications comply with our Code of Conduct.
 ---
 
 # Configure content filters
 
-The content filtering system integrated into Azure AI Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
+The content filtering system integrated into Microsoft Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 
 The default content filtering configuration is set to filter at the medium severity threshold for all four content harms categories for both prompts and completions. That means that content that is detected at severity level medium or high is filtered, while content detected at severity level low or safe is not filtered by the content filters. Learn more about content categories, severity levels, and the behavior of the content filtering system [here](../concepts/content-filter.md). 
 
@@ -44,7 +44,7 @@ You can configure the following filter categories in addition to the default har
 
 |Filter category  |Status |Default setting  |Applied to prompt or completion?  |Description  |
 |---------|---------|---------|---------|---|
-|Prompt Shields for direct attacks (jailbreak)     |GA|    On     |   User prompt      |   Filters / annotates user prompts that might present a Jailbreak Risk. For more information about annotations, visit [Azure AI Foundry content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=python#annotations-preview). |
+|Prompt Shields for direct attacks (jailbreak)     |GA|    On     |   User prompt      |   Filters / annotates user prompts that might present a Jailbreak Risk. For more information about annotations, visit [Foundry content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=python#annotations-preview). |
 |Prompt Shields for indirect attacks  | GA| Off | User prompt | Filter / annotate Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Requires: [Document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt). |
 | Protected material - code |GA| On | Completion | Filters protected code or gets the example citation and license information in annotations for code snippets that match any public code sources, powered by GitHub Copilot. For more information about consuming annotations, see the [Protected material concepts guide](/azure/ai-foundry/openai/concepts/content-filter-protected-material) |
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
@@ -54,7 +54,7 @@ You can configure the following filter categories in addition to the default har
 
 [!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
 
-## Specify a content filtering configuration at request time (preview)
+## Specify a content filtering configuration at request time 
 
 In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for each API call. 
 
@@ -110,6 +110,6 @@ We recommend informing your content filtering configuration decisions through an
 ## Related content
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
-- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure AI Foundry.
+- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Foundry.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../concepts/red-teaming.md).
 - Learn how to [configure content filters using the API](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update)

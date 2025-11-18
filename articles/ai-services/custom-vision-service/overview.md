@@ -1,6 +1,6 @@
 ---
 title: What is Custom Vision?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Azure AI Custom Vision service to build custom AI models to detect objects or classify images.
 author: PatrickFarley
 manager: nitinme
@@ -72,7 +72,7 @@ See [Limits and quotas](./limits-and-quotas.md) for image input limitations.
 
 ## Data privacy and security
 
-As with all of the Azure AI services, developers using the Custom Vision service should be aware of Microsoft's policies on customer data. See the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
+As with all of the Foundry Tools, developers using the Custom Vision service should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
 
 ### Data residency
 

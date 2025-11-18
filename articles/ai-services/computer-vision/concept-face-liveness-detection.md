@@ -1,6 +1,6 @@
 ---
 title: "Face liveness detection - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains the concept of Face liveness detection, its input and output schema, and related concepts. 
 author: PatrickFarley
 manager: nitinme
@@ -97,7 +97,7 @@ This capability is especially valuable in regulated or enterprise environments w
 
 ## Support options
 
-In addition to using the main [Azure AI services support options](../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
+In addition to using the main [Foundry Tools support options](../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
 
 ## Next step

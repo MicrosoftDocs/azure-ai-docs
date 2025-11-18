@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

@@ -5,7 +5,7 @@ description: Learn how to centralize distributed training logs in Azure Applicat
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 10/27/2025
+ms.date: 11/5/2025
 ms.topic: how-to
 ms.service: azure-machine-learning
 ms.subservice: training
@@ -30,6 +30,8 @@ Azure Machine Learning simplifies debugging and observability in distributed tra
 - **Improved debuggability**: Reduces time spent manually inspecting multiple files.
 
 - **Configurable retention and billing**: Logs are retained for **90 days** by default in an AppTraces Table with table type as Analytics; ingestion is billed by size of logs, retention beyond 90 days can be configured at additional cost. For more information, see [Manage data retention](/azure/azure-monitor/logs/data-retention-configure).
+
+[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ## Prerequisites
 

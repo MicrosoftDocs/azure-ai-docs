@@ -1,11 +1,11 @@
 ---
-title: "Use Azure AI Document Intelligence REST API v2.1"
+title: "Use Azure Document Intelligence in Foundry Tools REST API v2.1"
 description: Use the Document Intelligence REST API v2.1 to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 03/25/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD001 -->
@@ -15,7 +15,7 @@ ms.author: lajanuar
 
 > [!NOTE]
 >
-> This project targets Azure AI Document Intelligence API version 2.1 using cURL to execute REST API calls.
+> This project targets Azure Document Intelligence in Foundry Tools API version 2.1 using cURL to execute REST API calls.
 
 [Document Intelligence REST API](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) | [Azure REST API reference](/rest/api/azure/)
 
@@ -35,8 +35,8 @@ ms.author: lajanuar
 
 - [PowerShell version 6.0+](/powershell/scripting/install/installing-powershell-core-on-windows), or a similar command-line application.
 - An Azure Storage blob that contains a set of training data. See [Build and train a custom model](../../build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true) for tips and options for putting together your training data set. You can use the files under the **Train** folder of the [sample data set](https://go.microsoft.com/fwlink/?linkid=2090451). Download and extract *sample_data.zip*.
-- An Azure AI services or Document Intelligence resource. Create a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a Document Intelligence resource." target="_blank">single-service</a> or <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create a multiple Document Intelligence resource." target="_blank">multi-service</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
+- An AI Services or Document Intelligence resource. Create a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a Document Intelligence resource." target="_blank">single-service</a> or <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create a multiple Document Intelligence resource." target="_blank">multi-service</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence.
 
   1. After your resource deploys, select **Go to resource**.
   1. In the left pane, select **Keys and Endpoint**.

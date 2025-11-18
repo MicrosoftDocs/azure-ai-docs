@@ -197,6 +197,8 @@ items:
             displayName: avatar
         - name: Customize avatar gestures with SSML
           href: text-to-speech-avatar/avatar-gestures-with-ssml.md
+      - name: Standard avatars
+        href: text-to-speech-avatar/standard-avatars.md
       - name: Custom text to speech avatar
         items:
         - name: Custom text to speech avatar overview
@@ -232,6 +234,12 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: LLM speech
+  items:
+    - name: Use LLM speech
+      href: llm-speech.md
+    - name: LLM speech REST API reference
+      href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice live
   items:
     - name: Voice live overview
@@ -241,11 +249,13 @@ items:
     - name: Quickstarts
       expanded: true
       items:
-      - name: Voice live with Foundry models quickstart
+      - name: Voice Live with Foundry models
         href: voice-live-quickstart.md
-      - name: Voice live with Foundry agents quickstart
+      - name: Voice Live with Foundry agents
         href: voice-live-agents-quickstart.md
-      - name: Bring your own model with Voice live (preview)
+      - name: Function calling in Voice Live
+        href: how-to-voice-live-function-calling.md
+      - name: Bring your own model with Voice live
         href: how-to-bring-your-own-model.md
     - name: How-to guides
       expanded: true
@@ -271,6 +281,9 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/overview/azure/ai-voicelive-readme
+          - name: Java (Preview)
+            displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
+            href: /java/api/overview/azure/ai-voicelive-readme?view=azure-java-preview
 
 - name: Keyword recognition
   items:
@@ -299,7 +312,7 @@ items:
         href: ingestion-client.md
       - name: Telephony Integration
         href: call-center-telephony-integration.md
-      - name: Connect Azure Communication Services with Azure AI services
+      - name: Connect Azure Communication Services with Foundry Tools
         href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
     - name: Gaming integration
       href: gaming-concepts.md
@@ -311,7 +324,7 @@ items:
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Pronunciation assessment in Azure AI Foundry
+        - name: Pronunciation assessment in Microsoft Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
@@ -516,6 +529,9 @@ items:
         href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
+    - name: From Speech to text 2024-11-15 to 2025-10-15
+      href: migrate-2025-10-15.md
+      displayName: migrate,migration,deprecate,retire,sunset
     - name: From Speech to text v3.2 to 2024-11-15
       href: migrate-2024-11-15.md
       displayName: migrate,migration,deprecate,retire,sunset
@@ -529,6 +545,8 @@ items:
     href: migrate-to-batch-synthesis.md
   - name: Migrate to custom voice API
     href: migrate-to-custom-voice-api.md
+  - name: Migrate from retired intent recognition
+    href: migrate-intent-recognition.md    
 - name: Responsible AI
   items:
     - name: Speech to text

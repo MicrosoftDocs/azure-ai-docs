@@ -1,6 +1,6 @@
 ---
 title: Voice live API Reference
-titleSuffix: Azure AI Services
+titleSuffix: Foundry Tools
 description: Complete reference for the Voice live API events, models, and configuration options.
 manager: nitinme
 ms.service: azure-ai-services
@@ -43,6 +43,7 @@ The Voice live API supports the following client events that can be sent from th
 | [conversation.item.delete](#conversationitemdelete) | Remove an item from the conversation |
 | [response.create](#realtimeclienteventresponsecreate) | Instruct the server to create a response via model inference |
 | [response.cancel](#realtimeclienteventresponsecancel) | Cancel an in-progress response |
+| [mcp_approval_response](#realtimemcpapprovalresponseitem) | Send approval or rejection for an MCP tool call that requires approval |
 
 ### session.update
 
@@ -250,6 +251,22 @@ Add a new item to the conversation context. This can include messages, function 
     "name": "get_weather",
     "call_id": "call_123",
     "arguments": "{\"location\": \"San Francisco\", \"unit\": \"celsius\"}"
+  }
+}
+```
+
+#### Example with MCP call
+```json
+{
+  "type": "conversation.item.create",
+  "item": {
+    "type": "mcp_call",
+    "approval_request_id": null,
+    "arguments": "",
+    "server_label": "deepwiki",
+    "name": "ask_question",
+    "output": null,
+    "error": null
   }
 }
 ```
@@ -622,6 +639,14 @@ The Voice live API sends the following server events to communicate status, resp
 | [response.animation_viseme.done](#responseanimation_visemedone) | Animation viseme data is complete |
 | [response.function_call_arguments.delta](#responsefunction_call_argumentsdelta) | Streaming function call arguments |
 | [response.function_call_arguments.done](#responsefunction_call_argumentsdone) | Function call arguments are complete |
+| [mcp_list_tools.in_progress](#mcp_list_toolsin_progress) | MCP tool listing is in progress |
+| [mcp_list_tools.completed](#mcp_list_toolscompleted) | MCP tool listing is completed |
+| [mcp_list_tools.failed](#mcp_list_toolsfailed) | MCP tool listing has failed |
+| [response.mcp_call_arguments.delta](#responsemcp_call_argumentsdelta) | Streaming MCP call arguments |
+| [response.mcp_call_arguments.done](#responsemcp_call_argumentsdone) | MCP call arguments are complete |
+| [response.mcp_call.in_progress](#responsemcp_callin_progress) | MCP call is in progress |
+| [response.mcp_call.completed](#responsemcp_callcompleted) | MCP call is completed |
+| [response.mcp_call.failed](#responsemcp_callfailed) | MCP call has failed |
 
 ### session.created
 
@@ -1800,6 +1825,184 @@ This event is also returned when a response is interrupted, incomplete, or cance
 | call_id | string | The ID of the function call. |
 | arguments | string | The final arguments as a JSON string. |
 
+### mcp_list_tools.in_progress
+
+The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from a mcp server.
+
+#### Event structure
+
+```json
+{
+  "type": "mcp_list_tools.in_progress",
+  "item_id": "<mcp_list_tools_item_id>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `mcp_list_tools.in_progress`. |
+| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
+
+### mcp_list_tools.completed
+
+The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from a mcp server.
+
+#### Event structure
+
+```json
+{
+  "type": "mcp_list_tools.completed",
+  "item_id": "<mcp_list_tools_item_id>"
+}
+```
+
+##### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `mcp_list_tools.completed`. |
+| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
+
+### mcp_list_tools.failed
+
+The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from a mcp server.
+
+#### Event structure
+
+```json
+{
+  "type": "mcp_list_tools.failed",
+  "item_id": "<mcp_list_tools_item_id>"
+}
+```
+
+##### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `mcp_list_tools.failed`. |
+| item_id | string | The ID of the [MCP list tools item](#realtimeconversationmcplisttoolsitem) being processed. |
+
+### response.mcp_call_arguments.delta
+
+The server `response.mcp_call_arguments.delta` event is returned when the model-generated mcp tool call arguments are updated.
+
+#### Event structure
+
+```json
+{
+  "type": "response.mcp_call_arguments.delta",
+  "response_id": "<response_id>",
+  "item_id": "<item_id>",
+  "output_index": 0,
+  "delta": "<delta>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.mcp_call_arguments.delta`. |
+| response_id | string | The ID of the response. |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| output_index | integer | The index of the output item in the response. |
+| delta | string | The arguments delta as a JSON string. |
+
+### response.mcp_call_arguments.done
+
+The server `response.mcp_call_arguments.done` event is returned when the model-generated mcp tool call arguments are done streaming.
+
+#### Event structure
+
+```json
+{
+  "type": "response.mcp_call_arguments.done",
+  "response_id": "<response_id>",
+  "item_id": "<item_id>",
+  "output_index": 0,
+  "arguments": "<arguments>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.mcp_call_arguments.done`. |
+| response_id | string | The ID of the response. |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| output_index | integer | The index of the output item in the response. |
+| arguments | string | The final arguments as a JSON string. |
+
+### response.mcp_call.in_progress
+
+The server `response.mcp_call.in_progress` event is returned when an MCP tool call starts processing.
+
+#### Event structure
+
+```json
+{
+  "type": "response.mcp_call.in_progress",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.mcp_call.in_progress`. |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
+### response.mcp_call.completed
+
+The server `response.mcp_call.completed` event is returned when an MCP tool call completes successfully.
+
+#### Event structure
+
+```json
+{
+  "type": "response.mcp_call.completed",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.mcp_call.completed`. |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
+### response.mcp_call.failed
+
+The server `response.mcp_call.failed` event is returned when an MCP tool call fails.
+
+#### Event structure
+
+```json
+{
+  "type": "response.mcp_call.failed",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.mcp_call.failed`. |
+| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
 ### response.output_item.added
 
 The server `response.output_item.added` event is returned when a new item is created during response generation.
@@ -1938,13 +2141,28 @@ Configuration for input audio transcription.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | The transcription model. Supported: `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `azure-speech` |
+| model | string | The transcription model. Supported: `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`, `azure-speech` |
 | language | string | Optional language code in BCP-47 (e.g., `en-US`), or ISO-639-1 (e.g., `en`), or multi languages with auto detection, (e.g., `en,zh`). |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
-| prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe` models. |
+| prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
 
 #### RealtimeInputAudioNoiseReductionSettings
+
+This can be:
+
+- An [RealtimeOpenAINoiseReduction](#realtimeopenainoisereduction) object
+- An [RealtimeAzureDeepNoiseSuppression](#realtimeazuredeepnoisesuppression) object
+
+#### RealtimeOpenAINoiseReduction
+
+OpenAI noise reduction configuration with explicit type field, only available for `gpt-realtime` and `gpt-realtime-mini` models.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | `near_field` or `far_field` |
+
+#### RealtimeAzureDeepNoiseSuppression
 
 Configuration for input audio noise reduction.
 
@@ -1978,7 +2196,7 @@ OpenAI voice configuration with explicit type field.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"openai"` |
-| name | string | OpenAI voice name: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse` |
+| name | string | OpenAI voice name: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`, `marin`, `cedar` |
 
 #### RealtimeAzureVoice
 
@@ -1995,8 +2213,8 @@ Azure custom voice configuration (preferred for custom voices).
 | endpoint_id | string | Endpoint ID (cannot be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales |
-| locale | string | Optional. Locale specification |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
@@ -2048,7 +2266,7 @@ Azure personal voice configuration.
 
 Configuration for turn detection. This is a discriminated union supporting multiple VAD types.
 
-##### RealtimeServerVad
+##### RealtimeServerVAD
 
 Base VAD-based turn detection.
 
@@ -2063,9 +2281,9 @@ Base VAD-based turn detection.
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeSemanticVad
+##### RealtimeOpenAISemanticVAD
 
-Semantic VAD (default variant).
+OpenAI semantic VAD configuration which uses a model to determine when the user has finished speaking. Only available for `gpt-realtime` and `gpt-realtime-mini` models.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -2073,11 +2291,10 @@ Semantic VAD (default variant).
 | eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
-| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeAzureSemanticVad
+##### RealtimeAzureSemanticVAD
 
-Azure semantic VAD (default variant).
+Azure semantic VAD, which determines when the user starts and speaking using a semantic speech model, providing more robust detection in noisy environments.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -2086,18 +2303,14 @@ Azure semantic VAD (default variant).
 | prefix_padding_ms | integer | Optional. Audio padding before speech |
 | silence_duration_ms | integer | Optional. Silence duration for speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| neg_threshold | number | Optional. Negative threshold |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
-| window_size | integer | Optional. Analysis window size |
-| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
-| require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supports English. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-##### RealtimeAzureSemanticVadMultilingual
+##### RealtimeAzureSemanticVADMultilingual
 
 Azure semantic VAD (default variant).
 
@@ -2108,10 +2321,7 @@ Azure semantic VAD (default variant).
 | prefix_padding_ms | integer | Optional. Audio padding before speech |
 | silence_duration_ms | integer | Optional. Silence duration for speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| neg_threshold | number | Optional. Negative threshold |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
-| window_size | integer | Optional. Analysis window size |
-| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false). |
 | languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
@@ -2219,7 +2429,7 @@ Session configuration object used in `session.update` events.
 | input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br><br>This property is nullable.|
 | input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation. This can be set to null to turn off. This service side echo cancellation can help improve the quality of the input audio by reducing the impact of echo and reverberation.<br><br>This property is nullable. |
 | input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br><br>This property is nullable. |
-| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. <br><br>This property is nullable. |
+| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
@@ -2246,6 +2456,8 @@ Output timestamp types supported in audio response content.
 
 ### Tool Configuration
 
+We support two types of tools: function calling and MCP tools which allow you connect to a mcp server.
+
 #### RealtimeTool
 
 Tool definition for function calling.
@@ -2267,6 +2479,19 @@ This can be:
 - `"required"` - Must use a tool
 - `{ "type": "function", "name": "function_name" }` - Use specific function
 
+#### MCPTool
+MCP tool configuration.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"mcp"` |
+| server_label | string | Required. The label of the MCP server. |
+| server_url | string | Required. The server URL of the MCP server. |
+| allowed_tools | string[] | Optional. The list of allowed tool names. If not specified, all tools are allowed. |
+| headers | object | Optional. Additional headers to include in MCP requests. |
+| authorization | string | Optional. Authorization token for MCP requests. |
+| require_approval | string or dictionary | Optional. <br/>If set to a string, The value must be `never` or `always`. <br/>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`. <br/>Default value is `always`. <br/> When set to `always`, the tool execution requires approval, [mcp_approval_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when mcp argument done, and will only be executed when [mcp_approval_response](#realtimemcpapprovalresponseitem) with `approve=true` is received. <br/>When set to `never`, the tool will be executed automatically without approval. |
+
 ### RealtimeConversationResponseItem
 
 This is a union type that can be one of the following:
@@ -2281,7 +2506,7 @@ User message item.
 | type | string | Must be `"message"` |
 | object | string | Must be `"conversation.item"` |
 | role | string | Must be `"user"` |
-| content | [RealtimeInputTextContentPart](#realtimeinputtextcontentpart)[] | The content of the message. |
+| content | [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) | The content of the message. |
 | status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
 
 #### RealtimeConversationAssistantMessageItem
@@ -2337,6 +2562,43 @@ Function call response item.
 | output | string | The output of the function call. |
 | call_id | string | The unique ID of the function call. |
 | status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
+
+#### RealtimeConversationMCPListToolsItem
+
+MCP list tools response item.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | The unique ID of the item. |
+| type | string | Must be `"mcp_list_tools"` |
+| server_label | string | The label of the MCP server. |
+
+#### RealtimeConversationMCPCallItem
+
+MCP call response item.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | The unique ID of the item. |
+| type | string | Must be `"mcp_call"` |
+| server_label | string | The label of the MCP server. |
+| name | string | The name of the tool to call. |
+| approval_request_id | string | The approval request ID for the MCP call. |
+| arguments | string | The arguments for the MCP call. |
+| output | string | The output of the MCP call. |
+| error | object | The error details if the MCP call failed. |
+
+#### RealtimeConversationMCPApprovalRequestItem
+
+MCP approval request item.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | The unique ID of the item. |
+| type | string | Must be `"mcp_approval_request"` |
+| server_label | string | The label of the MCP server. |
+| name | string | The name of the tool to call. |
+| arguments | string | The arguments for the MCP call. |
 
 ### RealtimeItemStatus
 
@@ -2517,6 +2779,16 @@ A function call output item.
 | call_id | string | The ID of the function call item. |
 | output | string | The output of the function call, this is a free-form string with the function result, also could be empty. |
 | id | string | The unique ID of the item. If the client doesn't provide an ID, the server generates one. |
+
+#### RealtimeMCPApprovalResponseItem
+
+An MCP approval response item.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The type of the item.<br><br>Allowed values: `mcp_approval_response` |
+| approve | boolean | Whether the MCP request is approved. |
+| approval_request_id | string | The ID of the MCP approval request. |
 
 ### RealtimeFunctionTool
 

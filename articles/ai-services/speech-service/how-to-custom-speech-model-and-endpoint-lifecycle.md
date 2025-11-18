@@ -1,6 +1,6 @@
 ---
 title: Model lifecycle of custom speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Custom speech provides base models for training and lets you create custom models from your data. This article describes the timelines for models and for endpoints that use these models.
 author: PatrickFarley
 manager: nitinme
@@ -48,7 +48,7 @@ When a custom model or base model expires, it's no longer available for transcri
 ## Get base model expiration dates
 
 > [!TIP]
-> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). In Microsoft Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
 
 The last date that you could use the base model for training was shown when you created the custom model. For more information, see [Train a custom speech model](how-to-custom-speech-train-model.md).
 
@@ -56,7 +56,7 @@ Follow these instructions to get the transcription expiration date for a base mo
 
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 1. Select the custom model that you want to check from the **Model name** column.
@@ -172,7 +172,7 @@ You should receive a response body in the following format:
 
 Follow these instructions to get the transcription expiration date for a custom model:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 1. Select the custom model that you want to check from the **Model name** column.

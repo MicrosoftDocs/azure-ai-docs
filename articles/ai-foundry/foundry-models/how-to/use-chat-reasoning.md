@@ -1,7 +1,7 @@
 ---
-title: How to use reasoning models with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to use reasoning capabilities from models with Azure AI Foundry Models
+title: How to use reasoning models with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to use reasoning capabilities from models with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -14,8 +14,9 @@ ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to use reasoning models with Azure AI Foundry Models
+# How to use reasoning models with Microsoft Foundry Models
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 

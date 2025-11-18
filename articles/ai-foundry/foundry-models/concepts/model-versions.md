@@ -1,6 +1,6 @@
-﻿---
-title: Model versions in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
+---
+title: Model versions in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
 description: Learn about model versions in Foundry Models.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -12,11 +12,15 @@ ms.author: mopeakande
 recommendations: false
 ms.reviewer: fasantia
 reviewer: santiagxf
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to understand how model versions work in Microsoft Foundry Models so I can manage deployments and updates effectively.
 ---
 
-# Model versions in Azure AI Foundry Models
+# Model versions in Microsoft Foundry Models
 
-Azure AI Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Azure AI Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
+
+Microsoft Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
 
 ## How model versions work
 

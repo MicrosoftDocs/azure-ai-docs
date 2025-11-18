@@ -1,7 +1,7 @@
 ---
 title: Customer-managed keys for hub projects
-titleSuffix: Azure AI Foundry
-description: Use customer-managed keys (CMK) with hub-based projects in Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Use customer-managed keys (CMK) with hub-based projects in Microsoft Foundry.
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
@@ -15,8 +15,8 @@ ai-usage: ai-assisted
 
 # Customer-managed keys for hub projects
 
-> [!NOTE]
-> An alternate Foundry project article is available: [Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)](encryption-keys-portal.md).
+> [!TIP]
+> An alternate Foundry project article is available: [Customer-managed keys for encryption with Microsoft Foundry (Foundry projects)](encryption-keys-portal.md).
 
 Hub-based projects require configuring CMK on each underlying service (Azure AI Hub, Storage) for end-to-end encryption control.
 
@@ -27,7 +27,7 @@ Hub-based projects require configuring CMK on each underlying service (Azure AI 
 
 Azure AI Hub resource acts as a gateway to multiple Azure services. Configure CMK per service:
 - Azure AI Hub / hub project (Machine Learning workspace) – see ML data encryption docs.
-- Azure AI Foundry resources – AES-256 FIPS 140-2 compliant.
+- Foundry resources – AES-256 FIPS 140-2 compliant.
 - Azure Storage accounts – store uploaded data (configure CMK in Storage).
 
 ## Data storage options

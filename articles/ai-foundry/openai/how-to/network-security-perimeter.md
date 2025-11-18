@@ -237,7 +237,7 @@ To test your connection through network security perimeter, you need access to a
 
 3. Using the IP address, you can create an __inbound access rule__ for that IP address to allow access. You can skip this step if you're using private link.
 
-4. Finally, try navigating to the Azure OpenAI service in the Azure portal. Open Azure OpenAI service in Azure AI Foundry. Deploy a model and chat with the model in the Chat Playground. If you receive a response, then the network security perimeter is configured correctly.
+4. Finally, try navigating to the Azure OpenAI service in the Azure portal. Open Azure OpenAI service in Microsoft Foundry. Deploy a model and chat with the model in the Chat Playground. If you receive a response, then the network security perimeter is configured correctly.
 
 ## View and manage network security perimeter configuration
 

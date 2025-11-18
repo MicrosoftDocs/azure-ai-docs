@@ -1,6 +1,6 @@
-﻿---
+---
 title: How to use the Voice live API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API for real-time voice agents.
 manager: nitinme
 author: goergenj
@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 11/05/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice live API for real-time voice agents.
 ---
@@ -26,11 +26,11 @@ For a table of supported models and regions, see the [Voice live API overview](.
 
 ## Authentication
 
-An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure AI Speech Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
+A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
 
 > [!NOTE]
-> Using Voice Live API is optimized for Azure AI Foundry resources. We recommend using Azure AI Foundry resources for full feature availability and best Azure AI Foundry integration experience.        
-> **Azure AI Speech Services resources** don't support Azure AI Foundry Agent Service integration and bring-your-own-model (BYOM).
+> Using Voice Live API is optimized for Microsoft Foundry resources. We recommend using Microsoft Foundry resources for full feature availability and best Microsoft Foundry integration experience.        
+> **Azure Speech Services resources** don't support Microsoft Foundry Agent Service integration and bring-your-own-model (BYOM).
 
 ### WebSocket endpoint
 
@@ -43,7 +43,7 @@ For example, an endpoint for a resource with a custom domain would be `wss://<yo
 
 The Voice live API supports two authentication methods:
 
-- **Microsoft Entra** (recommended): Use token-based authentication for an Azure AI Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
+- **Microsoft Entra** (recommended): Use token-based authentication for a Microsoft Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
 - **API key**: An `api-key` can be provided in one of two ways:
   - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
   - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
@@ -137,7 +137,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-4o-mini-realtime-preview* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
+| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `speech_duration_ms` | integer | Optional | The duration of user's speech audio required to start detection. If not set or under 80 ms, the detector uses a default value of 80 ms. |
@@ -202,7 +202,7 @@ The `voice` object has the following properties:
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
-See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
+See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech output customization configuration.
 
 ### Azure standard voices
 
@@ -233,7 +233,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
+For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2

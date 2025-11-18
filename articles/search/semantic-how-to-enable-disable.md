@@ -10,12 +10,12 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 11/10/2025
 ---
 
 # Enable or disable semantic ranker
 
-Semantic ranker is a premium feature billed by usage. By default, semantic ranker is enabled on a new billable search service and it's configured for the free plan, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api).
+Semantic ranker is a premium feature billed by usage. By default, semantic ranker is enabled on a new billable search service and it's configured for the free plan, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api). If you disable semantic ranking, you also disable [agentic retrieval](agentic-retrieval-overview.md).
 
 ## Check availability
 
@@ -31,7 +31,7 @@ Semantic ranker might not be enabled on older services. Follow these steps to en
 
 1. Navigate to your search service. On the **Overview** page, make sure the pricing tier is set to **Basic** or higher.
 
-1. On the left-navigation pane, select **Settings** > **Semantic ranker**.
+1. On the left-navigation pane, select **Settings** > **Premium features**.
 
 1. Select either the **Free plan** (default) or the **Standard plan**. You can switch between the free plan and the standard plan at any time.
 

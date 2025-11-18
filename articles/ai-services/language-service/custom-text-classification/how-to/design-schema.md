@@ -1,17 +1,16 @@
 ---
 title: How to prepare data and define a custom classification schema
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about data selection, preparation, and creating a schema for custom text classification projects.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # How to prepare data and define a text classification schema
 
 In order to create a custom text classification model, you will need quality data to train it. This article covers how you should select and prepare your data, along with defining a schema. Defining the schema is the first step in [project development lifecycle](../overview.md#project-development-lifecycle), and it defines the classes that you need your model to classify your text into at runtime.
@@ -22,11 +21,11 @@ The schema defines the classes that you need your model to classify your text in
 
 * **Review and identify**: Review documents in your dataset to be familiar with their structure and content, then identify how you want to classify your data. 
 
-    For example, if you are classifying support tickets, you might need the following classes: *login issue*, *hardware issue*, *connectivity issue*, and *new equipment request*.
+    For example, if you're classifying support tickets, you might need the following classes: *login issue*, *hardware issue*, *connectivity issue*, and *new equipment request*.
 
 * **Avoid ambiguity in classes**: Ambiguity arises when the classes you specify share similar meaning to one another. The more ambiguous your schema is, the more labeled data you might need to differentiate between different classes.
 
-    For example, if you are classifying food recipes, they may be similar to an extent. To differentiate between *dessert recipe* and *main dish recipe*, you might need to label more examples to help your model distinguish between the two classes. Avoiding ambiguity saves time and yields better results. 
+    For example, if you're classifying food recipes, they may be similar to an extent. To differentiate between *dessert recipe* and *main dish recipe*, you might need to label more examples to help your model distinguish between the two classes. Avoiding ambiguity saves time and yields better results. 
 
 * **Out of scope data**: When using your model in production, consider adding an *out of scope* class to your schema if you expect documents that don't belong to any of your classes. Then add a few documents to your dataset to be labeled as *out of scope*. The model can learn to recognize irrelevant documents, and predict their labels accordingly.
 
@@ -43,10 +42,10 @@ The quality of data you train your model with affects model performance greatly.
  
 * Avoid duplicate documents in your data. Duplicate data has a negative effect on the training process, model metrics, and model performance. 
 
-* Consider where your data comes from. If you are collecting data from one person, department, or part of your scenario, you are likely missing diversity that may be important for your model to learn about. 
+* Consider where your data comes from. If you're collecting data from one person, department, or part of your scenario, you're likely missing diversity that may be important for your model to learn about. 
 
 > [!NOTE]
-> If your documents are in multiple languages, select the **multiple languages** option during [project creation](../quickstart.md) and set the **language** option to the language of the majority of your documents.
+> If your documents are in multiple languages, select the **multiple languages** option during [project creation](../quickstart.md) and set the **language** option to the language for most of your documents.
 
 ## Data preparation
 

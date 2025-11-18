@@ -1,6 +1,6 @@
 ---
-title: "Customize o4-mini model with Azure OpenAI and reinforcement fine-tuning (Preview)"
-description: Learn how to use reinforcement fine-tuning with Azure OpenAI
+title: "Reinforcement fine-tuning"
+description: Learn how to use reinforcement fine-tuning with reasoning models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -8,115 +8,100 @@ ms.date: 08/29/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
 ms.custom:
   - build-2025
+ai-usage: ai-assisted
 ---
 
-# Reinforcement fine-tuning (RFT) with Azure OpenAI o4-mini (Preview)
+# Reinforcement fine-tuning
 
-Reinforcement fine-tuning (RFT) is a technique for improving reasoning models like o4-mini by training them through a reward-based process, rather than relying only on labeled data. By using feedback or "rewards" to guide learning, RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
-
-## Process
-
-The process of Reinforcement fine-tuning (RFT) is similar to Supervised fine-tuning (SFT) with some notable differences:
-
-- **Data preparation** system messages aren't supported, and instead of an `assistant` message, the final message in your training data is a reference answer.
-- **Model selection:** only o4-mini supports RFT.
-- **Grader definition:** RFT requires the use of **graders** to score the quality of your fine-tuned model and guide learning. You can use string check, text similarity, or model-based graders – or combine them with a multi-grader.
-- **Training:** includes additional parameters: `eval_samples`, `eval_interval`, `reasoning_effort`, and `compute_multiplier`. You also have the option to pause and resume jobs, allowing you to pause training, inspect checkpoints, and only continue if further training is needed.
-- **Evaluation**: In addition to accuracy and loss, RFT returns mean reward and parse error, and mean tokens.
-
-Throughout the training process, the platform iterates over the dataset, generating multiple responses for each prompt. These responses are then evaluated by the grader, and policy-gradient updates are applied based on the received scores. This cycle repeats until the training data is fully processed or the job is halted at a specified checkpoint, ultimately resulting in a model fine-tuned for your desired metric.
-
-However, despite these differences, there are many commonalities between SFT and RFT: data preparation is key; serverless training jobs can be initiated through the Foundry UI; and we support standard and global standard deployments.
-
-## Training & evaluation file formation requirements
-
-Both training and validation files are required to run o4-mini RFT. o4-mini uses a new format of data for reinforcement fine-tuning. These should be jsonl files, like what is used for supervised fine tuning (SFT).
-
-Each line of the file should contain the messages field, with some differences to SFT:
-
-- System messages aren't supported
-- The final message must be from the user, not the assistant (as is the case for SFT)
-- `Tools`, `response_formats`, are supported
-- Images / multimodal data aren't supported
-
-Each line in the JSONL data file should contain a messages array, along with any additional fields required to grade the output from the model. This value must be a valid JSON object (for example, dictionary or list; the specific type and structure is dependent on your selected grader).
-
-### Example training data
-
-If we give model a puzzle to solve in the required RFT training format it would be as follows:
-
-```json
-"messages": [
-    {
-      "role": "user",
-      "content": "You are a helpful assistant. Your task is to solve the following logic and puzzle quiz:\n\n2. In the expression 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 = 100, replace the asterisks with arithmetic operation signs to obtain a correct equation."
-    }
-  ],
-
-  "solution": "Solution. 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 \\cdot 9 = 100.\n\nEvaluation. 12 points for the correct solution.",
-
-  "final_answer": "1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 \\cdot 9 = 100"
-}
-
-```
-
-We have expanded the above text from a single line of `jsonl`, so you can see the expected fields: messages, role, content, and `final_answer`.
-
-### Dataset size for RFT
-
-Begin with a small dataset, comprising several dozen to a few hundred examples, to evaluate the efficacy of RFT prior to committing to a larger dataset. For safety reasons, the training set must undergo an automated screening process, which initiates when a fine-tuning job is started, rather than upon file upload. Once a file has successfully passed screening, it can be utilized repeatedly without delay.
-
-High-quality examples are essential, even in limited quantities. Following screening, an increased volume of data is advantageous, provided it maintains high quality. Larger datasets permit the use of higher batch sizes, which generally enhance training stability.
-
-Training files may contain a maximum of 50,000 examples, while test datasets may include up to 1,000 examples. Both types of datasets are subject to automated screening  
-
-## Creating fine tuning jobs
-
-You can create training jobs for o4-mini RFT in the Azure AI Foundry the same way you would fine tune any other model: Select **fine-tuning** in a supported region and select o4-mini as your base model.
-
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/model.png" alt-text="Screenshot of o4-mini model selection in the Azure AI Foundry portal." lightbox="../media/how-to/reinforcement-fine-tuning/model.png":::
-
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/reinforcement.png" alt-text="Screenshot of the reinforcement fine-tuning menu in the Azure AI Foundry portal." lightbox="../media/how-to/reinforcement-fine-tuning/reinforcement.png":::
-
-### Hyperparameter selection
-
-The hyperparameters section of the **reinforcement** method supports all of the regular training hyperparameters (for example, learning rate, number of epochs, and batch size), as well as three new hyperparameters:
-
-| Hyperparameter name | Value | Description |
-|----|----|----|
-|`Eval_samples`: |1-10 | The number of samples to use during evaluation. Validation split reward metrics will be averaged across the different samples for each datapoint. Default is 5.|
-|`Eval_interval` |1-25 | The number of training steps between evaluations over a provided validation file. Default is 1.|
-|`Compute-multiplier` |0.5 -3.0 | The multiplier on amount of compute use for exploring search space during training. Increasing will result in greater number of samples being rolled per instance. Too low likely to underfit, too high would be prone to overfit.|
-|`Reasoning_effort`|Low, Medium, High | The amount of effort the model should put into reasoning. Defaults to medium effort. If performance is poor, consider increasing the reasoning effort. |
+Reinforcement fine-tuning (RFT) is a technique for improving reasoning models by training them through a reward-based process, rather than relying only on labeled data. RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
 
 > [!NOTE]
-> If a method is provided, the top level hyperparameters field will be ignored. If you want to set both regular and reinforcement training params, set both in the reinforcement hyperparameters section.
+> The fine-tuning service automatically pauses RFT jobs once they hit $5,000 in total training costs (training + grading). Users can deploy the most recent checkpoint or resume the training job. If the user decides to resume the job, billing continues for the job with no further cost-based limits.
 
-> [!TIP]
-> All these values are optional, and we recommend users to start your first job with default values before adjusting the hyperparameters.
+
+## Model support
+
+Reinforcement fine-tuning is supported for the following models:
+
+- `o4-mini` version `2025-04-16`
+- `gpt-5` version `2025-08-07` (preview)
+
+> GPT-5 support for reinforcement fine tuning is in private preview and might not be available in your subscription.
+
+## Requirements
+
+Reinforcement fine-tuning (RFT) requires training and validation data formatted as JSONL and containing a `messages` array using the chat completions format.
+
+However, RFT has more requirements:
+
+- **Data**
+  - The final "message" in the data must be assigned a `user` role.
+  - The data can contain extra fields and values for use by a grader.
+  - Both a training and a validation dataset must be provided.
+- **Graders** 
+  - A grader must be defined to score the quality of your fine-tuned model and guide learning.
+  - Only a single grader can be provided, but multiple graders can be combined using a multigrader.
+
+## Example training data
+
+The following example shows how to present prompts to the model and include ground truth accessible to a grader.
+
+```json
+{
+  "messages": [
+    {
+      "role": "developer",
+      "content": "Your task is to solve logic puzzles. The user will provide an expression with ?'s as placeholders for arithmetic operations. Replace the ?'s with arithmetic operation signs (+, -, *, /) to obtain a valid equation."
+    },
+    {
+      "role": "user",
+      "content": "1 ? 2 ? 3 ? 4 ? 5 ? 6 ? 7 ? 8 ? 9 = 100"
+    }
+  ],
+  "solution": "1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 * 9 = 100"
+}
+```
+
+> [!NOTE] 
+> This example is split across multiple lines for demonstration purposes only. It must be a single line in your JSONL file.
 
 ## Graders
 
-RFT is unique because it uses graders to assess the quality of a model’s response to teach the model to reason. Unlike SFT, the final message isn't from the assistant – instead we sample the model and use a grader on each sample to score its quality. We then train based on those scores to improve model performance.
+Graders provide the reward function used during training and have access to any user-supplied fields in the dataset. Multiple types of graders are available:
 
-Effectively, graders are functions that compare the reference_answer from your training file with the sampled response.
+- **text comparison**: score response content based on its text
+- **model**: score responses using a language model and prompt
+- **custom code**: score responses using custom code
+- **multigrader**: score based on a combination of scores from other graders
 
-**Graders:**
+Most graders perform substitution of runtime data via templates. Any input or reference properties can include variable substitution enclosed in double curly braces (`{{ }}`) containing a reference to a variable.
 
-- Return floating point numbers between 0 and 1. It can be helpful to give the model partial credit for answers, rather than binary 0/1.
-- Graders are specified as JSON (see below)
+Each template reference must be namespaced using a pattern like `{{ namespace.variable }}`. For any complex, nested data, a JSON-path like syntax is supported.
 
-### Supported graders
+The following namespaces are supported:
 
-We support three types of graders: String check, Text similarity, Model graders. There's also an option on Multi-graders to use graders in combinations.
+- `sample` - model output to be graded appears under the `sample` namespace in a format similar to a chat completions response.
+- `item` - optional, extra fields provided in training data appear under the `item` namespace.
 
-### String-check-grader 
+Some examples of template substitution that use the above namespaces:
 
-Use these basic string operations to return a `0` or `1`.
+- `{{ sample.output_text }}` - substitute the model output as a string
+- `{{ sample.output_json }}` - if the model produced structured outputs, reference it as JSON
+- `{{ item.answer }}` - substitute the "answer" field in the dataset
+- `{{ item.ground_truth.date }}` - substitute the "date" field of a "ground_truth" object defined in the dataset
 
-**Specification:**
+The following sections document individual graders and provide their JSON specification for defining via the API.
+
+### Text comparison graders
+
+Use text comparison graders when the use case requires the model output either a definitive label or if the output must resemble a known ground truth answer.
+
+#### String-check-grader 
+
+String-check graders apply a given operation to the input and a reference to return a `0` or `1`, providing a simple pass/fail function.
 
 ```json
 {
@@ -128,16 +113,15 @@ Use these basic string operations to return a `0` or `1`.
 }
 ```
 
-**Supported operations:**
-
+*Operations:*
 - `eq`: Returns 1 if the input matches the reference (case-sensitive), 0 otherwise
 - `neq`: Returns 1 if the input doesn't match the reference (case-sensitive), 0 otherwise
 - `like`: Returns 1 if the input contains the reference (case-sensitive), 0 otherwise
 - `ilike`: Returns 1 if the input contains the reference (not case-sensitive), 0 otherwise
 
-### Text similarity
+#### Text similarity
 
-To evaluate how close the model-generated output is to the reference, scored with various evaluation metrics.
+Text-similarity graders compute a score based on a select algorithm for quantifying similarity between the input text and a given reference text.
 
 **Specification:**
 
@@ -152,22 +136,27 @@ To evaluate how close the model-generated output is to the reference, scored wit
 }
 ```
 
-***Supported operations:***
-
-- `bleu` – computes BLEU score between strings
-- `Fuzzy_match` – fuzzy string match, using rapidfuzz
-- `gleu` – computes google BLEU score between strings
+*Evaluation metrics:*
+- `fuzzy_match` – fuzzy string match, using the *RapidFuzz* algorithm
+- `bleu` – computes BLEU (bilingual evaluation understudy) score between strings
+- `gleu` – computes Google BLEU score between strings
 - `meteor` – computes METEOR score between strings
 - `rouge-*` - as defined by the rouge python library
 
-### Score Model
+### Model graders
 
-This is Model Grader where you can use LLM to grade the training output.
+Model graders take a prompt to a grader model instructing it how to evaluate and score a given response. This flexibility allows for prompt engineering complex graders that support explaining the reason for a given score.
 
-Models which we're supporting as grader models are:
+The following models can be used as model graders:
 
 - `gpt-4o-2024-08-06`
 - `o3-mini-2025-01-31`
+
+> Model graders do not require model deployments in Foundry.
+
+### Score model
+
+Score model graders output a numeric score based on their given input and prompt. Any provided `sampling_params` control the behavior of the scoring model and allow for customizing things like temperature and reasoning effort.
 
 ```json
 {
@@ -177,48 +166,78 @@ Models which we're supporting as grader models are:
     "model": string,
     "pass_threshold": number,
     "range": number[],
-    "sampling_params": {
-        "seed": number,
-        "top_p": number,
-        "temperature": number,
-        "max_completions_tokens": number,
-        "reasoning_effort": "low" | "medium" | "high"
-    }
+    "sampling_params": object
 }
 ```
 
-To use a score model grader, the input is a list of chat messages, each containing a role, and content. The output of the grader will be truncated to the given range, and default to 0 for all non-numeric outputs.
+### Code graders
 
-### Custom Code Grader
+Model graders provide a flexible, but nondeterministic way to grade responses. When determinism is important, code graders provide an alternative approach to defining scoring logic.
 
-Custom code  grader allows you to execute arbitrary python code to grade the model output. The grader expects a grade function to be present that takes in two arguments and outputs a float value. Any other result (exception, invalid float value, etc.) will be marked as invalid and return a 0 grade.
+### Python grader
+
+The Python grader allows you to execute arbitrary Python code to produce a score. 
+
+The provided code must define a `grade` function expecting two positional arguments: `sample` and `item`. The function must return a numeric score.
 
 ```json
 {
     "type": "python",
+    "name": string,
     "source": "def grade(sample, item):\n    return 1.0"
 }
 ```
-***Technical Constraints:***
-	Your uploaded code must be less than 256kB. It will not have any network access.
-	The grading execution itself cannot exceed 2 minutes.
-	At runtime you will be given a limit of 2Gb of memory and 1Gb of disk space to use.
-	There's a limit of 1 CPU cores—any usage above this amount will result in throttling.
 
-### Multi Grader
+The Python code executes in a constrained environment with the following limitations:
 
-A multigrader object combines the output of multiple graders to produce a single score.	
+- the provided code must be less than 256 kB in size
+- no network access is provided
+- Two (2) GB of memory and one (1) GB of disk space are available for use
+- One (1) CPU core is available
+- the total runtime of the grader is limited to 2 minutes
+
+> [!TIP]
+> Your code should handle any possible errors and always return a numeric value. If too many exceptions occur during the execution of the grader, the training job fails.
+
+Within the Python runtime, the following modules and versions are made available for use by the provided code:
+
+- numpy==2.2.4
+- scipy==1.15.2
+- sympy==1.13.3
+- pandas==2.2.3
+- rapidfuzz==3.10.1
+- scikit-learn==1.6.1
+- rouge-score==0.1.2
+- deepdiff==8.4.2
+- jsonschema==4.23.0
+- pydantic==2.10.6
+- pyyaml==6.0.2
+- nltk==3.9.1
+- sqlparse==0.5.3
+- rdkit==2024.9.6
+- scikit-bio==0.6.3
+- ast-grep-py==0.36.2
+
+### Endpoint grader (preview)
+
+Endpoint graders call a remote endpoint via an HTTP API to score the model response. They're ideal for use cases requiring access to ground truth for accurate scoring or the ability to implement the grader in a language other than Python.
+
+> While in private preview, the API for endpoint graders remains unpublished.
+
+### Multigrader
+
+A multigrader combines the output of multiple graders to produce a single score based on an arithmetic expression provided in `calculate_output`.
 
 ```json
 {  
-"type": "multi",
- "graders": dict[str, Grader],
- "calculate_output": string, 
-"invalid_grade": float
+  "type": "multi",
+  "name": string,
+  "graders": dict[str, Grader],
+  "calculate_output": string
 }
 ```
 
-**Supported operations:**
+When a multigrader computes the score, the `calculate_output` expression references the individual scores from the provided `graders` by the key in the `graders` object.
 
 *Operators:*
 - `+` (addition)
@@ -228,122 +247,54 @@ A multigrader object combines the output of multiple graders to produce a single
 - `^` (power)
 
 *Functions:*
-- `min`
-- `max`
-- `abs`
-- `floor`
-- `ceil`
-- `exp`
-- `sqrt`
-- `log`
+- `min`: compute the minimum of a value
+- `max`: compute the maximum of a value
+- `abs`: compute the absolute value
+- `floor`: round the value down
+- `ceil`: round the value up
+- `exp`: compute `e` to the power of the provided value
+- `sqrt`: take the square root of the value
+- `log`: compute the logarithm of the provided value
 
-When using the UX you're able to write a prompt and generate a valid grader and response format in json as needed. Grader is mandatory field to be entered while submitting a fine-tuning job. Response format is optional.
-
-> [!IMPORTANT]
-> Generating correct grader schema requires careful prompt authoring. You may find that your first few attempts generate invalid schemas or don't create a schema that will properly handle your training data. Grader is a mandatory field that must be entered while submitting a fine-tuning job. Response format is optional.
-
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/grader-schema.png" alt-text="Screenshot of the reinforcement fine-tuning grader schema generation experience." lightbox="../media/how-to/reinforcement-fine-tuning/grader-schema.png":::
-
-Here's an example grader for each category:
-
-**string-check-grader** - use simple string operations to return a 0 or 1.
-
-**Example:**
+As an example, a multigrader defined with two graders, "similarity-score" and "label-checker," that must average their outputs could look like:
 
 ```json
 {
-"name": "string_check_sample_grader",
- "type": "string_check", 
-"input": "{{item.reference_answer}}",
- "reference": "{{sample.output_text}}", 
-"operation": "eq"
+  "type": "multi",
+  "name": "Example multigrader",
+  "graders": {
+    "similarity_score": {
+      "type": "text_similarity",
+      "name": "similarity grader",
+      "input": "{{ sample.output_text }}",
+      "reference": "{{ item.summary }}",
+      "evaluation_metric": "bleu"
+    },
+    "label_checker": {
+      "type": "string_check",
+      "name": "label grader",
+      "input": "{{ sample.output_text }}",
+      "reference": "{{ item.label }}",
+      "operation": "eq"
+    }
+  },
+  "calculate_output": "(similarity_score + label_checker) / 2"
 }
 ```
 
-**Text similarity** - Evaluate how close the model-generated output is to the reference, scored with various evaluation metrics.
+## Response format (optional)
+
+The model can be made to produce structured outputs during training either to align to the intended use case of the model or to make grading the output easier.
+
+The response format configuration follows the same specification as Chat Completions, either supporting text (the default) or JSON. When the model should output JSON, a JSON Schema must be provided.
+
+To continue with the previous [example](#example-training-data), if the model must output the response in a structured format such as:
 
 ```json
-{
-"name": "text_similarity_sample_grader",
- "type": "text_similarity",
- "input": "{{item.reference_answer}}",
- "reference": "{{sample.output_text}}", "evaluation_metric":"fuzzy_match"
-}
+{ "solution": "1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 * 9 = 100" }
 ```
 
-**Score Model** - This is Model Grader where you can use LLM to grade the training output.
-
-Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mini-2025-01-31`.
-
-```json
-{ 
-"name": "score_model_sample_grader", 
-"type": "score_model",
- 
-"input": [ { 
-"role": "user", 
-"content": "Score\nhow close the reference answer is to the model answer. You will be comparing these\ntwo as JSON objects that contain 2 keys, \"extracted_text\" and\n\"clause_type\". Score 1.0 if they are both the same, 0.5 if one is\nthe same, and 0.0 if neither are the same. Return just a floating point\nscore\n\n Reference answer: {\"extracted_text\": \n{{item.extracted_text}}, \"clause_type\": {{item.clause_type}}}\n\n\nModel answer: {{sample.output_json}}"}],
-
-"model": "gpt-4o-2024-08-06", 
-"sampling_params": {"seed": 42}
-}
-```
-
-**Custom code grader** - This is python code grader where you can use any python code to grader the training output.
-
-The following third-party packages are available at execution time for the image tag 2025-05-08
-
-numpy==2.2.4
-scipy==1.15.2
-sympy==1.13.3
-pandas==2.2.3
-rapidfuzz==3.10.1
-scikit-learn==1.6.1
-rouge-score==0.1.2
-deepdiff==8.4.2
-jsonschema==4.23.0
-pydantic==2.10.6
-pyyaml==6.0.2
-nltk==3.9.1
-sqlparse==0.5.3
-rdkit==2024.9.6
-scikit-bio==0.6.3
-ast-grep-py==0.36.2
-
-```json
-{
-
-    "type": "python",
-    "source": "import json,re,ast\n\ndef safe_eval(e):\n    return _eval(ast.parse(e,mode='eval').body)\n\ndef _eval(n):\n    if isinstance(n,ast.Constant):return n.value\n    if isinstance(n,ast.BinOp) and type(n.op) in {ast.Add:lambda a,b:a+b,ast.Sub:lambda a,b:a-b,ast.Mult:lambda a,b:a*b,ast.Div:lambda a,b:a/b,ast.FloorDiv:lambda a,b:a//b,ast.Mod:lambda a,b:a%b,ast.Pow:lambda a,b:a**b}:return {ast.Add:lambda a,b:a+b,ast.Sub:lambda a,b:a-b,ast.Mult:lambda a,b:a*b,ast.Div:lambda a,b:a/b,ast.FloorDiv:lambda a,b:a//b,ast.Mod:lambda a,b:a%b,ast.Pow:lambda a,b:a**b}[type(n.op)](_eval(n.left),_eval(n.right))\n    if isinstance(n,ast.UnaryOp) and type(n.op) in {ast.UAdd:lambda a:+a,ast.USub:lambda a:-a}:return {ast.UAdd:lambda a:+a,ast.USub:lambda a:-a}[type(n.op)](_eval(n.operand))\n    raise ValueError('bad expr')\n\ndef grade(sample,item)->float:\n    try:\n        expr=sample['output_json']['expression'];expr_val=safe_eval(expr)\n        if sorted(map(int,re.findall(r'-?\\d+',expr)))!=sorted(map(int,json.loads(item['nums']))):return 0\n        sr,it=int(float(sample['output_json']['result'])),int(float(item['target']))\n        if expr_val!=sr:return 1\n        if sr==it:return 5\n        if abs(sr-it)<=1:return 4\n        if abs(sr-it)<=5:return 3\n        return 2\n    except: return 0"
-}
-```
-If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect.
-
-**Multi Grader** - A multigrader object combines the output of multiple graders to produce a single score.
-
-```json
-{
-"name":"sample_multi_grader",
-"type":"multi",
-"graders":{"ext_text_similarity":{"name":"ext_text_similarity",
-"type":"text_similarity",
-"input":"{{sample.output_json.ext_text}}",
-"reference":"{{item.ext_text}}",
-"evaluation_metric":"fuzzy_match"},
-
-"clause_string_check":{"name":"clause_string_check",
-"type":"string_check",
-"input":"{{sample.output_json.clause_type}}",
-"operation":"eq",
-"reference":"{{item.clause_type}}"}},
-
-"calculate_output":"0.5 * ext_text_similarity + 0.5 * clause_string_check"
-}
-```
-
-Example of response format which is an optional field:
-
-If we need the response for the same puzzles problem used in training data example then can add the response format as shown below where fields ‘solution’ and ‘final answer’ are shared in structured outputs.
+The following JSON schema describes the response format:
 
 ```json
 {
@@ -355,15 +306,10 @@ If we need the response for the same puzzles problem used in training data examp
       "solution": {
         "type": "string",
         "title": "solution"
-      },
-      "final_answer": {
-        "type": "string",
-        "title": "final_answer"
       }
     },
     "required": [
       "solution",
-      "final_answer"
     ],
     "additionalProperties": false
   },
@@ -371,240 +317,58 @@ If we need the response for the same puzzles problem used in training data examp
 }
 ```
 
-## Training progress and results
+## Hyperparameter selection
 
-RFT jobs are typically long running, and may take up to 24 hours depending on your parameter selection. You can track progress in both fine-tuning views of the AI Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+Reinforcement fine-tuning supports the same hyperparameters as Supervised fine-tuning. Additionally, the following hyperparameters control features specific to RFT:
 
-You can also review the results files while training runs, to get a peak at the progress and whether or not your training is proceeding as expected.
+| Hyperparameter name | Value | Default | Description |
+|----|----|----|----|
+|`eval_interval` | integer | `auto` | The number of training steps between evaluation runs. |
+|`eval_samples` | integer | `auto` | The number of samples to use during evaluation. |
+|`compute_multiplier` | number | `auto` | The multiplier on amount of compute use for exploring space during training. |
+|`reasoning_effort`| `low`, `medium`, `high` | `medium` | The reasoning effort used by the model during training. |
 
-**New feature: pause and resume**
+> [!NOTE]
+> The training service automatically replaces hyperparameters set to `auto` with defaults based on heuristics on the provided training data.
 
-During the training you can view the logs and RFT metrics and pause the job as needed (if metrics aren't converging or if you feel model isn't learning at the right pace, incorrect grader chosen, etc.). Once the training job is paused, a deployable checkpoint will be created and available for you to infer or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
-
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of the reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
-
-### Guardrails on training spending
-
-As an RFT job can lead to high training costs, we automatically pause jobs once they have hit $5K in total training costs (training + grading). Users may deploy the most recent checkpoint or resume the training job. If the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
 
 ## Interpreting training results
 
-For reinforcement fine-tuning jobs, the primary metrics are the per-step reward metrics. These metrics indicate how well your model is performing on the training data. They're calculated by the graders you defined in your job configuration.
+Reinforcement fine-tuning provides both automatic evaluations of the model during training and real-time training metrics.
 
-### Reward Metrics
+### Training metrics
 
-These are two separate top-level reward metrics:
+When you monitor a running job or inspecting a completed job, the "reward" and "reasoning" metrics provide an indicator of training success.
 
- - `train_reward_mean`: The average reward across the samples taken from all datapoints in the current step. Because the specific datapoints in a batch change with each step, train_reward_mean values across different steps aren't directly comparable and the specific values can fluctuate drastically from step to step.
- 
-- `valid_reward_mean`: The average reward across the samples taken from all datapoints in the validation set, which is a more stable metric.
+#### Reward
 
-> [!TIP]
-> You should always test inferencing with your model. If you’ve selected an inappropriate grader, it’s possible that the mean reward doesn't reflect the model’s performance. Review sample outputs from the model to ensure they're formatted correctly and make sense. Check if the model's predictions align with the ground truth and if the descriptive analysis provides a reasonable explanation.
+Reward metrics track the resulting scores from the grader acting as the reward function.
 
-### Reasoning tokens
+- `train_reward_mean`: the average reward across the batch of training data at a given step. Because each batch might be different across steps, the trend of this metric is more important than comparing values across steps.
+- `valid_reward_mean`: The average reward across the samples taken from the validation set at a given step.
 
-The `train_reasoning_tokens_mean` and `valid_reasoning_tokens_mean` metrics to see how the model is changing its behavior over time. These metrics are the average number of reasoning tokens used by the model to respond to a prompt in the training and validation datasets, respectively. You can also view the mean reasoning token count in the fine-tuning dashboard.
+Reward metrics should generally increase over the course of the training job. If they diverge significantly, it's a sign the model might be *reward hacking* and the grader requires more engineering.
 
-> [!TIP]
-> Often, during training, the model will drastically change the average number of reasoning tokens it uses to respond to a prompt. This is a sign that the model is changing its behavior in response to the reward signal. The model may learn to use fewer reasoning tokens to achieve the same reward, or it may learn to use more reasoning tokens to achieve a higher reward.
+#### Reasoning tokens
 
-## Evaluate the results
+Each training job tracks the number of reasoning tokens produced by the model. Reasoning token metrics captures how the model changes its behavior over the lifetime of the training job.
 
-By the time your fine-tuning job finishes, you should have a decent idea of how well the model is performing based on the mean reward value on the validation set. However, it's possible that the model has either overfit to the training data or has learned to reward hack your grader, which allows it to produce high scores without actually being correct.
+- `train_reasoning_tokens_mean`: the average number of reasoning tokens produced across the batch of training data at a given step.
+- `valid_reasoning_tokens_mean`: the average number of reasoning tokens produced across the validation data at a given step.
 
-Understanding the model's behavior can be done quickly by inspecting the evals associated with the fine-tuning job. Specifically, pay close attention to the run made for the final training step to see the end model's behavior. You can also use the evals product to compare the final run to earlier runs and see how the model's behavior has changed over the course of training.
+The model might learn to use fewer reasoning tokens to achieve the same reward, or it might learn to use more reasoning tokens to achieve a higher reward. These metrics typically rise and fall during the training job.
 
-## Deploying and using your o4-mini RFT model
+### Automatic evaluations
 
-Your fine tuned model can be deployed via the UI or REST API, just like any other fine tuned model.
+An evaluation is created automatically for each RFT job. At regular intervals defined by the `eval_interval` hyperparameter, the training system executes an evaluation run using the validation data. Scores for each run are available via the linked evaluation, discoverable from the Foundry user interface.
 
-You can deploy the fine tuning job which is completed or any intermittent checkpoints created automatically or manually by triggering pause operation. To know more about model deployment and test with Chat Playground refer, see [fine-tuning deployment](./fine-tuning-deploy.md).
+Inspecting these evaluations provides an extra data point for deciding on early-stopping. If the model exhibits learning during training, the results of each evaluation run should improve over the lifetime of the job.
 
-When using your model, make sure to use the same instructions and structure as used during training. This keeps the model in distribution, and ensures that you see the same performance on your problems during inference as you achieved during training.
 
-## REST API
+## Example projects and datasets
 
-### Create a RFT job
+The following example demos and datasets provide starting points for new users of Reinforcement fine tuning:
 
-#### With Score model grader
-
-```json
-{
-    "model": "o4-mini-2025-04-16",
-    "training_file": "file-c6578ee2c5194ae99e33711e677d7aa9",
-    "validation_file": "file-7ead313cc49e4e0480b9700bbd513bbc",
-    "suffix": "TEST",
-    "method": {
-        "type": "reinforcement",
-        "reinforcement": {
-            "hyperparameters": {
-                "eval_interval": 1,
-                "eval_samples": 1,
-                "compute_multiplier": 1,
-                "reasoning_effort": "medium",
-                "n_epochs": 1,
-                "batch_size": 10,
-                "learning_rate_multiplier": 1
-            },
-            "grader": {
-                "type": "score_model",
-                "name": "custom_grader",
-                "input": [
-                    {
-                        "role": "developer",
-                        "content": "You are a mathematical evaluator. Given a reference target number, a list of input numbers, and a model\u0027s output (an arithmetic expression and its reported result), your task is to evaluate the correctness and closeness of the model\u0027s answer.\n\nInput values are passed in as **strings**, including the number list and target. You must:\n1. Convert the \u0060target\u0060 string to a number.\n2. Convert the \u0060numbers\u0060 string into a list of numbers.\n3. Parse and validate the \u0060output_expression\u0060 \u2014 ensure it is a valid arithmetic expression.\n4. Evaluate the expression and confirm it matches the model\u0027s reported \u0060output_result\u0060.\n5. Check that **all input numbers are used exactly once**.\n6. Compare the evaluated result with the target and assign a score.\n\nScoring Rules:\n- 5: Valid expression, correct number usage, exact match to target\n- 4: Off by \u00B11\n- 3: Off by \u00B12 to \u00B15\n- 2: Off by \u003E5\n- 1: Minor issues (e.g., small mismatch in numbers used)\n- 0: Major issues \u2014 invalid expression or number usage\n\nOutput Format:\nScore: \u003C0 - 5\u003E\nReasoning: \u003Cbrief justification\u003E\n\nOnly respond with the score and reasoning."
-                    },
-                    {
-                        "role": "user",
-                        "content": "{ \u0022target\u0022: {{item.target}}, \u0022numbers\u0022: {{item.nums}}, \u0022output\u0022: {{sample.output_text}} }"
-                    }
-                ],
-                "pass_threshold": 5,
-                "range": [
-                    0,
-                    5
-                ],
-                "model": "o3-mini"
-            },
-            "response_format": {
-                "type": "json_schema",
-                "json_schema": {
-                    "name": "math_expression",
-                    "schema": {
-                        "type": "object",
-                        "required": [
-                            "expression",
-                            "result"
-                        ],
-                        "properties": {
-                            "expression": {
-                                "type": "string",
-                                "description": "The mathematical expression to be evaluated."
-                            },
-                            "result": {
-                                "type": "string",
-                                "description": "The result of evaluating the mathematical expression."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "strict": true
-                }
-            }
-        }
-    }
-}
-```
-
-#### With String Check grader
-
-```json
-{
-    "model": "o4-mini-2025-04-16",
-    "training_file": "file-c6578ee2c5194ae99e33711e677d7aa9",
-    "validation_file": "file-7ead313cc49e4e0480b9700bbd513bbc",
-    "suffix": "TEST",
-    "method": {
-        "type": "reinforcement",
-        "reinforcement": {
-            "hyperparameters": {
-                "eval_interval": 1,
-                "eval_samples": 1,
-                "compute_multiplier": 1,
-                "reasoning_effort": "medium",
-                "n_epochs": 1,
-                "batch_size": 10,
-                "learning_rate_multiplier": 1
-            },
-            "grader": {
-                "name":"answer_string_check",
-                "type":"string_check",
-                "input":"{{item.reference_answer.final_answer}}",
-                "operation":"eq",
-                "reference":"{{sample.output_json.final_answer}}"
-            }
-        }
-    }
-}
-```
-
-#### Text similarity grader
-
-```json
-{
-    "model": "o4-mini-2025-04-16",
-    "training_file": "file-c6578ee2c5194ae99e33711e677d7aa9",
-    "validation_file": "file-7ead313cc49e4e0480b9700bbd513bbc",
-    "suffix": "TEST",
-    "method": {
-        "type": "reinforcement",
-        "reinforcement": {
-            "hyperparameters": {
-                "eval_interval": 1,
-                "eval_samples": 1,
-                "compute_multiplier": 1,
-                "reasoning_effort": "medium",
-                "n_epochs": 1,
-                "batch_size": 10,
-                "learning_rate_multiplier": 1
-            },
-            "grader": {
-              "name":"solution_similarity",
-              "type":"text_similarity",
-              "input":"{{sample.output_json.solution}}",
-              "reference":"{{item.reference_answer.solution}}",
-              "evaluation_metric":"bleu"
-            }
-        }
-    }
-}
-```
-
-**Examples:** [Reference Jupyter Notebook](https://github.com/azure-ai-foundry/build-2025-demos/tree/main/Azure%20AI%20Model%20Customization/MSBuildRFTDemo).
-
-### Validate Grader
-
-```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/alpha/graders/validate \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{ "grader": { "name":"answer_string_check", "type":"string_check", "input":" {{item.reference_answer.final_answer}}", "operation":"eq", "reference":" {{sample.output_json.final_answer}}" } }' 
-```
-
-### Run Grader
-
-```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/alpha/graders/run \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{ "grader": { "name":"solution_similarity", "type":"string_check", "input": " {{item.reference_answer}}", "reference": " {{sample.output_text}}", "operation": "eq" }, "reference_answer": "yes", "model_sample": "yes" }'
-```
-
-## Best practices
-
-### Grader selection
-
-Your graders are used for reinforcement learning: choosing the wrong grader means that your rewards will be invalid, and your fine tuning won't produce the expected results.
-
-Some basic rules for grader selection:
-
-- If you have **short, specific answers** like numbers, Boolean responses, or multiple choice then choose a **string matching grader**.
-
-- If you have **complex responses that can be scored on multiple criteria, use multi graders**. This allows you to score different aspects of the response and combine it into an aggregate.
-
-- **Consider breaking the grader down into multiple steps**, and giving partial credit, to nudge the models reasoning in the right direction, grading is stable and aligned with preference. Provide few-shot examples of great, fair, and poor answers in the prompt.
-
-- **Use an LLM as a-judge when code falls short**. For rich, open ended answers, ask another language model to grade. When building LLM graders, run multiple candidate responses and ground truths through your LLM judge to ensure
-
-### Test your graders
-
-All of the graders available in RFT are supported in [Azure OpenAI evaluation](./evaluations.md). Before initiating a training run, test a vanilla o4-mini model against your validation data with the same grader you intend to use for training. If the grader scores don't match your expectations – then you need to select a different grader.
-
-We also provide a grader check API that you can use to check the validity of your configuration.
-
-### Data preparation
-
-Aim for a few hundred examples initially and consider scaling up to around 1,000 examples if necessary. The dataset should be balanced, in terms of classes predicted, to avoid bias and ensure generalization.
-
-For the prompts, make sure to provide clear and detailed instructions, including specifying the response format and any constraints on the outputs (e.g. minimum length for explanations, only respond with true/false etc.)
+- [Countdown Demo](https://github.com/azure-ai-foundry/fine-tuning/tree/main/Demos/RFT_Countdown) - end-to-end demo of using RFT to improve mathematical reasoning.
+- [MedMCQ](https://github.com/azure-ai-foundry/fine-tuning/tree/main/Sample_Datasets/Reinforcement_Fine_Tuning/MedMCQ) - sample dataset and graders for answering multiple-choice questions from the medical domain.
+- [ClauseMatching](https://github.com/azure-ai-foundry/fine-tuning/tree/main/Sample_Datasets/Reinforcement_Fine_Tuning/ClauseMatching) - sample dataset and graders showcasing both summarization and content interpretation in the legal domain.
