@@ -19,7 +19,7 @@ The Content Understanding GA API introduces several new capabilities and updates
 
 ## Prerequisite
 
-- Deploy a supported completion model and embedding model to use with the `2025-11-01` Content Understanding GA API (See [Support Models](../concepts/models-deployments.md#supported-models)). To start, try deploying a GPT-4.1 completion model and a text-embedding-3-large embedding model. For directions on how to deploy models, see [Create model deployments in Microsoft Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+- Deploy a supported completion model and embedding model to use with the `2025-11-01` Content Understanding GA API (See [Support Models](../concepts/models-deployments.md#supported-models)). To start, try deploying a GPT-4.1 completion model and a text-embedding-3-large embedding model. For directions on how to deploy models, see [Create model deployments in Microsoft Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments?pivots=ai-foundry-portal).
 
 ## Updating analyzers
 
