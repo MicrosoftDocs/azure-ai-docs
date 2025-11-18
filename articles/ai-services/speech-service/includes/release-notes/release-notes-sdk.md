@@ -9,7 +9,35 @@ ms.reviewer: pafarley
 ---
 
 > [!IMPORTANT]
-> Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+> Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.47: 2025-November release
+> [!IMPORTANT]
+> Windows 32-bit support is dropped due to the end of mainstream support for Windows 10 and thus 32-bit x86 and ARM (https://support.microsoft.com/windows/windows-10-support-has-ended-on-october-14-2025-2ca8b313-1946-43d3-b55c-2b95b107f281).
+
+#### New features:
+  * Changed the default policy to ignore errors due to network conditions preventing access to online certificate revocation information on Linux clients.
+  * [JavaScript] Added support for specifying the base model name for photo avatars.
+
+#### Bug fixes:
+  * Fixed a libxml2 vulnerability in embedded TTS.
+  * Fixed custom endpoints not working with ConversationTranscriber.
+  * Fixed incorrect TTS word boundary events when processing special characters (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2359).
+  * [C#] Fixed a missing MonoPInvokeCallback attribute (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2948).
+  * [iOS] Fixed a .NET 9 project linker error (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2939).
+  * [Java] Fixed handling of recognition result characters in the "modified UTF-8" range.
+  * [Python] Fixed SpeechServiceConnection_EnableAudioLogging of speech_config not working in ConversationTranscriber.
+  * [Windows] Fixed a memory leak in WebSocket connections when using TLS (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2925).
+
+#### Sample updates:
+  * Removed intent recognition samples (except the standalone implementation of intent recognition in C++) due to the service retirement.
+  * Removed speaker recognition samples due to the service retirement.
+  * Removed Unity samples as the last Speech SDK Unity packages were published for the 1.44 release and there is no direct support anymore.
+
+#### Breaking changes:
+  * Removed intent recognition support due to the service retirement.
+    * See [Migration Guide](../../migrate-intent-recognition.md) and https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/cpp/intent-recognition for alternatives.
+  * Removed speaker recognition support due to the service retirement.
 
 ### Speech SDK 1.46: 2025-September release
 
@@ -104,7 +132,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
       * TranslationRecognizer (via SpeechTranslationConfig)
       * ConversationTranscriber
       * SpeechSynthesizer
-    * You can now use the endpoint from the Azure portal for Speech and Azure AI Foundry resources to construct a SpeechConfig object.
+    * You can now use the endpoint from the Azure portal for Speech and Microsoft Foundry resources to construct a SpeechConfig object.
     * All other methods to construct a SpeechConfig continue to function and are supported.
   
 ##### Bug fixes
@@ -124,7 +152,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
       * ConversationTranscriber
       * SpeechSynthesizer
     In all programming languages except JavaScript.
-    * You can now use the Endpoint from the Azure Portal for Speech and Cognitive Services resources to construct a SpeechConfig object.
+    * You can now use the Endpoint from the Azure portal for Speech and Cognitive Services resources to construct a SpeechConfig object.
     * All other methods to construct a SpeechConfig continue to function and are supported.
   * Updated TranslationRecognizer to use V2 endpoints by default.
     * This moves control parameters from the URL to in-channel messages when using a V2 endpoint.
@@ -188,9 +216,9 @@ then forwards audio to the Speech Service via the Speech SDK
 
 ### 2024-November release
 
-#### Azure AI Speech Toolkit extension for Visual Studio Code
+#### Azure Speech in Foundry Tools Toolkit extension for Visual Studio Code
 
-Azure AI Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure AI Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
+Azure Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
 
 #### Text to speech avatar code samples
 
@@ -930,7 +958,7 @@ This table shows the previous and new object names for real-time diarization and
 #### Samples
 
 - Updated Unity samples documentation for macOS [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk).
-- A React Native sample for the Azure AI Speech recognition service is now available [here](https://github.com/microsoft/cognitive-services-sdk-react-native-example).
+- A React Native sample for the Azure Speech recognition service is now available [here](https://github.com/microsoft/cognitive-services-sdk-react-native-example).
 
 
 ### Speech SDK 1.16.0: 2021-March release
@@ -1146,7 +1174,7 @@ Stay healthy!
 - **Java**: Refactored bindings using direct JNI implementation without SWIG. This change reduces by 10x the bindings size for all Java packages used for Windows, Android, Linux, and Mac and eases further development of the Speech SDK Java implementation.
 - **Linux**: Updated support [documentation](../../speech-sdk.md?tabs=linux) with the latest RHEL 7 specific notes.
 - Improved connection logic to attempt connecting multiple times when service and network errors occur.
-- Updated the [portal.azure.com](https://portal.azure.com) Speech Quickstart page to help developers take the next step in the Azure AI Speech journey.
+- Updated the [portal.azure.com](https://portal.azure.com) Speech Quickstart page to help developers take the next step in the Azure Speech journey.
 
 #### Bug fixes
 - **C#, Java**: Fixed an [issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/587) with loading SDK libraries on Linux ARM (both 32 bit and 64 bit).
@@ -1577,7 +1605,7 @@ Reliability improvements and bug fixes:
 
 In our [sample repository](https://aka.ms/csspeech/samples), a new sample for JavaScript was added.
 
-### Azure AI Speech SDK 1.0.0: 2018-September release
+### Azure Speech SDK 1.0.0: 2018-September release
 
 #### New features
 
@@ -1589,7 +1617,7 @@ In our [sample repository](https://aka.ms/csspeech/samples), a new sample for Ja
 - With this release, a number of breaking changes are introduced.
   Check [this page](https://aka.ms/csspeech/breakingchanges_1_0_0) for details.
 
-### Azure AI Speech SDK 0.6.0: 2018-August release
+### Azure Speech SDK 0.6.0: 2018-August release
 
 #### New features
 
@@ -1615,7 +1643,7 @@ In our [sample repository](https://aka.ms/csspeech/samples), a new sample for Ja
 - Fixed a problem, where a long-running recognition could terminate in the middle of the transmission.
 - Fixed a race condition in recognizer shutdown.
 
-### Azure AI Speech SDK 0.5.0: 2018-July release
+### Azure Speech SDK 0.5.0: 2018-July release
 
 #### New features
 
@@ -1652,7 +1680,7 @@ In our [sample repository](https://aka.ms/csspeech/samples), a new sample for Ja
 
 - The Speech SDK for Android doesn't report speech synthesis results for translation. This issue will be fixed in the next release.
 
-### Azure AI Speech SDK 0.4.0: 2018-June release
+### Azure Speech SDK 0.4.0: 2018-June release
 
 **Functional changes**
 
@@ -1681,6 +1709,6 @@ In our [sample repository](https://aka.ms/csspeech/samples), a new sample for Ja
 
 More samples have been added and are constantly being updated. For the latest set of samples, see the [Speech SDK samples GitHub repository](https://aka.ms/csspeech/samples).
 
-### Azure AI Speech SDK 0.2.12733: 2018-May release
+### Azure Speech SDK 0.2.12733: 2018-May release
 
-This release is the first public preview release of the Azure AI Speech SDK.
+This release is the first public preview release of the Azure Speech SDK.

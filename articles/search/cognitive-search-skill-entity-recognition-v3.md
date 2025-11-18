@@ -1,7 +1,7 @@
 ---
 title: Entity Recognition cognitive skill (v3)
 titleSuffix: Azure AI Search
-description: Extract different types of entities using the machine learning models of Azure AI Language in an AI enrichment pipeline in Azure AI Search.
+description: Extract different types of entities using the machine learning models of Azure Language in Foundry Tools in an AI enrichment pipeline in Azure AI Search.
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
@@ -14,10 +14,10 @@ ms.update-cycle: 365-days
 
 # Entity Recognition cognitive skill (v3)
 
-The **Entity Recognition** skill (v3) extracts entities of different types from text. These entities fall under 14 distinct categories, ranging from people and organizations to URLs and phone numbers. This skill uses the [Named Entity Recognition](/azure/ai-services/language-service/named-entity-recognition/overview) machine learning models provided by [Azure AI Language](/azure/ai-services/language-service/overview).
+The **Entity Recognition** skill (v3) extracts entities of different types from text. These entities fall under 14 distinct categories, ranging from people and organizations to URLs and phone numbers. This skill uses the [Named Entity Recognition](/azure/ai-services/language-service/named-entity-recognition/overview) machine learning models provided by [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type  
@@ -28,7 +28,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive and are all optional.
+Parameters are case sensitive and are all optional.
 
 | Parameter name     | Description |
 |--------------------|-------------|

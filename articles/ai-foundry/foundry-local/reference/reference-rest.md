@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 > [!CAUTION]
-> This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
+> This API refers to the REST API available in the Foundry Local CLI. This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
 ## OpenAI v1 compatibility
 

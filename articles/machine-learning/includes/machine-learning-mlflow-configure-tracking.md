@@ -85,7 +85,7 @@ ms.author: fasantia
 
     1. In the upper right corner, select the name of your workspace.
     
-    1. In the Directory + Subscription + Workspace window, select __View all properties in Azure Portal__. The resource page for your workspace opens in the Azure portal.
+    1. In the Directory + Subscription + Workspace window, select __View all properties in Azure portal__. The resource page for your workspace opens in the Azure portal.
 
     1. Under __Essentials__, copy the __MLflow tracking URI__ value.    
     

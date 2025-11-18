@@ -1,7 +1,7 @@
 ---
-title: How to add and manage data in your Azure AI Foundry hub-based project
-titleSuffix: Azure AI Foundry
-description: Learn how to add and manage data in your Azure AI Foundry hub-based project.
+title: How to add and manage data in your Microsoft Foundry hub-based project
+titleSuffix: Microsoft Foundry
+description: Learn how to add and manage data in your Microsoft Foundry hub-based project.
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -15,11 +15,11 @@ ms.author: jburchel
 author: jonburchel 
 ---
 
-# How to add and manage data in your Azure AI Foundry hub-based project
+# How to add and manage data in your Microsoft Foundry hub-based project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how to create and manage data in Azure AI Foundry hub-based projects. Data can be used as a source for indexing in Azure AI Foundry portal.
+This article describes how to create and manage data in Microsoft Foundry hub-based projects. Data can be used as a source for indexing in Foundry portal.
 
 Data can help when you need these capabilities:
 
@@ -28,7 +28,7 @@ Data can help when you need these capabilities:
 > - **Reproducibility:** Once you create a data version, it is *immutable*. It cannot be modified or deleted. Therefore, jobs or prompt flow pipelines that consume the data can be reproduced.
 > - **Auditability:** Because the data version is immutable, you can track the asset versions, who updated a version, and the date of each version update.
 > - **Lineage:** For any given data, you can view which jobs or prompt flow pipelines consume the data.
-> - **Ease-of-use:** An Azure AI Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
+> - **Ease-of-use:** A Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
 
 
 ## Prerequisites
@@ -39,7 +39,7 @@ Data can help when you need these capabilities:
 
 You're charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
 
-When you create your data, you need to set the data type. Azure AI Foundry supports these data types:
+When you create your data, you need to set the data type. Foundry supports these data types:
 
 |Type  |**Canonical Scenarios**|
 |---------|---------|
@@ -47,15 +47,15 @@ When you create your data, you need to set the data type. Azure AI Foundry suppo
 |**`folder`**<br>Reference a folder | Read a folder of parquet/CSV files into Pandas/Spark.<br><br>Read unstructured data (for example: images, text, or audio) located in a folder. |
 |**`table`**<br>Reference a table | Read a table on Azure Storage. |
 
-Azure AI Foundry shows the supported source paths. You can create a data from a folder or file:
+Foundry shows the supported source paths. You can create a data from a folder or file:
 
-- If you select **Folder** for the data source **Type**, you can choose the folder URL format. Azure AI Foundry shows the supported folder URL formats. You can create a data resource as shown:
+- If you select **Folder** for the data source **Type**, you can choose the folder URL format. Foundry shows the supported folder URL formats. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-folder.png" alt-text="Screenshot of folder URL format.":::
 
-- If you select **File** for the data source **Type**, you can choose the file URL format. The supported file URL formats are shown in Azure AI Foundry portal. You can create a data resource as shown:
+- If you select **File** for the data source **Type**, you can choose the file URL format. The supported file URL formats are shown in Foundry portal. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-file.png" alt-text="Screenshot of file URL format.":::
 
-- If you select **Table** for the data source **Type**, you can choose the table URL format. The supported file URL formats are shown in Azure AI Foundry portal. You can create a data resource as shown:
+- If you select **Table** for the data source **Type**, you can choose the table URL format. The supported file URL formats are shown in Foundry portal. You can create a data resource as shown:
     :::image type="content" source="../media/data-add/studio-url-table.png" alt-text="Screenshot of table URL format.":::
 
 ### Upload files and folders
@@ -68,7 +68,7 @@ When you upload files or folders, they're uploaded to the default `workspaceblob
 
 ### Add file, folder, and table data from Azure Storage
 
-You can add file, folder, and table data from Azure Storage to your Azure AI Foundry workspace.
+You can add file, folder, and table data from Azure Storage to your Foundry workspace.
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
 
@@ -78,9 +78,9 @@ A Table (`uri_table`) data source type points to a *table* on a storage resource
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-These steps explain how to add an existing file, folder, or table data resource from Azure Storage to your hub-based project workspace in the Azure AI Foundry portal:
+These steps explain how to add an existing file, folder, or table data resource from Azure Storage to your hub-based project workspace in the Foundry portal:
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Navigate to the [Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Select the hub-based project where you want to add the data.
 
@@ -99,14 +99,14 @@ These steps explain how to add an existing file, folder, or table data resource 
 
 ## Manage data
 
-After you add data to your hub-based project, you can delete, archive, restore, tag, archive, and preview the data in the Azure AI Foundry.
+After you add data to your hub-based project, you can delete, archive, restore, tag, archive, and preview the data in the Foundry.
 
 ### Delete data
 
 > [!IMPORTANT]
-> Data deletion isn't supported. Data is immutable in Azure AI Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
+> Data deletion isn't supported. Data is immutable in Foundry portal. Once you create a data version, it can't be modified or deleted. This immutability provides a level of protection when working in a team that creates production workloads.
 
-If Azure AI Foundry allowed data deletion, it would have the following adverse effects:
+If Foundry allowed data deletion, it would have the following adverse effects:
 - Production jobs that consume data that is later deleted would fail
 - Machine learning experiment reproduction would become more difficult
 - Job lineage would break, because it would become impossible to view the deleted data version
@@ -124,18 +124,18 @@ When a data resource is erroneously created - for example, with an incorrect nam
 
 ### Archive data
 
-By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Azure AI Foundry portal. You can still continue to reference and use an archived data resource in your workflows. You can either archive:
+By default, archiving a data resource hides it from both list queries (for example, in the CLI `az ml data list`) and the data listing in Foundry portal. You can still continue to reference and use an archived data resource in your workflows. You can either archive:
 
 - *all versions* of the data under a given name
 - a specific data version
 
 #### Archive all versions of a data
 
-At this time, Azure AI Foundry doesn't support archiving *all versions* of the data resource under a given name.
+At this time, Foundry doesn't support archiving *all versions* of the data resource under a given name.
 
 #### Archive a specific data version
 
-At this time, Azure AI Foundry doesn't support archiving a specific version of the data resource.
+At this time, Foundry doesn't support archiving a specific version of the data resource.
 
 ### Restore an archived data
 
@@ -143,14 +143,14 @@ You can restore an archived data resource. If all of versions of the data are ar
 
 #### Restore all versions of a data
 
-At this time, Azure AI Foundry doesn't support restoration of *all versions* of the data under a given name.
+At this time, Foundry doesn't support restoration of *all versions* of the data under a given name.
 
 #### Restore a specific data version
 
 > [!IMPORTANT]
 > If all data versions were archived, you can't restore individual versions of the data - you must restore all versions.
 
-Currently, Azure AI Foundry doesn't support restoration of a specific data version.
+Currently, Foundry doesn't support restoration of a specific data version.
 
 ### Data tagging
 
@@ -167,9 +167,9 @@ You can add tags to existing data.
 
 In the Data details page, you can browse the folder structure and preview the file. We support data preview for these types:
 - Data file types that are supported via the preview API: ".tsv", ".csv", ".parquet", ".jsonl".
-- For other file types, Azure AI Foundry portal tries to natively preview the file in the browser. The supported file types might depend on the browser itself.
+- For other file types, Foundry portal tries to natively preview the file in the browser. The supported file types might depend on the browser itself.
 Normally for images, these file image types are supported: ".png", ".jpg", ".gif". Normally, these file types are supported: ".ipynb", ".py", ".yml", ".html".
 
 ## Next steps
 
-- Learn how to [create a project in Azure AI Foundry portal](./create-projects.md).
+- Learn how to [create a project in Foundry portal](./create-projects.md).

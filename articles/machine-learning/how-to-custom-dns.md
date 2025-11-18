@@ -26,7 +26,7 @@ When using an Azure Machine Learning workspace (including Azure AI hubs) with a 
 - An Azure Virtual Network that uses [your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server).
 
 :::moniker range="azureml-api-2"
-- An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Azure AI Foundry. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
+- An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Microsoft Foundry. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
 
 - If your workspace dependency resources are secured with an __Azure Virtual network__, familiarity with the [Network isolation during training & inference](./how-to-network-security-overview.md) article.
 :::moniker-end

@@ -245,7 +245,7 @@ To view your quota for various Azure resources like virtual machines, storage, o
 
 1. On the left pane, in the **Support + troubleshooting** section, select **Usage + quotas** to view your current quota limits and usage.
 
-    [![Screenshot of Azure Portal view of current quota limits and usage.](./media/how-to-manage-quotas/portal-view-quota.png)](./media/how-to-manage-quotas/portal-view-quota.png)
+    [![Screenshot of Azure portal view of current quota limits and usage.](./media/how-to-manage-quotas/portal-view-quota.png)](./media/how-to-manage-quotas/portal-view-quota.png)
 
 1. Select a subscription to view the quota limits. Filter to the region you're interested in.
 

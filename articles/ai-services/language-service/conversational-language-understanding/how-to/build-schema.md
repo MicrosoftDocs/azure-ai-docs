@@ -1,16 +1,15 @@
 ---
 title: Build a Conversational Language Understanding Project Schema
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this article to start building a conversational language understanding project schema.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Build your fine-tuning schema
 
 In conversational language understanding projects, the *schema* is defined as the combination of intents and entities within your project. Schema design is a crucial part of your project's success. When you create a schema, think about which intents and entities should be included in your project.
@@ -38,7 +37,7 @@ They might create an intent to represent each of these actions. They might also 
 
 ## Add intents
 
-To build a project schema within [AI Foundry](https://ai.azure.com/?cid=learnDocs):
+To build a project schema within [Foundry](https://ai.azure.com/?cid=learnDocs):
 
 1. On the left pane, select **Define schema**.
 

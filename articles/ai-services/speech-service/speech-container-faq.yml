@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Speech service containers frequently asked questions (FAQ)
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Install and run containers for speech to text and text to speech.
   author: PatrickFarley
   manager: nitinme
@@ -118,7 +118,7 @@ sections:
           }
           ```
           
-          You reed to create an AI Foundry resource for Speech, not an AI Foundry resource.
+          You reed to create a Foundry resource for Speech, not a Foundry resource.
           
           
       - question: |

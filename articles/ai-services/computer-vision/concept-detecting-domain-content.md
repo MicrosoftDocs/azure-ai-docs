@@ -1,19 +1,19 @@
 ---
-title: Domain-specific content - Azure AI Vision
-titleSuffix: Azure AI services
+title: Domain-specific content - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to specify an image categorization domain to return more detailed information about an image.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 02/21/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
 # Domain-specific content detection
 
-In addition to tagging and high-level categorization, Azure AI Vision also supports further domain-specific analysis using models that are trained on specialized data.
+In addition to tagging and high-level categorization, Azure Vision in Foundry Tools also supports further domain-specific analysis using models that are trained on specialized data.
 
 There are two ways to use the domain-specific models: by themselves (scoped analysis) or as an enhancement to the image [categorization](./concept-categorizing-images.md) feature.
 
@@ -91,7 +91,7 @@ The following JSON response shows how domain-specific analysis can be included a
 
 ## List the domain-specific models
 
-Currently, Azure AI Vision supports the following domain-specific models:
+Currently, Azure Vision supports the following domain-specific models:
 
 | Name | Description |
 |------|-------------|

@@ -142,5 +142,5 @@ For more information about batch run and evaluation, see [Submit flow run to Azu
 
 - [Get started with prompt flow](prompt-flow/get-started-prompt-flow.md)
 - [Create a vector index in an Azure Machine Learning prompt flow (preview)](how-to-create-vector-index.md)
-- [Use Index Lookup tool for Azure AI Foundry](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool)
+- [Use Index Lookup tool for Microsoft Foundry](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool)
 - [Integrate prompt flow with LLM-based application DevOps](prompt-flow/how-to-integrate-with-llm-app-devops.md)

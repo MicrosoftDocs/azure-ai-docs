@@ -1,7 +1,7 @@
 ---
 title: Face service encryption of data at rest
-titleSuffix: Azure AI services
-description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Azure AI services subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Face, and how to enable and manage CMK. 
+titleSuffix: Foundry Tools
+description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Foundry Tools subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Face, and how to enable and manage CMK. 
 author: PatrickFarley
 manager: nitinme
 
@@ -25,6 +25,6 @@ The Face service automatically encrypts your data when it's persisted to the clo
 
 ## Related content
 
-* For a full list of services that support CMK, see [Customer-Managed Keys for Azure AI services](../encryption/cognitive-services-encryption-keys-portal.md)
+* For a full list of services that support CMK, see [Customer-Managed Keys for Foundry Tools](../encryption/cognitive-services-encryption-keys-portal.md)
 * [What is Azure Key Vault?](/azure/key-vault/general/overview)
 

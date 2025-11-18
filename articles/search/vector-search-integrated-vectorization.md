@@ -42,10 +42,10 @@ For integrated data chunking and vector conversions, you're taking a dependency 
     + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md), attached to text-embedding-ada-002,text-embedding-3-small, text-embedding-3-large on Azure OpenAI.
 
     + [Custom skill](cognitive-search-custom-skill-web-api.md) that points to another embedding model on Azure or on another site.
- 
-    + [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure AI Vision.
 
-    + [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) that points to selected models in the model catalog.
+    + [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure Vision.
+
+    + [AML skill](cognitive-search-aml-skill.md) that points to select models in the Microsoft Foundry model catalog.
 
 ## Using integrated vectorization in queries
 
@@ -61,8 +61,8 @@ For text-to-vector conversion during queries, you take a dependency on these com
     |-----------------|------------|
     | [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) | [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) |
     | [Custom skill](cognitive-search-custom-skill-web-api.md) | [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) |
-    | [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
-    | [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) | [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+    | [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
+    | [AML skill pointing to the model catalog in Foundry portal](cognitive-search-aml-skill.md) | [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 ## Component diagram
 
@@ -70,17 +70,17 @@ The following diagram shows the components of integrated vectorization.
 
 :::image type="content" source="media/vector-search-integrated-vectorization/integrated-vectorization-architecture.png" alt-text="Diagram of components in an integrated vectorization workflow." border="false" lightbox="media/vector-search-integrated-vectorization/integrated-vectorization-architecture.png":::
 
-The workflow is an indexer pipeline. Indexers retrieve data from supported data sources and initiate data enrichment (or applied AI) by calling Azure OpenAI or Azure AI services or custom code for text-to-vector conversions or other processing.
+The workflow is an indexer pipeline. Indexers retrieve data from supported data sources and initiate data enrichment (or applied AI) by calling Azure OpenAI or Foundry Tools or custom code for text-to-vector conversions or other processing.
 
 The diagram focuses on integrated vectorization, but your solution isn't limited to this list. You can add more skills for AI enrichment, create a knowledge store, add semantic ranking, add relevance tuning, and other query features.
 
 ## Availability and pricing
 
-Integrated vectorization is available in all regions and tiers. However, if you're using Azure AI skills and vectorizers, make sure your Azure AI services multi-service resource is available in the [same region as Azure AI Search](search-region-support.md).
+Integrated vectorization is available in all regions and tiers. However, if you're using skills and vectorizers for AI enrichment, regional requirements might apply. For more information, see [Attach a Foundry resource to a skillset](cognitive-search-attach-cognitive-services.md).
 
 If you're using a custom skill and an Azure hosting mechanism (such as an Azure function app, Azure Web App, and Azure Kubernetes), check the [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search) for feature availability. 
 
-Data chunking (Text Split skill) is free and available on all Azure AI services in all regions.
+Data chunking (Text Split skill) is free and available on all Foundry Tools in all regions.
 
 > [!NOTE]
 > Some older search services created before January 1, 2019 are deployed on infrastructure that doesn't support vector workloads. If you try to add a vector field to a schema and get an error, it's a result of outdated services. In this situation, you must create a new search service to try out the vector feature.
@@ -104,7 +104,7 @@ For query-only vectorization:
 A more common scenario - data chunking and vectorization during indexing:
 
 1. [Create a data source](search-howto-create-indexers.md#prepare-a-data-source) connection to a supported data source for indexer-based indexing.
-1. [Create a skillset](cognitive-search-defining-skillset.md) that calls [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [AzureOpenAIEmbeddingModel](cognitive-search-skill-azure-openai-embedding.md) or another embedding skill to vectorize the chunks.
+1. [Create a skillset](cognitive-search-defining-skillset.md) that calls [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) or another embedding skill to vectorize the chunks.
 1. [Create an index](search-how-to-create-search-index.md) that specifies a [vectorizer](vector-search-how-to-configure-vectorizer.md) for query time, and assign it to vector fields.
 1. [Create an indexer](search-howto-create-indexers.md) to drive everything, from data retrieval, to skillset execution, through indexing. We recommend running the indexer [on a schedule](search-howto-schedule-indexers.md) to pick up changed documents or any documents that were missed due to throttling.
 

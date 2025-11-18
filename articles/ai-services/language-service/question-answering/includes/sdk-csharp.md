@@ -4,9 +4,8 @@ description: This quickstart shows how to get started with the custom question a
 author: laujan
 ms.author: lajanuar
 ms.topic: include
-ms.date: 08/07/2025
+ms.date: 11/18/2025
 ---
-
 Use this quickstart for the custom question answering client library for .NET to:
 
 * Get an answer from a project.
@@ -85,7 +84,7 @@ You need to update the code and provide your own values for the following variab
 | `deploymentName`             | There are two possible values: `test`, and `production`. `production` is dependent on you deployed your project from **Language Studio** > **question answering** > **Deploy project**.|
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, see [Azure AI services security](../../../security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, see [Foundry Tools security](../../../security-features.md).
 
 From the project directory, open the *program.cs* file and replace with the following code:
 

@@ -37,7 +37,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and Microsoft 
 Parsing mode parameters are specified in an indexer definition when you create or update an indexer.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -68,7 +68,7 @@ Later sections describe each submode in more detail. If you're unfamiliar with i
 
 ### Optional Markdown parsing parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Allowed Values | Description |
 |--------------------|-------------|-------------|
@@ -154,7 +154,7 @@ An example index configuration might look something like this:
 If field names and data types align, the blob indexer can infer the mapping without an explicit field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -342,7 +342,7 @@ If you aren't utilizing field mappings, the shape of the index should reflect th
 ### Indexer definition for one-to-one parsing
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -484,7 +484,7 @@ Steps:
 
 Before re-indexing a modified Markdown file, explicitly delete the existing documents associated with that file using the [delete API](/rest/api/searchservice/documents#indexactiontype). You can either:
 
-* Manually indentify individual stale documents by identifying duplicates in the index to be deleted. This may be feasible for small, well-understood changes but can be time-consuming.
+* Manually identify individual stale documents by identifying duplicates in the index to be deleted. This may be feasible for small, well-understood changes but can be time-consuming.
 * (**Recommended**) Remove all documents generated from the same parent file before re-indexing, ensuring inconsistencies are avoided.
 
 Steps:

@@ -1,6 +1,6 @@
-﻿---
+---
 title: How to use the Voice live API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API for real-time voice agents.
 manager: nitinme
 author: goergenj
@@ -26,11 +26,11 @@ For a table of supported models and regions, see the [Voice live API overview](.
 
 ## Authentication
 
-An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure AI Speech Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
+A [Microsoft Foundry resource](../multi-service-resource.md) or a [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
 
 > [!NOTE]
-> Using Voice Live API is optimized for Azure AI Foundry resources. We recommend using Azure AI Foundry resources for full feature availability and best Azure AI Foundry integration experience.        
-> **Azure AI Speech Services resources** don't support Azure AI Foundry Agent Service integration and bring-your-own-model (BYOM).
+> Using Voice Live API is optimized for Microsoft Foundry resources. We recommend using Microsoft Foundry resources for full feature availability and best Microsoft Foundry integration experience.        
+> **Azure Speech Services resources** don't support Microsoft Foundry Agent Service integration and bring-your-own-model (BYOM).
 
 ### WebSocket endpoint
 
@@ -43,7 +43,7 @@ For example, an endpoint for a resource with a custom domain would be `wss://<yo
 
 The Voice live API supports two authentication methods:
 
-- **Microsoft Entra** (recommended): Use token-based authentication for an Azure AI Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
+- **Microsoft Entra** (recommended): Use token-based authentication for a Microsoft Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
 - **API key**: An `api-key` can be provided in one of two ways:
   - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
   - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
@@ -233,7 +233,7 @@ Here's an example `session.update` message for a standard high definition voice:
 }
 ```
 
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
+For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-speech-hd-voices).
 
 > [!NOTE]
 > High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2

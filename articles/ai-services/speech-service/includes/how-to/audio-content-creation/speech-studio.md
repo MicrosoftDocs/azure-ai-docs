@@ -13,7 +13,7 @@ ms.date: 10/31/2025
 - A Speech resource. Create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) or [Speech Studio](https://aka.ms/speechstudio).
 
 > [!NOTE]
-> The [AI Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
+> The [Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
 
 ## Use the audio content creation tool
 
@@ -134,7 +134,7 @@ The users you grant access to need to set up a [Microsoft account](https://accou
 
 To add users to a Speech resource so that they can use audio content creation, do the following:
 
-1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Azure AI services** or **Speech**.
+1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Foundry Tools** or **Speech**.
 1. Select your Speech resource.
 
    > [!NOTE]
@@ -166,7 +166,7 @@ Users who are in the same Speech resource see each other's work in the audio con
 ### Remove users from a Speech resource
 
 To remove a user's permission from a Speech resource, do the following:
-1. Search for **Azure AI services** in the Azure portal, select the Speech resource that you want to remove users from.
+1. Search for **Foundry Tools** in the Azure portal, select the Speech resource that you want to remove users from.
 1. Select **Access control (IAM)**, and then select the **Role assignments** tab to view all the role assignments for this Speech resource.
 1. Select the users you want to remove, select **Remove**, and then select **OK**.
 

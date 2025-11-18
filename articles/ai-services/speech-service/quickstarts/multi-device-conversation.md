@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Multi-device Conversation - Speech service'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you'll learn how to create and join clients to a multi-device conversation by using the Speech SDK.
 author: PatrickFarley
 manager: nitinme

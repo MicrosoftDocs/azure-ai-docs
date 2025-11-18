@@ -1,24 +1,24 @@
 ---
-title: Azure AI Document Intelligence release history
-titleSuffix: Azure AI services
-description: Release notes and updates for Azure AI Document Intelligence Service API.
+title: Azure Document Intelligence in Foundry Tools release history
+titleSuffix: Foundry Tools
+description: Release notes and updates for Azure Document Intelligence in Foundry Tools API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: reference
-ms.date: 03/07/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions
 ---
 
-# Azure AI Document Intelligence release history
+# Azure Document Intelligence in Foundry Tools release history
 
-Azure AI Document Intelligence is an innovative a cloud-based service that utilizes machine learning to streamline data processing within applications and workflows. This service is essential for boosting data-driven strategies and improving document search functionalities. Here, discover key milestones and enhancements that have contributed to the evolution of Azure AI Document Intelligence. For more information on recent advances, *see* [What's new?](../whats-new.md).
+Azure Document Intelligence is an innovative a cloud-based service that utilizes machine learning to streamline data processing within applications and workflows. This service is essential for boosting data-driven strategies and improving document search functionalities. Here, discover key milestones and enhancements that have contributed to the evolution of Azure Document Intelligence. For more information on recent advances, *see* [What's new?](../whats-new.md).
 
 ## July 2023
 
 > [!NOTE]
-> Form Recognizer is now **Azure AI Document Intelligence**!
+> Form Recognizer is now **Azure Document Intelligence**!
 >
 > * No changes to pricing.
 > * The names *Cognitive Services* and *Azure Applied AI* continue to be used in Azure billing, cost analysis, price list, and price APIs.
@@ -251,7 +251,7 @@ The v3.1 API introduces new and updated capabilities:
 
 ## November 2022
 
-* **Announcing the latest stable release of Azure AI Document Intelligence libraries**
+* **Announcing the latest stable release of Azure Document Intelligence libraries**
   * This release includes important changes and updates for .NET, Java, JavaScript, and Python client libraries. For more information, _see_ [**Azure SDK DevBlog**](https://devblogs.microsoft.com/azure-sdk/announcing-new-stable-release-of-azure-form-recognizer-libraries/).
   * The most significant enhancements are the introduction of two new clients, the **`DocumentAnalysisClient`** and the **`DocumentModelAdministrationClient`**.
 

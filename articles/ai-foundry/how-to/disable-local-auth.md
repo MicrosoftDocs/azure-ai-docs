@@ -1,25 +1,28 @@
 ---
 title: Disable Shared Key Access to the Hub Storage Account
-titleSuffix: Azure AI Foundry
-description: Disable shared-key access to the default storage account used by your Azure AI Foundry hub and projects.
+titleSuffix: Microsoft Foundry
+description: Disable shared-key access to the default storage account used by your Microsoft Foundry hub and projects.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.author: jburchel 
 author: jonburchel 
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/01/2025
+ms.date: 07/14/2025
 ms.reviewer: meerakurup
-ai-usage: ai-assisted
 #customer intent: As an admin, I want to disable shared-key access to my resources to improve security.
 ---
 
 # Disable shared-key access for your hub's storage account (preview)
 
-> [!NOTE]
-> The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-An [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to using a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+> [!NOTE]
+> The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md?view=foundry-classic#project-types).
+
+A [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
 To reduce the risk of unauthorized access, disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in Azure Machine Learning studio or to run a notebook while authenticated with the user's identity. Machine Learning uses a managed identity to access the storage account - for example, when the managed identity runs a training job.
 
@@ -100,9 +103,9 @@ This section shows you how to create a hub with identity-based access to the sto
 
 # [Azure portal](#tab/portal)
 
-1. In the Azure portal, search for `Azure AI Foundry`. On the left menu, select **AI Hubs**, and select **+ Create** > **Hub**.
+1. In the Azure portal, search for `Foundry`. On the left menu, select **AI Hubs**, and select **+ Create** > **Hub**.
 
-    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot that shows the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot that shows the Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
 1. On the **Basics** tab, enter the hub details, and select the **Storage** tab. Select the storage account that you previously created.
 
@@ -224,11 +227,11 @@ After you create the hub, identify all the users who need to use it, such as dat
 
 ## Update an existing hub
 
-If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then disable shared-key access on the storage account.
+If you have an existing Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then disable shared-key access on the storage account.
 
 # [Azure portal](#tab/portal)
 
-1. Go to the Azure portal and select **Azure AI Foundry hub**.
+1. Go to the Azure portal and select **Foundry hub**.
 1. On the left menu, select **Properties**. At the bottom of the pane, set **Storage account access** to **Identity-based access**. Select **Save** at the top of the pane to save the configuration.
 
     :::image type="content" source="../media/disable-local-auth/update-existing-hub-identity-based-access.png" alt-text="Screenshot that shows selection of Identity-based access." lightbox="../media/disable-local-auth/update-existing-hub-identity-based-access.png":::
@@ -345,7 +348,7 @@ az ml workspace update --name myhub --system-datastores-auth-mode accesskey
 
 # [ARM template](#tab/armtemplate)
 
-If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then, disable shared-key access on the storage account.
+If you have an existing Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then, disable shared-key access on the storage account.
 
 In the JSON template example, substitute your own values for the following placeholders:
 
@@ -409,7 +412,7 @@ To work with a storage account with disabled shared-key access, you need to gran
 
 | Scenario | Microsoft Entra ID | Required roles | Notes |
 | ----- | ----- | ----- | ----- |
-| Azure AI Speech | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
+| Azure Speech in Foundry Tools | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
 | Models as a service | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when you provision the hub. </br>Don't manually change this role assignment. |
 | Azure AI Search | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when you provision the hub. </br>Don't manually change this role assignment. |
 | Fine-tuning of open-source software models | User-assigned managed identity | Storage Blob Data Contributor | |
@@ -419,4 +422,4 @@ To work with a storage account with disabled shared-key access, you need to gran
 ## Related content
 
 - [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
-- [Create an Azure AI Foundry hub](develop/create-hub-project-sdk.md)
+- [Create a Foundry hub](develop/create-hub-project-sdk.md)

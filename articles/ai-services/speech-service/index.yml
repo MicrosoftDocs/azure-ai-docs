@@ -5,8 +5,8 @@ summary: Recognize speech, synthesize speech, get real-time translations, transc
 brand: azure
 
 metadata:
-  title: Speech service documentation - Tutorials, API Reference - Azure AI services | Microsoft Docs
-  titleSuffix: Azure AI services
+  title: Speech service documentation - Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  titleSuffix: Foundry Tools
   description: Recognize speech, synthesize speech, get real-time translations, transcribe conversations, or integrate speech into your bot experiences.
   author: PatrickFarley
   manager: nitinme
@@ -38,12 +38,18 @@ conceptualContent:
         - itemType: quickstart
           text: Get started with speech to text
           url: get-started-speech-to-text.md
-        - itemType: overview
-          text: Improve accuracy with custom speech
-          url: custom-speech-overview.md
         - itemType: how-to-guide
-          text: Use batch transcription
-          url: batch-transcription.md  
+          text: Real-time transcription
+          url: /azure/ai-services/speech-service/how-to-recognize-speech
+        - itemType: how-to-guide
+          text: Fast transcription
+          url: /azure/ai-services/speech-service/fast-transcription-create?branch=release-ignite-2025-release&tabs=locale-specified
+        - itemType: how-to-guide
+          text: Batch transcription
+          url: batch-transcription.md
+        - itemType: overview
+          text: Custom speech to text models
+          url: /azure/ai-services/speech-service/custom-speech-overview
       footerLink:
         text: More
         url: index-speech-to-text.yml
@@ -77,6 +83,9 @@ conceptualContent:
           url: pronunciation-assessment-tool.md
     - title: Tools
       links:
+        - itemType: quickstart
+          text: Speech MCP tool in Microsoft Foundry
+          url: /azure/ai-foundry/agents/how-to/tools/azure-ai-speech?view=foundry
         - itemType: overview
           text: About Speech Studio
           url: speech-studio-overview.md
@@ -91,14 +100,20 @@ conceptualContent:
       - itemType: quickstart
         text: Get started with speech translation
         url: get-started-speech-translation.md         
-    - title: Azure OpenAI
+    - title: Voice live
       links:
         - itemType: overview
-          text: What is the Whisper model?
-          url: whisper-overview.md
-        - itemType: overview
-          text: What are OpenAI text to speech voices?     
-          url: openai-voices.md
+          text: What is Voice live?
+          url: /azure/ai-services/speech-service/voice-live
+        - itemType: quickstart
+          text: Get started with Voice live models
+          url: /azure/ai-services/speech-service/voice-live-quickstart
+        - itemType: quickstart
+          text: Get started with Voice live in Foundry agents
+          url: /azure/ai-services/speech-service/voice-live-agents-quickstart
+        - itemType: how-to-guide
+          text: Customize Voice live
+          url: /azure/ai-services/speech-service/voice-live-how-to-customize
     - title: Hosting
       links:
         - itemType: how-to-guide
@@ -113,8 +128,8 @@ conceptualContent:
     - title: Migration
       links:
         - itemType: how-to-guide
-          text: Migrate to speech to text REST API version 2024-11-15
-          url: migrate-2024-11-15.md
+          text: Migrate to speech to text REST API version 2025-10-15
+          url: migrate-2025-10-15.md
         - itemType: how-to-guide
           text: Migrate to Batch synthesis REST API
           url: migrate-to-batch-synthesis.md

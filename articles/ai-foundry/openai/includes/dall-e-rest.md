@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI in Azure AI Foundry Models'
+title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
@@ -11,7 +11,7 @@ ms.topic: include
 ms.date: 02/20/2025
 ---
 
-Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Models image generation REST APIs by using Python.
+Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation REST APIs by using Python.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ To successfully call the Azure OpenAI APIs, you need the following information a
 
 | Variable | Name | Value |
 |---|---|---|
-| **Endpoint** | `api_base` | The endpoint value is located under **Keys and Endpoint** for your resource in the Azure portal. You can also find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`. |
+| **Endpoint** | `api_base` | The endpoint value is located under **Keys and Endpoint** for your resource in the Azure portal. You can also find the endpoint via the **Deployments** page in Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`. |
 | **Key** | `api_key` | The key value is also located under **Keys and Endpoint** for your resource in the Azure portal. Azure generates two keys for your resource. You can use either value. |
 
 Go to your resource in the Azure portal. On the navigation pane, select **Keys and Endpoint** under **Resource Management**. Copy the **Endpoint** value and an access key value. You can use either the **KEY 1** or **KEY 2** value. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.

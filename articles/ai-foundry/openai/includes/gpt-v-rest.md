@@ -18,7 +18,7 @@ Use this article to get started using the Azure OpenAI REST APIs to deploy and u
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - The following Python libraries: `requests`, `json`.
-- An Azure OpenAI in Azure AI Foundry Models resource with a vision-enabled model deployed. See [Model availability](../concepts/models.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
+- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled model deployed. See [Model availability](../concepts/models.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 
 > [!NOTE]
 > It is currently not supported to turn off content filtering for the GPT-4 Turbo with Vision model.
@@ -29,7 +29,7 @@ To successfully call the Azure OpenAI APIs, you need the following information a
 
 | Variable | Name | Value |
 |---|---|---|
-| **Endpoint** | `api_base` | The endpoint value is located under **Keys and Endpoint** for your resource in the Azure portal. You can also find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`. |
+| **Endpoint** | `api_base` | The endpoint value is located under **Keys and Endpoint** for your resource in the Azure portal. You can also find the endpoint via the **Deployments** page in Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`. |
 | **Key** | `api_key` | The key value is also located under **Keys and Endpoint** for your resource in the Azure portal. Azure generates two keys for your resource. You can use either value. |
 
 Go to your resource in the Azure portal. On the navigation pane, select **Keys and Endpoint** under **Resource Management**. Copy the **Endpoint** value and an access key value. You can use either the **KEY 1** or **KEY 2** value. Having two keys allows you to securely rotate and regenerate keys without causing a service disruption.

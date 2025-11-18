@@ -11,7 +11,7 @@ ms.date: 06/12/2025
 ---
 # Manage QnA Maker resources
 
-Before you can create any QnA Maker knowledge bases, you must first set up a QnA Maker service in Azure. Anyone with authorization to create new resources in a subscription can set up a QnA Maker service. If you are trying the Custom question answering feature, you would need to create the Language resource and add the Custom question answering feature.
+Before you can create any QnA Maker knowledge bases, you must first set up a QnA Maker service in Azure. Anyone with authorization to create new resources in a subscription can set up a QnA Maker service. If you are trying the Custom question answering feature, you would need to create Azure Language resource and add the Custom question answering feature.
 
 [!INCLUDE [Custom question answering](../includes/new-version.md)]
 

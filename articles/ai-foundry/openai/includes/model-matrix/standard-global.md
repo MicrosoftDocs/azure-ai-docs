@@ -1,6 +1,6 @@
 ---
 title: Global Standard model availability
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Global Standard models.
 manager: nitinme
 ms.date: 09/24/2025
