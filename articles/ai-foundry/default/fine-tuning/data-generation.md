@@ -44,7 +44,19 @@ This article covers:
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - A Foundry project. For more information, see [create a project with Foundry](../../how-to/create-projects.md)
 - A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-azure-ai-foundry.md)
-
+- Use one of the **supported regions** for synthetic data generation:
+  - `eastus2`
+  - `eastus`
+  - `westus`
+  - `northcentralus`
+  - `southcentralus`
+  - `swedencentral`
+  - `germanywestcentral`
+  - `francecentral`
+  - `uksouth`
+  - `uaenorth`
+  - `japaneast`
+  - `australiaeast`
 ## Generate synthetic data for fine-tuning
 
 Foundry provides generators that turn a reference file into task‑ready training data aligned to your fine‑tuning goal.
@@ -66,7 +78,7 @@ Our generators require a single reference file as the basis for generating new, 
 Supported formats:
 
 * <b>Simple Q&A</b>: A PDF, Markdown, or plain text document less than 20MB containing the subject knowledge you want the model to learn from.
-* <b>Tool use</b>: A valid OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
+* <b>Tool use</b>: A valid 3.0.x or 3.1.x OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
 
 
 > [!TIP]
@@ -188,8 +200,8 @@ Example (note the inclusion of description with business policies for the path a
 }
 ```
 
-### Start with generating a smaller batch and iterate
-When generating synthetic data for the first time, start with a smaller generation batch size to evaluate the quality of the generated data. Review the outputs and make adjustments to your reference file or generation parameters as needed before scaling up to larger batches. This can help you avoid unnecessary costs and ensure that the generated data meets your requirements.
+### Start with generating a smaller sample size and iterate
+When generating synthetic data for the first time, start with a smaller generation sample size to evaluate the quality of the generated data. Review the outputs and make adjustments to your reference file or generation parameters as needed before scaling up to larger sample sizes. This can help you avoid unnecessary costs and ensure that the generated data meets your requirements.
 
 ### Experiment with hyperparameters when fine-tuning on synthetic data
 When fine-tuning your model with the generated synthetic data, experiment with different hyperparameters such as learning rate, batch size, and number of epochs to find the optimal settings for your specific use case. You may want to use a smaller learning rate when fine-tuning on synthetic data compared to real-world data to curb overfitting. You may also want to experiment with earlier checkpoints if the resulting model underperforms or shows signs of regression on specific evaluation heuristics.
