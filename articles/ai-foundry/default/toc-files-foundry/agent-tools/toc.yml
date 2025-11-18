@@ -24,11 +24,11 @@ items:
 - name: Azure Language in Foundry Tools
   items:
     - name: Azure Language tools and agents
-      href: /azure/ai-services/language-service/concepts/foundry-tools-agents
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/ai-foundry/context/context
     - name: CLU multi-turn conversations
-      href: /azure/ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations
+      href: /azure/ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations?context=/azure/ai-foundry/context/context
     - name: Redact PII from text 
-      href: /azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii 
+      href: /azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii?context=/azure/ai-foundry/context/context
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Code interpreter
