@@ -10,6 +10,8 @@ ms.topic: conceptual
 ms.date: 09/30/2025
 ms.custom: template-concept, ignite-2024
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Abuse Monitoring

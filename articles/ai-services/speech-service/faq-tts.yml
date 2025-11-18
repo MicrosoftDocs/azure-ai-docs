@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Text to speech frequently asked questions (FAQ)
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about the text to speech service.
   author: PatrickFarley
   manager: nitinme
@@ -96,13 +96,13 @@ sections:
       - question: |
           Is the model version the same as the engine version?
         answer: |
-          No. The model version is different from the engine version. The model version means the version of the training recipe for your model and varies by the features supported and model training time. Azure AI services text to speech engines are updated from time to time to capture the latest language model that defines the pronunciation of the language. After you've trained your voice, you can apply your voice to the new language model by updating to the latest engine version. When a new engine is available, you're prompted to update your neural voice model. See [Update engine version for your voice model](professional-voice-train-voice.md?tabs=neural#update-engine-version-for-your-voice-model).
+          No. The model version is different from the engine version. The model version means the version of the training recipe for your model and varies by the features supported and model training time. Foundry Tools text to speech engines are updated from time to time to capture the latest language model that defines the pronunciation of the language. After you've trained your voice, you can apply your voice to the new language model by updating to the latest engine version. When a new engine is available, you're prompted to update your neural voice model. See [Update engine version for your voice model](professional-voice-train-voice.md?tabs=neural#update-engine-version-for-your-voice-model).
       - question: |
           Can we limit the number of trainings using Azure Policy or other features? Or is there any way to avoid false training?
         answer: |
           If you want to limit the permission to training, you can limit the user roles and access. Refer to [Role-based access control for Speech resources](role-based-access-control.md).
       - question: |
-          Can Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
+          Ca Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
           The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
       - question: |

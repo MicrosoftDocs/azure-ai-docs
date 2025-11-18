@@ -1,6 +1,6 @@
 ---
 title: Bring Your Own Model (BYOM) with Voice Live API
-description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure AI Speech Service.
+description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure Speech in Foundry Tools.
 author: goergenj
 ms.author: jagoerge
 ms.date: 11/09/2025
@@ -22,7 +22,7 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 > You can integrate any model that was deployed in the same Azure Foundry resource you're using to call the Voice Live API.
 
 > [!TIP]
-> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Azure AI Foundry portal](https://ai.azure.com/).
+> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
 
 ## Authentication setup
 
@@ -64,7 +64,7 @@ Update the endpoint URL in your API call to include your BYOM configuration:
 wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>
 ```
 
-Get the `<your-model-deployment>` value from the AI Foundry portal. It corresponds to the name you gave the model at deployment time.
+Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
 
 #### [Python SDK](#tab/python)
 

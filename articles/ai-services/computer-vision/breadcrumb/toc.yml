@@ -2,21 +2,21 @@
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: Azure AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-foundry/index
     items:
-    - name: Azure AI Vision
+    - name: Azure Vision in Foundry Tools
       tocHref: /azure/ai-foundry/
       topicHref: /azure/ai-services/computer-vision/index
 - name: Azure
   tocHref: /legal/
   topicHref: /azure/index
   items:
-  - name: Azure AI services                # Original doc set name
+  - name: Microsoft Foundry                # Original doc set name
     tocHref: /azure/ai-foundry/responsible-ai/computer-vision    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
-    - name: Azure AI Vision                  # Original doc set name
+    - name: Azure Vision in Foundry Tools                  # Original doc set name
       tocHref: /azure/ai-foundry/responsible-ai/computer-vision    # Destination doc set route
       topicHref: /azure/ai-services/Computer-vision/index      # Original doc set route

@@ -21,7 +21,7 @@ Microsoft engineers build productivity tools that aren't part of the Azure AI Se
 | [RAG Experiment Accelerator](https://github.com/microsoft/rag-experiment-accelerator) | Conduct experiments and evaluations using Azure AI Search and the RAG pattern. This accelerator has code for loading multiple data sources, using a variety of models, and creating a variety of search indexes and queries. |
 | [Build your own copilot solution accelerator](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) | Code and docs to build a copilot for specific use cases. |
 | [Chat with your data solution accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator/blob/main/README.md) | Code and docs to create interactive search solution in production environments. |
-| [Document knowledge mining solution accelerator](https://github.com/microsoft/Document-Knowledge-Mining-Solution-Accelerator/blob/main/README.md) | Code and docs built on Azure OpenAI in Azure AI Foundry Models and Azure AI Document Intelligence. It processes and extracts summaries, entities, and metadata from unstructured, multimodal documents to enable searching and chatting over this data. |
+| [Document knowledge mining solution accelerator](https://github.com/microsoft/Document-Knowledge-Mining-Solution-Accelerator/blob/main/README.md) | Code and docs built on Azure OpenAI in Foundry Models and Azure Document Intelligence in Foundry Tools. It processes and extracts summaries, entities, and metadata from unstructured, multimodal documents to enable searching and chatting over this data. |
 
 ## Tools
 

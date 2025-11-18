@@ -1,16 +1,15 @@
 ---
 title: Conversational language understanding best practices
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to apply best practices when you use conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Best practices for conversational language understanding
 
 Use the following guidelines to create the best possible projects in conversational language understanding.

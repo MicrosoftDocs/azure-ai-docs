@@ -1,6 +1,6 @@
 ---
 title: Speech translation quickstart - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you translate speech from one language to text in another language. 
 author: PatrickFarley
 manager: nitinme

@@ -5,13 +5,12 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.custom:
   - language-service-question-answering
   - cogserv-non-critical-language
   - sfi-image-nochange
 ---
-
 # Tutorial: Create an FAQ bot
 
 Create an FAQ Bot with custom question answering and Azure [Bot Service](https://azure.microsoft.com/services/bot-service/) with no code.
@@ -73,7 +72,7 @@ After deploying your project, you can create a bot from the **Deploy project** p
 
 ## Integrate the bot with channels
 
-Select **Channels** in the Bot service resource that you have created. You can activate the Bot in additional [supported channels](/azure/bot-service/bot-service-manage-channels).
+Select **Channels** in the Bot service resource that you create. You can activate the Bot in additional [supported channels](/azure/bot-service/bot-service-manage-channels).
 
    >[!div class="mx-imgBorder"]
    >![Screenshot of integration with teams with product icons.](../media/bot-service/channels.png)

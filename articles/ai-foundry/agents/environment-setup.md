@@ -1,6 +1,6 @@
 ---
-title: Set up your environment for Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
+title: Set up your environment for Foundry Agent Service
+titleSuffix: Microsoft Foundry
 description: Use this guide to set up your agent environment
 manager: nitinme
 author: aahill
@@ -11,13 +11,14 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 06/18/2025
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Set up your environment
 
-Creating your first agent with Azure AI Foundry Agent Service is a two-step process: 
+Creating your first agent with Foundry Agent Service is a two-step process: 
 1. Set up your agent environment.
-1. Create and configure your agent using either the SDK of your choice or the Azure Foundry Portal. 
+1. Create and configure your agent using either the SDK of your choice or the Azure Foundry portal. 
 
 Use this article to learn more about setting up your agent environment.
 
@@ -30,7 +31,7 @@ Use this article to learn more about setting up your agent environment.
 | Create and edit agents                                                 | Azure AI User                    |
 
 ## Set up your agent environment
-To get started, you need an Azure AI Foundry resource and a Foundry project.  
+To get started, you need a Microsoft Foundry resource and a Foundry project.  
 Agents are created within a specific project, and each project acts as an isolated workspace. This means:
 * All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexes.
 * Data is isolated between projects. Agents in one project cannot access resources from another.
@@ -40,13 +41,13 @@ Projects are currently the unit of sharing and isolation in Foundry. See the [wh
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Azure AI Foundry Agent Service, see [Azure AI Foundry Agent Service RBAC roles](../concepts/rbac-azure-ai-foundry.md).
+* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Agent Service, see [Agent Service RBAC roles](../concepts/rbac-azure-ai-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 
 ### Choose your setup
-Azure AI Foundry Agent Service offers three environment configuration modes to suit different needs: 
+Agent Service offers three environment configuration modes to suit different needs: 
 
 - **Basic Setup**:  
 

@@ -1,16 +1,16 @@
 ---
 title: What is custom question answering?
+titleSuffix: Foundry Tools
 description: Custom question answering is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversational layer over your data. It can be used to find the most appropriate answer for any given natural language input, from your custom project.
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 recommendations: false
 ms.topic: overview
-ms.date: 07/16/2025
+ms.date: 11/18/2025
 keywords: "qna maker, low code chat bots, multi-turn conversations"
 ms.custom: language-service-question-answering
 ---
-
 # What is custom question answering?
 
 Custom question answering provides cloud-based Natural Language Processing (NLP) that allows you to create a natural conversational layer over your data. It's used to find appropriate answers from customer input or from a project.

@@ -1,6 +1,6 @@
 ---
 title: "Create captions with speech to text quickstart - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you convert speech to text as captions.
 author: PatrickFarley
 manager: nitinme

@@ -4,29 +4,31 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/23/2025
+ms.date: 11/10/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Azure AI Foundry Models.
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
-A *knowledge agent* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the agent outputs raw content from your sources, but this quickstart uses the answer synthesis modality for natural-language answer generation.
+A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> Want to get started right away? See the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) repository on GitHub.
+> Want to get started right away? See the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) GitHub repository.
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md), in any [region that provides agentic retrieval](../../search-region-support.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
++ [Visual Studio Code](https://code.visualstudio.com/download).
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
@@ -40,14 +42,14 @@ To set up the console application for this quickstart:
 
 1. Select **Terminal** > **New Terminal**, and then run the following command to create a console application.
 
-    ```powershell
+    ```console
     dotnet new console
     ```
 
 1. Install the [Azure AI Search client library](/dotnet/api/overview/azure/search.documents-readme) for .NET.
 
     ```console
-    dotnet add package Azure.Search.Documents --version 11.7.0-beta.7
+    dotnet add package Azure.Search.Documents --version 11.8.0-beta.1
     ```
 
 1. Install the `dotenv.net` package to load environment variables from a `.env` file.
@@ -62,7 +64,7 @@ To set up the console application for this quickstart:
     dotnet add package Azure.Identity
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
 
     ```console
     az login
@@ -74,7 +76,7 @@ To create and run the agentic retrieval pipeline:
 
 1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
 
-1. Add the following environment variables to the `.env` file.
+1. Paste the following environment variables into the `.env` file.
 
     ```
     SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
@@ -92,9 +94,8 @@ To create and run the agentic retrieval pipeline:
     using Azure.Search.Documents;
     using Azure.Search.Documents.Indexes;
     using Azure.Search.Documents.Indexes.Models;
-    using Azure.Search.Documents.Models;
-    using Azure.Search.Documents.Agents;
-    using Azure.Search.Documents.Agents.Models;
+    using Azure.Search.Documents.KnowledgeBases;
+    using Azure.Search.Documents.KnowledgeBases.Models;
     
     namespace AzureSearch.Quickstart
     {
@@ -118,7 +119,7 @@ To create and run the agentic retrieval pipeline:
     
                 string indexName = "earth-at-night";
                 string knowledgeSourceName = "earth-knowledge-source";
-                string knowledgeAgentName = "earth-knowledge-agent";
+                string knowledgeBaseName = "earth-knowledge-base";
     
                 var credential = new DefaultAzureCredential();
     
@@ -208,6 +209,7 @@ To create and run the agentic retrieval pipeline:
                         KeyFieldAccessor = doc => doc["id"].ToString(),
                     }
                 );
+
                 await searchIndexingBufferedSender.UploadDocumentsAsync(documents);
                 await searchIndexingBufferedSender.FlushAsync();
                 Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
@@ -217,13 +219,14 @@ To create and run the agentic retrieval pipeline:
                     name: knowledgeSourceName,
                     searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
                     {
-                        SourceDataSelect = "id,page_chunk,page_number"
+                        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
                     }
                 );
+    
                 await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
                 Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
     
-                // Create a knowledge agent
+                // Create a knowledge base
                 var openAiParameters = new AzureOpenAIVectorizerParameters
                 {
                     ResourceUri = new Uri(aoaiEndpoint),
@@ -231,31 +234,20 @@ To create and run the agentic retrieval pipeline:
                     ModelName = aoaiGptModel
                 };
     
-                var agentModel = new KnowledgeAgentAzureOpenAIModel(azureOpenAIParameters: openAiParameters);
-                var outputConfig = new KnowledgeAgentOutputConfiguration
-                {
-                    Modality = KnowledgeAgentOutputConfigurationModality.AnswerSynthesis,
-                    IncludeActivity = true
-                };
+                var model = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: openAiParameters);
     
-                var agent = new KnowledgeAgent(
-                    name: knowledgeAgentName,
-                    models: new[] { agentModel },
-                    knowledgeSources: new KnowledgeSourceReference[] {
-                    new KnowledgeSourceReference(knowledgeSourceName) {
-                            IncludeReferences = true,
-                            IncludeReferenceSourceData = true,
-                            RerankerThreshold = (float?)2.5
-                        }
-                    }
+                var knowledgeBase = new KnowledgeBase(
+                    name: knowledgeBaseName,
+                    knowledgeSources: new KnowledgeSourceReference[] { new KnowledgeSourceReference(knowledgeSourceName) }
                 )
-    
                 {
-                    OutputConfiguration = outputConfig
+                    RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort(),
+                    AnswerInstructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
+                    Models = { model }
                 };
     
-                await indexClient.CreateOrUpdateKnowledgeAgentAsync(agent);
-                Console.WriteLine($"Knowledge agent '{knowledgeAgentName}' created or updated successfully.");
+                await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+                Console.WriteLine($"Knowledge base '{knowledgeBaseName}' created or updated successfully.");
     
                 // Set up messages
                 string instructions = @"A Q&A agent that can answer questions about the Earth at night.
@@ -270,40 +262,37 @@ To create and run the agentic retrieval pipeline:
                     }
                 };
     
-                // Use agentic retrieval to fetch results
-                var agentClient = new KnowledgeAgentRetrievalClient(
+                // Run agentic retrieval
+                var baseClient = new KnowledgeBaseRetrievalClient(
                     endpoint: new Uri(searchEndpoint),
-                    agentName: knowledgeAgentName,
+                    knowledgeBaseName: knowledgeBaseName,
                     tokenCredential: new DefaultAzureCredential()
                 );
     
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "user" },
-                    { "content", @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
-                    Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
+                    { "content", @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
                 });
     
-                var retrievalResult = await agentClient.RetrieveAsync(
-                    retrievalRequest: new KnowledgeAgentRetrievalRequest(
-                        messages: messages
-                            .Where(message => message["role"] != "system")
-                            .Select(
-                                message => new KnowledgeAgentMessage(content: new[] { new KnowledgeAgentMessageTextContent(message["content"]) }) { Role = message["role"] }
-                            )
-                            .ToList()
-                    )
-                );
+                var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+                foreach (Dictionary<string, string> message in messages) {
+                    if (message["role"] != "system") {
+                        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
+                    }
+                }
+                retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
+                var retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
     
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text }
+                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
                 });
     
-                // Print the response, activity, and results
+                // Print the response, activity, and references
                 Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text);
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
     
                 Console.WriteLine("Activity:");
                 foreach (var activity in retrievalResult.Value.Activity)
@@ -317,7 +306,7 @@ To create and run the agentic retrieval pipeline:
                     Console.WriteLine(activityJson);
                 }
     
-                Console.WriteLine("Results:");
+                Console.WriteLine("References:");
                 foreach (var reference in retrievalResult.Value.References)
                 {
                     Console.WriteLine($"Reference Type: {reference.GetType().Name}");
@@ -336,26 +325,24 @@ To create and run the agentic retrieval pipeline:
                     { "content", "How do I find lava at night?" }
                 });
     
-                retrievalResult = await agentClient.RetrieveAsync(
-                    retrievalRequest: new KnowledgeAgentRetrievalRequest(
-                        messages: messages
-                            .Where(message => message["role"] != "system")
-                            .Select(
-                                message => new KnowledgeAgentMessage(content: new[] { new KnowledgeAgentMessageTextContent(message["content"]) }) { Role = message["role"] }
-                            )
-                            .ToList()
-                    )
-                );
+                retrievalRequest = new KnowledgeBaseRetrievalRequest();
+                foreach (Dictionary<string, string> message in messages) {
+                    if (message["role"] != "system") {
+                        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
+                    }
+                }
+                retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
+                retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
     
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text }
+                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
                 });
-        
-                // Print the new response, activity, and results
+    
+                // Print the new response, activity, and references
                 Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text);
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
     
                 Console.WriteLine("Activity:");
                 foreach (var activity in retrievalResult.Value.Activity)
@@ -369,7 +356,7 @@ To create and run the agentic retrieval pipeline:
                     Console.WriteLine(activityJson);
                 }
     
-                Console.WriteLine("Results:");
+                Console.WriteLine("References:");
                 foreach (var reference in retrievalResult.Value.References)
                 {
                     Console.WriteLine($"Reference Type: {reference.GetType().Name}");
@@ -382,9 +369,9 @@ To create and run the agentic retrieval pipeline:
                 }
     
                 // Clean up resources
-                await indexClient.DeleteKnowledgeAgentAsync(knowledgeAgentName);
-                Console.WriteLine($"Knowledge agent '{knowledgeAgentName}' deleted successfully.");
-                
+                await indexClient.DeleteKnowledgeBaseAsync(knowledgeBaseName);
+                Console.WriteLine($"Knowledge base '{knowledgeBaseName}' deleted successfully.");
+    
                 await indexClient.DeleteKnowledgeSourceAsync(knowledgeSourceName);
                 Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfully.");
     
@@ -397,7 +384,7 @@ To create and run the agentic retrieval pipeline:
 
 1. Build and run the application.
 
-    ```shell
+    ```console
     dotnet run
     ```
 
@@ -409,180 +396,162 @@ The output of the application should be similar to the following:
 Index 'earth-at-night' created or updated successfully.
 Documents uploaded to index 'earth-at-night' successfully.
 Knowledge source 'earth-knowledge-source' created or updated successfully.
-Knowledge agent 'earth-knowledge-agent' created or updated successfully.
+Knowledge base 'earth-knowledge-base' created or updated successfully.
 Response:
-Suburban belts display larger December brightening than urban cores because holiday lights increase most dramatically in the suburbs and outskirts of major cities, where there is more yard space and a prevalence of single-family homes. Central urban areas, despite having higher absolute light levels, do not see as large an increase in lighting but still experience a brightening of 20 to 30 percent during the holidays [ref_id:2][ref_id:7].
-
-The Phoenix nighttime street grid is sharply visible from space because the metropolitan area is laid out along a regular grid of city blocks and streets, with street lighting clearly visible from low-Earth orbit. The grid pattern is especially evident at night, with major street grids oriented north-south and diagonal corridors like Grand Avenue cutting across cities. The urban grid encourages outward growth along city borders, with extensive surface streets and freeways linking multiple municipalities. In contrast, large stretches of interstate highways between Midwestern cities remain comparatively dim because, although the interstate highways are major transportation corridors, the lighting along these highways is less intense and less continuous than the dense urban street lighting seen in Phoenix. Additionally, navigable rivers and less densely populated areas show less light, indicating that the brightness corresponds closely to urban density and street lighting patterns rather than just the presence of transportation routes [ref_id:0][ref_id:1][ref_id:4].
+Suburban belts show larger December brightening because holiday displays concentrate in suburbs and outskirts where there is more yard space and many single‑family homes [ref_id:5], while urban cores—already having higher absolute light levels—tend to show smaller relative increases (central areas typically brighten ~20–30%) [ref_id:8][ref_id:5]. Phoenix’s nighttime street grid is sharply visible because the metropolitan area is laid out on a regular, continuously lit grid with bright commercial and industrial nodes along major corridors like Grand Avenue [ref_id:0][ref_id:3], whereas long interstate stretches between Midwestern cities cross sparsely populated or rural regions with far fewer continuous roadside lights and so appear comparatively dim [ref_id:8].
 Activity:
-Activity type: KnowledgeAgentModelQueryPlanningActivityRecord
+Activity Type: KnowledgeBaseModelQueryPlanningActivityRecord
 {
-  "InputTokens": 2062,
-  "OutputTokens": 121,
+  "InputTokens": 1350,
+  "OutputTokens": 1314,
   "Id": 0,
-  "ElapsedMs": 2435
+  "ElapsedMs": 14162,
+  "Error": null
 }
-Activity type: KnowledgeAgentSearchIndexActivityRecord
+Activity Type: KnowledgeBaseSearchIndexActivityRecord
 {
   "SearchIndexArguments": {
-    "Search": "Reasons for larger December brightening in suburban belts compared to urban cores despite higher downtown light levels",      
-    "Filter": null
+    "Search": "Causes of December brightening in satellite nightlights: why suburban belts show larger relative December brightening than urban cores (roles of holiday residential lighting, snow albedo, urban heat island, commercial lighting patterns)",
+    "Filter": null,
+    "SourceDataFields": [],
+    "SearchFields": [],
+    "SemanticConfigurationName": null
   },
   "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-09-22T15:54:56.528+00:00",
-  "Count": 4,
+  "QueryTime": "2025-11-05T21:56:26.747+00:00",
+  "Count": 19,
   "Id": 1,
-  "ElapsedMs": 1921
+  "ElapsedMs": 537,
+  "Error": null
 }
-Activity type: KnowledgeAgentSearchIndexActivityRecord
+Activity Type: KnowledgeBaseSearchIndexActivityRecord
 {
   "SearchIndexArguments": {
-    "Search": "Factors making Phoenix nighttime street grid sharply visible from space",
-    "Filter": null
+    "Search": "Why is Phoenix\u0019s nighttime street grid so sharply visible from space? (effects of streetlight density, luminaire type/aiming, spacing, urban grid layout, traffic vs roadway lighting)",
+    "Filter": null,
+    "SourceDataFields": [],
+    "SearchFields": [],
+    "SemanticConfigurationName": null
   },
   "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-09-22T15:55:06.991+00:00",
-  "Count": 5,
+  "QueryTime": "2025-11-05T21:56:27.182+00:00",
+  "Count": 7,
   "Id": 2,
-  "ElapsedMs": 10451
+  "ElapsedMs": 434,
+  "Error": null
 }
-Activity type: KnowledgeAgentSearchIndexActivityRecord
+Activity Type: KnowledgeBaseSearchIndexActivityRecord
 {
   "SearchIndexArguments": {
-    "Search": "Reasons why large stretches of interstate between Midwestern cities appear comparatively dim at night from space",
-    "Filter": null
+    "Search": "How do satellite nightlight sensor characteristics (VIIRS DNB, DMSP-OLS) \u2014 spatial resolution, dynamic range, saturation, blooming \u2014 affect observed brightness and structure of urban cores, suburbs, and long interstate stretches?",
+    "Filter": null,
+    "SourceDataFields": [],
+    "SearchFields": [],
+    "SemanticConfigurationName": null
   },
   "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-09-22T15:55:07.504+00:00",
-  "Count": 13,
+  "QueryTime": "2025-11-05T21:56:27.786+00:00",
+  "Count": 23,
   "Id": 3,
-  "ElapsedMs": 512
+  "ElapsedMs": 604,
+  "Error": null
 }
-Activity type: KnowledgeAgentSemanticRerankerActivityRecord
+Activity Type: KnowledgeBaseAgenticReasoningActivityRecord
 {
-  "InputTokens": 68754,
+  "ReasoningTokens": 70232,
+  "RetrievalReasoningEffort": {},
   "Id": 4,
-  "ElapsedMs": null
+  "ElapsedMs": null,
+  "Error": null
 }
-Activity type: KnowledgeAgentModelAnswerSynthesisActivityRecord
+Activity Type: KnowledgeBaseModelAnswerSynthesisActivityRecord
 {
-  "InputTokens": 7231,
-  "OutputTokens": 279,
+  "InputTokens": 7467,
+  "OutputTokens": 1710,
   "Id": 5,
-  "ElapsedMs": 6429
+  "ElapsedMs": 26663,
+  "Error": null
 }
 Results:
-Reference type: KnowledgeAgentSearchIndexReference
+Reference Type: KnowledgeBaseSearchIndexReference
 {
   "DocKey": "earth_at_night_508_page_104_verbalized",
   "Id": "0",
   "ActivitySource": 2,
-  "SourceData": {
-    "id": "earth_at_night_508_page_104_verbalized",
-    "page_chunk": "\u003C!-- PageHeader=\u0022Urban Structure\u0022 --\u003E\n\n### Location of Phoenix, Arizona\n\nThe image depicts a globe highlighting the location of Phoenix, Arizona, in the southwestern United States, marked with a blue pinpoint on the map of North America. Phoenix is situated in the central part of Arizona, which is in the southwestern region of the United States.\n\n---\n\n### Grid of City Blocks-Phoenix, Arizona\n\nLike many large urban areas of the central and western United States, the Phoenix metropolitan area is laid out along a regular grid of city blocks and streets. While visible during the day, this grid is most evident at night, when the pattern of street lighting is clearly visible from the low-Earth-orbit vantage point of the ISS.\n\nThis astronaut photograph, taken on March 16, 2013, includes parts of several cities in the metropolitan area, including Phoenix (image right), Glendale (center), and Peoria (left). While the major street grid is oriented north-south, the northwest-southeast oriented Grand Avenue cuts across the three cities at image center. Grand Avenue is a major transportation corridor through the western metropolitan area; the lighting patterns of large industrial and commercial properties are visible along its length. Other brightly lit properties include large shopping centers, strip malls, and gas stations, which tend to be located at the intersections of north-south and east-west trending streets.\n\nThe urban grid encourages growth outwards along a city\u0027s borders by providing optimal access to new real estate. Fueled by the adoption of widespread personal automobile use during the twentieth century, the Phoenix metropolitan area today includes 25 other municipalities (many of them largely suburban and residential) linked by a network of surface streets and freeways.\n\nWhile much of the land area highlighted in this image is urbanized, there are several noticeably dark areas. The Phoenix Mountains are largely public parks and recreational land. To the west, agricultural fields provide a sharp contrast to the lit streets of residential developments. The Salt River channel appears as a dark ribbon within the urban grid.\n\n\n\u003C!-- PageFooter=\u0022Earth at Night\u0022 --\u003E\n\u003C!-- PageNumber=\u002288\u0022 --\u003E",
-    "page_number": 104
-  },
-  "RerankerScore": 2.6642752
+  "SourceData": {},
+  "RerankerScore": 2.6344998
 }
-Reference type: KnowledgeAgentSearchIndexReference
+Reference Type: KnowledgeBaseSearchIndexReference
+{
+  "DocKey": "earth_at_night_508_page_194_verbalized",
+  "Id": "1",
+  "ActivitySource": 3,
+  "SourceData": {},
+  "RerankerScore": 2.630955
+}
+Reference Type: KnowledgeBaseSearchIndexReference
 {
   "DocKey": "earth_at_night_508_page_105_verbalized",
   "Id": "3",
   "ActivitySource": 2,
-  "SourceData": {
-    "id": "earth_at_night_508_page_105_verbalized",
-    "page_chunk": "# Urban Structure\n\n## March 16, 2013\n\n### Phoenix Metropolitan Area at Night\n\nThis figure presents a nighttime satellite view of the Phoenix metropolitan area, highlighting urban structure and transport corridors. City lights illuminate the layout of several cities and major thoroughfares.\n\n**Labeled Urban Features:**\n\n- **Phoenix:** Central and brightest area in the right-center of the image.\n- **Glendale:** Located to the west of Phoenix, this city is also brightly lit.\n- **Peoria:** Further northwest, this area is labeled and its illuminated grid is seen.\n- **Grand Avenue:** Clearly visible as a diagonal, brightly lit thoroughfare running from Phoenix through Glendale and Peoria.\n- **Salt River Channel:** Identified in the southeast portion, running through illuminated sections.\n- **Phoenix Mountains:** Dark, undeveloped region to the northeast of Phoenix.\n- **Agricultural Fields:** Southwestern corner of the image, grid patterns are visible but with much less illumination, indicating agricultural land use.\n\n**Additional Notes:**\n\n- The overall pattern shows a grid-like urban development typical of western U.S. cities, with scattered bright nodes at major intersections or city centers.\n- There is a clear transition from dense urban development to sparsely populated or agricultural land, particularly evident towards the bottom and left of the image.\n- The illuminated areas follow the existing road and street grids, showcasing the extensive spread of the metropolitan area.\n\n**Figure Description:**  \nA satellite nighttime image captured on March 16, 2013, showing Phoenix and surrounding areas (including Glendale and Peoria). Major landscape and infrastructural features, such as the Phoenix Mountains, Grand Avenue, the Salt River Channel, and agricultural fields, are labeled. The image reveals the extent of urbanization and the characteristic street grid illuminated by city lights.\n\n---\n\nPage 89",
-    "page_number": 105
-  },
-  "RerankerScore": 2.5905457
+  "SourceData": {},
+  "RerankerScore": 2.5884187
 }
-... // Trimmed for brevity
-Response:
-Lava can be found at night by using satellite imagery that captures thermal infrared and near-infrared wavelengths, which highlight the heat emitted by active lava flows. For example, the Landsat 8 satellite's night view combines thermal, shortwave infrared, and near-infrared data to distinguish very hot lava (appearing bright white), cooling lava (red), and lava flows obscured by clouds (purple), as demonstrated in the monitoring of Kilauea's lava flows in Hawaii [ref_id:0]. Similarly, the Operational Land Imager (OLI) and Thermal Infrared Sensor (TIRS) on Landsat 8 have been used to detect the thermal infrared signature of lava flows during Mount Etna's flank eruption in Italy, highlighting active vents and lava flows at night [ref_id:1]. Additionally, the VIIRS Day/Night Band (DNB) on polar-orbiting satellites can detect faint light sources such as moonlight, which, combined with thermal data, allows for the observation of glowing lava flows at active volcanoes during nighttime [ref_id:1][ref_id:3]. Thus, by using satellite instruments sensitive to thermal and near-infrared wavelengths and leveraging natural illumination sources like moonlight, lava can be effectively located and monitored at night from space.
-Activity:
-Activity type: KnowledgeAgentModelQueryPlanningActivityRecord
+Reference Type: KnowledgeBaseSearchIndexReference
 {
-  "InputTokens": 2357,
-  "OutputTokens": 88,
-  "Id": 0,
-  "ElapsedMs": 1917
+  "DocKey": "earth_at_night_508_page_189_verbalized",
+  "Id": "4",
+  "ActivitySource": 3,
+  "SourceData": {},
+  "RerankerScore": 2.465418
 }
-Activity type: KnowledgeAgentSearchIndexActivityRecord
+Reference Type: KnowledgeBaseSearchIndexReference
 {
-  "SearchIndexArguments": {
-    "Search": "How to locate lava flows at night",
-    "Filter": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-09-22T15:55:16.919+00:00",
-  "Count": 16,
-  "Id": 1,
-  "ElapsedMs": 433
+  "DocKey": "earth_at_night_508_page_193_verbalized",
+  "Id": "6",
+  "ActivitySource": 3,
+  "SourceData": {},
+  "RerankerScore": 2.4560246
 }
-Activity type: KnowledgeAgentSearchIndexActivityRecord
+Reference Type: KnowledgeBaseSearchIndexReference
 {
-  "SearchIndexArguments": {
-    "Search": "Methods for detecting lava at night",
-    "Filter": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-09-22T15:55:17.389+00:00",
-  "Count": 13,
-  "Id": 2,
-  "ElapsedMs": 468
-}
-Activity type: KnowledgeAgentSearchIndexActivityRecord
-{
-  "SearchIndexArguments": {
-    "Search": "Safety tips for finding lava at night",
-    "Filter": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-09-22T15:55:17.801+00:00",
-  "Count": 3,
-  "Id": 3,
-  "ElapsedMs": 411
-}
-Activity type: KnowledgeAgentSemanticRerankerActivityRecord
-{
-  "InputTokens": 67218,
-  "Id": 4,
-  "ElapsedMs": null
-}
-Activity type: KnowledgeAgentModelAnswerSynthesisActivityRecord
-{
-  "InputTokens": 7345,
-  "OutputTokens": 267,
-  "Id": 5,
-  "ElapsedMs": 6044
-}
-Results:
-Reference type: KnowledgeAgentSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_60_verbalized",
-  "Id": "0",
-  "ActivitySource": 1,
-  "SourceData": {
-    "id": "earth_at_night_508_page_60_verbalized",
-    "page_chunk": "\u003C!-- PageHeader=\u0022Volcanoes\u0022 --\u003E\n\n## Volcanoes\n\n### The Infrared Glows of Kilauea\u0027s Lava Flows\u2014Hawaii\n\nIn early May 2018, an eruption on Hawaii\u0027s Kilauea volcano began to unfold. The eruption took a dangerous turn on May 3, 2018, when new fissures opened in the residential neighborhood of Leilani Estates. During the summer-long eruptive event, other fissures emerged along the East Rift Zone. Lava from vents along the rift zone flowed downslope, reaching the ocean in several areas, and filling in Kapoho Bay.\n\nA time series of Landsat 8 imagery shows the progression of the lava flows from May 16 to August 13. The night view combines thermal, shortwave infrared, and near-infrared wavelengths to tease out the very hot lava (bright white), cooling lava (red), and lava flows obstructed by clouds (purple).\n\n#### Figure: Location of Kilauea Volcano, Hawaii\n\nA globe is shown centered on North America, with a marker placed in the Pacific Ocean indicating the location of Hawaii, to the southwest of the mainland United States.\n\n\u003C!-- PageFooter=\u0022Earth at Night\u0022 --\u003E\n\u003C!-- PageNumber=\u002244\u0022 --\u003E",
-    "page_number": 60
-  },
-  "RerankerScore": 2.779123
-}
-Reference type: KnowledgeAgentSearchIndexReference
-{
-  "DocKey": "earth_at_night_508_page_64_verbalized",
+  "DocKey": "earth_at_night_508_page_174_verbalized",
   "Id": "2",
   "ActivitySource": 1,
-  "SourceData": {
-    "id": "earth_at_night_508_page_64_verbalized",
-    "page_chunk": "\u003C!-- PageHeader=\u0022Volcanoes\u0022 --\u003E\n\n### Nighttime Glow at Mount Etna - Italy\n\nAt about 2:30 a.m. local time on March 16, 2017, the VIIRS DNB on the Suomi NPP satellite captured this nighttime image of lava flowing on Mount Etna in Sicily, Italy. Etna is one of the world\u0027s most active volcanoes.\n\n#### Figure: Location of Mount Etna\nA world globe is depicted, with a marker indicating the location of Mount Etna in Sicily, Italy, in southern Europe near the center of the Mediterranean Sea.\n\n\u003C!-- PageFooter=\u0022Earth at Night\u0022 --\u003E\n\u003C!-- PageNumber=\u002248\u0022 --\u003E",
-    "page_number": 64
-  },
-  "RerankerScore": 2.7684891
+  "SourceData": {},
+  "RerankerScore": 2.3254027
 }
+Reference Type: KnowledgeBaseSearchIndexReference
+{
+  "DocKey": "earth_at_night_508_page_176_verbalized",
+  "Id": "5",
+  "ActivitySource": 1,
+  "SourceData": {},
+  "RerankerScore": 2.257256
+}
+Reference Type: KnowledgeBaseSearchIndexReference
+{
+  "DocKey": "earth_at_night_508_page_177_verbalized",
+  "Id": "7",
+  "ActivitySource": 1,
+  "SourceData": {},
+  "RerankerScore": 2.1968744
+}
+Reference Type: KnowledgeBaseSearchIndexReference
+{
+  "DocKey": "earth_at_night_508_page_125_verbalized",
+  "Id": "8",
+  "ActivitySource": 2,
+  "SourceData": {},
+  "RerankerScore": 2.086579
+}
+Response:
 ... // Trimmed for brevity
-Knowledge agent 'earth-knowledge-agent' deleted successfully.
+Activity:
+... // Trimmed for brevity
+References:
+... // Trimmed for brevity
+Knowledge base 'earth-knowledge-base' deleted successfully.
 Knowledge source 'earth-knowledge-source' deleted successfully.
 Index 'earth-at-night' deleted successfully.
 ```
@@ -594,7 +563,7 @@ Now that you've run the code, let's break down the key steps:
 1. [Create a search index](#create-a-search-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Create a knowledge source](#create-a-knowledge-source)
-1. [Create a knowledge agent](#create-a-knowledge-agent)
+1. [Create a knowledge base](#create-a-knowledge-base)
 1. [Set up messages](#set-up-messages)
 1. [Run the retrieval pipeline](#run-the-retrieval-pipeline)
 1. [Continue the conversation](#continue-the-conversation)
@@ -604,6 +573,7 @@ Now that you've run the code, let's break down the key steps:
 In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth-at-night`, which you previously specified using the `indexName` variable.
 
 The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic or conceptual similarity.
+
 ```csharp
 // Define fields for the index
 var fields = new List<SearchField>
@@ -697,6 +667,7 @@ var searchIndexingBufferedSender = new SearchIndexingBufferedSender<Dictionary<s
         KeyFieldAccessor = doc => doc["id"].ToString(),
     }
 );
+
 await searchIndexingBufferedSender.UploadDocumentsAsync(documents);
 await searchIndexingBufferedSender.FlushAsync();
 Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
@@ -704,31 +675,32 @@ Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
 
 ### Create a knowledge source
 
-A knowledge source is a reusable reference to your source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
+A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`SourceDataSelect` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`SourceDataFields` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```csharp
 // Create a knowledge source
 var indexKnowledgeSource = new SearchIndexKnowledgeSource(
-    name: knowledgeSourceNames,
+    name: knowledgeSourceName,
     searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
     {
-        SourceDataSelect = "id,page_chunk,page_number"
+        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
     }
 );
+
 await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
 ```
 
-### Create a knowledge agent
+### Create a knowledge base
 
-To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge agent. Add and run a code cell with the following code to define a knowledge agent named `earth-knowledge-agent`, which you previously specified using the `knowledgeAgentName` variable.
+To target `earth-knowledge-source` and your `gpt-5-mini` deployment at query time, you need a knowledge base. The following code defines a knowledge base named `earth-knowledge-base`, which you previously specified using the `knowledgeBaseName` variable.
 
-`RerankerThreshold` ensures semantic relevance by excluding responses with a reranker score of `2.5` or lower. Meanwhile, `Modality` is set to `AnswerSynthesis`, enabling natural-language answers that cite the retrieved documents.
+`OutputMode` is set to `AnswerSynthesis`, enabling natural-language answers that cite the retrieved documents and follow the provided `AnswerInstructions`.
 
 ```csharp
-// Create a knowledge agent
+// Create a knowledge base
 var openAiParameters = new AzureOpenAIVectorizerParameters
 {
     ResourceUri = new Uri(aoaiEndpoint),
@@ -736,37 +708,28 @@ var openAiParameters = new AzureOpenAIVectorizerParameters
     ModelName = aoaiGptModel
 };
 
-var agentModel = new KnowledgeAgentAzureOpenAIModel(azureOpenAIParameters: openAiParameters);
-var outputConfig = new KnowledgeAgentOutputConfiguration
-{
-    Modality = KnowledgeAgentOutputConfigurationModality.AnswerSynthesis,
-    IncludeActivity = true
-};
+var model = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: openAiParameters);
 
-var agent = new KnowledgeAgent(
-    name: knowledgeAgentName,
-    models: new[] { agentModel },
-    knowledgeSources: new KnowledgeSourceReference[] {
-        new KnowledgeSourceReference(knowledgeSourceName) {
-            IncludeReferences = true,
-            IncludeReferenceSourceData = true,
-            RerankerThreshold = (float?)2.5
-        }
-    }
+var knowledgeBase = new KnowledgeBase(
+    name: knowledgeBaseName,
+    knowledgeSources: new KnowledgeSourceReference[] { new KnowledgeSourceReference(knowledgeSourceName) }
 )
 {
-    OutputConfiguration = outputConfig
+    RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort(),
+    OutputMode = KnowledgeRetrievalOutputMode.AnswerSynthesis,
+    AnswerInstructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
+    Models = { model }
 };
 
-await indexClient.CreateOrUpdateKnowledgeAgentAsync(agent);
-Console.WriteLine($"Knowledge agent '{knowledgeAgentName}' created or updated successfully.");
+await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
+Console.WriteLine($"Knowledge base '{knowledgeBaseName}' created or updated successfully.");
 ```
 
 ### Set up messages
 
 Messages are the input for the retrieval route and contain the conversation history. Each message includes a role that indicates its origin, such as `system` or `user`, and content in natural language. The LLM you use determines which roles are valid.
 
-The following code creates a system message, which instructs `earth-knowledge-agent` to answer questions about the Earth at night and respond with "I don't know" when answers are unavailable.
+The following code creates a system message, which instructs `earth-knowledge-base` to answer questions about the Earth at night and respond with "I don't know" when answers are unavailable.
 
 ```csharp
 // Set up messages
@@ -785,7 +748,7 @@ var messages = new List<Dictionary<string, string>>
 
 ### Run the retrieval pipeline
 
-You're ready to run agentic retrieval by sending a two-part user query to `earth-knowledge-agent`. Given the conversation history and retrieval parameters, the agent:
+You're ready to run agentic retrieval. The following code sends a two-part user query to `earth-knowledge-base`, which:
 
 1. Analyzes the entire conversation to infer the user's information need.
 1. Decomposes the compound query into focused subqueries.
@@ -794,52 +757,49 @@ You're ready to run agentic retrieval by sending a two-part user query to `earth
 1. Synthesizes the top results into a natural-language answer.
 
 ```csharp
-// Use agentic retrieval to fetch results
-var agentClient = new KnowledgeAgentRetrievalClient(
+// Run agentic retrieval
+var baseClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri(searchEndpoint),
-    agentName: knowledgeAgentName,
+    knowledgeBaseName: knowledgeBaseName,
     tokenCredential: new DefaultAzureCredential()
 );
 
 messages.Add(new Dictionary<string, string>
 {
     { "role", "user" },
-    { "content", @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
-    Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
+    { "content", @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
 });
 
-var retrievalResult = await agentClient.RetrieveAsync(
-    retrievalRequest: new KnowledgeAgentRetrievalRequest(
-        messages: messages
-            .Where(message => message["role"] != "system")
-            .Select(
-                message => new KnowledgeAgentMessage(content: new[] { new KnowledgeAgentMessageTextContent(message["content"]) }) { Role = message["role"] }
-            )
-            .ToList()
-    )
-);
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+foreach (Dictionary<string, string> message in messages) {
+    if (message["role"] != "system") {
+        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
+    }
+}
+retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
+var retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
 
 messages.Add(new Dictionary<string, string>
 {
     { "role", "assistant" },
-    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text }
+    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
 });
 ```
 
-#### Review the response, activity, and results
+#### Review the response, activity, and references
 
-The following code displays the response, activity, and results of the retrieval pipeline, where:
+The following code displays the response, activity, and references from the retrieval pipeline, where:
 
 + `Response` provides a synthesized, LLM-generated answer to the query that cites the retrieved documents. When answer synthesis isn't enabled, this section contains content extracted directly from the documents.
 
 + `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-5-mini` deployment and the tokens used for semantic ranking, query planning, and answer synthesis.
 
-+ `Results` lists the documents that contributed to the response, each one identified by their `DocKey`.
++ `References` lists the documents that contributed to the response, each one identified by their `DocKey`.
 
 ```csharp
-// Print the response, activity, and results
+// Print the response, activity, and references
 Console.WriteLine("Response:");
-Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text);
+Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
 
 Console.WriteLine("Activity:");
 foreach (var activity in retrievalResult.Value.Activity)
@@ -853,7 +813,7 @@ foreach (var activity in retrievalResult.Value.Activity)
     Console.WriteLine(activityJson);
 }
 
-Console.WriteLine("Results:");
+Console.WriteLine("References:");
 foreach (var reference in retrievalResult.Value.References)
 {
     Console.WriteLine($"Reference Type: {reference.GetType().Name}");
@@ -868,7 +828,7 @@ foreach (var reference in retrievalResult.Value.References)
 
 ### Continue the conversation
 
-The following code continues the conversation with `earth-knowledge-agent`. After you send this user query, the agent fetches relevant content from `earth-knowledge-source` and appends the response to the messages list.
+The following code continues the conversation with `earth-knowledge-base`. After you send this user query, the knowledge base fetches relevant content from `earth-knowledge-source` and appends the response to the messages list.
 
 ```csharp
 // Continue the conversation
@@ -878,34 +838,32 @@ messages.Add(new Dictionary<string, string>
     { "content", "How do I find lava at night?" }
 });
 
-retrievalResult = await agentClient.RetrieveAsync(
-    retrievalRequest: new KnowledgeAgentRetrievalRequest(
-        messages: messages
-            .Where(message => message["role"] != "system")
-            .Select(
-                message => new KnowledgeAgentMessage(content: new[] { new KnowledgeAgentMessageTextContent(message["content"]) }) { Role = message["role"] }
-            )
-            .ToList()
-    )
-);
+retrievalRequest = new KnowledgeBaseRetrievalRequest();
+foreach (Dictionary<string, string> message in messages) {
+    if (message["role"] != "system") {
+        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
+    }
+}
+retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
+retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
 
 messages.Add(new Dictionary<string, string>
 {
     { "role", "assistant" },
-    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text }
+    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
 });
 ```
 
-#### Review the new response, activity, and results
+#### Review the new response, activity, and references
 
-The following code displays the new response, activity, and results of the retrieval pipeline.
+The following code displays the new response, activity, and references from the retrieval pipeline.
 
 ```csharp
-// Print the response, activity, and results
+// Print the new response, activity, and references
 Console.WriteLine("Response:");
-Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text);
+Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
 
-Console.WriteLine("Activities:");
+Console.WriteLine("Activity:");
 foreach (var activity in retrievalResult.Value.Activity)
 {
     Console.WriteLine($"Activity Type: {activity.GetType().Name}");
@@ -917,7 +875,7 @@ foreach (var activity in retrievalResult.Value.Activity)
     Console.WriteLine(activityJson);
 }
 
-Console.WriteLine("Results:");
+Console.WriteLine("References:");
 foreach (var reference in retrievalResult.Value.References)
 {
     Console.WriteLine($"Reference Type: {reference.GetType().Name}");
@@ -934,15 +892,15 @@ foreach (var reference in retrievalResult.Value.References)
 
 When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
 
-In the Azure portal, you can manage your Azure AI Search and Azure AI Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+In the Azure portal, you can manage your Azure AI Search and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
 
 Otherwise, the following code from `Program.cs` deleted the objects you created in this quickstart.
 
-### Delete the knowledge agent
+### Delete the knowledge base
 
 ```csharp
-await indexClient.DeleteKnowledgeAgentAsync(knowledgeAgentName);
-Console.WriteLine($"Knowledge agent '{knowledgeAgentName}' deleted successfully.");
+await indexClient.DeleteKnowledgeBaseAsync(knowledgeBaseName);
+Console.WriteLine($"Knowledge base '{knowledgeBaseName}' deleted successfully.");
 ```
 
 ### Delete the knowledge source
@@ -958,4 +916,3 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfull
 await indexClient.DeleteIndexAsync(indexName);
 Console.WriteLine($"Index '{indexName}' deleted successfully.");     
 ```
-

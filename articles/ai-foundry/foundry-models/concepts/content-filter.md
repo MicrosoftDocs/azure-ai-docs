@@ -1,7 +1,7 @@
-﻿---
-title: Content filtering for Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how Azure AI Foundry Models filter harmful content in prompts and completions, including configuration and API scenarios.
+---
+title: Content filtering for Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how Microsoft Foundry Models filter harmful content in prompts and completions, including configuration and API scenarios.
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
@@ -9,21 +9,21 @@ reviewer: ychang-msft
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 08/29/2025
+ms.date: 11/10/2025
 ms.custom: ignite-2024, github-universe-2024
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer building applications with Azure AI Foundry Models, I want to understand how the content filtering system works, including the risk categories, severity levels, and API response behaviors so that I can properly handle content moderation in my application and ensure compliance with safety requirements.
+#CustomerIntent: As a developer building applications with Microsoft Foundry Models, I want to understand how the content filtering system works, including the risk categories, severity levels, and API response behaviors so that I can properly handle content moderation in my application and ensure compliance with safety requirements.
 ---
 
 
-# Content filtering for Azure AI Foundry Models
+# Content filtering for Microsoft Foundry Models
 
 
 > [!IMPORTANT]
-> The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Azure AI Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
+> The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
-Azure AI Foundry Models includes a content filtering system that works alongside core models and is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system runs both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
+Foundry Models includes a content filtering system that works alongside core models and is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system runs both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
 The text content filtering models for the hate, sexual, violence, and self-harm categories were trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 
@@ -33,7 +33,7 @@ The following sections provide information about the content filtering categorie
 
 ## Content filter types
 
-The content filtering system integrated in the Foundry Models service in Azure AI Services contains: 
+The content filtering system integrated in the Foundry Models service in Foundry Tools contains: 
 * Neural multiclass classification models that detect and filter harmful content. These models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 * Other optional classification models that detect jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model might be required for Customer Copyright Commitment coverage.
 

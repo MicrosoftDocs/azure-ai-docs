@@ -1,6 +1,6 @@
 ---
 title: Keyword recognition overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of the features, capabilities, and restrictions for keyword recognition by using the Speech SDK.
 author: PatrickFarley
 ms.author: pafarley

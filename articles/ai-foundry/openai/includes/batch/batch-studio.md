@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch Studio
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch Studio
 manager: nitinme
 ms.date: 11/06/2025
@@ -110,14 +110,14 @@ For this article, we'll create a file named `test.jsonl` and will copy the conte
 
 ## Upload batch file
 
-Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Azure AI Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
 
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../../../includes/classic-sign-in.md)]
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
 3. Select **Batch jobs** > **+Create batch jobs**.
 
-    :::image type="content" source="../../media/how-to/global-batch/create-batch-job-empty.png" alt-text="Screenshot that shows the batch job creation experience in Azure AI Foundry portal." lightbox="../../media/how-to/global-batch/create-batch-job-empty.png":::
+    :::image type="content" source="../../media/how-to/global-batch/create-batch-job-empty.png" alt-text="Screenshot that shows the batch job creation experience in Foundry portal." lightbox="../../media/how-to/global-batch/create-batch-job-empty.png":::
 
 4. From the dropdown under **Batch data** > **Upload files** > select **Upload file** and provide the path for the `test.jsonl` file created in the previous step > **Next**.
 
@@ -128,7 +128,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 Select **Create** to start your batch job.
 
-:::image type="content" source="../../media/how-to/global-batch/deployment.png" alt-text="Screenshot of the create a batch job Azure AI Foundry portal experience." lightbox="../../media/how-to/global-batch/deployment.png":::
+:::image type="content" source="../../media/how-to/global-batch/deployment.png" alt-text="Screenshot of the create a batch job Foundry portal experience." lightbox="../../media/how-to/global-batch/deployment.png":::
 
 ## Track batch job progress
 
@@ -138,7 +138,7 @@ Once your job is created, you can monitor the job's progress by selecting the Jo
 
 You can track job status for your job in the right-hand pane:
 
-:::image type="content" source="../../media/how-to/global-batch/status.png" alt-text="Screenshot that shows the batch job status experience in Azure AI Foundry portal." lightbox="../../media/how-to/global-batch/status.png":::
+:::image type="content" source="../../media/how-to/global-batch/status.png" alt-text="Screenshot that shows the batch job status experience in Foundry portal." lightbox="../../media/how-to/global-batch/status.png":::
 
 ## Retrieve batch job output file
 
@@ -150,4 +150,4 @@ Once your job has completed or reached a terminal state, it will generate an err
 
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
 
-:::image type="content" source="../../media/how-to/global-batch/cancel.png" alt-text="Screenshot that shows the batch job cancel button in Azure AI Foundry portal." lightbox="../../media/how-to/global-batch/cancel.png":::
+:::image type="content" source="../../media/how-to/global-batch/cancel.png" alt-text="Screenshot that shows the batch job cancel button in Foundry portal." lightbox="../../media/how-to/global-batch/cancel.png":::

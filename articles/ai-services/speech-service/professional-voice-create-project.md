@@ -1,6 +1,6 @@
 ---
 title: Create a project for professional voice - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to create a project for professional voice. 
 author: PatrickFarley
 manager: nitinme

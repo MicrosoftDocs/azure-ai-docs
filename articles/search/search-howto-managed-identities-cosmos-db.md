@@ -126,7 +126,7 @@ You need to add an "identity" property to the data source definition, where you 
 Here's an example using user-assigned identity via the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
@@ -158,7 +158,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -173,7 +173,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2025-08-0
 Here's an example to connect to Gremlin graphs using user-assigned identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-11-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
