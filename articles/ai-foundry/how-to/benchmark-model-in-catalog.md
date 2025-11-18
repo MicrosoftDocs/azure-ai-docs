@@ -70,15 +70,16 @@ You can analyze and compare models using:
 ::: moniker-end
 
 ::: moniker range="foundry"
-2. If you’re not already in your project, select it.
 
-3. Go to **Discover** from the top nav, where you can view a snapshot of the model leaderboard on the overview page. You can sort on the different metrics to view the top 6 respectively. Quality is the most common criterion for model selection, followed by safety, cost, and performance. You can select any of these models to go their respective model detail pages. To view more models beyond top 6, select **Go to leaderboard**.
+1. If you’re not already in your project, select it.
 
-4. **Model leaderboard** highlights the top 5 leaders at the top for quality, safety, throughput, and estimated cost. These charts can be expanded to visually view the top 10.
+1. Go to **Discover** from the top nav, where you can view a snapshot of the model leaderboard on the overview page. You can sort on the different metrics to view the top 6 respectively. Quality is the most common criterion for model selection, followed by safety, cost, and performance. You can select any of these models to go their respective model detail pages. To view more models beyond top 6, select **Go to leaderboard**.
 
-5. After the charts, you can find the full model leaderboard. Similar to the top 6, you can sort on the metrics you care most about and click model name to go to their respective detail page. 
+1. **Model leaderboard** highlights the top 5 leaders at the top for quality, safety, throughput, and estimated cost. These charts can be expanded to visually view the top 10.
 
-6. You can also select 2-3 models for [detailed feature comparison](#compare-models) in a side by side view. 
+1. After the charts, you can find the full model leaderboard. Similar to the top 6, you can sort on the metrics you care most about and select model name to go to their respective detail page.
+
+1. You can also select 2-3 models for [detailed feature comparison](#compare-models) in a side by side view. 
 
 ::: moniker-end
 
@@ -172,20 +173,20 @@ This feature enables side-by-side comparison of up to three models simultaneousl
 
 Use the dropdown to select models you want to compare.
 
-If you want to learn even more about the model, you can **View details** or if you are ready to start using the model, you can **Deploy**.
+If you want to learn even more about the model, you can **View details** or if you're ready to start using the model, you can **Deploy**.
 
-    :::image type="content" source="../default/media/observability/model-benchmarks/compare-model-overview.png" alt-text="Screenshot showing the compare model experience in Microsoft Foundry." lightbox="../default/media/observability/model-benchmarks/compare-model-overview.png":::
+:::image type="content" source="../default/media/observability/model-benchmarks/compare-model-overview.png" alt-text="Screenshot showing the compare model experience in Microsoft Foundry." lightbox="../default/media/observability/model-benchmarks/compare-model-overview.png":::
 
 ## View and analyze benchmarks from the model card
 
-Once you've selected a model you're interested in whether from leaderboard or browsing the catalog. You can go to the **Benchmarks** tab to check the benchmark results for the model.
+Once you've selected a model you're interested in whether from leaderboard or browsing the catalog, go to the **Benchmarks** tab to check the benchmark results for the model.
   
 > [!NOTE]
 > Benchmarking results conducted by Microsoft are available for select models in the model catalog. Benchmarking information reported by providers is included when available.
 
 When you're in the "Benchmarks" tab for a specific model, you can gather extensive information to better understand and interpret the benchmark results with:
 
-- **Public data benchmark results**: These are high-level aggregate scores scores for AI quality, safety, estimated cost, latency, and throughput provide a quick overview of the model's performance.
+- **Public data benchmark results**: These are high-level aggregate scores for AI quality, safety, estimated cost, latency, and throughput provide a quick overview of the model's performance.
 - **Comparative charts**: These charts display the model's relative position compared to related models.
 - **Metric comparison table**: This table presents detailed results for each metric.
 
