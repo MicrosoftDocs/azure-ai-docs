@@ -107,7 +107,7 @@ conceptualContent:
           url: /azure/ai-services/speech-service/voice-live
         - itemType: quickstart
           text: Get started with Voice live models
-          url: https://review.learn.microsoft.com/en-us/azure/ai-services/speech-service/voice-live-quickstart
+          url: /azure/ai-services/speech-service/voice-live-quickstart
         - itemType: quickstart
           text: Get started with Voice live in Foundry agents
           url: /azure/ai-services/speech-service/voice-live-agents-quickstart
