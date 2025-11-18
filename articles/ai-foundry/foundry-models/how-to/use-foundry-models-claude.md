@@ -409,7 +409,7 @@ Claude models in Foundry have the following rate limits:
 | Claude Haiku 4.5 | 450,000 | 1,000 |
 | Claude Opus 4.1 | 450,000 | 1,000 |
 
-To increase your quota beyond the default limits, submit a request through the [quota increase request form](../quotas-limits.md#request-increases-to-the-default-limits).
+To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
 ### Rate limit best practices
 
@@ -460,3 +460,4 @@ Choose the appropriate Claude model based on your specific requirements:
 - [Responsible AI for Foundry](../../responsible-ai/openai/overview.md)
 - [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
+- [Claude Docs: Claude in Microsoft Foundry ](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
