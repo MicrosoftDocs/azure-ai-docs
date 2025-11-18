@@ -17,7 +17,7 @@ zone_pivot_groups: ai-foundry-vsc-extension-languages
 
 # Work with Hosted (Pro-code) Agents in Visual Studio Code (preview)
 
-In this article, you learn how to add and use hosted Foundry Agent workflows with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+In this article, you learn how to add and use [hosted Foundry Agent workflows](../concepts/hosted-agents.md) with Azure AI agents by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
 After you [build an agent in Foundry Agent Service](
 /azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&tabs=windows-powershell&pivots=python&preserve-view=true) by using this Visual Studio Code (VS Code) extension, you can add hosted agent workflows to your agent.
@@ -88,6 +88,8 @@ To run the sample hosted agent C# project, ensure that you have a Foundry projec
 
 Grant the project's managed identity the required permissions by assigning the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) role.
 
+>[!IMPORTANT]
+> Check to make sure that your region supports hosted agents. For the latest information on supported regions, see [Region Availability](/azure/ai-foundry/agents/concepts/hosted-agents?view=foundry&#region-availability&preserve-view=true). 
 
 #### Setup and installation
 
@@ -107,10 +109,10 @@ The sample workflow project creates an .env file with the necessary environment 
 
 ```
 # Your Azure OpenAI endpoint
-AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
+AZURE_AI_PROJECT_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
     
 # Your model deployment name in Azure OpenAI
-MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 ```
 
 > [!IMPORTANT]
@@ -159,22 +161,22 @@ The sample workflow project creates an .env file with the necessary environment 
    #### [Windows (PowerShell)](#tab/windows-powershell)
 
    ```powershell
-   $env:AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
-   $env:MODEL_DEPLOYMENT_NAME="your-deployment-name"
+   $env:AZURE_AI_PROJECT_ENDPOINT="https://your-resource-name.openai.azure.com/"
+   $env:AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
    ```
 
    #### [Windows (command prompt)](#tab/windows-command-prompt)
 
    ```dos
-   set AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
-   set MODEL_DEPLOYMENT_NAME=your-deployment-name
+   set AZURE_AI_PROJECT_ENDPOINT=https://your-resource-name.openai.azure.com/
+   set AZURE_AI_MODEL_DEPLOYMENT_NAME=your-deployment-name
    ```
 
    #### [macOS/Linux (Bash)](#tab/macos-linux-bash)
 
    ```bash
-   export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
-   export MODEL_DEPLOYMENT_NAME="your-deployment-name"
+   export AZURE_AI_PROJECT_ENDPOINT="https://your-resource-name.openai.azure.com/"
+   export AZURE_AI_MODEL_DEPLOYMENT_NAME="your-deployment-name"
    ```
 
     ---
@@ -228,7 +230,7 @@ Enable visualization in your workflows by adding the following code snippet:
 
 ```python
 from agent_framework.observability import setup_observability
-setup_observability(vs_code_extension_port=4317) # Default port is 4317
+setup_observability(vs_code_extension_port=4319) # Default port is 4319
 ```
 ::: zone-end
 
@@ -286,8 +288,18 @@ To monitor and visualize your hosted agent workflow execution in real time:
 A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
 
 #### Port conflicts
+
+For port conflicts, you can change the visualization port by setting it in the Foundry extension settings. To do that, follow these steps:
+
+1. In the left sidebar of VS Code, select the gear icon to open the settings menu.
+1. Select `Extensions` > `Microsoft Foundry Configuration`.
+1. Locate the `Hosted Agent Visualization Port` setting and change it to an available port number.
+1. Restart VS Code to apply the changes.
+
+#### Change port in code 
+
 ::: zone pivot="python"
-For any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the observability port in the `workflow.py` file accordingly.
+Change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the observability port in the `workflow.py` file accordingly.
 
 For example, to change the port to 4318, use this command:
 
@@ -300,6 +312,10 @@ In `workflow.py`, update the port number in the observability configuration:
 ```python
   setup_observability(vs_code_extension_port=4318)
 ```
+> [!TIP]
+> To enable more debugging information, add the `enable_sensitive_data=True` parameter to the `setup_observability` function.
+
+
 ::: zone-end
 
 ::: zone pivot="csharp"
@@ -323,6 +339,9 @@ var otlpEndpoint =
 
 To deploy the hosted agent:
 
+>[!IMPORTANT]
+> Ensure that you have given the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to obtain the required role assignments. 
+
 ::: zone pivot="python"
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`container.py`), and defining any other deployment parameters as needed.
@@ -336,5 +355,7 @@ To deploy the hosted agent:
 1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
 1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
 ::: zone-end
+
+For more information about publishing hosted agents, see [Publish and share agents in Microsoft Foundry](./publish-agent.md).
 
 ## Next steps
