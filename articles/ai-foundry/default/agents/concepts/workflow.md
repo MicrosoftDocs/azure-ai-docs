@@ -7,7 +7,7 @@ ms.custom:
   - build-2025
   - code01
 ms.topic: tutorial
-ms.date: 10/25/2025
+ms.date: 11/05/2025
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: nitinme
@@ -30,7 +30,7 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 
 In Foundry, you can choose to create a blank workflow or choose from one of the premade configured options. For this tutorial, we'll be creating a Sequential workflow. If you want to learn more about different types of workflows, see the [workflow concepts](#workflow-concepts) section of this article. 
 
-### Create a sequential workflow
+### Build a workflow quickstart
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Select **Build** in the upper-right navigation.
@@ -50,10 +50,10 @@ To start creating a new workflow, you can begin with a blank workflow or select 
 
 | Pattern    | Description                                                        | Typical Use Case                                         |
 |------------|--------------------------------------------------------------------|----------------------------------------------------------|
-| Concurrent | Broadcasts a task to all agents, collects results independently.   | Parallel analysis, independent subtasks, ensemble decision making. |
+| Human in the loop  | Asks user a question and awaits user input to proceed. | Create approval requests during workflow execution and wait for human approval, obtain information form the user. |
 | Sequential | Passes the result from one agent to the next in a defined order.   | Step-by-step workflows, pipelines, multi-stage processing. |
-| Handoff    | Dynamically passes control between agents based on context or rules.| Dynamic workflows, escalation, fallback, or expert handoff scenarios. |
-| Magentic   | Inspired by [MagenticOne](https://microsoft.github.io/autogen/stable//user-guide/agentchat-user-guide/magentic-one.html).                                           | Complex, generalist multi-agent collaboration.           |
+| Group chat    | Dynamically passes control between agents based on context or rules.| Dynamic workflows, escalation, fallback, or expert handoff scenarios. |
+
 
 ## Add nodes to your workflow
 
@@ -88,6 +88,62 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 5. Configure the agent in the invoke an agent window.
 6. Select **Save**.
 
+### Configure output response format for Invoke Agent 
+
+1. Create an **Invoke agent** node.
+1. Select create a new an agent in the Invoke agent configuration window.
+1. Configure the agent to output as JSON Schema in the configuration window. Select **Details**. Select the parameter icon. Then select JSON Schema as the **Text Format**.
+
+   :::image type="content" source="../../media/workflows/select-parameters.png" alt-text="A screenshot showing the JSON schema text format configuration window." lightbox="../../media/workflows/select-parameters.png":::
+
+1. Copy and paste the desired JSON Schema in the **Add response format** window. You can use the math example for this tutorial. Select **Save**.
+
+   :::image type="content" source="../../media/workflows/response-format.png" alt-text="A screenshot showing the addition of a response format in JSON." lightbox="../../media/workflows/response-format.png":::
+
+    ```json
+    {
+      "name": "math_response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "explanation": {
+                  "type": "string"
+                },
+                "output": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "explanation",
+                "output"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "final_answer": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "steps",
+          "final_answer"
+        ]
+      },
+      "strict": true
+    }
+    ```
+
+1. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
+1. Select **Create new variable**. Choose a variable name. Select **Done**.
+
+    :::image type="content" source="../../media/workflows/save-output.png" alt-text="A screenshot showing the addition of a new variable in a workflow in Microsoft Foundry." lightbox="../../media/workflows/save-output.png":::
+
 ## Additional features
 
 - **YAML Visualizer View toggle**: The workflow will be stored in a YAML file, it can be modified in the visualizer and the YAML view. Saving will create a new version; you have access to the version history. The visualizer and the YAML are editable. You can edit the YAML file and any changes to the file will be reflected in the visualizer.
@@ -103,7 +159,7 @@ Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to c
 
 To use a variable in a Power Fx formula, you must add a prefix to its name to indicate the variable's scope:
 
-- For [system variables](/microsoft-copilot-studio/authoring-variables-about?tabs=webApp), use `System.`
+- For [system variables](#system-variables), use `System.`
 - For local variables, use `Local.`
 
 ### Use literal values in a formula
@@ -138,13 +194,45 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 1. Create a workflow and add an **Ask a question** node.
 
-1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for example `Var01`. Select **Done**
+1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for example `Var01`. Select **Done**.
+  
+   :::image type="content" source="../../media/workflows/ask-a-question-node.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/ask-a-question-node.png":::
 
 1. Add a **Send message** action. Then in the side settings panel enter `{Upper(Local.Var01)}`. Select **Done**.
 
+   :::image type="content" source="../../media/workflows/variable-message.png" alt-text="A screenshot showing the variable instantiation for the send a message action." lightbox="../../media/workflows/variable-message.png":::
+
 1. Select **Preview**
 
-1. Send a message to the agent in the side panel to invoke the workflow. 
+1. Send a message to the agent in the side panel to invoke the workflow.
+
+   :::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instantiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
+
+### System variables
+
+| Name | Description |
+|------|-------------|
+| Activity | Information about the current activity |
+| Bot | Information about the agent |
+| Conversation | Information about the current conversation |
+| Conversation.Id | The unique ID of the current conversation |
+| Conversation.LocalTimeZone | Name of the time zone to be used by the user in the IANA Time Zone database format |
+| Conversation.LocalTimeZoneOffset | The time offset from UTC for the current local time zone |
+| Conversation.InTestMode | Boolean flag that represents if the conversation is happening in test canvas |
+| ConversationId | The unique ID of the current conversation |
+| InternalId | Internal identifier for the system |
+| LastMessage | Information about the previous message sent by the user |
+| LastMessage.Id | The ID of the previous message sent by the user |
+| LastMessage.Text | The previous message sent by the user |
+| LastMessageId | The ID of the previous message sent by the user |
+| LastMessageText | The previous message sent by the user |
+| Recognizer | Information about intent recognition and triggering message |
+| User | Information about the user currently talking to the agent |
+| User.Language | Used to set the user language locale per conversation |
+| UserLanguage | Used to set the user language locale per conversation |
+
+## Next Steps
+* [Microsoft Foundry Agents FAQ](../../../agents/faq.yml)
 
 
 
