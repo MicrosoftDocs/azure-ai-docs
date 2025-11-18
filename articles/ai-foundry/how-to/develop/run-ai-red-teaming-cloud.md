@@ -37,7 +37,6 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 
 ::: moniker-end
 
-
 ## Prerequisites
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
@@ -321,6 +320,8 @@ curl --request POST \
 }'
 ```
 
+---
+
 What it does:
 
 - Creates a red team to hold all red teaming runs
@@ -350,6 +351,8 @@ curl --request GET \
   --url 'https://{{account}}.services.ai.azure.com/api/projects/{{project}}/openai/evals/{{red_team_id}}?api-version=2025-11-15-preview' \
   --header 'authorization: Bearer <token>'
 ```
+
+---
 
 ## Create (or update) an evaluation taxonomy
 
@@ -413,6 +416,8 @@ curl --request PUT \
     ]
   }
 ```
+
+---
 
 What it does:
 
@@ -493,6 +498,8 @@ curl --request POST \
 }'
 ```
 
+---
+
 Key fields to configure your run:
 
 - `attack_strategies`: For example, "Flip", "Base64", "IndirectJailbreak" (choose the ones you want to test)
@@ -528,6 +535,8 @@ curl --request GET \
   --header 'authorization: Bearer <token>'
 ```
 
+---
+
 > **Note:**
 > The API is synchronous per request, but runs themselves are processed server‑side; poll this endpoint until completion before fetching output items.
 
@@ -554,6 +563,7 @@ curl --request GET \
   --header 'authorization: Bearer <token>'
 ```
 
+---
 ::: moniker-end
 
 ::: moniker range="foundry-classic"
