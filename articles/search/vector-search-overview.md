@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 11/06/2025
+ai-usage: ai-assisted
 ---
 
 # Vector search in Azure AI Search
@@ -84,7 +85,7 @@ Azure AI Search is deeply integrated across the Azure AI platform. The following
 
 | Product | Integration |
 |---------|-------------|
-| Foundry | Agents in Foundry can integrate with Azure AI Search knowledge bases via Model Context Protocol (MCP) for knowledge retrieval and grounded reasoning. For more information, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval). |
+| Foundry Agent Service | In Azure AI Search, you can create an *indexed [knowledge source](agentic-knowledge-source-overview.md)* that points to a search index containing vector fields. You can then parent the knowledge source to a *[knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)* and [connect the knowledge base to Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval), providing your agents with vector search results for enhanced knowledge retrieval. |
 | Azure OpenAI | Azure OpenAI provides embedding models and chat models. Demos and samples target the [text-embedding-ada-002](/azure/ai-services/openai/concepts/models#embeddings-models) model. We recommend Azure OpenAI for generating embeddings for text. |
 | Foundry Tools | [Image Retrieval Vectorize Image API (preview)](/azure/ai-services/computer-vision/how-to/image-retrieval#call-the-vectorize-image-api) supports vectorization of image content. We recommend this API for generating embeddings for images. |
 | Azure data platforms: Azure Blob Storage, Azure Cosmos DB, Azure SQL, Microsoft OneLake | You can use [indexers](search-indexer-overview.md) to automate data ingestion, and then use [integrated vectorization](vector-search-integrated-vectorization.md) to generate embeddings. Azure AI Search can automatically index vector data from [Azure blob indexers](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL indexers](search-how-to-index-cosmosdb-sql.md), [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md), [Azure Table Storage](search-how-to-index-azure-tables.md), and [Microsoft OneLake](search-how-to-index-onelake-files.md). For more information, see [Add vector fields to a search index.](vector-search-how-to-create-index.md). |
