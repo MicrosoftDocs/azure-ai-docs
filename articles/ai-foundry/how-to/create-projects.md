@@ -35,7 +35,7 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
     * Foundry SDK and API to build agents and switch easily between models
     * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
     * Partner & Community Models sold through Marketplace - Stability, Cohere, etc. 
-    * Content understanding 
+    * Content understanding
     * Evaluations
     * Fine-tuning
     * OpenAI SDK and API including Batch and Stored Completions
@@ -54,7 +54,7 @@ If your organization requires customized Azure configurations like alternative n
 
 Use the following tabs to select the method you'll use to create a Foundry project:
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
@@ -118,13 +118,22 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
-- [Azure CLI](/cli/azure/install-azure-cli) 
+- Install the [Azure CLI](/cli/azure/install-azure-cli) 
+- Set default values for `subscription` and `resource group`.
+
+  ```azurecli
+    # Set your default subscription
+    az account set --subscription "{subscription-name}"
+
+    # Set default resource group
+    az config set defaults.group={resource-group-name}
+   ```
 
 ---
 
 ## Create a Foundry project
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -178,8 +187,6 @@ To create a Foundry project:
 
 # [Azure CLI](#tab/azurecli)
 
-<!-- To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
-
 1. Authenticate to your Azure subscription from the Azure CLI with the following command:
 
     ```azurecli
@@ -194,25 +201,34 @@ To create a Foundry project:
     az group create --name {my_resource_group} --location eastus
     ```
 
-1. Now use the following commands to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+1. Create a Foundry resource
 
-    [!INCLUDE [cli-create-project](cli-create-project.md)]
- -->
+    ```azurecli
+    az cognitiveservices account create \
+    --name {your-foundry-resource-name} \
+    --kind AIServices \
+    --location eastus \
+    --sku s0 \
+    --allow-project-management
+    ```
 
-CLI commands not currently available for creating a Foundry project.
+1. Create a project:
 
+    ```azurecli
+    az cognitiveservices account project create \
+    --name {your-foundry-resource-name} \
+    --project-name {your-project-name} \
+    --location eastus
+    ```
 ---
 
-::: moniker range="foundry-classic"
 ## <a name="create-multiple"></a> Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
 
-::: moniker-end
-
 ## View project settings
 
-# [Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -239,12 +255,17 @@ On the **Home** page, you see the project endpoint and API key for the project. 
 To view settings for the project, use the `az cognitiveservices account connection show` command. For example:
 
 ```azurecli
-az cognitiveservices account connection show --name <my_project_name> --resource-group <my_resource_group>
+az cognitiveservices account connection show \
+--name <my_project_name> \
+--resource-group <my_resource_group>
 ```
 
 ---
 
 ## Delete projects
+
+
+# [Foundry portal](#tab/foundry)
 
 ::: moniker range="foundry-classic"
 
@@ -271,6 +292,45 @@ To delete the Foundry resource and all its projects:
 1. In the upper right, select the trash can icon to delete the project.
 
 ::: moniker-end 
+
+# [Python SDK](#tab/python)
+
+This code uses the variables and `client connection` from the Prerequisites. First create the client connection:
+
+```python
+client.projects.begin_delete(
+    resource_group_name, foundry_resource_name, foundry_project_name
+)
+```
+
+Delete a Foundry resource and all of its projects:
+
+```python
+# Delete projects
+projects = client.projects.list(resource_group_name, foundry_resource_name)
+
+for project in projects: 
+    print("Deleting project:", project.name)
+    client.projects.begin_delete(resource_group_name, foundry_resource_name,
+        project_name=project.name.split('/')[-1]
+    ).wait()
+
+# Delete resource
+print("Deleting resource:", foundry_resource_name)
+client.accounts.begin_delete(resource_group_name, foundry_resource_name).wait()
+```
+
+# [Azure CLI](#tab/azurecli)
+
+Run the following command:
+
+```azurecli
+az cognitiveservices account project delete \
+--name {foundry_resource_name} \
+--project-name {my_project_name}
+```
+
+---
 
 ## Related content
 

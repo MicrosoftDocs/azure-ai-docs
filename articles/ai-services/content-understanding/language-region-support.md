@@ -20,13 +20,14 @@ Azure Content Understanding in Foundry Tools provides multilingual support in mu
 
 ## Region support
 
-To use Azure Content Understanding, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding, create your Foundry Tool resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
 | `australiaeast` | Australia East | Australia | Australia |
 | `eastus` | East US | United States | US |
 | `eastus2` | East US 2 | United States | US |
+| `japaneast` | Japan East | Japan | Asia |
 | `northeurope` | North Europe | Europe | Europe |
 | `southcentralus` | South Central US | United States | US |
 | `southeastasia` | Southeast Asia | Asia Pacific | Asia |
@@ -34,7 +35,6 @@ To use Azure Content Understanding, create your Azure AI Service resource in a s
 | `uksouth` | UK South | United Kingdom | UK |
 | `westeurope` | West Europe | Europe | Europe |
 | `westus` | West US | United States | US |
-| `westus2` | West US 2 | United States | US |
 | `westus3` | West US 3 | United States | US |
 
 
@@ -193,7 +193,7 @@ The preview API version `2025-05-01-preview` includes managed capacity for gener
 
 ### Region support
 
-To use Azure Content Understanding in Foundry Tools with the preview API, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding in Foundry Tools with the preview API, create your Foundry Tool resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|

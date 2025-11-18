@@ -23,6 +23,8 @@ Microsoft Foundry agents support function calling, which allows you to describe 
 > * Although function calling isn't supported in the Microsoft Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
 
 ## Example agent code
+> [!NOTE]
+> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 :::zone pivot="python"
 

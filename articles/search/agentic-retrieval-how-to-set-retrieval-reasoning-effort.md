@@ -26,7 +26,7 @@ Levels of reasoning effort include:
 
 ## Prerequisites
 
-+ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
 
 + Familiarity with [agentic retrieval concepts and workflow](agentic-retrieval-overview.md).
 
@@ -97,7 +97,5 @@ You can set a medium retrieval reasoning effort if your search service is in one
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
-
-+ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
-
-+ [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
++ [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
++ [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)

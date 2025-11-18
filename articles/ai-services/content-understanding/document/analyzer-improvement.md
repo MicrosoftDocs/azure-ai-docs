@@ -1,6 +1,6 @@
 ---
 title: "Document analysis with confidence, grounding, and labeled samples"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools's value add-ons that improve model extraction quality and performance
 author: PatrickFarley 
 ms.author: pafarley

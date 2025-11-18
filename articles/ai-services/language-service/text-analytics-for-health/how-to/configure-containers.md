@@ -44,7 +44,7 @@ This setting can be found in the following place:
 
 |Required| Name | Data type | Description |
 |--|------|-----------|-------------|
-|Yes| `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [gather required parameters](use-containers.md#gather-required-parameters). For more information and a complete list of regional endpoints, see [Custom subdomain names for Azure AI services](../../../cognitive-services-custom-subdomains.md). |
+|Yes| `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [gather required parameters](use-containers.md#gather-required-parameters). For more information and a complete list of regional endpoints, see [Custom subdomain names for Foundry Tools](../../../cognitive-services-custom-subdomains.md). |
 
 ## Eula setting
 

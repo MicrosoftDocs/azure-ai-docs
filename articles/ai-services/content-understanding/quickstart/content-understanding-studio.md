@@ -1,6 +1,6 @@
 ---
 title: Quickstart Try out Content Understanding Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Try out the new features of the Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley

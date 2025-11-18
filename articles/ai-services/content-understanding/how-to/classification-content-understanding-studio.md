@@ -1,6 +1,6 @@
 ---
 title: Classify and route your data using Content Understanding Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to classify and route your data using Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley
@@ -24,7 +24,7 @@ To get started, make sure you have the following resources and permissions:
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **Foundry** > **Foundry** in the portal.
-* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments?pivots=ai-foundry-portal).
 
 ## Sign in to Content Understanding Studio
 
@@ -42,9 +42,11 @@ Custom categories let you route your data to a specific analyzer so you get the 
 
 1.	**Create routing rules**: Under the **Routing rules** tab, select `Add category`. Give the category a name and description, and select an analyzer to correspond to that route. For example, if you're analyzing invoices from multiple clients that each require custom schemas, you can route to the custom analyzer that was built for that specific invoice type. The tool allows you to preview the schema for each analyzer to ensure you have the right one.
 
-:::image type="content" source="../media/quickstarts/classify-define-routes.png" alt-text="Screenshot of routes UX for classification." lightbox="../media/quickstarts/classify-define-routes.png" :::
+    :::image type="content" source="../media/quickstarts/classify-define-routes.png" alt-text="Screenshot of routes UX for classification." lightbox="../media/quickstarts/classify-define-routes.png" :::
 
 1.	**Test your classification workflow**: When your custom routing rules are ready for testing, select **Run analysis** to see the output of the rules on your data. You can optionally upload additional pieces of sample data for testing to see how it performs with multiple different rules.
+
+    :::image type="content" source="../media/quickstarts/classify-test.png" lightbox="../media/quickstarts/classify-test.png" alt-text="Screenshot of Content Understanding Studio with the Test button highlighted.":::
 
 1. **Build your classification analyzer**: When you’re satisfied with the output, select the **Build analyzer** button at the top of the page. Give the analyzer a name and select **Save**.
 

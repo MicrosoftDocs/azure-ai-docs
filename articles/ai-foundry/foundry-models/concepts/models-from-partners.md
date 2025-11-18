@@ -28,24 +28,45 @@ zone_pivot_groups: azure-ai-model-categories
 This article lists a selection of Microsoft Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
 
-::: moniker range="foundry-classic"
-
-[!INCLUDE [models-list-introduction](../includes/models-list-introduction.md)]
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Foundry Models are available for standard deployment to a Foundry resource.
-
-::: moniker-end
-
+Depending on the [kind of project](../../what-is-azure-ai-foundry.md#work-in-a-microsoft-foundry-project) you use in Azure AI Foundry, you see a different selection of models.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 > [!NOTE]
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 >
 > For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support.md).
+
+## Anthropic
+
+Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
+
+To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
+
+Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
+
+::: moniker range="foundry-classic"
+
+| Model  | Type | Capabilities | Project type |
+| ------ | ---- | ------------ | ------------ |
+| [claude-haiku-4-5](https://aka.ms/claude-haiku-4-5) | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-opus-4-1](https://aka.ms/claude-opus-4-1) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| `claude-haiku-4-5` | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+| `claude-opus-4-1` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+| `claude-sonnet-4-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models).
+
+::: moniker-end
 
 ## Cohere
 

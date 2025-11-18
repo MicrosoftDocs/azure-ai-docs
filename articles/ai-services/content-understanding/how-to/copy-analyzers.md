@@ -1,6 +1,6 @@
 ---
 title: Copy custom analyzers 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Copy custom analyzers within a resource and across Azure resources
 author: PatrickFarley 
 ms.author: pafarley
