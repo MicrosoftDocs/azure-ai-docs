@@ -83,9 +83,7 @@ You can analyze and compare models using:
 
 ::: moniker-end
 
-
 ### Trade-off charts
-
 
 This trade-off chart allows you to compare trade-offs visually based on the criteria that you care more about. 
 Suppose you care more about cost than quality and you discover that the highest quality model isn't the cheapest model, you might need to make trade-offs among quality, safety, cost, and throughput criteria. In the trade-off chart, you can compare how models perform along these two metrics at a glance. 
@@ -111,7 +109,9 @@ You can add or remove models from the trade-off chart using the selector on the 
 Suppose you have a scenario that requires certain model capabilities. For example, say you're building a question-and-answering chatbot that requires resistance to harmful content, good question-and-answering and reasoning capabilities. You might find it useful to compare models in these leaderboards that are backed by capability-specific benchmarks.
 
 ::: moniker range="foundry-classic"
+
 :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-by-scenario.png" alt-text="Screenshot showing the quality leaderboards by scenarios." lightbox="../media/how-to/model-benchmarks/leaderboard-by-scenario.png":::
+
 ::: moniker-end
 
 Once you've explored the leaderboards, you can decide on a model to use. 

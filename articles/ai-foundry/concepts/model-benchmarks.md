@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Model leaderboards (preview) in Microsoft Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
+Model leaderboards (preview) in Microsoft Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards are backed by industry-standard benchmarks that can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
 
 - [Quality, safety, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, safety, cost, or throughput);
 - [Trade-off charts](../how-to/benchmark-model-in-catalog.md#trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
@@ -33,9 +33,9 @@ Model leaderboards (preview) in Microsoft Foundry portal allow you to streamline
 
 ::: moniker range="foundry"
 
-Model leaderboards (preview) in Foundry portal allow you to streamline the model selection process in the  Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards are backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. 
+Model leaderboards (preview) in Foundry portal allow you to streamline the model selection process in the  Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards are backed by industry-standard benchmarks that can help you to find the best model for your custom AI solution. 
 
-You will find more details of the benchmarking methodology for each section:
+You'll find more details of the benchmarking methodology for each section:
 
 - [Quality benchmarking](#quality-benchmarks-of-language-models) of language models to understand how well models perform on cores tasks including reasoning, knowledge, question answering, math, and coding;
 - [Safety benchmarking](#safety-benchmarks-of-language-models) of language models to understand how safe models are against harmful behavior generation;
@@ -56,7 +56,7 @@ Model benchmarks assess LLMs and SLMs across the following categories: quality, 
 The model leaderboards feature a curated selection of text-based language models from the Foundry model catalog. Models are included based on the following criteria:
 
 - **Azure Direct Models prioritized**: Azure Direct Models are rigorously selected for the most relevant models recommended for customers' GenAI scenarios.
-- **Core benchmark applicability**: Models must be suitable for general-purpose language tasks including reasoning, knowledge, QA, mathematical reasoning, and coding capabilities. Specialized models (for example, protein folding or domain-specific QA) or other modalities are not supported.
+- **Core benchmark applicability**: Models must be suitable for general-purpose language tasks including reasoning, knowledge, QA, mathematical reasoning, and coding capabilities. Specialized models (for example, protein folding or domain-specific QA) or other modalities aren't supported.
 
 This scoping ensures the leaderboards reflect current, high-quality models relevant to core AI scenarios.
 
@@ -73,13 +73,13 @@ Quality index is provided on a scale of zero to one. Higher values of quality in
 | Dataset Name | Category |
 |--|--|
 | [arena_hard](https://github.com/lmarena/arena-hard-auto) | QA |
-| [bigbench_hard](https://github.com/suzgunmirac/BIG-Bench-Hard) (downsampled to 1000 examples) | Reasoning |
+| [bigbench_hard](https://github.com/suzgunmirac/BIG-Bench-Hard) (downsampled to 1,000 examples) | Reasoning |
 | [gpqa](https://github.com/idavidrein/gpqa) | QA |
 | [humanevalplus](https://github.com/evalplus/evalplus) | Coding |
 | [ifeval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | Reasoning |
 | [math](https://github.com/hendrycks/math) | Math |
 | [mbppplus](https://github.com/evalplus/evalplus) | Coding |
-| [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (downsampled to 1000 examples) | General Knowledge |
+| [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (downsampled to 1,000 examples) | General Knowledge |
 
 
 
@@ -105,7 +105,7 @@ To guide the selection of safety benchmarks for evaluation, we apply a structure
 
 ### Model harmful behaviors
 
-The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behavior from model. As it relates to safety, the benchmark covers 7 semantic categories of behavior:
+The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behavior from model. As it relates to safety, the benchmark covers seven semantic categories of behavior:
 
 - Cybercrime & Unauthorized Intrusion
 - Chemical & Biological Weapons/Drugs
@@ -115,13 +115,13 @@ The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measur
 - Illegal Activities
 - General Harm
   
-These 7 categories can be summarized into 3 functional categories
+These seven categories can be summarized into three functional categories
 
 - standard harmful behaviors
 - contextually harmful behaviors
 - copyright violations
 
-Each functional category is featured in a separate scenario leaderboard. We use direct prompts from HarmBench (no attacks) and HarmBench evaluators to calculate Attack Success Rate (ASR). Lower ASR values means safer models. We do not explore any attack strategy for evaluation, and model benchmarking is performed with Foundry Content Safety Filter turned off.
+Each functional category is featured in a separate scenario leaderboard. We use direct prompts from HarmBench (no attacks) and HarmBench evaluators to calculate Attack Success Rate (ASR). Lower ASR values mean safer models. We don't explore any attack strategy for evaluation, and model benchmarking is performed with Foundry Content Safety Filter turned off.
 
 ### Model ability to detect toxic content
 
@@ -129,7 +129,7 @@ Each functional category is featured in a separate scenario leaderboard. We use 
 
 ### Model knowledge in sensitive domains
 
-The [Weapons of Mass Destruction Proxy](https://github.com/centerforaisafety/wmdp) (WMDP) benchmark measures model knowledge of in sensitive domains including biosecurity, cybersecurity, and chemical security. The leaderboard uses average accuracy scores across cybersecurity, biosecurity, and chemical security. A higher WMDP accuracy score denotes more knowledge of dangerous capabilities (worse behavior from a safety standpoint). Model benchmarking is performed with the default Foundry Content Safety filters on. These safety filters detect and block content harm in violence, self-harm, sexual, hate and unfairness, but don't target categories in cybersecurity, biosecurity, and chemical security.
+The [Weapons of Mass Destruction Proxy](https://github.com/centerforaisafety/wmdp) (WMDP) benchmark measures model knowledge of in sensitive domains including bio security, cybersecurity, and chemical security. The leaderboard uses average accuracy scores across cybersecurity, bio security, and chemical security. A higher WMDP accuracy score denotes more knowledge of dangerous capabilities (worse behavior from a safety standpoint). Model benchmarking is performed with the default Foundry Content Safety filters on. These safety filters detect and block content harm in violence, self-harm, sexual, hate, and unfairness, but don't target categories in cybersecurity, bio security, and chemical security.
 
 ### Limitations of safety benchmarks
 
@@ -151,7 +151,7 @@ Performance metrics are calculated as an aggregate over 14 days, based on 24 tra
 | Data | Synthetic (input prompts prepared from static text) | serverless API deployments, Azure OpenAI |
 | Region | East US/East US2 | serverless API deployments and Azure OpenAI |
 | Deployment type | serverless API | Applicable only for Azure OpenAI |
-| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming is not supported TTFT is represented as P50 of latency metric. |
+| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
 | SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and perf metrics) |
 
 The performance of LLMs and SLMs is assessed across the following metrics:
@@ -164,7 +164,7 @@ The performance of LLMs and SLMs is assessed across the following metrics:
 | Latency P95 | 95th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 95% of the requests are complete in 'x' seconds, with 'x' being the latency measurement. |
 | Latency P99 | 99th percentile value of latency (the time taken between the request and when we receive the entire response with a successful code). For example, when we send a request to the endpoint, 99% of the requests are complete in 'x' seconds, with 'x' being the latency measurement. |
 | Throughput GTPS | Generated tokens per second (GTPS) is the number of output tokens that are getting generated per second from the time the request is sent to the endpoint. |
-| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. For models which do not support streaming, time to first token (ttft) represents the P50 value of latency (time taken to receive the response) |
+| Throughput TTPS | Total tokens per second (TTPS) is the number of total tokens processed per second including both from the input prompt and generated output tokens. For models which don't support streaming, time to first token (ttft) represents the P50 value of latency (time taken to receive the response) |
 | Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled. |
 | Time between tokens | This metric is the time between tokens received. |
 
@@ -193,7 +193,7 @@ Foundry also displays the cost as follows:
 
 | Metric | Description |
 |-------|-------------|
-| Cost | Estimated US dollar cost per 1 million tokens. The estimated workload uses the 3-to-1 ratio between input and output tokens. Lower values are better. |
+| Cost | Estimated US dollar cost per 1 million tokens. The estimated workload uses the three-to-one ratio between input and output tokens. Lower values are better. |
 
 ## Scenario leaderboard benchmarking
 
@@ -204,13 +204,13 @@ Scenario leaderboards group benchmark datasets by common real-world evaluation g
 | Standard harmful behavior | [HarmBench (standard)](https://github.com/centerforaisafety/HarmBench) | Measures attack success rate on standard harmful prompts. Lower is better. |
 | Contextually harmful behavior | [HarmBench (contextual)](https://github.com/centerforaisafety/HarmBench) | Measures attack success rate on contextual harmful prompts. Lower is better. |
 | Copyright violations | [HarmBench (copyright)](https://github.com/centerforaisafety/HarmBench) | Measures attack success rate for copyright violation prompts. Lower is better. |
-| Knowledge in sensitive domains | [WMDP](https://github.com/centerforaisafety/wmdp) (biosecurity, chemical security, cybersecurity) | Accuracy across three sensitive domain subsets. Higher accuracy indicates more knowledge of sensitive capabilities for a model. |
+| Knowledge in sensitive domains | [WMDP](https://github.com/centerforaisafety/wmdp) (bio security, chemical security, cybersecurity) | Accuracy across three sensitive domain subsets. Higher accuracy indicates more knowledge of sensitive capabilities for a model. |
 | Toxicity detection | [ToxiGen](https://github.com/microsoft/TOXIGEN) (annotated) | F1 score for toxic content detection ability. Higher is better. |
 | Reasoning | [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) (1000 subsample) | Reasoning capabilities assessment. Higher values are better. |
 | Coding | [BigCodeBench](https://github.com/bigcode-project/bigcodebench) (instruct), [HumanEvalPlus](https://github.com/evalplus/evalplus), [LiveBench (coding)](https://github.com/LiveBench/LiveBench), [MBPPPlus](https://github.com/evalplus/evalplus) | Measures accuracy on code-related tasks.  Higher values are better.|
 | General knowledge | [MMLU-Pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (1K English subsample) | 1,000‑example English-only subsample of MMLU-Pro. |
 | Question & answering | [Arena-Hard](https://github.com/lmarena/arena-hard-auto), [GPQA](https://github.com/idavidrein/gpqa) (diamond) | Adversarial human preference QA (Arena-Hard) and graduate‑level multi‑discipline QA (GPQA diamond).  Higher values are better.|
-| Math | [MATH](https://github.com/hendrycks/math) (500 subsample) | Measures mathematical reasoning capabilities of language odels.  Higher values are better.|
+| Math | [MATH](https://github.com/hendrycks/math) (500 subsample) | Measures mathematical reasoning capabilities of language models.  Higher values are better.|
 | Groundedness | [TruthfulQA](https://github.com/sylinrl/TruthfulQA) (MC1) | Multiple‑choice groundedness / truthfulness assessment of language models.  Higher values are better.|
 
 Accuracy scores are provided on a scale of zero to one. Higher values are better.
