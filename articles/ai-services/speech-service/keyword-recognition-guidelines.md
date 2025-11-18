@@ -1,6 +1,6 @@
 ---
 title: Keyword recognition recommendations and guidelines - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of recommendations and guidelines when using keyword recognition.
 author: PatrickFarley
 ms.author: pafarley

@@ -1,17 +1,18 @@
 ---
 title: What is Custom Translator?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Custom Translator offers similar capabilities to what Microsoft Translator Hub does for Statistical Machine Translation (SMT), but exclusively for Neural Machine Translation (NMT) systems.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: overview
 ---
+
 # What is Custom Translator?
 
-Custom Translator is a feature of the [Azure AI Translator](../translator-overview.md) service, which enables enterprises, app developers, and language service providers to build customized neural machine translation (NMT) systems. The customized translation systems seamlessly integrate into existing applications, workflows, and websites.
+Custom Translator is a feature of the [Azure Translator in Foundry Tools](../overview.md) service, which enables enterprises, app developers, and language service providers to build customized neural machine translation (NMT) systems. The customized translation systems seamlessly integrate into existing applications, workflows, and websites.
 
 Translation systems built with [Custom Translator](https://portal.customtranslator.azure.ai) are available through Microsoft Translator [Microsoft Translator Text API v3](../text-translation/reference/v3/translate.md?tabs=curl), the same cloud-based, secure, high performance system powering billions of translations every day.
 
@@ -52,7 +53,7 @@ The secure [Custom Translator](https://portal.customtranslator.azure.ai) portal 
 
 [Custom Translator](https://portal.customtranslator.azure.ai) can also be programmatically accessed through a dedicated API. The API allows users to manage the creating or updating of training through their own app or web service.
 
-The cost of using a custom model to translate content is based on the user's Translator Text API pricing tier. See the Azure AI services [Translator Text API pricing webpage](https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/)
+The cost of using a custom model to translate content is based on the user's Translator Text API pricing tier. See the Foundry Tools [Translator Text API pricing webpage](https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/)
 for pricing tier details.
 
 ## Securely translate anytime, anywhere on all your apps and services

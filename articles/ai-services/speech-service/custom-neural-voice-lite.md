@@ -1,6 +1,6 @@
 ---
 title: Custom voice lite - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use custom voice lite to demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice.
 author: PatrickFarley
 manager: nitinme
@@ -15,7 +15,7 @@ ms.author: pafarley
 Custom voice lite is a project type where can demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice. No application is required for demo and evaluation purposes. However, Microsoft restricts and selects the recording and testing samples for use with custom voice lite. You must apply for full access to professional voice fine-tuning in order to deploy and use the custom voice lite model for business purpose. In that case, request access on the [intake form](https://aka.ms/customneural).
 
 > [!NOTE]
-> Custom voice lite is only available in the [Speech Studio](https://aka.ms/speechstudio/customvoice). It isn't available through the Azure AI Foundry portal, REST API, or SDKs.
+> Custom voice lite is only available in the [Speech Studio](https://aka.ms/speechstudio/customvoice). It isn't available through the Microsoft Foundry portal, REST API, or SDKs.
 
 With a custom voice lite project, you record your voice online by reading 20-50 pre-defined scripts provided by Microsoft. After you've recorded at least 20 samples, you can start to train a model. Once the model is trained successfully, you can review the model and check out 20 output samples produced with another set of pre-defined scripts.
 

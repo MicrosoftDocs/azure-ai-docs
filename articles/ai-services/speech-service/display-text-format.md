@@ -1,6 +1,6 @@
 ---
 title: Display text formatting with speech to text - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of key concepts for display text formatting with speech to text.
 author: PatrickFarley
 manager: nitinme

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 11/06/2025
 ms.update-cycle: 365-days
 ---
 
@@ -46,6 +46,7 @@ Check your code for the REST API version or SDK package version to confirm which
 | preview | [2025-03-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | Adds opt-in to prerelease versions of semantic models. |
 | preview | [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | No API updates in this preview, but semantic ranking now has [better integration with scoring profiles](semantic-how-to-enable-scoring-profiles.md). |
 | preview | [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) | No change |
+| preview | [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Available on free tiers. |
 
 ## Change logs for Azure SDKs
 

@@ -1,7 +1,7 @@
 ---
-title: 'Use Azure Functions with Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
-description: Learn how to build custom tools with code hosted in Azure Functions and integrate them with Azure AI Foundry agents.
+title: 'Grounding with Azure Functions code samples'
+titleSuffix: Microsoft Foundry
+description: Find code samples to enable Azure AI Agents to use Azure Functions.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -11,43 +11,22 @@ ms.date: 11/04/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Use Azure Functions with Azure AI Foundry Agent Service
+# Use Azure Functions with Foundry Agent Service
 
-[Azure Functions](/azure/azure-functions/functions-overview) is a serverless compute service that you can use to extend your Foundry Agent Service agents with custom tools built using code. This approach is especially useful when you need your agent to integrate with systems within your enterprise. 
+The Foundry Agent Service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows.
 
-Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-functions/flex-consumption-plan) is ideal for hosting your custom tools because it provides:
+Currently, direct integration with Azure Functions is only supported for functions triggered by Azure Storage Queues. Other trigger types, such as HTTP or Blob Storage, are not natively supported at this time.
 
-- Scale-to-zero serverless hosting with consumption-based pricing.
-- Identity-based access to resources in Azure, including resources within virtual networks.
-- Declarative data source connections through [input/output bindings](/azure/azure-functions/functions-triggers-bindings).
+Azure Functions provide support for triggers and bindings, which simplify how your AI Agents interact with external systems and services. Triggers determine when a function executes—such as an HTTP request, message from a queue, or a file upload to Azure Blob Storage—and allow agents to act dynamically based on incoming events.
 
-## When to use Azure Functions vs function calling
+For HTTP-triggered Azure Functions, integration is possible by describing the function through an OpenAPI specification and registering it as a callable tool in the agent configuration. Alternatively, you can implement a queue-based wrapper function that receives messages from the agent and internally invokes the HTTP logic, enabling the use of the existing queue-based integration.
 
-While [function calling](function-calling.md) allows you to define tools that run in-process with your agent code, hosting custom tools on Azure Functions provides additional enterprise capabilities when you need:
+Meanwhile, bindings facilitate streamlined connections to input or output data sources, such as databases or APIs, without requiring extensive boilerplate code. For instance, you can configure a trigger to execute an Azure Function whenever a customer message is received in a chatbot and use output bindings to send a response via the Azure AI Agent.
 
-- **Separation of concerns**: Isolate your business logic from agent code, enabling independent development, testing, and deployment cycles.
-- **Centralized management**: Create reusable tools that multiple agents, applications, or teams can consume consistently.
-- **Security isolation**: Control agent access to tools separately from tool access to enterprise resources. This approach allows you to assign agents only the specific permissions they need to call the tool without having to provide direct access to underlying databases, APIs, or networks.
-- **External dependencies**: Leverage non-Microsoft libraries, specific runtime environments, or your legacy system integrations.
-- **Complex operations**: Handle multistep workflows and data transformations, or offload computationally intensive operations.
-- **Asynchronous processing**: Execute long-running operations with retry capabilities and resilient message handling.
-
-## Integration options
-
-Azure AI Foundry Agent Service provides two primary ways for your agents to access Azure Functions-hosted tools:
-
-| Feature | Model Context Protocol (MCP) servers | Azure Queue storage-based tools  |
-|---------|------|------|
-| **How does it work?** | Agents connect to your function app in Azure by using the MCP protocol. The function app itself serves as a custom MCP server, exposing your individual functions as tools. A custom MCP server abstracts the complexity of hosting and exposing tools from your agent project and promotes reusability of your code. | Agents communicate with tool code in your function app in Azure through Queue storage by placing messages in a queue, which triggers tool code execution. The function app listens to the input queues, processes messages asynchronously, and returns a response to a second queue. |
-| **When to use it?** | ✔ Best for leveraging the industry standard protocol for agent tool integration.<br/>✔ Provides real-time, synchronous interactions with immediate responses. | ✔ Best for asynchronous workflows that don't require real time responses.<br/>✔ Ideal for background processing and reliable message delivery with retry capabilities. |
-| **SDK configuration** | Generic [MCP tool](model-context-protocol-samples.md) | Specific [Azure Functions tool](azure-functions-samples.md) |
-| **Get started** | [How to use Azure Functions with MCP](/azure/azure-functions/functions-create-ai-enabled-apps#remote-mcp-servers) | [How to use Azure Functions with queues](azure-functions-samples.md) |
-
-For HTTP-trigger functions, you can also integrate by describing the function through an OpenAPI specification and registering it as a callable tool by using the [OpenAPI tool](openapi-spec.md) in your agent configuration. This approach provides flexibility for existing HTTP-based functions, but it requires additional setup to define the API specification.
-
-## Supported models
+### Supported models
 
 To use all features of function calling, including parallel functions, you need to use a model that was released after November 6, 2023.
 
@@ -65,9 +44,14 @@ The rest of this article demonstrates how to use an Azure Developer CLI (`azd`) 
     > [!NOTE] 
     > The basic agent setup isn't supported.
 * [Azurite](https://github.com/Azure/Azurite)
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-### Usage support
+## Prepare your local environment
+
+The following examples highlight how to use the Agent Service function calling where function calls are placed on a storage queue by the Agent Service to be processed by an Azure Function listening to that queue.
+
+You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
+
+## Usage support
 
 |Azure AI foundry support  | Python SDK |	C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|

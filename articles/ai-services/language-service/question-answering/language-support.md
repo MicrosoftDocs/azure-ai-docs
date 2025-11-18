@@ -1,6 +1,6 @@
 ---
 title: Language support - custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: A list of culture, natural languages supported by custom question answering for your project. Do not mix languages in the same project.
 #services: cognitive-services
 manager: nitinme
@@ -9,10 +9,9 @@ ms.author: lajanuar
 recommendations: false
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Language support for custom question answering and projects
 
 This article describes the language support options for custom question answering enabled resources and projects.
@@ -24,7 +23,7 @@ In custom question answering, you have the option to either select the language 
 > [!div class="mx-imgBorder"]
 > ![Multi-lingual project selection](./media/language-support/choose-language.png)
 
-* When you are creating the first project in your service, you get a choice pick the language each time you create a new project. Select this option, to create projects belonging to different languages within one service.
+* When you're creating the first project in your service, you get a choice pick the language each time you create a new project. Select this option, to create projects belonging to different languages within one service.
 * The language setting option cannot be modified for the service once the first project is created.
 * If you enable multiple languages for the project, then instead of having one test index for the service you will have one test index per project.
 

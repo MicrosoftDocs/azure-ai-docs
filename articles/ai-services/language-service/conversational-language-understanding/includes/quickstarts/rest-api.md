@@ -3,11 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 08/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).

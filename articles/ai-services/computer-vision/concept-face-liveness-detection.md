@@ -1,6 +1,6 @@
 ---
 title: "Face liveness detection - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains the concept of Face liveness detection, its input and output schema, and related concepts. 
 author: PatrickFarley
 manager: nitinme
@@ -37,7 +37,7 @@ The liveness solution integration involves two distinct components: a frontend m
 :::image type="content" source="./media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure AI Face." lightbox="./media/liveness/liveness-diagram.jpg":::
 
 - **Orchestrate Azure AI service in app server**: The app server serves as a backend server to create liveness detection sessions and obtain a short-lived authorization token from the Face service for a particular session. This token authorizes the frontend application to perform liveness detection. The app server's objectives are to manage the sessions, grant authorization for frontend application, and view the results of the liveness detection process.
-- **Integrate Azure AI vision SDK into frontend application**: The frontend application should embed the Azure AI Vision Face SDK (iOS, Android, or JavaScript). The SDK opens the camera, guides the user through the passive or passive-active flow, encrypts video frames, and streams them—together with the short-lived liveness-session token received from your server—directly to the Azure AI Face endpoint. 
+- **Integrate Azure Vision SDK into frontend application**: The frontend application should embed the Azure Vision Face SDK (iOS, Android, or JavaScript). The SDK opens the camera, guides the user through the passive or passive-active flow, encrypts video frames, and streams them—together with the short-lived liveness-session token received from your server—directly to the Azure AI Face endpoint. 
 - **Optional quick link path**: It is possible to avoid embedding the client SDK. The backend service can swap the same session token for a one-time Liveness Quick Link (`https://liveness.face.azure.com/?s=…`). Redirect the user to that URL, and Azure hosts the entire capture experience in the browser, then notices the completion through optional callback. This option lowers integration cost and automatically keeps you on Azure’s always-up-to-date experience.
 
 ## Liveness detection modes
@@ -96,7 +96,7 @@ This capability is especially valuable in regulated or enterprise environments w
 
 ## Support options
 
-In addition to using the main [Azure AI services support options](../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
+In addition to using the main [Foundry Tools support options](../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
 
 ## Next step

@@ -1,18 +1,17 @@
 ---
 title: How to send requests to orchestration workflow
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about sending requests for orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: language-service-clu
 ---
-
 # Query deployment for intent predictions
 
 After the deployment is added successfully, you can query the deployment for intent and entities predictions from your utterance based on the model you assigned to the deployment.
@@ -34,7 +33,7 @@ You can use Language Studio to submit an utterance, get predictions and visualiz
 
 # [REST APIs](#tab/REST-APIs)
 
-First you will need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
@@ -44,9 +43,9 @@ First you will need to get your resource key and endpoint:
 
 # [Client libraries (Azure SDK)](#tab/azure-sdk)
 
-First you will need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
-[!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
+[!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
 ### Use the client libraries (Azure SDK)
 

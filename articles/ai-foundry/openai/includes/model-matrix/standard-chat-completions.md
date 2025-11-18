@@ -1,6 +1,6 @@
 ---
 title: Standard chat completions model availability
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Standard chat completions model availability
 manager: nitinme
 ms.date: 04/01/2025

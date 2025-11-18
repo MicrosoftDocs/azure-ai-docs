@@ -13,7 +13,7 @@ ms.date: 08/27/2025
 
 - An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
-  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
+  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Microsoft Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 - An [Azure AI Search resource](../../search-create-service-portal.md).
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
@@ -104,7 +104,7 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
    ```http
    ### List existing indexes by name (verify the connection)
-    GET  {{searchUrl}}/indexes?api-version=2025-08-01-preview&$select=name  HTTP/1.1
+    GET  {{searchUrl}}/indexes?api-version=2025-11-01-preview&$select=name  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
    ```
 

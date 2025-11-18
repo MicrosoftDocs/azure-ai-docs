@@ -24,7 +24,7 @@ items:
    - name: Run evaluations locally (Azure AI Evaluation SDK)
      href: ../../how-to/develop/evaluate-sdk.md
      displayName: code,accuracy,metrics
-   - name: Run evaluations in the cloud (Azure AI Foundry SDK)
+   - name: Run evaluations in the cloud (Microsoft Foundry SDK)
      href: ../../how-to/develop/cloud-evaluation.md
    - name: Run agent evaluations locally (Azure AI Evaluation SDK)
      href: ../../how-to/develop/agent-evaluate-sdk.md
@@ -41,7 +41,7 @@ items:
      href: ../../concepts/ai-red-teaming-agent.md
    - name: Run red teaming scans locally (Azure AI Evaluation SDK)
      href: ../../how-to/develop/run-scans-ai-red-teaming-agent.md
-   - name: Run red teaming scans in the cloud (Azure AI Foundry SDK)
+   - name: Run red teaming scans in the cloud (Microsoft Foundry SDK)
      href: ../../how-to/develop/run-ai-red-teaming-cloud.md
 - name: CI/CD evaluations 
   items:
