@@ -298,7 +298,7 @@ client = OpenAI(
   api_key=token_provider,
 )
 completion = client.chat.completions.create(
-  model="grok-3-mini", # Replace with your model deployment name.
+  model="MAI-DS-R1", # Replace with your model deployment name.
   messages=[
     {"role": "system", "content": "You are a helpful assistant."},
     {"role": "user", "content": "Tell me about the attention is all you need paper"}
@@ -324,7 +324,7 @@ BearerTokenPolicy tokenPolicy = new(
     "https://cognitiveservices.azure.com/.default");
 
 ChatClient client = new(
-    model: "grok-3-mini", // Replace with your model deployment name.
+    model: "MAI-DS-R1", // Replace with your model deployment name.
     authenticationPolicy: tokenPolicy,
     options: new OpenAIClientOptions() { 
     
@@ -347,7 +347,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -359,7 +359,7 @@ const messages = [
 // Make the API request with top-level await
 const result = await client.chat.completions.create({ 
     messages, 
-    model: 'grok-3-mini', // model deployment name
+    model: 'MAI-DS-R1', // model deployment name
     max_tokens: 100 
 });
 
@@ -403,7 +403,7 @@ func main() {
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.UserMessage("Explain what the bitter lesson is?"),
 		},
-		Model: "grok-3-mini", // Use your deployed model name on Azure
+		Model: "MAI-DS-R1", // Use your deployed model name on Azure
 	})
 	if err != nil {
 		panic(err.Error())
@@ -429,7 +429,7 @@ public class OpenAITest {
         // Get API key from environment variable for security
         String apiKey = System.getenv("OPENAI_API_KEY");
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
+        String modelDeploymentName = "MAI-DS-R1"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -454,7 +454,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
-      "model": "grok-3-mini",
+      "model": "MAI-DS-R1",
       "messages": [
       {
         "role": "developer",
