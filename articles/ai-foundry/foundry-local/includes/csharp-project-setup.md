@@ -29,11 +29,13 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
         <RootNamespace>app-name</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+        <WindowsAppSDKSelfContained>false</WindowsAppSDKSelfContained>
+        <WindowsPackageType>None</WindowsPackageType>
+        <EnableCoreMrtTooling>false</EnableCoreMrtTooling>
       </PropertyGroup>
     
       <ItemGroup>
-        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0" />
+        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
         <PackageReference Include="OpenAI" Version="2.5.0" />
       </ItemGroup>
@@ -54,7 +56,7 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
           <package pattern="*" />
         </packageSource>
         <packageSource key="ORT">
-          <package pattern="Microsoft.ML.OnnxRuntime.Foundry" />
+          <package pattern="*Foundry*" />
         </packageSource>
       </packageSourceMapping>
     </configuration>
@@ -79,7 +81,7 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
         </PropertyGroup>
     
         <ItemGroup>
-          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.8.0" />
+          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.8.0.1" />
           <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
           <PackageReference Include="OpenAI" Version="2.5.0" />
         </ItemGroup>
@@ -100,7 +102,7 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
           <package pattern="*" />
         </packageSource>
         <packageSource key="ORT">
-          <package pattern="Microsoft.ML.OnnxRuntime.Foundry" />
+          <package pattern="*Foundry*" />
         </packageSource>
       </packageSourceMapping>
     </configuration>
