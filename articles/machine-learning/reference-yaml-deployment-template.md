@@ -33,7 +33,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `tags` | object | Dictionary of tags for the deployment template. | | |
 | `type` | string | Type of the deployment template. | | |
 | `deployment_template_type` | string | The deployment template type. | | |
-| `environment` | string or object | The environment to use for the deployment template. This value can be either a reference to an existing versioned environment in the workspace or a registry, or an inline environment specification. <br><br> To reference an existing environment in a workspace, use the `azureml:<environment-name>:<environment-version>` syntax. <br><br> To reference an existing environment in a registry, use the `azureml://registries/<registry-name>/environments/<environment-name>` syntax. <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). <br><br> As a best practice for production scenarios, you should create the environment separately and reference it here. | | |
+| `environment` | string or object | The environment to use for the deployment template. This value can be either a reference to an existing versioned environment in a registry, or an inline environment specification. <br><br> To reference an existing environment in a registry, use the `azureml://registries/<registry-name>/environments/<environment-name>` syntax. <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). <br><br> As a best practice for production scenarios, you should create the environment separately and reference it here. | | |
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set for the deployment. You can access these environment variables from your scoring scripts. | | |
 | `instance_count` | integer | The number of instances to use for the deployment. Specify the value based on the workload you expect. | | |
 | `default_instance_type` | string | The default instance type to use when deploying with this template. | | |
@@ -72,7 +72,7 @@ Deployment templates provide a reusable configuration for deploying models. They
 
 ## Examples
 
-Examples are available in the [examples GitHub repository](https://github.com/Azure/azureml-examples/tree/main/cli). Several are shown below.
+Examples are shown below.
 
 ## YAML: basic
 
@@ -116,6 +116,56 @@ readiness_probe:
 request_settings:
   request_timeout_ms: 10000
   max_concurrent_requests_per_instance: 2
+```
+
+## YAML: with allowed instance type
+
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json
+name: my-deployment-template-restricted
+version: 1
+description: Deployment template with instance type restrictions
+environment: azureml:my-environment:1
+instance_count: 1
+default_instance_type: Standard_DS3_v2
+allowed_instance_type: Standard_DS3_v2
+```
+
+## YAML: with inline environment
+
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json
+name: my-deployment-template-inline-env
+version: 1
+description: Deployment template with inline environment definition
+environment:
+  name: inline-environment
+  image: mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest
+  inference_config:
+    liveness_route:
+      path: /health
+      port: 5001
+    readiness_route:
+      path: /ready
+      port: 5001
+    scoring_route:
+      path: /score
+      port: 5001
+instance_count: 1
+default_instance_type: Standard_DS3_v2
+```
+
+## YAML: with model mount path
+
+```yml
+$schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json
+name: my-deployment-template-custom-mount
+version: 1
+description: Deployment template with custom model mount path
+environment: azureml:my-environment:1
+instance_count: 1
+default_instance_type: Standard_DS3_v2
+model_mount_path: /var/azureml-app/models
 ```
 
 ## Next steps
