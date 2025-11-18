@@ -21,8 +21,8 @@ ms.custom:
 ## Prerequisites
 To get started, make sure you have the following resources and permissions:
 *	An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-*	A Microsoft Foundry resource created in a supported region. Use a project to organize your work and save state while building customized AI apps. You can create a project from the home page of Content Understanding Studio.
-* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+*	A Microsoft Foundry resource created in a [supported region](../language-region-support.md#region-support).
+* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments?pivots=ai-foundry-portal).
 
 ## Explore Content Understanding Studio
 If you are familiar with the Document Intelligence service, you may recognize the classic features of Document Intelligence, now coupled with the new features that Content Understanding brings to analyze data of all modalities. When you arrive in [Content Understanding Studio](https://aka.ms/cu-studio), you have the option to select between the classic Document Intelligence Studio, and the new features of Content Understanding, shown below. Select “Content Understanding” to get started.

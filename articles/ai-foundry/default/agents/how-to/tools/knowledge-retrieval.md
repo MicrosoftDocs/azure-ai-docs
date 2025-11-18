@@ -1,20 +1,20 @@
 ---
-title: Connect Agents to Knowledge Bases
+title: Connect Agents to Foundry IQ Knowledge Bases
 titleSuffix: Microsoft Foundry
-description: Learn how to connect Microsoft Foundry agents to Azure AI Search knowledge bases using Model Context Protocol (MCP) for grounded retrieval and citation-backed responses.
+description: Learn how to connect Microsoft Foundry agents to Foundry IQ knowledge bases, which are powered by Azure AI Search. The integration enables grounded retrieval and citation-backed responses.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/17/2025
+ms.date: 11/18/2025
 ---
 
 # Connect a Foundry IQ knowledge base to Foundry Agent Service
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
-In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in Azure AI Search using Model Context Protocol (MCP). When invoked by the agent, the knowledge base orchestrates the following retrieval operations:
+In this article, you learn how to connect an agent in Microsoft Foundry to a knowledge base in Foundry IQ, which is powered by Azure AI Search. The connection uses Model Context Protocol (MCP) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following retrieval operations:
 
 + Plans and decomposes a user query into subqueries.
 + Processes the subqueries simultaneously using keyword, vector, or hybrid techniques.
@@ -413,5 +413,5 @@ Authorization: Bearer {management_access_token}
 
 + [Create a knowledge source in Azure AI Search](/azure/search/agentic-knowledge-source-overview)
 + [Create a knowledge base in Azure AI Search](/azure/search/agentic-retrieval-how-to-create-knowledge-base)
-+ [Create an agent in Microsoft Foundry](/azure/ai-foundry/agents/quickstart)
 + [Tutorial: Build an end-to-end agentic retrieval solution](/azure/search/agentic-retrieval-how-to-create-pipeline)
++ [Foundry IQ: Unlocking ubiquitous knowledge for agents](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812)

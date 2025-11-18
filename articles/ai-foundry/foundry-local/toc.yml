@@ -38,6 +38,8 @@ items:
       href: reference/reference-rest.md
     - name: Catalog API
       href: reference/reference-catalog-api.md
+  - name: Foundry Local on Windows Server 2025
+    href: reference/windows-server-frequently-asked-questions.md      
   - name: Best practice and troubleshooting
     href: reference/reference-best-practice.md
  
