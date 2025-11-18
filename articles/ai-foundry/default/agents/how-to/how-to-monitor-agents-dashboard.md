@@ -12,7 +12,9 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Monitor AI Agents with the Agent Monitoring Dashboard
+# Monitor AI Agents with the Agent Monitoring Dashboard (preview)
+
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 The Agent Monitoring Dashboard in Microsoft Foundry provides real-time insights into the operational health, performance, and compliance of your AI agents. Use this dashboard to track token usage, latency, evaluation metrics, and security posture across multi-agent systems.
 
