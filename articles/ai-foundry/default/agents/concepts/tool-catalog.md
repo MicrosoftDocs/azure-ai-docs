@@ -3,7 +3,7 @@ title: "Discover tools in the Microsoft Foundry Tools"
 description: "Learn about the Foundry Tools in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
-ms.date: 11/12/2025
+ms.date: 11/18/2025
 ms.manager: nitinme
 ms.topic: conceptual
 ms.service: azure-ai-foundry
@@ -99,7 +99,7 @@ Foundry Tools contains three sections:
     |---------|---------|
     | [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
     | [OpenAPI 3.0 Specified tool](../how-to/tools/openapi.md) | Connect your Foundry agents to external APIs using functions with an OpenAPI 3.0 specification. |
-    | [Agen2Agent tool](../how-to/tools/agent-to-agent.md) | Connect your Foundry agents to another A2A compatible agents |
+    | [Agen2Agent tool (preview)](../how-to/tools/agent-to-agent.md) | Connect your Foundry agents to another A2A compatible agents |
     
 ## Next steps
 
