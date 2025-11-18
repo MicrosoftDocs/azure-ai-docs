@@ -75,6 +75,8 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 
 ::: moniker range="foundry-classic"
 
+[!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
+
 # [Python](#tab/python)
 
 1. Install these packages:
