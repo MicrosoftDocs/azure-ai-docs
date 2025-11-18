@@ -24,16 +24,16 @@ items:
 - name: Azure Language in Foundry Tools
   items:
     - name: Azure Language tools and agents
-      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/ai-foundry/context/context
     - name: CLU multi-turn conversations
-      href: /azure/ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
-    - name: Redact PII from text
-      href: /azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations?context=/azure/ai-foundry/context/context
+    - name: Redact PII from text 
+      href: /azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii?context=/azure/ai-foundry/context/context
 - name: Azure Translator in Foundry Tools
   items:
     - name: Text translation
-      href: /azure/ai-services/translator/text-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
-    - name: Document translation
+      href: /azure/ai-services/translator/text-translation/overview?context=/azure/ai-foundry/context/context
+    - name: Document translation  
       href: /azure/ai-services/translator/document-translation/overview
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
@@ -64,7 +64,7 @@ items:
 - name: Foundry IQ (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
 - name: SharePoint (preview)
-  href: ../../agents/how-to/tools/sharepoint.md
+  href: ../../agents/how-to/tools/sharepoint.md 
 - name: Web search (preview)
   href: ../../agents/how-to/tools/web-search.md
 
