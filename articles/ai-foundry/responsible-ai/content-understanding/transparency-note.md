@@ -47,7 +47,7 @@ Content Understanding ingests unstructured content in any modality such as docum
 
 ### System behavior
 
-Content Understanding is a cloud-based Azure AI service that uses a variety of AI/ML models (such as those available through Azure OpenAI Service, Azure Face Service, and Azure Speech) to extract, classify and generate fields from a customer's input file. Content Understanding does not support integrating any models that customers bring in. 
+Content Understanding is a cloud-based Foundry Tool that uses a variety of AI/ML models (such as those available through Azure OpenAI Service, Azure Face Service, and Azure Speech) to extract, classify and generate fields from a customer's input file. Content Understanding does not support integrating any models that customers bring in. 
 
 Content Understanding first extracts the content into a structured output. It then uses a  large language model (LLM) to generate fields and assign confidence scores to applicable fields.
 

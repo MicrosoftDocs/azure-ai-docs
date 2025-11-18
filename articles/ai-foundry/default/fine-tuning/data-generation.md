@@ -57,6 +57,7 @@ This article covers:
   - `uaenorth`
   - `japaneast`
   - `australiaeast`
+
 ## Generate synthetic data for fine-tuning
 
 Foundry provides generators that turn a reference file into task‑ready training data aligned to your fine‑tuning goal.

@@ -67,7 +67,7 @@ The following classes of translation use cases are provided to help you think th
 
 **Sequencing multiple AI services**:
 - **Speech translation**: Azure Speech, another one of the Foundry Tools, can translate speech between languages. Speech generates the transcript in the same language as the original speech and then internally employs Translator to translate the transcript. Use cases include translated human-to-human speech conversation, dubbing, or subtitling of content.
-- **Translation of text in images**: Azure Computer Vision, another Azure AI Service, can extract visible text from images. This extracted text can then be translated. Use cases include translation of scanned documents, menus, and signs.
+- **Translation of text in images**: Azure Computer Vision, another Foundry Tool, can extract visible text from images. This extracted text can then be translated. Use cases include translation of scanned documents, menus, and signs.
 
 #### Considerations when choosing other use cases
 

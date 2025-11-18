@@ -6,15 +6,18 @@ ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 10/20/2025
+ms.date: 11/18/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to run AI Red Teaming Agent scans locally using the Azure AI Evaluation SDK so I can proactively find safety risks in my generative AI applications during development.
 ---
 
 # Run AI Red Teaming Agent locally (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -22,8 +25,8 @@ The AI Red Teaming Agent (preview) is a powerful tool designed to help organizat
 
 This article explains how to:
 
-- Create an AI Red Teaming Agent locally
-- Run automated scans locally and view the results
+- Create an AI Red Teaming Agent locally with the Azure AI Evaluation SDK
+- Run automated scans locally and view the results in Foundry
 
 ## Prerequisites
 
@@ -44,7 +47,7 @@ uv pip install "azure-ai-evaluation[redteam]"
 
 ## Create and run an AI Red Teaming Agent
 
-You can instantiate the AI Red Teaming agent with your Azure AI Project and Azure Credentials.
+You can instantiate the AI Red Teaming agent with your Foundry project and Azure Credentials.
 
 ```python
 # Azure imports
@@ -178,12 +181,15 @@ The `RedTeam` can run automated scans on various targets.
 
 The following risk categories are supported in the AI Red Teaming Agent's runs, along with the associated number of attack objectives available for each risk coverage.
 
-| Risk Category       | Maximum Number of Attack Objectives |
-|---------------------|-------------------------------------|
-| Violence            | 100                                 |
-| Hate and Unfairness | 100                                 |
-| Sexual              | 100                                 |
-| Self-Harm           | 100                                 |
+| Risk Category | Maximum Number of Attack Objectives |
+|--|--|
+| `Violence` | 100 |
+| `HateUnfairness` | 100 |
+| `Sexual` | 100 |
+| `SelfHarm` | 100 |
+| `ProtectedMaterial` | 200 |
+| `CodeVulnerability` | 389 |
+| `UngroundedAttributes` | 200 |
 
 ## Custom attack objectives
 
@@ -229,6 +235,32 @@ Your dataset must be a JSON file, in the following format with the associated me
 ]
 ```
 
+## Supported natural languages
+
+AI Red Teaming Agent supports simulations in the following languages:
+
+| Language | ISO language code |
+|--|--|
+| Spanish | `Spanish` |
+| Italian | `Italian` |
+| French | `French` |
+| Japanese | `Japanese` |
+| Portuguese | `Portuguese` |
+| Simplified Chinese | `Chinese` |
+
+To configure your red team with a supported language, use the `SupportedLanguages` class and instantiate your red team with the desired language.
+
+```python
+from azure.ai.evaluation.red_team import RedTeam, SupportedLanguages
+
+spanish_red_team = RedTeam(
+    azure_ai_project=azure_ai_project,
+    credential=credential,
+    language=SupportedLanguages.Spanish,
+    num_objectives=1,
+)
+```
+
 ## Supported attack strategies
 
 If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` sends only baseline direct adversarial queries to your target. This approach is the most naive method of attempting to elicit undesired behavior or generated content. We recommend that you try the baseline direct adversarial querying first before you apply any attack strategies.
@@ -271,7 +303,7 @@ red_team_agent_result = await red_team_agent.scan(
 You can specify the desired attack strategies instead of using default groups. The following attack strategies are supported:
 
 | Attack strategy | Description | Complexity |
-| --- | --- | --- |
+|--|--|--|
 | `AnsiAttack` | Uses ANSI escape codes. | Easy |
 | `AsciiArt` | Creates ASCII art. | Easy |
 | `AsciiSmuggler` | Smuggles data using ASCII. | Easy |
@@ -292,7 +324,10 @@ You can specify the desired attack strategies instead of using default groups. T
 | `UnicodeSubstitution` | Substitutes Unicode characters. | Easy |
 | `Url` | URL encoding. | Easy |
 | `Jailbreak` | User Injected Prompt Attacks (UPIA) injects specially crafted prompts to bypass AI safeguards | Easy |
+| `IndirectAttack` | Indirect Prompt Injected Attacks (XPIA) injects attacks into context or tool outputs | Easy |
 | `Tense` | Changes tense of text into past tense. | Moderate |
+| `Multiturn` | Attacks over several turns to bypass safeguards. | Difficult |
+| `Crescendo` | Gradually increases prompt risk or complexity. | Difficult |
 
 Each new attack strategy is applied to the set of baseline adversarial queries used in addition to the baseline adversarial queries.
 
@@ -508,7 +543,11 @@ The red teaming scorecard also provides row-level data on each attack-response p
 }
 ```
 
+::: moniker range="foundry-classic"
+
 [!INCLUDE [view-ai-red-teaming-results](../../includes/view-ai-red-teaming-results.md)]
+
+::: moniker-end
 
 ## Related content
 

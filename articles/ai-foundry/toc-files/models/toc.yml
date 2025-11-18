@@ -17,7 +17,7 @@ items:
   items:
   - name: Model leaderboards
     href: ../../concepts/model-benchmarks.md
-  - name: Compare models in leaderboards
+  - name: Compare models
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
@@ -58,10 +58,10 @@ items:
     href: ../../how-to/model-inference-to-openai-migration.md?tabs=openai&pivots=programming-language-python
   - name: Azure AI Inference SDK
     href: ../../foundry-models/supported-languages.md
+  - name: Responses API with Foundry Models
+    href: ../../foundry-models/how-to/generate-responses.md
   - name: Work with chat models
     items:
-    - name: Work with chat models
-      href: ../../foundry-models/how-to/use-chat-completions.md
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md
     - name: Work with multimodal models

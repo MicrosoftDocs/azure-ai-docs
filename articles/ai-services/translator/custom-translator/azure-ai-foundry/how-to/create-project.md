@@ -28,7 +28,7 @@ Custom translation fine-tuning includes one or many language pairs, model traini
 :::image type="content" source="../media/fine-tune-select-translate.png" alt-text="Screenshot of the page to select Translate for custom translation models.":::
 
 > [!NOTE]
-> An Azure AI Service resource is connected to your project.
+> A Foundry Tool resource is connected to your project.
 
 ## Next steps
 

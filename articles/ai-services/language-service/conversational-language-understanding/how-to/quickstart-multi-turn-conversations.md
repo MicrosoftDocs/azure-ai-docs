@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Multi-turn conversational language understanding (CLU) models with entity slot filling"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get started creating a CLU model for multi-turn interactions using slot-filling
 author: laujan
 manager: nitinme
