@@ -1,8 +1,8 @@
 ---
-title: Create and manage memory in Microsoft Foundry Agent Service (preview)
+title: Create and manage memory in Foundry Agent Service (preview)
 ms.reviewer: liulewis
 titleSuffix: Microsoft Foundry
-description: Learn how to create and manage memory (preview) in Microsoft Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
+description: Learn how to create and manage memory (preview) in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
 author: jonburchel
 ms.author: jburchel
@@ -12,12 +12,12 @@ ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
 
-# Manage memory in Microsoft Foundry Agent Service (preview)
+# Manage memory in Foundry Agent Service (preview)
 
 > [!IMPORTANT]
-> Memory (preview) in Microsoft Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Memory in Microsoft Foundry Agent Service (preview) is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
+Memory in Foundry Agent Service (preview) is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 This article explains how to create memory stores, add and search memories, and follow best practices for security and privacy. Memory stores act as persistent storage, defining which types of information are relevant to each agent. You control access using the `scope` parameter, which segments memory across users to ensure secure and isolated experiences.
 
@@ -47,7 +47,7 @@ Agent memory falls into two categories:
 
 - **Long-term memory** retains distilled knowledge across sessions. The model can recall and build on previous user interactions over time. Long-term memory requires a persistent system that extracts, consolidates, and manages knowledge.
 
-Microsoft Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions.
+Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions.
 
 ## Understand scope
 
@@ -63,11 +63,11 @@ For example, set `user_profile_details` to prioritize "flight carrier preference
 
 You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data (age, financials, precise location, credentials, etc.)."
 
-## Current limitations & quota
+## Current limitations and quotas
 
 - Memory works only with Azure OpenAI models.
-- You must set the `scope` value explicitly. Populating the value from the user identity specified in the request header isn't supported yet.
-- During preview, the following limits apply:
+- You must set the `scope` value explicitly. Currently, the value can't be populated from the user identity specified in the request header isn't supported yet.
+- In this preview, the following limits apply:
   - Maximum scopes per memory store: 100
   - Maximum memories per scope: 10,000
   - Search memories: 1,000 requests per minute
@@ -80,7 +80,7 @@ You can also use this parameter to exclude certain types of data, keeping memory
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- Python 3.8 or later with [configured environment](../../../quickstarts/get-started-code.md?tabs=python#set-up-your-environment), or access to the REST API.
+- Python 3.8 or later with [configured environment](../../../quickstarts/get-started-code.md?tabs=python), or access to the REST API.
 
 ## Create a memory store
 
@@ -435,11 +435,11 @@ When you implement memory in your agents, follow these practices:
 
 ## Security risks of prompt injection
 
-When working with memory in Microsoft Foundry Agent Service, the LLM extracts and consolidates memories based on conversations. Protect memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing agent responses and actions.
+When working with memory in Foundry Agent Service, the LLM extracts and consolidates memories based on conversations. Protect memory against threats like prompt injection and memory corruption. These risks arise when incorrect or harmful data is stored in the agent’s memory, potentially influencing agent responses and actions.
 
 Perform input validation to prevent prompt injection. Consider these actions:
 
-- **Use [Foundry Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../../ai-services/content-safety/concepts/jailbreak-detection.md)**. Validate all prompts entering or leaving the memory system to prevent malicious content.
+- **Use [Azure AI Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../../ai-services/content-safety/concepts/jailbreak-detection.md)**. Validate all prompts entering or leaving the memory system to prevent malicious content.
 - **Perform attack and adversarial testing**. Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
 
 ## Related content
@@ -447,3 +447,4 @@ Perform input validation to prevent prompt injection. Consider these actions:
 - [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
 - [Create a project in Microsoft Foundry](../../../how-to/create-projects.md)
+- [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
