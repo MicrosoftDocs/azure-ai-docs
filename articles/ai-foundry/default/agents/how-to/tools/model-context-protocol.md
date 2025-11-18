@@ -76,7 +76,7 @@ with (
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    # Create a conversation thread to maintain context across multiple interactions
+    # Create a conversation to maintain context across multiple interactions
     conversation = openai_client.conversations.create()
     print(f"Created conversation (id: {conversation.id})")
 
