@@ -1,7 +1,7 @@
 ---
 title: 'Customize a model with Microsoft Foundry fine-tuning'
 titleSuffix: Azure OpenAI
-description: Learn how to fine-tune and customize AI models using Python, REST APIs, or Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
+description: Learn how to fine-tune and customize Foundry models using Python, REST APIs, or Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
