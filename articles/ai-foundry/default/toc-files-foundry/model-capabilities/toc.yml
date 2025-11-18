@@ -1,6 +1,8 @@
 items:
   - name: Azure OpenAI in Foundry Models
     href: ../../../openai/supported-languages.md
+  - name: Claude in Foundry Models
+    href: ../../../foundry-models/how-to/use-foundry-models-claude.md
   - name: Deployment types
     href: ../../../foundry-models/concepts/deployment-types.md
   - name: Priority processing
@@ -75,6 +77,10 @@ items:
     href: ../../../openai/how-to/webhooks.md
   - name: Playgrounds and quick evaluation
     href: ../../../concepts/concept-playgrounds.md
+  - name: Model leaderboards
+    href: ../../../concepts/model-benchmarks.md
+  - name: Compare models
+    href: ../../../how-to/benchmark-model-in-catalog.md
   - name:  Upgrade/Switch Models with Ask AI
     href: ../../observability/how-to/optimization-model-upgrade.md
 

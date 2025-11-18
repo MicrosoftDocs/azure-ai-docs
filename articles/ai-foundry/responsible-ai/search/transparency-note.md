@@ -323,7 +323,7 @@ The original conversation or search query is sent to a customer’s owned Azure 
 
 #### [AI enrichment](#tab/enrichment)
 
-AI enrichment in Azure AI Search uses the indexer and data source features of the service to call Foundry Tools to perform the content enrichment. Limitations of the indexers and data sources used in this process will apply. Review the [indexer and data source documentation](/azure/search/search-limits-quotas-capacity#indexer-limits) for more information about these related limitations. The limitations of each Azure AI Service used by the AI enrichment pipeline in Azure AI Search will also apply. See the [transparency notes for each service](/azure/ai-services/responsible-use-of-ai-overview) for more information about these limitations.
+AI enrichment in Azure AI Search uses the indexer and data source features of the service to call Foundry Tools to perform the content enrichment. Limitations of the indexers and data sources used in this process will apply. Review the [indexer and data source documentation](/azure/search/search-limits-quotas-capacity#indexer-limits) for more information about these related limitations. The limitations of each Foundry Tool used by the AI enrichment pipeline in Azure AI Search will also apply. See the [transparency notes for each service](/azure/ai-services/responsible-use-of-ai-overview) for more information about these limitations.
 
 #### [Vector search](#tab/vector)
 

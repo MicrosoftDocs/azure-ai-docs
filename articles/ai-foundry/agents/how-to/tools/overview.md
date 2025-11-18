@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # What are tools in Foundry Agent Service?
 
-To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
+To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
 ## Knowledge tools
 
@@ -29,7 +29,7 @@ To keep your AI agent informed with richer context from various data sources. Th
 
 ## Action tools
 
-To streamline workflows with your AI agent with capabilities to take actions. The Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
+To streamline workflows with your AI agent with capabilities to take actions, the Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
 
 - **Deep Research tool**: Web-based integrated deep research pipeline with the `o3-deep-research` model and Grounding with Bing Search.
 - **Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent

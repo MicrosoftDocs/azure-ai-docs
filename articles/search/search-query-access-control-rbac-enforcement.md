@@ -115,7 +115,7 @@ You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-
 
 ### Permissions for elevated-read requests
 
-You must be a **Search Index Data Contributor** on the search service. You must have access to the index and its data (**Search Index Data Reader**). If you're creating a custom role, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
+Currently, you must [create a custom role](search-security-rbac.md#create-a-custom-role) to run queries with elevated permissions. Add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission to run the queries.
 
 ### Add an elevated-read header to a query
 
@@ -134,7 +134,7 @@ x-ms-enable-elevated-read: true
 }
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 > The `x-ms-enable-elevated-read` header only works on Search POST actions. You can't perform an elevated read query on a [knowledge base retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action.
 
 ## See also

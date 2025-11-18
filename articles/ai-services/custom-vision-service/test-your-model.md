@@ -1,6 +1,6 @@
 ---
 title: Test and retrain a model - Custom Vision Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to test an image and then use it to retrain your model in the Custom Vision service, ensuring your model improves over time with new data.
 #customer intent: As a developer, I want to test and retrain my Custom Vision model so that it improves its accuracy.
 author: PatrickFarley

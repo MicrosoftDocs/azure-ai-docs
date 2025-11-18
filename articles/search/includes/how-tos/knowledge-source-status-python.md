@@ -1,21 +1,25 @@
 ---
-title: Create ingestion status
-titleSuffix: Azure AI Search
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/04/2025
+ms.date: 11/13/2025
 ---
 
-Use [Knowledge Sources - Status (REST API)](/rest/api/searchservice/knowledge-sources/status?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to monitor ingestion progress and health, including indexer status for knowledge sources that generate an indexer pipeline and populate a search index. 
+Run the following code to monitor ingestion progress and health, including indexer status for knowledge sources that generate an indexer pipeline and populate a search index.
 
-```http
-### List knowledge sources by name and type
-GET {{search-url}}/knowledgesources/{{knowledge-source-name}}/status?api-version=2025-11-01-preview
-api-key: {{api-key}}
-Content-Type: application/json 
+```python
+# Check knowledge source ingestion status
+import requests
+import json
+
+endpoint = "{search_url}/knowledgesources/{knowledge_source_name}/status"
+params = {"api-version": "2025-11-01-preview"}
+headers = {"api-key": "{api_key}"}
+
+response = requests.get(endpoint, params = params, headers = headers)
+print(json.dumps(response.json(), indent = 2))
 ```
 
 A response for a request that includes ingestion parameters and is actively ingesting content might look like the following example.

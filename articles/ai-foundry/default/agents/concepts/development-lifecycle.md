@@ -53,7 +53,7 @@ After you create the first version of a prompt-based agent or a workflow, you ca
 The agent versioning provides version control capabilities for managing agent configurations and iterations. This system ensures that all changes are tracked, testable, and comparable across different versions.
 
 * **Version immutability**: Each version of an agent is immutable once saved. Any modifications to an existing version require saving and creating a new version. This ensures version integrity and prevents accidental overwrites
-* **Draft state management**: Agents can be tested in an unsaved state for experimentation. Unsaved changes will be lost if you exit the screen in the AI Foundry portal, so save frequently to preserve important modifications.
+* **Draft state management**: Agents can be tested in an unsaved state for experimentation. Unsaved changes will be lost if you exit the screen in the Foundry portal, so save frequently to preserve important modifications.
 * **Version control operations**: You can direct requests to specific agent versions, enables controlled deployment and rollback capabilities.
 * **Version history navigation**: Access the version history for any agent and navigate to any specific version, and perform the following comparison modes. 
     * Agent setup comparison: Compare configuration settings between versions. You can choose which versions you want to compare using the version dropdown.

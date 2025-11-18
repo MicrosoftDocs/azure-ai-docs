@@ -52,9 +52,9 @@ Content understanding for video has broad potential uses. For example, you can c
 
 ## Prebuilt video analyzer example
 
-With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a video and get an immediately usable knowledge asset. The service packages the content into richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest the content without custom glue code.
+With the prebuilt video analyzer (prebuilt-videoSearch), you can upload a video and get an immediately usable knowledge asset. The service packages the content into richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest the content without custom glue code.
 
-1. For example, call the analyzer designed for Retrieval-augmented generation for video `prebuilt-videoAnalyzer`. See the [REST API quickstart](../quickstart/use-rest-api.md) for details.
+1. For example, call the analyzer designed for Retrieval-augmented generation for video `prebuilt-videoSearch`. See the [REST API quickstart](../quickstart/use-rest-api.md) for details.
 
 2. Next, analyzing a 30-second advertising video, would result in the following output:
 
