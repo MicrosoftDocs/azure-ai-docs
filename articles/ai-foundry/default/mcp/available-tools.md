@@ -1,6 +1,6 @@
 ---
-title:  Explore available tools and example prompts for Microsoft Foundry MCP Server (preview) 
-description: Learn about the available tools and example prompts for Microsoft Foundry MCP Server (preview) 
+title:  Explore available tools and example prompts for Foundry MCP Server (preview) 
+description: Learn about the available tools and example prompts for Foundry MCP Server (preview) 
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
@@ -10,9 +10,9 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Available tools and example prompts for Microsoft Foundry MCP Server (preview) 
+# Available tools and example prompts for Foundry MCP Server (preview) 
 
-Use the following sections to find available tools and example prompts for Microsoft Foundry MCP Server (preview). Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Foundry services. 
+Use the following sections to find available tools and example prompts for Foundry MCP Server (preview). Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Foundry services. 
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 

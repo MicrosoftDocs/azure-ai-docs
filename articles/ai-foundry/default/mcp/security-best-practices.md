@@ -1,6 +1,6 @@
 ---
-title: Explore Microsoft Foundry MCP Server best practices and security guidance
-description: Learn about Microsoft Foundry MCP Server best practices and security guidance
+title: Explore Foundry MCP Server best practices and security guidance
+description: Learn about Foundry MCP Server best practices and security guidance
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
@@ -10,9 +10,9 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Microsoft Foundry MCP Server best practices and security guidance
+# Foundry MCP Server best practices and security guidance
 
-Use Microsoft Foundry MCP Server (preview) tools to automate read and write operations across Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
+Use Foundry MCP Server (preview) tools to automate read and write operations across Foundry resources (deployments, datasets, evaluations, monitoring, analytics). This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
