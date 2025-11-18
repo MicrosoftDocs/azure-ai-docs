@@ -196,8 +196,6 @@ The following attack strategies are supported in the AI Red Teaming Agent from [
 | Multi turn |Executes attacks across multiple conversational turns, using context accumulation to bypass safeguards or elicit unintended behaviors. |
 | Crescendo | Gradually escalates the complexity or risk of prompts over successive turns, probing for weaknesses in agent defenses through incremental challenge. |
 
-::: moniker range="foundry"
-
 ## Known limitations of AI Red Teaming Agent
 
 AI Red Teaming Agent has several important limitations to consider when running and interpreting red teaming results.
@@ -207,8 +205,6 @@ AI Red Teaming Agent has several important limitations to consider when running 
 3. Due to lack of completely locked-down sandboxing support, the adversarial nature of our red teaming evaluations is controlled to avoid real world impact.
 4. Red teaming runs only represent adversarial population and don't include any observational population.
 5. Red teaming runs use generative models to evaluate Attack Success Rates (ASR) and can be non-deterministic, non-predictive. Therefore, there's always a chance of false positives and we always recommend reviewing results before taking mitigation actions.
-
-::: moniker-end
 
 ## Learn more
 
