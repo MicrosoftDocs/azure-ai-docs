@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
 ms.service: azure-ai-search  
 ms.topic: how-to  
-ms.date: 10/09/2025  
+ms.date: 11/14/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -25,9 +25,8 @@ This functionality is available for the following data sources:
 + [Microsoft OneLake](search-how-to-index-onelake-files.md)
 
 > [!IMPORTANT]
-> The feature is available in **limited regions** and only through the [REST API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or supported beta SDK during public preview.  
+> The feature is available in all regions except West US2. Use the [REST API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview SDK to evaluate the feature.  
 > Portal configuration and debug mode for administrators aren't supported at this time.
-
 
 ### Policy enforcement
 
@@ -52,16 +51,16 @@ These updates are detected if they occurred since the last indexer run.
 
 + File types must be included in the [Purview sensitivity labels supported formats list](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and also be recognized as [Office supported file types](search-how-to-index-azure-blob-storage.md#supported-document-formats) by Azure AI Search indexers.
 
-
 ## Limitations
 
++ There's a known issue with document deletion and sensitivity labels. When sensitivity labels are enabled for an index, the indexer fails to enumerate the index’s documents. As a result, soft delete operations don't run because the indexer can't list the documents that need to be removed. This applies to indexers that support soft delete, including Azure Blob, Azure Tables, OneLake, indexed SharePoint, MySQL, and Cosmos DB.
 + Initial release supports REST API version 2025-11-01-preview and associated beta SDK only. There's no portal experience for configuration or management.  
 + This feature isn't supported when used simultaneously with [ACL-based security filters](search-query-access-control-rbac-enforcement.md) (currently also in preview). Test each feature independently until Microsoft announces official coexistence support.
 + [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs are disabled for Purview-enabled indexes, as they can't yet enforce label-based access control.  
 + Guest accounts and cross-tenant queries aren't supported.
 + In the initial release, sensitivity label-enabled indexes don't support unlabeled documents and don't return them in query results. This capability will be documented when available.
 
-The following steps must be followed in order to configure sensitivity label sync in Azure AI Search.
+The following steps must be followed in order to configure sensitivity label synchronization in Azure AI Search.
 
 ## 1. Enable AI Search managed identity
 

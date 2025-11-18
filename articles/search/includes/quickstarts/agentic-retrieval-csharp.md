@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/10/2025
+ms.date: 11/14/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -268,13 +268,16 @@ To create and run the agentic retrieval pipeline:
                     knowledgeBaseName: knowledgeBaseName,
                     tokenCredential: new DefaultAzureCredential()
                 );
-    
+
+                string query = @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?";
+
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "user" },
-                    { "content", @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
+                    { "content", query }
                 });
-    
+
+                Console.WriteLine($"Running the query...{query}");
                 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
                 foreach (Dictionary<string, string> message in messages) {
                     if (message["role"] != "system") {
@@ -287,12 +290,12 @@ To create and run the agentic retrieval pipeline:
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
                 });
     
                 // Print the response, activity, and references
                 Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
     
                 Console.WriteLine("Activity:");
                 foreach (var activity in retrievalResult.Value.Activity)
@@ -319,10 +322,12 @@ To create and run the agentic retrieval pipeline:
                 }
     
                 // Continue the conversation
+                string nextQuery = "How do I find lava at night?";
+                Console.WriteLine($"Continue the conversation with this query: {nextQuery}");
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "user" },
-                    { "content", "How do I find lava at night?" }
+                    { "content", nextQuery }
                 });
     
                 retrievalRequest = new KnowledgeBaseRetrievalRequest();
@@ -337,12 +342,12 @@ To create and run the agentic retrieval pipeline:
                 messages.Add(new Dictionary<string, string>
                 {
                     { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
                 });
     
                 // Print the new response, activity, and references
                 Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
     
                 Console.WriteLine("Activity:");
                 foreach (var activity in retrievalResult.Value.Activity)

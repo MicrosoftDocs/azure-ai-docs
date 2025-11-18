@@ -38,7 +38,6 @@ For local development, the agentic retrieval engine uses your access token to ca
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
-<!-- invalid filter expression will return a 400 soon, so we should be able to remove this limitation -->
 ## Limitations
 
 The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) apply to remote SharePoint knowledge sources.
@@ -56,8 +55,6 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 + Maximum of 25 results from a query.
 
 + Results are returned by Copilot Retrieval API as unordered.
-
-+ Invalid Keyword Query Language (KQL) filter expressions are ignored and the query continues to execute without the filter.
 
 ## Check for existing knowledge sources
 
@@ -141,9 +138,17 @@ You can pass the following properties to create a remote SharePoint knowledge so
 
 ### Filter expression examples
 
-Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). Here's some more information about queryable properties that you can use in filter: [queryable properties](/graph/connecting-external-content-manage-schema#queryable).
+KQL filter expressions provide criteria for including or excluding content, such as sites or paths or metadata.
 
-Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) in the syntax reference.
+Not all SharePoint properties are supported in the `filterExpression`. Invalid expressions or inclusion of unsupported properties return an HTTP 400 error.
+
+To learn more about syntax, refer to the following articles:
+
++ [KQL filter syntax reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions)
++ [Queryable properties useful in filter](/graph/connecting-external-content-manage-schema#queryable)
++ [REST API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval)
+
+Here are some example of common filter expressions:
 
 | Example | Filter expression |
 |---------|-------------------|
