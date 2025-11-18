@@ -91,12 +91,12 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 ### Configure output response format for Invoke Agent 
 
 1. Create an **Invoke agent** node.
-2. Select create a new an agent in the Invoke agent configuration window.
-3. Configure the agent to output as JSON Schema in the configuration window. Select **Details**. Select the parameter icon. Then select JSON Schema as the **Text Format**.
+1. Select create a new an agent in the Invoke agent configuration window.
+1. Configure the agent to output as JSON Schema in the configuration window. Select **Details**. Select the parameter icon. Then select JSON Schema as the **Text Format**.
 
   :::image type="content" source="../../media/workflows/select-parameters.png" alt-text="A screenshot showing the JSON schema text format configuration window." lightbox="../../media/workflows/select-parameters.png":::
 
-5. Copy and paste the desired JSON Schema in the **Add response format** window. You can use the math example example for this tutorial. Select **Save**.
+1. Copy and paste the desired JSON Schema in the **Add response format** window. You can use the math example for this tutorial. Select **Save**.
 
    :::image type="content" source="../../media/workflows/response-format.png" alt-text="A screenshot showing the addition of a response format in JSON." lightbox="../../media/workflows/response-format.png":::
 
@@ -139,8 +139,8 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 }
 ```
 
-7. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
-8. Select **Create new variable**. Choose a variable name. Select **Done**.
+1. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
+1. Select **Create new variable**. Choose a variable name. Select **Done**.
 
    :::image type="content" source="../../media/workflows/save-output.png" alt-text="A screenshot showing the addition of a new variable in a workflow in Microsoft Foundry." lightbox="../../media/workflows/save-output.png":::
 
@@ -195,18 +195,18 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 1. Create a workflow and add an **Ask a question** node.
 
 1. For **Enter a message** in the side settings panel, enter "What is your name?" or another message. Enter a variable name in the **Save user response as** field, for example `Var01`. Select **Done**.
-
-:::image type="content" source="../../media/workflows/ask-a-question-node.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/ask-a-question-node.png":::
+  
+   :::image type="content" source="../../media/workflows/ask-a-question-node.png" alt-text="A screenshot showing the addition of a send a message action." lightbox="../../media/workflows/ask-a-question-node.png":::
 
 1. Add a **Send message** action. Then in the side settings panel enter `{Upper(Local.Var01)}`. Select **Done**.
 
-:::image type="content" source="../../media/workflows/variable-message.png" alt-text="A screenshot showing the variable instatiation for the send a message action." lightbox="../../media/workflows/variable-message.png":::
+   :::image type="content" source="../../media/workflows/variable-message.png" alt-text="A screenshot showing the variable instantiation for the send a message action." lightbox="../../media/workflows/variable-message.png":::
 
 1. Select **Preview**
 
 1. Send a message to the agent in the side panel to invoke the workflow.
 
-:::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instatiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
+   :::image type="content" source="../../media/workflows/type-question.png" alt-text="A screenshot showing the type a question instantiation for the send a message action." lightbox="../../media/workflows/type-question.png":::
 
 ### System variables
 
