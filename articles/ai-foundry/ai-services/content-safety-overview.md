@@ -1,7 +1,7 @@
 ---
-title: Content Safety in Azure AI Foundry portal overview
-titleSuffix: Azure AI Foundry
-description: Learn how to use Azure AI Content Safety in Azure AI Foundry portal to detect harmful user-generated and AI-generated content in applications and services.
+title: Content Safety in Microsoft Foundry portal overview
+titleSuffix: Microsoft Foundry
+description: Learn how to use Azure AI Content Safety in Microsoft Foundry portal to detect harmful user-generated and AI-generated content in applications and services.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.custom:
@@ -12,9 +12,9 @@ ms.author: pafarley
 author: PatrickFarley
 ---
 
-# Content Safety in the Azure AI Foundry portal
+# Content Safety in the Microsoft Foundry portal
 
-Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes APIs that help you detect and prevent the output of harmful content. The interactive Content Safety **try it out** page in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) lets you view, explore, and try out sample code for detecting harmful content across different modalities. 
+Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes APIs that help you detect and prevent the output of harmful content. The interactive Content Safety **try it out** page in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) lets you view, explore, and try out sample code for detecting harmful content across different modalities. 
 
 ## Features
 
@@ -46,4 +46,4 @@ For supported regions, rate limits, and input requirements for all features, see
 
 ## Next step
 
-Get started using Azure AI Content Safety in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) by following the [How-to guide](/azure/ai-services/content-safety/how-to/foundry).
+Get started using Azure AI Content Safety in [Foundry portal](https://ai.azure.com/?cid=learnDocs) by following the [How-to guide](/azure/ai-services/content-safety/how-to/foundry).

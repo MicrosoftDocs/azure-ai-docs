@@ -1,12 +1,13 @@
 ---
-title: Overview of Responsible AI practices for Azure OpenAI models 
-titleSuffix: Azure AI services
+title: Overview of Responsible AI practices for Azure OpenAI in Foundry Models
+titleSuffix: Microsoft Foundry
 description: RAI overview for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article
+monikerRange: 'foundry-classic || foundry'
 ms.date: 07/28/2025
 ---
 
@@ -20,7 +21,7 @@ In addition to the Transparency Note, we provide technical recommendations and r
 
 1. **Identify** : Identify and prioritize potential harms that could result from your AI system through iterative red-teaming, stress-testing, and analysis.
 1. **Measure** : Measure the frequency and severity of those harms by establishing clear metrics, creating measurement test sets, and completing iterative, systematic testing (both manual and automated).
-1. **Mitigate** : Mitigate harms by implementing tools and strategies such as [prompt engineering](/azure/ai-foundry/openai/concepts/prompt-engineering) and using our [content filters](/azure/ai-foundry/openai/concepts/content-filter). Repeat measurement to test effectiveness after implementing mitigations.
+1. **Mitigate** : Mitigate harms by implementing tools and strategies such as [prompt engineering](/azure/ai-foundry/openai/concepts/prompt-engineering) and using our [Guardrails (previously content filters)](/azure/ai-foundry/openai/concepts/content-filter). Repeat measurement to test effectiveness after implementing mitigations.
 1. **Operate** : Define and execute a deployment and operational readiness plan.
 
 In addition to their correspondence to the Microsoft Responsible AI Standard, these stages correspond closely to the functions in the [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework).
@@ -79,7 +80,7 @@ Mitigating harms presented by large language models such as the Azure OpenAI mod
 
 1. At the **model level**, understand the model(s) you use and what fine-tuning steps the model developers take to align the model toward its intended uses and to reduce the risk of potentially harmful uses and outcomes.
    1. For example, developers use reinforcement learning methods as a responsible AI tool to better align GPT-4 toward the designers' intended goals.
-1. At the **safety system level**, understand the platform level mitigations that the developers implement, such as the [Azure OpenAI content filters](/azure/ai-foundry/openai/concepts/content-filter) which help to block the output of harmful content.
+1. At the **safety system level**, understand the platform level mitigations that the developers implement, such as the [Azure OpenAI Guardrails (previously content filters)](/azure/ai-foundry/openai/concepts/content-filter) which help to block the output of harmful content.
 1. At the **application level**, application developers can implement metaprompt and user-centered design and user experience mitigations. Metaprompts are instructions you provide to the model to guide its behavior. Their use can make a critical difference in guiding the system to behave in accordance with your expectations. User-centered design and user experience (UX) interventions are also key mitigation tools to prevent misuse and overreliance on AI.
 1. At the **positioning level**, educate the people who use or are affected by your system about its capabilities and limitations.
 
@@ -89,7 +90,7 @@ The following sections provide specific recommendations to implement mitigations
 1. **Model level Mitigations:** Review and identify which Azure OpenAI base model best suits the system you're building. Educate yourself about its capabilities, limitations, and any measures taken to reduce the risk of the potential harms you identified. For example, if you use GPT-4, in addition to reading this Transparency Note, review OpenAI's [GPT-4 System Card](https://cdn.openai.com/papers/gpt-4-system-card.pdf) that explains the safety challenges presented by the model and the safety processes that OpenAI adopted to prepare GPT-4 for deployment. Experiment with different versions of the model(s) (including through red teaming and measuring) to see how the harms present differently.
 
 
-1. **Safety System Level Mitigations:** Identify and evaluate the effectiveness of platform level solutions such as the [Azure OpenAI content filters](/azure/ai-foundry/openai/concepts/content-filter) to help mitigate the potential harms that you identified.
+1. **Safety System Level Mitigations:** Identify and evaluate the effectiveness of platform level solutions such as the [Azure OpenAI Guardrails (previously content filters)](/azure/ai-foundry/openai/concepts/content-filter) to help mitigate the potential harms that you identified.
 
 1. **Application Level Mitigations:** Prompt engineering, including **metaprompt tuning, can be an effective mitigation** for many different types of harm. Review and implement metaprompt (also called the "system message" or "system prompt") guidance and best practices documented [here](/azure/ai-foundry/openai/concepts/prompt-engineering).
 
@@ -143,6 +144,6 @@ This document is not intended to be, and should not be construed as providing, l
 
 ## Learn more about Azure OpenAI
 
-- [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
+- [Limited access to Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
 - [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)
+- [Data, privacy, and security for Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)

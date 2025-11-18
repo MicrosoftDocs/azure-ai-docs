@@ -1,6 +1,6 @@
 ---
 title: Container security
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to secure your container
 author: aahill
 manager: nitinme
@@ -10,12 +10,12 @@ ms.date: 12/17/2020
 ms.author: aahi
 ---
 
-## Azure AI services container security
+## Foundry Tools container security
 
-Security should be a primary focus whenever you're developing applications. The importance of security is a metric for success. When you're architecting a software solution that includes Azure AI containers, it's vital to understand the limitations and capabilities available to you. For more information about network security, see [Configure Azure AI services virtual networks][az-security].
+Security should be a primary focus whenever you're developing applications. The importance of security is a metric for success. When you're architecting a software solution that includes Azure AI containers, it's vital to understand the limitations and capabilities available to you. For more information about network security, see [Configure Foundry Tools virtual networks][az-security].
 
 > [!IMPORTANT]
-> By default there is *no security* on the Azure AI services container API. The reason for this is that most often the container will run as part of a pod which is protected from the outside by a network bridge. However, it is possible for users to construct their own authentication infrastructure to approximate the authentication methods used when accessing the [cloud-based Azure AI services][request-authentication].
+> By default there is *no security* on the Foundry Tools container API. The reason for this is that most often the container will run as part of a pod which is protected from the outside by a network bridge. However, it is possible for users to construct their own authentication infrastructure to approximate the authentication methods used when accessing the [cloud-based Foundry Tools][request-authentication].
 
 The following diagram illustrates the default and **non-secure** approach:
 
@@ -29,14 +29,14 @@ As an example of an alternative and *secure* approach, consumers of Azure AI con
 
 The Azure AI containers are required to submit metering information for billing purposes. Failure to allowlist various network channels that the Azure AI containers rely on will prevent the container from working.
 
-#### Allowlist Azure AI services domains and ports
+#### Allowlist Foundry Tools domains and ports
 
 The host should allowlist **port 443** and the following domains:
 
 * `*.cognitive.microsoft.com`
 * `*.cognitiveservices.azure.com`
 
-If you are using the Azure AI Translator on-premise, you need to additionally allow the following URLs to download files
+If you are using the Azure Translator in Foundry Tools on-premise, you need to additionally allow the following URLs to download files
 
 * `translatoronprem.blob.core.windows.net`
 

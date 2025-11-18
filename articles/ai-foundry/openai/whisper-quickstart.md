@@ -1,5 +1,5 @@
 ---
-title: Convert speech to text with Azure OpenAI in Azure AI Foundry Models
+title: Convert speech to text with Azure OpenAI in Microsoft Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure OpenAI Whisper model for speech to text conversion.
 manager: nitinme
@@ -12,6 +12,8 @@ ms.author: pafarley
 author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-ps-py-js-cs
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model
@@ -21,7 +23,7 @@ This quickstart explains how to use the [Azure OpenAI Whisper model](../../ai-se
 > [!NOTE]
 > For information about other audio models that you can use with Azure OpenAI, see [Audio models](./concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
-The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure AI Speech [batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
+The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
 
 ::: zone pivot="rest-api"
 

@@ -1,17 +1,17 @@
 ---
-title: Call the Azure AI Vision v3.2 GA Read API
-titleSuffix: Azure AI services
-description: Learn how to call the Azure AI Vision v3.2 GA Read API and configure its behavior in detail.
+title: Call Azure Vision v3.2 GA Read API
+titleSuffix: Foundry Tools
+description: Learn how to call Azure Vision v3.2 GA Read API and configure its behavior in detail.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
-# Call the Azure AI Vision v3.2 GA Read API
+# Call Azure Vision v3.2 GA Read API
 
 [!INCLUDE [read-editions](../includes/read-editions.md)]
 
@@ -74,7 +74,7 @@ The call returns with a response header field called `Operation-Location`. The `
 > [!NOTE]
 > **Billing** 
 >
-> The [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/) page includes the pricing tier for Read operations. Each analyzed image or page is one transaction. If you call the operation with a PDF or TIFF document containing 100 pages, the Read operation will count it as 100 transactions and you will be billed for 100 transactions. If you made 50 calls to the operation and each call submitted a document with 100 pages, you will be billed for 50 X 100 = 5000 transactions.
+> The [Azure Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/) page includes the pricing tier for Read operations. Each analyzed image or page is one transaction. If you call the operation with a PDF or TIFF document containing 100 pages, the Read operation will count it as 100 transactions and you will be billed for 100 transactions. If you made 50 calls to the operation and each call submitted a document with 100 pages, you will be billed for 50 X 100 = 5000 transactions.
 
 
 ## Get results from the service
@@ -185,5 +185,5 @@ The response includes a classification of whether each line of text is in handwr
 
 ## Related content
 
-- [Quickstart: Azure AI Vision v3.2 GA Read](../quickstarts-sdk/client-library.md)
+- [Quickstart: Azure Vision v3.2 GA Read](../quickstarts-sdk/client-library.md)
 - [Read 3.2 REST API reference](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&preserve-view=true)

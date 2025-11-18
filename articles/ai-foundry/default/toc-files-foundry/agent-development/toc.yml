@@ -1,0 +1,73 @@
+items:
+- name: Agent development overview
+  href: ../../../agents/overview.md
+- name: FAQ
+  href: ../../../agents/faq.yml
+- name: Agent identity
+  href: ../../agents/concepts/agent-identity.md
+- name: Publish and share agents
+  href: ../../agents/how-to/publish-agent.md
+- name: Model and region support
+  href: ../../../agents/concepts/model-region-support.md 
+- name: Quotas and limits
+  href: ../../../agents/quotas-limits.md
+- name: Development lifecycle
+  href: ../../agents/concepts/development-lifecycle.md
+- name: Agent runtime components
+  href: ../../agents/concepts/runtime-components.md
+- name: Hosted agents
+  href: ../../agents/concepts/hosted-agents.md
+- name: Use the Visual Studio Code extension
+  href: ../../../how-to/develop/vs-code-agents.md
+- name: Publish to Microsoft 365 Copilot and Teams
+  href: ../../agents/how-to/publish-copilot.md
+- name: Use MCP Tools in the Visual Studio Code extension
+  href: ../../../how-to/develop/vs-code-agents-mcp.md
+- name: Microsoft Foundry MCP Server (preview)
+  items:
+  - name: Get started with Microsoft Foundry MCP Server
+    href: ../../mcp/get-started.md
+  - name: Security best practices and guidance
+    href: ../../mcp/security-best-practices.md
+  - name: Available tools and sample prompts
+    href: ../../mcp/available-tools.md
+- name: Setup and configuration
+  items:
+  - name: Set up your development environment
+    href: ../../../agents/environment-setup.md
+  - name: Use your own Azure resources
+    href: ../../../agents/how-to/use-your-own-resources.md
+  - name: Standard agent setup
+    href: ../../../agents/concepts/standard-agent-setup.md
+  - name: System messages
+    items:
+    - name: System message design
+      href: ../../../openai/concepts/advanced-prompt-engineering.md
+    - name: Safety system messages
+      href: ../../../openai/concepts/system-message.md
+    - name: Safety system message templates
+      href: ../../../openai/concepts/safety-system-message-templates.md
+  - name: Capability hosts
+    href: ../../../agents/concepts/capability-hosts.md
+  - name: Virtual networks
+    href: ../../../agents/how-to/virtual-networks.md
+  - name: Use an AI Gateway
+    href: ../../agents/how-to/ai-gateway.md
+- name: Observability
+  items:
+  - name: Service monitoring
+    href: ../../../agents/how-to/metrics.md
+  - name: Monitor agents in the dashboard
+    href: ../../agents/how-to/how-to-monitor-agents-dashboard.md
+  - name: Trace agents
+    items:
+    - name: Trace agent overview
+      href: ../../observability/concepts/trace-agent-concept.md
+    - name: Set up tracing
+      href: ../../observability/how-to/trace-agent-setup.md
+    - name: Tracing integrations
+      href: ../../observability/how-to/trace-agent-framework.md
+- name: Create a workflow
+  href: ../../agents/concepts/workflow.md
+- name: Agent 365
+  href: ../../agents/how-to/agent-365.md

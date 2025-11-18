@@ -19,7 +19,7 @@ This article compares deep learning to machine learning and describes how they f
 
 For guidance on choosing algorithms for your solutions, see the [Machine Learning Algorithm Cheat Sheet](./v1/algorithm-cheat-sheet.md?WT.mc_id=docs-article-lazzeri).
 
-Foundry Models in Azure Machine Learning are pretrained deep learning models that can be fine-tuned for specific use cases. For more information, see [Explore Azure AI Foundry Models in Azure Machine Learning](concept-model-catalog.md) and [How to use Open Source foundation models curated by Azure Machine Learning](how-to-use-foundation-models.md).
+Foundry Models in Azure Machine Learning are pretrained deep learning models that can be fine-tuned for specific use cases. For more information, see [Explore Microsoft Foundry Models in Azure Machine Learning](concept-model-catalog.md) and [How to use Open Source foundation models curated by Azure Machine Learning](how-to-use-foundation-models.md).
 
 ## Deep learning, machine learning, and AI
 

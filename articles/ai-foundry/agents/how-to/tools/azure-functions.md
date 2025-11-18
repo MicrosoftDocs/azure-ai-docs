@@ -1,6 +1,6 @@
 ---
 title: 'Grounding with Azure Functions code samples'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Find code samples to enable Azure AI Agents to use Azure Functions.
 services: azure-ai-agent-service
 manager: nitinme
@@ -11,11 +11,12 @@ ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Use Azure Functions with Azure AI Foundry Agent Service
+# Use Azure Functions with Foundry Agent Service
 
-The Azure AI Foundry Agent Service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows.
+The Foundry Agent Service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows.
 
 Currently, direct integration with Azure Functions is only supported for functions triggered by Azure Storage Queues. Other trigger types, such as HTTP or Blob Storage, are not natively supported at this time.
 
@@ -39,7 +40,7 @@ To use all features of function calling including parallel functions, you need t
 
 ## Prepare your local environment
 
-The following examples highlight how to use the Azure AI Foundry Agent Service function calling where function calls are placed on a storage queue by the Agent Service to be processed by an Azure Function listening to that queue.
+The following examples highlight how to use the Agent Service function calling where function calls are placed on a storage queue by the Agent Service to be processed by an Azure Function listening to that queue.
 
 You can find the template and code used here on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python).
 

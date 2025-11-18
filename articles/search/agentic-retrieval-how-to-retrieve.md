@@ -1,5 +1,5 @@
 ---
-title: Use a knowledge agent to retrieve data
+title: Use a knowledge base to retrieve data
 titleSuffix: Azure AI Search
 description: Set up a retrieval route for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
@@ -7,58 +7,64 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 11/10/2025
 ---
 
-# Retrieve data using a knowledge agent in Azure AI Search
+# Retrieve data using a knowledge base in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a large language model (LLM) for query planning. It generates subqueries that broaden the scope of what's searchable and relevant. It incorporates chat history for context. The LLM studies the query and subdivides it into more targeted queries, using different phrases and terminology for subquery composition.
+In an agentic retrieval multi-query pipeline, query execution is through the [**retrieve action**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) on a knowledge base that invokes parallel query processing. This request structure is updated for the new 2025-11-01-preview, which introduces breaking changes from previous previews. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
-This article explains how to use the [**retrieve action**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. It's updated for the new 2025-08-01-preview, which introduces breaking changes from the 2025-05-01-preview. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
-This article also explains the three components of the retrieval response: 
+This article explains how to set up a retrieve action. It also covers the three components of the retrieval response: 
 
 + *extracted response for the LLM*
 + *referenced results*
 + *query activity*
 
-The retrieve request can include instructions for query processing that override the defaults set on the knowledge agent.
-
-> [!NOTE]
-> By default, there's no model-generated "answer" in the response and you should pass the extracted response to an LLM so that it can ground its answer based on the search results. For an end-to-end example that includes this step, see [Tutorial: Build an agent-to-agent retrieval solution ](agentic-retrieval-how-to-create-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
->
->Alternatively, you can use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) to bring answer formulation into the agentic pipeline. In this workflow, the retriever response consists of LLM-formulated answers instead of the raw search results.
+A retrieve request can include instructions for query processing that override the default instructions set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
 
 ## Prerequisites
 
-+ A *knowledge source* that wraps a searchable index. It's either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md).
++ A [supported knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) that wraps a searchable index or points to an external source for native data retrieval.
 
-+ A [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) that represents the chat completion model and one or more knowledge sources.
++ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) represents one or more knowledge sources, plus a chat completion model if you want intelligent query planning and answer formulation.
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on Basic pricing tier and higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to a chat completion model.
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md).
 
-+ Permissions on Azure AI Search. **Search Index Data Reader** can run queries on Azure AI Search, but the search service managed identity must have **Cognitive Services User** permissions on the Azure OpenAI resource. For more information about local testing and obtaining access tokens, see [Quickstart: Connect without keys](search-get-started-rbac.md).
++ Permissions on Azure AI Search. Roles for retrieving content include **Search Index Data Reader** for running queries. To support an outbound call from a search service to a chat completion model, you must configure a managed identity for the search service, and it must have **Cognitive Services User** permissions on the Azure OpenAI resource. For more information about local testing and obtaining access tokens, see [Quickstart: Connect without keys](search-get-started-rbac.md).
 
-+ API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ API version requirements. To create or use a knowledge base, use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge base APIs: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
-To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
+To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search.
 
-## Call the retrieve action
+> [!NOTE]
+> Although you can use the Azure portal to retrieve data from knowledge bases, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
-Call the **retrieve** action on the knowledge agent object to invoke retrieval and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+## Set up the retrieve action
 
-All `searchable` fields in the search index are in-scope for query execution. If the index includes vector fields, your index should have a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so that it can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode or selection of search fields.
+A retrieve action is specified on a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base has one or more knowledge sources. Retrieval can return a synthesized answer in natural language or raw grounding chunks from the knowledge sources.
 
-The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation.
++ Review your knowledge base definition to understand which knowledge sources are in scope.
+
++ Review your knowledge sources to understand their parameters and configuration.
+
++ Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package to call retrieve.
+
+For knowledge sources that have default retrieval instructions, you can override the defaults in the retrieve request.
+
+### Retrieval from a search index
+
+For knowledge sources that target a search index, all `searchable` fields are in-scope for query execution. If the index includes vector fields, your index should have a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so that the agentic retrieval engine can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode.
+
+The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation. Messages are only supported if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is either low or medium.
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
 @accessToken=<YOUR PERSONAL ID>
 
 # Send grounding request
-POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
+POST https://{{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
     Content-Type: application/json
     Authorization: Bearer {{accessToken}}
 
@@ -89,19 +95,112 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
 }
 ```
 
-**Key points**:
+### Responses
 
-+ The retrieve action targets a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge agent specifies one or more knowledge sources and a knowledge source configuration. Review your knowledge agent definition for output and semantic ranking configuration.
+Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, a `206 Partial Content` status code is returned, and the response only includes results from sources that succeeded. Details about the partial response appear as [errors in the activity array](#review-the-activity-array).
 
-+ `messages` articulates the messages sent to the model. The message format is similar to Azure OpenAI APIs.
+### Retrieve parameters
 
-  + `role` defines where the message came from, for example either `assistant` or `user`. The model you use determines which roles are valid.
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `messages` | Articulates the messages sent to a chat completion model. The message format is similar to Azure OpenAI APIs. | Object | Yes | No |
+| `role` | Defines where the message came from, for example either `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
+| `content` | The message or prompt sent to the LLM. It must be text in this preview. | String | Yes | No |
+| [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) | Specifies parameters for each knowledge source if you want to customize the query or response at query time. | Object | Yes | No |
 
-  + `content` is the message or prompt sent to the LLM. It must be text in this preview.
+## Examples
 
-+ [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the agent has more than one, and you want to focus the retrieve action on just one knowledge source. If the knowledge agent has just one knowledge source with the configuration you want, you can omit this section.
+Retrieve requests vary depending on the knowledge sources and whether you want to override a default configuration. Here are several examples that illustrate a range of requests.
 
-  A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
+### Example: Override default reasoning effort and set request limits
+
+This example specifies [answer formulation](agentic-retrieval-how-to-answer-synthesis.md), so `retrievalReasoningEffort` must be "low" or "medium".
+
+```http
+POST {{url}}/knowledgebases/kb-override/retrieve?api-version={{api-version}}
+api-key: {{key}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What companies are in the financial sector?" }
+            ]
+        }
+    ],
+    "retrievalReasoningEffort": { "kind": "low" },
+    "outputMode": "answerSynthesis",
+    "maxRuntimeInSeconds": 30,
+    "maxOutputSize": 6000
+}
+```
+
+### Example: Set references for each knowledge source
+
+This example uses the default reasoning effort specified in the knowledge base. The focus of this example is specification of how much information to include in the response.
+
+```http
+POST {{url}}/knowledgebases/kb-medium-example/retrieve?api-version={{api-version}}
+api-key: {{key}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What companies are in the financial sector?" }
+            ]
+        }
+    ],
+    "includeActivity": true,
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "demo-financials-ks",
+            "kind": "searchIndex",
+            "includeReferences": true,
+            "includeReferenceSourceData": true
+        },
+        {
+            "knowledgeSourceName": "demo-communicationservices-ks",
+            "kind": "searchIndex",
+            "includeReferences": false,
+            "includeReferenceSourceData": false
+        },
+        {
+            "knowledgeSourceName": "demo-healthcare=ks",
+            "kind": "searchIndex",
+            "includeReferences": true,
+            "includeReferenceSourceData": false,
+            "alwaysQuerySource": true
+        }
+    ]
+}
+```
+
+> [!NOTE]
+> If you're retrieving content from a OneLake or indexed SharePoint knowledge source, set `includeReferenceSourceData` to `true` to include the source document URL in the citation.
+
+### Example: minimal reasoning effort
+
+In this example, there's no chat completion model for intelligent query planning or answer formulation. The query string is passed to the agentic retrieval engine for keyword search or hybrid search.
+
+```http
+POST {{url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
+api-key: {{key}}
+Content-Type: application/json
+
+{
+    "intents": [
+        {
+            "type": "semantic",
+            "search": "what is a brokerage"
+        }
+    ]
+}
+```
 
 ## Review the extracted response
 
@@ -134,78 +233,91 @@ The body of the response is also structured in the chat message style format. Cu
 + `content.type` has one valid value in this preview: `text`. 
 
 > [!NOTE]
-> The `maxOutputSize` property on the [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string. We recommend 5,000 tokens.
+> The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string.
 
 ## Review the activity array
 
-The activity array outputs the query plan and it helps you keep track of the operations performed when executing the request. It provides transparency of operations so that you can understand billing implications and the frequency of resource invocations.
+The activity array outputs the query plan, which helps you track the operations performed when executing the request. It also provides operational transparency so you can understand the billing implications and frequency of resource invocations.
 
-Output includes:
+The output includes the following components.
 
-+ Token used for input
-+ Token counts for output
-+ Subqueries sent to the retrieval pipeline
-+ Result count per subquery
-+ Filters on the subquery, if applicable
-+ Token counts used for ranking and extraction
+| Section | Description |
+|---------|-------------|
+| modelQueryPlanning | For knowledge bases that use an LLM for query planning, this section reports on the token counts used for input, and the token count for the subqueries. |
+| source-specific activity | For each knowledge source included in the query, report on elapsed time and which arguments were used in the query, including the semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
+| agenticReasoningEffort | For each retrieve action, you can specify the degree of LLM support. Use minimal to bypass an LLM, low for constrained LLM processing, and medium for full LLM processing. | 
+| modelAnswerSynthesis | For knowledge bases that specify answer formulation, this section reports on the token count for formulating the answer, and the token count of the answer output. |
+
+Output reports on the token consumption for agentic reasoning during retrieval at the specified [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+
+Output also includes the following information:
+
++ Subqueries sent to the retrieval pipeline.
++ Errors for any retrieval failures, such as inaccessible knowledge sources.
 
 Here's an example of an activity array.
 
 ```json
-"activity": [
+  "activity": [
     {
-      "type": "ModelQueryPlanning",
+      "type": "modelQueryPlanning",
       "id": 0,
-      "inputTokens": 1261,
-      "outputTokens": 270
+      "inputTokens": 2302,
+      "outputTokens": 109,
+      "elapsedMs": 2396
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 1,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "suburban belts December brightening urban cores comparison",
-        "filter": null
-      },
-      "queryTime": "2025-05-30T21:23:25.944Z",
-      "count": 0,
-      "elapsedMs": 600
+      "knowledgeSourceName": "demo-financials-ks",
+      "queryTime": "2025-11-04T19:25:23.683Z",
+      "count": 26,
+      "elapsedMs": 1137,
+      "searchIndexArguments": {
+        "search": "List of companies in the financial sector according to SEC GICS classification",
+        "filter": null,
+        "sourceDataFields": [ ],
+        "searchFields": [ ],
+        "semanticConfigurationName": "en-semantic-config"
+      }
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "searchIndex",
       "id": 2,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "Phoenix nighttime street grid visibility from space",
-        "filter": null
-      },
-      "queryTime": "2025-05-30T21:23:26.128Z",
-      "count": 2,
-      "elapsedMs": 161
+      "knowledgeSourceName": "demo-healthcare-ks",
+      "queryTime": "2025-11-04T19:25:24.186Z",
+      "count": 17,
+      "elapsedMs": 494,
+      "searchIndexArguments": {
+        "search": "List of companies in the financial sector according to SEC GICS classification",
+        "filter": null,
+        "sourceDataFields": [ ],
+        "searchFields": [ ],
+        "semanticConfigurationName": "en-semantic-config"
+      }
     },
     {
-      "type": "AzureSearchQuery",
+      "type": "agenticReasoning",
       "id": 3,
-      "targetIndex": "earth_at_night",
-      "query": {
-        "search": "interstate visibility from space midwestern cities",
-        "filter": null
+      "retrievalReasoningEffort": {
+        "kind": "low"
       },
-      "queryTime": "2025-05-30T21:23:26.277Z",
-      "count": 0,
-      "elapsedMs": 147
+      "reasoningTokens": 103368
     },
     {
-      "type": "AzureSearchSemanticRanker",
+      "type": "modelAnswerSynthesis",
       "id": 4,
-      "inputTokens": 2622
+      "inputTokens": 5821,
+      "outputTokens": 344,
+      "elapsedMs": 3837
     }
-  ],
+  ]
 ```
+
 
 ## Review the references array
 
-The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the search engine. Fields in the `sourceData` include an `id` and semantic fields: `title`, `terms`, `content`.
+The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the agentic retrieval engine. Fields in the `sourceData` include an `id` and semantic fields: `title`, `terms`, `content`.
 
 The `id` is a reference ID for an item within a specific response. It's not the document key in the search index. It's used for providing citations.
 
@@ -233,6 +345,9 @@ Here's an example of the references array.
     }
   ]
 ```
+
+> [!NOTE]
+> If you're retrieving content from a OneLake or indexed SharePoint knowledge source, set `includeReferenceSourceData` to `true` on the retrieve request to get the source document URL in the citation.
 
 ## Related content
 

@@ -23,6 +23,6 @@ The general pattern for assigning role-based access control (RBAC) for any resou
 1. When assigning a role to another resource: 
     1. Select **Managed identity**. 
     1. Select **Select members**.
-    1. Use the dropdown to find the type of resource you want to assign. For example, **Azure AI services** or **Search service**.
+    1. Use the dropdown to find the type of resource you want to assign. For example, **Foundry Tools** or **Search service**.
     1. Select the resource from the list that appears. There might only be one, but you still need to select it.
 1. Continue through the wizard and select **Review + assign** to add the role assignment.

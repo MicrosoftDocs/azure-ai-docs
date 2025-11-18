@@ -1279,6 +1279,11 @@
           "redirect_document_id": false
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools/code-interpreter-samples.md",
+          "redirect_url": "/azure/ai-foundry/agents/how-to/tools/code-interpreter",
+          "redirect_document_id": true
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/how-to/evaluate-prompts-playground.md",
           "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false

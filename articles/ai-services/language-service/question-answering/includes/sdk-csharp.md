@@ -4,9 +4,8 @@ description: This quickstart shows how to get started with the custom question a
 author: laujan
 ms.author: lajanuar
 ms.topic: include
-ms.date: 08/07/2025
+ms.date: 11/18/2025
 ---
-
 Use this quickstart for the custom question answering client library for .NET to:
 
 * Get an answer from a project.

@@ -1,6 +1,6 @@
 ---
-title: How to use Azure Functions with the Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
+title: How to use Azure Functions with the Foundry Agent Service
+titleSuffix: Microsoft Foundry
 description: Learn how to use Azure functions with Azure AI Agents.
 services: azure-ai-agent-service
 manager: nitinme

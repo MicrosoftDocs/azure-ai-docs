@@ -1,6 +1,6 @@
 ---
-title: Rotate keys in Azure AI services
-titleSuffix: Azure AI services
+title: Rotate keys in Foundry Tools
+titleSuffix: Foundry Tools
 description: "Learn how to rotate API keys for better security, without interrupting service"
 author: PatrickFarley
 manager: nitinme
@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ---
 

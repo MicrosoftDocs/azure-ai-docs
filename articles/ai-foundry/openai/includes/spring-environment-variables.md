@@ -1,6 +1,6 @@
 ---
 title: 'Spring Environment variables'
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: set up spring ai environment variables for your key and endpoint
 services: cognitive-services
 manager: nitinme

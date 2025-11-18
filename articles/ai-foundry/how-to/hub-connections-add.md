@@ -1,7 +1,7 @@
 ---
 title: Create and manage connections (Hubs)
-titleSuffix: Azure AI Foundry
-description: Learn how to use connections in Azure AI Foundry hubs.
+titleSuffix: Microsoft Foundry
+description: Learn how to use connections in Microsoft Foundry hubs.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -15,23 +15,23 @@ ms.custom:
   - hub-only
 ---
 
-# Create and manage connections in Azure AI Foundry hubs
+# Create and manage connections in Microsoft Foundry hubs
 
-> [!NOTE]
+> [!TIP]
 > An alternate Foundry project connections article is available: [Add a new connection to your project (Foundry projects)](connections-add.md).
 
-Connections in Azure AI Foundry hubs allow you to securely integrate external resources and services, such as Azure AI services and other Azure data services. This article covers hub-scoped connection tasks.
+Connections in Microsoft Foundry hubs allow you to securely integrate external resources and services, such as Foundry Tools and other Azure data services. This article covers hub-scoped connection tasks.
 
 ## Prerequisites
 
 - An Azure subscription.
-- An Azure AI Foundry hub with the required role assignments to create and manage connections.
+- A Foundry hub with the required role assignments to create and manage connections.
 
 ## Add a connection at the hub scope
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your hub.
+1. Open the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your hub.
 1. Select **Management center** > **Connections**.
-1. Select **+ New connection** and choose the connection type (for example, Azure AI services, Azure OpenAI, Azure Storage, Azure SQL, or custom endpoint).
+1. Select **+ New connection** and choose the connection type (for example, Foundry Tools, Azure OpenAI, Azure Storage, Azure SQL, or custom endpoint).
 1. Provide the required configuration values (resource selection, endpoint URL, authentication method such as key, managed identity, or service principal).
 1. Select **Create** to save the connection. The connection becomes available to all projects within the hub, subject to project-level permissions.
 
@@ -58,7 +58,7 @@ Hub connections support these authentication methods (availability varies by con
 
 - Managed identity (system or user-assigned)
 - Service principal (client ID/secret or certificate)
-- API key (for key-based Azure AI services / OpenAI)
+- API key (for key-based Foundry Tools / OpenAI)
 - SAS token (for specific storage scenarios)
 
 Prefer managed identity wherever possible for keyless and rotated credential management.
@@ -77,5 +77,5 @@ Prefer managed identity wherever possible for keyless and rotated credential man
 
 ## Next steps
 
-- [Create and managed connections in Azure AI Foundry projects](./connections-add.md).
+- [Create and managed connections in Foundry projects](./connections-add.md).
 - [Secure network traffic with private link](./hub-configure-private-link.md).

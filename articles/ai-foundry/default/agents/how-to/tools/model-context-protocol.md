@@ -1,0 +1,167 @@
+---
+title: Connect to a Model Context Protocol Server Endpoint for agents (Preview)
+titleSuffix: Microsoft Foundry
+description: Learn how to add MCP servers to agents.
+services: cognitive-services
+manager: nitinme
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: how-to
+ms.date: 11/12/2025
+author: aahill
+ms.author: aahi
+---
+
+# Connect to Model Context Protocol servers (preview)
+
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
+> [!NOTE]
+> When using a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
+
+You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
+
+MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+## Considerations for using non-Microsoft services and servers
+
+Your use of connected non-Microsoft services is subject to the terms between you and the service provider. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+
+The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
+
+We recommend that you carefully review and track what MCP servers you add to Foundry Agent Service. We also recommend that you rely on servers hosted by trusted service providers themselves rather than proxies.
+
+The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with remote MCP servers and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
+
+## Code example
+
+Use the following code sample to create an agent and call the function. You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
+```python
+import os
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, MCPTool, Tool
+from openai.types.responses.response_input_param import McpApprovalResponse, ResponseInputParam
+
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+# Get the OpenAI client for responses and conversations
+openai_client = project_client.get_openai_client()
+
+mcp_tool = MCPTool(
+    server_label="api-specs",
+    server_url="https://gitmcp.io/Azure/azure-rest-api-specs",
+    require_approval="always",
+)
+
+# Create tools list with proper typing for the agent definition
+tools: list[Tool] = [mcp_tool]
+
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+            tools=tools,
+        ),
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+    # Create a conversation thread to maintain context across multiple interactions
+    conversation = openai_client.conversations.create()
+    print(f"Created conversation (id: {conversation.id})")
+
+    # Send initial request that will trigger the MCP tool
+    response = openai_client.responses.create(
+        conversation=conversation.id,
+        input="Please summarize the Azure REST API specifications Readme",
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    # Process any MCP approval requests that were generated
+    input_list: ResponseInputParam = []
+    for item in response.output:
+        if item.type == "mcp_approval_request":
+            if item.server_label == "api-specs" and item.id:
+                # Automatically approve the MCP request to allow the agent to proceed
+                # In production, you might want to implement more sophisticated approval logic
+                input_list.append(
+                    McpApprovalResponse(
+                        type="mcp_approval_response",
+                        approve=True,
+                        approval_request_id=item.id,
+                    )
+                )
+
+    print("Final input:")
+    print(input_list)
+
+    # Send the approval response back to continue the agent's work
+    # This allows the MCP tool to access the GitHub repository and complete the original request
+    response = openai_client.responses.create(
+        input=input_list,
+        previous_response_id=response.id,
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    print(f"Response: {response.output_text}")
+```
+
+## How it works
+
+You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
+
+The MCP tool supports custom headers, so you can connect to the MCP servers by using the authentication schemas that they require or by passing other headers that the MCP servers require. You can specify headers only by including them in `tool_resources` at each run. In this way, you can put API keys, OAuth access tokens, or other credentials directly in your request.
+
+The most commonly used header is the authorization header. Headers that you pass in are available only for the current run and aren't persisted.
+
+For more information on using MCP, see:
+
+* [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
+* [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
+
+## Setup
+
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an `mcp` tool with the following information:
+
+   1. `server_url`: The URL of the MCP server; for example, `https://api.githubcopilot.com/mcp/`.
+   2. `server_label`: A unique identifier of this MCP server to the agent; for example, `github`.
+   3. `allowed_tools`: An optional list of tools that this agent can access and use.
+  
+1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers:
+
+   1. `tool_label`: Use the identifier that you provided when you created the agent.
+   2. `headers`: Pass a set of headers that the MCP server requires.
+   3. `require_approval`: Optionally determine whether approval is required. Supported values are:
+      * `always`: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.
+      * `never`: No approval is required.
+      * `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
+      * `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
+
+1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `requires_action`. In the `requires_action` field, you can get more details on which tool in the MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
+
+1. Submit your approval to the agent with `call_id` by setting `approve` to `true`.
+
+## Host a local MCP server
+
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+
+|Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|:---------:|:---------:|:---------:|
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
+| **Code changes** | Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
+| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+| **State** | Stateless only. | Stateless only. |
+| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |

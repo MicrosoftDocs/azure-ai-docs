@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Speech SDK C++ (Linux) platform setup - Speech service'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for C++ on Linux by using the Speech SDK.
 author: markamos
 manager: nitinme

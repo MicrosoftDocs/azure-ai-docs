@@ -1,6 +1,6 @@
 ---
 title: "Speech to text quickstart"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, learn how to use the Speech service for real-time speech to text conversion.
 author: PatrickFarley
 manager: nitinme
@@ -16,7 +16,7 @@ zone_pivot_groups: programming-languages-get-started-transcription
 # Quickstart: Recognize and convert speech to text
 
 ::: zone pivot="ai-foundry"
-[!INCLUDE [Azure AI Foundry include](includes/quickstarts/speech-to-text-basics/ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry include](includes/quickstarts/speech-to-text-basics/ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"

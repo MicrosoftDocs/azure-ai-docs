@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 To start training your model from within the [Language Studio](https://aka.ms/languageStudio):
 
 1. Select **Training jobs** from the left side menu.
@@ -15,7 +14,7 @@ To start training your model from within the [Language Studio](https://aka.ms/la
 
 3. Select **Train a new model** and type in the model name in the text box. You can also **overwrite an existing model** by selecting this option and choosing the model you want to overwrite from the dropdown menu. Overwriting a trained model is irreversible, but it won't affect your deployed models until you deploy the new model.
 
-    If you have enabled [your project to manually split your data](../../how-to/tag-utterances.md) when tagging your utterances, you will see two data splitting options:
+    If you have enabled [your project to manually split your data](../../how-to/tag-utterances.md) when tagging your utterances, you can see two data splitting options:
     
     * **Automatically splitting the testing set from training data**: Your tagged utterances will be randomly split between the training and testing sets, according to the percentages you choose. The default percentage split is 80% for training and 20% for testing. To change these values, choose which set you want to change and type in the new value.
         

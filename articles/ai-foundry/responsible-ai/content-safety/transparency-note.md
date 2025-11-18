@@ -1,6 +1,6 @@
 ---
 title: Transparency Note and use cases for AI Content Safety
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains Azure AI Content Safety responsible AI basics, use cases, and terms.
 author: PatrickFarley
 ms.author: pafarley

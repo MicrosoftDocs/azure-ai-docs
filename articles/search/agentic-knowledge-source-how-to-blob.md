@@ -1,5 +1,5 @@
 ---
-title: Create a blob knowledge source
+title: Create a Blob Knowledge Source for Agentic Retrieval
 titleSuffix: Azure AI Search
 description: A blob knowledge source specifies a blob container that you want to read from. It also includes models and properties for creating an indexer, data source, skillset, and index used for agentic retrieval workloads.
 manager: nitinme
@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 11/04/2025
 ---
 
-# Create a blob knowledge source
+# Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
+Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md), which specifies an existing and qualified index, a blob knowledge source specifies an external data source, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -23,113 +23,117 @@ Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-
 + An index that stores enriched content and meets the criteria for agentic retrieval.
 + An indexer that uses the previous objects to drive the indexing and enrichment pipeline.
 
-Knowledge sources are new in the 2025-08-01-preview release.
-
 ## Prerequisites
 
-+ Azure Storage with a blob container containing [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
++ Azure AI Search, in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-+ Azure AI Search on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ An [Azure Blob Storage](/azure/storage/common/storage-account-create) or [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) account.
 
-To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
++ A blob container with [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
+
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs.
+
+> [!NOTE]
+> Although you can use the Azure portal to create blob knowledge sources, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ## Check for existing knowledge sources
 
 [!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
-The following JSON is an example response for an `azureBlob` knowledge source.
+The following JSON is an example response for a blob knowledge source.
 
 ```json
 {
-  "name": "earth-at-night-blob-ks",
+  "name": "my-blob-ks",
   "kind": "azureBlob",
-  "description": "This knowledge source pull from a blob storage container containing pages from the Earth at Night PDF.",
+  "description": "A sample blob knowledge source.",
   "encryptionKey": null,
-  "searchIndexParameters": null,
   "azureBlobParameters": {
     "connectionString": "<REDACTED>",
+    "containerName": "blobcontainer",
     "folderPath": null,
-    "disableImageVerbalization": null,
-    "identity": null,
-    "embeddingModel": {
-      "name": "demo-blob-embedding-vectorizer",
-      "kind": "azureOpenAI",
-      "azureOpenAIParameters": {
-        "resourceUri": "<REDACTED>",
-        "deploymentId": "text-embedding-ada-002",
-        "apiKey": "<REDACTED>",
-        "modelName": "text-embedding-ada-002",
-        "authIdentity": null
+    "isADLSGen2": false,
+    "ingestionParameters": {
+      "disableImageVerbalization": false,
+      "ingestionPermissionOptions": [],
+      "contentExtractionMode": "standard",
+      "identity": null,
+      "embeddingModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "text-embedding-3-large",
+          "apiKey": "<REDACTED>",
+          "modelName": "text-embedding-3-large",
+          "authIdentity": null
+        }
       },
-      "customWebApiParameters": null,
-      "aiServicesVisionParameters": null,
-      "amlParameters": null
-    },
-    "chatCompletionModel": {
-      "kind": "azureOpenAI",
-      "azureOpenAIParameters": {
-        "resourceUri": "<REDACTED>",
-        "deploymentId": "gpt-5-mini",
-        "apiKey": "<REDACTED>",
-        "modelName": "gpt-5-mini",
-        "authIdentity": null
+      "chatCompletionModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "gpt-5-mini",
+          "apiKey": "<REDACTED>",
+          "modelName": "gpt-5-mini",
+          "authIdentity": null
+        }
+      },
+      "ingestionSchedule": null,
+      "assetStore": null,
+      "aiServices": {
+        "uri": "<REDACTED>",
+        "apiKey": "<REDACTED>"
       }
     },
-    "ingestionSchedule": null,
     "createdResources": {
-      "datasource": "earth-at-night-blob-ks-datasource",
-      "indexer": "earth-at-night-blob-ks-indexer",
-      "skillset": "earth-at-night-blob-ks-skillset",
-      "index": "earth-at-night-blob-ks-index"
+      "datasource": "my-blob-ks-datasource",
+      "indexer": "my-blob-ks-indexer",
+      "skillset": "my-blob-ks-skillset",
+      "index": "my-blob-ks-index"
     }
-  },
-  "webParameters": null
+  }
 }
 ```
 
 > [!NOTE]
-> Sensitive information is redacted. The generated resources appear at the end of the response. The `webParameters` property isn't operational in this preview and is reserved for future use.
+> Sensitive information is redacted. The generated resources appear at the end of the response.
 
 ## Create a knowledge source
 
-To create an `azureBlob` knowledge source:
+To create a blob knowledge source:
 
 1. Set environment variables at the top of your file.
 
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
     @api-key = <YOUR SEARCH ADMIN API KEY>
-    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
-    @connection-string = <YOUR FULL ACCESS CONNECTION STRING TO AZURE STORAGE>
-    @container-name = <YOUR BLOB CONTAINER NAME>
     ```
 
-1. Use the 2025-08-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    PUT {{search-url}}/knowledgeSources/earth-at-night-blob-ks?api-version=2025-08-01-preview
+    PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-      "name": "{{ks-name}}",
+      "name": "my-blob-ks",
       "kind": "azureBlob",
-      "description": "This knowledge source pulls from a blob storage container containing pages from the Earth at Night PDF.",
+      "description": "This knowledge source pulls from a blob storage container.",
       "encryptionKey": null,
       "azureBlobParameters": {
-        "connectionString": "{{connection-string}}",
-        "containerName": "{{container-name}}",
+        "connectionString": "<YOUR AZURE STORAGE CONNECTION STRING>",
+        "containerName": "<YOUR BLOB CONTAINER NAME>",
         "folderPath": null,
-        "disableImageVerbalization": null,
-        "identity": null,
-        "embeddingModel": {
-          // Redacted for brevity
-        },
-        "chatCompletionModel": {
-          // Redacted for brevity
-        },
-        "ingestionSchedule": {
-          // Redacted for brevity
+        "isADLSGen2": false,
+        "ingestionParameters": {
+            "identity": null,
+            "disableImageVerbalization": null,
+            "chatCompletionModel": { TRIMMED FOR BREVITY },
+            "embeddingModel": { TRIMMED FOR BREVITY },
+            "contentExtractionMode": "minimal",
+            "ingestionSchedule": null,
+            "ingestionPermissionOptions": []
         }
       }
     }
@@ -137,25 +141,33 @@ To create an `azureBlob` knowledge source:
 
 1. Select **Send Request**.
 
-**Key points:**
+### Source-specific properties
 
-+ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search.
+You can pass the following properties to create a blob knowledge source.
 
-+ `kind` must be `azureBlob` for a blob knowledge source.
+| Name | Description | Type | Editable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
+| `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object |  | No |
+| `connectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
+| `containerName` | The name of the blob storage container. | String | No | Yes |
+| `folderPath` | A folder within the container. | String | No | No |
+| `isADLSGen2` | The default is `false`. Set to `true` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
 
-+ `encryptionKey` (optional) is an encryption key in Azure Key Vault. Use this property to doubly encrypt sensitive information in both the knowledge source and the generated objects.
+### `ingestionParameters` properties
 
-+ `embeddingModel` (optional) is a text embedding model that vectorizes text and image content during indexing and at query time. Use a model supported by the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [AML skill](cognitive-search-aml-skill.md), or [Custom Web API skill](cognitive-search-custom-skill-web-api.md). The embedding skill will be included in the generated skillset, and its equivalent vectorizer will be included in the generated index.
+[!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
 
-+ `chatCompletionModel` (optional) is a chat completion model that verbalizes images or extracts content. Use a model supported by the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), which will be included in the generated skillset. To skip image verbalization, omit this object and set `"disableImageVerbalization": true`.
+## Check ingestion status
 
-+ `ingestionSchedule` (optional) adds scheduling information to the generated indexer. You can also [add a schedule](search-howto-schedule-indexers.md) later to automate data refresh.
-
-+ If you get errors, make sure the embedding and chat completion models exist at the endpoints you provided.
+[!INCLUDE [Knowledge source status](./includes/how-tos/knowledge-source-status.md)]
 
 ## Review the created objects
 
-When you create a blob knowledge source, your search service also creates an indexer, data source, skillset, and index. Exercise caution when you edit these objects, as introducing an error or incompatibility can break the pipeline.
+When you create a blob knowledge source, your search service also creates an indexer, index, skillset, and data source. We don't recommend that you edit these objects, as introducing an error or incompatibility can break the pipeline.
 
 After you create a knowledge source, the response lists the created objects. These objects are created according to a fixed template, and their names are based on the name of the knowledge source. You can't change the object names.
 
@@ -164,15 +176,13 @@ We recommend using the Azure portal to validate output creation. The workflow is
 1. Check the indexer for success or failure messages. Connection or quota errors appear here.
 1. Check the index for searchable content. Use Search Explorer to run queries.
 1. Check the skillset to learn how your content is chunked and optionally vectorized.
-1. Modify the data source if you want to change connection details, such as authentication and authorization. Our example uses API keys for simplicity, but you can use Microsoft Entra ID authentication and role-based access.
+1. Check the data source for connection details. Our example uses API keys for simplicity, but you can use Microsoft Entra ID for authentication and role-based access control for authorization.
 
-## Assign to a knowledge agent
+## Assign to a knowledge base
 
-If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
-
-After the knowledge agent is configured, use the retrieve action to query the knowledge source.
+After the knowledge base is configured, use the [retrieve action](agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 ## Delete a knowledge source
 
