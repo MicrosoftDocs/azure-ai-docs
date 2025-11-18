@@ -19,8 +19,6 @@ ai-usage: ai-assisted
 ---
 # Evaluate your generative AI application locally with the Azure AI Evaluation SDK (preview)
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
-
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 You can thoroughly assess the performance of your generative AI application by applying it to a substantial dataset. Evaluate the application in your development environment with the Azure AI Evaluation SDK.
