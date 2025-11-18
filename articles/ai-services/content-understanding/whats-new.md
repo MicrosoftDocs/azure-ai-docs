@@ -17,6 +17,9 @@ ms.custom:
 
 Azure Content Understanding in Foundry Tools service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+> [!NOTE]
+> Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. 
+
 ## November 2025
 
 Azure Content Understanding in Foundry Tools is now Generally Available with API version `2025-11-01`. The release brings production readiness plus customer-driven enhancements across model choice, management, and security.
