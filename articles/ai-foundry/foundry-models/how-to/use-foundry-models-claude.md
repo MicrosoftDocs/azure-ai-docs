@@ -411,7 +411,7 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 Claude in Foundry Models supports advanced features and capabilities. For more details about the advanced features and capabilities listed, see [Features overview](https://docs.claude.com/en/docs/build-with-claude/overview).
 
-**Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. These capabilities include:
+**Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. These capabilities are listed in the following table.
 
 | **Feature** | **Description** |
 |--|--|
@@ -423,7 +423,7 @@ Claude in Foundry Models supports advanced features and capabilities. For more d
 | **PDF support** | Process and analyze text and visual content from PDF documents. |
 | **Prompt caching** | Provide Claude with more background knowledge and example outputs to reduce costs and latency. |
 
-**Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. These tools include:
+**Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. These tools are listed in the following table.
 
 | **Tool** | **Description** |
 |--|--|
