@@ -245,7 +245,7 @@ AI Red Teaming Agent supports simulations in the following languages:
 | Italian | `Italian` |
 | French | `French` |
 | Japanese | `Japanese` |
-| Portuguese | `Portugese` |
+| Portuguese | `Portuguese` |
 | Simplified Chinese | `Chinese` |
 
 To configure your red team with a supported language, use the `SupportedLanguages` class and instantiate your red team with the desired language.

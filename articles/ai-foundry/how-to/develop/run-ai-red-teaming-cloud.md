@@ -537,7 +537,7 @@ curl --request GET \
 
 ---
 
-> **Note:**
+> [!NOTE]
 > The API is synchronous per request, but runs themselves are processed server‑side; poll this endpoint until completion before fetching output items.
 
 ## List red teaming run output items and results
@@ -581,6 +581,6 @@ Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/
 ::: moniker-end
 
 ::: moniker range="foundry"
-Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/https://aka.ms/agent-redteam-sample) in our GitHub samples.
+Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample) in our GitHub samples.
 
 ::: moniker-end

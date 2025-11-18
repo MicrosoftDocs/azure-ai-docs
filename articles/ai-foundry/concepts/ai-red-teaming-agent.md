@@ -200,11 +200,11 @@ The following attack strategies are supported in the AI Red Teaming Agent from [
 
 AI Red Teaming Agent has several important limitations to consider when running and interpreting red teaming results.
 
-1. Red teaming runs simulate scenarios in which a Foundry agent is exposed to sensitive data or attack vehicle data directly.  Since this data is all synthetic, this isn't representative of real world data distributions.
-2. Mock tools are only currently enabled to retrieve synthetic data and enable red teaming evaluations. They don't currently support mocking behaviors, which would enable testing closer to real sandboxing than what is currently supported.
-3. Due to lack of completely locked-down sandboxing support, the adversarial nature of our red teaming evaluations is controlled to avoid real world impact.
-4. Red teaming runs only represent adversarial population and don't include any observational population.
-5. Red teaming runs use generative models to evaluate Attack Success Rates (ASR) and can be non-deterministic, non-predictive. Therefore, there's always a chance of false positives and we always recommend reviewing results before taking mitigation actions.
+- Red teaming runs simulate scenarios in which a Foundry agent is exposed to sensitive data or attack vehicle data directly.  Since this data is all synthetic, this isn't representative of real world data distributions.
+- Mock tools are only currently enabled to retrieve synthetic data and enable red teaming evaluations. They don't currently support mocking behaviors, which would enable testing closer to real sandboxing than what is currently supported.
+- Due to lack of completely locked-down sandboxing support, the adversarial nature of our red teaming evaluations is controlled to avoid real world impact.
+- Red teaming runs only represent adversarial population and don't include any observational population.
+- Red teaming runs use generative models to evaluate Attack Success Rates (ASR) and can be non-deterministic, non-predictive. Therefore, there's always a chance of false positives and we always recommend reviewing results before taking mitigation actions.
 
 ## Learn more
 
