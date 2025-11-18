@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. After the deployment job is completed successfully, select the deployment you want to use and from the top menu select **Get prediction URL**.
 
     :::image type="content" source="../../media/get-prediction-url-1.png" alt-text="A screenshot showing the button to get the prediction URL." lightbox="../../media/get-prediction-url-1.png":::
@@ -17,7 +16,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/get-prediction-url-2.png" alt-text="A screenshot showing the prediction URL and sample J SON request." lightbox="../../media/get-prediction-url-2.png":::
 
-4. Submit the `POST` cURL request in your terminal or command prompt. You'll receive a 202 response with the API results if the request was successful.
+4. Submit the `POST` cURL request in your terminal or command prompt. You receive a 202 response with the API results if the request was successful.
 
 5. In the response header you receive extract `{JOB-ID}` from `operation-location`, which has the format: `{ENDPOINT}/text/analytics/v3.2-preview.2/analyze/jobs/<JOB-ID}>`
 

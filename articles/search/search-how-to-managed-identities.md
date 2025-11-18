@@ -36,7 +36,7 @@ You can use managed identities for these scenarios.
 | Scenario | System  | User-assigned |
 |----------|-------------------------|---------------------------------|
 | [Connect to indexer data sources](search-indexer-overview.md) <sup>1</sup>| Yes | Yes <sup>2</sup>  |
-| Connect to embedding and chat completion models in Azure OpenAI, Azure AI Foundry, and Azure Functions via skills/vectorizers <sup>3</sup> | Yes | Yes |
+| Connect to embedding and chat completion models in Azure OpenAI, Microsoft Foundry, and Azure Functions via skills/vectorizers <sup>3</sup> | Yes | Yes |
 | [Connect to Azure Key Vault for customer-managed keys](search-security-manage-encryption-keys.md) | Yes | Yes |
 | [Connect to Debug sessions (hosted in Azure Storage)](cognitive-search-debug-session.md)	<sup>1</sup> | Yes | No |
 | [Connect to an enrichment cache (hosted in Azure Storage)](enrichment-cache-how-to-configure.md) <sup>1,</sup> <sup>4</sup> | Yes | Yes <sup>2</sup>|
@@ -44,9 +44,9 @@ You can use managed identities for these scenarios.
 
 <sup>1</sup> For connectivity between search and storage, network security imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to Azure Storage, and that connection must be via the *trusted service exception* or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
 
-<sup>2</sup> User-assigned managed identities can be used in data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a  connection string. Be sure to switch to a preview API if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the `identity` in a data source connection.
+<sup>2</sup> User-assigned managed identities can be used in data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a  connection string. Be sure to switch to a preview API if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the `identity` in a data source connection.
 
-<sup>3</sup> Connections to Azure OpenAI,  Azure AI Foundry, and Azure Functions via skills/vectorizers include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md) and [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md).
+<sup>3</sup> Connections to Azure OpenAI,  Foundry, and Azure Functions via skills/vectorizers include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md) and [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md).
 
 <sup>4</sup> AI search service currently can't connect to tables on a storage account that has [shared key access turned off](/azure/storage/common/shared-key-authorization-prevent).
 
@@ -244,7 +244,7 @@ A system managed identity is indicated when a connection string is the unique re
 
 [**Blob data source (user managed identity):**](search-howto-managed-identities-storage.md)
 
-User-assigned managed identities can also be used in indexer data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a data source connection string. Be sure to switch to a preview version if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the identity in a data source connection.
+User-assigned managed identities can also be used in indexer data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a data source connection string. Be sure to switch to a preview version if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the identity in a data source connection.
 
 A search service user identity is specified in the `identity `property.
 

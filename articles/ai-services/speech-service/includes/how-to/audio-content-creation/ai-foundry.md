@@ -10,7 +10,7 @@ ms.date: 8/5/2025
 
 - An active Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Permission to create resources in your subscription.
-- An Azure AI Foundry project. For more information, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+- A Microsoft Foundry project. For more information, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Use the audio content creation tool
 
@@ -20,9 +20,9 @@ The following diagram displays the process for fine-tuning the text to speech ou
 
 ### Access the tool
 
-To access the audio content creation tool in Azure AI Foundry, follow these steps:
+To access the audio content creation tool in Microsoft Foundry, follow these steps:
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
+1. Go to your project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). 
 1. Select **Playgrounds** from the left pane.
 1. In the **Speech playground** tile, select **Try the Speech playground**.
 1. Select **Text to speech** > **Audio content creation**. You might need to scroll to find the tile. 

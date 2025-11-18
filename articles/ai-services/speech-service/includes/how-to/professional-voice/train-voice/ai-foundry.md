@@ -9,12 +9,12 @@ ms.date: 5/19/2025
 ms.custom: include
 ---
 
-In this article, you learn how to fine-tune a professional voice through the Azure AI Foundry portal.
+In this article, you learn how to fine-tune a professional voice through the Microsoft Foundry portal.
 
 > [!IMPORTANT]
-> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to an Azure AI Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to a Microsoft Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
-Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. With an Azure AI Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
+Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. With a Microsoft Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
 > [!NOTE]
 > Although the total number of hours required per [training method](#choose-a-training-method) varies, the same unit price applies to each. For more information, see the [custom neural training pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
@@ -41,11 +41,11 @@ The language of the training data must be one of the [languages that are support
 
 ## Train your custom voice model
 
-To create a custom voice in Azure AI Foundry portal, follow these steps for one of the following methods:
+To create a custom voice in Microsoft Foundry portal, follow these steps for one of the following methods:
 
 # [Neural](#tab/neural)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -78,7 +78,7 @@ To create a custom voice in Azure AI Foundry portal, follow these steps for one 
 
 # [Neural - cross lingual](#tab/crosslingual)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -107,7 +107,7 @@ To create a custom voice in Azure AI Foundry portal, follow these steps for one 
 
 # [Neural - multi style](#tab/multistyle)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -150,7 +150,7 @@ The following table summarizes the different preset styles according to differen
 
 # [Neural - multi lingual (preview)](#tab/multilingual)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -178,7 +178,7 @@ The following table summarizes the different preset styles according to differen
 
 # [Neural - HD Voice (preview)](#tab/hdvoice)
 
-HD voice training isn't yet supported in the Azure AI Foundry portal. To train an HD voice, you must use the [Speech Studio](https://speech.microsoft.com/portal). For more information, see [the corresponding Speech Studio documentation](?tabs=hdvoice&pivots=speech-studio#train-your-custom-voice-model).
+HD voice training isn't yet supported in the Microsoft Foundry portal. To train an HD voice, you must use the [Speech Studio](https://speech.microsoft.com/portal). For more information, see [the corresponding Speech Studio documentation](?tabs=hdvoice&pivots=speech-studio#train-your-custom-voice-model).
 
 ---
 
@@ -226,7 +226,7 @@ Select **DefaultTests** under **Testing** to listen to the sample audio files. T
 
 If you want to upload your own test scripts to further test your model, select **Add test scripts** to upload your own test script.
 
-Before you upload test script, check the [Test script requirements](#test-script-requirements). You're charged for the extra testing with the batch synthesis based on the number of billable characters. See [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+Before you upload test script, check the [Test script requirements](#test-script-requirements). You're charged for the extra testing with the batch synthesis based on the number of billable characters. See [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 Under **Add test scripts**, select **Browse for a file** to select your own script, then select **Add** to upload it.
 
@@ -271,7 +271,7 @@ To learn more about the capabilities and limits of this feature, and the best pr
 ## Copy your voice model to another project
 
 > [!NOTE]
-> In this context "project" refers to a fine-tuning task rather than an Azure AI Foundry project. 
+> In this context "project" refers to a fine-tuning task rather than a Microsoft Foundry project. 
 
 After training you can copy your voice model to another project for the same region or another region. 
 
@@ -280,7 +280,7 @@ For example, you can copy a proffessional voice model that was trained in one re
 To copy your custom voice model to another project:
 
 1. On the **Train model** tab, select a voice model that you want to copy, and then select **Copy to project**.
-1. Select the **Subscription**, **Target region**, **Connected AI Service resource** (AI Foundry resource), and **Target fine-tuning task** where you want to copy the model. 
+1. Select the **Subscription**, **Target region**, **Connected AI Service resource** (Foundry resource), and **Target fine-tuning task** where you want to copy the model. 
 1. Select **Copy to** to copy the model.
 1. Select **View model** under the notification message for the successful copying.
 

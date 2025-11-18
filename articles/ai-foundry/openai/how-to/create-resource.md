@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Create and deploy an Azure OpenAI in Azure AI Foundry Models resource'
+title: 'How-to: Create and deploy an Azure OpenAI in Microsoft Foundry Models resource'
 titleSuffix: Azure OpenAI
 description: Learn how to get started with Azure OpenAI and create your first resource and deploy your first model in the Azure CLI or the Azure portal.
 manager: nitinme
@@ -14,7 +14,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Create and deploy an Azure OpenAI in Azure AI Foundry Models resource
+# Create and deploy an Azure OpenAI in Microsoft Foundry Models resource
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303211)
 

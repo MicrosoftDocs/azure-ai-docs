@@ -1,7 +1,8 @@
-﻿---
-title: Endpoints for Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to access and use Azure AI Foundry Models endpoints for secure model inference, flexible deployments, and keyless authentication.
+---
+title: Endpoints for Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to access and use Microsoft Foundry Models endpoints for secure model inference, flexible deployments, and keyless authentication.
+monikerRange: 'foundry-classic || foundry'
 author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -13,18 +14,18 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer using Azure AI Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.
+#CustomerIntent: As a developer using Microsoft Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.
 ---
 
-# Endpoints for Azure AI Foundry Models
+# Endpoints for Microsoft Foundry Models
 
-Azure AI Foundry Models enables you to access the most powerful models from leading model providers through a single endpoint and set of credentials. This capability lets you switch between models and use them in your application without changing any code.
+Microsoft Foundry Models enables you to access the most powerful models from leading model providers through a single endpoint and set of credentials. This capability lets you switch between models and use them in your application without changing any code.
 
-This article explains how the Azure AI Foundry services (formerly known as Azure AI Services) organize models and how to use the inference endpoint to access them.
+This article explains how the Foundry services (formerly known as Azure AI Services) organize models and how to use the inference endpoint to access them.
 
 ## Deployments
 
-Azure AI Foundry uses **deployments** to make models available. **Deployments** give a model a name and set specific configurations. You can access a model by using its deployment name in your requests.
+Foundry uses **deployments** to make models available. **Deployments** give a model a name and set specific configurations. You can access a model by using its deployment name in your requests.
 
 A deployment includes:
 
@@ -36,13 +37,14 @@ A deployment includes:
 
 <sup>1</sup> These configurations can change depending on the selected model.
 
-An Azure AI Foundry resource can have many model deployments. You only pay for inference performed on model deployments. Deployments are Azure resources, so they're subject to Azure policies.
+A Foundry resource can have many model deployments. You only pay for inference performed on model deployments. Deployments are Azure resources, so they're subject to Azure policies.
 
 For more information about creating deployments, see [Add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
+::: moniker range="foundry-classic"
 ## Endpoints
 
-Azure AI Foundry services provide multiple endpoints depending on the type of work you want to perform:
+Foundry services provide multiple endpoints depending on the type of work you want to perform:
 
 * [Azure AI inference endpoint](#azure-ai-inference-endpoint)
 * [Azure OpenAI inference endpoint](#azure-openai-inference-endpoint)
@@ -73,6 +75,7 @@ For a chat model, you can create a request as follows:
 
 If you specify a model name that doesn't match any model deployment, you get an error that the model doesn't exist. You control which models are available to users by creating model deployments. For more information, see [add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
+::: moniker-end
 
 ## Azure OpenAI inference endpoint
 
@@ -88,24 +91,27 @@ Each deployment has a URL that's formed by concatenating the **Azure OpenAI** ba
 
 [!INCLUDE [code-create-openai-chat-completion](../includes/code-create-openai-chat-completion.md)]
 
-For more information about how to use the **Azure OpenAI endpoint**, see [Azure OpenAI in Azure AI Foundry Models documentation](../../openai/overview.md).
+For more information about how to use the **Azure OpenAI endpoint**, see [Azure OpenAI in Foundry Models documentation](../../openai/overview.md).
 
 ## Keyless authentication
 
-Models deployed to Azure AI Foundry Models in Azure AI services support keyless authorization by using Microsoft Entra ID. Keyless authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes keyless authorization a strong choice for organizations adopting secure and scalable identity management solutions.
+Models deployed to Foundry Models in Foundry Tools support keyless authorization by using Microsoft Entra ID. Keyless authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes keyless authorization a strong choice for organizations adopting secure and scalable identity management solutions.
 
 To use keyless authentication, [configure your resource and grant access to users](../../model-inference/how-to/configure-entra-id.md) to perform inference. After you configure the resource and grant access, authenticate as follows:
 
 [!INCLUDE [code-create-chat-client-entra](../../foundry-models/includes/code-create-chat-client-entra.md)]
 
+::: moniker range="foundry-classic"
 ## Limitations
 
 * You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
 * Real-time API isn't supported in the inference endpoint. Use the dedicated deployment URL.
 
+::: moniker-end
+
 ## Related content
 
 - [Foundry Models and capabilities](models.md)
-- [Deployment types in Azure AI Foundry Models](deployment-types.md)
-- [What is Azure OpenAI in Azure AI Foundry Models?](../../openai/overview.md)
+- [Deployment types in Foundry Models](deployment-types.md)
+- [What is Azure OpenAI in Foundry Models?](../../openai/overview.md)
 

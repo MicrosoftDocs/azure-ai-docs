@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Java support
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI Java support
 manager: nitinme
 ms.service: azure-ai-foundry

@@ -1,6 +1,8 @@
 ---
 title: Include file
 description: Include file
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
@@ -13,10 +15,10 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+# Used with ../how-to/create-projects
 ---
 
-
-Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `AI Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
+Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
 
 :::image type="content" source="../media/how-to/projects/projects-multi-setup.png" alt-text="Diagram shows how a team could share resource access with multiple projects on a Foundry resource.":::
 
@@ -35,7 +37,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
 | Indexes | ✅ | ✅ |
 | Foundry SDK and API | ✅ | ✅ |
 | Content understanding | ✅ | ✅ |
-| OpenAI SDK and API | ✅ | - |
+| OpenAI SDK and API | ✅ | Responses, Files, Conversations |
 | OpenAI Batch, Fine-tuning, Stored completions | ✅ | - |
 | Language fine-tuning | ✅ | ✅ |
 | Speech fine-tuning | ✅ | - |
@@ -43,17 +45,32 @@ While not all Foundry capabilities support organizing work in projects yet, your
 
 * To add a project to a Foundry resource:
     
-    # [Azure AI Foundry portal](#tab/ai-foundry)
+    # [Foundry portal](#tab/foundry)
+    
+    ::: moniker range="foundry-classic"
     
     [!INCLUDE [tip-left-pane](tip-left-pane.md)]
     
-    1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
+    1. [!INCLUDE [version-sign-in](version-sign-in.md)] 
+    1. Select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
     1. In the left pane, select **Management center**.
     1. In the resource section, select  **Overview**.
     1. Select **New project** and provide a name.
     
         :::image type="content" source="../media/how-to/projects/second-project.png" alt-text="Screenshot shows how to create a second project on an existing resource.":::
     
+  ::: moniker-end
+    
+  ::: moniker range="foundry"
+
+  Adding a second project is not currently supported in Foundry (new).  
+    
+    <!-- 1. Select **Operate** in the upper-right navigation.
+    1. Select **Admin** in the left pane.
+    1. Select the Parent resource you want to add a project to.
+    1. Select **Add project**. -->
+    
+    ::: moniker-end
     
     # [Python SDK](#tab/python)
     
@@ -64,13 +81,14 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     # [Azure CLI](#tab/azurecli)
     
-    <!-- Use your existing values for {my_resource_group} and {foundry_resource_name} to add another project to the resource:
+    Use your existing values for {foundry_resource_name} to add another project to the resource:
     
     ```azurecli
-     az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
+     az cognitiveservices account project create \
+     --name {foundry_resource_name} \
+     --project-name {my_project_name} \
+     --location {location}
     ```
-     -->
-    CLI commands not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
     ---
 

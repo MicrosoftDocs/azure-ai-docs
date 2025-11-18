@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models audio
+title: Azure OpenAI in Microsoft Foundry Models audio
 titleSuffix: Azure OpenAI
 description: Learn about the audio capabilities of Azure OpenAI.
 author: PatrickFarley
@@ -12,7 +12,7 @@ ms.custom: template-concept
 manager: nitinme
 ---
 
-# Audio capabilities in Azure OpenAI in Azure AI Foundry Models
+# Audio capabilities in Azure OpenAI in Microsoft Foundry Models
 
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI. 
@@ -34,7 +34,7 @@ GPT-4o audio completion is designed to generate audio from audio or text prompts
 The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. To get started with the audio API, see the [Whisper quickstart](../whisper-quickstart.md) for speech to text.
 
 > [!NOTE]
-> To help you decide whether to use Azure AI Speech or Azure OpenAI, see the [Azure AI Speech batch transcription](../../../ai-services/speech-service/batch-transcription-create.md), [What is the Whisper model?](../../../ai-services/speech-service/whisper-overview.md), and [OpenAI text to speech voices](../../../ai-services/speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech) guides.
+> To help you decide whether to use Azure Speech in Foundry Tools or Azure OpenAI, see the [Azure Speech batch transcription](../../../ai-services/speech-service/batch-transcription-create.md), [What is the Whisper model?](../../../ai-services/speech-service/whisper-overview.md), and [OpenAI text to speech voices](../../../ai-services/speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech) guides.
 
 ## Related content
 

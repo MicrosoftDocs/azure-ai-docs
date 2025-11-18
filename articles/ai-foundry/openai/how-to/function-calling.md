@@ -1,5 +1,5 @@
 ---
-title: How to use function calling with Azure OpenAI in Azure AI Foundry Models
+title: How to use function calling with Azure OpenAI in Microsoft Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
 author: mrbullwinkle #dereklegenzoff
@@ -10,11 +10,12 @@ ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 11/14/2025
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# How to use function calling with Azure OpenAI in Azure AI Foundry Models
+# How to use function calling with Azure OpenAI in Microsoft Foundry Models
 
-The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
+If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function.
 
 The models formulate API calls and structure data outputs, all based on the functions you specify. It's important to note that while the models can generate these calls, it's up to you to execute them, ensuring you remain in control.
 
@@ -787,6 +788,10 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5-mini` (`2025-08-07`)
 * `gpt-5-nano` (`2025-08-07`)
 * `gpt-5-codex` (`2025-09-11`)
+* `gpt-5.1` (`2025-11-13`)
+* `gpt-5.1-chat` (`2025-11-13`)
+* `gpt-5.1-codex` (`2025-11-13`)
+* `gpt-5.1-codex mini` (`2025-11-13`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

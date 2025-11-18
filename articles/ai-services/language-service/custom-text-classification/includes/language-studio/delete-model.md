@@ -4,11 +4,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 To delete your model from within the [Language Studio](https://aka.ms/LanguageStudio):
 
 1. Select **Model performance** from the left side menu.

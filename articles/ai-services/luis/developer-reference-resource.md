@@ -22,7 +22,7 @@ SDKs, REST APIs, CLI, help you develop Language Understanding (LUIS) apps in you
 
 ## Azure resource management
 
-Use the Azure AI services management layer to create, edit, list, and delete the Language Understanding or Azure AI services resource.
+Use the Azure AI services management layer to create, edit, list, and delete Azure Language Understanding or Azure AI services resource.
 
 Find reference documentation based on the tool:
 
@@ -102,7 +102,7 @@ Language Understanding (LUIS) provides a [container](luis-container-howto.md) to
 
 ### Export and import formats
 
-Language Understanding provides the ability to manage your app and its models in a JSON format, the `.LU` ([LUDown](https://github.com/microsoft/botbuilder-tools/blob/master/packages/Ludown)) format, and a compressed package for the Language Understanding container.
+Language Understanding provides the ability to manage your app and its models in a JSON format, the `.LU` ([LUDown](https://github.com/microsoft/botbuilder-tools/blob/master/packages/Ludown)) format, and a compressed package for Azure Language Understanding container.
 
 Importing and exporting these formats is available from the APIs and from the LUIS portal. The portal provides import and export as part of the Apps list and Versions list.
 

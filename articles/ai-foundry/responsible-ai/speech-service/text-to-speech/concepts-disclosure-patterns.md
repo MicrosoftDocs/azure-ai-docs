@@ -1,6 +1,6 @@
 ---
 title: Disclosure Design Patterns
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Design patterns and best practices for disclosure.
 author: PatrickFarley
 ms.author: pafarley

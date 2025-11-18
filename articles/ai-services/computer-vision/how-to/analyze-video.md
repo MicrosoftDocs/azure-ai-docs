@@ -1,20 +1,20 @@
 ---
-title: Analyze videos in near real time - Azure AI Vision
-titleSuffix: Azure AI services
-description: Learn how to perform near real-time analysis on frames that are taken from a live video stream by using the Azure AI Vision API.
+title: Analyze videos in near real time - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn how to perform near real-time analysis on frames that are taken from a live video stream by using Azure Vision in Foundry Tools API.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 09/26/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, cogserv-non-critical-vision
 ---
 
 # Analyze videos in near real time
 
-This article shows how to use the Azure AI Vision API to analyze frames from a live video stream in near real time. The basic elements of this analysis are:
+This article shows how to use Azure Vision in Foundry Tools API to analyze frames from a live video stream in near real time. The basic elements of this analysis are:
 
 - Getting frames from a video source
 - Choosing which frames to analyze
@@ -217,9 +217,9 @@ namespace BasicConsoleSample
 
 The second sample app offers more functionality. It allows you to choose which API to call on the video frames. On the left side, the app shows a preview of the live video. On the right, it overlays the most recent API result on the corresponding frame.
 
-In most modes, there's a visible delay between the live video on the left and the visualized analysis on the right. This delay is the time that it takes to make the API call. An exception is in the `EmotionsWithClientFaceDetect` mode, which performs face detection locally on the client computer by using OpenCV before it submits any images to Azure AI services. 
+In most modes, there's a visible delay between the live video on the left and the visualized analysis on the right. This delay is the time that it takes to make the API call. An exception is in the `EmotionsWithClientFaceDetect` mode, which performs face detection locally on the client computer by using OpenCV before it submits any images to Foundry Tools. 
 
-By using this approach, you can visualize the detected face immediately. You can then update the attributes later, after the API call returns. This approach demonstrates the possibility of a "hybrid" approach. Some simple processing can be performed on the client, and then Azure AI services APIs can augment this processing with more advanced analysis when necessary.
+By using this approach, you can visualize the detected face immediately. You can then update the attributes later, after the API call returns. This approach demonstrates the possibility of a "hybrid" approach. Some simple processing can be performed on the client, and then Foundry Tools APIs can augment this processing with more advanced analysis when necessary.
 
 ![The LiveCameraSample app displaying an image with tags](../images/frame-by-frame.jpg)
 
@@ -228,8 +228,8 @@ By using this approach, you can visualize the detected face immediately. You can
 To get started with this sample, complete the following steps:
 
 1. Create an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you already have an account, go to the next step.
-1. Create resources for Azure AI Vision and Face in the Azure portal to get your key and endpoint. Make sure to select the free tier (F0) during setup.
-   - [Azure AI Vision](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision)
+1. Create resources for Azure Vision and Face in the Azure portal to get your key and endpoint. Make sure to select the free tier (F0) during setup.
+   - [Azure Vision in Foundry Tools](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision)
    - [Face](https://portal.azure.com/#create/Microsoft.CognitiveServicesFace)
    After the portal deploys the resources, select **Go to resource** to collect your key and endpoint for each resource. 
 1. Clone the [Cognitive-Samples-VideoFrameAnalysis](https://github.com/Microsoft/Cognitive-Samples-VideoFrameAnalysis/) GitHub repo.
@@ -239,11 +239,11 @@ To get started with this sample, complete the following steps:
 
 When you're ready to integrate the samples, reference the **VideoFrameAnalyzer** library from your own projects.
 
-The image-, voice-, video-, and text-understanding capabilities of **VideoFrameAnalyzer** use Azure AI services. Microsoft receives the images, audio, video, and other data that you upload through this app and might use them for service-improvement purposes. We ask for your help in protecting the people whose data your app sends to Azure AI services.
+The image-, voice-, video-, and text-understanding capabilities of **VideoFrameAnalyzer** use Foundry Tools. Microsoft receives the images, audio, video, and other data that you upload through this app and might use them for service-improvement purposes. We ask for your help in protecting the people whose data your app sends to Foundry Tools.
 
 ## Next steps
 
-In this article, you learned how to run near real-time analysis on live video streams by using the Face and Azure AI Vision services. You also learned how you can use our sample code to get started.
+In this article, you learned how to run near real-time analysis on live video streams by using the Face and Azure Vision.
 
 Feel free to provide feedback and suggestions in the [GitHub repository](https://github.com/Microsoft/Cognitive-Samples-VideoFrameAnalysis/). To provide broader API feedback, go to our [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858) site.
 

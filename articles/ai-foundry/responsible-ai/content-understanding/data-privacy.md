@@ -1,6 +1,6 @@
 ---
 title: Data, privacy, and security for Content Understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Content Understanding.
 author: PatrickFarley
 ms.author: pafarley
@@ -27,11 +27,11 @@ Content Understanding can process audio input or voice audio, image files, docum
 
 ### Authenticate 
 
-Content Understanding first requires users to authenticate access to Content Understanding API by using Azure AI services API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service. Apart from authenticating access with API Key, Content Understanding also supports Azure Active Directory (Azure AD) and Entra ID Authentication. For more information, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication?tabs=powershell), which has additional information on Azure AD, Entra ID, and authorizing access to managed identities. 
+Content Understanding first requires users to authenticate access to Content Understanding API by using Foundry Tools API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service. Apart from authenticating access with API Key, Content Understanding also supports Azure Active Directory (Azure AD) and Entra ID Authentication. For more information, see [Authenticate requests to Foundry Tools](/azure/ai-services/authentication?tabs=powershell), which has additional information on Azure AD, Entra ID, and authorizing access to managed identities. 
 
 ### Secure data in transit 
 
-All Azure AI services endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
+All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
 
 
 ### Encrypts input data for processing 
