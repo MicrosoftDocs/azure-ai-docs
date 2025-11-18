@@ -146,7 +146,7 @@ There are a few exceptions and limitations to choosing a VM size:
 See the following table to learn more about supported series.
 
 | **Supported VM series** | **Category** | **Supported by** |
-|------------|------------|------------|------------|
+|------------|------------|------------|
 | [DDSv4](/azure/virtual-machines/ddv4-ddsv4-series#ddsv4-series) | General purpose | Compute clusters and instance |
 | [Dv2](/azure/virtual-machines/dv2-dsv2-series#dv2-series) | General purpose | Compute clusters and instance |
 | [Dv3](/azure/virtual-machines/dv3-dsv3-series#dv3-series) | General purpose | Compute clusters and instance |
@@ -174,6 +174,8 @@ See the following table to learn more about supported series.
 | [NVv3](/azure/virtual-machines/nvv3-series) | GPU | Compute clusters and instance |
 | [NCasT4_v3](/azure/virtual-machines/nct4-v3-series) | GPU | Compute clusters and instance |
 | [NDasrA100_v4](/azure/virtual-machines/nda100-v4-series) | GPU | Compute clusters and instance |
+| [ND-H100-v5](/azure/virtual-machines/sizes/gpu-accelerated/ndh100v5-series) | GPU | Compute clusters and instance |
+| [ND-H200-v5](/azure/virtual-machines/sizes/gpu-accelerated/nd-h200-v5-series) | GPU | Compute clusters and instance |
 
 While Azure Machine Learning supports these VM series, they might not be available in all Azure regions. To check whether VM series are available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines).
 

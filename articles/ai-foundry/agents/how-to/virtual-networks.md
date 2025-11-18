@@ -48,7 +48,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 - **Private MCP Server**: using private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
-- **Grounding with Bing Search**: Only the follwing regions are supported:
+- **Grounding with Bing Search**: Only the following regions are supported:
   - West Europe
   - Canada East
   - Switzerland North
