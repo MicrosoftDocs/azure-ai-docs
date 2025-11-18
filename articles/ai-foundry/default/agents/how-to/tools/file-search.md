@@ -310,7 +310,7 @@ We highly recommend that you ensure all files in a vector_store are fully proces
 
 As a fallback, there's a 60-second maximum wait in the run object when the conversation's vector store contains files that are still being processed. This is to ensure that any files your users upload in a conversation are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
 
-### conversation vector stores have default expiration policies
+### Conversation vector stores have default expiration policies
 
 Vector stores created using conversation helpers (like `tool_resources.file_search.vector_stores` in conversations or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
