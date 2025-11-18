@@ -146,7 +146,7 @@ There are a few exceptions and limitations to choosing a VM size:
 See the following table to learn more about supported series.
 
 | **Supported VM series** | **Category** | **Supported by** |
-|------------|------------|------------|------------|
+|------------|------------|------------|
 | [DDSv4](/azure/virtual-machines/ddv4-ddsv4-series#ddsv4-series) | General purpose | Compute clusters and instance |
 | [Dv2](/azure/virtual-machines/dv2-dsv2-series#dv2-series) | General purpose | Compute clusters and instance |
 | [Dv3](/azure/virtual-machines/dv3-dsv3-series#dv3-series) | General purpose | Compute clusters and instance |
