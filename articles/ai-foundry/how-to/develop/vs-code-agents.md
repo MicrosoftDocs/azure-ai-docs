@@ -8,7 +8,6 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-zone_pivot_groups: ai-foundry-vsc-extension-languages
 ms.date: 10/22/2025
 ms.reviewer: erichen
 ms.author: johalexander
@@ -228,169 +227,6 @@ To view run information in a JSON file, select the **View run info** button on t
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/run-file.png" alt-text="Screenshot of an example JSON file of run details." lightbox="../../media/how-to/get-started-projects-vs-code/run-file.png":::
 
-## Work with multi-agent workflows
-
-You can use the Foundry for Visual Studio Code extension to create multi-agent workflows. A multi-agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
-
-### Create a new multi-agent workflow
-
-1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
-
-1. Run this command: `>Foundry: Create a New Multi-agent Workflow`.
-
-1. Select a programming language.
-
-1. Select a folder where you want to save your new workflow.
-
-1. Enter a name for your workflow project.
-
-A new folder is created with the necessary files for your multi-agent workflow project, including a sample code file to get you started.
-
-### Install dependencies
-
-Install the required dependencies for your multi-agent workflow project. The dependencies vary based on the programming language that you selected when you created the project.
-
-::: zone pivot="python"
-
-Install the following packages from the source:
-
-```bash
-    git clone https://github.com/microsoft/agent-framework.git
-    pip install -e agent-framework/python/packages/azure-ai -e agent-framework/python/packages/core
-```
-
-::: zone-end
-
-::: zone pivot="csharp"
-
-#### Prerequisites
-
-To run the sample multi-agent workflow C# project, ensure that you have a Foundry project or an Azure OpenAI resource.
-
-#### Setup and installation
-
-1. Download and install the .NET 9 SDK from the [official .NET website](https://dotnet.microsoft.com/download).
-
-1. Go to your project directory and run this command to get the necessary NuGet packages:
-
-    ```bash
-    dotnet restore
-    ```
-
-1. The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Azure OpenAI credentials:
-
-    ```
-    # Your Azure OpenAI endpoint
-    AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
-       
-    # Your Azure OpenAI API key
-    AZURE_OPENAI_API_KEY=<your-api-key>
-       
-    # Your model deployment name in Azure OpenAI
-    MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
-    ```
-
-    > [!IMPORTANT]
-    > Never commit the .env file to version control. Add it to your .gitignore file.
-
-::: zone-end
-
-### Run your multi-agent workflow locally
-
-::: zone pivot="csharp"
-
-Before you run `dotnet run` locally, set up the required environment variables. You can get these values from the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
-
-1. Set up your environment variables based on your operating system:
-
-   #### [Windows (PowerShell)](#tab/windows-powershell)
-
-   ```powershell
-   $env:AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
-   $env:MODEL_DEPLOYMENT_NAME="your-deployment-name"
-   $env:AZURE_OPENAI_API_KEY="your-api-key"
-   ```
-
-   #### [Windows (command prompt)](#tab/windows-command-prompt)
-
-   ```dos
-   set AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
-   set MODEL_DEPLOYMENT_NAME=your-deployment-name
-   set AZURE_OPENAI_API_KEY=your-api-key
-   ```
-
-   #### [macOS/Linux (Bash)](#tab/macos-linux-bash)
-
-   ```bash
-   export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
-   export MODEL_DEPLOYMENT_NAME="your-deployment-name"
-   export AZURE_OPENAI_API_KEY="your-api-key"
-   ```
-
-    ---
-
-1. Run the application by using the following commands:
-
-    ```bash
-    dotnet build
-    dotnet run
-    ```
-
-::: zone-end
-
-::: zone pivot="python"
-
-Update the .env file in the root directory of your project and add the following environment variables:
-
-```
-AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
-AZURE_OPENAI_API_KEY=your-api-key
-MODEL_DEPLOYMENT_NAME=your-deployment-name
-```
-
-Run the application by using this command:
-
-```bash
-python workflow.py
-```
-
-### Visualize multi-agent workflow execution
-
-By using the Foundry for Visual Studio Code extension, you can visualize the interactions between agents and how they collaborate to achieve your desired outcome.
-
-Enable visualization in your workflows by adding the following code snippet:
-
-```python
-from agent_framework.observability import setup_observability
-setup_observability(vs_code_extension_port=4317) # Default port is 4317
-```
-
-To monitor and visualize your multi-agent workflow execution in real time (currently available for Python interactive mode only):
-
-1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
-
-1. Run this command: `>Foundry: Visualize the Multi-Agent Workflow`.
-
-A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
-
-#### Port conflicts
-
-If you find any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the observability port in the `workflow.py` file accordingly.
-
-For example, to change the port to 4318, use this command:
-
-```bash
-  export FOUNDRY_OTLP_PORT=4318
-```
-
-In `workflow.py`, update the port number in the observability configuration:
-
-```python
-  setup_observability(vs_code_extension_port=4318)
-```
-
-::: zone-end
-
 ## Clean up resources
 
 The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
@@ -399,11 +235,8 @@ The Azure resources that you created in this article are billed to your Azure su
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
-
-1. Select the agent that you want to delete, and then select **Delete**.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+1. In VS Code, refresh the **Azure Resources** view. Expand the **Agents** subsection to display the list of deployed agents.
+1. Right-click the deployed agent that you want to delete, and then select **Delete**.
 
 ### Delete your models
 

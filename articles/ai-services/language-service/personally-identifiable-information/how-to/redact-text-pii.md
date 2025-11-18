@@ -27,12 +27,13 @@ By default, this feature uses the latest available AI model on your text. You ca
 
 When you submit input text to be processed, you can specify which of [the supported languages](../language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md).
 
-##  2025-11-15-preview only
+##  Additional configuration parameters (2025-11-15-preview)
 
 > [!IMPORTANT]
 >
 > * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
+> * Preview features are subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
 
 ### Redaction policies
 

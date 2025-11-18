@@ -1,5 +1,5 @@
 ---
-title: How to label your data for custom classification - Azure AI services
+title: How to label your data for custom classification - Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about how to label your data for use with the custom text classification.
 #services: cognitive-services

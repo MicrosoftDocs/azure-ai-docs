@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Text translation REST API
 
-Text translation is a cloud-based feature of the Azure Translator and is part of the Azure AI service family of REST APIs. The Text translation API translates text between language pairs across all [supported languages and dialects](../../language-support.md). The available methods are listed in the following table:
+Text translation is a cloud-based feature of the Azure Translator and is part of the Foundry Tool family of REST APIs. The Text translation API translates text between language pairs across all [supported languages and dialects](../../language-support.md). The available methods are listed in the following table:
 
 | Request| Method| Description|
 |---------|--------------|---------|

@@ -24,7 +24,7 @@ This procedure requires several tools that must be installed and run locally. Do
 * The [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed.
 * An Azure resource with the correct pricing tier. Not all pricing tiers work with this container:
     * **Language** resource with F0 or standard pricing tiers only.
-    * **Azure AI services** resource with the S0 pricing tier.
+    * **Foundry Tools** resource with the S0 pricing tier.
 
 [!INCLUDE [Create a Language resource](../includes/containers/create-text-analytics-resource.md)]
 
@@ -110,7 +110,7 @@ This procedure requires several tools that must be installed and run locally. Do
     ```
 
   > [!IMPORTANT]
-  > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../security-features.md) article for more information.
+  > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Foundry Tools [security](../../security-features.md) article for more information.
 
 1. Save the file, and close the text editor.
 1. Run the Kubernetes `apply` command with the *keyphrase.yaml* file as its target:

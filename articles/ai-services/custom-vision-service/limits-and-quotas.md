@@ -1,6 +1,6 @@
 ---
 title: Limits and quotas - Custom Vision Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains the different types of licensing keys and about the limits and quotas for the Custom Vision Service.
 author: PatrickFarley
 manager: nitinme

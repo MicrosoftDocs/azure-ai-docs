@@ -42,7 +42,7 @@ To recover a deleted Foundry resource, use the following commands. Where applica
 
 # [Azure portal](#tab/azure-portal)
 
-If you need to recover a deleted resource, navigate to the hub of the Azure AI services API type and select "Manage deleted resources" from the menu. For example, if you would like to recover an "Anomaly detector" resource, search for "Anomaly detector" in the search bar and select the service. Then select **Manage deleted resources**.
+If you need to recover a deleted resource, navigate to the hub of the Foundry Tools API type and select "Manage deleted resources" from the menu. For example, if you would like to recover an "Anomaly detector" resource, search for "Anomaly detector" in the search bar and select the service. Then select **Manage deleted resources**.
 
 To locate the deleted resource you would like to recover, select the subscription in the dropdown list. Select one or more of the deleted resources and select **Recover**.
 
@@ -113,7 +113,7 @@ To purge a deleted Foundry resource, use the following commands. Where applicabl
 
 If you need to purge a deleted resource, the steps are similar to recovering a deleted resource.
 
-1. Navigate to the hub of the Azure AI services API type of your deleted resource. For example, if you would like to purge an "Anomaly detector" resource, search for "Anomaly detector" in the search bar and select the service. Then select **Manage deleted resources** from the menu.
+1. Navigate to the hub of the Foundry Tools API type of your deleted resource. For example, if you would like to purge an "Anomaly detector" resource, search for "Anomaly detector" in the search bar and select the service. Then select **Manage deleted resources** from the menu.
 
 1. To locate the deleted resource you would like to purge, select the subscription in the dropdown list. 
 

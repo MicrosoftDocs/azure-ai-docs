@@ -4,10 +4,10 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/07/2025
+ms.date: 11/14/2025
 ---
 
-A knowledge source is a top-level, reusable object. All knowledge sources must be uniquely named within the knowledge sources collection. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
+A knowledge source is a top-level, reusable object. Knowing about existing knowledge sources is helpful for either reuse or naming new objects.
 
 Use [Knowledge Sources - Get (REST API)](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to list knowledge sources by name and type.
 
