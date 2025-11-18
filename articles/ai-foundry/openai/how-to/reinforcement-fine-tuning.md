@@ -170,21 +170,6 @@ Score model graders output a numeric score based on their given input and prompt
 }
 ```
 
-### Label model
-
-Label model graders output a label from a given list of labels based on their input and prompt. Similar to score model graders, `sampling_params` controls the behavior of the scoring model.
-
-```json
-{
-    "type": "label_model",
-    "name": string,
-    "input": Message[],
-    "model": string,
-    "labels": string[],
-    "passing_labels": string[]
-}
-```
-
 ### Code graders
 
 Model graders provide a flexible, but nondeterministic way to grade responses. When determinism is important, code graders provide an alternative approach to defining scoring logic.
