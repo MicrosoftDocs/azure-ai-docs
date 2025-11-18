@@ -213,8 +213,6 @@ Scenario leaderboards group benchmark datasets by common real-world evaluation g
 | Math | [MATH](https://github.com/hendrycks/math) (500 subsample) | Measures mathematical reasoning capabilities of language models.  Higher values are better.|
 | Groundedness | [TruthfulQA](https://github.com/sylinrl/TruthfulQA) (MC1) | Multiple‑choice groundedness / truthfulness assessment of language models.  Higher values are better.|
 
-Accuracy scores are provided on a scale of zero to one. Higher values are better.
-
 ## Quality benchmarks of embedding models
 
 The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of serverless API benchmark datasets targeting Information Retrieval, Document Clustering, and Summarization tasks.
