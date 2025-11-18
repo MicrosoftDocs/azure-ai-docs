@@ -69,7 +69,7 @@ To test the workflow in the VS Code extension playground, follow these steps:
 1. In the input box at the bottom of the **Local Agent Playground** pane, type a message to send to the agent and press **Enter**.
 1. Review the agent's response in the thread.
 
-## Convert YAML based workflow to Agent framework code
+## Convert YAML based workflow to Agent Framework code
 
 To customize your YAML-based workflows, convert it to Agent Framework code using GitHub Copilot using the following steps:
 1. Open the workflow YAML file in VS Code.

@@ -89,7 +89,7 @@ Give the project's managed identity the required permissions. Assign the built-i
 
 To run the sample hosted agent C# project, make sure you have a Foundry project with a deployed model, or an Azure OpenAI resource. 
 
-Give the project's managed identity the required permissions. Assign the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles.
+Give the project's managed identity the required permissions. Assign the built-in [Azure AI User](https://aka.ms/foundry-ext-project-role) and [AcrPull](/azure/role-based-access-control/built-in-roles/containers#acrpull) roles. Ensure the `acrPull` role is also assigned to the managed identity of the Foundry project where you plan to deploy the hosted agent.
 
 >[!IMPORTANT]
 > Check to make sure that your region supports hosted agents. For the latest information on supported regions, see [Region Availability](/azure/ai-foundry/agents/concepts/hosted-agents?view=foundry&preserve-view=true#region-availability). 
