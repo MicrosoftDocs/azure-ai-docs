@@ -17,7 +17,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Use liveness detection with network isolation (preview)
 
-Disabling public network access to internal resources is often part of your network security posture design. By routing liveness detection requests through a verified reverse proxy under your control, you can maintain a private network setup and still allow end-user devices to complete liveness checks. The proxy forwards the necessary liveness detection API calls from the client to your Face or Azure AI service. With this setup, you gain strict network control but also take on more responsibility. You must deploy and secure the proxy endpoint, and ensure it remains available – a trade-off for meeting stringent security requirements.
+Disabling public network access to internal resources is often part of your network security posture design. By routing liveness detection requests through a verified reverse proxy under your control, you can maintain a private network setup and still allow end-user devices to complete liveness checks. The proxy forwards the necessary liveness detection API calls from the client to your Face or Foundry Tool. With this setup, you gain strict network control but also take on more responsibility. You must deploy and secure the proxy endpoint, and ensure it remains available – a trade-off for meeting stringent security requirements.
 
 ## About network isolation
 

@@ -13,6 +13,7 @@ ms.date: 09/16/2025
 # Video generation with Sora (preview)
 
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
+
 Azure OpenAI supports two versions of Sora:
 - Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
 - Sora 2: The latest OpenAI-based API, now available with the Azure OpenAI [v1 API](../api-version-lifecycle.md).
@@ -465,7 +466,7 @@ Saved video.mp4
 
 ### Video generation from reference source
 
-The `input_refernce` parameter allows you to transform existing images and videos using Sora 2. The resolution of the source image/video and final video must match. Supported values are `720x1280`, `1280x720`, `1024x1792`, and `1792x1024`.
+The `input_reference` parameter allows you to transform existing images using Sora 2. The resolution of the source image and final video must match. Supported values are `720x1280`, and `1280x720`.
 
 # [Microsoft Entra ID](#tab/python-entra)
 

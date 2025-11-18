@@ -4,7 +4,7 @@ description: Learn how to use Microsoft Foundry Project REST API (preview)
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 11/10/2025
+ms.date: 11/17/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry'
@@ -2887,11 +2887,10 @@ Search for relevant memories from a memory store based on conversation context.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| conversation_id | string | The conversation ID for which to search memories. Only one of conversation_id or items should be provided. | No |  |
-| items | array | Items for which to search for relevant memories. Only one of conversation_id or items should be provided. | No |  |
+| items | array | Items for which to search for relevant memories. | No |  |
 | options | object | Memory search options. | No |  |
 | └─ max_memories | integer | Maximum number of memory items to return. | No |  |
-| previous_search_id | string | The unique ID of the previous search request, enabling incremental memory search from where the last operation left off. Cannot be used together with conversation_id. | No |  |
+| previous_search_id | string | The unique ID of the previous search request, enabling incremental memory search from where the last operation left off. | No |  |
 | scope | string | The namespace that logically groups and isolates memories, such as a user ID. | Yes |  |
 
 ### Responses
@@ -2940,9 +2939,8 @@ Update memory store with conversation memories.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| conversation_id | string | The conversation ID from which to extract memories. Only one of conversation_id or items should be provided. | No |  |
-| items | array | Conversation items from which to extract memories. Only one of conversation_id or items should be provided. | No |  |
-| previous_update_id | string | The unique ID of the previous update request, enabling incremental memory updates from where the last operation left off. Cannot be used together with conversation_id. | No |  |
+| items | array | Conversation items from which to extract memories. | No |  |
+| previous_update_id | string | The unique ID of the previous update request, enabling incremental memory updates from where the last operation left off. | No |  |
 | scope | string | The namespace that logically groups and isolates memories, such as a user ID. | Yes |  |
 | update_delay | integer | Timeout period before processing the memory update in seconds.<br>If a new update request is received during this period, it will cancel the current request and reset the timeout.<br>Set to 0 to immediately trigger the update without delay.<br>Defaults to 300 (5 minutes). | No | 300 |
 
@@ -5205,34 +5203,13 @@ Agentic identity credential definition
 |------|------|-------------|----------|---------|
 | type | enum | The credential type<br>Possible values: `AgenticIdentityToken` | Yes |  |
 
-### ApiError
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| code | string | The error code. | Yes |  |
-| details | array | Additional details about the error. | Yes |  |
-| innererror | object |  | No |  |
-| └─ code | string | The error code. | No |  |
-| └─ innererror | [ApiInnerError](#apiinnererror) | The inner error, if any. | No |  |
-| message | string | A human-readable description of the error. | Yes |  |
-| target | string | The target of the error, if applicable. | No |  |
-
 ### ApiErrorResponse
 
 Error response for API failures.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| error | [ApiError](#apierror) |  | Yes |  |
-
-### ApiInnerError
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| code | string | The error code. | Yes |  |
-| innererror | object |  | No |  |
-| └─ code | string | The error code. | No |  |
-| └─ innererror | [ApiInnerError](#apiinnererror) | The inner error, if any. | No |  |
+| error | [OpenAI.Error](#openaierror) |  | Yes |  |
 
 ### ApiKeyCredentials
 
@@ -5680,7 +5657,7 @@ A tool for capturing structured outputs
 | outputs | object | A structured output that can be produced by the agent. | Yes |  |
 | └─ description | string | A description of the output to emit. Used by the model to determine when to emit the output. | No |  |
 | └─ name | string | The name of the structured output. | No |  |
-| └─ schema | object | The JSON schema for the structured output. | No |  |
+| └─ schema |  | The JSON schema for the structured output. | No |  |
 | └─ strict | boolean | Whether to enforce strict validation. Default `true`. | No |  |
 | type | enum | The type of the tool. Always `capture_structured_outputs`.<br>Possible values: `capture_structured_outputs` | Yes |  |
 
@@ -6898,20 +6875,6 @@ Metadata about the insights.
 | completedAt | string | The timestamp when the insights were completed. | No |  |
 | createdAt | string | The timestamp when the insights were created. | Yes |  |
 
-### InvokeAzureAgentWorkflowActionOutputItemResource
-
-Details about an agent invocation as part of a workflow action.
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| agent | object |  | Yes |  |
-| └─ name | string | The name of the agent. | No |  |
-| └─ type | enum | <br>Possible values: `agent_id` | No |  |
-| └─ version | string | The version identifier of the agent. | No |  |
-| conversation_id | string | ID of the conversation for the agent invocation. | No |  |
-| kind | enum | <br>Possible values: `InvokeAzureAgent` | Yes |  |
-| response_id | string | The response id for the agent invocation. | Yes |  |
-
 ### ItemGenerationParams
 
 Represents the set of parameters used to control item generation operations.
@@ -7184,11 +7147,13 @@ Provides the status of a memory store update operation.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | error | object |  | No |  |
-| └─ code | string | The error code. | No |  |
-| └─ details | array | Additional details about the error. | No |  |
-| └─ innererror | [ApiInnerError](#apiinnererror) | The inner error, if any. | No |  |
-| └─ message | string | A human-readable description of the error. | No |  |
-| └─ target | string | The target of the error, if applicable. | No |  |
+| └─ additionalInfo | object |  | No |  |
+| └─ code | string |  | No |  |
+| └─ debugInfo | object |  | No |  |
+| └─ details | array |  | No |  |
+| └─ message | string |  | No |  |
+| └─ param | string |  | No |  |
+| └─ type | string |  | No |  |
 | result | object | Memory update result. | No |  |
 | └─ memory_operations | array | A list of individual memory operations that were performed during the update. | No |  |
 | └─ usage | [MemoryStoreOperationUsage](#memorystoreoperationusage) | Usage statistics associated with the memory update operation. | No |  |
@@ -7357,7 +7322,7 @@ A citation for a web resource used to generate a model response.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | city | string |  | No |  |
-| country/region | string |  | No |  |
+| country | string |  | No |  |
 | region | string |  | No |  |
 | timezone | string |  | No |  |
 | type | enum | <br>Possible values: `approximate` | Yes |  |
@@ -7778,7 +7743,7 @@ A CompletionsRunDataSource object describing a model sampling configuration.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | max_completion_tokens | [OpenAI.integer](#openaiinteger) |  | No |  |
-| reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | response_format | object | Default response format. Used to generate text responses. | No |  |
 | └─ json_schema | object | Structured Outputs configuration options, including a JSON Schema. | No |  |
 |   └─ description | string | A description of what the response format is for, used by the model to<br>determine how to respond in the format. | No |  |
@@ -7846,7 +7811,7 @@ A ResponsesRunDataSource object describing a model sampling configuration.
 | └─ instructions_search | string |  | No |  |
 | └─ metadata | object |  | No |  |
 | └─ model | string |  | No |  |
-| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | └─ temperature | [OpenAI.numeric](#openainumeric) |  | No |  |
 | └─ tools | array |  | No |  |
 | └─ top_p | [OpenAI.numeric](#openainumeric) |  | No |  |
@@ -7873,7 +7838,7 @@ A ResponsesRunDataSource object describing a model sampling configuration.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | max_completion_tokens | [OpenAI.integer](#openaiinteger) |  | No |  |
-| reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | seed | object |  | No |  |
 | temperature | object |  | No |  |
 | text | [OpenAI.CreateEvalResponsesRunDataSourceSamplingParamsText](#openaicreateevalresponsesrundatasourcesamplingparamstext) |  | No |  |
@@ -7973,7 +7938,7 @@ This component uses the property `type` to discriminate between different types:
 | └─ variables | [OpenAI.ResponsePromptVariables](#openairesponsepromptvariables) | Optional map of values to substitute in for variables in your<br>prompt. The substitution values can either be strings, or other<br>Response input types like images or files. | No |  |
 | └─ version | string | Optional version of the prompt template. | No |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | └─ generate_summary | enum | **Deprecated**: use `summary` instead. A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process. One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | service_tier | object | Specifies the processing type used for serving the request.<br>* If set to 'auto', then the request will be processed with the service tier<br>configured in the Project settings. Unless otherwise configured, the Project will use 'default'.<br>* If set to 'default', then the request will be processed with the standard<br>pricing and performance for the selected model.<br>* If set to '[flex](https://platform.openai.com/docs/guides/flex-processing)'<br>or 'priority', then the request will be processed with the corresponding service<br>tier. [Contact sales](https://openai.com/contact-sales) to learn more about Priority processing.<br>* When not set, the default behavior is 'auto'.<br><br>When the `service_tier` parameter is set, the response body will include the `service_tier`<br>value based on the processing mode actually used to serve the request. This response value<br>may be different from the value set in the parameter. | No |  |
@@ -8005,6 +7970,18 @@ This component uses the property `type` to discriminate between different types:
 |------|------|-------------|----------|---------|
 | content | string or array |  | Yes |  |
 | role | string |  | Yes |  |
+
+### OpenAI.Error
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| additionalInfo | object |  | No |  |
+| code | string |  | Yes |  |
+| debugInfo | object |  | No |  |
+| details | array |  | No |  |
+| message | string |  | Yes |  |
+| param | string |  | Yes |  |
+| type | string |  | Yes |  |
 
 ### OpenAI.EvalApiError
 
@@ -8047,7 +8024,7 @@ An object representing an error response from the Eval API.
 | range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
 | sampling_params | object |  | No |  |
 | └─ max_completions_tokens | [OpenAI.integer](#openaiinteger) |  | No |  |
-| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | └─ seed | [OpenAI.integer](#openaiinteger) |  | No |  |
 | └─ temperature | [OpenAI.numeric](#openainumeric) |  | No |  |
 | └─ top_p | [OpenAI.numeric](#openainumeric) |  | No |  |
@@ -8058,7 +8035,7 @@ An object representing an error response from the Eval API.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | max_completions_tokens | object |  | No |  |
-| reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | seed | object |  | No |  |
 | temperature | object |  | No |  |
 | top_p | object |  | No |  |
@@ -8151,7 +8128,7 @@ A EvalResponsesSource object describing a run data source configuration.
 | instructions_search | string |  | No |  |
 | metadata | object |  | No |  |
 | model | string |  | No |  |
-| reasoning_effort | object | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| reasoning_effort | object | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | temperature | object |  | No |  |
 | tools | array |  | No |  |
 | top_p | object |  | No |  |
@@ -8595,7 +8572,7 @@ A ScoreModelGrader object that uses a model to assign a score to the input.
 | range | array | The range of the score. Defaults to `[0, 1]`. | No |  |
 | sampling_params | object |  | No |  |
 | └─ max_completions_tokens | [OpenAI.integer](#openaiinteger) |  | No |  |
-| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| └─ reasoning_effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | └─ seed | [OpenAI.integer](#openaiinteger) |  | No |  |
 | └─ temperature | [OpenAI.numeric](#openainumeric) |  | No |  |
 | └─ top_p | [OpenAI.numeric](#openainumeric) |  | No |  |
@@ -9169,25 +9146,29 @@ Configuration options for reasoning models.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| effort | object | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| effort | object | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | generate_summary | enum | **Deprecated**: use `summary` instead. A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process. One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 
 ### OpenAI.ReasoningEffort
 
-**o-series models only**
+Constrains effort on reasoning for reasoning models.
 
-Constrains effort on reasoning for
-reasoning models.
-Currently supported values are `low`, `medium`, and `high`. Reducing
-reasoning effort can result in faster responses and fewer tokens used
-on reasoning in a response.
+Currently supported values are none, minimal, low, medium, and high.
+
+Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+
+gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.
+
+All models before gpt-5.1 default to medium reasoning effort, and do not support none.
+
+The gpt-5-pro model defaults to (and only supports) high reasoning effort.
 
 | Property | Value |
 |----------|-------|
-| **Description** | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. |
+| **Description** | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. |
 | **Type** | string |
-| **Values** | `low`<br>`medium`<br>`high` |
+| **Values** | `none`<br>`minimal`<br>`low`<br>`medium`<br>`high` |
 
 ### OpenAI.ReasoningItemParam
 
@@ -9279,7 +9260,7 @@ This component uses the property `type` to discriminate between different types:
 | └─ variables | [OpenAI.ResponsePromptVariables](#openairesponsepromptvariables) | Optional map of values to substitute in for variables in your<br>prompt. The substitution values can either be strings, or other<br>Response input types like images or files. | No |  |
 | └─ version | string | Optional version of the prompt template. | No |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | └─ generate_summary | enum | **Deprecated**: use `summary` instead. A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process. One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | service_tier | object | Specifies the processing type used for serving the request.<br>* If set to 'auto', then the request will be processed with the service tier<br>configured in the Project settings. Unless otherwise configured, the Project will use 'default'.<br>* If set to 'default', then the request will be processed with the standard<br>pricing and performance for the selected model.<br>* If set to '[flex](https://platform.openai.com/docs/guides/flex-processing)'<br>or 'priority', then the request will be processed with the corresponding service<br>tier. [Contact sales](https://openai.com/contact-sales) to learn more about Priority processing.<br>* When not set, the default behavior is 'auto'.<br><br>When the `service_tier` parameter is set, the response body will include the `service_tier`<br>value based on the processing mode actually used to serve the request. This response value<br>may be different from the value set in the parameter. | No |  |
@@ -10946,7 +10927,7 @@ The prompt agent definition
 | kind | enum | <br>Possible values: `prompt` | Yes |  |
 | model | string | The model deployment to use for this agent. | Yes |  |
 | reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | Constrains effort on reasoning for reasoning models.<br><br>Currently supported values are none, minimal, low, medium, and high.<br><br>Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br><br>gpt-5.1 defaults to none, which does not perform reasoning. The supported reasoning values for gpt-5.1 are none, low, medium, and high. Tool calls are supported for all reasoning values in gpt-5.1.<br><br>All models before gpt-5.1 default to medium reasoning effort, and do not support none.<br><br>The gpt-5-pro model defaults to (and only supports) high reasoning effort. | No |  |
 | └─ generate_summary | enum | **Deprecated**: use `summary` instead. A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process. One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 | structured_inputs | object | Set of structured inputs that can participate in prompt template substitution or tool argument bindings. | No |  |
@@ -11218,7 +11199,6 @@ An structured input that can participate in prompt template substitutions and to
 | description | string | A human-readable description of the input. | No |  |
 | required | boolean | Whether the input property is required when the agent is invoked. | No | False |
 | schema |  | The JSON schema for the structured input (optional). | No |  |
-| tool_argument_bindings | array | When provided, the input value is bound to the specified tool arguments. | No |  |
 
 ### StructuredOutputDefinition
 
@@ -11228,7 +11208,7 @@ A structured output that can be produced by the agent.
 |------|------|-------------|----------|---------|
 | description | string | A description of the output to emit. Used by the model to determine when to emit the output. | Yes |  |
 | name | string | The name of the structured output. | Yes |  |
-| schema | object | The JSON schema for the structured output. | Yes |  |
+| schema |  | The JSON schema for the structured output. | Yes |  |
 | strict | boolean | Whether to enforce strict validation. Default `true`. | Yes |  |
 
 ### StructuredOutputsItemResource
@@ -11348,13 +11328,6 @@ Taxonomy sub-category definition.
 | name | string | Name of the taxonomy sub-category. | Yes |  |
 | properties | object | Additional properties for the taxonomy sub-category. | No |  |
 
-### ToolArgumentBinding
-
-| Name | Type | Description | Required | Default |
-|------|------|-------------|----------|---------|
-| argument_name | string | The name of the argument within the tool. | Yes |  |
-| tool_name | string | The name of the tool to participate in the argument binding. If not provided, then all tools with matching arguments will participate in binding. | No |  |
-
 ### ToolDescription
 
 Description of a tool that can be used by an agent.
@@ -11465,15 +11438,6 @@ Weekly recurrence schedule.
 | type | enum | Weekly recurrence type.<br>Possible values: `Weekly` | Yes |  |
 
 ### WorkflowActionOutputItemResource
-
-
-### Discriminator for WorkflowActionOutputItemResource
-
-This component uses the property `kind` to discriminate between different types:
-
-| Type Value | Schema |
-|------------|--------|
-| `InvokeAzureAgent` | [InvokeAzureAgentWorkflowActionOutputItemResource](#invokeazureagentworkflowactionoutputitemresource) |
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

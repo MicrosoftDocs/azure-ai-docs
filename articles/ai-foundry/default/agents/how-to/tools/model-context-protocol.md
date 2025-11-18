@@ -48,30 +48,30 @@ from openai.types.responses.response_input_param import McpApprovalResponse, Res
 
 load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
 
-# Get the OpenAI client for responses and conversations
-openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
-mcp_tool = MCPTool(
-    server_label="api-specs",
-    server_url="https://gitmcp.io/Azure/azure-rest-api-specs",
-    require_approval="always",
-)
+    # [START tool_declaration]
+    tool = MCPTool(
+        server_label="api-specs",
+        server_url="https://api.githubcopilot.com/mcp",
+        require_approval="always",
+        project_connection_id=os.environ["MCP_PROJECT_CONNECTION_ID"],
+    )
+    # [END tool_declaration]
 
-# Create tools list with proper typing for the agent definition
-tools: list[Tool] = [mcp_tool]
-
-with project_client:
+    # Create a prompt agent with MCP tool capabilities
     agent = project_client.agents.create_version(
-        agent_name="MyAgent",
+        agent_name="MyAgent7",
         definition=PromptAgentDefinition(
             model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
-            tools=tools,
+            instructions="Use MCP tools as needed",
+            tools=[tool],
         ),
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
@@ -83,7 +83,7 @@ with project_client:
     # Send initial request that will trigger the MCP tool
     response = openai_client.responses.create(
         conversation=conversation.id,
-        input="Please summarize the Azure REST API specifications Readme",
+        input="What is my username in Github profile?",
         extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
     )
 
@@ -114,15 +114,16 @@ with project_client:
     )
 
     print(f"Response: {response.output_text}")
+
+    # Clean up resources by deleting the agent version
+    # This prevents accumulation of unused agent versions in your project
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ## How it works
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
-
-The MCP tool supports custom headers, so you can connect to the MCP servers by using the authentication schemas that they require or by passing other headers that the MCP servers require. You can specify headers only by including them in `tool_resources` at each run. In this way, you can put API keys, OAuth access tokens, or other credentials directly in your request.
-
-The most commonly used header is the authorization header. Headers that you pass in are available only for the current run and aren't persisted.
 
 For more information on using MCP, see:
 
@@ -135,21 +136,17 @@ For more information on using MCP, see:
 
    1. `server_url`: The URL of the MCP server; for example, `https://api.githubcopilot.com/mcp/`.
    2. `server_label`: A unique identifier of this MCP server to the agent; for example, `github`.
-   3. `allowed_tools`: An optional list of tools that this agent can access and use.
-  
-1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers:
-
-   1. `tool_label`: Use the identifier that you provided when you created the agent.
-   2. `headers`: Pass a set of headers that the MCP server requires.
-   3. `require_approval`: Optionally determine whether approval is required. Supported values are:
+   3. `allowed_tools`: An optional list of tools that this agent can access and use. If you don't provide this value, by default it will be all of tools in the MCP server.
+   4. `require_approval`: Optionally determine whether approval is required. By default, it will set to `always`. Supported values are:
       * `always`: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.
       * `never`: No approval is required.
       * `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
       * `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
+   5. `project_connection_id`: the name of your project connection
 
-1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `requires_action`. In the `requires_action` field, you can get more details on which tool in the MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
+1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
 
-1. Submit your approval to the agent with `call_id` by setting `approve` to `true`.
+1. Submit your approval to the agent with `response_id` by setting `approve` to `true`.
 
 ## Host a local MCP server
 
