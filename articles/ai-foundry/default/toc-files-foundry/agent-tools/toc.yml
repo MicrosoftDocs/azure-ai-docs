@@ -5,6 +5,8 @@ items:
   href: ../../agents/how-to/private-tool-catalog.md
 - name: Tool best practices
   href: ../../agents/concepts/tool-best-practice.md
+- name: Tool governance
+  href: ../../agents/how-to/tools/governance.md
 - name: Browser automation (preview)
   href: ../../agents/how-to/tools/browser-automation.md
 - name: Memory (preview)
