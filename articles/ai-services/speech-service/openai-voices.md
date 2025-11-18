@@ -1,4 +1,4 @@
-﻿---
+---
 title: What are OpenAI text to speech voices?
 titleSuffix: Foundry Tools
 description: Learn about OpenAI voices that you can use for text to speech in Foundry Tools.

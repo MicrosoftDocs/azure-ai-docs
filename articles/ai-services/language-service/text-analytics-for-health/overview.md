@@ -18,7 +18,7 @@ ms.custom: language-service-health
 Text Analytics for health is one of the prebuilt features offered by [Azure Language in Foundry Tools](../overview.md). Text Analytics for health uses machine learning to identify and label medical information in unstructured text such as doctor's notes, clinical documents, and electronic health records. It extracts key data from sources like discharge summaries to support healthcare analysis.
 
 > [!TIP]
-> Try out Text Analytics for health [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md) in order to use this service.
+> Try out Text Analytics for health [in Microsoft Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md) in order to use this service.
 
 This documentation contains the following types of articles:
 * The [**quickstart article**](quickstart.md) provides a short tutorial that guides you with making your first request to the service.

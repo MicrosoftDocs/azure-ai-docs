@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Quickstart: Label forms, train a model, and analyze forms using the Sample Labeling tool - Document Intelligence "
 titleSuffix: Foundry Tools
 description: In this quickstart, learn to use the Document Intelligence Sample Labeling tool to manually label documents. Then train a custom document processing model with the labeled documents and use the model to extract key/value pairs.

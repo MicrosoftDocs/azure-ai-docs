@@ -38,9 +38,9 @@ In this tutorial, you learn to categorize and triage incoming email using custom
 
 4. Add the right connection to your email account. This connection is used to access the email content.
 
-5. To add a Language connector, search for *Azure AI Language*.
+5. To add a Language connector, search for *Azure Language in Foundry Tools*.
   
-    :::image type="content" source="../media/language-connector.png" alt-text="A screenshot of available Azure AI Language connectors." lightbox="../media/language-connector.png":::
+    :::image type="content" source="../media/language-connector.png" alt-text="A screenshot of available Language connectors." lightbox="../media/language-connector.png":::
 
 6. Search for *CustomSingleLabelClassification*.
 

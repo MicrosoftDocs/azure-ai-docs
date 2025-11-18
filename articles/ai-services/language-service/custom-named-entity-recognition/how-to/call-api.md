@@ -20,7 +20,7 @@ You can query the deployment programmatically using the [Prediction API](/rest/a
 
 ## Test deployed model
 
-You can retrieve up-to-date information about your projects, make any necessary changes, and oversee project management tasks efficiently through the Azure AI Foundry.
+You can retrieve up-to-date information about your projects, make any necessary changes, and oversee project management tasks efficiently through the Microsoft Foundry.
 
 [!INCLUDE [Test model](../../includes/custom/language-studio/test-model.md)]
 
@@ -38,7 +38,7 @@ You can retrieve up-to-date information about your projects, make any necessary 
 
 First you need to get your resource key and endpoint:
 
-[!INCLUDE [Get keys and endpoint Azure Portal](../../includes/get-key-endpoint.md)]
+[!INCLUDE [Get keys and endpoint Azure portal](../../includes/get-key-endpoint.md)]
 
 3. Download and install the client library package for your language of choice:
 

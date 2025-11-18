@@ -1,7 +1,7 @@
 ---
 title: Translator 2025-10-01-preview languages method
-titleSuffix: Azure AI services
-description: The languages method displays the set of languages currently supported by Azure AI Translator 2025-10-01-preview.
+titleSuffix: Foundry Tools
+description: The languages method displays the set of languages currently supported by Azure Translator in Foundry Tools 2025-10-01-preview.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

@@ -273,7 +273,7 @@ To use the skills for image verbalization:
 
 1. On the **Image Verbalization** tab:
 
-   1. For the kind, select your LLM provider: **Azure OpenAI** or **AI Foundry Hub catalog models**.
+   1. For the kind, select your LLM provider: **Azure OpenAI** or **Foundry Hub catalog models**.
 
    1. Select your Azure subscription, resource, and LLM deployment.
 
@@ -285,7 +285,7 @@ To use the skills for image verbalization:
 
 1. On the **Text Vectorization** tab:
 
-   1. For the kind, select your model provider: **Azure OpenAI**, **AI Foundry Hub catalog models**, or **AI Vision vectorization**.
+   1. For the kind, select your model provider: **Azure OpenAI**, **Foundry Hub catalog models**, or **AI Vision vectorization**.
 
    1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -309,7 +309,7 @@ To use the skills for multimodal embeddings:
 
    :::image type="content" source="media/search-get-started-portal-images/multimodal-embedding-tile.png" alt-text="Screenshot of the Multimodal Embedding tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/multimodal-embedding-tile.png":::
 
-1. For the kind, select your model provider: **AI Foundry Hub catalog models** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Foundry Hub catalog models** or **AI Vision vectorization**.
 
    If Azure Vision is unavailable, make sure your search service and Foundry resource are both in a [region that supports the Azure Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
 

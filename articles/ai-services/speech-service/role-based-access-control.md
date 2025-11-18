@@ -82,7 +82,7 @@ echo $accessToken
 
 The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys. The token has a [limited lifetime](/entra/identity-platform/configurable-token-lifetimes#access-tokens).
 
-Now you can use the `accessToken` to authenticate with the AI Foundry resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
+Now you can use the `accessToken` to authenticate with the Foundry resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
 
 ```bash
 uri="https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15"

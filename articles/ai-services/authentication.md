@@ -15,13 +15,13 @@ ms.author: pafarley
 
 Each request to Foundry Tools must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn about three ways to authenticate a request and the requirements for each.
 
-* Authenticate with a [single-service](#authenticate-with-a-single-service-resource-key) or [AI Foundry multi-service](#authenticate-with-an-ai-foundry-resource-key) resource key.
+* Authenticate with a [single-service](#authenticate-with-a-single-service-resource-key) or [Foundry multi-service](#authenticate-with-a-foundry-resource-key) resource key.
 * Authenticate with a [token](#authenticate-with-an-access-token).
 * Authenticate with [Microsoft Entra ID](#authenticate-with-azure-active-directory).
 
 ## Prerequisites
 
-Before you make a request, you need an Azure subscription and an AI Foundry resource. If you need an AI Foundry resource, see the [create an AI Foundry resource](multi-service-resource.md?pivots=azportal) guide.
+Before you make a request, you need an Azure subscription and a Foundry resource. If you need a Foundry resource, see the [create a Foundry resource](multi-service-resource.md?pivots=azportal) guide.
 
 ## Authentication headers
 
@@ -29,8 +29,8 @@ Let's quickly review the authentication headers available for use with Foundry T
 
 | Header | Description |
 |--------|-------------|
-| Ocp-Apim-Subscription-Key | Use this header to authenticate with a resource key for a specific service or an AI Foundry resource key. |
-| Ocp-Apim-Subscription-Region | This header is only required when using an AI Foundry resource key with the [Azure Translator](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
+| Ocp-Apim-Subscription-Key | Use this header to authenticate with a resource key for a specific service or a Foundry resource key. |
+| Ocp-Apim-Subscription-Region | This header is only required when using a Foundry resource key with the [Azure Translator](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
 | Authorization | Use this header if you are using an access token. The steps to perform a token exchange are detailed in the following sections. The value provided follows this format: `Bearer <TOKEN>`. |
 
 ## Authenticate with a single-service resource key
@@ -47,19 +47,19 @@ curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-versio
 --data-raw '[{ "text": "How much for the cup of coffee?" }]' | json_pp
 ```
 
-## Authenticate with an AI Foundry resource key
+## Authenticate with a Foundry resource key
 
-You can use an [AI Foundry resource](./multi-service-resource.md) key to authenticate requests for multiple Foundry Tools. The authentication credentials aren't tied to a specific service. See [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) for information about regional availability, supported features, and pricing.
+You can use a [Foundry resource](./multi-service-resource.md) key to authenticate requests for multiple Foundry Tools. The authentication credentials aren't tied to a specific service. See [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) for information about regional availability, supported features, and pricing.
 
 The resource key is provided in each request as the `Ocp-Apim-Subscription-Key` header.
 
 ### Supported regions
 
-When using the [AI Foundry resource](./multi-service-resource.md) key to make a request to `api.cognitive.microsoft.com`, you must include the region in the URL. For example: `westus.api.cognitive.microsoft.com`.
+When using the [Foundry resource](./multi-service-resource.md) key to make a request to `api.cognitive.microsoft.com`, you must include the region in the URL. For example: `westus.api.cognitive.microsoft.com`.
 
-When using an AI Foundry resource key with [Azure Translator](./translator/index.yml), you must specify the resource region with the `Ocp-Apim-Subscription-Region` header.
+When using a Foundry resource key with [Azure Translator](./translator/index.yml), you must specify the resource region with the `Ocp-Apim-Subscription-Region` header.
 
-AI Foundry resource authentication is supported in these regions:
+Foundry resource authentication is supported in these regions:
 
 - `australiaeast`
 - `brazilsouth`
@@ -108,7 +108,7 @@ Some Foundry Tools accept, and in some cases require, an access token. Currently
 > [!WARNING]
 > The services that support access tokens may change over time, so check the API reference for a service before using this authentication method.
 
-AI Foundry and AI services resource keys can be exchanged for authentication tokens. Authentication tokens are valid for 10 minutes. They're stored in JSON Web Token (JWT) format and can be queried programmatically using the [JWT libraries](https://jwt.io/libraries). 
+Foundry and AI services resource keys can be exchanged for authentication tokens. Authentication tokens are valid for 10 minutes. They're stored in JSON Web Token (JWT) format and can be queried programmatically using the [JWT libraries](https://jwt.io/libraries). 
 
 Access tokens are included in a request as the `Authorization` header. The token value provided must be preceded by `Bearer`, for example: `Bearer YOUR_AUTH_TOKEN`.
 
@@ -124,7 +124,7 @@ curl -v -X POST \
 -H "Ocp-Apim-Subscription-Key: YOUR_SUBSCRIPTION_KEY"
 ```
 
-These regions support token exchange for AI Foundry resources:
+These regions support token exchange for Foundry resources:
 
 - `australiaeast`
 - `brazilsouth`
@@ -167,7 +167,7 @@ In the following sections, you'll use either the Azure Cloud Shell environment o
 
 ### Create a resource with a custom subdomain
 
-The first step is to create a custom subdomain. If you want to use an existing AI Foundry resource which doesn't have custom subdomain name, follow the instructions in [Foundry Tools custom subdomains](./cognitive-services-custom-subdomains.md#how-does-this-impact-existing-resources) to enable custom subdomain for your resource.
+The first step is to create a custom subdomain. If you want to use an existing Foundry resource which doesn't have custom subdomain name, follow the instructions in [Foundry Tools custom subdomains](./cognitive-services-custom-subdomains.md#how-does-this-impact-existing-resources) to enable custom subdomain for your resource.
 
 1. Start by opening the Azure Cloud Shell. Then [select a subscription](/powershell/module/az.accounts/set-azcontext):
 
@@ -175,7 +175,7 @@ The first step is to create a custom subdomain. If you want to use an existing A
    Set-AzContext -SubscriptionName <SubscriptionName>
    ```
 
-1. Next, [create an AI Foundry resource](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) with a custom subdomain. The subdomain name needs to be globally unique and cannot include special characters, such as: ".", "!", ",".
+1. Next, [create a Foundry resource](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) with a custom subdomain. The subdomain name needs to be globally unique and cannot include special characters, such as: ".", "!", ",".
 
    ```powershell-interactive
    $account = New-AzCognitiveServicesAccount -ResourceGroupName <RESOURCE_GROUP_NAME> -name <ACCOUNT_NAME> -Type <ACCOUNT_TYPE> -SkuName <SUBSCRIPTION_TYPE> -Location <REGION> -CustomSubdomainName <UNIQUE_SUBDOMAIN>
@@ -191,7 +191,7 @@ Now that you have a custom subdomain associated with your resource, you're going
 > [!NOTE]
 > Keep in mind that Azure role assignments may take up to five minutes to propagate.
 
-1. First, let's register an [Microsoft Entra application](/powershell/module/Az.Resources/New-AzADApplication).
+1. First, let's register a [Microsoft Entra application](/powershell/module/Az.Resources/New-AzADApplication).
 
    ```powershell-interactive
    $SecureStringPassword = ConvertTo-SecureString -String <YOUR_PASSWORD> -AsPlainText -Force
@@ -214,7 +214,7 @@ Now that you have a custom subdomain associated with your resource, you're going
 
    > [!NOTE]
    > The ObjectId of the service principal is used, not the ObjectId for the application.
-   > The ACCOUNT_ID will be the Azure resource Id of the AI Foundry resource you created. You can find the Azure resource Id from "properties" of the resource in Azure portal.
+   > The ACCOUNT_ID will be the Azure resource Id of the Foundry resource you created. You can find the Azure resource Id from "properties" of the resource in Azure portal.
 
    ```azurecli-interactive
    New-AzRoleAssignment -ObjectId <SERVICE_PRINCIPAL_OBJECTID> -Scope <ACCOUNT_ID> -RoleDefinitionName "Cognitive Services User"
@@ -263,11 +263,11 @@ Alternatively, the service principal can be authenticated with a certificate. Be
 
 ## Authorize access to managed identities
  
-Foundry Tools support Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to AI Foundry resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
+Foundry Tools support Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to Foundry resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
 
 ### Enable managed identities on a Virtual Machine (VM)
 
-Before you can use managed identities for Azure resources to authorize access to AI Foundry resources from your VM, you must enable managed identities for Azure resources on the VM. To learn how to enable managed identities for Azure resources, see:
+Before you can use managed identities for Azure resources to authorize access to Foundry resources from your VM, you must enable managed identities for Azure resources on the VM. To learn how to enable managed identities for Azure resources, see:
 
 - [Azure portal](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm)
 - [Azure PowerShell](/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm)
@@ -279,7 +279,7 @@ For more information about managed identities, see [Managed identities for Azure
 
 ## Use Azure key vault to securely access credentials
 
-You can [use Azure Key Vault](./use-key-vault.md) to securely develop Azure AI Foundry applications. Key Vault enables you to store your authentication credentials in the cloud, and reduces the chances that secrets may be accidentally leaked, because you won't store security information in your application.
+You can [use Azure Key Vault](./use-key-vault.md) to securely develop Microsoft Foundry applications. Key Vault enables you to store your authentication credentials in the cloud, and reduces the chances that secrets may be accidentally leaked, because you won't store security information in your application.
 
 Authentication is done via Microsoft Entra ID. Authorization may be done via Azure role-based access control (Azure RBAC) or Key Vault access policy. Azure RBAC can be used for both management of the vaults and access data stored in a vault, while key vault access policy can only be used when attempting to access data stored in a vault.
 

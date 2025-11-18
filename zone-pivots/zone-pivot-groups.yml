@@ -1431,6 +1431,14 @@ groups:
     title: Java
   - id: rest
     title: REST API
+- id: selection-function-calling-new
+  title: Selections
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST API
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
@@ -1705,3 +1713,12 @@ groups:
     title: Python
   - id: csharp
     title: C#
+# Owner: haileytapia
+- id: agentic-retrieval-pivots
+  title: Agentic retrieval pivots
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST

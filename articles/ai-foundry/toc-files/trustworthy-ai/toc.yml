@@ -3,7 +3,7 @@ items:
   href: ../../responsible-use-of-ai-overview.md
 - name: Content filtering
   items:
-   - name: Azure AI Content Safety in AI Foundry portal overview
+   - name: Azure AI Content Safety in Foundry portal overview
      href: ../../ai-services/content-safety-overview.md
    - name: Guardrails + Controls for models deployed with serverless APIs
      href: ../../concepts/model-catalog-content-safety.md

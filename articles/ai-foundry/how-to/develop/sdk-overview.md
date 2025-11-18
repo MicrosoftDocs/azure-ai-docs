@@ -68,7 +68,7 @@ The following examples show how to authenticate and create a client for your pro
 
 ::: zone pivot="programming-language-python"
 
-The [Foundry Projects SDK for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install the project client library 
 
@@ -100,7 +100,7 @@ The [Foundry Projects SDK for Python](/python/api/overview/azure/ai-projects-rea
 
 ::: zone pivot="programming-language-java"
 
-The [Foundry Projects SDK for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -128,7 +128,7 @@ The [Foundry Projects SDK for Java (preview)](/java/api/overview/azure/ai-projec
 
 ::: zone pivot="programming-language-javascript"
 
-The [Foundry Projects SDK for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install dependencies (preview):
 
@@ -153,7 +153,7 @@ The [Foundry Projects SDK for JavaScript](/javascript/api/overview/azure/ai-proj
 
 ::: zone pivot="programming-language-csharp"
 
-The [Foundry Projects SDK for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install packages:
 

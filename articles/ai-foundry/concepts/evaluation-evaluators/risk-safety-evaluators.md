@@ -66,7 +66,7 @@ You can also use the [Content Safety Evaluator](#content-safety-composite-evalua
 
 ## Foundry project configuration and region support
 
-The risk and safety evaluators use hosted evaluation language models in the Foundry evaluation service. They require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+The risk and safety evaluators use hosted evaluation language models in the Foundry evaluation service. They require your Foundry project information to be instantiated. The Foundry project must be in a supported region:
 
 | Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Protected material |
 |--|--|--|

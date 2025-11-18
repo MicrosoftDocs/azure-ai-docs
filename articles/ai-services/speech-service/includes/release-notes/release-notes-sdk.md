@@ -124,7 +124,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
       * ConversationTranscriber
       * SpeechSynthesizer
     In all programming languages except JavaScript.
-    * You can now use the Endpoint from the Azure Portal for Speech and Cognitive Services resources to construct a SpeechConfig object.
+    * You can now use the Endpoint from the Azure portal for Speech and Cognitive Services resources to construct a SpeechConfig object.
     * All other methods to construct a SpeechConfig continue to function and are supported.
   * Updated TranslationRecognizer to use V2 endpoints by default.
     * This moves control parameters from the URL to in-channel messages when using a V2 endpoint.

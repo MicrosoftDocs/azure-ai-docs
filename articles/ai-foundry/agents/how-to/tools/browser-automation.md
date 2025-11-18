@@ -11,7 +11,6 @@ ms.date: 09/15/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Browser Automation (preview)

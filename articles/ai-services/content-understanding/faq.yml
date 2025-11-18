@@ -20,7 +20,7 @@ sections:
       - question: |
          What is Content Understanding?
         answer: |
-          Content Understanding is a new Azure AI Service designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
+          Content Understanding is a new Foundry Tool designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
       - question: |
          How does Content Understanding work?
         answer: |
@@ -61,7 +61,7 @@ sections:
           Yes, Content Understanding easily integrates with existing systems and workflows. For example: 
           * Azure AI Search
           * Microsoft Fabric
-          * Azure AI Foundry Agent Service
+          * Foundry Agent Service
           * Azure Logic Apps
           
           The service offers a set of easy-to-use APIs that can be integrated into any application. See [code samples on GitHub](https://github.com/Azure-Samples/azure-ai-content-understanding-python).
@@ -80,7 +80,7 @@ sections:
         answer: |
           Content Understanding uses a transparent, usage-based pricing model with two main charge categories:
           * **Content extraction**: Charges per unit of input processed (per 1,000 pages for documents, per minute for audio/video). 
-          * **Generative features**: When using AI-powered features, you incur contextualization charges (fixed rate per content unit) plus token-based charges from your Azure AI Foundry model deployments (input/output tokens and embeddings).
+          * **Generative features**: When using AI-powered features, you incur contextualization charges (fixed rate per content unit) plus token-based charges from your Microsoft Foundry model deployments (input/output tokens and embeddings).
           
           For detailed pricing information, examples, and cost optimization tips, see the [Pricing explainer](pricing-explainer.md) and [Content Understanding pricing page](https://azure.microsoft.com/pricing/details/content-understanding/).
       - question: |

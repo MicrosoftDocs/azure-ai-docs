@@ -45,7 +45,7 @@ First you need to get your resource key and endpoint:
 
 First you need to get your resource key and endpoint:
 
-[!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
+[!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
 ### Use the client libraries (Azure SDK)
 

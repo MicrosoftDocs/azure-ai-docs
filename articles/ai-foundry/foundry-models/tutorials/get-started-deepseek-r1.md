@@ -37,7 +37,7 @@ To complete this article, you need:
 
 ## Create the resources
 
-To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources by using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+To create a Foundry project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources by using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
 ::: moniker range="foundry-classic"
 

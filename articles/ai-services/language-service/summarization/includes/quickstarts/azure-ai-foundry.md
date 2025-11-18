@@ -8,15 +8,15 @@ ms.author: lajanuar
 ---
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
+* [Create a Project in Foundry in the Microsoft Foundry portal](../../../../../ai-foundry/how-to/create-projects.md)
 
-## Navigate to the Azure AI Foundry Playground
+## Navigate to the Foundry Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use Summarization in the Azure AI Foundry Playground
+## Use Summarization in the Foundry Playground
 
 The **Language Playground** consists of four sections:
 
@@ -48,7 +48,7 @@ After your operation is completed, the **Details** section contains the followin
 |Chapter Title|  A list of titles for semantically segmented chapters with corresponding timestamps. The **Chapter title** Summarization aspect must be toggled on for this to appear.|
 |Narrative|  A list of narrative summaries for semantically segmented chapters with corresponding timestamps. The **Narrative** Summarization aspect must be toggled on for this to appear.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-summarization.png" alt-text="A screenshot of an example of summarize conversation in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-summarization.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-summarization.png" alt-text="A screenshot of an example of summarize conversation in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-summarization.png":::
 
 ### Use Summarize for call center
 
@@ -71,7 +71,7 @@ After your operation is completed, the **Details** section contains the followin
 |Issue|  A summary of the customer issue in the customer-and-agent conversation. The **Issue** Summarization aspect must be toggled on for this to appear.|
 |Resolution|  A summary of the solutions tried in the customer-and-agent conversation. The **Resolution** Summarization aspect must be toggled on for this to appear.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/call-center-summarization.png" alt-text="A screenshot of an example of summarize for call center in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/call-center-summarization.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/call-center-summarization.png" alt-text="A screenshot of an example of summarize for call center in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/call-center-summarization.png":::
 
 ### Use Summarize text
 
@@ -94,4 +94,4 @@ After your operation is completed, the **Details** section contains the followin
 |Extractive summary| Extracted sentences from the input text, ranked by detected relevance and prioritized for words in the **Defined keywords for summary focus** field, if any. Sentences are sorted by rank score of detected relevance (default) or order of appearance in the input text.|
 |Abstractive summary| A summary of the input text of the length chosen in the **Summary length** field and prioritized for words in the **Defined keywords for summary focus** field, if any.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-summarization.png" alt-text="A screenshot of an example of summarize text in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-summarization.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-summarization.png" alt-text="A screenshot of an example of summarize text in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-summarization.png":::

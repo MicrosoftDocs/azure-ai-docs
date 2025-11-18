@@ -118,7 +118,7 @@ sections:
           }
           ```
           
-          You reed to create an AI Foundry resource for Speech, not an AI Foundry resource.
+          You reed to create a Foundry resource for Speech, not a Foundry resource.
           
           
       - question: |

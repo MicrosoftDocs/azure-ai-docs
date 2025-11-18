@@ -191,7 +191,7 @@ Use comparison tools to choose the best-performing configuration and avoid regre
 
 To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process.
 
-1. Select two or more runs in the Evaluation group detail page.
+1. Select two or more runs in the evaluation detail page.
 1. Select **Compare**.
 
 It generates a side-by-side comparison view for all selected runs.

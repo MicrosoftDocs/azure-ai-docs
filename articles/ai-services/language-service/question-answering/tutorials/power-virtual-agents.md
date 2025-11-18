@@ -26,7 +26,7 @@ In this tutorial, you learn how to:
 > * Test Power Virtual Agents, and receive an answer from your custom question answering project
 
 > [!NOTE]
-> The QnA Maker service is being retired on the 31st of March, 2025. A newer version of the question and answering capability is now available as part of [Azure AI Language](../../index.yml). For custom question answering capabilities within Azure Language, see [custom question answering](../overview.md). Starting 1st October, 2022 you won’t be able to create new QnA Maker resources. For information on migrating existing QnA Maker knowledge bases to custom question answering, consult the [migration guide](../how-to/migrate-qnamaker.md).
+> The QnA Maker service is being retired on the 31st of March, 2025. A newer version of the question and answering capability is now available as part of [Azure Language in Foundry Tools](../../index.yml). For custom question answering capabilities within Azure Language, see [custom question answering](../overview.md). Starting 1st October, 2022 you won’t be able to create new QnA Maker resources. For information on migrating existing QnA Maker knowledge bases to custom question answering, consult the [migration guide](../how-to/migrate-qnamaker.md).
 
 ## Create and publish a project
 1. Follow the [quickstart](../quickstart/sdk.md?pivots=studio) to create a custom question answering project. Once you have deployed your project.

@@ -18,7 +18,7 @@ ms.custom: language-service-health
 Text Analytics for health can be used to extract relevant medical information from unstructured texts. These texts may include doctors' notes, discharge summaries, clinical documents, and electronic health records. The tool can also label the extracted information for easier analysis and reference. The service performs [named entity recognition](../concepts/health-entity-categories.md), [relation extraction](../concepts/relation-extraction.md), [entity linking](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/index.html), and [assertion detection](../concepts/assertion-detection.md) to uncover insights from the input text. For information  on the returned confidence scores, see the [transparency note](/azure/ai-foundry/responsible-ai/language-service/transparency-note).
 
 > [!TIP]
-> If you want to test out the feature without writing any code, use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+> If you want to test out the feature without writing any code, use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 
 There are two ways to call the service:
 

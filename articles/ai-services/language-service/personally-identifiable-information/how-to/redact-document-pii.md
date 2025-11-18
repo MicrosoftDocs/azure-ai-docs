@@ -14,12 +14,12 @@ ms.custom: language-service-pii
 
 > [!IMPORTANT]
 >
-> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 
-Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
+Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
-A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure AI Language resource capabilities. Currently, native document support is available for the following capabilities:
+A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Language resource capabilities. Currently, native document support is available for the following capabilities:
 
 * [Personally Identifiable Information (PII)](../../personally-identifiable-information/overview.md). The PII detection feature can identify, categorize, and redact sensitive information in unstructured text. The `PiiEntityRecognition` API supports native document processing.
 
@@ -70,7 +70,7 @@ A native document refers to the file format used to create the original document
   * **Source container**. This container is where you upload your native files for analysis (required).
   * **Target container**. This container is where your analyzed files are stored (required).
 
-* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI Foundry resource):
+* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Microsoft Foundry resource):
 
   **Complete Azure Language resource project and instance details fields as follows:**
 
@@ -202,7 +202,7 @@ For this quickstart, you need a **source document** uploaded to your **source co
 1. Before you run the **POST** request, replace `{your-language-resource-endpoint}` and `{your-key}` with the values from your Azure portal Language instance.
 
     > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](/azure/ai-services/security-features).
+    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Foundry Tools [security](/azure/ai-services/security-features).
 
     ***PowerShell***
 

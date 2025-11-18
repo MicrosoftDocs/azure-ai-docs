@@ -1,6 +1,6 @@
 ---
 title: 'How to use an AI Search index with the agents API'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use Agents Azure AI Search tool for the agents API.
 services: azure-ai-agent-service
 manager: nitinme
@@ -16,12 +16,10 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool for agents 
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 > [!NOTE]
-> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Azure AI Foundry Agent Service](./knowledge-retrieval.md).
+> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Use knowledge to improve retrieval quality in Microsoft Foundry Agent Service](./knowledge-retrieval.md).
 
-The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Azure AI Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
+The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Microsoft Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
 ## Prerequisites
 
@@ -125,17 +123,17 @@ with project_client:
 
 ## Limitations
 
-+ To use the Azure AI Search tool in the Azure AI Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
++ To use the Azure AI Search tool in the Microsoft Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
 
 + The Azure AI Search tool can only target one index.
   
-+ An Azure AI Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
++ A Microsoft Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
-+ Your Azure AI Search resource and Azure AI Foundry Agent need to be in the same tenant.
++ Your Azure AI Search resource and Microsoft Foundry Agent need to be in the same tenant.
 
 ## Setup
 
-In this section, you create a connection between the Azure AI Foundry project that contains your agent and the Azure AI Search service that contains your index.
+In this section, you create a connection between the Microsoft Foundry project that contains your agent and the Azure AI Search service that contains your index.
 
 If you already connected your project to your search service, skip this section. 
 
@@ -205,7 +203,7 @@ Select the tab for your desired authentication method.
 
 The next step is to create the project connection using the search service details you gathered. The connection name must be the name of your search index.
 
-You can use the Microsoft AI Foundry portal, or one of the following options.
+You can use the Microsoft Foundry portal, or one of the following options.
 
 #### [Azure CLI](#tab/azurecli)
 

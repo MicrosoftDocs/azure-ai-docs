@@ -13,7 +13,7 @@ ms.date: 10/31/2025
 - A Speech resource. Create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) or [Speech Studio](https://aka.ms/speechstudio).
 
 > [!NOTE]
-> The [AI Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
+> The [Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
 
 ## Use the audio content creation tool
 

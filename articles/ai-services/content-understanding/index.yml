@@ -30,10 +30,10 @@ highlightedContent:
 
 conceptualContent:
   items:
-    - title: Foundry Classic
+    - title: Foundry (classic)
       links:
         - itemType: how-to-guide
-          text: "Create Content Understanding Standard and Pro tasks in the Foundry Classic portal"
+          text: "Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal"
           url: how-to/content-understanding-foundry-classic.md
         - itemType: concept
           text: Analyzer templates

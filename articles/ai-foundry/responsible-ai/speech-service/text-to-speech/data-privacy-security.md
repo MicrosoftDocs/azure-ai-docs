@@ -148,7 +148,7 @@ A customer’s training data is used only to develop that customer’s custom av
 
 **Recorded acknowledgement statement and Speaker Verification data**: The voice signatures are used by Microsoft solely for the purposes of speaker verification or as otherwise necessary to investigate misuse of the services. The voice signatures will be retained only for the time necessary to perform speaker verification, which may occur from time to time. Microsoft may require this verification before allowing you to train or retrain custom neural voice models in Speech Studio, or as otherwise necessary. Microsoft will retain the recorded acknowledgement statement file and voice talent profile data for as long as necessary to preserve the security and integrity of Azure Speech.
 
-**Custom neural voice models**: While you maintain the exclusive usage rights to your custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Microsoft Foundry Tools. 
+**Custom neural voice models**: While you maintain the exclusive usage rights to your custom neural voice model, Microsoft may independently retain a copy of custom neural voice models for as long as necessary. Microsoft may use your custom neural voice model for the sole purpose of protecting the security and integrity of Foundry Tools. 
 
 Microsoft will secure and store copies of each voice talent's recorded acknowledgement statement and custom neural voice models with the same high-level security that it uses for its other Azure Services. Learn more at [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx). 
 
@@ -157,7 +157,7 @@ Microsoft will secure and store copies of each voice talent's recorded acknowled
 You can manage storage of your training data via [BYOS (Bring Your Own Storage)](/azure/ai-services/speech-service/speech-encryption-of-data-at-rest). With this storage method, training data may be accessed only for the purposes of voice model training and will otherwise be stored via BYOS. 
 
 > [!NOTE]
-> Personal voice does not support BYOS. Your data will be stored in Azure storage managed by Microsoft. You can access and delete any of the training data (prompt audio) used to build voice models via API. Microsoft may independently retain a copy of personal voice models for as long as necessary. Microsoft may use your personal voice model for the sole purpose of protecting the security and integrity of Microsoft Foundry Tools.
+> Personal voice does not support BYOS. Your data will be stored in Azure storage managed by Microsoft. You can access and delete any of the training data (prompt audio) used to build voice models via API. Microsoft may independently retain a copy of personal voice models for as long as necessary. Microsoft may use your personal voice model for the sole purpose of protecting the security and integrity of Foundry Tools.
 
 #### [Custom text to speech avatar](#tab/custom-avatar)
 

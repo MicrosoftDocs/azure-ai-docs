@@ -1,6 +1,6 @@
 ---
 title: Create and improve your custom analyzer in Content Understanding Studio
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Create custom analyzers and apply in context learning to improve them using Content Understanding Studio
 author: PatrickFarley 
 ms.author: pafarley
@@ -22,13 +22,13 @@ Content Understanding Studio lets you build powerful content analyzers that extr
 
 To get started, make sure you have the following resources and permissions:
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
-* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Azure AI Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+   * This resource is listed under **Foundry** > **Foundry** in the portal.
+* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 
 ## Log in to Content Understanding Studio
 
-Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You might recognize the classic Azure AI Document Intelligence Studio experience; Content Understanding extends the same content and field extraction that you're familiar with in Document Intelligence across all modalities—document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
+Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You might recognize the classic Azure Document Intelligence in Foundry Tools Studio experience; Content Understanding extends the same content and field extraction that you're familiar with in Document Intelligence across all modalities—document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
 
 ## Create your custom analyzer
 

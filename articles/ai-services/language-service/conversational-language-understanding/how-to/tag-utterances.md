@@ -10,11 +10,11 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-# Label your utterances in Azure AI Foundry
+# Label your utterances in Microsoft Foundry
 
 After you [build a schema](build-schema.md) for your fine-tuning task, you add training utterances to your project. The utterances should be similar to what your users use when they interact with the project. When you add an utterance, you have to assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities.
 
-Data labeling is a crucial step in the conversational language understanding (CLU) trained development lifecycle. This data is used in the next step when you train your model so that your model can learn from the labeled data. If you already labeled utterances, you can directly [import them into your project](create-project.md#import-an-existing-azure-ai-project), if your data follows the [accepted data format](../concepts/data-formats.md). To learn more about importing labeled data, see [Create a CLU fine-tuning task](create-project.md#import-an-existing-azure-ai-project). Labeled data informs the model about how to interpret text and is used for training and evaluation.
+Data labeling is a crucial step in the conversational language understanding (CLU) trained development lifecycle. This data is used in the next step when you train your model so that your model can learn from the labeled data. If you already labeled utterances, you can directly [import them into your project](create-project.md#import-an-existing-foundry-project), if your data follows the [accepted data format](../concepts/data-formats.md). To learn more about importing labeled data, see [Create a CLU fine-tuning task](create-project.md#import-an-existing-foundry-project). Labeled data informs the model about how to interpret text and is used for training and evaluation.
 
 > [!TIP]
 > Use the **Quick Deploy** option to implement custom CLU intent routing, which is powered by your own large language model deployment without adding or labeling any training data.
@@ -50,13 +50,13 @@ As you add utterances and label them, keep in mind:
 
 Use the following steps to label your utterances:
 
-1. Go to your project page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Go to your project page in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. On the left pane, select **Manage data**. On this page, you can add your utterances and label them. You can also upload your utterances directly by selecting **Upload utterance file** from the top menu. Make sure to follow the [accepted format](../concepts/data-formats.md#utterance-file-format).
 
 1. By using the top tabs, you can change the view to **Training set** or **Testing set**. Learn more about [training and testing sets](train-model.md#data-splitting) and how they're used for model training and evaluation.
 
-    :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot that shows the page for tagging utterances in Azure AI Foundry." lightbox="../media/tag-utterances.png":::
+    :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot that shows the page for tagging utterances in Foundry." lightbox="../media/tag-utterances.png":::
 
     > [!TIP]
     > If you plan to use **Automatically split the testing set from training data** splitting, add all your utterances to the training set.
@@ -77,7 +77,7 @@ Use the following steps to label your utterances:
     * **Unique utterances per labeled entity:** Each utterance is counted if it contains at least one labeled instance of this entity.
     * **Utterances per intent:** You can view the count of utterances per intent.
 
-    :::image type="content" source="../media/label-distribution.png" alt-text="A screenshot that shows entity distribution in Azure AI Foundry." lightbox="../media/label-distribution.png":::
+    :::image type="content" source="../media/label-distribution.png" alt-text="A screenshot that shows entity distribution in Foundry." lightbox="../media/label-distribution.png":::
 
   > [!NOTE]
   > List, regex, and prebuilt components aren't shown on the data labeling page. All labels here apply to the learned component only.
@@ -94,13 +94,13 @@ To delete an entity:
 
 ## Suggest utterances with Azure OpenAI
 
-In CLU, use Azure OpenAI to suggest utterances to add to your project by using generative language models. We recommend that you use an Azure AI Foundry resource while you use CLU so that you don't need to connect multiple resources. 
+In CLU, use Azure OpenAI to suggest utterances to add to your project by using generative language models. We recommend that you use a Foundry resource while you use CLU so that you don't need to connect multiple resources. 
 
-To use the Azure AI Foundry resource, you need to provide your Azure AI Foundry resource with elevated access. To do so, access the Azure portal. Within your Azure AI resource, provide access as a **Cognitive Services User** to itself. This step ensures that all parts of your resource are communicating correctly.
+To use the Foundry resource, you need to provide your Foundry resource with elevated access. To do so, access the Azure portal. Within your Azure AI resource, provide access as a **Cognitive Services User** to itself. This step ensures that all parts of your resource are communicating correctly.
 
 ### Connect with separate Language and Azure OpenAI resources
 
-You first need to get access and create a resource in Azure OpenAI. Next, create a connection to the Azure OpenAI resource within the same Azure AI Foundry project in the **Management center** on the left pane of the Azure AI Foundry page. You then need to create a deployment for the Azure OpenAI models within the connected Azure OpenAI resource. To create a new resource, follow the steps in [Create and deploy an Azure OpenAI in Azure AI Foundry Models resource](../../../../ai-foundry/openai/how-to/create-resource.md).
+You first need to get access and create a resource in Azure OpenAI. Next, create a connection to the Azure OpenAI resource within the same Foundry project in the **Management center** on the left pane of the Foundry page. You then need to create a deployment for the Azure OpenAI models within the connected Azure OpenAI resource. To create a new resource, follow the steps in [Create and deploy an Azure OpenAI in Foundry Models resource](../../../../ai-foundry/openai/how-to/create-resource.md).
 
 Before you get started, the suggested utterances feature is available only if your Language resource is in the following regions:
 
@@ -160,7 +160,7 @@ After you enable managed identity, assign the **Cognitive Services User** role t
 
      :::image type="content" source="../media/add-role-azure-openai.gif" alt-text="Multiple screenshots that show the steps to add the required role to your Azure OpenAI resource." lightbox="../media/add-role-azure-openai.gif":::
 
-After a few minutes, refresh Azure AI Foundry, and you can successfully connect to Azure OpenAI.
+After a few minutes, refresh Foundry, and you can successfully connect to Azure OpenAI.
 
 ## Related content
 

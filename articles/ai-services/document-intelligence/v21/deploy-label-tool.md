@@ -1,4 +1,4 @@
-﻿---
+---
 title: Deploy the Document Intelligence Sample Labeling tool
 titleSuffix: Foundry Tools
 description: Learn the different ways you can deploy the Document Intelligence Sample Labeling tool to help with supervised learning.

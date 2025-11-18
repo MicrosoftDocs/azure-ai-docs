@@ -1,7 +1,7 @@
-﻿---
-title: Create an AI Foundry resource
+---
+title: Create a Foundry resource
 titleSuffix: Foundry Tools
-description: Create and manage an AI Foundry resource.
+description: Create and manage a Foundry resource.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -19,19 +19,19 @@ ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-portal-cli-ps
 ---
 
-# Quickstart: Set up your first AI Foundry resource
+# Quickstart: Set up your first Foundry resource
 
-In this quickstart, you create an Azure AI Foundry resource and verify access.
+In this quickstart, you create a Microsoft Foundry resource and verify access.
 
-Learn how to create and manage an Azure AI Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
+Learn how to create and manage a Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
 
 An Azure resource is required to use and manage services in Azure. It defines the scope for configuring access, security such as networking, billing, and monitoring. 
 
-Azure AI Foundry resource is the next version and renaming of former "Foundry Tools". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
+Foundry resource is the next version and renaming of former "Foundry Tools". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
 
-An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
+A Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
 
-:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
+:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Foundry resource containing multiple projects, each with deployments and connections.":::
 
 Looking to configure Foundry with advanced security settings? See [advanced Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
@@ -61,7 +61,7 @@ To create your first resource, with basic Azure settings, follow the below steps
 
 ## Access your resource
 
-With your first resource created, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure portal for administrative management](https://portal.azure.com).
+With your first resource created, you can access it via [Foundry portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure portal for administrative management](https://portal.azure.com).
 
 ### Verify your setup
 
@@ -107,25 +107,25 @@ Built-in Azure RBAC developer roles for Foundry include:
 >[!NOTE]
 > The Azure AI Owner role will be available to assign in the Azure and Foundry portal soon.
 
-:::image type="content" source="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Azure AI Foundry." lightbox="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png":::
+:::image type="content" source="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png":::
 
 For larger enterprises with strict role based access requirements, we recommend utilizing the Azure AI User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Azure AI Owner role for developer permissions as well as resource creation permissions. 
 
-Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [AI Foundry Portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal](link to Azure portal) or [Foundry portal via Admin](Link to Foundry portal). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 > [!IMPORTANT]
 > Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.
 
 ## Start building in your first project
 
-With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects.md#create-multiple).
+With permissions set up, you're now ready to start building Foundry. In [Foundry portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects.md#create-multiple).
 
 Explore some of the services that come bundled with your resource:
 
 | Service | Description | 
 | --- | --- | 
-| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
-| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. |
+| ![Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
+| ![Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Foundry model catalog. |
 | ![Azure OpenAI in Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | 
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | 
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. |
@@ -137,6 +137,6 @@ Explore some of the services that come bundled with your resource:
 
 - [Create a project](../ai-foundry/how-to/create-projects.md) to organize your work.
 - [Connect tools](../ai-foundry/how-to/connections-add.md) to build more rich applications.
-- Learn about [access control in AI Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
+- Learn about [access control in Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
 - [Secure your resource using private networking](../ai-foundry/how-to/configure-private-link.md)
-- [Use Azure AI Foundry with Azure Search skills](multi-services-resource-search-skills.md)
+- [Use Foundry with Azure Search skills](multi-services-resource-search-skills.md)

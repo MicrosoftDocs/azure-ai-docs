@@ -17,7 +17,14 @@ monikerRange: 'foundry-classic || foundry'
 
 # Model router for Microsoft Foundry
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 Model router for Microsoft Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. Thus, it delivers high performance while saving on compute costs where possible, all packaged as a single model deployment.
+
+::: moniker range="foundry-classic"
+> [!TIP]
+> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+::: moniker-end
 
 ## Why use model router?
 
@@ -25,7 +32,13 @@ Model router intelligently selects the best underlying model for a given prompt 
 
 ::: moniker range="foundry"
 
-With the latest version of model router, you can configure the routing behavior to better match your application's needs. You can choose a predefined routing mode and specify a subset of underlying models to use. See below for more details.
+The latest version, `2025-11-18` adds several capabilities:
+1. Support Global Standard and Data Zone Standard deployments.
+1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o` and `gpt-4o-mini`.
+1. Support for agentic scenarios including tools so you can now use it in the Foundry Agent service.
+1. Quick deploy or Custom deploy with routing mode and model subset selections.
+1. Routing mode: Optimize the routing logic for your needs. Supported options: Quality, Cost, Balanced (default).
+1. Model subset: Select models to create your model subset for routing.
 
 ::: moniker-end
 
@@ -40,59 +53,36 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 |Model router version|Underlying models| Underlying model version
 |:---:|:---|:----:|
+|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`<br> `gpt-5-nano` <br>`gpt-5-mini`<br>`gpt-5`<br>`gpt-5-chat`<br>`Deepseek-v3.1`<br>`gpt-oss-120b`<br>`llama4-maverick-instruct`<br>`grok-4`<br>`grok-4-fast`<br>`gpt-4o`<br>`gpt-4o-mini` |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` , <br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07` <br> N/A <br> N/A<br> N/A<br> N/A<br> N/A <br> `2024-11-20` <br> `2024-07-18` |
 | `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
 |`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
-|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`<br> `gpt-5-nano` <br>`gpt-5-mini`<br>`gpt-5`<br>`gpt-5-chat`<br>`Deepseek-v3.1`<br>`llama-33-70b-instruct`<br>`gpt-oss-120b`<br>`llama4-maverick-instruct`<br>`grok-4`<br>`grok-4-fast`<br>`gpt-4o`<br>`gpt-4o-mini` |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` , <br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07` <br> N/A <br> N/A<br> N/A<br> N/A<br> N/A<br> N/A <br> `2024-11-20` <br> `2024-07-18` |
 
 ::: moniker range="foundry"
 
-## Routing profiles
+## Routing mode
 
-Model Router automatically chooses among a set of base models for each request, and routing profiles let you skew those choices to optimize for different things while maintaining a baseline level of performance. Setting a routing profile is optional, and if you don’t set one, your deployment defaults to the `balanced` strategy.
+With the latest version, if you choose custom deployment, you can select the routing mode to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing profile is optional, and if you don’t set one, your deployment defaults to the `balanced` strategy.
 
-Use routing profiles if you:
-* Want a simple “set-and-go” optimization without manually benchmarking every model.
+Use routing mode if you:
 * Need to reduce spend while retaining near-maximum quality.
 * Need consistent access to the highest-quality model for critical workloads.
 * Want to A/B test quality vs. cost trade-offs through per-request overrides.
 
-> [!NOTE]
-> Routing modes are currently in preview. APIs, thresholds, or mode semantics might change before general availability.
+### Available routing modes
 
-### Available routing profiles
+| Mode | Description |
+|------|-----------|
+| Balanced (default) | Considers both cost and quality dynamically. Perfect for general-purpose scenarios |
+| Quality | Prioritizes for maximum accuracy. Best for complex reasoning or critical outputs |
+| Cost | Prioritizes for more cost savings. Ideal for high-volume, budget-sensitive workloads |
 
-| Mode | Objective | Selection logic (conceptual) | Typical use cases | Trade-offs |
-|------|-----------|------------------------------|-------------------|------------|
-| Balanced (default) | Maintain near-best quality with cost sensitivity | Includes any candidate model whose estimated accuracy is within ~1% of the top model’s accuracy | General-purpose applications, mixed workloads | Slightly higher cost than strict cost mode; not always the single top-quality model |
-| Quality | Always choose the highest-quality model. This is usually the largest model, but depends on internal quality scoring, which can incorporate more than just parameter count. | Equivalent to a strict selection (α = 0) picking the top model | Mission‑critical tasks, legal/risk reviews, complex reasoning | Highest cost among modes |
-| Cost | Minimize cost while staying within a broader acceptable quality band | Includes models within ~5% of best estimated accuracy, then chooses lower-cost candidate | High-volume workloads, exploratory or background processing | Possible small quality reduction vs. balanced/quality |
+## Model subset
 
-> [!IMPORTANT]
-> The ±1% and ±5% quality deltas are internal target thresholds for in-domain evaluation sets. Actual realized differences can vary by domain, prompt style, and data distribution. Validate against your own test set.
-
-Each mode encodes a fixed optimization pattern, but you can use per-request overrides plus workload segmentation to approximate hybrid behavior.
-
-Routing profiles don't guarantee that a specific model will be chosen for a given request. If you need to route to a specific model (for regulatory reasons, for example), deploy that model directly instead of routing.
-
-### Best practices with routing profiles
-
-Consider how you can use different routing profiles in your own use cases:
-* Benchmark: Run a small evaluation set under `balanced` vs. `cost` to quantify quality delta before large-scale shift.
-* Start conservative: Move from `quality` → `balanced` → `cost` only after confirming acceptable outputs.
-* Mixed workloads: Use deployment default = `balanced` and override individual background requests with `cost`.
-* Guardrails: For safety-critical tasks, keep `quality` and add post-processing validation.
-
-
-## Model subsets
-
-The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
-
-You can make this specification at deployment time, and you can override it at request time.
+The latest version of model router supports model subsets: For custom deployments, you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
 
 When new base models become available, they're not included in your selection unless you explicitly add them to your deployment's inclusion list.
 
 ::: moniker-end
-
 
 
 ## Limitations
@@ -104,6 +94,12 @@ See the [Models](../concepts/models.md#model-router) page for the region availab
 ### Technical limitations
 
 See [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
+
+::: moniker range="foundry"
+
+To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
+
+::: moniker-end
 
 > [!NOTE]
 > The context window limit listed on the [Models](../concepts/models.md#model-router) page is the limit of the smallest underlying model. Other underlying models are compatible with larger context windows, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model, otherwise the call will fail. To shorten the context window, you can do one of the following:
@@ -117,7 +113,7 @@ Model router doesn't process audio input.
 
 ## Billing information
 
-When you use model router today, you're only billed for the use of the underlying models as they're recruited to respond to prompts: the model routing function itself doesn't incur any extra charges. Starting September 1, 2025 the model router usage will be charged as well.
+Starting November 2025, the model router usage will be charged for input prompts at the rate listed on the pricing page.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 

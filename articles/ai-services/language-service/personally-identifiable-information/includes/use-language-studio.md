@@ -7,4 +7,4 @@ ms.author: lajanuar
 ms.custom: include, ignite-2024
 ---
 > [!TIP]
-> You can use [**Azure AI Foundry**](../../../../ai-foundry/what-is-azure-ai-foundry.md) to try summarization without needing to write code. 
+> You can use [**Microsoft Foundry**](../../../../ai-foundry/what-is-azure-ai-foundry.md) to try summarization without needing to write code. 

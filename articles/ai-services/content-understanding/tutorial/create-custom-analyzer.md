@@ -22,9 +22,9 @@ In this guide, we use the cURL command line tool. If it isn't installed, you can
 ## Prerequisite
 To get started, make sure you have the following resources and permissions:
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
-* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Azure AI Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+   * This resource is listed under **Foundry** > **Foundry** in the portal.
+* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 
 ## Define an analyzer schema
 
@@ -323,7 +323,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer you created with the `categorize.json` file.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png`.
 
@@ -745,4 +745,4 @@ A `200 OK` response includes a `status` field that shows the operation's progres
 
 * Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-* Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your document content using Content Understanding in [Foundry](https://aka.ms/cu-landing).

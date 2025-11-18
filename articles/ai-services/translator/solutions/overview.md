@@ -21,7 +21,7 @@ Azure Translator offers the following prebuilt solutions:
 
 * [**Microsoft Translator Pro**](translator-pro/overview.md). Microsoft Translator Pro is an advanced mobile application, designed specifically for enterprises, that enables seamless speech-to-speech translation in real time.
 
-* [**Language Studio**](../document-translation/language-studio.md). Azure Translator in the [Azure AI Language Studio](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage. 
+* [**Language Studio**](../document-translation/language-studio.md). Azure Translator in the [Azure Language in Foundry Tools Studio](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage. 
 
 * [**Translator v3 connector for documents**](../connector/document-translation-flow.md) and [**Translator v3 connector for text**](../solutions/connector/text-translator-flow.md). The Microsoft Translator v3 connectors create a link between your Translator instance and Microsoft Power Automate enabling you to incorporate one or more prebuilt operations into your apps and workflows.
 

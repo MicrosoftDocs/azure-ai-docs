@@ -395,7 +395,7 @@ items:
       href: translator-pro/faq.yml
     - name: Transparency note
       href: ../../ai-foundry/responsible-ai/translator/translator-pro-transparency-note.md
-  - name: Translate using Azure AI Foundry tools
+  - name: Translate using Foundry tools
     href: https://ai.azure.com/
   - name: Translate using Language Studio
     displayName: quickstart, how to, interface

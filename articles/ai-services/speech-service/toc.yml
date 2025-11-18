@@ -264,8 +264,6 @@ items:
         href: voice-live-how-to.md
       - name: How to customize voice live input and output
         href: voice-live-how-to-customize.md
-      - name: How to invoke a proactive greeting and pregenerated messages
-        href: voice-live-how-to-proactive-and-pregenerated-messages.md
       - name: Voice live telephony integration
         href: voice-live-telephony.md
     - name: Voice live FAQ

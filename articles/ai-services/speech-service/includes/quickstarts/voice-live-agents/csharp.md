@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 11/06/2025
 ---
 
-In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
+In this article, you learn how to use Azure Speech in Foundry Tools voice live with [Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 
@@ -18,8 +18,8 @@ In this article, you learn how to use Azure AI Speech voice live with [Azure AI 
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
-- An Azure AI Foundry agent created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- A Foundry agent created in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 - [.NET SDK](https://dotnet.microsoft.com/download) version 6.0 or later installed.
 
 <!--
@@ -118,9 +118,9 @@ Follow these steps to create a console application and install the Speech SDK.
         /// </summary>
         /// <remarks>
         /// DESCRIPTION:
-        ///     This consolidated sample demonstrates connecting to an Azure AI Foundry agent via the VoiceLive SDK,
+        ///     This consolidated sample demonstrates connecting to a Foundry agent via the VoiceLive SDK,
         ///     creating a voice assistant that can engage in natural conversation with proper interruption
-        ///     handling. Instead of using a direct model, this connects to a deployed agent in Azure AI Foundry.
+        ///     handling. Instead of using a direct model, this connects to a deployed agent in Foundry.
         ///     
         ///     All necessary code has been consolidated into this single file for easy distribution and execution.
         ///
@@ -128,8 +128,8 @@ Follow these steps to create a console application and install the Speech SDK.
         ///     dotnet run --agent-id <agent-id> --agent-project-name <project-name>
         ///
         ///     Set the environment variables with your own values before running the sample:
-        ///     1) AZURE_AGENT_ID - The Azure AI Foundry agent ID
-        ///     2) AZURE_AGENT_PROJECT_NAME - The Azure AI Foundry agent project name  
+        ///     1) AZURE_AGENT_ID - The Foundry agent ID
+        ///     2) AZURE_AGENT_PROJECT_NAME - The Foundry agent project name  
         ///     3) AZURE_VOICELIVE_API_KEY - The Azure VoiceLive API key (still needed for VoiceLive service)
         ///     4) AZURE_VOICELIVE_ENDPOINT - The Azure VoiceLive endpoint
         ///
@@ -162,7 +162,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
             private static RootCommand CreateRootCommand()
             {
-                var rootCommand = new RootCommand("Voice Assistant connecting to Azure AI Foundry Agent via VoiceLive SDK");
+                var rootCommand = new RootCommand("Voice Assistant connecting to Foundry Agent via VoiceLive SDK");
     
                 var apiKeyOption = new Option<string?>(
                     "--api-key",
@@ -175,11 +175,11 @@ Follow these steps to create a console application and install the Speech SDK.
     
                 var agentIdOption = new Option<string>(
                     "--agent-id",
-                    "Azure AI Foundry agent ID");
+                    "Foundry agent ID");
     
                 var agentProjectNameOption = new Option<string>(
                     "--agent-project-name", 
-                    "Azure AI Foundry agent project name");
+                    "Foundry agent project name");
     
                 var voiceOption = new Option<string>(
                     "--voice",
@@ -450,9 +450,9 @@ Follow these steps to create a console application and install the Speech SDK.
             /// Initializes a new instance of the BasicVoiceAssistant class.
             /// </summary>
             /// <param name="client">The VoiceLive client.</param>
-            /// <param name="agentId">The Azure AI Foundry agent ID.</param>
-            /// <param name="agentProjectName">The Azure AI Foundry agent project name.</param>
-            /// <param name="agentAccessToken">The Azure AI Foundry agent access token.</param>
+            /// <param name="agentId">The Foundry agent ID.</param>
+            /// <param name="agentProjectName">The Foundry agent project name.</param>
+            /// <param name="agentAccessToken">The Foundry agent access token.</param>
             /// <param name="voice">The voice to use.</param>
             /// <param name="loggerFactory">Logger factory for creating loggers.</param>
             public BasicVoiceAssistant(

@@ -1,6 +1,6 @@
 ---
 title: Container location change note
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: note about the image location for containers on the Microsoft Container Registry
 author: aahill
 manager: nitinme

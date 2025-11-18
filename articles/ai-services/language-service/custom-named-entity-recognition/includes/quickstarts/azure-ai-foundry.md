@@ -8,7 +8,7 @@ ms.author: lajanuar
 ---
 > [!NOTE]
 >
-> * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. For more information, see [How to use Azure AI services in the Azure AI Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
+> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
 
 ## Prerequisites
 
@@ -16,9 +16,9 @@ ms.author: lajanuar
 
 * The **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control).
 
-*  An [**Azure AI Language resource with a storage account**](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics). On the **select additional features** page, select the **Custom text classification, Custom named entity recognition, Custom sentiment analysis & Custom Text Analytics for health** box to link a required storage account to this resource:
+*  An [**Language resource with a storage account**](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics). On the **select additional features** page, select the **Custom text classification, Custom named entity recognition, Custom sentiment analysis & Custom Text Analytics for health** box to link a required storage account to this resource:
 
-    :::image type="content" source="../../media/foundry-next/select-additional-features.png" alt-text="Screenshot of the select additional features option in the Azure AI Foundry.":::
+    :::image type="content" source="../../media/foundry-next/select-additional-features.png" alt-text="Screenshot of the select additional features option in the Foundry.":::
 
   > [!NOTE]
   >  * You need to have an **owner** role assigned on the resource group to create a Language resource.
@@ -26,7 +26,7 @@ ms.author: lajanuar
   >  * Don't move the storage account to a different resource group or subscription once linked with Azure Language resource.
 
 
-* **A Foundry project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+* **A Foundry project created in the Foundry**. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 * **A custom NER dataset uploaded to your storage container**. A custom named entity recognition (NER) dataset is the collection of labeled text documents used to train your custom NER model. You can [download our sample dataset](https://go.microsoft.com/fwlink/?linkid=2175226) for this quickstart. The source language is English.
 
@@ -44,7 +44,7 @@ Make sure the **Custom text classification / Custom Named Entity Recognition** f
 1. If your storage account isn't assigned, select and connect your storage account.
 1. Select **Apply**.
 
-### Add required roles for your Azure AI Language resource
+### Add required roles for your Language resource
 
 1. From the Language resource page in the [Azure portal](https://portal.azure.com/), select **Access Control (IAM)** in the left pane.
 1. Select **Add** to **Add Role Assignments**, and add **Cognitive Services Language Owner** or **Cognitive Services Contributor** role assignment for your Language resource.
@@ -79,7 +79,7 @@ Make sure the **Custom text classification / Custom Named Entity Recognition** f
 > [!IMPORTANT]
 > If you have a Firewall or virtual network or private endpoint, be sure to select **Allow Azure services on the trusted services list to access this storage account** under the **Networking tab** in the Azure portal.
 
-   :::image type="content" source="../../media/foundry-next/allow-azure-services.png" alt-text="Screenshot of allow Azure services enabled in Azure AI Foundry.":::
+   :::image type="content" source="../../media/foundry-next/allow-azure-services.png" alt-text="Screenshot of allow Azure services enabled in Foundry.":::
 
 ## Step 2: Upload your dataset to your storage container
 
@@ -94,11 +94,11 @@ Next, let's add a container and upload your dataset files directly to the root d
 
 1. Open the .zip file, and extract the folder containing the documents.
 
-1. Navigate to the Azure AI Foundry.
+1. Navigate to the Foundry.
 
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 
-1. Once signed in, access your existing Azure AI Foundry project for this quickstart.
+1. Once signed in, access your existing Foundry project for this quickstart.
 
 1. Select **Management center** from the left navigation menu.
 
@@ -106,7 +106,7 @@ Next, let's add a container and upload your dataset files directly to the root d
 
 1. Next choose the workspace blob storage that was set up for you as a connected resource.
 
-1. On the workspace blob storage, select **View in Azure Portal**.
+1. On the workspace blob storage, select **View in Azure portal**.
 
 
 1. On the **AzurePortal** page for your blob storage, select **Upload** from the top menu. Next, choose the `.txt` and `.json` files you downloaded earlier. Finally, select the **Upload** button to add the file to your container.
@@ -114,15 +114,15 @@ Next, let's add a container and upload your dataset files directly to the root d
     :::image type="content" source="../../media/foundry-next/upload-blob-files.png" alt-text="A screenshot showing the button for uploading files to the storage account.":::
 
 
-Now that the required Azure resources are provisioned and configured within the Azure portal,  let's use these resources in the Azure AI Foundry to create a fine-tuned custom Named Entity Recognition (NER) model.
+Now that the required Azure resources are provisioned and configured within the Azure portal,  let's use these resources in the Foundry to create a fine-tuned custom Named Entity Recognition (NER) model.
 
-## Step 3: Connect your Azure AI Language resource
+## Step 3: Connect your Language resource
 
-Next we create a connection to your Azure AI Language resource so Azure AI Foundry can access it securely. This connection provides secure identity management and authentication, as well as controlled and isolated access to data.
+Next we create a connection to your Language resource so Foundry can access it securely. This connection provides secure identity management and authentication, as well as controlled and isolated access to data.
 
-1. Return to the [Azure AI Foundry](https://ai.azure.com/).
+1. Return to the [Foundry](https://ai.azure.com/).
 
-1. Access your existing Azure AI Foundry project for this quickstart.
+1. Access your existing Foundry project for this quickstart.
 
 1. Select **Management center** from the left navigation menu.
 
@@ -130,11 +130,11 @@ Next we create a connection to your Azure AI Language resource so Azure AI Found
 
 1. In the main  window, select the **+ New connection** button.
 
-1. Select **Azure AI Language** from the **Add a connection to external assets** window.
+1. Select **Language** from the **Add a connection to external assets** window.
 
 1. Select **Add connection**, then select **Close.**
 
-    :::image type="content" source="../../media/foundry-next/add-connection.png" alt-text="Screenshot of the connection window in Azure AI Foundry.":::
+    :::image type="content" source="../../media/foundry-next/add-connection.png" alt-text="Screenshot of the connection window in Foundry.":::
 
 ## Step 4: Fine tune your custom NER model
 
@@ -148,7 +148,7 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 1. From the **Create service fine-tuning** window, choose the **Custom named entity recognition** tab, and then select **Next**.
 
-    :::image type="content" source="../../media/foundry-next/create-fine-tuning.png" alt-text="Screenshot of the fine-tuning selection tile in Azure AI Foundry." lightbox="../../media/foundry-next/create-fine-tuning.png":::
+    :::image type="content" source="../../media/foundry-next/create-fine-tuning.png" alt-text="Screenshot of the fine-tuning selection tile in Foundry." lightbox="../../media/foundry-next/create-fine-tuning.png":::
 
 1. In the **Create service fine-tuning task** window, complete the fields as follows:
 
@@ -166,7 +166,7 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 ## Step 5: Train your model
 
-   :::image type="content" source="../../media/foundry-next/workflow.png" alt-text="Screenshot of fine-tuning workflow in Azure AI Foundry.":::
+   :::image type="content" source="../../media/foundry-next/workflow.png" alt-text="Screenshot of fine-tuning workflow in Foundry.":::
 
 
 1. From the **Getting Started** menu, choose **Manage data**. In the **Add data for training and testing** window, you see the sample data that you previously uploaded to your Azure Blob Storage container.
@@ -178,12 +178,12 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 ## Step 6: Deploy your model
 
-Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in Azure Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry.
+Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in Azure Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Foundry.
 
 1. Select **Deploy model** from the left-side menu.
 1. Next, select **➕Deploy a trained model** from the **Deploy your model** window.
 
-    :::image type="content" source="../../media/foundry-next/deploy-trained-model.png" alt-text="Screenshot of the deploy your model window in Azure AI Foundry.":::
+    :::image type="content" source="../../media/foundry-next/deploy-trained-model.png" alt-text="Screenshot of the deploy your model window in Foundry.":::
 
 1. Make sure the **Create a new deployment** button is selected.
 
@@ -197,7 +197,7 @@ Typically, after training a model, you review its evaluation details. For this q
 
 1. After successful deployment, you can view your model's deployment status on the **Deploy your model** page. The expiration date that appears marks the date when your deployed model becomes unavailable for prediction tasks. This date is usually 18 months after a training configuration is deployed.
 
-    :::image type="content" source="../../media/foundry-next/deployed-model.png" alt-text="Screenshot of the deploy your model status window in Azure AI Foundry.":::
+    :::image type="content" source="../../media/foundry-next/deployed-model.png" alt-text="Screenshot of the deploy your model status window in Foundry.":::
 
 ## Step 7: Try Azure Language playground
 
@@ -212,14 +212,14 @@ The Language playground provides a sandbox to test and configure your fine-tuned
 
 That's it, congratulations!
 
-In this quickstart, you created a fine-tuned custom NER model, deployed it in Azure AI Foundry, and tested your model in Azure Language playground.
+In this quickstart, you created a fine-tuned custom NER model, deployed it in Foundry, and tested your model in Azure Language playground.
 
 ## Clean up resources
 
-If you no longer need your project, you can delete it from the Azure AI Foundry.
+If you no longer need your project, you can delete it from the Foundry.
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
-1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**.
+1. Navigate to the [Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
+1. Select the project that you want to delete from the **Keep building with Foundry**.
 1. Select **Management center**.
 1. Select **Delete project**.
 

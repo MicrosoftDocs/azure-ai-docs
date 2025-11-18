@@ -15,11 +15,11 @@ ai-usage: ai-assisted
 
 # Security features in Azure Content Understanding in Foundry Tools
 
-Content Understanding is part of Azure AI Foundry and provides the same security and privacy features available to all Foundry services. These capabilities help protect your data and ensure compliance with Microsoft security standards.
+Content Understanding is part of Microsoft Foundry and provides the same security and privacy features available to all Foundry services. These capabilities help protect your data and ensure compliance with Microsoft security standards.
 
 ## Virtual Networks
 
-Azure AI Foundry provides a layered security model. Azure AI Document Intelligence automatically encrypts your data when persisting it to the cloud. Document Intelligence encryption protects your data to help you to meet your organizational security and compliance commitments.
+Foundry provides a layered security model. Azure Document Intelligence in Foundry Tools automatically encrypts your data when persisting it to the cloud. Document Intelligence encryption protects your data to help you to meet your organizational security and compliance commitments.
 
 ### Foundry Tools encryption
 
@@ -28,9 +28,9 @@ By default, your subscription uses Microsoft-managed encryption keys. Data is en
 ### Customer managed keys
 
 
-You can also manage your subscription with your own keys, which are called customer-managed keys. When you use customer-managed keys, you have greater flexibility in the way you create, rotate, disable, and revoke access controls. You can also audit the encryption keys that you use to protect your data. If customer-managed keys are configured for your subscription, double encryption is provided. With this second layer of protection, you can control the encryption key through your Azure Key Vault. This model enables you to secure your Azure AI services accounts to a specific subset of networks. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with request filtering, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in Azure Virtual Networks. Learn more about configuring [customer managed keys for your resource](/azure/ai-foundry/concepts/encryption-keys-portal).
+You can also manage your subscription with your own keys, which are called customer-managed keys. When you use customer-managed keys, you have greater flexibility in the way you create, rotate, disable, and revoke access controls. You can also audit the encryption keys that you use to protect your data. If customer-managed keys are configured for your subscription, double encryption is provided. With this second layer of protection, you can control the encryption key through your Azure Key Vault. This model enables you to secure your Foundry Tools accounts to a specific subset of networks. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with request filtering, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in Azure Virtual Networks. Learn more about configuring [customer managed keys for your resource](/azure/ai-foundry/concepts/encryption-keys-portal).
 
-To learn more about configuring network security for your Foundry resource, [see Azure security baseline for Azure AI Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+To learn more about configuring network security for your Foundry resource, [see Azure security baseline for Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 
 
@@ -43,13 +43,13 @@ Managed identities grant access to any resource that supports Microsoft Entra au
 
 You can grant access to an Azure resource and assign an Azure role to a managed identity using Azure role-based access control (Azure RBAC). There's no added cost to use managed identities in Azure.
 
-To learn more about configuring managed identities for your Foundry resource, [see Azure security baseline for Azure AI Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline#identity-management)
+To learn more about configuring managed identities for your Foundry resource, [see Azure security baseline for Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline#identity-management)
 
 
 
 
 ## Next steps
 
-* [Learn more about AI Foundry security](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+* [Learn more about Foundry security](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 * [Learn more Content Understanding analyzers](analyzer-reference.md)

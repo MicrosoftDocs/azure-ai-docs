@@ -12,7 +12,7 @@ ms.reviewer: jagoerge
 
 # Call center overview
 
-Azure AI Language and Azure Speech in Foundry Tools can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels. With Azure Language and Speech services, you can further analyze call center transcriptions, extract and redact conversation   (PII), summarize the transcription, and detect the sentiment.
+Azure Language in Foundry Tools and Azure Speech in Foundry Tools can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels. With Azure Language and Speech services, you can further analyze call center transcriptions, extract and redact conversation   (PII), summarize the transcription, and detect the sentiment.
 
 Some example scenarios for the implementation of Foundry Tools in call and contact centers are:
 - Virtual agents: Conversational AI-based telephony-integrated voice bots and voice-enabled chatbots

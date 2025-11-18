@@ -14,12 +14,12 @@ ms.custom: language-service-custom-classification
 
 
 
-## Create a new Azure AI Language resource and Azure storage account
+## Create a new Azure Language in Foundry Tools resource and Azure storage account
 
-Before you can use custom text classification, you need to create an Azure AI Language resource, which gives you the credentials that you need to create a project and start training a model. You also need an Azure storage account, where you can upload your dataset that is used to build your model.
+Before you can use custom text classification, you need to create a Language resource, which gives you the credentials that you need to create a project and start training a model. You also need an Azure storage account, where you can upload your dataset that is used to build your model.
 
 > [!IMPORTANT]
-> To quickly get started, we recommend creating a new Azure AI Language resource using the steps provided in this article. Using the steps in this article lets you create Azure Language resource and storage account at the same time, which is easier than doing it later.
+> To quickly get started, we recommend creating a new Language resource using the steps provided in this article. Using the steps in this article lets you create Azure Language resource and storage account at the same time, which is easier than doing it later.
 >
 > If you have a [preexisting resource](../../how-to/create-project.md#using-a-preexisting-language-resource) that you'd like to use, you need to connect it to storage account.
 >

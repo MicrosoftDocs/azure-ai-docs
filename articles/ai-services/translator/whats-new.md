@@ -23,17 +23,17 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 ## November 2025
 
-### Azure AI Foundry (new)
+### Microsoft Foundry (new)
 
-* The Azure AI Foundry portal streamlines access to models, agents, and tools for Foundry projects.
+* The Foundry portal streamlines access to models, agents, and tools for Foundry projects.
 
 * For text translation, you have three model options: Azure-MT (neural machine translation), GPT-4o, and GPT-4o mini. These models allow you to generate translations tailored to a specific gender or tone, and you can refine your results using your domain-specific data and terminology.
 
 * Document translation is available through a built-in playground, where you can select or provide a source document or text, specify the target language, and receive your translated output.
 
-### Azure AI Translator 2025-10-01-preview
+### Azure Translator in Foundry Tools 2025-10-01-preview
 
-Azure AI Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from a variety of generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
+Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from a variety of generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
 
 For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
 
@@ -59,7 +59,7 @@ Azure Translator [Document translation feature](document-translation/overview.md
 
 * This feature is optional and must be enabled for each translation request.
 * Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.
-* An [Azure AI Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
+* A [Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
 
 ## May 2025
 

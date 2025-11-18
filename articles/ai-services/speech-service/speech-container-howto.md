@@ -148,7 +148,7 @@ You can have this container and a different Azure AI container running on the HO
 | WS | `ws://localhost:5000` | [Speech to text](speech-container-stt.md#use-the-container)<br/><br/>[Custom speech to text](speech-container-cstt.md#use-the-container)  |
 | HTTP | `http://localhost:5000` | [Neural text to speech](speech-container-ntts.md#use-the-container)<br/><br/>[Speech language identification](speech-container-lid.md#use-the-container) |
 
-For more information on using WSS and HTTPS protocols, see [Container security](../cognitive-services-container-support.md#azure-ai-foundry-tools-container-security) in the Foundry Tools documentation.
+For more information on using WSS and HTTPS protocols, see [Container security](../cognitive-services-container-support.md#foundry-tools-container-security) in the Foundry Tools documentation.
 
 ## Troubleshooting
 

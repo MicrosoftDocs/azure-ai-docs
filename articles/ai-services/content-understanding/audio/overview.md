@@ -219,7 +219,7 @@ The following prebuilt analyzers are available:
 }
 ```
 
-**Conversation analysis (prebuilt-audioAnalyzer)**. Analyze recordings to generate:
+**Conversation analysis (prebuilt-audioSearch)**. Analyze recordings to generate:
 - conversation transcripts
 - conversation summary
 
@@ -229,7 +229,7 @@ The following prebuilt analyzers are available:
   "id": "9624cc49-b6b3-4ce5-be6c-e895d8c2484d",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-audioAnalyzer",
+    "analyzerId": "prebuilt-audioSearch",
     "apiVersion": "2025-05-01-preview",
     "createdAt": "2025-05-06T23:00:12Z",
     "stringEncoding": "utf8",
@@ -297,7 +297,7 @@ Developers using this service should review Microsoft's policies on customer dat
 
 ## Next steps
 
-* Try processing your audio content in the [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
+* Try processing your audio content in the [**Microsoft Foundry portal**](https://aka.ms/cu-landing).
 * Learn how to analyze audio content with [**analyzer templates**](../how-to/content-understanding-foundry-classic.md).
 * Review code samples: 
   * [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).

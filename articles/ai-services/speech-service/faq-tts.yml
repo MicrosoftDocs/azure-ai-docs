@@ -102,7 +102,7 @@ sections:
         answer: |
           If you want to limit the permission to training, you can limit the user roles and access. Refer to [Role-based access control for Speech resources](role-based-access-control.md).
       - question: |
-          Can Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
+          Ca Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
           The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
       - question: |

@@ -27,7 +27,7 @@ Analyzers are the core building blocks of Content Understanding. They combine co
 Content Understanding provides several types of analyzers:
 
 - **Base analyzers**: Foundational analyzers that provide core processing capabilities for each content type (`prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, `prebuilt-image`). These analyzers are typically used as building blocks for custom analyzers.
-- **RAG analyzers**: Optimized for retrieval-augmented generation scenarios, extracting content with semantic understanding for search and AI applications (ex. `prebuilt-documentAnalyzer`, `prebuilt-videoAnalyzer`).
+- **RAG analyzers**: Optimized for retrieval-augmented generation scenarios, extracting content with semantic understanding for search and AI applications (ex. `prebuilt-documentSearch`, `prebuilt-videoSearch`).
 - **Domain-specific analyzers**: Preconfigured for specific document types and industries, like invoices, receipts, ID documents, and contracts (ex. `prebuilt-invoice`, `prebuilt-receipt`, `prebuilt-idDocument`).
 - **Custom analyzers**: Analyzers you create by extending base analyzers with custom field schemas and configurations to meet your specific requirements.
 
@@ -110,31 +110,12 @@ These properties uniquely identify and describe your analyzer:
 
 ## Model configuration
 
-These properties control which AI models the analyzer uses for processing. 
-
-### `supportedModels`
-- **Description:** Declares which Azure AI Foundry catalog model names this analyzer type is compatible with. Lists the model names that are supported for use with this analyzer.
-- **Properties:**
-  - `completion` - Array of completion model names from Azure AI Foundry catalog that can be used for text generation and field extraction
-  - `embedding` - Array of embedding model names from Azure AI Foundry catalog that can be used for semantic search and similarity
-- **Purpose:** Use this list to validate which model names you can specify in the `models` property
-- **Important:** These are model names (for example, `gpt-4o`), not deployment names. The actual deployments are configured separately at the resource level.
-- **Example:**
-  ```json
-  {
-    "completion": ["gpt-4o", "gpt-4o-mini", "gpt-4.1"],
-    "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
-  }
-  ```
-- **Limitations:** Can only include model names from the Azure AI Foundry catalog that the service supports.
-
 ### `models`
-- **Description:** Specifies which Azure AI Foundry catalog model names to use by default when processing with this analyzer. These are the default model names (not deployment names) that the service uses.
+- **Description:** Specifies which Foundry model names to use when processing with this analyzer. These are the model names (not deployment names) that the service uses. They must match one of the `supportedModels` from the base analyzer. The full list of models supported by Content Understanding is list at [supported models](../service-limits.md#supported-generative-models). 
 - **Properties:**
-  - `completion` - Model name for completion tasks (content extraction, field generation, classification)
-  - `embedding` - Model name for embedding tasks (semantic search, vector indexing)
-- **Validation:** Each model name must be one of the model names listed in the corresponding `supportedModels` category (for example, if `supportedModels.completion` includes `"gpt-4.1"`, then `"gpt-4.1"` can be specified in `models.completion`)
-- **Important:** These are model names from the Azure AI Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
+  - `completion` - Model name for completion tasks (field extraction, segmentation, figure analysis etc.)
+  - `embedding` - Model name for embedding tasks (using a knowledge base)
+- **Important:** These are model names from the Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
 - **Example:**
   ```json
   {
@@ -142,10 +123,6 @@ These properties control which AI models the analyzer uses for processing.
     "embedding": "text-embedding-3-large"
   }
   ```
-- **Runtime behavior:** 
-  - The service maps these model names to actual deployments configured at your resource level
-  - You configure the mapping between model names and deployments separately in your Azure AI resource settings
-  - Model names can be overridden per analyze request for testing or routing
 
 See [Connect your Content Understanding resource with Foundry models](models-deployments.md) for more details on how to configure connected models.
 
@@ -666,4 +643,4 @@ Different content types support different configuration options. Here's a quick 
 * Create your own analyzer by following the [custom analyzer tutorial](../tutorial/create-custom-analyzer.md) 
 * Understand [best practices](best-practices.md) for optimal extraction results
 * Review [document elements](../document/elements.md) and [video elements](../video/elements.md) for details on extracted content
-* Get started by create and test analyzers in [Azure AI Foundry](../quickstart/use-ai-foundry.md)
+* Get started by create and test analyzers in [Foundry](../quickstart/use-ai-foundry.md)

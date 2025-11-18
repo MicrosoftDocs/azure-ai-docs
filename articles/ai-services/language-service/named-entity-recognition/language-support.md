@@ -1,7 +1,7 @@
 ---
 title: Named Entity Recognition (NER) language support
 titleSuffix: Foundry Tools
-description: This article explains which natural languages are supported by the NER feature of Azure AI Language.
+description: This article explains which natural languages are supported by the NER feature of Azure Language in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -12,7 +12,7 @@ ms.custom: language-service-ner
 ---
 # Named Entity Recognition (NER) language support 
 
-Use this article to learn which natural languages are supported by the NER feature of Azure AI Language.
+Use this article to learn which natural languages are supported by the NER feature of Azure Language in Foundry Tools.
 
 > [!NOTE]
 > * You can additionally find the language support for the Preview API in the second tab.

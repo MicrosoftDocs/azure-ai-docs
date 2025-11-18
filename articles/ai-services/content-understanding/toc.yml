@@ -42,66 +42,64 @@ items:
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-    - name: Create CU Task in AI Foundry Classic (Preview)
+    - name: Create CU Task in Foundry (classic) (Preview)
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: how-to/content-understanding-foundry-classic.md
   - name: Concepts
     items:
-    - name: Analyzers
-      items:
-        - name: What are analyzers?
-          displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/analyzer-reference.md
-        - name: Prebuilt analyzers
-          displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/prebuilt-analyzers.md
-        - name: Best practices
-          displayName: best practices, analyzers, optimization, fields
-          href: concepts/best-practices.md
-        - name: "Modes: standard and pro (Preview)"
-          displayName: standard, pro, modes, analyzers, optimization, fields
-          href: concepts/standard-pro-modes.md
+    - name: What are analyzers?
+      displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/analyzer-reference.md
+    - name: Prebuilt analyzers
+      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/prebuilt-analyzers.md
+    - name: Best practices
+      displayName: best practices, analyzers, optimization, fields
+      href: concepts/best-practices.md
     - name: What are classifiers?
       displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/classifier.md
     - name: Foundry model deployments
       displayName: foundry, model, deployments
       href: concepts/models-deployments.md
-    - name: Modalities
-      items:
-        - name: Document
-          items:
-            - name: Overview
-              displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-              href: document/overview.md
-            - name: Elements
-              displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-              href: document/elements.md
-            - name: Markdown
-              displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-              href: document/markdown.md
-            - name: Analyzer Improvement
-              href: document/analyzer-improvement.md
-        - name: AudioVideo
-          items:
-            - name: Video Overview
-              displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-              href: video/overview.md
-            - name: Audio Overview
-              displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-              href: audio/overview.md
-            - name: Elements
-              displayName: audio, video, elements, schema, structure
-              href: video/elements.md
-            - name: Markdown
-              displayName: audio, video, markdown, formatting
-              href: video/markdown.md
-        - name: Image
-          displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
-          href: image/overview.md
-        - name: What is face detection? (preview)
-          displayName: recognition, detection, analysis, identification, verification
-          href: face/overview.md
+    - name: "Modes: standard and pro (Preview)"
+      displayName: standard, pro, modes, analyzers, optimization, fields
+      href: concepts/standard-pro-modes.md
+  - name: Modalities
+    items:
+      - name: Document
+        items:
+          - name: Overview
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/overview.md
+          - name: Elements
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/elements.md
+          - name: Markdown
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/markdown.md
+          - name: Analyzer Improvement
+            href: document/analyzer-improvement.md
+      - name: AudioVideo
+        items:
+          - name: Video Overview
+            displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+            href: video/overview.md
+          - name: Audio Overview
+            displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+            href: audio/overview.md
+          - name: Elements
+            displayName: audio, video, elements, schema, structure
+            href: video/elements.md
+          - name: Markdown
+            displayName: audio, video, markdown, formatting
+            href: video/markdown.md
+      - name: Image
+        displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
+        href: image/overview.md
+      - name: What is face detection? (preview)
+        displayName: recognition, detection, analysis, identification, verification
+        href: face/overview.md
   - name: Tutorials
     items:
       - name: Create a custom analyzer with Content Understanding Studio
@@ -123,7 +121,7 @@ items:
         href: tutorial/build-rag-solution.md
       - name: Build a robotic process automation solution
         href: tutorial/robotic-process-automation.md
-      - name: Create an Azure AI Foundry resource
+      - name: Create a Microsoft Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
       - name: Build a face-data person directory (preview)

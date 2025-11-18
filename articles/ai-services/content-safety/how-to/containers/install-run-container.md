@@ -144,7 +144,7 @@ You can have this container and a different Azure AI container running on the ho
 > | WS | `ws://localhost:5000` | 
 > | HTTP | `http://localhost:5000` |
 
-For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md#azure-ai-foundry-tools-container-security) in the Azure AI Foundry Tools documentation.
+For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md#foundry-tools-container-security) in the Azure AI Foundry Tools documentation.
 
 ## Troubleshooting
 

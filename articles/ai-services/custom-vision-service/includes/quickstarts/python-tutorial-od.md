@@ -108,7 +108,7 @@ Then, use this map of associations to upload each sample image with its region c
 [!Code-python[](~/cognitive-services-quickstart-code/python/CustomVision/ObjectDetection/CustomVisionQuickstart.py?name=snippet_upload)]
 
 > [!NOTE]
-> You'll need to change the path to the images based on where you downloaded the Azure AI services Python SDK Samples repo earlier.
+> You'll need to change the path to the images based on where you downloaded the Foundry Tools Python SDK Samples repo earlier.
 
 ## Train the project
 

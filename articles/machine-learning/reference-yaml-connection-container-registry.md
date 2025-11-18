@@ -41,7 +41,7 @@ ms.reviewer: ambadal
 
 ## Remarks
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Microsoft Foundry connections.
 
 ## Examples
 

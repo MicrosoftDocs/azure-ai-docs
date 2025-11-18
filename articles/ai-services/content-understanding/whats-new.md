@@ -19,12 +19,12 @@ Azure Content Understanding in Foundry Tools service is updated on an ongoing ba
 
 ## November 2025
 
-Azure AI Content Understanding is now Generally Available with API version `2025-11-01`. The release brings production readiness plus customer-driven enhancements across model choice, management, and security.
+Azure Content Understanding in Foundry Tools is now Generally Available with API version `2025-11-01`. The release brings production readiness plus customer-driven enhancements across model choice, management, and security.
 
 ### Flexibility to choose the right generative AI model for every workload
 
-- Connect Content Understanding to an Azure AI Foundry Model deployment for generative AI so you control quality, latency, and cost. You can choose either pay-as-you-go or Provisioned Throughput Unit (PTU) deployments for your Foundry Model. See what models are [currently supported](concepts/models-deployments.md#supported-models). To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
-- Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Azure AI Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md).
+- Connect Content Understanding to a Microsoft Foundry Model deployment for generative AI so you control quality, latency, and cost. You can choose either pay-as-you-go or Provisioned Throughput Unit (PTU) deployments for your Foundry Model. See what models are [currently supported](concepts/models-deployments.md#supported-models). To try it out for yourself check out [How to build a custom analyzer in Content Understanding Studio](../content-understanding/how-to/customize-analyzer-content-understanding-studio.md)
+- Model selection gives you the flexibility to optimize your Foundry model deployment with settings like type (Global, DataZone, or Regional) and Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For details see [Deployment types for Foundry Models](../../ai-foundry/foundry-models/concepts/deployment-types.md).
 - Transparent pricing model provides clear visibility into costs across content extraction, contextualization, and generative model usage. Content Understanding only charges for content extraction (per page/minute) and contextualization. Generative features directly use your Foundry model deployment incurring standard token-based charges. Learn more in the [Pricing explainer](pricing-explainer.md).
 
 ### Analyzer updates
@@ -38,10 +38,10 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 
 RAG analyzers are optimized for retrieval-augmented generation scenarios, extracting content with layout as markdown and performing semantic analysis to enhance retrieval quality for downstream applications.
 
-- **Documents**: `prebuilt-documentAnalyzer` extracts paragraphs, tables, and figure descriptions from documents, enables textual descriptions of images, charts, and diagrams, captures hand-written annotations, generates content summaries, and supports a wide range of file formats including PDF, images, Office documents, and text files.
-- **Multimodal support**: Extends to video, image, and audio with `prebuilt-videoAnalyzer` for transcript extraction and segment-based summaries with automatic scene detection, `prebuilt-imageAnalyzer` for visual content descriptions and insights, and `prebuilt-audioAnalyzer` for conversation transcription with speaker diarization and multilingual support.
+- **Documents**: `prebuilt-documentSearch` extracts paragraphs, tables, and figure descriptions from documents, enables textual descriptions of images, charts, and diagrams, captures hand-written annotations, generates content summaries, and supports a wide range of file formats including PDF, images, Office documents, and text files.
+- **Multimodal support**: Extends to video, image, and audio with `prebuilt-videoSearch` for transcript extraction and segment-based summaries with automatic scene detection, `prebuilt-imageSearch` for visual content descriptions and insights, and `prebuilt-audioSearch` for conversation transcription with speaker diarization and multilingual support.
 
-Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
+Review the full analyzer catalog in [Prebuilt analyzers in Content Understanding](concepts/prebuilt-analyzers.md).
 
 ### Domain-specific prebuilt analyzers for industry workloads
 
@@ -53,7 +53,7 @@ Domain-specific prebuilt analyzers are tailored for industry scenarios, enabling
 - **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run. See [identity documents](concepts/prebuilt-analyzers.md#domain-specific-analyzers)
 - **Utilities, billing, and more**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data.
 
-Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
+Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Content Understanding](concepts/prebuilt-analyzers.md#domain-specific-analyzers).
 
 ### Content extraction
 
@@ -94,9 +94,9 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 - The preview API (`2025-05-01-preview`) doesn't carry forward Pro mode for cross-file analysis or the person directory with Face API integration.
 
 ## October 2025
-Azure AI Content Understanding preview version introduces the following updates:
+Content Understanding preview version introduces the following updates:
 
-* Azure AI Content Understanding now has increased field count support (1,000) for all modalities.
+* Content Understanding now has increased field count support (1,000) for all modalities.
 * The API response body now includes input, output, and contextualization tokens consumed as part of the tokens object. Check out the quickstart article for more information.
 
 ## May 2025
@@ -111,11 +111,11 @@ Content Understanding pro mode adds reasoning, support for multiple input docume
 
 The `pro` mode (preview) is currently limited to documents as inputs, with support other types of content types coming soon! Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode (preview)](concepts/standard-pro-modes.md).
 
-### AI Foundry experience
+### Foundry experience
 
 With this release, the following updates are now available to the Content Understanding experience in Microsoft Foundry:
 
-* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal](./how-to/content-understanding-foundry-classic.md).
+* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal](./how-to/content-understanding-foundry-classic.md).
 * Try-out experiences are now available for general document analysis and invoice analysis. Try out these prebuilt features on your own data and start getting insights without having to create a custom task. 
 
 ### Document classification and splitting

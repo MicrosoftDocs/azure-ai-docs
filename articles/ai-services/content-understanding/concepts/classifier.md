@@ -14,7 +14,7 @@ ms.custom:
 
 # Content Understanding classification/segmentation
 
-Azure AI Content Understanding doesn't have an explicit classifier API. Instead, classification is now part of the analyzer operation request that you send for any analysis. You don't need to call two separate APIs to perform content classification and content extraction at once. 
+Azure Content Understanding in Foundry Tools doesn't have an explicit classifier API. Instead, classification is now part of the analyzer operation request that you send for any analysis. You don't need to call two separate APIs to perform content classification and content extraction at once. 
 
 The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data you process within your application. This analyzer feature can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. 
 

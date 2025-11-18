@@ -1,6 +1,6 @@
 ---
 title: Transparency note - Personally Identifiable Information (PII) feature of Azure Language in Foundry Tools
-titleSuffix: Microsoft Foundry Tools
+titleSuffix: Foundry Tools
 description: The Azure Language Personally Identifiable Information (PII) feature is part of named entity recognition (NER) and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number.
 author: laujan
 ms.author: lajanuar

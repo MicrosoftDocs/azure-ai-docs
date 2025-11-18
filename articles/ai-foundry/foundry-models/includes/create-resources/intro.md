@@ -18,14 +18,14 @@ Foundry Models is a capability in Foundry Services (formerly known Azure AI Serv
 
 :::image type="content" source="../../media/create-resources/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../../media/create-resources/resources-architecture.png":::
 
-Foundry Services don't require AI projects or AI hubs to operate and you can create them to consume flagship models from your applications. However, additional capabilities are available if you **deploy an Azure AI project and hub**, including playground, or agents.
+Foundry Services don't require AI projects or AI hubs to operate and you can create them to consume flagship models from your applications. However, additional capabilities are available if you **deploy a Foundry project and hub**, including playground, or agents.
 
 The tutorial helps you create:
 
 > [!div class="checklist"]
 > * A Foundry resource.
 > * A model deployment for each of the models supported with serverless API deployments.
-> * (Optionally) An Azure AI project and hub.
+> * (Optionally) A Foundry project and hub.
 > * (Optionally) A connection between the hub and the models in Foundry.
 
 ## Prerequisites

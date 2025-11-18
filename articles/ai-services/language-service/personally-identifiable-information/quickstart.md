@@ -50,7 +50,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

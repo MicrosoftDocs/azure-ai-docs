@@ -229,7 +229,7 @@ Detected hyperlinks from digital content are represented using standard Markdown
 ### Examples
 
 ``` md
-For more information, visit the [Azure AI Foundry](https://aka.ms/ai-foundry) portal.
+For more information, visit the [Microsoft Foundry](https://aka.ms/ai-foundry) portal.
 
 Contact our support team at [support@contoso.com](mailto:support@contoso.com "Email support").
 

@@ -1,5 +1,5 @@
 ---
-title: Entity categories list recognized by Personally Identifiable Information (PII) detection in Azure AI Language
+title: Entity categories list recognized by Personally Identifiable Information (PII) detection in Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
 description: View a list of entity types the PII feature can detect and identify within unstructured text.
 author: laujan

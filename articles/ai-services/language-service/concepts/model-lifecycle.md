@@ -97,4 +97,4 @@ Use the following table to find which API versions support each feature:
 
 ## Next steps
 
-[Azure AI Language overview](../overview.md)
+[Azure Language in Foundry Tools overview](../overview.md)

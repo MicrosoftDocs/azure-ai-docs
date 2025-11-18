@@ -1,11 +1,11 @@
 items:
-- name: Azure AI Language documentation
+- name: Azure Language in Foundry Tools documentation
   href: index.yml
 - name: Overview
   expanded: true
   displayName: introduction, getting started, what is azure ai language
   items:
-  - name: What is Azure AI Language?
+  - name: What is Azure Language in Foundry Tools?
     href: overview.md
     displayName: overview, introduction
   - name: What's new
@@ -25,7 +25,7 @@ items:
   - name: Configure Azure resources
     href: conversational-language-understanding/how-to/configure-azure-resources.md
     displayName: configuration, fine-tuning, azure ai foundry, azure portal
-- name: Azure AI Language capabilities
+- name: Azure Language in Foundry Tools capabilities
   items:
 
   - name: "Conversational language understanding (CLU)"
@@ -804,7 +804,7 @@ items:
     href: concepts/use-asynchronously.md
 - name: Responsible use of AI
   items:
-  - name: Transparency note for Azure AI Language
+  - name: Transparency note for Azure Language in Foundry Tools
     href: ../../ai-foundry/responsible-ai/language-service/transparency-note.md
     displayName: Transparency note for Language, Language Transparency, Responsible AI, Responsible use of AI
   - name: Integration and responsible use
@@ -955,7 +955,7 @@ items:
       items:
       - name: Virtual networks
         href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/language-service/context/context
-      - name: Azure AI Foundry security
+      - name: Microsoft Foundry security
         href: ../security-features.md?context=/azure/ai-services/language-service/context/context
       - name: Encryption of data at rest
         href: concepts/encryption-data-at-rest.md

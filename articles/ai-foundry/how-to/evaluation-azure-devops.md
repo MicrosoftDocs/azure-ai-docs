@@ -33,7 +33,7 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
      You can use the sample YAML provided in the README or copy from the [GitHub repo](https://github.com/microsoft/ai-agent-evals?tab=readme-ov-file).
 2.  Configure the following inputs:
     - Set up [Azure CLI](/azure/devops/pipelines/tasks/reference/azure-cli-v2) with [service connection](/azure/devops/pipelines/library/service-endpoints?view=azure-devops&preserve-view=true) and Azure Login.
-    - Azure AI project connection string
+    - Foundry project connection string
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
       - Queries (required).

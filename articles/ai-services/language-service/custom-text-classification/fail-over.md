@@ -13,7 +13,7 @@ ms.custom: language-service-custom-classification
 ---
 # Back up and recover your custom text classification models
 
-When you create a Language resource, you specify a region for it to be created in. From then on, your resource and all of the operations related to it take place in the specified Azure server region. It's rare, but not impossible, to encounter a network issue that hits an entire region. If your solution needs to always be available, then you should design it to either fail-over into another region. Fail-over requires two Azure AI Language resources in different regions and the ability to sync custom models across regions. 
+When you create a Language resource, you specify a region for it to be created in. From then on, your resource and all of the operations related to it take place in the specified Azure server region. It's rare, but not impossible, to encounter a network issue that hits an entire region. If your solution needs to always be available, then you should design it to either fail-over into another region. Fail-over requires two Azure Language in Foundry Tools resources in different regions and the ability to sync custom models across regions. 
 
 If your app or business depends on the use of a custom text classification model, we recommend that you create a replica of your project into another supported region. So that if a regional outage occurs, you can then access your model in the other fail-over region where you replicated your project.
 
@@ -23,13 +23,13 @@ In this article, you learn to how to use the export and import APIs to replicate
 
 ##  Prerequisites
 
-* Two Azure AI Language resources in different Azure regions. [Create a Language resource](./how-to/create-project.md#create-a-language-resource) and connect them to an Azure storage account. We recommend that you connect both of your Language resources to the same storage account. Although this step might introduce slightly higher latency when importing your project, and training a model.
+* Two Language resources in different Azure regions. [Create a Language resource](./how-to/create-project.md#create-a-language-resource) and connect them to an Azure storage account. We recommend that you connect both of your Language resources to the same storage account. Although this step might introduce slightly higher latency when importing your project, and training a model.
 
 ## Get your resource keys endpoint
 
 Use the following steps to get the keys and endpoint of your primary and secondary resources.
 
-[!INCLUDE [Get keys and endpoint from the Azure Portal](./includes/get-keys-endpoint-azure.md)]
+[!INCLUDE [Get keys and endpoint from the Azure portal](./includes/get-keys-endpoint-azure.md)]
 
 > [!TIP]
 > Keep a note of keys and endpoints for both primary and secondary resources. Use these values to replace the following placeholders:

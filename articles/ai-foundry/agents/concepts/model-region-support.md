@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 10/23/2025
+ms.date: 11/14/2025
 ms.custom: azure-ai-agents, references_regions
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -150,6 +150,29 @@ Foundry Agent Service supports the following Azure OpenAI models in the listed r
 
 ---
 
-## Next steps
+## Other model collections
+
+The following [models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) are available for use by your agents:
+
+- **MAI-DS-R1** — deterministic, precision-focused reasoning
+- **grok-4** — frontier-scale reasoning for complex, multi-step problem solving 
+- **grok-4-fast-reasoning** — accelerated agentic reasoning optimized for workflow automation
+- **grok-4-fast-non-reasoning** — high-throughput, low-latency generation and system routing
+- **grok-3** — strong reasoning for complex, system-level workflows
+- **grok-3-mini** — lightweight model optimized for interactive, high-volume use cases 
+- **Llama-3.3-70B-Instruct** — versatile model for enterprise Q&A, decision support, and system orchestration
+- **Llama-4-Maverick-17B-128E-Instruct-FP8** — FP8-optimized model delivering fast, cost-efficient inference
+- **DeepSeek-V3-0324** — multimodal understanding across text and images
+- **DeepSeek-V3.1** — enhanced multimodal reasoning and grounded retrieval
+- **DeepSeek-R1-0528** — advanced long-form and multi-step reasoning
+- **gpt-oss-120b** — open-ecosystem model supporting transparency and reproducibility
+
+The following [models from partners](../../foundry-models/concepts/models-from-partners.md) are available for use by your agents:
+
+- **Claude-Opus-4-1** — frontier reasoning for the most complex problem-solving 
+- **Claude-Sonnet-4-5** — balanced performance for multimodal and agentic workflows 
+- **Claude-Haiku-4-5** — lightweight, high-speed generation for interactive scenarios
+
+## Next step
 
 [Create a new Agent project](../quickstart.md)

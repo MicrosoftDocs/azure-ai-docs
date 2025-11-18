@@ -17,7 +17,7 @@ You can query the deployment programmatically through the [prediction API](https
 
 ## Test deployed model
 
-You can use Azure AI Foundry to submit an utterance, get predictions, and visualize the results.
+You can use Microsoft Foundry to submit an utterance, get predictions, and visualize the results.
 
 [!INCLUDE [Test model](../includes/language-studio/test-model.md)]
 
@@ -33,7 +33,7 @@ You can use Azure AI Foundry to submit an utterance, get predictions, and visual
 
 First you need to get your resource key and endpoint:
 
-[!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
+[!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
 ### Query your model
 

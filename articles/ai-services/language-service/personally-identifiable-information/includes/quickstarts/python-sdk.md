@@ -17,7 +17,7 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
 * [Python 3.8 or later](https://www.python.org/)
 
 ## Setting up

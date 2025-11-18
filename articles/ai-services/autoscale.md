@@ -12,7 +12,7 @@ ms.date: 10/02/2025
 
 # Autoscale Foundry Tools limits
 
-This article provides guidance on how customers can access higher rate limits on certain Foundry Tools resources, including those AI services used with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) .
+This article provides guidance on how customers can access higher rate limits on certain Foundry Tools resources, including those AI services used with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) .
 
 ## Overview
 

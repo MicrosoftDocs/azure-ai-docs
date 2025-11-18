@@ -39,13 +39,13 @@ To create both custom image classification and object detection models using tra
 ### Generative AI-based solutions
 Microsoft is also investing in Generative AI-based solutions that increase accuracy in custom scenarios using prompt engineering and other techniques.
 
-#### Generative AI solutions in Azure AI Foundry
+#### Generative AI solutions in Microsoft Foundry
 
 * **Best for**: Customers who are flexible in their approach to creating a solution for customized vision capabilities.
 *	**Features**: Flexibility to build custom solutions based on different Generative AI models.
-*	**Learn more** about Generative AI models in the Azure AI Foundry: 
-    *	[Explore Azure AI Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
-    *	[Azure OpenAI in Azure AI Foundry models](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#azure-openai-in-azure-ai-foundry-models)
+*	**Learn more** about Generative AI models in the Foundry: 
+    *	[Explore Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
+    *	[Azure OpenAI in Foundry models](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#azure-openai-in-azure-ai-foundry-models)
 
 #### Azure Content Understanding in Foundry Tools (preview)
 * **Best for**: Customers who want a managed generative solution for image classification

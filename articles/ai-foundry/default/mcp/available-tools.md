@@ -1,6 +1,6 @@
 ---
-title:  Explore available tools and example prompts for Microsoft Foundry MCP Server (preview) 
-description: Learn about the available tools and example prompts for Microsoft Foundry MCP Server (preview) 
+title:  Explore available tools and example prompts for Foundry MCP Server (preview) 
+description: Learn about the available tools and example prompts for Foundry MCP Server (preview) 
 keywords: azure developer cli, azd
 author: alexwolfmsft
 ms.author: alexwolf
@@ -10,9 +10,9 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Available tools and example prompts for Microsoft Foundry MCP Server (preview) 
+# Available tools and example prompts for Foundry MCP Server (preview) 
 
-Use the following sections to find available tools and example prompts for Microsoft Foundry MCP Server (preview). Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Foundry services. 
+Use the following sections to find available tools and example prompts for Foundry MCP Server (preview). Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Foundry services. 
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
@@ -20,7 +20,7 @@ Use the following sections to find available tools and example prompts for Micro
 
 **evaluation_dataset_create (write)**
 
-Create or update a dataset version in an Azure AI project.
+Create or update a dataset version in a Foundry project.
 
 Example prompts include:
 
@@ -34,7 +34,7 @@ Get a dataset by name and version, or list all datasets in the project.
 
 Example prompts include:
 
-- "Show me all datasets in my Azure AI project" 
+- "Show me all datasets in my Foundry project" 
 - "Get details for the 'customer-support-qa' dataset version 2" 
 - "List all available datasets I can use for evaluation" 
 
@@ -56,7 +56,7 @@ List evaluation runs in the Azure AI Project.
 
 Example prompts include:
 
-- "Show me all evaluation runs in my Azure AI project" 
+- "Show me all evaluation runs in my Foundry project" 
 - "List the recent evaluations I've run this week" 
 - "Get the status of all my model evaluations" 
 

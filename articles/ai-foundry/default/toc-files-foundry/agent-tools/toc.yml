@@ -1,15 +1,17 @@
 items:
-- name: Agent tools overview
-  href: ../../../agents/how-to/tools/overview.md
-- name: Memory (preview)
-  href: ../../agents/concepts/agent-memory.md
-- name: AI Foundry tool catalog (preview)
+- name: Tool catalog (preview)
   href: ../../agents/concepts/tool-catalog.md
 - name: Create a private tool catalog (preview)
   href: ../../agents/how-to/private-tool-catalog.md
-- name: Agent2Agent (A2A) tool
+- name: Tool governance
+  href: ../../agents/how-to/tools/governance.md
+- name: Browser automation (preview)
+  href: ../../agents/how-to/browser-automation.md
+- name: Memory (preview)
+  href: ../../agents/concepts/agent-memory.md
+- name: Agent2Agent (A2A) tool (preview)
   href: ../../agents/how-to/tools/agent-to-agent.md
-- name: Agent2Agent (A2A) authentication
+- name: Agent2Agent (A2A) authentication (preview)
   href: ../../agents/concepts/agent-to-agent-authentication.md
 - name: Retrieval Augmented Generation (RAG) overview
   href: ../../../concepts/retrieval-augmented-generation.md
@@ -19,10 +21,6 @@ items:
   href: ../../../agents/how-to/tools/azure-ai-speech.md
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
-- name: Azure Functions
-  href: ../../../agents/how-to/tools/azure-functions.md
-- name: Browser automation (preview)
-  href: ../../../agents/how-to/tools/browser-automation.md
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
 - name: Computer Use (preview)
@@ -34,23 +32,21 @@ items:
 - name: Vector stores for file search
   href: ../../agents/concepts/vector-stores.md
 - name: Function calling
-  href: ../../../agents/how-to/tools/function-calling.md
+  href: ../../agents/how-to/tools/function-calling.md
 - name: Grounding with Bing tools
-  href: ../../agents/concepts/bing-tools.md
+  href: ../../agents/how-to/tools/bing-tools.md
 - name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
 - name: Model Context Protocol (MCP)
-  href: ../../../agents/how-to/tools/model-context-protocol.md
+  href: ../../agents/how-to/tools/model-context-protocol.md
 - name: MCP authentication
   href: ../../agents/how-to/mcp-authentication.md
 - name: Build your own MCP server
   href: ../../mcp/build-your-own-mcp-server.md
-- name: Knowledge (preview)
+- name: Foundry IQ (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
-- name: OpenAPI defined tools
-  href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint (preview)
-  href: ../../../agents/how-to/tools/sharepoint.md 
+  href: ../../agents/how-to/tools/sharepoint.md 
 - name: Web search (preview)
   href: ../../agents/how-to/tools/web-search.md
 

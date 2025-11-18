@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 11/12/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
@@ -16,12 +16,14 @@ zone_pivot_groups: selection-web-search
 
 # Web search tool (preview)
 
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations.
 > [!IMPORTANT]
-> * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+> * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When using Grounding with Bing Search and/or Grounding with Bing Custom Search, data will be transferred outside compliance and geographic boundaries.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
-> * See the [Bing Search tool documentation](../../concepts/bing-tools.md#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
+> * See the [management section](#admin-control-for-web-search-tool) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
 
 :::zone pivot="python"
 > [!NOTE]
@@ -64,12 +66,13 @@ agent = project_client.agents.create_version(
 :::zone-end
 
 :::zone pivot="rest-api"
+
 ### Create an agent with the web search tool
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
+  -H 'Content-Type: application/json' \
   -d '{
   "description": "Test agent version description",
   "definition": {
@@ -77,11 +80,36 @@ curl --request POST \
     "model": "{{model}}",
     "tools": [
       {
-        "type": "web_search"
+        "type": "web_search_preview"
       }
     ],
     "instructions": "You are a helpful assistant that can search the web for current information. When users ask questions that require up-to-date information, use the web search tool to find relevant results."
   }
+}'
+```
+### Create a response with the web search tool
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "agent": {
+    "type": "agent_reference",
+    "name": "{{agentVersion.name}}",
+    "version": "{{agentVersion.version}}"
+  },
+  "input": [{
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "how is the weather in seattle today?"
+      }
+    ]
+  }],
+  "stream": true
 }'
 ```
 :::zone-end
@@ -103,12 +131,8 @@ Web search supports two primary modes. Choose the mode based on the depth and sp
 
 Deep Research can run for several minutes and is best for background-style workloads that prioritize completeness over speed.
 
-### Usage support
-
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | - | - | - |  ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
-
+> [!NOTE]
+> You can only use file upload with a basic agent setup. With a standard agent setup you can use file upload or bring your own blob storage.
 
 ## Admin control for web search tool
 You can enable or disable the web search tool in Foundry Agent Service at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription. 

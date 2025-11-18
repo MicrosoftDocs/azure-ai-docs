@@ -76,7 +76,7 @@ After configuring your continuous evaluation settings, you will be able to view 
 
 ## Microsoft Foundry project configuration and region support
 
-Since the evaluators use hosted evaluation LLMs in the Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+Since the evaluators use hosted evaluation LLMs in the Foundry evaluation service, they require your Foundry project information to be instantiated. The Foundry project must be in a supported region:
 
 > [!div class="mx-tdCol2BreakAll"]
 > | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
@@ -90,7 +90,7 @@ Since the evaluators use hosted evaluation LLMs in the Foundry evaluation servic
 > | Norway East | Supported  |
 > | Sweden Central| Supported  | 
 
-## Set up continuous evaluations with Azure AI projects client library
+## Set up continuous evaluations with Azure AI Projects client library
 
 ```python
 pip install azure-ai-projects azure-identity

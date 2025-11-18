@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 10/10/2025
 author: aahill
 ms.author: aahi
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Connect to Model Context Protocol servers (preview)

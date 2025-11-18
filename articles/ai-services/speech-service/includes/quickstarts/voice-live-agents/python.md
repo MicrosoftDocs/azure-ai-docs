@@ -19,8 +19,8 @@ In this article, you learn how to use Azure Speech in Foundry Tools voice live w
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
-- An Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -876,9 +876,9 @@ Both logs are complementary - conversation logs for conversation analysis and te
 
 ## Hub-based projects
 
-The quickstart uses AI Foundry projects instead of hub-based projects. If you have a hub-based project, you can still use the quickstart with some modifications.
+The quickstart uses Foundry projects instead of hub-based projects. If you have a hub-based project, you can still use the quickstart with some modifications.
 
-To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the ```foundry_project_name```. You can find the connection string in the Azure portal under your AI Foundry project.
+To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the ```foundry_project_name```. You can find the connection string in the Azure portal under your Foundry project.
 
 ### Overview
 

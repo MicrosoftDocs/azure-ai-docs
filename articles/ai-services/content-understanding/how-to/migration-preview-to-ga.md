@@ -1,6 +1,6 @@
 ---
 title: Migration from Azure Content Understanding in Foundry Tools Preview to GA
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Migrate from Azure Content Understanding in Foundry Tools Preview to GA, including API changes and best practices.
 author: PatrickFarley
 ms.author: pafarley
@@ -19,7 +19,7 @@ The Content Understanding GA API introduces several new capabilities and updates
 
 ## Prerequisite
 
-- Deploy a supported completion model and embedding model to use with the `2025-11-01` Content Understanding GA API (See [Support Models](../concepts/models-deployments.md#supported-models)). To start, try deploying a GPT-4.1 completion model and a text-embedding-3-large embedding model. For directions on how to deploy models, see [Create model deployments in Azure AI Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+- Deploy a supported completion model and embedding model to use with the `2025-11-01` Content Understanding GA API (See [Support Models](../concepts/models-deployments.md#supported-models)). To start, try deploying a GPT-4.1 completion model and a text-embedding-3-large embedding model. For directions on how to deploy models, see [Create model deployments in Microsoft Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
 
 ## Updating analyzers
 
@@ -34,7 +34,7 @@ The analyzer definition might look something like this if it was created with th
 {
   "analyzerId": "my-custom-invoice-analyzer",
   "description": "Extracts vendor information, line items, and totals from commercial invoices",
-  "baseAnalyzerId": "prebuilt-documentAnalyzer",
+  "baseAnalyzerId": "prebuilt-documentSearch",
   "config": {
     /*...*/
   },

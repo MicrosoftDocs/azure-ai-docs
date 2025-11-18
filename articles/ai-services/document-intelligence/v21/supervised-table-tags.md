@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Train your custom template model with the sample-labeling tool and table tags"
 titleSuffix: Foundry Tools
 description: Learn how to effectively use supervised table tag labeling.

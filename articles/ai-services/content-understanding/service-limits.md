@@ -38,7 +38,23 @@ This article offers a reference of the quotas and limits for the Azure Content U
 | Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
 | Max operations/min | 3000 |
 
+## Supported generative models
 
+Content Understanding connects to Foundry Models for generative capabilities. The service is periodically updated to add support for more models. To learn more see [Connect your Content Understanding analyzer to Foundry model deployments](./concepts/models-deployments.md)  
+
+The currently supported models are:
+
+| Model Type | Model | Version |
+|--|--|--|
+|Chat Completion | gpt-4o | `2024-08-06` |
+|Chat Completion | gpt-4o | `2024-11-20` |
+|Chat Completion | gpt-4o-mini | `2024-11-20` |
+|Chat Completion | gpt-4.1 | `2024-11-20` |
+|Chat Completion | gpt-4.1-mini | `2024-11-20` |
+|Chat Completion |gpt-4.1-nano | `2024-11-20` |
+|Embeddings | text-embedding-3-small |  |
+|Embeddings | text-embedding-3-large |  |
+|Embeddings | text-embedding-ada-002 |  |
 
 ## Analyzers
 
@@ -82,7 +98,7 @@ This article offers a reference of the quotas and limits for the Azure Content U
 
 | Upload Method | File Size | Length | Description |
 | --- | --- | --- | --- |
-| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Uploading video files directly in the API request body using the analyzeBinary API. This method is used by the Azure AI Foundry UX and Content Understanding Studio UX.  |
+| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Uploading video files directly in the API request body using the analyzeBinary API. This method is used by the Microsoft Foundry UX and Content Understanding Studio UX.  |
 | analyze API (file reference) | Max: 4 GB | Max: 2 hours | Referencing video files via URL from Azure Blob Storage or similar storage when using the analyze API |
 
 > [!NOTE]

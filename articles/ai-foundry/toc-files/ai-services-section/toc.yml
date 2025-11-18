@@ -22,7 +22,7 @@ items:
   items:
   - name: What is Azure Content Understanding?
     href: ../../../ai-services/content-understanding/overview.md?context=/azure/ai-foundry/context/context
-  - name: Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal
+  - name: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
     href: ../../../ai-services/content-understanding/how-to/content-understanding-foundry-classic.md?context=/azure/ai-foundry/context/context
 - name:  Document Intelligence
   items:

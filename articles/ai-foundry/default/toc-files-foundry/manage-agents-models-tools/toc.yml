@@ -1,6 +1,6 @@
 items:
-  - name: What is the Foundry control plane
-    href: ../../control-plane/what-is-foundry-control-plane.md
+  - name: What is the Foundry control plane?
+    href: ../../control-plane/overview.md
   - name: Monitor fleet health and performance
     href: ../../control-plane/monitoring-across-fleet.md
   - name: Register and manage custom agents

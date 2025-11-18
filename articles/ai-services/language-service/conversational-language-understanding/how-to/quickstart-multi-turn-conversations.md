@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Multi-turn conversational language understanding (CLU) models with entity slot filling"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get started creating a CLU model for multi-turn interactions using slot-filling
 author: laujan
 manager: nitinme
@@ -21,20 +21,20 @@ In this article, get started building a CLU model that uses entity slot filling 
 
 * **Required permissions** - Ensure that the person establishing the account and project has the Azure AI Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
 
-* **Azure AI Language resource** - Create an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
+* **Azure Language in Foundry Tools resource** - Create a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics) in the Azure portal.
 
      > [!NOTE]
      > You need the **owner** role assigned on the **resource group** to create a Language resource.
 
-* **Azure AI Foundry project** - Create a project in Azure AI Foundry. For more information, see [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+* **Microsoft Foundry project** - Create a project in Foundry. For more information, see [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-* **Deployed OpenAI model** - Deploy an OpenAI model in Azure AI Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-foundry-portal) section.
+* **Deployed OpenAI model** - Deploy an OpenAI model in Foundry as described in the [Deploy an OpenAI model](#deploy-an-openai-model-in-foundry-portal) section.
 
 ## Configure roles, permissions, and settings
 
 Begin by configuring your Azure resources with the appropriate roles and permissions.
 
-### Add roles for your Azure AI Language resource
+### Add roles for your Language resource
 
 1. Navigate to your Language resource page in the [Azure portal](https://portal.azure.com/) and select **Access Control (IAM)** from the left navigation pane.
 
@@ -48,16 +48,16 @@ Begin by configuring your Azure resources with the appropriate roles and permiss
 
 1. Repeat these steps for all user accounts that require access to this resource.
 
-## Connect Azure Language resource to Azure AI Foundry
+## Connect Azure Language resource to Foundry
 
-To enable secure access, create a connection between your Azure AI Language resource and Azure AI Foundry. This connection provides secure identity management, authentication, and controlled access to your data.
+To enable secure access, create a connection between your Language resource and Foundry. This connection provides secure identity management, authentication, and controlled access to your data.
 
   > [!NOTE]
-  > The multi-turn capability is currently only available in the Azure AI Foundry (classic) portal.
+  > The multi-turn capability is currently only available in the Foundry (classic) portal.
 
-1. Navigate to [Azure AI Foundry (classic)](https://ai.azure.com/).
+1. Navigate to [Foundry (classic)](https://ai.azure.com/).
 
-1. Access your existing Azure AI project for this tutorial.
+1. Access your existing Foundry project for this tutorial.
 
 1. Select **Management center** from the left navigation menu.
 
@@ -65,11 +65,11 @@ To enable secure access, create a connection between your Azure AI Language reso
 
 1. In the main window, select **+ New connection**.
 
-1. Select **Azure AI Language** from the **Add a connection to external assets** window.
+1. Select **Language** from the **Add a connection to external assets** window.
 
 1. Select **Add connection**, then select **Close**.
 
-    :::image type="content" source="../media/add-connection.png" alt-text="Screenshot of the connection window in Azure AI Foundry.":::
+    :::image type="content" source="../media/add-connection.png" alt-text="Screenshot of the connection window in Foundry.":::
 
 ## Deploy an OpenAI model in Foundry portal
 
@@ -77,23 +77,23 @@ Deploy an OpenAI model to provide the foundational intelligence and advanced rea
 
 1. Select **Models + endpoints** from the **My assets** section of the navigation menu.
 
-   :::image type="content" source="../media/models-endpoints.png" alt-text="Screenshot of the deploy model button menu in Azure AI Foundry.":::
+   :::image type="content" source="../media/models-endpoints.png" alt-text="Screenshot of the deploy model button menu in Foundry.":::
 
 1. From the main window, select **+ Deploy model**.
 
 1. Select **Deploy base model** from the dropdown menu.
 
-   :::image type="content" source="../media/deploy-model-button.png" alt-text="Screenshot of the connected resources menu selection in Azure AI Foundry.":::
+   :::image type="content" source="../media/deploy-model-button.png" alt-text="Screenshot of the connected resources menu selection in Foundry.":::
 
 1. In the **Select a model** window, choose a model. The **gpt-4** base model is recommended for this project.
 
-   :::image type="content" source="../media/gpt-4-selection.png" alt-text="Screenshot of the select a model selection in Azure AI Foundry.":::
+   :::image type="content" source="../media/gpt-4-selection.png" alt-text="Screenshot of the select a model selection in Foundry.":::
 
 1. Select **Confirm**.
 
 1. In the **Deploy gpt-4** window, retain the default values and select **Deploy**.
 
-   :::image type="content" source="../media/deploy-gpt-4.png" alt-text="Screenshot of the gpt-4 deployment window in Azure AI Foundry.":::
+   :::image type="content" source="../media/deploy-gpt-4.png" alt-text="Screenshot of the gpt-4 deployment window in Foundry.":::
 
 1. The model deployment is now complete.
 
@@ -105,11 +105,11 @@ Now that your Language resource, Foundry project, and OpenAI deployment are conf
 
 In this section, you create a travel agent model and deploy it using Quick Deploy.
 
-1. Navigate to [Azure AI Foundry (classic)](https://ai.azure.com).
+1. Navigate to [Foundry (classic)](https://ai.azure.com).
 
 1. If you aren't already signed in, the portal prompts you to authenticate with your Azure credentials.
 
-1. Once signed in, create or access your existing projects within Azure AI Foundry.
+1. Once signed in, create or access your existing projects within Foundry.
 
 1. If you're not already in your project for this task, select it.
 
@@ -211,7 +211,7 @@ Now that all entities have associations, you can proceed with Quick Deploy using
    * **Select Azure OpenAI Model Deployment** - Choose the Azure OpenAI model deployment you created for this project.
    * **Deployment regions** - Select the region associated with your Azure Language resource.
 
-1. Select **Create**. Azure AI Foundry manages the configuration and deployment processes through backend operations.
+1. Select **Create**. Foundry manages the configuration and deployment processes through backend operations.
 
 ### Test your model in the playground
 

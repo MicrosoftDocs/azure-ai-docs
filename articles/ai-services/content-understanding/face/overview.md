@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding face overview (preview)
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding face solutions.
+title: Azure Content Understanding in Foundry Tools face overview (preview)
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools face solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme

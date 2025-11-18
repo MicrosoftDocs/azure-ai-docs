@@ -25,11 +25,11 @@ Before you begin:
 
 - Make sure you have access to the **Microsoft Foundry portal**.
 - Ensure you have one or more deployed agents.
-- Verify that you have one or more evaluation runs in one evaluation group.
+- Verify that you have one or more evaluation runs in one evaluation.
 
 ## Generate an evaluation cluster analysis
 
-On the evaluation group detail page, select one or more runs and then select **Cluster analysis**. A window appears and prompts you to select a model to generate the cluster analysis. It also shows an estimated time and tokens based on the samples selected from the evaluation runs.  
+On the evaluation detail page, select one or more runs and then select **Cluster analysis**. A window appears and prompts you to select a model to generate the cluster analysis. It also shows an estimated time and tokens based on the samples selected from the evaluation runs.  
 
 :::image type="content" source="../../media/observability/cluster-analysis-set-up.png" alt-text="Screenshot of the setup cluster analysis window." lightbox="../../media/observability/cluster-analysis-set-up.png":::
 

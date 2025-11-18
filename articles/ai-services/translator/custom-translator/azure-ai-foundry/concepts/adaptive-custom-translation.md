@@ -18,10 +18,10 @@ ms.topic: reference
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure Translator in Foundry Tools adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Azure AI Foundry—using a small set of reference sentence pairs.
+Azure Translator in Foundry Tools adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Microsoft Foundry—using a small set of reference sentence pairs.
 
 AdaptCT lets you upload 5–10,000 pre‑aligned bilingual segment pairs (source+target). Each pair can contain up to 512 total characters (combined across both sides). The service builds a custom language‑pair dataset index in minutes, which you can then query with the [Azure Translator 2025-05-01-preview APIs](/azure/ai-services/translator/text-translation/preview/overview).
-Unlike traditional custom models that require large training sets and separate deployment, AdaptCT uses few‑shot retrieval at inference time: it selects relevant sentence pairs from your dataset index on the fly to adapt and optimize the LLM’s output toward your domain terminology, context, and style. `Availability: Azure AI Foundry.`
+Unlike traditional custom models that require large training sets and separate deployment, AdaptCT uses few‑shot retrieval at inference time: it selects relevant sentence pairs from your dataset index on the fly to adapt and optimize the LLM’s output toward your domain terminology, context, and style. `Availability: Foundry.`
 
 ### Key differences
 *    **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
@@ -56,7 +56,7 @@ Here's the base URL for all adaptive custom translation API requests:
 
 ## Authentication
 
-Each request to an adaptCT API must include an authentication header. This header passes along an Azure AI Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services. 
+Each request to an adaptCT API must include an authentication header. This header passes along a Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services. 
 
 * Authenticate with a [secret key](../../../text-translation/reference/authentication.md#secret-key).
 * Authenticate with a [bearer token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
@@ -73,7 +73,7 @@ Form more information about Azure resources, *see* [Azure resources for Azure AI
 | `Authorization` | `Bearer <your-token>` | **True** | OAuth Bearer token for enhanced authentication |
 
 ## How to create and use a dataset index
-1. You must use an Azure AI Foundry resource. To learn how to create and manage an AI Foundry resource see [Create your first AI Foundry resource](../../../how-to/create-translator-resource.md)
+1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../../how-to/create-translator-resource.md)
 2. [Create Project](#create-project)
 3. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
 4. [Create Dataset Index](#create-dataset-index)
@@ -543,5 +543,5 @@ The API returns standard HTTP status codes. Common error responses:
 
 * [Learn about custom translator models](/azure/ai-services/translator/custom-translator/overview)
 * [Learn about the text translation API](/azure/ai-services/translator/text-translation/preview/overview)
-* [Explore Azure AI Foundry for advanced AI capabilities](/azure/ai-foundry/)
+* [Explore Foundry for advanced AI capabilities](/azure/ai-foundry/)
 

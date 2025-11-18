@@ -19,43 +19,6 @@ monikerRange: 'foundry-classic || foundry'
 
 Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs are recommended for function calling, extracting structured data, and building complex multi-step workflows.
 
-> [!NOTE]
-> Currently structured outputs are not supported with:
-> - [Bring your own data](../concepts/use-your-data.md) scenarios.
-> - [Assistants](../how-to/assistant.md) or [Azure AI Agents Service](../../agents/overview.md).
-> - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
-
-## Supported models
-
-- `gpt-5.1-codex` version: `2025-11-13`
-- `gpt-5.1-codex mini` version: `2025-11-13`
-- `gpt-5.1` version: `2025-11-13`
-- `gpt-5.1-chat` version: `2025-11-13`
-- `gpt-5-pro` version `2025-10-06`
-- `gpt-5-codex` version `2025-09-11`
-- `gpt-5` version `2025-08-07`
-- `gpt-5-mini` version `2025-08-07`
-- `gpt-5-nano` version `2025-08-07`
-- `codex-mini` version `2025-05-16`
-- `o3-pro` version `2025-06-10`
-- `o3-mini` version `2025-01-31`
-- `o1` version: `2024-12-17`
-- `gpt-4o-mini` version: `2024-07-18`
-- `gpt-4o` version: `2024-08-06`
-- `gpt-4o` version: `2024-11-20`
-- `gpt-4.1` version `2025-04-14`
-- `gpt-4.1-nano` version `2025-04-14`
-- `gpt-4.1-mini` version: `2025-04-14`
-- `o4-mini` version: `2025-04-16`
-- `o3` version: `2025-04-16`
-
-
-
-## API support
-
-Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `v1`.
-
-
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [structured-outputs-python](../includes/structured-outputs-python.md)]
@@ -373,16 +336,18 @@ Example of explicit recursion:
     ]
 }
 ```
-
 > [!NOTE]
 > Currently structured outputs are not supported with:
->
 > - [Bring your own data](../concepts/use-your-data.md) scenarios.
-> - [Assistants](../how-to/assistant.md) or [Azure AI Agents Service](../../agents/overview.md).
+> - [Assistants](../how-to/assistant.md) or [Foundry Agents Service](../../agents/overview.md).
 > - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
 
 ## Supported models
 
+- `gpt-5.1-codex` version: `2025-11-13`
+- `gpt-5.1-codex mini` version: `2025-11-13`
+- `gpt-5.1` version: `2025-11-13`
+- `gpt-5.1-chat` version: `2025-11-13`
 - `gpt-5-pro` version `2025-10-06`
 - `gpt-5-codex` version `2025-09-11`
 - `gpt-5` version `2025-08-07`
@@ -400,6 +365,7 @@ Example of explicit recursion:
 - `gpt-4.1-mini` version: `2025-04-14`
 - `o4-mini` version: `2025-04-16`
 - `o3` version: `2025-04-16`
+
 
 ## API support
 

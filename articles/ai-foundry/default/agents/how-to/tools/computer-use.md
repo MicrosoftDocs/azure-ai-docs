@@ -1,6 +1,6 @@
 ---
 title: 'How to use the computer use tool for the Microsoft Foundry agents'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use the computer use tool for agents
 services: cognitive-services
 manager: nitinme
@@ -15,12 +15,10 @@ ms.custom: references_regions
 
 # Computer use tool for agents (Preview)
 
-[!INCLUDE [version-banner](../../../includes/agent-v2-switch.md)]
-
 > [!WARNING]
 > The computer use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-Use this article to learn how to work with the computer use tool in Azure AI Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
+Use this article to learn how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
 
 ## Features 
 

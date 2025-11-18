@@ -35,7 +35,7 @@ Whenever you find a model to your liking, you can select it and zoom into the **
 
 ::: moniker range="foundry"
 
-Model leaderboards (preview) in Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. Insert NextGen content
+Model leaderboards (preview) in Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution.
 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 

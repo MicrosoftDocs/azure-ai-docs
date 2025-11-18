@@ -26,7 +26,7 @@ In this article, you learn how to run evaluations in the cloud (preview) for pre
 
 Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../continuous-evaluation-agents.md) your agents for post-deployment monitoring.
 
-When you use the Foundry SDK, it logs evaluation results in your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
 
 ## Prerequisites
 
@@ -323,7 +323,7 @@ After you register your custom evaluator, you can view it in your [Evaluator lib
 
 ## Create an evaluation
 
-This section explains how to create an evaluation, which is a container for organizing multiple evaluation runs. The example payload shows how to define a custom data schema and set up diverse testing criteria, like text similarity checks, string comparisons, model-based scoring, and built-in evaluators. Setting up an evaluation group ensures consistency and scalability for managing complex evaluation workflows.
+This section explains how to create an evaluation, which is a container for organizing multiple evaluation runs. The example payload shows how to define a custom data schema and set up diverse testing criteria, like text similarity checks, string comparisons, model-based scoring, and built-in evaluators. Setting up an evaluation ensures consistency and scalability for managing complex evaluation workflows.
 
 # [Python](#tab/python)
 

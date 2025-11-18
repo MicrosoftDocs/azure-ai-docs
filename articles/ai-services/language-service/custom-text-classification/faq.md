@@ -13,7 +13,7 @@ ms.custom: language-service-custom-classification
 ---
 # Frequently asked questions
 
-Find answers to commonly asked questions about concepts, and scenarios related to custom text classification in Azure AI Language.
+Find answers to commonly asked questions about concepts, and scenarios related to custom text classification in Azure Language in Foundry Tools.
 
 ## How do I get started with the service?
 

@@ -615,37 +615,6 @@ def grade(sample: dict, item: dict) -> float:
     return round(matches / len(persona_keywords), 4) if persona_keywords else 0.0 
 ```
 
-Sample code for a criteria match evaluator: a prompt that checks if the AI provides specific recommendations.
-
-```python
-
-def criteria_match_evaluator(model_response: str, reference_response: str) -> float: 
-    """ 
-    Evaluates if model_response meets required criteria listed in reference_response. 
-    Returns a float score between 0 and 1. 
-    """ 
-    criteria = reference_response.lower().split(",")  # e.g., "MFA,access logs,encryption" 
-    matches = sum(1 for c in criteria if c in model_response.lower()) 
-    return round(matches / len(criteria), 4) if criteria else 0.0 
-```
-
-Sample code for a QA accuracy checker: a prompt that evaluates answer accuracy.
-
-```python
-from sentence_transformers import SentenceTransformer, util 
-model = SentenceTransformer('all-MiniLM-L6-v2') 
-
-def qa_accuracy_checker(model_response: str, reference_response: str) -> float: 
-    """ 
-    Computes semantic similarity between model_response and reference_response. 
-    Returns a float score between 0 and 1. 
-    """ 
-    resp_emb = model.encode(model_response, convert_to_tensor=True) 
-    ref_emb = model.encode(reference_response, convert_to_tensor=True) 
-    return round(util.cos_sim(resp_emb, ref_emb).item(), 4) 
-
-```
-
 ::: moniker-end
 
 ## Related content
@@ -661,8 +630,7 @@ def qa_accuracy_checker(model_response: str, reference_response: str) -> float:
 
 For more information, see the complete working samples:
 
-- [**Prompt-based evaluator**](https://github.com/Azure/azure-sdk-for-python/blob/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/sample_eval_catalog) 
-- [**Code-based evaluator**](https://github.com/Azure/azure-sdk-for-python/blob/evaluation_samples_gradersamples/evaluation/sample_eval_catalog_code_based_evaluators.py)
-
+- [**Prompt-based evaluator**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_prompt_based_evaluators.py)
+- [**Code-based evaluator**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_code_based_evaluators.py)
 
 ::: moniker-end

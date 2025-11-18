@@ -16,7 +16,7 @@ In this article, you learn how to use voice live with generative AI and Azure Sp
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -32,7 +32,7 @@ To try out the voice live demo, follow these steps:
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
 1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. **Select Azure Speech - Voice Live** to open the Voice Live playground.
-1. Select a scenario and a voice using the dropdown menus. Optionally configure other parameters of the voice agent's behavior.
+1. Select a scenario and a voice using the dropdown menus. Optionally configure other parameters of the voice agent's behavior. The **Proactive engagement** toggle, for example, allows the agent to speak first in the conversation.
 1. When you're ready, select **Start** to start chatting with the voice agent using your device's microphone and speakers.
 1. Select **End** to end the chat session.
 
@@ -62,7 +62,7 @@ To try out the voice live demo, follow these steps:
 
    :::image type="content" source="../../../media/voice-live/foundry-portal/casual-chat-generative-ai-select.png" alt-text="Screenshot of the casual chat example scenario in the Speech playground." lightbox="../../../media/voice-live/foundry-portal/casual-chat-generative-ai-select.png":::
 
-1. Edit other settings as needed, such as the **Response instructions**, **Voice**, and **Speaking rate**.
+1. Edit other settings as needed, such as the **Response instructions**, **Voice**, and **Speaking rate**. The **Proactive engagement** allows the agent to speak first in the conversation.
 
 1. Select **Start** to start speaking again and select **End** to end the chat session.
 

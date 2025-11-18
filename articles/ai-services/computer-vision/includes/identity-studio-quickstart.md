@@ -16,11 +16,11 @@ Use Microsoft Foundry portal to detect faces in an image.
 ## Prerequisites
 
 * An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
-* An [Microsoft Foundry resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/%7E/AIServices)
+* A [Microsoft Foundry resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/%7E/AIServices)
 
 ## Setup 
 
-Go to the [Microsoft Foundry portal](https://ai.azure.com/), and sign in with your Azure account that has the AI Foundry resource.
+Go to the [Microsoft Foundry portal](https://ai.azure.com/), and sign in with your Azure account that has the Foundry resource.
 
 Select **Microsoft Foundry** in the top-left corner, scroll down and select **Explore Foundry Tools**, and then select **Vision + Document**. On the **Face** tab, select **Detect faces in an image**.
 

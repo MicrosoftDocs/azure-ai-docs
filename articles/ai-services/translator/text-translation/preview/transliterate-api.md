@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator 2025-10-01-preview transliterate method
-titleSuffix: Azure AI services
-description: Convert text from one script to another script with the Azure AI Translator 2025-10-01-preview transliterate method.
+title: Azure Translator in Foundry Tools 2025-10-01-preview transliterate method
+titleSuffix: Foundry Tools
+description: Convert text from one script to another script with the Azure Translator in Foundry Tools 2025-10-01-preview transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

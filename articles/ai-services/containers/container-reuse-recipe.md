@@ -1,6 +1,6 @@
 ---
 title: Recipes for Docker containers
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to build, test, and store containers with some or all of your configuration settings for deployment and reuse.
 author: aahill
 manager: nitinme
@@ -22,7 +22,7 @@ Once you have this new layer of container (with settings), and you have tested i
 Any `docker run` examples in this document assume a Windows console with a `^` line continuation character. Consider the following for your own use:
 
 * Do not change the order of the arguments unless you are very familiar with docker containers.
-* If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system. Because the Azure AI Foundry Tools container is a Linux operating system, the target mount uses a Linux-style folder syntax.
+* If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system. Because the Foundry Tools container is a Linux operating system, the target mount uses a Linux-style folder syntax.
 * `docker run` examples use the directory off the `c:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you might need to grant the docker service permission.
 
 ## Store no configuration settings in image
@@ -37,10 +37,10 @@ Issues with this approach:
 
 * The new container has a separate name and tag from the original container.
 * In order to change these settings, you will have to change the values of the Dockerfile, rebuild the image, and republish to your registry.
-* If someone gets access to your container registry or your local host, they can run the container and use the Azure AI services endpoints.
-* If the Azure AI service that you're using doesn't require input mounts, don't add the `COPY` lines to your Dockerfile.
+* If someone gets access to your container registry or your local host, they can run the container and use the Foundry Tools endpoints.
+* If the Foundry Tool that you're using doesn't require input mounts, don't add the `COPY` lines to your Dockerfile.
 
-Create Dockerfile, pulling from the existing Azure AI Foundry Tools container you want to use, then use docker commands in the Dockerfile to set or pull in information the container needs.
+Create Dockerfile, pulling from the existing Foundry Tools container you want to use, then use docker commands in the Dockerfile to set or pull in information the container needs.
 
 This example:
 
@@ -162,7 +162,7 @@ If you are a single manager of the container, you might want to store all settin
 Issues with this approach:
 
 * In order to change these settings, you will have to change the values of the Dockerfile and rebuild the file. 
-* If someone gets access to your container registry or your local host, they can run the container and use the Azure AI Foundry Tools endpoints. 
+* If someone gets access to your container registry or your local host, they can run the container and use the Foundry Tools endpoints. 
 
 The following _partial_ Dockerfile shows how to statically set the values for billing and model. This example uses the 
 

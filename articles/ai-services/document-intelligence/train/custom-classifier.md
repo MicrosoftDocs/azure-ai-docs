@@ -35,7 +35,7 @@ monikerRange: '>=doc-intel-3.1.0'
 
 ::: moniker-end
 
-Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry Tools service that enables you to build intelligent document processing solutions. Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements.
+Azure Document Intelligence in Foundry Tools is a cloud-based Foundry Tools service that enables you to build intelligent document processing solutions. Document Intelligence APIs analyze images, PDFs, and other document files to extract and detect various content, layout, style, and semantic elements.
 
 Custom classification models are deep-learning-model types that combine layout and language features to accurately detect and identify documents you process within your application. Custom classification models perform classification of an input file one page at a time to identify the documents within and can also identify multiple documents or multiple instances of a single document within an input file.
 

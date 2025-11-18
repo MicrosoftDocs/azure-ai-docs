@@ -31,6 +31,18 @@ keywords:
 
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
+:::moniker range="foundry-classic"
+> [!TIP]
+> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation are in the process of being updated.
+>
+:::moniker-end
+:::moniker range="foundry"
+> [!TIP]
+> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation are in the process of being updated.
+>
+:::moniker-end
+
+
 [!INCLUDE [foundry-portals](includes/foundry-portals.md)]
 
 :::moniker range="foundry-classic"
@@ -220,7 +232,7 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 :::moniker-end
 
-:::moniker range="foundry-classic"
+:::moniker range="foundry"
 
 You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
 

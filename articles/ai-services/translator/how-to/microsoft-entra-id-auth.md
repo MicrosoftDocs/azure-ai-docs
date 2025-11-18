@@ -27,7 +27,7 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 
 ## Prerequisites
 
-Before you get started, you need an Azure account and an Foundry Tools subscription.
+Before you get started, you need an Azure account and a Foundry Tools subscription.
 
 * An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
@@ -148,7 +148,7 @@ Client applications utilize credentials to gain access to a web API. These crede
 
     :::image type="content" source="../media/entra-id/client-secret-value.png" alt-text="Screenshot of the client secret value location for a registered application in the Azure portal.":::
 
-Now that your application has the proper authentication credentials, we add permissions for your application to access Azure AI Foundry resources.
+Now that your application has the proper authentication credentials, we add permissions for your application to access Microsoft Foundry resources.
 
 ## Add API permissions
 

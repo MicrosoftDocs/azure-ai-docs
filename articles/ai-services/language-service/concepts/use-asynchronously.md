@@ -81,6 +81,6 @@ If a document exceeds the character limit, the API rejects the entire request an
 
 ## See also
 
-* [Azure AI Language overview](../overview.md)
+* [Azure Language in Foundry Tools overview](../overview.md)
 * [Multilingual and emoji support](../concepts/multilingual-emoji-support.md)
 * [What's new](../whats-new.md)

@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding prebuilt analyzers
+title: Azure Content Understanding in Foundry Tools prebuilt analyzers
 titleSuffix: Foundry Tools
-description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure AI Content Understanding.
+description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
@@ -14,13 +14,13 @@ ms.custom:
 
 # Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
-Azure AI Content Understanding prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
+Azure Content Understanding in Foundry Tools prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
 
 Prebuilt analyzers are ready-to-use tools that streamline common content processing tasks. You can use them for content ingestion in search and retrieval-augmented generation (RAG) workflows. You can also use them for intelligent document processing (IDP) to extract data from invoices or analyze call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract other fields or refine outputs to better fit your specific workflow requirements.
 
 ## Analyzer types
 
-Azure AI Content Understanding provides several categories of analyzers to support different scenarios:
+Content Understanding provides several categories of analyzers to support different scenarios:
 
 - **[Content extraction analyzers](#content-extraction-analyzers)** - Focus on OCR and layout analysis with progressively richer extraction capabilities for basic text extraction, layout analysis, and barcode detection.
 - **[Base analyzers](#base-analyzers)** - Fundamental content processing capabilities for each modality, used as parent analyzers when creating custom analyzers for document, image, audio, and video content.
@@ -67,7 +67,7 @@ Base analyzers provide fundamental content processing capabilities specific to a
 
 Content understanding provides a set of analyzers optimized for retrieval-augmented generation (RAG) scenarios. These analyzers extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
 
-#### `prebuilt-documentAnalyzer`
+#### `prebuilt-documentSearch`
 
 * Extracts various content and layout elements such as paragraphs, tables, and figures from documents
 * Provides detailed figure descriptions with textual explanations of images, charts, and diagrams<sup>1</sup>
@@ -79,20 +79,20 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 
 <sup>1</sup> Figure analysis is only supported for PDF and image file formats.
 
-#### `prebuilt-imageAnalyzer`
+#### `prebuilt-imageSearch`
 
 * Analyzes images to generate descriptions and insights
 * Generates a one-paragraph description of the image content
 * Extracts visual content for search and retrieval applications
 
-#### `prebuilt-audioAnalyzer`
+#### `prebuilt-audioSearch`
 
 * Transcribes conversations from audio and video files
 * Generates a one-paragraph summary of the conversation content
 * Supports multiple locales for international content processing
 * Optimized for conversation analysis and content extraction
 
-#### `prebuilt-videoAnalyzer`
+#### `prebuilt-videoSearch`
 
 * Analyzes videos to extract transcripts and descriptions for each segment
 * Automatically segments videos into meaningful sections based on topic shifts, scene changes, or visual cues

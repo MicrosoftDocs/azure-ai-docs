@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding document solutions
+# Azure Content Understanding in Foundry Tools document solutions
 
 > [!IMPORTANT]
 > Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).

@@ -1361,6 +1361,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to/voice-live-how-to-proactive-and-pregenerated-messages.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-quickstart",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
       "redirect_document_id": true
@@ -2884,11 +2889,6 @@
       "source_path_from_root": "/articles/ai-services/openai/tutorials/fine-tune.md",
       "redirect_url": "/azure/ai-foundry/openai/tutorials/fine-tune",
       "redirect_document_id": true
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/standard-avatars.md",
-      "redirect_url": "/azure/ai-services/speech-service",
-      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/use-your-data-quickstart.md",

@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator 2025-10-01-preview reference
-titleSuffix: Azure AI services
-description: Reference documentation for Azure AI Translator 2025-10-01-preview operations and capabilities.
+title: Azure Translator in Foundry Tools 2025-10-01-preview reference
+titleSuffix: Foundry Tools
+description: Reference documentation for Azure Translator in Foundry Tools 2025-10-01-preview operations and capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,7 +11,7 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator 2025-10-01-preview
+# Azure Translator in Foundry Tools 2025-10-01-preview
 
 > [!IMPORTANT]
 >
@@ -19,7 +19,7 @@ ms.author: lajanuar
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Translator `2025-10-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications.
+Azure Translator in Foundry Tools `2025-10-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications.
 
 The Translator is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.
 
@@ -34,7 +34,7 @@ The Translator is an optimal solution for managing extensive multilingual conten
 
 * **Revised request and response JSON format**. The REST API structure has been revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide (preview)](rest-api-guide.md#rest-api-code-sample-translate).
 
-* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md)
+* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have a Microsoft Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md)
 
 * **Adaptive custom translation**. You can provide up to five reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs.
 

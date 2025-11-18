@@ -243,7 +243,7 @@ After completing the necessary configurations, provide an optional name for your
 
 ::: moniker range="foundry"
 
-After you complete all the necessary configurations, you can provide a name for your evaluation group. Then you can review and select **Submit** to submit the evaluation run.
+After you complete all the necessary configurations, you can provide a name for your evaluation. Then you can review and select **Submit** to submit the evaluation run.
 
 ::: moniker-end
 

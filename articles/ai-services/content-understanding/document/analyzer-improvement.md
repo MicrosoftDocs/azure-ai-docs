@@ -1,9 +1,9 @@
 ---
 title: "Document analysis with confidence, grounding, and labeled samples"
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding's value add-ons that improve model extraction quality and performance
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools's value add-ons that improve model extraction quality and performance
 author: PatrickFarley 
-ms.author: vkurpad
+ms.author: pafarley
 manager: nitinme
 ms.date: 08/11/2025
 ms.service: azure-ai-content-understanding
@@ -22,7 +22,7 @@ Most enterprises face the following challenges when handling various documents a
 - Need to **validate the sources** of extracted data for true reference. When seeing lower than expected confidence scores, validate the results quickly by reviewing the specific location in the document.
 - Ideally, require ways to **improve the quality of the analyzer results** (by providing a few labeled examples) when it gets something wrong or encounters a new format with lower than expected confidence scores.
 
-Azure AI Content Understanding provides critical features for post-processing your extracted output.
+Azure Content Understanding in Foundry Tools provides critical features for post-processing your extracted output.
 
 | Feature | Purpose | Value |
 |--------|---------|-------|
@@ -113,7 +113,7 @@ Then you can edit the fields by selecting the correct values. Once you save it, 
 :::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels.":::
 
 > [!NOTE]
-> Labeled samples can be added in the Azure AI Content Understanding Studio. Once samples are added, you need to build the analyzer again so that samples re available for the analyzer to use. 
+> Labeled samples can be added in the Content Understanding Studio. Once samples are added, you need to build the analyzer again so that samples re available for the analyzer to use. 
 
 ### Limitations
 

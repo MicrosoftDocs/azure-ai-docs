@@ -11,23 +11,23 @@ ms.custom: language-service-pii
 
 > [!TIP]
 >
-> * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. 
-> * For more information, see [How to use Azure AI services in the Azure AI Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
-> * We highly recommended that you use an Azure AI Foundry resource in the AI Foundry; however, you can also follow these instructions using a Language resource.
+> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. 
+> * For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
+> * We highly recommended that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
-*  [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-* **A Foundry project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+*  [Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **A Foundry project created in the Foundry**. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 
-### [Azure AI Foundry (classic)](#tab/foundry-classic)
+### [Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::
+> This content refers to the [Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Foundry (classic), make sure the version toggle in the portal banner is in the **off** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::
 
 
-You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
+You can use [Foundry (classic)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -37,13 +37,13 @@ You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 > * Upload files to your agent
 
 
-## Navigate to the [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
+## Navigate to the [Foundry (classic)](https://ai.azure.com/) Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="The development lifecycle" lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use PII in the Azure AI Foundry Playground
+## Use PII in the Foundry Playground
 
 The **Language Playground** consists of four sections:
 
@@ -79,7 +79,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="A screenshot of an example of extract PII from conversation in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="A screenshot of an example of extract PII from conversation in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-pii.png":::
 
 ### Extract PII from text
 
@@ -107,15 +107,15 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 |Tags| How confident the model is in the correctness for each identified entity type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
 
-### [Azure AI Foundry (new)](#tab/foundry-new)
+### [Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
+> This content refers to the [Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 
-You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
+You can use [Foundry (new)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -124,14 +124,14 @@ You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 > * Upload files to the agent
 
 
-## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
+## Navigate to [Foundry (new)](https://ai.azure.com/)
 
 * The project you're working on appears in the upper-left corner.  
 * You can select to create a new project from the drop-down menu:
   * Select the provided project name or create a new project name.
   * Finally, select **Create project**.
 
-   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the AI Foundry (new) homepage":::
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage":::
 
 
 There are two ways to access the PII interface:
@@ -149,7 +149,7 @@ There are two ways to access the PII interface:
 
 ## Use playground: extract PII from text
 
-The Azure AI Foundry playground is an interactive environment where you can engage with deployed AI models.
+The Foundry playground is an interactive environment where you can engage with deployed AI models.
 
 The **extract PII from text** feature detects and masks personally identifying information within written content.
 

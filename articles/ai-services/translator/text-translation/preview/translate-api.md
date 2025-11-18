@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator 2025-10-01-preview translate method
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-10-01-preview translate method.
+title: Azure Translator in Foundry Tools 2025-10-01-preview translate method
+titleSuffix: Foundry Tools
+description: Understand the parameters, headers, and body messages for the Azure Translator in Foundry Tools 2025-10-01-preview translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -21,8 +21,8 @@ ms.author: lajanuar
 The Text translation API enables you to translate your source language text into a specified target language text.
 
 >[!IMPORTANT]
-> * Azure AI Translator REST API `2025-10-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
-> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> * Azure Translator in Foundry Tools REST API `2025-10-01-preview` is new version of the Translator REST API **with breaking changes**.
+> * It's essential to thoroughly test your code against the new release before migrating any production applications from Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
@@ -114,7 +114,7 @@ Request parameters passed with the request are as follows:
 | --- | --- | --- | --- |
 | **targets.language** | string | **True** |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 | **targets.script** | string | False | Specify the script of the transliterated text. |
-|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-deployment-and-nmt)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Azure AI Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
+|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-deployment-and-nmt)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Microsoft Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
 | **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `female`, `male`, or `neutral`.|
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
@@ -329,7 +329,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 #### Translate using `GPT-4o mini` deployment and `NMT`
 
 * Here,  the source text is translated into Spanish language using a specified mode (gpt-4o) and into German language using general NMT model. 
-* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
+* Using an `LLM` model requires you to have a Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -393,7 +393,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 
 #### Translate specifying gender and tone using `GPT-4o mini` deployment
 
-Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
+Using an `LLM` model requires you to have a Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 

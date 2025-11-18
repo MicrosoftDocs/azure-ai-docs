@@ -1,7 +1,7 @@
-﻿---
-title: Customer-Managed Keys for Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
-description: Learn about using customer-managed keys to improve data security with Azure AI Foundry Tools.
+---
+title: Customer-Managed Keys for Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn about using customer-managed keys to improve data security with Foundry Tools.
 author: PatrickFarley
 ms.service: azure-ai-services
 ms.custom:
@@ -47,7 +47,7 @@ These Microsoft-managed resources are located in a new Azure resource group is c
 
 ## Enable customer-managed keys
 
-The process to enable customer-managed keys with Azure Key Vault for Azure AI Foundry Tools varies by product. Use these links for service-specific instructions:
+The process to enable customer-managed keys with Azure Key Vault for Foundry Tools varies by product. Use these links for service-specific instructions:
 
 * [Azure OpenAI](../../ai-foundry/openai/encrypt-data-at-rest.md)
 * [Azure Custom Vision ](../custom-vision-service/encrypt-data-at-rest.md)
@@ -79,7 +79,7 @@ Each virtual machine also has a local temporary disk for OS operations. If you w
 
 ## Limitations
 
-* Encryption keys don't pass down from the Azure AI resource to dependent resources including Azure AI Foundry Tools and Azure Storage when configured on the Azure AI resource. You must set encryption specifically on each resource.
+* Encryption keys don't pass down from the Azure AI resource to dependent resources including Foundry Tools and Azure Storage when configured on the Azure AI resource. You must set encryption specifically on each resource.
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
 * After deployment, you can't switch from Microsoft-managed keys to Customer-managed keys or vice versa.
 * Resources that are created in the Microsoft-managed Azure resource group in your subscription can't be modified by you or be provided by you at the time of creation as existing resources.
@@ -87,5 +87,5 @@ Each virtual machine also has a local temporary disk for OS operations. If you w
 
 ## Related content
 
-* [Azure AI Foundry Tools Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
+* [Foundry Tools Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
 * [What is Azure Key Vault](/azure/key-vault/general/overview)?

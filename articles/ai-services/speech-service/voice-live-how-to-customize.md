@@ -1,4 +1,4 @@
-﻿---
+---
 title: How to customize voice live input and output
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API with customized models.

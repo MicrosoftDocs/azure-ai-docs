@@ -13,7 +13,7 @@ Getting started with a custom text to speech avatar is a straightforward process
 
 ## Prerequisites
 
-You need an Microsoft Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) AI Foundry or Speech resources.
+You need a Microsoft Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) Foundry or Speech resources.
 
 You need a video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
 

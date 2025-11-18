@@ -19,7 +19,7 @@ The **Text Translation** skill evaluates text and, for each record, returns the 
 
 This capability is useful if you expect that your documents may not all be in one language, in which case you can normalize the text to a single language before indexing for search by translating it.  It's also useful for localization use cases, where you might want to have copies of the same text available in multiple languages.
 
-The [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-reference) is a non-regional Azure AI service, meaning that your data isn't guaranteed to stay in the same region as your Azure AI Search or attached Microsoft Foundry resource.
+The [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-reference) is a non-regional Foundry Tool, meaning that your data isn't guaranteed to stay in the same region as your Azure AI Search or attached Microsoft Foundry resource.
 
 > [!NOTE]
 > This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).

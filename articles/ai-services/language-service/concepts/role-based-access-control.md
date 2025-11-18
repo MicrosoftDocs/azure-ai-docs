@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 # Language role-based access control
 
-Azure AI Language supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions for your projects authoring resources. For more information, *see* the [Azure RBAC documentation](/azure/role-based-access-control/).
+Azure Language in Foundry Tools supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions for your projects authoring resources. For more information, *see* the [Azure RBAC documentation](/azure/role-based-access-control/).
 
 <a name='enable-azure-active-directory-authentication'></a>
 
@@ -23,7 +23,7 @@ To use Azure RBAC, you must enable Microsoft Entra authentication. You can [crea
 
 Azure RBAC can be assigned to an Azure resource. To do so, you can add a role assignment.
 1. In the [Azure portal](https://portal.azure.com/), select **All services**. 
-1. Select **Azure AI services**, and navigate to your specific Azure resource. 
+1. Select **Foundry Tools**, and navigate to your specific Azure resource. 
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Complete your configuration by selecting the desired scope level and then navigating to the desired item. For example, selecting **Resource groups** and then navigating to a specific resource group.
 

@@ -13,7 +13,7 @@ ms.custom: language-service-clu, ignite-2024
 # Deploy custom language projects to multiple regions
 
 > [!NOTE]
-> This article applies to the following custom features in Azure AI Language:
+> This article applies to the following custom features in Azure Language in Foundry Tools:
 >
 > * [Conversational language understanding](../../conversational-language-understanding/overview.md)
 > * [Custom text classification](../../custom-text-classification/overview.md)
@@ -42,7 +42,7 @@ The same request body to each of those different URLs serves the exact same resp
 
 ## Validations and requirements
 
-Assigning deployment resources requires Microsoft Entra authentication. Microsoft Entra ID is used to confirm that you have access to the resources that you want to assign to your project for multiregion deployment. In Language Studio, you can automatically [enable Microsoft Entra authentication](https://aka.ms/rbac-language) by assigning yourself the Azure Cognitive Services Language Owner role to your original resource. To programmatically use Microsoft Entra authentication, learn more from the [Azure AI services documentation](../../../authentication.md?source=docs&tabs=powershell&tryIt=true#authenticate-with-azure-active-directory).
+Assigning deployment resources requires Microsoft Entra authentication. Microsoft Entra ID is used to confirm that you have access to the resources that you want to assign to your project for multiregion deployment. In Language Studio, you can automatically [enable Microsoft Entra authentication](https://aka.ms/rbac-language) by assigning yourself the Azure Cognitive Services Language Owner role to your original resource. To programmatically use Microsoft Entra authentication, learn more from the [Foundry Tools documentation](../../../authentication.md?source=docs&tabs=powershell&tryIt=true#authenticate-with-azure-active-directory).
 
 Your project name and resource are used as its main identifiers. A Language resource can only have a specific project name in each resource. Any other projects with the same name can't be deployed to that resource.
 

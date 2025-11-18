@@ -1,6 +1,6 @@
 ---
 title: Pricing for Azure Content Understanding in Foundry Tools
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Understand the pricing model for Azure Content Understanding in Foundry Tools, including what you're charged for, how to estimate costs, and pricing examples.
 author: jfilcik
 ms.author: jfilcik
@@ -32,7 +32,7 @@ Content extraction transforms unstructured input (documents, audio, video) into 
 When you use AI-powered features that call large language models (LLMs), you incur two types of charges:
 
 - **Contextualization charges**: Prepares context, generate confidence scores, source grounding, and output formatting. For details see [Contextualization tokens](#contextualization-tokens).
-- **Generative model charges**: Token-based costs from Azure AI Foundry model deployments (LLMs for generation, embeddings for training examples). Content Understanding uses the Azure AI Foundry model deployment you provide for all generative AI-related calls. You won't see any LLM or embedding token usage billing in Content Understanding—that usage appears on your Azure AI Foundry model deployment. For details see [Generative model charges](#generative-model-charges-llm). 
+- **Generative model charges**: Token-based costs from Microsoft Foundry model deployments (LLMs for generation, embeddings for training examples). Content Understanding uses the Foundry model deployment you provide for all generative AI-related calls. You won't see any LLM or embedding token usage billing in Content Understanding—that usage appears on your Foundry model deployment. For details see [Generative model charges](#generative-model-charges-llm). 
 
 **Generative features include**: Field extraction, figure analysis, segmentation, categorization, training.
 
@@ -152,7 +152,7 @@ The following table shows which meter applies based on your file type and analys
 
 The generative capabilities of Content Understanding use generative AI models to enhance the quality of the output. In the latest API version [**`2025-11-01`**], you can choose a generative model based on your use case (ex. GPT-4o or GPT-4o-mini). 
 
-When you use any generative capabilities, Content Understanding will use the  Azure AI Foundry models deployment you provide. The token usage for the completion or embeddings models will be on that deployment. 
+When you use any generative capabilities, Content Understanding will use the  Foundry models deployment you provide. The token usage for the completion or embeddings models will be on that deployment. 
 
 #### Contextualization tokens
 
@@ -181,7 +181,7 @@ Assuming $1.00 per 1 million contextualization tokens.
 
 #### Generative model charges (LLM)
 
-Token-based charges from Azure AI Foundry models that power the actual field extraction, analysis, and other generative capabilities.
+Token-based charges from Foundry models that power the actual field extraction, analysis, and other generative capabilities.
 
 **Input tokens include**:
 - Extracted text and transcripts
@@ -244,8 +244,8 @@ Enhances custom analyzers with labeled training examples for domain-specific acc
 ### When am I charged for LLM usage?
 You're charged for LLM tokens only when you provide the analyzer with a Foundry deployment and use a generative capability in Content Understanding. Analyzers that only perform content extraction (ex. `prebuilt-read`, `prebuilt-layout`, or custom analyzers without any generative capabilities) don't incur LLM charges.
 
-### Am I charged twice for Azure AI Foundry model usage?
-No. Content Understanding uses the LLM deployments linked for all LLM and embedding calls. You're billed on those deployments. You pay Content Understanding for content extraction and contextualization, and Azure AI Foundry for the generative model tokens (input/output tokens and embeddings).
+### Am I charged twice for Foundry model usage?
+No. Content Understanding uses the LLM deployments linked for all LLM and embedding calls. You're billed on those deployments. You pay Content Understanding for content extraction and contextualization, and Foundry for the generative model tokens (input/output tokens and embeddings).
 
 
 
@@ -260,7 +260,7 @@ Several features multiply token consumption:
 - **Segmentation/categorization**: ~2x token usage
 
 ### Am I charged if my request fails?
-Content Understanding doesn't charge for content extraction or contextualization when a request fails with an error (such as a 400 error). However, if a call to an Azure AI Foundry completion model succeeded as part of that request before the failure occurred, you will be charged for Foundry model usage based on Azure AI Foundry's billing policies. 
+Content Understanding doesn't charge for content extraction or contextualization when a request fails with an error (such as a 400 error). However, if a call to a Foundry completion model succeeded as part of that request before the failure occurred, you will be charged for Foundry model usage based on Foundry's billing policies. 
 
 ## Cost optimization tips
 
@@ -276,7 +276,7 @@ Here are detailed examples showing how pricing works across different scenarios:
 
 ### Example 1: Document processing for RAG workflows
 
-**Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentAnalyzer` to extract text, layout, and figure descriptions.
+**Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentSearch` to extract text, layout, and figure descriptions.
  
 **Input**:
 - 1,000 pages
@@ -340,7 +340,7 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 #### Example 3: Analyzing video content with segment-level field extraction
  
-**Scenario**: You're extracting a structured representation of video content for a RAG application. To extract structured data per segment of video, you can use the `prebuilt-videoAnalyzer`. Segments are short clips of 15-30 seconds on average, resulting in numerous output segments with a single summary field per segment.
+**Scenario**: You're extracting a structured representation of video content for a RAG application. To extract structured data per segment of video, you can use the `prebuilt-videoSearch`. Segments are short clips of 15-30 seconds on average, resulting in numerous output segments with a single summary field per segment.
  
 **Input**:
 - 60 minutes (1 hour) of video
@@ -404,7 +404,7 @@ Here are detailed examples showing how pricing works across different scenarios:
 
 #### Example 5: Processing images with captions
  
-**Scenario**: You're generating descriptive captions for product images using `prebuilt-imageAnalyzer`.
+**Scenario**: You're generating descriptive captions for product images using `prebuilt-imageSearch`.
  
 **Input**:
 - 1,000 images

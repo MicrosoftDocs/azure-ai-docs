@@ -43,17 +43,20 @@ The Foundry Control Plane provides:
 
 ## Core Functionalities
 
-The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**. Core capabilities include:
+The Foundry Control Plane consolidates **inventory, observability, compliance, and security** into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Defender, Purview, Microsoft Entra) to deliver **trust at scale**. 
+
+:::image type="content" source="media/overview/control-plane-overall.png" alt-text="A diagram depicting the Foundry Control Plane unified fleet visibility with agents, models, and tools listed across projects in a subscription." lightbox="media/overview/control-plane-overall.png":::
+
+Core capabilities include:
 
 ### Unified Fleet Visibility
 
 Get a real-time overview of every agent, model, and tool across projects in your subscription.
 
 - Track key performance indicators such as active agents, run completion, compliance posture, cost efficiency, and prohibited behaviors.
-
 - Use deep links to evaluation and monitoring experiences for rapid debugging, diagnosis, and remediation.
-
 - Visualize fleet health through intuitive dashboards that surface trends and anomalies instantly.
+
 
 ### Observe to Protect and Improve
 
@@ -61,9 +64,9 @@ Get a real-time overview of every agent, model, and tool across projects in your
 
 - Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
 
-- Continuously evaluate agent performance, quality, and risk dimensions such as **Task Adherence, Intent Resolution, Tool Call Success, Sensitive Data Leakage, and Jailbreak/XPIA exposure.**
+- [Continuously evaluate](../../how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions such as **[Task Adherence, Intent Resolution, Tool Call Success](../../concepts/evaluation-evaluators/agent-evaluators.md), [Groundedness](../../concepts/evaluation-evaluators/rag-evaluators.md), Sensitive Data Leakage, and Jailbreak/XPIA exposure.**
 
-- Use the [**AI Red Teaming Agent**](../../concepts/ai-red-teaming-agent.md) and **cluster analysis** for automated vulnerability probing and error root-cause discovery.
+- Use the [**AI Red Teaming Agent**](../../concepts/ai-red-teaming-agent.md) and [**cluster analysis**](../observability/how-to/cluster-analysis.md) for automated vulnerability probing and error root-cause discovery.
 
 - Let **Foundry Agent** recommend improvements, from prompt refinements to model version upgrades.
 
@@ -75,9 +78,7 @@ Operationalize Responsible AI principles through policies that scale.
 
 - Apply **bulk remediation** to instantly correct noncompliant configurations across your fleet.
 
-### Monitor, test, and secure continuously
-
-Safety isn't a one-time event; it's continuous.
+### Secure Agents
 
 - Schedule **automated red-teaming scans** and **drift monitoring** for ongoing agent testing.
 
@@ -89,9 +90,13 @@ Safety isn't a one-time event; it's continuous.
 
 The Foundry Control Plane experience begins in the **Operate** tab, your command center on the upper right-hand side of the Foundry workspace. From Operate, you can monitor, govern, and optimize every agent, model, and deployment within your subscription. Each sub-tab within Operate is designed around a specific job-to-be-done (JTBD), helping different roles, from builders to administrators, manage AI systems confidently at scale.
 
+:::image type="content" source="media/overview/control-plane-operate.png" alt-text="A screenshot showing the Operate tab in the upper navigation." lightbox="media/overview/control-plane-operate.png":::
+
 ### Overview
 
 Use this page to understand fleet health, performance, and compliance at a glance.
+
+:::image type="content" source="media/overview/control-plane-overview.png" alt-text="Screenshot of the Fleet Overview page displaying trend-based health scores, alert summaries, and aggregated compliance metrics." lightbox="media/overview/control-plane-overview.png":::
 
 The Fleet Overview page provides a high-level snapshot of your AI estate, aggregating key operational and compliance metrics in one view.
 
@@ -103,6 +108,8 @@ The Fleet Overview page provides a high-level snapshot of your AI estate, aggreg
 
 Use this view to track, analyze, and manage every agent, model, and tool from one place.
 
+:::image type="content" source="media/overview/assets-view.png" alt-text="Screenshot of the Agent Inventory table with filters and sort options applied, displaying metadata and health indicators for AI assets." lightbox="media/overview/assets-view.png":::
+
 The **Inventory** view provides a unified, searchable table of all AI assets across projects within a subscription. It brings together critical metadata and health indicators, so you can assess and act on your AI estate efficiently.
 
 - Filter and sort by key attributes such as version, tags, health score (%), cost, alerts, and token usage to locate assets quickly.
@@ -111,13 +118,15 @@ The **Inventory** view provides a unified, searchable table of all AI assets acr
 - Correlate runtime logs with evaluation results to uncover root causes of errors or performance degradation.
 - Visualize drift, latency, and error clusters across runs or builds to detect emerging issues early.
 - Integrate with the **[**AI Red Teaming Agent**](../../concepts/ai-red-teaming-agent.md)** to automate vulnerability probing, regression testing, and issue reproduction.
-- Guardrails
+- Observe and modify model and agent guardrails.
 
 Together, these capabilities turn the Inventory into the operational backbone of the Control Plane, a single pane to understand, improve, and secure every AI asset in your environment.
 
 ### Compliance
 
 Use this tab to govern your AI systems and enforce the right guardrails.
+
+:::image type="content" source="media/overview/compliance.png" alt-text="Screenshot of the Policy & Security tab showing options to define, apply, and monitor AI compliance policies with Azure Policy, Defender, and Purview integrations." lightbox="media/overview/compliance.png":::
 
 The **Policy & Security** tab empowers organizations to define, apply, and continuously monitor guardrails and compliance policies across their AI estate. It provides a unified interface to operationalize Responsible AI principles while ensuring enterprise-grade safety and regulatory alignment.
 
@@ -132,11 +141,15 @@ Policy Management in Foundry allows administrators and developers alike to embed
 
 Use this tab to view, adjust, and request quotas.
 
+:::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota tab showing model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
+
 The **Quota** tab allows customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps manage resources effectively. 
 
 ### Admin
 
 Use this tab to view, organize, and administer all projects, users, and connected resources across your Foundry environment.
+
+:::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin tab showing a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
 
 The **[Admin](../../concepts/management-center.md)** tab extends your operational view beyond a single project. While most work in Foundry takes place within a project context, **Manage** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
 
@@ -156,13 +169,12 @@ The Foundry Control Plane brings together everything you need to manage, govern,
 
 **Quickstarts** - Get up and running quickly with these introductory guides:
 
-- **Access the Control Plane and Understand the Dashboard at a Glance** - Learn how to navigate the **Operate** tab, interpret fleet KPIs, and explore your first insights.
+
 - **[Create a Guardrail Policy](quickstart-create-guardrail-policy.md)** - Define your first guardrail policy and understand how guardrails apply across projects.
 
 **How-to guides** - Deepen your operational expertise with hands-on workflows:
 
 - **[Monitor Fleet Health and Performance](monitoring-across-fleet.md)** - Track key health metrics, alert trends, and anomalies across agents, models, and tools.
 - **[Ensure Compliance and Security](how-to-manage-compliance-security.md)** - Learn how to enforce Responsible AI policies, integrate Defender and Purview signals, and respond to compliance alerts.
-- **Optimize Agent Quality** - Use evaluation results and observability data to refine prompts, improve tool calls, and enhance output reliability.
-- **Optimize Cost and Performance** - Analyze cost drivers, token usage, and resource consumption to achieve higher ROI from your agent fleet.
+- **[Optimize model cost and performance](how-to-optimize-cost-performance.md)** - Analyze cost drivers, token usage, and resource consumption to achieve higher ROI from your agent fleet.
 - **[Register Custom Agents](register-custom-agent.md)** - Extend your governance surface by bringing third-party or external agents into the Foundry Control Plane registry.

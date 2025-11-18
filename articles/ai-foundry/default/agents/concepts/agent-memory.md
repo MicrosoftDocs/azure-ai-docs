@@ -45,7 +45,7 @@ A medical research agent that remembers which compounds were previously tested (
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- An [Microsoft Foundry project](../../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - An [agent created in Microsoft Foundry](../../../agents/quickstart.md).
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.

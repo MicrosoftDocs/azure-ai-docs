@@ -1,7 +1,7 @@
 ---
 title: Use Language service in power automate
 titleSuffix: Foundry Tools
-description: Learn how to use Azure AI Language in power automate, without writing code.
+description: Learn how to use Azure Language in Foundry Tools in power automate, without writing code.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -12,7 +12,7 @@ ms.custom: cogserv-non-critical-language
 ---
 #  Use Azure Language in Power Automate
 
-You can use [Power Automate](/power-automate/getting-started) flows to automate repetitive tasks and bring efficiency to your organization. Using Azure AI Language, you can automate tasks like:
+You can use [Power Automate](/power-automate/getting-started) flows to automate repetitive tasks and bring efficiency to your organization. Using Azure Language in Foundry Tools, you can automate tasks like:
 * Send incoming emails to different departments based on their contents. 
 * Analyze the sentiment of new tweets.
 * Extract entities from incoming documents. 
@@ -48,9 +48,9 @@ For this tutorial, you will create a flow that extracts named entities from text
 
 1. Select **+ New step** to begin adding a Language connector. 
 
-1. Under **Choose an operation** search for **Azure AI Language**. Then select **Azure AI Language**. This will narrow down the list of actions to only those that are available for Language.
+1. Under **Choose an operation** search for **Language**. Then select **Language**. This will narrow down the list of actions to only those that are available for Language.
 
-    :::image type="content" source="../media/language-connector.png" alt-text="A screenshot of An Azure AI Language connector." lightbox="../media/language-connector.png":::
+    :::image type="content" source="../media/language-connector.png" alt-text="A screenshot of A Language connector." lightbox="../media/language-connector.png":::
 
 1. Under **Actions** search for **Named Entity Recognition**, and select the connector. 
 

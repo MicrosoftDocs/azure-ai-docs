@@ -1,7 +1,7 @@
 ---
-title: Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal
-titleSuffix: Azure AI services
-description: Utilize the Foundry classic portal to create Content Understanding custom tasks
+title: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
+titleSuffix: Foundry Tools
+description: Utilize the Foundry (classic) portal to create Content Understanding custom tasks
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,14 +14,14 @@ ms.custom:
   - ignite-2025
 ---
 
-# Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal (Preview)
+# Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal (Preview)
 
 Suppose you have files of different types—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
 
-This guide shows you how to use Content Understanding Standard and Pro modes in the Azure AI Foundry Classic portal to build and test a custom analyzer that extracts structured information from your data.
+This guide shows you how to use Content Understanding Standard and Pro modes in the Microsoft Foundry (classic) portal to build and test a custom analyzer that extracts structured information from your data.
 
 > [!NOTE]
-> Azure AI Foundry Classic portal uses a preview API (`2025-05-01-preview`). 
+> Foundry (classic) portal uses a preview API (`2025-05-01-preview`). 
 
 ## Choosing between Standard and Pro modes (Preview)
 
@@ -46,15 +46,15 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An Azure AI Foundry project in a supported region. For a full list of supported regions, check out [language and region support](../language-region-support.md). See the instructions below to learn how to create your first project.
+* A Foundry project in a supported region. For a full list of supported regions, check out [language and region support](../language-region-support.md). See the instructions below to learn how to create your first project.
 
 ## Create your first project
 
-To get started with Content Understanding in the AI Foundry portal, follow these steps to create a project. A project lets you organize your work and save state while building customized AI apps. All work with Content Understanding happens in a project.
+To get started with Content Understanding in the Foundry portal, follow these steps to create a project. A project lets you organize your work and save state while building customized AI apps. All work with Content Understanding happens in a project.
 
-1. From the home page of [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), select "Create new" in the top right corner.
+1. From the home page of [**Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), select "Create new" in the top right corner.
 
-1. AI Foundry supports two project types: `AI Foundry resource` and `AI hub resource`. Both project types work with Content Understanding. For the most up-to-date experience, use the `AI Foundry resource`. For more context on the project types, see [Create a project for Azure AI Foundry](../../../ai-foundry/how-to/create-projects.md).
+1. Foundry supports two project types: `Foundry resource` and `AI hub resource`. Both project types work with Content Understanding. For the most up-to-date experience, use the `Foundry resource`. For more context on the project types, see [Create a project for Foundry](../../../ai-foundry/how-to/create-projects.md).
 
     - If you're creating a **Foundry project**, select `Advanced options` and choose a [supported region](../language-region-support.md).
 
@@ -64,13 +64,13 @@ To get started with Content Understanding in the AI Foundry portal, follow these
 
 ## Create your single-file task powered by Content Understanding Standard mode
 
-Follow these steps to create a custom task in the Azure AI Foundry. Use this task to build your first analyzer.
+Follow these steps to create a custom task in the Foundry. Use this task to build your first analyzer.
 
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Go to the **Home** page of [Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-1. Select to create a `Single-file task` that uses Content Understanding Standard mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
+1. Select to create a `Single-file task` that uses Content Understanding Standard mode. For more information on which mode is right for your scenario, check out [Azure Content Understanding in Foundry Tools pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -100,7 +100,7 @@ When you create a single-file Content Understanding task, you start by uploading
 
     * Specify the method to generate the value for each field.
   
-      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](../concepts//best-practices.md). It might take a few minutes to build out your schema.
+      For best practices on how to define your field schema, refer to [best practices for Content Understanding](../concepts//best-practices.md). It might take a few minutes to build out your schema.
 
 1. When your schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
@@ -114,19 +114,19 @@ When you create a single-file Content Understanding task, you start by uploading
 
    :::image type="content" source="../media/quickstarts/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
-You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
+You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. Check out [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
 
 # [Pro mode](#tab/pro)
 
 ## Create your multi-file task powered by Content Understanding Pro mode
 
-Follow these steps to create a custom task in Azure AI Foundry. Use this task to build your first analyzer.
+Follow these steps to create a custom task in Foundry. Use this task to build your first analyzer.
 
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Go to the **Home** page of [Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-1. Select to create a `Multi-file task` that uses Content Understanding Pro mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
+1. Select to create a `Multi-file task` that uses Content Understanding Pro mode. For more information on which mode is right for your scenario, check out [Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -173,7 +173,7 @@ Now you successfully built your first Content Understanding analyzer, and are re
 
    :::image type="content" source="../media/quickstarts/view-code.png" alt-text="Screenshot of sample code." lightbox="../media/quickstarts/view-code.png":::
 
-Check out [Quickstart: Azure AI Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
+Check out [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
 
 ---
 
@@ -190,4 +190,4 @@ In the Management Center, you can manage users and assign individual roles:
 
 ## Next steps
 
- * Learn how to call the REST API at [Quickstart: Azure AI Content Understanding REST APIs](../quickstart/use-rest-api.md)
+ * Learn how to call the REST API at [Quickstart: Content Understanding REST APIs](../quickstart/use-rest-api.md)

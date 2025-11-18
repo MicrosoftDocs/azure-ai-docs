@@ -1,6 +1,6 @@
 ---
 title: Conversational language understanding (CLU) entity slot filling in multi-turn conversations
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how CLU handles entity slot-filling across multi-turn conversations.
 author: laujan
 manager: nitinme
@@ -56,13 +56,13 @@ Entity slot filling creates more natural user experiences by allowing people to 
 
 Entity slot filling improves accuracy because conversation context helps disambiguate entities and intents. This approach efficiently collects only the information necessary for task completion while providing a scalable architecture that handles complex scenarios with multiple dependent entities. The system also manages incomplete or contradictory information gracefully, making applications more robust and user-friendly.
 
-## Azure AI Foundry
+## Microsoft Foundry
 
-[Azure AI Foundry](https://ai.azure.com/) provides a comprehensive platform for developing and deploying CLU models with entity slot filling capabilities. The platform streamlines the process of defining your entity types and slot requirements while helping you create multi-turn conversation examples for training. You validate slot filling behavior across various scenarios and track accuracy and user satisfaction metrics to ensure your model performs well in real-world conditions.
+[Foundry](https://ai.azure.com/) provides a comprehensive platform for developing and deploying CLU models with entity slot filling capabilities. The platform streamlines the process of defining your entity types and slot requirements while helping you create multi-turn conversation examples for training. You validate slot filling behavior across various scenarios and track accuracy and user satisfaction metrics to ensure your model performs well in real-world conditions.
 
-Azure AI Foundry enables you to build and refine your CLU models iteratively, ensuring they effectively handle the complexity of multi-turn conversations in your specific domain. The platform's tools support the entire development lifecycle from initial schema design through deployment and ongoing performance monitoring. 
+Foundry enables you to build and refine your CLU models iteratively, ensuring they effectively handle the complexity of multi-turn conversations in your specific domain. The platform's tools support the entire development lifecycle from initial schema design through deployment and ongoing performance monitoring. 
 
-To get started implementing entity slot filling in your applications, see [Build multi-turn models in Azure AI Foundry](../how-to/build-multi-turn-model.md).
+To get started implementing entity slot filling in your applications, see [Build multi-turn models in Foundry](../how-to/build-multi-turn-model.md).
 
 ## Related content
 

@@ -45,7 +45,7 @@ After you submit the form, the Foundry Tools team reviews it and emails you with
 
 ## Billing
 
-The Speech containers send billing information to Azure by using an AI Foundry resource for Speech on your Azure account. 
+The Speech containers send billing information to Azure by using a Foundry resource for Speech on your Azure account. 
 
 > [!NOTE]
 > Connected and disconnected container pricing and commitment tiers vary. For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).

@@ -23,7 +23,7 @@ With conversational language understanding, you can train a model in one languag
 
 You can train your project entirely with English utterances, and query it in: French, German, Mandarin, Japanese, Korean, and others. Conversational language understanding makes it easy for you to scale your projects to multiple languages by using multilingual technology to train your models.
 
-Whenever you identify that a particular language isn't performing as well as other languages, you can add utterances for that language in your project. In the tag utterances page in Azure AI Foundry, you can select the language of the utterance you're adding. When you introduce examples for that language to the model, it introduces the model to more of the syntax of that language, and it learns to predict it better.
+Whenever you identify that a particular language isn't performing as well as other languages, you can add utterances for that language in your project. In the tag utterances page in Microsoft Foundry, you can select the language of the utterance you're adding. When you introduce examples for that language to the model, it introduces the model to more of the syntax of that language, and it learns to predict it better.
 
 You aren't expected to add the same number of utterances for every language. You should build most your project in one language, and only add a few utterances in languages you observe aren't performing well. In that case, consider adding 5% of your original English examples in German, train a new model and test in German again. You should see better results for German queries. The more utterances you add, the more likely the results are going to get better. 
 

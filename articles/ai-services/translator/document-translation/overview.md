@@ -43,10 +43,10 @@ Utilize synchronous document translation to convert textual content in real time
 
 |Development option|Description|
 |---|---|
-|**Azure AI Foundry**| &bullet; [**Azure AI Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[**Azure AI Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
+|**Microsoft Foundry**| &bullet; [**Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[**Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
 |**REST API**|Integrate synchronous document translation into your applications using the [REST API](reference/translate-document.md).|
 |**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications our [Python SDK](quickstarts/client-library-sdks.md).|
-| **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Azure AI services application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
+| **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Foundry Tools application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
 ## Asynchronous batch translation
 
@@ -71,8 +71,8 @@ You can add Document translation to your applications using the following resour
 
 |Development option  |Description  |
 |---------|---------|
-|[**Azure AI Foundry (new)**](https://ai.azure.com/) portal| Azure AI Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.|
-|[**Azure AI Foundry (classic)**](https://ai.azure.com/) portal| Azure AI Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types.|
+|[**Foundry (new)**](https://ai.azure.com/) portal| Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.|
+|[**Foundry (classic)**](https://ai.azure.com/) portal| Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types.|
 |**REST API or Client library (Azure SDK)**| Integrate translation into your applications using the [**REST API**](reference/rest-api-guide.md), or the [**client-library SDKs**](./quickstarts/client-library-sdks.md). Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/) |
 
 ### Batch supported document formats

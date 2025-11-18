@@ -1,4 +1,4 @@
-﻿---
+---
 title: What is Azure Content Understanding in Foundry Tools?
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.
@@ -14,9 +14,9 @@ ms.custom:
 # customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding?
+# What is Azure Content Understanding in Foundry Tools?
 
-Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that's available as part of the [Azure AI Foundry Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. It uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
+Azure Content Understanding in Foundry Tools is an [**Foundry Tool**](../what-are-ai-services.md) that's available as part of the [Microsoft Foundry Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. It uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
 Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. It's now available in a broader range of [regions](language-region-support.md). For details on the updates in the GA release see the Content Understanding [What's New](whats-new.md) page. 
 
@@ -26,7 +26,7 @@ Content Understanding is now a Generally Available (GA) service with the release
 
 Content Understanding accelerates time to value by enabling straight-through processing of unstructured data with confidence scores, minimizing manual review and reducing operational costs. Key benefits include:
 
-* **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction and classification of content, structure, and insights from various content types into a unified process.
+* **Simplify and streamline workflows**. Content Understanding standardizes the extraction and classification of content, structure, and insights from various content types into a unified process.
 
 * **Simplify field extraction**. Content Understanding's field extraction makes it easier to generate structured output from unstructured content. Define a schema to extract, classify, or generate field values with no complex prompt engineering
 
@@ -83,18 +83,18 @@ The Content Understanding framework processes unstructured content through multi
 |**Confidence scores**|Provides reliability estimates from 0 to 1 for each extracted field value. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows. Enabled using the `estimateFieldSourceAndConfidence` setting in document analyzers. Learn more about [confidence scores](document/overview.md#field-extraction).|
 |**Grounding**|Identifies the specific regions in the content where each value was extracted or generated. Source grounding allows users in automation scenarios to quickly verify the correctness of field values by tracing them back to their origin in the source content. Enabled using the `estimateFieldSourceAndConfidence` setting in document analyzers. Learn more about [grounding](document/overview.md#field-extraction).|
 |**Contextualization**|Content Understanding's processing layer that prepares context for generative models and post-processes their output. Includes output normalization and formatting, source grounding calculation, confidence score computation, and context engineering to optimize model usage. Learn more about [contextualization](pricing-explainer.md#contextualization-tokens).|
-|**Foundry models**|The Azure AI Foundry large language models (LLMs) and embeddings models that power generative capabilities. You bring your own deployments of supported generative models and text-embedding models for training examples. Content Understanding uses these models for field extraction, figure analysis, and other AI-powered features. Learn more about [models and deployments](concepts/models-deployments.md).|
+|**Foundry models**|The Foundry large language models (LLMs) and embeddings models that power generative capabilities. You bring your own deployments of supported generative models and text-embedding models for training examples. Content Understanding uses these models for field extraction, figure analysis, and other AI-powered features. Learn more about [models and deployments](concepts/models-deployments.md).|
 |**Structured output** |The final result is supplied in your chosen format. Content can be output as Markdown for search and retrieval scenarios, or as structured JSON matching your defined schema for automation and analytics workflows.|
 
 ## Content Understanding experiences
-Azure AI Content Understanding is an Azure AI Foundry service. To use Content Understanding, you must create an AI Foundry Azure Resource. Content Understanding Studio complements the Azure AI Foundry experience for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio](foundry-vs-content-understanding-studio.md)
+Content Understanding is a Foundry service. To use Content Understanding, you must create a Foundry Azure Resource. Content Understanding Studio complements the Foundry experience for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Foundry vs Content Understanding Studio](foundry-vs-content-understanding-studio.md)
 
-* **Content Understanding in Azure AI Foundry NextGen portal (coming soon)**: The Azure AI Foundry NextGen portal offers the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
+* **Content Understanding in Foundry (new) portal (coming soon)**: The Foundry NextGen portal offers the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
 * **Content Understanding Studio**: A complementary UX experience, Content Understanding Studio enables a smooth transition for customers transitioning from Document Intelligence. It offers an experience optimized for analyzer performance improvement including improving custom analyzers using data labeling techniques. It also supports building classification-based custom analyzers.
 
 ## Responsible AI
 
-Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. The service leverages the standard Azure AI Foundry infrastructure, including the Azure AI Content Safety, integrating content safety results into the Content Understanding output. For more information and a full list of prohibited content, see our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
+Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. The service leverages the standard Foundry infrastructure, including the Azure AI Content Safety, integrating content safety results into the Content Understanding output. For more information and a full list of prohibited content, see our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified content filtering
 

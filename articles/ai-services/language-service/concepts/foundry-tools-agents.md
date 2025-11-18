@@ -1,6 +1,6 @@
 ---
 title: Azure Language tools and agents
-titleSuffix: Azure AI Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about Azure Language integration with Foundry Tools, including Model Context Protocol (MCP) server endpoints, intent routing agents, and exact question answering agents for AI-powered conversational applications.
 author: laujan
 manager: nitinme
@@ -12,11 +12,11 @@ ms.author: lajanuar
 
 # Azure Language tools and agents
 
-Azure Language integrates with Azure AI Foundry Tools to provide agents and endpoints for building conversational applications. These tools combine Azure Language's natural language processing capabilities with AI agent frameworks.
+Azure Language integrates with Foundry Tools to provide agents and endpoints for building conversational applications. These tools combine Azure Language's natural language processing capabilities with AI agent frameworks.
 
 ## Azure Language MCP server 🆕
 
-The Azure Language MCP server in [**Azure AI Foundry**](https://ai.azure.com/) connects AI agents to Azure Language services through the Model Context Protocol. This integration enables developers to build conversational applications with natural language processing while maintaining compliance and transparency.
+The Azure Language MCP server in [**Foundry**](https://ai.azure.com/) connects AI agents to Azure Language services through the Model Context Protocol. This integration enables developers to build conversational applications with natural language processing while maintaining compliance and transparency.
 
 The server transforms Azure Language services into agent-friendly endpoints that support real-time workflows. Implementing standard MCP protocols ensures consistent communication between AI agents and language services.
 
@@ -34,7 +34,7 @@ The server transforms Azure Language services into agent-friendly endpoints that
 
 ## Azure Language Intent Routing agent 🆕
 
-The Intent Routing agent in [**Azure AI Foundry**](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. This agent creates a framework that ensures users receive accurate responses while maintaining operational control.
+The Intent Routing agent in [**Foundry**](https://ai.azure.com/) manages conversation flows by combining intent classification with answer delivery. This agent creates a framework that ensures users receive accurate responses while maintaining operational control.
 
 The agent, which is built on Azure Language's natural language understanding capabilities, processes user input through layers. The system analyzes messages to understand intentions, then users can implement logic to route requests through appropriate channels based on confidence levels.
 
@@ -44,12 +44,12 @@ The agent prioritizes deterministic behavior, making it suitable for enterprise 
 
 Before setting up the Intent Routing agent, ensure you have the following resources and configurations in place:
 
-* **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
+* **Foundry resource**: You need an active Foundry resource to host your agent.
 
 * **Project resources**: Create your CLU and CQA projects using one of the following resource types:
-  * Azure AI Foundry resource.
+  * Foundry resource.
   * AI hub resource.
-  * Azure AI Language resource.
+  * Azure Language in Foundry Tools resource.
 
 * **Project deployments**: Deploy the following required projects:
 
@@ -59,7 +59,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
   * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
   * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value.
-  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center.
+  * For Foundry and AI hub resources, find the resource key in the resource overview page in the Foundry portal management center.
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
@@ -81,7 +81,7 @@ Before setting up the Intent Routing agent, ensure you have the following resour
 
 ## Azure Language Exact Question Answering agent 🆕
 
-The Exact Question Answering agent in [**Azure AI Foundry**](https://ai.azure.com/) delivers responses to frequently asked business questions through a fully managed, no-code solution. This agent provides consistent answers to queries while maintaining governance and quality control.
+The Exact Question Answering agent in [**Foundry**](https://ai.azure.com/) delivers responses to frequently asked business questions through a fully managed, no-code solution. This agent provides consistent answers to queries while maintaining governance and quality control.
 
 The agent combines Azure AI Agent Service capabilities with [**Custom Question Answering**](../question-answering/overview.md) technology. This integration creates a solution with minimal setup while delivering performance and oversight.
 
@@ -93,12 +93,12 @@ In addition to creating the agent from the Exact Question Answering Agent templa
 
 Before setting up the Exact Question Answering agent, ensure you have the following resources and configurations in place:
 
-* **Azure AI Foundry resource**: You need an active Azure AI Foundry resource to host your agent.
+* **Foundry resource**: You need an active Foundry resource to host your agent.
 
 * **Project resources**: Create your CQA project using one of the following resource types:
-  * Azure AI Foundry resource.
+  * Foundry resource.
   * AI hub resource.
-  * Azure AI Language resource.
+  * Language resource.
 
 * **Project deployment**: Deploy the following required project:
 
@@ -108,7 +108,7 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 * **Custom connection setup**: Configure a custom connection between your agent project and the Language resources:
   * In your agent project management center, use "Custom keys" connection when adding the custom connection in the connected resources page.
   * Add a key-value pair with `Ocp-Apim-Subscription-Key` as the key name and your resource key as the value.
-  * For Azure AI Foundry and AI hub resources, find the resource key in the resource overview page in the Azure AI Foundry portal management center.
+  * For Foundry and AI hub resources, find the resource key in the resource overview page in the Foundry portal management center.
   * For any resource type, you can also find the key in the Azure portal.
   * For detailed connection instructions, see [Create a connection](/azure/ai-foundry/how-to/connections-add).
 
@@ -122,7 +122,7 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 
 * **Azure integration**: The agent integrates Azure AI Agent Service with [**Custom Question Answering**](../question-answering/overview.md) capabilities within Azure Language services. This integration eliminates complex configuration requirements and provides access to enterprise security and monitoring features.
 
-* **No-code deployment**: Organizations can deploy and configure the agent through Azure AI Foundry's visual interface without writing custom code. This approach enables business stakeholders to participate in knowledge base creation and maintenance.
+* **No-code deployment**: Organizations can deploy and configure the agent through Foundry's visual interface without writing custom code. This approach enables business stakeholders to participate in knowledge base creation and maintenance.
 
 * **Knowledge management**: Users can manage question-answer pairs in CQA projects, providing control over the agent's knowledge base and ensuring response accuracy.
 
@@ -132,4 +132,4 @@ Before setting up the Exact Question Answering agent, ensure you have the follow
 
 ## Related content
 
-[Configure Azure resources for Azure AI Foundry](configure-azure-resources.md)
+[Configure Azure resources for Foundry](configure-azure-resources.md)

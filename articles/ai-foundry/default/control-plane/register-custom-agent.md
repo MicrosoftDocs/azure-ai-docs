@@ -222,6 +222,6 @@ If you don't see traces, check the following checklist:
 
 ## Related content
 
-- [What is the Microsoft Foundry Control Plane?](what-is-foundry-control-plane.md)
+- [What is the Microsoft Foundry Control Plane?](overview.md)
 - [Monitor agents across your fleet](monitoring-across-fleet.md)
 - [Optimize cost and performance across your agent fleet](how-to-optimize-cost-performance.md)

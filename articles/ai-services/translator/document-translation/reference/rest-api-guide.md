@@ -15,7 +15,7 @@ ms.author: lajanuar
 Reference</br>
 Feature: **Azure Translator → Document translation**</br>
 
-Document translation is a cloud-based feature of the Azure Translator and is part of the Azure AI service family of REST APIs. The Batch Document translation API translates documents across all [supported languages and dialects](../../language-support.md) while preserving document structure and data format. The available methods are listed in the following tables:
+Document translation is a cloud-based feature of the Azure Translator and is part of the Foundry Tool family of REST APIs. The Batch Document translation API translates documents across all [supported languages and dialects](../../language-support.md) while preserving document structure and data format. The available methods are listed in the following tables:
 
 ## API Version: **2024-05-01**
 

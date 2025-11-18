@@ -16,7 +16,7 @@ If you're uploading your data into conversational language understanding, it mus
 
 ## Import project file format
 
-If you're [importing a project](../how-to/create-project.md#import-an-existing-azure-ai-project) into conversational language understanding, the file uploaded must be in the following format:
+If you're [importing a project](../how-to/create-project.md#import-an-existing-foundry-project) into conversational language understanding, the file uploaded must be in the following format:
 
 ```json
 {
@@ -174,5 +174,5 @@ Conversational language understanding offers the option to upload your utterance
 
 ## Related content
 
-* For more information on importing your labeled data into your project directly, see [Import project](../how-to/create-project.md#import-an-existing-azure-ai-project).
+* For more information on importing your labeled data into your project directly, see [Import project](../how-to/create-project.md#import-an-existing-foundry-project).
 * For more information about labeling your data, see [Label your utterances in Language Studio](../how-to/tag-utterances.md). After you label your data, you can [train your model](../how-to/train-model.md).

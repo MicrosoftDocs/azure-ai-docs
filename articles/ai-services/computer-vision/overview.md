@@ -47,7 +47,7 @@ Azure Vision can analyze images that meet the following requirements:
 
 ## Data privacy and security
 
-As with all of the Azure AI Foundry Tools, developers using Azure Vision should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
+As with all of the Foundry Tools, developers using Azure Vision should be aware of Microsoft's policies on customer data. See the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
 
 ## Next steps
 

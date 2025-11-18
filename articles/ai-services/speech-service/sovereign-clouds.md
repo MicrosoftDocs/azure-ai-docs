@@ -98,7 +98,7 @@ spx recognize --endpoint "usGovEndpoint" --file myaudio.wav
 ```
 
 Replace `subscriptionKey` with your Speech resource key.
-Replace `usGovEndpoint` with the endpoint from the Azure Portal.
+Replace `usGovEndpoint` with the endpoint from the Azure portal.
 
 ## Microsoft Azure operated by 21Vianet
 
@@ -185,4 +185,4 @@ Speech CLI should be used like this (note the `--endpoint` option):
 spx recognize --endpoint "azCnEndpoint" --file myaudio.wav
 ```
 
-Replace `subscriptionKey` with your Speech resource key. Replace `azCnEndpoint` with the endpoint from the Azure Portal.
+Replace `subscriptionKey` with your Speech resource key. Replace `azCnEndpoint` with the endpoint from the Azure portal.

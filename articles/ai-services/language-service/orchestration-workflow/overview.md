@@ -57,7 +57,7 @@ Follow these steps to get the most out of your model:
 
 ## Reference documentation and code samples
 
-As you use orchestration workflow, see the following reference documentation and samples for Azure AI Language:
+As you use orchestration workflow, see the following reference documentation and samples for Azure Language in Foundry Tools:
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|

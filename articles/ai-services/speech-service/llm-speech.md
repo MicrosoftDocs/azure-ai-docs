@@ -1,7 +1,7 @@
 ---
 title: Use the LLM-speech API - Speech service
-titleSuffix: Azure AI services
-description: Learn how to use Azure AI Speech for LLM-speech, where you can leverage the latest LLM-powered speech model for transcription and translation
+titleSuffix: Foundry Tools
+description: Learn how to use Azure Speech in Foundry Tools for LLM-speech, where you can leverage the latest LLM-powered speech model for transcription and translation
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -24,7 +24,7 @@ The LLM speech API currently supports the following speech tasks:
 
 ## Prerequisites
 
-- An Azure AI Speech resource in one of the regions where the LLM speech API is available. For the current list of supported regions, see [Speech service regions](./regions.md?tabs=llmspeech).
+- An Azure Speech in Foundry Tools resource in one of the regions where the LLM speech API is available. For the current list of supported regions, see [Speech service regions](./regions.md?tabs=llmspeech).
   
 - An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
   

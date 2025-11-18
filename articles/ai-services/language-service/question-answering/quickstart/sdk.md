@@ -16,7 +16,7 @@ zone_pivot_groups: custom-cqa-quickstart
 
 
 ::: zone pivot="foundry"
-[!INCLUDE [Azure AI Foundry quickstart](../includes/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](../includes/azure-ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="rest"
