@@ -1,7 +1,6 @@
 ---
 title: Develop Applications with Semantic Kernel and Microsoft Foundry
 titleSuffix: Microsoft Foundry
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 description: Learn how to Develop applications with Semantic Kernel and Microsoft Foundry with models deployed from the Foundry model catalog.
 author: lgayhardt
@@ -22,17 +21,7 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
-::: moniker range="foundry-classic"
-
 - A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-- A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
-
-::: moniker-end
 
 - A model that supports the [Azure AI Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md?tabs=python) deployed. This article uses a `Mistral-Large` deployment. You can use any model. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
 
@@ -55,8 +44,6 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 To use language models deployed in Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
 
-::: moniker range="foundry-classic"
-
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
@@ -66,16 +53,6 @@ To use language models deployed in Foundry portal, you need the endpoint and cre
 
     > [!TIP]
     > If your model was deployed with Microsoft Entra ID support, you don't need a key.
-::: moniker-end
-
-::: moniker range="foundry"
-1. Select **Home** from the upper-right navigation.
-1. Select **Keys** 
-1. Copy the endpoint URL and the key.
-
-    > [!TIP]
-    > If your model was deployed with Microsoft Entra ID support, you don't need a key.
-::: moniker-end
 
 This example uses environment variables for both the endpoint URL and key:
 
@@ -251,14 +228,5 @@ for embedding in embeddings:
 
 ## Related content
 
-::: moniker range="foundry-classic"
-
 - [How to get started with Azure AI SDKs](sdk-overview.md)
 - [Reference for Semantic Kernel model integration](/semantic-kernel/concepts/ai-services/)
-::: moniker-end
-
-::: moniker range="foundry"
-- [How to get started with Azure AI SDKs](sdk-overview.md)
-- [How to get started with Azure AI SDKs](sdk-overview.md)
-
-::: moniker-end
