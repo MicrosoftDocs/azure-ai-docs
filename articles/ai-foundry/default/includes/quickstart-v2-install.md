@@ -18,7 +18,7 @@ ms.custom: include
 
     ```
     pip install azure-ai-projects --pre
-    pip install azure-identity python-dotenv
+    pip install openai azure-identity python-dotenv
     ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.

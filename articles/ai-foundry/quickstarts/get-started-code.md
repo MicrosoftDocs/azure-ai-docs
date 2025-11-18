@@ -180,7 +180,7 @@ Store the endpoint as an environment variable.  Also set these values for use in
 1. Set these environment variables to use in your scripts:
 
     ```plaintext
-    AZURE_AI_PROJECT_ENDPOINT=<endpoint copied from welcome screen>
+    AZURE_AI_FOUNDRY_PROJECT_ENDPOINT=<endpoint copied from welcome screen>
     AZURE_AI_FOUNDRY_AGENT_NAME="MyAgent"
     AZURE_AI_FOUNDRY_MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
     ```
