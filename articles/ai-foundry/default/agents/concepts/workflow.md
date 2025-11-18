@@ -100,44 +100,44 @@ For more advanced options and comprehensive agent creation, visit the Foundry Ag
 
    :::image type="content" source="../../media/workflows/response-format.png" alt-text="A screenshot showing the addition of a response format in JSON." lightbox="../../media/workflows/response-format.png":::
 
-```json
-{
-  "name": "math_response",
-  "schema": {
-    "type": "object",
-    "properties": {
-      "steps": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "explanation": {
-              "type": "string"
-            },
-            "output": {
-              "type": "string"
+    ```json
+    {
+      "name": "math_response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "explanation": {
+                  "type": "string"
+                },
+                "output": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "explanation",
+                "output"
+              ],
+              "additionalProperties": false
             }
           },
-          "required": [
-            "explanation",
-            "output"
-          ],
-          "additionalProperties": false
-        }
+          "final_answer": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "steps",
+          "final_answer"
+        ]
       },
-      "final_answer": {
-        "type": "string"
-      }
-    },
-    "additionalProperties": false,
-    "required": [
-      "steps",
-      "final_answer"
-    ]
-  },
-  "strict": true
-}
-```
+      "strict": true
+    }
+    ```
 
 1. Select **Action settings**. Select **Save output json_obsject/json_schema as**. 
 1. Select **Create new variable**. Choose a variable name. Select **Done**.
