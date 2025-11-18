@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/10/2025
+ms.date: 11/13/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
@@ -73,25 +73,30 @@ The following section provides you with a quick guide to the default quotas and 
 > [!NOTE]
 > Quota limits are subject to change.
 
-## GPT-5 Series
+## GPT-5.1 series
 
-| Model       | Global Default<br>Tokens per minute (TPM)  | Global Enterprise and MCA-E <br>Tokens per minute (TPM)  | Data Zone Default <br>Tokens per minute (TPM)  | Data Zone Enterprise and MCA-E <br>Tokens per minute (TPM) |
-|-------------|----------------|-------------------|-------------------|----------------------|
-| `gpt-5`       | 1 M             | 10 M               | 300 K              | 3 M                   |
-| `gpt-5-mini`  | 1 M             | 10 M               | 300 K              | 3 M                   |
-| `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
-| `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
-| `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
-| `gpt-5-pro`   | 160 K            | 1.6 M | N/A | N/A |
+| Model              | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:-------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| gpt-5.1            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
+| gpt-5.1            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
+| gpt-5.1-chat       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
+| gpt-5.1-codex      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
+| gpt-5.1-codex-mini | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
 
-| Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
-|-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
-| `gpt-5`       | 10 K                                         | 100 K                                                      | 3 K                                              | 30 K                   |
-| `gpt-5-mini`  | 1 K                                          | 10 K                                                       | 300                                              | 3 K                   |
-| `gpt-5-nano`  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
-| `gpt-5-chat`  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
-| `gpt-5-codex` | 1 K                                          | 10 K                                                      | N/A                | N/A  | 
-| `gpt-5-pro`   | 1.6 K            | 16 K | N/A | N/A
+
+## GPT-5 series
+
+| Model              | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:-------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| gpt-5              | DataZoneStandard        | 3,000         | 300,000       | 30,000                     | 3,000,000                  |
+| gpt-5              | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
+| gpt-5-chat         | GlobalStandard          | 1,000         | 1,000,000     | 5,000                      | 5,000,000                  |
+| gpt-5-mini         | DataZoneStandard        | 300           | 300,000       | 3,000                      | 3,000,000                  |
+| gpt-5-mini         | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| gpt-5-nano         | DataZoneStandard        | 2,000         | 2,000,000     | 50,000                     | 50,000,000                 |
+| gpt-5-nano         | GlobalStandard          | 5,000         | 5,000,000     | 150,000                    | 150,000,000                |
+| gpt-5-codex        | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| gpt-5-pro          | GlobalStandard          | 1,600         | 160,000       | 16,000                     | 1,600,000                  |
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
