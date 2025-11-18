@@ -9,7 +9,7 @@ ms.date: 1/7/2025
 
 ## Retrieve resource information
 
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Azure AI Foundry portal](../use-your-data-quickstart.md?pivots=programming-language-studio).
+You need to retrieve the following information to authenticate your application with your Azure OpenAI resource. This quickstart assumes you've uploaded your data to an Azure blob storage account and have an Azure AI Search index created. See [Add your data using Microsoft Foundry portal](../use-your-data-quickstart.md?pivots=programming-language-studio).
 
 #### [Microsoft Entra ID](#tab/keyless)
 

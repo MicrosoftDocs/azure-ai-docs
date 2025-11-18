@@ -1,6 +1,6 @@
 ---
 title: Data and privacy for QnA Maker
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for QnA Maker.
 author: laujan
 ms.author: lajanuar

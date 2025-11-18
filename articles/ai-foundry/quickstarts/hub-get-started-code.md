@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Get started with Azure AI Foundry (Hub projects)"
-titleSuffix: Azure AI Foundry
+title: "Quickstart: Get started with Microsoft Foundry (Hub projects)"
+titleSuffix: Microsoft Foundry
 description: Set up SDK, deploy a model, and build a simple chat app for hub-based projects.
 author: sdgilley
 ms.author: sgilley
@@ -14,10 +14,10 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Get started with Azure AI Foundry (Hub projects)
+# Quickstart: Get started with Microsoft Foundry (Hub projects)
 
-> [!NOTE]
-> An alternate Foundry project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).
+> [!TIP]
+> An alternate Foundry project quickstart is available: [Quickstart: Get started with Microsoft Foundry (Foundry projects)](get-started-code.md).
 
 This quickstart sets up your local environment for hub-based projects, deploys a model, and builds a simple traced/evaluable chat script.
 
@@ -91,8 +91,8 @@ Delete deployment or project when done to avoid charges.
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+> [Microsoft Foundry client library overview](../how-to/develop/sdk-overview.md)
 
 ## Related content
 
-[Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).
+[Quickstart: Get started with Foundry (Foundry projects)](get-started-code.md).

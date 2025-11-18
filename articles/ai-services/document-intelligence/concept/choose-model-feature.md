@@ -1,19 +1,19 @@
 ---
 title: Choose the best Document Intelligence model for your applications and workflows.
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Choose the best Document Intelligence model for your applications and workflows.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: overview
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
 
 # Which model should I choose?
 
-Azure AI Document Intelligence supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
+Azure Document Intelligence in Foundry Tools supports a wide variety of models that enable you to add intelligent document processing to your applications and optimize your workflows. Selecting the right model is essential to ensure the success of your enterprise. In this article, we explore the available Document Intelligence models and provide guidance for how to choose the best solution for your projects.
 
 > [!VIDEO 364078d4-14bc-4b16-995a-526db31ea1ee]
 

@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure AI containers FAQ
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions.
   #services: cognitive-services
   author: aahill
@@ -17,24 +17,24 @@ sections:
     questions:
       - question: What is available?
         answer: |
-          Azure AI containers allow developers to use the same intelligent APIs that are available in Azure, but with the [benefits](../cognitive-services-container-support.md#features-and-benefits) of containerization. Some containers are available as a gated preview that might require an application to access. Other containers are publicly available as an ungated preview, or are generally available. You can find a full list of containers and their availability in the [Container support in Azure AI services](../cognitive-services-container-support.md) article. You can also view the containers in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/catalog?search=azure%20AI).
-      - question:  Is there any difference between the Azure AI services cloud and the containers?
+          Azure AI containers allow developers to use the same intelligent APIs that are available in Azure, but with the [benefits](../cognitive-services-container-support.md#features-and-benefits) of containerization. Some containers are available as a gated preview that might require an application to access. Other containers are publicly available as an ungated preview, or are generally available. You can find a full list of containers and their availability in the [Container support in Foundry Tools](../cognitive-services-container-support.md) article. You can also view the containers in the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/catalog?search=azure%20AI).
+      - question:  Is there any difference between the Foundry Tools cloud and the containers?
         answer: |
-          Azure AI containers are an alternative to the Azure AI services cloud. Containers offer the same capabilities as the corresponding cloud services. Customers can deploy the containers on-premises or in Azure. The core AI technology, pricing tiers, API keys, and API signature are the same between the container and the corresponding cloud services. There are [features and benefits](../cognitive-services-container-support.md#features-and-benefits) for choosing containers over their cloud service equivalent.
+          Azure AI containers are an alternative to the Foundry Tools cloud. Containers offer the same capabilities as the corresponding cloud services. Customers can deploy the containers on-premises or in Azure. The core AI technology, pricing tiers, API keys, and API signature are the same between the container and the corresponding cloud services. There are [features and benefits](../cognitive-services-container-support.md#features-and-benefits) for choosing containers over their cloud service equivalent.
       - question: How do I access and use a gated preview container?
         answer: |
           Previously, gated preview containers were hosted on the `containerpreview.azurecr.io` repository. As of September 22, 2020, these containers are hosted on the Microsoft Container Registry. Downloading them doesn't require you to use the `docker login` command. You can run a gated preview container if your Azure resource was created with the approved Azure subscription ID. You won't be able to run the container if your Azure subscription hasn't been approved after completion of the [request form](https://aka.ms/csgate).
-      - question: Will containers be available for all Azure AI services offerings, and what's the next set of containers I should expect?
+      - question: Will containers be available for all Foundry Tools offerings, and what's the next set of containers I should expect?
         answer: |
-          We'd like to make more Azure AI services offerings available as containers. Contact your local Microsoft account manager to get updates on new container releases and other Azure AI services announcements.
+          We'd like to make more Foundry Tools offerings available as containers. Contact your local Microsoft account manager to get updates on new container releases and other Foundry Tools announcements.
       - question: What is the service-level agreement (SLA) for Azure AI containers?
         answer: |
           > [!IMPORTANT]
-          > To learn more about service-level agreements for Azure AI services, [visit our SLA page](https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/).
+          > To learn more about service-level agreements for Foundry Tools, [visit our SLA page](https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/).
 
           Azure AI provides SLAs for cloud hosted services that can be viewed on our SLA page.
 
-          However, Azure AI services in containers don't provide an SLA as it is on-premises software. Customers control Azure AI services container configurations of resources, so Microsoft is unable to offer an SLA for general availability (GA). Customers are free to deploy containers on-premises and define the host environments.
+          However, Foundry Tools in containers don't provide an SLA as it is on-premises software. Customers control Foundry Tools container configurations of resources, so Microsoft is unable to offer an SLA for general availability (GA). Customers are free to deploy containers on-premises and define the host environments.
       - question: Are these containers available in Sovereign clouds?
         answer: |
           Standard Azure AI containers can be used in the Sovereign clouds. The containers can run and connect to the billing endpoint in these clouds once authorized, but container images must be pulled from the Public cloud container registry. Containers that rely on language models downloaded at runtime, such as Translator or Custom Speech to text, also are configured to pull models from Public endpoints.
@@ -52,7 +52,7 @@ sections:
           Generally, only the current version of the container is supported. We encourage customers to stay current to get the latest patches and technology.
       - question: How are updates versioned?
         answer: |
-          Major version changes indicate that there's a breaking change to the API signature. We anticipate that this indication will generally coincide with major version changes to the corresponding Azure AI services cloud offering. Minor version changes indicate bug fixes, model updates, or new features that don't make a breaking change to the API signature.
+          Major version changes indicate that there's a breaking change to the API signature. We anticipate that this indication will generally coincide with major version changes to the corresponding Foundry Tools cloud offering. Minor version changes indicate bug fixes, model updates, or new features that don't make a breaking change to the API signature.
   - name: Technical questions
     questions:
       - question: How can I diagnose potential errors in my deployment environment?
@@ -75,8 +75,8 @@ sections:
           |Status  | Description  |
           |---------|---------|
           | `Valid` |	Your API key is valid. No action is needed. |
-          | `Invalid` |	Your API key is invalid. You must provide a valid API key to run the container. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Azure AI services resource. |
-          | `Mismatch` | You've provided an API key or endpoint for a different kind of Azure AI services resource. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Azure AI services resource. |
+          | `Invalid` |	Your API key is invalid. You must provide a valid API key to run the container. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Foundry Tools resource. |
+          | `Mismatch` | You've provided an API key or endpoint for a different kind of Foundry Tools resource. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Foundry Tools resource. |
           | `CouldNotConnect` | The container couldn't connect to the billing endpoint. Check the `Retry-After` value and wait for this period to end before you make more requests. |
           | `OutOfQuota` | The API key has exceeded the quota. You can either upgrade your pricing tier or wait for more quota to become available. Find your tier in the Azure portal, in the **Pricing Tier** section of your Azure AI service resource. |
           | `BillingEndpointBusy` | The billing endpoint is currently busy. Check the `Retry-After` value and wait for this period to end before you make more requests. |
@@ -88,15 +88,15 @@ sections:
 
       - question: How do I get support?
         answer: |
-          Customer support channels are the same as for the Azure AI services cloud-based APIs. All Azure AI containers include logging features that help us and the community support customers. Here are options for more support:
+          Customer support channels are the same as for the Foundry Tools cloud-based APIs. All Azure AI containers include logging features that help us and the community support customers. Here are options for more support:
           * Find contact information in your [Azure support plan](https://azure.microsoft.com/support/plans/).
           * Try these areas of [Stack Overflow](https://en.wikipedia.org/wiki/Stack_Overflow), a question-and-answer site for professional and enthusiast programmers:
-            * [Azure AI services](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
+            * [Foundry Tools](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
             * [Microsoft Cognitive](https://stackoverflow.com/questions/tagged/microsoft-cognitive)
 
       - question: How does billing work?
         answer: |
-          Customers are charged based on consumption, similar to the Azure AI services cloud. The containers need to be configured to send metering data to Azure, and transactions are billed accordingly. Resources used across the hosted and on-premises services add to the single quota with tiered pricing, counting against both usages. For more information, see the billing section of the [container](../cognitive-services-container-support.md) you're using.
+          Customers are charged based on consumption, similar to the Foundry Tools cloud. The containers need to be configured to send metering data to Azure, and transactions are billed accordingly. Resources used across the hosted and on-premises services add to the single quota with tiered pricing, counting against both usages. For more information, see the billing section of the [container](../cognitive-services-container-support.md) you're using.
 
           > [!IMPORTANT]
           > Azure AI containers are *not licensed* to run without being connected to Azure for metering. Customers need to enable the containers to always communicate billing information with the metering service. Azure AI containers don't send customer data to Microsoft.

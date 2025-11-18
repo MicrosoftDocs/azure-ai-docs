@@ -1,16 +1,15 @@
 ---
 title: Frequently Asked Questions for orchestration projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this article to quickly get the answers to FAQ about orchestration projects
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: mode-other
 ---
-
 # Frequently asked questions for orchestration workflows
 
 Use this article to quickly get the answers to common questions about orchestration workflows
@@ -25,11 +24,11 @@ See [How to create projects and build schemas](./how-to/create-project.md) for i
 
 ## Which LUIS applications can I connect to in orchestration workflow projects?
 
-LUIS applications that use the Language resource as their authoring resource will be available for connection. You can only connect to LUIS applications that are owned by the same resource. This option will only be available for resources in West Europe, as it's the only common available region between LUIS and CLU.
+LUIS applications that use Azure Language resource as their authoring resource will be available for connection. You can only connect to LUIS applications that are owned by the same resource. This option will only be available for resources in West Europe, as it's the only common available region between LUIS and CLU.
 
 ## Which question answering project can I connect to in orchestration workflow projects?
 
-Question answering projects that use the Language resource will be available for connection. You can only connect to question answering projects that are in the same Language resource.
+Question answering projects that use Azure Language resource will be available for connection. You can only connect to question answering projects that are in the same Language resource.
 
 ## Training is taking a long time, is this expected?
 

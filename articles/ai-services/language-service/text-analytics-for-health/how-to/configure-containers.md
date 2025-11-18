@@ -1,17 +1,16 @@
 ---
 title: Configure Text Analytics for health containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Text Analytics for health containers uses a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-
 # Configure Text Analytics for health docker containers
 
 Text Analytics for health provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers. Several [example docker run commands](use-containers.md#run-the-container-with-docker-run) are also available.

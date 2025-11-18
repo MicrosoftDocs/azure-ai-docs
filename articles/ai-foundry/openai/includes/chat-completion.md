@@ -10,6 +10,7 @@ ms.topic: include
 ms.date: 11/04/2025
 manager: nitinme
 keywords: ChatGPT
+monikerRange: 'foundry-classic || foundry'
 
 ---
 
@@ -221,7 +222,7 @@ Instructions:
 You can also include relevant data or information in the system message to give the model extra context for the conversation. If you need to include only a small amount of information, you can hard code it in the system message. If you have a large amount of data that the model should be aware of, you can use [embeddings](../tutorials/embeddings.md?tabs=command-line) or a product like [Azure AI Search](https://techcommunity.microsoft.com/t5/ai-applied-ai-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w/ba-p/3762087) to retrieve the most relevant information at query time.
 
 ```
-{"role": "system", "content": "Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Azure AI Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
+{"role": "system", "content": "Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Microsoft Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
 
 Context:
 - Azure OpenAI provides REST API access to OpenAI's powerful language models including the GPT-3, Codex and Embeddings model series.
@@ -332,20 +333,18 @@ When you run the preceding code, you get a blank console window. Enter your firs
 
 ## Manage conversations
 
-The previous example runs until you hit the model's token limit. With each question asked, and answer received, the `messages` list grows in size. The token limit for chat completions models varies across models and versions The token limits for `gpt-4` and `gpt-4-32k` are 8,192 and 32,768, respectively. These limits include the token count from both the message list sent and the model response. The number of tokens in the messages list combined with the value of the `max_tokens` parameter must stay under these limits or you receive an error. Consult the [models page](../concepts/models.md) for each models token limits/context windows.
+The previous example runs until you hit the model's token limit. With each question asked, and answer received, the `messages` list grows in size. The token limit for chat completions models varies across models and versions The token limits for `gpt-4` and `gpt-4-32k` are 8,192 and 32,768, respectively. These limits include the token count from both the message list sent and the model response. The number of tokens in the messages list combined with the value of the `max_tokens` parameter must stay under these limits or you receive an error. Consult the [models page](../concepts/models.md) for each model's token limits/context windows.
 
 It's your responsibility to ensure that the prompt and completion fall within the token limit. For longer conversations, you need to keep track of the token count and only send the model a prompt that falls within the limit. Alternatively, with the [responses API](../how-to/responses.md) you can have the API handle truncation/management of the conversation history for you.
 
-> [!NOTE]  
-> We strongly recommend that you stay within the [documented input token limit](../concepts/models.md) for all models, even if you discover that you can exceed that limit.
-
 The following code sample shows a simple chat loop example with a technique for handling a 4,096-token count by using OpenAI's tiktoken library.
 
-The code uses tiktoken `0.5.1`. If you have an older version, run `pip install tiktoken --upgrade`.
+You may need to upgrade your version of tiktoken with `pip install tiktoken --upgrade`.
 
 # [Microsoft Entra ID](#tab/python-secure)
 
 ```python
+import tiktoken
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -364,36 +363,43 @@ token_limit = 4096
 conversation = []
 conversation.append(system_message)
 
-def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
+def num_tokens_from_messages(messages, model="gpt-4o"):
     """Return the number of tokens used by a list of messages."""
     try:
         encoding = tiktoken.encoding_for_model(model)
     except KeyError:
-        print("Warning: model not found. Using cl100k_base encoding.")
-        encoding = tiktoken.get_encoding("cl100k_base")
+        print("Warning: model not found. Using o200k_base encoding.")
+        encoding = tiktoken.get_encoding("o200k_base")
+    
     if model in {
-        "gpt-3.5-turbo-0613",
-        "gpt-3.5-turbo-16k-0613",
-        "gpt-4-0314",
-        "gpt-4-32k-0314",
-        "gpt-4-0613",
-        "gpt-4-32k-0613",
-        }:
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-5",
+        "gpt-4.1",
+        "o1",
+        "o1-mini",
+        "o3",
+        "o3-mini",
+        "o4-mini",
+    }:
         tokens_per_message = 3
         tokens_per_name = 1
-    elif model == "gpt-3.5-turbo-0301":
-        tokens_per_message = 4  # every message follows <|start|>{role/name}\n{content}<|end|>\n
-        tokens_per_name = -1  # if there's a name, the role is omitted
-    elif "gpt-3.5-turbo" in model:
-        print("Warning: gpt-3.5-turbo may update over time. Returning num tokens assuming gpt-3.5-turbo-0613.")
-        return num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613")
-    elif "gpt-4" in model:
-        print("Warning: gpt-4 may update over time. Returning num tokens assuming gpt-4-0613.")
-        return num_tokens_from_messages(messages, model="gpt-4-0613")
+
+    elif any(model.startswith(prefix) for prefix in [
+        "gpt-4o-", 
+        "gpt-5-", 
+        "gpt-4.1-",
+        "o1-", 
+        "o3-", 
+        "o4-mini-",
+    ]):
+        tokens_per_message = 3
+        tokens_per_name = 1
     else:
         raise NotImplementedError(
-            f"""num_tokens_from_messages() is not implemented for model {model}."""
+            f"""num_tokens_from_messages() is not implemented for model {model}. """
         )
+    
     num_tokens = 0
     for message in messages:
         num_tokens += tokens_per_message
@@ -401,24 +407,25 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
             num_tokens += len(encoding.encode(value))
             if key == "name":
                 num_tokens += tokens_per_name
-    num_tokens += 3  # every reply is primed with <|start|>assistant<|message|>
+    num_tokens += 3  
     return num_tokens
+
+
 while True:
     user_input = input("Q:")      
     conversation.append({"role": "user", "content": user_input})
-    conv_history_tokens = num_tokens_from_messages(conversation)
+    conv_history_tokens = num_tokens_from_messages(conversation, model="gpt-4o")
 
     while conv_history_tokens + max_response_tokens >= token_limit:
         del conversation[1] 
-        conv_history_tokens = num_tokens_from_messages(conversation)
+        conv_history_tokens = num_tokens_from_messages(conversation, model="gpt-4o")
 
     response = client.chat.completions.create(
-        model="gpt-35-turbo", # model = "deployment_name".
+        model="gpt-4o",  
         messages=conversation,
         temperature=0.7,
         max_tokens=max_response_tokens
     )
-
 
     conversation.append({"role": "assistant", "content": response.choices[0].message.content})
     print("\n" + response.choices[0].message.content + "\n")
@@ -442,36 +449,43 @@ token_limit = 4096
 conversation = []
 conversation.append(system_message)
 
-def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
+def num_tokens_from_messages(messages, model="gpt-4o"):
     """Return the number of tokens used by a list of messages."""
     try:
         encoding = tiktoken.encoding_for_model(model)
     except KeyError:
-        print("Warning: model not found. Using cl100k_base encoding.")
-        encoding = tiktoken.get_encoding("cl100k_base")
+        print("Warning: model not found. Using o200k_base encoding.")
+        encoding = tiktoken.get_encoding("o200k_base")
+    
     if model in {
-        "gpt-3.5-turbo-0613",
-        "gpt-3.5-turbo-16k-0613",
-        "gpt-4-0314",
-        "gpt-4-32k-0314",
-        "gpt-4-0613",
-        "gpt-4-32k-0613",
-        }:
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-5",
+        "gpt-4.1",
+        "o1",
+        "o1-mini",
+        "o3",
+        "o3-mini",
+        "o4-mini",
+    }:
         tokens_per_message = 3
         tokens_per_name = 1
-    elif model == "gpt-3.5-turbo-0301":
-        tokens_per_message = 4  # every message follows <|start|>{role/name}\n{content}<|end|>\n
-        tokens_per_name = -1  # if there's a name, the role is omitted
-    elif "gpt-3.5-turbo" in model:
-        print("Warning: gpt-3.5-turbo may update over time. Returning num tokens assuming gpt-3.5-turbo-0613.")
-        return num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613")
-    elif "gpt-4" in model:
-        print("Warning: gpt-4 may update over time. Returning num tokens assuming gpt-4-0613.")
-        return num_tokens_from_messages(messages, model="gpt-4-0613")
+
+    elif any(model.startswith(prefix) for prefix in [
+        "gpt-4o-", 
+        "gpt-5-", 
+        "gpt-4.1-",
+        "o1-", 
+        "o3-", 
+        "o4-mini-",
+    ]):
+        tokens_per_message = 3
+        tokens_per_name = 1
     else:
         raise NotImplementedError(
-            f"""num_tokens_from_messages() is not implemented for model {model}."""
+            f"""num_tokens_from_messages() is not implemented for model {model}. """
         )
+    
     num_tokens = 0
     for message in messages:
         num_tokens += tokens_per_message
@@ -479,24 +493,25 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
             num_tokens += len(encoding.encode(value))
             if key == "name":
                 num_tokens += tokens_per_name
-    num_tokens += 3  # every reply is primed with <|start|>assistant<|message|>
+    num_tokens += 3  
     return num_tokens
+
+
 while True:
     user_input = input("Q:")      
     conversation.append({"role": "user", "content": user_input})
-    conv_history_tokens = num_tokens_from_messages(conversation)
+    conv_history_tokens = num_tokens_from_messages(conversation, model="gpt-4o")
 
     while conv_history_tokens + max_response_tokens >= token_limit:
         del conversation[1] 
-        conv_history_tokens = num_tokens_from_messages(conversation)
+        conv_history_tokens = num_tokens_from_messages(conversation, model="gpt-4o")
 
     response = client.chat.completions.create(
-        model="gpt-35-turbo", # model = "deployment_name".
+        model="gpt-4o",  
         messages=conversation,
         temperature=0.7,
         max_tokens=max_response_tokens
     )
-
 
     conversation.append({"role": "assistant", "content": response.choices[0].message.content})
     print("\n" + response.choices[0].message.content + "\n")
@@ -517,9 +532,3 @@ The token counting portion of the code demonstrated previously is a simplified v
 | Error Code | Error Message | Workaround |
 |---|---|---|
 | 500 | 500 - InternalServerError: Error code: 500 - {'error': {'message': 'Failed to create completion as the model generated invalid Unicode output}}. | You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. |
-
-## Next steps
-
-* [Learn more about Azure OpenAI](../overview.md).
-* Get started with chat completions models with [the chat completion quickstart](../chatgpt-quickstart.md).
-* For more examples, see the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

@@ -1,5 +1,5 @@
 ---
-title: "Select a domain for a Custom Vision project - Azure AI Vision"
+title: "Select a domain for a Custom Vision project - Azure Vision in Foundry Tools"
 titleSuffix: Azure AI services
 description: Learn how to select a model domain for your project in the Custom Vision Service.
 author: PatrickFarley

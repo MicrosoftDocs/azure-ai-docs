@@ -1,6 +1,6 @@
 ---
 title: Run AI Red Teaming Agent Locally (Azure AI Evaluation SDK)
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use the AI Red Teaming Agent to run a local automated scan of a Generative AI application with the Azure AI Evaluation SDK.
 ms.service: azure-ai-foundry
 ms.custom:
@@ -10,13 +10,15 @@ ms.date: 10/20/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to run AI Red Teaming Agent scans locally using the Azure AI Evaluation SDK so I can proactively find safety risks in my generative AI applications during development.
 ---
 
 # Run AI Red Teaming Agent locally (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The AI Red Teaming Agent (preview) is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development. The AI red teaming capabilities of Microsoft's open-source framework for Python Risk Identification Tool ([PyRIT](https://github.com/Azure/PyRIT)) are integrated  directly into Azure AI Foundry. Teams can automatically scan their model and application endpoints for risks, simulate adversarial probing, and generate detailed reports.
+The AI Red Teaming Agent (preview) is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development. The AI red teaming capabilities of Microsoft's open-source framework for Python Risk Identification Tool ([PyRIT](https://github.com/Azure/PyRIT)) are integrated  directly into Microsoft Foundry. Teams can automatically scan their model and application endpoints for risks, simulate adversarial probing, and generate detailed reports.
 
 This article explains how to:
 
@@ -25,7 +27,7 @@ This article explains how to:
 
 ## Prerequisites
 
-- An Azure AI Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
+- A Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
@@ -49,13 +51,13 @@ You can instantiate the AI Red Teaming agent with your Azure AI Project and Azur
 from azure.identity import DefaultAzureCredential
 from azure.ai.evaluation.red_team import RedTeam, RiskCategory
 
-## Using Azure AI Foundry Hub project
+## Using Foundry Hub project
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
     "project_name": os.environ.get("AZURE_PROJECT_NAME"),
 }
-## Using Azure AI Foundry project, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+## Using Foundry project, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 # Instantiate your AI Red Teaming Agent
@@ -255,7 +257,7 @@ from azure.ai.evaluation.red_team import AttackStrategy
 # Run the red team scan with multiple attack strategies
 red_team_agent_result = await red_team_agent.scan(
     target=your_target, # required
-    scan_name="Scan with many strategies", # optional, names your scan in Azure AI Foundry
+    scan_name="Scan with many strategies", # optional, names your scan in Foundry
     attack_strategies=[ # optional
         AttackStrategy.EASY, 
         AttackStrategy.MODERATE,  

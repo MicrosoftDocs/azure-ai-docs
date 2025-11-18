@@ -1,20 +1,19 @@
 ---
-title: Orchestration workflows - Azure AI services
-titleSuffix: Azure AI services
+title: Orchestration workflows - Foundry Tools
+titleSuffix: Foundry Tools
 description: Customize an AI model to connect your Conversational Language Understanding, question answering and LUIS applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # What is orchestration workflow?
 
 
-Orchestration workflow is one of the features offered by [Azure AI Language](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build orchestration models to connect [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), [Question Answering](../question-answering/overview.md) projects and [LUIS](../../luis/what-is-luis.md) applications.
+Orchestration workflow is one of the features offered by [Azure Language in Foundry Tools](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build orchestration models to connect [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), [Question Answering](../question-answering/overview.md) projects and [LUIS](../../luis/what-is-luis.md) applications.
 By creating an orchestration workflow, developers can iteratively tag utterances, train and evaluate model performance before making it available for consumption. 
 To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Language studio](https://aka.ms/languageStudio). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
@@ -58,7 +57,7 @@ Follow these steps to get the most out of your model:
 
 ## Reference documentation and code samples
 
-As you use orchestration workflow, see the following reference documentation and samples for Azure AI Language:
+As you use orchestration workflow, see the following reference documentation and samples for Azure Language in Foundry Tools:
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|

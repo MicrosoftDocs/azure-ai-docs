@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # [Text summarization](#tab/text-summarization)
 
 # [Conversation summarization](#tab/conversation-summarization)
@@ -22,7 +21,7 @@ Use this quickstart to send text summarization requests using the [REST API](/re
 ## Prerequisites
 
 * The current version of [cURL](https://curl.haxx.se/).
-* Once you have your Azure subscription, <[create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-foundry-resource).
+* Once you have your Azure subscription, <[create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-your-first-resource).
     * You will need the key and endpoint from the resource you create to connect your application to the API. You'll paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 
@@ -453,7 +452,7 @@ You receive a 202 (Success) response that includes a read-only Operation-Locatio
 
     * Replace {**jobId**} with the Operation-Location header from the POST response.
 
-    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language service instance in the Azure portal.
+    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language instance in the Azure portal.
 
 ### Get request
 

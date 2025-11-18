@@ -1,19 +1,18 @@
 ---
 title: How to deploy an orchestration workflow project
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about deploying orchestration workflow projects.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # Deploy an orchestration workflow model 
 
-Once you are satisfied with how your model performs, it's ready to be deployed, and query it for predictions from utterances. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).
+Once you're satisfied with how your model performs, it's ready to be deployed, and query it for predictions from utterances. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).
 
 ## Prerequisites
 
@@ -45,7 +44,7 @@ After you have reviewed the model's performance and decide it's fit to be used i
 
 ## Swap deployments
 
-After you are done testing a model assigned to one deployment, you might want to assign it to another deployment. Swapping deployments involves:
+After you're done testing a model assigned to one deployment, you might want to assign it to another deployment. Swapping deployments involves:
 * Taking the model assigned to the first deployment, and assigning it to the second deployment. 
 * taking the model assigned to second deployment and assign it to the first deployment. 
 

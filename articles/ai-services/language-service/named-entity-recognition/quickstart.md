@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use the NER client library"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using the Named Entity Recognition (NER) API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/15/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -14,7 +14,6 @@ ms.custom: language-service-ner, mode-api, devx-track-extended-java, devx-track-
 keywords: text mining, key phrase
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
 # Quickstart: Detecting named entities (NER)
 
 ::: zone pivot="programming-language-csharp"
@@ -49,7 +48,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

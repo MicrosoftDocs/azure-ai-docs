@@ -1,7 +1,7 @@
 ---
 title: Enable Tracing and Collect Feedback for a Flow Deployment
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Azure AI Foundry portal.
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -31,9 +31,9 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 [!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI.
-- An Azure AI Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
+- A Microsoft Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
 - An Application Insights resource. If you don't already have an Application Insights resource, you can [create one](/azure/azure-monitor/app/create-workspace-resource).
-- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Azure AI Foundry portal](../../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Foundry portal](../../concepts/rbac-azure-ai-foundry.md).
 
 ## Deploy a flow for real-time inference
 
@@ -45,7 +45,7 @@ Use the latest prompt flow base image to deploy the flow so that it supports the
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using the Azure AI Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. In this way, the tracing data and system metrics are collected to the project linked to Application Insights.
+If you're using the Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. In this way, the tracing data and system metrics are collected to the project linked to Application Insights.
 
 If you're using the SDK or the CLI, add the `app_insights_enabled: true` property in the deployment .yaml file that collects data to the project linked to Application Insights.
 
@@ -174,4 +174,4 @@ In some cases, you might want to export the trace data to your deployed OpenTele
 ## Related content
 
 - [Get started building a chat app by using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with the Azure AI Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)
+- [Work with the Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)
