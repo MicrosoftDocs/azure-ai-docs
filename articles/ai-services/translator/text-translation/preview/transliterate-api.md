@@ -27,21 +27,33 @@ The Text transliteration API maps your source language script or alphabet to a t
 **Send a `POST` request to**:
 
 ```bash
-curl -X POST https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview
- -H "Ocp-Apim-Subscription-Key:<your-key>" ^
- -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
- -H "Content-Type: application/json" ^
- -d "<your-request-body>"
+curl -X POST 'https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn' ^
+  --header 'Content-Type: application/json' ^
+  --header 'Ocp-Apim-Subscription-Key: <your-resource-key>' ^
+  --header 'Ocp-Apim-Subscription-Region: <your-resource-region>' ^
+  --data '{
+    "inputs": [
+      {
+        "text": "пример текста"
+      }
+    ]
+}'
 ```
 
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview" \
--H "Ocp-Apim-Subscription-Key:<your-key>" \
--H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
--H "Content-Type: application/json" \
--d "<your-request-body>"
+curl -X POST 'https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn' \
+  --header 'Content-Type: application/json' \
+  --header 'Ocp-Apim-Subscription-Key: <your-resource-key>' \
+  --header 'Ocp-Apim-Subscription-Region: <your-resource-region>' \
+  --data '{
+    "inputs": [
+      {
+        "text": "пример текста"
+      }
+    ]
+}'
 ```
 ### Custom endpoint configuration
 
@@ -52,20 +64,30 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-ve
 ***Windows***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-10-01-preview"^
-    -H "Ocp-Apim-Subscription-Key:<your-key>"^
-    -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
-    -H "Content-Type: application/json"^
-    -d "<your-request-body>"
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn&language=ru' ^
+  --header 'content-type: application/json' ^
+  --header 'ocp-apim-subscription-key: <your-resource-key>' ^
+  --data '{
+  "inputs": [
+    {
+      "Text": "пример текста"
+    }
+  ]
+}'
 ```
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-10-01-preview" \
-    -H "Ocp-Apim-Subscription-Key:<your-key>" \
-    -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
-    -H "Content-Type: application/json" \
-    -d "<your-request-body>"
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/transliterate?api-version=2025-10-01-preview&fromScript=Cyrl&toScript=Latn&language=ru' \
+  --header 'content-type: application/json' \
+  --header 'ocp-apim-subscription-key: <your-resource-key>' \
+  --data '{
+  "inputs": [
+    {
+      "Text": "пример текста"
+    }
+  ]
+}'
 ```
 
 ### Private endpoint
@@ -97,12 +119,12 @@ Request parameters passed on the query string areas are as follows:
 The body of the request is a JSON array named `inputs`. Each array element is a JSON object with a string property named `Text`, which represents the string to convert.
 
 ```json
-
 {
-    "inputs": [
-        {"text":"こんにちは"},
-        {"text":"さようなら"}
-    ]
+  "inputs": [
+    {
+      "Text": "пример текста"
+    }
+  ]
 }
 ```
 
@@ -125,8 +147,10 @@ An example JSON response is:
 ```json
 {
   "value": [
-      {"text":"konnnichiha","script":"Latn"},
-      {"text":"sayounara","script":"Latn"}
+    {
+      "text": "primer teksta",
+      "script": "Latn"
+    }
   ]
 }
 ```
