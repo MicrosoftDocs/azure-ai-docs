@@ -1,5 +1,5 @@
 ---
-title: "Customize a model with Azure OpenAI in Microsoft Foundry Models and the Python SDK"
+title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the Python SDK"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the Python SDK.
 author: mrbullwinkle
@@ -21,7 +21,7 @@ ms.custom:
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - The OpenAI Python library.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
+- If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
 
@@ -104,34 +104,26 @@ For large data files, we recommend that you import from an Azure Blob  store. La
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs.
 
 ```python
-# Upload fine-tuning files
-
 import os
 from openai import OpenAI
 
+# Load the OpenAI client
 client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
   base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
+# Upload the training and validation dataset files to Azure AI Foundry with the SDK.
 training_file_name = 'training_set.jsonl'
 validation_file_name = 'validation_set.jsonl'
 
-# Upload the training and validation dataset files to Azure OpenAI with the SDK.
-
-training_response = client.files.create(
-    file=open(training_file_name, "rb"), purpose="fine-tune"
-)
+training_response = client.files.create(file=open(training_file_name, "rb"), purpose="fine-tune")
+validation_response = client.files.create(file=open(validation_file_name, "rb"), purpose="fine-tune")
 training_file_id = training_response.id
-
-validation_response = client.files.create(
-    file=open(validation_file_name, "rb"), purpose="fine-tune"
-)
 validation_file_id = validation_response.id
 
 print("Training file ID:", training_file_id)
 print("Validation file ID:", validation_file_id)
-
 ```
 
 ## Create a customized model
@@ -145,8 +137,9 @@ response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14", # Enter base model name.
-    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Azure OpenAI the model cannot contain dot/period characters.
-    seed=105, # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
+    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Azure AI Foundry the model cannot contain dot/period characters.
+    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
+    extra_body={ "trainingType": "GlobalStandard" } # Change this to your preferred training type. Other options are `Standard` and `Developer`.
 )
 
 job_id = response.id
@@ -155,24 +148,11 @@ job_id = response.id
 # The fine-tuning job will take some time to start and complete.
 
 print("Job ID:", response.id)
-print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
-If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument:
-
-```python
-response = client.fine_tuning.jobs.create(
-    training_file=training_file_id,
-    validation_file=validation_file_id,
-    model="gpt-4.1-2025-04-14",
-    suffix="my-model",
-    seed=105,
-    extra_body={ "trainingType": "globalstandard" }
-)
-
-job_id = response.id
-```
+> [!NOTE]
+> We recommend using Global Standard tier for the training type, as it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and leverages global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md#fine-tuning-models) that supports Standard tier training.
 
 You can also pass additional optional parameters like hyperparameters to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters. 
 
@@ -188,13 +168,6 @@ The current supported hyperparameters for Supervised Fine-Tuning are:
 To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of the `method`:
 
 ```python
-from openai import OpenAI
-
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-
 client.fine_tuning.jobs.create(
   training_file="file-abc123", 
   model="gpt-4.1-2025-04-14",
@@ -207,7 +180,8 @@ client.fine_tuning.jobs.create(
         "n_epochs": 2
       }
     }
-  }
+  },
+  extra_body={ "trainingType": "GlobalStandard" }
 )
 ```
 
@@ -283,7 +257,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Azure AI Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that can indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
@@ -353,20 +327,11 @@ Once you have created a fine-tuned model you might want to continue to refine th
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7"
 )
-
 job_id = response.id
 
 # You can use the job ID to monitor the status of the fine-tuning job.
@@ -375,12 +340,11 @@ job_id = response.id
 print("Job ID:", response.id)
 print("Status:", response.id)
 print(response.model_dump_json(indent=2))
-
 ```
 
 We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
-If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
+If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Azure AI Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -392,14 +356,14 @@ When you're done with your customized model, you can delete the deployment and m
 
 You can use various methods to delete the deployment for your customized model:
 
-- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
+- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
 - The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
 Similarly, you can use various methods to delete your customized model:
 
-- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
+- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
 
 > [!NOTE]
 > You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
@@ -408,7 +372,7 @@ Similarly, you can use various methods to delete your customized model:
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
-- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
+- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
 - The [REST APIs](/rest/api/azureopenai/files/delete)
 - The Python SDK
 
