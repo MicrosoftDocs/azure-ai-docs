@@ -17,7 +17,7 @@ ms.custom:
 # What is Azure Content Understanding in Foundry Tools?
 
 > [!NOTE]
-> Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. 
+> Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version. For details see [What's New](whats-new.md).
 
 Azure Content Understanding in Foundry Tools is an [**Azure AI Service**](../what-are-ai-services.md) that's available as part of the [Microsoft Foundry Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. It uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
