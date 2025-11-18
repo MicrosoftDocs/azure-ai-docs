@@ -27,7 +27,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 
 ## Prerequisites
 
-+ An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-knowledge-source-overview) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
++ An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
 + A [Microsoft Foundry project](../../../../how-to/create-projects.md) with an [LLM deployment](../../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 + [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 + The latest preview Python SDK or the 2025-11-01-preview REST API version.
