@@ -48,7 +48,7 @@ Claude Opus 4.1 is an industry leader for coding. It delivers sustained performa
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) creain one of the supported regions: **East US2** and **Sweden Central**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** and **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](configure-marketplace.md).
 
 ## Deploy Claude models
