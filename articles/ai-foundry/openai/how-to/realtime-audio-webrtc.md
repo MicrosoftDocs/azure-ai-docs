@@ -32,6 +32,7 @@ Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you nee
 
 WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
 
+
 ## Supported models
 
 You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
@@ -48,7 +49,7 @@ For more information about supported models, see the [models and versions docume
 >
 > You can still use the beta protocol, but we recommend that you start with the GA Protocol. If you're a current customer, plan to migrate to the GA Protocol. 
 >
-> This article describes how to use WebRTC with the GA Protocol. We preserve the legacy protocol documentation [here](./realtime-audio-webrtc-legacy.md).
+> This article describes how to use WebRTC with the GA Protocol. We preserve the legacy protocol documentation [here](/previous-versions/azure/foundry-models/realtime-audio-webrtc-legacy).
 
 ## Prerequisites
 
