@@ -105,7 +105,7 @@ During preview, only the following principal types are supported in SharePoint A
 - Microsoft 365 groups  
 - Mail-enabled security groups  
 
-SharePoint groups are not supported in the preview release. 
+SharePoint groups aren't supported in the preview release. 
 
 For configuration details and full limitations, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](https://aka.ms/azs-sharepoint-indexer-acls).
 
