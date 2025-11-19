@@ -92,9 +92,9 @@ Microsoft Foundry hosts your Azure OpenAI model deployments, project connection,
 
 A user initiates query processing by interacting with a client app, such as a chatbot, that calls the agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends it back to the agent and chatbot.
 
-## Create and run the solution
+## Build the solution
 
-Follow these steps to build an end-to-end agentic retrieval solution.
+Follow these steps to create an end-to-end agentic retrieval solution.
 
 ### Get endpoints
 
