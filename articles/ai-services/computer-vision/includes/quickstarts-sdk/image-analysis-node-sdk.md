@@ -27,7 +27,7 @@ Use the Image Analysis client library for JavaScript to analyze a remote image f
 * An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The current version of [Node.js](https://nodejs.org/).
 * Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-    * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
+    * You need the key and endpoint from the resource you create to connect your application to Azure Vision in Foundry Tools.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 [!INCLUDE [create environment variables](../environment-variables.md)]
@@ -94,7 +94,7 @@ End of quickstart.
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)

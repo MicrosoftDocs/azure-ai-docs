@@ -43,7 +43,7 @@ You can use orchestration workflow to create new orchestration projects. See [or
 To use an orchestration project to connect LUIS, question answering, and conversational language understanding, you need:
 
 * A language resource in [Language Studio](https://language.azure.com/) or the Azure portal.
-* To change your LUIS authoring resource to the Language resource. You can also optionally export your application from LUIS, and then [import it into conversational language understanding](../../language-service/orchestration-workflow/how-to/create-project.md#import-an-orchestration-workflow-project).
+* To change your LUIS authoring resource to Azure Language resource. You can also optionally export your application from LUIS, and then [import it into conversational language understanding](../../language-service/orchestration-workflow/how-to/create-project.md#import-an-orchestration-workflow-project).
 
 >[!Note]
 >LUIS can be used with Orchestration projects in West Europe only, and requires the authoring resource to be a Language resource. You can either import the application in the West Europe Language resource or change the authoring resource from the portal.
@@ -56,7 +56,7 @@ You need to follow the following steps to change LUIS authoring resource to a La
 2. From the list of LUIS applications, select the application you want to change to a Language resource.
 3. From the menu at the top of the screen, select **Manage**.
 4. From the left Menu, select **Azure resource**
-5. Select **Authoring resource** , then change your LUIS authoring resource to the Language resource.
+5. Select **Authoring resource** , then change your LUIS authoring resource to Azure Language resource.
 
 :::image type="content" source="../media/orchestration/authoring-resource-change.png" alt-text="A screenshot showing how to change your authoring resource using the LUIS portal." lightbox="../media/orchestration/authoring-resource-change.png":::
 

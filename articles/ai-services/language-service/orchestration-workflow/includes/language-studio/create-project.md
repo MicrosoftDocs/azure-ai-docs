@@ -3,17 +3,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 1. In [Language Studio](https://aka.ms/languageStudio), find the section labeled **Understand questions and conversational language** and select **Orchestration Workflow**.  
    
-   :::image type="content" source="../../media/select-orchestration.png" alt-text="A screenshot showing the location of the orchestration workflow section in the Language Studio landing page." lightbox="../../media/select-orchestration.png"::: 
+   :::image type="content" source="../../media/select-orchestration.png" alt-text="A screenshot showing the location of the orchestration workflow section in Azure Language Studio landing page." lightbox="../../media/select-orchestration.png"::: 
     
 
-2. This will bring you to the **Orchestration workflow project** page. Select **Create new project**. To create a project, you will need to provide the following details:
+2. This will bring you to the **Orchestration workflow project** page. Select **Create new project**. To create a project, you need to provide the following details:
 
 |Value  | Description  |
 |---------|---------|

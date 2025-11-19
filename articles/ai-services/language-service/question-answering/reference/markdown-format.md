@@ -5,9 +5,8 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ---
-
 # Markdown format supported in answer text
 
 Custom question answering stores answer text as markdown. There are many flavors of markdown. In order to make sure the answer text is returned and displayed correctly, use this reference.
@@ -16,7 +15,7 @@ Use the **[CommonMark](https://commonmark.org/help/tutorial/index.html)** tutori
 
 ## When to use rich-text editing versus markdown
 
-Rich-text editing of answers allows you, as the author, to use a formatting toolbar to quickly select and format text.
+Use a formatting toolbar for rich-text editing of answers, allowing you, as the author, to quickly select and format text.
 
 Markdown is a better tool when you need to autogenerate content to create projects to be imported as part of a CI/CD pipeline or for batch testing.
 
@@ -41,9 +40,9 @@ A new line between 2 sentences.|`\n\n`|`How can I create a bot with \n\n custom 
 |Unordered list|`\n * item1 \n * item2`<br>or<br>`\n - item1 \n - item2`|`This is an unordered list: \n * List item 1 \n * List item 2`|
 |Nested lists|`\n * Parent1 \n\t * Child1 \n\t * Child2 \n * Parent2`<br><br>`\n * Parent1 \n\t 1. Child1 \n\t * Child2 \n 1. Parent2`<br><br>You can nest ordered and unordered lists together. The tab, `\t`, indicates the indentation level of the child element.|`This is an unordered list: \n * List item 1 \n\t * Child1 \n\t * Child2 \n * List item 2`<br><br>`This is an ordered nested list: \n 1. Parent1 \n\t 1. Child1 \n\t 1. Child2 \n 1. Parent2`|
 
-* Custom question answering doesn't process the image in any way. It is the client application's role to render the image.
+* Custom question answering doesn't process the image in any way. It's the client application's role to render the image.
 
-If you want to add content using update/replace project APIs and the content/file contains html tags, you can preserve the HTML in your file by ensuring that opening and closing of the tags are converted in the encoded format.
+If you're adding content through the update or replace project APIs and your content or file includes HTML tags, be sure to preserve the HTML within your file. This step ensures that all opening and closing tags are properly converted to their encoded format.
 
 | Preserve HTML  | Representation in the API request  | Representation in KB |
 |-----------|---------|-------------------------|

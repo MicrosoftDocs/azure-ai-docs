@@ -11,7 +11,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Role-based access control for Azure OpenAI in Azure AI Foundry Models
+# Role-based access control for Azure OpenAI in Microsoft Foundry Models
 
 Azure OpenAI supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions based on their needs for a given project. For more information, see the [Azure RBAC documentation](/azure/role-based-access-control/).
 
@@ -49,8 +49,8 @@ If a user were granted role-based access to only this role for an Azure OpenAI r
 
 ✅ View the resource in [Azure portal](https://portal.azure.com) <br>
 ✅ View the resource endpoint under **Keys and Endpoint** <br>
-✅ Ability to view the resource and associated model deployments in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). <br>
-✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). <br>
+✅ Ability to view the resource and associated model deployments in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). <br>
+✅ Ability to view what models are available for deployment in [Foundry portal](https://ai.azure.com/?cid=learnDocs). <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource. <br>
 ✅ Make inference API calls with Microsoft Entra ID.
 
@@ -91,14 +91,14 @@ This role is typically granted access at the resource group level for a user in 
 ✅ View resources in the assigned resource group in the [Azure portal](https://portal.azure.com). <br>
 ✅ View the resource endpoint under **Keys and Endpoint** <br>
 ✅ View/Copy/Regenerate keys under **Keys and Endpoint** <br>
-✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
+✅ Ability to view what models are available for deployment in [Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource <br>
 ✅ Create customized content filters <br>
 ✅ Add data sources to Azure OpenAI On Your Data. <br>
 ✅ Create new model deployments or edit existing model deployments (via API) <br>
 ✅ Create custom fine-tuned models **[Added Fall 2023]**<br>
 ✅ Upload datasets for fine-tuning **[Added Fall 2023]**<br>
-✅ Create new model deployments or edit existing model deployments (via Azure AI Foundry) **[Added Fall 2023]**<br>
+✅ Create new model deployments or edit existing model deployments (via Foundry) **[Added Fall 2023]**<br>
 ✅ View, query, filter Stored completions data <br>
 
 A user with only this role assigned would be unable to:
@@ -112,7 +112,7 @@ Viewing quota requires the **Cognitive Services Usages Reader** role. This role 
 
 This role can be found in the Azure portal under **Subscriptions** > ***Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**. The role must be applied at the subscription level, it does not exist at the resource level.
 
-If you don't wish to use this role, the subscription **Reader** role provides equivalent access, but it also grants read access beyond the scope of what is needed for viewing quota. Model deployment via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) is also partially dependent on the presence of this role.
+If you don't wish to use this role, the subscription **Reader** role provides equivalent access, but it also grants read access beyond the scope of what is needed for viewing quota. Model deployment via the [Foundry portal](https://ai.azure.com/?cid=learnDocs) is also partially dependent on the presence of this role.
 
 This role provides little value by itself and is instead typically assigned in combination with one or more of the previously described roles.
 
@@ -120,20 +120,20 @@ This role provides little value by itself and is instead typically assigned in c
 
 All the capabilities of Cognitive Services OpenAI User plus the ability to:
 
-✅ View quota allocations in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)
+✅ View quota allocations in [Foundry portal](https://ai.azure.com/?cid=learnDocs)
 
 #### Cognitive Services Usages Reader + Cognitive Services OpenAI Contributor
 
 All the capabilities of Cognitive Services OpenAI Contributor plus the ability to:
 
-✅ View quota allocations in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)
+✅ View quota allocations in [Foundry portal](https://ai.azure.com/?cid=learnDocs)
 
 #### Cognitive Services Usages Reader + Cognitive Services Contributor
 
 All the capabilities of Cognitive Services Contributor plus the ability to:
 
-✅ View & edit quota allocations in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
-✅ Create new model deployments or edit existing model deployments (via Azure AI Foundry) <br>
+✅ View & edit quota allocations in [Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
+✅ Create new model deployments or edit existing model deployments (via Foundry) <br>
 
 ## Summary
 
@@ -141,8 +141,8 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |-------------|--------------------|------------------------|------------------|-------------------------|
 |View the resource in Azure portal |✅|✅|✅| ➖ |
 |View the resource endpoint under “Keys and Endpoint” |✅|✅|✅| ➖ |
-|View the resource and associated model deployments in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |✅|✅|✅| ➖ |
-|View what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|✅|✅|✅| ➖ |
+|View the resource and associated model deployments in [Foundry portal](https://ai.azure.com/?cid=learnDocs) |✅|✅|✅| ➖ |
+|View what models are available for deployment in [Foundry portal](https://ai.azure.com/?cid=learnDocs)|✅|✅|✅| ➖ |
 |Use the Chat, Completions, and DALL-E (preview) playground experiences with any models that have already been deployed to this Azure OpenAI resource.|✅|✅|✅| ➖ |
 |Create or edit model deployments|❌|✅|✅| ➖ |
 |Create or deploy custom fine-tuned models|❌|✅|✅| ➖ |
@@ -156,11 +156,11 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |Make inference API calls with Microsoft Entra ID| ✅ | ✅ | ❌ |  ➖ | 
 ## Common Issues
 
-### Unable to view Azure Cognitive Search option in Azure AI Foundry portal
+### Unable to view Azure Cognitive Search option in Foundry portal
 
 **Issue:**
 
-When selecting an existing Azure Cognitive Search resource the search indices don't load, and the loading wheel spins continuously. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), go to **Playground Chat** > **Add your data (preview)** under Assistant setup. Selecting **Add a data source** opens a modal that allows you to add a data source through either Azure Cognitive Search or Blob Storage. Selecting the Azure Cognitive Search option and an existing Azure Cognitive Search resource should load the available Azure Cognitive Search indices to select from.
+When selecting an existing Azure Cognitive Search resource the search indices don't load, and the loading wheel spins continuously. In [Foundry portal](https://ai.azure.com/?cid=learnDocs), go to **Playground Chat** > **Add your data (preview)** under Assistant setup. Selecting **Add a data source** opens a modal that allows you to add a data source through either Azure Cognitive Search or Blob Storage. Selecting the Azure Cognitive Search option and an existing Azure Cognitive Search resource should load the available Azure Cognitive Search indices to select from.
 
 **Root cause** 
 
@@ -180,13 +180,13 @@ For this API call, you need a **subscription-level scope** role. You can use the
 
 - Use API keys for Azure Cognitive Search: If you only need to interact with the Azure Cognitive Search service, you can request the admin keys or query keys from the subscription owner. These keys allow you to make API calls directly to the search service without needing an Azure RBAC role. Keep in mind that using API keys will **bypass** the Azure RBAC access control, so use them cautiously and follow security best practices.
 
-### Unable to upload files in Azure AI Foundry portal for on your data
+### Unable to upload files in Foundry portal for on your data
 
-**Symptom:** Unable to access storage for the **on your data** feature using Azure AI Foundry.
+**Symptom:** Unable to access storage for the **on your data** feature using Foundry.
 
 **Root cause:**
 
-Insufficient subscription-level access for the user attempting to access the blob storage in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The user may **not** have the necessary permissions to call the Azure Management API endpoint: ```https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listAccountSas?api-version=2022-09-01```
+Insufficient subscription-level access for the user attempting to access the blob storage in [Foundry portal](https://ai.azure.com/?cid=learnDocs). The user may **not** have the necessary permissions to call the Azure Management API endpoint: ```https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listAccountSas?api-version=2022-09-01```
 
 Public access to the blob storage is disabled by the owner of the Azure subscription for security reasons.
 
@@ -202,7 +202,7 @@ Possible reasons why the user may **not** have permissions:
 **Solution options**
 
 - Verify and update access rights: Ensure the user has the appropriate subscription-level access, including the necessary permissions for the API call (Microsoft.Storage/storageAccounts/listAccountSas/action). If required, request the subscription owner or administrator to grant the necessary access rights.
-- Request assistance from the owner or admin: If the solution above is not feasible, consider asking the subscription owner or administrator to upload the data files on your behalf. This approach can help import the data into Azure AI Foundry without **user** requiring subscription-level access or public access to the blob storage.
+- Request assistance from the owner or admin: If the solution above is not feasible, consider asking the subscription owner or administrator to upload the data files on your behalf. This approach can help import the data into Foundry without **user** requiring subscription-level access or public access to the blob storage.
 
 ## Next steps
 

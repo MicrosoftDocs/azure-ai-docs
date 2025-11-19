@@ -1,6 +1,6 @@
 ---
 title: Speech to text REST API for short audio - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Speech to text REST API for short audio to convert speech to text.
 author: PatrickFarley
 manager: nitinme

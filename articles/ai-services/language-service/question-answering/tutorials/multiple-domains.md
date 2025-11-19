@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 08/07/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering, cogserv-non-critical-language
 ---
-
 # Add multiple categories to your FAQ bot
 
 In this tutorial, you learn how to:
@@ -81,7 +80,7 @@ For the bot on Surface products, you can take the following steps to create a bo
 
       ![Pass context](../media/multiple-domains/extract-metadata-from-context.png)
 
-    * Extract entity from user query to identify domain to be used for metadata filter. You can use other Azure AI services such as [Named Entity Recognition (NER)](../../named-entity-recognition/overview.md) and [conversational language understanding](../../conversational-language-understanding/overview.md) for entity extraction.
+    * Extract entity from user query to identify domain to be used for metadata filter. You can use other Foundry Tools such as [Named Entity Recognition (NER)](../../named-entity-recognition/overview.md) and [conversational language understanding](../../conversational-language-understanding/overview.md) for entity extraction.
 
       ![Extract metadata from query](../media/multiple-domains/extract-metadata-from-query.png)
 

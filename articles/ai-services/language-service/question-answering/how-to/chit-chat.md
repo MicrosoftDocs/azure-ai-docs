@@ -1,6 +1,6 @@
 ---
 title: Adding chitchat to a custom question answering project
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Adding personal chitchat to your bot makes it more conversational and engaging when you create a project. Custom question answering allows you to easily add a prepopulated set of the top chitchat, into your projects.
 #services: cognitive-services
 manager: nitinme
@@ -8,10 +8,9 @@ author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Use chitchat with a project
 
 Adding chitchat to your bot makes it more conversational and engaging. The chitchat feature in custom question answering allows you to easily add a prepopulated set of the top chitchat, into your project. This can be a starting point for your bot's personality, and it will save you the time and cost of writing them from scratch.
@@ -61,7 +60,7 @@ Choose the personality that you want as your chitchat base.
 
 ## Edit your chitchat questions and answers
 
-When you edit your project, you will see a new source for chitchat, based on the personality you selected. You can now add altered questions or edit the responses, just like with any other source.
+When you edit your project, you can see a new source for chitchat, based on the personality you selected. You can now add altered questions or edit the responses, just like with any other source.
 
 > [!div class="mx-imgBorder"]
 > ![Edit chitchat question pairs](../media/chit-chat/edit-chit-chat.png)
@@ -70,7 +69,7 @@ To turn the views for context and metadata on and off, select **Show columns** i
 
 ## Add more chitchat questions and answers
 
-You can add a new chitchat question pair that is not in the predefined data set. Ensure that you are not duplicating a question pair that is already covered in the chitchat set. When you add any new chitchat question pair, it gets added to your **Editorial** source. To ensure the ranker understands that this is chitchat, add the metadata key/value pair "Editorial: chitchat," as seen in the following image:
+You can add a new chitchat question pair that is not in the predefined data set. Ensure that you're not duplicating a question pair that is already covered in the chitchat set. When you add any new chitchat question pair, it gets added to your **Editorial** source. To ensure the ranker understands that this is chitchat, add the metadata key/value pair "Editorial: chitchat," as seen in the following image:
 
 :::image type="content" source="../media/chit-chat/add-new-chit-chat.png" alt-text="Add chitchat question answer pairs" lightbox="../media/chit-chat/add-new-chit-chat.png":::
 

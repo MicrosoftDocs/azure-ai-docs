@@ -1,6 +1,6 @@
 ---
 title: What are neural text to speech HD voices?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
 author: goergenj
 reviewer: patrickfarley
@@ -11,16 +11,16 @@ ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 10/21/2025
 ms.custom: references_regions
-#customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
+#customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure Speech in Foundry Tools.
 ---
 
 # What are high definition voices?
 
-Azure AI Speech continues to advance in the field of text to speech technology with the introduction of neural text to speech high definition (HD) voices. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features.
+Azure Speech in Foundry Tools continues to advance in the field of text to speech technology with the introduction of neural text to speech high definition (HD) voices. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features.
 
 ## Key features of neural text to speech HD voices
 
-The following are the key features of Azure AI Speech HD voices:
+The following are the key features of Azure Speech HD voices:
 
 | Key features | Description |
 |--------------|-------------|
@@ -29,18 +29,18 @@ The following are the key features of Azure AI Speech HD voices:
 | **Prosody variations** | Neural text to speech HD voices introduce slight variations in each output to enhance realism. These variations make the speech sound more natural, as human voices naturally exhibit variation. |
 | **High fidelity** | The primary objective of neural text to speech HD voices is to generate high-fidelity audio. The synthetic speech produced by our system can closely mimic human speech in both quality and naturalness. |
 
-## Comparison of Azure AI Speech HD voices to other Azure text to speech voices
+## Comparison of Azure Speech HD voices to other Azure text to speech voices
 
-How do Azure AI Speech HD voices compare to other Azure text to speech voices? How do they differ in terms of features and capabilities? 
+How do Azure Speech HD voices compare to other Azure text to speech voices? How do they differ in terms of features and capabilities? 
 
-Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI HD voices, and Azure AI Speech voices:
+Here's a comparison of features between Azure Speech HD voices, Azure OpenAI HD voices, and Azure Speech voices:
 
-| Feature | Azure AI Speech HD voices  | Azure OpenAI HD voices | Azure AI Speech voices (not HD) |
+| Feature | Azure Speech HD voices  | Azure OpenAI HD voices | Azure Speech voices (not HD) |
 |---------|---------------|------------------------|------------------------|
 | **Region** | See [Speech service regions](regions.md?tabs=tts) | See [Speech service regions](regions.md?tabs=tts) | Available in dozens of regions. See the [Speech service regions](regions.md?tabs=tts).|
 | **Number of voices** | 30 | 6 | More than 500 |
 | **Multilingual**  | Yes | Yes  | Yes (applicable only to multilingual voices)  |
-| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
+| **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure Speech.  |
 | **Development options** | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  |
 | **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
 | **Real-time or batch synthesis**  | Real-time only  | Real-time and batch synthesis  | Real-time and batch synthesis |
@@ -48,16 +48,16 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 | **Sample rate of synthesized audio** | 8, 16, 24, and 48 kHz  | 8, 16, 24, and 48 kHz | 8, 16, 24, and 48 kHz |
 | **Speech output audio format** | opus, mp3, pcm, truesilk |  opus, mp3, pcm, truesilk  |  opus, mp3, pcm, truesilk  |
 
-## Supported Azure AI Speech HD voices
+## Supported Azure Speech HD voices
 
-The Azure AI Speech HD voice values are in the format `voicename:basemodel:version`. The name before the colon, such as `en-US-Ava`, is the voice persona name and its original locale. The base model is tracked by versions in subsequent updates.
+The Azure Speech HD voice values are in the format `voicename:basemodel:version`. The name before the colon, such as `en-US-Ava`, is the voice persona name and its original locale. The base model is tracked by versions in subsequent updates.
 
-Currently, `DragonHD` is the only base model available for Azure AI Speech HD voices. To ensure that you're using the latest version of the base model that we provide without having to make a code change, use the `LatestNeural` version.
+Currently, `DragonHD` is the only base model available for Azure Speech HD voices. To ensure that you're using the latest version of the base model that we provide without having to make a code change, use the `LatestNeural` version.
 
 For example, for the persona `en-US-Ava` you can specify the following HD voice values:
 - `en-US-Ava:DragonHDLatestNeural`: Always uses the latest version of the base model that we provide later.
 
-The following table lists the Azure AI Speech HD voices that are currently available.
+The following table lists the Azure Speech HD voices that are currently available.
 
 | Voice Name                                 | Gender | Status  | Note                                  |
 |-------------------------------------------|--------|---------|---------------------------------------|
@@ -91,11 +91,11 @@ The following table lists the Azure AI Speech HD voices that are currently avail
 | zh-CN-Yunfan:DragonHDLatestNeural         | Male   | GA      |                                       |
 
 
-## How to use Azure AI Speech HD voices
+## How to use Azure Speech HD voices
 
 You can use HD voices with the same Speech SDK and REST APIs as the non HD voices. 
 
-Here are some key points to consider when using Azure AI Speech HD voices:
+Here are some key points to consider when using Azure Speech HD voices:
 
 - **Voice locale**: The locale in the voice name indicates its original language and region.
 - **Base models**:
@@ -105,7 +105,7 @@ Here are some key points to consider when using Azure AI Speech HD voices:
   - The temperature value is a float ranging from 0 to 1, influencing the randomness of the output. You can also adjust the temperature parameter to control the variation of outputs. Less randomness yields more stable results, while more randomness offers variety but less consistency.
   - Lower temperature results in less randomness, leading to more predictable outputs. Higher temperature increases randomness, allowing for more diverse outputs. The default temperature is set at 1.0.
 
-Here's an example of how to use Azure AI Speech HD voices in SSML:
+Here's an example of how to use Azure Speech HD voices in SSML:
 
 ```ssml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'>
@@ -113,15 +113,15 @@ Here's an example of how to use Azure AI Speech HD voices in SSML:
 </speak>
 ```
 
-## Supported and unsupported SSML elements for Azure AI Speech HD voices
+## Supported and unsupported SSML elements for Azure Speech HD voices
 
 The Speech Synthesis Markup Language (SSML) with input text determines the structure, content, and other characteristics of the text to speech output. For example, you can use SSML to define a paragraph, a sentence, a break or a pause, or silence. You can wrap text with event tags such as bookmark or viseme that your application processes later.
 
-The Azure AI Speech HD voices don't support all SSML elements or events that other Azure AI Speech voices support. Of particular note, Azure AI Speech HD voices don't support [word boundary events](./how-to-speech-synthesis.md#subscribe-to-synthesizer-events). 
+The Azure Speech HD voices don't support all SSML elements or events that other Azure Speech voices support. Of particular note, Azure Speech HD voices don't support [word boundary events](./how-to-speech-synthesis.md#subscribe-to-synthesizer-events). 
 
-For detailed information on the supported and unsupported SSML elements for Azure AI Speech HD voices, refer to the following table. For instructions on how to use SSML elements, refer to the [Speech Synthesis Markup Language (SSML) documentation](speech-synthesis-markup-structure.md). 
+For detailed information on the supported and unsupported SSML elements for Azure Speech HD voices, refer to the following table. For instructions on how to use SSML elements, refer to the [Speech Synthesis Markup Language (SSML) documentation](speech-synthesis-markup-structure.md). 
 
-| SSML element | Description  | Supported in Azure AI Speech HD voices |
+| SSML element | Description  | Supported in Azure Speech HD voices |
 |------------------------------|--------------------------------|-----------------------------------|
 | `<voice>`  | Specifies the voice and optional effects (`eq_car` and `eq_telecomhp8k`). | Yes |
 | `<mstts:express-as>`  | Specifies speaking styles and roles. | No  |
@@ -145,9 +145,28 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<s>`  | Denotes sentences in SSML documents.  | Yes  |
 
 > [!NOTE]
-> Although a [previous section in this guide](#comparison-of-azure-ai-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure AI Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure AI Speech aren't applicable to Azure OpenAI voices. 
+> Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
+
+## HD Flash voices
+
+HD voices are currently supported in `eastus`, `westeurope`, and `southeastasia` regions, to provide similar capabilities for customers in China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`), we offer HDFlash versions of selected HD voices. These HDFlash voices deliver enhanced naturalness compared to standard voices. You also can find those HDFlash voices in `eastus`, `westeurope`, and `southeastasia`.
+
+Below is the complete list of available HD Flash voices:
+
+| Voice Name                                 | Gender |
+|-------------------------------------------|--------|
+| zh-CN-Xiaochen:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao:DragonHDFlashLatestNeural  | Female |
+| zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Female |
+| zh-CN-Yunxia:DragonHDFlashLatestNeural    | Male   |
+| zh-CN-Yunxiao:DragonHDFlashLatestNeural   | Male   |
+| zh-CN-Yunye:DragonHDFlashLatestNeural     | Male   |
+| zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
+
+> [!NOTE]
+> HD Flash only support text in `zh-CN` and `en-US`.
 
 ## Related content
 
-- [Try the text to speech quickstart in Azure AI Speech](get-started-text-to-speech.md)
+- [Try the text to speech quickstart in Azure Speech](get-started-text-to-speech.md)
 - [Learn more about how to use SSML and events](speech-synthesis-markup-structure.md)

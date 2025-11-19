@@ -1,9 +1,9 @@
 ### YamlMime:Hub
 
-title: Azure AI Content Understanding documentation
+title: Azure Content Understanding in Foundry Tools documentation
 summary: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
 metadata:
-  title: Azure AI Content Understanding documentation
+  title: Azure Content Understanding documentation
   description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
   author: PatrickFarley 
   ms.author: pafarley
@@ -24,20 +24,17 @@ highlightedContent:
     - title: Try the REST API
       itemType: quickstart
       url: quickstart/use-rest-api.md
-    - title: Try Azure AI Foundry
+    - title: Try Content Understanding Studio
       itemType: quickstart
-      url: quickstart/use-ai-foundry.md
+      url: quickstart/content-understanding-studio.md
 
 conceptualContent:
   items:
-    - title: Azure AI Foundry
+    - title: Foundry (classic)
       links:
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with a single file"
-          url: quickstart/use-ai-foundry.md
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with multiple files"
-          url: quickstart/use-ai-foundry-pro-mode.md  
+        - itemType: how-to-guide
+          text: "Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal"
+          url: how-to/content-understanding-foundry-classic.md
         - itemType: concept
           text: Analyzer templates
           url: concepts/analyzer-templates.md
@@ -47,7 +44,7 @@ conceptualContent:
           text: Quickstart
           url: quickstart/use-rest-api.md
         - itemType: concept
-          text: "Modes: standard and pro"
+          text: "Modes: standard and pro (preview)"
           url: concepts/standard-pro-modes.md
         - itemType: concept
           text: Prebuilt analyzers
@@ -60,13 +57,13 @@ conceptualContent:
         - itemType: overview
           text: Overview
           url: concepts/classifier.md
-    - title: Face and person directories
+    - title: Face and person directories (preview)
       links:
         - itemType: overview
           text: Overview
           url: face/overview.md
         - itemType: how-to-guide
-          text: Build a person directory
+          text: Build a person directory (preview)
           url: tutorial/build-person-directory.md
     - title: Modalities
       links:
@@ -88,7 +85,7 @@ conceptualContent:
           text: Create a custom analyzer
           url: tutorial/create-custom-analyzer.md
         - itemType: how-to-guide
-          text: Build a person directory
+          text: Build a person directory (preview)
           url: tutorial/build-person-directory.md
     - title: Resources
       links:
@@ -99,7 +96,7 @@ conceptualContent:
           text: Language and region support
           url: language-region-support.md
         - itemType: tutorial
-          text: Azure AI Content Understanding Samples (Python)
+          text: Azure Content Understanding Samples (Python)
           url: https://github.com/Azure-Samples/azure-ai-content-understanding-python
     - title: Reference
       links:

@@ -12,7 +12,7 @@ ms.custom: include file
 
 ## Code examples
 
-These code snippets show you how to do the following with the Language Understanding (LUIS) client library for python:
+These code snippets show you how to do the following with Azure Language Understanding (LUIS) client library for python:
 
 * [Create an app](#create-a-luis-app)
 * [Add intent](#create-intent-for-the-app)

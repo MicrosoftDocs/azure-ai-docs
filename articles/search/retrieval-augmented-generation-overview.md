@@ -47,7 +47,7 @@ Agentic retrieval represents the evolution from traditional single-query RAG pat
 + Built-in semantic ranking for optimal relevance
 + Optional answer synthesis that uses an LLM-formulated answer in the query response.
 
-You need new objects for this pipeline: one or more knowledge sources, a knowledge agent, and the retrieve action that you call from application code, such as a tool that works with your agent.
+You need new objects for this pipeline: one or more knowledge sources, a knowledge base, and the retrieve action that you call from application code, such as a tool that works with your AI agent.
 
 For new RAG implementations, we recommend starting with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
 
@@ -75,7 +75,7 @@ RAG patterns that include Azure AI Search have the elements indicated in the fol
 
 The web app provides the user experience, providing the presentation, context, and user interaction. Questions or prompts from a user start here. Inputs pass through the integration layer, going first to information retrieval to get the search results, but also go to the LLM to set the context and intent. 
 
-The app server or orchestrator is the integration code that coordinates the handoffs between information retrieval and the LLM. Common solutions include [Azure Semantic Kernel](/semantic-kernel/get-started/quick-start-guide) or [LangChain](https://python.langchain.com/docs/get_started/introduction) to coordinate the workflow. [LangChain integrates with Azure AI Search](https://python.langchain.com/docs/integrations/retrievers/azure_ai_search/), making it easier to include Azure AI Search as a [retriever](https://python.langchain.com/docs/how_to/#retrievers) in your workflow. [LlamaIndex](https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch) and [Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/announcing-semantic-kernel-integration-with-azure-cognitive-search/) are other options.
+The app server or orchestrator is the integration code that coordinates the handoffs between information retrieval and the LLM. Common solutions include [Azure Semantic Kernel](/semantic-kernel/get-started/quick-start-guide) or [LangChain](https://python.langchain.com/docs/introduction/) to coordinate the workflow. [LangChain integrates with Azure AI Search](https://python.langchain.com/docs/integrations/retrievers/azure_ai_search/), making it easier to include Azure AI Search as a [retriever](https://python.langchain.com/docs/how_to/#retrievers) in your workflow. [LlamaIndex](https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch) and [Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/announcing-semantic-kernel-integration-with-azure-cognitive-search/) are other options.
 
 The information retrieval system provides the searchable index, query logic, and the payload (query response). The search index can contain vectors or nonvector content. Although most samples and demos include vector fields, it's not a requirement. The query is executed using the existing search engine in Azure AI Search, which can handle keyword (or term) and vector queries. The index is created in advance, based on a schema you define, and loaded with your content that's sourced from files, databases, or storage.
 
@@ -94,11 +94,11 @@ Since you probably know what kind of content you want to search over, consider t
 | text | tokens, unaltered text | [Indexers](search-indexer-overview.md) can pull plain text from other Azure resources like Azure Storage and Cosmos DB. You can also [push any JSON content](search-what-is-data-import.md) to an index. To modify text in flight, use [analyzers](search-analyzers.md) and [normalizers](search-normalizers.md) to add lexical processing during indexing. [Synonym maps](search-synonyms.md) are useful if source documents are missing terminology that might be used in a query. |
 | text | vectors <sup>1</sup> | Text can be chunked and vectorized in an indexer pipeline, or handled externally and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. |
 | image | tokens, unaltered text <sup>2</sup> | [Skills](cognitive-search-working-with-skillsets.md) for OCR and Image Analysis can process images for text recognition or image characteristics. Skills have an indexer requirement. |
-| image | vectors <sup>1</sup> | Images can be vectorized in an indexer pipeline, or handled externally for a mathematical representation of image content and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. You can use [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or an open source model like [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) to vectorize text and images in the same embedding space.|
+| image | vectors <sup>1</sup> | Images can be vectorized in an indexer pipeline, or handled externally for a mathematical representation of image content and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. You can use [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or an open source model like [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) to vectorize text and images in the same embedding space.|
 
  <sup>1</sup> Azure AI Search provides [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), but you must take a dependency on indexers and skillsets. If you can't use an indexer, Microsoft's [Semantic Kernel](/semantic-kernel/overview/) or other community offerings can help you with a full stack solution. For code samples showing both approaches, see [azure-search-vectors-sample repo](https://github.com/Azure/azure-search-vector-samples).
 
-<sup>2</sup> Image descriptions are converted to searchable text and added to the index. The images themselves are not stored in the index. [Skills](cognitive-search-working-with-skillsets.md) are built-in support for [applied AI](cognitive-search-concept-intro.md). For image descriptions and verbalizations, the indexing pipeline makes an internal call to the Azure OpenAI or Azure AI Vision. These skills pass an extracted image for processing, and receive the output as text that's indexed by Azure AI Search. Skills are also used for integrated data chunking and embedding. 
+<sup>2</sup> Image descriptions are converted to searchable text and added to the index. The images themselves are not stored in the index. [Skills](cognitive-search-working-with-skillsets.md) are built-in support for [applied AI](cognitive-search-concept-intro.md). For image descriptions and verbalizations, the indexing pipeline makes an internal call to the Azure OpenAI or Azure Vision. These skills pass an extracted image for processing, and receive the output as text that's indexed by Azure AI Search. Skills are also used for integrated data chunking and embedding. 
 
 Vectors provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematic representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries.
 
@@ -211,7 +211,7 @@ response = openai_client.chat.completions.create(
             "content": GROUNDED_PROMPT.format(query=query, sources=sources_formatted)
         }
     ],
-    model="gpt-35"
+    model="gpt-4.1-mini"
 )
 
 print(response.choices[0].message.content)

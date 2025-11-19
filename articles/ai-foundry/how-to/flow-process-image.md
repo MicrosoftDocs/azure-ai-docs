@@ -1,6 +1,6 @@
 ---
 title: Process images in prompt flow
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use images in prompt flow.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow

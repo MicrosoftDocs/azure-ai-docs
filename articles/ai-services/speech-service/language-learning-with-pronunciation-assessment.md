@@ -7,7 +7,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 08/07/2025
 ms.author: pafarley
-#Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
+#Customer intent: As a language learner, I want to learn how to use Azure Speech in Foundry Tools to improve my language skills.
 ---
 
 # Interactive language learning with pronunciation assessment

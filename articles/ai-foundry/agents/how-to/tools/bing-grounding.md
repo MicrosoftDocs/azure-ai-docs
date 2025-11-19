@@ -1,13 +1,13 @@
 ---
-title: 'How to use Grounding with Bing Search in Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
+title: 'How to use Grounding with Bing Search in Foundry Agent Service'
+titleSuffix: Microsoft Foundry
 description: Learn how to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 11/19/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -24,7 +24,7 @@ Developers and end users don't have access to raw content returned from Groundin
 >[!IMPORTANT]
 > 1. Your usage of Grounding with Bing Search can incur costs. See the [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) for details.
 > 1. By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/en-us/bing/apis/grounding-legal, which might be updated from time to time.
-> 1. When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+> 1. When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
 
 ## How Grounding with Bing Search works
 
@@ -36,7 +36,7 @@ Grounding with Bing returns relevant search results to the customer's model depl
 > [!NOTE]
 > When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
-The authorization will happen between Grounding with Bing Search service and Azure AI Foundry Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
+The authorization will happen between Grounding with Bing Search service and Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
 
 Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
 
@@ -57,7 +57,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 ## Setup  
 
 > [!NOTE]
-> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts\model-region-support.md) that Azure AI Foundry Agent Service supports, except `gpt-4o-mini, 2024-07-18` and gpt-5 models. 
+> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts\model-region-support.md) that Agent Service supports, except `gpt-4o-mini, 2024-07-18` and gpt-5 models. 
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 

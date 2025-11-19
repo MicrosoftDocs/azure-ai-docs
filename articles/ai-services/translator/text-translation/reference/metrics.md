@@ -1,16 +1,16 @@
 ---
-title: Azure AI Translator usage and data metrics
-titleSuffix: Azure AI services
-description: Reference documentation for Azure AI Translator Azure Monitor Metrics.
+title: Azure Translator in Foundry Tools usage and data metrics
+titleSuffix: Foundry Tools
+description: Reference documentation for Azure Translator Azure Monitor Metrics.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/02/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator usage and data metrics
+# Azure Translator in Foundry Tools usage and data metrics
 
 Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
@@ -24,7 +24,7 @@ Metrics allow you to view the translator usage and availability information in A
 
 The following tables list available metrics with description of how they're used to monitor **Translator resource** API calls.
 
-#### Translator resource HTTP requests
+#### Azure Translator in Foundry Tools resource HTTP requests
 
 | Metrics | Description |
 |:----|:-----|
@@ -38,7 +38,7 @@ The following tables list available metrics with description of how they're used
 | `TotalErrors`| Number of calls with error response.|
 | `TotalTokenCalls`| Total number of API calls via token service using authentication token.|
 
-#### Translator resource usage2
+#### Azure Translator in Foundry Tools resource usage2
 
 | Metrics | Description |
 |:----|:-----|

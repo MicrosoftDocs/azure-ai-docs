@@ -1,6 +1,6 @@
 ---
 title: Voice live API language support
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the languages supported by Voice live API and how to configure them.
 manager: nitinme
 author: goergenj
@@ -168,7 +168,7 @@ The following languages are supported by `phi4-mm-realtime`:
 - Portuguese
 - Spanish
 
-Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription for `phi4-mm-realtime` you need to use the same configuration as for all non-mulitmodal model configuration where `azure-speech` is used for transcription as described.
+Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription for `phi4-mm-realtime` you need to use the same configuration as for all non-multimodal model configuration where `azure-speech` is used for transcription as described.
 
 > [!NOTE]
 > Multimodal phi models only support the following transcription models: `azure-speech`.

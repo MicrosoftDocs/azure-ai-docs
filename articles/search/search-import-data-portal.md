@@ -71,12 +71,12 @@ The wizards support the following data sources, most of which use [built-in inde
 | [OneDrive for Business](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
 | [OneLake](search-how-to-index-onelake-files.md) | ✅ | ✅ |
 | [Service Bus](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
-| [SharePoint Online](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
+| [SharePoint](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
 | [SQL Server on virtual machines](search-how-to-index-sql-server.md) | ✅ | ✅ |
 
 <sup>1</sup> This data source uses an [Azure Logic Apps connector (preview)](search-how-to-index-logic-apps.md#supported-connectors) instead of a built-in indexer.
 
-<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-how-to-index-sharepoint-online.md).
+<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint](search-how-to-index-sharepoint-online.md).
 
 ### Sample data
 
@@ -95,9 +95,9 @@ The following skills might appear in a wizard-generated skillset.
 
 | Skill | Import data wizard | Import data (new) wizard |
 |--|--|--|
-| [Azure AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ <sup>1</sup> |
+| [Azure Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ <sup>1</sup> |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ <sup>1</sup> |
-| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ <sup>1</sup> |
+| [Azure Machine Learning (Microsoft Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ <sup>1</sup> |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ <sup>1</sup> |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ✅ |
 | [Image analysis](cognitive-search-skill-image-analysis.md) <sup>2</sup> | ✅ | ✅ |
@@ -144,7 +144,7 @@ The following table lists the objects created by the wizards. After the objects 
 | [Indexer](/rest/api/searchservice/indexers/create) | Configuration object that specifies a data source, target index, optional skillset, optional schedule, and optional configuration settings for error handling and base-64 encoding. |
 | [Data source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. |
 | [Index](/rest/api/searchservice/indexes/create) | Physical data structure for full-text search, vector search, and other queries. |
-| [Skillset](/rest/api/searchservice/skillsets/create) | (Optional) Complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. If the volume of work exceeds 20 transactions per indexer per day, the skillset must include a reference to an Azure AI services multi-service resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Foundry model catalog. |
+| [Skillset](/rest/api/searchservice/skillsets/create) | (Optional) Complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. If the volume of work exceeds 20 transactions per indexer per day, the skillset must include a reference to a Foundry resource that provides enrichment. For integrated vectorization, you can use either Azure Vision or an embedding model in the Foundry model catalog. |
 | [Knowledge store](knowledge-store-concept-intro.md) | (Optional) Stores enriched skillset output from tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. Available only in the **Import data** wizard. |
 
 To view these objects after the wizards run:
@@ -190,9 +190,9 @@ You can use the wizards over restricted public connections, but not all function
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
-+ On connections to an Azure AI services multi-service account that you provide, or on connections to embedding models deployed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
++ On connections to a Foundry resource for AI enrichment, or on connections to embedding models deployed in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
 
-  Connections to Azure AI services multi-service accounts are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import data (new)** wizard) and integrated vectorization (in the **Import data (new)** wizard) exceed the free transaction count (20 per indexer run).
+  For AI enrichment, connections to Foundry resources are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import data (new)** wizard) and integrated vectorization (in the **Import data (new)** wizard) exceed the free transaction count (20 per indexer run).
 
   If Azure AI Search can't connect:
 
