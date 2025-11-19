@@ -25,7 +25,7 @@ The following diagram shows the high-level architecture of this agentic retrieva
 :::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg" :::
 
 > [!TIP]
-> + To run the code for this tutorial, download the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
+> + Want to get started right away? See the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) source code.
 > + Want a simpler introduction to agentic retrieval? See [Quickstart: Use agentic retrieval](search-get-started-agentic-retrieval.md).
 
 ## Prerequisites
@@ -44,11 +44,9 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
-Configure access to each resource identified in this section.
+To configure access for this tutorial, select both of the following tabs.
 
 ### [**Azure AI Search**](#tab/search-perms)
-
-Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself, your app, and your search service for downstream access to models.
 
 1. [Enable role-based access](search-security-enable-roles.md).
 1. [Configure a managed identity](search-how-to-managed-identities.md).
@@ -60,9 +58,7 @@ Azure AI Search provides the agentic retrieval pipeline. Configure access for yo
 
 ### [**Microsoft Foundry**](#tab/foundry-perms)
 
-Foundry hosts your model deployments, the agent, and the MCP tool. Permissions are needed to create and use these resources. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
-
-+ On the resource, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment.
++ On the resource, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 + On the resource, you must have the **Azure AI Project Manager** role to create a project connection for MCP authentication and either **Azure AI User** or **Azure AI Project Manager** to use the MCP tool in agents.
 
@@ -70,51 +66,45 @@ Foundry hosts your model deployments, the agent, and the MCP tool. Permissions a
 
 ---
 
-## Components of the solution
+## Understand the solution
 
-This solution consists of the following integrated components:
-
-+ External data from anywhere, but we recommend [data sources used for integrated indexing](search-data-sources-gallery.md).
-
-+ Azure AI Search hosts your indexed content and provides the agentic retrieval engine (knowledge base that references a knowledge source).
-
-+ Microsoft Foundry hosts your LLM and embedding model deployments, the agent configured with the MCP tool, and the project connection that stores the MCP endpoint and API credentials for agent-to-knowledge-base communication.
-
-A user initiates query processing by interacting with a client app, such as a chatbot, that calls an agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends it back to the agent and chatbot.
-
-## Development tasks
-
-Development tasks for this solution include:
+This section pairs each component of the solution with its corresponding development tasks. For deeper guidance, see the linked how-to articles.
 
 ### [Azure AI Search](#tab/search-development)
 
+Azure AI Search hosts your indexed content and the agentic retrieval pipeline. Development tasks include:
+
 + Create a [knowledge source](agentic-knowledge-source-overview.md). Agentic retrieval supports multiple types of knowledge sources, but this solution creates a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
-+ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that maps to your LLM deployment and uses the extractive data output mode. We recommend this output mode for interaction with Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning. The agent is responsible for synthesizing answers and performing other tasks with this verbatim content.
-
-+ [Call the retrieve action](agentic-retrieval-how-to-retrieve.md) on the knowledge base to process a query, conversation, and override parameters.
-
-+ Parse the response for the parts you want to include in your chat application. For many scenarios, the [content portion](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) of the response is sufficient.
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that maps to your LLM deployment and uses the extractive data output mode. We recommend this output mode for interaction with Foundry Agent Service because it provides the agent with verbatim, unprocessed content for grounding and reasoning.
 
 ### [Microsoft Foundry](#tab/foundry-development)
 
-+ Create a project connection and an agent that uses the MCP tool.
+Microsoft Foundry hosts your Azure OpenAI model deployments, project connection, and agent. Development tasks include:
+
++ Create a project connection that points to the MCP endpoint of your knowledge base.
+
++ Create an agent that uses the MCP tool.
 
 + Use the MCP tool to coordinate calls from the agent to the knowledge base.
 
 ---
 
-## Set up your environment
+A user initiates query processing by interacting with a client app, such as a chatbot, that calls the agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends it back to the agent and chatbot.
 
-This solution combines an agentic retrieval engine from Azure AI Search with a custom agent from Foundry Agent Service. An agent simplifies development by tracking conversation history and managing the orchestration of tool calls.
+## Create and run the solution
 
-For this solution, you need the following information from each resource:
+Follow these steps to build an end-to-end agentic retrieval solution.
 
-### [Azure AI Search](#tab/search-setup)
+### Get endpoints
+
+For this solution, you need the following endpoints:
+
+#### [Azure AI Search](#tab/search-setup)
 
 + The endpoint for your search service, which you can find on the **Overview** page in the Azure portal. It should look like this: `https://{your-service-name}.search.windows.net/`
 
-### [Microsoft Foundry](#tab/foundry-setup)
+#### [Microsoft Foundry](#tab/foundry-setup)
 
 + The Azure OpenAI endpoint of your project's parent resource, which you can find on the **Endpoints** page in the Azure portal. It should look like this: `https://{your-resource-name}.openai.azure.com/`
 
@@ -124,6 +114,10 @@ For this solution, you need the following information from each resource:
 
 ---
 
+### Create agentic retrieval objects
+
+This section omits code snippets for creating the knowledge source and knowledge base in Azure AI Search, skipping ahead to the Foundry Agent Service integration. For more information about the omitted steps, see the [Understand the solution](#understand-the-solution) section.
+
 ### Create a project connection
 
 Before you can use the MCP tool in an agent, you must create a project connection in Foundry that points to the `mcp_endpoint` of your knowledge base. This endpoint allows the agent to access your knowledge base.
@@ -132,16 +126,19 @@ Before you can use the MCP tool in an agent, you must create a project connectio
 import requests
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
+# Provide connection details
 credential = DefaultAzureCredential()
 project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
 project_connection_name = "{project_connection_name}"
-mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview" # This endpoint enables the MCP connection between the agent and knowledge base
 
+# Get bearer token for authentication
 bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
 headers = {
   "Authorization": f"Bearer {bearer_token_provider()}",
 }
 
+# Create project connection
 response = requests.put(
   f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
   headers = headers,
@@ -184,28 +181,33 @@ The agent definition includes instructions that specify its behavior and the pro
 ```python
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 
+# Define agent instructions
 instructions = """
-A Q&A agent that can answer questions about the Earth at night.
+A Q&A agent that can answer questions based on the attached knowledge base.
 Always provide references to the ID of the data source used to answer the question.
-If you do not have the answer, respond with "I don't know".
+If you don't have the answer, respond with "I don't know".
 """
+
+# Create MCP tool with knowledge base connection
 mcp_kb_tool = MCPTool(
-    server_label="knowledge-base",
-    server_url=mcp_endpoint,
-    require_approval="never",
-    allowed_tools=["knowledge_base_retrieve"],
-    project_connection_id=project_connection_name
+    server_label = "knowledge-base",
+    server_url = mcp_endpoint,
+    require_approval = "never",
+    allowed_tools = ["knowledge_base_retrieve"],
+    project_connection_id = project_connection_name
 )
+
+# Create agent with MCP tool
 agent = project_client.agents.create_version(
-    agent_name=agent_name,
-    definition=PromptAgentDefinition(
-        model=agent_model,
-        instructions=instructions,
-        tools=[mcp_kb_tool]
+    agent_name = agent_name,
+    definition = PromptAgentDefinition(
+        model = agent_model,
+        instructions = instructions,
+        tools = [mcp_kb_tool]
     )
 )
 
-print(f"AI agent '{agent_name}' created or updated successfully")
+print(f"Agent '{agent_name}' created or updated successfully.")
 ```
 
 ### Chat with the agent
@@ -218,16 +220,17 @@ The agent manages the conversation, determines when to call your knowledge base 
 # Get the OpenAI client for responses and conversations
 openai_client = project_client.get_openai_client()
 
+# Create conversation
 conversation = openai_client.conversations.create()
 
-# Send initial request that will trigger the MCP tool
+# Send request to trigger the MCP tool
 response = openai_client.responses.create(
-    conversation=conversation.id,
-    input="""
+    conversation = conversation.id,
+    input = """
         Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
         Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body = {"agent": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response: {response.output_text}")
@@ -245,11 +248,7 @@ By default, search results from your knowledge base are consolidated into a larg
 
 + For [multimodal or image content](multimodal-search-overview.md), you can use image verbalization for LLM-generated descriptions of your images or classic OCR and image analysis via skillsets during indexing.
 
-## Control behavior and costs
-
-You can control the behavior of your knowledge base and agentic retrieval solution in several ways.
-
-#### Control the number of subqueries
+## Control the number of subqueries
 
 The LLM that powers your knowledge base determines the number of subqueries based on the following factors:
 
@@ -259,11 +258,11 @@ The LLM that powers your knowledge base determines the number of subqueries base
 
 As the developer, you can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
-#### Control the context sent to the agent
+## Control the context sent to the agent
 
 The Responses API controls what is sent to the agent and knowledge base. To optimize performance and relevance, adjust your agent instructions to summarize or filter the chat history before sending it to the MCP tool.
 
-#### Control costs and limit operations
+## Control costs and limit operations
 
 For insights into the query plan, look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) of knowledge base responses.
 
