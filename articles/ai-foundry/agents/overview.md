@@ -82,7 +82,14 @@ Then, equip your agent with tools. These let it access enterprise knowledge (suc
     :::column span="1":::
 ### 4. Orchestration
 
+:::moniker range="foundry-classic"
 Next, the agent needs coordination. [Connected agents](how-to\connected-agents.md) orchestrates the full lifecycle such as handling tool calls, updating conversation state, managing retries, and logging outputs.
+
+:::moniker-end
+:::moniker range="foundry"
+Next, the agent needs coordination. [Workflows](how-to\connected-agents.md) orchestrate the full lifecycle such as handling tool calls, updating conversation state, managing retries, and logging outputs.
+
+:::moniker-end
 
     :::column-end:::
     :::column span="1":::
@@ -107,7 +114,7 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 |------------|--------------------------------|
 | **1. Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#conversation), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
 | **2. Multi-agent coordination** | Built-in support for agent-to-agent messaging. |
-| **3. Tool orchestration** | Server-side execution and retry of [tool calls](how-to\tools\overview.md) with structured logging. No manual orchestration required. |
+| **3. Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration required. |
 | **4. Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |
 | **5. Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-conversation-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
 | **6. Observability and debugging** | Conversations, tool invocations, and message traces are [fully traceable](../how-to/develop/trace-agents-sdk.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
