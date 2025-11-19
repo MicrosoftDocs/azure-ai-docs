@@ -13,7 +13,6 @@ ms.author: aahi
 ms.reviewer: umangsehgal
 zone_pivot_groups: selection-logic-apps
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # How to use Logic Apps with Foundry Agent Service

@@ -11,7 +11,6 @@ ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 # How to use Foundry Agent Service with OpenAPI Specified Tools
 
