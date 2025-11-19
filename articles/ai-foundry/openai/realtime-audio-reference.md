@@ -9,6 +9,7 @@ ms.topic: conceptual
 ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
 recommendations: false
 ---
 
