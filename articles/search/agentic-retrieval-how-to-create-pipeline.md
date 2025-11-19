@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 11/07/2025
+ms.date: 11/19/2025
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 
 In this tutorial, you learn how to build a solution that integrates Azure AI Search and Foundry Agent Service for intelligent knowledge retrieval.
 
-This solution uses the Model Context Protocol (MCP) to establish a standardized connection between your agentic retrieval pipeline in Azure AI Search, which consists of a *knowledge base* that references a *knowledge source*, and your agent in Foundry Agent Service.
+This solution uses Model Context Protocol (MCP) to establish a standardized connection between your agentic retrieval pipeline in Azure AI Search, which consists of a *knowledge base* that references a *knowledge source*, and your agent in Foundry Agent Service.
 
 The following diagram shows the high-level architecture of this agentic retrieval solution:
 
@@ -30,19 +30,17 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
-
-+ A search index that satisfies the [criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ An Azure OpenAI resource with a [supported LLM](agentic-retrieval-how-to-create-knowledge-base.md#supported-models) deployment. We recommend a minimum token capacity of 100,000. You can find the LLM's capacity and rate limit in the Foundry portal. If you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries), you should also deploy a text embedding model.
++ A [supported LLM](agentic-retrieval-how-to-create-knowledge-base.md#supported-models) deployed to your project. We recommend a minimum token capacity of 100,000. You can find the LLM's capacity and rate limit in the Foundry portal. If you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries), you should also deploy a text embedding model.
 
-+ [Authorization and permissions](#configure-access) to access each resource.
++ [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 
-+ Package versions that provide preview functionality. For the complete list of versions used in this solution, see the [`requirements.txt`](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/agentic-retrieval-pipeline-example/requirements.txt) file.
++ Preview package versions. For a complete list of versions used in this solution, see the [`requirements.txt`](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/agentic-retrieval-pipeline-example/requirements.txt) file.
 
-### Configure access
+### Authentication and permissions
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
@@ -60,19 +58,9 @@ Azure AI Search provides the agentic retrieval pipeline. Configure access for yo
 
    + For integrated operations, ensure that all clients using the retrieval pipeline have the **Search Index Data Reader** role for sending retrieval requests.
 
-### [**Azure OpenAI**](#tab/openai-perms)
-
-Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure access for yourself and the search service.
-
-+ You must have the **Cognitive Services User** role to access the LLM and embedding model (if using).
-
-+ For integrated operations, ensure your [search service identity](search-how-to-managed-identities.md) has the **Cognitive Services User** role for model access.
-
 ### [**Microsoft Foundry**](#tab/foundry-perms)
 
-Foundry hosts the agent and MCP tool. Permissions are needed to create and use these resources. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
-
-+ You must be an **Owner** of your Azure subscription to create the project and resource.
+Foundry hosts your model deployments, the agent, and the MCP tool. Permissions are needed to create and use these resources. For more information, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 + On the resource, you must have the **Azure AI User** role to access model deployments and create agents. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment.
 
@@ -90,9 +78,7 @@ This solution consists of the following integrated components:
 
 + Azure AI Search hosts your indexed content and provides the agentic retrieval engine (knowledge base that references a knowledge source).
 
-+ Azure OpenAI hosts an LLM used by the knowledge base and any embedding models used by vectorizers in the search index.
-
-+ Foundry hosts the agent configured with the MCP tool, as well as the project connection that stores the MCP endpoint and API credentials for agent-to-knowledge-base communication.
++ Microsoft Foundry hosts your LLM and embedding model deployments, the agent configured with the MCP tool, and the project connection that stores the MCP endpoint and API credentials for agent-to-knowledge-base communication.
 
 A user initiates query processing by interacting with a client app, such as a chatbot, that calls an agent. The agent uses the MCP tool to orchestrate requests to the knowledge base and synthesize responses. When the chatbot calls the agent, the MCP tool calls the knowledge base in Azure AI Search and sends it back to the agent and chatbot.
 
@@ -120,7 +106,7 @@ Development tasks for this solution include:
 
 ## Set up your environment
 
-This solution combines an agentic retrieval engine built in Azure AI Search with a custom agent built in Foundry. An agent simplifies development by tracking conversation history and managing the orchestration of tool calls.
+This solution combines an agentic retrieval engine from Azure AI Search with a custom agent from Foundry Agent Service. An agent simplifies development by tracking conversation history and managing the orchestration of tool calls.
 
 For this solution, you need the following information from each resource:
 
@@ -128,13 +114,9 @@ For this solution, you need the following information from each resource:
 
 + The endpoint for your search service, which you can find on the **Overview** page in the Azure portal. It should look like this: `https://{your-service-name}.search.windows.net/`
 
-+ An API key for your search service, which you can find on the **Keys and Endpoint** page in the Azure portal. This key is used for MCP authentication between your knowledge base and the agent in Foundry.
-
-### [Azure OpenAI](#tab/aoai-setup)
-
-+ The endpoint for your Azure OpenAI resource, which you can find on the **Keys and Endpoint** page in the Azure portal. It should look like this: `https://{your-resource-name}.openai.azure.com/`
-
 ### [Microsoft Foundry](#tab/foundry-setup)
+
++ The Azure OpenAI endpoint of your project's parent resource, which you can find on the **Endpoints** page in the Azure portal. It should look like this: `https://{your-resource-name}.openai.azure.com/`
 
 + The endpoint for your project, which you can find on the **Endpoints** page in the Azure portal. It should look like this: `https://{your-resource-name}.services.ai.azure.com/api/projects/{your-project-name}`
 
@@ -147,37 +129,38 @@ For this solution, you need the following information from each resource:
 Before you can use the MCP tool in an agent, you must create a project connection in Foundry that points to the `mcp_endpoint` of your knowledge base. This endpoint allows the agent to access your knowledge base.
 
 ```python
-from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-from azure.mgmt.cognitiveservices.models import ConnectionPropertiesV2BasicResource, CustomKeysConnectionProperties, CustomKeys
+import requests
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
+credential = DefaultAzureCredential()
 project_resource_id = "{project_resource_id}" # e.g. /subscriptions/{subscription}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{account_name}/projects/{project_name}
-parsed = parse_resource_id(project_resource_id)
-subscription_id = parsed['subscription']
-resource_group = parsed['resource_group']
-account_name = parsed['name']
-project_name = parsed['child_name_1']
-mcp_endpoint = f"{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
+project_connection_name = "{project_connection_name}"
+mcp_endpoint = "{search_service_endpoint}/knowledgebases/{knowledge_base_name}/mcp?api-version=2025-11-01-preview"
 
-mgmt_client = CognitiveServicesManagementClient(credential, subscription_id)
-resource = mgmt_client.project_connections.create(
-    resource_group_name=resource_group,
-    account_name=account_name,
-    project_name=project_name,
-    connection_name=project_connection_name,
-    connection=ConnectionPropertiesV2BasicResource(
-        properties=CustomKeysConnectionProperties(
-            category="RemoteTool",
-            target=mcp_endpoint,
-            is_shared_to_all=True,
-            metadata={ "ApiType": "Azure" },
-            credentials=CustomKeys(
-                keys={ "api-key": search_api_key }
-            )
-        )
-    )
+bearer_token_provider = get_bearer_token_provider(credential, "https://management.azure.com/.default")
+headers = {
+  "Authorization": f"Bearer {bearer_token_provider()}",
+}
+
+response = requests.put(
+  f"https://management.azure.com{project_resource_id}/connections/{project_connection_name}?api-version=2025-10-01-preview",
+  headers = headers,
+  json = {
+    "name": "project_connection_name",
+    "type": "Microsoft.MachineLearningServices/workspaces/connections",
+    "properties": {
+      "authType": "ProjectManagedIdentity",
+      "category": "RemoteTool",
+      "target": mcp_endpoint,
+      "isSharedToAll": True,
+      "audience": "https://search.azure.com/",
+      "metadata": { "ApiType": "Azure" }
+    }
+  }
 )
 
-print(f"Connection '{resource.name}' created or updated successfully.")
+response.raise_for_status()
+print(f"Connection '{project_connection_name}' created or updated successfully.")
 ```
 
 ### Set up an AI project client
@@ -225,7 +208,7 @@ agent = project_client.agents.create_version(
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
-## Chat with the agent
+### Chat with the agent
 
 Your client app uses the Conversations and [Responses](/azure/ai-foundry/openai/how-to/responses) APIs from Azure OpenAI to send user input to the agent. The client creates a conversation and passes each user message to the agent through the Responses API, resembling a typical chat experience.
 
@@ -262,7 +245,11 @@ By default, search results from your knowledge base are consolidated into a larg
 
 + For [multimodal or image content](multimodal-search-overview.md), you can use image verbalization for LLM-generated descriptions of your images or classic OCR and image analysis via skillsets during indexing.
 
-## Control the number of subqueries
+## Control behavior and costs
+
+You can control the behavior of your knowledge base and agentic retrieval solution in several ways.
+
+#### Control the number of subqueries
 
 The LLM that powers your knowledge base determines the number of subqueries based on the following factors:
 
@@ -272,15 +259,17 @@ The LLM that powers your knowledge base determines the number of subqueries base
 
 As the developer, you can control the number of subqueries by [setting the retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md). The reasoning effort determines the level of LLM processing for query planning, ranging from minimal (no LLM processing) to medium (deeper search and follow-up iterations).
 
-## Control the context sent to the agent
+#### Control the context sent to the agent
 
 The Responses API controls what is sent to the agent and knowledge base. To optimize performance and relevance, adjust your agent instructions to summarize or filter the chat history before sending it to the MCP tool.
 
-## Control costs and limit operations
+#### Control costs and limit operations
 
 For insights into the query plan, look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) of knowledge base responses.
 
-## Tips for improving performance
+## Improve performance
+
+To optimize performance and reduce latency in your agentic retrieval solution, consider the following strategies:
 
 + Summarize message threads.
 
