@@ -127,7 +127,7 @@ The following sections list the supported models for managed compute deployment 
 | [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | Embeddings |
 | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
 
-### Mercury
+### Inception Labs
 
 | Model | Task |
 |--|--|
