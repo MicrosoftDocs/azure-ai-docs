@@ -20,6 +20,7 @@ Web search enables models to retrieve and ground responses with real-time inform
 > * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside Customer’s compliance and Geo boundary.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs; learn more about [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
+> * [Learn more](/azure/ai-foundry/openai/how-to/web-search?view=foundry-classic#manage-web-search-preview-tool) about how Azure admins can manage access to the use of Web Search (preview).
 
 ## Options to use web search
 
