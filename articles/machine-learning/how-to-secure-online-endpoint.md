@@ -120,6 +120,9 @@ Because the workspace is configured to have a managed virtual network, any endpo
 
 1. Create an endpoint with `public_network_access` set to `disabled` to block inbound traffic:
 
+   > [!NOTE]
+   > The referenced script uses YAML configuration files from the cloned repository. Ensure you're in the correct directory (cli) after cloning the repository, or provide the full path to your YAML files. In Azure Cloud Shell, verify the files are accessible in your cloud storage before running the commands.
+
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="create_endpoint_inbound_blocked" :::
 
    Alternatively, if you want to allow the endpoint to receive scoring requests from the internet, uncomment the following code and run it instead:
