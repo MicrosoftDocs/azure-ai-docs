@@ -399,6 +399,7 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 * GPT-4.1
 * GPT-4.1-mini
 * GPT-4.1-nano
+* o4-mini
 
 
 ### Provisioned Throughput
