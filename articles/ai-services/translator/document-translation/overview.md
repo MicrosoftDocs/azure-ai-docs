@@ -26,20 +26,52 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 
 * [Synchronous single file](#synchronous-translation) supports the processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
-## Document translation development options
+## Key features
 
-Add document translation to your projects and applications using the following resources:
+### [Asynchronous (batch)](#tab/async)
 
-##### Asynchronous translation
+|Feature | Description |
+| ---------| -------------|
+|**Translate large files**| Translate whole documents asynchronously.|
+|**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
+| |[**Translate image text in Word document files (.docx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.|
+|**Preserve source file presentation**| Translate files while preserving the original layout and format.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
+|**Apply custom glossaries**|Translate documents using custom glossaries.|
+|**Automatically detect document language**|Let the Document translation service determine the language of the document.|
+|**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
+
+### [Synchronous (document)](#tab/sync)
+
+|Feature | Description |
+| ---------| -------------|
+|**Translate single-page files**| The synchronous request accepts only a single document as input.|
+|**Translate text detected in native image formats** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`, `.tiff`, `.heif`, `.svg`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
+|**Preserve source file presentation**| Translate files while preserving the original layout and format.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
+|**Apply custom glossaries**|Translate documents using custom glossaries.|
+|**Single language translation**|Translate to and from one [supported language](../language-support.md).|
+|**Automatically detect document language**|Let the Document translation service determine the language of the document.|
+|**Apply custom glossaries**|Translate a document using a custom glossary.|
+
+---
+
+## Development options
+
+Integrate document translation capabilities into your projects and applications by utilizing available development tools and options. This allows you to programmatically implement translation features in your application functionality and provide users with multilingual support as needed.
+
+### [Asynchronous (batch)](#tab/async)
+
+Optimize efficiency by utilizing asynchronous workflows to enable parallel translation of multiple documents and large files.
 
 |Development option|Description|
 |---|---|
 |**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
 |**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
-##### Synchronous translation
+### [Synchronous (document)](#tab/sync)
 
-Utilize synchronous document translation to convert textual content in real time from one language to another, preserving original structure and formatting.
+Maximize operational throughput utilizing synchronous document translation to facilitate real-time translation while maintaining structural and formatting fidelity across diverse file types.
 
 |Development option|Description|
 |---|---|
@@ -48,34 +80,13 @@ Utilize synchronous document translation to convert textual content in real time
 |**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications our [Python SDK](quickstarts/client-library-sdks.md).|
 | **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Foundry Tools application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
 
-## Asynchronous batch translation
+---
 
-Utilize asynchronous workflows to parallelize translation of multiple documents and large files, maximizing efficiency.
+## Supported document and glossary formats
 
-### Batch key features
+### [Asynchronous (batch)](#tab/async)
 
-  | Feature | Description |
-  | ---------| -------------|
-  |**Translate large files**| Translate whole documents asynchronously.|
-  |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-  | **Translate text embedded within image (`.jpg`, `.png`, `.bmp`, `.webp`) and document files (`.docx`)** 🆕 | &bullet; This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API.<br>&bullet; For pricing information, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)  |
-  |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
-  |**Apply custom glossaries**|Translate documents using custom glossaries.|
-  |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
-  |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
-
-### Batch development options
-
-You can add Document translation to your applications using the following resources:
-
-|Development option  |Description  |
-|---------|---------|
-|[**Foundry (new)**](https://ai.azure.com/) portal| Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.|
-|[**Foundry (classic)**](https://ai.azure.com/) portal| Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types.|
-|**REST API or Client library (Azure SDK)**| Integrate translation into your applications using the [**REST API**](reference/rest-api-guide.md), or the [**client-library SDKs**](./quickstarts/client-library-sdks.md). Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/) |
-
-### Batch supported document formats
+### Batch document formats
 
 The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes the common file extension, and the content-type if using the upload API.
 
@@ -108,7 +119,7 @@ Source file types are preserved during the document translation with the followi
 | .xls, .ods | .xlsx |
 | .ppt, .odp | .pptx |
 
-### Batch supported glossary formats
+### Batch glossary formats
 
 Document translation supports the following glossary file types:
 
@@ -118,23 +129,9 @@ Document translation supports the following glossary file types:
 |`XML` Localization Interchange File Format| `xlf` , `xliff`| A parallel document format, export of Translation Memory systems The languages used are defined inside the file.|
 |Tab-Separated Values/TAB|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 
-## Synchronous translation
+### [Synchronous (document)](#tab/sync)
 
- Use synchronous translation processing to send a document as part of the HTTP request body and receive the translated document in the HTTP response.
-
-### Synchronous translation key features
-
-|Feature | Description |
-| ---------| -------------|
-|**Translate single-page files**| The synchronous request accepts only a single document as input.|
-|**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
-|**Apply custom glossaries**|Translate documents using custom glossaries.|
-|**Single language translation**|Translate to and from one [supported language](../language-support.md).|
-|**Automatically detect document language**|Let the Document translation service determine the language of the document.|
-|**Apply custom glossaries**|Translate a document using a custom glossary.|
-
-### Synchronous supported document formats
+### Synchronous document formats
 
 |File type|File extension| Content type|Description|
 |---|---|--|---|
@@ -149,7 +146,7 @@ Document translation supports the following glossary file types:
 |**Microsoft Outlook**|`.msg`|`application/vnd.ms-outlook`|A file format used for stored Outlook mail message objects.|
 |**Xml Localization Interchange**|`.xlf`<br> `.xliff`|`application/xliff+xml` |A standardized XML-based file format widely used in translation and localization software processing.|
 
-### Synchronous supported glossary formats
+### Synchronous glossary formats
 
 Document translation supports the following glossary file types:
 
@@ -158,6 +155,17 @@ Document translation supports the following glossary file types:
 |**Comma-Separated Values**| `csv` |A comma-delimited raw-data file used by spreadsheet programs.|
 |**XmlLocalizationInterchange**| `xlf` , `xliff`| An XML-based format designed to standardize how data is passed during the localization process. |
 |**TabSeparatedValues**|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
+
+---
+
+## Pricing
+
+### [Asynchronous (batch)](#tab/async)
+
+Pricing is calculated on a **per-character** basis. For more information *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
+
+### [Synchronous (document)](#tab/sync)
+Pricing is calculated on a **per-image** basis. For more information *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
 
 ## Document translation Request limits
 

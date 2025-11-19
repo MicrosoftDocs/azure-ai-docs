@@ -21,6 +21,19 @@ Azure Translator in Foundry Tools is a language service that enables users to tr
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
 
+## December 2025
+
+### Synchronous image translation
+
+* The Document Translation synchronous API now enables you to submit a single image file for translation.
+* Output includes the following options:
+  * Generation of a translated image with original visual layout and text overlay preserved.
+  *  Extraction of translated text content directly from the image.
+* This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
+* Pricing for this features is calculated on a per-image basis.
+
+For more information, *see* [Synchronous Document Translation](document-translation/overview.md#)
+
 ## November 2025
 
 ### Microsoft Foundry (new)

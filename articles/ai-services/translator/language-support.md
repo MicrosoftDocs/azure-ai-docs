@@ -283,6 +283,24 @@ ms.author: lajanuar
 |Yucatec Maya|`yua`|Yes|Yes|
 |Zulu|`zu`|Yes|Yes|
 
+
+## Document Translation: native image format support
+
+| Language | Language Code |
+| --- | --- |
+| Arabic | `ar` |
+| Chinese (Simplified) | `zh-Hans` |
+| Chinese (Traditional) | `zh-Hant` |
+| English | `en` |
+| French | `fr` |
+| German | `de` |
+| Italian | `it` |
+| Malay | `ms` |
+| Russian | `ru` |
+| Spanish | `es` |
+| Turkish | `tr` |
+
+
 ## Transliteration
 
 [Transliterate](text-translation/reference/v3/transliterate.md) is a Text translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.

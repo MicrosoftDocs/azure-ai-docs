@@ -100,9 +100,8 @@ To call the synchronous translation feature via the REST API, include the follow
   }
 }
 ```
-## Examples
 
-### Translate a Word document
+## Translate a Word document
 
 ```bash
 curl --request POST \
@@ -118,13 +117,13 @@ curl --request POST \
 |------------|-------------|
 | `{your-document-translation-endpoint}` | Your Document Translation endpoint. Example: `https://your-resource-name.cognitiveservices.azure.com` |
 | `<your-subscription-key>` | Your Translator subscription key. |
-| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Auto-detected if not specified. |
+| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Autodetected if not specified. |
 | `targetLanguage` | **(Required)** The target language code to translate into. Example: `fr`. |
 | `document` | The path to the file to translate. |
 
-See [Supported Document Formats](../overview.md) for more details.
+For more information, *see* [Supported Document Formats](../overview.md).
 
-### Translate a Word document with a Glossary
+## Translate a Word document with a Glossary
 
 ```bash
 curl --request POST \
@@ -142,12 +141,31 @@ curl --request POST \
 |------------|-------------|
 | `{your-document-translation-endpoint}` | Your Document Translation endpoint. Example: `https://your-resource-name.cognitiveservices.azure.com` |
 | `<your-subscription-key>` | Your Translator subscription key. |
-| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Auto-detected if not specified. |
+| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Autodetected if not specified. |
 | `targetLanguage` | **(Required)** The target language code to translate into. Example: `fr`. |
 | `document` | Path to the file for translation. |
 | `glossary` | Path to the glossary file. |
 
-See [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md) for more details.
+For more information, *see* [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md).
+
+## Translate text in native image formats 🆕
+
+
+* **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`, `.tiff`, `.heif`, `.svg`.
+
+* **Supported languages**: *see* [Language support (Document Translation)](../../language-support.md#document-translation-native-image-support).
+
+> [!TIP]
+> For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
+
+```bash
+  curl --request POST \
+  --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=fr' \
+  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
+  --form 'document=@<path-to-your-image>/your-image-file.png' \
+  --output translated-document-fr.png
+
+```
 
 
 ## Next steps

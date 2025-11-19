@@ -133,7 +133,7 @@ The following headers are included with each Document translation API request:
 > If a file with the same name already exists in the destination, the job fails.
 
 <!-- markdownlint-disable MD024 -->
-### Translate all documents in a container
+## Translate all documents in a container
 
 ```json
 {
@@ -153,7 +153,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate a specific document in a container
+## Translate a specific document in a container
 
 * Specify `"storageType": "File"`.
 * If you aren't using a [**system-assigned managed identity**](create-use-managed-identities.md) for authentication, make sure you created source URL & SAS tokens for the specific blob/document (not for the container).
@@ -183,7 +183,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate text embedded within images in documents 🆕
+## Translate image text in Word document files (.docx) 🆕
 
 > [!Note]
 >
@@ -253,7 +253,7 @@ The following headers are included with each Document translation API request:
     }
   ```
 
-### Translate documents using a custom glossary
+## Translate documents using a custom glossary
 
 ```json
 {
