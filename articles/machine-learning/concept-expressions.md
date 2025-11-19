@@ -22,7 +22,7 @@ The format for an expression is `${{ <expression> }}`. Some expressions are eval
 ## Client expressions
 
 > [!NOTE]
-> The "client" that evaluates the expression is where you submit the job or runs the component. For example, your local machine or a compute instance.
+> The "client" that evaluates the expression is where you submit the job or run the component. For example, your local machine or a compute instance.
 
 | Expression | Description | Scope |
 | ---- | ---- | ---- |
