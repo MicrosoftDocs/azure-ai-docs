@@ -4,12 +4,14 @@ titleSuffix: Azure AI Search
 description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 11/10/2025  
+ms.date: 11/18/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
 
 # Query-Time Microsoft Purview Sensitivity Label Enforcement in Azure AI Search  
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 At query time, Azure AI Search enforces sensitivity label policies defined in [Microsoft Purview](/purview/create-sensitivity-labels). These policies include evaluation of [extract usage rights](/purview/rights-management-usage-rights) tied to each document. As a result, users can only retrieve documents they are allowed to view.
 

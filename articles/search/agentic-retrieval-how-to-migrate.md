@@ -353,7 +353,7 @@ The response includes the full definition of the new object. For more informatio
     }
     ```
 
-1. Formulate a [Create Knowledge Base](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
+1. Formulate a [Create Knowledge Base](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
 
     Start with the 08-01-preview JSON.
 
