@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 11/19/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -35,7 +35,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 
 ## Architecture diagram
 
-:::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
+:::image type="content" source="../media/private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
 - **Subnet IP address limitation**: both subnets must have IP ranges under `10.0.0.0/16`, `172.16.0.0/12` or `192.168.0.0/16`, which are class A, B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/README.md).
