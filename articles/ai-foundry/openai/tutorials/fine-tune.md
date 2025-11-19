@@ -34,7 +34,7 @@ In this tutorial you learn how to:
 - The following Python libraries: `json`, `requests`, `os`, `tiktoken`, `time`, `openai`, `numpy`.
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
+- Fine-tuning access requires **Azure AI User** role.
 - If you don't already have access to view quota and deploy models in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]
@@ -781,7 +781,7 @@ You can delete the deployment in [Foundry portal](https://ai.azure.com/?cid=lear
 
 ### How do I enable fine-tuning? Create a custom model is grayed out.
 
-In order to successfully access fine-tuning you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+In order to successfully access fine-tuning you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/articles/ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 ## Next steps
 
