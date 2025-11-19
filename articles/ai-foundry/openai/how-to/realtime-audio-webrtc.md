@@ -26,8 +26,7 @@ In most cases, we recommend using the WebRTC API for real-time audio streaming. 
 - **Error Correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
 - **Peer-to-Peer Communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
 
-Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to 
-
+Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to:
 * Stream audio data from a server to a client.
 * Send and receive data in real time between a client and server. 
 
@@ -43,11 +42,13 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
-## We now support GA Protocol for Web RTC
 
-You can still use the beta protocol, but we recommend customers who are implementing today start with the GA Protocol and current customers plan to migrate to the GA Protocol. 
-
-This section describes how to use Web RTC using the GA Protocol. We preserve the legacy protocol documentation [here](./realtime-audio-webrtc-legacy.md)
+> [!IMPORTANT]
+> GA Protocol for WebRTC.
+>
+> You can still use the beta protocol, but we recommend customers who are implementing today start with the GA Protocol and current customers plan to migrate to the GA Protocol. 
+>
+> This article describes how to use WebRTC using the GA Protocol. We preserve the legacy protocol documentation [here](./realtime-audio-webrtc-legacy.md)
 
 ## Prerequisites
 
@@ -57,9 +58,9 @@ Before you can use GPT real-time audio, you need:
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
 - You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
-## How our WebRTC setup works
+## Set up WebRTC
 
-You need two pieces of code to make this work.
+You need two pieces of code to use WebRTC.
 
 1) Your web browser application
 2) A service where your web browser can retrieve an ephemeral token
