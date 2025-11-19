@@ -35,8 +35,6 @@ A Foundry resource can organize the work for multiple use cases, and is [typical
 
 Looking to configure Foundry with advanced security settings? See [advanced Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use [Azure Search skills?](../search/tutorial-skillset.md) See [Use Foundry with Azure Search skills](multi-services-resource-search-skills.md).
-
 ## Create your first resource
 
 To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or PowerShell.
@@ -139,4 +137,3 @@ Explore some of the services that come bundled with your resource:
 - [Connect tools](../ai-foundry/how-to/connections-add.md) to build more rich applications.
 - Learn about [access control in Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
 - [Secure your resource using private networking](../ai-foundry/how-to/configure-private-link.md)
-- [Use Foundry with Azure Search skills](multi-services-resource-search-skills.md)
