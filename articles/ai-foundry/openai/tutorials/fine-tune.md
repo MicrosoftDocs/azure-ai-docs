@@ -781,7 +781,7 @@ You can delete the deployment in [Foundry portal](https://ai.azure.com/?cid=lear
 
 ### How do I enable fine-tuning? Create a custom model is grayed out.
 
-In order to successfully access fine-tuning you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/articles/ai-foundry/concepts/rbac-azure-ai-foundry.md).
+In order to successfully access fine-tuning you need **Azure AI User** role assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 ## Next steps
 
