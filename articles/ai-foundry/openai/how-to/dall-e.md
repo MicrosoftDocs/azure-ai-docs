@@ -50,13 +50,16 @@ OpenAI's image generation models create images from user-provided text prompts a
 | **Strengths** | Best for **realism**, **instruction following**, and **multimodal context** | Best for **fast prototyping**, **bulk generation**, or **cost-sensitive** use cases | Strong **prompt adherence**, **natural text rendering**, and **stylistic diversity** |
 
 ## Responsible AI and Image Generation 
-Azure OpenAI image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
-We provide input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+
+In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+
 Customers can learn more about these safeguards and how to customize them here:
-- Learn more: Explore[content filtering](/azure/ai-foundry/openai/concepts/content-filter)
+- Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
 - Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
 Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations (i.e. applying image edits) to images containing minors.
+
 If you're approved, such images will not be automatically blocked by the system.
 
 
