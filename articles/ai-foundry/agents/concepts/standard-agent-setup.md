@@ -81,12 +81,10 @@ Standard setup enforces project-level data isolation by default. Two blob storag
         * Assign role: Storage Blob Data Contributor 
     * Azure Blob Storage Container: `<workspaceId>- agents-blobstore` 
         * Assign role: Storage Blob Data Owner  
-    * Cosmos DB for NoSQL container: `<'${projectWorkspaceId}>-thread-message-store'`
-        * Assign role: Cosmos DB Built-in Data Contributor 
-    * Cosmos DB for NoSQL container: `<'${projectWorkspaceId}>-thread-message-store'` 
-        * Assign role: Cosmos DB Built-in Data Contributor 
-    * Cosmos DB for NoSQL container: `<'${projectWorkspaceId}>-agent-entity-store'` 
-        * Assign role: Cosmos DB Built-in Data Contributor 
+    * Cosmos DB for NoSQL Database: `enterprise_memory`
+        * Assign role: Cosmos DB Built-in Data Contributor
+        * Scope: Database level to cover all containers (no individual container specific role assignment). 
+
 11. Once all resources are provisioned, all developers who want to create/edit agents in the project should be assigned the role: Azure AI User on the project scope.
 
 ### Use Bicep template
