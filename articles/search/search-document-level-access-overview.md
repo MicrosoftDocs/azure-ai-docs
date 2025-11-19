@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.date: 11/10/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -14,7 +14,6 @@ ms.custom:
 # Document-level access control in Azure AI Search  
   
 Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, Retrieval-Augmented Generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.  
-
   
 ## Approaches for document-level access control
 
@@ -44,7 +43,7 @@ This approach is useful for systems with custom access models or non-Microsoft s
 
 Native support is based on Microsoft Entra users and groups affiliated with documents that you want to index and query. 
 
-Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use the [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) and the preview API version 2025-11-01-preview to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md), RBAC scope preservation is at the container level.
+Azure Data Lake Storage (ADLS) Gen2 containers support ACLs on the container and on files. For ADLS Gen2, RBAC scope preservation at document level is natively supported when you use an [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md) or a [Blob knowledge source (supports ADLS Gen2)](agentic-knowledge-source-how-to-blob.md) and a preview API to ingest content. For Azure blobs using the [Azure blob indexer](search-blob-indexer-role-based-access.md) or knowledge source, RBAC scope preservation is at the container level.
 
 For ACL-secured content, we recommend group access over individual user access for ease of management. The pattern includes the following components:
 
@@ -81,11 +80,10 @@ For the [push model approach](search-index-access-control-lists-and-rbac-push-ap
 1. Consider using the Microsoft Graph SDK to get group or user identities.
 1. Use the [Index Documents](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true#indexdocumentsresult) or equivalent Azure SDK API to push documents and their associated permission metadata into the search index. 
 
-For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-lists-and-role-based-access.md):
+For the [pull model ADLS Gen2 indexer approach](search-indexer-access-control-lists-and-role-based-access.md) or [Blob (ADLS Gen2) knowledge source](agentic-knowledge-source-how-to-blob.md):
 
 1. Verify that files in the directory are secured using the [ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model).
-1. Use the [Create Indexer](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or equivalent Azure SDK API to create the indexer, index, and data source.
-
+1. Use the [Create Indexer REST API](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or [Create Knowledge Source REST API](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or equivalent Azure SDK API to create the indexer, index, and data source.
 
 ## Pattern for SharePoint in Microsoft 365 basic ACL permissions ingestion (preview)
 

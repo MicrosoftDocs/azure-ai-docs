@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/08/2025  
+ms.date: 11/18/2025  
 author: gmndrg
 ms.author: gimondra
 ---  
@@ -13,21 +13,24 @@ ms.author: gimondra
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The permission model in Azure Data Lake Storage (ADLS) Gen2 can be used for per-user access to specific directories or files. Starting in 2025-05-01-preview, you can now include user permissions alongside document ingestion in Azure AI Search and use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in ADLS Gen2, that user doesn't have access to the corresponding documents in Azure AI Search results.
+The permission model in Azure Data Lake Storage (ADLS) Gen2 allows for per-user access to specific directories or files. Preview APIs in Azure AI Search now support ingestion of user permissions alongside document ingestion so that you can use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in ADLS Gen2, that user doesn't have access to the corresponding documents in Azure AI Search results.
 
-You can use the push APIs to upload and index content and permission metadata manually, or you can use an indexer to automate data ingestion. This article focuses on the indexer approach.
++ 2025-05-01-preview and later, ADLS Gen2 permissions can be ingested using the [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md).
++ 2025-11-01-preview provides equivalent support for [ADLS Gen2 blob knowledge sources](agentic-knowledge-source-how-to-blob.md) in Azure Storage.
 
-The indexer approach is built on this foundation:
+You can use the push APIs to upload and index content and permission metadata manually, or you can use an indexer or knowledge source to automate data ingestion. 
+
+This article focuses on the indexing automation approaches, built on this foundation:
 
 + [The ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model) that provides [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [Role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
-+ [An Azure AI Search indexer for ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a prerelease package of an Azure SDK that supports the feature.
++ [An Azure AI Search indexer for ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) or [ADLS Gen2 blob knowledge sources](agentic-knowledge-source-how-to-blob.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
-+ [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up queries that respect the permission filters, use the latest preview REST API or a prerelease package of an Azure SDK that supports the feature.
++ [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up [queries that respect the permission filters](search-query-access-control-rbac-enforcement.md), use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
 This functionality helps align [document-level permissions](search-security-trimming-for-azure-search.md) in the search index with the access controls defined in ADLS Gen2, allowing users to retrieve content in a way that reflects their existing permissions.
 
-This article supplements [**Index data from ADLS  Gen2**](search-how-to-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
+This article supplements [**Index data from ADLS  Gen2**](search-how-to-index-azure-data-lake-storage.md) and [**ADLS Gen2 blob knowledge sources**](agentic-knowledge-source-how-to-blob.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
 
 ## Prerequisites
 
@@ -66,7 +69,7 @@ This section compares document-level access control features between ADLS Gen2 a
 
 ## About ACL hierarchical permissions
 
-Indexers can retrieve ACL assignments from the specified container and all directories leading to each file by following the ADLS Gen2 [hierarchical access evaluation flow](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). The final effective access lists for each file are computed and the different access categories are indexed into the corresponding index fields.
+Indexers and knowledge sources can retrieve ACL assignments from the specified container and all directories leading to each file by following the ADLS Gen2 [hierarchical access evaluation flow](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). The final effective access lists for each file are computed and the different access categories are indexed into the corresponding index fields.
 
 For example, in [ADLS Gen2 common scenarios related to permissions](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) as the file path /Oregon/Portland/Data.txt.
 
@@ -74,7 +77,7 @@ For example, in [ADLS Gen2 common scenarios related to permissions](/azure/stora
 | - | - | - | - | - |
 | Read Data.txt	| --X	| --X	| --X	| R-- |
 
-The indexer collects ACLs from each container and directory. It then determines effective access at lower levels and continues until it resolves permissions for every file.
+The indexer or knowledge source collects ACLs from each container and directory. It then determines effective access at lower levels and continues until it resolves permissions for every file.
 
 ```txt
 / assigned access vs Oregon/ assigned access
@@ -85,11 +88,11 @@ The indexer collects ACLs from each container and directory. It then determines 
 
 ## Configure ADLS Gen2
 
-An indexer can retrieve ACLs on a storage account if the following criteria are met. For more information about ACL assignments, see [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls).
+An indexer or knowledge source can retrieve ACLs on a storage account if the following criteria are met. For more information about ACL assignments, see [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls).
 
 ### Authorization
 
-For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. 
+For indexing, your search service identity must have **Storage Blob Data Reader** permission. 
 
 If you're testing locally, you should also have a **Storage Blob Data Reader** role assignment. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
 
@@ -119,7 +122,7 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 
 ### Updating ACL assignments over time
 
-Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer.
+Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer or knowledge source.
 
 ## Configure Azure AI Search
 
@@ -130,13 +133,15 @@ Recall that the search service must have:
 
 ### Authorization
 
-For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index. 
+For indexing, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index. 
 
 If you're testing locally, you should have the same role assignments. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Configure indexing
 
-In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
+If you're using a knowledge source, the knowledge source generates an indexing pipeline with the same components (indexer, data source, and index). ACL assignments are detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want ACL inheritance in your indexed content.
+
+Otherwise, if you're using an indexer, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
 
 ### Create the data source
 
