@@ -7,11 +7,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 11/19/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Grounding with Bing Search 

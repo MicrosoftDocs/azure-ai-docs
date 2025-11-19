@@ -8,6 +8,7 @@ manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: article
 ms.date: 11/17/2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Transparency Note for Azure Agent Service

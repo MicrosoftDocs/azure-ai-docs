@@ -34,7 +34,7 @@ Model router intelligently selects the best underlying model for a given prompt 
 
 The latest version, `2025-11-18` adds several capabilities:
 1. Support Global Standard and Data Zone Standard deployments.
-1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o` and `gpt-4o-mini`.
+1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o`, `gpt-4o-mini`, `claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`.
 1. Support for agentic scenarios including tools so you can now use it in the Foundry Agent service.
 1. Quick deploy or Custom deploy with routing mode and model subset selections.
 1. Routing mode: Optimize the routing logic for your needs. Supported options: Quality, Cost, Balanced (default).
@@ -53,8 +53,8 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 |Model router version|Underlying models| Underlying model version
 |:---:|:---|:----:|
-|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`<br> `gpt-5-nano` <br>`gpt-5-mini`<br>`gpt-5`<br>`gpt-5-chat`<br>`Deepseek-v3.1`<br>`gpt-oss-120b`<br>`llama4-maverick-instruct`<br>`grok-4`<br>`grok-4-fast`<br>`gpt-4o`<br>`gpt-4o-mini` |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` , <br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07`<br> `2025-08-07` <br> N/A <br> N/A<br> N/A<br> N/A<br> N/A <br> `2024-11-20` <br> `2024-07-18` |
-| `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
+|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` <br> `gpt-5-nano` <br> `gpt-5-mini` <br> `gpt-5` <br> `gpt-5-chat` <br> `Deepseek-v3.1` <br> `gpt-oss-120b` <br> `llama4-maverick-instruct` <br> `grok-4` <br> `grok-4-fast` <br> `gpt-4o` <br> `gpt-4o-mini` <br> `claude-haiku-4-5` <br> `claude-opus-4-1` <br> `claude-sonnet-4-5` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> `2024-11-20` <br> `2024-07-18` <br> N/A <br> N/A <br> N/A |
+|`2025-08-07`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` </br> `gpt-5` <br> `gpt-5-mini` <br> `gpt-5-nano` <br> `gpt-5-chat` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
 |`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
 
 ::: moniker range="foundry"
