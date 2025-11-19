@@ -87,7 +87,7 @@ Next, the agent needs coordination. [Connected agents](how-to\connected-agents.m
 
 :::moniker-end
 :::moniker range="foundry"
-Next, the agent needs coordination. [Workflows](how-to\connected-agents.md) orchestrate the full lifecycle such as handling tool calls, updating conversation state, managing retries, and logging outputs.
+Next, the agent needs coordination. [Workflows](../default/agents/concepts/workflow.md) orchestrate the full lifecycle such as handling tool calls, updating conversation state, managing retries, and logging outputs.
 
 :::moniker-end
 
