@@ -13,6 +13,7 @@ ms.custom:
   - references_regions
   - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Getting started with Azure OpenAI batch deployments
