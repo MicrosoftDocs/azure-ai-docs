@@ -23,7 +23,7 @@ This quickstart shows you how to use the [Content Understanding REST API](/rest/
 * Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **Foundry** > **Foundry** in the portal.
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the Foundry resource page in the Azure portal.":::
-* Once you have a Foundry resource, create a Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For details on how to deploy these models, see [Create model deployments in Microsoft Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* Once you have a Foundry resource, create a Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For details on how to deploy these models, see [Create model deployments in Microsoft Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments?pivots=ai-foundry-portal).
 * In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
 
 ## Get started with a prebuilt analyzer

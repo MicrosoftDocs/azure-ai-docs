@@ -14,11 +14,11 @@ ms.custom: include
 
 # [Python](#tab/python2)
 
-1. Install these packages, including the preview version of `azure-ai-projects`:
+1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Agents v2 API** (preview).
 
     ```
     pip install azure-ai-projects --pre
-    pip install azure-identity python-dotenv
+    pip install openai azure-identity python-dotenv
     ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
@@ -31,7 +31,7 @@ Follow along below or get the code:
 
 1. Install packages:
 
-    Add NuGet packages using the .NET CLI in the integrated terminal:
+    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Agents v2 API** (preview).
         
     ```bash
     dotnet add package Azure.AI.Agents --prerelease
