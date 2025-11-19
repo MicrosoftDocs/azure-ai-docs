@@ -18,7 +18,7 @@ ms.custom:
 
 In this tutorial, you learn how to build a solution that integrates Azure AI Search and Foundry Agent Service for intelligent knowledge retrieval.
 
-This solution uses Model Context Protocol (MCP) to establish a standardized connection between your agentic retrieval pipeline in Azure AI Search, which consists of a *knowledge base* that references a *knowledge source*, and your agent in Foundry Agent Service.
+This solution uses Model Context Protocol (MCP) to establish a standardized connection between your agentic retrieval pipeline in Azure AI Search, which consists of a *knowledge base* that references a *knowledge source*, and your agent in Foundry Agent Service. You can use this architecture for conversational applications that require complex reasoning over large knowledge domains, such as customer support or technical troubleshooting.
 
 The following diagram shows the high-level architecture of this agentic retrieval solution:
 
@@ -44,7 +44,7 @@ The following diagram shows the high-level architecture of this agentic retrieva
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
-To configure access for this tutorial, select both of the following tabs.
+To configure access for this solution, select both of the following tabs.
 
 ### [**Azure AI Search**](#tab/search-perms)
 
@@ -238,7 +238,7 @@ print(f"Response: {response.output_text}")
 
 ## Improve data quality
 
-By default, search results from your knowledge base are consolidated into a large unified string that you can pass to the agent for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of the response returned during retrieval.
+By default, search results from your knowledge base are consolidated into a large unified string that can be passed to the agent for grounding. Azure AI Search provides the following indexing and relevance-tuning features to help you generate high-quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of retrieval responses.
 
 + [Scoring profiles](index-add-scoring-profiles.md) provide built-in boosting criteria. Your index must specify a default scoring profile, which is used by the retrieval engine when queries include fields associated with that profile.
 
@@ -268,7 +268,7 @@ For insights into the query plan, look at output tokens in the [activity array](
 
 ## Improve performance
 
-To optimize performance and reduce latency in your agentic retrieval solution, consider the following strategies:
+To optimize performance and reduce latency, consider the following strategies:
 
 + Summarize message threads.
 
@@ -278,7 +278,7 @@ To optimize performance and reduce latency in your agentic retrieval solution, c
 
 ## Clean up resources
 
-When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
 You can also delete individual objects:
 
