@@ -20,11 +20,11 @@ Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model f
 
 You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
 
-In most cases, we recommend using the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
-- **Lower Latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
-- **Media Handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
-- **Error Correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
-- **Peer-to-Peer Communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
+In most cases, use the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
+- **Lower latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
+- **Media handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
+- **Error correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
+- **Peer-to-peer communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
 
 Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to:
 * Stream audio data from a server to a client.
@@ -34,7 +34,7 @@ WebSockets aren't recommended for real-time audio streaming because they have hi
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
@@ -46,9 +46,9 @@ For more information about supported models, see the [models and versions docume
 > [!IMPORTANT]
 > GA Protocol for WebRTC.
 >
-> You can still use the beta protocol, but we recommend customers who are implementing today start with the GA Protocol and current customers plan to migrate to the GA Protocol. 
+> You can still use the beta protocol, but we recommend that you start with the GA Protocol. If you're a current customer, plan to migrate to the GA Protocol. 
 >
-> This article describes how to use WebRTC using the GA Protocol. We preserve the legacy protocol documentation [here](./realtime-audio-webrtc-legacy.md)
+> This article describes how to use WebRTC with the GA Protocol. We preserve the legacy protocol documentation [here](./realtime-audio-webrtc-legacy.md).
 
 ## Prerequisites
 
@@ -56,11 +56,11 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Set up WebRTC
 
-You need two pieces of code to use WebRTC.
+To use WebRTC, you need two pieces of code.
 
 1) Your web browser application
 2) A service where your web browser can retrieve an ephemeral token
@@ -69,7 +69,7 @@ More options:
 
 * You can proxy the web browser's session negotiation via Session Description Protocol through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
 
-* You can filter the messages going to the web browser using a query parameter. 
+* You can filter the messages going to the web browser by using a query parameter. 
 
 * You can create an observer websocket connection to listen or record the session.
 
@@ -83,9 +83,9 @@ The key to generating an ephemeral token is the REST API using
 url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
 ```
 
-You use this url with either an api-key or Microsoft Entra ID token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
+You use this URL with either an api-key or Microsoft Entra ID token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
 
-Here's some sample python code for a token service. The web browser application can call this service using the /token endpoint to retrieve an ephemeral token. This sample code  uses the DefaultAzureCredential in order to authenticate to the RealtimeAPI generating ephemeral tokens.
+Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
 
 ```
 from flask import Flask, jsonify
@@ -220,13 +220,13 @@ if __name__ == '__main__':
 
 ### Step 2: Set up your browser application
 
-Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following url with the ephemeral token for authentication.
+Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following URL with the ephemeral token for authentication.
 
 ```
  https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
  ```
 
-Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample html document to get you started.
+Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample HTML document to get you started.
 
 ```
 html
@@ -459,9 +459,9 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 
 ### Step 3 (optional): Create a websocket observer/controller
 
-If you proxy the session negotiation through your service application, you can parse the Location header returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
+If you proxy the session negotiation through your service application, you can parse the Location header that's returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
-Here's an updated version of the token_service shown earlier, now with a /connect endpoint that can be used to both get the ephemeral token and negotiate the session initiation. It also includes a websocket connection that listens to the WebRTC session. 
+Here's an updated version of the token_service shown earlier, now with a /connect endpoint that you can use to both get the ephemeral token and negotiate the session initiation. It also includes a websocket connection that listens to the WebRTC session. 
 
 ```
 from flask import Flask, jsonify, request
