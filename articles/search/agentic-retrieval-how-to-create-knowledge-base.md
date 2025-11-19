@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 11/19/2025
 zone_pivot_groups: agentic-retrieval-pivots
 ---
 

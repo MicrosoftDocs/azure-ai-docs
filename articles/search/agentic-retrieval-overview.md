@@ -115,6 +115,7 @@ Currently, Azure portal support for agentic retrieval is limited to the 2025-08-
   + [Blob](agentic-knowledge-source-how-to-blob.md)
   + [OneLake](agentic-knowledge-source-how-to-onelake.md)
   + [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)
+  + [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md)
   + [Search index](agentic-knowledge-source-how-to-search-index.md)
   + [Web](agentic-knowledge-source-how-to-web.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
