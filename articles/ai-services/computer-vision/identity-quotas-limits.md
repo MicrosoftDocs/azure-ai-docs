@@ -1,7 +1,7 @@
 ---
 title: Azure Face service quotas and limits
-titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices on the quotas and limits for the Face service in Azure AI Vision.
+titleSuffix: Foundry Tools
+description: Quick reference, detailed description, and best practices on the quotas and limits for the Face service in Azure Vision in Foundry Tools.
 author: PatrickFarley
 manager: nitinme
 
@@ -9,14 +9,14 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: conceptual
-ms.date: 09/02/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Azure Face service quotas and limits
 
-This article contains a reference and a detailed description of the quotas and limits for Azure Face service in Azure AI Vision. The following tables summarize the different types of quotas and limits that apply to Azure AI Face service.
+This article contains a reference and a detailed description of the quotas and limits for Azure Face service in Azure Vision in Foundry Tools. The following tables summarize the different types of quotas and limits that apply to Azure AI Face service.
 
 ## Extendable limits
 

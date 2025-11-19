@@ -1,16 +1,15 @@
 ---
 title: Definitions used in orchestration workflow
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about definitions used in orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # Terms and definitions used in orchestration workflow 
 Use this article to learn about some of the definitions and terms you may encounter when using orchestration workflow. 
 

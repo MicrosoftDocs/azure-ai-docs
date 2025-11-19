@@ -1,20 +1,19 @@
 ---
 title: How to call the entity linking API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to identify and link entities found in text with the entity linking API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-entity-linking
 ---
-
 # How to use entity linking
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](../../named-entity-recognition/overview.md) or consider other alternative solutions.
+> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Language [**Named Entity Recognition**](../../named-entity-recognition/overview.md) or consider other alternative solutions.
 
 
 The entity linking feature enables the detection and clarification of the specific identity of entities mentioned within text. For instance, it can determine whether the term "Mars" refers to the planet or to the Roman god of war. This capability helps eliminate ambiguity by associating each entity with the correct context. It returns the entities in the text with links to [Wikipedia](https://www.wikipedia.org/) as a knowledge base.

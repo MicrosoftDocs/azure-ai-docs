@@ -1,6 +1,6 @@
 ---
 title: 'Use the GPT Realtime API via WebRTC'
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -11,9 +11,13 @@ author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
 ---
 
 # Use the GPT Realtime API via WebRTC
+
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -41,6 +45,8 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 
+You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
+
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
 
@@ -57,7 +63,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Microsoft Foundry portal. 
 
 ## Set up WebRTC
 

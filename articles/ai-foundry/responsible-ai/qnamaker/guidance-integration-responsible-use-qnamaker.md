@@ -1,6 +1,6 @@
 ---
 title: Guidance for integration and responsible use of QnA Maker
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for integration and responsible use of QnA Maker
 author: laujan
 ms.author: lajanuar

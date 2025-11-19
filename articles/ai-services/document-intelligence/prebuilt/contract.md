@@ -1,12 +1,12 @@
 ---
 title: Contract data extraction – Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Automate contract data extraction with Document Intelligence's contract models.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---

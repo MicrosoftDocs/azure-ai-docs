@@ -21,7 +21,7 @@ This article explains how to configure a private connection to Azure AI Search s
 + [Create an Azure virtual machine (client) in the same virtual network](#create-a-virtual-machine)
 + [Test using a browser session on the virtual machine](#connect-to-the-vm)
 
-Other Azure resources that might privately connect to Azure AI Search include Azure OpenAI for "use your own data" scenarios. Azure AI Foundry doesn't run in a virtual network, but it can be configured on the backend to send requests over the Microsoft backbone network. Configuration for this traffic pattern is enabled by Microsoft when your request is submitted and approved. For this scenario:
+Other Azure resources that might privately connect to Azure AI Search include Azure OpenAI for "use your own data" scenarios. Microsoft Foundry doesn't run in a virtual network, but it can be configured on the backend to send requests over the Microsoft backbone network. Configuration for this traffic pattern is enabled by Microsoft when your request is submitted and approved. For this scenario:
 
 + Follow the instructions in this article to set up the private endpoint.
 + [Enable trusted service](/azure/ai-services/openai/how-to/use-your-data-securely#enable-trusted-service-1) of your search resource from the Azure portal.

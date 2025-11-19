@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch Limits
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Global batch limits for Azure OpenAI models.
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -35,6 +35,7 @@ The table shows the batch quota limit. Quota values for global batch are represe
 | `gpt-35-turbo` | 10B | 1B | 100M | 2M | 50K |
 | `o3-mini`| 15B | 1B | 50M | 90K | N/A |
 | `o4-mini` | 15B | 1B | 50M | 90K | N/A |
+| `gpt-5`| 5B | 200M | 50M | 90K | N/A |
 
 B = billion | M = million | K = thousand
 
@@ -47,3 +48,4 @@ B = billion | M = million | K = thousand
 | `gpt-4o` | 500M | 30M | 30M | 90K | N/A|
 | `gpt-4o-mini` | 1.5B | 100M | 50M | 90K | N/A |
 | `o3-mini` | 1.5B | 100M | 50M | 90K | N/A |
+| `gpt-5`| 5B | 200M | 50M | 90K | N/A |

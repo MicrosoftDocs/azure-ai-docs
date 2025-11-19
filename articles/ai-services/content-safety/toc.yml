@@ -23,11 +23,13 @@ items:
     href: concepts/groundedness.md
   - name: Protected material detection
     href: concepts/protected-material.md
+  - name: Task Adherence
+    href: concepts/task-adherence.md
   - name: Custom categories (preview)
     href: concepts/custom-categories.md
   - name: Harm categories
     href: concepts/harm-categories.md
-  - name: Azure AI Foundry portal
+  - name: Microsoft Foundry portal
     href: /azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context
 - name: Quickstarts
   items:
@@ -39,6 +41,8 @@ items:
     href: quickstart-protected-material.md
   - name: Protected material detection for code (preview)
     href: quickstart-protected-material-code.md
+  - name: Task adherence (preview)
+    href: quickstart-task-adherence.md
   - name: Custom categories (preview)
     href: quickstart-custom-categories.md
   - name: Text moderation
@@ -71,7 +75,7 @@ items:
     href: how-to/use-blocklist.md
   - name: Mitigate false results
     href: how-to/improve-performance.md
-  - name: Use Content Safety in AI Foundry portal
+  - name: Use Content Safety in Foundry portal
     href: how-to/foundry.md
   - name: Containers (preview)
     items:

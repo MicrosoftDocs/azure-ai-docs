@@ -10,11 +10,11 @@ ms.date: 06/26/2025
 ms.custom: include
 ---
 
-To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
+To use LLMs deployed in Microsoft Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
 [!INCLUDE [tip-left-pane](tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
 
 1. Open the project where the model is deployed, if it isn't already open.
 

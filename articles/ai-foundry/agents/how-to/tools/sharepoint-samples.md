@@ -1,6 +1,6 @@
 ---
 title: 'How to use the SharePoint tool'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Find examples on how to ground agents with SharePoint.
 services: cognitive-services
 manager: nitinme
@@ -17,22 +17,22 @@ zone_pivot_groups: selection-agent-sharepoint
 # How to use the SharePoint tool
 
 > [!NOTE]
-> This article describes the Microsoft SharePoint tool for Azure AI Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
+> This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
 
-Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Azure AI Foundry Agent Service.
+Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Agent Service.
 
 :::zone pivot="python"
 
 ## Prerequisites
 
-* Your Azure AI Foundry Project endpoint.
+* Your Microsoft Foundry Project endpoint.
 
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
 
-* The name of your SharePoint connection name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+* The name of your SharePoint connection name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
     
     :::image type="content" source="../../media/tools/sharepoint-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/sharepoint-connection.png":::
 
@@ -41,7 +41,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
-    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
+    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
     
     Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
@@ -67,7 +67,7 @@ project_client = AIProjectClient(
 
 ## Create an agent with the Sharepoint tool enabled
 
-To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
+To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Foundry portal.
 
 ```python
 

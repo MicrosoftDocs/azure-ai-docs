@@ -1,7 +1,7 @@
 ---
-title: Synthetic data generation in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: Learn how to generate a synthetic dataset in Azure AI Foundry portal.
+title: Synthetic data generation in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: Learn how to generate a synthetic dataset in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 10/24/2025
@@ -13,9 +13,9 @@ author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# Synthetic data generation in Azure AI Foundry portal
+# Synthetic data generation in Microsoft Foundry portal
 
-In Azure AI Foundry portal, you can use synthetic data generation to efficiently produce predictions for your datasets. This article introduces you to the concept of synthetic data generation and how you can use it in machine learning.
+In Microsoft Foundry portal, you can use synthetic data generation to efficiently produce predictions for your datasets. This article introduces you to the concept of synthetic data generation and how you can use it in machine learning.
 
 ## What is synthetic data generation?
 
@@ -35,7 +35,7 @@ To see how to generate synthetic data, you can use the [sample notebook](https:/
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md)
-- [Deploy Meta Llama 3.1 models with Azure AI Foundry](../how-to/deploy-models-llama.md)
-- [Azure AI Foundry FAQ](../faq.yml)
+- [What is Foundry?](../what-is-azure-ai-foundry.md)
+- [Deploy Meta Llama 3.1 models with Foundry](../how-to/deploy-models-llama.md)
+- [Foundry FAQ](../faq.yml)
 

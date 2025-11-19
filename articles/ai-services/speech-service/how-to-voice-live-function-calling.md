@@ -5,14 +5,14 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 10/06/2025
+ms.date: 11/06/2025
 ---
 
 # Quickstart: Use function calling in a Voice Live session
 
+[!INCLUDE [Header](./includes/common/voice-live-python.md)]
+
 The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information and include that information in their spoken responses.
-
-
 
 ## Implementation steps
 
@@ -33,108 +33,97 @@ The code sample below does these basic steps to set up function calling.
 
 Below is an example of async function calling with the Voice Live API - Python SDK. To run this code, start by implementing the setup steps in the [Quickstart](/azure/ai-services/speech-service/voice-live-quickstart?tabs=linux%2Ckeyless&pivots=programming-language-python). 
 
-For more information see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/async_function_calling_sample.py). 
+For more information see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/function_calling_sample_async.py). 
 
 
 ```python
-
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+# -------------------------------------------------------------------------
+from __future__ import annotations
 import os
 import sys
+import argparse
 import asyncio
 import json
-import datetime
-import logging
 import base64
-import signal
-import threading
+from datetime import datetime
+import logging
 import queue
+import signal
 from typing import Union, Optional, Dict, Any, Mapping, Callable, TYPE_CHECKING, cast
-from concurrent.futures import ThreadPoolExecutor
 
-# Audio processing imports
-try:
-    import pyaudio
-except ImportError:
-    print("This sample requires pyaudio. Install with: pip install pyaudio")
-    sys.exit(1)
-
-# Environment variable loading
-try:
-    from dotenv import load_dotenv
-
-    load_dotenv()
-except ImportError:
-    print("Note: python-dotenv not installed. Using existing environment variables.")
-
-# Azure VoiceLive SDK imports
 from azure.core.credentials import AzureKeyCredential
 from azure.core.credentials_async import AsyncTokenCredential
+from azure.identity.aio import AzureCliCredential, DefaultAzureCredential
+
 from azure.ai.voicelive.aio import connect
 from azure.ai.voicelive.models import (
+    AudioEchoCancellation,
+    AudioNoiseReduction,
+    AzureStandardVoice,
+    InputAudioFormat,
+    ItemType,
+    Modality,
+    OutputAudioFormat,
     RequestSession,
     ServerEventType,
     ServerVad,
-    AudioEchoCancellation,
-    AzureStandardVoice,
-    Modality,
-    InputAudioFormat,
-    OutputAudioFormat,
     FunctionTool,
-    FunctionCallItem,
     FunctionCallOutputItem,
-    ItemType,
     ToolChoiceLiteral,
     AudioInputTranscriptionOptions,
-    ResponseFunctionCallItem,
-    ServerEventConversationItemCreated,
-    ServerEventResponseFunctionCallArgumentsDone,
-    ServerEventResponseCreated,
     Tool,
 )
+from dotenv import load_dotenv
+import pyaudio
+
+if TYPE_CHECKING:
+    from azure.ai.voicelive.aio import VoiceLiveConnection
+
+## Change to the directory where this script is located
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+# Environment variable loading
+load_dotenv('./.env', override=True)
 
 # Set up logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+## Add folder for logging
+if not os.path.exists('logs'):
+    os.makedirs('logs')
+
+## Add timestamp for logfiles
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+## Set up logging
+logging.basicConfig(
+    filename=f'logs/{timestamp}_voicelive.log',
+    filemode="w",
+    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+    level=logging.INFO
+)
 logger = logging.getLogger(__name__)
-
-
-async def _wait_for_event(conn, wanted_types: set, timeout_s: float = 10.0):
-    """Wait until we receive any event whose type is in wanted_types."""
-
-    async def _next():
-        while True:
-            evt = await conn.recv()
-            if evt.type in wanted_types:
-                return evt
-
-    return await asyncio.wait_for(_next(), timeout=timeout_s)
-
-
-async def _wait_for_match(
-    conn,
-    predicate: Callable[[Any], bool],
-    timeout_s: float = 10.0,
-):
-    """Wait until we receive an event that satisfies the given predicate."""
-
-    async def _next():
-        while True:
-            evt = await conn.recv()
-            if predicate(evt):
-                return evt
-
-    return await asyncio.wait_for(_next(), timeout=timeout_s)
 
 
 class AudioProcessor:
     """
     Handles real-time audio capture and playback for the voice assistant.
 
-    Responsibilities:
-    - Captures audio input from the microphone using PyAudio.
-    - Plays back audio output using PyAudio.
-    - Manages threading for audio capture, sending, and playback.
-    - Uses queues to buffer audio data between threads.
+    Threading Architecture:
+    - Main thread: Event loop and UI
+    - Capture thread: PyAudio input stream reading
+    - Send thread: Async audio data transmission to VoiceLive
+    - Playback thread: PyAudio output stream writing
     """
+    
+    loop: asyncio.AbstractEventLoop
+    
+    class AudioPlaybackPacket:
+        """Represents a packet that can be sent to the audio playback queue."""
+        def __init__(self, seq_num: int, data: Optional[bytes]):
+            self.seq_num = seq_num
+            self.data = data
 
     def __init__(self, connection):
         self.connection = connection
@@ -144,34 +133,37 @@ class AudioProcessor:
         self.format = pyaudio.paInt16
         self.channels = 1
         self.rate = 24000
-        self.chunk_size = 1024
+        self.chunk_size = 1200 # 50ms
 
         # Capture and playback state
-        self.is_capturing = False
-        self.is_playing = False
         self.input_stream = None
-        self.output_stream = None
 
-        # Audio queues and threading
-        self.audio_queue: "queue.Queue[bytes]" = queue.Queue()
-        self.audio_send_queue: "queue.Queue[str]" = queue.Queue()  # base64 audio to send
-        self.executor = ThreadPoolExecutor(max_workers=3)
-        self.capture_thread: Optional[threading.Thread] = None
-        self.playback_thread: Optional[threading.Thread] = None
-        self.send_thread: Optional[threading.Thread] = None
-        self.loop: Optional[asyncio.AbstractEventLoop] = None  # Store the event loop
+        self.playback_queue: queue.Queue[AudioProcessor.AudioPlaybackPacket] = queue.Queue()
+        self.playback_base = 0
+        self.next_seq_num = 0
+        self.output_stream: Optional[pyaudio.Stream] = None
 
         logger.info("AudioProcessor initialized with 24kHz PCM16 mono audio")
 
-    async def start_capture(self):
+    def start_capture(self):
         """Start capturing audio from microphone."""
-        if self.is_capturing:
+        def _capture_callback(
+            in_data,      # data
+            _frame_count,  # number of frames
+            _time_info,    # dictionary
+            _status_flags):
+            """Audio capture thread - runs in background."""
+            audio_base64 = base64.b64encode(in_data).decode("utf-8")
+            asyncio.run_coroutine_threadsafe(
+                self.connection.input_audio_buffer.append(audio=audio_base64), self.loop
+            )
+            return (None, pyaudio.paContinue)
+
+        if self.input_stream:
             return
 
         # Store the current event loop for use in threads
         self.loop = asyncio.get_event_loop()
-
-        self.is_capturing = True
 
         try:
             self.input_stream = self.audio.open(
@@ -180,99 +172,62 @@ class AudioProcessor:
                 rate=self.rate,
                 input=True,
                 frames_per_buffer=self.chunk_size,
-                stream_callback=None,
+                stream_callback=_capture_callback,
             )
-
-            self.input_stream.start_stream()
-
-            # Start capture thread
-            self.capture_thread = threading.Thread(target=self._capture_audio_thread)
-            self.capture_thread.daemon = True
-            self.capture_thread.start()
-
-            # Start audio send thread
-            self.send_thread = threading.Thread(target=self._send_audio_thread)
-            self.send_thread.daemon = True
-            self.send_thread.start()
-
             logger.info("Started audio capture")
 
-        except Exception as e:
-            logger.error(f"Failed to start audio capture: {e}")
-            self.is_capturing = False
+        except Exception:
+            logger.exception("Failed to start audio capture")
             raise
 
-    def _capture_audio_thread(self):
-        """Audio capture thread - runs in background."""
-        while self.is_capturing and self.input_stream:
-            try:
-                # Read audio data
-                audio_data = self.input_stream.read(self.chunk_size, exception_on_overflow=False)
-
-                if audio_data and self.is_capturing:
-                    # Convert to base64 and queue for sending
-                    audio_base64 = base64.b64encode(audio_data).decode("utf-8")
-                    self.audio_send_queue.put(audio_base64)
-
-            except Exception as e:
-                if self.is_capturing:
-                    logger.error(f"Error in audio capture: {e}")
-                break
-
-    def _send_audio_thread(self):
-        """Audio send thread - handles async operations from sync thread."""
-        while self.is_capturing:
-            try:
-                # Get audio data from queue (blocking with timeout)
-                audio_base64 = self.audio_send_queue.get(timeout=0.1)
-
-                if audio_base64 and self.is_capturing and self.loop:
-                    # Schedule the async send operation in the main event loop
-                    future = asyncio.run_coroutine_threadsafe(
-                        self.connection.input_audio_buffer.append(audio=audio_base64), self.loop
-                    )
-                    # Don't wait for completion to avoid blocking
-
-            except queue.Empty:
-                continue
-            except Exception as e:
-                if self.is_capturing:
-                    logger.error(f"Error sending audio: {e}")
-                break
-
-    async def stop_capture(self):
-        """Stop capturing audio."""
-        if not self.is_capturing:
-            return
-
-        self.is_capturing = False
-
-        if self.input_stream:
-            self.input_stream.stop_stream()
-            self.input_stream.close()
-            self.input_stream = None
-
-        if self.capture_thread:
-            self.capture_thread.join(timeout=1.0)
-
-        if self.send_thread:
-            self.send_thread.join(timeout=1.0)
-
-        # Clear the send queue
-        while not self.audio_send_queue.empty():
-            try:
-                self.audio_send_queue.get_nowait()
-            except queue.Empty:
-                break
-
-        logger.info("Stopped audio capture")
-
-    async def start_playback(self):
+    def start_playback(self):
         """Initialize audio playback system."""
-        if self.is_playing:
+        if self.output_stream:
             return
 
-        self.is_playing = True
+        remaining = bytes()
+        def _playback_callback(
+            _in_data,
+            frame_count,  # number of frames
+            _time_info,
+            _status_flags):
+
+            nonlocal remaining
+            frame_count *= pyaudio.get_sample_size(pyaudio.paInt16)
+
+            out = remaining[:frame_count]
+            remaining = remaining[frame_count:]
+
+            while len(out) < frame_count:
+                try:
+                    packet = self.playback_queue.get_nowait()
+                except queue.Empty:
+                    out = out + bytes(frame_count - len(out))
+                    continue
+                except Exception:
+                    logger.exception("Error in audio playback")
+                    raise
+
+                if not packet or not packet.data:
+                    # None packet indicates end of stream
+                    logger.info("End of playback queue.")
+                    break
+
+                if packet.seq_num < self.playback_base:
+                    # skip requested
+                    # ignore skipped packet and clear remaining
+                    if len(remaining) > 0:
+                        remaining = bytes()
+                    continue
+
+                num_to_take = frame_count - len(out)
+                out = out + packet.data[:num_to_take]
+                remaining = packet.data[num_to_take:]
+
+            if len(out) >= frame_count:
+                return (out, pyaudio.paContinue)
+            else:
+                return (out, pyaudio.paComplete)
 
         try:
             self.output_stream = self.audio.open(
@@ -281,80 +236,57 @@ class AudioProcessor:
                 rate=self.rate,
                 output=True,
                 frames_per_buffer=self.chunk_size,
+                stream_callback=_playback_callback
             )
-
-            # Start playback thread
-            self.playback_thread = threading.Thread(target=self._playback_audio_thread)
-            self.playback_thread.daemon = True
-            self.playback_thread.start()
-
             logger.info("Audio playback system ready")
-
-        except Exception as e:
-            logger.error(f"Failed to initialize audio playback: {e}")
-            self.is_playing = False
+        except Exception:
+            logger.exception("Failed to initialize audio playback")
             raise
 
-    def _playback_audio_thread(self):
-        """Audio playback thread - runs in background."""
-        while self.is_playing:
-            try:
-                # Get audio data from queue (blocking with timeout)
-                audio_data = self.audio_queue.get(timeout=0.1)
+    def _get_and_increase_seq_num(self):
+        seq = self.next_seq_num
+        self.next_seq_num += 1
+        return seq
 
-                if audio_data and self.output_stream and self.is_playing:
-                    self.output_stream.write(audio_data)
-
-            except queue.Empty:
-                continue
-            except Exception as e:
-                if self.is_playing:
-                    logger.error(f"Error in audio playback: {e}")
-                break
-
-    async def queue_audio(self, audio_data: bytes):
+    def queue_audio(self, audio_data: Optional[bytes]) -> None:
         """Queue audio data for playback."""
-        if self.is_playing:
-            self.audio_queue.put(audio_data)
+        self.playback_queue.put(
+            AudioProcessor.AudioPlaybackPacket(
+                seq_num=self._get_and_increase_seq_num(),
+                data=audio_data))
 
-    async def stop_playback(self):
-        """Stop audio playback and clear queue."""
-        if not self.is_playing:
-            return
+    def skip_pending_audio(self):
+        """Skip current audio in playback queue."""
+        self.playback_base = self._get_and_increase_seq_num()
 
-        self.is_playing = False
+    def shutdown(self):
+        """Clean up audio resources."""
+        if self.input_stream:
+            self.input_stream.stop_stream()
+            self.input_stream.close()
+            self.input_stream = None
 
-        # Clear the queue
-        while not self.audio_queue.empty():
-            try:
-                self.audio_queue.get_nowait()
-            except queue.Empty:
-                break
+        logger.info("Stopped audio capture")
 
+        # Inform thread to complete
         if self.output_stream:
+            self.skip_pending_audio()
+            self.queue_audio(None)
             self.output_stream.stop_stream()
             self.output_stream.close()
             self.output_stream = None
 
-        if self.playback_thread:
-            self.playback_thread.join(timeout=1.0)
-
         logger.info("Stopped audio playback")
-
-    async def cleanup(self):
-        """Clean up audio resources."""
-        await self.stop_capture()
-        await self.stop_playback()
 
         if self.audio:
             self.audio.terminate()
 
-        self.executor.shutdown(wait=True)
         logger.info("Audio processor cleaned up")
 
 
+
 class AsyncFunctionCallingClient:
-    """Async client for Azure Voice Live API with function calling capabilities and audio input."""
+    """Voice assistant with function calling capabilities using VoiceLive SDK patterns."""
 
     def __init__(
         self,
@@ -369,11 +301,13 @@ class AsyncFunctionCallingClient:
         self.model = model
         self.voice = voice
         self.instructions = instructions
-        self.session_id: Optional[str] = None
-        self.function_call_in_progress: bool = False
-        self.active_call_id: Optional[str] = None
+        self.connection: Optional["VoiceLiveConnection"] = None
         self.audio_processor: Optional[AudioProcessor] = None
-        self.session_ready: bool = False
+        self.session_ready = False
+        self.conversation_started = False
+        self._active_response = False
+        self._response_api_done = False
+        self._pending_function_call: Optional[Dict[str, Any]] = None
 
         # Define available functions
         self.available_functions: Dict[str, Callable[[Union[str, Mapping[str, Any]]], Mapping[str, Any]]] = {
@@ -381,60 +315,65 @@ class AsyncFunctionCallingClient:
             "get_current_weather": self.get_current_weather,
         }
 
-    async def run(self):
-        """Run the async function calling client with audio input."""
+    async def start(self):
+        """Start the voice assistant session."""
         try:
-            logger.info(f"Connecting to VoiceLive API with model {self.model}")
+            logger.info("Connecting to VoiceLive API with model %s", self.model)
 
-            # Connect to VoiceLive WebSocket API asynchronously
+            # Connect to VoiceLive WebSocket API
             async with connect(
                 endpoint=self.endpoint,
                 credential=self.credential,
                 model=self.model,
             ) as connection:
+                conn = connection
+                self.connection = conn
+
                 # Initialize audio processor
-                self.audio_processor = AudioProcessor(connection)
+                ap = AudioProcessor(conn)
+                self.audio_processor = ap
 
-                # Configure session with function tools
-                await self._setup_session(connection)
+                # Configure session for voice conversation
+                await self._setup_session()
 
-                # Start audio playback system
-                await self.audio_processor.start_playback()
+                # Start audio systems
+                ap.start_playback()
 
                 logger.info("Voice assistant with function calling ready! Start speaking...")
-                print("\n" + "=" * 70)
+                print("\n" + "=" * 60)
                 print("🎤 VOICE ASSISTANT WITH FUNCTION CALLING READY")
                 print("Try saying:")
                 print("  • 'What's the current time?'")
                 print("  • 'What's the weather in Seattle?'")
-                print("  • 'What time is it in UTC?'")
                 print("Press Ctrl+C to exit")
-                print("=" * 70 + "\n")
+                print("=" * 60 + "\n")
 
-                # Process events asynchronously
-                await self._process_events(connection)
-
-        except KeyboardInterrupt:
-            logger.info("Received interrupt signal, shutting down...")
-        except Exception as e:
-            logger.error(f"Connection error: {e}")
-            raise
+                # Process events
+                await self._process_events()
         finally:
-            # Cleanup audio processor
             if self.audio_processor:
-                await self.audio_processor.cleanup()
+                self.audio_processor.shutdown()
 
-    async def _setup_session(self, connection):
-        """Configure the VoiceLive session with function tools asynchronously."""
+    async def _setup_session(self):
+        """Configure the VoiceLive session for audio conversation with function tools."""
         logger.info("Setting up voice conversation session with function tools...")
 
         # Create voice configuration
-        voice_config = AzureStandardVoice(name=self.voice)
+        voice_config: Union[AzureStandardVoice, str]
+        if self.voice.startswith("en-US-") or self.voice.startswith("en-CA-") or "-" in self.voice:
+            # Azure voice
+            voice_config = AzureStandardVoice(name=self.voice)
+        else:
+            # OpenAI voice (alloy, echo, fable, onyx, nova, shimmer)
+            voice_config = self.voice
 
         # Create turn detection configuration
-        turn_detection_config = ServerVad(threshold=0.5, prefix_padding_ms=300, silence_duration_ms=500)
+        turn_detection_config = ServerVad(
+            threshold=0.5,
+            prefix_padding_ms=300,
+            silence_duration_ms=500)
 
-        # Define available function tools
+        # Define function tools
         function_tools: list[Tool] = [
             FunctionTool(
                 name="get_current_time",
@@ -478,72 +417,85 @@ class AsyncFunctionCallingClient:
             voice=voice_config,
             input_audio_format=InputAudioFormat.PCM16,
             output_audio_format=OutputAudioFormat.PCM16,
-            input_audio_echo_cancellation=AudioEchoCancellation(),
             turn_detection=turn_detection_config,
+            input_audio_echo_cancellation=AudioEchoCancellation(),
+            input_audio_noise_reduction=AudioNoiseReduction(type="azure_deep_noise_suppression"),
             tools=function_tools,
-            tool_choice=ToolChoiceLiteral.AUTO,  # Let the model decide when to call functions
+            tool_choice=ToolChoiceLiteral.AUTO,
             input_audio_transcription=AudioInputTranscriptionOptions(model="whisper-1"),
         )
 
-        # Send session configuration asynchronously
-        await connection.session.update(session=session_config)
+        conn = self.connection
+        assert conn is not None, "Connection must be established before setting up session"
+        await conn.session.update(session=session_config)
+
         logger.info("Session configuration with function tools sent")
 
-    async def _process_events(self, connection):
-        """Process events from the VoiceLive connection asynchronously."""
+    async def _process_events(self):
+        """Process events from the VoiceLive connection."""
         try:
-            async for event in connection:
-                await self._handle_event(event, connection)
-        except KeyboardInterrupt:
-            logger.info("Event processing interrupted")
-        except Exception as e:
-            logger.error(f"Error processing events: {e}")
+            conn = self.connection
+            assert conn is not None, "Connection must be established before processing events"
+            async for event in conn:
+                await self._handle_event(event)
+        except Exception:
+            logger.exception("Error processing events")
             raise
 
-    async def _handle_event(self, event, connection):
-        """Handle different types of events from VoiceLive asynchronously."""
+    async def _handle_event(self, event):
+        """Handle different types of events from VoiceLive."""
+        logger.debug("Received event: %s", event.type)
         ap = self.audio_processor
+        conn = self.connection
         assert ap is not None, "AudioProcessor must be initialized"
+        assert conn is not None, "Connection must be established"
 
         if event.type == ServerEventType.SESSION_UPDATED:
-            self.session_id = event.session.id
-            logger.info(f"Session ready: {self.session_id}")
+            logger.info("Session ready: %s", event.session.id)
             self.session_ready = True
 
+            # Proactive greeting
+            if not self.conversation_started:
+                self.conversation_started = True
+                logger.info("Sending proactive greeting request")
+                try:
+                    await conn.response.create()
+
+                except Exception:
+                    logger.exception("Failed to send proactive greeting request")
+
             # Start audio capture once session is ready
-            await ap.start_capture()
-            print("🎤 Ready for voice input! Try asking about time or weather with your location...")
+            ap.start_capture()
 
         elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STARTED:
-            logger.info("🎤 User started speaking - stopping playback")
+            logger.info("User started speaking - stopping playback")
             print("🎤 Listening...")
 
-            # Stop current assistant audio playback (interruption handling)
-            await ap.stop_playback()
+            ap.skip_pending_audio()
 
-            # Cancel any ongoing response
-            try:
-                await connection.response.cancel()
-            except Exception as e:
-                logger.debug(f"No response to cancel: {e}")
+            # Only cancel if response is active and not already done
+            if self._active_response and not self._response_api_done:
+                try:
+                    await conn.response.cancel()
+                    logger.debug("Cancelled in-progress response due to barge-in")
+                except Exception as e:
+                    if "no active response" in str(e).lower():
+                        logger.debug("Cancel ignored - response already completed")
+                    else:
+                        logger.warning("Cancel failed: %s", e)
 
         elif event.type == ServerEventType.INPUT_AUDIO_BUFFER_SPEECH_STOPPED:
             logger.info("🎤 User stopped speaking")
             print("🤔 Processing...")
 
-            # Restart playback system for response
-            await ap.start_playback()
-
         elif event.type == ServerEventType.RESPONSE_CREATED:
             logger.info("🤖 Assistant response created")
-
-        elif event.type == ServerEventType.RESPONSE_TEXT_DELTA:
-            logger.info(f"Text response: {event.delta}")
+            self._active_response = True
+            self._response_api_done = False
 
         elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
-            # Stream audio response to speakers
             logger.debug("Received audio delta")
-            await ap.queue_audio(event.delta)
+            ap.queue_audio(event.delta)
 
         elif event.type == ServerEventType.RESPONSE_AUDIO_DONE:
             logger.info("🤖 Assistant finished speaking")
@@ -551,118 +503,89 @@ class AsyncFunctionCallingClient:
 
         elif event.type == ServerEventType.RESPONSE_DONE:
             logger.info("✅ Response complete")
-            self.function_call_in_progress = False
-            self.active_call_id = None
+            self._active_response = False
+            self._response_api_done = True
+
+            # Execute pending function call if arguments are ready
+            if self._pending_function_call and "arguments" in self._pending_function_call:
+                await self._execute_function_call(self._pending_function_call)
+                self._pending_function_call = None
 
         elif event.type == ServerEventType.ERROR:
-            logger.error(f"❌ VoiceLive error: {event.error.message}")
-            print(f"Error: {event.error.message}")
+            msg = event.error.message
+            if "Cancellation failed: no active response" in msg:
+                logger.debug("Benign cancellation error: %s", msg)
+            else:
+                logger.error("❌ VoiceLive error: %s", msg)
+                print(f"Error: {msg}")
 
         elif event.type == ServerEventType.CONVERSATION_ITEM_CREATED:
-            logger.info(f"Conversation item created: {event.item.id}")
+            logger.debug("Conversation item created: %s", event.item.id)
 
-            # Check if it's a function call item using the improved pattern from the test
             if event.item.type == ItemType.FUNCTION_CALL:
-                print(f"🔧 Calling function: {event.item.name}")
-                await self._handle_function_call_with_improved_pattern(event, connection)
+                function_call_item = event.item
+                self._pending_function_call = {
+                    "name": function_call_item.name,
+                    "call_id": function_call_item.call_id,
+                    "previous_item_id": function_call_item.id
+                }
+                print(f"🔧 Calling function: {function_call_item.name}")
+                logger.info(f"Function call detected: {function_call_item.name} with call_id: {function_call_item.call_id}")
 
-    async def _handle_function_call_with_improved_pattern(self, conversation_created_event, connection):
-        """Handle function call using the improved pattern from the test."""
-        # Validate the event structure
-        if not isinstance(conversation_created_event, ServerEventConversationItemCreated):
-            logger.error("Expected ServerEventConversationItemCreated")
-            return
+        elif event.type == ServerEventType.RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE:
+            if self._pending_function_call and event.call_id == self._pending_function_call["call_id"]:
+                logger.info(f"Function arguments received: {event.arguments}")
+                self._pending_function_call["arguments"] = event.arguments
 
-        if not isinstance(conversation_created_event.item, ResponseFunctionCallItem):
-            logger.error("Expected ResponseFunctionCallItem")
-            return
-
-        function_call_item = conversation_created_event.item
-        function_name = function_call_item.name
-        call_id = function_call_item.call_id
-        previous_item_id = function_call_item.id
-
-        logger.info(f"Function call detected: {function_name} with call_id: {call_id}")
+    async def _execute_function_call(self, function_call_info):
+        """Execute a function call and send the result back to the conversation."""
+        conn = self.connection
+        assert conn is not None, "Connection must be established"
+        
+        function_name = function_call_info["name"]
+        call_id = function_call_info["call_id"]
+        previous_item_id = function_call_info["previous_item_id"]
+        arguments = function_call_info["arguments"]
 
         try:
-            # Set tracking variables
-            self.function_call_in_progress = True
-            self.active_call_id = call_id
-
-            # Wait for the function arguments to be complete
-            function_done = await _wait_for_event(connection, {ServerEventType.RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE})
-
-            if not isinstance(function_done, ServerEventResponseFunctionCallArgumentsDone):
-                logger.error("Expected ServerEventResponseFunctionCallArgumentsDone")
-                return
-
-            if function_done.call_id != call_id:
-                logger.warning(f"Call ID mismatch: expected {call_id}, got {function_done.call_id}")
-                return
-
-            arguments = function_done.arguments
-            logger.info(f"Function arguments received: {arguments}")
-
-            # Wait for response to be done before proceeding
-            await _wait_for_event(connection, {ServerEventType.RESPONSE_DONE})
-
-            # Execute the function if we have it
             if function_name in self.available_functions:
                 logger.info(f"Executing function: {function_name}")
                 result = self.available_functions[function_name](arguments)
 
-                # Create function call output item
                 function_output = FunctionCallOutputItem(call_id=call_id, output=json.dumps(result))
 
-                # Send the result back to the conversation with proper previous_item_id
-                await connection.conversation.item.create(previous_item_id=previous_item_id, item=function_output)
+                # Send result back to conversation
+                await conn.conversation.item.create(previous_item_id=previous_item_id, item=function_output)
                 logger.info(f"Function result sent: {result}")
+                print(f"✅ Function {function_name} completed")
 
-                # Create a new response to process the function result
-                await connection.response.create()
-
-                # Wait for the final response
-                response = await _wait_for_match(
-                    connection,
-                    lambda e: e.type == ServerEventType.RESPONSE_OUTPUT_ITEM_DONE
-                    and hasattr(e, "item")
-                    and e.item.id != previous_item_id,
-                )
-
-                if hasattr(response, "item") and hasattr(response.item, "content") and response.item.content:
-                    if hasattr(response.item.content[0], "transcript"):
-                        transcript = response.item.content[0].transcript
-                        logger.info(f"Final response transcript: {transcript}")
+                # Request new response to process the function result
+                await conn.response.create()
+                logger.info("Requested new response with function result")
 
             else:
                 logger.error(f"Unknown function: {function_name}")
 
-        except asyncio.TimeoutError:
-            logger.error(f"Timeout waiting for function call completion for {function_name}")
         except Exception as e:
             logger.error(f"Error executing function {function_name}: {e}")
-        finally:
-            self.function_call_in_progress = False
-            self.active_call_id = None
 
     def get_current_time(self, arguments: Optional[Union[str, Mapping[str, Any]]] = None) -> Dict[str, Any]:
         """Get the current time."""
-        # Parse arguments if provided as string
+        from datetime import datetime, timezone
+        
         if isinstance(arguments, str):
             try:
                 args = json.loads(arguments)
             except json.JSONDecodeError:
                 args = {}
-        elif isinstance(arguments, dict):
-            args = arguments
         else:
-            args = {}
+            args = arguments if isinstance(arguments, dict) else {}
 
-        timezone = args.get("timezone", "local")
-        now = datetime.datetime.now()
+        timezone_arg = args.get("timezone", "local")
+        now = datetime.now()
 
-        if timezone.lower() == "utc":
-            now = datetime.datetime.now(datetime.timezone.utc)
+        if timezone_arg.lower() == "utc":
+            now = datetime.now(timezone.utc)
             timezone_name = "UTC"
         else:
             timezone_name = "local"
@@ -674,25 +597,21 @@ class AsyncFunctionCallingClient:
 
     def get_current_weather(self, arguments: Union[str, Mapping[str, Any]]):
         """Get the current weather for a location."""
-        # Parse arguments if provided as string
         if isinstance(arguments, str):
             try:
                 args = json.loads(arguments)
             except json.JSONDecodeError:
                 logger.error(f"Failed to parse weather arguments: {arguments}")
                 return {"error": "Invalid arguments"}
-        elif isinstance(arguments, dict):
-            args = arguments
         else:
-            return {"error": "No arguments provided"}
+            args = arguments if isinstance(arguments, dict) else {}
 
         location = args.get("location", "Unknown")
         unit = args.get("unit", "celsius")
 
-        # In a real application, you would call a weather API
-        # This is a simulated response similar to the test
+        # Simulated weather response
         try:
-            weather_data = {
+            return {
                 "location": location,
                 "temperature": 22 if unit == "celsius" else 72,
                 "unit": unit,
@@ -700,52 +619,103 @@ class AsyncFunctionCallingClient:
                 "humidity": 65,
                 "wind_speed": 10,
             }
-
-            return weather_data
-
         except Exception as e:
             logger.error(f"Error getting weather: {e}")
             return {"error": str(e)}
 
 
-async def main():
-    """Main async function."""
-    # Get credentials from environment variables
-    api_key = os.environ.get("AZURE_VOICELIVE_API_KEY")
-    endpoint = os.environ.get("AZURE_VOICELIVE_ENDPOINT", "wss://api.voicelive.com/v1")
-
-    if not api_key:
-        print("❌ Error: No API key provided")
-        print("Please set the AZURE_VOICELIVE_API_KEY environment variable.")
-        sys.exit(1)
-
-    # Option 1: API key authentication (simple, recommended for quick start)
-    credential = AzureKeyCredential(api_key)
-
-    # Option 2: Async AAD authentication (requires azure-identity)
-    # from azure.identity.aio import AzureCliCredential, DefaultAzureCredential
-    # credential = DefaultAzureCredential() or AzureCliCredential()
-    #
-    # 👉 Use this if you prefer AAD/MSAL-based auth.
-    #    It will look for environment variables like:
-    #      AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
-    #    or fall back to managed identity if running in Azure.
-
-    # Create and run the client
-    client = AsyncFunctionCallingClient(
-        endpoint=endpoint,
-        credential=credential,
-        model="gpt-4o-realtime-preview",
-        voice="en-US-AvaNeural",
-        instructions="You are a helpful AI assistant with access to functions. "
-        "Use the functions when appropriate to provide accurate, real-time information. "
-        "If you are asked about the weather, please respond with 'I will get the weather for you. Please wait a moment.' and then call the get_current_weather function. "
-        "If you are asked about the time, please respond with 'I will get the time for you. Please wait a moment.' and then call the get_current_time function. "
-        "Explain when you're using a function and include the results in your response naturally.",
+def parse_arguments():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Voice Assistant with Function Calling using Azure VoiceLive SDK",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
-    # Setup signal handlers for graceful shutdown
-    def signal_handler(sig, frame):
+    parser.add_argument(
+        "--api-key",
+        help="Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.",
+        type=str,
+        default=os.environ.get("AZURE_VOICELIVE_API_KEY"),
+    )
+
+    parser.add_argument(
+        "--endpoint",
+        help="Azure VoiceLive endpoint",
+        type=str,
+        default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "https://your-resource-name.services.ai.azure.com/"),
+    )
+
+    parser.add_argument(
+        "--model",
+        help="VoiceLive model to use",
+        type=str,
+        default=os.environ.get("AZURE_VOICELIVE_MODEL", "gpt-realtime"),
+    )
+
+    parser.add_argument(
+        "--voice",
+        help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
+        type=str,
+        default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
+    )
+
+    parser.add_argument(
+        "--instructions",
+        help="System instructions for the AI assistant",
+        type=str,
+        default=os.environ.get(
+            "AZURE_VOICELIVE_INSTRUCTIONS",
+            "You are a helpful AI assistant with access to functions. "
+            "Use the functions when appropriate to provide accurate, real-time information. "
+            "If you are asked about the weather, please respond with 'I will get the weather for you. Please wait a moment.' and then call the get_current_weather function. "
+            "If you are asked about the time, please respond with 'I will get the time for you. Please wait a moment.' and then call the get_current_time function. "
+            "Explain when you're using a function and include the results in your response naturally. Always start the conversation in English.",
+        ),
+    )
+
+    parser.add_argument(
+        "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true", default=False
+    )
+
+    parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
+
+    return parser.parse_args()
+
+def main():
+    """Main function."""
+    args = parse_arguments()
+
+    # Set logging level
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
+    # Validate credentials
+    if not args.api_key and not args.use_token_credential:
+        print("❌ Error: No authentication provided")
+        print("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,")
+        print("or use --use-token-credential for Azure authentication.")
+        sys.exit(1)
+
+    # Create client with appropriate credential
+    credential: Union[AzureKeyCredential, AsyncTokenCredential]
+    if args.use_token_credential:
+        credential = AzureCliCredential()
+        logger.info("Using Azure token credential")
+    else:
+        credential = AzureKeyCredential(args.api_key)
+        logger.info("Using API key credential")
+
+    # Create and start voice assistant with function calling
+    client = AsyncFunctionCallingClient(
+        endpoint=args.endpoint,
+        credential=credential,
+        model=args.model,
+        voice=args.voice,
+        instructions=args.instructions,
+    )
+
+    # Signal handlers for graceful shutdown
+    def signal_handler(_sig, _frame):
         logger.info("Received shutdown signal")
         raise KeyboardInterrupt()
 
@@ -753,11 +723,12 @@ async def main():
     signal.signal(signal.SIGTERM, signal_handler)
 
     try:
-        await client.run()
+        asyncio.run(client.start())
     except KeyboardInterrupt:
-        print("\n👋 Voice Live function calling client shut down.")
+        print("\n👋 Voice assistant shut down. Goodbye!")
     except Exception as e:
-        logger.error(f"Error: {e}")
+        logger.exception("Fatal error")
+        print(f"Fatal Error: {e}")
         sys.exit(1)
 
 
@@ -814,9 +785,8 @@ if __name__ == "__main__":
     print("🎙️  Voice Assistant with Function Calling - Azure VoiceLive SDK")
     print("=" * 65)
 
-    # Run the async main function
-    asyncio.run(main())
-
+    # Run the assistant
+    main()
 ```
 
 ## Related content

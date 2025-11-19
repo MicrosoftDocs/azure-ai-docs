@@ -1,20 +1,20 @@
 ---
-title: Threads, Runs, and Messages in the Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
-description: Learn about the components used in the Azure AI Foundry Agent Service.
+title: Threads, Runs, and Messages in the Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Learn about the components used in the Foundry Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 09/24/2025
+ms.date: 11/19/2025
 ms.custom: azure-ai-agents
 ---
 
-# Threads, runs, and messages in Azure AI Foundry Agent Service
+# Threads, runs, and messages in Foundry Agent Service
 
-Azure AI Foundry Agent Service supports persistent threads, runs, and messages, which are essential components for managing conversation states and interactions with users.
+Foundry Agent Service supports persistent threads, runs, and messages, which are essential components for managing conversation states and interactions with users.
 
 ## Agent components
 

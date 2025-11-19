@@ -1,6 +1,6 @@
 ---
 title: Batch synthesis properties for text to speech - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the batch synthesis properties for text to speech.
 author: PatrickFarley
 ms.author: pafarley

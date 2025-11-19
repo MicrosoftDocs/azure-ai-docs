@@ -1,6 +1,6 @@
 ---
 title: Implement language identification - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how language identification can determine the language being spoken in audio when compared against a list of provided languages.
 author: PatrickFarley
 manager: nitinme
@@ -242,7 +242,7 @@ using Microsoft.CognitiveServices.Speech.Audio;
 
 var config = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
-// Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+// Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 config.SetProperty(PropertyId.SpeechServiceConnection_LanguageIdMode, "Continuous");
 
 var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromLanguages(new string[] { "en-US", "de-DE", "zh-CN" });
@@ -421,7 +421,7 @@ weatherfilename="en-us_zh-cn.wav"
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, endpoint=endpoint_string)
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
 
-# Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+# Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceConnection_LanguageIdMode, value='Continuous')
 
 auto_detect_source_language_config = speechsdk.languageconfig.AutoDetectSourceLanguageConfig(
@@ -661,7 +661,7 @@ public static async Task MultiLingualTranslation()
     config.AddTargetLanguage("de");
     config.AddTargetLanguage("fr");
 
-    // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+    // Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
     config.SetProperty(PropertyId.SpeechServiceConnection_LanguageIdMode, "Continuous");
     var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromLanguages(new string[] { "en-US", "de-DE", "zh-CN" });
 
@@ -827,7 +827,7 @@ void MultiLingualTranslation()
 {
     auto config = SpeechTranslationConfig::FromEndpoint("YourSpeechResoureEndpoint", "YourSpeechResoureKey");
 
-    // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+    // Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
     speechConfig->SetProperty(PropertyId::SpeechServiceConnection_LanguageIdMode, "Continuous");
     auto autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig::FromLanguages({ "en-US", "de-DE", "zh-CN" });
 
@@ -986,7 +986,7 @@ translation_config = speechsdk.translation.SpeechTranslationConfig(
     target_languages=('de', 'fr'))
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
 
-# Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+# Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 translation_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceConnection_LanguageIdMode, value='Continuous')
 
 # Specify the AutoDetectSourceLanguageConfig, which defines the number of possible languages

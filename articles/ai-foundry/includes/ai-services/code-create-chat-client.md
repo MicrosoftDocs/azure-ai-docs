@@ -17,7 +17,7 @@ pip install azure-ai-inference>=1.0.0b5
 ```
 
 > [!WARNING]
-> Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python.
+> Foundry Tools resource requires the version `azure-ai-inference>=1.0.0b5` for Python.
 
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
 

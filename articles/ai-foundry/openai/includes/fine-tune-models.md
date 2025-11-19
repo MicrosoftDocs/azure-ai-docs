@@ -14,15 +14,10 @@ ms.custom:
 ---
 
 > [!NOTE]
-> `gpt-35-turbo`: Fine-tuning of this model is limited to a subset of regions, and isn't available in every region the base model is available.
->
-> The supported regions for fine-tuning might vary if you use Azure OpenAI models in an Azure AI Foundry project versus outside a project.
->
+> The supported regions for fine-tuning might vary if you use Azure OpenAI models in a Microsoft Foundry project versus outside a project.
 
 |  Model ID  | Standard training regions | Global training | Max request (tokens) | Training data (up to) | Modality |
 |  --- | --- | :---: | :---: | :---: | --- |
-| `gpt-35-turbo` <br> (1106) | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | - | Input: 16,385<br> Output: 4,096 |  Sep 2021 | Text to text |
-| `gpt-35-turbo` <br> (0125)  | East US2 <br> North Central US <br> Sweden Central <br> Switzerland West | - | 16,385 | Sep 2021 | Text to text |
 | `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text to text |
 | `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text and vision to text |
 | `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text and vision to text |

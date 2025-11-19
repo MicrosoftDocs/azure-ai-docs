@@ -8,6 +8,61 @@ ms.author: jagoerge
 ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+
+### November 2025 release
+
+#### Public preview of new HD voices
+| **Locale (BCP-47)** | **Voice name**                                      |
+| -------------------- | ---------------------------------------------------- |
+| `en-GB`             | `en-GB-Ada:DragonHDLatestNeural` (Female)           |
+| `en-GB`             | `en-GB-Ollie:DragonHDLatestNeural` (Male)           |
+| `es-MX`             | `es-MX-Tristan:DragonHDLatestNeural` (Male)         |
+| `es-MX`             | `es-MX-Ximena:DragonHDLatestNeural` (Female)        |
+| `fr-CA`             | `fr-CA-Sylvie:DragonHDLatestNeural` (Female)        |
+| `fr-CA`             | `fr-CA-Thierry:DragonHDLatestNeural` (Male)         |
+| `ko-KR`             | `ko-KR-Hyunsu:DragonHDLatestNeural` (Male)          |
+| `ko-KR`             | `ko-KR-SunHi:DragonHDLatestNeural` (Female)         |
+
+#### 33 previous HD voices have been updated to v2.0 with quality improved and bugs fixed
+| **Locale (BCP-47)** | **Voice name**                                      |
+| ------------------- | ----------------------------------------------------|
+| `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)         |
+| `de-DE`             | `de-DE-Seraphina:DragonHDLatestNeural` (Female)     |
+| `en-US`             | `en-US-Adam:DragonHDLatestNeural` (Male)            |
+| `en-US`             | `en-US-Alloy:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Andrew:DragonHDLatestNeural` (Male)          |
+| `en-US`             | `en-US-Andrew2:DragonHDLatestNeural` (Male)         |
+| `en-US`             | `en-US-Andrew3:DragonHDLatestNeural` (Male)         |
+| `en-US`             | `en-US-Aria:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Ava:DragonHDLatestNeural` (Female)           |
+| `en-US`             | `en-US-Ava3:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Bree:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Brian:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Davis:DragonHDLatestNeural` (Male)           |
+| `en-US`             | `en-US-Emma:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Emma2:DragonHDLatestNeural` (Female)         |
+| `en-US`             | `en-US-Jane:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Jenny:DragonHDLatestNeural` (Female)         |
+| `en-US`             | `en-US-Nova:DragonHDLatestNeural` (Female)          |
+| `en-US`             | `en-US-Phoebe:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Serena:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Steffan:DragonHDLatestNeural` (Male)         |
+| `es-ES`             | `es-ES-Tristan:DragonHDLatestNeural` (Male)         |
+| `es-ES`             | `es-ES-Ximena:DragonHDLatestNeural` (Female)        |
+| `fr-FR`             | `fr-FR-Remy:DragonHDLatestNeural` (Male)            |
+| `fr-FR`             | `fr-FR-Vivienne:DragonHDLatestNeural` (Female)      |
+| `it-IT`             | `it-IT-Alessio:DragonHDLatestNeural` (Male)         |
+| `it-IT`             | `it-IT-Isabella:DragonHDLatestNeural` (Female)      |
+| `ja-JP`             | `ja-JP-Masaru:DragonHDLatestNeural` (Male)          |
+| `ja-JP`             | `ja-JP-Nanami:DragonHDLatestNeural` (Female)        |
+| `pt-BR`             | `pt-BR-Macerio:DragonHDLatestNeural` (Male)         |
+| `pt-BR`             | `pt-BR-Thalita:DragonHDLatestNeural` (Female)       |
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female)      |
+| `zh-CN`             | `zh-CN-Yunfan:DragonHDLatestNeural` (Male)          |
+
+> [!NOTE]
+> After this update, if you encounter issue when calling `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` & `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`, please update your voice name to `en-US-MultiTalker-Ava-Andrew:DragonHDv1.2Neural` & `en-US-MultiTalker-Ava-Steffan:DragonHDv1.2Neural`
+
 ### August 2025 release
 
 #### Public preview of new HD voices
@@ -70,7 +125,7 @@ The following voices are now available for the feature:
 ### May 2025 release
 
 #### Public preview for VoiceLive API
-Azure AI Speech feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
+Azure Speech in Foundry Tools feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
 
 ### April 2025 release
 
@@ -189,7 +244,7 @@ Added 4 more multilingual voices in `en-US` with emotions support.
 | `en-US`           | `DavisMultilingualNeural` (Male)  | `empathetic`, `funny`, `relieved` |
 | `en-US`           | `NancyMultilingualNeural` (Female) | `excited`, `friendly`, `funny`, `relieved`, `shy` |
 
-#### Azure OpenAI in Azure AI Foundry Models turbo voices (Generally Available)
+#### Azure OpenAI in Microsoft Foundry Models turbo voices (Generally Available)
 
 These 6 turbo voices are now generally available:
 
@@ -241,7 +296,7 @@ For more details about how to create a custom avatar, see [create a custom text 
 
 #### Standard voice
 
-Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+Introduced 4 turbo version of Azure OpenAI voices in public preview: `en-US-EchoTurboMultilingualNeural`, `en-US-FableTurboMultilingualNeural`, `en-US-OnyxTurboMultilingualNeural`, and `en-US-ShimmerTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
 
 These voices are now generally available:
 
@@ -273,7 +328,7 @@ These voices are now generally available:
 
 #### Standard high definition (HD) voice
 
-Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure AI Speech high definition (HD) voices?](../../high-definition-voices.md).
+Azure Speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features. For more information, see [What are Azure Speech high definition (HD) voices?](../../high-definition-voices.md).
 
 #### Custom neural voice
 
@@ -493,7 +548,7 @@ Text to speech avatar is now generally available. For more information, see [tex
 
 #### Standard voice
 
-- Introduce 2 turbo version of Azure OpenAI voices in public preview: `en-US-AlloyTurboMultilingualNeural` and `en-US-NovaTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
+- Introduce 2 turbo version of Azure OpenAI voices in public preview: `en-US-AlloyTurboMultilingualNeural` and `en-US-NovaTurboMultilingualNeural`. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure Speech voices. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
   
 - Introduce 2 new multilingual voices in public preview: `zh-CN-YunfanMultilingualNeural` and `zh-CN-YunxiaoMultilingualNeural`. See the [full language and voice list](../../language-support.md?tabs=tts) for more information.
 
@@ -590,12 +645,12 @@ Personal voice is now generally available. With personal voice, you can get AI g
 
 #### OpenAI voices
 
-- The Azure AI Speech service supports OpenAI text to speech voices in the following regions: North Central US and Sweden Central. Like Azure AI Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. For more information, see [What are OpenAI text to speech voices?](../../openai-voices.md).
+- The Azure Speech service supports OpenAI text to speech voices in the following regions: North Central US and Sweden Central. Like Azure Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. For more information, see [What are OpenAI text to speech voices?](../../openai-voices.md).
 
   > [!NOTE]
   > OpenAI text to speech voices are also available in [Azure OpenAI](../../../openai/reference.md#text-to-speech-preview). 
   
-- With this update, we have adjusted the pricing of standard voices with Azure AI Speech. Check the updated pricing [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
+- With this update, we have adjusted the pricing of standard voices with Azure Speech. Check the updated pricing [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
 #### Personal voice
 

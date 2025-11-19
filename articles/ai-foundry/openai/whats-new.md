@@ -1,5 +1,5 @@
 ---
-title: What's new in Azure OpenAI in Azure AI Foundry Models?
+title: What's new in Azure OpenAI in Microsoft Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
@@ -15,7 +15,7 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure OpenAI in Azure AI Foundry Models
+# What's new in Azure OpenAI in Microsoft Foundry Models
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
@@ -71,7 +71,7 @@ This Sora model is now available in the Sweden Central region and East US 2.
 
 ### Realtime API audio model GA
 
-OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
+OpenAI's GPT RealTime and Audio models are now generally available on Microsoft Foundry Direct Models.
 
 Model improvements:
 - Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
@@ -84,7 +84,7 @@ Realtime API service improvements:
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
 
 
-We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
+We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
 
 <!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
 
@@ -113,12 +113,6 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` don't require registration.
 
-
-### New version of model-router
-
-- Model router now supports GPT-5 series models.
-
-- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 
 ## July 2025 
@@ -154,7 +148,7 @@ Spotlighting is a sub-feature of prompt shields that enhances protection against
 
 ### Model router (preview)
 
-Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+Model router for Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## April 2025
 
@@ -213,7 +207,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 
 ### Specify content filtering configurations 
 
-In addition to the deployment-level content filtering configuration, we now also provide a request header that allows you specify your custom configuration at request time for every API call. For more information, see [Use content filters (preview)](./how-to/content-filters.md#specify-a-content-filtering-configuration-at-request-time-preview).
+In addition to the deployment-level content filtering configuration, we now also provide a request header that allows you specify your custom configuration at request time for every API call. For more information, see [Use content filters (preview)](./how-to/content-filters.md#specify-a-content-filtering-configuration-at-request-time).
 
 ## February 2025
 
@@ -262,7 +256,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
-- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
+- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
 For more information, see the [GPT real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 

@@ -16,15 +16,17 @@ items:
     href: ../../how-to/configure-private-link.md
   - name: Network security perimeter (preview)
     href: ../../how-to/add-foundry-to-network-security-perimeter.md
-- name: Configure customer-managed encryption keys
+- name: Use customer-managed encryption keys
   href: ../../concepts/encryption-keys-portal.md
-- name: Azure policies
+- name: Policy management
   items:
-  - name: Built-in policy for model deployment (Preview)
-    href: ../../how-to/model-deployment-policy.md
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+  - name: Built-in policy for model deployment (Preview)
+    href: ../../how-to/model-deployment-policy.md
+  - name: Create custom policy definitions
+    href: ../../how-to/custom-policy-definition.md
 - name: High availability and disaster recovery
   items:
   - name: High availability and resiliency
@@ -37,10 +39,6 @@ items:
       href: ../../how-to/agent-service-platform-disaster-recovery.md
     - name: Recover from resource and data loss
       href: ../../how-to/agent-service-operator-disaster-recovery.md
-  - name: Create custom policy definitions
-    href: ../../how-to/custom-policy-definition.md
-- name: Disaster recovery
-  href: ../../how-to/disaster-recovery.md
 - name: Security baseline
   href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
 - name: Hub Security & Governance

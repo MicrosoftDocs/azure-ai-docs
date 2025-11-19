@@ -5,7 +5,7 @@ description: Learn how to configure Azure Blob Storage with Azure OpenAI Batch
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/29/2025
+ms.date: 11/06/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -86,9 +86,9 @@ In this case we have:
 For this article, we'll create a file named `test.jsonl` and will copy the contents below to the file. You'll need to modify and add your global batch deployment name to each line of the file.
 
 ```json
-{"custom_id": "task-0", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are an AI assistant that helps people find information."}, {"role": "user", "content": "When was Microsoft founded?"}]}}
-{"custom_id": "task-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are an AI assistant that helps people find information."}, {"role": "user", "content": "When was the first XBOX released?"}]}}
-{"custom_id": "task-2", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are an AI assistant that helps people find information."}, {"role": "user", "content": "What is Altair Basic?"}]}}
+{"custom_id": "task-0", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are an AI assistant that helps people find information."}, {"role": "user", "content": "When was Microsoft founded?"}]}}
+{"custom_id": "task-1", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are an AI assistant that helps people find information."}, {"role": "user", "content": "When was the first XBOX released?"}]}}
+{"custom_id": "task-2", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are an AI assistant that helps people find information."}, {"role": "user", "content": "What is Altair Basic?"}]}}
 ```
 
 ### Upload training file
@@ -111,17 +111,16 @@ During the time that we're processing your `jsonl` file as part of the batch job
 ```python
 import os
 from datetime import datetime
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 batch_response = client.batches.create(
@@ -146,7 +145,7 @@ print(batch_response.model_dump_json(indent=2))
 # [REST ](#tab/rest)
 
 ```HTTP
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2025-04-01-preview \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/batches \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{

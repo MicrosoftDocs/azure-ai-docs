@@ -1,4 +1,4 @@
-﻿---
+---
 title: include file
 description: include file
 author: PatrickFarley
@@ -11,21 +11,19 @@ ms.custom: include
 ---
 
 
-## Create a content filter in Azure AI Foundry
+## Create a content filter in Microsoft Foundry
 
-For any model deployment in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
-
-> [!IMPORTANT]
-> The GPT-image-1 model does not support content filtering configuration: only the default content filter is used.
+For any model deployment in [Foundry](https://ai.azure.com/?cid=learnDocs), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
 
 > [!TIP]
-> For guidance with content filters in your Azure AI Foundry project, you can read more at [Azure AI Foundry content filtering](/azure/ai-studio/concepts/content-filtering).
+> For guidance with content filters in your Foundry project, you can read more at [Foundry content filtering](/azure/ai-studio/concepts/content-filtering).
 
 Follow these steps to create a content filter:
 
 [!INCLUDE [tip-left-pane](tip-left-pane.md)]
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to your project. Then select the **Guardrails + controls** page from the left menu and select the **Content filters** tab.
+1. [!INCLUDE [classic-sign-in](classic-sign-in.md)]
+1. Navigate to your project. Then select the **Guardrails + controls** page from the left menu and select the **Content filters** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the button to create a new content filter." lightbox="../media/content-safety/content-filter/create-content-filter.png":::
 1. Select **+ Create content filter**.
@@ -51,7 +49,7 @@ Follow these steps to create a content filter:
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter-deployment.png" alt-text="Screenshot of the option to select a deployment when creating a content filter." lightbox="../media/content-safety/content-filter/create-content-filter-deployment.png":::
 
-    Content filtering configurations are created at the hub level in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Learn more about configurability in the [Azure OpenAI in Azure AI Foundry Models documentation](/azure/ai-foundry/openai/how-to/content-filters).
+    Content filtering configurations are created at the hub level in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Learn more about configurability in the [Azure OpenAI in Foundry Models documentation](/azure/ai-foundry/openai/how-to/content-filters).
 
 
 1. On the **Review** page, review the settings and then select **Create filter**.
@@ -66,7 +64,7 @@ The filter creation process gives you the option to apply the filter to the depl
 
 Follow these steps to apply a content filter to a deployment:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select a project.
+1. Go to [Foundry](https://ai.azure.com/?cid=learnDocs) and select a project.
 1. Select **Models + endpoints** on the left pane and choose one of your deployments, then select **Edit**.
 
     :::image type="content" source="../media/content-safety/content-filter/deployment-edit.png" alt-text="Screenshot of the button to edit a deployment." lightbox="../media/content-safety/content-filter/deployment-edit.png":::
