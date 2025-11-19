@@ -26,7 +26,7 @@ This article focuses on the indexing automation approaches, built on this founda
 
 + [Azure Storage blobs secured using role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
-+ [An Azure AI Search indexer for blobs](search-how-to-index-azure-blob-storage.md) or a [Blob knowledge source](agentic-knowledge-source-how-to-blob.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
++ [Azure Blob indexer](#configure-indexer-based-indexing) or a [Blob knowledge source](#configure-a-knowledge-source) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
 + [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. 
 
@@ -46,11 +46,7 @@ This article focuses on the indexing automation approaches, built on this founda
 
 ## Configure Blob storage
 
-If you're using a knowledge source, the knowledge source generates an indexing pipeline with the same components (indexer, data source, and index). RBAC metadata scopes are detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want permission inheritance in your indexed content.
-
-Otherwise, if you're using an indexer, configure an indexer, data source, and index to pull RBAC metadata scopes  from Azure blobs.
-
-First, verify your blob container uses role-based access.
+Verify your blob container uses role-based access.
 
 1. Sign in to the Azure portal and find your storage account.
 
@@ -73,9 +69,59 @@ Recall that the search service must have:
 
 For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-## Configure indexing
+## Configure a knowledge source
 
-In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from blobs.
+If you're using a knowledge source, definitions in the knowledge source are used to generate a full indexing pipeline (indexer, data source, and index). RBAC scope is detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want permission inheritance in your indexed content.
+
+Key points about the configuration that make it work for this scenario:
+
++ `isADLSGen2` is set to false, which means the data source is Azure Blob storage.
++ `ingestionPermissionOptions` specifies `rbacScope`.
+
+```http
+# Create / Update Azure Blob Knowledge Source
+###
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+api-key: {{key}}
+Content-Type: application/json
+ 
+{
+    "name": "azure-blob-ks",
+    "kind": "azureBlob",
+    "description": "A sample azure blob knowledge source",
+    "azureBlobParameters": {
+        "connectionString": "{{blob-connection-string}}",
+        "containerName": "blobcontainer",
+        "folderPath": null,
+        "isADLSGen2": false,
+        "ingestionParameters": {
+            "identity": null,
+            "embeddingModel": {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "deploymentId": "text-embedding-3-large",
+                    "modelName": "text-embedding-3-large",
+                    "resourceUri": "{{aoai-endpoint}}",
+                    "apiKey": "{{aoai-key}}"
+                }
+            },
+            "chatCompletionModel": null,
+            "disableImageVerbalization": true,
+            "ingestionSchedule": null,
+            "ingestionPermissionOptions": ["rbacScope"],
+            "contentExtractionMode": "minimal",
+            "aiServices": {
+                "uri": "{{ai-endpoint}}",
+                "apiKey": "{{ai-key}}"
+            }
+        }
+    }
+}
+```
+
+## Configure indexer-based indexing
+
+If you're using an indexer, configure it, the data source, and the index to pull permission metadata from blobs.
 
 ### Create the data source
 

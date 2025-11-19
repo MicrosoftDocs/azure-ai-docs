@@ -139,7 +139,7 @@ If you're testing locally, you should have the same role assignments. For more i
 
 ## Configure a knowledge source
 
-If you're using a knowledge source, the knowledge source generates an indexing pipeline with the same components (indexer, data source, and index). ACL assignments are detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want ACL inheritance in your indexed content.
+If you're using a knowledge source, definitions in the knowledge source are used to generate a full indexing pipeline (indexer, data source, and index). ACL assignments are detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want permission inheritance in your indexed content.
 
 Key points about the configuration that make it work for this scenario:
 
@@ -193,7 +193,7 @@ Content-Type: application/json
 
 ## Configure indexer-based indexing
 
-If you're using an indexer, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
+If you're using an indexer, configure it, the data source, and the index to pull permission metadata from ADLS Gen2 blobs.
 
 ### Create the data source
 
