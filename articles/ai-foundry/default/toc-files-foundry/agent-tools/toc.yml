@@ -21,6 +21,22 @@ items:
   href: ../../agents/how-to/tools/ai-search.md
 - name: Azure Speech in Foundry Tools
   href: ../../../agents/how-to/tools/azure-ai-speech.md
+- name: Azure Language in Foundry Tools
+  items:
+    - name: Azure Language tools and agents
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Try CLU multi-turn conversations
+      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Detect Personally Identifiable Information (PII)
+      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Try Azure Language detection
+      href: /azure/ai-services/language-service/language-detection/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+- name: Azure Translator in Foundry Tools
+  items:
+    - name: Azure text translation
+      href: /azure/ai-services/translator/text-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Azure document translation
+      href: /azure/ai-services/translator/document-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Code interpreter
@@ -50,7 +66,7 @@ items:
 - name: Foundry IQ (preview)
   href: ../../agents/how-to/tools/knowledge-retrieval.md
 - name: SharePoint (preview)
-  href: ../../agents/how-to/tools/sharepoint.md 
+  href: ../../agents/how-to/tools/sharepoint.md
 - name: Web search (preview)
   href: ../../agents/how-to/tools/web-search.md
 

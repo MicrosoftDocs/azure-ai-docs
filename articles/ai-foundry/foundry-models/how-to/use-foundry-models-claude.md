@@ -31,9 +31,6 @@ Foundry supports Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models
 
 For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
 
-> [!NOTE]
-> Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
-
 #### Claude Sonnet 4.5
 
 Claude Sonnet 4.5 is Anthropic's most capable model to date for building real-world agents and handling complex, long-horizon tasks. It balances the right speed and cost for high-volume use cases. It's also Anthropic's most accurate model for computer use, enabling developers to direct Claude to use computers the way people do.
@@ -48,7 +45,7 @@ Claude Opus 4.1 is an industry leader for coding. It delivers sustained performa
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) creain one of the supported regions: **East US2** and **Sweden Central**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** and **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](configure-marketplace.md).
 
 ## Deploy Claude models
@@ -59,9 +56,14 @@ After deployment, you can use the [Foundry playground](../../concepts/concept-pl
 
 ## Work with Claude models
 
-Once deployed, you can interact with Claude models by using the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and [Claude's Messages API](https://docs.claude.com/en/api/messages).
+Once deployed, you can interact with Claude models by using the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
 
-The following examples show how to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
+- [Messages API](https://docs.claude.com/en/api/messages) to send a structured list of input messages with text and/or image content, and the model generates the next message in the conversation.
+- [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
+- [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
+- [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
+
+The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
@@ -88,13 +90,13 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     export AZURE_CLIENT_SECRET="<AZURE_CLIENT_SECRET>"
     ```
 
-1. **Install dependencies:** Install the Anthropic SDK using pip (requires: Python >=3.8)
+1. **Install dependencies:** Install the Anthropic SDK by using pip (requires: Python >=3.8).
 
     ```bash
     pip install -U "anthropic"
     ```
 
-1. **Run a basic code sample:** This sample does the following tasks:
+1. **Run a basic code sample:** This sample completes the following tasks:
 
     1. Creates a client with the Anthropic SDK, using Microsoft Entra ID authentication.
     1. Makes a basic call to the Messages API. The call is synchronous.
@@ -133,15 +135,15 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
-1. **Install dependencies:** Install the Anthropic SDK using pip (requires: Python >=3.8):
+1. **Install dependencies:** Install the Anthropic SDK by using pip (requires: Python >=3.8):
 
     ```bash
     pip install -U "anthropic"
     ```
 
-1. **Run a basic code sample:** This sample does the following tasks:
+1. **Run a basic code sample:** This sample completes the following tasks:
 
-    1. Creates a client with the Anthropic SDK, by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
+    1. Creates a client with the Anthropic SDK by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
     1. Makes a basic call to the Messages API. The call is synchronous.
 
     ```python
@@ -273,7 +275,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
 
 1. **Run a basic code sample.** This sample completes the following tasks:
 
-    1. Creates a client with the Anthropic SDK, by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
+    1. Creates a client with the Anthropic SDK by passing your API key to the SDK's configuration. This authentication method lets you interact seamlessly with the service.
     1. Makes a basic call to the Messages API. The call is synchronous.
 
     ```javascript
@@ -329,7 +331,7 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
     set AZURE_AUTH_TOKEN = <your-entra-id-key>
     ```
 
-1. Run the following cURL command. For cURL, you use your deployment's target URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages`.
+1. Run the following cURL command. For cURL, use your deployment's target URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages`.
 
     ```sh
     curl -X POST https://<resource-name>.services.ai.azure.com/anthropic/v1/messages \
@@ -399,6 +401,35 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ---
 
+## Agent support
+
+- Claude models are supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
+- The [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
+- You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
+
+## Claude advanced features and capabilities
+
+Claude in Foundry Models supports advanced features and capabilities. 
+**Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. **Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. 
+
+Some of the **Core capabilities** that Foundry supports are:
+
+- **1 million token context window:** An extended context window.
+- **Agent skills:** Extend Claude's capabilities with Skills.
+- **Citations:** Ground Claude's responses in source documents.
+- **Context editing:** Automatically manage conversation context with configurable strategies.
+- **Extended thinking:** Enhanced reasoning capabilities for complex tasks.
+- **PDF support:** Process and analyze text and visual content from PDF documents.
+- **Prompt caching:** Provide Claude with more background knowledge and example outputs to reduce costs and latency.
+
+Some of the **Tools** that Foundry supports are:
+
+- **MCP connector:** Connect to remote MCP servers directly from the Messages API without a separate MCP client.
+- **Memory:** Store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions.
+- **Web fetch:** Retrieve full content from specified web pages and PDF documents for in-depth analysis.
+
+For a full list of the supported capabilities and tools, see [Claude's features overview](https://docs.claude.com/en/docs/build-with-claude/overview).
+
 ## API quotas and limits
 
 Claude models in Foundry have the following rate limits:
@@ -409,7 +440,7 @@ Claude models in Foundry have the following rate limits:
 | Claude Haiku 4.5 | 450,000 | 1,000 |
 | Claude Opus 4.1 | 450,000 | 1,000 |
 
-To increase your quota beyond the default limits, submit a request through the [quota increase request form](../quotas-limits.md#request-increases-to-the-default-limits).
+To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
 ### Rate limit best practices
 
@@ -460,3 +491,4 @@ Choose the appropriate Claude model based on your specific requirements:
 - [Responsible AI for Foundry](../../responsible-ai/openai/overview.md)
 - [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
+- [Claude Docs: Claude in Microsoft Foundry ](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)

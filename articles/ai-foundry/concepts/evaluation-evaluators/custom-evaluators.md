@@ -16,9 +16,11 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Custom evaluators
+# Custom evaluators (preview)
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 To start evaluating your application's generations, built-in evaluators are great out of the box. To cater to your evaluation needs, you can build your own code-based or prompt-based evaluator.
 

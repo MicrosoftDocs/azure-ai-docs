@@ -11,9 +11,11 @@ ms.date: 11/18/2025
 ms.topic: how-to
 ---
 
-# How to set up tracing in Microsoft Foundry
+# How to set up tracing in Microsoft Foundry (preview)
 
-Tracing is a powerful tool to understand how your agent works. It helps you identify issues like latency, runtime exceptions, incorrect prompts, poor retrieval, and more.
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+
+Tracing (preview) is a powerful tool to understand how your agent works. It helps you identify issues like latency, runtime exceptions, incorrect prompts, poor retrieval, and more.
 
 ## Enable tracing in Foundry project
 

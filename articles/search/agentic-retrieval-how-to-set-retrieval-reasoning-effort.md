@@ -38,7 +38,7 @@ Levels of reasoning effort include:
 
 To establish the default behavior, set the property in the knowledge base.
 
-1. Use [Create or Update Knowledge Base](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to set the `retrievalReasoningEffort`.
+1. Use [Create or Update Knowledge Base](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to set the `retrievalReasoningEffort`.
 
 1. Add the `retrievalReasoningEffort` property. The following JSON shows the syntax. For more information about knowledge bases, see [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 

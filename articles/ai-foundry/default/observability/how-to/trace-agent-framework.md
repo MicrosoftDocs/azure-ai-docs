@@ -10,7 +10,9 @@ ms.date: 11/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
-# Tracing integrations
+# Tracing integrations (preview)
+
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 Microsoft Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
