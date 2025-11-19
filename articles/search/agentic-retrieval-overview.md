@@ -31,7 +31,7 @@ Here's what it does:
 
 This high-performance pipeline helps you generate high quality grounding data (or an answer) for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a new [Knowledge Base object](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a new [Knowledge Base object](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true) in the 2025-11-01-preview and in Azure SDK preview packages that provide the feature. A knowledge base's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -136,7 +136,7 @@ Currently, Azure portal support for agentic retrieval is limited to the 2025-08-
 ### [**REST API references**](#tab/rest-api-references)
 
 + [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
-+ [Knowledge Bases](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
++ [Knowledge Bases](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 + [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 ### [**Demos**](#tab/demos)
