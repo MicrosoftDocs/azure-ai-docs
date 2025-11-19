@@ -24,7 +24,7 @@ This article focuses on the indexing automation approaches, built on this founda
 
 + [The ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model) that provides [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [Role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
-+ [An Azure AI Search indexer for ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) or [ADLS Gen2 blob knowledge sources](agentic-knowledge-source-how-to-blob.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
++ [An ADLS Gen2 indexer](#configure-adls-gen2) or [ADLS Gen2 blob knowledge source](#configure-a-knowledge-source) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
 + [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up [queries that respect the permission filters](search-query-access-control-rbac-enforcement.md), use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
@@ -137,11 +137,63 @@ For indexing, the client issuing the API call must have **Search Service Contrib
 
 If you're testing locally, you should have the same role assignments. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-## Configure indexing
+## Configure a knowledge source
 
 If you're using a knowledge source, the knowledge source generates an indexing pipeline with the same components (indexer, data source, and index). ACL assignments are detected and automatically included in the generated index. There's no need to modify any of the generated objects if you want ACL inheritance in your indexed content.
 
-Otherwise, if you're using an indexer, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
+Key points about the configuration that make it work for this scenario:
+
++ `isADLSGen2` is set to true, meeting the data source requirement for this scenario.
++ `ingestionPermissionOptions` specifies user and group IDs.
++ `disableImageVerbalization` is set to true because the GenAI Prompt skill that backs this experience isn't currently supported in ADLS Gen2 permission inheritance.
+
+```http
+# Create / Update Azure Blob Knowledge Source
+###
+PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+api-key: {{key}}
+Content-Type: application/json
+ 
+{
+    "name": "azure-blob-ks",
+    "kind": "azureBlob",
+    "description": "A sample azure blob knowledge source",
+    "azureBlobParameters": {
+        "connectionString": "{{blob-connection-string}}",
+        "containerName": "blobcontainer",
+        "folderPath": null,
+        "isADLSGen2": true,
+        "ingestionParameters": {
+            "identity": null,
+            "embeddingModel": {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "deploymentId": "text-embedding-3-large",
+                    "modelName": "text-embedding-3-large",
+                    "resourceUri": "{{aoai-endpoint}}",
+                    "apiKey": "{{aoai-key}}"
+                }
+            },
+            "chatCompletionModel": null,
+            "disableImageVerbalization": true,
+            "ingestionSchedule": null,
+             "ingestionPermissionOptions": [
+                "userIds","groupIds"
+                           ],
+            "contentExtractionMode": "minimal",
+            "aiServices": {
+                "uri": "{{ai-endpoint}}",
+                "apiKey": "{{ai-key}}"
+            }
+        }
+    }
+}
+###
+```
+
+## Configure indexer-based indexing
+
+If you're using an indexer, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
 
 ### Create the data source
 
