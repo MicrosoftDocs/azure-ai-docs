@@ -58,9 +58,9 @@ Customers can learn more about these safeguards and how to customize them here:
 - Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
 - Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
-Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations (i.e. applying image edits) to images containing minors.
+### Special considerations for generating images of minors
 
-If you're approved, such images will not be automatically blocked by the system.
+Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
 
 
 ## Call the image generation API
