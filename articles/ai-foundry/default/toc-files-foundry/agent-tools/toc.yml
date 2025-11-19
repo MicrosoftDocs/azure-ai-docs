@@ -25,15 +25,17 @@ items:
   items:
     - name: Azure Language tools and agents
       href: /azure/ai-services/language-service/concepts/foundry-tools-agents?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
-    - name: CLU multi-turn conversations
-      href: /azure/ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
-    - name: Redact Personal Identifiable Information (PII) from text
-      href: /azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Try CLU multi-turn conversations
+      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Detect Personally Identifiable Information (PII)
+      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    - name: Try Azure Language detection
+      href: /azure/ai-services/language-service/language-detection/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Azure Translator in Foundry Tools
   items:
-    - name: Text translation
+    - name: Azure text translation
       href: /azure/ai-services/translator/text-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
-    - name: Document translation
+    - name: Azure document translation
       href: /azure/ai-services/translator/document-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md

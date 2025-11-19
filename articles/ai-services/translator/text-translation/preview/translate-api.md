@@ -34,22 +34,45 @@ The Text translation API enables you to translate your source language text into
 
 ***Windows***
 
-```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview"^
- -H "Ocp-Apim-Subscription-Key:<your-key>" ^
- -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
- -H "Content-Type: application/json" ^
- -d "<your-request-body>"
-
+```cmd
+curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview' ^
+  --header 'content-type: application/json' ^
+  --header 'ocp-apim-subscription-key: <your-resource-key>' ^
+  --header 'ocp-apim-subscription-region: <your-resource-region>' ^
+  --data '{
+  "inputs": [
+    {
+      "text": "I would really like to drive your car around the block a few times.",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es"
+        }
+      ]
+    }
+  ]
+}'
 ```
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview" \
--H "Ocp-Apim-Subscription-Key:<your-key>" \
--H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
--H "Content-Type: application/json" \
--d "<your-request-body>"
+curl -X POST 'https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview' \
+  --header 'content-type: application/json' \
+  --header 'ocp-apim-subscription-key: <your-resource-key>' \
+  --header 'ocp-apim-subscription-region: <your-resource-region>' \
+  --data '{
+  "inputs": [
+    {
+      "text": "I would really like to drive your car around the block a few times.",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es"
+        }
+      ]
+    }
+  ]
+}'
 ```
 
 
@@ -61,21 +84,45 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-versio
 
 ***Windows***
 
-```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate?api-version=2025-10-01-preview"^
-    -H "Ocp-Apim-Subscription-Key:<your-key>"^
-    -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
-    -H "Content-Type: application/json"^
-    -d "<your-request-body>"
+```cmd
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-10-01-preview' ^
+  --header 'content-type: application/json' ^
+  --header 'ocp-apim-subscription-key: <your-resource-key>' ^
+  --header 'ocp-apim-subscription-region: <your-resource-region>' ^
+  --data '{
+  "inputs": [
+    {
+      "text": "Let us know if you require additional information to proceed with the request",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es"
+        }
+      ]
+    }
+  ]
+}'
 ```
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate?api-version=2025-10-01-preview" \
-    -H "Ocp-Apim-Subscription-Key:<your-key>" \
-    -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
-    -H "Content-Type: application/json" \
-    -d "<your-request-body>"
+curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-10-01-preview' \
+  --header 'content-type: application/json' \
+  --header 'ocp-apim-subscription-key: <your-resource-key>' \
+  --header 'ocp-apim-subscription-region: <your-resource-region>' \
+  --data '{
+  "inputs": [
+    {
+      "text": "Let us know if you require additional information to proceed with the request",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es"
+        }
+      ]
+    }
+  ]
+}'
 ```
 
 ### Private endpoint
@@ -143,17 +190,17 @@ The request body is formatted as a JSON array named `inputs`, where each element
 
 ```json
 {
- "inputs": [
-      {
-        "text": "I would really like to drive your car around the block a few times.",
-        "language": "en",
-        "targets": [
-          {
-            "language": "es"
-          }
-        ]
-      }
-    ]
+  "inputs": [
+    {
+      "text": "I would really like to drive your car around the block a few times.",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es"
+        }
+      ]
+    }
+  ]
 }
 ```
 For information on character and array limits, _see_ [Request limits](../../service-limits.md#character-and-array-limits-per-request).
