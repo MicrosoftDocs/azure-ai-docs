@@ -119,13 +119,6 @@ A Foundry project with ingress Public Network Access disabled can only support a
 
 The following sections list the supported models for managed compute deployment with pay-as-you-go billing, grouped by collection.
 
-### Paige AI
-
-| Model | Task |
-|--|--|
-| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
-| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
-
 ### Cohere
 
 | Model | Task |
@@ -133,6 +126,12 @@ The following sections list the supported models for managed compute deployment 
 | [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere/?cid=learnDocs) | Chat completion |
 | [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | Embeddings |
 | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
+
+### Mercury
+
+| Model | Task |
+|--|--|
+| [Mercury](https://ai.azure.com/explore/models/Mercury/version/1/registry/azureml-inceptionlabs/?cid=learnDocs) | Chat completion, Text generation, Summarization |
 
 ### NVIDIA
 
@@ -198,6 +197,13 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. To learn more about security scanning, see the [security page](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
 
 You can refer to the _last updated time_ for the NIM on the right pane of the model's overview page. You can redeploy to consume the latest version of NIM from NVIDIA on Foundry. 
+
+### Paige AI
+
+| Model | Task |
+|--|--|
+| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
+| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 
 ### Voyage AI
 
