@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 11/14/2025
+ms.date: 11/19/2025
 author: aahill
 ms.author: aahi
 ai-usage: ai-assisted
@@ -182,7 +182,7 @@ The GitHub repo for an agent you want to host on foundry contains the applicatio
     azd up
     ```
     
-This command abstracts the underlying execution of commands `azd infra generate`, `azd provision` and `azd deploy`, and creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. See the [hosted agent management section of this document](https://github.com/aahill/azure-ai-docs-pr/edit/lifecycle-doc/articles/ai-foundry/default/agents/concepts/hosted-agents.md#manage-hosted-agents) to learn more on how you can do non-versioned updates, start, stop, and delete your hosted agent deployments and versions. 
+This command abstracts the underlying execution of commands `azd infra generate`, `azd provision` and `azd deploy`, and creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. See the [management section of the hosted agent article](#manage-hosted-agents) to learn more on how you can do non-versioned updates, start, stop, and delete your hosted agent deployments and versions. 
 
 Make sure you have the [role based access](/azure/role-based-access-control/built-in-roles) enabled to provision the services and models `azd` is provisioning for you.
 
