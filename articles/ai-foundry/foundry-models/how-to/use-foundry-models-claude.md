@@ -409,28 +409,26 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Claude advanced features and capabilities
 
-Claude in Foundry Models supports advanced features and capabilities. For more details about the advanced features and capabilities listed, see [Features overview](https://docs.claude.com/en/docs/build-with-claude/overview).
+Claude in Foundry Models supports advanced features and capabilities. 
+**Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. **Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. 
 
-**Core capabilities** enhance Claude's fundamental abilities for processing, analyzing, and generating content across various formats and use cases. These capabilities are listed in the following table.
+Some of the **Core capabilities** that Foundry supports are:
 
-| **Feature** | **Description** |
-|--|--|
-| **1 million token context window** | An extended context window that allows you to process much larger documents, maintain longer conversations, and work with more extensive codebases. |
-| **Agent skills** | Extend Claude's capabilities with Skills. Use pre-built Skills (PowerPoint, Excel, Word, PDF) or create custom Skills with instructions and scripts. Skills use progressive disclosure to efficiently manage context. |
-| **Citations** | Ground Claude's responses in source documents. With Citations, Claude can provide detailed references to the exact sentences and passages it uses to generate responses, leading to more verifiable, trustworthy outputs. |
-| **Context editing** | Automatically manage conversation context with configurable strategies. Supports clearing tool results when approaching token limits and managing thinking blocks in extended thinking conversations. |
-| **Extended thinking** | Enhanced reasoning capabilities for complex tasks, providing transparency into Claude's step-by-step thought process before delivering its final answer. |
-| **PDF support** | Process and analyze text and visual content from PDF documents. |
-| **Prompt caching** | Provide Claude with more background knowledge and example outputs to reduce costs and latency. |
+- **1 million token context window:** An extended context window.
+- **Agent skills:** Extend Claude's capabilities with Skills.
+- **Citations:** Ground Claude's responses in source documents.
+- **Context editing:** Automatically manage conversation context with configurable strategies.
+- **Extended thinking:** Enhanced reasoning capabilities for complex tasks.
+- **PDF support:** Process and analyze text and visual content from PDF documents.
+- **Prompt caching:** Provide Claude with more background knowledge and example outputs to reduce costs and latency.
 
-**Tools** enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces. These tools are listed in the following table.
+Some of the **Tools** that Foundry supports are:
 
-| **Tool** | **Description** |
-|--|--|
-| **MCP connector** | Enables you to connect to remote MCP servers directly from the Messages API without a separate MCP client. |
-| **Memory** | Enables Claude to store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions. |
-| **Web fetch** | Retrieves full content from specified web pages and PDF documents for in-depth analysis. |
+- **MCP connector:** Connect to remote MCP servers directly from the Messages API without a separate MCP client.
+- **Memory:** Store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions.
+- **Web fetch:** Retrieve full content from specified web pages and PDF documents for in-depth analysis.
 
+For a full list of the supported capabilities and tools, see [Claude's features overview](https://docs.claude.com/en/docs/build-with-claude/overview).
 
 ## API quotas and limits
 
