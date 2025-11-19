@@ -1,7 +1,7 @@
 ---
-title: "Customize a model with Azure OpenAI in Microsoft Foundry Models and the Python SDK"
-titleSuffix: Azure OpenAI
-description: Learn how to create your own customized model with Azure OpenAI by using the Python SDK.
+title: "Customize a Microsoft Foundry model with the Foundry Python SDK"
+titleSuffix: Microsoft Foundry
+description: Learn how to create your own customized model with Microsoft Foundry by using the Foundry Python SDK.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -15,23 +15,70 @@ ms.custom:
 
 ## Prerequisites
 
-- Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
+- Read the [When to use AI Foundry fine-tuning guide](../concepts/fine-tuning-considerations.md).
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- The following Python libraries: `os`, `json`, `requests`, `openai`.
-- The OpenAI Python library.
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
+- An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
+- The following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
+- Fine-tuning access requires the **Azure AI User** role.
+- If you don't already have access to view quota and deploy models in Microsoft Foundry portal, you require [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
-Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
+
+## Prepare your data
+
+Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
+
+The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+
+It's recommended to use the instructions and prompts that you found worked best in every training example. This helps you get the best results, especially if you have fewer than a hundred examples.
+
+If you don't have an existing dataset prepared, you can leverage the [data generation](../../default/fine-tuning/data-generation.md) capabilities to create a new one.
+
+### Example file format
+
+```json
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who discovered Antarctica?"}, {"role": "assistant", "content": "Some chaps named Fabian Gottlieb von Bellingshausen and Mikhail Lazarev, as if they don't teach that in every school!"}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the biggest ocean?"}, {"role": "assistant", "content": "The Pacific Ocean. It's not like it's a small pond or anything."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the largest planet?"}, {"role": "assistant", "content": "It's called Jupiter, you might have heard of it...or not."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who painted the Mona Lisa?"}, {"role": "assistant", "content": "Oh, some obscure artist named Leonardo da Vinci. Not that he is famous or anything."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the boiling point of water?"}, {"role": "assistant", "content": "Exciting fact of the day: it's 100 degrees Celsius. Life-changing, isn't it?"}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'The Odyssey'?"}, {"role": "assistant", "content": "Oh, just some poet named Homer. Nothing special, really."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the largest mammal?"}, {"role": "assistant", "content": "Blue Whale. Quite a big fish isn't it? Oh wait, it's not a fish!"}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the highest mountain peak?"}, {"role": "assistant", "content": "Everest. Brace yourself, it's not a walk in the park."}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who invented the telephone?"}, {"role": "assistant", "content": "A guy named Alexander Graham Bell. Bet you didn't guess that one!"}]}
+{"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the distance from Earth to the Sun?"}, {"role": "assistant", "content": "About 93 million miles. Just a quick drive, really."}]}
+```
+### Multi-turn chat file format
+
+Multiple turns of a conversation in a single line of your jsonl training file is also supported. To skip fine-tuning on specific assistant messages add the optional `weight` key value pair. Currently `weight` can be set to 0 or 1.  
+
+```json
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
+```
+
+### Chat completions with vision
+
+```json
+{"messages": [{"role": "user", "content": [{"type": "text", "text": "What's in this image?"}, {"type": "image_url", "image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}, {"role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape."}]}
+```
+
+In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
+
+### Datasets size consideration
+
+The more training examples you have, the better. Fine tuning jobs don't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. It's a best practice to provide hundreds, if not thousands, of training examples to be successful. It's recommended to start with 50 well-crafted training data.
+
+In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
 ## Review the workflow for the Python SDK
 
-Take a moment to review the fine-tuning workflow for using the Python SDK with Azure OpenAI:
+Take a moment to review the fine-tuning workflow for using the Python SDK with Microsoft Foundry:
 
 1. Prepare your training and validation data.
 1. Select a base model.
@@ -48,7 +95,7 @@ Your training data and validation data sets consist of input and output examples
 
 The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
 
-If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024-07-18` please refer to the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md)
+If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024-07-18` please refer to the [Microsoft Foundry fine-tuning tutorial](../tutorials/fine-tune.md)
 
 ### Example file format
 
@@ -70,7 +117,7 @@ If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024
 Multiple turns of a conversation in a single line of your jsonl training file is also supported. To skip fine-tuning on specific assistant messages add the optional `weight` key value pair. Currently `weight` can be set to 0 or 1.  
 
 ```json
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the biggest city in France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -104,34 +151,27 @@ For large data files, we recommend that you import from an Azure Blob  store. La
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs.
 
 ```python
-# Upload fine-tuning files
-
 import os
-from openai import OpenAI
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
 
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
+# Load the OpenAI client using the Foundry SDK
+client = AIProjectClient(
+    credential=DefaultAzureCredential(),
+    endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+).get_openai_client()
 
+# Upload the training and validation dataset files to Microsoft Foundry with the SDK.
 training_file_name = 'training_set.jsonl'
 validation_file_name = 'validation_set.jsonl'
 
-# Upload the training and validation dataset files to Azure OpenAI with the SDK.
-
-training_response = client.files.create(
-    file=open(training_file_name, "rb"), purpose="fine-tune"
-)
+training_response = client.files.create(file=open(training_file_name, "rb"), purpose="fine-tune")
+validation_response = client.files.create(file=open(validation_file_name, "rb"), purpose="fine-tune")
 training_file_id = training_response.id
-
-validation_response = client.files.create(
-    file=open(validation_file_name, "rb"), purpose="fine-tune"
-)
 validation_file_id = validation_response.id
 
 print("Training file ID:", training_file_id)
 print("Validation file ID:", validation_file_id)
-
 ```
 
 ## Create a customized model
@@ -145,8 +185,9 @@ response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14", # Enter base model name.
-    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Azure OpenAI the model cannot contain dot/period characters.
-    seed=105, # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
+    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Microsoft Foundry the model cannot contain dot/period characters.
+    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
+    extra_body={ "trainingType": "GlobalStandard" } # Change this to your preferred training type. Other options are `Standard` and `Developer`.
 )
 
 job_id = response.id
@@ -155,24 +196,11 @@ job_id = response.id
 # The fine-tuning job will take some time to start and complete.
 
 print("Job ID:", response.id)
-print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
-If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument:
-
-```python
-response = client.fine_tuning.jobs.create(
-    training_file=training_file_id,
-    validation_file=validation_file_id,
-    model="gpt-4.1-2025-04-14",
-    suffix="my-model",
-    seed=105,
-    extra_body={ "trainingType": "globalstandard" }
-)
-
-job_id = response.id
-```
+> [!NOTE]
+> We recommend using Global Standard tier for the training type, as it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and leverages global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md#fine-tuning-models) that supports Standard tier training.
 
 You can also pass additional optional parameters like hyperparameters to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters. 
 
@@ -188,13 +216,6 @@ The current supported hyperparameters for Supervised Fine-Tuning are:
 To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of the `method`:
 
 ```python
-from openai import OpenAI
-
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-
 client.fine_tuning.jobs.create(
   training_file="file-abc123", 
   model="gpt-4.1-2025-04-14",
@@ -207,7 +228,8 @@ client.fine_tuning.jobs.create(
         "n_epochs": 2
       }
     }
-  }
+  },
+  extra_body={ "trainingType": "GlobalStandard" }
 )
 ```
 
@@ -239,7 +261,7 @@ print(response.model_dump_json(indent=2))
 
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. The final epoch will be represented by your fine-tuned model, the previous two epochs will be available as checkpoints.
 
-You can run the list checkpoints command to retrieve the list of checkpoints associated with an individual fine-tuning job. You might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
+You can run the list checkpoints command to retrieve the list of checkpoints associated with an individual fine-tuning job. 
 
 ```python
 response = client.fine_tuning.jobs.checkpoints.list(job_id)
@@ -250,7 +272,7 @@ print(response.model_dump_json(indent=2))
 
 ## Analyze your customized model
 
-Azure OpenAI attaches a result file named _results.csv_ to each fine-tune job after it completes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model, and you can use the Python SDK to retrieve the file ID and download the result file for analysis.
+Microsoft Foundry attaches a result file named _results.csv_ to each fine-tune job after it completes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model, and you can use the Python SDK to retrieve the file ID and download the result file for analysis.
 
 The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model, and then uses the Python SDK to download the file to your current working directory for analysis.
 
@@ -283,7 +305,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Microsoft Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that can indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
@@ -298,9 +320,9 @@ Unlike the previous SDK commands, deployment must be done using the control plan
 |variable      | Definition|
 |--------------|-----------|
 | token        | There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
-| subscription | The subscription ID for the associated Azure OpenAI resource. |
-| resource_group | The resource group name for your Azure OpenAI resource. |
-| resource_name | The Azure OpenAI resource name. |
+| subscription | The subscription ID for the associated Microsoft Foundry resource. |
+| resource_group | The resource group name for your Microsoft Foundry resource. |
+| resource_name | The Microsoft Foundry resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
 | fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
@@ -353,20 +375,11 @@ Once you have created a fine-tuned model you might want to continue to refine th
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-)
-
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
     model="gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7"
 )
-
 job_id = response.id
 
 # You can use the job ID to monitor the status of the fine-tuning job.
@@ -375,63 +388,8 @@ job_id = response.id
 print("Job ID:", response.id)
 print("Status:", response.id)
 print(response.model_dump_json(indent=2))
-
 ```
 
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
+We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. A string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
-If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
-
-## Clean up your deployments, customized models, and training files
-
-When you're done with your customized model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if needed. 
-
-### Delete your model deployment
-
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
-
-You can use various methods to delete the deployment for your customized model:
-
-- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
-- The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
-
-### Delete your customized model
-
-Similarly, you can use various methods to delete your customized model:
-
-- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
-
-> [!NOTE]
-> You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
-
-### Delete your training files
-
-You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
-
-- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
-- The [REST APIs](/rest/api/azureopenai/files/delete)
-- The Python SDK
-
-The following Python example uses the Python SDK to delete the training, validation, and result files for your customized model:
-
-```python
-print('Checking for existing uploaded files.')
-results = []
-
-# Get the complete list of uploaded files in our subscription.
-files = openai.File.list().data
-print(f'Found {len(files)} total uploaded files in the subscription.')
-
-# Enumerate all uploaded files, extracting the file IDs for the
-# files with file names that match your training dataset file and
-# validation dataset file names.
-for item in files:
-    if item["filename"] in [training_file_name, validation_file_name, result_file_name]:
-        results.append(item["id"])
-print(f'Found {len(results)} already uploaded files that match our files')
-
-# Enumerate the file IDs for our files and delete each file.
-print(f'Deleting already uploaded files.')
-for id in results:
-    openai.File.delete(sid = id)
-```
+If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Microsoft Foundry.

@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> Code uses **Agents v2 API (preview)** and is incompatible with Agents v1. [Switch to (classic)](?view=foundry-classic&preserve-view=true) for the Agents v1 API version.
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview).
