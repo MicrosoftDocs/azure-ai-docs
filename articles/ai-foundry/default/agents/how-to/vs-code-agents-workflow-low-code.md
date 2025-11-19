@@ -65,9 +65,9 @@ To test the workflow in the VS Code extension playground, follow these steps:
 1. Select the version of the workflow you want to test.
 1. Right-click the workflow and select **Open in Local Agent Playground**.
     Alternatively, select the **Local Agent Playground** link in the **Tools** subsection, and then select your agent from the dropdown list.
-    This step opens the **Local Agent Playground** pane and starts a thread with your agent so that you can send messages.
+    This step opens the **Local Agent Playground** pane and starts a conversation with your agent so that you can send messages.
 1. In the input box at the bottom of the **Local Agent Playground** pane, type a message to send to the agent and press **Enter**.
-1. Review the agent's response in the thread.
+1. Review the agent's response in the conversation.
 
 ## Convert YAML based workflow to Agent Framework code
 
