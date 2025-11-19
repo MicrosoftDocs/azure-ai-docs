@@ -43,7 +43,7 @@ This section explains how to enable answer synthesis on an existing knowledge ba
 
 To enable answer synthesis on a knowledge base:
 
-1. Use the 2025-11-01-preview of [Knowledge Base - Create or Update (REST API)](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Base - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
 
 1. In the body of the request, set `outputMode` to `answerSynthesis`.
 
