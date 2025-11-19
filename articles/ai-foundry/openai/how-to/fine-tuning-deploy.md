@@ -366,14 +366,14 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 [Standard deployments](../../foundry-models/concepts/deployment-types.md) provide a pay-per-token billing model with data residency confined to the deployed region.
 
-| Models             | East US2 | North Central US | Sweden Central | Switzerland West |
-|--------------------|:--------:|:----------------:|:--------------:|:----------------:|
-|o4-mini             | ✅       |                  | ✅             |                  |
-|GPT-4.1             |          | ✅               | ✅             |                  |
-|GPT-4.1-mini        |          | ✅               | ✅             |                  |
-|GPT-4.1-nano        |          | ✅               | ✅             |                  |
-|GPT-4o              | ✅       |                  | ✅             |                  |
-|GPT-4o-mini         |          | ✅               | ✅             |                  |
+| Models             | East US2 | North Central US | Sweden Central |
+|--------------------|:--------:|:----------------:|:--------------:|
+|o4-mini             | ✅       |                  | ✅             |
+|GPT-4.1             |          | ✅               | ✅             |
+|GPT-4.1-mini        |          | ✅               | ✅             |
+|GPT-4.1-nano        |          | ✅               | ✅             |
+|GPT-4o              | ✅       |                  | ✅             |
+|GPT-4o-mini         |          | ✅               | ✅             |
 
 ### Global Standard
 
