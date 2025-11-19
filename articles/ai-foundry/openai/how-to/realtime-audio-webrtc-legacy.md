@@ -15,11 +15,11 @@ recommendations: false
 
 # Legacy Protocol for WebRTC
 
-This document describes legacy methods for using WebRTC. We preserve the legacy documentation for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](./realtime-audio-webrtc.md).
+This document describes legacy methods for using WebRTC. We preserve the legacy documentation for customers with a current deployment who need this reference. Customers with new implementations should refer to the [GA Protocol for WebRTC documentation](/azure/ai-foundry/openai/how-to/realtime-audio-webrtc).
 
 ## Supported models
 
-Regardless of protocol used, the same models are available for use with webRTC. For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
+Regardless of protocol used, the same models are available for use with webRTC. For more information about supported models, see the [models and versions documentation](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#audio-models).
 
 ## Protocol
 
@@ -27,7 +27,7 @@ You should use API version `2025-04-01-preview` in the URL for the Realtime API.
 
 ## Prerequisites
 
-The prerequisites remain unchanged. You need an azure subscription and OpenAI resource. Instructions can be found [here](./realtime-audio-webrtc.md#prerequisites)
+The prerequisites remain unchanged. You need an azure subscription and OpenAI resource. Instructions can be found [here](/azure/ai-foundry/openai/how-to/realtime-audio-webrtc#prerequisites)
 
 ## Connection and authentication
 
@@ -302,8 +302,4 @@ The sample code is an HTML page that allows you to start a session with the GPT 
   
 1. The **Close Session** button closes the session and stops the audio stream.
 
-## Related content
 
-* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
-* See the [Realtime API reference](../realtime-audio-reference.md)
-* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)
