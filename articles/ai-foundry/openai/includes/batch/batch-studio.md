@@ -114,7 +114,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 ::: moniker range="foundry-classic"
 
-1. [!INCLUDE [classic-sign-in](../../../default/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../includes/classic-sign-in.md)]
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
 3. Select **Batch jobs** > **+Create batch jobs**.
 
