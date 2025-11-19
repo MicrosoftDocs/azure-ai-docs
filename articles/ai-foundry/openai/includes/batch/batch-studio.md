@@ -11,13 +11,10 @@ ms.custom:
   - build-2025
 ---
 
-[!INCLUDE version-banner]
-
-
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* A resource with a model of the deployment type `GlobalBatch` or `DataZoneBatch` deployed. 
+* A resource with a model of the deployment type `GlobalBatch` or `DataZoneBatch` deployed.
 
 ## Preparing your batch file
 
@@ -117,7 +114,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 ::: moniker range="foundry-classic"
 
-1. [!INCLUDE [classic-sign-in](../../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../default/includes/classic-sign-in.md)]
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
 3. Select **Batch jobs** > **+Create batch jobs**.
 
@@ -129,14 +126,18 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 Select **Create** to start your batch job.
 
+::: moniker-end
+
 ::: moniker range="foundry"
 
-1. [!INCLUDE [classic-sign-in](../../../includes/foundry-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../default/includes/foundry-sign-in.md)]
 2. In the upper-right select **Build**
 3. From the left-hand pane select **Models**
 4. Select **Batch Jobs** > **create a batch job**
 
     :::image type="content" source="../../media/how-to/global-batch/batch-create.png" alt-text="Screenshot of new Foundry batch creation experience." lightbox="../../media/how-to/global-batch/batch-create.png":::
+
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 
@@ -155,6 +156,8 @@ Once your job has completed or reached a terminal state, it will generate an err
 
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
 
+::: moniker-end
+
 ::: moniker range="foundry"
 
 ## Track batch job progress
@@ -170,3 +173,5 @@ Once your job has completed or reached a terminal state, it will generate an err
 ## Cancel batch
 
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+
+::: moniker-end
