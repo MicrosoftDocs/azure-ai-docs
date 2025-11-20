@@ -27,7 +27,7 @@ Keyless connections provide enhanced security through granular permissions and i
 
 ## Sign in to Azure
 
-Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains your service. You also generate a Microsoft Entra ID token, which REST API calls require for request authentication.
+Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains your service.
 
 To sign in:
 
@@ -47,7 +47,13 @@ To sign in:
     az login --tenant <your-tenant-id>
    ```
 
-1. Generate an access token.
+## Get token
+
+REST API calls require the inclusion of a Microsoft Entra ID token. You use this token to authenticate requests in the next section.
+
+To get your token:
+
+1. Using the same command-line tool, generate an access token.
 
    ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
@@ -82,7 +88,7 @@ To connect using REST:
 
 1. Set `@baseUrl` to the value you obtained in [Get service information](#get-service-information).
 
-1. Set `@token` to the value you obtained in [Sign in to Azure](#sign-in-to-azure).
+1. Set `@token` to the value you obtained in [Get token](#get-token).
 
 1. Under `### List existing indexes`, select **Send Request**.
 
