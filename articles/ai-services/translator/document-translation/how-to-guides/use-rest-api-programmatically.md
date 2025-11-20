@@ -15,7 +15,7 @@ ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 
 # Use Document Translation APIs programmatically
 
- Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
+ Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#supported-document-and-glossary-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
 
 ## Prerequisites
 

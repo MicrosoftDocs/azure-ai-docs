@@ -110,15 +110,15 @@ Azure Translator [Document translation feature](document-translation/overview.md
 
 ## May 2024
 
-A [single API](document-translation/reference/rest-api-guide.md) is now available for both [asynchronous batch](document-translation/overview.md#asynchronous-batch-translation) and [synchronous single document](document-translation/overview.md#synchronous-translation) translation operations.
+A [single API](document-translation/reference/rest-api-guide.md) is now available for both [asynchronous batch](document-translation/overview.md#key-features) and [synchronous single document](document-translation/overview.md#key-features) translation operations.
 
 ## February 2024
 
 The Document translation API now supports two translation operations:
 
-* [Asynchronous Batch](document-translation/overview.md#asynchronous-batch-translation) document translation supports asynchronous processing of multiple documents and files. The batch translation process requires an Azure Blob storage account with containers for your source and translated documents.
+* [Asynchronous Batch](document-translation/overview.md#key-features) document translation supports asynchronous processing of multiple documents and files. The batch translation process requires an Azure Blob storage account with containers for your source and translated documents.
 
-* [Synchronous](document-translation/overview.md#synchronous-translation) document translation supports synchronous processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
+* [Synchronous](document-translation/overview.md#key-features) document translation supports synchronous processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
 ## Related content
 

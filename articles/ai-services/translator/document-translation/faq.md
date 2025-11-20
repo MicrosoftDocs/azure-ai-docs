@@ -58,5 +58,5 @@ PDF documents generated from digital file formats (also known as "native" PDFs) 
 
 Yes.
 
-* For more information, *see* [Synchronous document translation](overview.md#synchronous-translation)
+* For more information, *see* [Synchronous document translation](overview.md#key-features)
 * To view `synchronous document translation` sample code in our GitHub repository, *see* [.NET/C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/samples/Sample5_SynchronousTranslation.md); [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-translation-document_1.0.0/sdk/translation/azure-ai-translation-document/samples/sample_begin_translation.py); [REST API](quickstarts/rest-api.md#synchronously-translate-a-single-document-post)

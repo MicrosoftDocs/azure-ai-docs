@@ -69,7 +69,7 @@ To call the synchronous translation feature via the REST API, include the follow
 
 |Name |Description|Content Type|Condition|
 |---|---|---|---|
-|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#synchronous-supported-document-formats).|***Required***|
+|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#supported-document-and-glossary-formats).|***Required***|
 |**glossary**|Document containing a list of terms with definitions to use during the translation process.|Any one of the supported [glossary formats](get-supported-glossary-formats.md).|***Optional***|
 
 ### Response Status Codes
@@ -153,7 +153,7 @@ For more information, *see* [Use glossaries with Document Translation](../how-to
 
 * **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`, `.tiff`, `.heif`, `.svg`.
 
-* **Supported languages**: *see* [Language support (Document Translation)](../../language-support.md#document-translation-native-image-support).
+* **Supported languages**: *see* [Language support (Document Translation)](../../language-support.md#document-translation-native-image-format-support).
 
 > [!TIP]
 > For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.

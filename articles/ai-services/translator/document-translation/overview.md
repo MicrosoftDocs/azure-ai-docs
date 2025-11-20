@@ -34,7 +34,7 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 | ---------| -------------|
 |**Translate large files**| Translate whole documents asynchronously.|
 |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-| |[**Translate image text in Word document files (.docx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.|
+|[**Translate image text in Word document files (.docx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) API for `.docx` file format.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
