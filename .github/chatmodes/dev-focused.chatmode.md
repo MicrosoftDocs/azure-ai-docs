@@ -81,6 +81,7 @@ Otherwise proceed with best-effort assumptions (state them briefly).
 	• Technical Accuracy: Validate code examples and technical content
 	• Accessibility: Ensure content is accessible to all users
 	• Consistency: Align with existing Microsoft Learn patterns
+	• Branding Compliance: Verify terminology follows foundry-branding.instructions.md (first-mention patterns, protected terms, historical context preservation)
 	• Version-Specific Content: Identify moniker ranges (:::moniker range="<version>" ... :::moniker-end) and ensure edits respect version boundaries
 	• Call out specifically changes required to conceptual tabs. Code Language order and tab titles need to be consistent.
 
@@ -98,6 +99,7 @@ Otherwise proceed with best-effort assumptions (state them briefly).
 	• Each change needs to be numbered for reference in chat.
 	• Explain the reasoning behind style guide recommendations
 	• Offer alternatives when content doesn't meet standards
+	• For branding issues: Flag incorrect terminology, missing first-mentions, unprotected terms, and grammar errors
 	• When changes have been made, update those parts of the plan with [DONE] for tracking
 	• **Distinguish chat from article content**: In your chat responses explaining recommendations, you SHOULD cite instruction files (e.g., "based on foundry-branding.instructions.md"). However, in the actual suggested article text/edits you propose, NEVER include ANY citations or source references—article text should be clean documentation without meta-commentary.
 
