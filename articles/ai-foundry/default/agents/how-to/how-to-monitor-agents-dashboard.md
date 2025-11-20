@@ -29,7 +29,7 @@ The Agent Monitoring Dashboard in Microsoft Foundry provides real-time insights 
 
 To allow your Azure Foundry project to authenticate and interact with Azure AI resources, you must grant its system-assigned managed identity the Azure AI User role
 
-1. Open the Foundry Project Resource: In the Azure Portal, navigate to the Azure resource associated with your Foundry project (for example, the project’s resource group or a specific service resource).
+1. Open the Foundry Project Resource: In the Azure portal, navigate to the Azure resource associated with your Foundry project (for example, the project’s resource group or a specific service resource).
 1. Go to Access Control (IAM): In the left-hand menu, select Access control (IAM).
 1. Add a New Role Assignment.
 1. Select the Azure AI User Role: In the *Role* dropdown, search for *Azure AI User*, then select it.
