@@ -43,13 +43,6 @@ sections:
           Client code should call the Azure SDK client libraries or REST APIs to connect to a search index, formulate queries, and handle responses. You can also write code that builds and refreshes an index, or that runs indexers programmatically or via script.
 
       - question: |
-          Is there functional parity across the various APIs?
-        answer: |
-          Not always. The REST API is always the first to implement new features in preview API versions. The client libraries in Azure SDKs will pick up new features over time, but are released on their own schedule.
-
-          Although the REST APIs are first out with newest features, the Azure SDKs provide more coding support, and are recommended over REST unless a required feature is unavailable.
-
-      - question: |
           Can I pause the service and stop billing?
         answer: |
           You can't pause a search service. In Azure AI Search, computing resources are allocated when the service is created. It's not possible to release and reclaim those resources on demand.
