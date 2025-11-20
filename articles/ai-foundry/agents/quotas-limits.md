@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 07/03/2025
+ms.date: 11/20/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -31,9 +31,9 @@ The following sections provide you with a guide to the default quotas and limits
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-## Quotas and limits for Azure OpenAI models
+## Quotas and limits for models
 
-See the [Azure OpenAI](../openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Agent Service. 
+See the [Azure OpenAI documentation](../openai/quotas-limits.md) and [Microsoft Foundry Models documentation](../foundry-models/quotas-limits.md) for current quotas and limits for the models that you can use with agents. 
 
 ## Next steps
 
