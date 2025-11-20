@@ -79,23 +79,29 @@ This sample uses two small sets of data describing seven fictional hotels. One s
 
    :::image type="content" source="media/tutorial-multiple-data-sources/cosmos-upload.png" alt-text="Upload to Azure Cosmos DB collection" border="true":::
 
-1. Use the Refresh button to refresh your view of the items in the hotels collection. You should see seven new database documents listed.
+1. Use the refresh button to refresh your view of the items in the hotels collection. You should see seven new database documents listed.
 
 1. Copy a connection string from the **Keys** page into Notepad. You need this value for **appsettings.json** in a later step. If you didn't use the suggested database name "hotel-rooms-db", copy the database name as well.
 
 ### Azure Blob Storage
 
-1. Sign in to the [Azure portal](https://portal.azure.com), go to your Azure storage account, select **Blobs**, and then select **+ Container**.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your Azure Storage account.
 
-1. [Create a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) named **hotel-rooms** to store the sample hotel room JSON files. You can set the Public Access Level to any of its valid values.
+1. From the left pane, select **Data storage** > **Containers**.
+
+1. [Create a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) named **hotel-rooms** to store the sample hotel room JSON files. You can set the access level to any valid value.
 
    :::image type="content" source="media/tutorial-multiple-data-sources/blob-add-container.png" alt-text="Create a blob container" border="true":::
 
-1. After the container is created, open it and select **Upload** on the command bar. Navigate to the folder containing the sample files. Select all of them, and then select **Upload**.
+1. Open the container, and then select **Upload** on the command bar.
+
+1. Open the folder that contains the sample files. Select all of them, and then select **Upload**.
 
    :::image type="content" source="media/tutorial-multiple-data-sources/blob-upload.png" alt-text="Upload files" border="false":::
 
-1. Copy the storage account name and a connection string from the **Access Keys** page into Notepad. You need both values for **appsettings.json** in a later step.
+1. From the left pane, select **Security + networking** > **Access keys**.
+
+1. Make a note of the account name and a connection string. You need both values for **appsettings.json** in a later step.
 
 ### Azure AI Search
 
@@ -105,13 +111,17 @@ The third component is Azure AI Search, which you can [create in the Azure porta
 
 To authenticate to your search service, you need the service URL and an access key.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. On the **Overview** page of your search service, get the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. From the left pane, select **Overview**.
 
-1. On **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
+1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-Having a valid key establishes trust, on a per-request basis, between the application sending the request and the service handling it.
+1. From the left pane, select **Settings** > **Keys**.
+
+1. Make a note of an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
+
+Having a valid key establishes trust on a per-request basis between the application sending the request and the service handling it.
 
 ## Set up your environment
 
