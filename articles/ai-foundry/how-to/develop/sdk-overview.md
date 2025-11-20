@@ -68,7 +68,7 @@ The following examples show how to authenticate and create a client for your pro
 
 ::: zone pivot="programming-language-python"
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install the project client library 
 
