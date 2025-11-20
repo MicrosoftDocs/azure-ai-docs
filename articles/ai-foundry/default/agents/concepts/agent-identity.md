@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 **Agent Identity** is a specialized identity type in Microsoft Entra ID designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services, enabling agents to securely access resources, interact with users, and communicate with other systems.
 
-Microsoft Foundry integrates automatically with Microsoft Entra Agent ID, creating and managing agent identities for agents throughout their lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production. 
+Microsoft Foundry integrates automatically with Microsoft Entra Agent ID, creating and managing agent identities for agents throughout their lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ The Agent ID platform framework introduces formal **agent identity blueprints** 
 
 ## Agent identity
 
-An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. 
+An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate.
 
 ### Security benefits
 
@@ -45,21 +45,22 @@ Agent identities help address specific security challenges posed by AI agents:
 
 Agent identities support two key authentication scenarios:
 
-* **Attended (delegated access / On-Behalf-Of flow)**: The agent operates on behalf of a human user, leveraging delegated permissions granted by that user. This enables scenarios where the agent acts under the user’s authority, accessing resources or APIs as that user. 
-* **Unattended**: The agent acts under its own authority, either as a service or application identity (using its app-assigned roles, RBAC, or Graph permissions), or as an **agentic user** — an autonomous identity with user-like claims that allow the agent to authenticate and operate independently. 
+* **Attended (delegated access / On-Behalf-Of flow)**: The agent operates on behalf of a human user, leveraging delegated permissions granted by that user. This enables scenarios where the agent acts under the user's authority, accessing resources or APIs as that user.
+* **Unattended**: The agent acts under its own authority, either as a service or application identity (using its app-assigned roles, RBAC, or Graph permissions), or as an **agentic user** — an autonomous identity with user-like claims that allow the agent to authenticate and operate independently.
 
 ## Agent identity blueprint
 
-An agent identity blueprint serves as the reusable, governing template from which all associated agent identities are created. It corresponds to a "kind", "type", or “class” of agents, and acts as the management object for all agent identity instances of that class. 
+An agent identity blueprint serves as the reusable, governing template from which all associated agent identities are created. It corresponds to a "kind", "type", or "class" of agents, and acts as the management object for all agent identity instances of that class.
 
 ### Blueprint functions
 
 Agent identity blueprints serve three essential purposes:
 
 **Type classification**: The blueprint establishes the category of agent, such as "Contoso Sales Agent." This classification enables administrators to:
-- Apply conditional access policies to all agents of that type
-- Disable or revoke permissions for all agents of that kind
-- Audit and govern agents at scale through consistent, blueprint-based controls
+
+* Apply conditional access policies to all agents of that type
+* Disable or revoke permissions for all agents of that kind
+* Audit and govern agents at scale through consistent, blueprint-based controls
 
 **Identity creation authority**: Services creating agent identities use the blueprint to authenticate. Blueprints have OAuth credentials (client secrets, certificates, or federated credentials like managed identities) that services use to request tokens from Microsoft Entra ID for creating, updating, or deleting agent identities.
 
@@ -128,15 +129,16 @@ To configure an MCP tool to authenticate using agent identity:
 1. **Get the agent identity ID**: In Azure portal, navigate to your Foundry project. On the **Overview** page, select **JSON View** and choose the latest API version. Copy the `agentIdentityId`.
 
 1. **Create the connection**: Create a connection to your remote MCP server that uses `AgenticIdentityToken` as the authentication type. The audience field specifies which service or API the token is intended to access. For example:
-   - For an MCP server listing blobs in your storage account: set audience as `https://storage.azure.com`
-   - For an Azure Logic App MCP server: set audience as `https://logic.azure.com`
+
+   * For an MCP server listing blobs in your storage account: set audience as `https://storage.azure.com`
+   * For an Azure Logic App MCP server: set audience as `https://logic.azure.com`
 
     You can create the connection using either the REST API or the Foundry portal:
-    
+
     #### [REST API](#tab/rest-api)
-    
+
     To get an access token, run the commands `az login` and then `az account get-access-token`.
-    
+
     ```http
     PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/connections/{{mcp_connection_name}}?api-version={{api_version}}
     Authorization: Bearer {{token}}
@@ -163,23 +165,24 @@ To configure an MCP tool to authenticate using agent identity:
         }
     }
     ```
-    
+
     #### [Foundry portal](#tab/foundry-portal)
-    
+
     1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
     1. Select **Build** in the upper-right navigation.
     1. Select **Agents**.
-    1. Select the agent you want to use. 
-    1. Under tools select **+ Add**. 
-    1. On the **Custom** tab, select **Model Context Protocol (MCP)**. 
-    1. Under authentication choose **Microsoft Entra** and then under  **Type** select **Agent identity**. 
+    1. Select the agent you want to use.
+    1. Under tools select **+ Add**.
+    1. On the **Custom** tab, select **Model Context Protocol (MCP)**.
+    1. Under authentication choose **Microsoft Entra** and then under  **Type** select **Agent identity**.
     1. Fill in the endpoint and audience fields then select **Connect**.
-    
+
     ---
 
 1. **Assign permissions**: Assign the agent identity the required permissions for its actions using the `agentIdentityId` you copied. For example:
-   - For an MCP server listing blob containers: assign the **Storage Blob Data Contributor** role at the **Azure Storage Account** scope
-   - For an Azure Logic Apps MCP server: assign the **Logic Apps Standard Reader** role on the **Logic App** resource
+
+   * For an MCP server listing blob containers: assign the **Storage Blob Data Contributor** role at the **Azure Storage Account** scope.
+   * For an Azure Logic Apps MCP server: assign the **Logic Apps Standard Reader** role on the **Logic App** resource.
 
 1. **Connect the tool**: If using code, create an agent with the MCP tool (see the MCP documentation for details). If using the Foundry portal, the MCP tool automatically gets added to the agent.
 
@@ -200,6 +203,6 @@ In this experience, you can enable built-in security controls including:
 
 For more information about Microsoft Entra Agent ID features, see the [Microsoft Entra documentation](/entra/fundamentals/what-is-entra).
 
-## Next steps
+## Related content
 
 * [Publish agents in Foundry](../how-to/publish-agent.md)
