@@ -70,7 +70,6 @@ The following table describes the monitoring features available in the Monitor S
 
 | Setting | Purpose | Configuration Options |
 |---------|---------|----------------------|
-| **Operational Metrics** | Tracks agent runs, token usage, latency, and error rates. | Enabled automatically after connecting Application Insights. |
 | **Continuous Evaluation** | Runs real-time checks on agent responses for intent resolution, coherence, and reconciliation. | Enable/Disable toggle<br>Add evaluators by name or import from past evaluations<br>Set sample rate (for example, 10 runs/hour) |
 | **Scheduled Evaluations** | Performs periodic evaluations to validate agent performance against benchmarks. | Enable/Disable toggle<br>Select evaluation template<br>Select evaluation run<br>Set schedule frequency (weekly recommended) |
 | **Red Team Scans** | Executes adversarial tests to identify vulnerabilities such as sensitive data leakage or prohibited actions. | Enable/Disable toggle<br>Select evaluation template<br>Select evaluation run<br>Set schedule frequency (weekly recommended) |
