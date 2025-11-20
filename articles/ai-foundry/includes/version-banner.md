@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 09/11/2025
 ms.custom: include
 ---
 ::: moniker range="foundry-classic"
@@ -21,5 +21,5 @@ ms.custom: include
 > [!NOTE]
 > This document refers to the [Microsoft Foundry (new)](../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal.
 >
-> 🔄 [Switch to the Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal.
+<!-- > 🔄 [Switch to the Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal. -->
 ::: moniker-end
