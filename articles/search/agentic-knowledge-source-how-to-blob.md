@@ -14,7 +14,7 @@ zone_pivot_groups: agentic-retrieval-pivots
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
 
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/file-name.md)]
+[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-blob-csharp.md)]
 ::: zone-end
 
 ::: zone pivot="python"

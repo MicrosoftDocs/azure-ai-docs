@@ -13,13 +13,9 @@ zone_pivot_groups: agentic-retrieval-pivots
 
 # Create a remote SharePoint knowledge source
 
-<!--
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/file-name.md)]
+[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-remote-csharp.md)]
 ::: zone-end
-
-Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
--->
 
 ::: zone pivot="python"
 [!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-remote-python.md)]
