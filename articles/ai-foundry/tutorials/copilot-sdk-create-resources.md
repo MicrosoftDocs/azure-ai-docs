@@ -64,7 +64,7 @@ These steps deploy a model to a real-time endpoint from the Foundry portal [mode
 
 After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
-## <a name="create-search"></a> Create an Azure AI Search service
+## Create an Azure AI Search service
 
 The goal with this application is to ground the model responses in your custom data. The search index is used to retrieve relevant documents based on the user's question.
 
@@ -73,7 +73,7 @@ You need an Azure AI Search service and connection in order to create a search i
 > [!NOTE]
 > Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource. For this tutorial, we recommend using a pricing tier of **Basic** or above.
 
-If you already have an Azure AI Search service, you can skip to the [next section](#connect).
+If you already have an Azure AI Search service, you can skip to the [next section](#connect-the-azure-ai-search-to-your-project).
 
 Otherwise, you can create an Azure AI Search service using the Azure portal. 
 
@@ -86,9 +86,9 @@ Otherwise, you can create an Azure AI Search service using the Azure portal.
 1. Confirm the details of your Azure AI Search service, including estimated cost.
 1. Select **Create** to create the Azure AI Search service.
 
-### <a name="connect"></a>Connect the Azure AI Search to your project
+### Connect the Azure AI Search to your project
 
-If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#installs).
+If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#install-the-azure-cli-and-sign-in).
 
 In the Foundry portal, check for an Azure AI Search connected resource.
 
@@ -138,7 +138,7 @@ Create a folder for your work. Create a file called **config.py** in this folder
 
 [!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
 
-## <a name="installs"></a> Install the Azure CLI and sign in 
+## Install the Azure CLI and sign in 
 
 [!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 

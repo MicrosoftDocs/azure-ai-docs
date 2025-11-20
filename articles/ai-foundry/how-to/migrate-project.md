@@ -25,7 +25,7 @@ Microsoft Foundry is transitioning to a unified platform-as-a-service, replacing
 > [!IMPORTANT]
 > New generative AI and model-centric features are available only through the Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.  For a comparison of capabilities, see [What type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
-## <a name="overview"></a> New Foundry projects overview
+## New Foundry projects overview
 
 Foundry projects are designed to unify and simplify the composition of developer workflows, and the management of core building blocks of AI applications:
 
@@ -72,20 +72,20 @@ Limitations:
 
 In the following sections, we walk through how you can move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s:
 
-1. [Locate your existing Foundry resource](#locate)
-1. [Create a new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](#create-project) on the AI resource.
+1. [Locate your existing Foundry resource](#1-locate-your-existing-foundry-resource)
+1. [Create a new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](#2-create-your-new-project) on the AI resource.
 
 Once you have your new project, you might want to:
 
-- (Optional) [Recreate connections](#recreate-connections)
-- (Optional) [Migrate agents](#migrate-agents)
+- (Optional) [Recreate connections](#optional-recreate-connections)
+- (Optional) [Migrate agents](#optional-migrate-code-agents)
 
-## <a name="locate"></a> 1. Locate your existing Foundry resource
+## 1. Locate your existing Foundry resource
 
 Most Foundry users already have an 'Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
 
 > [!NOTE]
-> If you don't have an existing Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#create-project) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
+> If you don't have an existing Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#2-create-your-new-project) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
@@ -117,7 +117,7 @@ Most Foundry users already have an 'Foundry' (formerly called 'AI Services') res
 
 --- 
 
-## <a name="create-project"></a> 2. Create your new project
+## 2. Create your new project
 
 New capabilities, including Agent service, are only accessible via projects, which organize your development work as a folder for each use case. You can create multiple of them, to organize the work for use cases with similar setup and connectivity requirements.
 
@@ -164,7 +164,7 @@ You're now ready to start building agents in general availability and with the l
 
 :::image type="content" source="../media/migrate-project/agent-playground.png" alt-text="Screenshot of agent building interface.":::
 
-## <a name="recreate-connections"></a> (Optional) Recreate connections
+## (Optional) Recreate connections
 
 If your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] used connections to access tools, data sources, or models, you can recreate those connections on your Foundry resource, without the use of a hub.
 
@@ -184,7 +184,7 @@ Connections are now defined as instances of type *CognitiveServices/account/conn
 
 ---
 
-## <a name="migrate-agents"></a> (Optional) Migrate code agents
+## (Optional) Migrate code agents
 
 Any code agents build using the preview of Agent service require the following upgrades as you move to Agent service in general availability on Foundry projects:
 

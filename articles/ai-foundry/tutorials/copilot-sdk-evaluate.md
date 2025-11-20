@@ -35,9 +35,9 @@ This tutorial is part three of a three-part tutorial.
 
 - Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
 
-- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
+- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#add-telemetry-logging) from part 2.
 
-## <a name="evaluate"></a> Evaluate the quality of the chat app responses
+## Evaluate the quality of the chat app responses
 
 Now that you know your chat app responds well to your queries, including with chat history, it's time to evaluate how it does across a few different metrics and more data.
 

@@ -112,7 +112,7 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ::: moniker range="foundry-classic"
 
-## <a name="project-types"></a> Types of projects
+## Types of projects
 
 Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
@@ -120,7 +120,7 @@ Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](
 
 - [!INCLUDE [hub-description](includes/hub-description.md)]
 
-- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
+- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#new-foundry-projects-overview).
 
 
 ### Which type of project do I need?
@@ -156,7 +156,7 @@ This table summarizes features available in the two project types:
 
 *New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
-### <a name="how-do-i-know"></a> How do I know which type of project I have?
+### How do I know which type of project I have?
 
 Here are some of the ways to identify your project type:
 
@@ -188,7 +188,7 @@ The left pane is organized around your goals. Generally, as you develop with Azu
 
 If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
  
-## <a name="left-pane"></a> Customize the left pane
+## Customize the left pane
 
 The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
 
