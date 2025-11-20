@@ -151,7 +151,17 @@ For more information, *see* [Use glossaries with Document Translation](../how-to
 ## Translate text in native image formats 🆕
 
 
-* **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`, `.tiff`, `.heif`, `.svg`.
+* **Supported formats**:
+
+* Raster files:
+    * `.bmp`
+    * `.heif`
+    * `.jpeg`/`.jpg`
+    * `.png`
+    * `.tiff`
+    * `.webp`
+* Vector files
+    * `.svg`
 
 * **Supported languages**: *see* [Language support (Document Translation)](../../language-support.md#document-translation-native-image-format-support).
 

@@ -58,7 +58,7 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 
 ## Development options
 
-Integrate document translation capabilities into your projects and applications by utilizing available development tools and options. This allows you to programmatically implement translation features in your application functionality and provide users with multilingual support as needed.
+Integrate document translation capabilities into your projects and applications by utilizing available development tools and options. This feature allows you to programmatically implement translation features in your application functionality and provide users with multilingual support as needed.
 
 ### [Asynchronous (batch)](#tab/async)
 
@@ -91,7 +91,7 @@ Maximize operational throughput utilizing synchronous document translation to fa
 The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes the common file extension, and the content-type if using the upload API.
 
 | File type| File extension|Description|
-|---|---|--|
+|---|---|---|
 |Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
@@ -162,10 +162,10 @@ Document translation supports the following glossary file types:
 
 ### [Asynchronous (batch)](#tab/async)
 
-Pricing is calculated on a **per-character** basis. For more information *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
+Pricing is calculated on a **per-character** basis. For more information, *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
 
 ### [Synchronous (document)](#tab/sync)
-Pricing is calculated on a **per-image** basis. For more information *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
+Pricing is calculated on a **per-image** basis. For more information, *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
 
 ## Document translation Request limits
 

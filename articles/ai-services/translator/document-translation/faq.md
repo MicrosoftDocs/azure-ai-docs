@@ -30,9 +30,14 @@ If the language of the content in the source document is known, we recommend tha
 
 * Various factors influence the preservation and retention of font style. For instance, some fonts aren't available in both the source and target languages. Typically, the same font style, or an optimally suited alternative, is applied to the target language to maintain formatting that most closely resembles the original source text.
 
-#### Can the text in an image within a document be translated?
+#### Does the document translation feature support translating text within images?
 
-Yes. Document translation feature supports [translating text embedded in images within Word documents](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) as an optional capability.
+Yes. Our synchronous document translation feature supports methods and several file types for translating text within images:
+ 
+* [Translate text in images within native Word documents](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) as an optional capability.
+
+* [Translate text in images within native image files](reference/translate-document.md#translate-text-in-native-image-formats-)
+
 
 #### Can Azure Translator Document translation translate content from fully scanned documents?
 
