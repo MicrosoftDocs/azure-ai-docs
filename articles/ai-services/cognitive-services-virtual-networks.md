@@ -538,7 +538,7 @@ When you create a private endpoint, specify the Foundry Tools resource that it c
 > Azure OpenAI in Foundry Models uses a different private DNS zone and public DNS zone forwarder than other Foundry Tools. For the correct zone and forwarder names, see [Azure services DNS zone configuration](/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration).
 
 > [!WARNING]
-> Requests from clients to the private endpoint need to specify the [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) of your Foundry Tools resource as the endpoint base URL. 
+> Requests from clients to the private endpoint MUST specify the [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) of your Foundry Tools resource as the endpoint base URL. Do NOT call the internal URL `*.privatelink.openai.azure.com` which is part of the intermediary CNAME resolution internal to Azure.
 
 Clients on a virtual network that use the private endpoint use the same connection string for the Foundry Tools resource as clients connecting to the public endpoint. The exception is the Speech service, which requires a separate endpoint. For more information, see [Use private endpoints with the Speech service](#use-private-endpoints-with-the-speech-service) in this article. DNS resolution automatically routes the connections from the virtual network to the Foundry Tools resource over a private link.
 
