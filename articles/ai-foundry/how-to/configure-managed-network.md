@@ -594,7 +594,7 @@ To configure a managed virtual network that allows only approved outbound commun
     * [Hub](/python/api/azure-ai-ml/azure.ai.ml.entities.hub)
     * [PrivateEndpointDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination)
     * [ServiceTagDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.servicetagdestination)
-    * [FqdnDestination](/python/api/azure-api-ml/azure.ai.ml.entities.fqdndestination)
+    * [FqdnDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.fqdndestination)
 
 * __Update an existing hub__:
 
@@ -666,7 +666,7 @@ To configure a managed virtual network that allows only approved outbound commun
     * [IsolationMode](/python/api/azure-ai-ml/azure.ai.ml.entities.isolationmode)
     * [PrivateEndpointDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination)
     * [ServiceTagDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.servicetagdestination)
-    * [FqdnDestination](/python/api/azure-api-ml/azure.ai.ml.entities.fqdndestination)
+    * [FqdnDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.fqdndestination)
     * [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 ---
@@ -999,8 +999,8 @@ network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_ONLY_APPROVED_OUTBOU
 
 The hub managed virtual network feature is free, but you pay for the following resources the managed virtual network uses:
 
-* Azure Private Link—Private endpoints that secure communication between the managed virtual network and Azure resources use Azure Private Link. For pricing, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
-* FQDN outbound rules—Azure Firewall enforces these rules. If you use outbound FQDN rules, Azure Firewall charges appear on your bill. The Standard version of Azure Firewall is used by default. To select the Basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allow-only-approved-outbound). Azure Firewall is provisioned per hub.
+* Azure Private Link - Private endpoints that secure communication between the managed virtual network and Azure resources use Azure Private Link. For pricing, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
+* FQDN outbound rules - Azure Firewall enforces these rules. If you use outbound FQDN rules, Azure Firewall charges appear on your bill. The Standard version of Azure Firewall is used by default. To select the Basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-to-allow-only-approved-outbound). Azure Firewall is provisioned per hub.
 
     > [!IMPORTANT]
     > Azure Firewall isn't created until you add an outbound FQDN rule. If you don't use FQDN rules, you won't be charged for Azure Firewall. For pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).

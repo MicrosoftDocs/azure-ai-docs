@@ -37,7 +37,7 @@ Data can help when you need these capabilities:
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/ai-services).
 - An Microsoft Foundry project. [Create a project in Microsoft Foundry portal](./create-projects.md).
-- The [Microsoft Developer](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#azure-ai-developer) role on the project resource.
+- The [Microsoft Developer](/azure/role-based-access-control/built-in-roles#azure-ai-developer) role on the project resource.
 - Python 3.8 or later.
 - The Microsoft ML SDK and Azure Identity package:
 
@@ -71,7 +71,7 @@ ml_client = MLClient(
 print(f"Connected to project: {ml_client.workspace_name}")
 ```
 
-Reference: [MLClient documentation](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient)
+Reference: [MLClient documentation](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 ## Add data
 
@@ -111,7 +111,7 @@ created_data = ml_client.data.create_or_update(my_file_data)
 print(f"Data asset created: {created_data.name} version {created_data.version}")
 ```
 
-Reference: [Data class](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.data)
+Reference: [Data class](/python/api/azure-ai-ml/azure.ai.ml.entities.data)
 
 #### Create a folder data asset
 
@@ -211,7 +211,7 @@ print(f"Data name: {data.name}")
 print(f"Data path: {data.path}")
 ```
 
-Reference: [MLClient.data operations](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations)
+Reference: [MLClient.data operations](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations)
 
 ### Delete data
 

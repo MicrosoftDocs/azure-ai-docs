@@ -288,7 +288,7 @@ except Exception as e:
     print("Error:", e)
 ```
 
-Reference: [AzureOpenAI](/python/api/openai/openai.azureopenai) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+Reference: [AzureOpenAI](/python/api/azure-ai-inference/azure.ai.inference.aio.chatcompletionsclient) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 ## Related content
 
