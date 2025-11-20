@@ -350,11 +350,11 @@ If you are building a custom application, in the initial question's response, an
 
 ## Display order is supported in the Update API
 
-The [display text and display order](/rest/api/qnamaker/knowledgebase/update#promptdto), returned in the JSON response, is supported for editing by the [Update API](/rest/api/qnamaker/knowledgebase/update).
+The [display text and display order](/azure/ai-services/language-service/question-answering/how-to/authoring), returned in the JSON response, is supported for editing by the [Update API](/azure/ai-services/language-service/question-answering/how-to/authoring).
 
 ## Add or delete multi-turn prompts with the Update API
 
-You can add or delete multi-turn prompts using the [QnA Maker Update API](/rest/api/qnamaker/knowledgebase/update).  The prompts are adding in the `context` property's `promptsToAdd` array and the `promptsToDelete` array.
+You can add or delete multi-turn prompts using the [QnA Maker Update API](/azure/ai-services/language-service/question-answering/how-to/authoring).  The prompts are adding in the `context` property's `promptsToAdd` array and the `promptsToDelete` array.
 
 ## Export knowledge base for version control
 

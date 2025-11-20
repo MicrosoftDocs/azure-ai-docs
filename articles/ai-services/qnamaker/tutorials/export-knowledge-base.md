@@ -70,12 +70,12 @@ The export/import process is programmatically available using the following REST
 
 **Export**
 
-* [Download knowledge base API](/rest/api/qnamaker/knowledgebase/download)
+* [Download knowledge base API](/azure/ai-services/language-service/question-answering/how-to/authoring)
 
 **Import**
 
-* [Replace API (reload with same knowledge base ID)](/rest/api/qnamaker/knowledgebase/replace)
-* [Create API (load with new knowledge base ID)](/rest/api/qnamaker/knowledgebase/create)
+* [Replace API (reload with same knowledge base ID)](/azure/ai-services/language-service/question-answering/how-to/authoring)
+* [Create API (load with new knowledge base ID)](/azure/ai-services/language-service/question-answering/how-to/authoring)
 
 ## Chat logs
 
