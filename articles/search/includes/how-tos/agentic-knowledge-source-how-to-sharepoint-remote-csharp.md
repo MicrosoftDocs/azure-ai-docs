@@ -193,9 +193,7 @@ Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBase
 
 The response might look like the following:
 
-```json
-Contoso's product planning for the NextGen Camera includes a 2019 launch with a core package design and minor modifications for three product versions, featuring Wi-Fi enabled technology and a new mobile app for photo organization and sharing, aiming for 100,000 users within six months [ref_id:0][ref_id:1]. Research and forecasting are central to their planning, with phase two research focusing on feedback from a diverse user group to shape deliverables and milestones [ref_id:0][ref_id:1].
-```
+`Contoso's product planning for the NextGen Camera includes a 2019 launch with a core package design and minor modifications for three product versions, featuring Wi-Fi enabled technology and a new mobile app for photo organization and sharing, aiming for 100,000 users within six months [ref_id:0][ref_id:1]. Research and forecasting are central to their planning, with phase two research focusing on feedback from a diverse user group to shape deliverables and milestones [ref_id:0][ref_id:1].`
 
 The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filterExpressionAddOn`) if you want to apply constraints at query time. If you specify `filterExpressionAddOn` on both the knowledge source and knowledge base retrieve action, the filters are AND'd together.
 
