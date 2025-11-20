@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ms.topic: how-to
 #CustomerIntent: As a developer, I want to diagnose private endpoint connection issues so that I can securely access my Foundry project.
-ms.date: 08/27/2025
+ms.date: 11/20/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
