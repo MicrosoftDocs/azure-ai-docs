@@ -27,7 +27,7 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
 ## Deploy a model router model

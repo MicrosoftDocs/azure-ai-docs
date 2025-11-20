@@ -71,7 +71,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 
 [!INCLUDE [first-run](../includes/first-run-experience.md)]
 
-## <a name="install"></a> Get ready to code
+## Get ready to code
 
 ::: moniker range="foundry-classic"
 

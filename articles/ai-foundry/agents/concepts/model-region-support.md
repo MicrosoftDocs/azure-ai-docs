@@ -32,7 +32,7 @@ Foundry Agent Service supports the following Azure OpenAI models in the listed r
 
 ::: moniker range="foundry-classic"
 > [!NOTE]
-> * [Hub-based projects](../../what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
+> * [Hub-based projects](../../what-is-azure-ai-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
 > * [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents
 > * For information on class A subnet support, see the setup guide on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 > * The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the following regions:
