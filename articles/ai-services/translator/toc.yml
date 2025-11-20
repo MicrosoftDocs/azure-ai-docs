@@ -181,7 +181,7 @@ items:
     - name: Create SAS tokens for storage containers
       displayName: user,delegation,shared access,tokens,storage explorer,azure,portal,blob,url
       href: document-translation/how-to-guides/create-sas-tokens.md
-  - name: Reference
+  - name: Document translation REST APIs
     items:
       - name: Document translation operations
         href: document-translation/reference/rest-api-guide.md
