@@ -30,7 +30,7 @@ Azure Translator supports language translation for more than 100 languages. If y
   * Generation of a translated image with original visual layout and text overlay preserved.
   *  Extraction of translated text content directly from the image.
 * This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
-* Pricing for this features is calculated on a per-image basis.
+* Pricing is calculated on a per-image basis.
 
 For more information, *see* [Synchronous Document Translation](document-translation/overview.md#)
 
@@ -46,7 +46,7 @@ For more information, *see* [Synchronous Document Translation](document-translat
 
 ### Azure Translator in Foundry Tools 2025-10-01-preview
 
-Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from a variety of generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
+Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from various generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
 
 For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
 
