@@ -5,7 +5,7 @@ description: Find code samples to use OpenAPI tools with agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 08/07/2025
+ms.date: 11/20/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
