@@ -140,7 +140,7 @@ For articles with the `ms.topic: tutorial` tag, ensure the article follows the T
 
 # Branding compliance
 
-For all articles, verify terminology follows the branding guidelines detailed in `.github/instructions/foundry-branding.instructions.md`. While these guidelines primarily apply to Azure AI Foundry content, the patterns ensure consistent terminology across all documentation.
+For all articles, verify terminology follows the branding guidelines detailed in `.github/instructions/foundry-branding.instructions.md`. While these guidelines primarily apply to Foundry content, the patterns ensure consistent terminology across all documentation.
 
 ## Key Areas to Check
 
@@ -161,7 +161,7 @@ When reviewing content for branding compliance, focus on:
 
 ## Implementation Notes
 
-- Apply branding checks to all articles, with primary focus on Azure AI Foundry content
+- Apply branding checks to all articles, with primary focus on Foundry content
 - Skip deprecated service folders (anomaly-detector, content-moderator, immersive-reader, luis, metrics-advisor, personalizer, qnamaker)
 - When explaining recommendations in chat, cite foundry-branding.instructions.md for transparency
 - Never include source citations in the actual article content suggestions
