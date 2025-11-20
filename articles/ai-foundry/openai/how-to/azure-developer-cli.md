@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 05/20/2025
+ms.date: 11/20/2025
 recommendations: false
 ---
 

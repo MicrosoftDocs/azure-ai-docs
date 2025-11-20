@@ -1,7 +1,7 @@
 ---
 title: Add an Azure OpenAI network security perimeter
 description: Use this article to learn about adding Azure OpenAI to your network security perimeter.
-ms.date: 06/12/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 author: aahill
 ms.author: aahi
