@@ -15,13 +15,9 @@ zone_pivot_groups: agentic-retrieval-pivots
 
 # Create a Web Knowledge Source resource
 
-<!--
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/file-name.md)]
+[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-web-csharp.md)]
 ::: zone-end
-
-Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
--->
 
 ::: zone pivot="python"
 [!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-web-python.md)]
