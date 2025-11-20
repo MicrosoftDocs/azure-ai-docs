@@ -2,7 +2,7 @@
 
 This file provides central guidance for GitHub Copilot in this repository.
 
-This documentation repository contains Microsoft's technical documentation for application development using Microsoft Azure AI Foundry (and other products) that publishes to Microsoft Learn. 
+This documentation repository contains Microsoft's technical documentation for application development using Microsoft Foundry (and other products) that publishes to Microsoft Learn. 
 
 
 ## Referenced Instruction Files
