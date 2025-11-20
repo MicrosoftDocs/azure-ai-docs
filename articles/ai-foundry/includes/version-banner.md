@@ -13,7 +13,7 @@ ms.custom: include
 > [!NOTE]
 > This document refers to the [Microsoft Foundry (classic)](../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal.
 >
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal. -->
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
 >
 ::: moniker-end
 
@@ -21,5 +21,5 @@ ms.custom: include
 > [!NOTE]
 > This document refers to the [Microsoft Foundry (new)](../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal.
 >
-> 🔄 [Switch to the Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal. -->
+> 🔄 [Switch to the Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal.
 ::: moniker-end
