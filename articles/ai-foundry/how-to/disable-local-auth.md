@@ -17,8 +17,6 @@ ms.reviewer: meerakurup
 
 # Disable shared-key access for your hub's storage account (preview)
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
-
 > [!NOTE]
 > The information in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#types-of-projects).
 
