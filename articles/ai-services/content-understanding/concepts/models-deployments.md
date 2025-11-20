@@ -26,7 +26,7 @@ The service is periodically updated to add support for more models. The currentl
 
 ## Set default deployments at the resource level
 
-You must can define default model deployments at the resource level by using a `PATCH` request. When you set defaults, you don't need to pass model deployments with every analyzer request.
+You can define default model deployments at the resource level by using a `PATCH` request. When you set defaults, you don't need to pass model deployments with every analyzer request.
 
 **Step 1:** Set the default deployments on the resource.
 

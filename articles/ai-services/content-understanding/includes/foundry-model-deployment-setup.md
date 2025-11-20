@@ -13,9 +13,9 @@ Set up default model deployments for your Content Understanding resource. Settin
 1. Go to the [Content Understanding settings page](https://contentunderstanding.ai.azure.com/settings)
 2. Select the "+ Add resource" button in the upper left
 3. Select the Foundry resource that you want to use and click Next, then Save
-   - Make sure to leave "Enable auto-deployment for required models if no defaults are available." checked. This ensures your resource is fully set up with the required GPT-4.1, GPT-4.1-mini, and text-embedding-3-large models. Different prebuilt analyzers require different models.
+   - Make sure to leave "Enable autodeployment for required models if no defaults are available." checked. This ensures your resource is fully set up with the required GPT-4.1, GPT-4.1-mini, and text-embedding-3-large models. Different prebuilt analyzers require different models.
 
-By taking these steps you set up a connection between Content Understanding and Foundry models in your Foundry resource. 
+By taking these steps, you set up a connection between Content Understanding and Foundry models in your Foundry resource. 
 
 
 # [REST API](#tab/rest-api)
@@ -26,7 +26,7 @@ By taking these steps you set up a connection between Content Understanding and 
 
    Before running the following cURL command, make the following changes to the HTTP request:
    - Replace `{endpoint}` and `{key}` with the corresponding values from your Foundry instance in the Azure portal.
-   - Replace `{myGPT41Deployment}`, `{myGPT41MiniDeployment}` and `{myEmbeddingDeployment}` with your actual model deployment names from your Foundry resource.
+   - Replace `{myGPT41Deployment}`, `{myGPT41MiniDeployment}`, and `{myEmbeddingDeployment}` with your actual model deployment names from your Foundry resource.
 
    ```bash
    curl -i -X PATCH "{endpoint}/contentunderstanding/defaults?api-version=2025-11-01" \
@@ -41,6 +41,6 @@ By taking these steps you set up a connection between Content Understanding and 
          }'
    ```
 
-By taking these steps you set up a connection between Content Understanding and Foundry models in your Foundry resource.
+By taking these steps, you set up a connection between Content Understanding and Foundry models in your Foundry resource.
 
 ---
