@@ -7,19 +7,15 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 11/20/2025
 zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create an indexed SharePoint knowledge source
 
-<!--
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/file-name.md)]
+[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-indexed-csharp.md)]
 ::: zone-end
-
-Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
--->
 
 ::: zone pivot="python"
 [!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-sharepoint-indexed-python.md)]
