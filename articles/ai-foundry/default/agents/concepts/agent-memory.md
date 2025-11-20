@@ -77,7 +77,7 @@ You can also use this parameter to exclude certain types of data, keeping memory
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../../how-to/create-projects.md). Ensure your project's managed identity has the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke the LLM deployment for memory-related operations.
+- A [Microsoft Foundry project](../../../how-to/create-projects.md). Ensure your project's managed identity has the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke your chat model deployment for memory-related operations.
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - Python 3.8 or later with [configured environment](../../../quickstarts/get-started-code.md?tabs=python), or access to the REST API.
