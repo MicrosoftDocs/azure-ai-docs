@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 11/20/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -29,11 +29,11 @@ In this tutorial, you:
 > * Identify the document key
 > * Define and create the index
 > * Index hotel data from Azure Cosmos DB
-> * Merge hotel room data from Blob storage
+> * Merge hotel room data from Blob Storage
 
 ## Overview
 
-This tutorial uses [Azure.Search.Documents](/dotnet/api/overview/azure/search) to create and run multiple indexers. In this tutorial, you set up two Azure data sources so that you can configure an indexer that pulls from both to populate a single search index. The two data sets must have a value in common to support the merge. In this sample, that field is an ID. As long as there's a field in common to support the mapping, an indexer can merge data from disparate resources: structured data from Azure SQL, unstructured data from Blob storage, or any combination of [supported data sources](search-indexer-overview.md#supported-data-sources) on Azure.
+This tutorial uses [Azure.Search.Documents](/dotnet/api/overview/azure/search) to create and run multiple indexers. You create two Azure data sources and configure an indexer that pulls from both sources to populate a single search index. The two data sets must have a value in common to support the merge. In this tutorial, that field is an ID. As long as there's a field in common to support the mapping, an indexer can merge data from disparate resources: structured data from Azure SQL, unstructured data from Blob Storage, or any combination of [supported data sources](search-indexer-overview.md#supported-data-sources) on Azure.
 
 A finished version of the code in this tutorial can be found in the following project:
 
@@ -49,7 +49,7 @@ A finished version of the code in this tutorial can be found in the following pr
 * [Visual Studio](https://visualstudio.microsoft.com/).
 
 > [!NOTE]
-> You can use a free search service for this tutorial. The free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ## Create services
 
@@ -61,7 +61,7 @@ This sample uses two small sets of data describing seven fictional hotels. One s
 
 ### Start with Azure Cosmos DB
 
-1. Sign in to the [Azure portal](https://portal.azure.com), and then go to the **Overview** page of your Azure Cosmos DB account.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your Azure Cosmos DB account.
 
 1. Select **Data Explorer**, and then select **New Database**.
 

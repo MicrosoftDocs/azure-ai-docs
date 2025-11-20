@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 07/08/2025
+ms.date: 11/20/2025
 zone_pivot_groups: search-get-started-rbac
 ---
 
