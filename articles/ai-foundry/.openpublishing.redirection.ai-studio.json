@@ -126,6 +126,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/openai/overview.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/data-add.md",
             "redirect_url": "/azure/ai-foundry/how-to/data-add",
             "redirect_document_id": true
