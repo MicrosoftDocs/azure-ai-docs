@@ -44,7 +44,7 @@ Once assigned, the project’s managed identity will have the necessary permissi
 
 To view metrics for your agent in the Foundry portal:
 
-1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)].
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 
 2. Navigate to the **Build** page using the top navigation and select the agent you'd like to view data for.
 

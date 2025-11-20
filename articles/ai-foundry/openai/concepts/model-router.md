@@ -23,7 +23,7 @@ Model router for Microsoft Foundry is a deployable AI chat model that is trained
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
 ## Why use model router?

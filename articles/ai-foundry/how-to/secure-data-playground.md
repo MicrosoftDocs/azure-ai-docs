@@ -171,7 +171,7 @@ Foundry uses Azure Key Vault to securely store and manage secrets. To allow acce
 Connections from Foundry to Foundry Tools and Azure AI Search should use Microsoft Entra ID for secure access. Connections are created from [Foundry](https://ai.azure.com/?cid=learnDocs) instead of the Azure portal.
 
 > [!IMPORTANT]
-> Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection) article.
+> Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection-in-foundry-portal) article.
 
 1. from Foundry, select __Connections__. If you have existing connections to the resources, you can select the connection and then select the __pencil icon__ in the __Access details__ section to update the connection. Set the __Authentication__ field to __Microsoft Entra ID__, then select __Update__.
 1. To create a new connection, select __+ New connection__, then select the resource type. Browse for the resource or enter the required information, then set __Authentication__ to __Microsoft Entra ID__. Select __Add connection__ to create the connection.

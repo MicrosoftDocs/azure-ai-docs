@@ -42,6 +42,8 @@ items:
 
   - name: Chat completions & Responses APIs
     items:
+      - name: Batch
+        href:  ../../../openai/how-to/batch.md
       - name: Reasoning models
         href: ../../../openai/how-to/reasoning.md
       - name: Responses API 

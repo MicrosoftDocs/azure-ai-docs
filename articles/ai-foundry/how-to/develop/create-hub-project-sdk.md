@@ -20,7 +20,7 @@ In this article, you learn how to create the following [Microsoft Foundry](https
 - A Foundry Tools connection
 
 > [!NOTE]
-> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
 
 ## Prerequisites
 
