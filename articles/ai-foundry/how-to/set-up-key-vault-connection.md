@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 If you don't set up a Key Vault connection, Microsoft Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Foundry.
 
+Azure Key Vault is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. For more information, see [About Azure Key Vault](/azure/key-vault/general/overview).
+
 > [!NOTE]
 > Review limitations before you set up a Key Vault connection.
 
@@ -78,7 +80,6 @@ Use this template:
 
 ### Creation
 
-Create a Key Vault connection only when it's the only connection.
 Make sure no other connections exist at the Foundry resource or project level.
 The service blocks Key Vault connection creation if other connections are present.
 If the UI doesn't show a Key Vault connection category when you choose a connection,
@@ -94,7 +95,7 @@ delete the Key Vault connection. Foundry doesn't support secret migration.
 
 ### Update or change
 
-To switch from Azure Key Vault 1 to Azure Key Vault 2, delete the Azure Key Vault 1 connection, and then create the Azure Key Vault 2 connection. Follow the deletion and creation steps, and migrate any connection secrets.
+To switch from Azure Key Vault 1 to Azure Key Vault 2, delete the Azure Key Vault 1 connection, and then create the Azure Key Vault 2 connection. Follow the deletion and creation steps, and manually recreate any connection secrets.
 
 ### Key Vault secret lifecycle
 
@@ -108,8 +109,7 @@ Check whether your Azure Key Vault uses role-based access control (RBAC) or acce
 
 #### Role-based access control (RBAC)
 
-After you create the Key Vault connection, assign an appropriate RBAC role in the Azure portal. Key Vault Contributor or Key Vault Administrator are two roles that work. For minimal permissions, use the [Key Vault Secrets
-Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer).
+After you create the Key Vault connection, assign an appropriate RBAC role in the Azure portal. Key Vault Contributor or Key Vault Administrator are two roles that work. For minimal permissions, use the [Key Vault Secrets Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer) role, which allows the Foundry resource to manage secrets.
 
 #### Access policies
 
@@ -142,4 +142,4 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 ## Related content
 
 - [Azure Key Vault documentation](/azure/key-vault/)
-- [Foundry documentation](/azure/ai-foundry/) 
+- [Foundry documentation](/azure/ai-foundry/)

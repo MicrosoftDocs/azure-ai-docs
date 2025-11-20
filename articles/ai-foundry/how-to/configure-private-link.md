@@ -40,10 +40,10 @@ To connect to Foundry secured by a virtual network, use one of these methods:
 
 * [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) - Connect on-premises networks to the virtual network over a private connection on the public internet. Choose from two VPN gateway types:
 
-    * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal) : Each client computer uses a VPN client to connect to the virtual network.
-    * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal) : A VPN device connects the virtual network to your on-premises network.
+    * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal): Each client computer uses a VPN client to connect to the virtual network.
+    * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal): A VPN device connects the virtual network to your on-premises network.
 
-* [ExpressRoute](https://azure.microsoft.com/services/expressroute/) - Connect on-premises networks to Azure over a private connection through a connectivity provider.
+* [ExpressRoute](/azure/expressroute/) - Connect on-premises networks to Azure over a private connection through a connectivity provider.
 * [Azure Bastion](/azure/bastion/bastion-overview) - Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the workspace directly.
 
 ## Create a Foundry project that uses a private endpoint
@@ -73,7 +73,7 @@ When creating a new project, use the following steps to create the project.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
 
     > [!NOTE]
-    > The portal refers to the PE target as an "account" or "resource". Choose your Foundry project resource as the target.
+    > The portal refers to the private endpoint target as an "account" or "resource". Choose your Foundry project resource as the target.
 
 1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
@@ -127,7 +127,7 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
 
 Network-secured Standard Agents and Evaluations support full network isolation and data exfiltration protection through network injection of the Agent and evaluations client. To do this, the client is network injected into your Azure virtual network, allowing for strict control over data movement and preventing data exfiltration by keeping traffic within your defined network boundaries. Network injection is supported only for Standard Agent deployment and Evaluations, not Light Agent deployment.
 
-A network-injected Foundry resource can be set up through BICEP template deployment and Azure portal UI set up experience. After the Foundry resource is deployed, the delegated subnet cannot be updated. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but cannot remove the subnet delegation. To update the delegated subnet, you must delete your resource and redeploy. 
+A network-injected Foundry resource can be set up through Bicep template deployment and Azure portal UI set up experience. After the Foundry resource is deployed, the delegated subnet cannot be updated. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but cannot remove the subnet delegation. To update the delegated subnet, you must delete your resource and redeploy. 
 
 For more information on secured networking for the Agent Service, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks) article.
 

@@ -52,11 +52,11 @@ None of these optional resources (for example Key Vault, Storage, ACR, Applicati
 | ------------- | ---------------- | ---------- | --------------------- |
 | Platform infrastructure | Foundry control plane, project metadata | Microsoft | Regional; no customer action for zone configuration. |
 | State stores (Standard agent mode) | Azure Cosmos DB, Azure AI Search, Azure Storage | You | Configure redundancy, backup, replication. |
-| Security & secrets | Azure Key Vault | You | Zone redundant automatically when supported; configure RBAC & purge protection. |
+| Security & secrets | Azure Key Vault | You | Automatic zone redundancy when supported; configure RBAC & purge protection. |
 | Monitoring | Application Insights | You | Consider multi-region instances or failover strategy. |
 | Image & artifact registry | Azure Container Registry | You | Use geo-replication as needed. |
 | Integration / workflow | Logic Apps, Functions, Event Grid | You | Align region + DR strategy with agent dependencies. |
-| Compliance / data mapping | Microsoft Purview (connected) | You | Enables continuity for eDiscovery scenarios. |
+| Compliance / data mapping | Microsoft Purview (connected) | You | Enable continuity for eDiscovery scenarios. |
 | Other knowledge/tool sources | SharePoint, custom APIs | You | Configure per service HA. |
 
 The rest of this article explains how to make each component highly available.
@@ -70,6 +70,8 @@ Learn more: [Design for resiliency](/azure/well-architected/reliability/principl
 ### Prevent resource deletion
 
 To prevent most accidental deletions, apply delete [resource locks](/azure/azure-resource-manager/management/lock-resources) to critical resources. Locks protect against resource-level deletion but not data plane operations. Apply delete locks to these resources.
+
+Here are the protections provided and limitations for each resource:
 
 | Resource                 | Protection provided | Limitations |
 | :----------------------- | :------------------ | :---------- |
@@ -86,7 +88,7 @@ Use Azure role-based access control (RBAC) to limit access to control and data p
 
 In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-Data can also be destroyed through Agent Service REST APIs. For example, see [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) can delete operational data using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+Data can also be destroyed through Agent Service REST APIs. For example, see [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](../concepts/rbac-azure-ai-foundry.md#azure-ai-user) can delete operational data using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](../concepts/rbac-azure-ai-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
 
 ### Implement the single responsibility principle
 

@@ -18,12 +18,14 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article covers recovery from human or automation-caused incidents that result in Azure resource or data loss for Foundry Agent Service projects using the Standard deployment mode. Incidents include accidental deletion of Microsoft Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
+This article covers recovery from human or automation-caused incidents that result in Azure resource or data loss for Foundry Agent Service projects using the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). Incidents include accidental deletion of Microsoft Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
 
 > [!IMPORTANT]
 > This is one article of a three-part series.
 >
 > Read the overview guide first to understand platform limitations, prevention controls, and baseline configuration. See [Agent Service disaster recovery](./agent-service-disaster-recovery.md) for prerequisites and context. That article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
+>
+> To learn how to architect your solution for high availability and resiliency to prevent these scenarios, see [High availability and resiliency](high-availability-resiliency.md).
 >
 > If you're looking for recommendations on how to recover from platform or regional outages, see [Platform outage recovery](./agent-service-platform-disaster-recovery.md) for warm standby, regional failover, and failback.
 
@@ -59,6 +61,9 @@ The following sections describe recovery strategies for incidents that affect a 
    1. Associate the project's former user-assigned managed identity. If you used a system-assigned managed identity, re-enable it. Recreate required role assignments on downstream dependencies and remove orphaned assignments that reference old principal IDs.
 
    1. Redeploy the project's agents (definitions, knowledge files, and tool connections) from source control or application code. They function as new agents with new IDs and no access to prior threads or data. This *fresh start* restores workload functionality without any historical state.
+
+      > [!TIP]
+      > To facilitate this recovery, ensure you maintain your agent definitions, knowledge files, and tool connections in source control. For more information, see [Make agents redeployable](high-availability-resiliency.md#make-agents-redeployable).
 
    1. Restore role assignments on the project for clients, operators, and automation principals.
 
@@ -176,7 +181,7 @@ The following sections describe recovery strategies for incidents that are local
    > [!TIP]
    > Your account name was released to the public the moment your account was deleted, you need to be expeditious in this restoration because if your account name is taken by another customer before you restore, you'll experience complete data loss as you'll need to [perform a destructive reset of the Azure AI Agent Service capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
 
-1. Apply a *delete* resource lock on the Cosmos DB account.
+1. Apply a [*delete* resource lock](/azure/azure-resource-manager/management/lock-resources) on the Cosmos DB account.
 
 1. Use your IaC to redeploy all of the associated projects' role assignments on this Cosmos DB account and its restored `enterprise_memory` database. The restoration process in the previous step doesn't restore role assignments.
 
@@ -203,7 +208,7 @@ The following sections describe recovery strategies for incidents that are local
    - No role assignments need to be reapplied, they're preserved in this restoration.
    - Azure Cosmos DB charges a nominal fee for this restoration action.
 
-1. Apply a *delete* resource lock on the Cosmos DB account.
+1. Apply a [*delete* resource lock](/azure/azure-resource-manager/management/lock-resources) on the Cosmos DB account.
 
 **Results:**
 
@@ -224,7 +229,7 @@ The following sections describe recovery strategies for incidents that are local
 Use the Azure portal, Azure CLI, or Azure PowerShell cmdlet to initiate a point-in-time restore to the same account.
 
    - Select the `enterprise_memory` database.
-   - Choose the latest restore point for the deleted container.
+   - Choose the [latest restore point](/azure/cosmos-db/restore-account-continuous-backup) for the deleted container.
    - No role assignments need to be reapplied, they're preserved with this restoration.
    - Azure Cosmos DB charges a nominal fee for this restoration action.
 
@@ -350,6 +355,11 @@ When other recovery options aren't available, you can perform a complete reset o
    > Even if you reuse the same Azure Cosmos DB, Azure AI Search, or Azure Storage accounts, lingering data from the previous association isn't reused and is unreachable. No supported method exists to migrate orphaned data to the new capability host.
 
 1. Redeploy agents from source control or from application code. They function as new agents with new IDs and no access to prior threads or data. This *fresh start* restores workload functionality without any historical data.
+
+## Related content
+
+- [High availability and resiliency for Microsoft Foundry projects and Agent Services](high-availability-resiliency.md)
+- [Agent Service disaster recovery](agent-service-disaster-recovery.md)
 
 ## Next step
 
