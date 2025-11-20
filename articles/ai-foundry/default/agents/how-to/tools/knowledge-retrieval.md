@@ -145,7 +145,7 @@ Content-Type: application/json
 
 To maximize the accuracy of knowledge base invocations and ensure proper citation formatting, use optimized agent instructions. Based on our experiments, we recommend the following instruction template as a starting point:
 
-```python
+```plaintext
 instructions = """
 You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
 Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
