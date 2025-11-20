@@ -127,7 +127,7 @@
           },
           {
             "source_path_from_root": "/articles/ai-foundry/openai/overview.md",
-            "redirect_url": "/azure/ai-foundry//foundry-models/concepts/models-sold-directly-by-azure",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
             "redirect_document_id": false
           },
           {
