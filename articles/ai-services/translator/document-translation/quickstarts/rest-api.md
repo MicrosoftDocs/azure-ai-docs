@@ -139,7 +139,7 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 |`-F` or `--form` |The filepath to an optional glossary to include with your request. The glossary requires a separate `--form` flag.|***Optional***|
 | &bull; `glossary=`<br> &bull; `type={contentType}/fileExtension`|&bull; Path to the file location for your optional glossary file.</br> &bull; Content type and file extension.</br></br> Ex: **"glossary=@C:\Test\glossary-file.txt;type=text/plain**|***Optional***|
 
-✔️ For more information on **`contentType`**, *see* [**Supported document formats**](../overview.md#synchronous-supported-document-formats).
+✔️ For more information on **`contentType`**, *see* [**Supported document formats**](../overview.md#supported-document-and-glossary-formats).
 
 ### Build and run the synchronous POST request
 

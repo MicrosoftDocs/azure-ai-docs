@@ -32,7 +32,7 @@ If the language of the content in the source document is known, we recommend tha
 
 #### Can the text in an image within a document be translated?
 
-Yes. Document translation feature supports [translating text embedded in images within documents](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) as an optional capability.
+Yes. Document translation feature supports [translating text embedded in images within Word documents](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) as an optional capability.
 
 #### Can Azure Translator Document translation translate content from fully scanned documents?
 
