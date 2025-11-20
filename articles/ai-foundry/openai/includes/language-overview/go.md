@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 03/27/2025
 ---
 
-[Source code](https://github.com/openai/openai-go) | [Package (pkg.go.dev)](https://pkg.go.dev/github.com/openai/openai-go/v2) | [REST API reference documentation](../../latest.md) | [Package reference documentation](https://pkg.go.dev/github.com/openai/openai-go/v2#section-documentation) 
+[Source code](https://github.com/openai/openai-go) | [Package (pkg.go.dev)](https://pkg.go.dev/github.com/openai/openai-go/v3) | [REST API reference documentation](../../latest.md) | [Package reference documentation](https://pkg.go.dev/github.com/openai/openai-go/v3#section-documentation) 
 
 ## Azure OpenAI API version support
 
@@ -20,7 +20,7 @@ ms.date: 03/27/2025
 Install the `openai` and `azidentity` modules with go get:
 
 ```
-go get -u 'github.com/openai/openai-go@v2.1.1'
+go get -u 'github.com/openai/openai-go'
 
 # optional
 go get github.com/Azure/azure-sdk-for-go/sdk/azidentity
@@ -40,9 +40,9 @@ import (
 	"fmt"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/azure"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
+	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
@@ -84,8 +84,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
@@ -122,8 +122,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
@@ -172,10 +172,10 @@ import (
 	"context"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/azure"
-	"github.com/openai/openai-go/v2/option"
-	"github.com/openai/openai-go/v2/responses"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
+	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
 )
 
 func main() {

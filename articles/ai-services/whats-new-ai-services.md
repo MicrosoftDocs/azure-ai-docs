@@ -17,7 +17,6 @@ Welcome! This article highlights key changes and updates in Foundry Tools docume
 - [Adaptive custom translation v1.0 (preview)](../ai-services/translator/custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
 - [Migrate from retired intent recognition](../ai-services/speech-service/migrate-intent-recognition.md)
 - [Recognized PII entities list](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories-list.md)
-- [Use Microsoft Foundry with Azure AI Search skills](../ai-services/multi-services-resource-search-skills.md)
 - [Use the Call Center Voice Agent Accelerator](../ai-services/speech-service/voice-live-telephony.md)
 - [Voice live FAQ](../ai-services/speech-service/voice-live-faq.yml)
 

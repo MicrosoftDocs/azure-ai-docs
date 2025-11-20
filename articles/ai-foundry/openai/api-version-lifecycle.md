@@ -373,23 +373,25 @@ console.log('Response content:', result.choices[0].message.content);
 # [Go](#tab/go)
 
 ```go
+
 package main
 
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/azure"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/azure"
+	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
 	// Create an Azure credential
 	tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
 	if err != nil {
-		panic(fmt.Sprintf("Failed to create credential: %v", err))
+		log.Fatalf("Failed to create credential: %s", err)
 	}
 
 	// Create a client with Azure OpenAI endpoint and token credential
@@ -406,7 +408,7 @@ func main() {
 		Model: "MAI-DS-R1", // Use your deployed model name on Azure
 	})
 	if err != nil {
-		panic(err.Error())
+		log.Fatalf("Failed to get chat completions: %s", err)
 	}
 
 	fmt.Println(chatCompletion.Choices[0].Message.Content)

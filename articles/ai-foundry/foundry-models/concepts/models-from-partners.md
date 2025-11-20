@@ -52,8 +52,6 @@ Claude models are also supported for use in the [Foundry Agent Service](../../ag
 | [claude-opus-4-1](https://aka.ms/claude-opus-4-1) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 | [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models).
-
 ::: moniker-end
 
 ::: moniker range="foundry"
@@ -64,9 +62,9 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | `claude-opus-4-1` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
 | `claude-sonnet-4-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models).
-
 ::: moniker-end
+
+See [the Anthropic model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=anthropic/?cid=learnDocs).
 
 ## Cohere
 

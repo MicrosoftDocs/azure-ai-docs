@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 10/13/2025
+monikerRange: 'foundry-classic || foundry'
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---

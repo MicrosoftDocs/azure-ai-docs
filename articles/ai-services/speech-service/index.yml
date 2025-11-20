@@ -70,17 +70,20 @@ conceptualContent:
       footerLink:
         text: More
         url: index-text-to-speech.yml
-    - title: Scenario deep-dives
+    - title: Voice live
       links:
         - itemType: overview
-          text: Captioning with speech to text
-          url: captioning-concepts.md
+          text: What is Voice live?
+          url: /azure/ai-services/speech-service/voice-live
+        - itemType: quickstart
+          text: Get started with Voice live models
+          url: /azure/ai-services/speech-service/voice-live-quickstart
+        - itemType: quickstart
+          text: Get started with Voice live in Foundry agents
+          url: /azure/ai-services/speech-service/voice-live-agents-quickstart
         - itemType: how-to-guide
-          text: Call center overview
-          url: call-center-overview.md
-        - itemType: overview
-          text: Pronunciation assessment
-          url: pronunciation-assessment-tool.md
+          text: Customize Voice live
+          url: /azure/ai-services/speech-service/voice-live-how-to-customize
     - title: Tools
       links:
         - itemType: quickstart
@@ -99,21 +102,19 @@ conceptualContent:
         url: speech-translation.md
       - itemType: quickstart
         text: Get started with speech translation
-        url: get-started-speech-translation.md         
-    - title: Voice live
+        url: get-started-speech-translation.md
+    - title: Scenario deep-dives
       links:
         - itemType: overview
-          text: What is Voice live?
-          url: /azure/ai-services/speech-service/voice-live
-        - itemType: quickstart
-          text: Get started with Voice live models
-          url: /azure/ai-services/speech-service/voice-live-quickstart
-        - itemType: quickstart
-          text: Get started with Voice live in Foundry agents
-          url: /azure/ai-services/speech-service/voice-live-agents-quickstart
+          text: Captioning with speech to text
+          url: captioning-concepts.md
         - itemType: how-to-guide
-          text: Customize Voice live
-          url: /azure/ai-services/speech-service/voice-live-how-to-customize
+          text: Call center overview
+          url: call-center-overview.md
+        - itemType: overview
+          text: Pronunciation assessment
+          url: pronunciation-assessment-tool.md         
+  
     - title: Hosting
       links:
         - itemType: how-to-guide

@@ -18,6 +18,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ## November 2025
 
+### Anthropic models added
+
+Version `2025-11-18` of model router adds support for three Anthropic models: `claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`. To include these in your model router deployment, you need to first deploy them yourself to your Foundry resource (see [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&tabs=python)). Then enable them with [model subset configuration](/azure/ai-foundry/openai/how-to/model-router?view=foundry) in your model router deployment.
+
+
 ### Model router GA version
 
 A new model router model is now available. Version `2025-11-18` includes support for all underlying models in previous versions, as well as 10 new language models. 

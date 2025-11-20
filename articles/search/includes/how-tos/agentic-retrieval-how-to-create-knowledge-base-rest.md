@@ -138,7 +138,7 @@ A knowledge base drives the agentic retrieval pipeline. In application code, it'
 
 A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source establish defaults that inform query execution and the response.
 
-Use [Knowledge Bases - Create or Update (REST API)](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
+Use [Knowledge Bases - Create or Update (REST API)](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to formulate the request.
 
 ```http
 # Create a knowledge base

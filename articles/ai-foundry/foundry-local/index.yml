@@ -64,6 +64,8 @@ landingContent:
             url: reference/reference-rest.md
           - text: Catalog API reference
             url: reference/reference-catalog-api.md
+          - text: Foundry Local on Windows Server 2025
+            url: reference/windows-server-frequently-asked-questions.md            
           - text: Best practice and troubleshooting
             url: reference/reference-best-practice.md
   
