@@ -79,7 +79,7 @@ When you add a hierarchical document, QnA Maker determines follow-up prompts fro
 
 ## Create knowledge base with multi-turn prompts with the Create API
 
-You can create a knowledge case with multi-turn prompts using the [QnA Maker Create API](/rest/api/qnamaker/knowledgebase/create). The prompts are adding in the `context` property's `prompts` array.
+You can create a knowledge case with multi-turn prompts using the [QnA Maker Create API](/azure/ai-services/language-service/question-answering/how-to/authoring). The prompts are adding in the `context` property's `prompts` array.
 
 ## Show questions and answers with context
 

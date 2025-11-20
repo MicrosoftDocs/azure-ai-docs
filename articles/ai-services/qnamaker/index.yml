@@ -109,7 +109,7 @@ landingContent:
           - text: Authoring APIs
             url: /azure/ai-services/language-service/question-answering/how-to/authoring
           - text: Generate Answer APIs
-            url: /rest/api/qnamaker/runtime
+            url: /azure/ai-services/language-service/concepts/developer-guide
           - text: .NET SDK reference documentation
             url: /dotnet/api/microsoft.azure.cognitiveservices.knowledge.qnamaker
           - text: Azure PowerShell
