@@ -1,19 +1,22 @@
 ---
-title: Azure AI Foundry Agent Service platform outage recovery
+title: Foundry Agent Service platform outage recovery
 ms.service: azure-ai-foundry
 ms.reviewer: ckittel
-description: Recover Azure AI Foundry Agent Service projects from Azure platform and regional outages with warm standby, failover, and failback procedures.
+description: Recover Foundry Agent Service projects from Azure platform and regional outages with warm standby, failover, and failback procedures.
+monikerRange: 'foundry-classic || foundry'
 #customer intent: As a developer, I want to understand how to recreate projects in a standby region so that I can restore critical functionality during a regional outage.
 author: jonburchel
 ms.author: jburchel
-ms.date: 10/15/2025
+ms.date: 11/18/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
 
-# Azure AI Foundry Agent Service platform outage recovery
+# Foundry Agent Service platform outage recovery
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 This article covers recovery from Azure platform incidents that take an entire region or a regional dependency offline, for example, a prolonged regional outage or loss of a stateful dependency.
 
@@ -22,7 +25,7 @@ The recommended approach to [design for recovery](/azure/well-architected/reliab
 > [!IMPORTANT]
 > This is one article of a three-part series.
 >
-> Read the overview guide first to understand platform limitations, prevention controls, and required baseline configuration. For prerequisites and context, see [Azure AI Foundry Agent Service disaster recovery](./agent-service-disaster-recovery.md). This article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
+> Read the overview guide first to understand platform limitations, prevention controls, and required baseline configuration. For prerequisites and context, see [Foundry Agent Service disaster recovery](./agent-service-disaster-recovery.md). This article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
 >
 > If you're looking for recommendations on recovering from human-caused or automation-caused deletions and localized data loss, see [Resource and data loss recovery](./agent-service-operator-disaster-recovery.md).
 
@@ -31,20 +34,20 @@ The recommended approach to [design for recovery](/azure/well-architected/reliab
 Establish and maintain a warm standby environment in a paired or otherwise acceptable region. This environment supports an active-passive approach that reduces recovery time with limited idle cost.
 
 - Create a virtual network in the failover region that mirrors the primary region's subnet topology and all required cross-premises connectivity. Keep egress controls and firewall rules synchronized while this environment is idle.
-- Create an Azure AI Foundry account with agent capability enabled in that network. Don't create projects, project-specific connections, or model deployments.
+- Create a Microsoft Foundry account with agent capability enabled in that network. Don't create projects, project-specific connections, or model deployments.
 - Enable Azure diagnostics, Defender for Cloud, and Purview integration on the standby account, matching the configuration of your production instance.
 
 Maintain this low-idle-cost, fully networked warm standby account. It hosts no projects during normal operations. Re-create only needed projects (and their dependencies) during failover based on business criticality and during failover drills.
 
 ### Gateway routing
 
-If your clients' configurations are outside your control, add a layer of indirection between your clients and the Azure AI Foundry Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
+If your clients' configurations are outside your control, add a layer of indirection between your clients and the Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
 
 ## Complete regional outage
 
-**Scenario:** The primary region hosting your Azure AI Foundry account and dependencies is unavailable because of a platform provider outage that renders all resources in your primary region unavailable.
+**Scenario:** The primary region hosting your Foundry account and dependencies is unavailable because of a platform provider outage that renders all resources in your primary region unavailable.
 
-**During the incident:** Complete outage. You can't create, delete, modify, or invoke agents in any projects. Data plane API calls error or time-out. The AI Foundry portal is unavailable for the whole account.
+**During the incident:** Complete outage. You can't create, delete, modify, or invoke agents in any projects. Data plane API calls error or time-out. The Foundry portal is unavailable for the whole account.
 
 ### Fail over to secondary region
 
@@ -61,13 +64,13 @@ For *each project* you choose to recover, follow these steps:
 
 1. Create the project's user-assigned managed identity. Give it access to the new regional dependencies.
 
-1. Create the project in the standby AI Foundry account via IaC and assign the managed identity. Point the project's capability host to the new regional dependencies. Apply role assignments for clients, operators, and automation principals.
+1. Create the project in the standby Foundry account via IaC and assign the managed identity. Point the project's capability host to the new regional dependencies. Apply role assignments for clients, operators, and automation principals.
 
 1. Redeploy agents (definitions, knowledge files, and tool connections) from source control or application code. They're new agents with new IDs and have **no access** to prior threads or files.
 
 1. Recover any client components, if part of the workload, per their recovery playbooks.
 
-1. Update clients to use the new AI Foundry account fully qualified domain name (FQDN) and new agent IDs.
+1. Update clients to use the new Foundry account fully qualified domain name (FQDN) and new agent IDs.
 
    If an AI gateway pattern is used, then clients will continue to use the gateway's FQDN. The gateway configuration will instead need to be updated to route requests to the newly created project on behalf of it clients.
 
@@ -88,7 +91,7 @@ When the primary region is stable and fully operational, return traffic there an
 
 For each failed-over project:
 
-1. Delete the project from the failover (standby) AI Foundry account. This action orphans all agents and threads created during the failover.
+1. Delete the project from the failover (standby) Foundry account. This action orphans all agents and threads created during the failover.
 
 1. Delete the project's managed identity.
 
@@ -97,7 +100,7 @@ For each failed-over project:
       > [!IMPORTANT]
    > This step permanently deletes all state created during the failover period. There's no recovery or merge capability for this data.
 
-1. If clients still point to the failover (standby) AI Foundry account, update them to use the original project's FQDN and original agent IDs.
+1. If clients still point to the failover (standby) Foundry account, update them to use the original project's FQDN and original agent IDs.
 
 **Results:**
 
@@ -113,9 +116,9 @@ Using Azure Storage multi-region recovery also doesn't improve recovery outcomes
 
 ## Complete regional outage for Azure Cosmos DB accounts
 
-**Scenario:** The Azure Cosmos DB account used by your Azure AI Foundry Agent Service is unavailable due to a platform provider outage in your region. No other services are affected in this outage.
+**Scenario:** The Azure Cosmos DB account used by your Agent Service is unavailable due to a platform provider outage in your region. No other services are affected in this outage.
 
-**During the incident:** Complete outage of all projects that used the `enterprise_memory` database in this Azure Cosmos DB instance. You can't create, delete, modify, or invoke agents. All calls to the Azure AI Foundry data plane APIs return errors. The agent experience in the Azure AI Foundry portal isn't available for the account.
+**During the incident:** Complete outage of all projects that used the `enterprise_memory` database in this Azure Cosmos DB instance. You can't create, delete, modify, or invoke agents. All calls to the Foundry data plane APIs return errors. The agent experience in the Foundry portal isn't available for the account.
 
 **Recovery steps:**
 
@@ -134,7 +137,7 @@ The Azure Cosmos DB team initiates a service-managed failover automatically base
 
 ## Complete regional outage for Azure AI Search services
 
-**Scenario:** The Azure AI Search service used by your Azure AI Foundry Agent Service for real-time indexing is unavailable due to a platform provider outage in your region. Connected pre-indexed knowledge stored in other Azure AI Search services is likely also affected by this outage, but its recovery falls on the data owner for that service and is out of scope for this article. No other services are affected in this outage.
+**Scenario:** The Azure AI Search service used by your Agent Service for real-time indexing is unavailable due to a platform provider outage in your region. Connected pre-indexed knowledge stored in other Azure AI Search services is likely also affected by this outage, but its recovery falls on the data owner for that service and is out of scope for this article. No other services are affected in this outage.
 
 **During the incident:** Agents with file-based knowledge generate an error when they consult that knowledge. Threads that involved uploaded files return errors if the agent attempts to recall indexed data. Attempts to add files as knowledge to agents or into threads result in an error. Agents that don't use file-based knowledge and workloads that don't support file uploads likely experience no change.
 
@@ -155,7 +158,7 @@ The Azure Cosmos DB team initiates a service-managed failover automatically base
 
 ## Complete regional outage for Azure Storage accounts
 
-**Scenario:** The Azure Storage account used by your Azure AI Foundry Agent Service is unavailable due to a platform provider outage in your region. A Storage outage often affects downstream services. An outage in Azure Storage is unlikely to manifest as a limited scope outage in your workload.
+**Scenario:** The Azure Storage account used by your Agent Service is unavailable due to a platform provider outage in your region. A Storage outage often affects downstream services. An outage in Azure Storage is unlikely to manifest as a limited scope outage in your workload.
 
 **During the incident:** You can't create new agents that use file-based knowledge as part of their definition. Attempts to add new files as knowledge to agents or into threads result in an error. Agents that don't use file-based knowledge and workloads that don't support file uploads see no change, assuming the issue is limited to normal runtime usage of your Storage account.
 

@@ -53,12 +53,12 @@ You can use the Azure portal, preview APIs, or preview Azure SDK packages to ena
 
 ### [**REST**](#tab/rest)
 
-On new indexers, add the `cache` property in the indexer definition payload when calling Create or Update Indexer. 
+On new indexers, add the `cache` property in the indexer definition payload when calling Create or Update Indexer.
 
-We recommend the latest preview REST API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+We recommend the latest preview REST API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
 ```https
-POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-11-01-preview
     {
         "name": "<YOUR-INDEXER-NAME>",
         "targetIndexName": "<YOUR-INDEX-NAME>",
@@ -82,10 +82,10 @@ For existing indexers that already have a skillset, use the following steps to a
 
 ### Step 1: Get the indexer definition
 
-Start with a valid, work indexer that has these components: data source, skillset, index. Using an API client, send a [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) request to retrieve the indexer. When you use the preview API version to the GET the indexer, a `cache` property set to null is added to the definition automatically.
+Start with a valid, work indexer that has these components: data source, skillset, index. Using an API client, send a [GET Indexer](/rest/api/searchservice/indexers/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request to retrieve the indexer. When you use the preview API version to the GET the indexer, a `cache` property set to null is added to the definition automatically.
 
 ```http
-GET https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2025-08-01-preview
+GET https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2025-11-01-preview
     Content-Type: application/json
     api-key: [YOUR-ADMIN-KEY]
 ```
@@ -98,7 +98,7 @@ In the index definition, modify `cache` to include the following required and op
 + (Optional) `enableReprocessing` boolean property (`true` by default), indicates that incremental enrichment is enabled. Set to `false` if you want to suspend incremental processing while other resource-intensive operations, such as indexing new documents, are underway and then switch back to `true` later.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-11-01-preview
     {
         "name": "<YOUR-INDEXER-NAME>",
         "targetIndexName": "<YOUR-INDEX-NAME>",
@@ -119,17 +119,17 @@ POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-p
 [Reset Indexer](/rest/api/searchservice/indexers/reset) is required when setting up incremental enrichment for existing indexers to ensure all documents are in a consistent state. You can use the Azure portal or an API client for this task.
 
 ```https
-POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/reset?api-version=2025-08-01-preview
+POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/reset?api-version=2025-11-01-preview
     Content-Type: application/json
     api-key: [YOUR-ADMIN-KEY]
 ```
 
 ### Step 4: Save the indexer
 
-[Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) with a PUT request, where the body of the request includes `cache`.
+[Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with a PUT request, where the body of the request includes `cache`.
 
 ```http
-PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2025-08-01-preview
+PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]?api-version=2025-11-01-preview
     Content-Type: application/json
     api-key: [YOUR-ADMIN-KEY]
     {
@@ -159,7 +159,7 @@ To run indexer, you can use the Azure portal or the API. In the Azure portal, fr
 Alternatively, you can use REST to [run the indexer](/rest/api/searchservice/indexers/run):
 
 ```http
-POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2025-08-01-preview
+POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/run?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: [YOUR-ADMIN-KEY]
 ```

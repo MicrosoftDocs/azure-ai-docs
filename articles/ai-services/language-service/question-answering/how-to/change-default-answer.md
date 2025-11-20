@@ -3,15 +3,14 @@ title: Get default answer - custom question answering
 description: The default answer is returned when there is no match to the question. You might want to change the default answer from the standard default answer in custom question answering.
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 author: laujan
 ms.author: lajanuar
 ms.custom: language-service-question-answering
 ---
-
 # Change default answer for custom question answering
 
-The default answer for a project is meant to be returned when an answer is not found. If you are using a client application, such as the [Azure AI Bot Service](/azure/bot-service/bot-builder-howto-qna), it may also have a separate default answer, indicating no answer met the score threshold.
+The default answer for a project is meant to be returned when an answer is not found. If you're using a client application, such as the [Azure AI Bot Service](/azure/bot-service/bot-builder-howto-qna), it may also have a separate default answer, indicating no answer met the score threshold.
 
 ## Default answer
 

@@ -1,19 +1,18 @@
 ---
 title: Conversational Language Understanding backwards compatibility
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about backwards compatibility between Language Understanding (LUIS) and Conversational Language Understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 08/18/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)
 
-[Conversational language understanding (CLU)](../overview.md) is a cloud-based AI offering in Azure AI Language. It's the newest generation of [Language Understanding (LUIS)](../../../luis/what-is-luis.md) and offers backwards compatibility with previously created LUIS applications. CLU employs state-of-the-art machine learning intelligence to allow users to build a custom natural language understanding model for predicting intents and entities in conversational utterances.
+[Conversational language understanding (CLU)](../overview.md) is a cloud-based AI offering in Azure Language in Foundry Tools. It's the newest generation of [Language Understanding (LUIS)](../../../luis/what-is-luis.md) and offers backwards compatibility with previously created LUIS applications. CLU employs state-of-the-art machine learning intelligence to allow users to build a custom natural language understanding model for predicting intents and entities in conversational utterances.
 
 CLU offers the following advantages over `LUIS`:
 
@@ -67,7 +66,7 @@ Follow these steps to begin migration using the [LUIS Portal](https://www.luis.a
 
     :::image type="content" source="../media/backwards-compatibility/migration-overview.svg" alt-text="A screenshot showing the migration overview window." lightbox="../media/backwards-compatibility/migration-overview.svg":::
 
-1. Determine the Language resource that you wish to migrate your LUIS application to. If you created a Language resource, select your Azure subscription followed by your Language resource, and then select **Next**. If you don't have a Language resource, select the link to create a new Language resource. Afterwards, select the resource and select **Next**.
+1. Determine Azure Language resource that you wish to migrate your LUIS application to. If you created a Language resource, select your Azure subscription followed by your Language resource, and then select **Next**. If you don't have a Language resource, select the link to create a new Language resource. Afterwards, select the resource and select **Next**.
 
     :::image type="content" source="../media/backwards-compatibility/select-resource.svg" alt-text="A screenshot showing the resource selection window." lightbox="../media/backwards-compatibility/select-resource.svg":::
 

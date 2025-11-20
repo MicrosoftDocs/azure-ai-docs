@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 09/26/2025
+ms.date: 11/19/2025
 ms.update-cycle: 180-days
 ---
 
@@ -103,7 +103,9 @@ To increase or decrease the capacity of your service, you have two options:
 
    :::image type="content" source="media/search-capacity-planning/portal-notifications.png" alt-text="Screenshot of the notification of the scaling operation in the Azure portal." border="true" lightbox="media/search-capacity-planning/portal-notifications.png":::
 
-   This operation can take several hours to complete. You can’t cancel the process after it starts, and there’s no real-time monitoring of replica and partition adjustments. However, the following message displays while changes are underway.
+   This operation can take several hours to complete. It occurs in the background, so your search service remains fully operational and available for read and write operations.
+
+   You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway:
 
    :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true" lightbox="media/search-capacity-planning/updating-message.png":::
 
@@ -138,7 +140,9 @@ To change your pricing tier:
 
    :::image type="content" source="media/search-capacity-planning/save-button.png" alt-text="Screenshot of the Save button in the Azure portal." border="true" lightbox="media/search-capacity-planning/save-button.png":::
 
-   This operation can take several hours to complete. You can't cancel the process after it starts, and there's no real-time monitoring of tier changes. However, the following message displays while changes are underway.
+   This operation can take several hours to complete. It occurs in the background, so your search service remains fully operational and available for read and write operations.
+
+   You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway:
 
    :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true" lightbox="media/search-capacity-planning/updating-message.png":::
 

@@ -1,0 +1,88 @@
+items:
+  - name: Azure OpenAI in Foundry Models
+    href: ../../../openai/supported-languages.md
+  - name: Claude in Foundry Models
+    href: ../../../foundry-models/how-to/use-foundry-models-claude.md
+  - name: Deployment types
+    href: ../../../foundry-models/concepts/deployment-types.md
+  - name: Priority processing
+    href: ../../../openai/concepts/priority-processing.md
+  - name: Provisioned throughput
+    items:
+      - name: Provisioned Throughput offering (PTU)
+        href: ../../../openai/concepts/provisioned-throughput.md
+      - name: Understanding and calculating PTU costs
+        href: ../../../openai/how-to/provisioned-throughput-onboarding.md
+      - name: Get started with Provisioned Deployments
+        href: ../../../openai/how-to/provisioned-get-started.md
+      - name: Provisioned spillover
+        href: ../../../openai/how-to/spillover-traffic-management.md
+  - name: Quickstarts
+    items:
+      - name: Audio generation
+        href: ../../../openai/audio-completions-quickstart.md
+      - name: Vision-enabled chats
+        href: ../../../openai/gpt-v-quickstart.md
+      - name: Speech to text
+        href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Text to speech
+        href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Text to speech avatar
+        href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Voice Live
+        href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+  - name: Concepts
+    items:
+      - name: Video generation (preview)
+        href: ../../../openai/concepts/video-generation.md
+      - name: Video translation (preview)
+        href: ../../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      - name: Image prompt engineering techniques
+        href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+
+  - name: Chat completions & Responses APIs
+    items:
+      - name: Batch
+        href:  ../../../openai/how-to/batch.md
+      - name: Reasoning models
+        href: ../../../openai/how-to/reasoning.md
+      - name: Responses API 
+        href: ../../../openai/how-to/responses.md
+      - name: Chat completions API
+        href: ../../../openai/how-to/chatgpt.md
+      - name: Deep research
+        href: ../../../openai/how-to/deep-research.md
+      - name: Embeddings
+        items:
+        - name: Embeddings
+          href: ../../../openai/how-to/embeddings.md
+        - name: Embeddings tutorial
+          href: ../../../openai/tutorials/embeddings.md
+
+      - name: Function calling
+        href: ../../../openai/how-to/function-calling.md 
+      - name: Predicted outputs
+        href: ../../../openai/how-to/predicted-outputs.md
+      - name: Prompt caching
+        href: ../../../openai/how-to/prompt-caching.md   
+      - name: Structured outputs
+        href: ../../../openai/how-to/structured-outputs.md
+      - name: JSON mode
+        href: ../../../openai/how-to/json-mode.md
+      - name: Web search
+        href: ../../../openai/how-to/web-search.md 
+
+ 
+  - name: Codex
+    href: ../../../openai/how-to/codex.md
+  - name: Webhooks
+    href: ../../../openai/how-to/webhooks.md
+  - name: Playgrounds and quick evaluation
+    href: ../../../concepts/concept-playgrounds.md
+  - name: Model leaderboards
+    href: ../../../concepts/model-benchmarks.md
+  - name: Compare models
+    href: ../../../how-to/benchmark-model-in-catalog.md
+  - name:  Upgrade/Switch Models with Ask AI
+    href: ../../observability/how-to/optimization-model-upgrade.md
+

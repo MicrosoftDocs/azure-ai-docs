@@ -1,6 +1,6 @@
 ---
 title: How to Use Image Generation Models from OpenAI
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today.
 author: PatrickFarley
 ms.author: pafarley
@@ -12,9 +12,14 @@ ms.topic: how-to
 ms.custom:
   - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # How to use Azure OpenAI image generation models
+
 
 OpenAI's image generation models create images from user-provided text prompts and optional images. This article explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
@@ -45,14 +50,17 @@ OpenAI's image generation models create images from user-provided text prompts a
 | **Strengths** | Best for **realism**, **instruction following**, and **multimodal context** | Best for **fast prototyping**, **bulk generation**, or **cost-sensitive** use cases | Strong **prompt adherence**, **natural text rendering**, and **stylistic diversity** |
 
 ## Responsible AI and Image Generation 
-Azure OpenAI image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
-We provide input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+
+In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+
 Customers can learn more about these safeguards and how to customize them here:
-- Learn more: Explore[content filtering](https://learn.microsoft.com/azure/ai-foundry/openai/concepts/content-filter)
+- Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
 - Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
-Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations (i.e. applying image edits) to images containing minors.
-If you're approved, such images will not be automatically blocked by the system.
+### Special considerations for generating images of minors
+
+Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
 
 
 ## Call the image generation API
@@ -287,7 +295,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 > [!NOTE]
-> WEBP images aren't supported in the Azure OpenAI in Azure AI Foundry Models.
+> WEBP images aren't supported in the Azure OpenAI in Microsoft Foundry Models.
 
 #### Compression
 

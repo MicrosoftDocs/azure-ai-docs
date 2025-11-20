@@ -1,12 +1,12 @@
 ---
 title: Deploy the Document Intelligence Sample Labeling tool
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn the different ways you can deploy the Document Intelligence Sample Labeling tool to help with supervised learning.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ---
@@ -36,7 +36,7 @@ The Document Intelligence Sample Labeling tool is an application that provides a
 
 The fastest way to start labeling data is to run the Sample Labeling tool locally. The following quickstart uses the Document Intelligence REST API and the Sample Labeling tool to train a custom model with manually labeled data.
 
-* [Get started with Azure AI Document Intelligence](label-tool.md).
+* [Get started with Azure Document Intelligence in Foundry Tools](label-tool.md).
 
 ## Deploy with Azure Container Instances (ACI)
 

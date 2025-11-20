@@ -135,7 +135,7 @@ Top_probability is another parameter and is similar to Temperature in that it al
 ## Provide grounding context
 
 One of the most effective ways to provide reliable answers is to give the model data to draw its responses from (grounding data). If your use case relies on up-to-date, reliable information and isn't purely a creative scenario, we strongly recommend providing grounding data. In general, the closer you can get your source material to the final form of the answer you want, the less work the model needs to do, which means there's less opportunity for error.
-Here's an example where the system is provided a [recent blog describing the launch of GPT-4 in Azure OpenAI in Azure AI Foundry Models](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/), and asked to name some of its early customers.
+Here's an example where the system is provided a [recent blog describing the launch of GPT-4 in Azure OpenAI in Microsoft Foundry Models](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/), and asked to name some of its early customers.
 
 | System message | User     | Assistant  |
 |----------------|---------|-------------|

@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Add guided conversations with multi-turn prompts
 
 In this tutorial, you learn how to:
@@ -28,7 +27,7 @@ If you have never created a custom question answering project before we recommen
 
 For this example, let's assume that users are asking for additional details about the Surface Pen product, particularly how to troubleshoot their Surface Pen, but they are not getting the correct answers. So, we add more prompts to support additional scenarios and guide the users to the correct answers using multi-turn prompts.
 
-Multi-turn prompts that are associated with question and answer pairs, can be viewed by selecting **Show columns** > **Context**. By default this should already be enabled on the **Edit project** page in the Language Studio custom question answering interface.
+Multi-turn prompts that are associated with question and answer pairs, can be viewed by selecting **Show columns** > **Context**. By default this should already be enabled on the **Edit project** page in Azure Language Studio custom question answering interface.
 
 > [!div class="mx-imgBorder"]
 > [ ![Screenshot of show columns UI with context highlighted in red]( ../media/guided-conversations/context.png) ]( ../media/guided-conversations/context.png#lightbox)
@@ -46,7 +45,7 @@ To help users solve issues with their Surface Pen, we add follow-up prompts:
 - Add a follow-up prompt to one of the newly added prompts
 
 1. Add a new QnA pair with two follow-up prompts **Check compatibility** and **Check Pen Settings**
-Using the editor, we add a new QnA pair with a follow-up prompt by clicking on **Add question pair**
+Using the editor, we add a new QnA pair with a follow-up prompt by selecting **Add question pair**
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of UI with "Add question pair" highlighted in a red box]( ../media/guided-conversations/add-question.png)
@@ -63,7 +62,7 @@ Using the editor, we add a new QnA pair with a follow-up prompt by clicking on *
     > [!div class="mx-imgBorder"]
     > [ ![Screenshot of UI with "add a follow-up prompt" highlighted in a red box]( ../media/guided-conversations/add-prompts.png) ]( ../media/guided-conversations/add-prompts.png#lightbox)
     
-    We provide **Check Compatibility** as the "Display text" for the prompt and try to link it to a QnA. Since, no related QnA pair is available to link to the prompt, when we search “Check your Surface Pen Compatibility”, we create a new question pair by clicking on **Create link to new pair** and select **Done**. Then select **Save changes**.
+    We provide **Check Compatibility** as the "Display text" for the prompt and try to link it to a QnA. Since, no related QnA pair is available to link to the prompt, when we search “Check your Surface Pen Compatibility”, we create a new question pair by selecting **Create link to new pair** and select **Done**. Then select **Save changes**.
     
     > [!div class="mx-imgBorder"]
     > [ ![Screenshot of a question and answer about checking your surface pen compatibility]( ../media/guided-conversations/compatability-check.png) ]( ../media/guided-conversations/compatability-check.png#lightbox)

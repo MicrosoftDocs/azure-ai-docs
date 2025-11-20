@@ -1,18 +1,18 @@
 ---
 title: "Quickstart: Image Analysis"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to tag images in your application using Image Analysis through a native client library in the language of your choice.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
-ms.date: 06/30/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-api, devx-track-dotnet, devx-track-extended-java
 zone_pivot_groups: programming-languages-computer-vision
-keywords: Azure AI Vision, Azure AI Vision service
+keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools
 ---
 
 # Quickstart: Image Analysis

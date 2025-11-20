@@ -1,7 +1,7 @@
 ---
 title: Control AI model deployment with built-in policies
-titleSuffix: Azure AI Foundry
-description: "Learn how to use built-in Azure policies to control what managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
+titleSuffix: Microsoft Foundry
+description: "Learn how to use built-in Azure policies to control what managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Microsoft Foundry portal."
 ms.author: jburchel 
 author: jonburchel 
 ms.service: azure-ai-foundry
@@ -13,9 +13,9 @@ reviewer: aashishb_microsoft
 
 ---
 
-# Control AI model deployment with built-in policies in Azure AI Foundry portal
+# Control AI model deployment with built-in policies in Microsoft Foundry portal
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Microsoft Foundry portal.
 
 > [!TIP]
 > The steps in this article govern the deployment of MaaS and MaaP models for both a [!INCLUDE [fdp](../includes/fdp-project-name.md)] and [!INCLUDE [hub](../includes/hub-project-name.md)].
@@ -49,7 +49,7 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 
         To get the model asset ID strings and model publishers' name use the following steps:
 
-        1. Go to the [Azure AI Foundry model catalog](model-catalog-overview.md).
+        1. Go to the [Foundry model catalog](model-catalog-overview.md).
 
 
         1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model. The provided names are also *Collections* in model catalog. For example, the publisher for "Meta-Llama-3.1-70B-Instruct" model is Meta. 
@@ -89,4 +89,4 @@ To update an existing policy assignment with new models, follow these steps:
 ## Related content
 
 - [Azure Policy overview](/azure/governance/policy/overview)
-- [Azure AI Foundry model catalog](model-catalog-overview.md)
+- [model catalog](model-catalog-overview.md)

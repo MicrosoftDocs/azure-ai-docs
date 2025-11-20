@@ -1,13 +1,13 @@
-﻿---
-title: 'How to use Logic Apps with Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
+---
+title: 'How to use Logic Apps with Foundry Agent Service'
+titleSuffix: Microsoft Foundry
 description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 11/19/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: umangsehgal
@@ -15,7 +15,7 @@ zone_pivot_groups: selection-logic-apps
 ms.custom: azure-ai-agents
 ---
 
-# How to use Logic Apps with Azure AI Foundry Agent Service
+# How to use Logic Apps with Foundry Agent Service
 
 This article demonstrates how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 
@@ -32,20 +32,20 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 :::zone pivot="portal"
 
 
-## Add a Logic Apps workflow to an agent using the Azure AI Foundry portal
+## Add a Logic Apps workflow to an agent using the Microsoft Foundry portal
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **Actions**. Then select **Add**.
+1. Go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **Actions**. Then select **Add**.
 
-    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
+    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/action-tools.png":::
 
 1. Select **Azure Logic Apps** and follow the prompts to add the tool. 
 
-    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
 
     You can choose to add Microsoft authored workflows, or add your own.
     
     > [!NOTE]
-    > For your logic apps to appear in the Azure AI Foundry portal, they must:
+    > For your logic apps to appear in the Foundry portal, they must:
     > * Be in the same subscription and resource group.
     > * Follow a request trigger with a description, and end with a response action.
     > * Currently we only support consumption workflows.  

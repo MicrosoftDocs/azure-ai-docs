@@ -1,7 +1,7 @@
 ---
-title: Get Answers in Chat Playground - Azure AI Foundry Quickstart
-titleSuffix: Azure AI Foundry
-description: Get answers using the chat playground in Azure AI Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial.
+title: Get Answers in Chat Playground - Microsoft Foundry Quickstart
+titleSuffix: Microsoft Foundry
+description: Get answers using the chat playground in Microsoft Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -12,12 +12,12 @@ ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
-# customer intent: As a developer, I want use the chat playground in Azure AI Foundry portal so I can work with generative AI.
+# customer intent: As a developer, I want use the chat playground in Microsoft Foundry portal so I can work with generative AI.
 ---
 
 # Quickstart: Get answers in the chat playground
 
-Learn how to get answers using the chat playground in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Deploy (or reuse) a chat model and send prompts to receive AI-generated responses.
+Learn how to get answers using the chat playground in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Deploy (or reuse) a chat model and send prompts to receive AI-generated responses.
 
 In this quickstart, you learn how to:
 - Configure a system message.
@@ -25,16 +25,16 @@ In this quickstart, you learn how to:
 - Interpret the model response.
 - Add safety system messages.
 
-For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#types-of-projects).
 
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-[!INCLUDE [feature-preview](../includes/first-run-experience.md)]
+[!INCLUDE [feature-preview](../includes/first-run-experience-classic.md)]
 
 ## Get answers in the playground
 
-Use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground to get answers from AI models. In this quickstart, you'll learn how to ask questions and get responses from deployed chat models.
+Use the [Foundry](https://ai.azure.com/?cid=learnDocs) playground to get answers from AI models. In this quickstart, you'll learn how to ask questions and get responses from deployed chat models.
 
 To get answers from your deployed model in the chat playground:
 
@@ -68,5 +68,5 @@ Next, add your data so the model can answer domain-specific questions. Try the e
 
 ## Related content
 
-- [Build a custom chat app in Python using the Azure AI Foundry SDK](./get-started-code.md).
+- [Build a custom chat app in Python using the Microsoft Foundry SDK](./get-started-code.md).
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md).

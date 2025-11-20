@@ -1,22 +1,23 @@
 ---
 title: 'Deploy a fine-tuned model'
 titleSuffix: Azure OpenAI
-description: Learn how to deploy your fine-tuned model with Azure OpenAI in Azure AI Foundry Models by using Python, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to deploy your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 07/25/2025
+ms.date: 10/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Deploy a fine-tuned model for inferencing
 
 Once your model is fine-tuned, you can deploy the model and can use it in your own application.
 
-When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Azure AI Foundry at no cost until you're ready to use them.
+When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Microsoft Foundry at no cost until you're ready to use them.
 
 Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](../../foundry-models/concepts/deployment-types.md).
 
@@ -28,11 +29,12 @@ To deploy your custom model, select the custom model to deploy, and then select 
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
 
-:::image type="content" source="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Azure AI Foundry portal." lightbox="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png":::
+:::image type="content" source="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Foundry portal." lightbox="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png":::
 
-You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
+You can monitor the progress of your deployment on the **Deployments** pane in Foundry portal.
 
 The UI does not support cross region deployment, while Python SDK or REST supports.
+
 
 ## [Python](#tab/python)
 
@@ -46,7 +48,7 @@ token = os.getenv("<TOKEN>")
 subscription = "<YOUR_SUBSCRIPTION_ID>"  
 resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name = "gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-21"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -56,7 +58,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
             "version": "1"
         }
     }
@@ -82,7 +84,7 @@ print(r.json())
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 ### Cross region deployment
 
@@ -110,7 +112,7 @@ source_resource = "<SOURCE_RESOURCE>"
 
 source = f'/subscriptions/{source_subscription}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_resource}'
 
-model_deployment_name = "gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-21"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -122,7 +124,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-35-turbo-0125.ft-0ab3f80e4f2242929258fff45b56a9ce 
+            "name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-4.1-mini-2025-04-14.ft-0ab3f80e4f2242929258fff45b56a9ce
             "version": "1",
             "source": source
         }
@@ -220,7 +222,7 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 
 ### Cross region deployment
@@ -307,9 +309,9 @@ az cognitiveservices account deployment create
 
 ## [Portal](#tab/portal)
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
-:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
+:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
 
 
 ## [Python](#tab/python)
@@ -325,7 +327,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo-ft", # model = "Custom deployment name you chose for your fine-tuning model"
+    model="gpt-4.1-mini-ft", # model = "Custom deployment name you chose for your fine-tuning model"
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
@@ -364,16 +366,14 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 [Standard deployments](../../foundry-models/concepts/deployment-types.md) provide a pay-per-token billing model with data residency confined to the deployed region.
 
-| Models             | East US2 | North Central US | Sweden Central | Switzerland West |
-|--------------------|:--------:|:----------------:|:--------------:|:----------------:|
-|o4-mini             | ✅       |                  | ✅             |                  |
-|GPT-4.1             |          | ✅               | ✅             |                  |
-|GPT-4.1-mini        |          | ✅               | ✅             |                  |
-|GPT-4.1-nano        |          | ✅               | ✅             |                  |
-|GPT-4o              | ✅       |                  | ✅             |                  |
-|GPT-4o-mini         |          | ✅               | ✅             |                  |
-|GPT-35-Turbo (1106) | ✅       | ✅               | ✅             | ✅               |
-|GPT-35-Turbo (0125) | ✅       | ✅               | ✅             | ✅               |
+| Models             | East US2 | North Central US | Sweden Central |
+|--------------------|:--------:|:----------------:|:--------------:|
+|o4-mini             | ✅       |                  | ✅             |
+|GPT-4.1             |          | ✅               | ✅             |
+|GPT-4.1-mini        |          | ✅               | ✅             |
+|GPT-4.1-nano        |          | ✅               | ✅             |
+|GPT-4o              | ✅       |                  | ✅             |
+|GPT-4o-mini         |          | ✅               | ✅             |
 
 ### Global Standard
 
@@ -399,6 +399,7 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 * GPT-4.1
 * GPT-4.1-mini
 * GPT-4.1-nano
+* o4-mini
 
 
 ### Provisioned Throughput
@@ -427,7 +428,7 @@ curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resour
   -H "Authorization: Bearer <TOKEN>"
 ```
 
-You can also delete a deployment in Azure AI Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
 
 
 ## Next steps

@@ -1,6 +1,6 @@
 ---
-title: 'How to use Browser Automation in Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
+title: 'How to use Browser Automation in Foundry Agent Service'
+titleSuffix: Microsoft Foundry
 description: Learn how to automate browser tasks using AI agents.
 services: cognitive-services
 manager: nitinme
@@ -23,7 +23,7 @@ The Browser Automation tool enables users to perform real-world browser tasks th
 
 ## How it works
 
-The interaction begins when the user sends a user query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following url \<url\>."* Upon receiving the request, Azure AI Foundry Agent Service creates an isolated browser session using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevant pages, and applying filters or parameters based on user preferences (such as time, location, instructor). Combining the model with Playwright allows the model to see the browser screen by parsing the HTML or XML pages into DOM documents, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
+The interaction begins when the user sends a user query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following url \<url\>."* Upon receiving the request, Foundry Agent Service creates an isolated browser session using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevant pages, and applying filters or parameters based on user preferences (such as time, location, instructor). Combining the model with Playwright allows the model to see the browser screen by parsing the HTML or XML pages into DOM documents, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
 
 An example flow would be:
 
@@ -54,9 +54,9 @@ An example flow would be:
     1. Access the workspace region endpoint in the **Workspace Details** page.
     1. Give the project identity a "Contributor" role on the Playwright Workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access). 
     
-1. Create a serverless connection in the Azure AI Foundry project with the Playwright workspace region endpoint and the Playwright workspace Access Token.
+1. Create a serverless connection in the Microsoft Foundry project with the Playwright workspace region endpoint and the Playwright workspace Access Token.
 
-    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select your project. Go to the **Management center** and select **connected resources**.
+    1. Go to the [Foundry portal](https://ai.azure.com/) and select your project. Go to the **Management center** and select **connected resources**.
 
     1. Create a new **Serverless Model** connection, and enter the following information.
 

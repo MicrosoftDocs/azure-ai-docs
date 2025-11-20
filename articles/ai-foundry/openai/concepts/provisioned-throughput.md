@@ -1,27 +1,31 @@
 ---
-title: Provisioned throughput for Azure AI Foundry Models
-description: Learn about provisioned throughput and Azure AI Foundry.
+title: Provisioned throughput for Microsoft Foundry Models
+description: Learn about provisioned throughput and Microsoft Foundry.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/03/2025
+ms.date: 11/03/2025
 manager: nitinme
 author: msakande #ChrisHMSFT
 ms.author: mopeakande #chrhoder
 ms.reviewer: shiyingfu
 reviewer: swingfu
 recommendations: false
+#CustomerIntent As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ---
 
 # What is provisioned throughput?
 
-> [!NOTE]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+> [!TIP]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.
 
-The Azure AI Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Azure AI Foundry then allocates the necessary model processing capacity and ensures it's ready for you. You can use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Azure AI Foundry Models.
+The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. You can use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Foundry Models.
 
 Provisioned throughput provides:
-
 - **A broader model choice** on the latest flagship models
 - **Flexibility** to switch models and deployments with given provisioned throughput quota
 - **Significant discounts** and the ability to boost your reservation utilization with a more flexible reservation choice
@@ -30,7 +34,7 @@ Provisioned throughput provides:
 - **Cost savings:** High throughput workloads might provide cost savings vs token-based consumption.
 
 > [!TIP]
-> * You can take advantage of more cost savings when you buy [Microsoft Azure AI Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
+> * You can take advantage of more cost savings when you buy [Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
 > * Provisioned throughput is available as the following deployment types: [global provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned), [data zone provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) and [regional provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned).
 
 
@@ -62,13 +66,13 @@ Existing PTU reservations are automatically upgraded to empower customers with e
 
 - If you use 300 PTU for DeepSeek-R1, then 200 PTU share the reservation discount automatically while 100 PTU exceed the reservation and are charged with DeepSeek-R1's hourly rate.  
 
-To learn about saving costs with PTU reservations, see [Save costs with Microsoft Azure AI Foundry Provisioned Throughput Reservations](/azure/cost-management-billing/reservations/azure-openai).
+To learn about saving costs with PTU reservations, see [Save costs with Microsoft Foundry Provisioned Throughput Reservations](/azure/cost-management-billing/reservations/azure-openai).
 
 ### Deployment types
 
-When you're creating a provisioned deployment in Azure AI Foundry, the deployment type on the "Create Deployment" dialog can be set to the Global Provisioned Throughput, Data Zone Provisioned Throughput, or Regional Provisioned Throughput deployment type depending on the data processing needs for the given workload.
+When you're creating a provisioned deployment in Foundry, the deployment type on the "Create Deployment" dialog can be set to the Global Provisioned Throughput, Data Zone Provisioned Throughput, or Regional Provisioned Throughput deployment type depending on the data processing needs for the given workload.
 
-When you're creating a provisioned deployment in Azure AI Foundry via CLI or API, the `sku-name` can be set to `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` depending on the data processing need for the given workload.
+When you're creating a provisioned deployment in Foundry via CLI or API, the `sku-name` can be set to `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` depending on the data processing need for the given workload.
 
 | **Deployment Type** | **sku-name in CLI** |
 |----------|----------|
@@ -101,11 +105,11 @@ The models sold directly by Azure are highly sought-after services where custome
 
 #### Regional capacity guidance
 
-To find the capacity needed for their deployments, use the capacity API or the Azure AI Foundry deployment experience to provide real-time information on capacity availability.
+To find the capacity needed for their deployments, use the capacity API or the Foundry deployment experience to provide real-time information on capacity availability.
 
-In Azure AI Foundry, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version, and number of PTU. If capacity is unavailable, the experience directs users to select an alternative region.
+In Foundry, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version, and number of PTU. If capacity is unavailable, the experience directs users to select an alternative region.
 
-Details on the deployment experience can be found in the Azure AI Foundry [Provisioned get started guide](../how-to/provisioned-get-started.md).
+Details on the deployment experience can be found in the Foundry [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
 The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) can be used to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
 
@@ -113,7 +117,7 @@ If an acceptable region isn't available to support the desired model, version, a
 
 - Attempt the deployment with a smaller number of PTU.
 - Attempt the deployment at a different time. Capacity availability changes dynamically based on customer demand and more capacity might become available later.
-- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) and Azure AI Foundry experience consider quota availability in returning alternative regions for creating a deployment.
+- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
 
 ### How can I monitor capacity?
 
@@ -130,7 +134,7 @@ The 429 response isn't an error, but instead, it's part of the design for tellin
 
 The  `retry-after-ms` and `retry-after` headers in the response tell you the time to wait before the next call will be accepted. How you choose to handle this response depends on your application requirements. Here are some considerations:
 -    You can consider redirecting the traffic to other models, deployments, or experiences. This option is the lowest-latency solution because the action can be taken as soon as you receive the 429 signal. For ideas on how to effectively implement this pattern see this [community post](https://github.com/Azure/aoai-apim).
--    If you're okay with longer per-call latencies, implement client-side retry logic. This option gives you the highest amount of throughput per PTU. The Azure AI Foundry client libraries include built-in capabilities for handling retries.
+-    If you're okay with longer per-call latencies, implement client-side retry logic. This option gives you the highest amount of throughput per PTU. The Foundry client libraries include built-in capabilities for handling retries.
 
 #### How does the service decide when to send a 429?
 
@@ -170,7 +174,7 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 The following points are some important takeaways from the table:
 
-- The model version isn't included in this table. Check the version supported for each model when you choose the deployment option in the Azure AI Foundry portal. 
+- The model version isn't included in this table. Check the version supported for each model when you choose the deployment option in the Foundry portal. 
 
 - Regional provisioned throughput deployment option varies by region.  
 

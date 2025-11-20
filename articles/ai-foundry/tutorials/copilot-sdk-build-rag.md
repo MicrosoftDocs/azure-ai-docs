@@ -1,7 +1,7 @@
 ---
-title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
-titleSuffix: Azure AI Foundry
-description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
+title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK"
+titleSuffix: Microsoft Foundry
+description:  Learn how to build a RAG-based chat app using the Microsoft Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 08/29/2025
@@ -15,9 +15,9 @@ ms.custom:
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
+# Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
@@ -45,7 +45,7 @@ This tutorial is part two of a three-part tutorial.
 
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
-If you already have a search index with data, you can skip to [Get product documents](#get-documents). Otherwise, you can create a simple example data set to use in your chat app.  
+If you already have a search index with data, you can skip to [Get product documents](#get-product-documents). Otherwise, you can create a simple example data set to use in your chat app.  
 
 Create an **assets** directory and add this example data to a **products.csv** file:
 
@@ -85,7 +85,7 @@ The search index is used to store vectorized data from the embeddings model. The
     python create_search_index.py
     ```
 
-## <a name="get-documents"></a> Get product documents
+## Get product documents
 
 Next, you create a script to get product documents from the search index. The script queries the search index for documents that match a user's question.
 
@@ -123,7 +123,7 @@ Now that you have both the script and template, run the script to test out what 
 python get_product_documents.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-## <a name="develop-code"></a> Develop custom knowledge retrieval (RAG) code
+## Develop custom knowledge retrieval (RAG) code
 
 Next you create custom code to add retrieval augmented generation (RAG) capabilities to a basic chat application.
 
@@ -158,13 +158,13 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-### <a name="logging"></a> Add telemetry logging
+### Add telemetry logging
 
 To enable logging of telemetry to your project:
 
-1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
+1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
 
-    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png":::
+    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png" alt-text="A screenshot of the tracing screen in the Foundry portal." lightbox="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png":::
 
 1. Install `azure-monitor-opentelemetry`:
 

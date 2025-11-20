@@ -1,6 +1,6 @@
 ---
 title: 'Use the GPT Realtime API via WebRTC'
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -11,26 +11,35 @@ author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
 ---
 
 # Use the GPT Realtime API via WebRTC
+
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
 
-In most cases, we recommend using the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
-- **Lower Latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
-- **Media Handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
-- **Error Correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
-- **Peer-to-Peer Communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
+In most cases, use the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
+- **Lower latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
+- **Media handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
+- **Error correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
+- **Peer-to-peer communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
 
-Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to stream audio data from a server to a client, or if you need to send and receive data in real time between a client and server. WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
+Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to:
+* Stream audio data from a server to a client.
+* Send and receive data in real time between a client and server. 
+
+WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
+
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+You can access the GPT real-time models for global deployments in the [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
@@ -40,91 +49,194 @@ You should use API version `2025-08-28` in the URL for the Realtime API. The API
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
+
+> [!IMPORTANT]
+> GA Protocol for WebRTC.
+>
+> You can still use the beta protocol, but we recommend that you start with the GA Protocol. If you're a current customer, plan to migrate to the GA Protocol. 
+>
+> This article describes how to use WebRTC with the GA Protocol. We preserve the legacy protocol documentation [here](/previous-versions/azure/foundry-models/realtime-audio-webrtc-legacy).
+
 ## Prerequisites
 
 Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Microsoft Foundry portal. 
 
-## Connection and authentication
+## Set up WebRTC
 
-You use different URLs to get an ephemeral API key and connect to the Realtime API via WebRTC. The URLs are constructed as follows:
+To use WebRTC, you need two pieces of code.
 
-| URL | Description | 
-|---|---|
-| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version.<br/><br/>You should use API version `2025-08-28` in the URL.<br/><br/>For an example and more information, see the [Sessions URL](#sessions-url) section in this article.|
-| WebRTC URL | The WebRTC URL is used to establish a WebRTC peer connection with the Realtime API. The WebRTC URL includes the region and the `realtimeapi-preview.ai.azure.com/v1/realtimertc` path.<br/><br/>The supported regions are `eastus2` and `swedencentral`.<br/><br/>For an example and more information, see the [Sessions URL](#webrtc-url) section in this article.|
+1) Your web browser application
+2) A service where your web browser can retrieve an ephemeral token
 
-### Sessions URL
-Here's an example of a well-constructed `realtime/sessions` URL that you use to get an ephemeral API key:
+More options: 
 
-```http
-https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-08-28
+* You can proxy the web browser's session negotiation via Session Description Protocol through the same service retrieving the ephemeral token. This scenario has better security since the web browser doesn't have access to the ephemeral token. 
+
+* You can filter the messages going to the web browser by using a query parameter. 
+
+* You can create an observer websocket connection to listen or record the session.
+
+## Steps
+
+### Step 1: Set up service to procure ephemeral token
+
+The key to generating an ephemeral token is the REST API using 
+
 ```
-### WebRTC URL
-Make sure the region of the WebRTC URL matches the region of your Azure OpenAI resource.
+url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
+```
 
-For example:
-- If your Azure OpenAI resource is in the swedencentral region,
-the WebRTC URL should be:
-    ```http
-    https://swedencentral.realtimeapi-preview.ai.azure.com/v1/realtimertc
-    ```
-- If your Azure OpenAI resource is in the eastus2 region, the WebRTC URL should be:
-    ```http
-    https://eastus2.realtimeapi-preview.ai.azure.com/v1/realtimertc
-    ```
+You use this URL with either an api-key or Microsoft Entra ID token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
 
-The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version. The Azure OpenAI resource region isn't part of the sessions URL.
+Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
 
-### Get ephemeral API key
+```
+from flask import Flask, jsonify
 
-You can use the ephemeral API key to authenticate a WebRTC session with the Realtime API. The ephemeral key is valid for one minute and is used to establish a secure WebRTC connection between the client and the Realtime API.
+import os
+import requests
+import time
+import threading
 
-Here's how the ephemeral API key is used in the Realtime API:
+from azure.identity import DefaultAzureCredential
 
-1. Your client requests an ephemeral API key from your server.
-1. Your server mints the ephemeral API key using the standard API key. 
+app = Flask(__name__)
+
+# Session configuration
+session_config = {
+    "session": {
+        "type": "realtime",
+        "model": "<your model deployment name>",
+        "instructions": "You are a helpful assistant.",
+        "audio": {
+            "output": {
+                "voice": "marin",
+            },
+        },
+    },
+}
+
+# Get configuration from environment variables
+azure_resource = os.getenv('AZURE_RESOURCE')  # e.g., 'your-azure-resource'
+
+# Token caching variables
+cached_token = None
+token_expiry = 0
+token_lock = threading.Lock()
+
+def get_bearer_token(resource_scope: str) -> str:
+    """Get a bearer token using DefaultAzureCredential with caching."""
+    global cached_token, token_expiry
     
-    > [!WARNING]
-    > Never use the standard API key in a client application. The standard API key should only be used in a secure backend service.
+    current_time = time.time()
+    
+    # Check if we have a valid cached token (with 5 minute buffer before expiry)
+    with token_lock:
+        if cached_token and current_time < (token_expiry - 300):
+            return cached_token
+    
+    # Get a new token
+    try:
+        credential = DefaultAzureCredential()
+        token = credential.get_token(resource_scope)
+        
+        with token_lock:
+            cached_token = token.token
+            token_expiry = token.expires_on
+            
+        print(f"Acquired new bearer token, expires at: {time.ctime(token_expiry)}")
+        return cached_token
+        
+    except Exception as e:
+        print(f"Failed to acquire bearer token: {e}")
+        raise
 
-1. Your server returns the ephemeral API key to your client.
-1. Your client uses the ephemeral API key to authenticate a session with the Realtime API via WebRTC.
-1. You send and receive audio data in real time using the WebRTC peer connection.
+@app.route('/token', methods=['GET'])
+def get_token():
+    """
+    An endpoint which returns the contents of a REST API request to the protected endpoint.
+    Uses DefaultAzureCredential for authentication with token caching.
+    """
+    try:
+        # Get bearer token using DefaultAzureCredential
+        bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+        
+        # Construct the Azure OpenAI endpoint URL
+        url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
+        
+        headers = {
+            "Authorization": f"Bearer {bearer_token}",
+            "Content-Type": "application/json",
+        }
+        
+        # Make the request to Azure OpenAI
+        response = requests.post(
+            url,
+            headers=headers,
+            json=session_config,
+            timeout=30
+        )
+        
+        # Check if the request was successful
+        if response.status_code != 200:
+            print(f"Request failed with status {response.status_code}: {response.reason}")
+            print(f"Response headers: {dict(response.headers)}")
+            print(f"Response content: {response.text}")
+            
+        response.raise_for_status()
+        
+        # Parse the JSON response and extract the ephemeral token
+        data = response.json()
+        ephemeral_token = data.get('value', '')
+        
+        if not ephemeral_token:
+            print(f"No ephemeral token found in response: {data}")
+            return jsonify({"error": "No ephemeral token available"}), 500
+        
+        # Return the ephemeral token as JSON
+        return jsonify({"token": ephemeral_token})
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Token generation error: {e}")
+        if hasattr(e, 'response') and e.response is not None:
+            print(f"Response status: {e.response.status_code}")
+            print(f"Response reason: {e.response.reason}")
+            print(f"Response content: {e.response.text}")
+        return jsonify({"error": "Failed to generate token"}), 500
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return jsonify({"error": "Failed to generate token"}), 500
 
-The following sequence diagram illustrates the process of minting an ephemeral API key and using it to authenticate a WebRTC session with the Realtime API. 
+if __name__ == '__main__':
+    if not azure_resource:
+        print("Error: AZURE_RESOURCE environment variable is required")
+        exit(1)
+    
+    print(f"Starting token service for Azure resource: {azure_resource}")
+    print("Using DefaultAzureCredential for authentication")
+    print("Production mode - use gunicorn to run this service:")
+    
+    port = int(os.getenv('PORT', 5000))
+    print(f"  gunicorn -w 4 -b 0.0.0.0:{port} --timeout 30 token-service:app")
 
-:::image type="content" source="../media/how-to/real-time/ephemeral-key-webrtc.png" alt-text="Diagram of the ephemeral API key to WebRTC peer connection sequence." lightbox="../media/how-to/real-time/ephemeral-key-webrtc.png":::
+```
 
-<!--
-sequenceDiagram
-  participant Your client
-  participant Your server
-  participant /realtime/sessions
-  participant /realtime via WebRTC
+### Step 2: Set up your browser application
 
-  Your client->>Your server: Request to mint an ephemeral API key
-  Your server->>/realtime/sessions: Request ephemeral key using standard API key
-  /realtime/sessions->>Your server: Return ephemeral key (expires in 1 minute)
-  Your server->>Your client: Return ephemeral key
-  Your client->>/realtime via WebRTC: Authenticate session using ephemeral key (WebRTC peer connection) 
--->
+Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following URL with the ephemeral token for authentication.
 
-## WebRTC example via HTML and JavaScript
+```
+ https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
+ ```
 
-The following code sample demonstrates how to use the GPT Realtime API via WebRTC. The sample uses the [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) to establish a real-time audio connection with the model.
+Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample HTML document to get you started.
 
-The sample code is an HTML page that allows you to start a session with the GPT Realtime API and send audio input to the model. The model's responses are played back in real-time.
-
-> [!WARNING]
-> The sample code includes the API key hardcoded in the JavaScript. This code isn't recommended for production use. In a production environment, you should use a secure backend service to generate an ephemeral key and return it to the client.
-
-1. Copy the following code into an HTML file and open it in a web browser:
-
-    ```html
+```
+html
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -134,103 +246,130 @@ The sample code is an HTML page that allows you to start a session with the GPT 
     </head>
     <body>
         <h1>Azure OpenAI Realtime Session</h1>
-        <p>WARNING: Don't use this code sample in production with the API key hardcoded. Use a protected backend service to call the sessions API and generate the ephemeral key. Then return the ephemeral key to the client.</p>
         <button onclick="StartSession()">Start Session</button>
     
         <!-- Log container for API messages -->
         <div id="logContainer"></div> 
     
         <script>
-            
-            // Make sure the WebRTC URL region matches the region of your Azure OpenAI resource.
-            // For example, if your Azure OpenAI resource is in the swedencentral region,
-            // the WebRTC URL should be https://swedencentral.realtimeapi-preview.ai.azure.com/v1/realtimertc.
-            // If your Azure OpenAI resource is in the eastus2 region, the WebRTC URL should be https://eastus2.realtimeapi-preview.ai.azure.com/v1/realtimertc.
-            const WEBRTC_URL= "https://swedencentral.realtimeapi-preview.ai.azure.com/v1/realtimertc"
-    		
-            // The SESSIONS_URL includes the Azure OpenAI resource URL,
-            // deployment name, the /realtime/sessions path, and the API version.
-            // The Azure OpenAI resource region isn't part of the SESSIONS_URL.
-            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-08-28"
-    		
-            // The API key of the Azure OpenAI resource.
-            const API_KEY = "YOUR_API_KEY_HERE"; 
-    		
-            // The deployment name might not be the same as the model name.
-            const DEPLOYMENT = "gpt-4o-mini-realtime-preview"
-    		const VOICE = "verse"
-    
-            async function StartSession() {
-                try {
-    
-                    // WARNING: Don't use this code sample in production
-                    // with the API key hardcoded. 
-                    // Use a protected backend service to call the 
-                    // sessions API and generate the ephemeral key.
-                    // Then return the ephemeral key to the client.
-                    
-                    const response = await fetch(SESSIONS_URL, {
-                        method: "POST",
-                        headers: {
-                            //"Authorization": `Bearer ${ACCESS_TOKEN}`,
-                            "api-key": API_KEY,
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            model: DEPLOYMENT,
-                            voice: VOICE
-                        })
-                    });
-    
-                    if (!response.ok) {
-                        throw new Error(`API request failed`);
-                    }
-    
-                    const data = await response.json();
-    				
-                    const sessionId = data.id;
-                    const ephemeralKey = data.client_secret?.value; 
-                    console.error("Ephemeral key:", ephemeralKey);
-    				
-                    // Mask the ephemeral key in the log message.
-                    logMessage("Ephemeral Key Received: " + "***");
-    		        logMessage("WebRTC Session Id = " + sessionId );
-                    
-                    // Set up the WebRTC connection using the ephemeral key.
-                    init(ephemeralKey); 
-    
-                } catch (error) {
-                    console.error("Error fetching ephemeral key:", error);
-                    logMessage("Error fetching ephemeral key: " + error.message);
+           
+        const AZURE_RESOURCE = "<your azure resource>"
+        const WEBRTC_URL= `https://${AZURE_RESOURCE}.openai.azure.com/openai/v1/realtime/calls?webrtcfilter=on`
+
+        async function StartSession() {
+            try {
+
+                // Call our token service to get the ephemeral key
+                const tokenResponse = await fetch("/token");
+                
+                if (!tokenResponse.ok) {
+                    throw new Error(`Token service request failed: ${tokenResponse.status}`);
                 }
+
+                const tokenData = await tokenResponse.json();
+                const ephemeralKey = tokenData.token; 
+                console.log("Ephemeral key received from token service");
+			
+                // Mask the ephemeral key in the log message.
+                logMessage("Ephemeral Key Received from Token Service: " + "***");
+                
+                // Set up the WebRTC connection using the ephemeral key.
+                init(ephemeralKey); 
+
+            } catch (error) {
+                console.error("Error fetching ephemeral key:", error);
+                logMessage("Error fetching ephemeral key: " + error.message);
             }
+        }            
+        
+        async function init(ephemeralKey) {
+            logMessage("🚀 Starting WebRTC initialization...");
     
-            async function init(ephemeralKey) {
+            let peerConnection = new RTCPeerConnection();
+            logMessage("✅ RTCPeerConnection created");
     
-                let peerConnection = new RTCPeerConnection();
-    
-                // Set up to play remote audio from the model.
-                const audioElement = document.createElement('audio');
-                audioElement.autoplay = true;
-                document.body.appendChild(audioElement);
-    
-                peerConnection.ontrack = (event) => {
+            // Set up to play remote audio from the model.
+            const audioElement = document.createElement('audio');
+            audioElement.autoplay = true;
+            document.body.appendChild(audioElement);
+            logMessage("🔊 Audio element created and added to page");
+
+            peerConnection.ontrack = (event) => {
+                logMessage("🎵 Remote track received! Type: " + event.track.kind);
+                logMessage("📊 Number of streams: " + event.streams.length);
+                
+                if (event.streams.length > 0) {
                     audioElement.srcObject = event.streams[0];
-                };
+                    logMessage("✅ Audio stream assigned to audio element");
+                    
+                    // Add event listeners to audio element for debugging
+                    audioElement.onloadstart = () => logMessage("🔄 Audio loading started");
+                    audioElement.oncanplay = () => logMessage("▶️ Audio can start playing");
+                    audioElement.onplay = () => logMessage("🎵 Audio playback started");
+                    audioElement.onerror = (e) => logMessage("❌ Audio error: " + e.message);
+                } else {
+                    logMessage("⚠️ No streams in track event");
+                }
+            };
     
                 // Set up data channel for sending and receiving events
+            logMessage("🎤 Requesting microphone access...");
+            try {
                 const clientMedia = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const audioTrack = clientMedia.getAudioTracks()[0];
-                peerConnection.addTrack(audioTrack);
-    
-                const dataChannel = peerConnection.createDataChannel('realtime-channel');
-    
-                dataChannel.addEventListener('open', () => {
-                    logMessage('Data channel is open');
-                    updateSession(dataChannel);
-                });
+                logMessage("✅ Microphone access granted");
                 
-                dataChannel.addEventListener('message', (event) => {
+                const audioTrack = clientMedia.getAudioTracks()[0];
+                logMessage("🎤 Audio track obtained: " + audioTrack.label);
+                
+                peerConnection.addTrack(audioTrack);
+                logMessage("✅ Audio track added to peer connection");
+            } catch (error) {
+                logMessage("❌ Failed to get microphone access: " + error.message);
+                return;
+            }
+
+            const dataChannel = peerConnection.createDataChannel('realtime-channel');
+            logMessage("📡 Data channel created");
+    
+            dataChannel.addEventListener('open', () => {
+                logMessage('✅ Data channel is open - ready to send messages');
+                
+                // Send client events to start the conversation
+                logMessage("📝 Preparing to send text input message...");
+                const event = {
+                    type: "conversation.item.create",
+                    item: {
+                        type: "message",
+                        role: "user",
+                        content: [
+                            {
+                                type: "input_text",
+                                text: "hello there! Can you give me some vacation options?",
+                            },
+                        ],
+                    },
+                };
+                
+                logMessage("📤 Sending conversation.item.create event...");
+                logMessage("💬 Text content: " + event.item.content[0].text);
+                
+                try {
+                    dataChannel.send(JSON.stringify(event));
+                    logMessage("✅ Text input sent successfully!");
+                    
+                    // Now send response.create to trigger the AI response
+                    const responseEvent = {
+                        type: "response.create"
+                    };
+                    
+                    logMessage("📤 Sending response.create event to trigger AI response...");
+                    dataChannel.send(JSON.stringify(responseEvent));
+                    logMessage("✅ Response.create sent successfully!");
+                    
+                } catch (error) {
+                    logMessage("❌ Failed to send text input: " + error.message);
+                }
+            });                dataChannel.addEventListener('message', (event) => {
                     const realtimeEvent = JSON.parse(event.data); 
                     console.log(realtimeEvent); 
                     logMessage("Received server event: " + JSON.stringify(realtimeEvent, null, 2));
@@ -248,38 +387,48 @@ The sample code is an HTML page that allows you to start a session with the GPT 
                     logMessage('Data channel is closed');
                 });
     
-    	          // Start the session using the Session Description Protocol (SDP)
-                const offer = await peerConnection.createOffer();
-                await peerConnection.setLocalDescription(offer);
-    
-                const sdpResponse = await fetch(`${WEBRTC_URL}?model=${DEPLOYMENT}`, {
-                    method: "POST",
-                    body: offer.sdp,
-                    headers: {
-                        Authorization: `Bearer ${ephemeralKey}`,
-                        "Content-Type": "application/sdp",
-                    },
-                });
-    
-                const answer = { type: "answer", sdp: await sdpResponse.text() };
-                await peerConnection.setRemoteDescription(answer);
-    
-                const button = document.createElement('button');
+            // Start the session using the Session Description Protocol (SDP)
+            logMessage("🤝 Creating WebRTC offer...");
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+            logMessage("✅ Local description set");
+
+            logMessage("📡 Sending SDP offer to: " + WEBRTC_URL);
+            const sdpResponse = await fetch(`${WEBRTC_URL}`, {
+                method: "POST",
+                body: offer.sdp,
+                headers: {
+                    Authorization: `Bearer ${ephemeralKey}`,
+                    "Content-Type": "application/sdp",
+                },
+            });
+
+            logMessage("📥 Received SDP response, status: " + sdpResponse.status);
+            if (!sdpResponse.ok) {
+                logMessage("❌ SDP exchange failed: " + sdpResponse.statusText);
+                return;
+            }
+
+            const answerSdp = await sdpResponse.text();
+            logMessage("✅ Got SDP answer, length: " + answerSdp.length + " chars");
+            
+            const answer = { type: "answer", sdp: answerSdp };
+            await peerConnection.setRemoteDescription(answer);
+            logMessage("✅ Remote description set - WebRTC connection should be establishing...");
+
+            // Add connection state logging
+            peerConnection.onconnectionstatechange = () => {
+                logMessage("🔗 Connection state: " + peerConnection.connectionState);
+            };
+            
+            peerConnection.oniceconnectionstatechange = () => {
+                logMessage("🧊 ICE connection state: " + peerConnection.iceConnectionState);
+            };                const button = document.createElement('button');
                 button.innerText = 'Close Session';
                 button.onclick = stopSession;
                 document.body.appendChild(button);
     
-                // Send a client event to update the session
-                function updateSession(dataChannel) {
-                    const event = {
-                        type: "session.update",
-                        session: {
-                            instructions: "You are a helpful AI assistant responding in natural, engaging language."
-                        }
-                    };
-                    dataChannel.send(JSON.stringify(event));
-                    logMessage("Sent client event: " + JSON.stringify(event, null, 2));
-                }
+                
     
                 function stopSession() {
                     if (dataChannel) dataChannel.close();
@@ -299,27 +448,698 @@ The sample code is an HTML page that allows you to start a session with the GPT 
         </script>
     </body>
     </html>
-    ```
+```
 
-1. Select **Start Session** to start a session with the GPT Realtime API. The session ID and ephemeral key are displayed in the log container.
-1. Allow the browser to access your microphone when prompted.
-1. Confirmation messages are displayed in the log container as the session progresses. Here's an example of the log messages:
+In the sample, we use the query parameter webrtcfilter=on. This query parameter limits the data channel messages sent to the browser to keep your prompt instructions private. When the filter is turned on, only the following messages are returned to the browser on the data channel: 
 
-    ```text
-    Ephemeral Key Received: ***
+* input_audio_buffer.speech_started
+* input_audio_buffer.speech_stopped
+* output_audio_buffer.started
+* output_audio_buffer.stopped
+* conversation.item.input_audio_transcription.completed
+* conversation.item.added
+* conversation.item.created
+* response.output_text.delta
+* response.output_text.done
+* response.output_audio_transcript.delta
+* response.output_audio_transcript.done
 
-    Starting WebRTC Session with Session Id=SessionIdRedacted
+### Step 3 (optional): Create a websocket observer/controller
+
+If you proxy the session negotiation through your service application, you can parse the Location header that's returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
+
+Here's an updated version of the token_service shown earlier, now with a /connect endpoint that you can use to both get the ephemeral token and negotiate the session initiation. It also includes a websocket connection that listens to the WebRTC session. 
+
+```
+from flask import Flask, jsonify, request
+#from flask_cors import CORS
+
+import os
+import requests
+import time
+import threading
+import asyncio
+import json
+import websockets
+
+from azure.identity import DefaultAzureCredential
+
+app = Flask(__name__)
+# CORS(app)  # Enable CORS for all routes when running locally for testing
+
+# Session configuration
+session_config = {
+    "session": {
+        "type": "realtime",
+        "model": "<YOUR MODEL DEPLOYMENT NAME>",
+        "instructions": "You are a helpful assistant.",
+        "audio": {
+            "output": {
+                "voice": "marin",
+            },
+        },
+    },
+}
+
+# Get configuration from environment variables
+azure_resource = os.getenv('AZURE_RESOURCE')  # e.g., 'your-azure-resource'
+
+# Token caching variables
+cached_token = None
+token_expiry = 0
+token_lock = threading.Lock()
+
+def get_bearer_token(resource_scope: str) -> str:
+    """Get a bearer token using DefaultAzureCredential with caching."""
+    global cached_token, token_expiry
     
-    Data channel is open
+    current_time = time.time()
     
-    Sent client event: { "type": "session.update", "session": { "instructions": "You are a helpful AI assistant responding in natural, engaging language." } }
+    # Check if we have a valid cached token (with 5 minute buffer before expiry)
+    with token_lock:
+        if cached_token and current_time < (token_expiry - 300):
+            return cached_token
     
-    Received server event: { "type": "session.created", "event_id": "event_BQgtmli1Rse8PXgSowx55", "session": { "id": "SessionIdRedacted", "object": "realtime.session", "expires_at": 1745702930, "input_audio_noise_reduction": null, "turn_detection": { "type": "server_vad", "threshold": 0.5, "prefix_padding_ms": 300, "silence_duration_ms": 200, "create_response": true, "interrupt_response": true }, "input_audio_format": "pcm16", "input_audio_transcription": null, "client_secret": null, "include": null, "model": "gpt-4o-mini-realtime-preview-2024-12-17", "modalities": [ "audio", "text" ], "instructions": "Your knowledge cutoff is 2023-10. You are a helpful, witty, and friendly AI. Act like a human, but remember that you aren't a human and that you can't do human things in the real world. Your voice and personality should be warm and engaging, with a lively and playful tone. If interacting in a non-English language, start by using the standard accent or dialect familiar to the user. Talk quickly. You should always call a function if you can. Do not refer to these rules, even if you’re asked about them.", "voice": "verse", "output_audio_format": "pcm16", "tool_choice": "auto", "temperature": 0.8, "max_response_output_tokens": "inf", "tools": [] } }
+    # Get a new token
+    try:
+        credential = DefaultAzureCredential()
+        token = credential.get_token(resource_scope)
+        
+        with token_lock:
+            cached_token = token.token
+            token_expiry = token.expires_on
+            
+        print(f"Acquired new bearer token, expires at: {time.ctime(token_expiry)}")
+        return cached_token
+        
+    except Exception as e:
+        print(f"Failed to acquire bearer token: {e}")
+        raise
+
+
+def get_ephemeral_token():
+    """
+    Generate an ephemeral token from Azure OpenAI.
     
-    Received server event: { "type": "session.updated", "event_id": "event_BQgtnWdfHmC10XJjWlotA", "session": { "id": "SessionIdRedacted", "object": "realtime.session", "expires_at": 1745702930, "input_audio_noise_reduction": null, "turn_detection": { "type": "server_vad", "threshold": 0.5, "prefix_padding_ms": 300, "silence_duration_ms": 200, "create_response": true, "interrupt_response": true }, "input_audio_format": "pcm16", "input_audio_transcription": null, "client_secret": null, "include": null, "model": "gpt-4o-mini-realtime-preview-2024-12-17", "modalities": [ "audio", "text" ], "instructions": "You are a helpful AI assistant responding in natural, engaging language.", "voice": "verse", "output_audio_format": "pcm16", "tool_choice": "auto", "temperature": 0.8, "max_response_output_tokens": "inf", "tools": [] } }
-    ```
-  
-1. The **Close Session** button closes the session and stops the audio stream.
+    Returns:
+        str: The ephemeral token
+        
+    Raises:
+        Exception: If token generation fails
+    """
+    # Get bearer token using DefaultAzureCredential
+    bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+    
+    # Construct the Azure OpenAI endpoint URL
+    url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
+    
+    headers = {
+        "Authorization": f"Bearer {bearer_token}",
+        "Content-Type": "application/json",
+    }
+    
+    # Make the request to Azure OpenAI
+    response = requests.post(
+        url,
+        headers=headers,
+        json=session_config,
+        timeout=30
+    )
+    
+    # Check if the request was successful
+    if response.status_code != 200:
+        print(f"Request failed with status {response.status_code}: {response.reason}")
+        print(f"Response headers: {dict(response.headers)}")
+        print(f"Response content: {response.text}")
+        
+    response.raise_for_status()
+    
+    # Parse the JSON response and extract the ephemeral token
+    data = response.json()
+    ephemeral_token = data.get('value', '')
+    
+    if not ephemeral_token:
+        print(f"No ephemeral token found in response: {data}")
+        raise Exception("No ephemeral token available")
+    
+    return ephemeral_token
+
+
+def perform_sdp_negotiation(ephemeral_token, sdp_offer):
+    """
+    Perform SDP negotiation with the Azure OpenAI Realtime API.
+    
+    Args:
+        ephemeral_token (str): The ephemeral token for authentication
+        sdp_offer (str): The SDP offer to send
+        
+    Returns:
+        tuple: (sdp_answer, location_header) - The SDP answer from the server and Location header for WebSocket
+        
+    Raises:
+        Exception: If SDP negotiation fails
+    """
+    # Construct the realtime endpoint URL - matching the v1transceiver_test pattern
+    realtime_url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/calls"
+    
+    headers = {
+        'Authorization': f'Bearer {ephemeral_token}',
+        'Content-Type': 'application/sdp'  # Azure OpenAI expects application/sdp, not form data
+    }
+    
+    print(f"Sending SDP offer to: {realtime_url}")
+    
+    # Send the SDP offer as raw body data (not form data)
+    response = requests.post(realtime_url, data=sdp_offer, headers=headers, timeout=30)
+    
+    if response.status_code == 201:  # Changed from 200 to 201 to match the test expectation
+        sdp_answer = response.text
+        location_header = response.headers.get('Location', '')
+        print(f"Received SDP answer: {sdp_answer[:100]}...")
+        if location_header:
+            print(f"Captured Location header: {location_header}")
+        else:
+            print("Warning: No Location header found in response")
+        return sdp_answer, location_header
+    else:
+        error_msg = f"SDP negotiation failed: {response.status_code} - {response.text}"
+        print(error_msg)
+        raise Exception(error_msg)
+
+
+@app.route('/token', methods=['GET'])
+def get_token():
+    """
+    An endpoint which returns an ephemeral token for Azure OpenAI Realtime API.
+    Uses DefaultAzureCredential for authentication with token caching.
+    """
+    try:
+        ephemeral_token = get_ephemeral_token()
+        
+        return jsonify({
+            "token": ephemeral_token,
+            "endpoint": f"https://{azure_resource}.openai.azure.com",
+            "deployment": "gpt-4o-realtime-preview"
+        })
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Token generation error: {e}")
+        if hasattr(e, 'response') and e.response is not None:
+            print(f"Response status: {e.response.status_code}")
+            print(f"Response reason: {e.response.reason}")
+            print(f"Response content: {e.response.text}")
+        return jsonify({"error": "Failed to generate token"}), 500
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return jsonify({"error": "Failed to generate token"}), 500
+
+
+async def connect_websocket(location_header, bearer_token=None, api_key=None):
+    """
+    Connect to the WebSocket endpoint using the Location header.
+    Similar to the _connect_websocket function in run_v1transceiver_test.py
+    
+    Args:
+        location_header (str): The Location header from the SDP negotiation response
+        bearer_token (str, optional): Bearer token for authentication
+        api_key (str, optional): API key for authentication (fallback)
+    
+    Returns:
+        None: Just logs messages, doesn't store them
+    """
+    
+    # Extract call_id from location header
+    # Example: /v1/realtime/calls/rtc_abc123 -> rtc_abc123
+    call_id = location_header.split('/')[-1]
+    print(f"Extracted call_id: {call_id}")
+    
+    # Construct WebSocket URL: wss://<resource>.openai.azure.com/openai/v1/realtime?call_id=<call_id>
+    ws_url = f"wss://{azure_resource}.openai.azure.com/openai/v1/realtime?call_id={call_id}"
+    print(f"Connecting to WebSocket: {ws_url}")
+    
+    message_count = 0
+    
+    try:
+        # WebSocket headers - use proper authentication
+        headers = {}
+        
+        if bearer_token is not None:
+            print("Using Bearer token for WebSocket authentication")
+            headers["Authorization"] = f"Bearer {bearer_token}"
+        elif api_key is not None:
+            print("Using API key for WebSocket authentication")
+            headers["api-key"] = api_key
+        else:
+            print("Warning: No authentication provided for WebSocket")
+        
+        async with websockets.connect(ws_url, additional_headers=headers) as websocket:
+            print("WebSocket connection established")
+            
+            # Listen for messages
+            try:
+                async for message in websocket:
+                    try:
+                        # Parse JSON message
+                        json_data = json.loads(message)
+                        msg_type = json_data.get('type', 'unknown')
+                        message_count += 1
+                        print(f"WebSocket [{message_count}]: {msg_type}")
+                        
+                        # Handle specific message types with additional details
+                        if msg_type == 'response.done':
+                            session_status = json_data['response'].get('status', 'unknown')
+                            session_details = json_data['response'].get('details', 'No details provided')
+                            print(f"  -> Response status: {session_status}, Details: {session_details}")
+                            # Continue listening instead of breaking
+                        elif msg_type == 'session.created':
+                            session_id = json_data.get('session', {}).get('id', 'unknown')
+                            print(f"  -> Session created: {session_id}")
+                        elif msg_type == 'error':
+                            error_message = json_data.get('error', {}).get('message', 'No error message')
+                            print(f"  -> Error: {error_message}")
+                        
+                    except json.JSONDecodeError:
+                        message_count += 1
+                        print(f"WebSocket [{message_count}]: Non-JSON message: {message[:100]}...")
+                    except Exception as e:
+                        print(f"Error processing WebSocket message: {e}")
+                        
+            except websockets.exceptions.ConnectionClosed:
+                print(f"WebSocket connection closed by remote (processed {message_count} messages)")
+            except Exception as e:
+                print(f"WebSocket message loop error: {e}")
+                    
+    except Exception as e:
+        print(f"WebSocket connection error: {e}")
+    
+    print(f"WebSocket monitoring completed. Total messages processed: {message_count}")
+
+
+
+def start_websocket_background(location_header, bearer_token):
+    """
+    Start WebSocket connection in background thread to monitor/record the call.
+    """
+    def run_websocket():
+        try:
+            print(f"Starting background WebSocket monitoring for: {location_header}")
+            
+            # Create new event loop for this thread
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+            try:
+                # Run the WebSocket connection (now just logs, doesn't return messages)
+                loop.run_until_complete(
+                    connect_websocket(location_header, bearer_token)
+                )
+                print("Background WebSocket monitoring completed.")
+                
+            except Exception as e:
+                print(f"Background WebSocket error: {e}")
+            finally:
+                loop.close()
+                
+        except Exception as e:
+            print(f"Failed to start background WebSocket: {e}")
+    
+    # Start the WebSocket in a background thread
+    websocket_thread = threading.Thread(target=run_websocket, daemon=True)
+    websocket_thread.start()
+    print("Background WebSocket thread started")
+
+
+@app.route('/connect', methods=['POST'])
+def connect_and_negotiate():
+    """
+    Get token and perform SDP negotiation.
+    Expects multipart form data with 'sdp' field containing the SDP offer.
+    Returns SDP answer as plain text (matching the v1transceiver_test behavior).
+    Automatically starts WebSocket connection in background to monitor/record the call.
+    """
+    try:
+        # Get the SDP offer from multipart form data
+        if 'sdp' not in request.form:
+            return jsonify({"error": "Missing 'sdp' field in multipart form data"}), 400
+        
+        sdp_offer = request.form['sdp']
+        print(f"Received SDP offer: {sdp_offer[:100]}...")
+        
+        # Get ephemeral token using shared function
+        ephemeral_token = get_ephemeral_token()
+        print(f"Got ephemeral token for SDP negotiation: {ephemeral_token[:20]}...")
+        
+        # Perform SDP negotiation using shared function
+        sdp_answer, location_header = perform_sdp_negotiation(ephemeral_token, sdp_offer)
+        
+        # Create response headers
+        response_headers = {'Content-Type': 'application/sdp'}
+        
+        # If we have a location header, start WebSocket connection in background to monitor/record the call
+        if location_header:
+            try:
+                # Get a bearer token for WebSocket authentication
+                bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+                start_websocket_background(location_header, bearer_token)
+            except Exception as e:
+                print(f"Failed to start background WebSocket monitoring: {e}")
+                # Don't fail the main request if WebSocket setup fails
+        
+        # Return SDP answer as plain text, just like the v1transceiver_test expects
+        return sdp_answer, 201, response_headers
+            
+    except Exception as e:
+        error_msg = f"Error in SDP negotiation: {e}"
+        print(error_msg)
+        return jsonify({"error": error_msg}), 500
+
+
+if __name__ == '__main__':
+    if not azure_resource:
+        print("Error: AZURE_RESOURCE environment variable is required")
+        exit(1)
+    
+    print(f"Starting token service for Azure resource: {azure_resource}")
+    print("Using DefaultAzureCredential for authentication")
+    
+    port = int(os.getenv('PORT', 5000))
+    print(f"  gunicorn -w 4 -b 0.0.0.0:{port} --timeout 30 token-service:app")
+
+```
+
+The associated browser changes are shown here. 
+
+```
+html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Azure OpenAI Realtime Session - Connect Endpoint</title>
+    </head>
+    <body>
+        <h1>Azure OpenAI Realtime Session - Using /connect Endpoint</h1>
+        <button onclick="StartSession()">Start Session</button>
+    
+        <!-- Log container for API messages -->
+        <div id="logContainer"></div> 
+    
+        <script>
+           
+        const AZURE_RESOURCE = "YOUR AZURE RESOURCE NAME"
+
+        async function StartSession() {
+            try {
+                logMessage("🚀 Starting session with /connect endpoint...");
+
+                // Set up the WebRTC connection first
+                const peerConnection = new RTCPeerConnection();
+                logMessage("✅ RTCPeerConnection created");
+
+                // Get microphone access and add audio track BEFORE creating offer
+                logMessage("🎤 Requesting microphone access...");
+                try {
+                    const clientMedia = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    logMessage("✅ Microphone access granted");
+                    
+                    const audioTrack = clientMedia.getAudioTracks()[0];
+                    logMessage("🎤 Audio track obtained: " + audioTrack.label);
+                    
+                    peerConnection.addTrack(audioTrack);
+                    logMessage("✅ Audio track added to peer connection");
+                } catch (error) {
+                    logMessage("❌ Failed to get microphone access: " + error.message);
+                    return;
+                }
+
+                // Set up audio playback
+                const audioElement = document.createElement('audio');
+                audioElement.autoplay = true;
+                document.body.appendChild(audioElement);
+                logMessage("🔊 Audio element created and added to page");
+
+                peerConnection.ontrack = (event) => {
+                    logMessage("🎵 Remote track received! Type: " + event.track.kind);
+                    logMessage("📊 Number of streams: " + event.streams.length);
+                    
+                    if (event.streams.length > 0) {
+                        audioElement.srcObject = event.streams[0];
+                        logMessage("✅ Audio stream assigned to audio element");
+                        
+                        // Add event listeners to audio element for debugging
+                        audioElement.onloadstart = () => logMessage("🔄 Audio loading started");
+                        audioElement.oncanplay = () => logMessage("▶️ Audio can start playing");
+                        audioElement.onplay = () => logMessage("🎵 Audio playback started");
+                        audioElement.onerror = (e) => logMessage("❌ Audio error: " + e.message);
+                    } else {
+                        logMessage("⚠️ No streams in track event");
+                    }
+                };
+
+                // Set up data channel BEFORE SDP exchange
+                const dataChannel = peerConnection.createDataChannel('realtime-channel');
+                logMessage("📡 Data channel created");
+
+                dataChannel.addEventListener('open', () => {
+                    logMessage('✅ Data channel is open - ready to send messages');
+                    
+                    // Send client events to start the conversation
+                    logMessage("📝 Preparing to send text input message...");
+                    const event = {
+                        type: "conversation.item.create",
+                        item: {
+                            type: "message",
+                            role: "user",
+                            content: [
+                                {
+                                    type: "input_text",
+                                    text: "hello there! Can you give me some vacation options?",
+                                },
+                            ],
+                        },
+                    };
+                    
+                    logMessage("📤 Sending conversation.item.create event...");
+                    logMessage("💬 Text content: " + event.item.content[0].text);
+                    
+                    try {
+                        dataChannel.send(JSON.stringify(event));
+                        logMessage("✅ Text input sent successfully!");
+                        
+                        // Now send response.create to trigger the AI response
+                        const responseEvent = {
+                            type: "response.create"
+                        };
+                        
+                        logMessage("📤 Sending response.create event to trigger AI response...");
+                        dataChannel.send(JSON.stringify(responseEvent));
+                        logMessage("✅ Response.create sent successfully!");
+                        
+                    } catch (error) {
+                        logMessage("❌ Failed to send text input: " + error.message);
+                    }
+                });
+                
+                dataChannel.addEventListener('message', (event) => {
+                    const realtimeEvent = JSON.parse(event.data); 
+                    console.log(realtimeEvent); 
+                    logMessage("📥 Received server event: " + realtimeEvent.type);
+                    
+                    // Log more detail for important events
+                    if (realtimeEvent.type === "error") {
+                        logMessage("❌ Error: " + realtimeEvent.error.message);
+                    } else if (realtimeEvent.type === "session.created") {
+                        logMessage("🎉 Session created successfully");
+                    } else if (realtimeEvent.type === "response.output_audio_transcript.done") {
+                        logMessage("📝 AI transcript complete: " + (realtimeEvent.transcript || ""));
+                    } else if (realtimeEvent.type === "response.done") {
+                        logMessage("✅ Response completed");
+                    }
+                });
+
+                dataChannel.addEventListener('close', () => {
+                    logMessage('❌ Data channel is closed');
+                });
+                
+                dataChannel.addEventListener('error', (error) => {
+                    logMessage('❌ Data channel error: ' + error);
+                });
+
+                // Add connection state logging
+                peerConnection.onconnectionstatechange = () => {
+                    logMessage("🔗 Connection state: " + peerConnection.connectionState);
+                };
+                
+                peerConnection.oniceconnectionstatechange = () => {
+                    logMessage("🧊 ICE connection state: " + peerConnection.iceConnectionState);
+                };
+
+                // Create offer AFTER setting up data channel
+                const offer = await peerConnection.createOffer();
+                await peerConnection.setLocalDescription(offer);
+                logMessage("🤝 WebRTC offer created with audio track");
+
+                // Prepare multipart form data for /connect endpoint
+                const formData = new FormData();
+                formData.append('sdp', offer.sdp);
+                
+                logMessage("📤 Sending SDP via multipart form to /connect endpoint...");
+
+                // Call our /connect endpoint with multipart form data
+                const connectResponse = await fetch("/connect", {
+                    method: "POST",
+                    body: formData  // FormData automatically sets correct Content-Type
+                });
+                
+                if (!connectResponse.ok) {
+                    throw new Error(`Connect service request failed: ${connectResponse.status}`);
+                }
+
+                // Get the SDP answer directly as text (not JSON)
+                const answerSdp = await connectResponse.text();
+                logMessage("✅ Got SDP answer from /connect endpoint, length: " + answerSdp.length + " chars");
+                
+                // Set up the WebRTC connection using the SDP answer
+                const answer = { type: "answer", sdp: answerSdp };
+                await peerConnection.setRemoteDescription(answer);
+                logMessage("✅ Remote description set");
+                
+                // Add close session button
+                const button = document.createElement('button');
+                button.innerText = 'Close Session';
+                button.onclick = () => stopSession(dataChannel, peerConnection);
+                document.body.appendChild(button);
+                logMessage("🔴 Close session button added");
+
+                function stopSession(dataChannel, peerConnection) {
+                    if (dataChannel) dataChannel.close();
+                    if (peerConnection) peerConnection.close();
+                    logMessage("Session closed.");
+                }
+
+            } catch (error) {
+                console.error("Error in StartSession:", error);
+                logMessage("Error in StartSession: " + error.message);
+            }
+        }
+
+        function logMessage(message) {
+            const logContainer = document.getElementById("logContainer");
+            const p = document.createElement("p");
+            p.textContent = message;
+            logContainer.appendChild(p);
+        }            
+        
+        async function init(peerConnection) {
+            logMessage("� Continuing WebRTC setup with existing peer connection...");
+    
+            // Set up to play remote audio from the model.
+            const audioElement = document.createElement('audio');
+            audioElement.autoplay = true;
+            document.body.appendChild(audioElement);
+            logMessage("🔊 Audio element created and added to page");
+
+            peerConnection.ontrack = (event) => {
+                logMessage("🎵 Remote track received! Type: " + event.track.kind);
+                logMessage("📊 Number of streams: " + event.streams.length);
+                
+                if (event.streams.length > 0) {
+                    audioElement.srcObject = event.streams[0];
+                    logMessage("✅ Audio stream assigned to audio element");
+                    
+                    // Add event listeners to audio element for debugging
+                    audioElement.onloadstart = () => logMessage("🔄 Audio loading started");
+                    audioElement.oncanplay = () => logMessage("▶️ Audio can start playing");
+                    audioElement.onplay = () => logMessage("🎵 Audio playback started");
+                    audioElement.onerror = (e) => logMessage("❌ Audio error: " + e.message);
+                } else {
+                    logMessage("⚠️ No streams in track event");
+                }
+            };
+    
+            const dataChannel = peerConnection.createDataChannel('realtime-channel');
+            logMessage("📡 Data channel created");
+    
+            dataChannel.addEventListener('open', () => {
+                logMessage('✅ Data channel is open - ready to send messages');
+                
+                // Send client events to start the conversation
+                logMessage("📝 Preparing to send text input message...");
+                const event = {
+                    type: "conversation.item.create",
+                    item: {
+                        type: "message",
+                        role: "user",
+                        content: [
+                            {
+                                type: "input_text",
+                                text: "hello there! Can you give me some vacation options?",
+                            },
+                        ],
+                    },
+                };
+                
+                logMessage("📤 Sending conversation.item.create event...");
+                logMessage("💬 Text content: " + event.item.content[0].text);
+                
+                try {
+                    dataChannel.send(JSON.stringify(event));
+                    logMessage("✅ Text input sent successfully!");
+                    
+                    // Now send response.create to trigger the AI response
+                    const responseEvent = {
+                        type: "response.create"
+                    };
+                    
+                    logMessage("📤 Sending response.create event to trigger AI response...");
+                    dataChannel.send(JSON.stringify(responseEvent));
+                    logMessage("✅ Response.create sent successfully!");
+                    
+                } catch (error) {
+                    logMessage("❌ Failed to send text input: " + error.message);
+                }
+            });
+
+            dataChannel.addEventListener('close', () => {
+                logMessage('❌ Data channel is closed');
+            });
+            
+            dataChannel.addEventListener('error', (error) => {
+                logMessage('❌ Data channel error: ' + error);
+            });            // Add connection state logging
+            peerConnection.onconnectionstatechange = () => {
+                logMessage("� Connection state: " + peerConnection.connectionState);
+            };
+            
+            peerConnection.oniceconnectionstatechange = () => {
+                logMessage("🧊 ICE connection state: " + peerConnection.iceConnectionState);
+            };
+            
+            // Add close session button
+            const button = document.createElement('button');
+            button.innerText = 'Close Session';
+            button.onclick = () => stopSession(dataChannel, peerConnection);
+            document.body.appendChild(button);
+            logMessage("🔴 Close session button added");
+
+            function stopSession(dataChannel, peerConnection) {
+                if (dataChannel) dataChannel.close();
+                if (peerConnection) peerConnection.close();
+                logMessage("Session closed.");
+            }
+        }
+    
+            function logMessage(message) {
+                const logContainer = document.getElementById("logContainer");
+                const p = document.createElement("p");
+                p.textContent = message;
+                logContainer.appendChild(p);
+            }
+        </script>
+    </body>
+</html>
+```
 
 ## Related content
 

@@ -1,7 +1,7 @@
 ---
 title: Create a hub project
-titleSuffix: Azure AI Foundry
-description: Learn how to create a hub-based project in Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Learn how to create a hub-based project in Microsoft Foundry.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
@@ -14,20 +14,20 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Create a hub project for Azure AI Foundry
+# Create a hub project for Microsoft Foundry
 
-> [!NOTE]
-> An alternate Foundry project creation article is available: [Create a project for Azure AI Foundry (Foundry projects)](create-projects.md).
+> [!TIP]
+> An alternate Foundry project creation article is available: [Create a project for Microsoft Foundry (Foundry projects)](create-projects.md).
 
-This article describes how to create a hub-based project in Azure AI Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.
+This article describes how to create a hub-based project in Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.
 
-See [Types of projects](../what-is-azure-ai-foundry.md#project-types) for more information on the different project types.
+See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for more information on the different project types.
 
 ## Prerequisites
 
 Choose a method:
 
-### Azure AI Foundry portal
+### Foundry portal
 - Azure subscription.
 
 ### Python SDK
@@ -43,9 +43,9 @@ Choose a method:
 
 ## Create a hub project
 
-### Azure AI Foundry portal
+### Foundry portal
 
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-hub-project.md)]
+[!INCLUDE [Create Foundry project](../includes/create-hub-project.md)]
 
 ### Python SDK
 
@@ -113,6 +113,6 @@ Delete hub (with all projects): In Hub properties, select Delete hub to open Azu
 
 ## Related content
 
-- [Create an Azure AI Foundry project](create-projects.md).
-- [Quickstart: Get started with Azure AI Foundry (Hub projects)](../quickstarts/hub-get-started-code.md).
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md).
+- [Create a Foundry project](create-projects.md).
+- [Quickstart: Get started with Foundry (Hub projects)](../quickstarts/hub-get-started-code.md).
+- [Learn more about Foundry](../what-is-azure-ai-foundry.md).

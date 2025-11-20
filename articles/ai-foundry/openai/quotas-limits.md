@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models Quotas and Limits
+title: Azure OpenAI in Microsoft Foundry Models Quotas and Limits
 description: This article features detailed descriptions and best practices on the quotas and limits for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin
@@ -14,7 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure OpenAI in Azure AI Foundry Models quotas and limits
+# Azure OpenAI in Microsoft Foundry Models quotas and limits
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
@@ -57,8 +57,8 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum number of `/chat/completions` functions | 128. |
 | Maximum number of `/chat completions` tools | 128. |
 | Maximum number of provisioned throughput units per deployment | 100,000. |
-| Maximum files per assistant or thread | 10,000 when using the API or the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
-| Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). |
+| Maximum files per assistant or thread | 10,000 when using the API or the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).|
+| Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
 | Maximum file upload requests per resource | 30 requests per second. |
 | Maximum size for all uploaded files for assistants |200 GB. |
 | Assistants token limit | 2,000,000 token limit. |
@@ -250,7 +250,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 ### gpt-4o audio
 
-During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute<br>(new websocket connections per minute) |
 |---|---|:---:|:---:|
@@ -411,12 +411,12 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Regional quota capacity limits
 
-You can view quota availability by region for your subscription in the [Azure AI Foundry portal](https://ai.azure.com/resource/quota).
+You can view quota availability by region for your subscription in the [Foundry portal](https://ai.azure.com/resource/quota).
 
 To view quota capacity by region for a specific model or version, you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API returns the available capacity for that model across all regions and deployment types for your subscription.
 
 > [!NOTE]
-> Currently, both the Azure AI Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
+> Currently, both the Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
 
 See the [API reference](/rest/api/aiservices/accountmanagement/model-capacities/list).
 

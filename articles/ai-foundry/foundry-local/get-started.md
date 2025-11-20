@@ -14,7 +14,7 @@ ms.custom:
   - build-2025
   - build-aifnd
 keywords:
-  - Azure AI services
+  - Foundry Tools
   - cognitive
   - AI models
   - local inference
@@ -216,3 +216,4 @@ This command fixes cases where the service runs but isn't accessible because of 
 - [Best practices and troubleshooting](reference/reference-best-practice.md)
 - [Foundry Local API reference](reference/reference-catalog-api.md)
 - [Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
+- [Foundry Local on Windows Server 2025](reference/windows-server-frequently-asked-questions.md)

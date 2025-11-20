@@ -1,6 +1,6 @@
 ---
 title: Install Speech containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Details the speech to text helm chart configuration options.
 author: PatrickFarley
 manager: nitinme
@@ -36,7 +36,7 @@ To override the "umbrella" chart, add the prefix `speechToText.` on any paramete
 
 #### Sentiment analysis (sub-chart: charts/speechToText)
 
-Starting with v2.2.0 of the speech to text container and v0.2.0 of the Helm chart, the following parameters are used for sentiment analysis using the Language service API.
+Starting with v2.2.0 of the speech to text container and v0.2.0 of the Helm chart, the following parameters are used for sentiment analysis using Azure Language service API.
 
 |Parameter|Description|Values|Default|
 | --- | --- | --- | --- |

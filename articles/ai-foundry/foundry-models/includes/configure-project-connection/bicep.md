@@ -11,7 +11,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An Azure AI project with an AI Hub.
+* A Foundry project with an AI Hub.
 
 * Install the [Azure CLI](/cli/azure/).
 
@@ -19,13 +19,13 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Foundry Tools resource name.
   
-  * Your Azure AI Services resource ID.
+  * Your Foundry Tools resource ID.
   
   * The name of the Azure AI Hub where the project is deployed.
 
-  * The resource group where the Azure AI Services resource is deployed.
+  * The resource group where the Foundry Tools resource is deployed.
 
 ## Add a connection
 

@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Add your custom question answering project to Power Virtual Agents
 
 Create and extend a [Power Virtual Agents](https://powervirtualagents.microsoft.com/) bot to provide answers from your project. 
@@ -27,7 +26,7 @@ In this tutorial, you learn how to:
 > * Test Power Virtual Agents, and receive an answer from your custom question answering project
 
 > [!NOTE]
-> The QnA Maker service is being retired on the 31st of March, 2025. A newer version of the question and answering capability is now available as part of [Azure AI Language](../../index.yml). For custom question answering capabilities within the Language Service, see [custom question answering](../overview.md). Starting 1st October, 2022 you won’t be able to create new QnA Maker resources. For information on migrating existing QnA Maker knowledge bases to custom question answering, consult the [migration guide](../how-to/migrate-qnamaker.md).
+> The QnA Maker service is being retired on the 31st of March, 2025. A newer version of the question and answering capability is now available as part of [Azure Language in Foundry Tools](../../index.yml). For custom question answering capabilities within Azure Language, see [custom question answering](../overview.md). Starting 1st October, 2022 you won’t be able to create new QnA Maker resources. For information on migrating existing QnA Maker knowledge bases to custom question answering, consult the [migration guide](../how-to/migrate-qnamaker.md).
 
 ## Create and publish a project
 1. Follow the [quickstart](../quickstart/sdk.md?pivots=studio) to create a custom question answering project. Once you have deployed your project.
@@ -208,7 +207,7 @@ Then you can share your website URL with your school or organization members.
 
 ## Clean up resources
 
-When you are done with the project, remove the QnA Maker resources in the Azure portal.
+When you're done with the project, remove the QnA Maker resources in the Azure portal.
 
 ## See also
 

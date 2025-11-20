@@ -1,6 +1,6 @@
 ---
 title: Install the Speech SDK
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you learn how to install the Speech SDK for your preferred programming language.
 author: PatrickFarley
 manager: nitinme
@@ -49,7 +49,7 @@ zone_pivot_groups: programming-languages-ai-services
 
 ## Code samples
 
-Code samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including Universal Windows Platform (UWP) and Unity), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
+Code samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including Universal Windows Platform (UWP)), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
 
 ## Related content
 

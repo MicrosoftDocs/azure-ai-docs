@@ -1,6 +1,6 @@
 ---
 title: "Run batch operations with the Speech CLI - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to do batch speech to text (speech recognition), batch text to speech (speech synthesis) with the Speech CLI.
 author: PatrickFarley
 manager: nitinme

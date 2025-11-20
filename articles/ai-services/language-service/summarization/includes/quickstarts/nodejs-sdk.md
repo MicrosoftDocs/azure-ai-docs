@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 06/30/2025
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -10,7 +10,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 [Reference documentation](/javascript/api/overview/azure/ai-language-text-readme?view=azure-node-latest&preserve-view=true) | [Additional samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/textanalytics/ai-text-analytics/samples) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-text-analytics/v/5.2.0-beta.1) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/textanalytics/ai-text-analytics) 
 
 Use this quickstart to create a text summarization application with the client library for Node.js. In the following example, you create a JavaScript application that can summarize documents.
@@ -21,7 +20,7 @@ Use this quickstart to create a text summarization application with the client l
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Node.js](https://nodejs.org/) v16 LTS
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 * To use the Analyze feature, you need a Language resource with the standard (S) pricing tier.

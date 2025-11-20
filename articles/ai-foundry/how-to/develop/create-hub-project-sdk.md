@@ -1,7 +1,7 @@
-﻿---
+---
 title: How to create a hub using the Azure Machine Learning SDK/CLI
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to create an Azure AI Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to create a Microsoft Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
@@ -15,12 +15,12 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to create the following [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
-- An Azure AI Foundry hub
-- An Azure AI Services connection
+In this article, you learn how to create the following [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
+- A Foundry hub
+- A Foundry Tools connection
 
 > [!NOTE]
-> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ Use the following tabs to select whether you're using the Python SDK or Azure CL
 
 ---
 
-## Create the Azure AI Foundry hub and AI Services connection
+## Create the Foundry hub and AI Services connection
 
 Use the following examples to create a new hub. Replace example string values with your own values:
 
@@ -78,9 +78,9 @@ az ml workspace create --kind hub --resource-group {my_resource_group} --name {m
 
 ---
 
-## Create an AI Foundry connection
+## Create a Foundry connection
 
-After creating your own [AI Foundry resource](../../../ai-services/multi-service-resource.md?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext) or [Azure OpenAI resource](../../openai/how-to/create-resource.md) in the same resource group, you can connect it to your hub. You can also connect [Azure AI Search](../../../search/search-create-service-portal.md) from any resource group in your same subscription.
+After creating your own [Foundry resource](../../../ai-services/multi-service-resource.md?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext) or [Azure OpenAI resource](../../openai/how-to/create-resource.md) in the same resource group, you can connect it to your hub. You can also connect [Azure AI Search](../../../search/search-create-service-portal.md) from any resource group in your same subscription.
 
 # [Python SDK](#tab/python)
 
@@ -94,7 +94,7 @@ After creating your own [AI Foundry resource](../../../ai-services/multi-service
 
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-2. Use `ml_client` to create the connection to your AI Services.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For an AI Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the Url for the endpoint.
+2. Use `ml_client` to create the connection to your AI Services.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For a Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the Url for the endpoint.
 
     ```python
     from azure.ai.ml.entities import AzureAIServicesConnection
@@ -146,7 +146,7 @@ The <fully_qualified_resource_id> is the resource ID of your AI Services resourc
 
 ---
 
-## Create an Azure AI Foundry hub using existing dependency resources
+## Create a Foundry hub using existing dependency resources
 
 You can also create a hub using existing resources such as Azure Storage and Azure Key Vault. In the following examples, replace the example string values with your own values:
 
@@ -186,5 +186,5 @@ az ml workspace create --kind hub --resource-group {my_resource_group} --name {m
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with the Azure AI Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)
+- [Work with the Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)
 - [Configure a managed network](../configure-managed-network.md?tabs=python)

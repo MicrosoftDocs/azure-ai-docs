@@ -7,9 +7,8 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ---
-
 # Integrate conversational language understanding with Bot Framework
 
 A dialog is the interaction that occurs between user queries and an application. Dialog management is the process that defines the automatic behavior that should occur for different customer interactions. While conversational language understanding can classify intents and extract information through entities, the [Bot Framework SDK](/azure/bot-service/bot-service-overview) allows you to configure the applied logic for the responses returned from it.
@@ -27,8 +26,8 @@ This tutorial will explain how to integrate your own conversational language und
 ## Import a project in conversational language understanding
 
 1. Download the [FlightBooking.json](https://aka.ms/clu-botframework-json) file in the **Core Bot with CLU** sample, in the _Cognitive Models_ folder.
-2. Sign into the [Language Studio](https://language.cognitive.azure.com/) and select your Language resource. 
-3. Navigate to [Conversational Language Understanding](https://language.cognitive.azure.com/clu/projects) and select the service. This will route you the projects page. Select the Import button next to the Create New Project button. Import the FlightBooking.json file with the project name as **FlightBooking**. This will automatically import the CLU project with all the intents, entities, and utterances. 
+2. Sign into the [Microsoft Foundry](https://ai.azure.com/) with your Azure credentials and select your project.
+3. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and choose **Try Azure Language playground**. Select the **Conversational language understanding** tile, then select **Fine-tune**. Create a new fine-tuning task and import the FlightBooking.json file with the project name as **FlightBooking**. This will automatically import the CLU project with all the intents, entities, and utterances. 
     
     :::image type="content" source="../media/import.png" alt-text="A screenshot showing where to import a J son file." lightbox="../media/import.png":::
 
@@ -164,7 +163,7 @@ dotnet run
 1. Enter a Bot URL of `http://localhost:3978/api/messages` and press Connect and wait for it to load
 1. You can now query for different examples such as "Travel from Cairo to Paris" and observe the results
 
-If the top intent returned from CLU resolves to "_Book flight_". Your bot will ask additional questions until it has enough information stored to create a travel booking. At that point it will return this booking information back to your user.
+If the top intent returned from CLU resolves to "_Book flight_". Your bot will ask additional questions until it has enough information stored to create a travel booking. At that point it returns this booking information back to your user.
 
 ## Next steps
 

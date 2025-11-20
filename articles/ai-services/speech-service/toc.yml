@@ -197,6 +197,8 @@ items:
             displayName: avatar
         - name: Customize avatar gestures with SSML
           href: text-to-speech-avatar/avatar-gestures-with-ssml.md
+      - name: Standard avatars
+        href: text-to-speech-avatar/standard-avatars.md
       - name: Custom text to speech avatar
         items:
         - name: Custom text to speech avatar overview
@@ -262,8 +264,6 @@ items:
         href: voice-live-how-to.md
       - name: How to customize voice live input and output
         href: voice-live-how-to-customize.md
-      - name: How to invoke a proactive greeting and pregenerated messages
-        href: voice-live-how-to-proactive-and-pregenerated-messages.md
       - name: Voice live telephony integration
         href: voice-live-telephony.md
     - name: Voice live FAQ
@@ -281,7 +281,12 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/overview/azure/ai-voicelive-readme
-
+          - name: Java (Preview)
+            displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
+            href: /java/api/overview/azure/ai-voicelive-readme
+          - name: JavaScript (Preview)
+            displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/overview/azure/ai-voicelive-readme
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
@@ -309,7 +314,7 @@ items:
         href: ingestion-client.md
       - name: Telephony Integration
         href: call-center-telephony-integration.md
-      - name: Connect Azure Communication Services with Azure AI services
+      - name: Connect Azure Communication Services with Foundry Tools
         href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
     - name: Gaming integration
       href: gaming-concepts.md
@@ -321,7 +326,7 @@ items:
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Pronunciation assessment in Azure AI Foundry
+        - name: Pronunciation assessment in Microsoft Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
@@ -526,6 +531,9 @@ items:
         href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
+    - name: From Speech to text 2024-11-15 to 2025-10-15
+      href: migrate-2025-10-15.md
+      displayName: migrate,migration,deprecate,retire,sunset
     - name: From Speech to text v3.2 to 2024-11-15
       href: migrate-2024-11-15.md
       displayName: migrate,migration,deprecate,retire,sunset
