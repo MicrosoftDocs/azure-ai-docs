@@ -19,7 +19,7 @@ The Content Understanding GA API introduces several new capabilities and updates
 
 ## Prerequisite
 
-[!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
+* [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Updating analyzers
 

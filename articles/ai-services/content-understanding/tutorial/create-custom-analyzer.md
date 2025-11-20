@@ -362,11 +362,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -383,11 +379,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]s
       }'  
 ```
 
@@ -404,11 +396,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -425,11 +413,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 

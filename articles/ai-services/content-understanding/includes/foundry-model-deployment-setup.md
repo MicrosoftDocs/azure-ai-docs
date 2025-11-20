@@ -13,14 +13,14 @@ Set up default model deployments for your Content Understanding resource. Settin
 1. Go to the [Content Understanding settings page](https://contentunderstanding.ai.azure.com/settings)
 2. Select the "+ Add resource" button in the upper left
 3. Select the Foundry resource that you want to use and click Next, then Save
- - Make sure to leave "Enable auto-deployment for required models if no defaults are available." checked. This will ensure your resource is fully setup.
+   - Make sure to leave "Enable auto-deployment for required models if no defaults are available." checked. This ensures your resource is fully set up with the required GPT-4.1, GPT-4.1-mini, and text-embedding-3-large models. Different prebuilt analyzers require different models.
 
-By taking these steps you will setup a connection between Content Understanding and Foundry models in your Foundry resource. 
+By taking these steps you set up a connection between Content Understanding and Foundry models in your Foundry resource. 
 
 
 # [REST API](#tab/rest-api)
 
-1. Create a Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For details on how to deploy these models, see [Create model deployments in Microsoft Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments?pivots=ai-foundry-portal).
+1. Create Foundry Model deployments of GPT-4.1, GPT-4.1-mini, and text-embedding-3-large in your Foundry resource. For details on how to deploy these models, see [Create model deployments in Microsoft Foundry portal](/azure/ai-foundry/foundry-models/how-to/create-model-deployments?pivots=ai-foundry-portal). Different prebuilt analyzers require different models, so you need to deploy all three. 
 
 2. Define default model deployments at the resource level.
 
@@ -40,5 +40,7 @@ By taking these steps you will setup a connection between Content Understanding 
            }
          }'
    ```
+
+By taking these steps you set up a connection between Content Understanding and Foundry models in your Foundry resource.
 
 ---
