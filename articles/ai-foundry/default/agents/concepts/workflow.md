@@ -216,6 +216,7 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 1. Select the **+** icon and add an **if/else** flow.
 1. Type `System.` in the **Condition** text box to create a condition statement for each if/else combination.
+   :::image type="content" source="../../media/workflows/if-else-condition.png" alt-text="A screenshot showing the system variables in the if-else condition text box." lightbox="../../media/workflows/if-else-condition.png":::
 1. Select a **Next Action** for the next desired step in the workflow.
 1. Select **Done**. Select **Save** to save your workflow
 
