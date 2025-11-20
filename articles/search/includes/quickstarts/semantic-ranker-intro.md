@@ -4,32 +4,26 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/27/2025
+ms.date: 11/20/2025
 ---
 
-In this quickstart, you learn how to add semantic ranking to an existing index. You can use the hotels-sample-index or one of your own.
+In this quickstart, you learn how to use [semantic ranking](../../semantic-search-overview.md) by adding a semantic configuration to a search index and adding semantic parameters to a query. You can use the hotels-sample-index or one of your own.
 
-In Azure AI Search, [semantic ranking](../../semantic-search-overview.md) is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and the query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort. 
+In Azure AI Search, semantic ranking is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and the query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort.
 
 You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective on text that's informational or descriptive.
-
-In this quickstart, you learn how to:
-
-> [!div class="checklist"]
-> + Add a semantic configuration to a search index
-> + Add semantic parameters to a query
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md), at Basic tier or higher, with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ A [new or existing index](../../search-how-to-create-search-index.md) with descriptive or verbose text fields, attributed as retrievable in your index. This quickstart assumes the [hotels-sample-index](../../search-get-started-portal.md).
++ A [new or existing index](../../search-how-to-create-search-index.md) with descriptive or verbose text fields that are attributed as retrievable. This quickstart assumes the [hotels-sample-index](../../search-get-started-portal.md).
 
 ## Configure access
 
-You can connect to your Azure AI Search service [using API keys](../../search-security-api-keys.md) or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure.
+You can connect to your Azure AI Search service using API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
 To configure role-based access:
 
@@ -37,39 +31,47 @@ To configure role-based access:
 
 1. From the left pane, select **Settings** > **Keys**.
 
-1. Under **API Access control**, select **Both**.
-
-   This option enables both key-based and keyless authentication. After you assign roles, you can return to this step and select **Role-based access control**.
+1. Under **API Access control**, select **Role-based access control** or **Both** if you need time to transition clients to role-based access.
 
 1. From the left pane, select **Access control (IAM)**.
 
 1. Select **Add** > **Add role assignment**.
 
-1. Assign these roles to your user account:
-
-   + **Search Service Contributor**
-
-   + **Search Index Data Contributor**
-
-For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
+1. Assign the **Search Service Contributor** and **Search Index Data Contributor** roles to your user account.
 
 ## Start with an index
 
-This quickstart assumes an existing index, modified to include a semantic configuration. We recommend the [hotels-sample-index](../../search-get-started-portal.md) that you can create in minutes using an Azure portal wizard.
+This quickstart assumes an existing index and modifies it to include a semantic configuration. We recommend the [hotels-sample-index](../../search-get-started-portal.md) that you can create in minutes using an Azure portal wizard.
+
+To start with an existing index:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and find your search service.
 
-1. Under **Search management** > **Indexes**, open the hotels-sample-index. Make sure the index doesn't have a semantic configuration.
+1. Under **Search management** > **Indexes**, select the hotels-sample-index.
+
+1. Select **Semantic configurations** to ensure the index doesn't have a semantic configuration.
 
    :::image type="content" source="../../media/search-get-started-semantic/no-semantic-configuration.png" alt-text="Screenshot of an empty semantic configuration page in the Azure portal.":::
 
-1. To verify the index is operational, run a query. In **Search explorer**, enter this search string *"walking distance to live music"* so that you can view the response *before* semantic ranking is applied. 
+1. Select **Search explorer**, and then select the **JSON view**.
+
+1. Paste the following JSON into the query editor.
+
+    ```json
+    {
+      "search": "walking distance to live music",
+      "select": "HotelId, HotelName, Description",
+      "count": true
+    }
+    ```
 
    :::image type="content" source="../../media/search-get-started-semantic/search-explorer-simple-query.png" alt-text="Screenshot of a query in Search Explorer in the portal.":::
 
-   Your response should be similar to the following example, as scored by the default BM25 L1 ranker for full text search. For readability, the example selects just the "HotelName" "HotelId", and "Description" fields.
+1. Select **Search** to run the query.
 
-   This query is a keyword search. The results contain verbatim matches on the query terms (walking, distance, live, music) or on a linguistic variant (walk, living).
+   This query is a keyword search. The response should be similar to the following example, as scored by the default BM25 L1 ranker for full-text search.
+
+   For readability, the example only selects the `HotelId`, `HotelName`, and `Description` fields. The results contain verbatim matches on the query terms (`walking`, `distance`, `live`, `music`) or linguistic variants (`walk`, `living`).
 
     ```json
     "@odata.count": 13,
@@ -155,8 +157,7 @@ This quickstart assumes an existing index, modified to include a semantic config
     ]
    ```
 
-Later, you can try this query again after semantic ranking is configured to see how the response changes.
+This query shows how the response looks *before* semantic ranking is applied. Later, you can run the same query after semantic ranking is configured to see how the response changes.
 
 > [!TIP]
-> You can add a semantic configuration in the Azure portal. However, if you want to learn how to add a semantic configuration programmatically, continue with the instructions in this quickstart.
->
+> You can add a semantic configuration in the Azure portal. However, if you want to learn how to add a semantic configuration programmatically, continue with this quickstart.
