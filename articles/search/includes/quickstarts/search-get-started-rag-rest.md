@@ -89,7 +89,7 @@ In this quickstart, you use a REST client and the [Azure AI Search REST APIs](/r
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for this quickstart.
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-rag) to start with a finished project or follow these steps to create your own. 
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-rag) to start with a finished project or follow these steps to create your own. 
 
 1. Start Visual Studio Code and open the [quickstart-rag.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-RAG/rag.rest) file or create a new file.
 
@@ -108,7 +108,7 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
     Authorization: Bearer {{personalAccessToken}}
    ```
 
-1. Select **Sent request**.
+1. Select **Send Request**.
 
    :::image type="content" source="../../media/search-get-started-semantic/visual-studio-code-send-request.png" alt-text="Screenshot of the REST client send request link.":::
 

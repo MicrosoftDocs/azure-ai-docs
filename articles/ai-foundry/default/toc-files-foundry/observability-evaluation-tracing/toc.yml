@@ -53,7 +53,7 @@ items:
      href: ../../../foundry-models/how-to/monitor-models.md
 - name: Tracing
   items:
-   - name: Trace agent overview
+   - name: Agent tracing overview
      href: ../../observability/concepts/trace-agent-concept.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md

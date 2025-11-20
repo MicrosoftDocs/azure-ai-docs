@@ -172,8 +172,8 @@ You can grant networking access to trusted Azure services by creating a network 
 
 ## Limitations
 
-- A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent. 
-- There's no managed virtual network support for Evaluations in Foundry, only Standard Agent set up.
+- A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent.
+- Managed Virtual Network support is coming soon to Agent service. Documentation to be made available soon. 
 
 ## Next steps
 
