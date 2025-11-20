@@ -17,10 +17,10 @@ zone_pivot_groups: agents-quickstart
 
 # Quickstart: Create a new agent
 
-Foundry Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
-
 > [!NOTE]
 > This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../quickstarts/get-started-code.md?view=foundry) to use the new version of the API.
+
+Foundry Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
 ::: zone pivot="ai-foundry-portal"
 
