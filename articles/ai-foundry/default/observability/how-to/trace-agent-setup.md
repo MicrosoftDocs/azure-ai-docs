@@ -44,7 +44,7 @@ pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracin
 
 After running your agent, you can begin to [view and analyze traces in Foundry portal](#view-traces-in-the-foundry-portal).
 
-For detailed instructions and SDK-specific code examples, see [instructions](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects/2.0.0b1/sdk/ai/azure-ai-projects#tracing) and [samples](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects/2.0.0b1/sdk/ai/azure-ai-projects/samples/agents/telemetry).
+For detailed instructions and SDK-specific code examples, see [instructions](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects#tracing) and [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/telemetry).
 
 ### Trace locally with AI Toolkit in VS Code
 
