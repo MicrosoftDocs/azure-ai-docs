@@ -65,7 +65,7 @@ To use image models in your application, you need:
     ```http
     curl --request POST \
       --url https://<your_serverless_endpoint>/v1/ocr \
-      --header 'Authorization: Bearer <api_key>' \
+      --header 'Authorization: Bearer <your-api-key>' \
       --header 'Content-Type: application/json' \
       --data '{
       "model": "mistral-ocr-2503",

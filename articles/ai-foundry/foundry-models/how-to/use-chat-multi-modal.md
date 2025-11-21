@@ -5,11 +5,11 @@ description: Learn how to process audio and images with chat completions models 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
 author: msakande
-ms.reviewer: balapv
-reviewer: balapv
+ms.reviewer: achand
+reviewer: achandmsft
 ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
