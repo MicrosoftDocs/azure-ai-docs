@@ -16,6 +16,8 @@ ms.custom: references_regions, tool_generated
 
 # How to use image-to-text models in the model catalog
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article explains how to use _image-to-text_ models in the Foundry model catalog. 
 
 Image-to-text models are designed to analyze images and generate descriptive text based on what they see. Think of them as a combination of a camera and a writer. You provide an image as an input to the model, and the model looks at the image and identifies different elements within it, like objects, people, scenes, and even text. Based on its analysis, the model then generates a written description of the image, summarizing what it sees.

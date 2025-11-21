@@ -124,7 +124,7 @@ To authenticate to your search service, you need the service URL and an access k
 
 1. From the left pane, select **Settings** > **Keys**.
 
-1. Make a note of an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
+1. Make a note of an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests for adding, modifying, and deleting objects.
 
 ## Set up your environment
 
