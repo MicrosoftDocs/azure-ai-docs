@@ -1204,6 +1204,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path": "/articles/ai-foundry/how-to/deploy-models-openai.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/create-model-deployments",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-embeddings.md",
             "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
             "redirect_document_id": false
