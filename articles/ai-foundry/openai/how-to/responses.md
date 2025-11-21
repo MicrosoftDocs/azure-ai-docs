@@ -1057,6 +1057,11 @@ response = client.responses.create(
 
 ### Authentication
 
+> [!IMPORTANT]
+> - The MCP client within the Responses API requires TLS 1.2 or greater.
+> - mutual TLS (mTLS) is currently not supported.
+> - [Azure service tags](/azure/virtual-network/service-tags-overview) are currently not supported for MCP client traffic.
+
 Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
 
 You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.

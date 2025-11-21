@@ -134,7 +134,7 @@ For more information, see [Use Azure AI Search indexers to ingest Microsoft Purv
 
 With native [token-based querying](https://aka.ms/azs-query-preserving-permissions), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id), trimming result sets to include only documents the user is authorized to access. 
 
-You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request. For more information, see [Query-Time ACL and RBAC enforcement in Azure AI Search](search-query-access-control-rbac-enforcement.md).
+You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request. For more information, see [Query-time ACL and RBAC enforcement in Azure AI Search](search-query-access-control-rbac-enforcement.md).
 
 ## Benefits of document-level access control  
   

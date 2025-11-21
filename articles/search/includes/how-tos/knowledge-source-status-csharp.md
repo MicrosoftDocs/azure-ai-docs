@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 11/19/2025
 ---
 
-Run the following code to monitor ingestion progress and health, including [indexer status](/dotnet/api/azure.search.documents.indexes.models.knowledgesourcestatus?view=azure-dotnet-preview) for knowledge sources that generate an indexer pipeline and populate a search index.
+Run the following code to monitor ingestion progress and health, including [indexer status](/dotnet/api/azure.search.documents.indexes.models.knowledgesourcestatus?view=azure-dotnet-preview&preserve-view=true) for knowledge sources that generate an indexer pipeline and populate a search index.
 
 ```csharp
 // Get knowledge source ingestion status
