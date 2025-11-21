@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 # Azure AI Agents function calling
 
 > [!NOTE]
-> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/function-calling.md?view=foundry) for the Agents v2 API (preview) version.
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/function-calling.md?view=foundry&preserve-view=true) for the Agents v2 API (preview) version.
 
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
