@@ -283,8 +283,10 @@ items:
             href: /python/api/overview/azure/ai-voicelive-readme
           - name: Java (Preview)
             displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
-            href: /java/api/overview/azure/ai-voicelive-readme?view=azure-java-preview
-
+            href: /java/api/overview/azure/ai-voicelive-readme
+          - name: JavaScript (Preview)
+            displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/overview/azure/ai-voicelive-readme
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview

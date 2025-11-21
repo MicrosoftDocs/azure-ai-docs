@@ -31,6 +31,8 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible.
+
 For local development, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](../../search-get-started-rbac.md).
 
 <!-- invalid filter expression will return a 400 soon, so we should be able to remove this limitation -->

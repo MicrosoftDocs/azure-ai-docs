@@ -35,8 +35,6 @@ A Foundry resource can organize the work for multiple use cases, and is [typical
 
 Looking to configure Foundry with advanced security settings? See [advanced Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use [Azure Search skills?](../search/tutorial-skillset.md) See [Use Foundry with Azure Search skills](multi-services-resource-search-skills.md).
-
 ## Create your first resource
 
 To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or PowerShell.
@@ -118,7 +116,7 @@ Only authorized users, typically the Azure subscription or resource group owner,
 
 ## Start building in your first project
 
-With permissions set up, you're now ready to start building Foundry. In [Foundry portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects.md#create-multiple).
+With permissions set up, you're now ready to start building Foundry. In [Foundry portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects.md#create-multiple-projects-on-the-same-resource).
 
 Explore some of the services that come bundled with your resource:
 
@@ -139,4 +137,3 @@ Explore some of the services that come bundled with your resource:
 - [Connect tools](../ai-foundry/how-to/connections-add.md) to build more rich applications.
 - Learn about [access control in Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
 - [Secure your resource using private networking](../ai-foundry/how-to/configure-private-link.md)
-- [Use Foundry with Azure Search skills](multi-services-resource-search-skills.md)

@@ -35,11 +35,11 @@ After you sign up, you can immediately use either of these links to access Azure
 
 ## Step two: "Day One" tasks
 
-In the *new* Foundry portal, you can create an end-to-end solution that integrates Azure AI Search and Foundry Agent Service for knowledge retrieval.
+In the Foundry (new) portal, you can create an end-to-end solution that integrates Azure AI Search and Foundry Agent Service for knowledge retrieval.
 
 The portal supports creating *knowledge sources* that map to your indexed content in Azure AI Search and *knowledge bases* that orchestrate retrieval operations, including query decomposition, hybrid search, and result reranking. You can then configure a Foundry agent to use this knowledge base as a Model Context Protocol (MCP) tool, allowing the agent to retrieve relevant information and provide grounded, citation-backed responses.
 
-For more information about the programmatic experience, see [Use knowledge to improve retrieval quality in Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval).
+For more information about the programmatic experience, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval).
 
 ## Step three: Have a plan for next steps
 

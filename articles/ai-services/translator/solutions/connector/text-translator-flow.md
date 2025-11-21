@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
 

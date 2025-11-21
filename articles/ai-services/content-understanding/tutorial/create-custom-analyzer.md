@@ -24,7 +24,7 @@ To get started, make sure you have the following resources and permissions:
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
    * This resource is listed under **Foundry** > **Foundry** in the portal.
-* A Foundry Model deployment of GPT-4.1 completion model and a text-embedding-3-large embedding model in your Foundry resource. For directions on how to deploy models, see [Create model deployments in Foundry portal](/articles/ai-foundry/foundry-models/how-to/create-model-deployments.md?pivots=ai-foundry-portal).
+* [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Define an analyzer schema
 
@@ -362,11 +362,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -383,11 +379,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]s
       }'  
 ```
 
@@ -404,11 +396,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 
@@ -425,11 +413,7 @@ curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?
           {
             "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4"
           }          
-        ],
-        "modelDeployments": {
-          "gpt-4.1": "{CompletionDeploymentName}",
-          "text-embedding-3-large": "{embeddingDeploymentName}"
-        }
+        ]
       }'  
 ```
 

@@ -10,7 +10,7 @@ ms.date: 11/06/2025
 ms.custom: include
 ---
 
-## <a name="portals"></a> Microsoft Foundry portals
+## Microsoft Foundry portals
 
 There are two different portals for you to use to interact with Microsoft Foundry. A toggle in the portal banner allows you to switch between the two versions.
 

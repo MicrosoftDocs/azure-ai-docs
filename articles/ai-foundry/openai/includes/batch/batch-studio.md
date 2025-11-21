@@ -14,7 +14,7 @@ ms.custom:
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* An Azure OpenAI resource with a model of the deployment type `GlobalBatch` or `DataZoneBatch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process.
+* A resource with a model of the deployment type `GlobalBatch` or `DataZoneBatch` deployed.
 
 ## Preparing your batch file
 
@@ -108,10 +108,11 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 For this article, we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You'll need to modify and add your global batch deployment name to each line of the file.
 
-## Upload batch file
+## Create batch job
 
 Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
 
+::: moniker range="foundry-classic"
 
 1. [!INCLUDE [classic-sign-in](../../../includes/classic-sign-in.md)]
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
@@ -123,31 +124,54 @@ Once your input file is prepared, you first need to upload the file to then be a
 
     :::image type="content" source="../../media/how-to/global-batch/upload-file.png" alt-text="Screenshot that shows upload file experience." lightbox="../../media/how-to/global-batch/upload-file.png":::
 
-
-## Create batch job
-
 Select **Create** to start your batch job.
 
-:::image type="content" source="../../media/how-to/global-batch/deployment.png" alt-text="Screenshot of the create a batch job Foundry portal experience." lightbox="../../media/how-to/global-batch/deployment.png":::
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. [!INCLUDE [classic-sign-in](../../../default/includes/foundry-sign-in.md)]
+2. In the upper-right select **Build**
+3. From the left-hand pane select **Models**
+4. Select **Batch Jobs** > **create a batch job**
+
+    :::image type="content" source="../../media/how-to/global-batch/batch-create.png" alt-text="Screenshot of new Foundry batch creation experience." lightbox="../../media/how-to/global-batch/batch-create.png":::
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
 
 ## Track batch job progress
 
 Once your job is created, you can monitor the job's progress by selecting the Job ID for the most recently created job. By default you will be taken to the status page for your most recently created batch job.
 
-:::image type="content" source="../../media/how-to/global-batch/job-id.png" alt-text="Screenshot that shows the batch job ID for a job currently undergoing validation." lightbox="../../media/how-to/global-batch/job-id.png":::
 
 You can track job status for your job in the right-hand pane:
-
-:::image type="content" source="../../media/how-to/global-batch/status.png" alt-text="Screenshot that shows the batch job status experience in Foundry portal." lightbox="../../media/how-to/global-batch/status.png":::
 
 ## Retrieve batch job output file
 
 Once your job has completed or reached a terminal state, it will generate an error file and an output file which can be downloaded for review by selecting the respective button with the downward arrow icon.
 
-:::image type="content" source="../../media/how-to/global-batch/output.png" alt-text="Screenshot that shows the batch job output and error files available for download." lightbox="../../media/how-to/global-batch/output.png":::
+## Cancel batch
+
+Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+## Track batch job progress
+
+Once your job is created, you can monitor the job's progress by selecting the Job ID for the most recently created job. By default you will be taken to the status page for your most recently created batch job.
+
+You can track job status for your job in the right-hand pane:
+
+## Retrieve batch job output file
+
+Once your job has completed or reached a terminal state, it will generate an error file and an output file which can be downloaded for review by selecting the respective button with the downward arrow icon.
 
 ## Cancel batch
 
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
 
-:::image type="content" source="../../media/how-to/global-batch/cancel.png" alt-text="Screenshot that shows the batch job cancel button in Foundry portal." lightbox="../../media/how-to/global-batch/cancel.png":::
+::: moniker-end

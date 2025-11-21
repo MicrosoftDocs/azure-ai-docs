@@ -38,7 +38,7 @@ During the Preview phase, we're gradually expanding service coverage and refinin
 Yes, subscription options (email, SMS, webhook) are supported in the dashboard.
 
 **Q: Does the dashboard cover all regions and environments?**  
-Currently, the dashboard reflects status for core production services in major regions. Expanded coverage, including specific regions, is in progress.
+Currently, the dashboard reflects status for core production services in [major regions](reference/region-support.md). Expanded coverage, including specific regions, is in progress.
 
 **Q: How should I report discrepancies or missing status updates?**  
 If you notice a gap between your experience and what you see on the dashboard, contact your Microsoft support  representative or file a support ticket through Azure Support.

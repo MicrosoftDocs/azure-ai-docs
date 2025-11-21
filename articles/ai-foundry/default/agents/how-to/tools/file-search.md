@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/18/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
@@ -112,7 +112,7 @@ with project_client:
 Files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
+* Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and conversations in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
@@ -283,7 +283,7 @@ The file search tool implements several retrieval best practices out of the box 
 
 * Rewrites user queries to optimize them for search.
 * Breaks down complex user queries into multiple searches it can run in parallel.
-* Runs both keyword and semantic searches across both agent and thread vector stores.
+* Runs both keyword and semantic searches across both agent and conversation vector stores.
 * Reranks search results to pick the most relevant ones before generating the final response.
 * By default, the file search tool uses the following settings:
     * Chunk size: 800 tokens
@@ -293,13 +293,13 @@ The file search tool implements several retrieval best practices out of the box 
 
 ## Vector stores
 
-Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
+Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and conversations. Currently you can attach at most one vector store to an agent and at most one vector store to a conversation.
 
 
 Similarly, these files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
+* By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and conversations in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
@@ -308,13 +308,13 @@ The maximum file size is 512 MB. Each file should contain no more than 5,000,000
 
 We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the vector store object to ensure the status is completed.
 
-As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This is to ensure that any files your users upload in a thread are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
+As a fallback, there's a 60-second maximum wait in the run object when the conversation's vector store contains files that are still being processed. This is to ensure that any files your users upload in a conversation are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
 
-### Thread vector stores have default expiration policies
+### Conversation vector stores have default expiration policies
 
-Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
+Vector stores created using conversation helpers (like `tool_resources.file_search.vector_stores` in conversations or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
-When a vector store expires, the runs on that thread fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
+When a vector store expires, the runs on that conversation fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the conversation.
 
 ## Supported file types
 

@@ -32,6 +32,8 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 + The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs.
 
++ Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](../../search-get-started-rbac.md).
+
 ## Check for existing knowledge sources
 
 [!INCLUDE [Check for existing knowledge sources using REST](knowledge-source-check-rest.md)]

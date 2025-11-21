@@ -13,6 +13,7 @@ ms.custom:
   - references_regions
   - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Getting started with Azure OpenAI batch deployments
@@ -91,8 +92,6 @@ The following aren't currently supported:
 
 > [!NOTE]
 > In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../../foundry-models/concepts/deployment-types.md).
-
-:::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Using dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.

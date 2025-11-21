@@ -39,9 +39,17 @@ Establish and maintain a warm standby environment in a paired or otherwise accep
 
 Maintain this low-idle-cost, fully networked warm standby account. It hosts no projects during normal operations. Re-create only needed projects (and their dependencies) during failover based on business criticality and during failover drills.
 
+### Monitor for regional outages
+
+Configure [Azure Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal) to notify you of service issues and planned maintenance. These alerts can trigger automated actions or notify your operations team to initiate failover procedures.
+
+### Automate failover
+
+To reduce recovery time, automate the failover steps using scripts or infrastructure as code (IaC) templates. This automation can be triggered by your monitoring system or manually by your operations team. For example, you can use [Azure Automation](/azure/automation/overview) runbooks or [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to execute your failover scripts in response to Azure Service Health alerts.
+
 ### Gateway routing
 
-If your clients' configurations are outside your control, add a layer of indirection between your clients and the Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
+It is always a good idea to have a level of abstraction between clients and APIs. Add a layer of indirection between your clients and the Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
 
 ## Complete regional outage
 

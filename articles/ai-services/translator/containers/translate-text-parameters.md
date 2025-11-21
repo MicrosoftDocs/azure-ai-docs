@@ -425,29 +425,36 @@ The Foundry Tools container images can be found in the [**Microsoft Artifact Reg
     services:
       azure-ai-translator:
         container_name: azure-ai-translator
-        image: mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation:latest
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
         environment:
             - EULA=accept
             - billing={TRANSLATOR_ENDPOINT_URI}
             - apiKey={TRANSLATOR_KEY}
-            - AzureAiLanguageHost=http://azure-ai-language:5000
-            - AzureAiReadHost=http://azure-ai-read:5000
+            - ladurl=http://azure-ai-language:5000
+            - VISIONURL=http://azure-ai-read:5000
+            - LANGUAGES=en,es
         ports:
-              - "5000:5000"
-        azure-ai-language:
-          container_name: azure-ai-language
-          image:  mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest
-          environment:
-              - EULA=accept
-              - billing={TRANSLATOR_ENDPOINT_URI}
-              - apiKey={TRANSLATOR_KEY}
-        azure-ai-read:
-          container_name: azure-ai-read
-          image:  mcr.microsoft.com/azure-cognitive-services/vision/read:latest
-          environment:
-              - EULA=accept
-              - billing={TRANSLATOR_ENDPOINT_URI}
-              - apiKey={TRANSLATOR_KEY}
+            - "5000:5000"
+        volumes:
+            - {your local folder}:/usr/local/models
+    
+      azure-ai-language:
+        container_name: azure-ai-language
+        image: mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest
+        environment:
+            - EULA=accept
+            - billing={LANGUAGE_RESOURCE_ENDPOINT_URI}
+            - apiKey={LANGUAGE_RESOURCE_KEY}
+            - Languages=en,es
+            - LADINCLUSTER=true
+    
+      azure-ai-read:
+        container_name: azure-ai-read
+        image: mcr.microsoft.com/azure-cognitive-services/vision/read:latest
+        environment:
+            - EULA=accept
+            - billing={COMPUTER_VISION_ENDPOINT_URI}
+            - apiKey={COMPUTER_VISION_KEY}
     ```
 
 1. Open a terminal navigate to the `container-environment` folder, and start the containers with the following `docker-compose` command:

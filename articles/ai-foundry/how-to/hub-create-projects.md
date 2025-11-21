@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 
 This article describes how to create a hub-based project in Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.
 
-See [Types of projects](../what-is-azure-ai-foundry.md#project-types) for more information on the different project types.
+See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for more information on the different project types.
 
 ## Prerequisites
 

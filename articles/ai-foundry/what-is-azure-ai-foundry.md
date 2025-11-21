@@ -67,7 +67,7 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 * **[Expanded Integration Options](default/agents/how-to/publish-copilot.md?view=foundry&preserve-view=true)** – Publish agents to Microsoft 365, Teams, and BizChat, plus leverage containerized deployments for greater portability.
 * **[Expanded Tool Access](default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true)** – Access the Foundry tool catalog (preview) with a public tool catalog and your own private catalogs, connecting over 1,400 tools in Microsoft Foundry.
 * **[Enhanced Memory Capabilities](default/agents/concepts/agent-memory.md?view=foundry&preserve-view=true)** – Use memory to help your agent retain and recall contextual information across interactions. Memory maintains continuity, adapts to user needs, and delivers tailored experiences without requiring repeated input.
-* **[Knowledge Integration](default/agents/how-to/tools/knowledge-retrieval.md?view=foundry&preserve-view=true)** – Connect your agent to an Azure AI Search knowledge base to ground responses in enterprise content. This integration provides reliable, citation-backed answers for multi-turn conversations.
+* **[Knowledge Integration](default/agents/how-to/tools/knowledge-retrieval.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ (powered by Azure AI Search) knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
 * **[Real-Time Observability](how-to/continuous-evaluation-agents.md?view=foundry&preserve-view=true)** – Monitor performance and governance using built-in metrics and model tracking tools.
 * **Enhanced Enterprise Support** – Use open protocols in Foundry Agent Service with full authentication support in MCP and A2A tool, AI gateway integration, and Azure Policy integration.
 * **Centralized AI asset management** - Observe, optimize, and manage 100% of your AI assets (agents, models, tools) in one place, the **Operate** section. Register agents from other clouds, get alerts when an agent or model requires your attention, and effectively manage your AI fleet health as that fleet scales.
@@ -112,7 +112,7 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ::: moniker range="foundry-classic"
 
-## <a name="project-types"></a> Types of projects
+## Types of projects
 
 Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
@@ -120,7 +120,7 @@ Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](
 
 - [!INCLUDE [hub-description](includes/hub-description.md)]
 
-- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
+- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#new-foundry-projects-overview).
 
 
 ### Which type of project do I need?
@@ -156,7 +156,7 @@ This table summarizes features available in the two project types:
 
 *New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
-### <a name="how-do-i-know"></a> How do I know which type of project I have?
+### How do I know which type of project I have?
 
 Here are some of the ways to identify your project type:
 
@@ -188,7 +188,7 @@ The left pane is organized around your goals. Generally, as you develop with Azu
 
 If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
  
-## <a name="left-pane"></a> Customize the left pane
+## Customize the left pane
 
 The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
 

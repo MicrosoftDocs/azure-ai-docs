@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 11/20/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -38,7 +38,7 @@ Developers working with Microsoft Foundry need flexibility to integrate multiple
 ::: moniker range="foundry-classic"
 
 > [!NOTE]
-> This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
+> This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
 
 ::: moniker-end
 
@@ -68,7 +68,7 @@ The following examples show how to authenticate and create a client for your pro
 
 ::: zone pivot="programming-language-python"
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install the project client library 
 

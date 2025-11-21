@@ -27,7 +27,7 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
+> The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
 ## Deploy a model router model
@@ -53,19 +53,28 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 
 ::: moniker range="foundry"
 
-## Select a routing mode
+### Select a routing mode
+
+> [!NOTE]
+> Changes to the routing mode can take up to five minutes to take effect.
 
 Use the **Routing mode** dropdown to select a routing profile. This sets the routing logic for your deployment.
 
 :::image type="content" source="media/working-with-models/model-router-routing-mode.png" alt-text="Screenshot of model router routing mode selection.":::
 
-## Select your model subset
+### Select your model subset
+
+> [!NOTE]
+> Changes to the model subset can take up to five minutes to take effect.
 
 The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. 
 
 In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable.
 
 :::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
+
+> [!IMPORTANT]
+> To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&tabs=python).
 
 New models introduced later are excluded by default until explicitly added.
 

@@ -99,7 +99,7 @@ All examples use `"authType": "ApiKey"` with workspace-managed credentials. The 
 
 You’ll use the Azure CLI to create a connection of type **model gateway**.
 
-1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections). Select your model gateway connection depending on your requirements.
+1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.
 
 1. Run the `az deployment group create` command to create the connection. For example:
     
@@ -114,15 +114,13 @@ You’ll use the Azure CLI to create a connection of type **model gateway**.
 
 After creating the connection, deploy a prompt agent that uses the model gateway connection. 
 
-1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python) to run a sample agent with the BYO AI gateway feature. 
+1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/sample_agents_basics.py) to run a sample agent with the BYO AI gateway feature. 
 
 1. Use the Agent SDK to deploy the agent. Update the env variable so that the model name is `[connection-name]/[model-name]`. For example: `AZURE_AI_MODEL_DEPLOYMENT_NAME=my-apim-deployment-api-v2/gpt-4o `
  
 ## Validation 
 
-* Confirm the connection is active in Foundry. 
-    * You should see the connection in the Foundry portal under Admin 
-
+* Confirm the connection is active in Foundry. You should see the connection in the Foundry portal under **Operate** --> **Admin** --> **Projects** --> **Connected resources**. 
 * Test the deployed prompt agent by sending a sample prompt. 
 
 ## Limitations
@@ -131,4 +129,5 @@ After creating the connection, deploy a prompt agent that uses the model gateway
 - You can only use this feature using the Azure CLI and SDK.
 - Supported by Prompt Agents in the Agent SDK.
 - Public networking is supported for either APIM or other self-hosted gateways. For a full network isolation set up, setup Foundry with Standard Secured Agents set-up with virtual network injection. If you are using APIM as your AI gateway and want full network isolation, deploy Foundry and APIM following [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/16-private-network-standard-agent-apim-setup-preview). If you're using your self-hosted gateway as your AI gateway and want full network isolation, ensure that your gateway's endpoints are accessible inside the virtual network injection used by the Agent service. 
-- The Agent tools supported with this feature are CodeInterpreter, Functions, File Search, OpenAPI, Foundry IQ, Sharepoint Grounding, Fabric Data Agent, MCP, and Browser Automation. 
+- The Agent tools supported with this feature are CodeInterpreter, Functions, File Search, OpenAPI, Foundry IQ, Sharepoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
+- This feature is different from the AI Gateway in Foundry feature where a new, unique APIM instance is deployed with your Foundry resource. For more on this feature, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).

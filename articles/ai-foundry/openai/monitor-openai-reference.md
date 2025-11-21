@@ -7,6 +7,7 @@ ms.topic: reference
 author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-foundry
+monikerRange: 'foundry-classic || foundry'
 ms.subservice: azure-ai-foundry-openai
 ---
 

@@ -2,25 +2,23 @@
 title: Disable Shared Key Access to the Hub Storage Account
 titleSuffix: Microsoft Foundry
 description: Disable shared-key access to the default storage account used by your Microsoft Foundry hub and projects.
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.author: jburchel 
 author: jonburchel 
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - dev-focus
 ms.topic: how-to
-ms.date: 07/14/2025
+ms.date: 11/20/2025
 ms.reviewer: meerakurup
 #customer intent: As an admin, I want to disable shared-key access to my resources to improve security.
 ---
 
 # Disable shared-key access for your hub's storage account (preview)
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
-
 > [!NOTE]
-> The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md?view=foundry-classic#project-types).
+> The information in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#types-of-projects).
 
 A [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
@@ -43,7 +41,7 @@ Not applicable.
 1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
 
     > [!IMPORTANT]
-    > The steps in this article require the `azure-ai-ml` Python package, version 1.17.0. To determine the installed package version, use the `pip list` command from your Python development environment.
+    > This article requires the `azure-ai-ml` Python package, version 1.17.0. To check the installed package version, use the `pip list` command from your Python development environment.
 
 1. Install `azure-identity`: `pip install azure-identity`. If you're working in a notebook cell, use `%pip install azure-identity`.
 
@@ -72,7 +70,7 @@ Not applicable.
 
 To use the CLI commands in this document, you need the [Azure CLI](/cli/azure/install-azure-cli) and the [Azure Machine Learning extension](../../machine-learning/how-to-configure-cli.md).
 
-If you use [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), the CLI is accessed through the browser and it lives in the cloud.
+If you use [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), you access the CLI through the browser. It lives in the cloud.
 
 > [!IMPORTANT]
 > The steps in this article require the Azure CLI Extension for Machine Learning, version 2.27.0 or later. To determine the version of the extension that you installed, use the `az version` command from the Azure CLI. In the extensions collection that returns, find the `ml` extension. This code sample shows an example return value:
@@ -91,7 +89,7 @@ If you use [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell
 # [ARM template](#tab/armtemplate)
 
 - An existing Azure Key Vault instance.
-- The Azure Resource Manager ID for both the storage account and the key vault to be used with the hub.
+- The Azure Resource Manager ID for both the storage account and the key vault to use with the hub.
 
 ---
 
@@ -123,10 +121,15 @@ When you create your hub with the SDK, set `system_datastores_auth_mode="identit
 
 ```python
 # Creating a unique hub name with current datetime to avoid conflicts
+from azure.ai.ml import MLClient
 from azure.ai.ml.entities import Hub
+from azure.identity import DefaultAzureCredential
 import datetime
 
-hub_name = "mlw-hub-prod-" + datetime.datetime.now().strftime(
+# ml_client is assumed to be authenticated as per prerequisites
+# ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
+
+hub_name = "ai-hub-prod-" + datetime.datetime.now().strftime(
     "%Y%m%d%H%M"
 )
 
@@ -144,6 +147,8 @@ ws_hub = Hub(
 created_hub = ml_client.workspaces.begin_create(ws_hub).result()
 print(created_hub)
 ```
+
+Reference: [Hub class](/python/api/azure-ai-ml/azure.ai.ml.entities.hub)
 
 # [Azure CLI](#tab/cli)
 
@@ -168,6 +173,8 @@ You can use this YAML file with the `az ml workspace create` command and the `--
 ```azurecli-interactive
 az ml workspace create -g <resource-group-name> --kind hub --file workspace.yml
 ```
+
+Reference: [az ml workspace create](/cli/azure/ml/workspace#az-ml-workspace-create)
 
 # [ARM template](#tab/armtemplate)
 
@@ -221,7 +228,7 @@ For information about how to deploy an Azure Resource Manager template (ARM temp
 - [Tutorial: Deploy a local ARM template by using the Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
 - [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
-After you create the hub, identify all the users who need to use it, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure role-based access control (RBAC) for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see [Role assignments](#scenarios-for-hub-storage-account-role-assignments).
+After you create the hub, identify all the users who need to use it, such as data scientists. You must assign the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure role-based access control (RBAC) for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see [Role assignments](#scenarios-for-hub-storage-account-role-assignments).
 
 ---
 
@@ -241,11 +248,19 @@ If you have an existing Foundry hub, use the steps in this section to update the
 To update an existing hub, set `system_datastores_auth_mode = "identity"` for the hub. The following code sample shows an update of a hub named `test-ws1`:
 
 ```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+
+# subscription_id = "<your-subscription-id>"
+# resource_group = "<your-resource-group>"
+
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
 ws = ml_client.workspaces.get(name="test-ws1")
 ws.system_datastores_auth_mode = "identity"
 ws = ml_client.workspaces.begin_update(workspace=ws).result()
 ```
+
+Reference: [MLClient class](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Azure CLI](#tab/cli)
 
@@ -254,6 +269,8 @@ To update an existing hub, use the `az ml workspace update` command and specify 
 ```azurecli-interactive
 az ml workspace update --name myhub --system-datastores-auth-mode identity
 ```
+
+Reference: [az ml workspace update](/cli/azure/ml/workspace#az-ml-workspace-update)
 
 # [ARM template](#tab/armtemplate)
 
@@ -313,7 +330,7 @@ For information about how to deploy an ARM template, see the following articles:
 
 After you update the hub, update the storage account to disable shared-key access. For more information, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
-You must also identify all the users who need access to the default datastores, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure RBAC for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see the [Role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
+You must also identify all the users who need access to the default datastores, such as data scientists. Assign the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure RBAC for the storage account to these users. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see the [Role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
 
 ## Revert to using shared keys
 
@@ -332,11 +349,19 @@ To revert a hub back to using shared keys to access the storage account, use the
 To configure the hub to use a shared key again, set `system_datastores_auth_mode = "accesskey"` for the hub. This code updates a hub named `test-ws1`:
 
 ```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+
+# subscription_id = "<your-subscription-id>"
+# resource_group = "<your-resource-group>"
+
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
 ws = ml_client.workspaces.get(name="test-ws1")
 ws.system_datastores_auth_mode = "accesskey"
 ws = ml_client.workspaces.begin_update(workspace=ws).result()
 ```
+
+Reference: [MLClient class](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 # [Azure CLI](#tab/cli)
 
@@ -345,6 +370,8 @@ To configure the hub to use a shared key again, use the `az ml workspace update`
 ```azurecli-interactive
 az ml workspace update --name myhub --system-datastores-auth-mode accesskey
 ```
+
+Reference: [az ml workspace update](/cli/azure/ml/workspace#az-ml-workspace-update)
 
 # [ARM template](#tab/armtemplate)
 
@@ -408,7 +435,7 @@ After you revert the hub, update the storage account to enable shared key access
 
 ## Scenarios for hub storage account role assignments
 
-To work with a storage account with disabled shared-key access, you need to grant more roles to either your users or the managed identity for your hub. Hubs have a system-assigned managed identity by default. Some scenarios require a user-assigned managed identity. This table summarizes the scenarios that require extra role assignments.
+To work with a storage account that has disabled shared-key access, you need to grant more roles to either your users or the managed identity for your hub. Hubs have a system-assigned managed identity by default. Some scenarios require a user-assigned managed identity. This table summarizes the scenarios that require extra role assignments.
 
 | Scenario | Microsoft Entra ID | Required roles | Notes |
 | ----- | ----- | ----- | ----- |

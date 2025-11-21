@@ -15,9 +15,6 @@ ms.custom: include
 
 For any model deployment in [Foundry](https://ai.azure.com/?cid=learnDocs), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
 
-> [!IMPORTANT]
-> The GPT-image-1 model does not support content filtering configuration: only the default content filter is used.
-
 > [!TIP]
 > For guidance with content filters in your Foundry project, you can read more at [Foundry content filtering](/azure/ai-studio/concepts/content-filtering).
 

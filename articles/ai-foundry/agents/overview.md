@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/20/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -29,7 +29,7 @@ Large language models (LLMs) opened the door to a new type of automation with sy
     :::column-end:::
 :::row-end:::
 
-Foundry Agent Service connects the core pieces of Foundry such as models, tools, and frameworks into a single runtime. It manages threads, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems to ensure agents are secure, scalable, and production-ready.
+Foundry Agent Service connects the core pieces of Foundry such as models, tools, and frameworks into a single runtime. It manages conversations, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems to ensure agents are secure, scalable, and production-ready.
 
 By abstracting away infrastructure complexity and enforcing trust and safety by design, Foundry Agent Service makes it easy to move from prototype to production with confidence.
 
@@ -69,7 +69,7 @@ The assembly line starts by selecting a model that gives your agent its intellig
     :::column span="1":::
 ### 2. Customization
 
-Next, shape that model to fit your use case. Customize your agent with fine-tuning, distillation, or domain-specific prompts. This step allows you to encode agent behavior, role-specific knowledge, and patterns from prior performance using data captured from real thread content and tool results.
+Next, shape that model to fit your use case. Customize your agent with fine-tuning, distillation, or domain-specific prompts. This step allows you to encode agent behavior, role-specific knowledge, and patterns from prior performance using data captured from real conversation content and tool results.
     :::column-end:::
     :::column span="1":::
 ### 3. AI Tools
@@ -82,13 +82,20 @@ Then, equip your agent with tools. These let it access enterprise knowledge (suc
     :::column span="1":::
 ### 4. Orchestration
 
-Next, the agent needs coordination. [Connected agents](how-to\connected-agents.md) orchestrates the full lifecycle such as handling tool calls, updating thread state, managing retries, and logging outputs.
+:::moniker range="foundry-classic"
+Next, the agent needs coordination. [Connected agents](how-to\connected-agents.md) orchestrates the full lifecycle such as handling tool calls, updating conversation state, managing retries, and logging outputs.
+
+:::moniker-end
+:::moniker range="foundry"
+Next, the agent needs coordination. [Workflows](../default/agents/concepts/workflow.md) orchestrate the full lifecycle such as handling tool calls, updating conversation state, managing retries, and logging outputs.
+
+:::moniker-end
 
     :::column-end:::
     :::column span="1":::
 ### 5. Observability
 
-Finally, agents are tested and monitored. Foundry can capture logs, traces, and evaluations at every step. With full thread-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
+Finally, agents are tested and monitored. Foundry can capture logs, traces, and evaluations at every step. With full conversation-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
     :::column-end:::
     :::column span="1":::
 ### 6. Trust
@@ -105,22 +112,40 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 
 | Capability | Agent Service | 
 |------------|--------------------------------|
-| **1. Visibility into conversations** | Full access to structured [threads](./concepts/threads-runs-messages.md#threads), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
+| **1. Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#conversation), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
 | **2. Multi-agent coordination** | Built-in support for agent-to-agent messaging. |
-| **3. Tool orchestration** | Server-side execution and retry of [tool calls](how-to\tools\overview.md) with structured logging. No manual orchestration required. |
+| **3. Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration required. |
 | **4. Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |
-| **5. Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-thread-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
-| **6. Observability and debugging** | Threads, tool invocations, and message traces are [fully traceable](../how-to/develop/trace-agents-sdk.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
+| **5. Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-conversation-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
+| **6. Observability and debugging** | Conversations, tool invocations, and message traces are [fully traceable](../how-to/develop/trace-agents-sdk.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
 | **7. Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
 ## Get started with Foundry Agent Service
 
 To get started with Foundry Agent Service, you need to create a Foundry project in your Azure subscription. 
+:::moniker range="foundry-classic"
 
-Start with the [environment setup](environment-setup.md) and [quickstart](quickstart.md) guide if it's your first time using the service.
+Start with the [environment setup](environment-setup.md) and [quickstart](./quickstart.md) guide if it's your first time using the service.
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+Start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guide if it's your first time using the service.
+
+:::moniker-end
+
+
 1. You can create a project with the required resources. 
 1. After you create a project, you can deploy a compatible model such as GPT-4o.
 1. When you have a deployed model, you can also start making API calls to the service using the SDKs.
+
+
+:::moniker range="foundry"
+
+You can find a list of official samples with the new Python agent SDK on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects).
+
+:::moniker-end
 
 ## Business Continuity and Disaster Recovery (BCDR) for Agents
 
