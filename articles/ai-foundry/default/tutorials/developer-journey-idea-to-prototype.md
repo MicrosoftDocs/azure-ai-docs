@@ -104,14 +104,13 @@ enterprise-agent-tutorial/
     ├── questions.jsonl                  # Business test scenarios (4 questions)
     ├── requirements.txt                 # Python dependencies
     ├── .env.template                    # Environment variables template
-    ├── sharepoint-sample-data           # Sample business documents for SharePoint
-    │   └── collaboration-standards.docx # Sample content for policies
-        └── remote-work-policy.docx      # Sample content for policies
-        └── security-guidelines.docx     # Sample content for policies
-        └── data-governance-policy.docx  # Sample content for policies
     ├── README.md                        # Complete setup instructions
     ├── MCP_SERVERS.md                   # MCP server configuration guide
-    └── setup_sharepoint.py              # SharePoint diagnostic tool
+    ├── sharepoint-sample-data           # Sample business documents for SharePoint
+    │   └── collaboration-standards.docx # Sample content for policies
+    │   └── remote-work-policy.docx      # Sample content for policies
+    │   └── security-guidelines.docx     # Sample content for policies
+    │   └── data-governance-policy.docx  # Sample content for policies
 ```
 
 ## Step 2: Run the sample immediately
@@ -124,31 +123,31 @@ Start by running the agent so you see working functionality before diving into i
 
 1. Install dependencies from `requirements.txt`:
 
-  ```bash
-  pip install -r requirements.txt
-  ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
 
-  Copy `.env.template` to `.env` and configure:
+   Copy `.env.template` to `.env` and configure:
   
-  ```bash
-  # Foundry Configuration  
-  PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-  MODEL_DEPLOYMENT_NAME=gpt-4o-mini
-  AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
+   ```bash
+   # Foundry Configuration  
+   PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+   MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+   AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
    
-  # The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
-  MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
+   # The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
+   MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
    
-  # SharePoint Integration (Optional - requires connection setup)
-  SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
-  SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
-  ```
+   # SharePoint Integration (Optional - requires connection setup)
+   SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
+   SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
+   ```
    
-  > [!NOTE]
-  > If you're unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
+   > [!NOTE]
+   > If you're unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
 
 ### Run agent and evaluation
 
@@ -176,7 +175,6 @@ Graceful degradation without SharePoint:
 
 Now that you have a working agent, the next sections explain how it works. You don't need to take any action while reading these sections—they're for explanation.
 
----
 
 ## Step 3: Set up sample SharePoint business documents
 
@@ -197,8 +195,6 @@ Now that you have a working agent, the next sections explain how it works. You d
 ├── collaboration-standards.docx # Teams, SharePoint usage
 └── data-governance-policy.docx  # Data classification, retention
 ```
-
----
 
 ## Step 4: Understand the assistant implementation
 
@@ -464,7 +460,6 @@ Here's a sample of the JSON output structure:
 ]
 ```
 
----
 
 ## Summary
 
@@ -475,7 +470,6 @@ You now have:
 
 These patterns reduce prototype-to-production friction: you can add data sources, enforce governance, and integrate monitoring without rewriting core logic.
 
----
 
 ## Next steps
 
