@@ -83,6 +83,42 @@ Many methods outlined in this reference have an `alias_or_model_id` parameter in
 | `unload_model()`       | `(alias_or_model_id: str, force: bool = False) -> None`                                | Unloads a model from the inference server.        |
 | `list_loaded_models()` | `() -> list[FoundryModelInfo]`                                                         | Lists all models currently loaded in the service. |
 
+### FoundryModelInfo
+
+Both `list_catalog_models()` and `list_cached_models()` return a list of `FoundryModelInfo` objects.
+
+These objects contain the following fields:
+
+| Field                      | Type                         | Description                                                                            |
+|----------------------------|------------------------------|----------------------------------------------------------------------------------------|
+| `alias`                    | `str`                        | Alias of the model                                                                     |
+| `id`                       | `str`                        | Unique identifier of the model                                                         |
+| `version`                  | `str`                        | Version of the model                                                                   |
+| `execution_provider`       | `str`                        | The accelerator ([execution provider](#execution-providers)) used to run the model.     |
+| `device_type`              | `DeviceType`                 | Device type of the model: CPU, GPU, NPU                                                |
+| `uri`                      | `str`                        | URI of the model                                                                       |
+| `file_size_mb`             | `int`                        | Size of the model on disk in MB                                                        |
+| `supports_tool_calling`    | `bool`                       | Whether the model supports tool calling                                                |
+| `prompt_template`          | `dict \| None`               | Prompt template for the model                                                          |
+| `provider`                 | `str`                        | Provider of the model ie where the model is published                                  |
+| `publisher`                | `str`                        | Publisher of the model ie who published the model                                      |
+| `license`                  | `str`                        | The name of the license of the model                                                   |
+| `task`                     | `str`                        | Task of the model. One of chat-completions, automatic-speech-recognition               |
+| `ep_override`              | `str \| None`                | Override for the execution provider, if different from the model's default             |
+
+
+### Execution Providers
+
+One of:
+- `CPUExecutionProvider` - CPU-based execution
+- `CUDAExecutionProvider` - NVIDIA CUDA GPU execution
+- `WebGpuExecutionProvider` - WebGPU execution
+- `QNNExecutionProvider` - Qualcomm Neural Network execution (NPU)
+- `OpenVINOExecutionProvider` - Intel OpenVINO execution
+- `NvTensorRTRTXExecutionProvider` - NVIDIA TensorRT execution
+- `VitisAIExecutionProvider` - AMD Vitis AI execution
+
+
 ## Example Usage
 
 The following code demonstrates how to use the `FoundryManager` class to manage models and interact with the Foundry Local service.
