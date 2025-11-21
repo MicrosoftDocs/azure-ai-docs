@@ -34,7 +34,7 @@ In this article, you learn how to manage access to your [!INCLUDE [foundry-link]
 
 ::: moniker-end
 
-If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
+If the built-in Azure AI User role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
 
 > [!WARNING]
 > Applying some roles might limit UI functionality in the Foundry portal for other users. For example, if a user's role doesn't have permission to create a compute instance, the option to create one isn't available in the portal. This behavior is expected and prevents the user from starting actions that return an access denied error.
