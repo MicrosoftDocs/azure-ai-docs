@@ -17,6 +17,11 @@ zone_pivot_groups: selection-openapi-function
 
 # How to use the OpenAPI spec tool
 
+> [!NOTE]
+> This document refers to the previous verison of agents (classic).
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/openapi.md) if you're using the new agent API.
+
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 
 :::zone pivot="portal"

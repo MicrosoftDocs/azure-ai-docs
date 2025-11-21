@@ -16,6 +16,11 @@ ms.custom: azure-ai-agents-code
 
 # How to upload files using the file search tool
 
+> [!NOTE]
+> This document refers to the previous verison of agents (classic).
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/file-search.md) if you're using the new agent API.
+
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 
 ## Prerequisites 

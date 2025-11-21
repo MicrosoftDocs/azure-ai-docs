@@ -16,6 +16,11 @@ ms.custom: azure-ai-agents
 
 # Azure AI Agents function calling
 
+> [!NOTE]
+> This document refers to the previous verison of agents (classic).
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/function-calling.md) if you're using the new agent API.
+
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]

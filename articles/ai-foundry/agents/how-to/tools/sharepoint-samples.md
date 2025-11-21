@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/09/2025
+ms.date: 11/21/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents-code
@@ -15,6 +15,11 @@ zone_pivot_groups: selection-agent-sharepoint
 ---
 
 # How to use the SharePoint tool
+
+> [!NOTE]
+> This document refers to the previous verison of agents (classic).
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/sharepoint.md) if you're using the new agent API.
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
