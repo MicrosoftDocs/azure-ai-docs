@@ -15,10 +15,10 @@ ai.usage: ai-assisted
 
 #CustomerIntent: As a developer or AI practitioner, I want to deploy and configure AI models to Microsoft Foundry Models endpoint so that I can integrate these models into my applications and generate predictions through inference requests.
 ---
----
 
+# Deploy Microsoft Foundry Models in the Foundry portal
 
-In this article, you learn how to deploy a Foundry Model in a Foundry resource for use in performing inferencing tasks. Once you deploy a Foundry Model, you can interact with it by using the Foundry Playground and inference it by using code. 
+In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for use in performing inferencing tasks. Once you deploy a Foundry Model, you can interact with it by using the Foundry Playground and inference it by using code. 
 
 This article uses a Foundry Model from partners and community for illustration. Models in this category require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure Open AI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md) and [Foundry Models from partners and community](../../concepts/models-from-partners.md).
 
@@ -30,7 +30,7 @@ To complete this article, you need:
 
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 
-- A [Microsoft Foundry project](../../../how-to/create-projects.md). This kind of project is managed under a Foundry resource.
+- A [Microsoft Foundry project](../../how-to/create-projects.md). This kind of project is managed under a Foundry resource.
 
 - [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md).  [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
 
@@ -62,7 +62,7 @@ Deploy a model by following these steps in the Foundry portal:
 
 1. Select **Deploy**. The model's deployment details page opens up while the deployment is being created.
 
-1. When the deployment completes, the model is ready for use. You can also use the [Foundry Playgrounds](../../../concepts/concept-playgrounds.md) to interactively test the model.
+1. When the deployment completes, the model is ready for use. You can also use the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) to interactively test the model.
 
 ::: moniker-end
 
@@ -88,7 +88,7 @@ Deploy a model by following these steps in the Foundry portal:
 
 1. The Foundry portal automatically deploys your model in the Foundry resource associated with your project. Your project and resource must be in one of the supported regions of deployment for the model. 
 
-1. Select **Deploy**. When the deployment completes, you land on the [Foundry Playgrounds](../../../concepts/concept-playgrounds.md) where you can interactively test the model.
+1. Select **Deploy**. When the deployment completes, you land on the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) where you can interactively test the model.
 
 ::: moniker-end
 
@@ -152,9 +152,9 @@ To perform inferencing on the deployed model with code samples, see the followin
 
 - To use the **Responses API with Foundry Models sold directly by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see [How to generate text responses with Microsoft Foundry Models](../../how-to/generate-responses.md).
 
-- To use the **Responses API with OpenAI models**, see [Getting started with the responses API](../../../openai/how-to/responses.md#getting-started-with-the-responses-api).
+- To use the **Responses API with OpenAI models**, see [Getting started with the responses API](../../openai/how-to/responses.md#getting-started-with-the-responses-api).
 
-- To use the **Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see [Model support for chat completions](../../../openai/api-version-lifecycle.md#model-support).
+- To use the **Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see [Model support for chat completions](../../openai/api-version-lifecycle.md#model-support).
 
 ## Regional availability and quota limits of a model
 
@@ -169,9 +169,9 @@ When you reach your quota limit, you can only create new deployments of that mod
 - Request more quota by submitting a [quota increase form](https://aka.ms/oai/stuquotarequest).
 - Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
 
-For more information about quota, see [Foundry quota](./quota.md), [Microsoft Foundry Models quotas and limits](../../quotas-limits.md)  and [Manage Azure OpenAI quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
+For more information about quota, see [Foundry quota](../../how-to/quota.md), [Microsoft Foundry Models quotas and limits](../../quotas-limits.md)  and [Manage Azure OpenAI quota](../../openai/how-to/quota.md?tabs=rest).
 
 ## Related content
 
 - [How to generate text responses with Microsoft Foundry Models](../../how-to/generate-responses.md)
-- [Azure OpenAI supported programming languages](../../../openai/supported-languages.md)
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
