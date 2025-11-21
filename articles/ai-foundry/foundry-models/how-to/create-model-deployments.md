@@ -14,10 +14,14 @@ zone_pivot_groups: azure-ai-create-deployment
 monikerRange: 'foundry-classic || foundry'
 ai.usage: ai-assisted
 
-#CustomerIntent: As a developer or AI practitioner, I want to use code to deploy and configure AI models to Microsoft Foundry Models endpoint so that I can integrate these models into my applications and generate predictions through inference requests.
+#CustomerIntent: As a developer or AI practitioner, I want to deploy Microsoft Foundry Models using code, so that I can integrate these AI models into my applications and perform inference tasks for my business needs.
 ---
 
-# Add and configure models to Microsoft Foundry Models
+# Deploy Microsoft Foundry Models using code
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [cli](../../foundry-models/includes/create-model-deployments/cli.md)]
@@ -29,4 +33,4 @@ ai.usage: ai-assisted
 
 ## Next step
 
-* [Develop applications using Microsoft Foundry Models](../../model-inference/supported-languages.md)
+- [How to generate text responses with Microsoft Foundry Models](generate-responses.md)

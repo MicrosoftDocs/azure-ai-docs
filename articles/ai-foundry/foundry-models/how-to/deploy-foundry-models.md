@@ -1,10 +1,10 @@
 ---
-title: Deploy Microsoft Foundry Models
-description: Learn how to use the Foundry portal to deploy Microsoft Foundry Models in your Foundry resource for use in inferencing applications.
+title: Deploy Microsoft Foundry Models in the Foundry portal
+description: Learn how to deploy Microsoft Foundry Models in the Foundry portal for AI inference applications and integration into your projects.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 11/21/2025
 ms.custom: ignite-2024, github-universe-2024
 author: msakande   
 ms.author: mopeakande
@@ -13,14 +13,16 @@ recommendations: false
 monikerRange: 'foundry-classic || foundry'
 ai.usage: ai-assisted
 
-#CustomerIntent: As a developer or AI practitioner, I want to deploy and configure AI models to Microsoft Foundry Models endpoint so that I can integrate these models into my applications and generate predictions through inference requests.
+#CustomerIntent: As a developer or AI practitioner, I want to deploy Microsoft Foundry Models in the Foundry portal so that I can integrate these AI models into my applications and perform inference tasks for my business needs.
 ---
 
 # Deploy Microsoft Foundry Models in the Foundry portal
 
-In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for use in performing inferencing tasks. Once you deploy a Foundry Model, you can interact with it by using the Foundry Playground and inference it by using code. 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article uses a Foundry Model from partners and community for illustration. Models in this category require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure Open AI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) and [Foundry Models from partners and community](../concepts/models-from-partners.md).
+In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for use in performing inferencing tasks. Foundry Models include models such as Azure OpenAI models, Meta Llama models, and more. Once you deploy a Foundry Model, you can interact with it by using the Foundry Playground and inference it by using code. 
+
+This article uses a Foundry Model from partners and community `Llama-3.2-90B-Vision-Instruct` for illustration. Models from partners and community require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure Open AI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) and [Foundry Models from partners and community](../concepts/models-from-partners.md).
 
 ## Prerequisites
 
