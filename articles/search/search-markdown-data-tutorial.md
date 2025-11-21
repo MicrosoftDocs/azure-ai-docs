@@ -195,7 +195,7 @@ Markdown is a lightweight yet powerful tool for writing documentation. It suppor
 Thank you for reviewing this example!
 ````
 
-### Upload file and get a connection string
+### Upload the file and get a connection string
 
 Follow [these instuctions](knowledge-store-create-rest.md#upload-data-to-azure-storage-and-get-a-connection-string) to upload the `sample_markdown.md` file to a container in your Azure Storage account. You must also get the storage account connection string. Make a note of the connection string and the container name for later use.
 

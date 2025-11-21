@@ -81,11 +81,11 @@ Supported embedding models from the model catalog vary by usage method:
    + To use the model as a vectorizer at query time, see [Configure a vectorizer](vector-search-how-to-configure-vectorizer.md). Be sure to use the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) for this step.
 -->
 
-## Sample AML skill payloads
+## Sample AML skill payload
 
 When you deploy embedding models from the model catalog, you connect to them using the [AML skill](cognitive-search-aml-skill.md) in Azure AI Search for indexing workloads.
 
-This section describes the AML skill definition and index mappings. It includes sample payloads that are already configured to work with their corresponding deployed endpoints. For more technical details on how these payloads work, see the [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
+This section describes the AML skill definition and index mappings. It includes a sample payload that's already configured to work with its corresponding deployed endpoint. For more information, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
 
 <!-- ### [**Text Input for "Inference" API**](#tab/inference-text)
 
@@ -287,7 +287,7 @@ Your search service must have a [system or user-assigned managed identity](searc
 ```
 
 > [!NOTE]
-> Token authentication isn't currently supported for Cohere models for this integration; only key authentication is available at this time.  
+> This integration doesn't currently support token authentication for Cohere models. You must use key-based authentication.
 
 ## Related content
 

@@ -12,7 +12,7 @@ ms.custom:
   - subject-rbac-steps
 ---
 
-# Authenticate to Azure Function App using "Easy Auth" in Azure AI Search
+# Authenticate to an Azure Function App using "Easy Auth" (Azure AI Search)
 
 This article explains how to set up an indexer connection to an Azure Function app using the [built-in authentication capabilities of Azure App Service](/azure/app-service/overview-authentication-authorization), also known as "Easy Auth." Azure Function apps are a great solution for hosting Custom Web APIs that an Azure AI Search service can use to enrich content ingested during an indexer run or, if you're using a custom embedding model for [integrated vectorization](vector-search-integrated-vectorization.md), vectorize content in a search query.
 

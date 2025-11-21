@@ -54,7 +54,7 @@ The following factors affect indexing speeds. For more information, see [Index l
 
 This tutorial requires an Azure AI Search service, which you can [create in the Azure portal](search-create-service-portal.md). You can also [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. To accurately test and optimize indexing speeds, we recommend using the same pricing tier you plan to use in production.
 
-### Get an admin key and endpoint
+### Get an admin key and URL for Azure AI Search
 
 This tutorial uses key-based authentication. Copy an admin API key to paste into the `appsettings.json` file.
 
