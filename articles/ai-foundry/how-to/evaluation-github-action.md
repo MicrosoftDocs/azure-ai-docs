@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # How to run an evaluation in GitHub Action (preview)
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It's designed to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.

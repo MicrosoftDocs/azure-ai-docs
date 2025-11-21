@@ -16,6 +16,8 @@ zone_pivot_groups: azure-ai-inference-samples
 
 # How to use image and audio in chat completions with Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"

@@ -12,6 +12,8 @@ ms.date: 11/04/2025
 
 # What's new in Microsoft Foundry documentation?
 
+[!INCLUDE [classic-banner](includes/classic-banner.md)]
+
 Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for November 2025.
 
 ## New articles

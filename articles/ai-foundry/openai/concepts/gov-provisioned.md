@@ -14,6 +14,8 @@ recommendations: false
 
 # Azure OpenAI Provisioned Managed Offering in Azure Government
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Microsoft launched improvements to its Provisioned Throughput offering in Azure Commercial that are now coming to Azure Government and that address customer feedback on usability and operational agility that open new payment options and deployment scenarios. 
 
 This article highlights specific considerations for Azure Government. For general considerations on Provionsed Deployments and Reservations refer to:

@@ -17,6 +17,8 @@ ms.update-cycle: 180-days
 
 # Troubleshoot guidance for prompt flow
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article addresses frequently asked questions about prompt flow usage.
 
 ## Compute session-related issues

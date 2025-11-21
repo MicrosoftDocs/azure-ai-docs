@@ -10,7 +10,9 @@ ms.topic: concept-article
 ms.service: azure-ai-foundry
 ---
 
-# Consolidated view for AI services in the Azure portal
+# Consolidated view for Foundry Tools in the Azure portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 The [Foundry consolidated view](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/overview) shows key insights about your AI workloads in the Azure portal. Instead of switching between tools, you see in one place how your AI resources perform, what they cost, and whether you’re nearing usage limits.
 

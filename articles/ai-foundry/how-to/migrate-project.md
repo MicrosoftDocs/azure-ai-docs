@@ -12,6 +12,8 @@ ms.service: azure-ai-foundry
 
 # Migrate from hub-based to Foundry projects
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
 Microsoft Foundry is transitioning to a unified platform-as-a-service, replacing the previous resource model that required management of multiple Azure services. As we see AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:

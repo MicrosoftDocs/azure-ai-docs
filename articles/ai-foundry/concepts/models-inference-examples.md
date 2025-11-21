@@ -18,6 +18,8 @@ ms.custom:
 
 # Serverless API inference examples for Foundry Models
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 The Foundry model catalog offers a large selection of Microsoft Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]

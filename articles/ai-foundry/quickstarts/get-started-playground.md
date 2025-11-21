@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # Quickstart: Get answers in the chat playground
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Learn how to get answers using the chat playground in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Deploy (or reuse) a chat model and send prompts to receive AI-generated responses.
 
 In this quickstart, you learn how to:

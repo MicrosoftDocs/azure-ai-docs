@@ -12,6 +12,8 @@ ms.reviewer: bgilmore
 
 # Microsoft Foundry known issues
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Microsoft Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 

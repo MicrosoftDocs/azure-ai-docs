@@ -179,6 +179,7 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
             Response response = responsesClient.getResponseService().create(responseRequest);
         }
     }
+   ```
 
 
 # [REST](#tab/rest)

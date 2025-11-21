@@ -20,6 +20,8 @@ ai.usage: ai-assisted
 
 # Add and configure models to Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/create-model-deployments/portal.md)]
 ::: zone-end
