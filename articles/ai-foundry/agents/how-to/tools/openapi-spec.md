@@ -15,9 +15,7 @@ ms.custom: azure-ai-agents
 # How to use Foundry Agent Service with OpenAPI Specified Tools
 
 > [!NOTE]
-> This document refers to the previous verison of agents (classic).
->
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/openapi.md) if you're using the new agent API.
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/openapi.md) for the Agents v2 API (preview) version.
 
 You can now connect your Azure AI Agent to an external API using an OpenAPI 3.0 specified tool, 
 allowing for scalable interoperability with various applications. Enable your custom tools 

@@ -15,9 +15,8 @@ ms.author: aahi
 # How to use the Computer Use Tool
 
 > [!NOTE]
-> This document refers to the previous verison of agents (classic).
->
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/computer-use.md) if you're using the new agent API.
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/computer-use.md) for the Agents v2 API (preview) version.
+
 
 Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.
 
