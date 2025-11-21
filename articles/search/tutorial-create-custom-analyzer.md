@@ -198,15 +198,15 @@ The REST calls in this tutorial require a search service endpoint and an admin A
 1. Try again without any formatting: `4255550100`.
 
    ```http  
-    ### Search for a phone number
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{apiKey}}
+   ### Search for a phone number
+   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+   Content-Type: application/json
+   api-key: {{apiKey}}
 
-    {
-      "search": "4255550100"
-    }
-    ```
+   {
+     "search": "4255550100"
+   }
+   ```
 
    This query does even worse, returning only one of four correct matches.
 
