@@ -142,16 +142,14 @@ Start by running the agent so you see working functionality before diving into i
    ```
    
    > [!TIP]
-   > Get your tenant ID and project endpoint quickly:
-   >
-   > To get your tenant ID, run:
+   > To get your **tenant ID**, run:
    > 
    > ```bash
    > # Get tenant ID
    > az account show --query tenantId -o tsv
    > ```
    > 
-   > To get your project endpoint, open your project in the [Foundry portal](https://ai.azure.com) and copy the **Project endpoint** shown there.
+   > To get your **project endpoint**, open your project in the [Foundry portal](https://ai.azure.com) and copy the value shown there.
 
 ### Run agent and evaluation
 
