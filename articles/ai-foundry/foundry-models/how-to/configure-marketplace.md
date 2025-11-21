@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 11/21/2025
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 #CustomerIntent: As an Azure administrator or developer, I want to know the requirements to configure Azure Marketplace access for Microsoft Foundry Models from partners and community to deploy and use these models effectively.
