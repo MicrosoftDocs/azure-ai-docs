@@ -63,7 +63,7 @@ The following sections describe recovery strategies for incidents that affect a 
    1. Redeploy the project's agents (definitions, knowledge files, and tool connections) from source control or application code. They function as new agents with new IDs and no access to prior threads or data. This *fresh start* restores workload functionality without any historical state.
 
       > [!TIP]
-      > To facilitate this recovery, ensure you maintain your agent definitions, knowledge files, and tool connections in source control. For more information, see [Make agents redeployable](high-availability-resiliency.md#make-agents-redeployable).
+      > To facilitate this recovery, ensure you maintain your agent definitions, knowledge files, and tool connections in source control. For more information, see [Use repeatable deployment techniques](high-availability-resiliency.md#use-repeatable-deployment-techniques).
 
    1. Restore role assignments on the project for clients, operators, and automation principals.
 
