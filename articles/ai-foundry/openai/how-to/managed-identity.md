@@ -14,6 +14,8 @@ ms.custom: devx-track-azurecli
 
 # How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 More complex security scenarios require Azure role-based access control (Azure RBAC). This document covers how to authenticate to your Azure OpenAI resource using Microsoft Entra ID.
 
 In the following sections, you'll use the Azure CLI to sign in, and obtain a bearer token to call the OpenAI resource. If you get stuck, links are provided in each section with all available options for each command in Azure Cloud Shell/Azure CLI.

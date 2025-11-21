@@ -16,6 +16,8 @@ ms.custom:
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
 ## Scope of quota

@@ -14,6 +14,8 @@ recommendations: false
 
 # Network and access configuration for Azure OpenAI On Your Data
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
 
 ## Data ingestion architecture 

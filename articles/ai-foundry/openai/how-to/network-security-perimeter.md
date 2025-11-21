@@ -11,6 +11,8 @@ ms.subservice: azure-ai-foundry-openai
 
 # Add an Azure OpenAI service to a network security perimeter (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!IMPORTANT]
 > * Azure OpenAI service support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
 > * Review the [limitations and considerations](#limitations-and-considerations) section before you start.

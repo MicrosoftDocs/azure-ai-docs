@@ -17,6 +17,8 @@ recommendations: false
 
 # Getting started with Azure OpenAI Assistants (Preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!NOTE]
 > The [Microsoft Foundry Agent Service](../../agents/overview.md) is now Generally Available and includes additional tools and capabilities that extend beyond what Assistants provides. 
 
