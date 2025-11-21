@@ -16,6 +16,8 @@ recommendations: false
 
 # Azure OpenAI Evaluation (Preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 The evaluation of large language models is a critical step in measuring their performance across various tasks and dimensions. This is especially important for fine-tuned models, where assessing the performance gains (or losses) from training is crucial. Thorough evaluations can help your understanding of how different versions of the model may impact your application or scenario.
 
 Azure OpenAI evaluation enables developers to create evaluation runs to test against expected input/output pairs, assessing the model’s performance across key metrics such as accuracy, reliability, and overall performance.

@@ -20,6 +20,8 @@ ai-usage: ai-assisted
 
 # Configure key-less authentication with Microsoft Entra ID
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-entra-id/portal.md)]
 ::: zone-end

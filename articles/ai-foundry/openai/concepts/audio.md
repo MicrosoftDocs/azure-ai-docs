@@ -14,6 +14,8 @@ manager: nitinme
 
 # Audio capabilities in Azure OpenAI in Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI. 
 

@@ -14,6 +14,8 @@ manager: nitinme
 
 # Migrating to the OpenAI JavaScript API library 4.x
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 As of June 2024, we recommend migrating to the OpenAI JavaScript API library 4.x, the latest version of the official OpenAI JavaScript client library that supports the Azure OpenAI in Microsoft Foundry Models API version `2022-12-01` and later. This article helps you bring you up to speed on the changes specific to Azure OpenAI.
 
 ## Authenticating the client

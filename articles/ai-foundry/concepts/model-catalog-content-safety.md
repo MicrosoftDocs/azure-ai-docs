@@ -15,6 +15,8 @@ ms.custom:
 
 # Guardrails & controls for Models Sold Directly by Azure 
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, learn about content safety capabilities for models from the model catalog deployed using serverless API deployments.

@@ -16,6 +16,8 @@ author: ssalgadodev
 
 # Explore Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
 
 With Foundry Models, you can: 
