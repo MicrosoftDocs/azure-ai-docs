@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # How to generate text responses with Microsoft Foundry Models
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 This article explains how to generate text responses for Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. 
 
 ## Prerequisites
