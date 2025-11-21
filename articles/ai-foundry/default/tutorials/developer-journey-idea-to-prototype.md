@@ -14,7 +14,7 @@ ai.usage: ai-assisted
 # Tutorial: Idea to prototype - Build and evaluate an enterprise agent
 
 
-This tutorial covers the first stage of the Microsoft Foundry developer journey: from an initial idea to a working prototype. You will build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Microsoft Foundry SDK.
+This tutorial covers the first stage of the Microsoft Foundry developer journey: from an initial idea to a working prototype. You build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Microsoft Foundry SDK.
 
 **Business scenario**: Create an AI assistant that helps employees by combining:
 
@@ -23,7 +23,7 @@ This tutorial covers the first stage of the Microsoft Foundry developer journey:
 - **Complete solutions** (combining both sources for business implementation)
 - **Batch evaluation** to validate agent performance on realistic business scenarios
 
-**Tutorial outcome**: By the end you will have a running Modern Workplace Assistant that can answer policy, technical, and combined implementation questions; a repeatable batch evaluation script; and clear extension points (additional tools, multi‑agent patterns, richer evaluation).
+**Tutorial outcome**: By the end you have a running Modern Workplace Assistant that can answer policy, technical, and combined implementation questions; a repeatable batch evaluation script; and clear extension points (additional tools, multi‑agent patterns, richer evaluation).
 
 > [!div class="checklist"]
 > **You will:**
@@ -43,7 +43,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 - Azure subscription and CLI authentication (`az login`)
 - Azure CLI 2.67.0 or later (check with `az version`)
-- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
+- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
 - SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
 
@@ -58,7 +58,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 > az account show --query tenantId -o tsv
 > ```
 
-## Step 1: Obtain the sample code
+## Step 1: Get the sample code
 
 <!-- Instead of navigating a large repository tree, use one of these approaches:
 
@@ -87,10 +87,10 @@ Repeat the path for `csharp` or `java` variants as needed.
 #### Option C (Download ZIP of repository)
 -->
 
-Download the repository ZIP, extract to your local environment, and navigate to the tutorial folder.
+Download the repository ZIP, extract it to your local environment, and go to the tutorial folder.
 
 > [!IMPORTANT]
-> A standalone repository is recommended for production adoption. This tutorial uses the shared samples repo for now. Sparse checkout minimizes local noise.
+> For production adoption, use a standalone repository. This tutorial uses the shared samples repo. Sparse checkout minimizes local noise.
 > [!div class="nextstepaction"] 
 > [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
@@ -148,7 +148,7 @@ Start by running the agent so you see working functionality before diving into i
   ```
    
   > [!NOTE]
-  > If you are unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
+  > If you're unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
 
 ### Run agent and evaluation
 
@@ -174,15 +174,15 @@ Graceful degradation without SharePoint:
 ✅ Agent created: asst_abc123
 ```
 
-Now that you have a working agent, the next sections explain how it is built. No additional action is required while reading—these are explanatory.
+Now that you have a working agent, the next sections explain how it's built. You don't need to take any action while reading these sections—they're for explanation.
 
 ---
 
 ## Step 3: Set up sample SharePoint business documents
 
-1. Navigate to your SharePoint site (configured in the connection).
-2. Create document library "Company Policies" (or use existing "Documents").
-3. Upload the four sample Word documents provided in the `sharepoint-sample-data` folder:
+1. Go to your SharePoint site (configured in the connection).
+1. Create document library "Company Policies" (or use existing "Documents").
+1. Upload the four sample Word documents provided in the `sharepoint-sample-data` folder:
    - `remote-work-policy.docx`
    - `security-guidelines.docx`  
    - `collaboration-standards.docx`
@@ -202,20 +202,20 @@ Now that you have a working agent, the next sections explain how it is built. No
 
 ## Step 4: Understand the assistant implementation
 
-This section explains the core code in `main.py` / `Program.cs` / `ModernWorkplaceAssistant.java`. You already ran the agent; this is conceptual and requires no changes. After reading you will be able to:
-- Add new internal/external data tools.
+This section explains the core code in `main.py`. You already ran the agent; this section is conceptual and requires no changes. After reading it, you can:
+- Add new internal and external data tools.
 - Extend dynamic instructions.
-- Introduce multi-agent orchestration later.
+- Introduce mult-agent orchestration.
 - Enhance observability and diagnostics.
 
 The code breaks down into the following main sections, ordered as they appear in the full sample code:
 
 1. [Configure imports and authentication](#imports-and-authentication-setup)
-2. [Configure authentication to Azure](#configure-authentication-in-azure)
-3. [Configure the SharePoint tool](#create-the-sharepoint-tool-for-the-agent)
-4. [Configure MCP tool](#create-the-mcp-tool-for-the-agent)
-5. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools)
-6. [Converse with the agent](#converse-with-the-agent)
+1. [Configure authentication to Azure](#configure-authentication-in-azure)
+1. [Configure the SharePoint tool](#create-the-sharepoint-tool-for-the-agent)
+1. [Configure MCP tool](#create-the-mcp-tool-for-the-agent)
+1. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools)
+1. [Converse with the agent](#converse-with-the-agent)
 
 [!INCLUDE [code-preview](../includes/code-preview.md)] 
 
@@ -227,7 +227,7 @@ The code uses several client libraries from the Microsoft Foundry SDK to create 
 
 ### Configure authentication in Azure
 
-Before you can create your agent, set up authentication to the Foundry.
+Before you create your agent, set up authentication to the Foundry.
 
 :::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
 
@@ -255,7 +255,7 @@ Finally, implement an interactive loop to converse with the agent.
 
 ### Expected output from agent sample code (main.py)
 
-When you run the agent you will see output similar to the following, demonstrating successful tool configuration and agent responses to business scenarios:
+When you run the agent, you see output similar to the following example. The output shows successful tool configuration and agent responses to business scenarios:
 
 ```bash
 $ python main.py
@@ -357,9 +357,9 @@ This evaluation framework tests:
 
 The code breaks down into the following main sections:
 
-1. [Load evaluation data](#load-evaluation-data)
-2. [Run batch evaluation](#run-batch-evaluation)
-3. [Compile evaluation results](#compile-evaluation-results)
+1. [Load evaluation data](#load-evaluation-data).
+1. [Run batch evaluation](#run-batch-evaluation).
+1. [Compile evaluation results](#compile-evaluation-results).
 
 ### Load evaluation data
 
@@ -379,7 +379,7 @@ In this section, the evaluation framework loads test questions from `questions.j
 
 ### Expected output from evaluation sample code (evaluate.py)
 
-When you run the evaluation script you will see output similar to the following, demonstrating successful execution of business test scenarios and generation of evaluation metrics:
+When you run the evaluation script, you see output similar to the following example. The output shows successful execution of business test scenarios and generation of evaluation metrics:
 
 ```bash
 python evaluate.py
@@ -435,7 +435,7 @@ python evaluate.py
 
 ### Additional evaluation assets
 
-The evaluation generates `evaluation_results.json` with metrics for each question (keyword hits, length heuristic). You can extend this to:
+The evaluation generates `evaluation_results.json` with metrics for each question (keyword hits, length heuristic). You can extend this file to:
 - Use model-based scoring prompts.
 - Introduce structured output validation.
 - Record latency and token usage.
