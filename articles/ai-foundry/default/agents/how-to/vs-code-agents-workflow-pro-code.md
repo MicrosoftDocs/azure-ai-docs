@@ -121,7 +121,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using DefaultAzureCredential (/azure/developer/python/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview). Configure your development environment to provide credentials via one of the supported sources, for example:
+The hosted agent sample authenticates using [DefaultAzureCredential](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -184,7 +184,7 @@ The sample workflow project creates an .env file with the necessary environment 
 
 #### Authenticate your hosted agent
 
-The hosted agent sample authenticates using DefaultAzureCredential (/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview). Configure your development environment to provide credentials via one of the supported sources, for example:
+The hosted agent sample authenticates using [DefaultAzureCredential](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -284,7 +284,7 @@ To monitor and visualize your hosted agent workflow execution in real time:
 
 1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run this command: `>Foundry: Open Visualizer for Hosted Agents`.
+1. Run this command: `>Microsoft Foundry: Open Visualizer for Hosted Agents`.
 
 A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
 
