@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 03/25/2025
 ms.custom: include
 ---
-:::moniker range="foundry-classic"
+::: moniker range="foundry-classic"
 
 > [!NOTE]
 > This document refers to the [Microsoft Foundry (classic)](../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal only. 
