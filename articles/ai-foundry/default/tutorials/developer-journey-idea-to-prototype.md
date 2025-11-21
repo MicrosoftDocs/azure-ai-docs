@@ -43,7 +43,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 - Azure subscription and CLI authentication (`az login`)
 - Azure CLI 2.67.0 or later (check with `az version`)
-- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)).
+- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
 - SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
 - (Optional) Git installed for cloning the sample repository
@@ -57,20 +57,9 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 > az account show --query tenantId -o tsv
 > ```
 
-### Understanding portal endpoints
-
-In the Foundry portal you might see multiple endpoints (for example: resource endpoint, project endpoint, model endpoint). For this sample:
-- Use the **Project endpoint** in `PROJECT_ENDPOINT`.
-- Do NOT use the parent resource endpoint (for example the cognitive services account endpoint).
-- Use the model deployment name (for example `gpt-4o-mini`) rather than a raw base model name.
-
-If unsure, in the portal open your project, select **Deployments**, choose the deployment, and copy the **Endpoint** and **Deployment name**.
-
----
-
 ## Step 1: Obtain the sample code
 
-Instead of navigating a large repository tree, use one of these approaches:
+<!-- Instead of navigating a large repository tree, use one of these approaches:
 
 #### Option A (clone entire samples repo)
 
@@ -95,8 +84,9 @@ cd samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
 Repeat the path for `csharp` or `java` variants as needed.
 
 #### Option C (Download ZIP of repository)
+-->
 
-Download repository ZIP, extract, and navigate to the tutorial folder.
+Download the repository ZIP, extract to your local environment, and navigate to the tutorial folder.
 
 > [!IMPORTANT]
 > A standalone repository is recommended for production adoption. This tutorial uses the shared samples repo for now. Sparse checkout minimizes local noise.
@@ -108,15 +98,19 @@ The minimal structure contains only essential files:
 ```text
 enterprise-agent-tutorial/
 └── 1-idea-to-prototype/
-    ├── main.py                        # Modern Workplace Assistant
-    ├── evaluate.py                    # Business evaluation framework
-    ├── questions.jsonl                # Business test scenarios (4 questions)
-    ├── requirements.txt               # Python dependencies
-    ├── .env.template                  # Environment variables template
-    ├── SAMPLE_SHAREPOINT_CONTENT.md   # Business documents (markdown source)
-    ├── README.md                      # Complete setup instructions
-    ├── MCP_SERVERS.md                 # MCP server configuration guide
-    └── setup_sharepoint.py            # SharePoint diagnostic tool
+    ├── main.py                          # Modern Workplace Assistant
+    ├── evaluate.py                      # Business evaluation framework
+    ├── questions.jsonl                  # Business test scenarios (4 questions)
+    ├── requirements.txt                 # Python dependencies
+    ├── .env.template                    # Environment variables template
+    ├── sharepoint-sample-data           # Sample business documents for SharePoint
+    │   └── collaboration-standards.docx # Sample content for policies
+        └── remote-work-policy.docx      # Sample content for policies
+        └── security-guidelines.docx     # Sample content for policies
+        └── data-governance-policy.docx  # Sample content for policies
+    ├── README.md                        # Complete setup instructions
+    ├── MCP_SERVERS.md                   # MCP server configuration guide
+    └── setup_sharepoint.py              # SharePoint diagnostic tool
 ```
 
 ## Step 2: Run the sample immediately
@@ -125,44 +119,35 @@ Start by running the agent so you see working functionality before diving into i
 
 ### Environment setup and virtual environment
 
-```bash
-cd samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype
+1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
-# Create virtual environment (recommended)
-python -m venv .venv
-# Windows
-.\.venv\Scripts\activate
-# macOS/Linux
-source .venv/bin/activate
+1. Install dependencies from `requirements.txt`:
 
-# Copy environment template
-cp .env.template .env
+  ```bash
+  pip install -r requirements.txt
+  ```
 
-# Populate .env (see section below)
-# Install dependencies
-pip install -r requirements.txt
-```
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
+1. Configure `.env`.
 
-### Configure `.env`
-
-Copy `.env.template` to `.env` and configure:
-
-```bash
-# Foundry Configuration  
-PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-MODEL_DEPLOYMENT_NAME=gpt-4o-mini
-AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
-
-# The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
-MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
-
-# SharePoint Integration (Optional - requires connection setup)
-SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
-SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
-```
-
-> [!NOTE]
-> If you are unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
+  Copy `.env.template` to `.env` and configure:
+  
+  ```bash
+  # Foundry Configuration  
+  PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+  MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+  AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
+   
+  # The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
+  MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
+   
+  # SharePoint Integration (Optional - requires connection setup)
+  SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
+  SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
+  ```
+   
+  > [!NOTE]
+  > If you are unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
 
 ### Run agent and evaluation
 
@@ -194,48 +179,22 @@ Now that you have a working agent, the next sections explain how it is built. No
 
 ## Step 3: Set up sample SharePoint business documents
 
-You can create documents manually or generate them automatically.
-
-### Option A: Manual upload (existing method)
-
 1. Navigate to your SharePoint site (configured in the connection).
 2. Create document library "Company Policies" (or use existing "Documents").
-3. Create four Word documents:
+3. Upload the four sample Word documents provided in the `sharepoint-sample-data` folder:
    - `remote-work-policy.docx`
    - `security-guidelines.docx`  
    - `collaboration-standards.docx`
    - `data-governance-policy.docx`
-4. Copy content from corresponding sections in `SAMPLE_SHAREPOINT_CONTENT.md`, found in the [sample folder referenced previously](#option-c-download-zip-of-repository).
-
-### Option B: Auto-generate documents (PowerShell)
-
-```powershell
-# Generates four markdown files from SAMPLE_SHAREPOINT_CONTENT.md
-$src = "SAMPLE_SHAREPOINT_CONTENT.md"
-$map = @{
-  "remote-work-policy.md"      = "## Remote Work Policy"
-  "security-guidelines.md"     = "## Security Guidelines"
-  "collaboration-standards.md" = "## Collaboration Standards"
-  "data-governance-policy.md"  = "## Data Governance Policy"
-}
-$md = Get-Content $src -Raw
-foreach ($kv in $map.GetEnumerator()) {
-  $file = $kv.Key; $header = $kv.Value
-  $section = ($md -split "`n(?=## )") | Where-Object { $_.StartsWith($header) }
-  $content = $section.Trim()
-  Set-Content -Path $file -Value $content
-}
-Write-Host "Generated markdown policy documents. Upload these to SharePoint (open in Word and Save As .docx if required)."
-```
 
 ### Sample structure
 
 ```text
 📁 Company Policies/
-├── 🏠 remote-work-policy.docx      # VPN, MFA, device requirements
-├── 🔒 security-guidelines.docx     # Azure security standards
-├── 🤝 collaboration-standards.docx # Teams, SharePoint usage
-└── 📊 data-governance-policy.docx  # Data classification, retention
+├── remote-work-policy.docx      # VPN, MFA, device requirements
+├── security-guidelines.docx     # Azure security standards
+├── collaboration-standards.docx # Teams, SharePoint usage
+└── data-governance-policy.docx  # Data classification, retention
 ```
 
 ---
