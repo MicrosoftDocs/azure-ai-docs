@@ -14,6 +14,8 @@ ms.custom: references_regions
 
 # Trace and Observe AI Agents in Microsoft Foundry (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to:

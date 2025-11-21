@@ -16,6 +16,8 @@ author: msakande
 
 # How to use MedImageInsight healthcare AI model for medical image embedding generation
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
 In this article, you learn how to deploy MedImageInsight from the model catalog as an online endpoint for real-time inference. You also learn how to issue a basic call to the API. The steps you take are:

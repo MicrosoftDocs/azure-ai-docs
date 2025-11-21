@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # Default Guardrails and controls policies for Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Microsoft Foundry Models applies default safety to all models, excluding audio models such as Whisper in Azure OpenAI in Foundry Models. These configurations provide you with a responsible experience by default.
 
 Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](../../model-inference/concepts/content-filter.md).

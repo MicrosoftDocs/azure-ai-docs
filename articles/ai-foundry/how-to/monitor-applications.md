@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # Monitor your generative AI applications (preview)
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Monitoring your generative AI applications has never been more important, due to the complexity and rapid evolution of the AI industry. Observability, integrated with Azure Monitor Application Insights, enables you to continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, we also provide [continuous evaluation capabilities for Agents](./continuous-evaluation-agents.md) to further enhance the Foundry Observability dashboard with visibility into additional critical quality and safety metrics.

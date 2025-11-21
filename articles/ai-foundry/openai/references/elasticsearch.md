@@ -15,6 +15,8 @@ ms.custom: devx-track-python
 
 # Data source - Elasticsearch (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 The configurable options for Elasticsearch when using Azure OpenAI On Your Data. This data source is supported starting in API version `2024-02-15-preview`.
 
 |Name | Type | Required | Description |

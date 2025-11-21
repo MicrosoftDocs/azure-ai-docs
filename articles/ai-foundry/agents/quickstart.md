@@ -17,6 +17,8 @@ zone_pivot_groups: agents-quickstart
 
 # Quickstart: Create a new agent
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 > [!NOTE]
 > This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../quickstarts/get-started-code.md?view=foundry&preserve-view=true) to use the new version of the API.
 

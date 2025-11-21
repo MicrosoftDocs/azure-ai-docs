@@ -15,6 +15,8 @@ ms.custom: devx-track-python
 
 # Azure OpenAI On Your Data API Reference
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 This article provides reference documentation for Python and REST for the new Azure OpenAI On Your Data API. The latest API version is `2024-05-01-preview` [Swagger spec](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-05-01-preview).
 
 > [!NOTE]

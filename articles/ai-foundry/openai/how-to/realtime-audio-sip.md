@@ -15,6 +15,8 @@ recommendations: false
 
 # Use the GPT Realtime API via SIP
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via SIP.

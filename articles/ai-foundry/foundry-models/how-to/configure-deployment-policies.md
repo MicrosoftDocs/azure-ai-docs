@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Control model deployment with custom policies
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 When using models from Microsoft Foundry (formerly known Azure AI Services) and Azure OpenAI with [Foundry](https://ai.azure.com/?cid=learnDocs), you might need to use custom policies to control which [type of deployment](../../model-inference/concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
 
 > [!TIP]

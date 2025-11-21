@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # Control AI model deployment with built-in policies in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP). Use these policies to control what models your developers can deploy in Microsoft Foundry portal.
 
 > [!TIP]

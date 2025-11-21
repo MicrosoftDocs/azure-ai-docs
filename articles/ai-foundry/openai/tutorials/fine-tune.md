@@ -15,6 +15,8 @@ ms.custom: "devx-track-python,ai-learning-hub"
 
 # Azure OpenAI GPT-4o-mini fine-tuning tutorial
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 This tutorial walks you through fine-tuning a `gpt-4o-mini-2024-07-18` model.
 
 In this tutorial you learn how to:

@@ -16,6 +16,8 @@ recommendations: false
 
 # Azure OpenAI Assistants Code Interpreter (Preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
 Code Interpreter allows the Assistants API to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your Assistant can run code iteratively to solve more challenging code, math, and data analysis problems. When your Assistant writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
