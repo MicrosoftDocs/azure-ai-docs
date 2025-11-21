@@ -16,6 +16,8 @@ zone_pivot_groups: azure-ai-inference-samples
 
 # How to generate image embeddings with Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 
 ::: zone pivot="programming-language-python"
 
