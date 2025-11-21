@@ -4,7 +4,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/11/2025
+ms.date: 11/21/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -65,9 +65,7 @@ Once content is extracted, the [skillset](../../cognitive-search-working-with-sk
 
    1. Copy the connection string for either key one or key two. The connection string is similar to the following example:
 
-      ```http
-      DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net
-      ```
+      `DefaultEndpointsProtocol=https;AccountName=<your account name>;AccountKey=<your account key>;EndpointSuffix=core.windows.net`
 
 ### Foundry Tools
 

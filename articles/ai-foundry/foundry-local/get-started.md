@@ -13,6 +13,7 @@ reviewer: samuel100
 ms.custom:
   - build-2025
   - build-aifnd
+  - peer-review-program 
 keywords:
   - Foundry Tools
   - cognitive

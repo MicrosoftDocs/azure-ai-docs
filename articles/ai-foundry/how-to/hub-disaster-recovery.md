@@ -65,19 +65,34 @@ Azure services include:
 
 * **Connections**: Foundry connects to other services. You're responsible for configuring their high availability settings.
 
-The following table shows the Azure services that Microsoft manages and the ones you manage. It also indicates the services that are highly available by default.
+The following tables show the Azure services that Microsoft manages and the ones you manage. They also indicate the services that are highly available by default.
+
+**Foundry infrastructure**
 
 | Service | Managed by | High availability by default |
 | ----- | ----- | ----- |
-| **Foundry infrastructure** | Microsoft | |
-| **Associated resources** |  |  |
+| Foundry infrastructure | Microsoft | |
+
+**Associated resources**
+
+| Service | Managed by | High availability by default |
+| ----- | ----- | ----- |
 | Azure Storage | You | |
 | Azure Key Vault | You | ✓ |
 | Azure Container Registry | You | |
 | Application Insights | You | Not applicable |
-| **Compute resources** |  |  |
+
+**Compute resources**
+
+| Service | Managed by | High availability by default |
+| ----- | ----- | ----- |
 | Compute instance | Microsoft |  |
-| **Connections to external services** like Foundry Tools | You | |
+
+**Connections**
+
+| Service | Managed by | High availability by default |
+| ----- | ----- | ----- |
+| Connections to external services | You | |
 
 The rest of this article explains how to make each service highly available.
 
@@ -109,10 +124,10 @@ Foundry builds on other services. Some services can replicate to other regions. 
 
 Use these development practices to enable fast recovery and restart in the secondary region:
 
-* Use Azure Resource Manager templates. Templates are infrastructure as code and let you quickly deploy services in both regions.
-* To avoid drift between the two regions, update your continuous integration and deployment pipelines to deploy to both regions.
-* Create role assignments for users in both regions.
-* Create network resources such as Azure virtual networks and private endpoints for both regions. Ensure users can access both network environments. For example, configure VPN and DNS for both virtual networks.
+* Use [Azure Resource Manager templates](/azure/azure-resource-manager/templates/overview). Templates are infrastructure as code and let you quickly deploy services in both regions.
+* To avoid drift between the two regions, update your [continuous integration and deployment pipelines](/azure/devops/pipelines/get-started/what-is-azure-pipelines) to deploy to both regions.
+* Create [role assignments](/azure/role-based-access-control/role-assignments-portal) for users in both regions.
+* Create [network resources](/azure/virtual-network/virtual-networks-overview) such as Azure virtual networks and private endpoints for both regions. Ensure users can access both network environments. For example, configure VPN and DNS for both virtual networks.
 
 ## Design for high availability
 
@@ -166,6 +181,15 @@ If you delete a hub and its resources, some resources support soft delete and ca
 | Foundry Tools resource | Yes |
 | Azure Storage | See [Recover a deleted storage account](/azure/storage/common/storage-account-recover#recover-a-deleted-account-from-the-azure-portal). |
 | Azure Key Vault | Yes |
+
+## Troubleshoot failover
+
+If you encounter issues during failover, check the following configurations:
+
+* **Role-based access control (RBAC)**: Ensure that users have the correct permissions in the secondary region. Role assignments are not automatically replicated.
+* **Networking**: Verify that the secondary region has the necessary network resources, such as virtual networks, private endpoints, and DNS configurations.
+* **Quota**: Check that the secondary region has sufficient quota for the compute resources you need to create.
+* **Storage**: Ensure that the storage account in the secondary region is accessible and has the necessary data.
 
 ## Related content
 

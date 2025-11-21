@@ -10,4 +10,4 @@ ms.date: 11/06/2025
 ms.custom: include
 ---
 
-Sign in to [!INCLUDE [foundry-link](foundry-link.md)].  Make sure the **New Foundry** toggle is on.  :::image type="icon" source="../media/version-banner/new-foundry.png" border="false"::: These steps refer to **Foundry (new)**.
+Sign in to [!INCLUDE [foundry-link](foundry-link.md)]. Make sure the **New Foundry** toggle is on: :::image type="icon" source="../media/version-banner/new-foundry.png" border="false":::. These steps refer to **Foundry (new)**.

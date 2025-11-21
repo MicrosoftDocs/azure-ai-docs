@@ -5,7 +5,7 @@ description: Find samples to ground Microsoft Foundry Agents using Custom Bing S
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 07/09/2025
+ms.date: 11/20/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to

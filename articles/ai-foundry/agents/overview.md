@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/20/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -123,9 +123,25 @@ Foundry Agent Service provides a production-ready foundation for deploying intel
 
 To get started with Foundry Agent Service, you need to create a Foundry project in your Azure subscription.
 
-Start with the [environment setup](environment-setup.md) and [quickstart](quickstart.md) if it's your first time using the service.
+:::moniker range="foundry-classic"
+
+Start with the [environment setup](environment-setup.md) and [quickstart](./quickstart.md) if it's your first time using the service.
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+Start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guide if it's your first time using the service.
+
+:::moniker-end
 
 You can create a project with the required resources. After you create a project, you can deploy a compatible model such as GPT-4o. When you have a deployed model, you can also start making API calls to the service by using the SDKs.
+
+:::moniker range="foundry"
+
+You can find a list of official samples with the new Python agent SDK on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects).
+
+:::moniker-end
 
 ## BCDR for agents
 
