@@ -121,7 +121,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using [DefaultAzureCredential](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python). Configure your development environment to provide credentials via one of the supported sources, for example:
+The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&preserve-view=true). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
