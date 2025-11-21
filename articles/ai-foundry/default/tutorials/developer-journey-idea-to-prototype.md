@@ -52,11 +52,6 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 - (Optional) Git installed for cloning the sample repository
 
-> [!TIP]
-> Get your tenant ID quickly:
-> ```bash
-> az account show --query tenantId -o tsv
-> ```
 
 ## Step 1: Get the sample code
 
@@ -107,10 +102,10 @@ enterprise-agent-tutorial/
     ├── README.md                        # Complete setup instructions
     ├── MCP_SERVERS.md                   # MCP server configuration guide
     ├── sharepoint-sample-data           # Sample business documents for SharePoint
-    │   └── collaboration-standards.docx # Sample content for policies
-    │   └── remote-work-policy.docx      # Sample content for policies
-    │   └── security-guidelines.docx     # Sample content for policies
-    │   └── data-governance-policy.docx  # Sample content for policies
+        └── collaboration-standards.docx # Sample content for policies
+        └── remote-work-policy.docx      # Sample content for policies
+        └── security-guidelines.docx     # Sample content for policies
+        └── data-governance-policy.docx  # Sample content for policies
 ```
 
 ## Step 2: Run the sample immediately
@@ -146,8 +141,15 @@ Start by running the agent so you see working functionality before diving into i
    SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
    ```
    
-   > [!NOTE]
-   > If you're unsure of your project endpoint, open your project in the portal and copy the **Project endpoint** value (distinct from service resource endpoint).
+   > [!TIP]
+   > Get your tenant ID and project endpoint quickly.
+   >
+   > ```bash
+   > # Get tenant ID
+   > az account show --query tenantId -o tsv
+   > ```
+   > 
+   > To get your project endpoint, open your project in the [Foundry portal](https://ai.azure.com) and copy the **Project endpoint** shown there.
 
 ### Run agent and evaluation
 
