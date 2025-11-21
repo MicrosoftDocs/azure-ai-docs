@@ -315,7 +315,7 @@ if __name__ == "__main__":
     main()
 ```
 
-For more details, see the [complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_coherence.py)
+For more details, see the [complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/evaluation_samples_graders/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py)
 
 ::: moniker-end
 
