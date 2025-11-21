@@ -43,7 +43,7 @@ Our global deployments are the first location for all new models and features. D
 
 ### Data Zone deployments
 
-For any [deployment type](../../../openai/how-to/deployment-types.md) labeled **Global**, prompts and responses might be processed in any geography where the relevant Foundry model is deployed. Learn more about [region availability of models](../../../openai/concepts/models.md#model-summary-table-and-region-availability).
+For any deployment type labeled **Global**, prompts and responses might be processed in any geography where the relevant Foundry model is deployed. Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md#foundry-models-sold-directly-by-azure).
 
 For any deployment type labeled as **DataZone**, prompts and responses might be processed in any geography within the specified data zone, as defined by Microsoft. If you create a **DataZone** deployment in a Foundry resource located in the United States, prompts and responses might be processed anywhere within the United States. If you create a **DataZone** deployment in a Foundry resource located in a European Union member nation, prompts and responses might be processed in that or any other European Union member nation.
 
@@ -61,7 +61,7 @@ For both **Global** and **DataZone** deployment types, any data stored at rest, 
 
 Global deployments are available in the same Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../../quotas-limits.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
 Global standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
@@ -102,7 +102,7 @@ Key use cases include:
 
 Data Zone Standard deployments are available in the same Foundry resource as all other Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
 
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../../quotas-limits.md). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
 
 Data zone standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
@@ -136,7 +136,7 @@ Standard deployments are optimized for low-to-medium volume workloads with high 
 
 - SKU name in code: `ProvisionedManaged`
 
-Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units, which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of provisioned throughput units to deploy, and provides different amounts of throughput per provisioned throughput unit. Learn more in the [article about provisioned throughput concepts](../../../openai/concepts/provisioned-throughput.md).
+Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units, which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of provisioned throughput units to deploy, and provides different amounts of throughput per provisioned throughput unit. Learn more in the [article about provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 ### Disable access to global deployments in your subscription
 
@@ -181,5 +181,5 @@ To learn about creating resources and deploying models, refer to the [Resource c
 
 ## Related content
 
-- [Quotas & limits](../../quotas-limits.md)
+- [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Data privacy, and security for Foundry Models](../../how-to/concept-data-privacy.md)
