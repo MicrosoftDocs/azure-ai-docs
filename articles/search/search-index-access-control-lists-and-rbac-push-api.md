@@ -131,5 +131,5 @@ This example illustrates how the document access rules are resolved based on the
 ## See also
 
 - [Connect to Azure AI Search using roles](search-security-rbac.md)
-- [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
+- [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
