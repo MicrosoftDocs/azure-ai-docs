@@ -1,4 +1,4 @@
----
+﻿---
 title: Use pronunciation assessment
 titleSuffix: Foundry Tools
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
@@ -13,7 +13,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 4/7/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-ai-services
 #Customer intent: As a developer, I want to implement pronunciation assessment on spoken language using a technology that works in my environment to gives feedback on accuracy and fluency.
@@ -21,18 +21,22 @@ zone_pivot_groups: programming-languages-ai-services
 
 # Use pronunciation assessment
 
-In this article, you learn how to evaluate pronunciation with speech to text through the Speech SDK. Pronunciation assessment evaluates speech pronunciation and gives speakers feedback on the accuracy and fluency of spoken audio.
+In this article, you learn how to evaluate a user's speech pronunciation with speech to text in the Speech SDK. Pronunciation assessment gives speakers feedback on the accuracy and fluency of spoken audio.
 
 > [!NOTE]
-> Pronunciation assessment uses a specific version of the speech-to-text model, different from the standard speech to text model, to ensure consistent and accurate pronunciation assessment.
+> Pronunciation assessment uses a specific version of the speech to text model, different from the standard speech to text model, to ensure consistent and accurate pronunciation assessment.
 
-## Use pronunciation assessment in streaming mode
+## Availability and pricing
+
+For information about the availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md?tabs=scenarios#regions).
+
+As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
+
+
+## Streaming vs. continuous mode
 
 Pronunciation assessment supports uninterrupted streaming mode. The recording time can be unlimited through the Speech SDK. As long as you don't stop recording, the evaluation process doesn't finish and you can pause and resume evaluation conveniently.
 
-For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md?tabs=scenarios#regions).
-
-As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -80,7 +84,6 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone-end
 
-### Continuous recognition
 
 ::: zone pivot="programming-language-csharp"
 
