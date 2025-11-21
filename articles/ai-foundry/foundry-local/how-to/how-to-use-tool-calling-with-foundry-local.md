@@ -102,7 +102,7 @@ using Microsoft.Extensions.AI;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 // Parse command line arguments for model alias and user prompt
-var alias = "qwen2.5-1.5b";
+var alias = "qwen2.5-7b";
 string userPrompt = "";
 
 // Prompt user for input
