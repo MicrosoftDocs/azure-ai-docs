@@ -41,11 +41,15 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 ## Other samples
 
+Currently, there are no other REST samples available.
+
+<!--
 The following samples are also published by the Azure AI Search team but aren't referenced in documentation. Associated README files provide usage instructions.
 
 | Sample | Description |
 |--|--|
-| [skill-examples](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/skill-examples) | Skillset examples in indexer pipelines that include indexes and indexers so you can follow field mappings, output field mappings, and source paths. |
+| | |
+-->
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?expanded=azure&languages=http&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.
