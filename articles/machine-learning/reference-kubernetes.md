@@ -403,14 +403,14 @@ More information about how to use ARM template can be found from [ARM template d
 | Apr 6, 2025 | 1.1.76 |  Fix vulnerable image. Updated nginx-ingress-controller to v1.12.1 |
 | Jan 28, 2025 | 1.1.71 |  Fix vulnerable image. |
 | Jan 20, 2025 | 1.1.70 |  Fix compatible issue with AKS autoscale for AKS 1.30. |
-| Sep 26, 2024 | 1.1.64 |  Fixed vulnerabilities. |
-| Nov 21, 2023 | 1.1.39 |  Fixed vulnerabilities. Refined error message. Increased stability for relayserver API. |
+| Sep 26, 2024 | 1.1.64 |  Fix vulnerabilities. |
+| Nov 21, 2023 | 1.1.39 |  Fix vulnerabilities. Refine error message. Increase stability for relayserver API. |
 | Nov 1, 2023 | 1.1.37 |  Update data plane envoy version. |
 | Oct 11, 2023 | 1.1.35 |  Fix vulnerable image. Bug fixes. |
 | Aug 25, 2023 | 1.1.34 |  Fix vulnerable image. Return more detailed identity error. Bug fixes. |
 | July 18, 2023 | 1.1.29|  Add new identity operator errors. Bug fixes. |
 | June 4, 2023 | 1.1.28 | Improve auto-scaler to handle multiple node pool. Bug fixes. |
-| Apr 18 , 2023| 1.1.26 | Bug fixes and vulnerabilities fix. | 
+| Apr 18, 2023| 1.1.26 | Bug fixes and vulnerabilities fix. | 
 | Mar 27, 2023| 1.1.25 | Add Azure Machine Learning job throttle. Fast fail for training job when SSH setup failed. Reduce Prometheus scrape interval to 30s. Improve error messages for inference. Fix vulnerable image. |
 | Mar 7, 2023| 1.1.23 | Change default instance-type to use 2Gi memory. Update metrics configurations for scoring-fe that add 15s scrape_interval. Add resource specification for mdc sidecar. Fix vulnerable image. Bug fixes.|
 | Feb 14, 2023 | 1.1.21 | Bug fixes.|
