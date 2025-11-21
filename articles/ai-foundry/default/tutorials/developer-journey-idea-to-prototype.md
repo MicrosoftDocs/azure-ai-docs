@@ -23,7 +23,7 @@ This tutorial covers the first stage of the Microsoft Foundry developer journey:
 - **Complete solutions** (combining both sources for business implementation)
 - **Batch evaluation** to validate agent performance on realistic business scenarios
 
-**Tutorial outcome**: By the end you have a running Modern Workplace Assistant that can answer policy, technical, and combined implementation questions; a repeatable batch evaluation script; and clear extension points (additional tools, multi‑agent patterns, richer evaluation).
+**Tutorial outcome**: By the end you have a running Modern Workplace Assistant that can answer policy, technical, and combined implementation questions; a repeatable batch evaluation script; and clear extension points (other tools, multi‑agent patterns, richer evaluation).
 
 > [!div class="checklist"]
 > **You will:**
@@ -174,7 +174,7 @@ Graceful degradation without SharePoint:
 ✅ Agent created: asst_abc123
 ```
 
-Now that you have a working agent, the next sections explain how it's built. You don't need to take any action while reading these sections—they're for explanation.
+Now that you have a working agent, the next sections explain how it works. You don't need to take any action while reading these sections—they're for explanation.
 
 ---
 
