@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # Fine-tune models by using serverless API deployments in Microsoft Foundry
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 Learn how to deploy fine-tuned models by using serverless API deployments in Microsoft Foundry. This comprehensive guide shows you how to fine-tune large language models (LLMs) to your specific datasets and deploy them with serverless infrastructure, offering improved performance, cost efficiency, reduced latency, and tailored outputs.

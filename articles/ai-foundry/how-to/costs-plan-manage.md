@@ -20,6 +20,8 @@ ms.custom:
 
 # Plan and manage costs for Microsoft Foundry hubs
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article describes how to plan for and manage costs for [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hubs by using cost analysis in the Azure portal. First, use the Azure pricing calculator to help plan for Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs. 
 
 Foundry hub projects don't have a specific page in the Azure pricing calculator. Foundry hubs are composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services. You use Foundry Tools in Foundry portal. Costs for Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including third-party services.
