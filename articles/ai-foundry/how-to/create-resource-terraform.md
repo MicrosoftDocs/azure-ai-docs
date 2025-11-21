@@ -8,7 +8,9 @@ ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
 author: sdgilley
-ms.custom: devx-track-terraform
+ms.custom: 
+  - devx-track-terraform
+  - update-code
 monikerRange: foundry-classic || foundry
 content_well_notification: 
   - AI-contribution
