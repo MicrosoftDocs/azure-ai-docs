@@ -798,6 +798,15 @@ groups:
       title: C#
     - id: programming-language-rest
       title: REST
+- id: azure-ai-create-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: programming-language-bicep
+      title: Bicep
 - id: azure-ai-models-deployment
 # Owner: santiagxf
   title: Prograaming languages
