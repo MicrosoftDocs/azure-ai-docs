@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 07/28/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 author: PatrickFarley
 ---

@@ -6,16 +6,16 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 # Customer intent: As a developer, I want to learn how to use the Speech to text REST API for short audio to convert speech to text.
 ---
 
-# Speech to text REST API for short audio
+# Use speech to text REST API for short audio
 
-Use cases for the Speech to text REST API for short audio are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md) or [fast transcription API](fast-transcription-create.md). 
+Use the Speech to text REST API for short audio only in cases where you can't use the [Speech SDK](speech-sdk.md) or [fast transcription API](fast-transcription-create.md). 
 
 Before you use the Speech to text REST API for short audio, consider the following limitations:
 
