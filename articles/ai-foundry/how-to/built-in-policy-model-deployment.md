@@ -77,6 +77,8 @@ Use the following Bicep template to assign the policy to a resource group. This 
 
     Replace `<your-resource-group>` with the name of your resource group.
 
+1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+
 ### [Azure portal](#tab/portal)
 
 1. From the [Azure portal](https://portal.azure.com), select **Policy** from the left side of the page. You can also search for **Policy** in the search bar at the top of the page.
@@ -114,6 +116,7 @@ Use the following Bicep template to assign the policy to a resource group. This 
 ---
 
 1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+---
 
 ## Monitor compliance
 

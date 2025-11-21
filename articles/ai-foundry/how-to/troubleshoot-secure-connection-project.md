@@ -24,7 +24,7 @@ When you create a project in [Microsoft Foundry](https://ai.azure.com/?cid=learn
 
 When you connect to a [Foundry](https://ai.azure.com/?cid=learnDocs) project that's set up with a private endpoint, you might see an HTTP 403 error or a message that says access is forbidden. Use this article to check for common configuration issues that cause this error.
 
-## Prerrequisitos
+## Prerequisites
 
 - **Azure role-based access control (RBAC)**: You need appropriate RBAC roles to troubleshoot and resolve private endpoint issues:
   - **Reader** role at the subscription level to view Azure Search services and verify DNS configuration
@@ -36,8 +36,8 @@ When you connect to a [Foundry](https://ai.azure.com/?cid=learnDocs) project tha
 
 If you get an error when loading your Foundry hub or project, check these two settings.
 
-1. Your hub has public network access set to __Disabled__.
-1. Your hub has public network access set to __Enable from selected IPs__.
+- Your hub has public network access set to __Disabled__.
+- Your hub has public network access set to __Enable from selected IPs__.
 
 Depending on the public network access setting for your Foundry hub or project, take the matching action:
 
@@ -101,25 +101,25 @@ Follow these steps to check whether your custom DNS solution resolves names to I
 
 1. Open a command prompt, PowerShell, or other command line and run the following command for each FQDN returned from the previous step. Each time you run the command, verify that the IP address returned matches the IP address listed in the portal for the FQDN: 
 
-    In the following command, replace the placeholder text *`<fqdn>`* with an FQDN from your list.
+   In the following command, replace the placeholder text *`<fqdn>`* with an FQDN from your list.
 
-    `nslookup <fqdn>`
+   `nslookup <fqdn>`
 
-For example:
+   For example:
 
-```powershell
-nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
-```
+   ```powershell
+   nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
+   ```
 
-Example output:
+   Example output:
 
-```text
-Server: yourdnsserver
-Address: yourdnsserver-IP-address
-
-Name:   df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
-Address: 10.0.0.4
-```
+   ```text
+   Server: yourdnsserver
+   Address: yourdnsserver-IP-address
+  
+   Name:   df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
+   Address: 10.0.0.4
+   ```
 
 1. If the `nslookup` command returns an error or a different IP address than the portal shows, your custom DNS solution isn't configured correctly.
 
@@ -172,8 +172,8 @@ When you create a project, Azure Storage creates several connections for data up
 
 Try these steps to troubleshoot:
 1. In the Azure portal, check the network settings of the storage account that's associated with your hub.
-  * If you set public network access to __Enabled from selected virtual networks and IP addresses__, make sure you add the correct IP address ranges to allow access to your storage account.
-  * If you set public network access to __Disabled__, make sure you configure a private endpoint from your Azure virtual network to your storage account with Target sub-resource set to blob. Also, grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
+   * If you set public network access to __Enabled from selected virtual networks and IP addresses__, make sure you add the correct IP address ranges to allow access to your storage account.
+   * If you set public network access to __Disabled__, make sure you configure a private endpoint from your Azure virtual network to your storage account with Target sub-resource set to blob. Also, grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
 1. In the Azure portal, go to your Foundry hub. Make sure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. For more information, see [How to configure a managed network for Foundry hubs](configure-managed-network.md).
 1. Go to Foundry > your project > project settings.
 1. Refresh the page. Several connections appear, including `workspaceblobstore`.

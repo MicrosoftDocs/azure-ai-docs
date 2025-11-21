@@ -109,7 +109,8 @@ Check whether your Azure Key Vault uses role-based access control (RBAC) or acce
 
 #### Role-based access control (RBAC)
 
-After you create the Key Vault connection, assign an appropriate RBAC role in the Azure portal. Key Vault Contributor or Key Vault Administrator are two roles that work. For minimal permissions, use the [Key Vault Secrets Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer) role, which allows the Foundry resource to manage secrets.
+After you create the Key Vault connection, assign an appropriate RBAC role in the Azure portal. Key Vault Contributor and Key Vault Administrator are two roles that work. For minimal permissions, use the [Key Vault Secrets
+Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer).
 
 #### Access policies
 

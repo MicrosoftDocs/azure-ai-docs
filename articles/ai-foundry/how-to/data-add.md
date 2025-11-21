@@ -36,7 +36,7 @@ Data can help when you need these capabilities:
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/ai-services).
-- An Microsoft Foundry project. [Create a project in Microsoft Foundry portal](./create-projects.md).
+- A Microsoft Foundry project. [Create a project in Microsoft Foundry portal](./create-projects.md).
 - The [Microsoft Developer](/azure/role-based-access-control/built-in-roles#azure-ai-developer) role on the project resource.
 - Python 3.8 or later.
 - The Microsoft ML SDK and Azure Identity package:
