@@ -7,13 +7,18 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
 # How to use the Browser Automation tool (preview)
+
+> [!NOTE]
+> This document refers to the previous verison of agents (classic).
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/browser-automation.md) if you're using the new agent API.
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service.
 

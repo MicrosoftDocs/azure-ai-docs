@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/09/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -15,6 +15,11 @@ ms.custom: azure-ai-agents-code
 ---
 
 # How to use Grounding with Bing Search
+
+> [!NOTE]
+> This document refers to the previous verison of agents (classic).
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/bing-tools.md.md) if you're using the new agent API.
 
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
