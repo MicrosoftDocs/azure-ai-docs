@@ -11,4 +11,7 @@ ms.custom: include
 ---
 
 Sign in to [!INCLUDE [foundry-link](foundry-link.md)].  Make sure the **New Foundry** toggle is on.  These steps refer to **Foundry (new)**.
+
+<br>
+
 :::image type="icon" source="../media/version-banner/new-foundry.png" border="false":::
