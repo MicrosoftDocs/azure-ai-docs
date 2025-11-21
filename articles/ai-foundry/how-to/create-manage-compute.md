@@ -17,6 +17,8 @@ author: sdgilley
 
 # How to create and manage compute instances in Microsoft Foundry portal
 
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to create a compute instance in Microsoft Foundry portal. You can create a compute instance in the Foundry portal.
