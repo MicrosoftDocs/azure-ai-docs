@@ -148,35 +148,6 @@ curl --request POST \
 
 For more information, *see* [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md).
 
-## Translate text in native image formats 🆕
-
-
-* **Supported formats**:
-
-* Raster files:
-    * `.bmp`
-    * `.heif`
-    * `.jpeg`/`.jpg`
-    * `.png`
-    * `.tiff`
-    * `.webp`
-* Vector files
-    * `.svg`
-
-* **Supported languages**: *see* [Language support (Document Translation)](../../language-support.md#document-translation-native-image-format-support).
-
-> [!TIP]
-> For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
-
-```bash
-  curl --request POST \
-  --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=fr' \
-  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
-  --form 'document=@<path-to-your-image>/your-image-file.png' \
-  --output translated-document-fr.png
-
-```
-
 
 ## Next steps
 

@@ -175,6 +175,31 @@ The following are examples of batch requests.
 }
 ```
 
+## Translate text in native image format files
+
+ > [!IMPORTANT]
+ > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
+* **Supported formats**:
+    * `.bmp`
+    * `.jpeg`/`.jpg`
+    * `.png`
+    * `.webp`
+
+* **Supported languages**: *see* [Language support (Document Translation)](../../language-support.md#document-translation-native-image-format-support).
+
+> [!TIP]
+> For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
+
+```bash
+  curl --request POST \
+  --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2025-12-01&sourceLanguage=en&targetLanguage=fr' \
+  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
+  --form 'document=@<path-to-your-image>/your-image-file.png' \
+  --output translated-document-fr.png
+
+```
+
 **Translating all documents in a container applying glossaries**
 
 ```json

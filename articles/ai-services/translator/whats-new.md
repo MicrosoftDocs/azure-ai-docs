@@ -23,16 +23,15 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 ## December 2025
 
-### Synchronous image translation
+### 2025-12-01-preview
 
-* The Document Translation synchronous API now enables you to submit a single image file for translation.
-* Output includes the following options:
-  * Generation of a translated image with original visual layout and text overlay preserved.
-  *  Extraction of translated text content directly from the image.
-* This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
-* Pricing is calculated on a per-image basis.
+* **Document Translation text-in-image support**
 
-For more information, *see* [Synchronous Document Translation](document-translation/overview.md#)
+   * The asynchronous batch API now enables you to submit image files for translation.
+   * This update eliminates the requirement to preprocess images by converting them to PDF format or using scanned PDF translation pipelines
+   * Pricing is calculated on a per-image basis.
+
+For more information, *see* [Asynchronous Document Translation](document-translation/overview.md#)
 
 ## November 2025
 

@@ -34,19 +34,19 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 | ---------| -------------|
 |**Translate large files**| Translate whole documents asynchronously.|
 |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-|[**Translate image text in Word document files (.docx)** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) API for `.docx` file format.|
+|**Translate text detected in native image formats** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
+|[**Translate image text in Word document files (.docx)**](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) API for `.docx` file format.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
 |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
 |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
 
-### [Synchronous (document)](#tab/sync)
+### [Synchronous](#tab/sync)
 
 |Feature | Description |
 | ---------| -------------|
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
-|**Translate text detected in native image formats** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`, `.tiff`, `.heif`, `.svg`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
@@ -95,19 +95,20 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
-|`XML` Localization Interchange File Format|`xlff`| A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.|
+|Image|`.jpg`, `.png`, `.bmp`, `.webp`|Files that stores digital image data.|
+|OpenDocument Presentation|`odp`|An open-source presentation file.|
+|OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
+|OpenDocument Text|`odt`|An open-source text document file.|
 |Markdown| `markdown`, `mdown`, `mkdn`, `md`, `mkd`, `mdwn`, `mdtxt`, `mdtext`, `rmd`| A lightweight markup language for creating formatted text.|
 |M&#8203;HTML|`mhtml`, `mht`| A web page archive format used to combine HTML code and its companion resources.|
 |Microsoft Excel|`xls`, `xlsx`|A spreadsheet file for data analysis and documentation.|
 |Microsoft Outlook|`msg`|An email message created or saved within Microsoft Outlook.|
 |Microsoft PowerPoint|`ppt`, `pptx`| A presentation file used to display content in a slideshow format.|
 |Microsoft Word|`doc`, `docx`| A text document file.|
-|OpenDocument Text|`odt`|An open-source text document file.|
-|OpenDocument Presentation|`odp`|An open-source presentation file.|
-|OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
 |Rich text format|`rtf`|A text document containing formatting.|
 |Tab separated values/TAB|`tsv`/`tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 |Text|`txt`| An unformatted text document.|
+|`XML` Localization Interchange File Format|`xlff`| A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.|
 
 ### Batch Legacy file types
 
