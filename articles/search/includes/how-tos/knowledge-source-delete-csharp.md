@@ -81,7 +81,7 @@ To delete a knowledge source:
     }
    ```
 
-1. Either delete the knowledge base or [update the knowledge base](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateknowledgebaseasync?view=azure-dotnet-preview) to remove the knowledge source if you have multiple sources. This example shows deletion.
+1. Either delete the knowledge base or [update the knowledge base](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateknowledgebaseasync?view=azure-dotnet-preview&preserve-view=true) to remove the knowledge source if you have multiple sources. This example shows deletion.
 
     ```csharp
     using Azure.Search.Documents.Indexes;
