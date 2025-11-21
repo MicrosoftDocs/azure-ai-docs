@@ -1204,7 +1204,7 @@
             "redirect_document_id": false
           },
           {
-            "source_path": "/articles/ai-foundry/how-to/deploy-models-openai.md",
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-openai.md",
             "redirect_url": "/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models",
             "redirect_document_id": false
           },
