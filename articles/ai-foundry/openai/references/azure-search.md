@@ -15,6 +15,8 @@ ms.custom: devx-track-python
 
 # Data source - Azure AI Search
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 The configurable options of Azure AI Search when using Azure OpenAI On Your Data. This data source is supported in API version `2024-02-01`.
 
 |Name | Type | Required | Description |

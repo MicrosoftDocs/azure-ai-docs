@@ -16,6 +16,8 @@ ms.custom:
 
 # Configuring Azure Blob Storage for Azure OpenAI
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) for Azure OpenAI Batch input and output files. By using your own storage, you aren't subject to the batch restrictions on the number of files.
 
 ## Region Support

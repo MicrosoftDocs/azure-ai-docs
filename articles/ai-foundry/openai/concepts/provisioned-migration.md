@@ -18,6 +18,8 @@ recommendations: false
 
 # Azure OpenAI provisioned Managed offering updates 
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Microsoft launched improvements to its Provisioned Throughput offering that address customer feedback on usability and operational agility that open new payment options and deployment scenarios.
 
 This article is intended for existing users of the provisioned throughput offering. New customers should refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md).

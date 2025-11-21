@@ -15,6 +15,8 @@ ms.author: mbullwin
 
 # Integrate Azure OpenAI fine-tuning with Weights & Biases (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Weights & Biases (W&B) is a powerful AI developer platform that enables machine learning practitioners to train, fine-tune, and deploy models efficiently. Azure OpenAI fine-tuning integrates with W&B, allowing you to track metrics, parameters, and visualize your Azure OpenAI fine-tuning training runs within your W&B projects. In this article, we will guide you through setting up the Weights & Biases integration.
 
 :::image type="content" source="../media/how-to/weights-and-biases/dashboards.png" alt-text="Screenshot of the weights and biases dashboards." lightbox="../media/how-to/weights-and-biases/dashboards.png":::

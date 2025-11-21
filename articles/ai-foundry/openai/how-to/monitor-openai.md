@@ -12,6 +12,8 @@ ms.subservice: azure-ai-foundry-openai
 
 # Monitor Azure OpenAI
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
 ## Dashboards

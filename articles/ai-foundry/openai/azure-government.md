@@ -16,6 +16,8 @@ ms.custom:
 
 # Azure OpenAI and features in Azure Government
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>
 

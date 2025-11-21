@@ -16,6 +16,8 @@ recommendations: false
 
 # Create and deploy an Azure OpenAI in Microsoft Foundry Models resource
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303211)
 
 This article describes how to get started with Azure OpenAI and provides step-by-step instructions to create a resource and deploy a model. You can create resources in Azure in several different ways:
