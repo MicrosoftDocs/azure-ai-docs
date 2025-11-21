@@ -205,7 +205,7 @@ Now that you have a working agent, the next sections explain how it works. You d
 This section explains the core code in `main.py`. You already ran the agent; this section is conceptual and requires no changes. After reading it, you can:
 - Add new internal and external data tools.
 - Extend dynamic instructions.
-- Introduce mult-agent orchestration.
+- Introduce multi-agent orchestration.
 - Enhance observability and diagnostics.
 
 The code breaks down into the following main sections, ordered as they appear in the full sample code:
