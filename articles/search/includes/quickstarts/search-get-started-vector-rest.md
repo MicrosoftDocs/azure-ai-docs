@@ -4,9 +4,8 @@ author: haileytapia
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/19/2025
+ms.date: 11/20/2025
 ---
-
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query vectors.
 
@@ -25,10 +24,7 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
----
-
-
-## Retrieve resource information
+## Get service information
 
 Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. We recommend [using a keyless connection via Microsoft Entra ID](../../search-get-started-rbac.md).
 
@@ -38,7 +34,7 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
 
-1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
+1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
    :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="../../media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
 
@@ -71,14 +67,14 @@ You use one `.rest` or `.http` file to run all the requests in this quickstart. 
 
 1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
 
-1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to find your search service URL.
+1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Get service information](#get-service-information) section for instructions on how to find your search service URL.
 
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
    ```
 
-1. At the top of the file, replace the placeholder value for authentication. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to get your Microsoft Entra token or API key.
+1. At the top of the file, replace the placeholder value for authentication. See the [Get service information](#get-service-information) section for instructions on how to get your Microsoft Entra token or API key.
 
     For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
 
@@ -283,7 +279,7 @@ The index schema in this example is organized around hotel content. Sample data 
     }
     ```
 
-1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
+1. Select **Send Request**. You should have an `HTTP/1.1 201 Created` response. 
 
     The response body should include the JSON representation of the index schema.
     
@@ -641,7 +637,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
     }
     ```
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
+1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
 
 Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/documents/) request:
 
@@ -702,7 +698,7 @@ The vector query string is semantically similar to the search string, but it inc
 
     + `k` specifies the number of matches to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document. 
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
     The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes k-5 results although the search engine found 7 matches. The top results are considered the most semantically similar to the query. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
     
@@ -805,7 +801,7 @@ You can add filters, but the filters are applied to the nonvector content in you
     }
     ```
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
     The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
     
@@ -938,7 +934,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
     }
     ```
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
 Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](../../hybrid-search-ranking.md#scores-in-a-hybrid-search-results). Notice that `@search.score` values have a different basis and are uniformly smaller values. RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
 
@@ -1056,7 +1052,7 @@ Here's the last query in the collection. This hybrid query adds L2 semantic rank
     }
     ```
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
 Review the response, consisting of a semantic reranking of the RRF-ranked results of the hybrid query. Semantic ranking works off of text inputs. In a text or hybrid query, this input is the text portion of the query (*historic hotel walk to restaurants and shopping*). To use semantic ranking on a pure vector query, such as the first example, or to explicitly control the text used for semantic ranking, [provide a semanticQuery string](../../semantic-how-to-query-request.md#set-up-the-query).
 

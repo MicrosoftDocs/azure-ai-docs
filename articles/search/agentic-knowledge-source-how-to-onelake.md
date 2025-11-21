@@ -9,19 +9,16 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 11/20/2025
 zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create a OneLake knowledge source
 
-<!--
-::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/file-name.md)]
-::: zone-end
 
-Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
--->
+::: zone pivot="csharp"
+[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-onelake-csharp.md)]
+::: zone-end
 
 ::: zone pivot="python"
 [!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-onelake-python.md)]

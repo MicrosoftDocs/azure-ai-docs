@@ -6,7 +6,7 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 7/11/2025
+ms.date: 11/21/2025
 zone_pivot_groups: tutorial-create-skillset
 ---
 

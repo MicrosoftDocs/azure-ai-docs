@@ -4,7 +4,7 @@ author: rotabor
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/19/2025
+ms.date: 11/20/2025
 ---
 
 In this quickstart, you use a Jupyter notebook to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/python/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
@@ -26,9 +26,7 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 
 - [Git](https://git-scm.com/downloads) to clone the repo containing the Jupyter notebook and other related files.
 
----
-
-## Retrieve resource information
+## Get service information
 
 Requests to the search endpoint must be authenticated and authorized. While it's possible to use API keys or roles for this task, we recommend [using a keyless connection via Microsoft Entra ID](../../search-get-started-rbac.md).
 
