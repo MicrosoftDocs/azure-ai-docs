@@ -17,9 +17,7 @@ ms.custom: azure-ai-agents
 # Grounding with Bing Search 
 
 > [!NOTE]
-> This document refers to the previous verison of agents (classic).
->
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/bing-tools.md) if you're using the new agent API.
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/bing-tools.md) for the Agents v2 API (preview) version.
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 

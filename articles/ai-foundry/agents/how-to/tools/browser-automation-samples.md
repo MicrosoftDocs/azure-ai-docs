@@ -16,9 +16,7 @@ ms.custom: azure-ai-agents
 # How to use the Browser Automation tool (preview)
 
 > [!NOTE]
-> This document refers to the previous verison of agents (classic).
->
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/browser-automation.md) if you're using the new agent API.
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/browser-automation.md) for the Agents v2 API (preview) version.
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service.
 

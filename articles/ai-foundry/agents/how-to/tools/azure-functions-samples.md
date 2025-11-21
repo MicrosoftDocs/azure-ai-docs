@@ -17,7 +17,7 @@ zone_pivot_groups: selection-azure-functions-samples
 # How to use queue-based Azure Functions with Azure AI Foundry agents
 
 > [!NOTE]
-> This document refers to the previous verison of agents (classic). Azure Functions are currently not supported in the new agents API.
+> This document refers to the agents v1 API. Azure Functions are currently not supported in the agents v2 API (preview).
 
 This article shows how to use a queue-based integrated tool approach to enable Azure AI Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
 
