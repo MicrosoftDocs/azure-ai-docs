@@ -125,7 +125,7 @@ You can interact with the new model in the Foundry portal by using the playgroun
 
 1. From the model's deployment page, select **Open in playground**. This action opens the chat playground with the name of your deployment already selected.
 
-   :::image type="content" source="../../media/add-model-deployments/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground." lightbox="../../media/add-model-deployments/playground-chat-models.png":::
+   :::image type="content" source="../media/add-model-deployments/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground." lightbox="../media/add-model-deployments/playground-chat-models.png":::
 
 1. Type your prompt and see the outputs.
 
@@ -169,7 +169,7 @@ When you reach your quota limit, you can only create new deployments of that mod
 - Request more quota by submitting a [quota increase form](https://aka.ms/oai/stuquotarequest).
 - Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
 
-For more information about quota, see [Foundry quota](how-to/quota.md), [Microsoft Foundry Models quotas and limits](../quotas-limits.md)  and [Manage Azure OpenAI quota](../../openai/how-to/quota.md?tabs=rest).
+For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](../../openai/how-to/quota.md?tabs=rest).
 
 ## Related content
 
