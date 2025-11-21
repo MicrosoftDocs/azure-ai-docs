@@ -197,7 +197,7 @@ Thank you for reviewing this example!
 
 ### Upload the file and get a connection string
 
-Follow [these instuctions](knowledge-store-create-rest.md#upload-data-to-azure-storage-and-get-a-connection-string) to upload the `sample_markdown.md` file to a container in your Azure Storage account. You must also get the storage account connection string. Make a note of the connection string and the container name for later use.
+Follow [these instructions](knowledge-store-create-rest.md#upload-data-to-azure-storage-and-get-a-connection-string) to upload the `sample_markdown.md` file to a container in your Azure Storage account. You must also get the storage account connection string. Make a note of the connection string and the container name for later use.
 
 ## Copy a search service URL and API key
 
