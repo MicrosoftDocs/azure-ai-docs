@@ -17,6 +17,8 @@ author: ssalgadodev
 
 # Build and consume vector indexes in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to create and use a vector index for performing [retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) in the Microsoft Foundry portal.

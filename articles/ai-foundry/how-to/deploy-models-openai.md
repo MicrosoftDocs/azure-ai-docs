@@ -21,6 +21,8 @@ ai-usage: ai-assisted
 
 # How to deploy Azure OpenAI models with Microsoft Foundry
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you learn how to create deployments for Azure OpenAI in Microsoft Foundry Models, using the Foundry portal.
 
 Azure OpenAI in Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in the Foundry portal, you can consume the deployments by using prompt flow or another tool. Model availability varies by region. For more information about the details of each model, see [Azure OpenAI models](../openai/concepts/models.md).

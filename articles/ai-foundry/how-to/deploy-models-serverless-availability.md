@@ -18,6 +18,8 @@ ms.custom:
 
 # Region availability for models in serverless APIs
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you learn about which regions are available for each of the models supporting serverless API deployments.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]

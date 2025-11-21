@@ -18,6 +18,8 @@ ms.custom:
 
 # Consume serverless APIs from a different Microsoft Foundry project or hub
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you learn how to configure an existing serverless APIs in a different project or hub than the one that was used to create the deployment.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
