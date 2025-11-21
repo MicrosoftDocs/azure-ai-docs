@@ -16,6 +16,8 @@ zone_pivot_groups: selection-connected-agents
 
 # Build collaborative, multi-agent systems with Connected Agents
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!NOTE]
 > This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../default/agents/concepts/workflow.md) for multi-agent orchestration.
 
