@@ -112,6 +112,9 @@ Use the following Bicep template to assign the policy to a resource group. This 
 
 
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
+
+---
+
 1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
 ---
 
