@@ -688,11 +688,11 @@ For detailed information about evaluating agents, see [Evaluate AI agents](../..
 
 ## Agent identity for hosted agents
 
-Hosted agents automatically receive **Agent Identity** - a specialized identity type in Microsoft Entra ID designed specifically for AI agents. This identity enables your agents to securely authenticate and access resources throughout their lifecycle.
+Hosted agents published to an Agent Application resource automatically receive **Agent Identity** - a specialized identity type in Microsoft Entra ID designed specifically for AI agents. This identity enables your agents to securely authenticate and access resources throughout their lifecycle.
 
 ### Key identity concepts for hosted agents
 
-**Shared project identity**: During development and testing, all unpublished hosted agents within your Microsoft Foundry project share a common agent identity. This simplifies permission management and allows you to configure access once for all development work.
+**Shared project identity**: During development and testing, all unpublished hosted agents within your Microsoft Foundry project share the managed identity for the project. This simplifies permission management and allows you to configure access once for all development work.
 
 **Distinct agent identity**: When you publish a hosted agent, Microsoft Foundry automatically creates a dedicated agent identity associated with your Agent Application resource. This distinct identity provides:
 - Independent authentication for production agents
