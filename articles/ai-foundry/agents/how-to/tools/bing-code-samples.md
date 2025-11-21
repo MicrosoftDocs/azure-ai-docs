@@ -19,7 +19,7 @@ ms.custom: azure-ai-agents-code
 > [!NOTE]
 > This document refers to the previous verison of agents (classic).
 >
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/bing-tools.md.md) if you're using the new agent API.
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](../../../default/agents/how-to/tools/bing-tools.md) if you're using the new agent API.
 
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
