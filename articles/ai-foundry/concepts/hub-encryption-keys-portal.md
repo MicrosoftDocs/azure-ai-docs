@@ -10,12 +10,13 @@ ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
   - build-2025
+  - hub-only
 ai-usage: ai-assisted
 ---
 
 # Customer-managed keys for hub projects
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 > [!TIP]
 > An alternate Foundry project article is available: [Customer-managed keys for encryption with Microsoft Foundry (Foundry projects)](encryption-keys-portal.md).

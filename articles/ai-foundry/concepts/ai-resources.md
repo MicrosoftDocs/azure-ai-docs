@@ -15,11 +15,10 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+  - hub-only
 ---
 
 # Hub resources overview
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 

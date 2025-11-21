@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.service: azure-ai-foundry
 ---
 
-# Consolidated view for AI services in the Azure portal
+# Consolidated view for Foundry Tools in the Azure portal
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
