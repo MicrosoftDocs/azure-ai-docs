@@ -19,6 +19,8 @@ ms.custom:
 
 # Hub resources overview
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 Azure AI Hub is a resource type that is used in combination with Microsoft Foundry resource type, and is only required for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated Foundry resource.

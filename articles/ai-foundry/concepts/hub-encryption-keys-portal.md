@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Customer-managed keys for hub projects
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 > [!TIP]
 > An alternate Foundry project article is available: [Customer-managed keys for encryption with Microsoft Foundry (Foundry projects)](encryption-keys-portal.md).
 

@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 ---
 # Role-based access control for Microsoft Foundry (hub-focused)
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 > [!TIP]
 > An alternate Foundry project-focused RBAC article is available: [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
 

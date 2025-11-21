@@ -15,6 +15,8 @@ ms.custom: references_regions
 
 # Synthetic data generation in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In Microsoft Foundry portal, you can use synthetic data generation to efficiently produce predictions for your datasets. This article introduces you to the concept of synthetic data generation and how you can use it in machine learning.
 
 ## What is synthetic data generation?
