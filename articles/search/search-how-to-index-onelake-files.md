@@ -7,7 +7,7 @@ ms.author: gimondra
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 11/21/2025
 ms.custom:
   - build-2024
   - ignite-2024
@@ -60,7 +60,9 @@ This article uses the REST APIs to illustrate each step.
 
 + There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
 
-+ Microsoft Purview Sensitivity Labels applied via Data Map are not currently supported. If sensitivity labels are applied to artifacts in OneLake using [Microsoft Purview Data Map](/purview/data-map-sensitivity-labels-apply), the indexer may fail to execute properly. To bypass this restriction, an exception must be granted by your organization’s IT team responsible for managing Purview sensitivity labels and Data Map configurations.
++ Microsoft Purview sensitivity labels [applied to Fabric items](/fabric/fundamentals/apply-sensitivity-labels) (such as lakehouses) will cause the indexer to fail if the search service doesn't have the required access. To prevent this behavior, you must either:
+    - Add the AI Search service’s Service Principal Name (SPN) to an existing organization group that grants access under the sensitivity label policy, or
+    - Request an exception from your organization’s IT team responsible for Purview sensitivity label policy configurations, and have them add the SPN directly to the policy.
   
 + Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
 
