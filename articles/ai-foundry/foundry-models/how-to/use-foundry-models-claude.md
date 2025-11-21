@@ -432,13 +432,13 @@ For a full list of the supported capabilities and tools, see [Claude's features 
 
 ## API quotas and limits
 
-Claude models in Foundry have the following rate limits:
+Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM):
 
-| Model | Tokens Per Minute (TPM) | Requests Per Minute (RPM) |
-|--|--|--|
-| Claude Sonnet 4.5 | 450,000 | 1,000 |
-| Claude Haiku 4.5 | 450,000 | 1,000 |
-| Claude Opus 4.1 | 450,000 | 1,000 |
+| Model        |   Deployment Type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
+|:------------------|:---------------|:--------------|:--------------|:-----------|:-----------|
+| claude-haiku-4-5  | GlobalStandard | 1,000         | 1,000,000     | 4,000      | 4,000,000  |
+| claude-opus-4-1   | GlobalStandard | 1,000         | 1,000,000     | 2,000      | 2,000,000  |
+| claude-sonnet-4-5 | GlobalStandard | 1,000         | 1,000,000     | 4,000      | 2,000,000  |
 
 To increase your quota beyond the default limits, submit a request through the [quota increase request form](https://aka.ms/oai/stuquotarequest).
 
