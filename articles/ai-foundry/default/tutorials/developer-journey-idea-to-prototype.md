@@ -46,10 +46,11 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 - A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you do not have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
 - SharePoint connection configured in your project ([SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md))
-- (Optional) Git installed for cloning the sample repository
 
-> [!NOTE]
-> To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
+  > [!NOTE]
+  > To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
+
+- (Optional) Git installed for cloning the sample repository
 
 > [!TIP]
 > Get your tenant ID quickly:
@@ -215,6 +216,8 @@ The code breaks down into the following main sections, ordered as they appear in
 4. [Configure MCP tool](#create-the-mcp-tool-for-the-agent)
 5. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools)
 6. [Converse with the agent](#converse-with-the-agent)
+
+[!INCLUDE [code-preview](../includes/code-preview.md)] 
 
 ### Imports and authentication setup
 
