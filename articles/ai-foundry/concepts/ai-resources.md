@@ -19,8 +19,7 @@ ms.custom:
 
 # Hub resources overview
 
-> [!NOTE]
-> You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** isn't supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need).
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 Azure AI Hub is a resource type that is used in combination with Microsoft Foundry resource type, and is only required for selected use cases. Hub resources provide access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated Foundry resource.
 
