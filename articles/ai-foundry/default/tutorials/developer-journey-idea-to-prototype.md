@@ -131,19 +131,21 @@ Start by running the agent so you see working functionality before diving into i
    # Foundry Configuration  
    PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
    MODEL_DEPLOYMENT_NAME=gpt-4o-mini
-   AI_FOUNDRY_TENANT_ID=<your-tenant-id>  # Obtain with: az account show --query tenantId -o tsv
+   AI_FOUNDRY_TENANT_ID=<your-tenant-id>
    
    # The Microsoft Learn MCP Server (public authoritative Microsoft docs index)
    MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
    
    # SharePoint Integration (Optional - requires connection setup)
    SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
-   SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
+   SHAREPOINT_SITE_URL=https://<your-company>.sharepoint.com/teams/your-site
    ```
    
    > [!TIP]
-   > Get your tenant ID and project endpoint quickly.
+   > Get your tenant ID and project endpoint quickly:
    >
+   > To get your tenant ID, run:
+   > 
    > ```bash
    > # Get tenant ID
    > az account show --query tenantId -o tsv
