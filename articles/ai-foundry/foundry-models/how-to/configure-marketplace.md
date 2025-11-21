@@ -18,10 +18,6 @@ ai-usage: ai-assisted
 
 Certain Microsoft Foundry Models are offered directly by the model provider through the Azure Marketplace. This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. Models sold directly by Azure, like DeepSeek, Black Forest Labs, or Azure OpenAI in Foundry Models, don't have this requirement. 
 
-> [!NOTE]
-> All models offered in Foundry Models are hosted in Microsoft's Azure environment. The service doesn't interact with any external services or model provider.
-
-
 [!INCLUDE [marketplace-rbac](../../foundry-models/includes/configure-marketplace/rbac.md)]
 
 ## Country availability
