@@ -15,6 +15,9 @@ ms.custom: azure-ai-agents
 # Use the Microsoft SharePoint tool (preview)
 
 > [!NOTE]
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/sharepoint.md) for the Agents v2 API (preview) version.
+
+> [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
 
 Integrate your agents with the **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies` to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 Copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
