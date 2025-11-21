@@ -120,7 +120,7 @@ Start by running the agent so you see working functionality before diving into i
 
 ### Environment setup and virtual environment
 
-1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
 1. Install dependencies from `requirements.txt`:
 
