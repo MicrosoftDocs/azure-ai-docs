@@ -8,8 +8,8 @@ ms.topic: how-to
 ms.date: 08/28/2025
 ms.author: mopeakande
 author: msakande
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.reviewer: achand
+reviewer: achandmsft
 ms.custom: references_regions
 zone_pivot_groups: azure-ai-inference-samples
 ---

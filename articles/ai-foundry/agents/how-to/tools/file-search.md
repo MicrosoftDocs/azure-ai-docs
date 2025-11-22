@@ -15,8 +15,8 @@ ms.custom: azure-ai-agents, references_regions
 
 # Foundry Agent Service file search tool
 
-> [!NOTE]
-> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/file-search.md) for the Agents v2 API (preview) version.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
