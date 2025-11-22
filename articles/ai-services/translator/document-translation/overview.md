@@ -34,7 +34,7 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 | ---------| -------------|
 |**Translate large files**| Translate whole documents asynchronously.|
 |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-|**Translate text detected in native image formats** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`/`.jpg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
+|**Translate image file formats** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
 |[**Translate image text in Word document files (.docx)**](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) API for `.docx` file format.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
@@ -69,13 +69,13 @@ Optimize efficiency by utilizing asynchronous workflows to enable parallel trans
 |**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
 |**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
 
-### [Synchronous (document)](#tab/sync)
+### [Synchronous](#tab/sync)
 
 Maximize operational throughput utilizing synchronous document translation to facilitate real-time translation while maintaining structural and formatting fidelity across diverse file types.
 
 |Development option|Description|
 |---|---|
-|**Microsoft Foundry**| &bullet; [**Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[**Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
+|**Microsoft Foundry**| &bullet; [**Foundry (classic) portal**](https://ai.azure.com/build/playground/translator) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[**Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
 |**REST API**|Integrate synchronous document translation into your applications using the [REST API](reference/translate-document.md).|
 |**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications our [Python SDK](quickstarts/client-library-sdks.md).|
 | **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Foundry Tools application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
@@ -130,7 +130,7 @@ Document translation supports the following glossary file types:
 |`XML` Localization Interchange File Format| `xlf` , `xliff`| A parallel document format, export of Translation Memory systems The languages used are defined inside the file.|
 |Tab-Separated Values/TAB|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 
-### [Synchronous (document)](#tab/sync)
+### [Synchronous](#tab/sync)
 
 ### Synchronous document formats
 
@@ -158,15 +158,6 @@ Document translation supports the following glossary file types:
 |**TabSeparatedValues**|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 
 ---
-
-## Pricing
-
-### [Asynchronous (batch)](#tab/async)
-
-Pricing is calculated on a **per-character** basis. For more information, *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
-
-### [Synchronous (document)](#tab/sync)
-Pricing is calculated on a **per-image** basis. For more information, *see* [Translator Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator).
 
 ## Document translation Request limits
 

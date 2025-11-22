@@ -32,13 +32,7 @@ If the language of the content in the source document is known, we recommend tha
 
 #### Does the document translation feature support translating text within images? 🆕
 
-Yes. Our asynchronous (batch) document translation feature supports methods and several file types for translating text within images:
-
-* [Translate text in images within native image files](reference/start-batch-translation.md#translate-text-in-native-image-format-files1) as an optional capability with per-image pricing.
-
-* [Translate text in images within native Word documents](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) as an optional capability with per-character pricing.
-
-
+Yes. Our asynchronous (batch) document translation feature supports [translating images](reference/start-batch-translation.md#translate-image-files).
 
 #### Can Azure Translator Document translation translate content from fully scanned documents?
 

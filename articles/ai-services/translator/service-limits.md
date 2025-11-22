@@ -74,6 +74,7 @@ The Translator has a maximum latency of 15 seconds using standard models and 120
 |Attribute | Limit|
 |---|---|
 |Document size| ≤ 40 MB |
+|Image file size(preview)| ≤ 5 MB|
 |Total number of files.|≤ 1000 |
 |Total content size in a batch | ≤ 250 MB|
 |Number of target languages in a batch| ≤ 10 |

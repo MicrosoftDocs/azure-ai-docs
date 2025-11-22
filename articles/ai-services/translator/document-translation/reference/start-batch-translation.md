@@ -14,9 +14,10 @@ ms.date: 11/18/2025
 
 <!-- markdownlint-disable MD036 -->
 
-Reference</br>
+**Reference**</br>
 Feature: **Azure Translator → Document translation**</br>
-API Version: **2024-05-01**</br>
+API Version (GA): **2024-05-01** </br>
+API Version (preview): **2025-12-01**—adds support for [image file translation](#translate-image-files).</br>
 HTTP method: **POST**
 
 * Use the `Start Translation` method to execute an asynchronous batch translation request.
@@ -155,7 +156,7 @@ The following are examples of batch requests.
 > [!NOTE]
 > In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
-**Translating all documents in a container**
+##### Translate all documents in a container
 
 ```json
 {
@@ -175,92 +176,7 @@ The following are examples of batch requests.
 }
 ```
 
-## Translate text in native image format files
-
- > [!IMPORTANT]
- > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
-
-##### Supported formats**
-
-|File Extension|Best use|
-|--|--|
-|`.bmp `|Well-suited for editing raw data and graphics on legacy systems, as well as for creating uncompressed backups. However, they do not provide native support for transparency.|
-|`.jpg` / `.jpeg`|ideal for displaying photographs and detailed images on websites. However, this format does not support transparent backgrounds.|
-|`.png`|Most suitable for use in web graphics, logos, and images that need transparency.|
-|`.webp`|Optimally configured for web applications that require high image fidelity, efficient compression, and alpha transparency, resulting in optimal quality and performance.|
-
-##### Supported languages
-
-For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-native-image-format-support).
-
-> [!TIP]
-> For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
-
-##### Example request
-
-```bash
-  curl --request POST \
-  --url 'https://{your-document-translation-endpoint}/translator/document:translate?api-version=2025-12-01&sourceLanguage=en&targetLanguage=fr' \
-  --header 'Ocp-Apim-Subscription-Key: <your-subscription-key>' \
-  --form 'document=@<path-to-your-image>/your-image-file.png' \
-  --output translated-document-fr.png
-
-```
-
-**Translating all documents in a container applying glossaries**
-
-```json
-{
-    "inputs": [
-        {
-            "source": {
-                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}"
-            },
-            "targets": [
-                {
-                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
-                    "language": "fr",
-                    "glossaries": [
-                        {
-                            "glossaryUrl": "https://my.blob.core.windows.net/glossaries/en-fr.xlf?{SAS-token-query-string}",
-                            "format": "xliff",
-                            "version": "1.2"
-                        }
-                    ]
-
-                }
-            ]
-        }
-    ]
-}
-```
-
-**Translating specific folder in a container**
-
-Make sure you specify the folder name (case sensitive) as prefix in filter.
-
-```json
-{
-    "inputs": [
-        {
-            "source": {
-                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}",
-                "filter": {
-                    "prefix": "MyFolder/"
-                }
-            },
-            "targets": [
-                {
-                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
-                    "language": "fr"
-                }
-            ]
-        }
-    ]
-}
-```
-
-**Translating specific document in a container**
+##### Translate a specific document in a container
 
 * Specify "storageType": `File`.
 * Create source URL & SAS token for the specific blob/document.
@@ -301,6 +217,100 @@ This sample request shows a single document translated into two target languages
     |Operation-Location   | {document-translation-endpoint}/translator/document/`9dce0aa9-78dc-41ba-8cae-2e2f3c2ff8ec`?api-version=2024-05-01|
 
 * You can also use a [get-translations-status](../reference/get-translations-status.md) request to retrieve a list of translation jobs and their `id`s.
+
+##### Translate all documents in a container applying glossaries
+
+```json
+{
+    "inputs": [
+        {
+            "source": {
+                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}"
+            },
+            "targets": [
+                {
+                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
+                    "language": "fr",
+                    "glossaries": [
+                        {
+                            "glossaryUrl": "https://my.blob.core.windows.net/glossaries/en-fr.xlf?{SAS-token-query-string}",
+                            "format": "xliff",
+                            "version": "1.2"
+                        }
+                    ]
+
+                }
+            ]
+        }
+    ]
+}
+```
+
+##### Translate a specific folder in a container
+
+Make sure you specify the folder name (case sensitive) as prefix in filter.
+
+```json
+{
+    "inputs": [
+        {
+            "source": {
+                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}",
+                "filter": {
+                    "prefix": "MyFolder/"
+                }
+            },
+            "targets": [
+                {
+                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
+                    "language": "fr"
+                }
+            ]
+        }
+    ]
+}
+```
+##### Translate image files
+
+ > [!IMPORTANT]
+ > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).## Translate text in native image format files
+
+ > [!IMPORTANT]
+ > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
+##### Supported formats**
+
+|File Extension|Best use|
+|--|--|
+|`.bmp `|Well-suited for editing raw data and graphics on legacy systems, as well as for creating uncompressed backups. However, they do not provide native support for transparency.|
+|`.jpg` |Ideal for displaying photographs and detailed images on websites. However, this format does not support transparent backgrounds.|
+|`.png`|Most suitable for use in web graphics, logos, and images that need transparency.|
+|`.webp`|Optimally configured for web applications that require high image fidelity, efficient compression, and alpha transparency, resulting in optimal quality and performance.|
+
+##### Supported languages
+
+For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-native-image-format-support).
+
+> [!TIP]
+> For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
+
+##### Request configuration
+
+For translation of image files, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying api-version as 2025-12-01. No additional configuration is required.
+
+##### Supported formats**
+
+|File Extension|Best use|
+|--|--|
+|`.bmp `|Well-suited for editing raw data and graphics on legacy systems, as well as for creating uncompressed backups. However, they do not provide native support for transparency.|
+|`.jpg` |Ideal for displaying photographs and detailed images on websites. However, this format does not support transparent backgrounds.|
+|`.png`|Most suitable for use in web graphics, logos, and images that need transparency.|
+|`.webp`|Optimally configured for web applications that require high image fidelity, efficient compression, and alpha transparency, resulting in optimal quality and performance.|
+
+##### Supported languages
+
+For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-native-image-format-support).
+
 
 ## Response status codes
 
