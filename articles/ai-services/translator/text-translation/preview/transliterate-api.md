@@ -114,7 +114,7 @@ Request parameters passed on the query string areas are as follows:
 |**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-10-01-preview.|
 | **fromScript**| string|**True**| Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | **toScript** |string| **True**| Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
-|**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
+|**language** | string | **True** | Specifies the output script. Refer to the [supported languages](get-languages.md) documentation (transliteration scope) to find output scripts corresponding to your chosen input language and input script combinations. |
 
 ## Request body
 
