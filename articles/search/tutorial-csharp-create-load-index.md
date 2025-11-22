@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 01/17/2025
+ms.date: 11/21/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-azurecli

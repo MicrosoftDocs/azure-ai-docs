@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -15,6 +15,9 @@ ms.custom: azure-ai-agents-code
 ---
 
 # How to upload files using the file search tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 

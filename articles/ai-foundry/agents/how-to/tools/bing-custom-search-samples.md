@@ -17,6 +17,9 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 # How to use Grounding with Bing Custom Search (preview)
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
 Use this article to find step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Foundry Agent Service.
 
 ::: zone pivot="portal"

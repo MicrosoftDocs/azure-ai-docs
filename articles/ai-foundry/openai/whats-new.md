@@ -17,6 +17,8 @@ ms.custom:
 
 # What's new in Azure OpenAI in Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## October 2025

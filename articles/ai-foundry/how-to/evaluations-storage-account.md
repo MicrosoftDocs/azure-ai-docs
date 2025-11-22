@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 # How to create and configure your storage account for use in Microsoft Foundry Projects
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 > [!IMPORTANT]
 > This guidance only applies to the new Foundry resource based projects, not hub-based projects. These steps aren't required for hub-based projects.
 

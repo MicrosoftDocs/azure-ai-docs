@@ -7,12 +7,16 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/22/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 ---
 
 # How to use the Computer Use Tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
 
 Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.
 

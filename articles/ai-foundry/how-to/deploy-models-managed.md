@@ -20,6 +20,8 @@ ai-usage: ai-assisted
 
 # How to deploy and infer with a managed compute deployment
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 The Microsoft Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models. A common way to deploy these models is to use the managed compute deployment option. This option is also sometimes referred to as a managed online deployment. 
 
 When you deploy a large language model (LLM), you make it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.

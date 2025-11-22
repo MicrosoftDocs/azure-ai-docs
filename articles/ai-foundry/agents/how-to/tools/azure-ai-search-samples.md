@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/06/2025
+ms.date: 11/20/2025
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
@@ -17,8 +17,7 @@ zone_pivot_groups: selection-azure-ai-search
 
 # How to use an existing index with the Azure AI Search tool
 
-> [!NOTE]
-> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](../../../default/agents/how-to/tools/knowledge-retrieval.md).
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 

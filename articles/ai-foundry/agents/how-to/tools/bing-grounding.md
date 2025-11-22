@@ -13,7 +13,11 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
+
 # Grounding with Bing Search 
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 

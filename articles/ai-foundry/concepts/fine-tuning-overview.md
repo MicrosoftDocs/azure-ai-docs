@@ -17,6 +17,8 @@ author: ssalgadodev
 
 # Fine-tune models with Microsoft Foundry
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Fine-tuning customizes a pretrained AI model with additional training on a specific task or dataset to improve performance, add new skills, or enhance accuracy. The result is a new, optimized GenAI model based on the provided examples. This article walks you through key concepts and decisions to make before you fine-tune, including the type of fine-tuning that's right for your use case, and model selection criteria based on training techniques use-cases for fine-tuning and how it helps you in your GenAI journey.
 
 If you're just getting started with fine-tuning, we recommend **GPT-4.1** for complex skills like language translation, domain adaptation, or advanced code generation. For more focused tasks (such as classification, sentiment analysis, or content moderation) or when distilling knowledge from a more sophisticated model, start with **GPT-4.1-mini** for faster iteration and lower costs.

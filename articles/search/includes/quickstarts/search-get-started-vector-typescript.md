@@ -4,7 +4,7 @@ author: diberry
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/20/2025
 ---
 
 In this quickstart, you use TypeScript to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
@@ -31,8 +31,6 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
    ```bash
    npm install -g typescript
    ```
-
----
 
 ## Get service endpoints
 

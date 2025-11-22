@@ -115,7 +115,7 @@ var pronAssessmentHeader = Convert.ToBase64String(pronAssessmentParamsBytes);
 We strongly recommend streaming ([chunked transfer](#chunked-transfer)) uploading while you're posting the audio data, which can significantly reduce the latency. To learn how to enable streaming, see the [sample code in various programming languages](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/PronunciationAssessment).
 
 > [!NOTE]
-> For more For more information, see [pronunciation assessment](how-to-pronunciation-assessment.md).
+> For more information, see [pronunciation assessment](how-to-pronunciation-assessment.md).
 
 ## Sample request
 

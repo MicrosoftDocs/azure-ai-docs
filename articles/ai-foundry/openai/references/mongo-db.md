@@ -15,6 +15,8 @@ ms.custom: devx-track-python, ignite-2024
 
 # Data source - Mongo DB Atlas
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 The configurable options of Mongo DB Atlas when using Azure OpenAI On Your Data. This data source is supported starting in API version `2024-08-01`.
 
 

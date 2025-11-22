@@ -13,6 +13,8 @@ ms.service: azure-ai-foundry
 
 # Develop applications with Semantic Kernel and Microsoft Foundry
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
 
 ## Prerequisites

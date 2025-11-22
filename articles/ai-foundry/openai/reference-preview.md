@@ -15,6 +15,8 @@ ms.custom:
 
 # Azure OpenAI in Microsoft Foundry Models REST API preview reference
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
 [!INCLUDE [API surfaces](./includes/api-surface.md)]

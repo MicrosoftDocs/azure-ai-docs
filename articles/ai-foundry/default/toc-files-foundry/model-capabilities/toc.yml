@@ -1,4 +1,8 @@
 items:
+  - name: Deploy Foundry Models in the portal
+    href: ../../../foundry-models/how-to/deploy-foundry-models.md
+  - name: Deploy Foundry Models using code
+    href: ../../../foundry-models/how-to/create-model-deployments.md
   - name: Azure OpenAI in Foundry Models
     href: ../../../openai/supported-languages.md
   - name: Claude in Foundry Models

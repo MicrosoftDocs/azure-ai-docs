@@ -14,6 +14,8 @@ recommendations: false
 
 # Getting started with customizing a large language model (LLM)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 There are several techniques for adapting a pre-trained language model to suit a specific task or domain. These include prompt engineering, RAG (Retrieval Augmented Generation), and fine-tuning. These three techniques are not mutually exclusive but are complementary methods that in combination can be applicable to a specific use case. In this article, we'll explore these techniques, illustrative use cases, things to consider, and provide links to resources to learn more and get started with each.
 
 ## Prompt engineering

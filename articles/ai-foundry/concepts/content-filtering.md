@@ -16,6 +16,8 @@ author: PatrickFarley
 
 # Content filtering in Microsoft Foundry portal
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models.
 
 > [!IMPORTANT]

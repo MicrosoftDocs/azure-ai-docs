@@ -12,6 +12,8 @@ ms.author: mbullwin
 
 # Manage Azure OpenAI in Microsoft Foundry Models quota
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing your Azure OpenAI quota.
 
 ## Prerequisites

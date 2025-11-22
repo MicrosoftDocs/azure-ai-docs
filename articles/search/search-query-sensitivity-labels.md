@@ -13,7 +13,7 @@ ms.author: gimondra
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-At query time, Azure AI Search enforces sensitivity label policies defined in [Microsoft Purview](/purview/create-sensitivity-labels). These policies include evaluation of [extract usage rights](/purview/rights-management-usage-rights) tied to each document. As a result, users can only retrieve documents they are allowed to view.
+At query time, Azure AI Search enforces sensitivity label policies defined in [Microsoft Purview](/purview/create-sensitivity-labels). These policies include evaluation of [READ usage rights](/purview/rights-management-usage-rights) tied to each document. As a result, users can only retrieve documents they are allowed to view.
 
 This capability extends [document-level access control](search-document-level-access-overview.md) to align with your organization's [information protection and compliance requirements](/purview/create-sensitivity-labels) managed in Microsoft Purview.
 
@@ -107,10 +107,10 @@ Content-Type: application/json
 
 ## Sensitivity label handling in Azure AI Search
 
-When Azure AI Search indexes document content with sensitivity labels from sources like SharePoint, Azure Blob, and others, it stores both the content and the label metadata. If the user has data extract access, the query returns the indexed content along with the GUID that identifies the sensitivity label applied to the document. This GUID uniquely identifies the label but doesn't include human-readable properties such as the label name or associated permissions.
+When Azure AI Search indexes document content with sensitivity labels from sources like SharePoint, Azure Blob, and others, it stores both the content and the label metadata. The search query returns indexed content along with the GUID that identifies the sensitivity label applied to the document, only if the user has data READ access for that document. This GUID uniquely identifies the label but doesn't include human-readable properties such as the label name or associated permissions. 
 
-The GUID alone is insufficient for user interface scenarios because sensitivity labels often carry other policy controls enforced by [Microsoft Purview Information Protection (MIP)](/purview/sensitivity-labels), such as: print permissions or screenshot and screen capture restrictions.
+Note that the GUID alone is insufficient for scenarios that include user interface because sensitivity labels often carry other policy controls enforced by [Microsoft Purview Information Protection](/purview/sensitivity-labels), such as: print permissions or screenshot and screen capture restrictions. Azure AI Search doesn't surface these capabilities.
 
-Azure AI Search doesn't surface these capabilities. To display label names or enforce UI-specific restrictions, your application must call the Microsoft Purview Information Protection endpoint to retrieve full label metadata and associated permissions.
+To display label names and/or enforce UI-specific restrictions, your application must call the Microsoft Purview Information Protection endpoint to retrieve full label metadata and associated permissions.
 
-You can use the GUID returned by Azure AI Search to resolve the label properties and call the [MIP SDK](/information-protection/develop/setup-configure-mip) to fetch the label name, description, and policy settings. This [end-to-end demo sample](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo) includes code that shows how to call the endpoint from a user interface. It also demonstrates how to extract the label name and expose it as part of the citations used in your RAG applications or agents.
+You can use the GUID returned by Azure AI Search to resolve the label properties and call the [Purview Labels APIs](/graph/api/sensitivitylabel-get) to fetch the label name, description, and policy settings. This [end-to-end demo sample](https://aka.ms/Ignite25/aisearch-purview-sensitivity-labels-repo) includes code that shows how to call the endpoint from a user interface. It also demonstrates how to extract the label name and expose it as part of the citations used in your RAG applications or agents.

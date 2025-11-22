@@ -14,6 +14,8 @@ ms.custom: azure-ai-agents
 ---
 # Use the Microsoft SharePoint tool (preview)
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
 

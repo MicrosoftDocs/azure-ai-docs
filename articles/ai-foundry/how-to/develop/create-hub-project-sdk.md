@@ -13,6 +13,8 @@ author: sdgilley
 
 # Create a hub using the Azure Machine Learning SDK and CLI
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to create the following [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):

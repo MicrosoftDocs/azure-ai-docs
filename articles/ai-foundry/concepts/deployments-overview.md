@@ -13,6 +13,8 @@ manager: nitinme
 
 # Deployment overview for Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 The model catalog in Microsoft Foundry is the hub to discover and use a wide range of Foundry Models for building generative AI applications. You need to deploy models to make them available for receiving inference requests. Foundry offers a comprehensive suite of deployment options for Foundry Models, depending on your needs and model requirements.
 
 ## Deployment options

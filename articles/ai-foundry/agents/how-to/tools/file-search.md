@@ -15,6 +15,9 @@ ms.custom: azure-ai-agents, references_regions
 
 # Foundry Agent Service file search tool
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
 > [!NOTE]

@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
 # Configure Language docker containers
