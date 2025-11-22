@@ -22,6 +22,8 @@ zone_pivot_groups: openai-use-your-data
 
 # Quickstart: Chat with Azure OpenAI models using your own data
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this quickstart, you use your own data with Azure OpenAI models to create a powerful, conversational AI platform that enables faster and more accurate communication.
 
 > [!IMPORTANT]

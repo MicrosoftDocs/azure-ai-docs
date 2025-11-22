@@ -15,6 +15,9 @@ ms.custom: azure-ai-agents
 
 # Grounding with Bing Custom Search (preview)
 
+> [!NOTE]
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/bing-tools.md) for the Agents v2 API (preview) version.
+
 Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal. 
 
 Once the resource is deployed, go to **Configurations** in the Microsoft Foundry portal, and create a configuration instance to include content only from websites that your users care about. Instructions about how to create your custom configuration can be found in the [setup section](#setup).

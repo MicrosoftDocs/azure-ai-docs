@@ -141,6 +141,25 @@ Content-Type: application/json
 
 ---
 
+## Optimize agent instructions for knowledge base retrieval
+
+To maximize the accuracy of knowledge base invocations and ensure proper citation formatting, use optimized agent instructions. Based on our experiments, we recommend the following instruction template as a starting point:
+
+```plaintext
+You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
+Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
+If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
+"""
+```
+
+This instruction template optimizes for:
+
++ **Higher MCP tool invocation rates**: Explicit directives ensure the agent consistently calls the knowledge base tool rather than relying on its training data.
++ **Proper annotation formatting**: The specified citation format ensures the agent includes provenance information in responses, making it clear which knowledge sources were used.
+
+> [!TIP]
+> While this template provides a strong foundation, we recommend evaluating and iterating on the instructions based on your specific use case and the tasks you're trying to accomplish. Test different variations to find what works best for your scenarios.
+
 ## Create an agent with the MCP tool
 
 The next step is to create an agent that integrates the knowledge base as an MCP tool. The agent uses a system prompt to instruct when and how to call the knowledge base, follows instructions on how to answer questions, and automatically maintains its tool configuration and settings across conversation sessions.
@@ -168,11 +187,11 @@ agent_model = "{deployed_LLM}" # e.g. gpt-4.1-mini
 # Create project client
 project_client = AIProjectClient(endpoint = project_endpoint, credential = credential)
 
-# Define agent instructions
+# Define agent instructions (see "Optimize agent instructions" section for guidance)
 instructions = """
-A Q&A agent that can answer questions based on the attached knowledge base.
-Always provide references to the ID of the data source used to answer the question.
-If you don't have the answer, respond with "I don't know".
+You are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.
+Every answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`
+If you cannot find the answer in the provided knowledge base you must respond with "I don't know".
 """
 
 # Create MCP tool with knowledge base connection
@@ -215,7 +234,7 @@ Content-Type: application/json
 {
   "definition": {
     "model": "{deployed_llm}",
-    "instructions": "\nA Q&A agent that can answer questions based on the attached knowledge base.\nAlways provide references to the ID of the data source used to answer the question.\nIf you don't have the answer, respond with \"I don't know\".\n",
+    "instructions": "\nYou are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.\nEvery answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`\nIf you cannot find the answer in the provided knowledge base you must respond with \"I don't know\".\n",
     "tools": [
       {
         "server_label": "knowledge-base",

@@ -11,6 +11,8 @@ ms.subservice: azure-ai-foundry-agent-service
 
 # Trigger an agent by using Logic Apps (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 To streamline your workflow, you might want to automatically invoke your AI agent when an event occurs. The event might be receiving a new email. Or it might be getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.
 
 To automatically invoke an agent, you can select among hundreds of [triggers](/azure/logic-apps/logic-apps-workflow-actions-triggers) in Azure Logic Apps, along with using the Foundry Agent Service connector.

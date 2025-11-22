@@ -17,6 +17,9 @@ zone_pivot_groups: selection-openapi-function
 
 # How to use the OpenAPI spec tool
 
+> [!NOTE]
+> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/openapi.md) for the Agents v2 API (preview) version.
+
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 
 :::zone pivot="portal"

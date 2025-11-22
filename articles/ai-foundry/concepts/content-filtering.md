@@ -1,4 +1,4 @@
----
+﻿---
 title: Microsoft Foundry content filtering
 titleSuffix: Microsoft Foundry
 description: Learn about the content filtering capabilities of Azure OpenAI in Microsoft Foundry portal.
@@ -9,12 +9,14 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 07/28/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 author: PatrickFarley
 ---
 
 # Content filtering in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models.
 
@@ -71,7 +73,7 @@ You can also enable the following special output filters:
 
 [!INCLUDE [create-content-filter](../includes/create-content-filter.md)]
 
-### Configurability (preview)
+## Configurability (preview)
 
 [!INCLUDE [content-filter-configurability](../openai/includes/content-filter-configurability.md)]
 

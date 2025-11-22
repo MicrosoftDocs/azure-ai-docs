@@ -15,6 +15,8 @@ recommendations: false
 
 # Azure OpenAI stored completions & distillation (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Stored completions allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./evaluations.md) and [fine-tuning](./fine-tuning.md).
 
 ## Stored completions support

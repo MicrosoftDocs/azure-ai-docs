@@ -12,10 +12,7 @@ ms.custom:
   - references_regions
   - build-aifnd
   - build-2025
-  - hub-only
 ---
-
-[!INCLUDE [uses-hub-only](uses-hub-only.md)]
 
 
 ### Cohere models

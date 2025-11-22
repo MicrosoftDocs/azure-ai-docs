@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: concept-article
 ms.date: 09/12/2025
 ms.reviewer: deeikele
@@ -16,6 +17,8 @@ ai-usage: ai-assisted
 # Hub-focused copy of RBAC article. Project-only content remains in rbac-azure-ai-foundry.md
 ---
 # Role-based access control for Microsoft Foundry (hub-focused)
+
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 > [!TIP]
 > An alternate Foundry project-focused RBAC article is available: [Role-based access control for Microsoft Foundry](rbac-azure-ai-foundry.md).
