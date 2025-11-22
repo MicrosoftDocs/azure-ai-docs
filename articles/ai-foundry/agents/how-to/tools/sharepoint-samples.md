@@ -16,8 +16,7 @@ zone_pivot_groups: selection-agent-sharepoint
 
 # How to use the SharePoint tool
 
-> [!NOTE]
-> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/sharepoint.md) for the Agents v2 API (preview) version.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
