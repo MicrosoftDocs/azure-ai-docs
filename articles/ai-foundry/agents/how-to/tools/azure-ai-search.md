@@ -16,8 +16,8 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool
 
-> [!NOTE]
-> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/ai-search.md) for the Agents v2 API (preview) version.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 

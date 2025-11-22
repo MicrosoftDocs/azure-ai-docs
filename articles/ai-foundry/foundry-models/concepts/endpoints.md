@@ -7,11 +7,9 @@ author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
 ms.custom: ignite-2024, github-universe-2024
-ms.reviewer: fasantia
-reviewer: santiagxf
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer using Microsoft Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.
@@ -104,7 +102,7 @@ To use keyless authentication, [configure your resource and grant access to user
 ::: moniker range="foundry-classic"
 ## Limitations
 
-* You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
+* You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../openai/how-to/batch.md).
 * Real-time API isn't supported in the inference endpoint. Use the dedicated deployment URL.
 
 ::: moniker-end

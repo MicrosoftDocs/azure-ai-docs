@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
-ms.date: 08/14/2025
+ms.date: 09/14/2025
 ms.author: mopeakande
 ms.reviewer: haakar
 reviewer: haakar
