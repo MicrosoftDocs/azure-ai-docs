@@ -289,7 +289,7 @@ Make sure you specify the folder name (case sensitive) as prefix in filter.
 
 ##### Supported languages
 
-For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-native-image-format-support).
+For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-scanned-pdf-and-image-support).
 
 > [!TIP]
 > For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
@@ -309,7 +309,7 @@ For translation of image files, submit your image via a standard batch [Document
 
 ##### Supported languages
 
-For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-native-image-format-support).
+For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-scanned-pdf-and-image-support).
 
 
 ## Response status codes
