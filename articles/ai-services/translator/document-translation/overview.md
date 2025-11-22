@@ -34,7 +34,7 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 | ---------| -------------|
 |**Translate large files**| Translate whole documents asynchronously.|
 |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-|**Translate image file formats** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
+|**Translate image file formats 2025-12-01-preview** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
 |[**Translate image text in Word document files (.docx)**](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) API for `.docx` file format.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
@@ -95,7 +95,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
-|Image|`.jpg`, `.png`, `.bmp`, `.webp`|Files that stores digital image data.|
+|Image (2025-12-01-preview)|`.jpg`, `.png`, `.bmp`, `.webp`|Files that stores digital image data.|
 |OpenDocument Presentation|`odp`|An open-source presentation file.|
 |OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
 |OpenDocument Text|`odt`|An open-source text document file.|
