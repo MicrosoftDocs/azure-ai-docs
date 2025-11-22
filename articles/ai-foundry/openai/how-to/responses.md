@@ -1288,7 +1288,7 @@ Compared to the standalone Image API, the Responses API offers several advantage
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1` series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
+> The image generation tool in the Responses API is only supported by the `gpt-image-1`-series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
 
 Use the Responses API if you want to build conversational image experiences with GPT Image.
 
