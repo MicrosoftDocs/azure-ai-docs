@@ -7,19 +7,19 @@ ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 7/12/2025
+ms.date: 11/21/2025
 ms.custom: template-concept
 manager: nitinme
 ---
 
 # Audio capabilities in Azure OpenAI in Microsoft Foundry Models
 
-> [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI. 
-
-Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs. The audio models are designed to handle a variety of tasks, including speech recognition, translation, and text to speech.
+Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs. The audio models are designed to handle a variety of tasks including speech recognition, translation, and text to speech.
 
 For information about the available audio models per region in Azure OpenAI, see the [audio models](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint), [standard models by endpoint](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint), and [global standard model availability](models.md?tabs=standard-audio#global-standard-model-availability) documentation.
+
+> [!IMPORTANT]
+> The content filtering system isn't applied to prompts and completions processed by audio models in Azure OpenAI, such as Whisper.
 
 ## GPT-4o audio Realtime API
 
