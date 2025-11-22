@@ -270,16 +270,13 @@ Make sure you specify the folder name (case sensitive) as prefix in filter.
     ]
 }
 ```
-##### Translate image files
+## Translate image files
 
  > [!IMPORTANT]
  > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).## Translate text in native image format files
 
- > [!IMPORTANT]
- > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
 
-##### Supported formats**
-
+ ##### Supported formats (image files)
 |File Extension|Best use|
 |--|--|
 |`.bmp `|Well-suited for editing raw data and graphics on legacy systems, as well as for creating uncompressed backups. However, they do not provide native support for transparency.|
@@ -287,30 +284,16 @@ Make sure you specify the folder name (case sensitive) as prefix in filter.
 |`.png`|Most suitable for use in web graphics, logos, and images that need transparency.|
 |`.webp`|Optimally configured for web applications that require high image fidelity, efficient compression, and alpha transparency, resulting in optimal quality and performance.|
 
-##### Supported languages
+##### Supported languages (image files)
 
 For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-scanned-pdf-and-image-support).
 
 > [!TIP]
 > For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
 
-##### Request configuration
+##### Request configuration (image files)
 
 For translation of image files, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying api-version as 2025-12-01. No additional configuration is required.
-
-##### Supported formats**
-
-|File Extension|Best use|
-|--|--|
-|`.bmp `|Well-suited for editing raw data and graphics on legacy systems, as well as for creating uncompressed backups. However, they do not provide native support for transparency.|
-|`.jpg` |Ideal for displaying photographs and detailed images on websites. However, this format does not support transparent backgrounds.|
-|`.png`|Most suitable for use in web graphics, logos, and images that need transparency.|
-|`.webp`|Optimally configured for web applications that require high image fidelity, efficient compression, and alpha transparency, resulting in optimal quality and performance.|
-
-##### Supported languages
-
-For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-scanned-pdf-and-image-support).
-
 
 ## Response status codes
 
