@@ -183,7 +183,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-## Translate image text in Word document files (.docx) 🆕
+## Translate images in Word document files (.docx)
 
 > [!Note]
 >

@@ -17,7 +17,7 @@ ms.date: 11/18/2025
 **Reference**</br>
 Feature: **Azure Translator → Document translation**</br>
 API Version (GA): **2024-05-01** </br>
-API Version (preview): **2025-12-01**—adds support for [image file translation](#translate-image-files).</br>
+API Version (preview): **2025-12-01-preview**—adds support for [image file translation](#translate-image-files).</br>
 HTTP method: **POST**
 
 * Use the `Start Translation` method to execute an asynchronous batch translation request.
@@ -293,7 +293,7 @@ For details on supported languages, *see* [Document Translation language support
 
 ##### Request configuration (image files)
 
-For translation of image files, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying api-version as 2025-12-01. No additional configuration is required.
+For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying api version **2025-12-01-preview**. No additional configuration is required.
 
 ## Response status codes
 
