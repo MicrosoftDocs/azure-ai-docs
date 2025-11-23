@@ -20,6 +20,7 @@ The agent building experience in Microsoft Foundry brings many development and o
 
 * Prompt-based
 * Workflows
+* Hosted Agents
 <!--* Hosted-->
 
 You can create prompt-based agents and workflows in the Microsoft Foundry portal or your own development environment using the CLI, SDK, or REST API. See the [quickstart](../../../quickstarts/get-started-code.md) for more information.
