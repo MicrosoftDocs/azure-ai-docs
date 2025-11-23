@@ -233,7 +233,7 @@ For more examples, see [XML Schema: Datatypes (W3.org web site)](https://www.w3.
 
 ## Example: boosting by freshness or distance
 
-When using the freshness function, if you want the boost to have a more dramatic effect on more recent dates, and taper off for older dates, choose a quadratic interpolation. Quadratic amplifies the effect of near recent dates. This same logic applies to distance boosting, where farther locations yield larger magnitudes.
+When using the freshness function, if you want the boost to have a more dramatic effect on more recent dates, and taper off for older dates, choose a quadratic interpolation. Quadratic amplifies the effect of near recent dates and closer locations. 
 
 The shape of the boost curve (constant, linear, logarithmic, quadratic) affects how aggressively scores change across the range. A quadratic curve tapers off more slowly for older dates, while a logarithmic curve shifts more sharply at the far end.
 
