@@ -30,7 +30,7 @@ Text to speech avatar capabilities include:
 -  Provides a collection of standard avatars, see [Standard avatars](./standard-avatars.md) for a full list of supported standard avatars.
 - Azure AI text to speech generates the voice of the avatar. For more information, see [Avatar voice and language](#avatar-voice-and-language).
 - Synthesizes text to speech avatar video asynchronously with the [batch synthesis API](./batch-synthesis-avatar.md) or in [real-time](./real-time-synthesis-avatar.md).
-- Use Text to Speech Avatar tool in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) or in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar) for creating video content without coding.
+- Use Text to speech avatar tool in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) or in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar) for creating video content without coding.
 - Enables real-time avatar conversations through the [live chat avatar tool](https://speech.microsoft.com/portal/livechat) in Speech Studio.
 - Create voice agent with avatar in [Voice live](../voice-live.md) 
 
