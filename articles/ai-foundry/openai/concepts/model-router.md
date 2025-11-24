@@ -35,10 +35,10 @@ Model router intelligently selects the best underlying model for a given prompt 
 The latest version, `2025-11-18` adds several capabilities:
 1. Support Global Standard and Data Zone Standard deployments.
 1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o`, `gpt-4o-mini`, `claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`.
+1. Quick deploy or Custom deploy with **routing mode** and **model subset** options.
+1. **Routing mode**: Optimize the routing logic for your needs. Supported options: `Quality`, `Cost`, `Balanced` (default).
+1. **Model subset**: Select your preferred models to create your model subset for routing.
 1. Support for agentic scenarios including tools so you can now use it in the Foundry Agent service.
-1. Quick deploy or Custom deploy with routing mode and model subset selections.
-1. Routing mode: Optimize the routing logic for your needs. Supported options: Quality, Cost, Balanced (default).
-1. Model subset: Select models to create your model subset for routing.
 
 ::: moniker-end
 
@@ -50,6 +50,7 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 
 ## Underlying models
+With the `2025-11-18` version, Model Router adds nine new models including Anthropic's Claude, DeepSeek, Llama, Grok models to support a total of 18 models available for routing your prompts.
 
 |Model router version|Underlying models| Underlying model version
 |:---:|:---|:----:|
@@ -61,14 +62,9 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 ## Routing mode
 
-With the latest version, if you choose custom deployment, you can select the routing mode to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing profile is optional, and if you don’t set one, your deployment defaults to the `balanced` strategy.
+With the latest version, if you choose custom deployment, you can select the **routing mode** to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing mode is optional, and if you don’t set one, your deployment defaults to the `balanced` mode.
 
-Use routing mode if you:
-* Need to reduce spend while retaining near-maximum quality.
-* Need consistent access to the highest-quality model for critical workloads.
-* Want to A/B test quality vs. cost trade-offs through per-request overrides.
-
-### Available routing modes
+Available routing modes:
 
 | Mode | Description |
 |------|-----------|
@@ -89,11 +85,21 @@ When new base models become available, they're not included in your selection un
 
 ### Resource limitations
 
-See the [Models](../concepts/models.md#model-router) page for the region availability and deployment types for model router.
+| Region | Deployment types supported |
+|------|-----------|
+| East US 2 | Global Standard, Data zone Standard |
+| Sweden Central | Global Standard, Data zone Standard  |
 
-### Technical limitations
+Also see the [Models](../concepts/models.md#model-router) page for the region availability and deployment types for model router.
 
-See [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
+### Rate limits
+
+| Model | Tier | Quota limit in tokens per minute | Requests per minute |
+|---|---|:---:|:---:|
+| `model-router` (2025-11-18) | Enterprise and MCA-E | 400K | 400 |
+| `model-router` (2025-11-18) | Default         | 100K | 100 |
+
+Also see [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
 
 ::: moniker range="foundry"
 

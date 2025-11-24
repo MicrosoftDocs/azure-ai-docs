@@ -153,8 +153,8 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-| `model-router` (2025-05-19) | Enterprise and MCA-E | 10M | 10K |
-| `model-router` (2025-05-19) | Default         | 1M | 1K |
+| `model-router` (2025-11-18) | Enterprise and MCA-E | 400K | 400 |
+| `model-router` (2025-11-18) | Default         | 100K | 100 |
 
 ## computer-use-preview Global Standard rate limits
 
