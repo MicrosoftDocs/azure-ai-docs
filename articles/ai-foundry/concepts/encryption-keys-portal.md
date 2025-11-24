@@ -43,21 +43,17 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 1.  **Azure Key Vault**:
 
     - You need an existing Azure Key Vault to store your keys.
-
     - You must deploy the Key Vault and the Microsoft Foundry resource in the same Azure region.
-
     - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure Portal](Microsoft/azure/key-vault/general/quick-create-portal).
 
 1.  **Managed Identity Configuration**:
 
     - **System-assigned managed identity**: Ensure your Microsoft Foundry resource has enabled a system-assigned managed identity.
-
     - **User-assigned managed identity**: **Support for UAI is currently available only via Bicep templates.** Refer to the Bicep template example: [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
 
 1.  **Key Vault Permissions**:
 
     - If you're using **Azure RBAC**, assign roles like Key Vault Crypto Officer or Key Vault Contributor to the managed identity.
-
     - If you're using **Vault Access Policies**, grant key-specific permissions to the managed identity, such as **unwrap key** and **wrap key**.
 
 ## Regional availability note (UAI for CMK)
@@ -66,28 +62,20 @@ Support for **Customer-Managed Keys (CMK) with User-Assigned Managed Identities 
 
 - **United States**:  
   westus, centralus, southcentralus, westus2
-
 - **Europe**:  
   westeurope, ukwest, switzerlandwest, germanywestcentral, francecentral, denmarkeast, polandcentral, swedencentral, norwayeast
-
 - **Asia-Pacific**:  
   taiwannorthwest, australasia (australiaeast, newzealandnorth), southeastasia, japaneast, koreacentral, indonesiacentral, malaysiawest, centralindia
-
 - **Middle East**:  
   israelcentral, qatarcentral
-
 - **Africa**:  
   southafricanorth
-
 - **Canada**:  
   canadaeast
-
 - **Latin America**:  
   mexicocentral
-
 - **Azure China**:  
   China East, China East 2, China North, China North 2
-
 - **Azure US Government**:  
   US Gov Virginia, US Gov Arizona, US Gov Texas, US Gov Iowa
 
