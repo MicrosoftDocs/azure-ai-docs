@@ -85,11 +85,21 @@ When new base models become available, they're not included in your selection un
 
 ### Resource limitations
 
-See the [Models](../concepts/models.md#model-router) page for the region availability and deployment types for model router.
+| Region | Deployment types supported |
+|------|-----------|
+| East US 2 | Global Standard, Data zone Standard |
+| Sweden Central | Global Standard, Data zone Standard  |
 
-### Technical limitations
+Also see the [Models](../concepts/models.md#model-router) page for the region availability and deployment types for model router.
 
-See [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
+### Rate limits
+
+| Model | Tier | Quota limit in tokens per minute | Requests per minute |
+|---|---|:---:|:---:|
+| `model-router` (2025-11-18) | Enterprise and MCA-E | 400K | 400 |
+| `model-router` (2025-11-18) | Default         | 100K | 100 |
+
+Also see [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
 
 ::: moniker range="foundry"
 
