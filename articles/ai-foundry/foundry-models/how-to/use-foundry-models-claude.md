@@ -14,7 +14,7 @@ reviewer: gojira
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or AI practitioner, I want to deploy and use Claude models in Microsoft Foundry so I can integrate advanced conversational AI capabilities into my applications.
+#CustomerIntent: As a developer or AI practitioner, I want to deploy and use Claude models in Microsoft Foundry so I can integrate advanced conversational AI capabilities into my applications. 
 ---
 
 # Deploy and use Claude models in Microsoft Foundry
