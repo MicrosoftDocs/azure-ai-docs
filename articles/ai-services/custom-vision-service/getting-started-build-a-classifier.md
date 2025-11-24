@@ -20,7 +20,7 @@ This quickstart explains how to use the Custom Vision web portal to create an im
 
 ## Prerequisites
 
-- An Azure subscription. You can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+- An Azure subscription. You can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A set of images to train your classification model. You can use the set of [sample images](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/CustomVision/ImageClassification/Images) on GitHub. Or, you can choose your own images using the [following tips](#upload-and-tag-images).
 - A [supported web browser](overview.md#supported-browsers).
 

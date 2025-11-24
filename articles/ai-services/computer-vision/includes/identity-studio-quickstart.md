@@ -15,7 +15,7 @@ Use Microsoft Foundry portal to detect faces in an image.
 
 ## Prerequisites
 
-* An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * A [Microsoft Foundry resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/%7E/AIServices)
 
 ## Setup 

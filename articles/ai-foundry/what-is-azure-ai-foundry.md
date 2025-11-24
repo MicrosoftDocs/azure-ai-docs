@@ -228,13 +228,13 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 You can [explore Foundry portal (classic) (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
 
-But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account). 
+But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 
 :::moniker-end
 
 :::moniker range="foundry"
 
-You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
+You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
 
 :::moniker-end
 
