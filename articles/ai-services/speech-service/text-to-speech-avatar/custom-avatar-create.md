@@ -1,7 +1,7 @@
 ---
-title: How to create a custom text to speech avatar - Speech service
+title: How to create a custom video avatar - Speech service
 titleSuffix: Azure AI services
-description: Learn how to create a custom text to speech avatar.
+description: Learn how to create a custom video avatar.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
@@ -12,7 +12,7 @@ author: PatrickFarley
 zone_pivot_groups: foundry-speech-studio
 ---
 
-# How to create a custom text to speech avatar
+# How to create a custom video avatar
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [AI Foundry include](../includes/how-to/custom-avatar/create-avatar/ai-foundry.md)]
