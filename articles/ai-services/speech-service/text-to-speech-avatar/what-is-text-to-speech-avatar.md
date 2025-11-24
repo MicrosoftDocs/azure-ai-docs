@@ -15,7 +15,7 @@ ms.custom: references_regions
 
 # What is Text to speech avatar?
 
-Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use Text to speech avatar in AI Foundry to create video content without coding.
+Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use Text to speech avatar in AI Foundry to create video content without coding. Text to speech avatar is also an add-on of [Voice live](../voice-live.md) to enable personalized and engaging voice agent experience. 
 
 With text to speech avatar's advanced models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
@@ -30,10 +30,11 @@ Text to speech avatar capabilities include:
 -  Provides a collection of standard avatars, see [Standard avatars](./standard-avatars.md) for a full list of supported standard avatars.
 - Azure AI text to speech generates the voice of the avatar. For more information, see [Avatar voice and language](#avatar-voice-and-language).
 - Synthesizes text to speech avatar video asynchronously with the [batch synthesis API](./batch-synthesis-avatar.md) or in [real-time](./real-time-synthesis-avatar.md).
-- Provides a [content creation tool](https://speech.microsoft.com/portal/talkingavatar) in Speech Studio for creating video content without coding.
+- Use Text to Speech Avatar tool in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) or in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar) for creating video content without coding.
 - Enables real-time avatar conversations through the [live chat avatar tool](https://speech.microsoft.com/portal/livechat) in Speech Studio.
+- Create voice agent with avatar in [Voice live](../voice-live.md) 
 
-With text to speech avatar's advanced neural network models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
+With text to speech avatar's advanced neural network models and Photo avatar's VASA-1 models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
 
 ## Avatar voice and language
 
@@ -43,7 +44,7 @@ The voice in the synthetic video could be an Azure AI Speech standard voice or t
 
 ## Avatar type
 - Video Avatar: The avatar is generated using a fine tuned model with a video recording for fine tuning. It supports half-body and full-body representations.
-- Photo Avatar: The avatar is created from a single input image as prompt and is limited to a head-only representation.
+- Photo Avatar (preview): The avatar is created from a single input image as prompt and is limited to a head-only representation.
 
 
 ## Avatar video output
@@ -60,7 +61,7 @@ Video Avatar
 | **Codec**        | h264/hevc/vp9/av1 | h264                 |
 
 
-Photo Avatar
+Photo Avatar (preview)
 
 |                  | Batch synthesis   | Real-time synthesis |
 |------------------|-------------------|----------------------|
