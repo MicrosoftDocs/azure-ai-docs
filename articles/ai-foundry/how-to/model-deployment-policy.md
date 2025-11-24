@@ -33,7 +33,7 @@ these policies to control what models your developers can deploy in Foundry port
 1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also
    search for **Policy** in the search bar at the top of the page.
 
-1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for `Cognitive Services Deployments should only use approved Registry Models` in the search bar within the page. You can also directly navigate to [policy definition creation page](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Faafe3651-cb78-4f68-9f81-e7e41509110f/version/1.0.0-preview/scopes~/%5B%22%2Fsubscriptions%2Fa4393d89-7e7f-4b0b-826e-72fc42c33d1f%22%2C%22%2Fsubscriptions%2Fd128f140-94e6-4175-87a7-954b9d27db16%22%2C%22%2Fsubscriptions%2F562da9fc-fd6e-4f24-a6aa-99827a7f6f91%22%5D/contextRender~/false).
+1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for `Cognitive Services Deployments should only use approved Registry Models` in the search bar within the page. You can also directly navigate to [policy definition creation page](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Faafe3651-cb78-4f68-9f81-e7e41509110f/version/1.0.1/scopes~/%5B%22%2Fsubscriptions%2Fa4393d89-7e7f-4b0b-826e-72fc42c33d1f%22%2C%22%2Fsubscriptions%2Fd128f140-94e6-4175-87a7-954b9d27db16%22%2C%22%2Fsubscriptions%2F562da9fc-fd6e-4f24-a6aa-99827a7f6f91%22%5D/contextRender~/false).
 
 1. Select **Assign** to assign the policy:
 
