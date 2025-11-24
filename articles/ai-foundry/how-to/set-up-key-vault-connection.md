@@ -1,5 +1,5 @@
 ---
-title: Set up an Azure Key Vault Connection (Preview)
+title: Set up an Azure Key Vault Connection
 description: Learn how to securely connect your Azure Key Vault to Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration.
 monikerRange: 'foundry-classic || foundry'
 author: jonburchel
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 # zone_pivot_groups: set-up-key-vault
 ---
 
-# Set up an Azure Key Vault connection in Microsoft Foundry (Preview)
+# Set up an Azure Key Vault connection in Microsoft Foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
