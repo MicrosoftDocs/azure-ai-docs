@@ -1,7 +1,7 @@
 ---
 title: Deploy and use Claude models in Microsoft Foundry
 titleSuffix: Microsoft Foundry
-description: Learn how to deploy and use Anthropic's Claude models including Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 in Microsoft Foundry
+description: Learn how to deploy and use Anthropic's Claude models including  Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 in Microsoft Foundry
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -23,7 +23,7 @@ This article explains how to deploy and use the latest Claude models in Foundry,
 
 ## Available Claude models
 
-Foundry supports Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities that include:
+Foundry supports  Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1 models through global standard deployment. These models have key capabilities that include:
 
 - **Extended thinking**: Extended thinking gives Claude enhanced reasoning capabilities for complex tasks.
 - **Image and text input**: Strong vision capabilities that enable the models to process images and return text outputs for analyzing and understanding charts, graphs, technical diagrams, reports, and other visual assets.
