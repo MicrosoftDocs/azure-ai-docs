@@ -19,11 +19,12 @@ Custom text to speech avatar allows you to create a customized, one-of-a-kind sy
 
 > [!IMPORTANT]
 > Custom text to speech avatar access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
- 
-> [!Note]
-> Custom photo avatar training is not yet available as a self-service option and currently requires a manual offline process.
-> 
 
+>[!Important]
+> Photo avatar (preview) and custom photo avatar (preview) are licensed to you as part of your Azure subscription and is subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA)("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/).
+> Access to custom photo avatar (preview), which is part of custom text to speech avatar, is limited based on eligibility and usage criteria. Learn more [here](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access?view=foundry-classic&tabs=cnv) and request access on the [intake form](https://aka.ms/customneural).
+
+ 
 ## How does it work?
 
 Creating a custom text to speech avatar requires at least 10 minutes of video recording of the avatar talent as training data, and you must first get consent from the actor talent.
