@@ -46,7 +46,7 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 
     - You must deploy the Key Vault and the Microsoft Foundry resource in the same Azure region.
 
-    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure Portal](https://learn.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
+    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure Portal](Microsoft/azure/key-vault/general/quick-create-portal).
 
 1.  **Managed Identity Configuration**:
 
@@ -111,7 +111,7 @@ You store Customer-Managed Keys (CMKs) in **Azure Key Vault**. You can either ge
 
 1.  Select **Create** to save the new key.
 
-For more information, see [Create and Manage Keys in Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys).
+For more information, see [Create and Manage Keys in Azure Key Vault](Microsoft/azure/key-vault/keys/about-keys).
 
 **Import a Key**
 
