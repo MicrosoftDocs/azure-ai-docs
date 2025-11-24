@@ -20,9 +20,7 @@ ms.date: 11/24/2025
 > [!CAUTION]
 > This API refers to the REST API available in the Foundry Local CLI. This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
-## OpenAI v1 compatibility
-
-### POST /v1/chat/completions
+## POST /v1/chat/completions
 
 This endpoint processes chat completion requests.  
 It's fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create).
@@ -174,9 +172,8 @@ _---Standard OpenAI Properties---_
   }
   ```
 
-## Custom API
 
-### GET /openai/status
+## GET /openai/status
 
 Get server status information.
 
@@ -201,7 +198,7 @@ Get server status information.
   ```
 
 
-### GET /foundry/list
+## GET /foundry/list
 
 Get a list of available Foundry Local models in the catalog.
 
@@ -233,7 +230,7 @@ Get a list of available Foundry Local models in the catalog.
   - `parentModelUri`: The URI of the parent model from which this model is derived.
 
 
-### GET /openai/models
+## GET /openai/models
 
 Get a list of cached models, including local and registered external models.
 
@@ -249,7 +246,7 @@ Get a list of cached models, including local and registered external models.
   ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
   ```
 
-### POST /openai/download
+## POST /openai/download
 
 Download a model from the catalog to local storage.
 
@@ -346,7 +343,7 @@ During download, the server streams progress updates in the format:
   }
   ```
 
-### GET /openai/load/{name}
+## GET /openai/load/{name}
 
 Load a model into memory for faster inference.
 
@@ -378,7 +375,7 @@ Load a model into memory for faster inference.
   GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
   ```
 
-### GET /openai/unload/{name}
+## GET /openai/unload/{name}
 
 Unload a model from memory.
 
@@ -404,7 +401,7 @@ Unload a model from memory.
   GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
   ```
 
-### GET /openai/unloadall
+## GET /openai/unloadall
 
 Unloads all models from memory.
 
@@ -413,7 +410,7 @@ Unloads all models from memory.
 - 200 OK  
   Empty response body
 
-### GET /openai/loadedmodels
+## GET /openai/loadedmodels
 
 Get the list of currently loaded models.
 
@@ -429,7 +426,7 @@ Get the list of currently loaded models.
   ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
   ```
 
-### GET /openai/getgpudevice
+## GET /openai/getgpudevice
 
 Get the current GPU device ID.
 
@@ -438,7 +435,7 @@ Get the current GPU device ID.
 - 200 OK  
   An integer representing the current GPU device ID.
 
-### GET /openai/setgpudevice/{deviceId}
+## GET /openai/setgpudevice/{deviceId}
 
 Set the active GPU device.
 
@@ -460,8 +457,7 @@ Set the active GPU device.
   ```
 
 
-
-### POST /v1/chat/completions/tokenizer/encode/count
+## POST /v1/chat/completions/tokenizer/encode/count
 
 Counts tokens for a given chat completion request without performing inference.
 
