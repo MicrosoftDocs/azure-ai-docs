@@ -62,7 +62,7 @@ If you build your agents outside of Foundry, you can still use our evaluators as
 
 ::: moniker range="foundry-classic"
 
-Install the evaluators package from the Microsoft Foundry SDK:
+Install the evaluators package from the Azure AI evaluation SDK:
 
 ```python
 pip install azure-ai-evaluation
@@ -72,7 +72,7 @@ pip install azure-ai-evaluation
 
 ::: moniker range="foundry"
 
-Install the package from the Microsoft Foundry SDK:
+Install the package from the Azure AI evaluation SDK:
 
 ```python
     pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
@@ -81,7 +81,7 @@ Install the package from the Microsoft Foundry SDK:
 Set these environment variables with your values in a `.env` file:
 
 ```python
-AZURE_AI_PROJECT_ENDPOINT="<your-endpoint>" # The Microsoft Foundry project endpoint, as found in the Home page of your Microsoft Foundry portal.
+AZURE_AI_PROJECT_ENDPOINT="<your-endpoint>" # The Azure AI Project project endpoint, as found in the Home page of your Microsoft Foundry portal.
 AZURE_AI_MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>" # The deployment name of the AI model, as found under the "Build" page in the "Models" tab in your Foundry project.
 ```
 
@@ -385,7 +385,7 @@ print(f'Foundry URL: {response.get("studio_url")}')
 
 After selecting the URL, you are redirected to Foundry. View your evaluation results in your Foundry project and debug your application. Use reason fields and pass/fail results to assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
-Use the Microsoft Foundry SDK client library to evaluate your Microsoft Foundry agents with converter support, enabling observability and transparency into agent workflows.
+Use the Azure AI Evaluation SDK client library to evaluate your Microsoft Foundry agents with converter support, enabling observability and transparency into agent workflows.
 
 ::: moniker-end
 
@@ -1262,8 +1262,8 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 
 ::: moniker range="foundry-classic"
 
-- [Microsoft Foundry Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)
-- [Microsoft Foundry SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
+- [Azure AI Evaluation Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)
+- [Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Learn about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [Learn about simulating test datasets for evaluation](./simulator-interaction-data.md)
@@ -1275,7 +1275,7 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 
 ::: moniker range="foundry"
 
-- [Microsoft Foundry Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
+- [Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [View evaluation results in a Foundry project](../../how-to/evaluate-results.md)
 
