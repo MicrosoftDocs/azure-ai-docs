@@ -7,7 +7,7 @@ manager: nitinme
 ms.date: 11/13/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - ignite-2023
   - references_regions
@@ -77,35 +77,34 @@ The following section provides you with a quick guide to the default quotas and 
 
 ## GPT-5.1 series
 
-| Model              | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
-|:-------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
-| gpt-5.1            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
-| gpt-5.1            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
-| gpt-5.1-chat       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
-| gpt-5.1-codex      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
-| gpt-5.1-codex-mini | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
-
+| Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:---------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| `gpt-5.1`            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
+| `gpt-5.1`            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
+| `gpt-5.1-chat`       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
+| `gpt-5.1-codex`      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
+| `gpt-5.1-codex-mini` | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
 
 ## GPT-5 series
 
-| Model              | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
-|:-------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
-| gpt-5              | DataZoneStandard        | 3,000         | 300,000       | 30,000                     | 3,000,000                  |
-| gpt-5              | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
-| gpt-5-chat         | GlobalStandard          | 1,000         | 1,000,000     | 5,000                      | 5,000,000                  |
-| gpt-5-mini         | DataZoneStandard        | 300           | 300,000       | 3,000                      | 3,000,000                  |
-| gpt-5-mini         | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
-| gpt-5-nano         | DataZoneStandard        | 2,000         | 2,000,000     | 50,000                     | 50,000,000                 |
-| gpt-5-nano         | GlobalStandard          | 5,000         | 5,000,000     | 150,000                    | 150,000,000                |
-| gpt-5-codex        | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
-| gpt-5-pro          | GlobalStandard          | 1,600         | 160,000       | 16,000                     | 1,600,000                  |
+| Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:---------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| `gpt-5`              | DataZoneStandard        | 3,000         | 300,000       | 30,000                     | 3,000,000                  |
+| `gpt-5`              | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
+| `gpt-5-chat`         | GlobalStandard          | 1,000         | 1,000,000     | 5,000                      | 5,000,000                  |
+| `gpt-5-mini`         | DataZoneStandard        | 300           | 300,000       | 3,000                      | 3,000,000                  |
+| `gpt-5-mini`         | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| `gpt-5-nano`         | DataZoneStandard        | 2,000         | 2,000,000     | 50,000                     | 50,000,000                 |
+| `gpt-5-nano`         | GlobalStandard          | 5,000         | 5,000,000     | 150,000                    | 150,000,000                |
+| `gpt-5-codex`        | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| `gpt-5-pro`          | GlobalStandard          | 1,600         | 160,000       | 16,000                     | 1,600,000                  |
 
 ## model-router rate limits
 
 | Model                      | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
 |:--------------------------:|------------------|:--------------|:--------------|:----------------------------|:-----------------------------|
-| model-router (2025-11-18 ) | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
-| model-router (2025-11-18 ) | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
+| `model-router <br> (2025-11-18 )` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
+| `model-router <br> (2025-11-18 )` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
