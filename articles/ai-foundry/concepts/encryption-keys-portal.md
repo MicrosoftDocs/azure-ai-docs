@@ -101,27 +101,20 @@ You store Customer-Managed Keys (CMKs) in **Azure Key Vault**. You can either ge
 
 **Generate a Key**
 
-1.  Go to your Azure Key Vault in the Azure portal.
+1. Go to your Azure Key Vault in the Azure portal.
+1. Under **Settings**, select **Keys**.
+1. Select **+ Generate/Import**.
+1. Enter a key name, choose the key type (such as RSA or HSM-backed), and configure key size and expiration details.
+1. Select **Create** to save the new key.
 
-1.  Under **Settings**, select **Keys**.
-
-1.  Select **+ Generate/Import**.
-
-1.  Enter a key name, choose the key type (such as RSA or HSM-backed), and configure key size and expiration details.
-
-1.  Select **Create** to save the new key.
-
-For more information, see [Create and Manage Keys in Azure Key Vault](Microsoft/azure/key-vault/keys/about-keys).
+   For more information, see [Create and Manage Keys in Azure Key Vault](Microsoft/azure/key-vault/keys/about-keys).
 
 **Import a Key**
 
-1.  Go to the **Keys** section in your Key Vault.
-
-1.  Select **+ Generate/Import** and choose the **Import** option.
-
-1.  Upload the key material and provide the necessary key configuration details.
-
-1.  Follow the prompts to complete the import process.
+1. Go to the **Keys** section in your Key Vault.
+1. Select **+ Generate/Import** and choose the **Import** option.
+1. Upload the key material and provide the necessary key configuration details.
+1. Follow the prompts to complete the import process.
 
 ### Step 2. Grant Key Vault permissions to managed identities
 
@@ -129,51 +122,38 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 
 **System-assigned managed identity**
 
-1.  Go to the Key Vault in the Azure portal.
-
-1.  Select **Access Control (IAM)**.
-
-1.  Select **+ Add role assignment**.
-
-1.  Assign the Key Vault Crypto Officer, Key Vault Contributor, or a similar role to the **system-assigned managed identity** of the Microsoft Foundry resource.
+1. Go to the Key Vault in the Azure portal.
+1. Select **Access Control (IAM)**.
+1. Select **+ Add role assignment**.
+1. Assign the Key Vault Crypto Officer, Key Vault Contributor, or a similar role to the **system-assigned managed identity** of the Microsoft Foundry resource.
 
 **User-assigned managed identity**
 
 > [!NOTE]  
-[GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
+> [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
 
-1.  Use the provided Bicep templates to deploy a user-assigned identity and configure Key Vault permissions.
+1. Use the provided Bicep templates to deploy a user-assigned identity and configure Key Vault permissions.
 
-1.  After deployment, confirm the user-assigned identity has appropriate roles (such as Key Vault Crypto Officer) or permissions on the Key Vault.
+1. After deployment, confirm the user-assigned identity has appropriate roles (such as Key Vault Crypto Officer) or permissions on the Key Vault.
 
 ### Step 3. Enable CMK in Microsoft Foundry
 
-1.  Open the Microsoft Foundry resource in the Azure portal.
-
-1.  Go to the **Encryption Settings** section.
-
-1.  Select **Customer-Managed Keys** as the encryption type.
-
-1.  Enter the **Key Vault URL** and the key name.
-
-1.  If you use **User-Assigned Managed Identity**, make sure the deployment through Bicep templates is complete, as the identity and associated permissions are already configured.
+1. Open the Microsoft Foundry resource in the Azure portal.
+1. Go to the **Encryption Settings** section.
+1. Select **Customer-Managed Keys** as the encryption type.
+1. Enter the **Key Vault URL** and the key name.
+1. If you use **User-Assigned Managed Identity**, make sure the deployment through Bicep templates is complete, as the identity and associated permissions are already configured.
 
 **Key Vault Access Design: Azure RBAC vs. Vault Access Policies**
 
 Azure Key Vault supports two models for managing access permissions:
 
 1.  **Azure RBAC (Recommended)**:
-
     - Provides centralized access control using Azure AD roles.
-
     - Simplifies permission management for resources across Azure.
-
     - Recommended roles include Key Vault Crypto Officer or Key Vault Contributor.
-
 1.  **Vault Access Policies**:
-
     - Allows granular access control specific to Key Vault resources.
-
     - Suitable for configurations where legacy or isolated permission settings are necessary.
 
 Choose the model that aligns with your organizational requirements.
@@ -184,7 +164,6 @@ To maintain optimal security and compliance, implement the following practices:
 
 1.  **Enable Key Vault Diagnostics**:  
     Monitor key usage and access activity by enabling diagnostic logging in Azure Monitor or Log Analytics.
-
 1.  **Rotate Keys Regularly**:  
     Periodically create a new version of your key in Azure Key Vault.  
     Update the Microsoft Foundry resource to reference the latest key version in its **Encryption Settings**.
