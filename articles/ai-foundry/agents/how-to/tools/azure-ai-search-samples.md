@@ -504,7 +504,7 @@ curl --request POST \
             "azure_ai_search": {
               "indexes": [
                   {
-                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
+                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.CognitiveServices/accounts/<your-foundry-name>/projects/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
                       "index_name": "<your-index-name>",
                       "query_type": "semantic"
                   }
