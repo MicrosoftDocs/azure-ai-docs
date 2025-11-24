@@ -23,7 +23,7 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
-  - name: Built-in policy for model deployment (Preview)
+  - name: Built-in policy for model deployment
     href: ../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
