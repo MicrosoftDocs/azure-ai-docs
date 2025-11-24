@@ -14,8 +14,8 @@ ms.author: aahi
 
 # How to use the Computer Use Tool
 
-> [!NOTE]
-> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/computer-use.md) for the Agents v2 API (preview) version.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 
 Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.

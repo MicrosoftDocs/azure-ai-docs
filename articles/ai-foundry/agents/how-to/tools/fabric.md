@@ -16,8 +16,8 @@ zone_pivot_groups: selection-fabric-data-agent
 
 # Use the Microsoft Fabric data agent (preview)
 
-> [!NOTE]
-> Code uses **Agents v1 API** and is incompatible with Agents v2 (preview). Switch to [Foundry (new)](../../../default/agents/how-to/tools/fabric.md) for the Agents v2 API (preview) version.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 Integrate your Microsoft Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
