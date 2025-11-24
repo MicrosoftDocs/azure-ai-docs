@@ -8,7 +8,7 @@ items:
   - name: Configure private link
     displayName: custom dns
     href: ../../../how-to/configure-private-link.md
-  - name: Network security perimeter (preview)
+  - name: Network security perimeter
     href: ../../../how-to/add-foundry-to-network-security-perimeter.md    
 - name: Data protection & encryption
   items:
