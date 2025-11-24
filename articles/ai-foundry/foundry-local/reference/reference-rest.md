@@ -4,7 +4,6 @@ titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local REST API.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
 ms.author: nakersha
 ms.reviewer: jonburchel
 author: natke
@@ -307,16 +306,24 @@ During download, the server streams progress updates in the format:
 
 **Example:**
 
+Request URI
+
+```http
+POST /openai/download
+```
+
 Request body
+
+Note that the version suffix must be supplied in the model name.
 
 ```json
 {
   "model": {
     "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
     "ProviderType": "AzureFoundryLocal",
-    "Name": "Phi-4-mini-instruct-generic-cpu",
+    "Name": "Phi-4-mini-instruct-generic-cpu:4",
     "Publisher": "",
-    "promptTemplate": {
+    "PromptTemplate": {
       "system": "<|system|>{Content}<|end|>",
       "user": "<|user|>{Content}<|end|>",
       "assistant": "<|assistant|>{Content}<|end|>",
