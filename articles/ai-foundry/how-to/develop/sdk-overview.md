@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 11/24/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -375,9 +375,9 @@ To use Foundry Tools, you can use the following SDKs with the endpoints listed.
 
 Choose an endpoint based on your needs:
 
-Use the Foundry Tools endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
+Use the Azure AI Services endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
 
-Foundry Tools endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
+Azure AI Services endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
 
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 
