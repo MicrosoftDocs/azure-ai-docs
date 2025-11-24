@@ -13,6 +13,7 @@ ms.custom:
   - ignite-2023
   - build-aifnd
   - build-2025
+  - references-regions
 ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
 ---
@@ -76,10 +77,12 @@ Support for **Customer-Managed Keys (CMK) with User-Assigned Managed Identities 
   mexicocentral
 - **Azure China**:  
   China East, China East 2, China North, China North 2
+:::moniker range="foundry-classic"
 - **Azure US Government**:  
   US Gov Virginia, US Gov Arizona, US Gov Texas, US Gov Iowa
+:::moniker-end
 
-Before configuring CMK with UAI, make sure you deploy your resources in a supported region.
+Before configuring CMK with UAI, make sure you deploy your resources in a supported region. Refer to [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md) for more details on regional support for Microsoft Foundry features.
 
 ## Steps to Configure CMK
 
