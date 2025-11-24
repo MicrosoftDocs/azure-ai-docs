@@ -221,4 +221,4 @@ Language code|Language
 
 ## Prebuilt API reference
 
-Visit the [full prebuilt API samples](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/Language/stable/2021-10-01/examples/questionanswering/SuccessfulQueryText.json) documentation to understand the input and output parameters required for calling the API.
+Visit the [full prebuilt API samples](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/LanguageQuestionAnswering/stable/2021-10-01/examples/questionanswering/SuccessfulQueryText.json) documentation to understand the input and output parameters required for calling the API.
