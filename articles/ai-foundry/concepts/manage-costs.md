@@ -235,7 +235,7 @@ You  see the total cost along with an estimated cost chart for the given range.
 
 :::image type="content" source="../default/media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="../default/media/manage-costs/model-costs.png":::
 
-When you select the **View More Details** or the **Azure Cost Management** link, you are directed to the Azure portal under the **Cost Management** section. The costs displayed there reflect the aggregated charges for the entire Cognitive Services account. These differ from the costs shown here, which are specific to the selected model only.
+When you select the **View More Details** or the **Azure Cost Management** link, you are directed to the Azure portal under the **Cost Management** section. The costs displayed there reflect the aggregated charges for the entire Cognitive Services account. These differ from the costs shown here, which are specific to the selected model only. These costs are only available in USD only and not in the user's billing currency.
 
 > [!NOTE]
 > Token and request charts can sometimes show lower values than the **Estimated cost** view because late‑arrival usage events may not be included in those charts. If there’s a mismatch, rely on **Estimated cost** as the most accurate view, and note that your **Azure Cost Management invoice** remains the final source of truth.
