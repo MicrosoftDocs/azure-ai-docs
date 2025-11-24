@@ -4,7 +4,7 @@ description: Include file
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 07/29/2025
+ms.date: 11/24/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -14,6 +14,14 @@ ms.custom:
   - build-2025
 ---
 
+### Anthropic models
+
+| Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|-------------------|----------------------------|------------------------------------|-------------------------------------|
+| Claude Haiku 4.5  | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
+| Claude Opus 4.1   | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
+| Claude Sonnet 4.5 | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
+| Claude Opus 4.5   | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
 
 ### Cohere models
 

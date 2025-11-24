@@ -5,7 +5,7 @@ description: Learn about Microsoft Foundry Models from partners and community, t
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 09/05/2025
+ms.date: 11/24/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: conceptual
@@ -51,6 +51,7 @@ Claude models are also supported for use in the [Foundry Agent Service](../../ag
 | [claude-haiku-4-5](https://aka.ms/claude-haiku-4-5) | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 | [claude-opus-4-1](https://aka.ms/claude-opus-4-1) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 | [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
+| [claude-opus-4-5](https://aka.ms/claude-opus-4-5) | Messages | - **Input:**  text and imag, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 
 ::: moniker-end
 
@@ -61,6 +62,7 @@ Claude models are also supported for use in the [Foundry Agent Service](../../ag
 | `claude-haiku-4-5` | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
 | `claude-opus-4-1` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
 | `claude-sonnet-4-5` | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (max 64,000 tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON |
+| [claude-opus-4-5](https://aka.ms/claude-opus-4-5) | Messages | - **Input:**  text and imag, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text, JSON| Foundry, Hub-based |
 
 ::: moniker-end
 
