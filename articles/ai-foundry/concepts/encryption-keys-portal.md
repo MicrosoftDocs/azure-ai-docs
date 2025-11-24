@@ -118,7 +118,7 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 **User-assigned managed identity**
 
 > [!NOTE]  
-> [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
+> Refer to the [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
 
 1. Use the provided Bicep templates to deploy a user-assigned identity and configure Key Vault permissions.
 
