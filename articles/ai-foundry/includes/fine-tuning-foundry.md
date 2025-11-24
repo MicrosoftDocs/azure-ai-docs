@@ -1,7 +1,7 @@
 ## Prerequisites
 
 - Read the [When to use Foundry fine-tuning guide](../openai/concepts/fine-tuning-considerations.md).
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project resource. Sign in to the [Foundry portal](https://ai.azure.com) to create one.
 - Fine-tuning access requires the **Azure AI User** role.
 - If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you require [more permissions](../openai/how-to/role-based-access-control.md).
