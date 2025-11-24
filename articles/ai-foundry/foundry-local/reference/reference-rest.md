@@ -122,8 +122,8 @@ _---Standard OpenAI Properties---_
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+```json
   {
     "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "messages": [
@@ -146,9 +146,11 @@ _---Standard OpenAI Properties---_
     "function_call": null,
     "metadata": {}
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
@@ -170,7 +172,7 @@ _---Standard OpenAI Properties---_
       "total_tokens": 30
     }
   }
-  ```
+```
 
 
 ## GET /openai/status
@@ -188,15 +190,14 @@ Get server status information.
 
 **Example:**
 
-- Response body
-  ```json
+Response body
+```json
   {
     "Endpoints": ["http://localhost:5272"],
     "ModelDirPath": "/path/to/models",
     "PipeName": "inference_agent"
   }
-  ```
-
+```
 
 ## GET /foundry/list
 
@@ -241,10 +242,11 @@ Get a list of cached models, including local and registered external models.
 
 **Example:**
 
-- Response body
-  ```json
+Response body
+
+```json
   ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
+```
 
 ## POST /openai/download
 
@@ -305,7 +307,7 @@ During download, the server streams progress updates in the format:
 
 **Example:**
 
-- Request body
+Request body
 
 ```json
 {
@@ -324,24 +326,24 @@ During download, the server streams progress updates in the format:
 }
 ```
 
-- Response stream
+Response stream
 
-  ```text
+```text
   ("genai_config.json", 0.01)
   ("genai_config.json", 0.2)
   ("model.onnx.data", 0.5)
   ("model.onnx.data", 0.78)
   ...
   ("", 1)
-  ```
+```
 
-- Final response
-  ```json
+Final response
+```json
   {
     "Success": true,
     "ErrorMessage": null
   }
-  ```
+```
 
 ## GET /openai/load/{name}
 
@@ -369,11 +371,11 @@ Load a model into memory for faster inference.
 
 **Example:**
 
-- Request URI
+Request URI
 
-  ```http
+```http
   GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
-  ```
+```
 
 ## GET /openai/unload/{name}
 
@@ -396,10 +398,11 @@ Unload a model from memory.
 
 **Example:**
 
-- Request URI
-  ```http
-  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-  ```
+Request URI
+
+```http
+GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
+```
 
 ## GET /openai/unloadall
 
@@ -421,10 +424,11 @@ Get the list of currently loaded models.
 
 **Example:**
 
-- Response body
-  ```json
-  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
+Response body
+
+```json
+["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
+```
 
 ## GET /openai/getgpudevice
 
@@ -456,7 +460,6 @@ Set the active GPU device.
   GET /openai/setgpudevice/1
   ```
 
-
 ## POST /v1/chat/completions/tokenizer/encode/count
 
 Counts tokens for a given chat completion request without performing inference.
@@ -479,8 +482,9 @@ Counts tokens for a given chat completion request without performing inference.
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+
+```json
   {
     "messages": [
       {
@@ -494,10 +498,12 @@ Counts tokens for a given chat completion request without performing inference.
     ],
     "model": "Phi-4-mini-instruct-cuda-gpu"
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "tokenCount": 23
   }
-  ```
+```
