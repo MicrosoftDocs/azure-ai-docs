@@ -8,8 +8,9 @@ ms.date: 08/07/2025
 
 Getting started with a custom text to speech avatar is a straightforward process. All it takes are a few video clips of your actor. If you'd like to train a [custom voice](../../../../custom-neural-voice.md) for the same actor, you can do so separately.
 
-> [!NOTE]
-> Custom avatar access is limited based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+> [!Note]
+> Custom avatar (including custom photo avatar) access is limited based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+
 
 ## Prerequisites
 
