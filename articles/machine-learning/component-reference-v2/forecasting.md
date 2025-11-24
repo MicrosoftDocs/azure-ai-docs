@@ -37,7 +37,7 @@ AutoML creates a number of pipelines in parallel that try different algorithms a
 
 1.  Specify the **Target Column** you want the model to output 
 
-1. On the **Task type and settings** form, select the task type: forecasting. See [supported task types](../concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision--nlp) for more information.
+1. On the **Task type and settings** form, select the task type: forecasting. See [supported task types](../concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision-and-nlp) for more information.
 
     1. For **forecasting** you can, 
     
