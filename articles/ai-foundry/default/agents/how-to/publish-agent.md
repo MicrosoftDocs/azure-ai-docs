@@ -116,12 +116,16 @@ Foundry agents can also expose the [Activity Protocol](https://github.com/micros
 For applications this is exposed at: https://{accountName}.services.ai.azure.com/api/projects/{projectName}/applications/{applicationName}/protocols/activityprotocol 
 
 ### Authentication
-There are two options for inbound end-user authentication that can be configured on the application: 
-- Default: The caller must have the Azure RBAC (Role-Based Access Control) permission /applications/invoke/action on the application resource. 
+
+Inbound end-user authentication for the application is configured as follows:
+- Default: The caller must have the Azure RBAC (Role-Based Access Control) permission /applications/invoke/action on the application resource.
+
+API key authentication is not supported for agents through projects or through applications. 
+
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
 -->
-API key authentication is not supported for agents through projects or through applications. 
+
 
 ## Publish an agent  
 
