@@ -75,7 +75,7 @@ You can also use this parameter to exclude certain types of data, keeping memory
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../../how-to/create-projects.md). Ensure your project's managed identity has the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke your model deployments for memory-related operations.
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.

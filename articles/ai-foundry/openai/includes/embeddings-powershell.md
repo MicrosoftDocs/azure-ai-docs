@@ -393,7 +393,7 @@ the entire datatable). As a learning exercise, try creating a PowerShell script 
 `Invoke-RestMethod` command with the search string as a parameter.
 
 <!-- Reference link definitions -->
-[01]: https://azure.microsoft.com/free/cognitive-services?azure-portal=true
+[01]: https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn
 
 [03]: ../concepts/models.md#model-summary-table-and-region-availability
 [04]: ../how-to/create-resource.md

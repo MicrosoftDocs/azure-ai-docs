@@ -22,7 +22,7 @@ In this article, you learn how to handle data wrangling using
 - Attached Synapse Spark pool
 
 ## Prerequisites
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md) for more information.
 - An Azure Data Lake Storage (ADLS) Gen 2 storage account. Visit [Create an Azure Data Lake Storage (ADLS) Gen 2 storage account](/azure/storage/blobs/create-data-lake-storage-account) for more information.
 - (Optional): An Azure Key Vault. Visit [Create an Azure Key Vault](/azure/key-vault/general/quick-create-portal) for more information.
