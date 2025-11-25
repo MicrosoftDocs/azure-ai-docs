@@ -15,6 +15,6 @@ ms.author: aahi
 * Install the [Azure CLI][azure-cli] (az).
 * [Docker engine][docker-engine] and validate that the Docker CLI works in a console window.
 
-[free-account]: https://azure.microsoft.com/free
+[free-account]: https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn
 [azure-cli]: /cli/azure/install-azure-cli
 [docker-engine]: https://www.docker.com/products/docker-engine
