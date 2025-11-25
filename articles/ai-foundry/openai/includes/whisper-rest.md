@@ -79,7 +79,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/YourDeploymentName/audio/transcri
  -F file="@./wikipediaOcelot.wav"
 ```
 
-The front line of the preceding command with an example endpoint would appear as follows:
+The first line of the preceding command with an example endpoint would appear as follows:
 
 ```bash
 curl https://aoai-docs.openai.azure.com/openai/deployments/{YourDeploymentName}/audio/transcriptions?api-version=2024-02-01 \
