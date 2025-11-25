@@ -8,7 +8,7 @@ items:
   - name: Configure private link
     displayName: custom dns
     href: ../../../how-to/configure-private-link.md
-  - name: Network security perimeter (preview)
+  - name: Network security perimeter
     href: ../../../how-to/add-foundry-to-network-security-perimeter.md    
 - name: Data protection & encryption
   items:
@@ -25,7 +25,7 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
-  - name: Built-in policy for model deployment (preview)
+  - name: Built-in policy for model deployment
     href: ../../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
     href: ../../../how-to/custom-policy-definition.md

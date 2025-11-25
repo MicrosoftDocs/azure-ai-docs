@@ -259,7 +259,7 @@ AutoML supports different task types:
   - Text classification
   - Entity Recognition
 
- For more information, see [task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision--nlp). For more information on setting up forecasting jobs, see [set up AutoML to train a time-series forecasting model](how-to-auto-train-forecast.md).
+ For more information, see [task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision-and-nlp). For more information on setting up forecasting jobs, see [set up AutoML to train a time-series forecasting model](how-to-auto-train-forecast.md).
 
 ### Supported algorithms
 
