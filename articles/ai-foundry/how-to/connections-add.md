@@ -105,9 +105,13 @@ Foundry stores connections details in a managed Azure Key Vault if no Key Vault 
 
 It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in Foundry Playground is currently not supported.
 
-## Create a new connection in Foundry portal
+## Create a new connection 
 
-Follow these steps to create a new connection that's only available for the current project.
+Use the portal or a Bicep template to add a connection.
+
+# [Foundry portal](#tab/foundry-portal)
+
+Follow these steps to create a new connection that's available for the current project.
 
 ::: moniker range="foundry-classic"
 
@@ -149,6 +153,12 @@ Follow these steps to create a new connection that's only available for the curr
     > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-azure-ai-foundry.md).
 
 ::: moniker-end
+
+# [Bicep](#tab/bicep)
+
+See [Connection templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections) for examples of common connection templates.
+
+---
 
 ## Network isolation
 
