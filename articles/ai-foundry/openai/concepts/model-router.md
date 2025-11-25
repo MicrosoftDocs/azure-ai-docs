@@ -94,10 +94,10 @@ Also see the [Models](../concepts/models.md#model-router) page for the region av
 
 ### Rate limits
 
-| Model | Tier | Quota limit in tokens per minute | Requests per minute |
-|---|---|:---:|:---:|
-| `model-router` (2025-11-18) | Enterprise and MCA-E | 400K | 400 |
-| `model-router` (2025-11-18) | Default         | 100K | 100 |
+| Model                               | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
+|:-----------------------------------:|------------------:|:--------------:|:--------------:|:----------------------------|:-----------------------------:|
+| `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
+| `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
 Also see [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
 
