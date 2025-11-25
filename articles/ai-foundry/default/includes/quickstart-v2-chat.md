@@ -21,7 +21,7 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
  # [C#](#tab/csharp2)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-responses.cs":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-responses.cs":::
 
 <!-- # [TypeScript](#tab/typescript)
 
