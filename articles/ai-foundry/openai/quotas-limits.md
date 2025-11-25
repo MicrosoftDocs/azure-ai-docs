@@ -1,20 +1,22 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models Quotas and Limits
+title: Azure OpenAI in Microsoft Foundry Models Quotas and Limits
 description: This article features detailed descriptions and best practices on the quotas and limits for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/10/2025
+ms.date: 11/13/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
 ---
 
-# Azure OpenAI in Azure AI Foundry Models quotas and limits
+# Azure OpenAI in Microsoft Foundry Models quotas and limits
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
@@ -57,8 +59,8 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum number of `/chat/completions` functions | 128. |
 | Maximum number of `/chat completions` tools | 128. |
 | Maximum number of provisioned throughput units per deployment | 100,000. |
-| Maximum files per assistant or thread | 10,000 when using the API or the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
-| Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). |
+| Maximum files per assistant or thread | 10,000 when using the API or the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).|
+| Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
 | Maximum file upload requests per resource | 30 requests per second. |
 | Maximum size for all uploaded files for assistants |200 GB. |
 | Assistants token limit | 2,000,000 token limit. |
@@ -73,25 +75,36 @@ The following section provides you with a quick guide to the default quotas and 
 > [!NOTE]
 > Quota limits are subject to change.
 
-## GPT-5 Series
+## GPT-5.1 series
 
-| Model       | Global Default<br>Tokens per minute (TPM)  | Global Enterprise and MCA-E <br>Tokens per minute (TPM)  | Data Zone Default <br>Tokens per minute (TPM)  | Data Zone Enterprise and MCA-E <br>Tokens per minute (TPM) |
-|-------------|----------------|-------------------|-------------------|----------------------|
-| `gpt-5`       | 1 M             | 10 M               | 300 K              | 3 M                   |
-| `gpt-5-mini`  | 1 M             | 10 M               | 300 K              | 3 M                   |
-| `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
-| `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
-| `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
-| `gpt-5-pro`   | 160 K            | 1.6 M | N/A | N/A |
+| Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:---------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| `gpt-5.1`            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
+| `gpt-5.1`            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
+| `gpt-5.1-chat`       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
+| `gpt-5.1-codex`      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
+| `gpt-5.1-codex-mini` | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
 
-| Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
-|-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
-| `gpt-5`       | 10 K                                         | 100 K                                                      | 3 K                                              | 30 K                   |
-| `gpt-5-mini`  | 1 K                                          | 10 K                                                       | 300                                              | 3 K                   |
-| `gpt-5-nano`  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
-| `gpt-5-chat`  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
-| `gpt-5-codex` | 1 K                                          | 10 K                                                      | N/A                | N/A  | 
-| `gpt-5-pro`   | 1.6 K            | 16 K | N/A | N/A
+## GPT-5 series
+
+| Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
+|:---------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+| `gpt-5`              | DataZoneStandard        | 3,000         | 300,000       | 30,000                     | 3,000,000                  |
+| `gpt-5`              | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
+| `gpt-5-chat`         | GlobalStandard          | 1,000         | 1,000,000     | 5,000                      | 5,000,000                  |
+| `gpt-5-mini`         | DataZoneStandard        | 300           | 300,000       | 3,000                      | 3,000,000                  |
+| `gpt-5-mini`         | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| `gpt-5-nano`         | DataZoneStandard        | 2,000         | 2,000,000     | 50,000                     | 50,000,000                 |
+| `gpt-5-nano`         | GlobalStandard          | 5,000         | 5,000,000     | 150,000                    | 150,000,000                |
+| `gpt-5-codex`        | GlobalStandard          | 1,000         | 1,000,000     | 10,000                     | 10,000,000                 |
+| `gpt-5-pro`          | GlobalStandard          | 1,600         | 160,000       | 16,000                     | 1,600,000                  |
+
+## model-router rate limits
+
+| Model                      | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
+|:--------------------------:|------------------|:--------------|:--------------|:----------------------------|:-----------------------------|
+| `model-router` <br> `(2025-11-18 )` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
+| `model-router` <br> `(2025-11-18 )` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
@@ -141,13 +154,6 @@ The following section provides you with a quick guide to the default quotas and 
 |---|---|:---:|:---:|
 |`gpt-4` (turbo-2024-04-09) | Enterprise and MCA-E | 2M | 12K |
 |`gpt-4` (turbo-2024-04-09) | Default | 450K | 2.7K |
-
-## model-router rate limits
-
-| Model|Tier| Quota limit in tokens per minute | Requests per minute |
-|---|---|:---:|:---:|
-| `model-router` (2025-05-19) | Enterprise and MCA-E | 10M | 10K |
-| `model-router` (2025-05-19) | Default         | 1M | 1K |
 
 ## computer-use-preview Global Standard rate limits
 
@@ -245,9 +251,9 @@ The following section provides you with a quick guide to the default quotas and 
 
 ### gpt-4o audio
 
-During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-| Model|Tier| Quota limit in tokens per minute | Requests per minute |
+| Model|Tier| Quota limit in tokens per minute | Requests per minute<br>(new websocket connections per minute) |
 |---|---|:---:|:---:|
 |`gpt-4o-audio-preview` | Default | 450K | 1K |
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
@@ -265,16 +271,30 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-image-1`|Enterprise and MCA-E | N/A | 20 |
-|`gpt-image-1` |Default | N/A | 6 |
-|`gpt-image-1-mini`|Low | N/A | 12 |
-|`gpt-image-1-mini` |Medium | N/A | 36 |
-|`gpt-image-1-mini` |High | N/A | 120 |
-
+|`gpt-image-1`|Enterprise and MCA-E | N/A | 60 |
+|`gpt-image-1` |Default | N/A | 18 |
+|`gpt-image-1-mini`|Low | N/A | 36 |
+|`gpt-image-1-mini` |Medium | N/A | 108 |
+|`gpt-image-1-mini` |High | N/A | 360 |
 
 ## Usage tiers
 
 Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer's inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
+
+Azure OpenAI usage tiers are designed to provide consistent performance for most customers with low to medium levels of traffic. Each usage tier defines the maximum throughput (tokens per minute) you can expect with predictable latency. When your usage stays within your assigned tier, latency remains stable and response times are consistent.
+
+### What happens if you exceed your usage tier?
+
+- If your request throughput exceeds your usage tier—especially during periods of high demand—your response latency may increase significantly.
+- Latency can vary and, in some cases, may be more than two times higher than when operating within your usage tier.
+- This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
+
+### Recommended actions If you exceed your usage tier
+If you encounter 429 errors or notice increased latency variability, here’s what you should do:
+
+- Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
+- Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
+- Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you are operating within your tier limits. Adjust your workload or deployment strategy as needed.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
@@ -285,6 +305,10 @@ The usage limit determines the level of usage above which customers might see la
 
 |Model| Usage tiers per month |
 |----|:----|
+| `gpt-5` | 32 billion tokens |
+| `gpt-5-mini` | 160 billion tokens |
+| `gpt-5-nano` | 800 billion tokens |
+| `gpt-5-chat` | 32 billion tokens |
 | `gpt-4` + `gpt-4-32k`  (all versions) | 6 billion tokens |
 | `gpt-4o` | 12 billion tokens |
 | `gpt-4o-mini` | 85 billion tokens |
@@ -388,12 +412,12 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Regional quota capacity limits
 
-You can view quota availability by region for your subscription in the [Azure AI Foundry portal](https://ai.azure.com/resource/quota).
+You can view quota availability by region for your subscription in the [Foundry portal](https://ai.azure.com/resource/quota).
 
 To view quota capacity by region for a specific model or version, you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API returns the available capacity for that model across all regions and deployment types for your subscription.
 
 > [!NOTE]
-> Currently, both the Azure AI Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
+> Currently, both the Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
 
 See the [API reference](/rest/api/aiservices/accountmanagement/model-capacities/list).
 

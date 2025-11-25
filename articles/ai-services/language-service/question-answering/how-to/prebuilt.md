@@ -1,14 +1,13 @@
 ---
 title: Prebuilt API - custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the custom question answering Prebuilt API to ask and receive answers to questions without having to create a project. 
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 11/18/2025
 ---
-
 # Prebuilt API
 
 The custom question answering **prebuilt API** provides you with the capability to answer questions based on a passage of text without having to create projects, maintain question and answer pairs, or incurring costs for underutilized infrastructure. This functionality is provided as an API and can be used to meet question and answering needs without having to learn the details about custom question answering.
@@ -222,4 +221,4 @@ Language code|Language
 
 ## Prebuilt API reference
 
-Visit the [full prebuilt API samples](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/Language/stable/2021-10-01/examples/questionanswering/SuccessfulQueryText.json) documentation to understand the input and output parameters required for calling the API.
+Visit the [full prebuilt API samples](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/LanguageQuestionAnswering/stable/2021-10-01/examples/questionanswering/SuccessfulQueryText.json) documentation to understand the input and output parameters required for calling the API.

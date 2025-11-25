@@ -1,11 +1,11 @@
 ---
 title: "OpenAPI spec code samples"
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Find code samples to use OpenAPI tools with agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 08/07/2025
+ms.date: 11/20/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -17,26 +17,28 @@ zone_pivot_groups: selection-openapi-function
 
 # How to use the OpenAPI spec tool
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 
 :::zone pivot="portal"
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). in the **Agents** screen or **Agent playground**, select your agent.
+1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). in the **Agents** screen or **Agent playground**, select your agent.
 1. Scroll down the **Setup** pane to **action**. Then select **Add**.
 
-    :::image type="content" source="../../media\tools\action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\action-tools.png":::
+    :::image type="content" source="../../media\tools\action-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\action-tools.png":::
    
 1. Select **OpenAPI 3.0 specified tool**.
 
-    :::image type="content" source="../../media\tools\action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media\tools\action-tools-list.png":::
+    :::image type="content" source="../../media\tools\action-tools-list.png" alt-text="A screenshot showing the available action tools in the Foundry portal." lightbox="../../media\tools\action-tools-list.png":::
    
 1. Give your tool a name (required) and a description (optional). The description will be used by the model to decide when and how to use the tool.
 
-   :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media\tools\open-api-details.png":::
+   :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Foundry portal." lightbox="../../media\tools\open-api-details.png":::
 
 1. Select **Next** and select your authentication method.
    1. If you choose `connection`, you need to select the [custom connection](./openapi-spec.md#authenticating-with-api-key) with an API key.
-   1. If you choose `managed identity`, you need to input the audience to get your token which is the authentication scope. Make sure you have already set up authentication and role assignment as described in the [OpenAPI tool overview](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id). An example of an audience might be `https://cognitiveservices.azure.com/` to connect to Azure AI Services, once proper setup has been performed.
+   1. If you choose `managed identity`, you need to input the audience to get your token which is the authentication scope. Make sure you have already set up authentication and role assignment as described in the [OpenAPI tool overview](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id). An example of an audience might be `https://cognitiveservices.azure.com/` to connect to Foundry Tools, once proper setup has been performed.
       
 1. Copy and paste your OpenAPI specification in the text box.
 

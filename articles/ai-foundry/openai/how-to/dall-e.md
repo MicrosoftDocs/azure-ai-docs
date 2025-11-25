@@ -1,20 +1,25 @@
 ---
 title: How to Use Image Generation Models from OpenAI
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/02/2025
+ms.date: 11/21/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # How to use Azure OpenAI image generation models
+
 
 OpenAI's image generation models create images from user-provided text prompts and optional images. This article explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
@@ -24,7 +29,7 @@ OpenAI's image generation models create images from user-provided text prompts a
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `dall-e-3` or `gpt-image-1` series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
+- Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
 ## Overview
@@ -45,14 +50,17 @@ OpenAI's image generation models create images from user-provided text prompts a
 | **Strengths** | Best for **realism**, **instruction following**, and **multimodal context** | Best for **fast prototyping**, **bulk generation**, or **cost-sensitive** use cases | Strong **prompt adherence**, **natural text rendering**, and **stylistic diversity** |
 
 ## Responsible AI and Image Generation 
-Azure OpenAI image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
-We provide input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+
+In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+
 Customers can learn more about these safeguards and how to customize them here:
-- Learn more: Explore[content filtering](https://learn.microsoft.com/azure/ai-foundry/openai/concepts/content-filter)
+- Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
 - Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
-Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations (i.e. applying image edits) to images containing minors.
-If you're approved, such images will not be automatically blocked by the system.
+### Special considerations for generating images of minors
+
+Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
 
 
 ## Call the image generation API
@@ -287,7 +295,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 > [!NOTE]
-> WEBP images aren't supported in the Azure OpenAI in Azure AI Foundry Models.
+> WEBP images aren't supported in the Azure OpenAI in Microsoft Foundry Models.
 
 #### Compression
 
@@ -297,6 +305,9 @@ Use the *output_compression* parameter to specify the compression level for the 
 
 Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they're generated. This feature provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
 
+#### Transparency
+
+Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 #### [DALL-E 3](#tab/dalle-3)
 
@@ -422,6 +433,10 @@ The *mask* parameter uses the same type as the main *image* input parameter. It 
 #### Streaming 
 
 Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they're generated. This feature provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
+
+#### Transparency
+
+Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 #### [DALL-E 3](#tab/dalle-3)
 

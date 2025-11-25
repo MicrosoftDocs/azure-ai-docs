@@ -4,7 +4,7 @@ author: diberry
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/20/2025
 ---
 
 In this quickstart, you use TypeScript to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
@@ -21,7 +21,7 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
     - The `Search Index Data Contributor` role assigned at the scope of the service.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
+    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 - [Visual Studio Code](https://code.visualstudio.com/download).
 
@@ -31,8 +31,6 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
    ```bash
    npm install -g typescript
    ```
-
----
 
 ## Get service endpoints
 

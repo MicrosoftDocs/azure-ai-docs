@@ -1,6 +1,6 @@
 ---
 title: Data and privacy for custom text classification
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about data and privacy for Custom text classification.
 author: laujan
 ms.author: lajanuar

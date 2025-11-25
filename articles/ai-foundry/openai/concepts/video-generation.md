@@ -7,12 +7,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
+monikerRange: 'foundry-classic || foundry'
 ms.date: 09/16/2025
 ---
 
 # Video generation with Sora (preview)
 
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
+
 Azure OpenAI supports two versions of Sora:
 - Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
 - Sora 2: The latest OpenAI-based API, now available with the Azure OpenAI [v1 API](../api-version-lifecycle.md).
@@ -115,7 +117,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 ```python
 from openai import OpenAI
@@ -304,7 +306,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 **Synchronous:**
 
@@ -439,7 +441,7 @@ These environment variables are automatically used by the client with no further
 | Environment Variable | Value |
 |----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
-| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
 
 ```python
 from openai import OpenAI
@@ -459,6 +461,280 @@ print("Saved video.mp4")
 
 ```json
 Saved video.mp4
+```
+
+---
+
+### Video generation from reference source
+
+The `input_reference` parameter allows you to transform existing images using Sora 2. The resolution of the source image and final video must match. Supported values are `720x1280`, and `1280x720`.
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+**Local reference file:**
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+# With local file
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=open("test.png", "rb"), # This assumes the image test.png is in the same directory as the executing code
+)
+
+print("Video generation started:", video)
+
+```
+
+**URL based reference file:**
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import requests
+from io import BytesIO
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+# With image URL
+image_url = "https://path-to-your-file/image_file_name.jpg"
+response = requests.get(image_url)
+image_data = BytesIO(response.content)
+image_data.name = "image_file_name.jpg"
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=image_data,
+)
+
+print("Video generation started:", video)
+```
+
+# [API Key](#tab/python-key)
+
+**Local reference file:**
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# With local file
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=open("test.png", "rb"), # This assumes the image test.png is in the same directory as the executing code
+)
+
+print("Video generation started:", video)
+
+```
+
+**URL based reference file:**
+
+```python
+import os
+from openai import OpenAI
+import requests
+from io import BytesIO
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# With image URL
+image_url = "https://path-to-your-file/image_file_name.jpg"
+response = requests.get(image_url)
+image_data = BytesIO(response.content)
+image_data.name = "image_file_name.jpg"
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=image_data,
+)
+
+print("Video generation started:", video)
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
+
+**Local reference file:**
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+# With local file
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=open("test.png", "rb"), # This assumes the image test.png is in the same directory as the executing code
+)
+
+print("Video generation started:", video)
+
+```
+
+**URL based reference file:**
+
+```python
+from openai import OpenAI
+import requests
+from io import BytesIO
+
+client = OpenAI()
+
+# With image URL
+image_url = "https://path-to-your-file/image_file_name.jpg"
+response = requests.get(image_url)
+image_data = BytesIO(response.content)
+image_data.name = "image_file_name.jpg"
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="Describe your desired output within the context of the reference image/video",
+    size="1280x720",
+    seconds=8,
+    input_reference=image_data,
+)
+
+print("Video generation started:", video)
+```
+
+# [Response](#tab/python-output)
+
+```json
+Video generation started: Video(id='video_68ff672709d481908f1fa7c53265d835', completed_at=None, created_at=1761568551, error=None, expires_at=None, model='sora-2', object='video', progress=0, remixed_from_video_id=None, seconds='8', size='1280x720', status='queued')
+```
+
+---
+
+### Remix video
+
+The remix feature allows you to modify specific aspects of an existing video while preserving its core elements. By referencing the previous video `id` from a successfully completed generation, and supplying an updated prompt the system maintains the original video's framework, scene transitions, and visual layout while implementing your requested changes. For optimal results, limit your modifications to one clearly articulated adjustment—narrow, precise edits retain greater fidelity to the source material and minimize the likelihood of generating visual defects.
+
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+video = client.videos.remix(
+    video_id="<previous_video_id>",
+    prompt="Shift the color palette to teal, sand, and rust, with a warm backlight."
+)
+
+print("Video generation started:", video)
+```
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+video = client.videos.remix(
+    video_id="<previous_video_id>",
+    prompt="Shift the color palette to teal, sand, and rust, with a warm backlight."
+)
+
+print("Video generation started:", video)
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+video = client.videos.remix(
+    video_id="<previous_video_id>",
+    prompt="Shift the color palette to teal, sand, and rust, with a warm backlight."
+)
+
+print("Video generation started:", video)
+```
+
+# [Response](#tab/python-output)
+
+```json
+Video generation started: Video(id='video_68ff7cef76cc8190b7eab9395e936d9e', completed_at=None, created_at=1761574127, error=None, expires_at=None, model='sora-2', object='video', progress=0, remixed_from_video_id='video_68ff61490a908190a6808139c0c753d0', seconds='8', size='1280x720', status='queued')
 ```
 
 ---

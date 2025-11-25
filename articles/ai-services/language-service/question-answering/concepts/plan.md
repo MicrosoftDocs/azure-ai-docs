@@ -5,9 +5,8 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ---
-
 # Plan your custom question answering app
 
 To plan your custom question answering app, you need to understand how custom question answering works and interacts with other Azure services. You should also have a solid grasp of project concepts.

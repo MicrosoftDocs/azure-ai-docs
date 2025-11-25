@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Azure AI Translator documentation
-summary: Azure AI Translator is a cloud-based machine translation service you can use to translate text and documents with a simple REST API call. The service uses modern neural machine translation technology. The Custom Translator interface allows you to use your translation memory to create customized neural translation systems. The customized translation system can be used to translate text and documents with the Translator service.
+title: Azure Translator in Foundry Tools documentation
+summary: Azure Translator is a cloud-based machine translation service you can use to translate text and documents with a simple REST API call. The service uses modern neural machine translation technology. The Custom Translator interface allows you to use your translation memory to create customized neural translation systems. The customized translation system can be used to translate text and documents with the Translator.
 metadata:
-  title: Azure AI Translator documentation - quickstarts, tutorials, API reference
-  titleSuffix: Azure AI services
-  description: Azure AI Translator is a cloud-based machine translation service you can use to translate text through a simple REST API call. The service uses modern neural machine translation technology and offers statistical machine translation technology. Custom Translator is an extension of Translator, which allows you to build neural translation systems. The customized translation system can be used to translate text with Translator or Microsoft Speech Services.
+  title: Azure Translator documentation - quickstarts, tutorials, API reference
+  titleSuffix: Foundry Tools
+  description: Azure Translator is a cloud-based machine translation service you can use to translate text through a simple REST API call. The service uses modern neural machine translation technology and offers statistical machine translation technology. Custom Translator is an extension of Translator, which allows you to build neural translation systems. The customized translation system can be used to translate text with the Translator or Microsoft Speech Services.
   author: laujan
   manager: nitinme
   ms.service: azure-ai-translator
   ms.topic: landing-page
-  ms.date: 04/14/2025
+  ms.date: 12/05/2025
   ms.author: lajanuar
 
 
@@ -19,12 +19,12 @@ metadata:
 
 landingContent:
   # Card 1
-  - title: About Azure AI Translator Service
+  - title: About Azure Translator
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure AI Translator Service?
-            url: translator-overview.md
+          - text: What is Azure Translator?
+            url: overview.md
           - text: Language support
             url:  language-support.md
           - text: Pricing
@@ -33,7 +33,7 @@ landingContent:
             url: https://www.microsoft.com/translator/faq.aspx
       - linkListType: whats-new
         links:
-         - text: What's new in Azure AI Translator Service?
+         - text: What's new in Azure Translator?
            url: whats-new.md
 
   # Card 2
@@ -50,9 +50,9 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Text translation quickstart
-            url: quickstart-text-rest-api.md
+            url: text-translation/quickstart/rest-api.md
           - text: Document translation quickstart
-            url: document-translation/how-to-guides/use-rest-api-programmatically.md
+            url: document-translation/quickstarts/rest-api.md
           - text: Custom Translator quickstart
             url: custom-translator/quickstart.md
   # Card 3
@@ -94,7 +94,7 @@ landingContent:
             url: migrate-to-v3.md
           - text: Translate behind firewalls
             url:  firewalls.md
-          - text: Use the Translator Service container
+          - text: Use the Translator container
             url: containers/translator-how-to-install-container.md
   # Card 5
   - title: Custom Translator
@@ -129,7 +129,7 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Azure AI Translator containers
+          - text: Azure Translator containers
             url: containers/overview.md
           - text: Install and run containers
             url: containers/install-run.md
@@ -153,7 +153,7 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Translator Service in sovereign clouds
+          - text: Translator in sovereign clouds
             url: reference/sovereign-clouds.md
           - text: Text translation code samples on GitHub
             url: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples

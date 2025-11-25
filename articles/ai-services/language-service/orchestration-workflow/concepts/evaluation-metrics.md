@@ -1,16 +1,15 @@
 ---
 title: Orchestration workflow model evaluation metrics
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about evaluation metrics in orchestration workflow
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # Evaluation metrics for orchestration workflow models
 
 Your dataset is split into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process, to make sure that the model is tested on new data. <!--See [data splitting](../how-to/train-model.md#data-splitting) for more information-->

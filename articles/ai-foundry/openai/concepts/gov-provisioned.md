@@ -14,11 +14,13 @@ recommendations: false
 
 # Azure OpenAI Provisioned Managed Offering in Azure Government
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Microsoft launched improvements to its Provisioned Throughput offering in Azure Commercial that are now coming to Azure Government and that address customer feedback on usability and operational agility that open new payment options and deployment scenarios. 
 
 This article highlights specific considerations for Azure Government. For general considerations on Provionsed Deployments and Reservations refer to:
 * [Azure OpenAI Provisioned Concepts](./provisioned-throughput.md)
-* [Getting started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models](../how-to/provisioned-get-started.md)
+* [Getting started using provisioned deployments on the Azure OpenAI in Microsoft Foundry Models](../how-to/provisioned-get-started.md)
 * [Azure OpenAI Provisioned Onboarding Guide](../how-to/provisioned-throughput-onboarding.md)
 * [Azure Reservations](https://aka.ms/oai/docs/ptum-reservations)
 
@@ -52,7 +54,7 @@ By May 5th, 2025, existing customers' current, model-specific quota will be conv
 
 :::image type="content" source="../media/provisioned/consolidation.png" alt-text="Diagram showing quota consolidation." lightbox="../media/provisioned/consolidation.png":::
 
-The new model-independent quota shows up as a quota item named **Provisioned Managed Throughput Unit**, with model and version no longer included in the name. In the Azure AI Foundry's quota pane, expanding the quota item still shows all of the deployments that contribute to the quota item. 
+The new model-independent quota shows up as a quota item named **Provisioned Managed Throughput Unit**, with model and version no longer included in the name. In the Foundry's quota pane, expanding the quota item still shows all of the deployments that contribute to the quota item. 
 
 ### Default quota
 
@@ -86,7 +88,7 @@ In addition to the updates for the hourly payment model, new [Azure Reservations
 
 #### Supported models on commitment payment model:
 
-Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that aren't in the list below, or any newer models on provisioned throughput offering, refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-ai-foundry-provisioned-throughput)
+Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that aren't in the list below, or any newer models on provisioned throughput offering, refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-foundry-provisioned-throughput)
     
 |Supported models on Commitment plan |Versions|
 |-|-|
@@ -199,7 +201,7 @@ Azure Reservations for Azure OpenAI provisioned offers are specific to the provi
 
 ## Managing Provisioned Throughput Commitments
 
-Provisioned throughput commitments are created and managed by selecting **Management center** in the [Azure AI Foundry portal](https://ai.azure.us/)'s navigation menu > **Quota** > **Manage Commitments**. 
+Provisioned throughput commitments are created and managed by selecting **Management center** in the [Foundry portal](https://ai.azure.us/)'s navigation menu > **Quota** > **Manage Commitments**. 
 
 :::image type="content" source="../media/how-to/provisioned-onboarding/notifications.png" alt-text="Screenshot of commitment purchase UI with notifications." lightbox="../media/how-to/provisioned-onboarding/notifications.png":::
 
@@ -213,7 +215,7 @@ The following sections will take you through these tasks.
 
 ## Purchase a Provisioned Throughput Commitment
 
-With your commitment plan ready, the next step is to create the commitments. Commitments are created manually via the Azure AI Foundry and require the user creating the commitment to have either the [Contributor or Cognitive Services Contributor role](../how-to/role-based-access-control.md) at the subscription level.
+With your commitment plan ready, the next step is to create the commitments. Commitments are created manually via the Foundry and require the user creating the commitment to have either the [Contributor or Cognitive Services Contributor role](../how-to/role-based-access-control.md) at the subscription level.
 
 For each new commitment you need to create, follow these steps:
 
@@ -297,7 +299,7 @@ To end use of provisioned throughput, and prevent hourly overage charges after c
 
 **Move a commitment/deployment to a new resource in the same subscription/region**
 
-It isn't possible in Azure AI Foundry to directly *move* a deployment or a commitment to a new resource. Instead, a new deployment needs to be created on the target resource and traffic moved to it. There will need to be a commitment purchased established on the new resource to accomplish this. Because commitments are charged up-front for a 30-day period, it's necessary to time this move with the expiration of the original commitment to minimize overlap with the new commitment and “double-billing” during the overlap.
+It isn't possible in Foundry to directly *move* a deployment or a commitment to a new resource. Instead, a new deployment needs to be created on the target resource and traffic moved to it. There will need to be a commitment purchased established on the new resource to accomplish this. Because commitments are charged up-front for a 30-day period, it's necessary to time this move with the expiration of the original commitment to minimize overlap with the new commitment and “double-billing” during the overlap.
 
 There are two approaches that can be taken to implement this transition.
 
@@ -335,4 +337,4 @@ The same approaches apply in moving the commitment and deployment within the reg
 
 ### View and edit an existing resource
 
-In Azure AI Foundry, select **Management center** > **Quota** > **Provisioned** > **Manage commitments** and select a resource with an existing commitment to view/change it. 
+In Foundry, select **Management center** > **Quota** > **Provisioned** > **Manage commitments** and select a resource with an existing commitment to view/change it. 

@@ -30,7 +30,7 @@ Microsoft.Skills.Custom.WebApiSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|

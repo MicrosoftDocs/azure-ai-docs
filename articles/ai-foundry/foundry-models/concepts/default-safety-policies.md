@@ -1,7 +1,7 @@
-﻿---
-title: Default Guardrails & controls policies for Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how Azure AI Foundry Models applies default safety policies and content filtering to help ensure responsible AI usage.
+---
+title: Default Guardrails & controls policies for Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how Microsoft Foundry Models applies default safety policies and content filtering to help ensure responsible AI usage.
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
@@ -12,12 +12,14 @@ ms.topic: concept-article
 ms.date: 08/29/2025
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or AI practitioner, I want to understand the default safety policies and content filtering configurations applied to Azure AI Foundry Models so that I can ensure my AI applications comply with responsible AI practices and understand what safety measures are in place by default.
+#CustomerIntent: As a developer or AI practitioner, I want to understand the default safety policies and content filtering configurations applied to Microsoft Foundry Models so that I can ensure my AI applications comply with responsible AI practices and understand what safety measures are in place by default.
 ---
 
-# Default Guardrails and controls policies for Azure AI Foundry Models
+# Default Guardrails and controls policies for Microsoft Foundry Models
 
-Azure AI Foundry Models applies default safety to all models, excluding audio models such as Whisper in Azure OpenAI in Foundry Models. These configurations provide you with a responsible experience by default.
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+Microsoft Foundry Models applies default safety to all models, excluding audio models such as Whisper in Azure OpenAI in Foundry Models. These configurations provide you with a responsible experience by default.
 
 Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](../../model-inference/concepts/content-filter.md).
 
@@ -28,7 +30,7 @@ This article describes the default safety configuration.
 
 ## Text models
 
-Text models in Azure AI Foundry Models can take in and generate both text and code. These models apply Azure's text content filtering models to detect and prevent harmful content. This system works on both prompt and completion. 
+Text models in Foundry Models can take in and generate both text and code. These models apply Azure's text content filtering models to detect and prevent harmful content. This system works on both prompt and completion. 
 
 | Risk Category                             | Prompt/Completion      | Severity Threshold  |
 |-------------------------------------------|------------------------|---------------------|
@@ -79,4 +81,4 @@ Content filters apply only to text prompts and completions. Content moderation d
 
 ## Next step
 
-* [Configure content filters in Azure AI Foundry Models](../../model-inference/how-to/configure-content-filters.md)
+* [Configure content filters in Foundry Models](../../model-inference/how-to/configure-content-filters.md)

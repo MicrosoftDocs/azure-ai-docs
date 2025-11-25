@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 08/28/2025
+ms.date: 11/05/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -14,15 +14,15 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The Java version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the C#, Python, or REST version.
+> The Java version of this quickstart uses the 2025-05-01-preview REST API version, which uses the previous "knowledge agent" terminology and doesn't support the latest features available in the 2025-11-01-preview. To use these features, see the C#, Python, or REST version.
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that you need for model deployments) when you create an Azure AI Foundry project.
++ A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects). You get a Foundry resource (that you need for model deployments) when you create a Foundry project.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
@@ -35,7 +35,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 1. Install [Apache Maven](https://maven.apache.org/install.html). Then run `mvn -v` to confirm successful installation.
 1. Create a new folder `quickstart-agentic-retrieval` to contain the application and open Visual Studio Code in that folder with the following command:
 
-    ```shell
+    ```console
     mkdir quickstart-agentic-retrieval && cd quickstart-agentic-retrieval
     ```
 1. Create a new `pom.xml` file in the root of your project, and copy the following code into it:
@@ -115,7 +115,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 
 1. Create a new file named `.env` in the `quickstart-agentic-retrieval` folder and add the following environment variables:
 
-    ```plaintext
+    ```
     AZURE_OPENAI_ENDPOINT=https://<your-ai-foundry-resource-name>.openai.azure.com/
     AZURE_OPENAI_GPT_DEPLOYMENT=gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-large
@@ -123,7 +123,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
     AZURE_SEARCH_INDEX_NAME=agentic-retrieval-sample
     ```
 
-    Replace `<your-search-service-name>` and `<your-ai-foundry-resource-name>` with your actual Azure AI Search service name and Azure AI Foundry resource name.
+    Replace `<your-search-service-name>` and `<your-ai-foundry-resource-name>` with your actual Azure AI Search service name and Foundry resource name.
 
 1. Paste the following code into a new file named `AgenticRetrievalQuickstart.java` in the `quickstart-agentic-retrieval` folder:
 
@@ -792,7 +792,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
     
 1. Sign in to Azure with the following command:
 
-    ```shell
+    ```console
     az login
     ```
 
@@ -807,7 +807,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 
 The output of the application should look similar to the following:
 
-```plaintext
+```
 Starting Azure AI Search agentic retrieval quickstart...
 
 [WAIT] Creating search index...

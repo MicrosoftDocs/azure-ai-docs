@@ -1,30 +1,36 @@
 ---
-title: How to use Azure Functions with the Azure AI Foundry Agent Service
+title: How to use Azure Functions with Azure Storage Queues
 titleSuffix: Azure AI Foundry
-description: Learn how to use Azure functions with Azure AI Agents.
+description: Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-azure-functions-samples
 ---
 
-# How to use Azure Functions with Azure AI Agents 
+# How to use queue-based Azure Functions with Azure AI Foundry agents
 
-Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. These examples show how to use Azure Functions to process the function calls through queue messages in Azure Storage.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
+
+This article shows how to use a queue-based integrated tool approach to enable Azure AI Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
+
+AI Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation. 
+
+  
 
 ## Prerequisites
 
 * A prepared environment. See the [overview](azure-functions.md) article for details.
 
 > [!NOTE] 
-> You must have a [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup). The basic agent setup is not supported.
+> You must have a [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup). The basic agent setup isn't supported.
 
 ::: zone pivot="python"
 
@@ -33,7 +39,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ## Define a function for your agent to call
 
-Start by defining an Azure Function queue trigger function that will process function calls from the queue. For example:
+Start by defining an Azure queue trigger function that processes function calls from the queue. For example:
 
 ```python
 app = func.FunctionApp()

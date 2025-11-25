@@ -1,6 +1,6 @@
 ---
 title: Role-based access control for Speech resources
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to assign access roles for an AI Speech resource.
 author: PatrickFarley
 manager: nitinme
@@ -20,7 +20,7 @@ For example, you can assign a role to an AI Speech resource that should only be 
 Depending on who can access each Speech resource, you can effectively set a different level of access per application or user. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/overview).
 
 > [!NOTE]
-> This article describes how to assign access roles for an AI Speech resource. For information on how to assign access roles for Azure AI Foundry resources, see the [Azure AI Foundry documentation](../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+> This article describes how to assign access roles for an AI Speech resource. For information on how to assign access roles for Microsoft Foundry resources, see the [Microsoft Foundry documentation](../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 ## Roles for Speech resources
 
@@ -43,9 +43,9 @@ For finer-grained resource access control, you can [add or remove roles](/azure/
 ### Special considerations for Speech resources
 
 > [!IMPORTANT]
-> Speech service architecture differs from other Azure AI services in the way it uses [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). 
+> Speech service architecture differs from other Foundry Tools in the way it uses [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). 
 
-Speech service is extensively using data plane comparing to other Azure AI services, and this requires different set up for the roles. Because of this some general *"Cognitive Services"* roles have actual access right set that doesn't exactly match their name when used in Speech services scenario. 
+Speech service is extensively using data plane comparing to other Foundry Tools, and this requires different set up for the roles. Because of this some general *"Cognitive Services"* roles have actual access right set that doesn't exactly match their name when used in Speech services scenario. 
 
 For instance *Cognitive Services User* provides in effect the Contributor rights, while *Cognitive Services Contributor* provides no access at all. The same is true for generic *Owner* and *Contributor* roles which have no data plane rights and consequently provide no access to Speech resource. 
 
@@ -82,7 +82,7 @@ echo $accessToken
 
 The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys. The token has a [limited lifetime](/entra/identity-platform/configurable-token-lifetimes#access-tokens).
 
-Now you can use the `accessToken` to authenticate with the AI Foundry resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
+Now you can use the `accessToken` to authenticate with the Foundry resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
 
 ```bash
 uri="https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15"

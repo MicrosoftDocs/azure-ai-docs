@@ -4,7 +4,7 @@ description: Include file
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 07/29/2025
+ms.date: 11/24/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -12,16 +12,16 @@ ms.custom:
   - references_regions
   - build-aifnd
   - build-2025
-  - hub-only
 ---
 
-[!INCLUDE [uses-hub-only](uses-hub-only.md)]
+### Anthropic models
 
-### Bria models
-
-|Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
-|---------|---------|---------|---------|
-Bria-2.3-Fast   | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3   | Not available       |
+| Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|-------------------|----------------------------|------------------------------------|-------------------------------------|
+| Claude Haiku 4.5  | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
+| Claude Opus 4.1   | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
+| Claude Sonnet 4.5 | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
+| Claude Opus 4.5   | Not applicable             | East US 2 <br> Sweden Central      | Not available                       |
 
 ### Cohere models
 

@@ -4,86 +4,81 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 10/10/2025
+ms.date: 11/14/2025
 ---
 
-If you no longer need the knowledge source, or if you need to rebuild it on the search service, use this request to delete the current object.
+Before you can delete a knowledge source, you must delete any knowledge base that references it or update the knowledge base definition to remove the reference. For knowledge sources that generate an index and indexer pipeline, all *generated objects* are also deleted. However, if you used an existing index to create a knowledge source, your index isn't deleted.
 
-Before you can delete a knowledge source, you must delete any knowledge agent that references it, or remote the references in an update action. The associated index and any indexer pipeline objects created from the knowledge source are standalone objects and don't need to be deleted or updated in tandem with the knowledge source.
+If you try to delete a knowledge source that's in use, the action fails and returns a list of affected knowledge bases.
 
-If you try to delete a knowledge source that's in use, the action fails and a list of affected knowledge agents is returned.
+To delete a knowledge source:
 
-1. Start by getting a list of all knowledge agents. This request returns all knowledge agents on your search service.
+1. Get a list of all knowledge bases on your search service.
 
     ```http
-    ### Get the knowledge agent
-    GET {{search-endpoint}}/agents?api-version=2025-08-01-preview&$select=name
+    ### Get knowledge bases
+    GET {{search-endpoint}}/knowledgebases?api-version=2025-11-01-preview&$select=name
     api-key: {{api-key}}
-    Content-Type: application/json
     ```
 
    An example response might look like the following:
 
    ```json
     {
-        "@odata.context": "https://my-demo-search-service.search.windows.net/$metadata#agents(name)",
+        "@odata.context": "https://my-search-service.search.windows.net/$metadata#knowledgebases(name)",
         "value": [
         {
-            "name": "earth-blob-ka"
+            "name": "my-kb"
         },
         {
-            "name": "hotels-sample-ka"
+            "name": "my-kb-2"
         }
         ]
     }
    ```
 
-1. Get the individual knowledge agent definition to check for knowledge source references.
+1. Get an individual knowledge base definition to check for knowledge source references.
 
     ```http
-    GET {{search-endpoint}}/agents/hotels-sample-ka?api-version=2025-08-01-preview
+    ### Get a knowledge base definition
+    GET {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
     api-key: {{api-key}}
-    Content-Type: application/json
     ```
 
    An example response might look like the following:
 
    ```json
     {
-      "name": "hotels-sample-ka",
+      "name": "my-kb",
       "description": null,
       "retrievalInstructions": null,
+      "answerInstructions": null,
+      "outputMode": null,
       "knowledgeSources": [
         {
-          "name": "hotels-sample-ks",
-          "alwaysQuerySource": false,
-          "includeReferences": true,
-          "includeReferenceSourceData": false,
-          "maxSubQueries": null,
-          "rerankerThreshold": null
+          "name": "my-blob-ks",
         }
       ],
-      "models": [ trimmed for brevity ],
-      "outputConfiguration": { trimmed for brevity },
-      "requestLimits": { trimmed for brevity},
-      "encryptionKey": null
+      "models": [],
+      "encryptionKey": null,
+      "retrievalReasoningEffort": {
+        "kind": "low"
+      }
     }
    ```
 
-1. Either [update the knowledge agent](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) by removing the knowledge source if you have multiple sources, or delete the knowledge agent. This example shows deletion.
+1. Either delete the knowledge base or [update the knowledge base](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) by removing the knowledge source if you have multiple sources. This example shows deletion.
 
     ```http
-    ### Delete knowledge agent
-    DELETE {{search-endpoint}}/agents/hotels-sample-ka?api-version=2025-08-01-preview
+    ### Delete a knowledge base
+    DELETE {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
     api-key: {{api-key}}
-    Content-Type: application/json
     ```
 
 1. Delete the knowledge source.
 
     ```http
-    ### Delete a knowledge source definition
-    GET {{search-endpoint}}/knowledgeSources/hotels-sample-ks?api-version=2025-08-01-preview
+    ### Delete a knowledge source
+    DELETE {{search-endpoint}}/knowledgesources/{{knowledge-source-name}}?api-version=2025-11-01-preview
     api-key: {{api-key}}
-    Content-Type: application/json
     ```

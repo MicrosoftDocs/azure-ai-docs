@@ -1,6 +1,6 @@
 ---
 title: How to use compressed input audio - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use compressed input audio the Speech SDK and CLI. 
 author: PatrickFarley
 ms.author: pafarley

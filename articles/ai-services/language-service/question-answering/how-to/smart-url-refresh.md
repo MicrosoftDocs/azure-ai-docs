@@ -1,14 +1,13 @@
 ---
 title: Smart URL refresh - custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the custom question answering smart URL refresh feature to keep your project up to date.
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/18/2025
 ---
-
 # Use smart URL refresh with a project
 
 Custom question answering gives you the ability to refresh your source contents by getting the latest content from a source URL and updating the corresponding project with one click. The service will ingest content from the URL and either create, merge, or delete question-and-answer pairs in the project. 
@@ -19,7 +18,7 @@ This functionality is provided to support scenarios where the content in the sou
 > This feature is only applicable to URL sources, and they must be refreshed individually, not in bulk. 
 
 > [!IMPORTANT]
-> This feature is only available in the `2021-10-01` version of the Language API.
+> This feature is only available in the `2021-10-01` version of Azure Language API.
 
 ## How it works
 

@@ -39,7 +39,11 @@ The sample in this article can be found in the [Foundry Local C# SDK Samples Git
 The following example demonstrates how to use the native chat completions API in Foundry Local. The code includes the following steps:
 
 1. Initializes a `FoundryLocalManager` instance with a `Configuration`.
-1. Gets a `Model` object from the model catalog using an alias. Note: Foundry Local selects the best variant for the model automatically based on the available hardware of the host machine.
+1. Gets a `Model` object from the model catalog using an alias.
+   
+   > [!NOTE]
+   > Foundry Local selects the best variant for the model automatically based on the available hardware of the host machine.
+
 1. Downloads and loads the model variant.
 1. Uses the native chat completions API to generate a response.
 1. Unloads the model.

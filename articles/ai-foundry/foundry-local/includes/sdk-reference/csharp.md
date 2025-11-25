@@ -19,7 +19,7 @@ To improve your ability to ship applications using on-device AI, there are subst
 
 The following diagram shows how the previous architecture - for versions earlier than `0.8.0` - relied heavily on using a REST webserver to manage models and inference like chat completions:
 
-![previous architecture](../../media/architecture/current-sdk-architecture.png)
+:::image type="content" source="../../media/architecture/current-sdk-architecture.png" alt-text="Diagram of the previous architecture for Foundry Local." lightbox="../../media/architecture/current-sdk-architecture.png":::
 
 The SDK would use a Remote Procedural Call (RPC) to find Foundry Local CLI executable on the machine, start the webserver, and then communicate with it over HTTP. This architecture had several limitations, including:
 
@@ -29,7 +29,7 @@ The SDK would use a Remote Procedural Call (RPC) to find Foundry Local CLI execu
 
 To address these issues, the redesigned architecture in version `0.8.0` and later uses a more streamlined approach. The new architecture is as follows:
 
-![new architecture](../../media/architecture/new-sdk-architecture.png)
+:::image type="content" source="../../media/architecture/new-sdk-architecture.png" alt-text="Diagram of the new architecture for Foundry Local." lightbox="../../media/architecture/new-sdk-architecture.png":::
 
 In this new architecture:
 

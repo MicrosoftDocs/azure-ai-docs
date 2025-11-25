@@ -1,6 +1,6 @@
 ---
 title: "How to synthesize speech from text - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to convert text to speech, including object construction and design patterns, supported audio output formats, and custom configuration options.
 author: PatrickFarley
 ms.author: pafarley

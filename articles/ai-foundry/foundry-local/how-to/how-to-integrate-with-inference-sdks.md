@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local integrates with others SDKs such as OpenAI, Azure OpenAI, and LangChain via a local REST server. This article shows you how to connect your app to local AI models using popular SDKs.
+Foundry Local integrates with other SDKs such as OpenAI, Azure OpenAI, and LangChain via a local REST server. This article shows you how to connect your app to local AI models using popular SDKs.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]

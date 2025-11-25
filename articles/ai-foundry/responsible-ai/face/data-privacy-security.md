@@ -1,6 +1,6 @@
 ---
 title: Data and privacy for Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Face
 author: PatrickFarley
 ms.author: pafarley
@@ -21,7 +21,7 @@ This article provides some high level details regarding how Face processes data 
 
 >[!NOTE]
 >
->For our customer’s convenience, please consider utilizing the following disclosure regarding Microsoft's role when you use of Azure AI services Face with your end users:
+>For our customer’s convenience, please consider utilizing the following disclosure regarding Microsoft's role when you use of Foundry Tools Face with your end users:
 [Company] uses Microsoft face recognition technology to process [Company’s] users’ biometric data as its service provider (“Processor”).  Microsoft may process and store face templates for the purposes of providing face verification and/or identification services on [Company]’s behalf, and only as instructed by [Company].  Microsoft will store this data as long as [Company] requests, which shall be no longer than a limited grace period after the date when (i) [Company] ceases to have a relationship with Microsoft or (ii) when [Company] requests deletion.
 
 
@@ -62,13 +62,13 @@ The diagram below illustrates how your data is processed for Face Detection with
 
 The security of customer data is a shared responsibility.
 
-The following are a few best practices for further securing Azure AI services Face: 
+The following are a few best practices for further securing Foundry Tools Face: 
 * **Customer managed encryption keys** [are available.](/azure/ai-services/computer-vision/identity-encrypt-data-at-rest)
-* [**Azure AI services Face supports VNET**](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal) to restrict access to certain IP addresses, IP ranges, or a list of subnets.
-* **Azure Active Directory (Azure AD) authentication** allows you to authenticate to Azure AI services using Azure AD. This capability provides greater flexibility for managing access to Azure AI services and makes it easier to use existing policies for credential rotation and to enforce custom password standards.
+* [**Foundry Tools Face supports VNET**](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal) to restrict access to certain IP addresses, IP ranges, or a list of subnets.
+* **Azure Active Directory (Azure AD) authentication** allows you to authenticate to Foundry Tools using Azure AD. This capability provides greater flexibility for managing access to Foundry Tools and makes it easier to use existing policies for credential rotation and to enforce custom password standards.
    - You can also further protect access to sensitive facial feature templates by using [Azure role-based access control (Azure RBAC)](/azure/ai-services/authentication?tabs=powershell#authenticate-with-azure-active-directory) to use the *Cognitive Services Face Recognizer* role that restricts access to detect, verify, identify, group, and find similar operations on Face. This role does not allow create or delete enroll operations, which makes it well suited for endpoints that only need inferencing capabilities, following “least privilege” best practices.
 
-For additional security best practices and information, visit [Azure AI services security baseline](/azure/ai-services/security-features?tabs=command-line%2Ccsharp)
+For additional security best practices and information, visit [Foundry Tools security baseline](/azure/ai-services/security-features?tabs=command-line%2Ccsharp)
 
 Should you have any additional questions or concerns, please let us know by opening a support ticket in the Azure portal. 
 

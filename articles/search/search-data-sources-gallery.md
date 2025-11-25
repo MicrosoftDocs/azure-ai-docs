@@ -152,7 +152,7 @@ Pull in content [using logic app workflows](search-how-to-index-logic-apps.md) a
 
 By [Logic Apps](/connectors/sharepointonline)
 
-SharePoint helps organizations share and collaborate with colleagues, partners, and customers. You can connect to SharePoint Online or to an on-premises SharePoint 2016 or 2019 farm using the On-Premises Data Gateway to manage documents and list items.
+SharePoint helps organizations share and collaborate with colleagues, partners, and customers. You can connect to SharePoint in Microsoft 365 or to an on-premises SharePoint 2016 or 2019 farm using the On-Premises Data Gateway to manage documents and list items.
 
 [More details](search-how-to-index-logic-apps.md#supported-connectors)
 

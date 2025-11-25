@@ -1,6 +1,6 @@
 ---
 title: Generate a REST API client library - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Swagger documentation can be used to auto-generate SDKs for many programming languages. 
 author: PatrickFarley
 ms.author: pafarley

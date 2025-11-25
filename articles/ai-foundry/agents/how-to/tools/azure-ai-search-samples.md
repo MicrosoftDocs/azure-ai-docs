@@ -1,13 +1,13 @@
 ---
-title: 'How to use Azure AI Search in Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
+title: 'How to use Azure AI Search in Foundry Agent Service'
+titleSuffix: Microsoft Foundry
 description: Learn how to ground Azure AI Agents with content indexed in Azure AI Search.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/11/2025
+ms.date: 11/20/2025
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
@@ -16,6 +16,8 @@ zone_pivot_groups: selection-azure-ai-search
 ---
 
 # How to use an existing index with the Azure AI Search tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 
@@ -27,17 +29,17 @@ This article explains how to use an existing search index with the [Azure AI Sea
 
 ## Add the Azure AI Search tool to an agent
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
 
 1. From the left pane, select **Agents**.
 
 1. Select your agent from the list, and then select **Knowledge** > **Add**.
 
-    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
 1. Select **Azure AI Search**. 
 
-    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
 1. Follow the prompts to add the Azure AI Search tool.
 
@@ -47,7 +49,7 @@ This article explains how to use an existing search index with the [Azure AI Sea
 
 ## Create an Azure AI Client
 
-First, create an Azure AI Client using the endpoint of your Azure AI Foundry project.
+First, create an Azure AI Client using the endpoint of your Foundry project.
 
 ```python
 import os
@@ -90,7 +92,7 @@ ai_search = AzureAISearchTool(
 
 ## Create an agent with the Azure AI Search tool enabled
 
-Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Azure AI Foundry portal. You can also change the agent's name and instructions to suit your needs.
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
 
 ```python
 # Define the model deployment name
@@ -156,7 +158,7 @@ print("Deleted agent")
 
 ## Create a project client
 
-Create a client object that contains the endpoint of your Azure AI Foundry project, which enables connections to your project and other resources.
+Create a client object that contains the endpoint of your Foundry project, which enables connections to your project and other resources.
 
 ```csharp
 using Azure;
@@ -199,7 +201,7 @@ ToolResources toolResource = new() { AzureAISearch = searchResource };
 
 ## Create an agent with the Azure AI Search tool enabled
 
-Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Azure AI Foundry portal. You can also change the agent's name and instructions to suit your needs.
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
 
 ```csharp
 // Create an agent with Tools and Tool Resources
@@ -343,7 +345,7 @@ agentClient.Administration.DeleteAgent(agent.Id);
 
 ## Create an Azure AI Client
 
-First, create an Azure AI Client using the endpoint of your Azure AI Foundry project.
+First, create an Azure AI Client using the endpoint of your Foundry project.
 
 ```javascript
 const projectEndpoint = process.env["PROJECT_ENDPOINT"];
@@ -374,7 +376,7 @@ const azureAISearchTool = ToolUtility.createAzureAISearchTool(connectionId, "ai-
 
 ## Create an agent with the Azure AI Search tool enabled
 
-Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Azure AI Foundry portal. You can also change the agent's name and instructions to suit your needs.
+Change the model to the one deployed in your project. You can find the model name on the **Models** tab of the Foundry portal. You can also change the agent's name and instructions to suit your needs.
 
 ```javascript
 
@@ -470,13 +472,13 @@ for await (const m of messagesIterator) {
 
 To get the connection ID:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
+1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
 
 1. On the **Overview** page, select **Open in management center**.
 
 1. From the left pane, select **Connected resources**, and then select your Azure AI Search service.
 
-    :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
+    :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
 
 1. Copy everything that comes after `wsid=` in the browser URL.
 
@@ -502,7 +504,7 @@ curl --request POST \
             "azure_ai_search": {
               "indexes": [
                   {
-                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
+                      "index_connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.CognitiveServices/accounts/<your-foundry-name>/projects/<your-project-name>/connections/<your-azure-ai-search-connection-name>",
                       "index_name": "<your-index-name>",
                       "query_type": "semantic"
                   }

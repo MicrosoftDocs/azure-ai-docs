@@ -1,7 +1,8 @@
 ---
-title: Develop Applications with Semantic Kernel and Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Learn how to Develop applications with Semantic Kernel and Azure AI Foundry with models deployed from the Azure AI model catalog.
+title: Develop Applications with Semantic Kernel and Microsoft Foundry
+titleSuffix: Microsoft Foundry
+ai-usage: ai-assisted
+description: Learn how to Develop applications with Semantic Kernel and Microsoft Foundry with models deployed from the Foundry model catalog.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
@@ -10,14 +11,18 @@ ms.topic: how-to
 ms.service: azure-ai-foundry
 ---
 
-# Develop applications with Semantic Kernel and Azure AI Foundry
+# Develop applications with Semantic Kernel and Microsoft Foundry
 
-In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-- An Azure AI project as explained at [Create a project for Azure AI Foundry](../create-projects.md).
+
+- A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
+
 - A model that supports the [Azure AI Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md?tabs=python) deployed. This article uses a `Mistral-Large` deployment. You can use any model. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
 
   - You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
@@ -37,11 +42,11 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ## Configure the environment
 
-To use language models deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
+To use language models deployed in Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to [!INCLUDE [classic-link](../../includes/classic-link.md)].
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.

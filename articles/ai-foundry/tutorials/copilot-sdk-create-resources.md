@@ -1,7 +1,7 @@
 ---
 title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
-titleSuffix: Azure AI Foundry
-description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
+titleSuffix: Microsoft Foundry
+description:  Build a custom chat app using the Microsoft Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -13,12 +13,12 @@ ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
 
-#customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK.
+#customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK.
 ---
 
-# Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
+# Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
 
@@ -47,9 +47,9 @@ This tutorial is part one of a three-part tutorial.
 
 ## Deploy models
 
-You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Foundry project, using this set of steps for each model.
+You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Foundry project, using this set of steps for each model.
 
-These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+These steps deploy a model to a real-time endpoint from the Foundry portal [model catalog](../how-to/model-catalog-overview.md):
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
@@ -64,7 +64,7 @@ These steps deploy a model to a real-time endpoint from the Azure AI Foundry por
 
 After you deploy the **gpt-4o-mini**, repeat the steps to deploy the **text-embedding-ada-002** model.
 
-## <a name="create-search"></a> Create an Azure AI Search service
+## Create an Azure AI Search service
 
 The goal with this application is to ground the model responses in your custom data. The search index is used to retrieve relevant documents based on the user's question.
 
@@ -73,12 +73,12 @@ You need an Azure AI Search service and connection in order to create a search i
 > [!NOTE]
 > Creating an [Azure AI Search service](/azure/search/) and subsequent search indexes has associated costs. You can see details about pricing and pricing tiers for the Azure AI Search service on the creation page, to confirm cost before creating the resource. For this tutorial, we recommend using a pricing tier of **Basic** or above.
 
-If you already have an Azure AI Search service, you can skip to the [next section](#connect).
+If you already have an Azure AI Search service, you can skip to the [next section](#connect-the-azure-ai-search-to-your-project).
 
 Otherwise, you can create an Azure AI Search service using the Azure portal. 
 
 > [!TIP]
-> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Azure AI Foundry portal or in your local development environment.
+> This step is the only time you use the Azure portal in this tutorial series.  The rest of your work is done in Foundry portal or in your local development environment.
 
 1. [Create an Azure AI Search service](https://portal.azure.com/#create/Microsoft.Search) in the Azure portal.
 1. Select your resource group and instance details. You can see details about pricing and pricing tiers on this page.
@@ -86,13 +86,13 @@ Otherwise, you can create an Azure AI Search service using the Azure portal.
 1. Confirm the details of your Azure AI Search service, including estimated cost.
 1. Select **Create** to create the Azure AI Search service.
 
-### <a name="connect"></a>Connect the Azure AI Search to your project
+### Connect the Azure AI Search to your project
 
-If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#installs).
+If you already have an Azure AI Search connection in your project, you can skip to [Install the Azure CLI and sign in](#install-the-azure-cli-and-sign-in).
 
-In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
+In the Foundry portal, check for an Azure AI Search connected resource.
 
-1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), go to your project and select **Management center** from the left pane.
+1. In [Foundry](https://ai.azure.com/?cid=learnDocs), go to your project and select **Management center** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
 1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
@@ -100,7 +100,7 @@ In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 1. Use **API key** for **Authentication**.
 
     > [!IMPORTANT]
-    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 1. Select **Add connection**.  
 
@@ -138,7 +138,7 @@ Create a folder for your work. Create a file called **config.py** in this folder
 
 [!INCLUDE [create-env-file](../includes/create-env-file-tutorial.md)]
 
-## <a name="installs"></a> Install the Azure CLI and sign in 
+## Install the Azure CLI and sign in 
 
 [!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
 

@@ -13,7 +13,9 @@ manager: nitinme
 
 # Content Credentials
 
-With the improved quality of content from generative AI models, there is an increased need for more transparency about the origin of AI-generated content. All AI-generated images from Azure OpenAI in Azure AI Foundry Models include Content Credentials, a tamper-evident way to disclose the origin and history of content. Content Credentials are based on an open technical specification from the [Coalition for Content Provenance and Authenticity (C2PA)](https://www.c2pa.org), a Joint Development Foundation project. 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+With the improved quality of content from generative AI models, there is an increased need for more transparency about the origin of AI-generated content. All AI-generated images from Azure OpenAI in Microsoft Foundry Models include Content Credentials, a tamper-evident way to disclose the origin and history of content. Content Credentials are based on an open technical specification from the [Coalition for Content Provenance and Authenticity (C2PA)](https://www.c2pa.org), a Joint Development Foundation project. 
 
 ## What are Content credentials? 
 

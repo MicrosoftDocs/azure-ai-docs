@@ -3,7 +3,7 @@ items:
   href: index.yml
 - name: Overview
   items:
-  - name: What's Azure AI Search?
+  - name: What is Azure AI Search?
     href: search-what-is-azure-search.md
   - name: New in AI Search
     href: whats-new.md
@@ -78,6 +78,8 @@ items:
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Azure portal
     items:
+    - name: Create an agentic search pipeline
+      href: get-started-portal-agentic-retrieval.md
     - name: Create a search index
       href: search-get-started-portal.md
     - name: Create a vector index
@@ -236,7 +238,7 @@ items:
         href: index-sql-relational-data.md
       - name: Analyzers
         items:
-        - name: Analyzers overview
+        - name: What is an analyzer?
           href: search-analyzers.md
         - name: Add a language analyzer
           href: index-add-language-analyzers.md
@@ -254,7 +256,7 @@ items:
         href: vector-search-how-to-generate-embeddings.md
       - name: Use integrated vectorization
         href: search-how-to-integrated-vectorization.md
-      - name: Use embedding models from Azure AI Foundry
+      - name: Use embedding models from Microsoft Foundry
         href: vector-search-integrated-vectorization-ai-studio.md
       - name: Reduce vector size
         items:
@@ -344,23 +346,23 @@ items:
           href: search-how-to-index-sql-managed-instance.md
         - name: Azure SQL Server VMs
           href: search-how-to-index-sql-server.md
-      - name: Microsoft OneLake
+      - name: OneLake
         href: search-how-to-index-onelake-files.md
-      - name: SharePoint Online
+      - name: SharePoint in Microsoft 365
         href: search-how-to-index-sharepoint-online.md
     - name: Skillsets (indexers)
       items:
-      - name: Skillsets overview
+      - name: What is a skillset?
         href: cognitive-search-working-with-skillsets.md
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
-      - name: Attach an Azure AI resource
+      - name: Attach a billable resource
         href: cognitive-search-attach-cognitive-services.md
       - name: Define an index projection
         href: search-how-to-define-index-projections.md
-      - name: Debug sessions overview
+      - name: What is a debug session?
         href: cognitive-search-debug-session.md
       - name: Debug a skillset
         href: cognitive-search-how-to-debug-skillset.md
@@ -400,17 +402,29 @@ items:
         href: agentic-retrieval-how-to-create-index.md
       - name: Create a knowledge source
         items:
-        - name: Knowledge sources
+        - name: What is a knowledge source?
           href: agentic-knowledge-source-overview.md
-        - name: Azure blobs
+        - name: Azure blob
           href: agentic-knowledge-source-how-to-blob.md
-        - name: Search indexes
+        - name: OneLake
+          href: agentic-knowledge-source-how-to-onelake.md
+        - name: Indexed SharePoint
+          href: agentic-knowledge-source-how-to-sharepoint-indexed.md
+        - name: Remote SharePoint
+          href: agentic-knowledge-source-how-to-sharepoint-remote.md
+        - name: Search index
           href: agentic-knowledge-source-how-to-search-index.md
-      - name: Create a knowledge agent
+        - name: Web
+          href: agentic-knowledge-source-how-to-web.md
+        - name: Manage web access
+          href: agentic-knowledge-source-how-to-web-manage.md
+      - name: Create a knowledge base
         href: agentic-retrieval-how-to-create-knowledge-base.md
-      - name: Configure answer synthesis for an agent
+      - name: Enable answer synthesis
         href: agentic-retrieval-how-to-answer-synthesis.md
-      - name: Retrieve data using an agent
+      - name: Set retrieval reasoning effort
+        href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
+      - name: Retrieve data
         href: agentic-retrieval-how-to-retrieve.md
       - name: Migrate agentic retrieval code
         href: agentic-retrieval-how-to-migrate.md
@@ -471,7 +485,7 @@ items:
     items:
     - name: BM25 ranking
       items:
-      - name: BM25 ranking overview
+      - name: What is BM25 ranking?
         href: index-similarity-and-scoring.md
       - name: Configure BM25 ranking
         href: index-ranking-similarity.md
@@ -483,7 +497,7 @@ items:
       href: index-add-scoring-profiles.md
     - name: Semantic ranking
       items:
-      - name: Semantic ranking overview
+      - name: What is semantic ranking?
         href: semantic-search-overview.md
       - name: Enable or disable semantic ranker
         href: semantic-how-to-enable-disable.md
@@ -547,7 +561,7 @@ items:
         href: search-indexer-how-to-access-private-sql.md
     - name: Document-level access
       items:
-      - name: Document-level security overview
+      - name: What is document-level security?
         href: search-document-level-access-overview.md
       - name: Use security filters
         href: search-security-trimming-for-azure-search.md
@@ -559,8 +573,16 @@ items:
           href: search-indexer-access-control-lists-and-role-based-access.md
         - name: Pull Blob RBAC scopes into an index
           href: search-blob-indexer-role-based-access.md
+        - name: Pull SharePoint ACL permissions into an index
+          href: search-indexer-sharepoint-access-control-lists.md
         - name: Query with permission filters
           href: search-query-access-control-rbac-enforcement.md
+      - name: Preserve sensitivity labels
+        items:
+        - name: Pull Purview sensitivity labels into an index
+          href: search-indexer-sensitivity-labels.md
+        - name: Query honoring sensitivity labels
+          href: search-query-sensitivity-labels.md
     - name: Data encryption
       items:
       - name: Customer-managed keys (CMK)
@@ -603,7 +625,7 @@ items:
       href: search-performance-tips.md
   - name: Knowledge store
     items:
-    - name: Knowledge store projections overview
+    - name: What is a knowledge store projection?
       href: knowledge-store-projection-overview.md
     - name: Create using REST
       href: knowledge-store-create-rest.md
@@ -735,31 +757,49 @@ items:
       href: cognitive-search-predefined-skills.md
     - name: Annotation reference language
       href: cognitive-search-skill-annotation-language.md
-    - name: Azure AI resource skills
+    - name: Built-in skills
       items:
-      - name: Document Layout skill
-        href: cognitive-search-skill-document-intelligence-layout.md
-      - name: Entity Linking (v3)
-        href: cognitive-search-skill-entity-linking-v3.md
-      - name: Entity Recognition (v3)
-        href: cognitive-search-skill-entity-recognition-v3.md
-      - name: Image Analysis
-        href: cognitive-search-skill-image-analysis.md
-      - name: Key Phrase Extraction
-        href: cognitive-search-skill-keyphrases.md
-      - name: Language Detection
-        href: cognitive-search-skill-language-detection.md
-      - name: OCR
-        href: cognitive-search-skill-ocr.md
-      - name: PII Detection
-        href: cognitive-search-skill-pii-detection.md
-      - name: Sentiment (v3)
-        href: cognitive-search-skill-sentiment-v3.md
-      - name: Text Translation
-        href: cognitive-search-skill-text-translation.md
-      - name: AI Vision multimodal embeddings
-        href: cognitive-search-skill-vision-vectorize.md
-    - name: Azure AI Search utility skills (nonbillable)
+        - name: Microsoft Foundry resource
+          items:
+          - name: Azure Vision multimodal embeddings
+            href: cognitive-search-skill-vision-vectorize.md
+          - name: Document Layout
+            href: cognitive-search-skill-document-intelligence-layout.md
+          - name: Entity Linking (v3)
+            href: cognitive-search-skill-entity-linking-v3.md
+          - name: Entity Recognition (v3)
+            href: cognitive-search-skill-entity-recognition-v3.md
+          - name: Image Analysis
+            href: cognitive-search-skill-image-analysis.md
+          - name: Key Phrase Extraction
+            href: cognitive-search-skill-keyphrases.md
+          - name: Language Detection
+            href: cognitive-search-skill-language-detection.md
+          - name: OCR
+            href: cognitive-search-skill-ocr.md
+          - name: PII Detection
+            href: cognitive-search-skill-pii-detection.md
+          - name: Sentiment (v3)
+            href: cognitive-search-skill-sentiment-v3.md
+          - name: Text Translation
+            href: cognitive-search-skill-text-translation.md
+        - name: Azure-hosted model or resource
+          items:
+          - name: Azure Content Understanding
+            href: cognitive-search-skill-content-understanding.md
+          - name: Azure OpenAI Embedding
+            href: cognitive-search-skill-azure-openai-embedding.md
+          - name: GenAI Prompt
+            href: cognitive-search-skill-genai-prompt.md
+    - name: Custom skills
+      items:
+      - name: Azure Machine Learning (AML)
+        href: cognitive-search-aml-skill.md
+      - name: Custom Entity Lookup
+        href: cognitive-search-skill-custom-entity-lookup.md
+      - name: Custom Web API
+        href: cognitive-search-custom-skill-web-api.md 
+    - name: Utility skills (nonbillable)
       items:
       - name: Conditional
         href: cognitive-search-skill-conditional.md
@@ -771,20 +811,6 @@ items:
         href: cognitive-search-skill-textmerger.md
       - name: Text Split
         href: cognitive-search-skill-textsplit.md
-    - name: Azure OpenAI skills
-      items:
-      - name: Azure OpenAI Embedding
-        href: cognitive-search-skill-azure-openai-embedding.md
-    - name: Custom skills
-      items:
-      - name: Azure Machine Learning (AML)
-        href: cognitive-search-aml-skill.md
-      - name: GenAI Prompt
-        href: cognitive-search-skill-genai-prompt.md
-      - name: Custom Entity Lookup
-        href: cognitive-search-skill-custom-entity-lookup.md
-      - name: Custom Web API
-        href: cognitive-search-custom-skill-web-api.md
     - name: Deprecated skills
       href: cognitive-search-skill-deprecated.md
       items:
@@ -796,12 +822,12 @@ items:
         href: cognitive-search-skill-sentiment.md
   - name: Vectorizers reference
     items:
+    - name: Microsoft Foundry model catalog
+      href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
     - name: Azure OpenAI
       href: vector-search-vectorizer-azure-open-ai.md
-    - name: Azure AI Vision
+    - name: Azure Vision
       href: vector-search-vectorizer-ai-services-vision.md
-    - name: Azure AI Foundry model catalog
-      href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
     - name: Custom Web API
       href: vector-search-vectorizer-custom-web-api.md
 - name: Resources

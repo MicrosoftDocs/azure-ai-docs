@@ -53,7 +53,7 @@ To translate speech from a file:
         const speechConfig = SpeechConfig.fromEndpoint(new URL(ENDPOINT), process.env.SPEECH_KEY);
         const audioConfig = AudioConfig.fromAudioFileOutput(audioFile);
         // The language of the voice that speaks.
-        speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural";
+        speechConfig.speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural";
         // Create the speech synthesizer.
         const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
         const rl = createInterface({
@@ -84,9 +84,9 @@ To translate speech from a file:
 
     In *synthesis.js*, optionally you can rename *YourAudioFile.wav* to another output file name.
 
-    To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
+    To change the speech synthesis language, replace `en-US-Ava:DragonHDLatestNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
 
-    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
+    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-Ximena:DragonHDLatestNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 
 1. Run your console application to start speech synthesis to a file:
 
@@ -114,9 +114,9 @@ This quickstart uses the `SpeakTextAsync` operation to synthesize a short block 
 - See [how to synthesize speech](~/articles/ai-services/speech-service/how-to-speech-synthesis.md) and [Speech Synthesis Markup Language (SSML) overview](~/articles/ai-services/speech-service/speech-synthesis-markup.md) for information about speech synthesis from a file and finer control over voice styles, prosody, and other settings.
 - See [batch synthesis API for text to speech](~/articles/ai-services/speech-service/batch-synthesis.md) for information about synthesizing long-form text to speech.
 
-### OpenAI text to speech voices in Azure AI Speech
+### OpenAI text to speech voices in Azure Speech in Foundry Tools
 
-OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure AI Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-AvaMultilingualNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
+OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-Ava:DragonHDLatestNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
 
 ## Clean up resources
 

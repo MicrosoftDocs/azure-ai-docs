@@ -1,7 +1,7 @@
 ---
-title: How to create and manage compute instances in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to create and manage compute instances in Azure AI Foundry portal.
+title: How to create and manage compute instances in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to create and manage compute instances in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -15,17 +15,19 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# How to create and manage compute instances in Azure AI Foundry portal
+# How to create and manage compute instances in Microsoft Foundry portal
+
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to create a compute instance in Azure AI Foundry portal. You can create a compute instance in the Azure AI Foundry portal.
+In this article, you learn how to create a compute instance in Microsoft Foundry portal. You can create a compute instance in the Foundry portal.
 
 You need a compute instance to:
 
-- Use prompt flow in Azure AI Foundry portal. 
+- Use prompt flow in Foundry portal. 
 - Create an index
-- Open Visual Studio Code (Web or Desktop) in Azure AI Foundry portal.
+- Open Visual Studio Code (Web or Desktop) in Foundry portal.
 
 You can use the same compute instance for multiple scenarios and workflows. A compute instance can't be shared. It can only be used by a single assigned user. By default, it is assigned to the creator. You can change the assignment to a different user in the security step during creation.
 
@@ -44,9 +46,10 @@ Compute instances can run jobs securely in a virtual network environment, withou
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-To create a compute instance in Azure AI Foundry portal:
+To create a compute instance in Foundry portal:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. If you don't have a project already, first create one.
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. Select your project. If you don't have a project already, first create one.
 1. Select **Management center**
 1. Under the **Hub** heading, select **Computes**. 
 1. Select **New** to create a new compute instance.
@@ -108,7 +111,7 @@ To configure idle shutdown for an existing compute instance follow these steps:
 
 ## Start or stop a compute instance
 
-You can start or stop a compute instance from the Azure AI Foundry portal.
+You can start or stop a compute instance from the Foundry portal.
 
 1. From the left menu, select **Management center**.
 1. Under the **Hub** heading, select **Computes**.

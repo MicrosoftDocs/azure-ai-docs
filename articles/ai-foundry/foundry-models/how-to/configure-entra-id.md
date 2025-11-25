@@ -1,7 +1,7 @@
 ---
 title: Configure key-less authentication with Microsoft Entra ID
-titleSuffix: Azure AI Foundry
-description: Learn how to configure key-less authorization to use Azure AI Foundry Models with Microsoft Entra ID and enhance security.
+titleSuffix: Microsoft Foundry
+description: Learn how to configure key-less authorization to use Microsoft Foundry Models with Microsoft Entra ID and enhance security.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -15,10 +15,12 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer, I want to configure keyless authentication with Microsoft Entra ID for Azure AI Foundry Models so that I can secure my AI model deployments without relying on API keys and leverage role-based access control for better security and compliance.
+#CustomerIntent: As a developer, I want to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models so that I can secure my AI model deployments without relying on API keys and leverage role-based access control for better security and compliance.
 ---
 
 # Configure key-less authentication with Microsoft Entra ID
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-entra-id/portal.md)]
@@ -34,4 +36,4 @@ ai-usage: ai-assisted
 
 ## Next step
 
-* [Develop applications using Azure AI Foundry Models](../../model-inference/supported-languages.md)
+* [Develop applications using Microsoft Foundry Models](../../model-inference/supported-languages.md)

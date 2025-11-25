@@ -70,7 +70,7 @@ Produce the following sections (in this exact order) in the response:
 5. Next questions (only if blocked; otherwise omit).
 6. Make sure each actionable item is numbered for reference in chat. 
 
-Each item must cite a source (template file, style guide) or include `[TO VERIFY]` if uncertain. Keep recommendations actionable and minimal; avoid broad rewrites.
+Each item should justify its recommendation with rationale. **In your chat explanations**, you SHOULD cite instruction files, style guides, or patterns (e.g., "per dev-focused.instructions.md", "Microsoft Writing Style Guide"). **In any suggested article text**, provide clean documentation without ANY citations or meta-commentary. Include `[TO VERIFY]` if uncertain. Keep recommendations actionable and minimal; avoid broad rewrites.
 
 ## Flags reference
 
@@ -88,6 +88,24 @@ Provide numeric 0–5 scores (0 = absent, 5 = excellent) for: density, structure
 ### Non-fabrication & citation
 
 Do not invent APIs, parameters, or file paths. Cite sources or mark `[TO VERIFY]`.
+
+### Internal reference protection
+
+**CRITICAL**: Distinguish between chat explanations and article content:
+
+**In your chat responses** (explaining your reasoning to the user):
+- ✅ SHOULD cite instruction files for transparency (e.g., "per foundry-branding.instructions.md", "based on dev-focused.instructions.md")
+- ✅ SHOULD reference pattern files and guidelines when justifying recommendations
+- ✅ SHOULD cite style guides ("Microsoft Writing Style Guide") when explaining why you recommend changes
+- This helps users understand the basis for your suggestions
+
+**In suggested article edits** (the actual text you propose for publication):
+- ❌ Do NOT include ANY source citations (internal OR public)
+- ❌ Do NOT include phrases like "(Source: foundry-branding.instructions.md)" or "per how-to article pattern" or "following Microsoft Writing Style Guide"
+- ❌ Do NOT add meta-commentary about documentation standards
+- ❌ Do NOT reference `.github/` files, prompt files, or chatmode files
+- ✅ DO provide clean, direct documentation text without citations
+- Article content should be written for the end developer/user, not documentation authors
 
 ## Evaluation criteria & best practices
 

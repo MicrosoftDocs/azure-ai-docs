@@ -1,6 +1,6 @@
 ---
 title: How to lower speech synthesis latency using Speech SDK
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: How to lower speech synthesis latency using Speech SDK, including streaming, pre-connection, and so on.
 author: PatrickFarley
 ms.author: pafarley

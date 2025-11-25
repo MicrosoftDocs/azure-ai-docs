@@ -23,7 +23,11 @@ The sample in this article can be found in the [Foundry Local C# SDK Samples Git
 The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code includes the following steps:
 
 1. Initializes a `FoundryLocalManager` instance with a `Configuration` that includes the web service configuration. The web service is an OpenAI compliant endpoint.
-1. Gets a `Model` object from the model catalog using an alias. Foundry Local will select the best variant for the model automatically based on the available hardware of the host machine.
+1. Gets a `Model` object from the model catalog using an alias.
+
+   > [!NOTE]
+   > Foundry Local will select the best variant for the model automatically based on the available hardware of the host machine.
+
 1. Downloads and loads the model variant.
 1. Starts the web service.
 1. Uses the OpenAI SDK to call the local Foundry web service.

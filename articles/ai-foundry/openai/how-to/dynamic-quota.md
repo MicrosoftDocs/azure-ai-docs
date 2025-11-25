@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models dynamic quota
+title: Azure OpenAI in Microsoft Foundry Models dynamic quota
 description: Learn how to use Azure OpenAI dynamic quota
 author: mrbullwinkle
 manager: nitinme
@@ -12,6 +12,8 @@ ms.author: mbullwin
 
 
 # Azure OpenAI Dynamic quota (Preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Dynamic quota is an Azure OpenAI feature that enables a standard deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will be able to process a maximum throughput established by your Tokens Per Minute (TPM) setting. When you exceed your preset TPM, requests will return HTTP 429 responses. When dynamic quota is enabled, the deployment has the capability to access higher throughput before returning 429 responses, allowing you to perform more calls earlier. The extra requests are still billed at the [regular pricing rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 

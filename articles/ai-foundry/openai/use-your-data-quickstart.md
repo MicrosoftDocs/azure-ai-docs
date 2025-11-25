@@ -1,5 +1,5 @@
 ---
-title: "Use your own data with Azure OpenAI in Azure AI Foundry Models"
+title: "Use your own data with Azure OpenAI in Microsoft Foundry Models"
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
 author: aahill
@@ -21,6 +21,8 @@ zone_pivot_groups: openai-use-your-data
 ---
 
 # Quickstart: Chat with Azure OpenAI models using your own data
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 In this quickstart, you use your own data with Azure OpenAI models to create a powerful, conversational AI platform that enables faster and more accurate communication.
 
@@ -213,5 +215,5 @@ If you want to clean up and remove an Azure OpenAI or Azure AI Search resource, 
 
 ## Next steps
 
-- Learn more about [using your data in Azure OpenAI in Azure AI Foundry Models](./concepts/use-your-data.md)
+- Learn more about [using your data in Azure OpenAI in Microsoft Foundry Models](./concepts/use-your-data.md)
 - [Chat app sample code on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395).

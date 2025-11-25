@@ -1,6 +1,6 @@
 ---
 title: Local Evaluation with the Azure AI Evaluation SDK
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to run evaluators on a single row of data and a larger test dataset to evaluate a generative AI application with the Azure AI Evaluation SDK.
 author: lgayhardt
 ms.author: lagayhar
@@ -14,8 +14,12 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+# customer intent: As a developer, I want to evaluate my generative AI application locally using the Azure AI Evaluation SDK so I can measure quality and safety metrics with built-in or custom evaluators.
+ai-usage: ai-assisted
 ---
-# Evaluate your generative AI application locally with the Azure AI Evaluation SDK
+# Evaluate your generative AI application locally with the Azure AI Evaluation SDK (preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -23,7 +27,7 @@ You can thoroughly assess the performance of your generative AI application by a
 
 When you provide either a test dataset or a target, your generative AI application outputs are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
-In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI Evaluation SDK locally. Then, you learn to track the results and evaluation logs in an Azure AI project.
+In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI Evaluation SDK locally. Then, you learn to track the results and evaluation logs in a Foundry project.
 
 ## Get started
 
@@ -356,7 +360,7 @@ For AI-assisted quality evaluators, except for `GroundednessProEvaluator` previe
 >
 > Make sure that you have at least the `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with the API key. To learn more about permissions, see [Permissions for an Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
 
-For all risk and safety evaluators and `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the back end evaluation service by using your Azure AI project.
+For all risk and safety evaluators and `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the back end evaluation service by using your Foundry project.
 
 #### Prompts for AI-assisted built-in evaluators
 
@@ -375,15 +379,15 @@ Composite evaluators are built-in evaluators that combine individual quality or 
 
 After you spot-check your built-in or custom evaluators on a single row of data, you can combine multiple evaluators with the `evaluate()` API on an entire test dataset.
 
-### Prerequisite set up steps for Azure AI Foundry projects
+### Prerequisite set up steps for Microsoft Foundry projects
 
-If this session is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do the following setup steps:
+If this session is your first time running evaluations and logging it to your Foundry project, you might need to do the following setup steps:
 
-1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
+1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account with Microsoft Entra ID, make sure to give Microsoft Identity permissions for **Storage Blob Data Owner** to both your account and Foundry project resource in Azure portal.
 
-### Evaluate on a dataset and log results to Azure AI Foundry
+### Evaluate on a dataset and log results to Foundry
 
 To ensure the `evaluate()` API can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that the evaluators accept. This example specifies the data mapping for `query`, `response`, and `context`.
 
@@ -406,15 +410,15 @@ result = evaluate(
             } 
         }
     },
-    # Optionally, provide your Azure AI Foundry project information to track your evaluation results in your project portal.
+    # Optionally, provide your Foundry project information to track your evaluation results in your project portal.
     azure_ai_project = azure_ai_project,
-    # Optionally, provide an output path to dump a JSON file of metric summary, row-level data, and the metric and Azure AI project URL.
+    # Optionally, provide an output path to dump a JSON file of metric summary, row-level data, and the metric and Foundry project URL.
     output_path="./myevalresults.json"
 )
 ```
 
 > [!TIP]
-> Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Azure AI project.
+> Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Foundry project.
 
 The evaluator outputs results in a dictionary, which contains aggregate `metrics` and row-level data and metrics. See the following example output:
 
@@ -457,7 +461,7 @@ The evaluator outputs results in a dictionary, which contains aggregate `metrics
 
 ### Requirements for `evaluate()`
 
-The `evaluate()` API has a few requirements for the data format that it accepts and how it handles evaluator parameter key names so that the charts of the evaluation results in your Azure AI project show up properly.
+The `evaluate()` API has a few requirements for the data format that it accepts and how it handles evaluator parameter key names so that the charts of the evaluation results in your Foundry project show up properly.
 
 #### Data format
 
@@ -474,7 +478,7 @@ The `evaluate()` API accepts only data in JSONL format. For all built-in evaluat
 
 #### Evaluator parameter format
 
-When you pass in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
+When you pass in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Foundry project.
 
 | Evaluator                 | Keyword parameter     |
 |---------------------------|-------------------|
@@ -556,8 +560,8 @@ result = evaluate(
 - [Azure AI Evaluation client library for Python](https://aka.ms/azureaieval-python-ref)
 - [Troubleshoot AI Evaluation SDK Issues](https://aka.ms/azureaieval-tsg)
 - [Observability in generative AI](../../concepts/evaluation-metrics-built-in.md)
-- [Run evaluations in the cloud by using the Azure AI Foundry SDK](./cloud-evaluation.md)
+- [Run evaluations in the cloud by using the Microsoft Foundry SDK](./cloud-evaluation.md)
 - [Generate synthetic and simulated data for evaluation](./simulator-interaction-data.md)
-- [See evaluation results in the Azure AI Foundry portal](../../how-to/evaluate-results.md)
-- [Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)
+- [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
+- [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)

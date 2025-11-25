@@ -1,7 +1,7 @@
 ---
 title: Guardrails & controls for Models Sold Directly by Azure 
-titleSuffix: Azure AI Foundry
-description: Learn about content safety for models deployed using serverless API deployments, using Azure AI Foundry.
+titleSuffix: Microsoft Foundry
+description: Learn about content safety for models deployed using serverless API deployments, using Microsoft Foundry.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
@@ -15,6 +15,8 @@ ms.custom:
 
 # Guardrails & controls for Models Sold Directly by Azure 
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, learn about content safety capabilities for models from the model catalog deployed using serverless API deployments.
@@ -24,7 +26,7 @@ In this article, learn about content safety capabilities for models from the mod
 
 Azure AI uses a default configuration of [Azure AI Content Safety](/azure/ai-services/content-safety/overview) content filters to detect harmful content across four categories including hate and fairness, self-harm, sexual, and violence for models deployed via [serverless API deployments](deployments-overview.md#serverless-api-endpoint). To learn more about content filtering, see [Understand harm categories](#understand-harm-categories).
 
-The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. For models deployed using the [Azure AI Foundry Models](../../ai-foundry/model-inference/how-to/configure-content-filters.md), you can create configurable filters by selecting the **Content filters** tab within the **Guardrails & controls** page of the Azure AI Foundry portal.
+The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. For models deployed using the [Microsoft Foundry Models](../../ai-foundry/model-inference/how-to/configure-content-filters.md), you can create configurable filters by selecting the **Content filters** tab within the **Guardrails & controls** page of the Foundry portal.
 
 > [!TIP]
 > Content filtering isn't available for certain model types that are deployed via serverless API deployments. These model types include embedding models and time series models.
@@ -44,6 +46,6 @@ Pricing details are viewable at [Azure AI Content Safety pricing](https://azure.
 
 ## Related content
 
-- [How to configure content filters for models in Azure AI services](../../ai-foundry/model-inference/how-to/configure-content-filters.md)
+- [How to configure content filters for models in Foundry Tools](../../ai-foundry/model-inference/how-to/configure-content-filters.md)
 - [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md)
-- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)

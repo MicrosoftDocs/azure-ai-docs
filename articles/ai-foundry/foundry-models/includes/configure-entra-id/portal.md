@@ -15,15 +15,15 @@ zone_pivot_groups: azure-ai-models-deployment
 
 Follow these steps to configure Microsoft Entra ID for inference: 
 
-1. Go to the [Azure portal](https://portal.azure.com) and locate the **Azure AI Foundry resource** (formerly known as Azure AI Services resource) you're using. If you're using Azure AI Foundry with projects or hubs, you can navigate to it by:
+1. Go to the [Azure portal](https://portal.azure.com) and locate the **Microsoft Foundry resource** (formerly known as Azure AI Services resource) you're using. If you're using Foundry with projects or hubs, you can navigate to it by:
 
-   1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+   1. Go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
    1. On the landing page, select **Management center**.
 
-   1. Go to the section **Connected resources** and select the connection to the Azure AI Foundry resource that you want to configure. If it isn't listed, select **View all** to see the full list.
+   1. Go to the section **Connected resources** and select the connection to the Foundry resource that you want to configure. If it isn't listed, select **View all** to see the full list.
 
-      :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Azure AI Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
+      :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
 
    1. On the **Connection details** section, under **Resource**, select the name of the Azure resource. A new page opens.
 
@@ -71,17 +71,17 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 ## Use Microsoft Entra ID in your project
 
-Even when your resource has Microsoft Entra ID configured, your projects might still use keys to consume predictions from the resource. When you use the Azure AI Foundry playground, the credentials associated with the connection in your project are used. 
+Even when your resource has Microsoft Entra ID configured, your projects might still use keys to consume predictions from the resource. When you use the Foundry playground, the credentials associated with the connection in your project are used. 
 
 To change this behavior, update the connections in your projects to use Microsoft Entra ID. Follow these steps:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. Go to the projects or hubs that use the Azure AI Foundry resource through a connection.
+1. Go to the projects or hubs that use the Foundry resource through a connection.
 
 1. Select **Management center**.
 
-1. Go to the **Connected resources** section and select the connection to the Azure AI Foundry resource that you want to configure. If it's not listed, select **View all** to see the full list.
+1. Go to the **Connected resources** section and select the connection to the Foundry resource that you want to configure. If it's not listed, select **View all** to see the full list.
 
 1. In the **Connection details** section, next to **Access details**, select the edit icon.
 

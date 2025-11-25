@@ -1,7 +1,7 @@
 ---
-title: Connect to a Model Context Protocol Server Endpoint in Azure AI Foundry Agent Service (Preview)
-titleSuffix: Azure AI Foundry
-description: Learn how to add MCP servers to Azure AI Foundry Agent Service.
+title: Connect to a Model Context Protocol Server Endpoint in Foundry Agent Service (Preview)
+titleSuffix: Microsoft Foundry
+description: Learn how to add MCP servers to Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,10 +14,10 @@ ms.author: aahi
 
 # Connect to Model Context Protocol servers (preview)
 
-> [!NOTE]
-> When using a [Network Secured Azure AI Foundry](../../how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
-You can extend the capabilities of your Azure AI Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Azure AI Foundry Agent Service, can access.
+
+You can extend the capabilities of your Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Foundry Agent Service, can access.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
 
@@ -52,9 +52,9 @@ For more information on using MCP, see:
 
 ## Setup
 
-1. Create an Azure AI Foundry agent by following the steps in the [quickstart](../../quickstart.md).
+1. Create a Foundry agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an `mcp` tool with the following information:
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update a Foundry agent with an `mcp` tool with the following information:
 
    1. `server_url`: The URL of the MCP server; for example, `https://api.githubcopilot.com/mcp/`.
    2. `server_label`: A unique identifier of this MCP server to the agent; for example, `github`.
@@ -76,7 +76,7 @@ For more information on using MCP, see:
 
 ## Host a local MCP server
 
-The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
 
 |Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 |:---------:|:---------:|:---------:|

@@ -1,6 +1,6 @@
 ---
-title: Foundation models for healthcare in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
+title: Foundation models for healthcare in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
 description: Learn about AI models that are applicable to the health and life science industry.
 ms.service: azure-ai-foundry
 ms.topic: concept-article
@@ -16,6 +16,8 @@ author: msakande
 
 # Foundation models for healthcare AI
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
 This article introduces the Microsoft multimodal healthcare foundation model catalog. Microsoft Research, strategic partners, and leading healthcare institutions jointly developed these models for healthcare organizations. Healthcare organizations can use the models to rapidly build and deploy AI solutions tailored to their specific needs while minimizing the extensive compute and data requirements typically associated with building multimodal models from scratch. The intention isn't for these models to serve as standalone products. Instead, they're designed for developers to use as a foundation to build upon. With these healthcare AI models, professionals have the tools they need to harness the full potential of AI to enhance biomedical research, clinical workflows, and ultimately care delivery.
@@ -24,7 +26,7 @@ The power of artificial intelligence (AI) is driving a revolutionary transformat
 
 :::image type="content" source="../../media/how-to/healthcare-ai/connect-modalities.gif" alt-text="Models that reason about various modalities come together to support discover, development and delivery of healthcare":::
 
-The Azure AI model catalog, available in [Azure AI Foundry](../model-catalog-overview.md) and [Azure Machine Learning studio](../../../machine-learning/concept-model-catalog.md), provides healthcare foundation models that facilitate AI-powered analysis of various medical data types. These AI models expand well beyond medical text comprehension into the multimodal reasoning about medical data. They can integrate and analyze data from diverse sources that come in various modalities. For example, medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields, including dermatology, ophthalmology, radiology, pathology, and more.
+The Foundry model catalog, available in [Microsoft Foundry](../model-catalog-overview.md) and [Azure Machine Learning studio](../../../machine-learning/concept-model-catalog.md), provides healthcare foundation models that facilitate AI-powered analysis of various medical data types. These AI models expand well beyond medical text comprehension into the multimodal reasoning about medical data. They can integrate and analyze data from diverse sources that come in various modalities. For example, medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields, including dermatology, ophthalmology, radiology, pathology, and more.
 
 ## Microsoft first-party models
 
@@ -41,10 +43,10 @@ These models are designed for precise image segmentation, and they cover various
 
 ## Partner models
 
-The Azure AI model catalog also provides a curated collection of healthcare models from Microsoft partners with capabilities such as digital pathology slide analysis, biomedical research, medical knowledge sharing capabilities, and more. Partners including Paige.AI and Providence Healthcare provide these models. For a complete list of models, visit the [model catalog page](https://aka.ms/healthcaremodelstudio) resource.
+The model catalog also provides a curated collection of healthcare models from Microsoft partners with capabilities such as digital pathology slide analysis, biomedical research, medical knowledge sharing capabilities, and more. Partners including Paige.AI and Providence Healthcare provide these models. For a complete list of models, visit the [model catalog page](https://aka.ms/healthcaremodelstudio) resource.
 
 ## Related content
 
-- [Model catalog and collections in Azure AI Foundry portal](../model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](../model-catalog-overview.md)
 - [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md)
-- [Overview: Deploy models, flows, and web apps with Azure AI Foundry](../../concepts/deployments-overview.md)
+- [Overview: Deploy models, flows, and web apps with Foundry](../../concepts/deployments-overview.md)

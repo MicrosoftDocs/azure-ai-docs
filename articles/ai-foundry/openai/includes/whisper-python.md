@@ -5,7 +5,7 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 3/19/2024
+ms.date: 11/21/2025
 ---
 
 ## Prerequisites
@@ -15,7 +15,7 @@ ms.date: 3/19/2024
 - [Python 3.8 or later](https://www.python.org)
 - The `os` Python library.
 
-## Set up
+## Setup
 
 ### Retrieve key and endpoint
 
@@ -23,7 +23,7 @@ To successfully make a call against Azure OpenAI, you need an *endpoint* and a *
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `AZURE_OPENAI_ENDPOINT`               | The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
+| `AZURE_OPENAI_ENDPOINT`               | The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Microsoft Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
 | `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 
 Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
@@ -67,13 +67,14 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 ```
 ---
 
-## Passwordless authentication is recommended
-
-For passwordless authentication, you need to:
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+> [!IMPORTANT]
+> **Passwordless authentication is recommended**
+>
+> For passwordless authentication, you need to:
+> 
+> 1. Use the `@azure/identity` package.
+> 1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+> 1. Sign in with the Azure CLI such as `az login`.
 
 
 ## Create a Python environment
@@ -160,7 +161,7 @@ Run the application using the `python` command on your quickstart file:
 python quickstart.py
 ```
 
-You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure Speech in Foundry Tools SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
 
 > [!IMPORTANT]
 > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information, see [credential security](../../../ai-services/security-features.md).

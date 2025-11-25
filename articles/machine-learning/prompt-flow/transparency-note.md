@@ -7,7 +7,7 @@ ms.author: prakharg
 manager: omkarm
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.date: 10/20/2023
+ms.date: 11/24/2025
 ms.topic: concept-article
 ms.update-cycle: 365-days
 ---
@@ -53,7 +53,7 @@ This Transparency Note uses the following key terms:
 
 You use the auto-generate prompt variants feature to automatically generate and then assess prompt variations, so you can quickly find the best prompt for your use case. This feature enhances the capabilities in prompt flow to interactively edit and evaluate prompts, with the goal of simplifying prompt engineering.
 
-When you provide a base prompt, the auto-generate prompt variants feature generates several variations by using the generative power of Azure OpenAI in Azure AI Foundry Models models and an internal system prompt. Although Azure OpenAI in Azure AI Foundry Models provides content management filters, we recommend that you verify any generated prompts before you use them in production scenarios.
+When you provide a base prompt, the auto-generate prompt variants feature generates several variations by using the generative power of Azure OpenAI in Microsoft Foundry Models models and an internal system prompt. Although Azure OpenAI in Foundry Models provides content management filters, we recommend that you verify any generated prompts before you use them in production scenarios.
 
 ### Use cases
 

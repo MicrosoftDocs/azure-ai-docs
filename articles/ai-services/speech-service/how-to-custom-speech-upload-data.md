@@ -1,6 +1,6 @@
 ---
 title: "Upload training and testing datasets for custom speech - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to upload data to test or train a custom speech model.
 author: PatrickFarley
 manager: nitinme
@@ -28,7 +28,7 @@ Follow these steps to upload datasets for training (fine-tuning) your custom spe
 
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
 1. Select **Manage data** > **Add dataset**. 
@@ -86,7 +86,7 @@ Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) ins
 
 To create a dataset and connect it to an existing project, use the `spx csr dataset create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `kind` property. The possible set of values for a training dataset kind are: Acoustic, AudioFiles, Language, LanguageMarkdown, and Pronunciation.
 - Set the required `contentUrl` property. This parameter is the location of the dataset. If you don't use trusted Azure services security mechanism (see next Note), then the `contentUrl` property should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization, or expect user interaction aren't supported.
 
@@ -94,7 +94,7 @@ To create a dataset and connect it to an existing project, use the `spx csr data
     > If you use Azure Blob URL, you can ensure maximum security of your dataset files by using trusted Azure services security mechanism. You use the same techniques as for Batch transcription and plain Storage Account URLs for your dataset files. See details [here](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism).
 
 - Set the required `language` property. The dataset locale must match the locale of the project. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Set the required `name` property. This parameter is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a dataset and connects it to an existing project:
 
@@ -151,7 +151,7 @@ spx help csr dataset
 
 To create a dataset and connect it to an existing project, use the [Datasets_Create](/rest/api/speechtotext/datasets/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `kind` property. The possible set of values for a training dataset kind are: Acoustic, AudioFiles, Language, LanguageMarkdown, and Pronunciation. 
 - Set the required `contentUrl` property. This property is the location of the dataset. If you don't use trusted Azure services security mechanism (see next Note), then the `contentUrl` property should be a URL that can be retrieved with a simple anonymous GET request. For example, a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization, or expect user interaction aren't supported. 
 
@@ -159,7 +159,7 @@ To create a dataset and connect it to an existing project, use the [Datasets_Cre
     > If you use Azure Blob URL, you can ensure maximum security of your dataset files by using trusted Azure services security mechanism. You use the same techniques as for Batch transcription and plain Storage Account URLs for your dataset files. See details [here](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). 
 
 - Set the required `locale` property. The dataset locale must match the locale of the project. The locale can't be changed later. 
-- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+- Set the required `displayName` property. This property is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
@@ -211,7 +211,7 @@ The top-level `self` property in the response body is the dataset's URI. Use thi
 ::: zone-end
 
 > [!IMPORTANT] 
-> Connecting a dataset to a custom speech project isn't required to train and test a custom model using the REST API or Speech CLI. But if the dataset isn't connected to any project, you can't select it for training or testing in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+> Connecting a dataset to a custom speech project isn't required to train and test a custom model using the REST API or Speech CLI. But if the dataset isn't connected to any project, you can't select it for training or testing in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
 ## Next steps
 

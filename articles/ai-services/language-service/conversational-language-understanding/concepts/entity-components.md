@@ -1,16 +1,15 @@
 ---
 title: Entity components in conversational language understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how conversational language understanding extracts entities from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 07/22/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Entity components
 
 In conversational language understanding, entities are relevant pieces of information that are extracted from your utterances. You can extract an entity using several different methods. Entities can be detected through context, matched from a list, or detected by a prebuilt recognized entity. Every entity in your project is composed of one or more of these methods, which are defined as your entity's components.

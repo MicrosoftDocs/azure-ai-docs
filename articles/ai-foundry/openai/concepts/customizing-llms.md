@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models getting started with customizing a large language model (LLM)
+title: Azure OpenAI in Microsoft Foundry Models getting started with customizing a large language model (LLM)
 titleSuffix: Azure OpenAI
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
@@ -13,6 +13,8 @@ recommendations: false
 ---
 
 # Getting started with customizing a large language model (LLM)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 There are several techniques for adapting a pre-trained language model to suit a specific task or domain. These include prompt engineering, RAG (Retrieval Augmented Generation), and fine-tuning. These three techniques are not mutually exclusive but are complementary methods that in combination can be applicable to a specific use case. In this article, we'll explore these techniques, illustrative use cases, things to consider, and provide links to resources to learn more and get started with each.
 
@@ -63,7 +65,7 @@ A corporate HR department is looking to provide an intelligent assistant that an
 
 ### Getting started
 
-- [Retrieval Augmented Generation in Azure AI Foundry portal](../../../ai-foundry/concepts/retrieval-augmented-generation.md)
+- [Retrieval Augmented Generation in Microsoft Foundry portal](../../../ai-foundry/concepts/retrieval-augmented-generation.md)
 - [Retrieval Augmented Generation (RAG) in Azure AI Search](/azure/search/retrieval-augmented-generation-overview)
 - [Retrieval Augmented Generation using Azure Machine Learning prompt flow (preview)](/azure/machine-learning/concept-retrieval-augmented-generation)
 

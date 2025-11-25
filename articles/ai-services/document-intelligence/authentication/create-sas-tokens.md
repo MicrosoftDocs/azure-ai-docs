@@ -5,7 +5,7 @@ ms.topic: how-to
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: sfi-image-nochange
 ---
@@ -85,7 +85,7 @@ To get started, you need:
 ## Generating SAS tokens
 Once the prerequisites are met and you upload your documents, you can now generate SAS tokens. There are two paths you can take from here; one using the Azure portal and the other using the Azure storage explorer. Select between the two following tabs for more information.
 
-### [**Azure Portal**](#tab/azure-portal)
+### [**Azure portal**](#tab/azure-portal)
 
 The Azure portal is a web-based console that enables you to manage your Azure subscription and resources using a graphical user interface (GUI).
 

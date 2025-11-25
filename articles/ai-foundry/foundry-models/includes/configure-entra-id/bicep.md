@@ -36,12 +36,12 @@ cd azureai-model-inference-bicep/infra
 In this tutorial, you create the following resources:
 
 
-* An Azure AI Foundry resource (formerly known as Azure AI Services resource) with key access disabled. For simplicity, this template doesn't deploy models.
+* A Microsoft Foundry resource (formerly known as Azure AI Services resource) with key access disabled. For simplicity, this template doesn't deploy models.
 * A role-assignment for a given security principal with the role **Cognitive Services User**.
 
 To create these resources, use the following assets:
 
-1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Foundry resource:
+1. Use the template `modules/ai-services-template.bicep` to describe your Foundry resource:
 
     __modules/ai-services-template.bicep__
 
@@ -90,7 +90,7 @@ In your console, follow these steps:
       --template-file deploy-entra-id.bicep
     ```
 
-1. The template outputs the Azure AI Foundry Models endpoint that you can use to consume any of the model deployments you created.
+1. The template outputs the Foundry Models endpoint that you can use to consume any of the model deployments you created.
 
 
 ## Use Microsoft Entra ID in your code

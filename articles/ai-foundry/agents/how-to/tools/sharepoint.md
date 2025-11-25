@@ -7,15 +7,17 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/09/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 # Use the Microsoft SharePoint tool (preview)
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 > [!NOTE]
-> This article describes the Microsoft SharePoint tool for Azure AI Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
+> This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
 
 Integrate your agents with the **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies` to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 Copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
@@ -42,13 +44,15 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 > [!NOTE]
 > * Supported document types: text data in the following format: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
-> * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents. 
+> > * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents.
+> * The SharePoint tool only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+> * Your SharePoint site and Microsoft Foundry agent need to be in the same tenant.
 
 1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
+1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
 
-   :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
+   :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **SharePoint** and follow the prompts to add the tool. You can only add one per agent.
 

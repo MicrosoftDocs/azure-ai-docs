@@ -1,8 +1,8 @@
 ---
 
-title: How to configure a private link for an Azure AI Foundry hub
-titleSuffix: Azure AI Foundry
-description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
+title: How to configure a private link for a Microsoft Foundry hub
+titleSuffix: Microsoft Foundry
+description: Learn how to configure a private link for Microsoft Foundry hubs. A private link is used to secure communication with the Microsoft Foundry hub.
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: 
@@ -20,17 +20,19 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
-# How to configure a private link for Azure AI Foundry
+# How to configure a private link for Microsoft Foundry
 
-> [!NOTE]
-> An alternate Foundry project-focused version is available: [How to configure a private link for Azure AI Foundry projects](configure-private-link.md).
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+> [!TIP]
+> An alternate Foundry project-focused version is available: [How to configure a private link for Microsoft Foundry projects](configure-private-link.md).
 
 When using a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], there are two network isolation aspects to consider:
 
-- **Network isolation to access an Azure AI Foundry hub**: This is the focus of this article. It describes how to establish a private connection to your hub and its default resources using a private link.
-- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Azure AI Foundry hubs](configure-managed-network.md) article.
+- **Network isolation to access a Foundry hub**: This is the focus of this article. It describes how to establish a private connection to your hub and its default resources using a private link.
+- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Foundry hubs](configure-managed-network.md) article.
 
-:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Azure AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
+:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
 You get several hub default resources in your resource group. You need to configure following network isolation configurations:
 
@@ -66,9 +68,9 @@ If you're creating a new hub, use the following methods to create the hub (Azure
 > [!NOTE]
 > The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
 
-1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the Azure portal, search for `Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
-    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
 1. After configuring the __Basics__ and __Storage__ tabs, select the __Inbound access__ tab and then select __+ Add__. When prompted, enter the data for the Azure Virtual Network and subnet for the private endpoint. When selecting the __Region__, select the same region as your virtual network.
 
@@ -263,7 +265,7 @@ az extension add --name ml
 
 ## Enable Public Access only from internet IP ranges (preview)
 
-You can use IP network rules to allow access to your secured hub from specific public internet IP address ranges by creating IP network rules. Each Azure AI Foundry hub supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic. This feature is currently in preview.
+You can use IP network rules to allow access to your secured hub from specific public internet IP address ranges by creating IP network rules. Each Foundry hub supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic. This feature is currently in preview.
 
 > [!WARNING]
 > * Enable your endpoint's public network access flag if you want to allow access to your endpoint from specific public internet IP address ranges.
@@ -272,7 +274,7 @@ You can use IP network rules to allow access to your secured hub from specific p
 
 # [Portal](#tab/azure-portal)
 
-1. From the [Azure portal](https://portal.azure.com), select your Azure Machine AI Foundry hub.
+1. From the [Azure portal](https://portal.azure.com), select your Azure Machine Foundry hub.
 1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
 1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
 
@@ -336,23 +338,23 @@ The following restrictions apply to IP address ranges:
 
 - When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
 
-- You can only set the IP addresses for the AI Foundry hub after the hub is created.
+- You can only set the IP addresses for the Foundry hub after the hub is created.
 
 ## Private storage configuration
 
 If your storage account is private (uses a private endpoint to communicate with your project), you perform the following steps:
 
-1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
+1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Foundry Tool and Azure AI Search, then configure role-based access control for each managed identity.
 
     | Role | Managed Identity | Resource | Purpose | Reference |
     |--|--|--|--|--|
-    | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
-    | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
+    | `Reader` | Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
+    | `Storage File Data Privileged Contributor` | Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
+    | `Storage Blob Data Contributor` | Foundry Tool | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
     > [!TIP]
-    > Your storage account might have multiple private endpoints. You need to assign the `Reader` role to each private endpoint for your Azure AI Foundry project managed identity.
+    > Your storage account might have multiple private endpoints. You need to assign the `Reader` role to each private endpoint for your Foundry project managed identity.
 
 1. Assign the `Storage Blob Data reader` role to your developers. This role allows them to read data from the storage account.
 
@@ -395,7 +397,7 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 ## Next steps
 
 - [Configure a private link for a Foundry project](configure-private-link.md)
-- [Create an Azure AI Foundry project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
-- [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)
+- [Create a Foundry project](create-projects.md)
+- [Learn more about Foundry](../what-is-azure-ai-foundry.md)
+- [Learn more about Foundry hubs](../concepts/ai-resources.md)
 - [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

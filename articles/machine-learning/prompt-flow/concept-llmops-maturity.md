@@ -35,14 +35,14 @@ Begin by familiarizing yourself with different LLM APIs and their capabilities. 
 
 ### Suggested references for level 1 advancement
 
-- [Azure AI Foundry Model Catalog](/azure/ai-studio/how-to/model-catalog)
-- [Explore the Azure AI Foundry portal Model Catalog](https://www.youtube.com/watch?v=GS5ZIiNqcEY)
+- [Foundry model catalog](/azure/ai-studio/how-to/model-catalog)
+- [Explore the Microsoft Foundry portal Model Catalog](https://www.youtube.com/watch?v=GS5ZIiNqcEY)
 - [Introduction to Prompt Engineering](/azure/ai-services/openai/concepts/prompt-engineering)
 - [Prompt Engineering Techniques](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions)
 - [System Message Framework](/azure/ai-services/openai/concepts/system-message)
-- [Prompt Flow in Azure AI Foundry portal](/azure/ai-studio/how-to/prompt-flow)
-- [Evaluate GenAI Applications with Azure AI Foundry](/azure/ai-studio/concepts/evaluation-approach-gen-ai)
-- [GenAI Evaluation and Monitoring Metrics with Azure AI Foundry](/azure/ai-studio/concepts/evaluation-metrics-built-in)
+- [Prompt Flow in Foundry portal](/azure/ai-studio/how-to/prompt-flow)
+- [Evaluate GenAI Applications with Foundry](/azure/ai-studio/concepts/evaluation-approach-gen-ai)
+- [GenAI Evaluation and Monitoring Metrics with Foundry](/azure/ai-studio/concepts/evaluation-metrics-built-in)
 
 To better understand GenAIOps, consider available Microsoft Learning courses and workshops:
 - [Microsoft Azure AI Fundamentals: GenAI](/training/paths/introduction-generative-ai/)
@@ -60,11 +60,11 @@ To improve your capabilities and skills, learn how to develop more complex promp
 ### Suggested references for level 2 advancement
 
 - Take our [step-by-step workshop to elevate your GenAIOps practices](https://github.com/microsoft/llmops-workshop?tab=readme-ov-file) 
-- [Prompt Flow in Azure AI Foundry portal](/azure/ai-studio/how-to/prompt-flow)
+- [Prompt Flow in Foundry portal](/azure/ai-studio/how-to/prompt-flow)
 - [How to Build with Prompt Flow](/azure/ai-studio/how-to/flow-develop)
 - [Deploy a Flow as a Managed Online endpoint for Real-Time Inference](/azure/ai-studio/how-to/flow-deploy?tabs=azure-studio)
 - [Integrate Prompt Flow with GenAIOps](/azure/machine-learning/prompt-flow/how-to-integrate-with-llm-app-devops?tabs=cli)
-- [GenAI Evaluation with Azure AI Foundry]( /azure/ai-studio/concepts/evaluation-approach-gen-ai)
+- [GenAI Evaluation with Foundry]( /azure/ai-studio/concepts/evaluation-approach-gen-ai)
 - [GenAI Evaluation and Monitoring Metrics](/azure/ai-studio/concepts/evaluation-metrics-built-in)
 - [Azure Content Safety](/azure/ai-services/content-safety/overview)
 - [Responsible AI Tools and Practices](https://azure.microsoft.com/blog/infuse-responsible-ai-tools-and-practices-in-your-llmops/#:~:text=Azure%20AI%20offers%20robust%20tools,or%20build%20your%20own%20metrics)
@@ -96,5 +96,5 @@ As LLMs evolve, maintain your cutting-edge position by staying updated with the 
 
 ### Suggested references for advanced techniques
 
-- [Azure AI Foundry Model Catalog](https://ai.azure.com/explore/models)
+- [model catalog](https://ai.azure.com/explore/models)
 - [Evaluation of GenAI applications](/azure/ai-studio/concepts/evaluation-approach-gen-ai)

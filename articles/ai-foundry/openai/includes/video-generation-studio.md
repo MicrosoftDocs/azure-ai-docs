@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Generate videos with Sora in Azure AI Foundry Models and Azure AI Foundry'
+title: 'Quickstart: Generate videos with Sora in Microsoft Foundry Models and Microsoft Foundry'
 titleSuffix: Azure OpenAI
-description: Learn how to generate videos with Sora in the video playground (preview) in Azure AI Foundry.
+description: Learn how to generate videos with Sora in the video playground (preview) in Microsoft Foundry.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -15,11 +15,11 @@ ms.date: 09/08/2025
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-## Go to Azure AI Foundry portal
+## Go to Microsoft Foundry portal
 
-Browse to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+Browse to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-From the Azure AI Foundry landing page, create or select a new project. Navigate to the **Models + endpoints** page on the left nav. Select **Deploy model** and then choose the Sora video generation model from the list. Complete the deployment process.
+From the Foundry landing page, create or select a new project. Navigate to the **Models + endpoints** page on the left nav. Select **Deploy model** and then choose the Sora video generation model from the list. Complete the deployment process.
 
 On the model's page, select **Open in playground**.
 

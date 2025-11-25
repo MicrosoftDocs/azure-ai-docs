@@ -1,7 +1,7 @@
 ---
 title: How to deploy and inference a managed compute deployment
-titleSuffix: Azure AI Foundry
-description: Learn how to deploy large language models on managed compute in Azure AI Foundry and perform real-time inference for generative AI applications.
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy large language models on managed compute in Microsoft Foundry and perform real-time inference for generative AI applications.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -15,12 +15,14 @@ author: msakande
 zone_pivot_groups: azure-ai-managed-compute-deployment
 ai-usage: ai-assisted
 
-#CustomerIntent: As an Azure AI developer, I want to deploy and perform inference on large language models using managed compute in Azure AI Foundry so that I can make models available for real-time generative AI applications in production environments.
+#CustomerIntent: As an Azure AI developer, I want to deploy and perform inference on large language models using managed compute in Microsoft Foundry so that I can make models available for real-time generative AI applications in production environments.
 ---
 
 # How to deploy and infer with a managed compute deployment
 
-The Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models. A common way to deploy these models is to use the managed compute deployment option. This option is also sometimes referred to as a managed online deployment. 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+The Microsoft Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models. A common way to deploy these models is to use the managed compute deployment option. This option is also sometimes referred to as a managed online deployment. 
 
 When you deploy a large language model (LLM), you make it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
 
@@ -34,7 +36,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 - Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. See [Enable Azure Marketplace purchases](/azure/cost-management-billing/manage/enable-marketplace-purchases) to learn more.
 
-- Azure role-based access controls (Azure RBAC) grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 
 ## Find your model in the model catalog
@@ -57,7 +59,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 1. From the model's page, select **Use this model** to open the deployment window. 
 1. The deployment window is pre-filled with some selections and parameter values. You can either keep them or change them as desired. You can also select an existing endpoint for the deployment or create a new one. For this example, specify an instance count of `1` and create a new endpoint for the deployment.
 
-    :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for managed compute deployment in Azure AI Foundry." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
+    :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for managed compute deployment in Foundry." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
 
 1. Select **Deploy** to create your deployment. The creation process might take a few minutes to complete. When it's complete, the portal opens the model deployment page.
 
@@ -74,7 +76,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 After you create your deployment, follow these steps to consume it:
 
-1. Select **Models + endpoints** under the **My assets** section in your Azure AI Foundry project.
+1. Select **Models + endpoints** under the **My assets** section in your Foundry project.
 1. Select your deployment from the **Model deployments** tab.
 1. Go to the **Test** tab for sample inference to the endpoint.
 1. Return to the **Details** tab to copy the deployment's "Target URI", which you can use to run inference with code.
@@ -96,7 +98,7 @@ After you create your deployment, follow these steps to consume it:
     pip install azure-identity
     ```
 
-1. Authenticate with Azure Machine Learning and create a client object. Replace the placeholders with your subscription ID, resource group name, and Azure AI Foundry project name.
+1. Authenticate with Azure Machine Learning and create a client object. Replace the placeholders with your subscription ID, resource group name, and Foundry project name.
 
     ```python
     from azure.ai.ml import MLClient
@@ -214,13 +216,13 @@ To configure autoscaling for deployments, follow these steps:
 
 ## Delete the deployment
 
-To delete deployments in the Azure AI Foundry portal, select **Delete deployment** on the top panel of the deployment details page.
+To delete deployments in the Foundry portal, select **Delete deployment** on the top panel of the deployment details page.
 
 ## Quota considerations
 
-To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that Azure assigns to your subscription on a per-region basis. When you sign up for Azure AI Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request a quota increase.  
+To deploy and perform inferencing with real-time endpoints, you consume Virtual Machine (VM) core quota that Azure assigns to your subscription on a per-region basis. When you sign up for Foundry, you receive a default VM quota for several VM families available in the region. You can continue to create deployments until you reach your quota limit. Once that happens, you can request a quota increase.  
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- Learn more about what you can do in [Foundry](../what-is-azure-ai-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

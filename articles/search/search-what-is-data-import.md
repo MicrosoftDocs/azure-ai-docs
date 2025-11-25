@@ -78,7 +78,7 @@ The pull model uses *indexers* connecting to a supported data source, automatica
 + [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md)
 + [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
 + [Microsoft OneLake files and shortcuts](search-how-to-index-onelake-files.md)
-+ [SharePoint Online (preview)](search-how-to-index-sharepoint-online.md)
++ [SharePoint in Microsoft 365 (preview)](search-how-to-index-sharepoint-online.md)
 
 You can use third-party connectors, developed and maintained by Microsoft partners. For more information and links, see [Data source gallery](search-data-sources-gallery.md).
 

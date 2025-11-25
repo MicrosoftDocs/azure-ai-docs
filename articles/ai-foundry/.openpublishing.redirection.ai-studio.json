@@ -121,6 +121,16 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-chat-completions.md",
+            "redirect_url": "/azure/ai-foundry/openai/api-version-lifecycle#model-support",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/openai/overview.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/data-add.md",
             "redirect_url": "/azure/ai-foundry/how-to/data-add",
             "redirect_document_id": true
@@ -211,7 +221,7 @@
             "redirect_document_id": true
           },
           {
-            "source_path_from_root": "/articles/ai-foundry/open-ai/how-to/deployment-types.md",
+            "source_path_from_root": "/articles/ai-foundry/openai/how-to/deployment-types.md",
             "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
             "redirect_document_id": true
           },
@@ -268,7 +278,7 @@
           {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-openai.md",
             "redirect_url": "/azure/ai-foundry/how-to/deploy-models-openai",
-            "redirect_document_id": true
+            "redirect_document_id": false
           },
           {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3-5-vision.md",
@@ -1194,6 +1204,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-openai.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-embeddings.md",
             "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
             "redirect_document_id": false
@@ -1279,6 +1294,16 @@
           "redirect_document_id": false
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/agents/how-to/browser-automation.md",
+          "redirect_url": "/azure/ai-foundry/agents/how-to/tools/browser-automation",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools/code-interpreter-samples.md",
+          "redirect_url": "/azure/ai-foundry/agents/how-to/tools/code-interpreter",
+          "redirect_document_id": true
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/how-to/evaluate-prompts-playground.md",
           "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false
@@ -1336,6 +1361,11 @@
         {
           "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md",
           "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/a-b-experimentation.md",
+          "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false
         }
     ]
