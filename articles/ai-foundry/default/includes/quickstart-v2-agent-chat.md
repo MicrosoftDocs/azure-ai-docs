@@ -20,7 +20,7 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [C#](#tab/csharp2)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-chat-with-agent.cs":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-chat-with-agent.cs":::
 
 <!-- # [TypeScript](#tab/typescript) -->
 
