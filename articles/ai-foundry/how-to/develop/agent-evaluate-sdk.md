@@ -8,7 +8,7 @@ ms.custom:
 - build-2025
 - references_regions
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 11/25/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
@@ -16,7 +16,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Evaluate your AI agents locally with the Microsoft Foundry SDK (preview)
+# Evaluate your AI agents locally (preview)
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
