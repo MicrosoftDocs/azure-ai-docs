@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI practitioner, I want to deploy and use Claude models in Microsoft Foundry so I can integrate advanced conversational AI capabilities into my applications. 
 ---
 
-# Deploy and use Claude models in Microsoft Foundry
+# Deploy and use Claude models in Microsoft Foundry (preview)
 
 This article explains how to deploy and use the latest Claude models in Foundry, including Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1. Anthropic's flagship product is Claude, a frontier AI model useful for complex tasks such as coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
@@ -31,19 +31,19 @@ Foundry supports  Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Clau
 
 For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
 
-#### Claude Opus 4.5
+#### Claude Opus 4.5 (preview)
 
 Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200 K token context window and 64 K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
-#### Claude Sonnet 4.5
+#### Claude Sonnet 4.5 (preview)
 
 Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
 
-#### Claude Haiku 4.5
+#### Claude Haiku 4.5 (preview)
 
 Claude Haiku 4.5 delivers near-frontier performance for a wide range of use cases. It stands out as one of the best coding and agent models, with the right speed and cost to power free products and scaled sub-agents.
 
-#### Claude Opus 4.1
+#### Claude Opus 4.1 (preview)
 
 Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
 
