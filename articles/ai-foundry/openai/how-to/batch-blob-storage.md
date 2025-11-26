@@ -5,7 +5,7 @@ description: Learn how to configure Azure Blob Storage with Azure OpenAI Batch
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/06/2025
+ms.date: 11/26/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
