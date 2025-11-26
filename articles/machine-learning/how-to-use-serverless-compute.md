@@ -79,6 +79,8 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
 * **User credential pass through**: Serverless compute fully supports user credential pass through. The user token of the user who is submitting the job is used for storage access. These credentials are from your Microsoft Entra ID.
 
+  Serverless does not support system assigned identity.
+
     # [Python SDK](#tab/python)
 
     ```python
@@ -434,7 +436,7 @@ def my_pipeline():
         training_data=Input(type="uri_folder", path="./data")
     )
     # Set managed identity for the job
-    train_job.identity = {"type": "user_identity"}
+    train_job.identity = {"type": "managed"}
     return {"train_output": train_job.outputs}
 
 pipeline_job = my_pipeline()
@@ -457,7 +459,7 @@ inputs:
      type: uri_folder 
       path: ./data   
  identity:
-   type: user_identity
+   type: managed
 ```
 
 ---
