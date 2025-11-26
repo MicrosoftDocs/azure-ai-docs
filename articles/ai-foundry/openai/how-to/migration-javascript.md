@@ -17,7 +17,7 @@ manager: nitinme
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 > [!IMPORTANT]
-> This is a legacy migration article. For the latest API examples refer to the [API lifecycle article](../api-version-lifecycle.md).
+> For the latest API examples refer to the [API lifecycle article](../api-version-lifecycle.md).
 
 ## Authenticating the client
 
