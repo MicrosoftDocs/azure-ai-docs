@@ -7,7 +7,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/19/2025
 author: aahill
 ms.author: aahi
@@ -274,7 +274,7 @@ Before you create the agent, give your project's managed identity access to pull
 
 1. On the left pane, select **Identity**.
 
-1. Under **System assigned**, copy the **Object (principal) ID** value. This is the managed identity that you'll assign the Azure Container Instances role to.
+1. Under **System assigned**, copy the **Object (principal) ID** value. This value is the managed identity that you'll assign the Azure Container Instances role to.
 
 1. Grant pull permissions by assigning the Container Registry Repository Reader role to your project's managed identity on the container registry. For detailed steps, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
 
@@ -770,7 +770,7 @@ Unlike prompt-based agents that can be edited in the portal, hosted agents maint
 
 **Version control**: Publishing creates a deployment that references your current agent version. You can update the published agent by deploying new versions without changing the public endpoint.
 
-**Authentication**: Published agents support RBAC-based authentication by default. This authentication includes automatic permission handling for Azure Bot Service integration you're when publishing to Microsoft 365 channels.
+**Authentication**: Published agents support RBAC-based authentication by default. This authentication includes automatic permission handling for Azure Bot Service integration when you're publishing to Microsoft 365 channels.
 
 For detailed publishing instructions, see [Publish and share agents](../how-to/publish-agent.md).
 

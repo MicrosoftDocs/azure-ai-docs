@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/20/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'

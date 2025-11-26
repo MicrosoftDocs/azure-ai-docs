@@ -173,7 +173,7 @@ For advanced options and comprehensive information about agent creation, go to t
 
   The visualizer and the YAML are editable. Any changes to the YAML file are reflected in the visualizer.
 - **Versioning**: Each time you save your workflow, a new, unchangeable version is created. To view the version history or delete older versions, open the **Version** dropdown list to the left of the **Save** button.
-- **Notes on your workflow visualizer**: You can add notes on the workflow visualizer to add additional context or information for your workflow. In the upper-left corner of the workflow visualizer, select **Add note**.
+- **Notes on your workflow visualizer**: You can add notes on the workflow visualizer to add more context or information for your workflow. In the upper-left corner of the workflow visualizer, select **Add note**.
 
 ## Create expressions by using Power Fx
 
