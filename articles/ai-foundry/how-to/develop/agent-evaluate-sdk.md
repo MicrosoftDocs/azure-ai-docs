@@ -52,7 +52,7 @@ See [agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md)
 
 You can also assess other quality and safety aspects of your agentic workflows, using our [comprehensive suite of built-in evaluators](../../concepts/observability.md#what-are-evaluators) or write [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
-If you're building Foundry Agents, you can [seamlessly evaluate them](#evaluate-azure-ai-agents).
+If you're building Foundry Agents, you can [seamlessly evaluate them](#evaluate-microsoft-foundry-agents).
 
 If you build your agents outside of Foundry, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See details in [Evaluating other agents](#evaluating-other-agents).
 
