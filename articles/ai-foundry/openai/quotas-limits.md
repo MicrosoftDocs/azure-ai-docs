@@ -78,7 +78,7 @@ The following section provides you with a quick guide to the default quotas and 
 ## GPT-5.1 series
 
 | Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
-|:---------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+|:---------------------|:------------------------|:-------------:|:-------------:|:--------------------------:|:--------------------------:|
 | `gpt-5.1`            | DataZoneStandard        | 3,000         | 300,000       | 30,000					            | 3,000,000                  |
 | `gpt-5.1`            | GlobalStandard          | 10,000        | 1,000,000     | 100,000					          | 10,000,000                 |
 | `gpt-5.1-chat`       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
@@ -88,7 +88,7 @@ The following section provides you with a quick guide to the default quotas and 
 ## GPT-5 series
 
 | Model                | Deployment Type         | Default RPM   | Default TPM   | Enterprise and MCA-E RPM   | Enterprise and MCA-E TPM   |
-|:---------------------|:------------------------|:--------------|:--------------|:---------------------------|:---------------------------|
+|:---------------------|:------------------------|:-------------:|:-------------:|:--------------------------:|:--------------------------:|
 | `gpt-5`              | DataZoneStandard        | 3,000         | 300,000       | 30,000                     | 3,000,000                  |
 | `gpt-5`              | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
 | `gpt-5-chat`         | GlobalStandard          | 1,000         | 1,000,000     | 5,000                      | 5,000,000                  |
@@ -101,10 +101,10 @@ The following section provides you with a quick guide to the default quotas and 
 
 ## model-router rate limits
 
-| Model                      | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
-|:--------------------------:|------------------|:--------------|:--------------|:----------------------------|:-----------------------------|
-| `model-router` <br> `(2025-11-18 )` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
-| `model-router` <br> `(2025-11-18 )` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
+| Model                              | Deployment Type  | Default RPM   | Default TPM   | Enterprise and MCA-E RPM    | Enterprise and MCA-E TPM     |
+|:----------------------------------:|------------------|:-------------:|:-------------:|:---------------------------:|:----------------------------:|
+| `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
+| `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
@@ -251,9 +251,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 ### gpt-4o audio
 
-During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
-
-| Model|Tier| Quota limit in tokens per minute | Requests per minute<br>(new websocket connections per minute) |
+| Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-4o-audio-preview` | Default | 450K | 1K |
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
@@ -261,8 +259,8 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
 |`gpt-audio` |   Default | 100K | 30 |
 |`gpt-audio-mini` |   Default | 100K | 30 |
-|`gpt-realtime` | Default | 100K | 30 |
-|`gpt-realtime-mini` | Default | 100K | 30 |
+|`gpt-realtime` | Default | 100K | 100 |
+|`gpt-realtime-mini` | Default | 100K | 100 |
 
 
 ## GPT-image-1 rate limits

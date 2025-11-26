@@ -36,7 +36,7 @@ The following table summarizes the changes made in this article:
 
 ## Prerequisites
 
-- **Azure Subscription**: You need an [Azure subscription](https://azure.microsoft.com/free/ai-services?azure-portal=true) to create resources.
+- **Azure Subscription**: You need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create resources.
 - **Azure Roles**:
     - **Contributor** or **Owner** on the Resource Group to configure networking and resources.
     - **Cognitive Services OpenAI User** on the Azure OpenAI resource to run the verification code.
