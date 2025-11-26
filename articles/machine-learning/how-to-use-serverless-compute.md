@@ -79,7 +79,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
 * **User credential pass through**: Serverless compute fully supports user credential pass through. The user token of the user who is submitting the job is used for storage access. These credentials are from your Microsoft Entra ID.
 
-  Serverless does not support system assigned identity.
+  Serverless compute doesn't support system-assigned identity.
 
     # [Python SDK](#tab/python)
 
