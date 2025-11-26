@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 ms.author: mbullwin
 ---
 
@@ -60,8 +60,6 @@ When you create a model deployment, you have the option to assign Tokens-Per-Min
 
 To create a new deployment from within the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
-:::image type="content" source="../media/quota/deployment-new.png" alt-text="Screenshot of the deployment UI of Foundry" lightbox="../media/quota/deployment-new.png":::
-
 Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in [Foundry portal](https://ai.azure.com/?cid=learnDocs). You can also modify this setting from the **Management** > **Model quota** page.
 
 > [!IMPORTANT]
@@ -83,8 +81,6 @@ All other model classes have a common max TPM value.
 ## View and request quota
 
 For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in [Foundry portal](https://ai.azure.com/?cid=learnDocs):
-
-:::image type="content" source="../media/quota/quota-new.png" alt-text="Screenshot of the quota UI of Foundry" lightbox="../media/quota/quota-new.png":::
 
 - **Deployment**: Model deployments divided by model class.
 - **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  
