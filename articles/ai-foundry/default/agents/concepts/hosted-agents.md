@@ -33,6 +33,11 @@ Hosted agents in Microsoft Foundry Agent Service solve these challenges. With th
 
 Hosted agents are containerized agentic AI applications that run on Foundry Agent Service. Unlike prompt-based agents, hosted agents are built via code and deployed as container images on Microsoft-managed pay-as-you-go infrastructure.
 
+Hosted agents follow a standard lifecycle: create, start, update, stop, delete. Each phase provides specific capabilities and status transitions to manage your agent deployments effectively.
+
+> [!NOTE]
+> Hosted agents are currently in preview. For hosting pricing and limitations during the preview, see the [Microsoft Foundry](https://eastus2euap.ai.azure.com/nextgen/r/R_HJFOKZSVOpnT40ZEz-HA,container_agents_2509_preview,,hostedagents-testing-ws2,hostedagents-testing/home?flight=ignite_preview%3Dfalse%2Cnextgen_canary%2Cagent_ignite_group%2CshowAgentDetailsInInvokeAgent) home page.
+
 ### Hosting adapter
 
 The hosting adapter is a framework abstraction layer that automatically converts popular agent frameworks into Microsoft Foundry-compatible HTTP services. This adapter eliminates the need to manually implement REST APIs and message handling.
@@ -56,13 +61,6 @@ The hosting adapter provides several key benefits for developers:
 - Structured logging
 
 **Seamless Foundry integration**: Your locally developed agents work immediately with the Foundry Responses API, conversation management, and authentication flows. This integration bridges the gap between development frameworks and the Azure production AI platform.
-
-### Hosted agent lifecycle
-
-Hosted agents follow a standard lifecycle: create, start, update, stop, delete. Each phase provides specific capabilities and status transitions to manage your agent deployments effectively.
-
-> [!NOTE]
-> Hosted agents are currently in preview. For hosting pricing and limitations during the preview, see the [Microsoft Foundry](https://eastus2euap.ai.azure.com/nextgen/r/R_HJFOKZSVOpnT40ZEz-HA,container_agents_2509_preview,,hostedagents-testing-ws2,hostedagents-testing/home?flight=ignite_preview%3Dfalse%2Cnextgen_canary%2Cagent_ignite_group%2CshowAgentDetailsInInvokeAgent) home page.
 
 ### Managed service capabilities
 
@@ -140,7 +138,7 @@ This extension is currently in preview. We don't recommend it for production use
 
 To get started:
 
-1. Install the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) on your device.
+1. Install the Azure Developer CLI on your device.
 
    If you already have the Azure Developer CLI installed, check if you have the latest version of `azd` installed:
 
@@ -148,9 +146,9 @@ To get started:
     azd version
     ```
 
-    To upgrade to the latest version, see the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) documentation.
+    To upgrade to the latest version, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-1. If you're starting with no existing Foundry resources and want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template, which automatically installs the `ai agent` extension:
+1. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension.
 
     ```bash
     azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
@@ -190,7 +188,7 @@ To get started:
     azd up
     ```
 
-    This command abstracts the underlying execution of the commands `azd infra generate`, `azd provision`, and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. To learn more on how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) later in this article.
+    This command abstracts the underlying execution of the commands `azd infra generate`, `azd provision`, and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. To learn more on how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article.
 
 Make sure you have [RBAC](/azure/role-based-access-control/built-in-roles) enabled so that `azd` can provision the services and models for you.
 
@@ -204,7 +202,7 @@ If you have everything configured in the project to deploy a hosted agent, you n
 
 ### Resource cleanup
 
-To prevent unnecessary charges, it's important to clean up your Azure resources after completing your work with the application.
+To prevent unnecessary charges, it's important to clean up your Azure resources after you complete your work with the application.
 
 When to clean up:
 
@@ -270,7 +268,7 @@ For detailed guidance on working with Docker images in Azure Container Registry,
 
 Before you create the agent, give your project's managed identity access to pull from the container registry that houses your image. This step ensures that all dependencies are available within the container.
 
-1. In the [Azure portal](https://portal.azure.com), go to your Microsoft Foundry project resource.
+1. In the [Azure portal](https://portal.azure.com), go to your Foundry project resource.
 
 1. On the left pane, select **Identity**.
 
@@ -313,7 +311,7 @@ agent = client.agents.create_version(
 print(f"Agent created: {agent.id}")
 ```
 
-#### Key parameters
+Here are the key parameters:
 
 - `PROJECT_ENDPOINT`: Endpoint URL for your Foundry project.
 - `AGENT_NAME`: Unique name for your agent.
@@ -323,14 +321,12 @@ print(f"Agent created: {agent.id}")
 
 > [!NOTE]
 >
-> - Ensure that your container image is accessible from the Microsoft Foundry project.
+> - Ensure that your container image is accessible from the Foundry project.
 > - `DefaultAzureCredential` handles authentication automatically.
-> - The agent appears in the Microsoft Foundry portal after you create it.
+
+The agent appears in the Foundry portal after you create it.
 
 ## Manage hosted agents
-
-> [!NOTE]
-> Azure Cognitive Services and Azure AI services are now called Foundry Tools. The code examples in the following sections reflect the Cognitive Services name.
 
 ### Update an agent
 
@@ -550,8 +546,8 @@ Before your hosted agent can run tools, you need to create a connection to your 
 The `RemoteMCPTool` connection supports these authentication mechanisms:
 
 - **Stored credentials**: Use predefined credentials stored in the system.
-- **Project managed identity**: Use the managed identity for the Microsoft Foundry project.
-- **Agent identity**: Use a specific identity assigned to the agent.
+- **Project managed identity**: Use the managed identity for the Foundry project.
+- **Agent identity**: Use a specific identity that's assigned to the agent.
 
 #### Choose your authentication method
 
@@ -582,7 +578,7 @@ async def agent_run(self, request_body: CreateResponse, context: AgentRunContext
         return ResponseOauthConsentRequestEvent(oauthException)
 ```
 
-Hosted agents can also be used with Foundry built-in tools. Supported tools include:
+You can also use hosted agents with Foundry built-in tools. Supported tools include:
 
 - Code Interpreter
 - File Search
@@ -592,9 +588,9 @@ Hosted agents can also be used with Foundry built-in tools. Supported tools incl
 
 Hosted agents support exposing OpenTelemetry traces, metrics, and logs from underlying frameworks to Microsoft Foundry with Application Insights or any user-specified OpenTelemetry Collector endpoint.
 
-If you're using the `azd ai agent` CLI extension, Application Insights is automatically provisioned and connected to your Foundry project for you. Your project's managed identity is granted the Azure AI User role on the Foundry resource so that traces are exported to Application Insights.
+If you use the `azd ai agent` CLI extension, Application Insights is automatically provisioned and connected to your Foundry project for you. Your project's managed identity is granted the Azure AI User role on the Foundry resource so that traces are exported to Application Insights.
 
-If you're using the Foundry SDK, you have to perform these steps independently. Learn more in [this article](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
+If you use the Foundry SDK, you have to perform these steps independently. Learn more in [this article](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
 
 The hosting adapter provides:
 
@@ -689,7 +685,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 - **Intent Resolution**: Measures how well the agent identifies and understands user requests.
 - **Task Adherence**: Evaluates whether the agent's responses adhere to assigned tasks and system instructions.
 - **Tool Call Accuracy**: Assesses whether the agent makes correct function tool calls for user requests.
-- **Additional Quality Metrics**: Enables the use of Relevance, Coherence, and Fluency with agent messages.
+- **Additional Quality Metrics**: Enables the use of relevance, coherence, and fluency with agent messages.
 
 ### Evaluation best practices
 
@@ -697,9 +693,9 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Monitor agent performance**: Use the Foundry portal to track agent performance and review conversation traces.
 
-**Iterative evaluation**: Regularly evaluate agent versions during development to catch issues early and measure improvements.
+**Use iterative evaluation**: Regularly evaluate agent versions during development to catch issues early and measure improvements.
 
-For detailed information about evaluating agents, see [Evaluate AI agents](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
+For detailed information about evaluating agents, see [Evaluate your AI agents locally](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ## Understand agent identity for hosted agents
 
@@ -709,7 +705,7 @@ For detailed information about agent identity concepts, authentication mechanism
 
 ### Key identity concepts for hosted agents
 
-**Shared project identity**: During development and testing, all unpublished hosted agents within your Microsoft Foundry project share a common agent identity. This identity sharing simplifies permission management and allows you to configure access once for all development work.
+**Shared project identity**: During development and testing, all unpublished hosted agents within your Foundry project share a common agent identity. This identity sharing simplifies permission management and allows you to configure access once for all development work.
 
 **Distinct agent identity**: When you publish a hosted agent, Foundry automatically creates a dedicated agent identity that's associated with your agent application resource. This distinct identity provides:
 

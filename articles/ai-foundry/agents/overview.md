@@ -18,7 +18,7 @@ monikerRange: 'foundry-classic || foundry'
 
 Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 
-Large language models (LLMs) introduced a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, it can be difficult for businesses to move beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are difficult to trust in real business workflows.
+Large language models (LLMs) introduced a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, businesses can have difficulty moving beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are hard to trust in real business workflows.
 
 :::row:::
     :::column span="1":::
@@ -55,7 +55,7 @@ Agents receive unstructured inputs such as user prompts, alerts, or messages fro
 
 ## How do agents in Foundry work?
 
-Think of Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together specialized stations that are each responsible for shaping part of the final product. Instead of machines and conveyor belts, the agent factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production ready. Here's how the factory works step by step:
+Think of Foundry as an assembly line for intelligent agents. Like any modern factory, Foundry brings together specialized stations that are each responsible for shaping part of the final product. Instead of machines and conveyor belts, the agent factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production ready. Here's how the factory works step by step:
 
 ![Diagram that shows the six steps for a Foundry agent factory.](media\agent-factory.png)
 
@@ -73,7 +73,7 @@ Shape the model to fit your use case. Customize your agent with fine-tuning, dis
     :::column span="1":::
 ### 3. Knowledge and tools
 
-Equip your agent with tools. These tools let the agent access enterprise knowledge (such as Bing, SharePoint, and Azure AI Search) and take real-world actions (via Logic Apps, Azure Functions, OpenAPI, and more). This step enhances the agent's ability to expand its capabilities.
+Equip your agent with tools. These tools let the agent access enterprise knowledge (such as Bing, SharePoint, and Azure AI Search) and take real-world actions (via Azure Logic Apps, Azure Functions, OpenAPI, and more). This step enhances the agent's ability to expand its capabilities.
     :::column-end:::
 :::row-end:::
 
@@ -125,13 +125,13 @@ To get started with Foundry Agent Service, you need to create a Foundry project 
 
 :::moniker range="foundry-classic"
 
-Start with the [environment setup](environment-setup.md) and [quickstart](./quickstart.md) if it's your first time using the service.
+Start with the [environment setup](environment-setup.md) and [quickstart](./quickstart.md) guides if it's your first time using the service.
 
 :::moniker-end
 
 :::moniker range="foundry"
 
-Start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guide if it's your first time using the service.
+Start with the [environment setup](environment-setup.md) and [quickstart](../quickstarts/get-started-code.md) guides if it's your first time using the service.
 
 :::moniker-end
 
@@ -151,8 +151,8 @@ As an Azure Standard customer, you provision and manage your own single-tenant A
 
 If the primary region becomes unavailable, the agent automatically becomes available in the secondary region by connecting to the same Azure Cosmos DB account. Because all history is preserved in Cosmos DB, the agent can continue operation with minimal disruption.
 
-We recommend that customers provision and maintain their Azure Cosmos DB accounts and configure appropriate backup and recovery policies. This effort helps ensure seamless continuity if the primary region becomes unavailable.
+We recommend that customers provision and maintain their Azure Cosmos DB accounts, and that they configure appropriate backup and recovery policies. This effort helps ensure seamless continuity if the primary region becomes unavailable.
 
 ## Related content
 
-- Learn more about the [models that power agents](concepts\model-region-support.md).
+- Learn more about the [models that inform agents](concepts\model-region-support.md).

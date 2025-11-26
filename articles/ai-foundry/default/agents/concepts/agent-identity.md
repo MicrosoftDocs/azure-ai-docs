@@ -81,7 +81,7 @@ Foundry automatically integrates with Microsoft Entra Agent ID by creating and m
 
 ### Shared project identity
 
-All unpublished or in-development agents within the same project share a common identity. This design simplifies permission management because unpublished agents typically require the same access patterns and permission configurations. The shared identity approach provides several benefits:
+All unpublished or in-development agents within the same project share a common identity. This design simplifies permission management because unpublished agents typically require the same access patterns and permission configurations. The shared identity approach provides these benefits:
 
 * **Simplified administration**: Administrators can centrally manage permissions for all in-development agents within a project.
 * **Reduced identity sprawl**: Using a single identity per project prevents unnecessary identity creation during early experimentation.
@@ -109,7 +109,7 @@ To find the distinct agent identity blueprint and agent identity, go to your age
 Agents access remote resources and tools by using agent identities for authentication. The authentication mechanism differs based on the agent's publication status:
 
 * **Unpublished agents**: Authenticate by using the shared project's agent identity.
-* **Published agents**: Authenticate by using the unique agent identity associated with the agent application.
+* **Published agents**: Authenticate by using the unique agent identity that's associated with the agent application.
 
 When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC permissions to the new agent identity for any resources that the agent needs to access. This reassignment ensures that the published agent maintains appropriate access while operating under its distinct identity.
 
@@ -126,7 +126,7 @@ To configure an MCP tool to authenticate by using an agent identity:
 
 1. Ensure that you have an MCP server that you want to configure as a tool for your agent.
 
-1. Get the agent identity ID. In the Azure portal, go to your Foundry project. On the **Overview** pane, select **JSON View** and choose the latest API version. Copy the `agentIdentityId` value.
+1. Get the ID for the agent identity. In the Azure portal, go to your Foundry project. On the **Overview** pane, select **JSON View** and choose the latest API version. Copy the `agentIdentityId` value.
 
 1. Create a connection to your remote MCP server that uses `AgenticIdentityToken` as the authentication type. The **Audience** box specifies which service or API the token is intended to access. For example:
 

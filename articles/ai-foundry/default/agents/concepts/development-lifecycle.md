@@ -24,7 +24,7 @@ There are three types of agents:
 
 - **Workflow**: If you want to develop a more advanced agentic workflow that consists of a sequence of actions, or orchestrate multiple agents together, you can do so with workflows. Workflows have their own development interface in the portal, but the same lifecycle applies. For details, see the [workflow article](../../agents/concepts/workflow.md).
 
-- **Hosted**: Hosted agents are containerized agents that are developed in code via supported agent frameworks or custom code. Foundry Agent Service deploys and manages these agents. They're created primarily through the code-first experience and can't be edited in the agent building interface on Foundry. But they can be viewed, invoked, evaluated, monitored, and published just like prompt-based agents and workflows. For details, see the [hosted agents](./hosted-agents.md) article.
+- **Hosted**: Hosted agents are containerized agents that are developed in code via supported agent frameworks or custom code. Foundry Agent Service deploys and manages these agents. They're created primarily through the code-first experience and can't be edited in the agent building interface on Foundry. But they can be viewed, invoked, evaluated, monitored, and published just like prompt-based agents and workflows. For details, see the [article about hosted agents](./hosted-agents.md).
 
 You can create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
@@ -37,7 +37,7 @@ If you already know what kind of agent you want to create, you can name it and t
 
 ## Developing in code
 
-If you prefer to work in code, there are a couple supported ways to bring your agent code into a development environment from which you can test locally and then deploy to Azure.
+If you prefer to work in code, there are supported ways to bring your agent code into a development environment from which you can test locally and then deploy to Azure.
 
 From the **Code** tab in the agent playground's chat pane, you can take a code snippet that references your agent to a dedicated Visual Studio Code for the Web cloud environment. The snippet comes preconfigured with the packages and extensions that you need, along with instructions to efficiently develop and deploy your Foundry agent to Azure. You can also copy the code snippet directly to your preferred development environment. For details, see the [playground documentation](../../../concepts/concept-playgrounds.md#open-in-vs-code-capability).
 
@@ -62,9 +62,9 @@ Agent versioning provides the following capabilities for managing agent configur
 
 ### Add tools
 
-You can make your agent more powerful by giving it knowledge (specific files or indexes) or allowing it to take actions (calling external APIs). There are tools available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
+You can make your agent more powerful by giving it knowledge (specific files or indexes) or allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
 
-You must successfully configure a tool to be able to save an agent with it attached. You can reuse configured tools across agents. For information about available tools, see the [tools catalog](./tool-catalog.md).
+To be able to save an agent with a tool attached, you must successfully configure the tool. You can reuse configured tools across agents. For information about available tools, see the [tools catalog](./tool-catalog.md).
 
 ### Publish your agent or workflow
 

@@ -33,7 +33,7 @@ To create a workflow in Foundry, you can begin with a blank workflow or select o
 | Pattern    | Description                                                        | Typical use case                                         |
 |------------|--------------------------------------------------------------------|----------------------------------------------------------|
 | Human in the loop  | Asks the user a question and awaits user input to proceed | Creating approval requests during workflow execution and waiting for human approval, or obtaining information form the user |
-| Sequential | Passes the result from one agent to the next in a defined order   | Step-by-step workflows, pipelines, or multi-stage processing |
+| Sequential | Passes the result from one agent to the next in a defined order   | Step-by-step workflows, pipelines, or multiple-stage processing |
 | Group chat    | Dynamically passes control between agents based on context or rules| Dynamic workflows, escalation, fallback, or expert handoff scenarios |
 
 For more information, see [Microsoft Agent Framework workflow orchestrations](/agent-framework/user-guide/workflows/orchestrations/overview).
@@ -194,7 +194,7 @@ Here are the system variables:
 | `Bot` | Information about the agent |
 | `Conversation` | Information about the current conversation |
 | `Conversation.Id` | Unique ID of the current conversation |
-| `Conversation.LocalTimeZone` | Time zone that the user will use, in the IANA Time Zone Database format |
+| `Conversation.LocalTimeZone` | Time zone of the user, in the IANA Time Zone Database format |
 | `Conversation.LocalTimeZoneOffset` | Time offset from UTC for the current local time zone |
 | `Conversation.InTestMode` | Boolean flag that represents if the conversation is happening on a test canvas |
 | `ConversationId` | Unique ID of the current conversation |

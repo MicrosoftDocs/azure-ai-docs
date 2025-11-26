@@ -23,13 +23,13 @@ sections:
           Do you store any data used in the Foundry Agent Service API? 
         answer: |
           Yes. Foundry Agent Service is a stateful API, which means that it retains data. Two types of data are stored in the Foundry Agent Service API: 
-          * Stateful entities: Conversations and responses created during usage. 
-          * Files and vector stores: Data uploaded during Foundry Agent Service setup or as part of a response generation.  
+          * **Stateful entities**: Conversations and responses created during usage. 
+          * **Files and vector stores**: Data uploaded during Foundry Agent Service setup or as part of a response generation.  
       - question: |
           Where is this data stored?
         answer: |
-          * Basic setup: Data is stored in a secure, Microsoft-managed storage account that's logically separated.  
-          * Standard setup: Data is stored in your own Azure resources, so you have full ownership and control.
+          * **Basic setup**: Data is stored in a secure, Microsoft-managed storage account that's logically separated.  
+          * **Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control.
       - question: |
           How long is this data stored?
         answer: |
@@ -78,23 +78,23 @@ sections:
           
           In short, delegating the subnet is the prerequisite that lets Container Apps and your agent runtime reside in your private network with the correct security and routing policies in place and in your control. 
       - question: |
-          What regions are supported for class A? 
+          What regions are supported for Class A? 
         answer: | 
           Supported regions are: West US, East US, East US 2, Japan East, France Central, UAE North, South Central US, Italy North, Germany West Central, Brazil South, South Africa North, Australia East, Sweden Central, Canada East, West Europe, Spain Central, and UK South. 
       - question: |
           What class range is supported for public or private Class A, B, and C subnets? 
         answer: |
-          Only private class A, B, and C ranges are supported. No public class ranges are supported.  
+          Only private Class A, B, and C ranges are supported. No public class ranges are supported.  
       - question: |
           What is the minimum size for the agent subnet, and how many IPs should I use?
         answer: |
           The recommended subnet size is /24 (256 address) and is what we default to in our templates. The minimum subnet size is /27 (32 address). We recommend /24 because of the runtime impact in the event of a container update, as listed in the Container Apps documentation. For more information, see [Virtual network configuration](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet). 
 
-          We set an IP range per Microsoft Foundry account. Each project gets an IP from the range. An IP address is set per project, not per agent. This means there's no limit to the number of agents that you can create within your project. You aren't limited by the minimum address space of the subnet to create any number of agents. 
+          We set an IP range per Microsoft Foundry account. Each project gets an IP address from the range. An IP address is set per project, not per agent. This means there's no limit to the number of agents that you can create within your project. You aren't limited by the minimum address space of the subnet to create any number of agents. 
       - question: |
-          What is the minimum and recommended virtual network address range for Foundry Agent Service? 
+          What is the minimum and recommended address range for virtual networks in Foundry Agent Service? 
         answer: |
-          As long as the agent subnet and private endpoints have address space, the virtual network address range can be anything. 
+          As long as the agent subnet and private endpoints have address space, the address range for virtual networks can be anything. 
       - question: |
           Can I use peered virtual networks? Can I have resources in different virtual networks?  
         answer: |
@@ -102,7 +102,7 @@ sections:
       - question: |
           Do I need to add any FQDNs to an allow list if I'm using an Azure firewall? 
         answer: |
-          Yes. Add to an allow list the fully qualified domain names (FQDNs) listed for a managed identity in the [Use Azure Firewall with Azure Container Apps](/azure/container-apps/use-azure-firewall) article, or add the service tag `AzureActiveDirectory`. Verify that no TLS inspection happens in the firewall that might add a self-signed certificate. During failures, inspect if there's any traffic landing on the firewall and what traffic the firewall is blocking.  
+          Yes. Add to an allow list the fully qualified domain names (FQDNs) listed for a managed identity in the [Use Azure Firewall with Azure Container Apps](/azure/container-apps/use-azure-firewall) article, or add the service tag `AzureActiveDirectory`. Verify that no Transport Layer Security (TLS) inspection happens in the firewall that might add a self-signed certificate. During failures, inspect if there's any traffic landing on the firewall and what traffic the firewall is blocking.  
       - question: 
           Can multiple Microsoft Foundry resources reuse the virtual network? 
         answer: |
@@ -114,4 +114,4 @@ sections:
       - question: |
           What additional configuration do I need if I want to add tools to my agents? 
         answer: |
-          The template provides support for the built-in tools: Code Interpreter, File Search, Azure AI Search, Azure Cosmos DB. All these tools use the bring-your-own resource connections. To configure tools that require the creation of a new connection, you must create a private endpoint from `peSubnet` and create a private link from the Azure resource. 
+          The template provides support for the built-in tools: Code Interpreter, File Search, Azure AI Search, Azure Cosmos DB. All these tools use bring-your-own resource connections. To configure tools that require the creation of a new connection, you must create a private endpoint from `peSubnet` and create a private link from the Azure resource. 
