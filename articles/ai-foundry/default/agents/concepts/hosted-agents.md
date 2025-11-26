@@ -132,9 +132,9 @@ This local testing approach lets you:
 
 ## Create a hosted agent by using the Azure Developer CLI
 
-Developers can use the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) `ai agent` extension for seamless and rapid provisioning and deployment of their agentic applications on Foundry.
+Developers can use the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) `ai agent` extension for seamless and rapid provisioning and deployment of their agentic applications on Microsoft Foundry.
 
-This extension simplifies the setup of Foundry resources, models, tools, and knowledge resources. For example, it simplifies the setup of Azure Container Registry for bringing your own container, Application Insights for logging and monitoring, a managed identity, role-based access control. In other words, it provides everything you need to get started with hosted agents with Foundry Agent Service.
+This extension simplifies the setup of Foundry resources, models, tools, and knowledge resources. For example, it simplifies the setup of Azure Container Registry for bringing your own container, Application Insights for logging and monitoring, a managed identity, and role-based access control (RBAC). In other words, it provides everything you need to get started with hosted agents in Foundry Agent Service.
 
 This extension is currently in preview. We don't recommend it for production use.
 
@@ -176,7 +176,7 @@ To get started:
     azd ai agent init -m <repo-path-to-agent.yaml>
     ```
 
-    The GitHub repo for an agent that you want to host on Foundry contains the application code, referenced dependencies, Dockerfile for containerization, and the `agent.yaml` file that contains your agent's definition. To configure your agent, set values for the parameters you're prompted for. This action registers your agent under `Services` in `azure.yaml` for the downloaded template. You can get started with samples on [GitHub](https://github.com/azure-ai-foundry/foundry-samples).
+    The GitHub repo for an agent that you want to host on Foundry contains the application code, referenced dependencies, Dockerfile for containerization, and the `agent.yaml` file that contains your agent's definition. To configure your agent, set values for the parameters that you're prompted for. This action registers your agent under `Services` in `azure.yaml` for the downloaded template. You can get started with samples on [GitHub](https://github.com/azure-ai-foundry/foundry-samples).
 
 1. To open and view all Bicep and configuration files associated with your `azd`-based deployments, use this command:
 
@@ -192,19 +192,19 @@ To get started:
 
     This command abstracts the underlying execution of the commands `azd infra generate`, `azd provision`, and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. To learn more on how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) later in this article.
 
-Make sure you have the [RBAC](/azure/role-based-access-control/built-in-roles) enabled so that `azd` can provision the services and models for you.
+Make sure you have [RBAC](/azure/role-based-access-control/built-in-roles) enabled so that `azd` can provision the services and models for you.
 
 ### Roles and permissions
 
-If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI user roles.
+If you have an existing Foundry resource and need to create a new Foundry project to deploy a hosted agent, you need Account Owner and Azure AI User roles.
 
-If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI user roles on Foundry in addition to the Contributor role on the Azure subscription.
+If you have an existing project and want to create the model deployment and container registry in the project, you need Account Owner and Azure AI User roles on Foundry in addition to the Contributor role on the Azure subscription.
 
 If you have everything configured in the project to deploy a hosted agent, you need Reader and Azure AI User roles.
 
 ### Resource cleanup
 
-To prevent incurring unnecessary charges, it's important to clean up your Azure resources after completing your work with the application.
+To prevent unnecessary charges, it's important to clean up your Azure resources after completing your work with the application.
 
 When to clean up:
 
@@ -222,7 +222,7 @@ This process might take up to 20 minutes to complete.
 
 ## Create a hosted agent by using the Foundry SDK
 
-When you create a hosted agent, the system registers the agent definition in Foundry and tries to create a deployment for that agent version.
+When you create a hosted agent, the system registers the agent definition in Microsoft Foundry and tries to create a deployment for that agent version.
 
 ### Prerequisites for deployment
 
@@ -246,7 +246,7 @@ To build your agent as a Docker container and upload it to Azure Container Regis
    docker build -t myagent:v1 .
    ```
 
-2. Log in to Azure Container Registry:
+2. Sign in to Azure Container Registry:
 
    ```bash
    az acr login --name myregistry
@@ -287,13 +287,13 @@ from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
-# Initialize client
+# Initialize the client
 client = AIProjectClient(
     endpoint="https://your-project.services.ai.azure.com/api/projects/project-name",
     credential=DefaultAzureCredential()
 )
 
-# Create agent from container image
+# Create the agent from a container image
 agent = client.agents.create_version(
     agent_name="my-agent",
     definition=ImageBasedHostedAgentDefinition(
@@ -315,7 +315,7 @@ print(f"Agent created: {agent.id}")
 
 #### Key parameters
 
-- `PROJECT_ENDPOINT`: Your Microsoft Foundry project endpoint URL.
+- `PROJECT_ENDPOINT`: Endpoint URL for your Foundry project.
 - `AGENT_NAME`: Unique name for your agent.
 - `CONTAINER_IMAGE`: Full Azure Container Registry image URL with tag.
 - `CPU/Memory`: Resource allocation (for example, `1` for CPU, `2Gi` for memory).
@@ -378,7 +378,7 @@ az cognitiveservices agent update --account-name myAccount --project-name myProj
 
 ### Start an agent deployment
 
-After you create your hosted agent version, you can start the deployment by using the Azure CLI (`az`) to make it available for requests. You can also start a hosted agent that's stopped.
+After you create your hosted agent version, you can start the deployment by using the `az` CLI extension to make it available for requests. You can also start a hosted agent that's stopped.
 
 ```bash
 az cognitiveservices agent start
@@ -461,7 +461,7 @@ The arguments for this code include:
 
 The following command removes all versions and deployments for the agent. Use it when you no longer need the agent and want to clean up all associated resources.
 
-If you provide `agent_version`, and you deleted the agent deployment, the agent definition associated with that version is deleted. If the agent deployment is running, this operation doesn't succeed.
+If you provide `agent_version` and you delete the agent deployment, the agent definition associated with that version is deleted. If the agent deployment is running, this operation doesn't succeed.
 
 If you don't provide `agent_version`, all agent versions associated with the agent name are deleted.
 
@@ -529,11 +529,11 @@ PROJECT_ENDPOINT = "https://your-project.services.ai.azure.com/api/projects/your
 AGENT_NAME = "your-agent-name"
 AGENT_VERSION = "1"  # Optional: specify version, or use latest
 
-# Initialize client and retrieve agent
+# Initialize the client and retrieve the agent
 client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
 agent = client.agents.retrieve(agent_name=AGENT_NAME)
 
-# Get OpenAI client and send message
+# Get the OpenAI client and send a message
 openai_client = client.get_openai_client()
 response = openai_client.responses.create(
     input=[{"role": "user", "content": "Hello! What can you help me with?"}],
@@ -550,18 +550,18 @@ Before your hosted agent can run tools, you need to create a connection to your 
 The `RemoteMCPTool` connection supports these authentication mechanisms:
 
 - **Stored credentials**: Use predefined credentials stored in the system.
-- **Project managed identity**: Use the Microsoft Foundry project's managed identity.
+- **Project managed identity**: Use the managed identity for the Microsoft Foundry project.
 - **Agent identity**: Use a specific identity assigned to the agent.
 
 #### Choose your authentication method
 
-- **For shared identity**: Use key-based, Microsoft Entra Agent ID, or Microsoft Foundry Project Managed Identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
+- **For shared identity**: Use key-based, Microsoft Entra agent identity, or Foundry project managed identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
 
 - **For individual user context**: Use OAuth identity passthrough when every user of your agent should use their own account to authenticate with the MCP server. This approach preserves personal user context.
 
 To learn how to create the `RemoteMCPTool` connection, see [Connect to Model Context Protocol servers](../../../agents/how-to/tools/model-context-protocol.md).
 
-Use the companion package with your local agent code to list and invoke tools from within your container.
+Use the companion package with your local agent code to list and invoke tools from within your container:
 
 ```python
 from azure.ai.agentshosting import tool_client, from_langgraph
@@ -608,7 +608,7 @@ The hosting adapter provides:
 
 1. Install and set up AI Toolkit for Visual Studio Code (VS Code) by following [Trace in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
-1. Set up and export the environment variable `OTEL_EXPORTER_ENDPOINT`. You can find the endpoint from AI Toolkit in VS Code after you select the **Start Collector** button.
+1. Set up and export the environment variable `OTEL_EXPORTER_ENDPOINT`. You can find the endpoint from AI Toolkit for VS Code after you select the **Start Collector** button.
 
 1. Invoke the agent and find traces in AI Toolkit.
 
@@ -622,11 +622,11 @@ To send traces to your own OpenTelemetry collector or compatible observability p
 
 ## Manage conversations by using hosted agents
 
-Hosted agents integrate seamlessly with the conversation management system in Foundry. This integration enables stateful, multiple-turn interactions without manual state management.
+Hosted agents integrate seamlessly with the conversation management system in Microsoft Foundry. This integration enables stateful, multiple-turn interactions without manual state management.
 
 ### How conversations work with hosted agents
 
-**Conversation objects**: Microsoft Foundry automatically creates durable conversation objects with unique identifiers that persist across multiple agent interactions. When a user starts a conversation with your hosted agent, the platform maintains this conversation context automatically.
+**Conversation objects**: Foundry automatically creates durable conversation objects with unique identifiers that persist across multiple agent interactions. When a user starts a conversation with your hosted agent, the platform maintains this conversation context automatically.
 
 **State management**: Unlike traditional APIs where you manually pass conversation history, hosted agents receive conversation context automatically. The Foundry runtime manages:
 
@@ -646,17 +646,17 @@ Hosted agents integrate seamlessly with the conversation management system in Fo
 
 **Cross-session continuity**: Conversations persist beyond individual requests. Users can return to previous discussions with full context maintained.
 
-**Conversation reuse**: The same conversation can be accessed from multiple channels and applications while maintaining consistent state and history.
+**Conversation reuse**: Users can access the same conversation from multiple channels and applications. Conversations maintain consistent state and history.
 
 **Automatic cleanup**: Foundry manages conversation lifecycle and cleanup based on your project's retention policies.
 
 ## Evaluate and test hosted agents
 
-Foundry provides comprehensive evaluation and testing capabilities specifically designed for hosted agents. You can use these capabilities to validate performance, compare versions, and help ensure quality before deployment.
+Microsoft Foundry provides comprehensive evaluation and testing capabilities that are designed for hosted agents. You can use these capabilities to validate performance, compare versions, and help ensure quality before deployment.
 
 ### Built-in evaluation capabilities
 
-**Agent performance evaluation**: Microsoft Foundry includes built-in evaluation metrics to assess your hosted agent's effectiveness:
+**Agent performance evaluation**: Foundry includes built-in evaluation metrics to assess your hosted agent's effectiveness:
 
 - Response quality and relevance
 - Task completion accuracy
@@ -664,7 +664,7 @@ Foundry provides comprehensive evaluation and testing capabilities specifically 
 - Conversation coherence and context retention
 - Response time and efficiency metrics
 
-**Agent-specific evaluation**: Evaluate hosted agents by using the Azure AI Evaluation SDK with built-in evaluators designed specifically for agentic workflows. The SDK provides specialized evaluators for measuring agent performance across key dimensions like intent resolution, task adherence, and tool usage accuracy.
+**Agent-specific evaluation**: Evaluate hosted agents by using the Azure AI Evaluation SDK with built-in evaluators that are designed for agentic workflows. The SDK provides specialized evaluators for measuring agent performance across key dimensions like intent resolution, task adherence, and tool usage accuracy.
 
 ### Testing workflows for hosted agents
 
@@ -672,7 +672,7 @@ Foundry provides comprehensive evaluation and testing capabilities specifically 
 
 **Staging validation**: Deploy to a staging environment to validate behavior with real Foundry infrastructure while maintaining isolation from production.
 
-**Production monitoring**: Continuously monitor deployed hosted agents with automated evaluation runs to detect performance degradation or issues.
+**Production monitoring**: Continuously monitor deployed hosted agents with automated evaluation runs to detect performance degradation or problems.
 
 ### Structured evaluation approaches
 
@@ -705,11 +705,13 @@ For detailed information about evaluating agents, see [Evaluate AI agents](../..
 
 Hosted agents automatically receive an *agent identity*. This specialized identity type in Microsoft Entra ID is specifically for AI agents. This identity enables your agents to securely authenticate and access resources throughout their lifecycle.
 
+For detailed information about agent identity concepts, authentication mechanisms, and management, see [Agent identity concepts](./agent-identity.md).
+
 ### Key identity concepts for hosted agents
 
 **Shared project identity**: During development and testing, all unpublished hosted agents within your Microsoft Foundry project share a common agent identity. This identity sharing simplifies permission management and allows you to configure access once for all development work.
 
-**Distinct agent identity**: When you publish a hosted agent, Microsoft Foundry automatically creates a dedicated agent identity associated with your agent application resource. This distinct identity provides:
+**Distinct agent identity**: When you publish a hosted agent, Foundry automatically creates a dedicated agent identity that's associated with your agent application resource. This distinct identity provides:
 
 - Independent authentication for production agents.
 - Isolated permission management.
@@ -737,8 +739,6 @@ tools_client = await tool_client(context)  # Uses agent identity automatically
 tools = await tools_client.list_tools()
 ```
 
-For detailed information about agent identity concepts, authentication mechanisms, and management, see [Agent identity concepts](./agent-identity.md).
-
 ## Publish hosted agents to channels
 
 Publishing transforms your hosted agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. After you publish your hosted agent, you can share it across multiple channels and platforms.
@@ -747,16 +747,16 @@ Publishing transforms your hosted agent from a development asset into a managed 
 
 When you publish a hosted agent, Microsoft Foundry automatically:
 
-1. **Creates an agent application resource** with a dedicated invocation URL.
-2. **Provisions a distinct agent identity** that's separate from your project's shared identity.
-3. **Registers the agent** in the Microsoft Entra agent registry for discovery and governance.
-4. **Enables stable endpoint access** that remains consistent as you deploy new agent versions.
+1. Creates an agent application resource with a dedicated invocation URL.
+2. Provisions a distinct agent identity that's separate from your project's shared identity.
+3. Registers the agent in the Microsoft Entra agent registry for discovery and governance.
+4. Enables stable endpoint access that remains consistent as you deploy new agent versions.
 
 Unlike prompt-based agents that can be edited in the portal, hosted agents maintain their code-based implementation while gaining the same publishing and sharing capabilities.
 
 ### Available publishing channels
 
-**Web application preview**: Get an instant shareable web interface to demonstrate and test your hosted agent with stakeholders.
+**Web application preview**: Get an instant, shareable web interface to demonstrate and test your hosted agent with stakeholders.
 
 **Microsoft 365 Copilot and Teams**: Integrate your hosted agent directly into Microsoft 365 Copilot and Microsoft Teams through a streamlined, no-code publishing flow. Your agent appears in the agent store for organizational or shared scope distribution.
 
