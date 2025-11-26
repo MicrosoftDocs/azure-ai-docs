@@ -194,7 +194,7 @@ Here are the system variables:
 | `Bot` | Information about the agent |
 | `Conversation` | Information about the current conversation |
 | `Conversation.Id` | Unique ID of the current conversation |
-| `Conversation.LocalTimeZone` | Name of the time zone that the user will use, in the IANA Time Zone Database format |
+| `Conversation.LocalTimeZone` | Time zone that the user will use, in the IANA Time Zone Database format |
 | `Conversation.LocalTimeZoneOffset` | Time offset from UTC for the current local time zone |
 | `Conversation.InTestMode` | Boolean flag that represents if the conversation is happening on a test canvas |
 | `ConversationId` | Unique ID of the current conversation |
@@ -213,7 +213,7 @@ Here are the system variables:
 
 In addition to using variables in a Power Fx formula, you can enter literal values. To use a literal value in a formula, you must enter it in the format that corresponds to its [type](/microsoft-copilot-studio/authoring-variables-about?tabs=webApp).
 
-The following table lists the data types and the format of their corresponding literal values.
+The following table lists the data types and the format of their corresponding literal values:
 
 | Type             | Format examples                                                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -227,16 +227,16 @@ The following table lists the data types and the format of their corresponding l
 
 #### Common Power Fx formulas
 
-The following table lists data types and the Power Fx formulas that you can use with each data type.
+The following table lists the Power Fx formulas that you can use with each data type.
 
 | Type             | Power Fx formulas                                                                                                                                                                                                                                                                                                               |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| String           | [Text function][1]<br>[Concat and Concatenate functions][2]<br>[Len function][3]<br>[Lower, Upper, and Proper functions][4]<br>[IsMatch, Match, and MatchAll functions][5]<br>[EndsWith and StartsWith functions][6]<br>[Find function][7]<br>[Replace and Substitute function][8]                                              |
-| Boolean          | [Boolean function][9]<br>[And, Or, and Not functions][10]<br>[If and Switch functions][11]                                                                                                                                                                                                                                      |
-| Number           | [Decimal, Float, and Value functions][12]<br>[Int, Round, RoundDown, RoundUp, and Trunc functions][13]                                                                                                                                                                                                                          |
-| Record and table | [Concat and Concatenate functions][14]<br>[Count, CountA, CountIf, and CountRows functions][15]<br>[ForAll function][16]<br>[First, FirstN, Index, Last, and LastN functions][17]<br>[Filter, Search, and LookUp functions][18]<br>[JSON function][19]<br>[ParseJSON function][20]                                              |
-| Date and time         | [Date, DateTime, and Time functions][21]<br>[DateValue, TimeValue, and DateTimeValue functions][22]<br>[Day, Month, Year, Hour, Minute, Second, and Weekday functions][23]<br>[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions][24]<br>[DateAdd, DateDiff, and TimeZoneOffset functions][25]<br>[Text function][26] |
-| Blank            | [Blank, Coalesce, IsBlank, and IsEmpty functions][27]<br>[Error, IfError, IsError, IsBlankOrError functions][28]                                                                                                                                                                                                                |
+| String           | `[Text function][1]`<br>`[Concat and Concatenate functions][2]`<br>`[Len function][3]`<br>`[Lower, Upper, and Proper functions][4]`<br>`[IsMatch, Match, and MatchAll functions][5]`<br>`[EndsWith and StartsWith functions][6]`<br>`[Find function][7]`<br>`[Replace and Substitute function][8]`                                              |
+| Boolean          | `[Boolean function][9]`<br>`[And, Or, and Not functions][10]`<br>`[If and Switch functions][11]`                                                                                                                                                                                                                                      |
+| Number           | `[Decimal, Float, and Value functions][12]`<br>`[Int, Round, RoundDown, RoundUp, and Trunc functions][13]`                                                                                                                                                                                                                          |
+| Record and table | `[Concat and Concatenate functions][14]`<br>`[Count, CountA, CountIf, and CountRows functions][15]`<br>`[ForAll function][16]`<br>`[First, FirstN, Index, Last, and LastN functions][17]`<br>`[Filter, Search, and LookUp functions][18]`<br>`[JSON function][19]`<br>`[ParseJSON function][20]`                                              |
+| Date and time         | `[Date, DateTime, and Time functions][21]`<br>`[DateValue, TimeValue, and DateTimeValue functions][22]`<br>`[Day, Month, Year, Hour, Minute, Second, and Weekday functions][23]`<br>`[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions][24]`<br>`[DateAdd, DateDiff, and TimeZoneOffset functions][25]`<br>`[Text function][26]` |
+| Blank            | `[Blank, Coalesce, IsBlank, and IsEmpty functions][27]`<br>`[Error, IfError, IsError, IsBlankOrError functions][28]`                                                                                                                                                                                                                |
 
 ### Use Power Fx to set a variable
 
@@ -260,4 +260,4 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
 ## Related content
 
-- [Microsoft Foundry Agents FAQ](../../../agents/faq.yml)
+- [Microsoft Foundry Agent Service FAQ](../../../agents/faq.yml)
