@@ -157,7 +157,7 @@ To learn more about input data formats for evaluating generative AI applications
 
 ::: moniker-end
 
-To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
+To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-microsoft-foundry-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
 
 ::: moniker range="foundry-classic"
 
