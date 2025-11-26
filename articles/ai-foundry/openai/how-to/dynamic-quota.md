@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 ms.author: mbullwin
 ---
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/21/2025
+ms.date: 11/26/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
@@ -146,12 +146,12 @@ We recommend measuring your overall throughput on a deployment with two measures
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
 -	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
 
-You can learn more about [Monitoring the Azure OpenAI](./monitor-openai.md).
+You can learn more about [Monitoring Azure OpenAI](./monitor-openai.md).
 
 ## How to measure per-call latency
 The time it takes for each call depends on how long it takes to read the model, generate the output, and apply content filters. The way you measure the time will vary if you're using streaming or not. We suggest a different set of measures for each case. 
 
-You can learn more about [Monitoring the Azure OpenAI](./monitor-openai.md).
+You can learn more about [Monitoring Azure OpenAI](./monitor-openai.md).
 
 ### Non-Streaming:
 -	 End-to-end Request Time: The total time taken to generate the entire response for non-streaming requests, as measured by the API gateway. This number increases as prompt and generation size increases.
