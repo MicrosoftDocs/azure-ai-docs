@@ -251,9 +251,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 ### gpt-4o audio
 
-During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
-
-| Model|Tier| Quota limit in tokens per minute | Requests per minute<br>(new websocket connections per minute) |
+| Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-4o-audio-preview` | Default | 450K | 1K |
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
@@ -261,8 +259,8 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
 |`gpt-audio` |   Default | 100K | 30 |
 |`gpt-audio-mini` |   Default | 100K | 30 |
-|`gpt-realtime` | Default | 100K | 30 |
-|`gpt-realtime-mini` | Default | 100K | 30 |
+|`gpt-realtime` | Default | 100K | 100 |
+|`gpt-realtime-mini` | Default | 100K | 100 |
 
 
 ## GPT-image-1 rate limits
