@@ -15,7 +15,7 @@ ms.custom: references_regions
 
 # What is Text to speech avatar?
 
-Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use Text to speech avatar in AI Foundry to create video content without coding. Text to speech avatar is also an add-on of [Voice live](../voice-live.md) to enable personalized and engaging voice agent experience. 
+Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use Text to speech avatar in Foundry to create video content without coding.
 
 With text to speech avatar's advanced models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
