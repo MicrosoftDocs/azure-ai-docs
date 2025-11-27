@@ -25,7 +25,7 @@ There are two types of custom text to speech avatar:
 > Custom text to speech avatar access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 
 >[!Important]
-> Photo avatar (preview) and custom photo avatar (preview) are licensed to you as part of your Azure subscription and is subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA)("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Photo avatar (preview) and custom photo avatar (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA)("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 > Access to custom photo avatar (preview), which is part of custom text to speech avatar, is limited based on eligibility and usage criteria. Learn more [here](https://learn.microsoft.com/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access?view=foundry-classic&tabs=cnv) and request access on the [intake form](https://aka.ms/customneural).
 
  
@@ -51,7 +51,7 @@ Before you get started, here are some considerations:
 
 **Overview of the steps to create a custom video avatar:**
 
-1. **Get consent video.** Obtain a video recording of the talent reading a consent statement. They must consent to the usage of their image and voice data to train a custom text to speech avatar model. If voice sync for avatar is expected to train with a custom video avatar model, they must also consent to the usage of their voice datat to train a synthetic version of their voice.
+1. **Get consent video.** Obtain a video recording of the talent reading a consent statement. They must consent to the usage of their image and voice data to train a custom text to speech avatar model. If voice sync for avatar is expected to train with a custom video avatar model, they must also consent to the usage of their voice data to train a synthetic version of their voice.
 
 1. **Prepare training data.** Ensure that the video recording is in the right format. It's a good idea to shoot the video recording in a professional-quality video shooting studio to get a clean background image. The quality of the resulting avatar heavily depends on the recorded video used for training. Factors like speaking rate, body posture, facial expression, hand gestures, consistency in the actor's position, and lighting of the video recording are essential to create an engaging custom text to speech avatar. See [how to prepare training data](./custom-avatar-record-video-samples.md) for more details.
 
@@ -67,7 +67,7 @@ Currently the custom photo avatar training requires a manual offline process. Us
    
 1. **Get consent video.** Obtain a video of the talent reading a consent statement. This is required when training a photo avatar from a real person’s photo. They must provide consent for the use of their image to train a custom photo avatar model.
 
-1. **Setup the avatar model.** Currently, the custom photo avatar training and deployment are handled through a manual proccess until we release a self-service training portal in early 2026.
+1. **Setup the avatar model.** Currently, the custom photo avatar training and deployment are handled through a manual process until we release a self-service training portal in early 2026.
 
 
 
