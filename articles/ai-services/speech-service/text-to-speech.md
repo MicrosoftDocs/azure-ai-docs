@@ -83,7 +83,7 @@ In addition to standard voices, you can create custom voices that are unique to 
 ## Pricing note
 
 ### Billable characters
-When you use the text to speech feature, you're billed for each character that's converted to speech, including punctuation. Although the SSML document itself isn't billable, optional elements that are used to adjust how the text is converted to speech, like phonemes and pitch, are counted as billable characters. Here's a list of what's billable:
+When you use the text to Speech feature, billing is based on the total number of characters in each successfully processed request. This count includes all characters/letters, numbers, spaces, and punctuation; regardless of whether audio output is produced. Charges apply even if speech is not generated due to a mismatch between the selected voice language and the input text. Here's a list of what's billable:
 
 * Text passed to the text to speech feature in the SSML body of the request
 * All markup within the text field of the request body in the SSML format, except for `<speak>` and `<voice>` tags
