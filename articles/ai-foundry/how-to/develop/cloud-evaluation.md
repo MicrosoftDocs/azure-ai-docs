@@ -153,7 +153,7 @@ To learn more about input data formats for evaluating generative AI applications
 
 - [Single-turn data](./evaluate-sdk.md#single-turn-support-for-text)
 - [Conversation data](./evaluate-sdk.md#conversation-support-for-text)
-- [Conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image)
+- [Conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multimodal-text-and-image)
 
 ::: moniker-end
 
