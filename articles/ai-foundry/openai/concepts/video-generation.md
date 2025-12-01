@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 monikerRange: 'foundry-classic || foundry'
-ms.date: 09/16/2025
+ms.date: 12/1/2025
 ---
 
 # Video generation with Sora (preview)
@@ -52,7 +52,7 @@ Make sure prompts, reference images, and transcripts respect these rules to avoi
 | **API behavior** | Uses Azure-specific API schema | Aligns with OpenAI’s native Sora 2 schema |
 | **Performance & fidelity** | Early preview; limited realism and motion range | Enhanced realism, physics, and temporal consistency |
 | **Intended use** | Enterprise preview deployments | Broader developer availability with improved API parity |
-| **Billing** | Billed differently across duration and resolutions | [Per second billing information](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) 
+| **Billing** | Billed differently across duration and resolutions | [Per second billing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
 
 ## Sora 2 API 
 Provides 5 endpoints, each with distinct capabilities. 
