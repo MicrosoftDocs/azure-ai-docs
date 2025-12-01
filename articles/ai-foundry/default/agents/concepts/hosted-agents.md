@@ -45,7 +45,6 @@ The Microsoft Foundry Agent Service handles:
 - Identity management
 - Integration with Microsoft Foundry tools and models
 - Built-in observability and evaluation capabilities
-- Automatic scaling with pay-as-you-go pricing
 - Enterprise-grade security, compliance, and governance
 
 > [!IMPORTANT]
@@ -68,7 +67,6 @@ The hosting adapter provides several key benefits for developers:
 **Built-in production features**: Get enterprise-ready capabilities automatically without additional configuration:
 - OpenTelemetry tracing
 - CORS support
-- Proper error handling
 - Server-Sent Events (SSE) streaming
 - Structured logging
 
@@ -307,7 +305,6 @@ print(f"Agent created: {agent.id}")
 - **AGENT_NAME**: Unique name for your agent
 - **CONTAINER_IMAGE**: Full ACR image URL with tag
 - **CPU/Memory**: Resource allocation (for example, "1" CPU, "2Gi" memory)
-- **Replicas**: Min/max scaling configuration
 
 > [!NOTE]
 > - Ensure your container image is accessible from the Microsoft Foundry project
@@ -376,6 +373,8 @@ az cognitiveservices agent start
 | `--agent-version` | ✅ | Cognitive Services hosted agent version |
 | `--name -n` | ✅ | Cognitive Services hosted agent name |
 | `--project-name` | ✅ | AI Project name |
+| `--min-replicas` | ✅ | Minimum number of replicas for horizontal scaling |
+| `--max-replicas` | ✅ | Maximum number of replicas for horizontal scaling |
 
 **Example:**
 
@@ -542,11 +541,10 @@ Before your hosted agent can execute tools, create a connection to your remote M
 The `RemoteMCPTool` connection supports these authentication mechanisms:
 * **Stored credentials**: Use predefined credentials stored in the system
 * **Project managed identity**: Use the Microsoft Foundry project's managed identity
-* **Agent identity**: Use a specific identity assigned to the agent
 
 ### Choose your authentication method
 
-- **For shared identity**: Use key-based, Microsoft Entra Agent Identity, or Microsoft Foundry Project Managed Identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
+- **For shared identity**: Use key-based or Microsoft Foundry Project Managed Identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
 
 - **For individual user context**: Use OAuth Identity Passthrough when every user of your agent should use their own account to authenticate with the MCP server. This approach preserves personal user context.
 
@@ -575,7 +573,7 @@ async def agent_run(self, request_body: CreateResponse, context: AgentRunContext
 Hosted agents can also be used with Foundry built-in tools. Supported tools include:
 
 - Code Interpreter
-- File Search
+- Image Generation
 - Web Search
 
 Integrated support for additional Foundry tools coming soon.
@@ -685,43 +683,6 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities spe
 **Iterative evaluation**: Regularly evaluate agent versions during development to catch issues early and measure improvements.
 
 For detailed information about evaluating agents, see [Evaluate AI agents](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
-
-## Agent identity for hosted agents
-
-Hosted agents automatically receive **Agent Identity** - a specialized identity type in Microsoft Entra ID designed specifically for AI agents. This identity enables your agents to securely authenticate and access resources throughout their lifecycle.
-
-### Key identity concepts for hosted agents
-
-**Shared project identity**: During development and testing, all unpublished hosted agents within your Microsoft Foundry project share a common agent identity. This simplifies permission management and allows you to configure access once for all development work.
-
-**Distinct agent identity**: When you publish a hosted agent, Microsoft Foundry automatically creates a dedicated agent identity associated with your Agent Application resource. This distinct identity provides:
-- Independent authentication for production agents
-- Isolated permission management
-- Dedicated audit trails
-- Scalable security governance
-
-### Authentication capabilities
-
-Your hosted agent's identity supports multiple authentication scenarios:
-
-* **Autonomous access**: Agents act independently using permissions assigned directly to their identity
-* **Delegated access**: Agents can act on behalf of users with delegated permissions
-* **Service-to-service authentication**: Secure communication with Azure services and external APIs
-
-Unlike traditional service principals, agent identities don't use passwords or certificates. Instead, they authenticate using access tokens issued by Microsoft Entra ID to the hosting platform.
-
-### Tool authentication with agent identity
-
-When your hosted agent needs to access external tools or services (such as MCP servers), it uses its agent identity for authentication:
-
-```python
-# Agent identity is automatically available in your hosted agent context
-# No manual token management required - the platform handles authentication
-tools_client = await tool_client(context)  # Uses agent identity automatically
-tools = await tools_client.list_tools()
-```
-
-For detailed information about agent identity concepts, authentication mechanisms, and management, see [Agent identity concepts](./agent-identity.md).
 
 ## Publish hosted agents to channels
 
