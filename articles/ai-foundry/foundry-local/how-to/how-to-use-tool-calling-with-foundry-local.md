@@ -306,7 +306,7 @@ class ToolCall:
             {"role": "user", "content": "What is the time and weather in Dubai?"},
         ]
 
-        # 2. Prompt the model with tools defined
+        # Prompt the model with tools defined
         response = client.chat.completions.create(
             model=manager.get_model_info(alias).id,
             messages=input_list,
@@ -350,7 +350,7 @@ class ToolCall:
             'get_date_time': get_date_time,
        }
 
-        # 3. Execute the tool logic
+        # Execute the tool logic
         if tool_name == "get_current_weather":
             result = {f"{tool_name}": get_tool[tool_name](tool_call_arguments["city"])}
         elif tool_name == "get_typical_weather":
@@ -360,7 +360,7 @@ class ToolCall:
         else:
             result = {f"{tool_name}": f"Unknown tool: {tool_name}"}
 
-        # 4. Provide tool call results to the model
+        # Provide tool call results to the model
         input_list.append({
             "role": "tool",
             "content": json.dumps(result),
@@ -377,7 +377,7 @@ class ToolCall:
             stream=False,
         )
 
-        # 6. The model should be able to give a response!
+        # The model's response
         print("Final output:")
         print(response.model_dump_json(indent=2))
         print("\n" + response.choices[0].delta["content"])
