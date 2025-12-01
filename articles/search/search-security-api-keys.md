@@ -35,7 +35,7 @@ In the Azure portal, you specify authentication on the **Settings** > **Keys** p
 
 There are two kinds of keys used for authenticating a request:
 
-| Type | Permission level | How it's created |  Maximum |
+| Type | Permission level | How it's created | Maximum |
 |------|------------------|---------|---------|
 | Admin | Full access (read-write) for all content operations | Two admin keys, referred to as *primary* and *secondary* keys in the Azure portal, are generated when the service is created and can be individually regenerated on demand. | 2 <sup>1</sup> |
 | Query | Read-only access, scoped to the documents collection of a search index | One query key is generated with the service. More can be created on demand by a search service administrator. | 50 |
@@ -46,9 +46,10 @@ Visually, there's no distinction between an admin key or query key. Both keys ar
 
 ### Key-to-role mapping
 
-This article is about keys, but if you want to transition to roles, it's helpful to understand how keys map to built-in roles in Azure AI Search.
+This article is about API keys. However, if you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles-used-in-search):
 
-A query key corresponds to the **Search Index Data Reader** role, while an admin key corresponds to the **Search Service Contributor** and **Search Index Data Contributor** roles. For more information about these roles, see [Built-in roles used in search](search-security-rbac.md#built-in-roles-used-in-search).
++ An admin key corresponds to the **Search Service Contributor** and **Search Index Data Contributor** roles.
++ A query key corresponds to the **Search Index Data Reader** role.
 
 ## Permissions to view or manage keys
 
