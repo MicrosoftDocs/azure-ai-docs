@@ -142,11 +142,11 @@ x-ms-enable-elevated-read: true
 
 Prior to 2025-11-01-preview, REST API versions 2025-05-01-preview and 2025-08-01-preview returned all documents when using the service API key or authorized Entra roles, even if no user token was provided. With this behavior, applications that didn’t check for the presence of a user token could inadvertently expose results to end users if not coded properly or not following best practices.
 
-Starting with 2025-11-01-preview, this behavior has changed:
+Starting in November 2025, this behavior has changed:
 
-- ACL permission filters now apply even when using service API keys or Entra authentication.
+- ACL permission filters now apply even when using service API keys or Entra authentication, in all previous versions with ACL support.
 - If you omit the user token, ACL-protected content won't be returned.
-- To view all documents for troubleshooting, you must explicitly use the elevated-read header.
+- To view all documents for troubleshooting, you must explicitly use the elevated-read header using 2025-11-01-preview version. 
 
 This update helps keep content protected when applications don’t enforce best practices for token validation.
 
