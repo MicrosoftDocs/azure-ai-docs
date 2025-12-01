@@ -223,16 +223,7 @@ A successful response is a JSON array named `value` with one result for each str
 
   * `language`: A string representing the language code of the target language.
 
-  * `transliteration`: An object giving the translated text in the script specified by the `toScript` parameter.
-
-    * `script`: A string specifying the target script.
-
-    * `text`: A string giving the translated text in the target script.
-
-    The `transliteration` object isn't included if transliteration doesn't take place.
-
-
-* `sourceText`: An object with a single string property named `text`, which gives the input text in the default script of the source language. `sourceText` property is present only when the input is expressed in a script that's not the usual script for the language. For example, if the input were Arabic written in Latin script, then `sourceText.text` would be the same Arabic text converted into Arab script`.`
+  * `script`: A string specifying the target script.
 
 Examples of JSON responses are provided in the [examples](#examples) section.
 
