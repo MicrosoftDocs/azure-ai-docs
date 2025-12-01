@@ -12,19 +12,13 @@ ms.author: lajanuar
 
 # Translate (2025-10-01-preview)
 
+The Text translation API enables you to translate your source language text into a specified target language text.
+
 > [!IMPORTANT]
 >
 > * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
-The Text translation API enables you to translate your source language text into a specified target language text.
-
->[!IMPORTANT]
-> * Azure Translator in Foundry Tools REST API `2025-10-01-preview` is new version of the Translator REST API **with breaking changes**.
-> * It's essential to thoroughly test your code against the new release before migrating any production applications from Translator v3.0.
-> * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
-
 
 ## Request URL
 
