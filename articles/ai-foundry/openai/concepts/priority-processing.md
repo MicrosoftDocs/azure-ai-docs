@@ -42,6 +42,11 @@ Priority processing provides low-latency performance with the flexibility of pay
 - **Pay-as-you-go simplicity** with no long-term commitments. 
 - **Business-hour or bursty traffic** that benefits from scalable, cost-efficient performance. Optionally, you can combine priority processing with Provisioned Throughput Units (PTU) for steady-state capacity and cost optimization.
 
+### Limits
+
+- **Ramp limit:** Rapid increases to your priority processing tokens per minute might lead to hitting [ramp rate limits](#ramp-rate-limits). If you exceed the ramp rate limit, the service might send extra traffic to standard processing instead.
+
+- **Quota:** Priority processing uses the same quota as standard processing. This means your deployment with priority processing enabled consumes quota from your existing standard allocation.
 
 ## Priority processing support
 
@@ -67,12 +72,6 @@ Priority processing provides low-latency performance with the flexibility of pay
 | westus3       | ✅                      |
 
 ---
-
-### Limits
-
-- **Ramp limit:** Rapid increases to your priority processing tokens per minute might lead to hitting [ramp rate limits](#ramp-rate-limits). If you exceed the ramp rate limit, the service might send extra traffic to standard processing instead.
-
-- **Quota:** Priority processing uses the same quota as standard processing. This means your deployment with priority processing enabled consumes quota from your existing standard allocation.
 
 ### Known issues
 
