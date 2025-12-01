@@ -37,7 +37,8 @@ Currently the Sora 2 API enforces several content restrictions:
 
 Make sure prompts, reference images, and transcripts respect these rules to avoid failed generations.
 
-Please Note: We are allowing face uploads on a case by case basis for managed customers. 
+> [!NOTE] 
+> We are allowing face uploads on a case-by-case basis for managed customers. 
 
 ## Sora 1 vs. Sora 2
 
