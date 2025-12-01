@@ -30,7 +30,7 @@ In the `Task` column, you can see that the `tools` task indicates that tool call
 
 ## Tool calling with C# 
 
-The `Microsoft.Extensions.AI` library provides a sophisticated layer that allows a C# application to easily take advantage of tool calling. The tools can be specified as ordinary methods on a class and decorated so that they are included in the model input in the format that the model needs.
+The `Microsoft.Extensions.AI` library provides a sophisticated layer that allows a C# application to easily take advantage of tool calling. The tools can be specified as ordinary methods on a class and decorated so that they are included in the model input in the format that the model needs. Follow the steps in the sections below to utilize `Microsoft.Extensions.AI` for tool calling with Foundry Local. The full code sample is shown after the breakdown.
 
 ### Choose the model
 
