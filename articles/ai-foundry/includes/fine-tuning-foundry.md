@@ -104,7 +104,6 @@ Select the training tier based on your use case and budget.
 
 - **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
-# [Python](#tab/python)
 ```python
 import openai
 from openai import AzureOpenAI
@@ -133,15 +132,7 @@ except openai.APIStatusError as e:
     print(e.status_code)
     print(e.response)
     print(e.body)
-```
-    
-# [cURL](#tab/curl)
-```bash
-curl -X POST "https://<ACCOUNT-NAME>.openai.azure.com/openai/fine_tuning/jobs?api-version=2025-04-01-preview" -H "Content-Type: application/json" -H "api-key: <API-KEY>" -d "{"model": "gpt-4.1", "training_file": "<FILE_ID>", "hyperparameters": {"prompt_loss_weight": 0.1}, "trainingType": "developerTier"}"
-```
-
----
-    
+``` 
 
 ### Training and validation data
 
