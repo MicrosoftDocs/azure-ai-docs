@@ -16,7 +16,7 @@ ms.date: 11/17/2025
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local can make use of tool calling, a technique where you prompt the model with definitions of available tools that together with a text prompt, allow the model to work out which tools should be called and with what input data. The application then calls those tools and adds the results to a sunsequent model prompt to answer the user's query.
+Foundry Local can make use of tool calling, a technique where you prompt the model with definitions of available tools that together with a text prompt, allow the model to work out which tools should be called and with what input data. The application then calls those tools and adds the results to a subsequent model prompt to answer the user's query.
 
 The tools can perform functions that the model doesn't have access to, such as getting the current weather, or reading files on the local file system, or accessing a user's address book (providing the application has permission to do so).
 
@@ -391,3 +391,4 @@ if __name__ == "__main__":
 ## Related content
 
 - [OpenAI Function Calling](https://platform.openai.com/docs/guides/function-calling)
+- [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai)
