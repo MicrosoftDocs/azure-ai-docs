@@ -273,7 +273,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 
 Two admin keys are created for each service so that you can rotate a primary key while using the secondary key for business continuity.
 
-1. Select your search service in the Azure portal.
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
 1. From the left pane, select **Settings** > **Keys**.
 
@@ -297,7 +297,7 @@ Use role assignments to restrict access to API keys.
 
 It's not possible to use [customer-managed key encryption](search-security-manage-encryption-keys.md) to encrypt API keys. Only sensitive data within the search service itself (for example, index content or connection strings in data source object definitions) can be CMK-encrypted.
 
-1. Select your search service in the Azure portal.
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
 1. From the left pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
 
