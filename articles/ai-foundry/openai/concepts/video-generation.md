@@ -24,6 +24,22 @@ Azure OpenAI supports two versions of Sora:
 - Audio: Sora 2 supports audio generation in output videos (similar to the Sora app).
 - Remix: Sora 2 introduces the ability to remix existing videos by making targeted adjustments instead of regenerating from scratch.
 
+## Responsible AI and video generation 
+Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+
+In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+
+Currently the Sora 2 API enforces several content restrictions:
+- Only content suitable for audiences under 18 (a setting to bypass this restriction will be available in the future).
+- Copyrighted characters and copyrighted music will be rejected.
+- Real people—including public figures—cannot be generated.
+- Input images with faces of humans are currently rejected.
+
+Make sure prompts, reference images, and transcripts respect these rules to avoid failed generations.
+
+> [!NOTE] 
+> We are allowing face uploads on a case-by-case basis for managed customers. 
+
 ## Sora 1 vs. Sora 2
 
 | Aspect | **Sora 1 (Azure OpenAI)** | **Sora 2 (OpenAI-based API)** |
@@ -36,7 +52,7 @@ Azure OpenAI supports two versions of Sora:
 | **API behavior** | Uses Azure-specific API schema | Aligns with OpenAI’s native Sora 2 schema |
 | **Performance & fidelity** | Early preview; limited realism and motion range | Enhanced realism, physics, and temporal consistency |
 | **Intended use** | Enterprise preview deployments | Broader developer availability with improved API parity |
-
+| **Billing** | Billed differently across duration and resolutions | [Per second billing information](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) 
 
 ## Sora 2 API 
 Provides 5 endpoints, each with distinct capabilities. 
@@ -771,11 +787,6 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 - You can use up to two images as input (the generated video interpolates content between them).
 - You can use one video up to five seconds as input.
 
-## Responsible AI
-
-Sora has a robust safety stack that includes content filtering, abuse monitoring, sensitive content blocking, and safety classifiers.
-
-Sora doesn't generate scenes with acts of violence but can generate adjacent content, such as realistic war-like footage.
 
 ## Related content
 - [Video generation quickstart](../video-generation-quickstart.md)
