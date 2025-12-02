@@ -391,4 +391,4 @@ if __name__ == "__main__":
 ## Related content
 
 - [OpenAI Function Calling](https://platform.openai.com/docs/guides/function-calling)
-- [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai)
+- [Microsoft.Extensions.AI](/dotnet/ai/microsoft-extensions-ai)
