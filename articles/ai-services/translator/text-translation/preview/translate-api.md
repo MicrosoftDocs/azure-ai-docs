@@ -128,6 +128,8 @@ curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translato
 ### Private endpoint
 
 For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
+> [!NOTE]
+> LLM based translation is not available when the Translator resource is configured with a private endpoint.
 
 ## Request headers
 
