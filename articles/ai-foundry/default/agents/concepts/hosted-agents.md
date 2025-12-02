@@ -101,16 +101,8 @@ When you run your agent locally using the hosting adapter, it automatically star
 
 POST {{baseUrl}}/responses
 Content-Type: application/json
- 
 {
-    "input": {
-        "messages": [
-            {
-                "role": "user",
-                "content": "Where is Seattle?"
-            }
-        ]
-    }
+    "input": "Where is Seattle?"
 }
 ```
 
