@@ -40,8 +40,8 @@ The Foundry API Endpoint grants users access to Agents, Evaluations, and deploye
 > [!IMPORTANT]
 > Endpoints may use either your resource name or a custom subdomain. If your organization has configured a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
 > For example:
-> - https://<your-resource-name>.services.ai.azure.com 
-> - https://<your-custom-subdomain>.services.ai.azure.com
+> - `https://<your-resource-name>.services.ai.azure.com`
+> - `https://<your-custom-subdomain>.services.ai.azure.com`
 
 Foundry consolidated these endpoints to simplify user experience. Fewer endpoints reduce endpoint management. However, the endpoints you use still work. To view all your endpoints, go to the Azure Portal details page for your resource. Navigate to your resource details page in Azure Portal and select ‘JSON view’ to see all accessible Foundry capabilities and endpoints. All of them are listed in this document.
 
