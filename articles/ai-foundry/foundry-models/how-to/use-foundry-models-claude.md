@@ -33,7 +33,7 @@ For more details about the model capabilities, see [capabilities of Claude model
 
 #### Claude Opus 4.5 (preview)
 
-Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200 K token context window and 64 K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 #### Claude Sonnet 4.5 (preview)
 
@@ -75,7 +75,7 @@ Once deployed, you have some options for interacting with Claude models to gener
 
 ### Use the Messages API to work with Claude models
 
-The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
+The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, by using both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
@@ -415,8 +415,8 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Agent support
 
-- Claude models are supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
-- The [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
+- [Foundry Agent Service](../../agents/concepts/model-region-support.md) supports Claude models.
+- [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
 - You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
 
 ## Claude advanced features and capabilities
@@ -505,4 +505,4 @@ Choose the appropriate Claude model based on your specific requirements:
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
 - [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
-- [Claude Docs: Claude in Microsoft Foundry ](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
+- [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
