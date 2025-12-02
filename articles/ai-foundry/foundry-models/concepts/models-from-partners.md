@@ -44,6 +44,8 @@ To work with Claude models in Foundry, see [Deploy and use Claude models in Micr
 
 Claude models are also supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
 
+[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
+
 ::: moniker range="foundry-classic"
 
 | Model  | Type | Capabilities | Project type |

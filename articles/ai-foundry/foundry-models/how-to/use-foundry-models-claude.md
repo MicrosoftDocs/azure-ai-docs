@@ -21,10 +21,7 @@ ai-usage: ai-assisted
 
 This article explains how to deploy and use the latest Claude models in Foundry, including Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1. Anthropic's flagship product is Claude, a frontier AI model useful for complex tasks such as coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
-> [!IMPORTANT]
-> Use of Claude models in Microsoft Foundry is available only to paid Azure subscriptions with a billing account in a [country/region](../../how-to/deploy-models-serverless-availability.md#region-availability) where Anthropic has made the offer available for purchase. 
-> 
-> For a list of common subscription-related errors, see [Common error messages and solutions](https://learn.microsoft.com/marketplace/purchase-saas-offer-in-azure-portal#common-error-messages-and-solutions).
+[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
 ## Available Claude models
 
