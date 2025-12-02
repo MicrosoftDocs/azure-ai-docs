@@ -1,7 +1,3 @@
----
-zone_pivot_groups: openai-fine-tuning
----
-
 ## Prerequisites
 
 - Read the [When to use Foundry fine-tuning guide](../openai/concepts/fine-tuning-considerations.md).
