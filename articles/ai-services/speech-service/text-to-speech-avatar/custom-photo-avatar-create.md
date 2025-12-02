@@ -16,7 +16,7 @@ zone_pivot_groups: foundry-speech-studio
 
 Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can create a personalized and more engaging voice agent through Voice live efficiently. 
 
-Currently custom photo avatar creation is a manual process until a self-service portal is launched in early 2026. You can follow the below process, and after custom photo avatars are setup, you can access them in the Microsoft Foundry or through API.
+Custom photo avatar creation is a manual process. You can follow the below process, and after custom photo avatars are set up, you can access them in the Microsoft Foundry or through API.
 
 >[!Important]
 > Photo avatar (preview) and custom photo avatar (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA)("DPA"), as well as the Microsoft Generative AI Services Previews terms in the [supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
