@@ -52,7 +52,7 @@ Define the tools in your code. The tools can be methods inside classes. You can 
 * `GetTypicalWeather()`
 * `GetDateTime()`
 
-Once the tools are defined, they can be added as input to the modelL
+Once the tools are defined, they can be added as input to the model:
 
 ```csharp
 IList<AITool> tools = [
@@ -191,7 +191,7 @@ public class DateService
 }   
 ```
 
-This sample uses the following dependencies
+This sample uses the following dependencies:
 
 ```xml
 <<Project Sdk="Microsoft.NET.Sdk">
