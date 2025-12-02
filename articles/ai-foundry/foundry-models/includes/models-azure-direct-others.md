@@ -150,7 +150,7 @@ Larger context windows are compatible with *some* of the underlying models. That
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
-| [Mistral-Large-3](https://ai.azure.com/explore/models/mistral-large-3/version/1/registry/azureml-mistral/?cid=learnDocs) | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON   |- Global standard (West US 3)  | Foundry |
+| [Mistral-Large-3](https://ai.azure.com/resource/models/Mistral-Large-3/version/1/registry/azureml-mistral/?cid=learnDocs) | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON   |- Global standard (West US 3)  | Foundry |
 | [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral/?cid=learnDocs) | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br /> - Data zone standard (US and EU)  | Foundry |
 
 ::: moniker-end
