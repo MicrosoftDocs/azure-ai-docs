@@ -39,6 +39,7 @@ Azure OpenAI provides customers with a fully managed AI service that lets develo
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
 | GPT-5 | ✅ | ✅ |  |
+| GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 
