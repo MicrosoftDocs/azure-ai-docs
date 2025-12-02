@@ -359,7 +359,7 @@ After you create a client, use it to access models, run evaluations, and connect
 
 * Using the project endpoint, you can:
     - [Use Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
-    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
     - [Run evaluations in the cloud](cloud-evaluation.md)
     - [Enable tracing for your app](../../concepts/trace.md) 
     - [Fine tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
