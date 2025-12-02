@@ -48,7 +48,7 @@ prepare resources:
 
 ## Step 5: Use custom photo avatar ##
 You can use the custom photo avatar in a voice agent or create video content in Microsoft Foundry or via API.
-### Use in Microsoft Foundry ###
+### Use in Microsoft Foundry
 To use custom photo avatar in **Voice live** to create personalized voice agent:
 1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the New Foundry toggle is on. 
 2. Select an existing project or create a new project in the resource where your custom photo avatars are deployed.
