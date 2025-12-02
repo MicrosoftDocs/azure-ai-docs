@@ -36,7 +36,7 @@ The custom photo avatar creation supports real human photos and virtual human im
 - The head should be fully visible and facing forward.
 - Make sure the face is fully visible, without shadows or any hidden parts.
 
-## Step 3:Prepare consent for real human photo ##
+## Step 3: Prepare consent for real human photo
 If you are creating a custom photo avatar from a real person’s photo, you must obtain consent from that person. Provide a video of the person reading a consent statement acknowledging the use of their image. Microsoft verifies that the recorded statement matches the predefined script and compares the face in the video with the photo to confirm they belong to the same person.
 For an example of the consent statement see the verbal-statement-all-locales.txt file in the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository.
 
