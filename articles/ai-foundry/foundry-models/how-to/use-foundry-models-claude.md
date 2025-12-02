@@ -5,7 +5,7 @@ description: Learn how to deploy and use Anthropic's Claude models including  Cl
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 12/02/2025
 ms.custom: ignite-2024
 author: msakande
 ms.author: mopeakande
@@ -33,7 +33,7 @@ For more details about the model capabilities, see [capabilities of Claude model
 
 #### Claude Opus 4.5 (preview)
 
-Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200 K token context window and 64 K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader across coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 #### Claude Sonnet 4.5 (preview)
 
@@ -62,14 +62,20 @@ After deployment, you can use the [Foundry playground](../../concepts/concept-pl
 
 ## Work with Claude models
 
-Once deployed, you can interact with Claude models by using the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
+Once deployed, you have some options for interacting with Claude models to generate text responses:
 
-- [Messages API](https://docs.claude.com/en/api/messages) to send a structured list of input messages with text and/or image content, and the model generates the next message in the conversation.
-- [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
-- [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
-- [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
+- Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
 
-The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
+    - [Messages API](https://docs.claude.com/en/api/messages) to send a structured list of input messages with text and/or image content, and the model generates the next message in the conversation.
+    - [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
+    - [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
+    - [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
+
+- Use the [Responses API to generate text responses](generate-responses.md) with Claude models in Microsoft Foundry. For multi-language code samples that demonstrate how to use the OpenAI Responses API to interact with Claude models in Microsoft Foundry with Microsoft Entra ID (keyless) authentication, see [Use Claude Models with OpenAI Responses API in Microsoft Foundry](https://github.com/Azure-Samples/claude-with-openai-responses).
+
+### Use the Messages API to work with Claude models
+
+The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, by using both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
@@ -78,7 +84,7 @@ The following examples show how to **use the Messages API** to send requests to 
 
 # [Python](#tab/python)
 
-### Use Microsoft Entra ID authentication
+#### Use Microsoft Entra ID authentication
 
 For Messages API endpoints, use your base URL with Microsoft Entra ID authentication.
 
@@ -137,7 +143,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     print(message.content)
     ```
 
-### Use API key authentication
+#### Use API key authentication
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -179,7 +185,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
 
 # [JavaScript](#tab/javascript)
 
-### Use Microsoft Entra ID authentication
+#### Use Microsoft Entra ID authentication
 
 For Messages API endpoints, use your base URL with Microsoft Entra ID authentication.
 
@@ -253,7 +259,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     console.log(message);
     ```
 
-### Use API key authentication
+#### Use API key authentication
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -311,7 +317,7 @@ For a list of supported runtimes, see [Requirements to use Anthropic TypeScript 
 
 # [REST API](#tab/rest-api)
 
-### Use Microsoft Entra ID authentication
+#### Use Microsoft Entra ID authentication
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` with Microsoft Entra ID authentication.
 
@@ -359,7 +365,7 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
         }'
     ```
 
-### Use API key authentication
+#### Use API key authentication
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` and API key to authenticate against the service.
 
@@ -409,8 +415,8 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Agent support
 
-- Claude models are supported for use in the [Foundry Agent Service](../../agents/concepts/model-region-support.md).
-- The [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
+- [Foundry Agent Service](../../agents/concepts/model-region-support.md) supports Claude models.
+- [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-types/anthropic-agent) supports creating agents that use Claude models.
 - You can build custom AI agents with the [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview).
 
 ## Claude advanced features and capabilities
@@ -496,7 +502,7 @@ Choose the appropriate Claude model based on your specific requirements:
 ## Related content
 
 - [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
-- [Responsible AI for Foundry](../../responsible-ai/openai/overview.md)
+- [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
 - [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
-- [Claude Docs: Claude in Microsoft Foundry ](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
+- [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
