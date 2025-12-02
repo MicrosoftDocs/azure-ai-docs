@@ -19,7 +19,7 @@ Custom translation fine-tuning includes one or many language pairs, model traini
 
 1. Select **Fine-tuning** from the left pane.
 
-1. Select **AI Service Fine-tuning** > **+ Fine-tune**.
+1. Select **Foundry Tool Fine-tuning** > **+ Fine-tune**.
 
 :::image type="content" source="../media/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Foundry Tools models.":::
 

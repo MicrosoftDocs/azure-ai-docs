@@ -39,7 +39,7 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
     * Evaluations
     * Fine-tuning
     * OpenAI SDK and API including Batch and Stored Completions
-    * AI Services
+    * Foundry Tools
 
 * Do you need access to open-source models or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
 

@@ -143,7 +143,7 @@ There are two ways to access the PII interface:
 
 1. Select the  **Build** tab from the upper right navigation bar.
    * From the left navigation bar, select  **Models**.
-   * Select the **AI services** tab.
+   * Select the **Foundry Tools** tab.
    * Next, select **Azure-Language-Text-PII redaction** to go to the playground.
 
 

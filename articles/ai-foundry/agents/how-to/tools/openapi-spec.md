@@ -124,7 +124,7 @@ To set up authenticating with Managed Identity:
 
     1. Select **Managed identity** and then click **select members**.
 
-    1. In the managed identity dropdown menu, search for **Foundry Tools** and then select the AI Service of your agent.
+    1. In the managed identity dropdown menu, search for **Foundry Tools** and then select the Foundry Tool of your agent.
 
     1. Click **Finish**.
 

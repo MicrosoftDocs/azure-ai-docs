@@ -64,7 +64,7 @@ resourceGroupName=my-speech-rg
 location=eastus
 AIServicesResourceName=my-aiservices-$location
 
-# create an AIServices resource for Speech and other AI services
+# create an AIServices resource for Speech and other Foundry Tools
 az cognitiveservices account create --name $AIServicesResourceName --resource-group $resourceGroupName --kind AIServices --sku S0 --location $location --custom-domain $AIServicesResourceName
 
 # get the resource id

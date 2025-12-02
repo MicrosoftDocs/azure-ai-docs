@@ -17,7 +17,7 @@ ms.custom:
 
 # What are Foundry Tools?
 
-[!INCLUDE [About AI services](./includes/ai-services-intro.md)]
+[!INCLUDE [About Foundry Tools](./includes/ai-services-intro.md)]
 
 ## Available Foundry Tools
 
@@ -32,7 +32,7 @@ When building AI applications, use the following Foundry Tools:
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. |
 | ![Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg) [Vision](./computer-vision/index.yml) | Analyze content in images and videos. |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |
-| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. |
+| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | A Foundry Tool that detects unwanted contents. |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. |
 | ![Immersive Reader icon](~/reusable-content/ce-skilling/azure/media/ai-services/immersive-reader.svg) [Immersive Reader](./immersive-reader/index.yml) | Help users read and comprehend text. |
 
@@ -43,7 +43,7 @@ The following Foundry Tools are scheduled for retirement. These services are sti
 | ![Anomaly Detector icon](~/reusable-content/ce-skilling/azure/media/ai-services/anomaly-detector.svg) [Anomaly Detector](./Anomaly-Detector/index.yml) (retired) | Identify potential problems early on. |
 | ![Content Moderator icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-moderator.svg) [Content Moderator](./content-moderator/index.yml) (retired) | Detect potentially offensive or unwanted content. |
 | ![Language Understanding icon](~/reusable-content/ce-skilling/azure/media/ai-services/luis.svg) [Language understanding](./luis/index.yml) (retired) | Understand natural language in your apps. |
-| ![Metrics Advisor icon](~/reusable-content/ce-skilling/azure/media/ai-services/metrics-advisor.svg) [Metrics Advisor](./metrics-advisor/index.yml) (retired) | An AI service that detects unwanted contents. |
+| ![Metrics Advisor icon](~/reusable-content/ce-skilling/azure/media/ai-services/metrics-advisor.svg) [Metrics Advisor](./metrics-advisor/index.yml) (retired) | A Foundry Tool that detects unwanted contents. |
 | ![Personalizer icon](~/reusable-content/ce-skilling/azure/media/ai-services/personalizer.svg) [Personalizer](./personalizer/index.yml) (retired) | Create rich, personalized experiences for each user. |
 | ![QnA Maker icon](~/reusable-content/ce-skilling/azure/media/ai-services/luis.svg) [QnA maker](./qnamaker/index.yml) (retired) | Distill information into easy-to-navigate questions and answers. |
 

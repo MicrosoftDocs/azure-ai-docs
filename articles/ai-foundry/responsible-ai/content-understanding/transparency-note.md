@@ -24,7 +24,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ### Introduction
 
-Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview), and [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
+Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open Foundry Tool](/azure/ai-foundry/openai/overview), [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview), and [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
 
 
 ### Key terms
@@ -292,12 +292,12 @@ We are committed to continuously improving our fairness evaluations to gain a de
 ## Evaluating and integrating Image Analysis for your use
 
  
-When integrating Content Understanding for your use case, knowing that Content Understanding is subject to the [Microsoft Generative AI Services Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcontent-understanding%2Fcontext%2Fcontext) will ensure a successful integration. 
+When integrating Content Understanding for your use case, knowing that Content Understanding is subject to the [Microsoft Generative Foundry Tools Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcontent-understanding%2Fcontext%2Fcontext) will ensure a successful integration. 
 
 When you're getting ready to integrate Content Understanding to your product or features, the following activities help to set you up for success: 
 - **Understand what it can do**: Fully assess the potential of Content Understanding to understand its capabilities and limitations. Understand how it will perform in your scenario and context. For example, if you're using audio content extraction, test with real-world recordings from your business processes to analyze and benchmark the results against your existing process metrics. 
 - **Respect an individual's right to privacy**: Only collect data and information from individuals from whom you have obtained consent, and for lawful and justifiable purposes. 
-- **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the [Microsoft Generative AI Services Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcontent-understanding%2Fcontext%2Fcontext).  
+- **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the [Microsoft Generative Foundry Tools Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcontent-understanding%2Fcontext%2Fcontext).  
 - **Human-in-the-loop**: Keep a human in the loop, and include human oversight as a consistent pattern area to explore. This means ensuring constant human oversight of the AI-powered product or feature and to maintain the role of humans in decision-making. Ensure that you can have real-time human intervention in the solution to prevent harm. A human in the loop enables you to manage situations when Content Understanding does not perform as required. 
 - **Security**: Ensure your solution is secure and that it has adequate controls to preserve the integrity of your content and prevent unauthorized access. 
 
@@ -327,6 +327,6 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 ### Code of Conduct
 
-- [AI Services Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) 
+- [Foundry Tools Code of Conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) 
 
 

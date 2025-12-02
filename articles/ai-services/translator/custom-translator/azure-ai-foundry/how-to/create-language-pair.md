@@ -55,7 +55,7 @@ A Microsoft Foundry custom translation language pair includes models, training, 
 
 To modify the language pair name, description, domain description, and add/remove a label:
 
-1. Select the language pair name from the Fine-tuning > AI Service fine-tuning page.
+1. Select the language pair name from the Fine-tuning > Foundry Tool fine-tuning page.
 
    :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields.":::
 

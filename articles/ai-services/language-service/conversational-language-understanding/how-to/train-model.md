@@ -95,7 +95,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Foundry.":::
 
-1. Select **the AI Service fine-tuning** tab and then **+ Fine-tune** button.
+1. Select **the Foundry Tool fine-tuning** tab and then **+ Fine-tune** button.
 
    :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tuning button in the Foundry.":::
 

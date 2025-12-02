@@ -766,7 +766,7 @@ Currently, hosted agents are supported in North Central US only.
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
 - [Agent runtime components](./runtime-components.md)
-- [Discover tools in Microsoft Foundry Tools](./tool-catalog.md)
+- [Discover tools in Foundry Tools](./tool-catalog.md)
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
 - [Azure Container Registry documentation](/azure/container-registry/)
 - [Create a project for Microsoft Foundry](../../../how-to/create-projects.md)

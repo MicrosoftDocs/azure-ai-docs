@@ -144,7 +144,7 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 1. From the **Overview** menu, select **Fine-tuning**.
 
-1. From the main window, select **the AI Service fine-tuning** tab and then the **+ Fine-tune** button.
+1. From the main window, select **the Foundry Tool fine-tuning** tab and then the **+ Fine-tune** button.
 
 1. From the **Create service fine-tuning** window, choose the **Custom named entity recognition** tab, and then select **Next**.
 
