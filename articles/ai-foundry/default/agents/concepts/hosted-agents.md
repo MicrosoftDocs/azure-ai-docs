@@ -1,16 +1,14 @@
 ---
 title: Hosted Agents in Microsoft Foundry Agent Service (Preview)
-titleSuffix: Microsoft Foundry
 description: Learn how to deploy and manage containerized AI agents with zero infrastructure setup by using the feature of hosted agents in Microsoft Foundry.
-#customer intent: As a developer, I want to deploy my custom agent code to a managed platform so that I can focus on agent logic instead of infrastructure management.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
-ms.topic: concept-article
-ms.date: 11/19/2025
+titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
+ms.date: 12/02/2025
+ms.manager: nitinme
+ms.topic: concept-article
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
@@ -56,7 +54,6 @@ The hosting adapter provides several key benefits for developers:
 
 - OpenTelemetry tracing
 - Cross-origin resource sharing (CORS) support
-- Proper error handling
 - Server-sent events (SSE) streaming
 - Structured logging
 
@@ -71,7 +68,6 @@ Foundry Agent Service handles:
 - Identity management.
 - Integration with Microsoft Foundry tools and models.
 - Built-in observability and evaluation capabilities.
-- Automatic scaling with pay-as-you-go pricing.
 - Enterprise-grade security, compliance, and governance.
 
 > [!IMPORTANT]
@@ -317,7 +313,6 @@ Here are the key parameters:
 - `AGENT_NAME`: Unique name for your agent.
 - `CONTAINER_IMAGE`: Full Azure Container Registry image URL with tag.
 - `CPU/Memory`: Resource allocation (for example, `1` for CPU, `2Gi` for memory).
-- `Replicas`: Minimum/maximum scaling configuration.
 
 > [!NOTE]
 >
@@ -388,6 +383,8 @@ The arguments for this code include:
 | `--agent-version` | ✅ | Foundry Tools hosted agent version |
 | `--name -n` | ✅ | Foundry Tools hosted agent name |
 | `--project-name` | ✅ | AI project name |
+| `--min-replicas` | ✅ | Minimum number of replicas for horizontal scaling |
+| `--max-replicas` | ✅ | Maximum number of replicas for horizontal scaling |
 
 Here's an example:
 
@@ -547,11 +544,10 @@ The `RemoteMCPTool` connection supports these authentication mechanisms:
 
 - **Stored credentials**: Use predefined credentials stored in the system.
 - **Project managed identity**: Use the managed identity for the Foundry project.
-- **Agent identity**: Use a specific identity that's assigned to the agent.
 
 #### Choose your authentication method
 
-- **For shared identity**: Use key-based, Microsoft Entra agent identity, or Foundry project managed identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
+- **For shared identity**: Use key-based or Foundry project managed identity authentication when every user of your agent should use the same identity. Individual user identity or context doesn't persist with these methods.
 
 - **For individual user context**: Use OAuth identity passthrough when every user of your agent should use their own account to authenticate with the MCP server. This approach preserves personal user context.
 
@@ -581,7 +577,7 @@ async def agent_run(self, request_body: CreateResponse, context: AgentRunContext
 You can also use hosted agents with Foundry built-in tools. Supported tools include:
 
 - Code Interpreter
-- File Search
+- Image Generation
 - Web Search
 
 ## Manage observability with hosted agents
@@ -696,44 +692,6 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch issues early and measure improvements.
 
 For detailed information about evaluating agents, see [Evaluate your AI agents locally](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
-
-## Understand agent identity for hosted agents
-
-Hosted agents automatically receive an *agent identity*. This specialized identity type in Microsoft Entra ID is specifically for AI agents. This identity enables your agents to securely authenticate and access resources throughout their lifecycle.
-
-For detailed information about agent identity concepts, authentication mechanisms, and management, see [Agent identity concepts](./agent-identity.md).
-
-### Key identity concepts for hosted agents
-
-**Shared project identity**: During development and testing, all unpublished hosted agents within your Foundry project share a common agent identity. This identity sharing simplifies permission management and allows you to configure access once for all development work.
-
-**Distinct agent identity**: When you publish a hosted agent, Foundry automatically creates a dedicated agent identity that's associated with your agent application resource. This distinct identity provides:
-
-- Independent authentication for production agents.
-- Isolated permission management.
-- Dedicated audit trails.
-- Scalable security governance.
-
-### Authentication capabilities
-
-Your hosted agent's identity supports multiple authentication scenarios:
-
-- **Autonomous access**: Agents act independently by using permissions assigned directly to their identity.
-- **Delegated access**: Agents can act on behalf of users with delegated permissions.
-- **Service-to-service authentication**: Azure services and external APIs provide secure communication.
-
-Unlike traditional service principals, agent identities don't use passwords or certificates. Instead, they authenticate by using access tokens that Microsoft Entra ID issues to the hosting platform.
-
-### Tool authentication with agent identity
-
-When your hosted agent needs to access external tools or services (such as MCP servers), it uses its agent identity for authentication:
-
-```python
-# Agent identity is automatically available in your hosted agent context
-# No manual token management required - the platform handles authentication
-tools_client = await tool_client(context)  # Uses agent identity automatically
-tools = await tools_client.list_tools()
-```
 
 ## Publish hosted agents to channels
 

@@ -26,7 +26,7 @@ items:
 - name: Default safety policies
   href: ../../../openai/concepts/default-safety-policies.md
 - name: Custom categories
-  href: ../../../../ai-services/content-safety/concepts/custom-categories.md?context=/azure/ai-foundry/context/context&view=foundry&preserve-view=true
+  href: ../../../../ai-services/content-safety/concepts/custom-categories.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
 - name: Abuse monitoring
   href: ../../../openai/concepts/abuse-monitoring.md
 - name: Safety system messages

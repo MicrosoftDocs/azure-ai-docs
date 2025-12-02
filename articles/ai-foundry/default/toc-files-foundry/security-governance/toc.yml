@@ -17,14 +17,14 @@ items:
   - name: Store secrets in your Azure Key Vault
     href: ../../../how-to/set-up-key-vault-connection.md
   - name: Rotate API access keys
-    href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    href: /azure/ai-services/rotate-keys?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
 - name: Plan and manage costs
   href: ../../../concepts/manage-costs.md
 - name: Policy management
   items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
-    href: ../../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true&view=foundry&preserve-view=true
   - name: Built-in policy for model deployment
     href: ../../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
