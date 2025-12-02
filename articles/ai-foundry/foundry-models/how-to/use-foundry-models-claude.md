@@ -24,7 +24,7 @@ This article explains how to deploy and use the latest Claude models in Foundry,
 > [!IMPORTANT]
 > Use of Claude models in Microsoft Foundry is available only to paid Azure subscriptions with a billing account in a [country/region](../../how-to/deploy-models-serverless-availability.md#region-availability) where Anthropic has made the offer available for purchase. 
 > 
-> For a list of common subscription-related errors, see [Common error messages and solutions](/marketplace/purchase-saas-offer-in-azure-portal.md#common-error-messages-and-solutions).
+> For a list of common subscription-related errors, see [Common error messages and solutions](https://learn.microsoft.com/marketplace/purchase-saas-offer-in-azure-portal#common-error-messages-and-solutions).
 
 ## Available Claude models
 
