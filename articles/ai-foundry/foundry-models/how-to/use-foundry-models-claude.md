@@ -5,7 +5,7 @@ description: Learn how to deploy and use Anthropic's Claude models including  Cl
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 12/02/2025
 ms.custom: ignite-2024
 author: msakande
 ms.author: mopeakande
