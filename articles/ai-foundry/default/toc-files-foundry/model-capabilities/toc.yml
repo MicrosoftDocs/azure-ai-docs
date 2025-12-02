@@ -28,19 +28,19 @@ items:
       - name: Vision-enabled chats
         href: ../../../openai/gpt-v-quickstart.md
       - name: Speech to text
-        href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+        href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
       - name: Text to speech
-        href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+        href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
       - name: Text to speech avatar
-        href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+        href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
       - name: Voice Live
-        href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+        href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
   - name: Concepts
     items:
       - name: Video generation (preview)
         href: ../../../openai/concepts/video-generation.md
       - name: Video translation (preview)
-        href: ../../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+        href: ../../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
       - name: Image prompt engineering techniques
         href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
 
