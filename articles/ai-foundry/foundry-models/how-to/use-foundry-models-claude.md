@@ -71,7 +71,9 @@ Once deployed, you have some options for interacting with Claude models to gener
     - [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
     - [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
 
-- Use the [Responses API to generate text responses](generate-responses.md#use-the-responses-api-to-generate-text) with Claude models in Microsoft Foundry.
+- Use the [Responses API to generate text responses](generate-responses.md) with Claude models in Microsoft Foundry. For multi-language code samples that demonstrate how to use the OpenAI Responses API to interact with Claude models in Microsoft Foundry with Microsoft Entra ID (keyless) authentication, see [Use Claude Models with OpenAI Responses API in Microsoft Foundry](https://github.com/Azure-Samples/claude-with-openai-responses).
+
+### Use the Messages API to work with Claude models
 
 The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
 
@@ -82,7 +84,7 @@ The following examples show how to **use the Messages API** to send requests to 
 
 # [Python](#tab/python)
 
-### Use Microsoft Entra ID authentication
+#### Use Microsoft Entra ID authentication
 
 For Messages API endpoints, use your base URL with Microsoft Entra ID authentication.
 
@@ -141,7 +143,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     print(message.content)
     ```
 
-### Use API key authentication
+#### Use API key authentication
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -183,7 +185,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
 
 # [JavaScript](#tab/javascript)
 
-### Use Microsoft Entra ID authentication
+#### Use Microsoft Entra ID authentication
 
 For Messages API endpoints, use your base URL with Microsoft Entra ID authentication.
 
@@ -257,7 +259,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     console.log(message);
     ```
 
-### Use API key authentication
+#### Use API key authentication
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -315,7 +317,7 @@ For a list of supported runtimes, see [Requirements to use Anthropic TypeScript 
 
 # [REST API](#tab/rest-api)
 
-### Use Microsoft Entra ID authentication
+#### Use Microsoft Entra ID authentication
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` with Microsoft Entra ID authentication.
 
@@ -363,7 +365,7 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
         }'
     ```
 
-### Use API key authentication
+#### Use API key authentication
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` and API key to authenticate against the service.
 
@@ -500,7 +502,7 @@ Choose the appropriate Claude model based on your specific requirements:
 ## Related content
 
 - [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
-- [Responsible AI for Foundry](../../responsible-ai/openai/overview.md)
+- [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
 - [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
 - [Claude Docs: Claude in Microsoft Foundry ](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
