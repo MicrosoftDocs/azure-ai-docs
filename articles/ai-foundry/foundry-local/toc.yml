@@ -25,6 +25,8 @@ items:
     href: how-to/how-to-chat-application-with-open-web-ui.md
   - name: Compile Hugging Face models to run on Foundry Local
     href: how-to/how-to-compile-hugging-face-models.md
+  - name: Use tool calling
+    href: how-to/how-to-use-tool-calling-with-foundry-local.md  
 - name: Reference
   expanded: true
   items:
