@@ -23,7 +23,7 @@ Currently custom photo avatar creation is a manual process until a self-service 
 > Access to custom photo avatar (preview), which is part of custom text to speech avatar, is limited based on eligibility and usage criteria. Learn more [here](https://aka.ms/limitedaccesscogservices).
 
 
-## Step 1: Request limited access ##
+## Step 1: Request access
 
 Custom photo avatar is available only to Microsoft managed customers and partners. You can request access on the [intake form](https://aka.ms/customneural).
 After the request is approved, please contact your Microsoft account manager to proceed.
