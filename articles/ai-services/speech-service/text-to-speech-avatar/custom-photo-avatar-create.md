@@ -28,7 +28,7 @@ Currently custom photo avatar creation is a manual process until a self-service 
 Custom photo avatar is available only to Microsoft managed customers and partners. You can request access on the [intake form](https://aka.ms/customneural).
 After the request is approved, please contact your Microsoft account manager to proceed.
 
-## Step 2: Prepare training data ##
+## Step 2: Prepare training data
 The custom photo avatar creation supports real human photos and virtual human images. Here are some tips for preparing the images.
 - The photo avatar only includes the head, so it’s best to provide an image showing the character from the shoulders up.
 - The face must look like a real or virtual human, cartoon-like characteristics, such as eyes that are larger than normal human proportions, are not supported.
