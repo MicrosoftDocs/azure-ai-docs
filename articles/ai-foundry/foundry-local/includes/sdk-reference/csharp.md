@@ -106,7 +106,7 @@ The Foundry Local SDK pulls in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package 
 
 The following table summarizes what EP and IHV libraries are bundled with your application and what WinML will download/install at runtime:
 
-![EP Bundle table](../../media/ep-bundle.png)
+![EP Bundle table](../../media/execution-provider-bundle.png)
 
 In all platform/architecture, the CPU EPU is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend *excluding* these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
 
