@@ -142,29 +142,16 @@ Microsoft models include various model groups such as Model Router, MAI models, 
 
 ::: moniker-end
 
-<sup>1</sup> **Model router version:** `2025-11-18`. Earlier versions (`2025-08-07` and `2025-05-19`) are also available. 
+<sup>1</sup> **Model router version** `2025-11-18`. Earlier versions (`2025-08-07` and `2025-05-19`) are also available. 
 
-<sup>2</sup> **Max output tokens:** 32,768 (`GPT-4.1 series`), 100,000 (`o4-mini`), 128,000 (`gpt-5 reasoning models`), 16,384 (`gpt-5-chat`).
+<sup>2</sup> **Max output tokens** varies for underlying models in the model router: 32,768 (`GPT-4.1 series`), 100,000 (`o4-mini`), 128,000 (`gpt-5 reasoning models`), 16,384 (`gpt-5-chat`).
 
-<sup>3</sup> **Context window:** Larger context windows are compatible with *some* of the underlying models of the Model Router. That means an API call with a larger context succeeds only if the prompt happens to be routed to one of such models. Otherwise, the call fails.
+<sup>3</sup> Larger **context windows** are compatible with *some* of the underlying models of the Model Router. That means an API call with a larger context succeeds only if the prompt happens to be routed to one of such models. Otherwise, the call fails.
 
-<sup>4</sup> Billing for Data Zone Standard model router deployments begins no earlier than November 1, 2025.
+<sup>4</sup> Billing for **Data Zone Standard** model router deployments begins no earlier than November 1, 2025.
 
 
 See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
-
-<!-- 
-
-#### Capabilities
-
-|  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
-|  --- |  :--- |:--- |:---|:---: |
-| `model-router` (2025-08-07) | A model that intelligently selects from a set of underlying models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`)</br> 128,000 (`gpt-5 reasoning models`) </br> 16,384 (`gpt-5-chat`) | - |
-| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`) | May 31, 2024 |
-| `model-router` (2025-11-18) | A model that intelligently selects from a configurable set of underlying chat models to respond to a given prompt. | TBD | TBD | TBD | -->
-
-
-
 
 
 ## Mistral models sold directly by Azure
