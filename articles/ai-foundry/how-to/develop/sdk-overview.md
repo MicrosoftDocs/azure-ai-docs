@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 12/02/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -35,6 +35,16 @@ The Microsoft Foundry SDK integrates with other client libraries and services th
 
 Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized AI services. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
 
+The Foundry API Endpoint grants users access to Agents, Evaluations, and deployed models for inference and more.
+
+> [!IMPORTANT]
+> Endpoints may use either your resource name or a custom subdomain. If your organization has configured a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
+> For example:
+> - https://<your-resource-name>.services.ai.azure.com 
+> - https://<your-custom-subdomain>.services.ai.azure.com
+
+Foundry consolidated these endpoints to simplify user experience. Fewer endpoints reduce endpoint management. However, the endpoints you use still work. To view all your endpoints, go to the Azure Portal details page for your resource. Navigate to your resource details page in Azure Portal and select ‘JSON view’ to see all accessible Foundry capabilities and endpoints. All of them are listed in this document.
+
 ::: moniker range="foundry-classic"
 
 > [!NOTE]
@@ -60,8 +70,6 @@ Developers working with Microsoft Foundry need flexibility to integrate multiple
     ```bash
     az login
     ```
-
-The following examples show how to authenticate and create a client for your project endpoint.
 
 > [!TIP]
 > These code samples are starting points. Use these clients to interact with models, run evaluations, and more, as explained in the client libraries section.
@@ -91,7 +99,7 @@ The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-
     from azure.ai.projects import AIProjectClient
     
     project = AIProjectClient(
-      endpoint="your_project_endpoint",  # Replace with your endpoint
+      endpoint="https://<your-resource-name>.services.ai.azure.com",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     # The AIProjectClient lets you access models, data, and services in your project.
     ```
@@ -115,7 +123,7 @@ The [Azure AI Projects client library for Java (preview)](/java/api/overview/azu
     import com.azure.ai.projects.ProjectsClientBuilder;
     import com.azure.core.credential.AzureKeyCredential;
     
-    String endpoint ="your_project_endpoint"; // Replace with your endpoint
+    String endpoint ="https://<your-resource-name>.services.ai.azure.com"; // Replace with your endpoint
     
     ProjectsClient projectClient = new ProjectsClientBuilder()
         .credential(new DefaultAzureCredential())
@@ -143,7 +151,7 @@ The [Azure AI Projects client library for JavaScript](/javascript/api/overview/a
     import { AIProjectClient } from '@azure/ai-projects';
     import { DefaultAzureCredential } from '@azure/identity';
     
-    const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
+    const endpoint = "https://<your-resource-name>.services.ai.azure.com"; // Replace with your actual endpoint
 
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
     // The AIProjectClient lets you access models, data, and services in your project.
@@ -158,9 +166,7 @@ The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.pr
 * Install packages:
 
     ```bash
-    dotnet add package Azure.Identity
-    dotnet add package Azure.Core
-    dotnet add package OpenAI
+    dotnet add package Azure.AI.Projects --version 1.2
     ```
 
 * Create a project client in code. **Copy** the Foundry project endpoint from the Overview page of the project and update the endpointUrl string value.
@@ -172,7 +178,7 @@ The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.pr
     using Azure.AI.Projects;
     using System;
 
-    string endpointUrl = "your_project_endpoint"; // Replace with your endpoint
+    string endpointUrl = "https://<your-resource-name>.services.ai.azure.com"; // Replace with your endpoint
 
     DefaultAzureCredential credential = new();
     BearerTokenPolicy tokenPolicy = new(credential, "https://cognitiveservices.azure.com/.default");
