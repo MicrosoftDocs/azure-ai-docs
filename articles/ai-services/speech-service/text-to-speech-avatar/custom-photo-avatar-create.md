@@ -46,7 +46,7 @@ prepare resources:
 - Foundry resource: [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions.
 - For more information about region availability, see [Text to speech avatar regions](../regions.md).
 
-## Step 5: Use custom photo avatar ##
+## Step 5: Use custom photo avatar
 You can use the custom photo avatar in a voice agent or create video content in Microsoft Foundry or via API.
 ### Use in Microsoft Foundry
 To use custom photo avatar in **Voice live** to create personalized voice agent:
