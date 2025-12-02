@@ -229,6 +229,8 @@ Grounding with Bing Custom Search is a powerful tool that allows you to select a
 
 * If you own a public site that you want to include in the search but Bing hasn’t indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
 
+* You will need at least the contributor role for the Bing Custom Search resource to create a configuration.
+
 * You can only block certain domains and perform a search against the rest of the Web (a competitor's site, for example). 
 
 * Grounding with Bing Custom Search only returns results for domains and webpages that are public and have been indexed by Bing. 
