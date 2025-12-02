@@ -18,8 +18,8 @@ items:
    - name: Use blocklists
      href: ../../foundry-models/how-to/use-blocklists.md
 - name: Transparency notes for Foundry Tools
-  href: ../../../ai-services/responsible-use-of-ai-overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+  href: ../../../ai-services/responsible-use-of-ai-overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name: Limited Access features
-  href: ../../../ai-services/cognitive-services-limited-access.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+  href: ../../../ai-services/cognitive-services-limited-access.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name: System message templates
-  href: ../../openai/concepts/system-message.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+  href: ../../openai/concepts/system-message.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
