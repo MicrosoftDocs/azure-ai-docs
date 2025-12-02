@@ -6,7 +6,7 @@ items:
 - name: Foundry known issues
   href: ../../reference/foundry-known-issues.md  
 - name: Support & help options
-  href: ../../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
+  href: ../../../ai-services/cognitive-services-support-options.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Use Microsoft Foundry with a screen reader
   href: ../../tutorials/screen-reader.md
 - name: Feature availability

@@ -4,11 +4,11 @@ items:
   - name: Retrieval Augmented Generation (RAG) overview
     href: ../../concepts/retrieval-augmented-generation.md
   - name: Use Azure AI Search
-    href: /azure/search/search-what-is-azure-search?context=/azure/ai-foundry/context/context
+    href: /azure/search/search-what-is-azure-search?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Build and consume vector indexes (portal)
     href: ../../how-to/index-add.md
   - name: Build a RAG solution using Azure AI Search
-    href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
+    href: /azure/search/tutorial-rag-build-solution?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 - name: Develop with code
   items:
   - name: Set up your development environment
@@ -49,4 +49,4 @@ items:
     - name: Deploy an enterprise chat web app
       href: ../../tutorials/deploy-chat-web-app.md
     - name: Build a RAG solution using Azure AI Search
-      href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
+      href: /azure/search/tutorial-rag-build-solution?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json

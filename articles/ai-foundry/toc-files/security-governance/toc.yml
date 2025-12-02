@@ -6,7 +6,7 @@ items:
   - name: Disable preview features with RBAC
     href: ../../concepts/disable-preview-features-with-rbac.md    
   - name: Rotate API access keys
-    href: ../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/rotate-keys.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Configure key-less authentication
     href: ../../foundry-models/how-to/configure-entra-id.md
 - name: Network security
@@ -22,7 +22,7 @@ items:
   items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
-    href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/policy-reference.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
   - name: Built-in policy for model deployment
     href: ../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
