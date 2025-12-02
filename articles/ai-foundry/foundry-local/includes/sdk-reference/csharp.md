@@ -88,7 +88,7 @@ There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-pla
 - **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework to deliver optimal performance and user experience on Windows devices.
 - **Cross-Platform**: Use the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
 
-Depending on your target platform, follow these instructions to create a new C# applications and add the necessary dependencies:
+Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
 
 [!INCLUDE [project-setup](./../csharp-project-setup.md)]
 
@@ -106,7 +106,7 @@ The Foundry Local SDK pulls in `Microsoft.ML.OnnxRuntime.Foundry` NuGet package 
 
 The following table summarizes what EP and IHV libraries are bundled with your application and what WinML will download/install at runtime:
 
-![EP Bundle table](../../media/execution-provider-bundle.png)
+![Illustration of a table showing EP and IHV libraries.](../../media/execution-provider-bundle.png)
 
 In all platform/architecture, the CPU EPU is required. The WebGPU EP and IHV libraries are small in size (for example, WebGPU only adds ~7MB to your application package) and are required in Windows and macOS. However, the CUDA and QNN EPs are large in size (for example, CUDA adds ~1GB to your application package) so we recommend *excluding* these EPs from your application package. WinML will download/install CUDA and QNN at runtime if the end user has compatible hardware.
 
