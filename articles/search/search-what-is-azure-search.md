@@ -52,7 +52,7 @@ You can use Azure AI Search for regular search needs (like searching through cat
 
 + Use integrated vectorization to streamline the process of converting text into embeddings for similarity search.
 
-+ Combine traditional full-text search with next-generation vector search (known as hybrid search) to balance precision and semantic recall for classic search and RAG scenarios.
++ Combine traditional full-text search with next-generation vector search (known as hybrid search) to balance precision and semantic recall for both classic and agentic search.
 
 + Tune relevance with semantic ranking, scoring profiles, synonyms, faceting, autocomplete, fuzzy matching, and filters (including geo-spatial).
 
@@ -80,17 +80,17 @@ On the retrieval side, your client can be an agent, tool, or any app that sends 
 
 Azure AI Search supports two primary workflows: classic search and agentic search.
 
-Classic search queries an index using keyword, vector, hybrid, or multimodal techniques. Agentic search builds on those capabilities for RAG: it uses an optional LLM to orchestrate retrieval across indexed and remote knowledge sources, plan and execute subqueries, and produce grounded answers. The output is intended for consumption by your agent.
+Classic search queries an index using keyword, vector, hybrid, or multimodal techniques. Agentic search builds on those capabilities for RAG: it orchestrates retrieval across indexed and remote knowledge sources, plans and executes subqueries, and produces grounded answers. The output is intended for consumption by your agent.
 
 #### [**Classic search**](#tab/classic)
 
 If you're building a traditional search experience, you might follow these steps:
 
-1. **Define goals and requirements:** Inventory your content types and expected query patterns, such as [keyword](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), [multimodal](multimodal-search-overview.md), [fuzzy search](search-query-fuzzy.md), autocomplete, and geo-search. Decide on freshness, SLAs, and document‑level access needs to guide indexing and authorization choices.
+1. **Define goals and requirements:** Inventory your content types and expected query patterns, such as [keyword](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), [multimodal](multimodal-search-overview.md), [fuzzy](search-query-fuzzy.md), autocomplete, and geo-search. Decide on freshness, SLAs, and document‑level access needs to guide indexing and authorization choices.
 
 1. **Create an index:** Map your content model to JSON fields within a [search index](search-what-is-an-index.md). Set data types and attributes (searchable, sortable, filterable, facetable, retrievable) to control field behavior. If needed, include vector fields for embeddings.
 
-1. **Import content:** Choose the [push method](search-what-is-data-import.md#how-to-push-data-to-an-azure-ai-search-index) (upload JSON documents directly) or [pull method](search-what-is-data-import.md#how-to-pull-data-from-external-sources) (use an indexer or logic app workflow to extract data from external sources) to populate the index. Implement batching and incremental updates.
+1. **Import content:** Choose the [push method](search-what-is-data-import.md#pushing-data-to-an-index) (upload JSON documents directly) or [pull method](search-what-is-data-import.md#pulling-data-into-an-index) (use an indexer or logic app workflow to extract data from external sources) to populate the index.
 
 1. **Add AI enrichment:** Use a [skillset](cognitive-search-working-with-skillsets.md) to chunk text, perform OCR on images, generate embeddings, extract metadata, summarize content, detect layout, translate text, and more. Store enriched outputs in appropriate index fields.
 
@@ -106,17 +106,17 @@ If you're building a traditional search experience, you might follow these steps
 
 If you're building a modern RAG experience, you might follow these steps:
 
-1. **Define goals and requirements:** Identify your goal for [agentic retrieval](agentic-retrieval-overview.md), such as document retrieval or multi-turn conversational support. Inventory your content types and determine which sources can be indexed versus accessed remotely to meet performance, freshness, and security requirements.
+1. **Define goals and requirements:** Identify your goal for [agentic retrieval](agentic-retrieval-overview.md), such as document retrieval or multi-turn conversational support. Determine which of your content can be indexed versus accessed remotely to meet performance, freshness, and security requirements.
 
-1. **Create knowledge sources:** Create indexed and/or remote [knowledge sources](agentic-knowledge-source-overview.md) that represent searchable content. Use indexed sources for low‑latency queries, document‑level permissions, and ingestion-time enrichment and scheduling. Use remote sources for freshness and for large or volatile data.
+1. **Create knowledge sources:** Create one or more [knowledge sources](agentic-knowledge-source-overview.md) that represent searchable content. Use indexed sources for low‑latency queries, document‑level permissions, and ingestion-time enrichment and scheduling. Use remote sources for freshness or data volume constraints.
 
-1. **Create a knowledge base:** Create a top-level [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that links your knowledge sources and an optional LLM to drive query planning, query execution, and result synthesis. Choose whether the system should return [raw grounding data](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) or a [synthesized, natural-language answer](agentic-retrieval-how-to-answer-synthesis.md) that cites retrieved content.
+1. **Create a knowledge base:** Create a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that links your knowledge sources and an optional LLM to drive query planning, query execution, and result synthesis. Choose whether the system returns [raw grounding data](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) or [synthesized answers](agentic-retrieval-how-to-answer-synthesis.md) that cite retrieved content.
 
-1. **Implement client-side query handling:** Send user queries and context to the knowledge base and consume its response. Your agent is responsible for routing requests, maintaining the conversation state, rendering or synthesizing results, and enforcing client-side access control.
+1. **Implement client-side query handling:** [Retrieve data](agentic-retrieval-how-to-retrieve.md) from the knowledge base by passing user queries and context. Your agent is responsible for routing requests, maintaining the conversation state, rendering or synthesizing results, and enforcing client-side access control.
 
 1. **Enforce security:** Use [RBAC](search-security-rbac.md) to avoid key leakage from client apps. Apply [document-level access control](search-document-level-access-overview.md) to indexed knowledge sources.
 
-1. **Monitor and operate:** Review the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) and [reference array](agentic-retrieval-how-to-retrieve.md#review-the-reference-arrays) for visibility into retrieval requests, billing, and grounding quality. Adjust the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) to control LLM invocations. For indexed sources, iterate on chunking, embedding model parameters, and field selection to improve precision.
+1. **Monitor and operate:** Review the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) and [reference array](agentic-retrieval-how-to-retrieve.md#review-the-reference-arrays) for visibility into billing and grounding quality. Adjust the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) to control LLM invocations. For indexed sources, iterate on chunking, embedding model parameters, and field selection to improve precision.
 
 ---
 
@@ -148,7 +148,7 @@ For [agentic retrieval](agentic-retrieval-overview.md), Azure AI Search can inge
 
 You can access Azure AI Search through the Azure portal, [REST APIs](search-api-versions.md#rest-apis), and Azure SDKs for [.NET](search-api-versions.md#azure-sdk-for-net), [Java](search-api-versions.md#azure-sdk-for-java), [JavaScript](search-api-versions.md#azure-sdk-for-javascript), and [Python](search-api-versions.md#azure-sdk-for-python).
 
-The portal is useful for service administration and content management, with tools for prototyping and querying your indexes, indexers, skillsets, and data sources. REST APIs and SDKs are useful for production automation.
+The portal is useful for service administration and content management, with tools for prototyping and querying your knowledge bases, knowledge sources, indexes, indexers, skillsets, and data sources. REST APIs and SDKs are useful for production automation.
 
 ### [**Quickstarts**](#tab/quickstarts)
 
@@ -160,7 +160,7 @@ We maintain quickstarts that span various scenarios to help you get started with
 
 ### [**Samples**](#tab/samples)
 
-We maintain samples that use the REST APIs and supported Azure SDK programming languages:
+We maintain samples that use REST APIs and supported SDK programming languages:
 
 + [REST samples](/azure/search/samples-rest)
 + [Python samples](/azure/search/samples-python)
