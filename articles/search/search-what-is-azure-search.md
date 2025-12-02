@@ -116,7 +116,7 @@ If you're building a modern RAG experience, you might follow these steps:
 
 1. **Enforce security:** Use [RBAC](search-security-rbac.md) to avoid key leakage from client apps. Apply [document-level access control](search-document-level-access-overview.md) to indexed knowledge sources.
 
-1. **Monitor and operate:** Review the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) and [references array](agentic-retrieval-how-to-retrieve.md#review-the-references-arrays) for visibility into billing and grounding quality. Adjust the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) to control LLM invocations. For indexed sources, iterate on chunking, embedding model parameters, and field selection to improve precision.
+1. **Monitor and operate:** Review the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) and [references array](agentic-retrieval-how-to-retrieve.md#review-the-references-array) for visibility into billing and grounding quality. Adjust the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) to control LLM invocations. For indexed sources, iterate on chunking, embedding model parameters, and field selection to improve precision.
 
 ---
 
