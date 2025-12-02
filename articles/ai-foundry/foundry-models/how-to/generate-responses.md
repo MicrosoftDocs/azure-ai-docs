@@ -43,10 +43,12 @@ Use the code in this section to make Responses API calls for [Foundry Models sol
 
 # [Python](#tab/python)
 
-1. Install the Azure Identity client library:
+1. Install libraries, including the Azure Identity client library:
 
     ```bash
     pip install azure-identity
+    pip install openai
+    pip install --pre azure-ai-projects>=2.0.0b1 
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses. 

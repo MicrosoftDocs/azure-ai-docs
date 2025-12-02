@@ -62,12 +62,16 @@ After deployment, you can use the [Foundry playground](../../concepts/concept-pl
 
 ## Work with Claude models
 
-Once deployed, you can interact with Claude models by using the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
+Once deployed, you have some options for interacting with Claude models to generate text responses:
 
-- [Messages API](https://docs.claude.com/en/api/messages) to send a structured list of input messages with text and/or image content, and the model generates the next message in the conversation.
-- [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
-- [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
-- [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
+- Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
+
+    - [Messages API](https://docs.claude.com/en/api/messages) to send a structured list of input messages with text and/or image content, and the model generates the next message in the conversation.
+    - [Token Count API](https://docs.claude.com/en/api/messages-count-tokens) to count the number of tokens in a message.
+    - [Files API](https://docs.claude.com/en/api/files-create) to upload and manage files to use with the Claude API without having to re-upload content with each request.
+    - [Skills API](https://docs.claude.com/en/api/skills/create-skill) to create custom skills for Claude AI.
+
+- Use the [Responses API to generate text responses](generate-responses.md#use-the-responses-api-to-generate-text) with Claude models in Microsoft Foundry.
 
 The following examples show how to **use the Messages API** to send requests to Claude Sonnet 4.5, with both Microsoft Entra ID authentication and API key authentication methods. To work with your deployed model, you need these items:
 
