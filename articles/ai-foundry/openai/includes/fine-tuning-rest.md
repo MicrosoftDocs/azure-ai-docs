@@ -170,11 +170,11 @@ The current supported hyperparameters for Supervised Fine-Tuning are:
 
 Select the training tier based on your use case and budget.
 
-Standard: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+* Standard: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
 
-Global: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+* Global: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
-Developer (preview): Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+* Developer (preview): Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
 ```curl
 curl -X POST "https://<ACCOUNT-NAME>.openai.azure.com/openai/fine_tuning/jobs?api-version=2025-04-01-preview" -H "Content-Type: application/json" -H "api-key: <API-KEY>" -d "{"model": "gpt-4.1", "training_file": "<FILE_ID>", "hyperparameters": {"prompt_loss_weight": 0.1}, "trainingType": "developerTier"}"
