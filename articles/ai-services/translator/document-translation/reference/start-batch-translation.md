@@ -275,25 +275,21 @@ Make sure you specify the folder name (case sensitive) as prefix in filter.
  > [!IMPORTANT]
  > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).## Translate text in native image format files
 
+##### Request configuration (image files)
+
+For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying api version **2025-12-01-preview**. No additional configuration is required.
 
  ##### Supported formats (image files)
-|File Extension|Best use|
+|File Extension|Description|
 |--|--|
-|`.bmp `|Well-suited for editing raw data and graphics on legacy systems, as well as for creating uncompressed backups. However, they do not provide native support for transparency.|
-|`.jpg` |Ideal for displaying photographs and detailed images on websites. However, this format does not support transparent backgrounds.|
-|`.png`|Most suitable for use in web graphics, logos, and images that need transparency.|
-|`.webp`|Optimally configured for web applications that require high image fidelity, efficient compression, and alpha transparency, resulting in optimal quality and performance.|
+|`.bmp `|A bitmap image file format used to store digital images in an uncompressed form, preserving high-quality visual details.|
+|`.jpeg` |A Joint Photographic Experts Group image file that uses a lossy compression method to reduce file size. This format does not support transparent backgrounds.|
+|`.png`| A Portable Network Graphics file that uses lossless compression, supports transparency, and can display up to 16 million color.|
+|`.webp`|A Web Picture image format that uses both lossy and lossless image compression methods to minimize file size while preserving high image quality.|
 
 ##### Supported languages (image files)
 
 For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-scanned-pdf-and-image-support).
-
-> [!TIP]
-> For optimal results, we recommend using the .jpg file format for photographic images and .png format for user interface (UI) elements or graphics containing textual content.
-
-##### Request configuration (image files)
-
-For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying api version **2025-12-01-preview**. No additional configuration is required.
 
 ## Response status codes
 

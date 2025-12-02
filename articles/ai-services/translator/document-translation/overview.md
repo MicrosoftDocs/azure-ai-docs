@@ -34,7 +34,7 @@ Document translation is a cloud-based machine translation feature of [Azure Tran
 | ---------| -------------|
 |**Translate large files**| Translate whole documents asynchronously.|
 |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-|**Translate image file formats 2025-12-01-preview** 🆕| &bullet; Translate text within an image while maintaining the original design and layout.<br>&bullet; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
+|**Translate image file formats (preview)** 🆕| &bullet; [Translate text within an image while maintaining the original design and layout](reference/start-batch-translation.md#translate-image-files).<br>&bullet; **Supported formats**: `.jpeg`, `.png`, `.bmp`, `.webp`<br>&bullet; **Pricing**: Calculated on a per image basis. For more information, *see* [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator)|
 |[**Translate image text in Word document files (.docx)**](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-image-text-in-word-document-files-docx-) API for `.docx` file format.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
@@ -86,7 +86,7 @@ Maximize operational throughput utilizing synchronous document translation to fa
 
 ### [Asynchronous (batch)](#tab/async)
 
-### Batch document formats
+### Batch document supported formats
 
 The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes the common file extension, and the content-type if using the upload API.
 
@@ -95,7 +95,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
-|Image (2025-12-01-preview)|`.jpg`, `.png`, `.bmp`, `.webp`|Files that stores digital image data.|
+|Image (2025-12-01-preview)|`.jpeg`, `.png`, `.bmp`, `.webp`|Files that stores digital image data.|
 |OpenDocument Presentation|`odp`|An open-source presentation file.|
 |OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
 |OpenDocument Text|`odt`|An open-source text document file.|
@@ -120,7 +120,7 @@ Source file types are preserved during the document translation with the followi
 | .xls, .ods | .xlsx |
 | .ppt, .odp | .pptx |
 
-### Batch glossary formats
+### Batch glossary supported formats
 
 Document translation supports the following glossary file types:
 
@@ -132,7 +132,7 @@ Document translation supports the following glossary file types:
 
 ### [Synchronous](#tab/sync)
 
-### Synchronous document formats
+### Synchronous document supported formats
 
 |File type|File extension| Content type|Description|
 |---|---|--|---|
@@ -147,7 +147,7 @@ Document translation supports the following glossary file types:
 |**Microsoft Outlook**|`.msg`|`application/vnd.ms-outlook`|A file format used for stored Outlook mail message objects.|
 |**Xml Localization Interchange**|`.xlf`<br> `.xliff`|`application/xliff+xml` |A standardized XML-based file format widely used in translation and localization software processing.|
 
-### Synchronous glossary formats
+### Synchronous glossary supported formats
 
 Document translation supports the following glossary file types:
 
