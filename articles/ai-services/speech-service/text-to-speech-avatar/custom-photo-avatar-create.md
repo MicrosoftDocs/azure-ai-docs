@@ -69,7 +69,7 @@ To use custom photo avatar in **Text to speech avatar** to create talking head v
    - Click **Azure-Speech-Text-to-speech-Avatar** in the search result
    - Select **Open in Playground**
    
-  ### Use through API ###
+### Use through API
   Sample code for text to speech avatar is available on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples). Search "photo" to quickly go to photo avatar part in sample code.
 
 * [Batch synthesis (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch-avatar)
