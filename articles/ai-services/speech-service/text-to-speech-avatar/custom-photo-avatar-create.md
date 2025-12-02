@@ -31,7 +31,7 @@ After the request is approved, please contact your Microsoft account manager to 
 ## Step 2: Prepare training data
 The custom photo avatar creation supports real human photos and virtual human images. Here are some tips for preparing the images.
 - The photo avatar only includes the head, so it’s best to provide an image showing the character from the shoulders up.
-- The face must look like a real or virtual human, cartoon-like characteristics, such as eyes that are larger than normal human proportions, are not supported.
+- The face must look like a real or virtual human. Cartoon-like characteristics, such as eyes that are larger than normal human proportions, are not supported.
 - Avoid showing elaborate accessories or jewelry.
 - The head should be fully visible and facing forward.
 - Make sure the face is fully visible, without shadows or any hidden parts.
