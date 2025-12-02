@@ -40,7 +40,7 @@ The custom photo avatar creation supports real human photos and virtual human im
 If you are creating a custom photo avatar from a real person’s photo, you must obtain consent from that person. Provide a video of the person reading a consent statement acknowledging the use of their image. Microsoft verifies that the recorded statement matches the predefined script and compares the face in the video with the photo to confirm they belong to the same person.
 For an example of the consent statement see the verbal-statement-all-locales.txt file in the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository.
 
-## Step 4: Create and deploy custom photo avatar ##
+## Step 4: Create and deploy custom photo avatar
 This step is handled in a manual process. Microsoft will set up the custom photo avatar in the Azure resources you provide offline.
 prepare resources:
 - Foundry resource: [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions.
