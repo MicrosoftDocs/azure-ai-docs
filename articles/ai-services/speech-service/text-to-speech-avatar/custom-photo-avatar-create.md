@@ -14,7 +14,7 @@ zone_pivot_groups: foundry-speech-studio
 
 # How to create a custom photo avatar
 
-Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can create a personalized and more engaging voice agent through Voice live efficiently. 
+Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can efficiently create a personalized and more engaging voice live agent. 
 
 Custom photo avatar creation is a manual process. You can follow the below process, and after custom photo avatars are set up, you can access them in the Microsoft Foundry or through API.
 
