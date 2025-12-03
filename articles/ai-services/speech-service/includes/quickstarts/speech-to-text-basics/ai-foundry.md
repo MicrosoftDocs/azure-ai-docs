@@ -23,7 +23,7 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)]
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
-1. The **AI Services** tab. shows the Foundry models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground.
+1. The **AI Services** tab shows the Foundry models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground.
 1. Optionally use the **Parameters** section to change the task, language, profanity policy, and other settings. You can also add special instructions for the LLM.
 1. Use the **Upload files** section to select your audio file. Then select **Start**.
 1. View the transcription output in the **Transcript** tab. Optionally view the raw API response output in the **JSON** tab.
