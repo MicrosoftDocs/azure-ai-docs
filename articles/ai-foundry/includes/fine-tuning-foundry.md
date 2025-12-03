@@ -100,6 +100,7 @@ Select the training tier based on your use case and budget.
 
 - **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
+
 ### Training and validation data
 
 If you have existing datasets in the Foundry project, choose **Existing dataset** for the **data source** and then select your dataset.
