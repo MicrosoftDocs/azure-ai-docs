@@ -89,13 +89,11 @@ You can create an Azure AI Search service in any of the following Azure public r
 |--|--|--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |  |
 | Qatar Central​ <sup>1</sup> |  | ✅ | ✅ |  | ✅ |  |
-| UAE North​​ <sup>2, 3</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
+| UAE North​​ <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 <sup>2</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
-
-<sup>3</sup> This region is experiencing capacity constraints that prevent the creation of new search services. Please choose a different region.
 
 ### Africa
 
@@ -122,10 +120,11 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Korea South​​ |  |  | ✅ |  | ✅ |  |
 | Malaysia West |  | ✅ |  |  |  |  |
 | New Zealand North |  | ✅ |  |  |  |  |
-| South India |  | ✅ |  |  |  |  |
+| South India <sup>1</sup>|  | ✅ |  |  |  |  |
 | Southeast Asia​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ## Azure Government regions
 
