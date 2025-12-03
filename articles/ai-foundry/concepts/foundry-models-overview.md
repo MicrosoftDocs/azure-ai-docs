@@ -38,7 +38,7 @@ Our catalog is organized into two main categories:
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
 
 > [!NOTE]
-> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise Foundry Tools Code of Conduct. 
+> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models Sold Directly by Azure 
  
