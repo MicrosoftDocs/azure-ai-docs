@@ -10,20 +10,21 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 12/02/2025
+ms.date: 12/03/2025
 ---
 
 # What is Azure AI Search?
 
-Azure AI Search is a fully managed, cloud-hosted service that provides APIs for indexing, enriching, and retrieving heterogeneous content. Use it to create rich search experiences at production scale while offloading operational overhead to the Azure platform.
+Azure AI Search is a fully managed, cloud-hosted service that connects your data to AI. The service unifies access to enterprise and web content so agents and LLMs can use context, chat history, and multi-source signals to produce reliable, grounded answers.
 
-Common use cases include traditional search and modern retrieval-augmented generation (RAG) for conversational AI. This makes Azure AI Search suitable for both enterprise and consumer scenarios, whether you're adding search functionality to a website, app, agent, or chatbot.
+Common use cases include *classic search* and modern retrieval-augmented generation (RAG) via *agentic retrieval*. This makes Azure AI Search suitable for both enterprise and consumer scenarios, whether you're adding search functionality to a website, app, agent, or chatbot.
 
 When you create a search service, you unlock the following capabilities:
 
-+ A search engine for [agentic search](agentic-retrieval-overview.md), [full-text search](search-lucene-query-architecture.md), [vector search](vector-search-overview.md), [hybrid search](hybrid-search-overview.md), and [multimodal search](multimodal-search-overview.md).
-+ AI enrichment during indexing to process and transform content that's otherwise unsearchable.
-+ Extensive query syntax and smart results through semantic ranking and scoring profiles.
++ Two engines: [classic search](#what-is-classic-search) for single requests and [agentic retrieval](#what-is-agentic-retrieval) for parallel, iterative, LLM-assisted search.
++ [Full-text](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), and [multimodal](multimodal-search-overview.md) queries over local (indexed) and remote content.
++ AI enrichment to chunk, vectorize, and otherwise transform raw content into agent-ready artifacts.
++ Relevance tuning to improve intent matching and result quality.
 + Azure scale, security, monitoring, and compliance.
 + Azure integrations with supported data platforms, Azure OpenAI, and Microsoft Foundry.
 
@@ -46,103 +47,72 @@ You can use Azure AI Search for regular search needs (like searching through cat
 
 + Ground agents and chatbots in proprietary, enterprise, or web data for accurate, context-aware responses.
 
-+ Ingest data from Azure Blob Storage, Azure Cosmos DB, Microsoft OneLake, and other supported data sources. You control the index schema and what's searchable.
++ Access data from Azure Blob Storage, Azure Cosmos DB, Microsoft OneLake, and other supported data sources. Choose indexed or remote access based on your freshness, latency, and compliance needs.
 
-+ Enrich and structure content during indexing with skillsets, which offer chunking, optical character recognition (OCR), translation, summarization, metadata extraction, vector generation, and more.
++ Enrich and structure content at indexing or query time with skills that perform chunking, embedding, and LLM-assisted transformations.
 
-+ Use integrated vectorization to streamline the process of converting text into embeddings for similarity search.
++ Combine traditional full-text search with next-generation vector search (known as hybrid search) to balance precision and semantic recall.
 
-+ Combine traditional full-text search with next-generation vector search (known as hybrid search) to balance precision and semantic recall for both classic and agentic search.
++ Query mixed media content, including text, images, video, and audio.
 
 + Tune relevance with semantic ranking, scoring profiles, synonyms, faceting, autocomplete, fuzzy matching, and filters (including geo-spatial).
 
 + Provide enterprise security, access control, and compliance through Microsoft Entra, Azure Private Link, document-level access control, and role-based access control (RBAC).
 
-+ Scale and operate in production with Azure reliability, autoscaling, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
++ Scale and operate in production with Azure reliability, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
 
 For more information about specific functionality, see [Features of Azure AI Search](search-features-list.md).
 
-## How it works
+## What is classic search?
 
-Architecturally, a search service sits between raw, unprocessed content and a downstream client app that consumes and outputs search results.
+Classic search is an index-first retrieval model ideal for predictable, low-latency queries. Each query targets a single, predefined search index and returns ranked documents in one request-response cycle. No LLM-assisted planning, iteration, or synthesis occurs during retrieval.
 
-The following diagram illustrates how your content, search service, and client app interact for classic search. In Azure AI Search, the indexing and query engines are the same component operating in both read-write and read-only modes. However, our diagram separates the engines to indicate the type of work being performed.
+In this architecture, your search service sits between the data stores that contain your unprocessed content and your client app. The app is responsible for sending query requests to your search service and handling the response.
 
-:::image type="content" source="media/search-what-is-azure-search/azure-search.svg" alt-text="Diagram of Azure AI Search architecture." lightbox="media/search-what-is-azure-search/azure-search.svg" :::
-
-<!--
-On the indexing side, your content can be ingested into a *search index* through an indexer, push API, or logic app workflow. For remote *knowledge sources* that provide real-time data to knowledge bases, the search service can bypass indexing and directly query the source at runtime.
-
-On the retrieval side, your client can be an agent, tool, or any app that sends requests to a search index or knowledge base and receives ranked, post-processed results.
--->
-
-### Primary workflows
-
-Azure AI Search supports two primary workflows: classic search and agentic search.
-
-Classic search queries an index using keyword, vector, hybrid, or multimodal techniques. Agentic search builds on those capabilities for RAG: it orchestrates retrieval across indexed and remote knowledge sources, plans and executes subqueries, and produces grounded answers. The output is intended for consumption by your agent.
-
-#### [**Classic search**](#tab/classic)
-
-If you're building a traditional search experience, you might follow these steps:
-
-1. **Define goals and requirements:** Inventory your content types and expected query patterns, such as [keyword](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), [multimodal](multimodal-search-overview.md), [fuzzy](search-query-fuzzy.md), autocomplete, and geo-search. Decide on freshness, SLAs, and document‑level access needs to guide indexing and authorization choices.
-
-1. **Create an index:** Map your content model to JSON fields within a [search index](search-what-is-an-index.md). Set data types and attributes (searchable, sortable, filterable, facetable, retrievable) to control field behavior. If needed, include vector fields for embeddings.
-
-1. **Import content:** Choose the [push method](search-what-is-data-import.md#pushing-data-to-an-index) (upload JSON documents directly) or [pull method](search-what-is-data-import.md#pulling-data-into-an-index) (use an indexer or logic app workflow to extract data from external sources) to populate the index.
-
-1. **Add AI enrichment:** Use a [skillset](cognitive-search-working-with-skillsets.md) to chunk text, perform OCR on images, generate embeddings, extract metadata, summarize content, detect layout, translate text, and more. Store enriched outputs in appropriate index fields.
-
-1. **Add relevance and ranking:** Create [scoring profiles](index-add-scoring-profiles.md), [synonyms](search-synonyms.md), and [analyzers](search-analyzers.md) to influence lexical ranking. Use [semantic ranking](semantic-search-overview.md) to promote relevant results that match user intent.
-
-1. **Implement client-side query handling:** Expose API endpoints or SDK client methods that construct and submit queries to the search service.
-
-1. **Enforce security:** Encrypt data [in transit](search-security-overview.md#data-in-transit), [in use](search-security-overview.md#data-in-use), and [at rest](search-security-overview.md#data-at-rest). Use [RBAC](search-security-rbac.md) to avoid key leakage from client apps. Apply [document-level access control](search-document-level-access-overview.md).
-
-1. **Monitor and operate:** Analyze [query and indexing performance](search-performance-analysis.md) to identify bottlenecks and optimize resource usage. Configure [diagnostic logs](search-monitor-enable-logging.md) for auditing and troubleshooting.
-
-#### [**Agentic search**](#tab/agentic)
-
-If you're building a modern RAG experience, you might follow these steps:
-
-1. **Define goals and requirements:** Identify your goal for [agentic retrieval](agentic-retrieval-overview.md), such as document retrieval or multi-turn conversational support. Determine which of your content can be indexed versus accessed remotely to meet performance, freshness, and security requirements.
-
-1. **Create knowledge sources:** Create one or more [knowledge sources](agentic-knowledge-source-overview.md) that represent searchable content. Use indexed sources for low‑latency queries, document‑level permissions, and ingestion-time enrichment and scheduling. Use remote sources for freshness or data volume constraints.
-
-1. **Create a knowledge base:** Create a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that links your knowledge sources and an optional LLM to drive query planning, query execution, and result synthesis. Choose whether the system returns [raw grounding data](agentic-retrieval-how-to-retrieve.md#review-the-extracted-response) or [synthesized answers](agentic-retrieval-how-to-answer-synthesis.md) that cite retrieved content.
-
-1. **Implement client-side query handling:** [Retrieve data](agentic-retrieval-how-to-retrieve.md) from the knowledge base by passing user queries and context. Your agent is responsible for routing requests, maintaining the conversation state, rendering or synthesizing results, and enforcing client-side access control.
-
-1. **Enforce security:** Use [RBAC](search-security-rbac.md) to avoid key leakage from client apps. Apply [document-level access control](search-document-level-access-overview.md) to indexed knowledge sources.
-
-1. **Monitor and operate:** Review the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) and [references array](agentic-retrieval-how-to-retrieve.md#review-the-references-array) for visibility into billing and grounding quality. Adjust the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) to control LLM invocations. For indexed sources, iterate on chunking, embedding model parameters, and field selection to improve precision.
-
----
-
-<!--
-### Indexing and querying
-
-On the search service itself, there are two primary workloads:
+This architecture has two primary workloads:
 
 #### [Indexing](#tab/indexing)
 
-[Indexing](search-what-is-an-index.md) loads content into your search service and makes it searchable. Internally, inbound text is tokenized and stored in inverted indexes, while inbound vectors are stored in vector indexes. Azure AI Search can only index JSON documents. You can use the push API to upload JSON documents directly, or you can use an indexer or logic app workflow to retrieve and serialize your data into JSON.
+[Indexing](search-what-is-an-index.md) loads content into an index and makes it searchable. Internally, inbound text is tokenized and stored in inverted indexes, while inbound vectors are stored in vector indexes. Azure AI Search can only index JSON documents. You can use the [push method](search-what-is-data-import.md#pushing-data-to-an-index) to upload JSON documents directly or the [pull method](search-what-is-data-import.md#pulling-data-into-an-index) (indexer or logic app workflow) to retrieve and serialize data into JSON.
 
-For [agentic retrieval](agentic-retrieval-overview.md), Azure AI Search can ingest external data into a search index or query remote sources at runtime. Indexed sources are best when you need predictable, low‑latency responses, relevance tuning, or document‑level access control. Remote sources are best when freshness, policy, or data volume prevents indexing. Many agentic retrieval solutions use both: index core content or embeddings for speed and fall back to remote sources for real-time data.
+During indexing, you can use [AI enrichment](cognitive-search-concept-intro.md) to chunk text, generate vectors, and apply other transformations that create structure where none previously existed. Azure AI Search then serializes the enriched output into JSON documents and ingests them into the index.
 
-[AI enrichment](cognitive-search-concept-intro.md) extends indexing by using language and vision models to transform raw content. Enrichment is configured through a *skillset* that outputs text or vectors, which are serialized into JSON and ingested into a search index. Common enrichment tasks include:
+#### [Querying](#tab/querying)
 
-+ Chunk large unstructured text and generate embeddings for vector indexing.
-+ Extract text from images via OCR, summarize or describe images with LLMs, and infer structure or metadata.
-+ Translate text and extract entities, key phrases, and sentiment.
-
-### [Querying](#tab/querying)
-
-[Querying](search-query-overview.md) targets an index populated with searchable content or a knowledge base that points to configured knowledge sources. This step occurs when your client app sends query requests to the search service and handles responses. In your code, set up a search client to handle requests for [agentic queries](agentic-retrieval-how-to-retrieve.md), [vector queries](vector-search-how-to-query.md), [full-text queries](search-query-create.md), [hybrid queries](hybrid-search-how-to-query.md), fuzzy search, autocomplete, geo-search, and other query types.
+[Querying](search-query-overview.md) targets an index populated with searchable content. This step occurs when your client app sends a query request to your search service. In your code, set up a search client to handle requests for [full-text queries](search-query-create.md), [vector queries](vector-search-how-to-query.md), [hybrid queries](hybrid-search-how-to-query.md), [multimodal queries](multimodal-search-overview.md), fuzzy search, autocomplete, geo-search, and other query types.
 
 ---
+
+:::image type="content" source="media/search-what-is-azure-search/azure-search.svg" alt-text="Diagram of the Azure AI Search architecture for classic search." lightbox="media/search-what-is-azure-search/azure-search.svg" :::
+
+> [!NOTE]
+> This diagram separates the indexing and query engines for clarity, but in Azure AI Search, they're the same component operating in read-write and read-only modes.
+
+## What is agentic retrieval?
+
+[Agentic retrieval](agentic-retrieval-overview.md) is a multi-query pipeline designed for complex agent-to-agent workflows. Each query targets a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that represents a complete domain of knowledge. Your agent references the knowledge base for *what* to ground on, while the knowledge base handles *how* to perform grounding.
+
+A knowledge base consists of one or more [knowledge sources](agentic-knowledge-source-overview.md), an optional LLM for query planning and answer synthesis, and parameters that govern retrieval behavior. Each query undergoes planning, decomposition into focused subqueries, parallel retrieval from knowledge sources, semantic reranking, and results merging. The three-pronged response is optimized for agent consumption.
+
+Under the hood, agentic retrieval builds on the classic search architecture by adding a context layer (knowledge base) that orchestrates multi-source retrieval. Knowledge sources can be indexed or remote: indexed sources use the same indexing and query engines as classic search, while remote sources bypass indexing and are queried live.
+
+<!--
+:::image type="content" source="media/search-what-is-azure-search/azure-search-agentic-retrieval.svg" alt-text="Diagram of the Azure AI Search architecture for agentic retrieval." lightbox="media/search-what-is-azure-search/azure-search-agentic-retrieval.svg" :::
 -->
+
+## How they compare
+
+Classic search and agentic retrieval are complementary modes of information retrieval. Both support [full-text](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), and [multimodal](multimodal-search-overview.md) search. However, they differ in how content is ingested and queried. The following table summarizes their key differences.
+
+| Aspect | Classic search | Agentic retrieval |
+|---|---|---|
+| Search corpus | [Search index](search-what-is-an-index.md) | [Knowledge source](agentic-knowledge-source-overview.md) |
+| Search targets | One index defined by a schema | One or more knowledge sources (indexed or remote) |
+| Query plan | No plan, just a request | LLM-assisted or user-provided plan |
+| Query request | Search documents in an index | Retrieve from knowledge sources |
+| Response | Flattened search results based on schema | LLM-formulated answer or raw source data, activity log, and references |
+| Region restrictions | No | Yes |
+| Status | Generally available | Public preview|
 
 ## How to get started
 
@@ -150,15 +120,29 @@ You can access Azure AI Search through the Azure portal, [REST APIs](search-api-
 
 The portal is useful for service administration and content management, with tools for prototyping your knowledge bases, knowledge sources, indexes, indexers, skillsets, and data sources. REST APIs and SDKs are useful for production automation.
 
-### [**Quickstarts**](#tab/quickstarts)
+### Choose your path
 
-We maintain quickstarts that span various scenarios to help you get started with Azure AI Search:
+Use this checklist to make key decisions before you get started:
 
-+ Quickstart: Agentic search ([portal](get-started-portal-agentic-retrieval.md) or [programmatic](search-get-started-agentic-retrieval.md))
++ **Choose a search engine:** If you're not using an agent or chatbot, classic search can meet most app needs, with lower costs and complexity than LLM integration. If you want the benefits of a knowledge base and multiple knowledge sources without full LLM orchestration, consider using agentic retrieval with the minimal [reasoning retrieval effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+
++ **Choose an ingestion method for index-bound content:** If your content is in a [supported data source](search-indexer-overview.md#supported-data-sources.md), use the [pull method](search-what-is-data-import.md#pulling-data-into-an-index) to retrieve and serialize data into JSON. If you don't have a supported data source, or if your content and index must be synchronized in real time, the [push method](search-what-is-data-import.md#pushing-data-to-an-index) is your only option.
+
++ **Do you need vectors?** LLMs and agents don't require vectors. Only use them if you need similarity search or if you have content that can be homogenized into vectors. Azure AI Search offers [integrated vectorization](vector-search-integrated-vectorization.md) for this task.
+
++ **Do you need user-based permission inheritance?** Remote SharePoint is designed for this scenario, but you can also inherit user permissions attached to content in Azure Blob Storage or ADLS Gen2. For all other scenarios, you can use the [security filter](search-security-trimming-for-azure-search.md) workaround.
+
+### Choose your learning resources
+
+### [Quickstarts](#tab/quickstarts)
+
+We maintain quickstarts that span scenarios to help you get started:
+
++ Quickstart: Agentic retrieval ([portal](get-started-portal-agentic-retrieval.md) or [programmatic](search-get-started-agentic-retrieval.md))
 + Quickstart: Full-text search ([portal](search-get-started-portal.md) or [programmatic](search-get-started-text.md))
 + Quickstart: Vector search ([portal](search-get-started-portal-import-vectors.md) or [programmatic](search-get-started-vector.md))
 
-### [**Samples**](#tab/samples)
+### [Samples](#tab/samples)
 
 We maintain samples that use REST APIs and supported SDK programming languages:
 
@@ -168,18 +152,6 @@ We maintain samples that use REST APIs and supported SDK programming languages:
 + [Java samples](/azure/search/samples-java)
 + [JavaScript/TypeScript samples](/azure/search/samples-javascript)
 + [Vector samples](https://github.com/Azure/azure-search-vector-samples)
-
-### [**Accelerators**](#tab/accelerators)
-
-Try solution accelerators for common RAG and conversational scenarios:
-
-+ [Chat with your data solution accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) helps you create a custom RAG solution over your content.
-
-+ [Conversational Knowledge Mining solution accelerator](https://github.com/microsoft/Customer-Service-Conversational-Insights-with-Azure-OpenAI-Services) helps you create an interactive solution to extract actionable insights from post-contact center transcripts.
-
-+ [Document Knowledge Mining accelerator](https://github.com/microsoft/Document-Knowledge-Mining-Solution-Accelerator) helps you process and extract summaries, entities, and metadata from unstructured, multimodal documents.
-
-+ [Build your own copilot solution accelerator](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) uses Azure OpenAI, Azure AI Search, and Microsoft Fabric to create custom copilot solutions.
 
 ---
 
