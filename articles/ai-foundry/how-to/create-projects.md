@@ -104,7 +104,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
     1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
     1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
     
-        :::code language="python" source="~/foundry-samples-main/samples-classic/python/mslearn-resources/quickstart/create_project.py" id="create_client":::
+        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
 
     1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
             
@@ -182,7 +182,7 @@ To create a Foundry project:
 
 - Add this code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
-    :::code language="python" source="~/foundry-samples-main/samples-classic/python/mslearn-resources/quickstart/create_project.py" id="create_resource_project":::
+    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
 
 
 # [Azure CLI](#tab/azurecli)
@@ -248,7 +248,7 @@ On the **Home** page, you see the project endpoint and API key for the project. 
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples-classic/python/mslearn-resources/quickstart/create_project.py" id="show_project":::
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="show_project":::
 
 # [Azure CLI](#tab/azurecli)
 

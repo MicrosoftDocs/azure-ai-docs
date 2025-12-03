@@ -66,15 +66,15 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 1. Create a file named `providers.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples-classic/microsoft/infrastructure-setup-terraform/00-basic-azurerm/code/providers.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples-classic/infrastructure-setup-terraform/00-basic-azurerm/code/providers.tf":::
 
 1. Create a file named `main.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples-classic/microsoft/infrastructure-setup-terraform/00-basic-azurerm/code/main.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples-classic/infrastructure-setup-terraform/00-basic-azurerm/code/main.tf":::
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples-classic/microsoft/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
+    :::code language="Terraform" source="~/foundry-samples-main/samples-classic/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
 
 ---
 
