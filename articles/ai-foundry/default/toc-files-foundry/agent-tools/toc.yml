@@ -44,7 +44,7 @@ items:
     href: ../../agents/how-to/tools/bing-tools.md
 
 # Azure AI Services Integration
-- name: Azure AI Services
+- name: Foundry Tools
   items:
   - name: Azure Speech in Foundry Tools
     href: ../../../agents/how-to/tools/azure-ai-speech.md
