@@ -24,6 +24,7 @@ This article provides details regarding how data provided by you to Azure Direct
 > - are NOT available to OpenAI or other Azure Direct Model providers. 
 > - are NOT used by Azure Direct Model providers to improve their models or services. 
 > - are NOT used to train any generative AI foundation models without your permission or instruction. 
+> - Customer Data, Prompts, and Completions are NOT used to improve Microsoft or third-party products or services without your explicit permission or instruction.
 >
 > Your fine-tuned Azure Direct Models are available exclusively for your use.
 >

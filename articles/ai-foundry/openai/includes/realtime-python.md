@@ -10,7 +10,7 @@ ms.date: 3/20/2025
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
 - Then, you need to deploy a `gpt-realtime` or `gpt-realtime-mini` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
@@ -111,13 +111,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         # environment variable.
-        # You can find it in the Microsoft Foundry portal in the Overview page of your Azure OpenAI resource.
+        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
         # Example: https://{your-resource}.openai.azure.com
         endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
     
         # The deployment name of the model you want to use is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
         # environment variable.
-        # You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        # You can find it in the Azure AI Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
         # Example: gpt-realtime
         deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
     
@@ -135,6 +135,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         ) as connection:
             # after the connection is created, configure the session.
             await connection.session.update(session={
+                "type": "realtime",
                 "instructions": "You are a helpful assistant. You respond by voice and text.",
                 "output_modalities": ["audio"],
                 "audio": {
@@ -151,7 +152,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                             "threshold": 0.5,
                             "prefix_padding_ms": 300,
                             "silence_duration_ms": 200,
-                            "create_responese": True,
+                            "create_response": True,
                         }
                     },
                     "output": {
@@ -182,14 +183,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 async for event in connection:
                     if event.type == "response.output_text.delta":
                         print(event.delta, flush=True, end="")
+                    elif event.type == "session.created":
+                        print(f"Session ID: {event.session.id}")
                     elif event.type == "response.output_audio.delta":
-    
                         audio_data = base64.b64decode(event.delta)
                         print(f"Received {len(audio_data)} bytes of audio data.")
                     elif event.type == "response.output_audio_transcript.delta":
                         print(f"Received text delta: {event.delta}")
                     elif event.type == "response.output_text.done":
                         print()
+                    elif event.type == "error":
+                        print("Received an error event.")
+                        print(f"Error code: {event.error.code}")
+                        print(f"Error Event ID: {event.error.event_id}")
+                        print(f"Error message: {event.error.message}")
                     elif event.type == "response.done":
                         break
     
@@ -231,19 +238,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
         # environment variable.
-        # You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource: Use only the base URL, for example, https://{your-resource}.openai.azure.com
+        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
+        # Example: https://{your-resource}.openai.azure.com
         endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
         base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
     
         # The deployment name of the model you want to use is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
         # environment variable.
-        # You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        # You can find it in the Azure AI Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
         # Example: gpt-realtime
         deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
         
         # API Key of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_API_KEY
         # environment variable.
-        # You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
+        # You can find it in the Azure AI Foundry portal in the Overview page of your Azure OpenAI resource.
         token=os.environ["AZURE_OPENAI_API_KEY"]
     
         # The APIs are compatible with the OpenAI client library.
@@ -258,6 +266,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         ) as connection:
             # after the connection is created, configure the session.
             await connection.session.update(session={
+                "type": "realtime",
                 "instructions": "You are a helpful assistant. You respond by voice and text.",
                 "output_modalities": ["audio"],
                 "audio": {
@@ -274,7 +283,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                             "threshold": 0.5,
                             "prefix_padding_ms": 300,
                             "silence_duration_ms": 200,
-                            "create_responese": True,
+                            "create_response": True,
                         }
                     },
                     "output": {
@@ -305,14 +314,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 async for event in connection:
                     if event.type == "response.output_text.delta":
                         print(event.delta, flush=True, end="")
+                    elif event.type == "session.created":
+                        print(f"Session ID: {event.session.id}")
                     elif event.type == "response.output_audio.delta":
-    
                         audio_data = base64.b64decode(event.delta)
                         print(f"Received {len(audio_data)} bytes of audio data.")
                     elif event.type == "response.output_audio_transcript.delta":
                         print(f"Received text delta: {event.delta}")
                     elif event.type == "response.output_text.done":
                         print()
+                    elif event.type == "error":
+                        print("Received an error event.")
+                        print(f"Error code: {event.error.code}")
+                        print(f"Error Event ID: {event.error.event_id}")
+                        print(f"Error message: {event.error.message}")
                     elif event.type == "response.done":
                         break
     
@@ -340,78 +355,40 @@ The output looks similar to the following:
 
 ```console
 Enter a message: How are you today?
-Received text delta: I
-Received text delta: ’m
-Received text delta:  feeling
-Received text delta:  fantastic
+Session ID: sess_CgAuonaqdlSNNDTdqBagI
+Received text delta: I'm
+Received text delta:  doing
+Received text delta:  well
 Received text delta: ,
 Received 4800 bytes of audio data.
 Received 7200 bytes of audio data.
 Received 12000 bytes of audio data.
-Received text delta:  thanks
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
+Received text delta:  thank
+Received text delta:  you
 Received text delta:  for
 Received text delta:  asking
 Received text delta: !
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received text delta:  It
-Received text delta: ’s
-Received text delta:  a
-Received text delta:  great
-Received text delta:  day
-Received text delta:  to
-Received text delta:  chat
-Received text delta: ,
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received text delta:  and
-Received text delta:  I
-Received text delta: ’m
-Received text delta:  energized
-Received text delta:  and
-Received text delta:  ready
-Received text delta:  to
-Received text delta:  help
-Received text delta:  you
-Received text delta:  out
-Received text delta: .
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
 Received text delta:  How
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
 Received text delta:  about
 Received text delta:  you
+Received text delta: —
+Received text delta: how
+Received text delta:  are
+Received text delta:  you
+Received text delta:  feeling
+Received text delta:  today
 Received text delta: ?
-Received text delta:  How
-Received text delta: ’s
-Received text delta:  your
-Received text delta:  day
-Received text delta:  going
-Received text delta:  so
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
-Received text delta:  far
-Received text delta: ?
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.
 Received 12000 bytes of audio data.

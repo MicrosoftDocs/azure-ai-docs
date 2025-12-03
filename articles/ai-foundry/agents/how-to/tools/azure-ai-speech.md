@@ -23,7 +23,7 @@ The Azure Speech in Foundry Tools tool allows agents to interact with users thro
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) created in a [supported region](../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and will be used by the Speech MCP server
 
 ## Set up storage

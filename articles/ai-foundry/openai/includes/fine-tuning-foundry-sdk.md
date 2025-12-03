@@ -16,7 +16,7 @@ ms.custom:
 ## Prerequisites
 
 - Read the [When to use AI Foundry fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
 - The following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
 - Fine-tuning access requires the **Azure AI User** role.

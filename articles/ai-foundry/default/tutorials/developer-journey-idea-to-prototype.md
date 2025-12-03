@@ -221,35 +221,35 @@ The code breaks down into the following main sections, ordered as they appear in
 
 The code uses several client libraries from the Microsoft Foundry SDK to create a robust enterprise agent.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="imports_and_includes":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="imports_and_includes":::
 
 ### Configure authentication in Azure
 
 Before you create your agent, set up authentication to the Foundry.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_authentication":::
 
 ### Create the SharePoint tool for the agent
 
 The agent uses SharePoint and can access company policy and procedure documents stored there. Set up the connection to SharePoint in your code.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="sharepoint_tool_setup":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="sharepoint_tool_setup":::
 
 ### Create the MCP tool for the agent
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="mcp_tool_setup":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="mcp_tool_setup":::
 
 ### Create the agent and connect the tools
 
 Now, create the agent and connect the SharePoint and MCP tools.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="create_agent_with_tools":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="create_agent_with_tools":::
 
 ### Converse with the agent
 
 Finally, implement an interactive loop to converse with the agent.
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_conversation":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_conversation":::
 
 ### Expected output from agent sample code (main.py)
 
@@ -363,17 +363,17 @@ The code breaks down into the following main sections:
 
 In this section, the evaluation framework loads test questions from `questions.jsonl`. The file contains business scenarios that test different aspects of the agent:
 
-:::code language="jsonl" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
+:::code language="jsonl" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="load_test_data":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="load_test_data":::
 
 ### Run batch evaluation
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="run_batch_evaluation":::
 
 ### Compile evaluation results
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" id="evaluation_results":::
 
 ### Expected output from evaluation sample code (evaluate.py)
 

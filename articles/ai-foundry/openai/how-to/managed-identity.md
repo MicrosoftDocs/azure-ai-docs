@@ -5,7 +5,7 @@ description: Provides guidance on how to set managed identity with Microsoft Ent
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to 
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -22,7 +22,7 @@ In the following sections, you'll use the Azure CLI to sign in, and obtain a bea
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 - [Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.](
 ../../../ai-services/cognitive-services-custom-subdomains.md)

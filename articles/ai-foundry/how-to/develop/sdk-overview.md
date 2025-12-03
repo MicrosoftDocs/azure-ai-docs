@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 11/24/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -359,7 +359,7 @@ After you create a client, use it to access models, run evaluations, and connect
 
 * Using the project endpoint, you can:
     - [Use Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
-    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
     - [Run evaluations in the cloud](cloud-evaluation.md)
     - [Enable tracing for your app](../../concepts/trace.md) 
     - [Fine tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
@@ -375,9 +375,9 @@ To use Foundry Tools, you can use the following SDKs with the endpoints listed.
 
 Choose an endpoint based on your needs:
 
-Use the Foundry Tools endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
+Use the Azure AI Services endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
 
-Foundry Tools endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
+Azure AI Services endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
 
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 

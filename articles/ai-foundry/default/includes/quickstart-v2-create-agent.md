@@ -18,11 +18,11 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 # [Python](#tab/python2)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-create-agent.py":::
+:::code language="python" source="~/foundry-samples-main/samples-v2/microsoft/python/quickstart/quickstart-create-agent.py":::
 
 # [C#](#tab/csharp2)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-create-agent.cs":::
+:::code language="csharp" source="~/foundry-samples-main/samples-v2/microsoft/csharp/quickstart/quickstart-create-agent.cs":::
 
 <!-- # [TypeScript](#tab/typescript)
 
@@ -36,7 +36,7 @@ Not yet available -->
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-create-agent.sh":::
+:::code language="console" source="~/foundry-samples-main/samples-v2/microsoft/REST/quickstart/quickstart-create-agent.sh":::
 
 # [Microsoft Foundry portal](#tab/portal)
 
