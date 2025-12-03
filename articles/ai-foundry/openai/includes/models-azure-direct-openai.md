@@ -15,7 +15,7 @@ ms.topic: include
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`
 > - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
-> - Microsoft: `MAI-DS-R1`
+> - Microsoft: `MAI-DS-R1`, `model-router`
 > - Mistral: `mistral-document-ai-2505`, `Mistral-Large-3`
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`
 > 
