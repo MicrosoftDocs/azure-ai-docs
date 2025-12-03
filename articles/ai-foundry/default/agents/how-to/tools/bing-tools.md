@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Grounding with Bing Search tools for agents
 
-Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search and Grounding with Bing Custom Search (preview) allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
+Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they can't access new information. Grounding with Bing Search and Grounding with Bing Custom Search (preview) allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
 
@@ -26,7 +26,7 @@ The grounding process involves several key steps:
 
 >[!IMPORTANT]
 > * Grounding with Bing Search and/or Grounding with Bing Custom Search is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:~:text=First-Party%20Consumption%20Services) with [terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS), governed by the [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). 
-> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside the Azure compliance and Geo boundary. This also means use of Grounding with Bing Search and/or Grounding with Bing Custom Search waives all elevated Government Community Cloud security and compliance commitments, to include data sovereignty and screened/citizenship-based support, as applicable.  
+> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside the Azure compliance and Geo boundary. This also means use of Grounding with Bing Search and/or Grounding with Bing Custom Search waives all elevated Government Community Cloud security and compliance commitments, to include data sovereignty and screened/citizenship-based support, as applicable.  
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs. See pricing for [details](https://www.microsoft.com/en-us/bing/apis/grounding-pricing). 
 > * See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
 
@@ -42,7 +42,7 @@ The grounding process involves several key steps:
 ## Code examples
 
 > [!NOTE]
-> - You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> - You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 > - Your connection id should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
 # [Grounding with Bing Search](#tab/grounding-with-bing)
@@ -211,7 +211,7 @@ Grounding with Bing returns relevant search results to the customer's model depl
 > [!NOTE]
 > When using Grounding with Bing Search or Grounding with Bing Custom Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
-The authorization will happen between the Grounding with Bing Search or Grounding with Bing Custom Search service and Foundry Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Agent Service, as described in the [Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise). It is your responsibility to assess whether the use of Grounding with Bing Search or Grounding with Bing Custom Search in your agent meets your needs and requirements.
+The authorization will happen between the Grounding with Bing Search or Grounding with Bing Custom Search service and Foundry Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Agent Service, as described in the [Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise). It's your responsibility to assess whether the use of Grounding with Bing Search or Grounding with Bing Custom Search in your agent meets your needs and requirements.
 
 Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
 
@@ -229,7 +229,7 @@ Grounding with Bing Custom Search is a powerful tool that allows you to select a
 
 * If you own a public site that you want to include in the search but Bing hasn’t indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
 
-* You will need at least the contributor role for the Bing Custom Search resource to create a configuration.
+* You'll need at least the contributor role for the Bing Custom Search resource to create a configuration.
 
 * You can only block certain domains and perform a search against the rest of the Web (a competitor's site, for example). 
 
@@ -241,11 +241,11 @@ Grounding with Bing Custom Search is a powerful tool that allows you to select a
 
 ## Supported capabilities and known issues
 - The Grounding with Bing Search tool is designed to retrieve real-time information from the web, NOT specific web domains. For retrieving information from specific domains, use the Grounding with Bing Custom Search tool.
-- It is NOT Recommended to **summarize** an entire web page.
+- It's NOT Recommended to **summarize** an entire web page.
 - Within one run, the AI model will evaluate the tool outputs and may decide to invoke the tool again for more information and context. The AI model may also decide which pieces of tool outputs are used to generate the response.
 - Azure AI Agent service will return **AI model generated response** as output so end-to-end latency will be impacted pre-/post-processing of LLMs.
-- The Grounding with Bing Search and Grounding with Bing Custom Search tools do NOT return the tool output to developers and end users.
-- Grounding with Bing Search and Grounding with Bing Custom Search only works with agents that are not using VPN or Private Endpoints. The agent must have normal network access.
+- The Grounding with Bing Search and Grounding with Bing Custom Search tools don't return the tool output to developers and end users.
+- Grounding with Bing Search and Grounding with Bing Custom Search only works with agents that aren't using VPN or Private Endpoints. The agent must have normal network access.
 
 ## Manage Grounding with Bing Search and Grounding with Bing Custom Search
 
@@ -263,6 +263,6 @@ Admins can leverage RBAC role assignments for enabling or disabling use of using
 
 1. The Admin can then delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resources in the subscription.
 
-1. The Admin should then unregister the `Microsoft.Bing` resource provider in your subscription (you cannot unregister before deleting all resources).  See the [Azure Resource Manager documentation](/azure/azure-resource-manager/management/resource-providers-and-types) for more information about unregistering. 
+1. The Admin should then unregister the `Microsoft.Bing` resource provider in your subscription (you can't unregister before deleting all resources).  See the [Azure Resource Manager documentation](/azure/azure-resource-manager/management/resource-providers-and-types) for more information about unregistering. 
 
 1. Next, the Admin should create an Azure Policy to disallow creation of Grounding with Bing Search and/or Grounding with Bing Custom Search resources in their subscription, following the sample [here](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json).
