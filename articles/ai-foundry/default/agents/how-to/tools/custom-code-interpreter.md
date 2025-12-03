@@ -44,7 +44,7 @@ az provider register -n Microsoft.App
 
 ### Get the sample code
 
-Clone the [sample code in the GitHub repo](https://github.com/Azure-Samples/azureai-samples) and navigate to the folder `scenarios/Agents/samples/code-interpreter-custom` in your terminal.
+Clone the [sample code in the GitHub repo](https://github.com/azure-ai-foundry/foundry-samples) and navigate to the folder `samples/microsoft/python/mslearn-resources/code-interpreter-custom` in your terminal.
 
 ### Provision the infrastructure
 
