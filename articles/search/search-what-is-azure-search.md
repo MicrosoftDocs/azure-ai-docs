@@ -110,7 +110,7 @@ Classic search and agentic retrieval are complementary modes of information retr
 | Search targets | One index defined by a schema | One or more knowledge sources (indexed or remote) |
 | Query plan | No plan, just a request | LLM-assisted or user-provided plan |
 | Query request | Search documents in an index | Retrieve from knowledge sources |
-| Response | Flattened search results based on schema | LLM-formulated answer or raw source data, activity log, and references |
+| Response | Flattened search results based on schema | LLM-formulated answer or raw source data, activity log, references |
 | Region restrictions | No | Yes |
 | Status | Generally available | Public preview|
 
@@ -124,9 +124,11 @@ The portal is useful for service administration and content management, with too
 
 Use this checklist to make key decisions before you get started:
 
-+ **Choose a search engine:** If you're not using an agent or chatbot, classic search can meet most app needs, with lower costs and complexity than LLM integration. If you want the benefits of a knowledge base and multiple knowledge sources without full LLM orchestration, consider using agentic retrieval with the minimal [reasoning retrieval effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
++ **Choose a search engine:** If you're not using an agent or chatbot, classic search can meet most app needs, with lower costs and complexity than LLM integration. If you want the benefits of a knowledge base and multiple knowledge sources without full LLM orchestration, consider agentic retrieval with the minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
-+ **Choose an ingestion method for index-bound content:** If your content is in a [supported data source](search-indexer-overview.md#supported-data-sources.md), use the [pull method](search-what-is-data-import.md#pulling-data-into-an-index) to retrieve and serialize data into JSON. If you don't have a supported data source, or if your content and index must be synchronized in real time, the [push method](search-what-is-data-import.md#pushing-data-to-an-index) is your only option.
++ **Choose a region:** If you're using agentic retrieval, choose a [supported region](search-region-support.md). For classic search, choose a region that offers the features and capacity you need.
+
++ **Choose an ingestion method for index-bound content:** If your content is in a [supported data source](search-indexer-overview.md#supported-data-sources), use the [pull method](search-what-is-data-import.md#pulling-data-into-an-index) to retrieve and serialize data into JSON. If you don't have a supported data source, or if your content and index must be synchronized in real time, the [push method](search-what-is-data-import.md#pushing-data-to-an-index) is your only option.
 
 + **Do you need vectors?** LLMs and agents don't require vectors. Only use them if you need similarity search or if you have content that can be homogenized into vectors. Azure AI Search offers [integrated vectorization](vector-search-integrated-vectorization.md) for this task.
 
