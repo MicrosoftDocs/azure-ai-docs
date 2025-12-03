@@ -188,6 +188,46 @@ client.fine_tuning.jobs.create(
 > [!NOTE]
 > See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
+### Training type
+
+Select the training tier based on your use case and budget.
+
+- **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+
+- **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+
+- **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+
+```python
+import openai
+from openai import AzureOpenAI
+
+base_uri = "https://<ACCOUNT-NAME>.services.ai.azure.com"
+api_key = "<API-KEY>"
+api_version = "2025-04-01-preview"
+client = AzureOpenAI(
+azure_endpoint=base_uri,
+api_key=api_key,
+api_version=api_version
+)
+try:
+    client.fine_tuning.jobs.create(
+    model="gpt-4.1-mini",
+    training_file="<FILE-ID>",
+    extra_body={"trainingType": "developerTier"}
+    )
+except openai.APIConnectionError as e:
+    print("The server could not be reached")
+    print(e.__cause__) # an underlying Exception, likely raised within httpx.
+except openai.RateLimitError as e:
+    print("A 429 status code was received; we should back off a bit.")
+except openai.APIStatusError as e:
+    print("Another non-200-range status code was received")
+    print(e.status_code)
+    print(e.response)
+    print(e.body)
+``` 
+
 
 ## Check fine-tuning job status
 
