@@ -193,7 +193,7 @@ This section discusses Azure Vision and key considerations for using this techno
 
 ### Responsible AI Content Filtering
 
-[Vision Studio](https://aka.ms/visionstudio) includes a content management system that works alongside core models to filter content for Image Retrieval and Video Summary and Frame Locator demos. This system works by running both the input prompt and media content through an ensemble of classification models aimed at detecting misuse. If the system identifies harmful content, you'll receive an error message that the prompt was deemed inappropriate and filtered by Responsible Foundry Tools.
+[Vision Studio](https://aka.ms/visionstudio) includes a content management system that works alongside core models to filter content for Image Retrieval and Video Summary and Frame Locator demos. This system works by running both the input prompt and media content through an ensemble of classification models aimed at detecting misuse. If the system identifies harmful content, you'll receive an error message that the prompt was deemed inappropriate and filtered by Responsible AI services.
 
 You can report feedback on the content filtering system [through support](/azure/ai-services/cognitive-services-support-options).
 
