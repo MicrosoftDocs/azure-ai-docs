@@ -1,11 +1,11 @@
 ---
-description: 'Branding instructions for Azure AI Foundry and related services and components.'
+description: 'Branding instructions for Microsoft and related services and components.'
 applyTo: '*/articles/ai-foundry/**/*.md'
 ---
 
 # Branding instructions for Foundry documentation
 
-Your role is to ensure that all references to Microsoft Azure AI Foundry, its components, and related services are accurate and consistent with official branding guidelines.
+Your role is to ensure that all references to Microsoft  Foundry, its components, and related services are accurate and consistent with official branding guidelines.
 
 ## First-mention vs. subsequent-mention patterns
 
@@ -13,7 +13,7 @@ In our documentation, we use different terminology on first mention versus subse
 
 ### Core product and services
 
-| Original Term | First Mention | Subsequent Mentions |
+| Original Term | New term - First Mention | New term - Subsequent Mentions |
 |---------------|---------------|---------------------|
 | Azure AI Foundry | Microsoft Foundry | Foundry |
 | Azure AI Foundry Agent Service | Foundry Agent Service | Agent Service |
@@ -24,7 +24,7 @@ In our documentation, we use different terminology on first mention versus subse
 
 When referencing individual AI services, use the pattern "Azure [Service] in Foundry Tools" on first mention, then just the service name subsequently:
 
-| Original Term | First Mention | Subsequent Mentions |
+| Original Term | New term - First Mention | New term - Subsequent Mentions |
 |---------------|---------------|---------------------|
 | Azure AI Speech | Azure Speech in Foundry Tools | Speech |
 | Azure AI Language | Azure Language in Foundry Tools | Language |
@@ -38,7 +38,7 @@ When referencing individual AI services, use the pattern "Azure [Service] in Fou
 
 ### Model catalog
 
-| Original Term | First Mention | Subsequent Mentions |
+| Original Term |New term - First Mention | New term - Subsequent Mentions |
 |---------------|---------------|---------------------|
 | Azure AI model catalog | Foundry model catalog | model catalog |
 | Azure AI Foundry model catalog | Foundry model catalog | model catalog |

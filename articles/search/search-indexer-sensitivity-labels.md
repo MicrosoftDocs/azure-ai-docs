@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
 ms.service: azure-ai-search  
 ms.topic: how-to  
-ms.date: 11/19/2025  
+ms.date: 11/20/2025  
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -32,7 +32,7 @@ This functionality is available for the following data sources:
 
 At query time, Azure AI Search evaluates sensitivity labels and enforces [document-level access control](search-document-level-access-overview.md) in accordance with the user's Microsoft Entra ID token and Purview label policies.  
 
-Only users authorized to access content with [extract usage right](/purview/rights-management-usage-rights) under a given label can retrieve corresponding documents in search results. There's a delay in how often the labels are pulled from a document after changed. 
+Only users authorized to access content with [READ usage right](/purview/rights-management-usage-rights) under a given label can retrieve corresponding documents in search results. There's a delay in how often the labels are pulled from a document after changed. 
 
 When configured [on a schedule](search-howto-schedule-indexers.md), the indexer pulls new documents and updates from the data source. It captures:
 - Newly added documents and their associated sensitivity labels

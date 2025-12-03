@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
@@ -42,7 +42,7 @@ We recommend that you have a CPU with AVX-512 instruction set, for the best expe
 
 |                     | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
-| **PII detection**   | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
+| **PII detection**   | 1-core, 2-GB memory     | 4-cores, 8-GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 

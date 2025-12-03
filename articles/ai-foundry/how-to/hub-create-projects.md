@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Create a hub project for Microsoft Foundry
 
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
 > [!TIP]
 > An alternate Foundry project creation article is available: [Create a project for Microsoft Foundry (Foundry projects)](create-projects.md).
 

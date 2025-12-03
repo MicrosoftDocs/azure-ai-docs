@@ -1,9 +1,8 @@
 ---
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 11/21/2025
 ms.author: jburchel
 ms.reviewer: maanavd
 reviewer: maanavdalal
@@ -63,25 +62,61 @@ Many methods outlined in this reference have an `alias_or_model_id` parameter in
 
 | Method                  | Signature                                                                        | Description                                |
 | ----------------------- | -------------------------------------------------------------------------------- | ------------------------------------------ |
-| `list_catalog_models()` | `() -> list[FoundryModelInfo]`                                                   | Lists all available models in the catalog. |
+| `list_catalog_models()` | `() -> list[`[FoundryModelInfo](#foundrymodelinfo)`]`                                                   | Lists all available models in the catalog. |
 | `refresh_catalog()`     | `() -> None`                                                                     | Refreshes the model catalog.               |
-| `get_model_info()`      | `(alias_or_model_id: str, raise_on_not_found=False) -> FoundryModelInfo or None` | Gets model info by alias or ID.            |
+| `get_model_info()`      | `(alias_or_model_id: str, raise_on_not_found=False) -> `[FoundryModelInfo](#foundrymodelinfo)` or None` | Gets model info by alias or ID.            |
 
 ### Cache Management
 
 | Method                 | Signature                      | Description                                 |
 | ---------------------- | ------------------------------ | ------------------------------------------- |
 | `get_cache_location()` | `() -> str`                    | Returns the model cache directory path.     |
-| `list_cached_models()` | `() -> list[FoundryModelInfo]` | Lists models downloaded to the local cache. |
+| `list_cached_models()` | `() -> list[`[FoundryModelInfo](#foundrymodelinfo)`]` | Lists models downloaded to the local cache. |
 
 ### Model Management
 
-| Method                 | Signature                                                                              | Description                                       |
-| ---------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| `download_model()`     | `(alias_or_model_id: str, token: str = None, force: bool = False) -> FoundryModelInfo` | Downloads a model to the local cache.             |
-| `load_model()`         | `(alias_or_model_id: str, ttl: int = 600) -> FoundryModelInfo`                         | Loads a model into the inference server.          |
-| `unload_model()`       | `(alias_or_model_id: str, force: bool = False) -> None`                                | Unloads a model from the inference server.        |
-| `list_loaded_models()` | `() -> list[FoundryModelInfo]`                                                         | Lists all models currently loaded in the service. |
+| Method                 | Signature                                                                                                      | Description                                       |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| `download_model()`     | `(alias_or_model_id: str, token: str = None, force: bool = False) -> `[FoundryModelInfo](#foundrymodelinfo)`]` | Downloads a model to the local cache.             |
+| `load_model()`         | `(alias_or_model_id: str, ttl: int = 600) -> `[FoundryModelInfo](#foundrymodelinfo)`]`                         | Loads a model into the inference server.          |
+| `unload_model()`       | `(alias_or_model_id: str, force: bool = False) -> None`                                                        | Unloads a model from the inference server.        |
+| `list_loaded_models()` | `() -> list[`[FoundryModelInfo](#foundrymodelinfo)`]`                                                          | Lists all models currently loaded in the service. |
+
+### FoundryModelInfo
+
+The methods`list_catalog_models()`, `list_cached_models()`, and `list_loaded_models()` return a list of `FoundryModelInfo` objects. You can use the information contained in this object to further refine the list. Or get the information for a model directly by calling the  `get_model_info(alias_or_model_id)` method. 
+
+These objects contain the following fields:
+
+| Field                      | Type                         | Description                                                                            |
+|----------------------------|------------------------------|----------------------------------------------------------------------------------------|
+| `alias`                    | `str`                        | Alias of the model                                                                     |
+| `id`                       | `str`                        | Unique identifier of the model                                                         |
+| `version`                  | `str`                        | Version of the model                                                                   |
+| `execution_provider`       | `str`                        | The accelerator ([execution provider](#execution-providers)) used to run the model.     |
+| `device_type`              | `DeviceType`                 | Device type of the model: CPU, GPU, NPU                                                |
+| `uri`                      | `str`                        | URI of the model                                                                       |
+| `file_size_mb`             | `int`                        | Size of the model on disk in MB                                                        |
+| `supports_tool_calling`    | `bool`                       | Whether the model supports tool calling                                                |
+| `prompt_template`          | `dict \| None`               | Prompt template for the model                                                          |
+| `provider`                 | `str`                        | Provider of the model ie where the model is published                                  |
+| `publisher`                | `str`                        | Publisher of the model ie who published the model                                      |
+| `license`                  | `str`                        | The name of the license of the model                                                   |
+| `task`                     | `str`                        | Task of the model. One of chat-completions, automatic-speech-recognition               |
+| `ep_override`              | `str \| None`                | Override for the execution provider, if different from the model's default             |
+
+
+### Execution Providers
+
+One of:
+- `CPUExecutionProvider` - CPU-based execution
+- `CUDAExecutionProvider` - NVIDIA CUDA GPU execution
+- `WebGpuExecutionProvider` - WebGPU execution
+- `QNNExecutionProvider` - Qualcomm Neural Network execution (NPU)
+- `OpenVINOExecutionProvider` - Intel OpenVINO execution
+- `NvTensorRTRTXExecutionProvider` - NVIDIA TensorRT execution
+- `VitisAIExecutionProvider` - AMD Vitis AI execution
+
 
 ## Example Usage
 

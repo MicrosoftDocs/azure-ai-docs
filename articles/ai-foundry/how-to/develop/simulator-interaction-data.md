@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 # Generate synthetic and simulated data for evaluation (preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]

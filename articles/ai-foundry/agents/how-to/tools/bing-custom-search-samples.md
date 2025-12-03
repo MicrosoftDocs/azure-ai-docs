@@ -5,7 +5,7 @@ description: Find samples to ground Microsoft Foundry Agents using Custom Bing S
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 07/09/2025
+ms.date: 11/20/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -16,6 +16,9 @@ zone_pivot_groups: selection-bing-custom-grounding
 ---
 
 # How to use Grounding with Bing Custom Search (preview)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 Use this article to find step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Foundry Agent Service.
 

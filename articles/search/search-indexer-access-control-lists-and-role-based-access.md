@@ -357,5 +357,5 @@ To manage blob deletion effectively, make sure [deletion tracking](search-how-to
 ## See also
 
 + [Connect to Azure AI Search using roles](search-security-rbac.md)
-+ [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
++ [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
 + [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 09/01/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -14,6 +14,8 @@ ms.custom: "devx-track-python,ai-learning-hub"
 ---
 
 # Azure OpenAI GPT-4o-mini fine-tuning tutorial
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 This tutorial walks you through fine-tuning a `gpt-4o-mini-2024-07-18` model.
 

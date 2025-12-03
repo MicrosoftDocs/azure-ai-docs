@@ -17,6 +17,8 @@ ms.custom: azure-ai-agents
 
 # How to use Logic Apps with Foundry Agent Service
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 This article demonstrates how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 
 ## Prerequisites

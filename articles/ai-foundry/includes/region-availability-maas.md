@@ -4,7 +4,7 @@ description: Include file
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 07/29/2025
+ms.date: 11/24/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -12,21 +12,24 @@ ms.custom:
   - references_regions
   - build-aifnd
   - build-2025
-  - hub-only
 ---
 
-[!INCLUDE [uses-hub-only](uses-hub-only.md)]
+### Anthropic models
 
+| Model             | Hub/Project Region for Deployment  |  Lifecycle Status            |
+|-------------------|------------------------------------|------------------------------|
+| Claude Haiku 4.5  | East US 2 <br> Sweden Central      | Preview                      |
+| Claude Opus 4.1   | East US 2 <br> Sweden Central      | Preview                      |
+| Claude Sonnet 4.5 | East US 2 <br> Sweden Central      | Preview                      |
+| Claude Opus 4.5   | East US 2 <br> Sweden Central      | Preview                      |
 
 ### Cohere models
 
 | Model   | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
-Cohere Command A     |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) <br> Japan <br> Israel <br> Qatar | East US 2 <br> Sweden Central  | Not available   |
 Cohere Command R+ 08-2024     |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  |East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3  | Not available        |
 Cohere Command R 08-2024     |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  |East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3  | Not available        |
 Cohere Rerank v3.5  |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) <br> Japan <br> Israel <br> Qatar  | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3   | Not available       |
-Cohere Embed 4    |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) <br> Japan <br> Israel <br> Qatar   | East US 2 <br> Sweden Central  |  Not available  |
 Cohere Embed v3 - English    |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) <br> Japan <br> Qatar   |East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3    | Not available       |
 Cohere Embed v3 -  Multilingual    |  [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) <br> Japan <br> Qatar   |East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3    | Not available       |
 

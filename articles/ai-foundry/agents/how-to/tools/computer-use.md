@@ -7,13 +7,16 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
 ---
 
 # Foundry Agent Service Computer Use Tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).

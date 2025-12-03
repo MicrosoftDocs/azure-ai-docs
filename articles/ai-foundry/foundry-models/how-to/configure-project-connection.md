@@ -17,6 +17,8 @@ reviewer: santiagxf
 
 # Configure a connection to use Microsoft Foundry Models in your AI project
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-project-connection/portal.md)]
 ::: zone-end

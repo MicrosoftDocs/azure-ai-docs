@@ -3,7 +3,7 @@ title: COVID Tracking Project
 description: Learn how to use the COVID tracking project dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 11/26/2025
 ---
 
 # COVID Tracking project
@@ -71,7 +71,7 @@ For any questions or feedback about this or other datasets in the COVID-19 Data 
 | in_icu_currently            | smallint  | 1,643  | 2 8                                                                               | Total number of people in the ICU for COVID-19 on this day.                                                                 |
 | iso_country                 | string    | 1      | US                                                                                | ISO 3166 country or region code                                                                                             |
 | iso_subdivision             | string    | 57     | US-UM US-WA                                                                       | ISO 3166 subdivision code                                                                                                   |
-| last_update_et              | timestamp | 9,487  | 2020-12-01 00:00:00 2020-09-01 00:00:00                                           | Last time the day’s data was updated                                                                                        |
+| last_update_et              | timestamp | 9,487  | 2020-12-01 00:00:00 2020-09-01 00:00:00                                           | Last time the day's data was updated                                                                                        |
 | load_time                   | timestamp | 1      | 2021-04-26 00:06:49.883000                                                        | Date and time the data was loaded to Azure from the source                                                                  |
 | negative                    | int       | 10,864 | 305972 2140                                                                       | Total number of people who have tested negative for COVID-19 so far.                                                        |
 | negative_increase           | int       | 7,328  | 6 17                                                                              | Deprecated                                                                                                                  |

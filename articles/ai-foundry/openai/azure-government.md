@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI in the Azure Government cloud.
 author: challenp
 ms.author: chaparker
-ms.date: 8/19/2025
+ms.date: 11/26/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -15,6 +15,8 @@ ms.custom:
 ---
 
 # Azure OpenAI and features in Azure Government
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>

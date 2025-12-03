@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
@@ -15,7 +15,7 @@ ms.custom: devx-track-csharp
 # OCR - Optical Character Recognition
 
 > [!WARNING]
-> We don't recommend using this service, including the Azure Vision in Foundry Tools legacy [OCR API in v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2&preserve-view=true) and [RecognizeText API in v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1&preserve-view=true).
+> We don't recommend using this service, including the Azure Vision in Foundry Tools [legacy OCR API v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2&preserve-view=true) and [RecognizeText API v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1&preserve-view=true).
 
 [!INCLUDE [read-editions](includes/read-editions.md)]
 

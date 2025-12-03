@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -118,11 +118,11 @@ curl --request POST \
 |------------|-------------|
 | `{your-document-translation-endpoint}` | Your Document Translation endpoint. Example: `https://your-resource-name.cognitiveservices.azure.com` |
 | `<your-subscription-key>` | Your Translator subscription key. |
-| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Auto-detected if not specified. |
+| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Autodetected if not specified. |
 | `targetLanguage` | **(Required)** The target language code to translate into. Example: `fr`. |
 | `document` | The path to the file to translate. |
 
-See [Supported Document Formats](../overview.md) for more details.
+For more information, *see* [Supported Document Formats](../overview.md).
 
 ### Translate a Word document with a Glossary
 
@@ -142,12 +142,12 @@ curl --request POST \
 |------------|-------------|
 | `{your-document-translation-endpoint}` | Your Document Translation endpoint. Example: `https://your-resource-name.cognitiveservices.azure.com` |
 | `<your-subscription-key>` | Your Translator subscription key. |
-| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Auto-detected if not specified. |
+| `sourceLanguage` | *(Optional)* The source language code. Example: `en`. Autodetected if not specified. |
 | `targetLanguage` | **(Required)** The target language code to translate into. Example: `fr`. |
 | `document` | Path to the file for translation. |
 | `glossary` | Path to the glossary file. |
 
-See [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md) for more details.
+For more information, *see* [Use glossaries with Document Translation](../how-to-guides/create-use-glossaries.md).
 
 
 ## Next steps

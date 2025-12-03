@@ -24,7 +24,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 
 ::: zone pivot="programming-language-csharp"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free)
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Visual Studio IDE](https://visualstudio.microsoft.com/vs/)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
 * [A Foundry resource](./multi-service-resource.md?pivots=azportal)
@@ -33,7 +33,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 
 ::: zone pivot="programming-language-python"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Python 3.7 or later](https://www.python.org/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
@@ -43,7 +43,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 
 ::: zone pivot="programming-language-java"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Java Development Kit (JDK) version 8 or above](/azure/developer/java/fundamentals/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
@@ -53,7 +53,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 
 ::: zone pivot="programming-language-javascript"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Current Node.js v14 LTS or later](https://nodejs.org/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)

@@ -122,7 +122,7 @@ with project_client:
 
 ## Regional restrictions
 
-The code interpreter tool for the agents v2 API is not available in the following regions:
+The code interpreter tool for the Foundry projects (new) API is not available in the following regions:
 
 * Canada central
 * Central US

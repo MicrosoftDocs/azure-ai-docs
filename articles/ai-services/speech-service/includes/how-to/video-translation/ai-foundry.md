@@ -26,7 +26,7 @@ In this article, you learn how to use video translation with Azure Speech in Fou
 - You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
 
-## Try out video translation
+## Try video translation
 
 To try out the video translation demo, follow these steps:
 

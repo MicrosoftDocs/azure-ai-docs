@@ -42,13 +42,13 @@ Foundry Local is ideal when you need to:
 - Get low latency AI responses for real-time applications
 - Experiment with AI models before you deploy to the cloud
 
-## Do I need an Azure subscription
+## Do I need an Azure subscription?
 
 No. Foundry Local runs on your hardware, letting you use your existing infrastructure without cloud services.
 
 ## Frequently asked questions
 
-### Do I need special drivers for NPU acceleration
+### Do I need special drivers for NPU acceleration?
 
 Install the driver for your NPU hardware:
 

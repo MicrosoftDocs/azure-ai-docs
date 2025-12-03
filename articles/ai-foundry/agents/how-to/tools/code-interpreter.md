@@ -7,13 +7,17 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 10/14/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-code-interpreter
 ---
 # Foundry Agent Service Code Interpreter
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
 
 Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 

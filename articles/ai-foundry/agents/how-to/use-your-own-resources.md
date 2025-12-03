@@ -66,7 +66,7 @@ If you want to continue using your hub-based project and connection string, you 
     * `Microsoft.Search`
     * `Microsoft.App`
     * `Microsoft.ContainerService`
-    * To use the [Grounding with Bing Search tool](./tools/bing-grounding.md): `Microsoft.Bing`
+    * To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md): `Microsoft.Bing`
 
     ```console
        az provider register --namespace 'Microsoft.KeyVault'

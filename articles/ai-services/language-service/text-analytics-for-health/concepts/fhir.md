@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ms.custom: language-service-health, ignite-2024
 ---
@@ -41,7 +41,7 @@ When you use the REST API as part of building the request payload, you include a
 }
 ```
 
-Once the request has completed processing by Text Analytics for health and you pull the response from the REST API, you'll find the FHIR resource bundle in the output. You can locate the FHIR resource bundle inside each document processed using the property name `fhirBundle`. The following partial sample is output highlighting the `fhirBundle`.
+Once the request completes processing by Text Analytics for health and you pull the response from the REST API, you can find the FHIR resource bundle in the output. You can locate the FHIR resource bundle inside each document processed using the property name `fhirBundle`. The following partial sample is output highlighting the `fhirBundle`.
 
 ```json
 {

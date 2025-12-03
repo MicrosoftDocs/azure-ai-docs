@@ -14,6 +14,9 @@ ms.custom: azure-ai-agents
 ---
 # How to use Foundry Agent Service with OpenAPI Specified Tools
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
 You can now connect your Azure AI Agent to an external API using an OpenAPI 3.0 specified tool, 
 allowing for scalable interoperability with various applications. Enable your custom tools 
 to authenticate access and connections with managed identities (Microsoft Entra ID) for 

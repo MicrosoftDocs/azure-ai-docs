@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 07/09/2025
+ms.date: 11/20/2025
 zone_pivot_groups: search-get-started-semantic
 ---
 

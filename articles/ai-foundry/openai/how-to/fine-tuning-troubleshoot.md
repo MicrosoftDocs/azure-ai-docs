@@ -7,12 +7,14 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
 
 # Troubleshooting for Azure OpenAI fine-tuning
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 ## How do I enable fine-tuning?
 

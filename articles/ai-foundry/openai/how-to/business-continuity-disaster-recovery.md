@@ -15,6 +15,8 @@ recommendations: false
 
 # Business Continuity and Disaster Recovery (BCDR) considerations with Azure OpenAI in Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Azure OpenAI is available in multiple regions. When you create an Azure OpenAI resource, you specify a region. From then on, your resource and all its operations stay associated with that Azure server region.  
 
 It's rare, but not impossible, to encounter a network issue that hits an entire region. If your service needs to always be available, then you should design it to either failover into another region or split the workload between two or more regions. Both approaches require at least two Azure OpenAI resources in different regions. This article provides general recommendations for how to implement Business Continuity and Disaster Recovery (BCDR) for your Azure OpenAI applications.

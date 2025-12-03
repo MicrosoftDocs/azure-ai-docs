@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/04/2025
+ms.date: 11/20/2025
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
@@ -16,8 +16,8 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool
 
-> [!NOTE]
-> There are new ways to add knowledge to your agent. For the latest recommended approach, see [Connect a Foundry IQ knowledge base to Foundry Agent Service](../../../default/agents/how-to/tools/knowledge-retrieval.md).
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 

@@ -33,9 +33,9 @@ these policies to control what models your developers can deploy in Foundry port
 1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also
    search for **Policy** in the search bar at the top of the page.
 
-1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for `Cognitive Services Deployments should only use approved Registry Models` in the search bar within the page. You can also directly navigate to [policy definition creation page](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Faafe3651-cb78-4f68-9f81-e7e41509110f/version/1.0.0-preview/scopes~/%5B%22%2Fsubscriptions%2Fa4393d89-7e7f-4b0b-826e-72fc42c33d1f%22%2C%22%2Fsubscriptions%2Fd128f140-94e6-4175-87a7-954b9d27db16%22%2C%22%2Fsubscriptions%2F562da9fc-fd6e-4f24-a6aa-99827a7f6f91%22%5D/contextRender~/false).
+1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for `Cognitive Services Deployments should only use approved Registry Models` in the search bar within the page. You can also directly navigate to [policy definition creation page](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Faafe3651-cb78-4f68-9f81-e7e41509110f/version/1.0.1/scopes~/%5B%22%2Fsubscriptions%2Fa4393d89-7e7f-4b0b-826e-72fc42c33d1f%22%2C%22%2Fsubscriptions%2Fd128f140-94e6-4175-87a7-954b9d27db16%22%2C%22%2Fsubscriptions%2F562da9fc-fd6e-4f24-a6aa-99827a7f6f91%22%5D/contextRender~/false).
 
-1. Select on **Assign** to assign the policy:
+1. Select **Assign** to assign the policy:
 
    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
    - **Policy definition**: this section should already have a value of `Cognitive Services Deployments should only use approved Registry Models`.
@@ -122,6 +122,7 @@ To update an existing policy assignment with new models, follow these steps:
 
 - **Granular scoping**: Assign policies at the appropriate scope to balance control and flexibility. For example, apply at the subscription level to control all resources in the subscription, or apply at the resource group level to control resources in a specific group.
 - **Policy naming**: Use a consistent naming convention for policy assignments to make it easier to identify the purpose of the policy. Include information such as the purpose and scope in the name.
+- **Tags**: Use tags to categorize and manage your policies. For example, you can tag policies by environment (dev, test, prod) or by department.
 - **Documentation**: Keep records of policy assignments and configurations for auditing purposes. Document any changes made to the policy over time.
 - **Regular reviews**: Periodically review policy assignments to ensure they align with your organization's requirements.
 - **Testing**: Test policies in a nonproduction environment before applying them to production resources.

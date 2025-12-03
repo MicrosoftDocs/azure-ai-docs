@@ -4,7 +4,7 @@ ms.author: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 08/22/2025
+ms.date: 11/20/2025
 ai-usage: ai-assisted
 ---
 
@@ -32,7 +32,7 @@ The quickstart assumes the following is available on your computer:
 
    :::code language="xml" source="~/azure-search-java-samples/semantic-ranking-quickstart/pom.xml" :::
 
-1. Compile the project to resolve the dependencies:
+1. Compile the project to resolve the dependencies.
 
     ```bash
     mvn compile
@@ -71,7 +71,7 @@ In this section, you get settings for the existing `hotels-sample-index` index o
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/GetIndexSettings.java" :::
 
-1. Compile and run the code:
+1. Compile and run the code.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.GetIndexSettings"

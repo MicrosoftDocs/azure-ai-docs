@@ -5,7 +5,7 @@ description: Learn about model versions in Azure OpenAI.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder
@@ -13,6 +13,8 @@ recommendations: false
 ---
 
 # Azure OpenAI in Microsoft Foundry Models model versions
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Azure OpenAI is committed to providing the best generative AI models for customers. As part of this commitment, Azure OpenAI regularly releases new model versions to incorporate the latest features and improvements from OpenAI.
 

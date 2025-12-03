@@ -29,7 +29,7 @@ The Agent Monitoring Dashboard in Microsoft Foundry provides real-time insights 
 
 To allow your Azure Foundry project to authenticate and interact with Azure AI resources, you must grant its system-assigned managed identity the Azure AI User role
 
-1. Open the Foundry Project Resource: In the Azure Portal, navigate to the Azure resource associated with your Foundry project (for example, the project’s resource group or a specific service resource).
+1. Open the Foundry Project Resource: In the Azure portal, navigate to the Azure resource associated with your Foundry project (for example, the project’s resource group or a specific service resource).
 1. Go to Access Control (IAM): In the left-hand menu, select Access control (IAM).
 1. Add a New Role Assignment.
 1. Select the Azure AI User Role: In the *Role* dropdown, search for *Azure AI User*, then select it.
@@ -70,7 +70,6 @@ The following table describes the monitoring features available in the Monitor S
 
 | Setting | Purpose | Configuration Options |
 |---------|---------|----------------------|
-| **Operational Metrics** | Tracks agent runs, token usage, latency, and error rates. | Enabled automatically after connecting Application Insights. |
 | **Continuous Evaluation** | Runs real-time checks on agent responses for intent resolution, coherence, and reconciliation. | Enable/Disable toggle<br>Add evaluators by name or import from past evaluations<br>Set sample rate (for example, 10 runs/hour) |
 | **Scheduled Evaluations** | Performs periodic evaluations to validate agent performance against benchmarks. | Enable/Disable toggle<br>Select evaluation template<br>Select evaluation run<br>Set schedule frequency (weekly recommended) |
 | **Red Team Scans** | Executes adversarial tests to identify vulnerabilities such as sensitive data leakage or prohibited actions. | Enable/Disable toggle<br>Select evaluation template<br>Select evaluation run<br>Set schedule frequency (weekly recommended) |

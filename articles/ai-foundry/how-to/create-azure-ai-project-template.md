@@ -15,6 +15,8 @@ ms.date: 09/15/2025
 
 # Quickstart: Create a Microsoft Foundry project using a Bicep file
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) project. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
 ## Prerequisites
