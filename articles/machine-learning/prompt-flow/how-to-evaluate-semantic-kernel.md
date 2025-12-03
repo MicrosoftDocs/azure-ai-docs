@@ -20,7 +20,7 @@ ms.update-cycle: 365-days
 
 This article describes the seamless integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and planners by using prompt flow. In the rapidly evolving landscape of AI orchestration, a comprehensive evaluation of your plugins and planners is important for optimal performance.
 
-Semantic Kernel is an open-source SDK that lets you easily combine AI services with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
+Semantic Kernel is an open-source SDK that lets you easily combine Foundry Tools with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
 
 As you build and add more plugins to planners, the error potential increases, so it's important to make sure they work as intended. Testing plugins and planners used to be a manual, time-consuming process. Now you can use prompt flow to automate this process.
 

@@ -76,12 +76,12 @@ The navigation is a list of links divided into different sections.
 If you don't have a project, you can still explore models listed on the home page. This action takes you to the **Model catalog**. 
 * When you ask to use a model, you are prompted to create a project.
 * Once you select a project: 
-    * You can access more capabilities such as Model catalog, Playgrounds, and AI Services. 
+    * You can access more capabilities such as Model catalog, Playgrounds, and Foundry Tools. 
     * You can also use the **Recent resource picker** button within the navigation breadcrumbs to change to a different project or resource at any time.
 
 ### Customize the navigation
 
-After you select a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services.
+After you select a project, you can access more capabilities such as Model catalog, Playgrounds, and Foundry Tools.
 
 You can customize the left pane for each project or resource. 
 

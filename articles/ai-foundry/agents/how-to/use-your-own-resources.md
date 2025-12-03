@@ -96,7 +96,7 @@ Includes everything in the basic setup and fine-grained control over your data b
 
 Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
 
-1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
+1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your Foundry Tools account:
        
     ```console
     az login
@@ -122,7 +122,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 
 ### Use an existing Azure OpenAI resource
 
-1. Follow the steps in basic agent setup to get the AI Services account resource ID.
+1. Follow the steps in basic agent setup to get the Foundry Tools account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```console
