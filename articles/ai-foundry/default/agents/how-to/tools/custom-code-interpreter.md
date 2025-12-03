@@ -29,9 +29,9 @@ To use the preview feature, you need the following prerequisites:
   - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
-## Code samples
+## Custom code interpreter example
 
-The following code sample shows how to create an agent that uses a custom code interpreter MCP server.
+The following console commands and code samples show how to create an agent that uses a custom code interpreter MCP server.
 
 ### Enable MCP server for dynamic sessions
 
@@ -42,9 +42,9 @@ az feature register --namespace Microsoft.App --name SessionPoolsSupportMCP
 az provider register -n Microsoft.App
 ```
 
-### Check out sample code
+### Get the sample code
 
-Clone the [sample code GitHub repo](https://github.com/Azure-Samples/azureai-samples) and navigate to the folder [scenarios/Agents/samples/code-interpreter-custom/](https://github.com/Azure-Samples/azureai-samples/scenarios/Agents/samples/code-interpreter-custom/).
+Clone the [sample code in the GitHub repo](https://github.com/Azure-Samples/azureai-samples) and navigate to the folder `scenarios/Agents/samples/code-interpreter-custom` in your terminal.
 
 ### Provision the infrastructure
 
