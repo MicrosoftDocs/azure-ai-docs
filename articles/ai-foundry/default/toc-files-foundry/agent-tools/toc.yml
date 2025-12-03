@@ -41,6 +41,8 @@ items:
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
+- name: Custom code interpreter (preview)
+  href: ../../agents/how-to/tools/custom-code-interpreter.md
 - name: Computer Use (preview)
   href: ../../agents/how-to/tools/computer-use.md
 - name: Fabric data agent (preview)
