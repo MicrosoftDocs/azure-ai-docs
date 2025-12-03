@@ -76,7 +76,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     Add this code to your script to create a new project on your existing resource:
 
-    :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/create_project.py" id="create_additional":::
+    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_additional":::
     
     
     # [Azure CLI](#tab/azurecli)
