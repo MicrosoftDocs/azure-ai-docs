@@ -63,7 +63,7 @@ az deployment group create \
 
 ### Use the custom code interpreter in an agent
 
-Copy the [`.env.sample`](./.env.sample) file to `.env` and fill in the values with the output from the preceding deployment. You can find this output in the Azure portal under the resource group.
+Copy the `.env.sample` file from the repository to `.env` and fill in the values with the output from the preceding deployment. You can find this output in the Azure portal under the resource group.
 
 Install the Python dependencies (`uv sync` or `pip install`). Finally, run `./main.py`.
 
