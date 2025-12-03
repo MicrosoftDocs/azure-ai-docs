@@ -42,7 +42,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 
    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Foundry.":::
 
-1. From the main window, select **the Foundry Tool fine-tuning** tab and then the **+ Fine-tune** button.
+1. From the main window, select **the AI Service fine-tuning** tab and then the **+ Fine-tune** button.
 
    :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tune button in the Foundry.":::
 
