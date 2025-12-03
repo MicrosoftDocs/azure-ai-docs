@@ -51,13 +51,10 @@ from pathlib import Path
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import CodeInterpreterTool
-from dotenv import load_dotenv
-# Load environment variables from .env file
-load_dotenv()
 
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
-    endpoint= os.getenv("PROJECT_ENDPOINT"),
+    endpoint=os.getenv("PROJECT_ENDPOINT"),
     credential=DefaultAzureCredential(),  
     # Use Azure Default Credential for authentication
 )
@@ -125,8 +122,6 @@ with project_client:
                     file_name = f"{file_id}_image_file.png"
                     project_client.agents.files.save(file_id=file_id, file_name=file_name)
                     print(f"Saved image file to: {Path.cwd() / file_name}")
-
-
     #Uncomment these lines to delete the agent when done
     #project_client.agents.delete_agent(agent.id)
     #print("Deleted agent")
