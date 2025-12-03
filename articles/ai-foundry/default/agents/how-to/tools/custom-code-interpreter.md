@@ -23,7 +23,7 @@ With a custom code interpreter for your agent, you can customize the resources, 
 To use the preview feature, you need the following prerequisites:
 
 - The [Azure CLI](/cli/azure/install-azure-cli)
-- `uv` or `pip`
+- Optionally install `uv` as an alternative to `pip`. `uv` is a fast package and project manager for Python projects. You can install it by following the instructions at [Installing uv](https://docs.astral.sh/uv/getting-started/installation/) in the official documentation.
 - An Azure subscription and resource group with the following permissions:
   - [Cognitive Services OpenAI Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-contributor)
   - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)

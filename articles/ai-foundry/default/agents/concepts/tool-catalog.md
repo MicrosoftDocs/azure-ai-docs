@@ -5,7 +5,7 @@ author: aahill
 ms.author: aahi
 ms.date: 11/18/2025
 ms.manager: nitinme
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
