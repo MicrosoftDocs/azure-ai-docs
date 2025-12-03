@@ -42,7 +42,7 @@ You can connect Foundry Tools resources to a Foundry project after you create a 
 
     :::image type="content" source="./media/ai-foundry/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="./media/ai-foundry/connections-add.png":::
 
-1. On the **Add a connection to external assets** page, select the kind of Foundry Tool that you want to connect to the project. For example, you can select Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Foundry Models, Azure Content Safety, Azure Speech, Azure Language, and other Foundry Tools.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Foundry Models, Azure Content Safety, Azure Speech, Azure Language, and other Foundry Tools.
 
     :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of Foundry Tool that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
 

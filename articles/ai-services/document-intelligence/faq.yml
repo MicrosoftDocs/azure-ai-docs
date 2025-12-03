@@ -26,7 +26,7 @@ sections:
 
           Azure Document Intelligence and Azure Document Intelligence in Foundry Tools are the same service. The service was renamed from Azure Document Intelligence in Foundry Tools to Azure Document Intelligence in July 2023. The service provides the same capabilities and features as before the renaming.
 
-          -  **Pricing changes**: There are no changes to pricing. The names Cognitive Services and Applied Foundry Tools continue to be used in Azure billing, cost analysis, price lists, and price APIs.
+          -  **Pricing changes**: There are no changes to pricing. The names Cognitive Services and Applied AI Services continue to be used in Azure billing, cost analysis, price lists, and price APIs.
 
           -  **Breaking changes**: There are no breaking changes to APIs or client libraries.
 
