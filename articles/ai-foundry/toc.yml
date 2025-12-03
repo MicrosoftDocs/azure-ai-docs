@@ -13,7 +13,7 @@ items:
       href: foundry-agent/ask-foundry-agent.md
 - name: Models
   href: toc-files/models/toc.yml
-- name: AI services
+- name: Foundry Tools
   href: toc-files/ai-services-section/toc.yml
 - name: Agent Service
   href: agents/toc.yml

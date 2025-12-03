@@ -1,5 +1,5 @@
 ---
-title: Consolidated View for AI Services in the Azure portal
+title: Consolidated View for Foundry Tools in the Azure portal
 description: Discover how the Foundry consolidated view in the Azure portal simplifies AI workload management with cost, usage, and quota insights in one place.
 #customer intent: As an Azure user managing AI workloads, I want to monitor costs and resource usage in a single view so that I can optimize spending and performance.
 author: jonburchel
@@ -42,7 +42,7 @@ The [Foundry consolidated view](https://portal.azure.com/#view/Microsoft_Azure_P
 
 - **Resource breakdown by type**
 
-  Understand which AI services you use most (for example, Azure OpenAI, Speech, Language). This helps with cost allocation and planning for future workloads.
+  Understand which Foundry Tools you use most (for example, Azure OpenAI, Speech, Language). This helps with cost allocation and planning for future workloads.
 
 - **Quota utilization**
 

@@ -112,7 +112,7 @@ For more information, *see* [Service and request limits for Azure Translator](/a
 
 To ensure the secure operation of Azure Translator services, you need to put a robust governance framework in place and consistently comply with all relevant standards. By establishing thorough policies and procedures, you can effectively protect your systems, maintain regulatory compliance, and minimize potential risks, ultimately delivering reliable and secure service.
 
-* **Review Azure Policy for AI services**: Implement Azure Policy to enforce organization-wide security standards for your AI services, including network isolation requirements.<br>
+* **Review Azure Policy for Foundry Tools**: Implement Azure Policy to enforce organization-wide security standards for your Foundry Tools, including network isolation requirements.<br>
 For more information, *see* [Azure Policy Regulatory Compliance controls for Foundry Tools](/azure/ai-services/security-controls-policy#microsoft-cloud-security-benchmark).
 
 * **Conduct regular security assessments**: Continuously assess the security status of your Translator deployments and ensure they align with industry standards and organizational policies. Promptly detect and address any potential vulnerabilities as they arise.<br>

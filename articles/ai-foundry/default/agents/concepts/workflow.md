@@ -258,6 +258,20 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
    :::image type="content" source="../../media/workflows/type-question.png" alt-text="Screenshot that shows the preview of a question for the action of sending a message." lightbox="../../media/workflows/type-question.png":::
 
+## Use Power Fx to create if/else flows
+
+In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
+
+1. Create a workflow and add an **Ask a question** node.
+
+1. Select the **+** icon and add an **if/else** flow.
+1. Type `System.` in the **Condition** text box to create a condition statement for each if/else combination.
+   :::image type="content" source="../../media/workflows/if-else-condition.png" alt-text="A screenshot showing the system variables in the if-else condition text box." lightbox="../../media/workflows/if-else-condition.png":::
+1. Select a **Next Action** for the next desired step in the workflow.
+1. Select **Done**. Select **Save** to save your workflow
+
+
 ## Related content
+
 
 - [Microsoft Foundry Agent Service FAQ](../../../agents/faq.yml)

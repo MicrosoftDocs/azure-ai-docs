@@ -93,7 +93,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 
 #### Use an existing Azure OpenAI resource
 
-1. Follow the steps in basic agent setup to get the AI Services account resource ID.
+1. Follow the steps in basic agent setup to get the Foundry Tools account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```console

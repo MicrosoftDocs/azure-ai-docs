@@ -60,7 +60,7 @@ After fine-tuning, you can access your custom speech models and deployments from
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 
-    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned AI services models." lightbox="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned Foundry Tools models." lightbox="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png":::
 
 ::: zone-end
 

@@ -1,6 +1,6 @@
 ---
 title: How to use Azure Functions with Azure Storage Queues
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools.
 services: azure-ai-agent-service
 manager: nitinme
@@ -14,14 +14,14 @@ ms.custom: azure-ai-agents
 zone_pivot_groups: selection-azure-functions-samples
 ---
 
-# How to use queue-based Azure Functions with Azure AI Foundry agents
+# How to use queue-based Azure Functions with Microsoft Foundry agents
 
 [!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 
-This article shows how to use a queue-based integrated tool approach to enable Azure AI Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
+This article shows how to use a queue-based integrated tool approach to enable Microsoft Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
 
-AI Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation. 
+Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation. 
 
   
 
