@@ -42,32 +42,36 @@ For an example of the consent statement see the verbal-statement-all-locales.txt
 
 ## Step 4: Create and deploy custom photo avatar
 This step is handled in a manual process. Microsoft will set up the custom photo avatar in the Azure resources you provide offline.
-prepare resources:
+
+Prepare resources:
 - Foundry resource: [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions.
 - For more information about region availability, see [Text to speech avatar regions](../regions.md).
 
 ## Step 5: Use custom photo avatar
+
 You can use the custom photo avatar in a voice agent or create video content in Microsoft Foundry or via API.
+
 ### Use in Microsoft Foundry
+
 To use custom photo avatar in **Voice live** to create personalized voice agent:
 1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the New Foundry toggle is on. 
 2. Select an existing project or create a new project in the resource where your custom photo avatars are deployed.
 3. Find the Voice live model playground
-   - Select **Discover** in the upper-right navigation.
-   - Select **Models**.
-   - Search "speech"
-   - Click **Azure-Speech-Voice-Live** in the search result
-   - Select **Open in Playground**
+   1. Select **Discover** in the upper-right navigation.
+   1. Select **Models**.
+   1. Search "speech"
+   1. Click **Azure-Speech-Voice-Live** in the search result
+   1. Select **Open in Playground**
 
 To use custom photo avatar in **Text to speech avatar** to create talking head video:
 1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the New Foundry toggle is on. 
 2. Select an existing project or create a new project in the resource where your custom photo avatars are deployed.
 3. Find the Text to speech avatar model playground
-   - Select **Discover** in the upper-right navigation.
-   - Select **Models**.
-   - Search "speech"
-   - Click **Azure-Speech-Text-to-speech-Avatar** in the search result
-   - Select **Open in Playground**
+   1. Select **Discover** in the upper-right navigation.
+   1. Select **Models**.
+   1. Search "speech"
+   1. Click **Azure-Speech-Text-to-speech-Avatar** in the search result
+   1. Select **Open in Playground**
    
 ### Use through API
   Sample code for text to speech avatar is available on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples). Search "photo" to quickly go to photo avatar part in sample code.

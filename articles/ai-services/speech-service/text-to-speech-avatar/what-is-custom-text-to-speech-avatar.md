@@ -68,7 +68,7 @@ Currently the custom photo avatar training requires a manual offline process. Us
    
 1. **Get consent video.** Obtain a video of the talent reading a consent statement. This is required when training a photo avatar from a real person’s photo. They must provide consent for the use of their image to train a custom photo avatar model.
 
-1. **Setup the avatar model.** The custom photo avatar training and deployment are handled through a manual process.
+1. **Set up the avatar model.** The custom photo avatar training and deployment are handled through a manual process.
 
 
 
