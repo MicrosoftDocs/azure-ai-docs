@@ -9,7 +9,7 @@ ms.date: 12/04/2025
 ai-usage: ai-assisted
 ---
 
-[Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others):
+**Models sold directly by Azure:**
 
 - **MAI-DS-R1**: Deterministic, precision-focused reasoning.
 - **grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.
@@ -24,14 +24,14 @@ ai-usage: ai-assisted
 - **DeepSeek-R1-0528**: Advanced long-form and multiple-step reasoning.
 - **gpt-oss-120b**: Open-ecosystem model that supports transparency and reproducibility.
 
-[Models from partners and community](../../foundry-models/concepts/models-from-partners.md):
+**Models from partners and community:**
 
 - **Claude-Opus-4-5**: Best performance across coding, agents, computer use, and enterprise workflows.
 - **Claude-Opus-4-1**: Frontier reasoning for the most complex problem-solving.
 - **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
 - **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
  
-You can see a full list of the supported models in the Foundry portal.
+To see a full list of the supported models in the Foundry portal:
 
 ::: moniker range="foundry-classic"
 
