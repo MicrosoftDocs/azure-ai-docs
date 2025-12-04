@@ -35,7 +35,7 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 >
 > - [Hub-based projects](../../what-is-azure-ai-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo.
 > - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 > - The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models can use only the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
@@ -45,7 +45,7 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 > [!NOTE]
 >
 > - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 > - The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models are available for the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.

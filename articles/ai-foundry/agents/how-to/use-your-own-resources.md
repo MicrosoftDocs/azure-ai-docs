@@ -82,7 +82,7 @@ If you want to continue using your hub-based project and connection string, you 
 
 ## Choose basic or standard agent setup
 
-To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization).
+To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization).
    
 **Basic Setup**
 
@@ -94,7 +94,7 @@ Includes everything in the basic setup and fine-grained control over your data b
 
 ## Basic agent setup: Use an existing Azure OpenAI resource 
 
-Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
+Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
 
 1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        

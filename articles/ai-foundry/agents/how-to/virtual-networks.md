@@ -126,9 +126,9 @@ You can deploy and customize the Standard Setup with Private Networking using ei
  
 Select one of the available deployment methods:
 
-- **Bicep templates**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+- **Bicep templates**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 
-- **Terraform configuration**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform/15b-private-network-standard-agent-setup-byovnet).
+- **Terraform configuration**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform/15b-private-network-standard-agent-setup-byovnet).
 
 ## Deep Dive Standard Setup with Private Networking Template
 When you use the Standard Setup with Private Networking Agent Template, the following will automatically be provisioned, unless you bring your own: 
