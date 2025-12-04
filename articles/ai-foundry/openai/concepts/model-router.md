@@ -34,7 +34,7 @@ Model router for Microsoft Foundry is a deployable AI model that is trained to s
 Model router is a trained language model that analyzes your prompts in real time to decide on the most suitable large language model (LLM) to route to based on the complexity, reasoning, task type, and other attributes of the prompts. It does not store your prompts. Moreover, it routes to only eligible models based on your access and deployment types, honoring data zone boundaries. 
 - In the default `Balanced` mode, it considers all underlying models within a small quality range, for example 1-2% compared with the highest quality model for that prompt, and picks the most cost-effective model.
 - When the `Cost` routing mode is selected, it considers a larger quality band, for example 5-6% range compared with the highest quality model for that prompt, and chooses the most cost-effective model. 
-- For the `Quality` routing mode, it picks the highest quality rated model for the prompt, ignoring the cost basis.
+- When the `Quality` routing mode is selected, it picks the highest quality rated model for the prompt, ignoring the cost.
 
 ## Why use model router?
 
