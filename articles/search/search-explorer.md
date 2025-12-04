@@ -137,8 +137,8 @@ Recall that you need to provide search criteria, such as a query term or express
       "search": "activities `outdoor pool` restaurant OR continental breakfast",
       "count": true,
       "select": "HotelId, HotelName, Tags, Description",
-      "top": 10,
-      "skip": 20
+      "top": 20,
+      "skip": 10
    }
    ```
 
