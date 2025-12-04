@@ -78,6 +78,8 @@ To use your deployed model with code, you need the model's endpoint URL and key,
 * Azure OpenAI SDK
 * Azure AI Inference SDK
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+
 For more details and examples, see [supported languages and SDKs](../supported-languages.md). The following example shows how to use the Azure AI Inference SDK with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
