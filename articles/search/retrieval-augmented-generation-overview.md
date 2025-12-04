@@ -153,6 +153,70 @@ Here are some tips for maximizing relevance and recall:
 
 In comparison and benchmark testing, hybrid queries with text and vector fields, supplemented with semantic ranking, produce the most relevant results.
 
+<!-- ### Example code for a classic RAG workflow
+
+The following Python code demonstrates the essential components of a basic RAG workflow in Azure AI Search. You need to set up the clients, define a system prompt, and provide a query. The prompt tells the LLM to use just the results from the query, and how to return the results. For more steps based on this example, see this [RAG quickstart](search-get-started-rag.md).
+
+> [!NOTE]
+> For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
+
+```python
+# Set up the query for generating responses
+from azure.identity import DefaultAzureCredential
+from azure.identity import get_bearer_token_provider
+from azure.search.documents import SearchClient
+from openai import AzureOpenAI
+
+credential = DefaultAzureCredential()
+token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
+openai_client = AzureOpenAI(
+    api_version="2024-06-01",
+    azure_endpoint=AZURE_OPENAI_ACCOUNT,
+    azure_ad_token_provider=token_provider
+)
+
+search_client = SearchClient(
+    endpoint=AZURE_SEARCH_SERVICE,
+    index_name="hotels-sample-index",
+    credential=credential
+)
+
+# This prompt provides instructions to the model. 
+# The prompt includes the query and the source, which are specified further down in the code.
+GROUNDED_PROMPT="""
+You are a friendly assistant that recommends hotels based on activities and amenities.
+Answer the query using only the sources provided below in a friendly and concise bulleted manner.
+Answer ONLY with the facts listed in the list of sources below.
+If there isn't enough information below, say you don't know.
+Do not generate answers that don't use the sources below.
+Query: {query}
+Sources:\n{sources}
+"""
+
+# The query is sent to the search engine, but it's also passed in the prompt
+query="Can you recommend a few hotels near the ocean with beach access and good views"
+
+# Retrieve the selected fields from the search index related to the question
+search_results = search_client.search(
+    search_text=query,
+    top=5,
+    select="Description,HotelName,Tags"
+)
+sources_formatted = "\n".join([f'{document["HotelName"]}:{document["Description"]}:{document["Tags"]}' for document in search_results])
+
+response = openai_client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": GROUNDED_PROMPT.format(query=query, sources=sources_formatted)
+        }
+    ],
+    model="gpt-4.1-mini"
+)
+
+print(response.choices[0].message.content)
+``` -->
+
 ## Integration code and LLMs
 
 A RAG solution that includes Azure AI Search can leverage [built-in data chunking and vectorization capabilities](vector-search-integrated-vectorization.md), or you can build your own using platforms like Semantic Kernel, LangChain, or LlamaIndex.
