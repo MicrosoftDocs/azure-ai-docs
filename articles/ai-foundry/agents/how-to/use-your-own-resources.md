@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/04/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -16,6 +16,8 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 # Use your own resources
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Use this article if you want to set up your Foundry project with your own resources.
 

@@ -8,12 +8,14 @@ ms.author: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 05/05/2025
+ms.date: 12/04/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Built-in enterprise readiness with standard agent setup 
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Standard Agent Setup offers enterprise-grade security, compliance, and control. This configuration uses customer-managed, single-tenant resources to store agent state and ensures all data remains within your control.  
 
