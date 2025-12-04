@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 10/10/2025
+ms.date: 12/04/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
