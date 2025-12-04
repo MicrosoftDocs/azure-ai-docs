@@ -265,4 +265,4 @@ Admins can leverage RBAC role assignments for enabling or disabling use of using
 
 1. The Admin should then unregister the `Microsoft.Bing` resource provider in your subscription (you can't unregister before deleting all resources).  See the [Azure Resource Manager documentation](/azure/azure-resource-manager/management/resource-providers-and-types) for more information about unregistering. 
 
-1. Next, the Admin should create an Azure Policy to disallow creation of Grounding with Bing Search and/or Grounding with Bing Custom Search resources in their subscription, following the sample [here](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json).
+1. Next, the Admin should create an Azure Policy to disallow creation of Grounding with Bing Search and/or Grounding with Bing Custom Search resources in their subscription, following the sample [here](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
