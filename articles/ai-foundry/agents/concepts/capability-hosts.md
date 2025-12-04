@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 07/07/2025
+ms.date: 12/04/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -15,6 +15,8 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 # Capability hosts
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
