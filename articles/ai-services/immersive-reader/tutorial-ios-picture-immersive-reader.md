@@ -7,7 +7,7 @@ author: sharmas
 ms.service: azure-ai-immersive-reader
 ms.topic: tutorial
 ms.date: 02/28/2024
-ms.author: sharmas
+ms.author: michtho
 #Customer intent: As a developer, I want to integrate two Azure AI services, the Immersive Reader and the Read API into my iOS application so that I can view any text from a photo in the Immersive Reader.
 ---
 

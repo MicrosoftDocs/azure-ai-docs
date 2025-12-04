@@ -19,7 +19,7 @@ ms.custom:
 
 This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Foundry Tools.
 
-[!INCLUDE [About AI services](./includes/ai-services-intro.md)]
+[!INCLUDE [About Foundry Tools](./includes/ai-services-intro.md)]
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
@@ -52,7 +52,7 @@ As needed, change the `sku` parameter value to the [pricing](https://azure.micro
     | **Subscription** | Select an Azure subscription. |
     | **Resource group** | Select **Create new**, enter a unique name for the resource group, and then select **OK**. |
     | **Region** | Select a region (for example, **East US**). |
-    | **AI service Name** | Replace the value with a unique name for your Microsoft Foundry resource. You'll need the name in the next section when you validate the deployment. |
+    | **Foundry Tool Name** | Replace the value with a unique name for your Microsoft Foundry resource. You'll need the name in the next section when you validate the deployment. |
     | **Location** | Replace with the region that you selected. |
     | **Sku** | Select the [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/) for your resource. |
 

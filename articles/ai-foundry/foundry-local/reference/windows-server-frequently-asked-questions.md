@@ -12,18 +12,18 @@ ms.service: azure-ai-foundry
 
 # Foundry Local on Windows Server 2025
 
-Foundry Local on Windows Server 2025 lets you run selected Azure AI Foundry model capabilities entirely on a single Windows Server machine you operate. Use this FAQ to quickly confirm what differentiates the Local runtime from the cloud service, how you deploy it, supported OS and GPU scenarios, concurrency behavior, and how the SDK relates to the service.
+Foundry Local on Windows Server 2025 lets you run selected Microsoft Foundry model capabilities entirely on a single Windows Server machine you operate. Use this FAQ to quickly confirm what differentiates the Local runtime from the cloud service, how you deploy it, supported OS and GPU scenarios, concurrency behavior, and how the SDK relates to the service.
 
 ## Frequently asked questions
 
-- **What is the capability differentiation between Foundry Local on Windows Server vs Azure AI Foundry?**
+- **What is the capability differentiation between Foundry Local on Windows Server vs Foundry?**
 
-  | **Capability** | **Foundry Local (on server)** | **Azure AI Foundry (cloud)** |
+  | **Capability** | **Foundry Local (on server)** | **Foundry (cloud)** |
   |----|----|----|
   | Model catalog | Local catalog is smaller, BYOM possible. Embeddings models aren't yet available in the Local catalog. | Broad catalog, including embeddings in the service; managed updates, evaluation, safety tools, and agent services. |
   | Scale & HA | Single node runtime. No ‑built-in ‑autoscale or ‑multinode‑ distribution. | Managed scale, multiregional‑ options, HA/DR patterns, and platform governance. Best for high concurrency and bursting. |
   | Concurrency / throughput | Limited; throughput declines as concurrent clients grow. No continuous batching today. | Cloud scale and load distribution; platform services for concurrency and throughput. |
-  | APIs | OpenAI ‑compatible REST surface for chat/completions; MCP integration possible. | Full Azure AI Foundry APIs, Responses API, Agent Service, eval, and integration with dev tools. |
+  | APIs | OpenAI ‑compatible REST surface for chat/completions; MCP integration possible. | Full Foundry APIs, Responses API, Agent Service, eval, and integration with dev tools. |
   | Operations | You operate it like any server app: install, secure, monitor, back up; manage model bits locally. | Enterprise governance, cost controls, environments, RBAC/Networking, evaluation, and integrated DevOps. |
 
 - **Is Foundry Local a Windows component, an app, or a service?**

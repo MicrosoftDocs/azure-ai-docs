@@ -105,7 +105,7 @@ Most Foundry users already have an 'Foundry' (formerly called 'AI Services') res
 # [Azure portal](#tab/azure)
 
 1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
-1.  Locate your resource with 'Foundry' resource type. (This resource type used to be shown as 'AI Services.')
+1.  Locate your resource with 'Foundry' resource type. (This resource type used to be shown as 'Foundry Tools.')
 
     :::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Foundry resource in Azure portal.":::
 
@@ -235,7 +235,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Select **Delete** to delete the hub and all its associated projects.
 
 > [!CAUTION]
-> Make sure you don't delete the Foundry (AI Services) resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
+> Make sure you don't delete the Foundry (Foundry Tools) resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
 
 # [Bicep](#tab/bicep)
 

@@ -43,7 +43,7 @@ To complete this tutorial, you need:
 * A Foundry project and hub. For more information, see [How to create and manage a Foundry hub](../../../ai-foundry/how-to/create-azure-ai-resource.md).
 
     > [!TIP]
-    > When your AI hub is provisioned, a Foundry resource is created with it and the two resources are connected. To see which resource is connected to your project, go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) > **Management center** > **Connected resources**, and find the connections of type **AI Services**. 
+    > When your AI hub is provisioned, a Foundry resource is created with it and the two resources are connected. To see which resource is connected to your project, go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) > **Management center** > **Connected resources**, and find the connections of type **Foundry Tools**. 
 
 
 ## Configure the project to use Foundry Models

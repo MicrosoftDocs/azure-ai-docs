@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use the OpenAI Service image generation Go SDK'
+title: 'Quickstart: Use the OpenAI service image generation Go SDK'
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI image generation using the Go SDK. 
 manager: nitinme
@@ -261,4 +261,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
