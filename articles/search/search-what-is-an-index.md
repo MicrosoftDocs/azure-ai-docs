@@ -129,9 +129,9 @@ Field attributes determine behaviors. To support those behaviors, the indexing p
 
 ### Example demonstrating the storage implications of attributes and suggesters
 
-The following screenshot illustrates index storage patterns resulting from various combinations of attributes. The index is based on the **real estate sample index**, which you can create easily using the Import data wizard and built-in sample data. Although the index schemas aren't shown, you can infer the attributes based on the index name. For example, *realestate-searchable* index has the "searchable" attribute selected and nothing else, *realestate-retrievable* index has the "retrievable" attribute selected and nothing else, and so forth.
+The following screenshot illustrates index storage patterns resulting from various combinations of attributes. The index is based on the **hotels sample index**. Although the index schemas aren't shown, you can infer the attributes based on the index name. For example, *hotels-searchable* index has the "searchable" attribute selected and nothing else, *hotels-retrievable* index has the "retrievable" attribute selected and nothing else, and so forth.
 
-![Index size based on attribute selection](./media/search-what-is-an-index/realestate-index-size.png "Index size based on attribute selection")
+![Index size based on attribute selection](./media/search-what-is-an-index/hotels-index-size.png "Index size based on attribute selection")
 
 Although these index variants are somewhat artificial, we can refer to them for broad comparisons of how attributes affect storage:
 

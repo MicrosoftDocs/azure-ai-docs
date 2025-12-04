@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 09/17/2025
+ms.date: 12/04/2025
 ms.custom:
   - mode-ui
 ---
@@ -24,9 +24,7 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
-+ This quickstart uses the realestate-us-sample index. To create the index, run the [**Import data wizard**](search-import-data-portal.md), select the built-in sample data, and step through the wizard using all the default values.
-
-  :::image type="content" source="media/search-explorer/search-explorer-sample-data.png" alt-text="Screenshot of the sample data sets available in the Import data wizard." border="true" lightbox="media/search-explorer/search-explorer-sample-data.png":::
++ This quickstart uses the hotels-sample index.
 
 ## Start Search explorer
 
@@ -40,13 +38,11 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
    Alternatively, select the **Search explorer** tab on the index page.
 
-   :::image type="content" source="media/search-explorer/search-explorer-tab.png" alt-text="Screenshot of the Search explorer tab." border="true" lightbox="media/search-explorer/search-explorer-tab.png":::
-
 ## Query three ways
 
 There are three approaches to querying in Search explorer:
 
-+ Query view provides a default search bar. It accepts an empty query or free-text query with Booleans, such as `seattle condo + parking`.
++ Query view provides a default search bar. It accepts an empty query or free-text query with Booleans, such as `ocean view + parking`.
 
 + Image view provides a window to browse or drag and drop PNG, JPG, or JPEG files. Unless your index has an [image vectorizer and an equivalent skill](vector-search-how-to-configure-vectorizer.md#supported-embedding-models), this view is unavailable.
 
@@ -58,9 +54,9 @@ There are three approaches to querying in Search explorer:
 
 Search explorer accepts images as query inputs through **Image view**, which requires that you use a supported vectorizer–skill pair. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
 
-The realestate-us-sample index isn't configured for image vectorization. If you want to run image queries, create an index as described in [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md). The quickstart relies on text-based sample data, so you must use documents that contain images.
+The hotels-sample index isn't configured for image vectorization. If you want to run image queries, create an index as described in [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md). The quickstart relies on text-based sample data, so you must use documents that contain images.
 
-To run an image query, select or drag an image to the search area, and then select **Search**. Search explorer vectorizes the image and sends the vector to the search engine for query execution. The search engine returns documents that are sufficiently similar to the input image, up to the specified `k` number of results. <!-- This is enabled by [vector search](vector-search-overview.md), which matches documents based on the similarity of their vector representations. -->
+To run an image query, select or drag an image to the search area, and then select **Search**. Search explorer vectorizes the image and sends the vector to the search engine for query execution. The search engine returns documents that are sufficiently similar to the input image, up to the specified `k` number of results.
 
 :::image type="content" source="media/search-get-started-portal-images/image-search.png" alt-text="Screenshot of search results for image search." border="true" lightbox="media/search-get-started-portal-images/image-search.png":::
 
@@ -79,6 +75,8 @@ In Search explorer, POST requests are formulated internally using [Documents - S
 
 For a first look at content, execute an empty search by selecting **Search** with no terms provided. An empty search is useful as a first query because it returns entire documents so that you can review document composition. On an empty search, there's no search score, and documents are returned in arbitrary order (`"@search.score": 1` for all documents). By default, 50 documents are returned per search request.
 
+Add `"count": true` to get the number of matches found in an index. On an empty search, the count is the total number of documents in the index. On a qualified search, it's the number of documents matching the query input. Recall that the service returns the top-50 matches by default, so the count might indicate more matches in the index than what's returned in the results.
+
 Equivalent syntax for an empty search is `*` or `"search": "*"`.
 
    ```json
@@ -90,7 +88,7 @@ Equivalent syntax for an empty search is `*` or `"search": "*"`.
 
    **Results**
 
-   :::image type="content" source="media/search-explorer/search-explorer-example-empty.png" alt-text="Screenshot of unqualified or empty query example." border="true" lightbox="media/search-explorer/search-explorer-example-empty.png":::
+   :::image type="content" source="media/search-explorer/search-explorer-example-count.png" alt-text="Screenshot of a count example." border="true" lightbox="media/search-explorer/search-explorer-example-count.png":::
 
 ### Run a free-text query
 
@@ -102,7 +100,7 @@ Notice that when you provide search criteria, such as query terms or expressions
 
    ```json
    {
-       "search": "Seattle townhouse `Lake Washington` miele OR thermador appliance"
+       "search": "activities `outdoor pool` restaurant OR continental breakfast",
    }
    ```
 
@@ -112,30 +110,15 @@ Notice that when you provide search criteria, such as query terms or expressions
 
    :::image type="content" source="media/search-explorer/search-explorer-example-freetext.png" alt-text="Screenshot of a free text query example." border="true" lightbox="media/search-explorer/search-explorer-example-freetext.png":::
 
-### Count matching documents
-
-Add `"count": true` to get the number of matches found in an index. On an empty search, the count is the total number of documents in the index. On a qualified search, it's the number of documents matching the query input. Recall that the service returns the top-50 matches by default, so the count might indicate more matches in the index than what's returned in the results.
-
-   ```json
-   {
-       "search": "Seattle townhouse `Lake Washington` miele OR thermador appliance",
-       "count": true
-   }
-   ```
-
-   **Results**
-
-   :::image type="content" source="media/search-explorer/search-explorer-example-count.png" alt-text="Screenshot of a count example." border="true" lightbox="media/search-explorer/search-explorer-example-count.png":::
-
 ### Limit fields in search results
 
 Add [`"select"`](search-query-odata-select.md) to limit results to the explicitly named fields for more readable output in **Search explorer**. Only fields attributed as retrievable in the index can show up in results.
 
    ```json
    {
-      "search": "seattle condo",
+      "search": "activities `outdoor pool` restaurant OR continental breakfast",
       "count": true,
-      "select": "listingId, beds, baths, description, street, city, price"
+      "select": "HotelId, HotelName, Tags, Description"
    }
    ```
 
@@ -145,17 +128,17 @@ Add [`"select"`](search-query-odata-select.md) to limit results to the explicitl
 
 ### Return next batch of results
 
-Azure AI Search returns the top-50 matches based on the search rank. To get the next set of matching documents, append `"top": 100` and `"skip": 50` to increase the result set to 100 documents (default is 50, maximum is 1000), skipping the first 50 documents. You can check the document key (`listingID`) to identify a document.
+Azure AI Search returns the top-50 matches based on the search rank. The hotels-sample index only has 50 hotels, so we use a smaller number to illustrate paging. To get the next set of matching documents, append `"top": 20` and `"skip": 10` to increase the result set to 20 documents (default is 50, maximum is 1000), skipping the first 10 documents. You can check the document key (`HotelId`) to identify a document.
 
 Recall that you need to provide search criteria, such as a query term or expression, to get ranked results. Search scores decrease the deeper you reach into search results.
 
    ```json
    {
-      "search": "seattle condo",
+      "search": "activities `outdoor pool` restaurant OR continental breakfast",
       "count": true,
-      "select": "listingId, beds, baths, description, street, city, price",
-      "top": 100,
-      "skip": 50
+      "select": "HotelId, HotelName, Tags, Description",
+      "top": 10,
+      "skip": 20
    }
    ```
 
@@ -165,14 +148,14 @@ Recall that you need to provide search criteria, such as a query term or express
 
 ### Filter expressions (greater than, less than, equal to)
 
-Use the [`filter`](search-query-odata-filter.md) parameter to specify inclusion or exclusion criteria. The field must be attributed as filterable in the index. This example searches for bedrooms greater than three:
+Use the [`filter`](search-query-odata-filter.md) parameter to specify inclusion or exclusion criteria. The field must be attributed as filterable in the index. This example searches for ratings greater than four:
 
    ```json
    {
-       "search": "seattle condo",
+       "search": "activities `outdoor pool` restaurant OR continental breakfast",
        "count": true,
-       "select": "listingId, beds, baths, description",
-       "filter": "beds gt 3"
+       "select": "HotelId, HotelName, Tags, Description, Rating",
+       "filter": "Rating gt 4"
    }
    ```
    
@@ -186,11 +169,11 @@ Add [`orderby`](search-query-odata-orderby.md) to sort results by another field 
 
    ```json
    {
-       "search": "seattle condo",
+       "search": "activities `outdoor pool` restaurant OR continental breakfast",
        "count": true,
-       "select": "listingId, price, beds, baths, description",
-       "filter": "beds gt 3",
-       "orderby": "price asc"
+       "select": "HotelId, HotelName, Tags, Description, Rating, LastRenovationDate",
+       "filter": "Rating gt 4",
+       "orderby": "LastRenovationDate desc"
    }
    ```
 
@@ -206,7 +189,7 @@ In this quickstart, you used **Search explorer** to query an index using the RES
 
 + Search results are composed of all fields attributed as retrievable in the index. Select the **Fields** tab to review attributes.
 
-+ Keyword search, similar to what you might enter in a commercial web browser, is useful for testing an end-user experience. For example, assuming the built-in realestate-us-sample index, you can enter `"Seattle apartments lake washington"`, and then you can use Ctrl-F to find terms within the search results.
++ Keyword search, similar to what you might enter in a commercial web browser, is useful for testing an end-user experience. For example, assuming the hotels-sample index, you can enter `"activities 'outdoor pool' restaurant OR continental breakfast"`, and then you can use Ctrl-F to find terms within the search results.
 
 + Query and filter expressions are articulated in a syntax implemented by Azure AI Search. The default is a [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search), but you can optionally use [full Lucene](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for more powerful queries. [Filter expressions](/rest/api/searchservice/odata-expression-syntax-for-azure-search) are articulated in an OData syntax.
 
