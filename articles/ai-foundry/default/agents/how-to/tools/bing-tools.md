@@ -7,10 +7,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: article
-ms.date: 11/12/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/04/2025
+author: alvinashcraft
+ms.author: aashcraft
 ai-usage: ai-assisted
+zone_pivot_groups: selection-bing-grounding-new
 ---
 
 # Grounding with Bing Search tools for agents
@@ -36,11 +37,13 @@ The grounding process involves several key steps:
 |---------|---------|---------|
 |Grounding with Bing Search     | Gives agents standard access to Bing's search capabilities.        | Scenarios requiring broad knowledge access.        |
 |Grounding with Bing Custom Search (preview)  | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information management.        |
+
 > [!NOTE]
 > See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 ## Code examples
 
+:::zone pivot="python"
 > [!NOTE]
 > - You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
@@ -200,6 +203,13 @@ with project_client:
 ```
 
 ---
+:::zone-end
+
+:::zone pivot="csharp"
+
+For C# usage, see the [Sample for use of Agents with Bing grounding](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample16_Bing_Grounding.md) and [Sample for use of Agents with Bing grounding in streaming scenarios](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample17_Bing_Grounding_Streaming.md) Azure.AI.Projects.OpenAI project examples in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
 
 ## How it works
 
@@ -227,19 +237,16 @@ According to Grounding with Bing's [terms of use and use and display requirement
 
 Grounding with Bing Custom Search is a powerful tool that allows you to select a subspace of the web to limit your Agent’s grounding knowledge. Here you can find a few tips for how to take the maximum advantage of this capability: 
 
-* If you own a public site that you want to include in the search but Bing hasn’t indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
-
-* You'll need at least the contributor role for the Bing Custom Search resource to create a configuration.
-
-* You can only block certain domains and perform a search against the rest of the Web (a competitor's site, for example). 
-
-* Grounding with Bing Custom Search only returns results for domains and webpages that are public and have been indexed by Bing. 
-    * Domain (for example, `https://www.microsoft.com`) 
-    * Domain and path (for example, `https://www.microsoft.com/surface`) 
-    * Webpage (for example, `https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`) 
-
+- If you own a public site that you want to include in the search but Bing hasn’t indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
+- You'll need at least the contributor role for the Bing Custom Search resource to create a configuration.
+- You can only block certain domains and perform a search against the rest of the Web (a competitor's site, for example). 
+- Grounding with Bing Custom Search only returns results for domains and webpages that are public and have been indexed by Bing. 
+  - Domain (for example, `https://www.microsoft.com`) 
+  - Domain and path (for example, `https://www.microsoft.com/surface`) 
+  - Webpage (for example, `https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`) 
 
 ## Supported capabilities and known issues
+
 - The Grounding with Bing Search tool is designed to retrieve real-time information from the web, NOT specific web domains. For retrieving information from specific domains, use the Grounding with Bing Custom Search tool.
 - It's NOT Recommended to **summarize** an entire web page.
 - Within one run, the AI model will evaluate the tool outputs and may decide to invoke the tool again for more information and context. The AI model may also decide which pieces of tool outputs are used to generate the response.

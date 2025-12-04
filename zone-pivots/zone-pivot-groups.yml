@@ -1388,6 +1388,14 @@ groups:
     title: Java
   - id: rest
     title: REST API
+- id: selection-bing-grounding-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 - id: selection-bing-custom-grounding
   title: Selections
   prompt: What would you like to see?
@@ -1454,6 +1462,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest-api
     title: REST API
 # owner: sgilley

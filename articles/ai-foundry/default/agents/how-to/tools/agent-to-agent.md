@@ -7,14 +7,15 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/17/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/04/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-agent-to-agent
 ---
 
 # Agent2Agent (A2A) tool (preview)
+
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
@@ -100,6 +101,12 @@ with (
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
 ```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+For C# usage, see the [Azure OpenAI agents samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples) in the Azure SDK for .NET repository on GitHub.
 
 :::zone-end
 
