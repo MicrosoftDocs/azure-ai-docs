@@ -21,11 +21,16 @@ Microsoft Foundry is updated regularly and we're continually improving and enhan
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
+:::moniker range="foundry"
+
 Issue ID|Category|Title|Description|Workaround|Issues publish date|
 |--------|--------|----|-----------|----------|-------------------|
 | 0001   | Limitation |Network isolation in new Foundry  | End-to-end network isolation is not supported in the new Foundry portal experience. | When you have configured network isolation (disabled public network access, enabled private endpoints, and virtual network-injected Agents), you must use the classic Foundry portal experience, the SDK, or CLI to securely access your Foundry projects.  |December 5, 2025 |
 | 0002   | Limitation | Multiple projects per Foundry resource  | The new Foundry portal experience does not support multiple projects per Foundry resource. Each Foundry resource supports only 1 default project. | None  | December 5, 2025 |
 
+:::moniker-end
+
+<!---
 ## Agent Service
 
 No current active known issues
@@ -47,6 +52,7 @@ No current active known issues
 ### AI Language
 
 No current active known issues
+--->
 
 ### AI Speech
 
