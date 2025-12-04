@@ -31,11 +31,13 @@ Available to US government entities and their partners only. See more informatio
   - Speech to text
     - Real-time transcription
     - Batch transcription
+    - LanguageID and Speaker Diarization
     - Custom speech
   - Text to speech
     - Standard voice
     - Neural voice
   - Speech translation
+    - Real-time speech translation
 - **Unsupported features:**
     - Custom voice
     - Personal voice
@@ -44,6 +46,7 @@ Available to US government entities and their partners only. See more informatio
     - Pronunciation assessment
     - Voice live
     - Live interpreter
+    - Video translation
     - LLM speech
 - **Supported languages:**
   - Same as public clouds. See the list of supported languages [here](language-support.md)
@@ -124,18 +127,21 @@ Available to organizations with a business presence in China. See more informati
   - Speech to text
     - Real-time transcription
     - Batch transcription
+    - LanguageID and Speaker Diarization
     - Custom speech
   - Pronunciation assessment
   - Text to speech
     - Standard voice
     - Neural voice
-  - Speech translator
+  - Speech translation
+    - Real-time speech translation
 - **Unsupported features:**
     - Custom voice
     - Personal voice
     - Text to speech avatar
     - Voice live
     - Live interpreter
+    - Video translation
     - LLM speech
 - **Supported languages:**
   - Same as public clouds. See the list of supported languages [here](language-support.md)
