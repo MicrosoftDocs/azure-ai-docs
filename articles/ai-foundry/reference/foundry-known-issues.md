@@ -23,7 +23,7 @@ Microsoft Foundry is updated regularly and we're continually improving and enhan
 
 :::moniker range="foundry"
 
-## Foundry known issues and limitations
+## General Foundry known issues and limitations
 
 Issue ID|Category|Title|Description|Workaround|Issues publish date|
 |--------|--------|----|-----------|----------|-------------------|
