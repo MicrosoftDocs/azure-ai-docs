@@ -100,7 +100,7 @@ Notice that when you provide search criteria, such as query terms or expressions
 
    ```json
    {
-       "search": "activities `outdoor pool` restaurant OR continental breakfast",
+       "search": "activities `outdoor pool` restaurant OR continental breakfast"
    }
    ```
 
