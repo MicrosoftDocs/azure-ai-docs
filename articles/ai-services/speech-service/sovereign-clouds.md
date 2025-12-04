@@ -31,19 +31,22 @@ Available to US government entities and their partners only. See more informatio
   - Speech to text
     - Real-time transcription
     - Batch transcription
-    - LanguageID and Speaker Diarization
+    - Language ID
+    - Speaker diarization
     - Custom speech
   - Text to speech
     - Standard voice
     - Neural voice
   - Speech translation
     - Real-time speech translation
+  - Keyword recognition
 - **Unsupported features:**
     - Custom voice
     - Personal voice
     - Text to speech avatar
     - Fast transcription
     - Pronunciation assessment
+    - Custom keyword
     - Voice live
     - Live interpreter
     - Video translation
@@ -127,7 +130,8 @@ Available to organizations with a business presence in China. See more informati
   - Speech to text
     - Real-time transcription
     - Batch transcription
-    - LanguageID and Speaker Diarization
+    - Language ID
+    - Speaker diarization
     - Custom speech
   - Pronunciation assessment
   - Text to speech
@@ -135,10 +139,12 @@ Available to organizations with a business presence in China. See more informati
     - Neural voice
   - Speech translation
     - Real-time speech translation
+  - Keyword recognition
 - **Unsupported features:**
     - Custom voice
     - Personal voice
     - Text to speech avatar
+    - Custom keyword
     - Voice live
     - Live interpreter
     - Video translation
