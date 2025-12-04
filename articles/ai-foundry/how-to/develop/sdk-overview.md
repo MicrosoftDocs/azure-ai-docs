@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 11/24/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -26,14 +26,14 @@ This article describes the SDKs and endpoints you can use with your Foundry reso
 The Microsoft Foundry SDK simplifies AI application development on Azure. It lets developers:
 
 - Access models from various providers through one interface
-- Combine models, data, and AI services to build AI-powered applications
+- Combine models, data, and Foundry Tools to build AI-powered applications
 - Evaluate, debug, and improve application quality and safety in development, testing, and production
 
 The Microsoft Foundry SDK integrates with other client libraries and services that work together. 
 
 ## Foundry SDK
 
-Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized AI services. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
+Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized Foundry Tools. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
 
 ::: moniker range="foundry-classic"
 
@@ -355,11 +355,11 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ::: zone-end
 
-After you create a client, use it to access models, run evaluations, and connect to other AI services.
+After you create a client, use it to access models, run evaluations, and connect to other Foundry Tools.
 
 * Using the project endpoint, you can:
     - [Use Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
-    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
     - [Run evaluations in the cloud](cloud-evaluation.md)
     - [Enable tracing for your app](../../concepts/trace.md) 
     - [Fine tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
@@ -375,9 +375,9 @@ To use Foundry Tools, you can use the following SDKs with the endpoints listed.
 
 Choose an endpoint based on your needs:
 
-Use the Foundry Tools endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
+Use the Azure AI Services endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
 
-Foundry Tools endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
+Azure AI Services endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
 
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 

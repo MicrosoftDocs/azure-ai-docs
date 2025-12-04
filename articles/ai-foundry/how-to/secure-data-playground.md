@@ -36,7 +36,7 @@ The following table summarizes the changes made in this article:
 
 ## Prerequisites
 
-- **Azure Subscription**: You need an [Azure subscription](https://azure.microsoft.com/free/ai-services?azure-portal=true) to create resources.
+- **Azure Subscription**: You need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create resources.
 - **Azure Roles**:
     - **Contributor** or **Owner** on the Resource Group to configure networking and resources.
     - **Cognitive Services OpenAI User** on the Azure OpenAI resource to run the verification code.
@@ -79,11 +79,11 @@ Depending on your configuration, you might use a Foundry Tools resource that als
 
 1. To disable public network access, select **Networking**, **Firewalls and virtual networks**, and then set **Allow access from** to **Disabled**. Under **Exceptions**, make sure that **Allow Azure services on the trusted services list** is enabled. Select **Save** to apply the changes.
 
-    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-public-access-disable.png" alt-text="Screenshot of AI services with public network access disabled.":::
+    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-public-access-disable.png" alt-text="Screenshot of Foundry Tools with public network access disabled.":::
 
 1. To create a private endpoint for the AI services resource, select **Networking**, **Private endpoint connections**, and then select **+ Private endpoint**. This private endpoint is used to allow clients in your Azure Virtual Network to securely communicate with the AI services resource. For more information on using private endpoints with Foundry Tools, visit the [Use private endpoints](/azure/ai-services/cognitive-services-virtual-networks#use-private-endpoints) article.
 
-    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-private-endpoint.png" alt-text="Screenshot of the private endpoint section for AI services.":::
+    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-private-endpoint.png" alt-text="Screenshot of the private endpoint section for Foundry Tools.":::
 
     1. From the **Basics** tab, enter a unique name for the private endpoint, network interface, and select the region to create the private endpoint in.
     1. From the **Resource** tab, accept the target subresource of **account**.
@@ -190,7 +190,7 @@ Foundry uses Azure Key Vault to securely store and manage secrets. To grant acce
 Connections from Foundry to Foundry Tools and Azure AI Search should use Microsoft Entra ID for secure access. You create connections from [Foundry](https://ai.azure.com/?cid=learnDocs) instead of the Azure portal.
 
 > [!IMPORTANT]
-> Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection-in-foundry-portal) article.
+> Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection) article.
 
 1. From Foundry, select **Connections**. If you have existing connections to the resources, you can select the connection and then select the **pencil icon** in the **Access details** section to update the connection. Set the **Authentication** field to **Microsoft Entra ID**, then select **Update**.
 1. To create a new connection, select **+ New connection**, then select the resource type. Browse for the resource or enter the required information, then set **Authentication** to **Microsoft Entra ID**. Select **Add connection** to create the connection.

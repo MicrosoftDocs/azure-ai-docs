@@ -1,7 +1,7 @@
 ## Prerequisites
 
 - Read the [When to use Foundry fine-tuning guide](../openai/concepts/fine-tuning-considerations.md).
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project resource. Sign in to the [Foundry portal](https://ai.azure.com) to create one.
 - Fine-tuning access requires the **Azure AI User** role.
 - If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you require [more permissions](../openai/how-to/role-based-access-control.md).
@@ -99,6 +99,7 @@ Select the training tier based on your use case and budget.
 - **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
 - **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+
 
 ### Training and validation data
 

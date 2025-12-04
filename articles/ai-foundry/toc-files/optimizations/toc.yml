@@ -2,9 +2,9 @@ items:
 - name: Prompt engineering
   items:
   - name: Prompt engineering techniques
-    href: ../../openai/concepts/prompt-engineering.md?context=/azure/ai-foundry/context/context
+    href: ../../openai/concepts/prompt-engineering.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Image prompt engineering
-    href: ../../openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-foundry/context/context
+    href: ../../openai/concepts/gpt-4-v-prompt-engineering.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Synthetic Data Generation
     href: ../../concepts/concept-synthetic-data.md
 - name: Fine-tuning
@@ -20,37 +20,37 @@ items:
   - name: Fine-tune Azure OpenAI models
     items:
     - name: Fine-tune Azure OpenAI models
-      href: ../../openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
     - name: When to use Azure OpenAI fine-tuning
-      href: ../../openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/concepts/fine-tuning-considerations.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
     - name: Deploy for testing
       href: ../../openai/how-to/fine-tune-test.md
     - name: Deploy your Azure OpenAI fine-tuned model
-      href: ../../openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning-deploy.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning         
     - name: Vision fine-tuning
-      href: ../../openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning-vision.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
     - name: Reinforcement fine-tuning
-      href: ../../openai/how-to/reinforcement-fine-tuning.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/reinforcement-fine-tuning.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
     - name: Preference fine-tuning
-      href: ../../openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning-direct-preference-optimization.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
     - name: Safety evaluation
-      href: ../../openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning-safety-evaluation.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
     - name: Tool calling
-      href: ../../openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning-functions.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning       
     - name: Fine-tuning cost management
       href: ../../openai/how-to/fine-tuning-cost-management.md
     - name: Weights & Biases integration (preview)
-      href: ../../openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/weights-and-biases-integration.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
     - name: Troubleshooting guidance
-      href: ../../openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
+      href: ../../openai/how-to/fine-tuning-troubleshoot.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
       displayName: finetuning, fine-tuning 
 - name: Build apps with prompt flow
   items:

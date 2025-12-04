@@ -500,7 +500,7 @@ Complete the following steps to use Entra ID groups with Foundry:
 1. Navigate to the resource that requires a role assignment.
    
    1. **Example:** To build Agents, run traces, and more in Foundry, the minimum privilege ‘Azure AI User’ role must be assigned to your user principle. Assign the ‘Azure AI User’ role to your new Microsoft Entra group so all users in your enterprise can build in Foundry.
-   1. **Example:** To use Tracing and Monitoring features in Azure AI Foundry, a ‘Reader’ role assignment on the connected Application Insights resource is required. Assign the ‘Reader’ role to your new Microsoft Entra group so all users in your enterprise can use the Tracing and Monitoring feature.
+   1. **Example:** To use Tracing and Monitoring features in Microsoft Foundry, a ‘Reader’ role assignment on the connected Application Insights resource is required. Assign the ‘Reader’ role to your new Microsoft Entra group so all users in your enterprise can use the Tracing and Monitoring feature.
 
 
 1. Navigate to Access Control (IAM).

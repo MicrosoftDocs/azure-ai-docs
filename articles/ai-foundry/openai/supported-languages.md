@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
 ms.topic: conceptual
-ms.date: 08/31/2025
+ms.date: 11/26/2025
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted

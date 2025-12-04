@@ -1,21 +1,25 @@
 items:
+# Planning and Preparation
 - name: Plan rollout
   href: ../../../concepts/planning.md
 
+# Resource Management
 - name: Manage Foundry resources
   items:
   - name: Create your first resource
-    href: ../../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    href: ../../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
   - name: Create resources using Bicep template
     href: ../../../how-to/create-resource-template.md
   - name: Manage resources using Terraform
     href: ../../../how-to/create-resource-terraform.md
   - name: Recover or purge deleted resources
-    href: ../../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+    href: ../../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
 
+# Project Management
 - name: Create and manage projects
   href: ../../../how-to/create-projects.md
 
+# Connections and Integration
 - name: Connect services and tools
   items: 
   - name: Create a connection
@@ -27,6 +31,7 @@ items:
   - name: Manage Grounding with Bing
     href: ../../agents/how-to/manage-grounding-with-bing.md
 
+# Quota and Limits
 - name: Quota and service limits
   items: 
   - name: Manage quotas for Foundry resources

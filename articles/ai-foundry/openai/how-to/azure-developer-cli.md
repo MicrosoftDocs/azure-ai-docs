@@ -71,7 +71,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
 
 ## Upload data to the storage account
 
-The `azd` template provisioned all of the required resources for you to chat with your own data, but you still need to upload the data files that you want to make available to your AI service:
+The `azd` template provisioned all of the required resources for you to chat with your own data, but you still need to upload the data files that you want to make available to your Foundry Tool:
 
 1. Go to the new storage account in the Azure portal.
 1. On the left menu, select **Storage browser**.

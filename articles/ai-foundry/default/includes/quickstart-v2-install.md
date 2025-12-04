@@ -14,7 +14,7 @@ ms.custom: include
 
 # [Python](#tab/python2)
 
-1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Agents v2 API** (preview).
+1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
 
     ```
     pip install azure-ai-projects --pre
@@ -31,7 +31,7 @@ Follow along below or get the code:
 
 1. Install packages:
 
-    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Agents v2 API** (preview).
+    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API** (preview).
         
     ```bash
     dotnet add package Azure.AI.Agents --prerelease
