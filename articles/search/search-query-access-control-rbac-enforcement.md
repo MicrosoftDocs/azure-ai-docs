@@ -81,7 +81,7 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 
 ## Query example
 
-Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
+Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
 
 ```http
 POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-11-01-preview
