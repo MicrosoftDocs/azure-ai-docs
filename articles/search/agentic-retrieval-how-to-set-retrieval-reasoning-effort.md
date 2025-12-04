@@ -7,21 +7,21 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 12/01/2025
+ms.date: 12/04/2025
 ---
 
 # Set the retrieval reasoning effort
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In agentic retrieval, you can specify the level of large language model (LLM) processing for query planning and answer formulation. Use the `retrievalReasoningEffort` property to set LLM processing levels. You can set this property in a knowledge base or on a retrieve request.
+In agentic retrieval, you can specify the level of large language model (LLM) processing for query planning and answer formulation. Use the `retrievalReasoningEffort` property to set LLM processing levels that affect costs and latency. Extra LLM processing improves relevancy, but it also takes longer and uses billable LLM resources. You can set this property in a knowledge base or on a retrieve request.
 
 Levels of reasoning effort include:
 
 | Level | Effort |
 |-------|--------|
-| `minimal` | No LLM processing. |
-| `low` | Runs a single pass of LLM-based query planning and knowledge source selection. This is the default. |
+| `minimal` | No LLM processing. You provide the query.|
+| `low` | Runs a single pass of LLM-based query planning and knowledge source selection. This is the default. The LLM analyzes the query and breaks it into component parts as needed.|
 | `medium` | Adds deeper search and an enhanced retrieval stack to agentic retrieval to maximize completeness. |
 
 ## Prerequisites
@@ -70,9 +70,25 @@ To override the default on a query-by-query basis, set the property in the retri
 
 | Level | Description | Recommendation | Limits | 
 |-|-|-|-|
-| `minimal` | Disables LLM-based query planning to deliver the lowest cost and latency for agentic retrieval. It issues direct text and vector searches across the knowledge sources listed in the knowledge base, and returns the best-matching passages. Because all knowledge sources are always searched and no query expansion is performed, behavior is predictable and easy to control. It also means the `alwaysQueryKnowledgeSource` property on a retrieve request is ignored.  | Use "minimal" for migrations from the [Search API](/rest/api/searchservice/documents/search-post) or when you want to manage query planning yourself. | `outputMode` must be set to `extractiveData`. <br>[Answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [web knowledge](agentic-knowledge-source-how-to-web.md) aren't supported. |
+| `minimal` | Disables LLM-based query planning to deliver the lowest cost and latency for agentic retrieval. It issues direct text and vector searches across the knowledge sources listed in the knowledge base, and returns the best-matching passages. Because all knowledge sources in the knowledge base are always searched and no query expansion is performed, behavior is predictable and easy to control. It also means the `alwaysQueryKnowledgeSource` property on a retrieve request is ignored.  | Use "minimal" for migrations from the [Search API](/rest/api/searchservice/documents/search-post) or when you want to manage query planning yourself. | `outputMode` must be set to `extractiveData`. <br>[Answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [web knowledge](agentic-knowledge-source-how-to-web.md) aren't supported. |
 | `low` | The default mode of agentic retrieval, running a single pass of LLM-based query planning and knowledge source selection. The agentic retrieval engine generates subqueries and fans them out to the selected knowledge sources, then merges the results. You can enable answer synthesis to produce a grounded natural-language response with inline citations. | Use "low" when you want a balance between minimal latency and deeper processing. | 5,000 answer tokens. <br>Maximum three subqueries from a maximum of three knowledge sources. <br>Maximum of 50 documents for semantic ranking, and 10 documents if the semantic ranker uses L3 classification. |
-| `medium` | Adds deeper search and an enhanced retrieval stack to agentic retrieval to maximize completeness. After the first search is performed, a [high-precision semantic classifier](search-relevance-overview.md) evaluates the retrieved documents to determined whether further processing and L3 ranking is required. If the quality of the retrieved results on the first pass is insufficient to answer the query, a follow-up iteration is performed using a revised query plan. This revised query plan takes the previous results into account and iterates by fine-tuning queries, broadening terms, or adding other knowledge sources such as the web. It also increases resource limits compared to low and minimal effort. | Use "medium" to maximize the utility of LLM-assisted knowledge retrieval. <br><br>Medium isn't available in all agentic retrieval regions.| 10,000 answer tokens. <br>Maximum of five subqueries from a maximum of five knowledge sources. <br>Maximum of 50 documents for semantic ranking, and 20 documents if the semantic ranker uses L3 classification.  |
+| `medium` | Adds deeper search and an enhanced retrieval stack to agentic retrieval to maximize completeness. After the first search is performed, a [high-precision semantic classifier](search-relevance-overview.md) evaluates the retrieved documents to determined whether further processing and L3 ranking is required. If the initial results from the first pass are insufficiently relevant to the query, a follow-up iteration is performed using a revised query plan. This revised query plan takes the previous results into account and iterates by fine-tuning queries, broadening terms, or adding other knowledge sources such as the web. It also increases resource limits compared to low and minimal effort. This reasoning level optimizes for relevance rather than exhaustive recall. | Use "medium" to maximize the utility of LLM-assisted knowledge retrieval. <br><br>Medium isn't available in all agentic retrieval regions. See the list in the next section for available regions. 10,000 answer tokens. <br>Maximum of five subqueries from a maximum of five knowledge sources. <br>Maximum of 50 documents for semantic ranking, and 20 documents if the semantic ranker uses L3 classification.  |
+
+### Medium retrieval and iterative search
+
+A medium retrieval reasoning effort provides iterative search if initial results aren't sufficiently relevant. An extra *semantic classifier model* is called to determine if a second iteration is necessary.
+
+The semantic classifier performs the following:
+
++ Recognizes when there's enough context to answer the question.
+
++ Retries on insufficient results, using existing information for context. New queries might drill down for more focused detail, or broaden the search. The activity log in the response shows the generated queries used for a more comprehensive answer.
+
++ Rescores using L3 classification. The range is identical to L2 ranking, an absolute range of zero through 4.0.
+
+There's only one retry. Each iteration adds latency and cost, so the system constrains retry to one pass. A second iteration adds input tokens to the query pipeline, which adds to the overall billable input token count.
+
+Iteration can reuse or choose different sources. The second pass selects the most promising knowledge resource to provide the missing information.
 
 ### Regions supporting medium retrieval reasoning effort
 
