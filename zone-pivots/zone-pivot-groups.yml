@@ -1271,6 +1271,14 @@ groups:
     title: Python
   - id: csharp
     title: C#
+- id: selection-computer-use
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 # owner: aahi
 - id: selection-web-search
   title: Selections
