@@ -40,8 +40,6 @@ Using prebuilt images helps in several ways:
 
 Framework version | CPU/GPU | Pre-installed packages | MCR path
 --- | --- | --- | ---
-NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cpu-inference:latest`
-NA | GPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cuda11.8-gpu-inference:latest`
 NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-py312-inference:latest`
 
 > [!NOTE]
