@@ -114,7 +114,7 @@ You’ll use the Azure CLI to create a connection of type **model gateway**.
 
 After creating the connection, deploy a prompt agent that uses the model gateway connection. 
 
-1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/sample_agents_basics.py) to run a sample agent with the BYO AI gateway feature. 
+1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents) to run a sample agent with the BYO AI gateway feature. 
 
 1. Use the Agent SDK to deploy the agent. Update the env variable so that the model name is `[connection-name]/[model-name]`. For example: `AZURE_AI_MODEL_DEPLOYMENT_NAME=my-apim-deployment-api-v2/gpt-4o `
  
