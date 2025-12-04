@@ -209,7 +209,7 @@ Putting it all together, you'd pay about $3.30 for agentic retrieval in Azure AI
 
 #### Tips for controlling costs
 
-+ Review the activity log sto find out what queries were issued to which sources and the parameters used. You can reissue those queries against your indexes and use a public tokenizer to estimate tokens and compare to API-reported usage. Precision reconstruction of a query or response isn't guaranteed however. Variables such as the type of knowledge source, such as web data or remote SharePoint that's predicated on a user identity, can affect query reproduction.
++ Review the activity log in the response to find out what queries were issued to which sources and the parameters used. You can reissue those queries against your indexes and use a public tokenizer to estimate tokens and compare to API-reported usage. Precise reconstruction of a query or response isn't guaranteed however. Factors include the type of knowledge source, such as public web data or a remote SharePoint knowledge source that's predicated on a user identity, which can affect query reproduction.
 
 + Reduce the number of knowledge sources (indexes); consolidating content can lower fan-out and token volume. 
 

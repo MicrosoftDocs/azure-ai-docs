@@ -8,6 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 12/04/2025
+ms.custom: references_regions
 ---
 
 # Set the retrieval reasoning effort
