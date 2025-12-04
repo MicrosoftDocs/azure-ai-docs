@@ -6,8 +6,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
 ms.date: 12/04/2025
+ai-usage: ai-assisted
 ---
-
 
 [Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others):
 
@@ -30,3 +30,22 @@ ms.date: 12/04/2025
 - **Claude-Opus-4-1**: Frontier reasoning for the most complex problem-solving.
 - **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
 - **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
+ 
+You can see a full list of the supported models in the Foundry portal.
+
+::: moniker range="foundry-classic"
+
+1. Go to the Foundry portal.
+1. Go to the **Model catalog**.
+1. Filter the models by **Capabilities** and select **Agent supported**.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Go to the Foundry portal.
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. Open the **Capabilities** dropdown and select the **Agent supported** filter.
+
+::: moniker-end
+
