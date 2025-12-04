@@ -19,7 +19,7 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Model router for Microsoft Foundry is a deployable AI model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. You deploy model router like any other Foundry model. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. Thus, it delivers high performance while saving on compute costs where possible, all packaged as a single model deployment.
+Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM) based on the complexity, reasoning, task type, and other attributes of the prompts. You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsivness, while maintaining comparable quality, all packaged as a single model deployment.
 
 > [!NOTE]
 > You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if they're selected for routing.
@@ -30,15 +30,15 @@ Model router for Microsoft Foundry is a deployable AI model that is trained to s
 ::: moniker-end
 
 ## How model router works
+As a trained language model, model router applies intelligence to analyze your prompts in real time and determine the most suitable underlying LLMs for routing. It does not store your prompts. Moreover, it routes to only eligible models based on your access and deployment types, honoring data zone boundaries. 
 
-Model router is a trained language model that analyzes your prompts in real time to decide on the most suitable large language model (LLM) to route to based on the complexity, reasoning, task type, and other attributes of the prompts. It does not store your prompts. Moreover, it routes to only eligible models based on your access and deployment types, honoring data zone boundaries. 
 - In the default `Balanced` mode, it considers all underlying models within a small quality range, for example 1-2% compared with the highest quality model for that prompt, and picks the most cost-effective model.
 - When the `Cost` routing mode is selected, it considers a larger quality band, for example 5-6% range compared with the highest quality model for that prompt, and chooses the most cost-effective model. 
 - When the `Quality` routing mode is selected, it picks the highest quality rated model for the prompt, ignoring the cost.
 
 ## Why use model router?
 
-Model router intelligently selects the best underlying model for a given prompt to optimize costs while maintaining quality. Smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, and non-reasoning models are used otherwise. Model router provides a single deployment and chat experience that combines the best features from all of the underlying chat models.
+Model router optimizes costs and latencies while maintaining comparable quality. Smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, and non-reasoning models are used otherwise. Model router provides a single deployment and chat experience that combines the best features from all of the underlying chat models.
 
 ::: moniker range="foundry"
 
