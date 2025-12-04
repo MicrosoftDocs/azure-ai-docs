@@ -27,19 +27,26 @@ Available to US government entities and their partners only. See more informatio
 - **Available pricing tiers:**
   - Free (F0) and Standard (S0). See more details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)
 - **Supported features:**
+  - [Speech Studio](https://speech.azure.us/)
   - Speech to text
-    - Custom speech (Acoustic Model (AM) and Language Model (LM) adaptation)
-      - [Speech Studio](https://speech.azure.us/)
+    - Real-time transcription
+    - Batch transcription
+    - Custom speech
   - Text to speech
     - Standard voice
     - Neural voice
   - Speech translation
 - **Unsupported features:**
-  - Custom voice
-  - Personal voice
-  - Text to speech avatar
+    - Custom voice
+    - Personal voice
+    - Text to speech avatar
+    - Fast transcription
+    - Pronunciation assessment
+    - Voice live
+    - Live interpreter
+    - LLM speech
 - **Supported languages:**
-  - See the list of supported languages [here](language-support.md)
+  - Same as public clouds. See the list of supported languages [here](language-support.md)
 
 ### Endpoint information
 
@@ -113,20 +120,25 @@ Available to organizations with a business presence in China. See more informati
 - **Available pricing tiers:**
   - Free (F0) and Standard (S0). See more details [here](https://www.azure.cn/pricing/details/cognitive-services/index.html)
 - **Supported features:**
+  - [Speech Studio](https://speech.azure.cn/)
   - Speech to text
-    - Custom speech (Acoustic Model (AM) and Language Model (LM) adaptation)
-      - [Speech Studio](https://speech.azure.cn/)
-    - [Pronunciation assessment](how-to-pronunciation-assessment.md)
+    - Real-time transcription
+    - Batch transcription
+    - Custom speech
+  - Pronunciation assessment
   - Text to speech
     - Standard voice
     - Neural voice
   - Speech translator
 - **Unsupported features:**
-  - Custom voice
-  - Personal voice
-  - Text to speech avatar
+    - Custom voice
+    - Personal voice
+    - Text to speech avatar
+    - Voice live
+    - Live interpreter
+    - LLM speech
 - **Supported languages:**
-  - See the list of supported languages [here](language-support.md)
+  - Same as public clouds. See the list of supported languages [here](language-support.md)
 
 ### Endpoint information
 
