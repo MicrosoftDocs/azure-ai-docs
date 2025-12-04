@@ -165,7 +165,7 @@ When each training epoch completes a checkpoint is generated. Checkpoints can be
 A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through REST API.
 
 > [!NOTE]
-> During the training you can view the metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel the model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state. Pausing is only support for Open AI models.
+> During the training you can view the metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel the model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state. Pausing is only supported for Open AI models.
 
 ## Deploy the fine-tuned model
 
