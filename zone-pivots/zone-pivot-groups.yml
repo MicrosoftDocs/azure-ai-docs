@@ -1248,7 +1248,7 @@ groups:
     title: Foundry portal
   - id: python
     title: Python
-# owner: aahi
+# owner: aashcraft
 - id: selection-code-interpreter
   title: Selections
   prompt: What would you like to see?
@@ -1263,6 +1263,14 @@ groups:
     title: Java 
   - id: rest-api
     title: REST API
+- id: selection-code-interpreter-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
 # owner: aahi
 - id: selection-web-search
   title: Selections
