@@ -152,6 +152,10 @@ The following lists of Foundry Models are also available for your agents to use.
 
 [!INCLUDE [agent-service-models-support-list](../includes/agent-service-models-support-list.md)]
 
+## View all agent-supported models in the Foundry portal
+
+[!INCLUDE [agent-service-view-models-in portal](../includes/agent-service-view-models-in-portal.md)]
+
 ## Related content
 
 - [Create a new agent](../quickstart.md)

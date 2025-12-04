@@ -31,21 +31,4 @@ ai-usage: ai-assisted
 - **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
 - **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
  
-To see a full list of the supported models in the Foundry portal:
-
-::: moniker range="foundry-classic"
-
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-1. Go to the **Model catalog**.
-1. Filter the models by **Capabilities** and select **Agent supported**.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. Open the **Capabilities** dropdown and select the **Agent supported** filter.
-
-::: moniker-end
 

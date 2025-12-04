@@ -5,7 +5,7 @@ description: Learn how to prompt Microsoft Foundry Models to generate text, usin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/17/2025
+ms.date: 12/04/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
@@ -202,6 +202,14 @@ curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_
 ---
 
 ## Supported Foundry Models
+
+A selection of Foundry Models are supported for use with the Responses API.
+
+#### View supported models in the Foundry portal
+
+[!INCLUDE [agent-service-view-models-in-portal](../../agents/includes/agent-service-view-models-in-portal.md)]
+
+#### List of supported models
 
 This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
 
