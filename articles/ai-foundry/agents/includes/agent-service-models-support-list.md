@@ -35,7 +35,7 @@ You can see a full list of the supported models in the Foundry portal.
 
 ::: moniker range="foundry-classic"
 
-1. Go to the Foundry portal.
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. Go to the **Model catalog**.
 1. Filter the models by **Capabilities** and select **Agent supported**.
 
@@ -43,7 +43,7 @@ You can see a full list of the supported models in the Foundry portal.
 
 ::: moniker range="foundry"
 
-1. Go to the Foundry portal.
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
 1. Open the **Capabilities** dropdown and select the **Agent supported** filter.
 
