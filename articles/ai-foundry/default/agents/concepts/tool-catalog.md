@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # Discover tools in the Foundry Tools (preview)
 
-[!INCLUDE [version-banner](../../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../../includes/capability-new-portal.md)]
 
 The Foundry Tools is a central hub for discovering tools to extend your AI agents
 
