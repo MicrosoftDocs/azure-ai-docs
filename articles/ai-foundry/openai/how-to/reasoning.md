@@ -978,7 +978,6 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 The following are currently unsupported with reasoning models:
 
 - `temperature`, `top_p`, `presence_penalty`, `frequency_penalty`, `logprobs`, `top_logprobs`, `logit_bias`, `max_tokens`
-- The `apply_patch` and `shell` tools are currently not supported. Support for these tools with gpt-5.1 series models is coming soon.
 
 ## Markdown output
 

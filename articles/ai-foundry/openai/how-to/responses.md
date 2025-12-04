@@ -87,9 +87,9 @@ Not every model is available in the regions supported by the responses API. Chec
 
 > [!NOTE]
 > Not currently supported:
-> - The web search tool
-> - Image generation using multi-turn editing and streaming - coming soon
-> - Images can't be uploaded as a file and then referenced as input. Coming soon.
+> - Compaction with `/responses/compact` 
+> - Image generation using multi-turn editing and streaming.
+> - Images can't be uploaded as a file and then referenced as input.
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
