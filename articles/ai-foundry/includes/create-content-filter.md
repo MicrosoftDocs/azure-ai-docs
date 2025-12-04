@@ -45,9 +45,8 @@ Follow these steps to create a content filter:
     Content will be annotated by each category and blocked according to the threshold. For violent content, hate content, sexual content, and self-harm content category, adjust the threshold to block harmful content with equal or higher severity levels.
 
     :::image type="content" source="../media/content-safety/content-filter/output-filter.png" alt-text="Screenshot of output filter screen.":::
-1. Optionally, on the **Deployment** page, you can associate the content filter with a deployment. If a selected deployment already has a filter attached, you must confirm that you want to replace it. You can also associate the content filter with a deployment later. Select **Create**.
-
-    :::image type="content" source="../media/content-safety/content-filter/create-content-filter-deployment.png" alt-text="Screenshot of the option to select a deployment when creating a content filter." lightbox="../media/content-safety/content-filter/create-content-filter-deployment.png":::
+   
+1. Optionally, on the **Connection** page, you can associate the content filter with a deployment. If a selected deployment already has a filter attached, you must confirm that you want to replace it. You can also associate the content filter with a deployment later. Select **Create**.
 
     Content filtering configurations are created at the hub level in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Learn more about configurability in the [Azure OpenAI in Foundry Models documentation](/azure/ai-foundry/openai/how-to/content-filters).
 
