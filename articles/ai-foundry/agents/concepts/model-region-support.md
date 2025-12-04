@@ -8,12 +8,14 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 12/04/2025
 ms.custom: azure-ai-agents, references_regions
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Supported models in Foundry Agent Service
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 In this article, you learn about the diverse set of Azure OpenAI models that agents use in Microsoft Foundry Agent Service. These models have various capabilities and price points.
 
