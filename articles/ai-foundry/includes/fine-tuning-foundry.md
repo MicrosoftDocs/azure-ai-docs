@@ -138,6 +138,9 @@ The following hyperparameters are available:
 
 To save time, you can enable auto-deployment for your resulting model. If training finishes successfully, the model is deployed by using the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix you might have provided earlier.
 
+> [!NOTE]
+> Auto-deployment is only supported for Open AI models.
+
 ## Monitor and analyze the results
 
 After you submit your fine-tuning job, you will see a table view listing all of your fine-tuning job submissions. Click into the **job details** page to see more information about the individual results.
@@ -162,7 +165,7 @@ When each training epoch completes a checkpoint is generated. Checkpoints can be
 A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through REST API.
 
 > [!NOTE]
-> During the training you can view the metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel the model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+> During the training you can view the metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel the model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state. Pausing is only support for Open AI models.
 
 ## Deploy the fine-tuned model
 
@@ -182,6 +185,9 @@ After your fine-tuned model deploys, you can use it like any other deployed mode
 Once you have created a fine-tuned model you may wish to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [creating a fine-tuned model](#creating-a-fine-tuned-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
+
+> [!NOTE]
+> Continuous fine-tuning is only supported for Open AI models.
 
 ## Clean up your resources
 
