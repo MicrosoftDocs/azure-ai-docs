@@ -49,7 +49,7 @@ For more, see [What is Azure Policy?](/azure/governance/policy/overview).
 3. **Add policy rule**
    - Enter the rule in [JSON format](/azure/governance/policy/concepts/definition-structure-policy-rule). For example, to allow only approved connection categories:
 
-     :::code language="json" source="~/foundry-samples-main/samples/infrastructure-setup/05-custom-policy-definitions/deny-disallowed-connections.json"
+     :::code language="json" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json"
 
 4. **Assign the policy**
    - After saving, assign the policy to the desired scope (subscription, resource group, or hub).
