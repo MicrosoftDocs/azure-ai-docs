@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/25/2025
+ms.date: 12/04/2025
 ms.update-cycle: 365-days
 ---
 
@@ -35,6 +35,9 @@ The Management REST API is available in stable and preview versions. Be sure to 
 > * [Delete a search service](#delete-a-search-service)
 
 All of the Management REST APIs have examples. If a task isn't covered in this article, see the [API reference](/rest/api/searchmanagement/) instead.
+
+> [!TIP]
+> If you use CURL to call the Management REST API, make sure you set a content type header to application/json: `-H "Content-Type: application/json"`. Alternatively, you can use the `--JSON` flag if you want to embed the JSON.
 
 ## Prerequisites
 
