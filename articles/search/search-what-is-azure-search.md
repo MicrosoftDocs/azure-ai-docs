@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 12/03/2025
+ms.date: 12/04/2025
 ---
 
 # What is Azure AI Search?
@@ -23,7 +23,7 @@ When you create a search service, you unlock the following capabilities:
 
 + Two engines: [classic search](#what-is-classic-search) for single requests and [agentic retrieval](#what-is-agentic-retrieval) for parallel, iterative, LLM-assisted search.
 + [Full-text](search-lucene-query-architecture.md), [vector](vector-search-overview.md), [hybrid](hybrid-search-overview.md), and [multimodal](multimodal-search-overview.md) queries over local (indexed) and remote content.
-+ AI enrichment to chunk, vectorize, and otherwise transform raw content into agent-ready artifacts.
++ AI enrichment to chunk, vectorize, and otherwise make raw content searchable.
 + Relevance tuning to improve intent matching and result quality.
 + Azure scale, security, monitoring, and compliance.
 + Azure integrations with supported data platforms, Azure OpenAI, and Microsoft Foundry.
@@ -47,17 +47,17 @@ You can use Azure AI Search for regular search needs (like searching through cat
 
 + Ground agents and chatbots in proprietary, enterprise, or web data for accurate, context-aware responses.
 
-+ Access data from Azure Blob Storage, Azure Cosmos DB, Microsoft OneLake, and other supported data sources. Choose indexed or remote access based on your freshness, latency, and compliance needs.
++ Access data from Azure Blob Storage, Azure Cosmos DB, Microsoft SharePoint, Microsoft OneLake, and other supported data sources. Choose indexed or remote access based on your freshness, latency, and compliance needs.
 
 + Enrich and structure content at indexing or query time with skills that perform chunking, embedding, and LLM-assisted transformations.
 
-+ Combine traditional full-text search with next-generation vector search (known as hybrid search) to balance precision and semantic recall.
++ Combine full-text search with vector search (hybrid search) to balance precision and recall.
 
-+ Query mixed media content, including text, images, video, and audio.
++ Query content containing both text and images in a single multimodal pipeline.
 
-+ Tune relevance with semantic ranking, scoring profiles, synonyms, faceting, autocomplete, fuzzy matching, and filters (including geo-spatial).
++ Easily implement search-related features: relevance tuning, faceted navigation, filters (including geo-spatial search), synonym mapping, and autocomplete.
 
-+ Provide enterprise security, access control, and compliance through Microsoft Entra, Azure Private Link, document-level access control, and role-based access control (RBAC).
++ Provide enterprise security, access control, and compliance through Microsoft Entra, Azure Private Link, document-level access control, and role-based access.
 
 + Scale and operate in production with Azure reliability, monitoring and diagnostics (logs, metrics, and alerts), and REST API or SDK tooling for automation.
 
@@ -75,7 +75,7 @@ This architecture has two primary workloads:
 
 [Indexing](search-what-is-an-index.md) loads content into an index and makes it searchable. Internally, inbound text is tokenized and stored in inverted indexes, while inbound vectors are stored in vector indexes. Azure AI Search can only index JSON documents. You can use the [push method](search-what-is-data-import.md#pushing-data-to-an-index) to upload JSON documents directly or the [pull method](search-what-is-data-import.md#pulling-data-into-an-index) (indexer or logic app workflow) to retrieve and serialize data into JSON.
 
-During indexing, you can use [AI enrichment](cognitive-search-concept-intro.md) to chunk text, generate vectors, and apply other transformations that create structure where none previously existed. Azure AI Search then serializes the enriched output into JSON documents and ingests them into the index.
+During indexing, you can use [AI enrichment](cognitive-search-concept-intro.md) to chunk text, generate vectors, and apply other transformations that create structure and content. Azure AI Search then serializes the enriched output into JSON documents and ingests them into the index.
 
 #### [Querying](#tab/querying)
 
@@ -107,7 +107,7 @@ Classic search and agentic retrieval are complementary modes of information retr
 | Aspect | Classic search | Agentic retrieval |
 |---|---|---|
 | Search corpus | [Search index](search-what-is-an-index.md) | [Knowledge source](agentic-knowledge-source-overview.md) |
-| Search targets | One index defined by a schema | One or more knowledge sources (indexed or remote) |
+| Search target | One index defined by a schema | A knowledge base pointing to one or more knowledge sources |
 | Query plan | No plan, just a request | LLM-assisted or user-provided plan |
 | Query request | Search documents in an index | Retrieve from knowledge sources |
 | Response | Flattened search results based on schema | LLM-formulated answer or raw source data, activity log, references |
@@ -122,7 +122,7 @@ The portal is useful for service administration and content management, with too
 
 ### Choose your path
 
-Use this checklist to make key decisions before you get started:
+Before you get started, use this checklist to make key decisions:
 
 + **Choose a search engine:** If you're not using an agent or chatbot, classic search can meet most app needs, with lower costs and complexity than LLM integration. If you want the benefits of a knowledge base and multiple knowledge sources without full LLM orchestration, consider agentic retrieval with the minimal [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
 
@@ -138,7 +138,7 @@ Use this checklist to make key decisions before you get started:
 
 ### [Quickstarts](#tab/quickstarts)
 
-We maintain quickstarts that span scenarios to help you get started:
+We maintain quickstarts that span various end-to-end search scenarios:
 
 + Quickstart: Agentic retrieval ([portal](get-started-portal-agentic-retrieval.md) or [programmatic](search-get-started-agentic-retrieval.md))
 + Quickstart: Full-text search ([portal](search-get-started-portal.md) or [programmatic](search-get-started-text.md))
