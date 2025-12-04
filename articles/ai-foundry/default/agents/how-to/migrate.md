@@ -1,6 +1,6 @@
 ---
 title: "How to migrate to the new agent service"
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to migrate to the latest agents API in the Microsoft Foundry.
 author: aahill
 ms.author: aahi

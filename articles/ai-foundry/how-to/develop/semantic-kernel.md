@@ -17,6 +17,8 @@ ms.service: azure-ai-foundry
 
 In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]

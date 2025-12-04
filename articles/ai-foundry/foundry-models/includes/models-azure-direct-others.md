@@ -122,12 +122,13 @@ See [this model collection in Foundry portal](https://ai.azure.com/explore/model
 
 ## Microsoft models sold directly by Azure
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. 
+Microsoft models include various model groups such as Model Router, MAI models, Phi models, healthcare AI models, and more. See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
 
 ::: moniker range="foundry-classic"
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en`  |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) | Foundry, Hub-based |
 | [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |- Global standard (all regions) | Foundry, Hub-based |
 
 ::: moniker-end
@@ -136,37 +137,18 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en` |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) |
 | `MAI-DS-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |- Global standard (all regions) |
 
 ::: moniker-end
 
-See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
+<sup>1</sup> **Model router version** `2025-11-18`. Earlier versions (`2025-08-07` and `2025-05-19`) are also available. 
 
-### Model router
+<sup>2</sup> **Max output tokens** varies for underlying models in the model router. For example, 32,768 (`GPT-4.1 series`), 100,000 (`o4-mini`), 128,000 (`gpt-5 reasoning models`), and 16,384 (`gpt-5-chat`).
 
-Model router is a large language model that intelligently selects from a set of underlying chat models to respond to a given prompt. For more information, see the [Model router overview](/azure/ai-foundry/openai/how-to/model-router).
+<sup>3</sup> Larger **context windows** are compatible with *some* of the underlying models of the Model Router. That means an API call with a larger context succeeds only if the prompt gets routed to one of such models. Otherwise, the call fails.
 
-#### Region availability
-
-| Model | Region |
-|---|---|
-| `model-router` (2025-08-07) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
-| `model-router` (2025-05-19) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
-| `model-router` (2025-11-18) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
-
-*Billing for Data Zone Standard model router deployments will begin no earlier than November 1, 2025.*
-
-#### Capabilities
-
-|  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
-|  --- |  :--- |:--- |:---|:---: |
-| `model-router` (2025-08-07) | A model that intelligently selects from a set of underlying models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`)</br> 128,000 (`gpt-5 reasoning models`) </br> 16,384 (`gpt-5-chat`) | - |
-| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`) | May 31, 2024 |
-| `model-router` (2025-11-18) | A model that intelligently selects from a configurable set of underlying chat models to respond to a given prompt. | TBD | TBD | TBD |
-
-Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
-
-
+<sup>4</sup> Billing for **Data Zone Standard** model router deployments begins no earlier than November 1, 2025.
 
 ## Mistral models sold directly by Azure
 

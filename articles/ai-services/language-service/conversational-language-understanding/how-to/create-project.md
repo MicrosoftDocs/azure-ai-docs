@@ -60,7 +60,7 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
    > * **Advanced training** includes longer training durations and is supported for English, other languages, and multilingual projects.
    > * For more information, *see* [Training modes](train-model.md#training-modes).
 
-1. Once the task creation is complete, select the task from the AI Service fine-tuning window to arrive at the **Getting started with fine-tuning** page.
+1. Once the task creation is complete, select the task from the Foundry Tool fine-tuning window to arrive at the **Getting started with fine-tuning** page.
 
    :::image type="content" source="../media/create-project/getting-started-fine-tuning.png" alt-text="Screenshot of the getting started with fine-tuning page in the Foundry." lightbox="../media/create-project/getting-started-fine-tuning.png":::
 

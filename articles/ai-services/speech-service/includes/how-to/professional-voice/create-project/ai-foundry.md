@@ -40,7 +40,7 @@ After fine-tuning, you can access your custom voice models and deployments from 
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**. You can view the status of your fine-tuning tasks and the models that were created.
     
-    :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to view fine-tuned AI services models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
+    :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to view fine-tuned Foundry Tools models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
 
 ## Next steps
 

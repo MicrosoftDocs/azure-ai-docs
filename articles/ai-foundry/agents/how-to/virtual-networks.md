@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 12/04/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -16,6 +16,8 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 # Create a new network-secured environment with user-managed identity
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 

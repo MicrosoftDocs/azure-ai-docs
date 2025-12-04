@@ -1,9 +1,9 @@
 ---
-title: "Discover tools in the Microsoft Foundry Tools"
+title: "Discover tools in the Foundry Tools"
 description: "Learn about the Foundry Tools in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
-ms.date: 11/18/2025
+ms.date: 12/04/2025
 ms.manager: nitinme
 ms.topic: conceptual
 ms.service: azure-ai-foundry
@@ -11,9 +11,9 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Discover tools in the Microsoft Foundry Tools (preview)
+# Discover tools in the Foundry Tools (preview)
 
-The Microsoft Foundry Tools is a central hub for discovering tools to extend your AI agents
+The Foundry Tools is a central hub for discovering tools to extend your AI agents
 
 The Foundry Tools enables you to: 
 

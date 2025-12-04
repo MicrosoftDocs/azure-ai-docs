@@ -79,11 +79,11 @@ Depending on your configuration, you might use a Foundry Tools resource that als
 
 1. To disable public network access, select **Networking**, **Firewalls and virtual networks**, and then set **Allow access from** to **Disabled**. Under **Exceptions**, make sure that **Allow Azure services on the trusted services list** is enabled. Select **Save** to apply the changes.
 
-    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-public-access-disable.png" alt-text="Screenshot of AI services with public network access disabled.":::
+    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-public-access-disable.png" alt-text="Screenshot of Foundry Tools with public network access disabled.":::
 
 1. To create a private endpoint for the AI services resource, select **Networking**, **Private endpoint connections**, and then select **+ Private endpoint**. This private endpoint is used to allow clients in your Azure Virtual Network to securely communicate with the AI services resource. For more information on using private endpoints with Foundry Tools, visit the [Use private endpoints](/azure/ai-services/cognitive-services-virtual-networks#use-private-endpoints) article.
 
-    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-private-endpoint.png" alt-text="Screenshot of the private endpoint section for AI services.":::
+    :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-private-endpoint.png" alt-text="Screenshot of the private endpoint section for Foundry Tools.":::
 
     1. From the **Basics** tab, enter a unique name for the private endpoint, network interface, and select the region to create the private endpoint in.
     1. From the **Resource** tab, accept the target subresource of **account**.

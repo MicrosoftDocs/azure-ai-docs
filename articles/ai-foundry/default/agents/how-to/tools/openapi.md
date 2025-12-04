@@ -164,7 +164,7 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 1. Create a connection to store your API key.
 
-    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and select the AI Project. Go to build -> agents. 
+    1. Go to the [Microsoft Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and select the AI Project. Go to build -> agents. 
 
     1. Select **OpenAPI** in tools -> custom. 
         >[!NOTE]
@@ -186,11 +186,11 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 ## Authenticating with managed identity (Microsoft Entra ID)
 
-[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. Microsoft Entra ID allows you to authenticate your APIs with additional security without the need to pass in API keys. Once you have set up managed identity authentication, it will authenticate through the Azure AI Service your agent is using. 
+[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. Microsoft Entra ID allows you to authenticate your APIs with additional security without the need to pass in API keys. Once you have set up managed identity authentication, it will authenticate through the Foundry Tool your agent is using. 
 
 To set up authenticating with Managed Identity:
 
-1. Ensure that your Azure AI Foundry resource has system assigned managed identity enabled.
+1. Ensure that your Foundry resource has system assigned managed identity enabled.
 
     :::image type="content" source="../../../../agents/media/tools/managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../../../agents/media/tools/managed-identity-portal.png":::
 
@@ -211,4 +211,4 @@ To set up authenticating with Managed Identity:
 
     1. Click **Finish**.
 
-1. Once the setup is done, you can continue by using the tool through the Azure AI Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.

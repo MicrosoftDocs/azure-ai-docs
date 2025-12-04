@@ -8,12 +8,14 @@ ms.author: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
-ms.date: 05/05/2025
+ms.date: 12/04/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Built-in enterprise readiness with standard agent setup 
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Standard Agent Setup offers enterprise-grade security, compliance, and control. This configuration uses customer-managed, single-tenant resources to store agent state and ensures all data remains within your control.  
 
@@ -93,7 +95,7 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 
 #### Use an existing Azure OpenAI resource
 
-1. Follow the steps in basic agent setup to get the AI Services account resource ID.
+1. Follow the steps in basic agent setup to get the Foundry Tools account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
     ```console
