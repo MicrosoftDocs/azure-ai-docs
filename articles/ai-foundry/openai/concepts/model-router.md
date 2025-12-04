@@ -22,7 +22,7 @@ monikerRange: 'foundry-classic || foundry'
 Model router for Microsoft Foundry is a deployable AI model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. You deploy model router like any other Foundry model. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. Thus, it delivers high performance while saving on compute costs where possible, all packaged as a single model deployment.
 
 > [!NOTE]
-> You do not need to deploy the supported LLMs for use with model router with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if selected for routing.
+> You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if they're selected for routing.
 
 ::: moniker range="foundry-classic"
 > [!TIP]
