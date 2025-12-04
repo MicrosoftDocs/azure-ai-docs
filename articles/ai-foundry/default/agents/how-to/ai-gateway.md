@@ -32,11 +32,11 @@ View the diagram to understand the potential flows from the Agent service to you
 - An Azure subscription with access to Microsoft Foundry. Create a Foundry resource in your subscription. 
 - Installed **Azure CLI** and **Agent SDK**.
 - Access credentials for your enterprise AI gateway (for example API Management or another non-Azure AI model gateway).
-- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/apim-and-modelgateway-integration-guide.md)
 
 ## Connections for AI gateway
 
-Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/apim-and-modelgateway-integration-guide.md)
 
 ## API Management (APIM) connection 
 APIM connections are specialized model gateway connections designed for Azure API management scenarios. These connections provide intelligent defaults and follow APIM standard conventions while integrating with the broader model gateway ecosystem.
@@ -114,7 +114,7 @@ You’ll use the Azure CLI to create a connection of type **model gateway**.
 
 After creating the connection, deploy a prompt agent that uses the model gateway connection. 
 
-1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/sample_agents_basics.py) to run a sample agent with the BYO AI gateway feature. 
+1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents) to run a sample agent with the BYO AI gateway feature. 
 
 1. Use the Agent SDK to deploy the agent. Update the env variable so that the model name is `[connection-name]/[model-name]`. For example: `AZURE_AI_MODEL_DEPLOYMENT_NAME=my-apim-deployment-api-v2/gpt-4o `
  
