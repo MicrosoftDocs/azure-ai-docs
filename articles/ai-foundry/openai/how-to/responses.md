@@ -704,6 +704,7 @@ print(response.model_dump_json(indent=2))
 ```
 
 ## Image input
+For vision-enabled models, images in PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp), and HEIC (.heic) format are supported.
 
 ### Image url
 
