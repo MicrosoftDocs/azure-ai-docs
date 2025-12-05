@@ -24,7 +24,7 @@ This article shows you how to register a custom agent in the Foundry Control Pla
 
 Before getting started, make sure you have:
 
-- [!INCLUDE [azure-subscription](../../../../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
 - A Foundry project. If you don't have one, [create a project](../../how-to/create-projects.md).
 
