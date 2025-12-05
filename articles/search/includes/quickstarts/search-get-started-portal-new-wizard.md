@@ -107,16 +107,16 @@ To configure the index:
    |-------|------------|
    | `HotelId` | Key, Retrievable, Filterable, Sortable, Searchable |
    | `HotelName`, `Category` | Retrievable, Filterable, Sortable, Searchable |
-   | `Description`, `Description_fr` | Retrievable |
+   | `Description`, `Description_fr` | Retrievable, Searchable |
    | `Tags` | Retrievable, Filterable, Searchable |
-   | `ParkingIncluded`, `IsDeleted`, `LastRenovationDate`, `Rating`, `Location` | Retrievable, Filterable, Sortable |
+   | `ParkingIncluded`, `IsDeleted`, `Location` | Retrievable, Filterable, Facetable |
+   | `LastRenovationDate`, `Rating` | Retrievable, Filterable, Sortable |
    | `Address.StreetAddress`, `Rooms.Description`, `Rooms.Description_fr` | Retrievable, Searchable |
-   | `Address.City`, `Address.StateProvince`, `Address.PostalCode`, `Address.Country`, `Rooms.Type`, `Rooms.BedOptions`, `Rooms.Tags` | Retrievable, Filterable, Facetable, Searchable |
+   | `Address.City`, `Address.StateProvince`, `Address.PostalCode`, `Address.Country` | Retrievable, Filterable, Facetable, Searchable, Sortable|
+   | `Rooms.Type`, `Rooms.BedOptions`, `Rooms.Tags` | Retrievable, Filterable, Facetable, Searchable |
    | `Rooms.BaseRate`, `Rooms.SleepsCount`, `Rooms.SmokingAllowed` | Retrievable, Filterable, Facetable |
 
    :::image type="content" source="../../media/search-get-started-portal/configure-index.gif" alt-text="GIF that shows how to configure attributes for fields in the index." lightbox="../../media/search-get-started-portal/configure-index.gif":::
-
-1. Delete the `AzureSearch_DocumentKey` field.
 
 1. Select **Next**.
 

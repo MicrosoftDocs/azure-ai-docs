@@ -12,12 +12,14 @@ ms.custom:
   - mode-ui
   - ignite-2023
   - ignite-2024
-zone_pivot_groups: azure-portal-wizards
 ---
 
 # Quickstart: Create a search index in the Azure portal
 
 [!INCLUDE [Import data (new) instructions](includes/quickstarts/search-get-started-portal-new-wizard.md)]
+
+<!-- Removed this from metadata. Remove the the zone pivot entry on next PR
+zone_pivot_groups: azure-portal-wizards -->
 
 <!-- ::: zone pivot="import-data-new"
 [!INCLUDE [Import data (new) instructions](includes/quickstarts/search-get-started-portal-new-wizard.md)]
