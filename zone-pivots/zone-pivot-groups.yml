@@ -1450,6 +1450,14 @@ groups:
     title: Java
   - id: rest-api
     title: REST API
+- id: selection-openapi-function-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: csharp
+    title: C#
 - id: selection-azure-functions-samples
   title: Selections
   prompt: What would you like to see?
