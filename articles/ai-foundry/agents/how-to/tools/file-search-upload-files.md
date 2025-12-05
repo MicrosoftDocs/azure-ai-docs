@@ -8,8 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 11/20/2025
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code
 ---
