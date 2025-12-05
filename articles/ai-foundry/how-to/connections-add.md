@@ -180,4 +180,6 @@ For more on how to set private endpoints to your connected resources, see the fo
 ## Related content
 
 - [How to create vector indexes](../how-to/index-add.md)
+:::moniker range="foundry-classic"
 - [How to configure a managed network](configure-managed-network.md)
+:::moniker-end
