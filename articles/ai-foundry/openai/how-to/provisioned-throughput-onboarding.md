@@ -5,7 +5,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: article
 ms.date: 11/03/2025
 manager: nitinme
 author: msakande 
