@@ -287,6 +287,7 @@ curl --request PUT \
   }
 ```
 
+
 ### Create the hosted agent version
 
 Use the Azure AI Projects SDK to create and register your agent:
