@@ -75,7 +75,7 @@ Foundry applies a flexible compute architecture to support diverse [model access
 ::: moniker-end
 
 ::: moniker range="foundry"
-- **Model Hosting Architecture** is provided by [standard deployment in Foundry resources](deployments-overview.md#standard-deployment-in-foundry-resources).   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+- **Model Hosting Architecture** is provided by standard deployment in Foundry resources.   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
 ::: moniker-end
 
