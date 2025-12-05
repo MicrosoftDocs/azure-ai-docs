@@ -278,7 +278,7 @@ Updating capability hosts is not supported. If you have an existing capability h
 
 ```bash
 curl --request PUT \
-  --url 'https://management.azure.com/subscriptions/96aede12-2f73-41cb-b983-6d11a904839b/resourceGroups/arthfa-ncus/providers/Microsoft.CognitiveServices/accounts/arthfa-ncus/capabilityHosts/accountcaphost?api-version=2025-10-01-preview' \
+  --url 'https://management.azure.com/subscriptions/[SUBSCRIPTIONID]/resourceGroups/[RESOURCEGROUPNAME]/providers/Microsoft.CognitiveServices/accounts/[ACCOUNTNAME]/capabilityHosts/accountcaphost?api-version=2025-10-01-preview' \
   --header 'content-type: application/json' \
   --data '{
   "properties": {
