@@ -90,7 +90,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/quickstart)
 
 # [C#](#tab/csharp)
 
@@ -111,12 +111,12 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/csharp/quickstart)
 
 # [TypeScript](#tab/typescript)
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/typescript/quickstart/package.json).
+1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/typescript/quickstart/package.json).
 1. Install packages with `npm install`
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
@@ -125,7 +125,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/typescript/quickstart)
 
 # [Java](#tab/java)
 
@@ -140,11 +140,11 @@ Follow along below or get the code:
     ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
-1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/java/quickstart/pom.xml) to your Java IDE.
+1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/java/quickstart/pom.xml) to your Java IDE.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/java/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/java/quickstart)
 
 # [REST API](#tab/rest)
 
@@ -159,7 +159,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/REST/quickstart).
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/REST/quickstart).
 
 
 # [Foundry portal](#tab/azure-ai-foundry)
@@ -301,7 +301,7 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 Agents have powerful capabilities through the use of tools. Let's add a file search tool that enables us to do knowledge retrieval.
 
-* Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/data/product_info_1.md) to give to your agent.
+* Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/data/product_info_1.md) to give to your agent.
 
 [!INCLUDE [agent-v1-switch](../includes/agent-v1-switch.md)]
 

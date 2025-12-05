@@ -32,11 +32,11 @@ View the diagram to understand the potential flows from the Agent service to you
 - An Azure subscription with access to Microsoft Foundry. Create a Foundry resource in your subscription. 
 - Installed **Azure CLI** and **Agent SDK**.
 - Access credentials for your enterprise AI gateway (for example API Management or another non-Azure AI model gateway).
-- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 
 ## Connections for AI gateway
 
-Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 
 ## API Management (APIM) connection 
 APIM connections are specialized model gateway connections designed for Azure API management scenarios. These connections provide intelligent defaults and follow APIM standard conventions while integrating with the broader model gateway ecosystem.
@@ -99,7 +99,7 @@ All examples use `"authType": "ApiKey"` with workspace-managed credentials. The 
 
 You’ll use the Azure CLI to create a connection of type **model gateway**.
 
-1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.
+1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.
 
 1. Run the `az deployment group create` command to create the connection. For example:
     

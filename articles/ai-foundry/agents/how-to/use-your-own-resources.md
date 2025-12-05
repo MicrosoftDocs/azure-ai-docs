@@ -112,7 +112,7 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
 
     The value returned is the `existingAoaiResourceId` you need to use in the template.
 
-3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
+3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
     
     ```console
     existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
@@ -120,7 +120,7 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
 
 ## Standard agent setup: Use existing service resources and storage accounts 
 
-Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization/main.bicep).
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
 
 ### Use an existing Azure OpenAI resource
 
