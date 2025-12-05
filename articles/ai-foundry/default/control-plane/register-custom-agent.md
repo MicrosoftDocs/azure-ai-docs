@@ -71,7 +71,7 @@ Custom agents are added to Foundry projects. Before registering the agent, let's
 
         :::image type="content" source="media/register-custom-agent/verify-ai-gateway.png" alt-text="Screenshot of the Foundry administration portal showing how to verify if your project has AI Gateway configured." lightbox="media/register-custom-agent/verify-ai-gateway.png":::
 
-    1. If the Foundry resource you want to use doesn't have an AI Gateway configured (it's not listed), add one using the option **Add AI Gateway**. AI Gateway is free to set up and unlocks powerful governance features like security, telemetry, and rate limits for your agents, tools, and models.
+    1. If the Foundry resource you want to use doesn't have an AI Gateway configured (it isn't listed), add one using the option **Add AI Gateway**. AI Gateway is free to set up and unlocks powerful governance features like security, telemetry, and rate limits for your agents, tools, and models.
 
     1. For more details about how to configure AI Gateway, see [Create an AI Gateway](../configuration/enable-ai-api-management-gateway-portal.md#create-an-ai-gateway).
 
@@ -111,7 +111,7 @@ To register the agent, follow these steps:
     |-----------|-------------|----------|
     | **Agent URL** | It represents the endpoint (URL) where your agent runs and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent talks OpenAI Chat Completions API, you indicate `https://<host>/v1/` - without `/chat/completions` as clients generally add it. | Yes |
     | **Protocol**  | The communication protocol supported by your agent. Use HTTP in general, or if your agent supports more specifically A2A, indicate that one | Yes |
-    | **A2A agent card URL** | Path to the agent card JSON specification. If you don't specify this, the system uses the default `/.well-known/agent-card.json`. | No |
+    | **A2A agent card URL** | Path to the agent card JSON specification. If you don't specify it, the system uses the default `/.well-known/agent-card.json`. | No |
     | **OpenTelemetry Agent ID** | The Agent ID your agent uses to emit traces according to OpenTelemetry Generative AI semantic conventions. Traces indicate it in attribute `gen_ai.agents.id` for spans with operation name `create_agent`. If you don't specify this, the system uses the **Agent name** value to find traces and logs that this new agent reports. | No |
     | **Admin portal URL** | The administration portal URL where you can perform further administration operations for this agent. Foundry can store this value for easy access convenience. Foundry doesn't have any access to perform operations directly to such management portal. | No |
 
@@ -217,14 +217,14 @@ You can view traces and logs sent to Foundry. To view them:
 
 1. You see one entry for each HTTP call made to the agent's endpoint.
 
-1. Select an entry to see the details: 
+1. To see the details, select an entry: 
 
     :::image type="content" source="media/register-custom-agent/register-custom-agent-trace.png" alt-text="Screenshot of a call to the agent's endpoint under the route 'runs/stream'." lightbox="media/register-custom-agent/register-custom-agent-trace.png":::
 
     > [!TIP]
-    > In this example, you can see how clients use the new agent's endpoint to communicate with the agent. The example is using a LangChain agent deployed with the Agent Protocol from LangChain. Clients use the route `/runs/stream`.
+    > In this example, you can see how clients use the new agent's endpoint to communicate with the agent. The example shows an agent served with the Agent Protocol from LangChain. Clients use the route `/runs/stream`.
 
-1. Notice in this example that no further details besides the HTTP post are present in the trace. This is because no further instrumentation has been added to the code that the agent is running. See the next section to learn how to instrument your code and gain access to further details like tool calls, LLMs calls, etc.
+1. Notice in this example that no further details besides the HTTP post are present in the trace. This is because no further instrumentation was added to the the agent's code. See the next section to learn how to instrument your code and gain further details like tool calls, LLM calls, etc.
 
 ### Instrument custom code agents
 
