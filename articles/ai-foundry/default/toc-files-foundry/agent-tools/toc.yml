@@ -16,12 +16,18 @@ items:
     href: ../../agents/how-to/tools/function-calling.md
   - name: Code interpreter
     href: ../../agents/how-to/tools/code-interpreter.md
-  - name: Memory (preview)
-    href: ../../agents/concepts/agent-memory.md
   - name: Browser automation (preview)
     href: ../../agents/how-to/tools/browser-automation.md
   - name: Computer Use (preview)
     href: ../../agents/how-to/tools/computer-use.md
+
+# Memory Tools
+- name: Memory (preview)
+  items:
+  - name: What is memory?
+    href: ../../agents/concepts/agent-memory.md
+  - name: Create and use memory
+    href: ../../agents/how-to/agent-memory.md
 
 # Search and Retrieval Tools
 - name: Search and retrieval
