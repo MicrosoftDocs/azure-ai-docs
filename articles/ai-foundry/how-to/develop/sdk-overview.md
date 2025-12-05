@@ -45,14 +45,24 @@ The Foundry API Endpoint grants users access to Agents, Evaluations, and deploye
 
 Foundry consolidated these endpoints to simplify user experience. Fewer endpoints reduce endpoint management. However, the endpoints you use still work. To view all your endpoints, go to the Azure Portal details page for your resource. Navigate to your resource details page in Azure Portal and select ‘JSON view’ to see all accessible Foundry capabilities and endpoints. All of them are listed in this document.
 
+### Using OpenAI from Foundry SDK / API
+
+For some operations, the Foundry SDK & API reuses the OpenAI SDK and API. This enables easy transition from OpenAI to Foundry, with expanded capabilities. A Project client provides the best entry point into automatically configured use of the OpenAI SDK for OpenAI operations such as using Responses, fine tuning, or running an agent.
+
 ## OpenAI SDK
 
-The OpenAI SDK lets you interact with the Azure OpenAI service. It offers a simple interface for making API calls and managing authentication. The OpenAI SDK directly calls the Azure OpenAI endpoint. The following code snippet shows how to create the OpenAI client from the Project client for proper scoping and context management.
+The OpenAI SDK lets you interact with the Azure OpenAI service. It offers a simple interface for making API calls and managing authentication. The OpenAI SDK directly calls the Azure OpenAI endpoint. To use OpenAI models with full OpenAI support, then use the v1 endpoint: `https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/` and OpenAI SDK directly.
 
-### Which endpoint should you use?
 
-- **Managing a Project or calling Agents(new)?** Use the Foundry Project endpoint with the Foundry SDK. Get your OpenAI client from the Project using Microsoft Entra ID for authentication.
-- **Calling a model directly?** Use the Azure OpenAI endpoint with the OpenAI SDK with Microsoft Entra ID as the preferred authentication method. If using API keys, choose the v1 endpoint: `https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/`.
+### Which endpoint should you use when working with OpenAI?
+
+- **Getting started with Foundry Agents Service?** Use the Foundry Project endpoint with the Foundry SDK. Get your OpenAI client from the Project using Microsoft Entra ID for authentication.
+    - This includes using models with agents, running evaluations for agents, fine tuning models for agents, and other related operations.
+    - If you use non-OpenAI models with the responses API, you'd use the OpenAI client from the Foundry SDK as well.
+- **Cross-targeting other OpenAI code?** Use the Azure OpenAI endpoint with the OpenAI SDK with Microsoft Entra ID as the preferred authentication method. 
+    - This provides full access to all Azure OpenAI features, including operations like standalone audio transcription and image generation.
+    - Many extended features from Foundry Agents Service are available; some may require additional configuration.
+- If using API keys, choose the v1 endpoint: `https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/`.
 
 After you create a client, use it to access models, run evaluations, and connect to other AI services.
 
@@ -70,7 +80,7 @@ After you create a client, use it to access models, run evaluations, and connect
 
 To use Foundry Tools, you can use the following SDKs with the endpoints listed.
 
-### Which endpoint should you use?
+### Which Azure AI Services endpoint should you use?
 
 Choose an endpoint based on your needs:
 
@@ -135,6 +145,10 @@ Microsoft Agent Framework is an open-source development kit for building AI agen
 
 For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
 
+
+## Getting started with Foundry and OpenAI SDKs
+
+This section provides code examples to help you get started using the Foundry SDKs and OpenAI SDK.
 
 ::: moniker range="foundry-classic"
 
