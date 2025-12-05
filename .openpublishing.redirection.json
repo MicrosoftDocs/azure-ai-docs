@@ -1,6 +1,231 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/qnamaker/choose-natural-language-processing-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/choose-natural-language-processing-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/encrypt-data-at-rest.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/encrypt-data-at-rest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/limits.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-app-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-app-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-document-format-guidelines.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-document-format-guidelines",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-markdown-format.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-markdown-format",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-private-endpoint.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-private-endpoint",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-tsv-format-batch-testing.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-tsv-format-batch-testing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/troubleshooting.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/troubleshooting",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/azure-resources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/azure-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/best-practices.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/best-practices",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/confidence-score.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/confidence-score",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/data-sources-and-content.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/data-sources-and-content",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/development-lifecycle-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/development-lifecycle-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/plan.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/plan",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/query-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/query-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/question-answer-set.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/question-answer-set",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/role-based-access-control.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/role-based-access-control",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/add-sharepoint-datasources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/add-sharepoint-datasources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/change-default-answer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/change-default-answer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/chit-chat-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/chit-chat-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/configure-qna-maker-resources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/configure-qna-maker-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/edit-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/edit-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/get-analytics-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/get-analytics-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/improve-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/improve-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/manage-knowledge-bases.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/manage-knowledge-bases",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/manage-qna-maker-app.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/manage-qna-maker-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/metadata-generateanswer-usage.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/metadata-generateanswer-usage",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/multi-turn.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/multi-turn",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/network-isolation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/network-isolation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/query-knowledge-base-with-metadata.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/query-knowledge-base-with-metadata",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/set-up-qnamaker-service-azure.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/set-up-qnamaker-service-azure",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/test-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/test-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/use-active-learning.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/use-active-learning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/using-prebuilt-api.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/using-prebuilt-api",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/overview/language-support.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/overview/language-support",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/overview/overview.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/overview/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/add-question-metadata-portal.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/add-question-metadata-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/create-publish-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/create-publish-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/get-answer-from-knowledge-base-using-url-tool.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/get-answer-from-knowledge-base-using-url-tool",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/quickstart-sdk.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/quickstart-sdk",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/tutorials/create-faq-bot-with-azure-bot-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/tutorials/create-faq-bot-with-azure-bot-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/tutorials/export-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/tutorials/export-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/concepts/connections.md",
       "redirect_url": "/azure/ai-foundry/how-to/connections-add",
       "redirect_document_id": false
