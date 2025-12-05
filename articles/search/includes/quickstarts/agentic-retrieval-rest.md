@@ -67,6 +67,10 @@ To create and run the agentic retrieval pipeline:
 1. Paste the following variables and requests into the file.
 
     ```HTTP
+    ### Set variables
+    @search-url = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+    @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
+    @aoai-url = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
     @aoai-embedding-model = text-embedding-3-large
     @aoai-embedding-deployment = text-embedding-3-large
     @aoai-gpt-model = gpt-5-mini
@@ -260,7 +264,7 @@ To create and run the agentic retrieval pipeline:
     Authorization: Bearer {{token}}
     
     ### Delete the knowledge source
-    DELETE {{search-url}}/knowledgesources('{{knowledge-source-name}}')?api-version={{api-version}}  HTTP/1.1
+    DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
     
@@ -635,7 +639,7 @@ Authorization: Bearer {{token}}
 
 ```HTTP
 ### Delete the knowledge source
-DELETE {{search-url}}/knowledgesources('{{knowledge-source-name}}')?api-version={{api-version}}  HTTP/1.1
+DELETE {{search-url}}/knowledgesources/{{knowledge-source-name}}?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 ```
