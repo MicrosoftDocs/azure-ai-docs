@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/19/2025
 ms.update-cycle: 180-days
 ---
@@ -218,7 +218,7 @@ We recommend estimating on a billable tier, Basic or higher. The Free tier runs 
 
 1. [Build an initial index](search-what-is-an-index.md) to determine how source data translates to an index. This is the only way to estimate index size. Attributes on the field definitions affect physical storage requirements:
 
-   + For keyword search, marking fields as filterable and sortable [increases index size](search-what-is-an-index.md#example-demonstrating-the-storage-implications-of-attributes-and-suggesters).
+   + For keyword search, marking fields as filterable and sortable [increases index size](search-what-is-an-index.md#physical-structure-and-size).
 
    + For vector search, you can [set parameters to reduce vector size](vector-search-how-to-configure-compression-storage.md).
 

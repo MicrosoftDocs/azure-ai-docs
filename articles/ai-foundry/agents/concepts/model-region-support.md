@@ -37,7 +37,7 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 >
 > - [Hub-based projects](../../what-is-azure-ai-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo.
 > - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 > - The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models can use only the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
@@ -47,7 +47,7 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 > [!NOTE]
 >
 > - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 > - The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models are available for the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
@@ -150,26 +150,13 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 
 ## Other model collections
 
-The following [models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) are available for your agents to use:
+The following lists of Foundry Models are also available for your agents to use.
 
-- **MAI-DS-R1**: Deterministic, precision-focused reasoning.
-- **grok-4**: Frontier-scale reasoning for complex, multiple-step problem solving.
-- **grok-4-fast-reasoning**: Accelerated agentic reasoning optimized for workflow automation.
-- **grok-4-fast-non-reasoning**: High-throughput, low-latency generation and system routing.
-- **grok-3**: Strong reasoning for complex, system-level workflows.
-- **grok-3-mini**: Lightweight model optimized for interactive, high-volume use cases.
-- **Llama-3.3-70B-Instruct**: Versatile model for enterprise Q&A, decision support, and system orchestration.
-- **Llama-4-Maverick-17B-128E-Instruct-FP8**: FP8-optimized model that delivers fast, cost-efficient inference.
-- **DeepSeek-V3-0324**: Multimodal understanding across text and images.
-- **DeepSeek-V3.1**: Enhanced multimodal reasoning and grounded retrieval.
-- **DeepSeek-R1-0528**: Advanced long-form and multiple-step reasoning.
-- **gpt-oss-120b**: Open-ecosystem model that supports transparency and reproducibility.
+[!INCLUDE [agent-service-models-support-list](../includes/agent-service-models-support-list.md)]
 
-The following [models from partners](../../foundry-models/concepts/models-from-partners.md) are available for your agents to use:
+## View all agent-supported models in the Foundry portal
 
-- **Claude-Opus-4-1**: Frontier reasoning for the most complex problem-solving.
-- **Claude-Sonnet-4-5**: Balanced performance for multimodal and agentic workflows.
-- **Claude-Haiku-4-5**: Lightweight, high-speed generation for interactive scenarios.
+[!INCLUDE [agent-service-view-models-in portal](../includes/agent-service-view-models-in-portal.md)]
 
 ## Related content
 
