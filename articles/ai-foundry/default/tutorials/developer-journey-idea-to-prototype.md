@@ -87,7 +87,7 @@ Download the repository ZIP, extract it to your local environment, and go to the
 > [!IMPORTANT]
 > For production adoption, use a standalone repository. This tutorial uses the shared samples repo. Sparse checkout minimizes local noise.
 > [!div class="nextstepaction"] 
-> [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/python/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the Python code now](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
 The minimal structure contains only essential files:
 
