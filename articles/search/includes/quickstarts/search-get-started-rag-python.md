@@ -63,7 +63,7 @@ A search index provides grounding data for the chat model. We recommend the **ho
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. Follow the instructions in [this quickstart](search-import-data-portal.md) to create the index.
+1. Follow the instructions in [this quickstart](../../search-import-data-portal.md) to create the index.
 
 1. Once the index is created, select **Search management** > **Indexes** from the left menu to open the index.
 
