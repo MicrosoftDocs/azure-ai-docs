@@ -8,6 +8,8 @@ items:
     href: ../../../foundry-models/how-to/create-model-deployments.md
   - name: Deployment types
     href: ../../../foundry-models/concepts/deployment-types.md
+  - name: Upgrade GitHub Models to Foundry Models
+    href: ../../../foundry-models/how-to/quickstart-github-models.md
 
 # Model Support
 - name: Model support
