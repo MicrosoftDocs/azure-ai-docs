@@ -468,9 +468,26 @@ To optimize your usage and avoid rate limiting:
 
 When using Claude models in Foundry, consider these responsible AI practices:
 
-- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see [Configure content filtering for Foundry Models](https://learn.microsoft.com/azure/ai-foundry/foundry-models/how-to/configure-content-filters).
+::: moniker range="foundry-classic"
+
+- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see [Configure content filtering for Foundry Models](configure-content-filters.md).
 
 - Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time.
+
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
+
+::: moniker-end
+
+
+
+
+
 
 ## Best practices
 
