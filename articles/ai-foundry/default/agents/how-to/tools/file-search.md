@@ -151,7 +151,7 @@ vector_store = openai_client.vector_stores.create_and_poll(
 
 :::zone pivot="csharp"
 
-For C# usage, see the [Sample file search with Agent in Azure.AI.Projects.OpenAI in streaming scenarios](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample11_FileSearch_Streaming.md) example in the Azure SDK for .NET repository on GitHub.
+For C# usage, see the [Sample file search with agent in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample8_FileSearch.md) and [Sample file search with Agent in Azure.AI.Projects.OpenAI in streaming scenarios](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample11_FileSearch_Streaming.md) examples in the Azure SDK for .NET repository on GitHub.
 
 :::zone-end
 
