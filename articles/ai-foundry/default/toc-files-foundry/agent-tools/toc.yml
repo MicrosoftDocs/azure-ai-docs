@@ -25,9 +25,9 @@ items:
 - name: Memory (preview)
   items:
   - name: What is memory?
-    href: ../../agents/concepts/agent-memory.md
+    href: ../../agents/concepts/what-is-memory.md
   - name: Create and use memory
-    href: ../../agents/how-to/agent-memory.md
+    href: ../../agents/how-to/memory-usage.md
 
 # Search and Retrieval Tools
 - name: Search and retrieval

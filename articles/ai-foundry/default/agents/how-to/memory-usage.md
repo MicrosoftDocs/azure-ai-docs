@@ -21,7 +21,7 @@ Memory in Foundry Agent Service is a managed, long-term memory solution. It enab
 
 Memory stores act as persistent storage, defining which types of information are relevant to each agent. You control access using the `scope` parameter, which segments memory across users to ensure secure and isolated experiences.
 
-This article explains how to create, manage, and use memory stores. For conceptual information, see [What is memory in Foundry Agent Service?](agent-memory-concept.md)
+This article explains how to create, manage, and use memory stores. For conceptual information, see [What is memory in Foundry Agent Service?](../concepts/what-is-memory.md)
 
 ## Prerequisites
 
@@ -386,6 +386,6 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 ## Related content
 
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
-- [What is memory in Foundry Agent Service?](agent-memory-concept.md)
+- [What is memory in Foundry Agent Service?](what-is-memory.md)
 - [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)

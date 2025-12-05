@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
-ms.topic: concpt-article
+ms.topic: concept-article
 ms.date: 12/05/2025
 ---
 
@@ -17,7 +17,7 @@ ms.date: 12/05/2025
 
 Memory in Foundry Agent Service is a managed, long-term memory solution. It enables agent continuity across sessions, devices, and workflows. By creating and managing memory stores, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
-This article provides an overview of agent memory, including its concepts, use cases, best practices, and limitations. For usage instructions, see [Manage memory in Foundry Agent Service](agent-memory.md).
+This article provides an overview of agent memory, including its concepts, use cases, best practices, and limitations. For usage instructions, see [Manage memory in Foundry Agent Service](../how-to/memory-usage.md).
 
 ## What is memory?
 
@@ -55,16 +55,20 @@ The following examples illustrate how memory can enhance various types of agents
 ### [Conversational agent](#tab/conversational-agent)
 
 - A customer support agent that remembers your name, previous issues and resolutions, ticket numbers, and your preferred contact method (chat, email, or call back). This memory helps you avoid repeating information, so conversations are more efficient and satisfying.
+
 - A personal shopping assistant that remembers your size in specific brands, preferred colors, past returns, and recent purchases. The agent can suggest relevant items as soon as you start a session and avoid recommending products you already own.
 
 ### [Planning agent](#tab/planning-agent)
 
 - A travel agent that knows your flight preferences (window or aisle), seat selections, food choices, nonstop versus connecting flights, loyalty programs, and feedback from past trips. The agent uses this information to quickly build an optimized itinerary.
+
 - An architectural design agent that remembers local building codes, material costs from previous bids, and initial client feedback. The agent refines designs iteratively, ensuring the final plan is feasible and meets all requirements.
 
 ### [Research agent](#tab/research-agent)
 
 - A medical research agent that remembers which compounds were previously tested and failed, key findings from different labs, and complex relationships between proteins. The agent uses this knowledge to suggest new, untested research hypotheses.
+
+---
 
 ## Best practices
 
