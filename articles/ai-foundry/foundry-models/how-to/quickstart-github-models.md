@@ -72,20 +72,9 @@ To get the key and endpoint:
     
         :::image type="icon" source="../../default/media/version-banner/classic-foundry.png" border="false":::
 
-1. Switch off the **New Foundry** toggle to use the experience that you prefer.
+1. Toggle the **New Foundry** switcher if you prefer to switch to a different Foundry experience.
 
-::: moniker range="foundry-classic"
-
-1.  Follow the steps in [Deploy a model](deploy-foundry-models.md#deploy-a-model) to deploy the model of your choice, test it in the Playground, and inference the deployed model with code.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-1.  Follow the steps in [Deploy a model](deploy-foundry-models.md#deploy-a-model) to deploy the model of your choice, test it in the Playground, and inference the deployed model with code.
-
-::: moniker-end
-
+1. Follow the steps in [Deploy a model](deploy-foundry-models.md#deploy-a-model) to deploy the model of your choice, test it in the Playground, and inference the deployed model with code.
 
 
 > [!IMPORTANT]
