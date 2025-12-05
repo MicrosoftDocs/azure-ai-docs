@@ -88,7 +88,7 @@ Here, ```path``` can include:
 * contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber
 * contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id
 
-4. The **Analyze** operation now only supports analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64 encoded string. If you previously used the analyze operation to upload files inline in your code, you need to update your code to use the analyzeBinary operation instead. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyzebinary).
+4. The **Analyze** operation now only supports analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64 encoded string. If you previously used the analyze operation to upload files inline in your code, you need to update your code to use the analyzeBinary operation instead. Learn more about the [Analyze Binary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
 5. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the file to be analyzed. Each input element contains a url pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
