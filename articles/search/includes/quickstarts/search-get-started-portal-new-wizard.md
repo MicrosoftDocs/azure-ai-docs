@@ -130,7 +130,7 @@ Each field has a name, data type, and attributes that control how the field is u
 | Facetable | Fields used in a faceted navigation structure. | Integers |
 | Searchable | Fields used in full-text search. Strings are searchable, but numeric and Boolean fields are often marked as not searchable. | Strings |
 
-Attributes affect storage in different ways. For example, filterable fields consume extra storage, while retrievable fields don't. For more information, see [Example demonstrating the storage implications of attributes and suggesters](../../search-what-is-an-index.md#example-demonstrating-the-storage-implications-of-attributes-and-suggesters).
+Attributes affect storage in different ways. For example, filterable fields consume extra storage, while retrievable fields don't. 
 
 If you want autocomplete or suggested queries, specify language **Analyzers** or **Suggesters**.
 

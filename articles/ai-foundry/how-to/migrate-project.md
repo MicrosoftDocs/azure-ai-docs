@@ -154,11 +154,11 @@ You can create a new project in one of two ways:
 
 # [Bicep](#tab/bicep)
 
-1. In your template, a project is declared as a child resource under your Foundry resource as shown in [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization).
+1. In your template, a project is declared as a child resource under your Foundry resource as shown in [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization).
 
 1. By default, in the basic configuration, Agent service uses deployments and storage capabilities that come with your Foundry resource.
 
-1. Optionally, Agent service supports the ability to use existing Azure OpenAI resources for model deployments, and to bring your own storage resources for storing threads, messages, and files. This is also referred as 'Standard' setup. See [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization) for reference Bicep templates.
+1. Optionally, Agent service supports the ability to use existing Azure OpenAI resources for model deployments, and to bring your own storage resources for storing threads, messages, and files. This is also referred as 'Standard' setup. See [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization) for reference Bicep templates.
 
 ---
 
@@ -180,7 +180,7 @@ You can't add connections in the Azure portal.  Use either the Foundry portal or
 
 # [Bicep](#tab/bicep)
 
-If you prefer using Bicep templates, see [this repository with examples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections).
+If you prefer using Bicep templates, see [this repository with examples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections).
 
 Connections are now defined as instances of type *CognitiveServices/account/connections,* and *CognitiveServices/account/project/connections.* Choose account-level connections for shared access across projects.
 
@@ -253,7 +253,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 
 - [Foundry rollout across my organization](/azure/ai-foundry/concepts/planning)
 
-- [Sample Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+- [Sample Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections)
 
 - [Sample Terraform templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform)
 

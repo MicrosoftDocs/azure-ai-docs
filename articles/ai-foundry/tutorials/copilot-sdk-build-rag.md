@@ -28,6 +28,8 @@ This part two shows you how to enhance a basic chat application by adding [retri
 
 This tutorial is part two of a three-part tutorial.
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
+
 ## Prerequisites
 
 [!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]

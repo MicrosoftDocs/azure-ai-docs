@@ -29,9 +29,12 @@ Models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] can
 Models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] can be used with LangChain in two ways:
 ::: moniker-end
 
+- **Use the model provider's API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
+
 - **Use the Azure AI Model Inference API:** All models deployed in Microsoft Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of capabilities across most models in the catalog. Because the API is consistent, switching models is as simple as changing the deployment; no code changes are required. With LangChain, install the `langchain-azure-ai` integration.
 
-- **Use the model provider’s API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+
 
 This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
 
@@ -238,7 +241,7 @@ llm = AzureAIChatCompletionsModel(
 
 ## Debugging and troubleshooting
 
-If you need to debug your application and understand the requests sent to models in Foundry, use the integration’s debug capabilities:
+If you need to debug your application and understand the requests sent to models in Foundry, use the integration's debug capabilities:
 
 First, configure logging to the desired level:
 
