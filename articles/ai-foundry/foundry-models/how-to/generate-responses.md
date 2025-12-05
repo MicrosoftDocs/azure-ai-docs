@@ -5,7 +5,7 @@ description: Learn how to prompt Microsoft Foundry Models to generate text, usin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/17/2025
+ms.date: 12/04/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-This article explains how to generate text responses for Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. 
+This article explains how to generate text responses for Foundry Models, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. For a full list of the Foundry Models that support use of the Responses API, see [Supported Foundry Models](#supported-foundry-models). 
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ To use the Responses API with deployed models in your application, you need:
 
 ## Use the Responses API to generate text
 
-Use the code in this section to make Responses API calls for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as Microsoft AI, DeepSeek, and Grok models. In the code samples, you create the client to consume the model and then send it a basic request. 
+Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
 
 > [!NOTE]
 > Use keyless authentication with **Microsoft Entra ID**. To learn more about keyless authentication, see [What is Microsoft Entra authentication?](/entra/identity/authentication/overview-authentication) and [DefaultAzureCredential](/azure/developer/python/sdk/authentication/overview#defaultazurecredential).
@@ -200,6 +200,20 @@ curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_
 ```
 
 ---
+
+## Supported Foundry Models
+
+A selection of Foundry Models are supported for use with the Responses API.
+
+#### View supported models in the Foundry portal
+
+[!INCLUDE [agent-service-view-models-in-portal](../../agents/includes/agent-service-view-models-in-portal.md)]
+
+#### List of supported models
+
+This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
+
+[!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
 
 ## Related content
 

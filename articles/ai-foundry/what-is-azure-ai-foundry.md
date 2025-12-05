@@ -216,7 +216,7 @@ Microsoft Foundry is monetized through individual products customer access and c
 
 The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./how-to/costs-plan-manage.md).
+Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
 
 ## Region availability
 

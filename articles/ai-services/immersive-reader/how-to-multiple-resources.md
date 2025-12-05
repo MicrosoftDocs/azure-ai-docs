@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to
 ms.date: 02/27/2024
-ms.author: sharmas
+ms.author: michtho
 ms.custom: devx-track-js
 #Customer intent: As a developer, I want to learn more about the Immersive Reader SDK so that I can fully utilize all that the SDK has to offer.
 ---

@@ -29,8 +29,10 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > [!IMPORTANT]
 > Foundry itself doesn't provide automatic failover or disaster recovery.
 
+:::moniker-range="foundry-classic"
 > [!NOTE]
 > The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Foundry hubs](hub-disaster-recovery.md).
+:::moniker-end
 
 ## Service model and shared responsibility
 

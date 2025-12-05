@@ -20,6 +20,8 @@ ai-usage: ai-assisted
 
 # Configure key-less authentication with Microsoft Entra ID
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 ::: zone pivot="ai-foundry-portal"

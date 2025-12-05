@@ -185,14 +185,14 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
         "description": "A Foundry resource in the same region as Search.",
-        "key": ""
+        "key": "{{cognitive-services-key}}"
     },
     "knowledgeStore": null
 }
 ```
 
 > [!NOTE]
-> Under `"cognitiveServices"`, the key field is unspecified because the indexer can use a Foundry resource in the same region as your search service and process up to 20 transactions daily at no charge. The sample data for this example stays under the 20 transaction limit.
+> The indexer can process up to 20 transactions per day at no charge. The sample data for this example stays under the 20-transaction limit, so if you're using the sample data, you can omit the `cognitiveServices` section.
 
 ## Example Shaper skill
 

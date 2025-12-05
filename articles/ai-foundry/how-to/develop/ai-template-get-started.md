@@ -51,20 +51,20 @@ Available templates include:
 Available templates:
 
 | Template | Popular customer use cases |
-|----------|---------------------------|
-| [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat) | Build interactive chat applications |
+|----------|----------------------------|
+| [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat) | Build interactive chat applications<br><br>[Baseline Microsoft Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/baseline-azure-ai-foundry-chat) |
 | [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents) | Create autonomous AI agents |
 | [Build agentic apps to unify data](https://github.com/microsoft/agentic-applications-for-unified-data-foundation-solution-accelerator/tree/main) | Embed analytics across applications with instant data visualization for:<br>• Sales performance analysis<br>• Customer insights and reporting<br>• Natural language analysis on structured data |
 | [Create a multi-agent release manager assistant](https://github.com/Azure-Samples/openai/tree/main/Agent_Based_Samples/release_manager) | Enable AI-powered release planning for:<br>• Cross-system release coordination<br>• Real-time dependency mapping and release health assessment<br>• Advanced visualization for retrieved insights<br>• Safe update mechanisms built into AI agents |
 | [Create a call center voice agent](https://github.com/Azure-Samples/call-center-voice-agent-accelerator) | Develop interactive voice agents for:<br>• Customer support<br>• Product catalog navigation<br>• Self-service solutions |
-| [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator) | Extract knowledge from conversations |
-| [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | Automate complex workflows |
-| [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator) | Process diverse content types |
-| [Generate documents from your data](https://github.com/microsoft/document-generation-solution-accelerator) | Create documents automatically |
+| [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator) | Extract knowledge from conversations<br><br>[Build a conversation knowledge mining solution](/azure/architecture/ai-ml/idea/unlock-insights-from-conversational-data) |
+| [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | Automate complex workflows<br><br>[Build a multiple-agent workflow automation solution](/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation) |
+| [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator) | Process diverse content types<br><br>[Extract and map information from unstructured content](/azure/architecture/ai-ml/idea/multi-modal-content-processing) |
+| [Generate documents from your data](https://github.com/microsoft/document-generation-solution-accelerator) | Create documents automatically<br><br>[Build a document generation system](/azure/architecture/ai-ml/idea/generate-documents-from-your-data) |
 | [Improve client meetings with agents](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) | Enhance meeting productivity |
 | [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator) | Update legacy code |
 | [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) | Create conversational experiences |
-[Retrieve and summarize SharePoint data](https://github.com/microsoft/app-with-sharepoint-knowledge)  | Retrieve content from SharePoint sites |
+| [Retrieve and summarize SharePoint data](https://github.com/microsoft/app-with-sharepoint-knowledge)  | Retrieve content from SharePoint sites |
 
 ::: moniker-end
 

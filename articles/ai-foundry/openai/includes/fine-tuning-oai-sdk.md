@@ -20,7 +20,7 @@ ms.custom:
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - The OpenAI Python library.
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
+- Fine-tuning access requires **Azure AI User** role.
 - If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models

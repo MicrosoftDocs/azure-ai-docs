@@ -3,7 +3,7 @@ title: "Discover tools in the Foundry Tools"
 description: "Learn about the Foundry Tools in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
-ms.date: 11/18/2025
+ms.date: 12/04/2025
 ms.manager: nitinme
 ms.topic: conceptual
 ms.service: azure-ai-foundry

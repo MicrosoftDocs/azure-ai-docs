@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: article
 ms.date: 06/20/2025
 ms.update-cycle: 365-days
 ---
@@ -83,7 +83,7 @@ Other elements are collapsed for brevity, but the following links provide detail
 
 A search document is defined by the "fields" collection in the body of [Create Index request](/rest/api/searchservice/indexes/create). You need fields for document identification (keys), storing searchable text, and fields for supporting filters, facets, and sorting. You might also need fields for data that a user never sees. For example, you might want fields for profit margins or marketing promotions that you can use in a scoring profile to boost a search score.
 
-If incoming data is hierarchical in nature, you can represent it within an index as a [complex type](search-howto-complex-data-types.md), used for nested structures. The built-in sample data set, Hotels, illustrates complex types using an Address (contains multiple subfields) that has a one-to-one relationship with each hotel, and a Rooms complex collection, where multiple rooms are associated with each hotel. 
+If incoming data is hierarchical in nature, you can represent it within an index as a [complex type](search-howto-complex-data-types.md), used for nested structures. The sample data set, [Hotels](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels), illustrates complex types using an Address (contains multiple subfields) that has a one-to-one relationship with each hotel, and a Rooms complex collection, where multiple rooms are associated with each hotel. 
 
 <a name="index-attributes"></a>
 
@@ -118,28 +118,14 @@ You can monitor index size on the **Search management > Indexes** page in the Az
 The size of an index is determined by the:
 
 + Quantity and composition of your documents.
-+ Attributes on individual fields.
-+ Index configuration. Specifically, whether you include suggesters.
++ Attributes on individual fields: "retrievable" doesn't bloat your index, but "filterable", "sortable", "facetable" consume more storage for storing non-tokenized text.
++ Index configuration. Specifically, whether you include suggesters or specialized [analyzers](search-analyzers.md). If you use the edgeNgram tokenizer to store verbatim sequences of characters (`a, ab, abc, abcd`), the index is larger than if you use the standard analyzer.
 
-Document composition and quantity are determined by what you choose to import. Remember that a search index should only contain searchable content. If source data includes binary fields, omit those fields unless you're using AI enrichment to crack and analyze the content to create text-searchable information.
+Document composition and quantity are determined by what you choose to import. Remember that a search index should only contain content that's useful for your search application. If source data includes binary fields, omit those fields unless you're using AI enrichment to crack and analyze the content to create text-searchable information.
 
-Field attributes determine behaviors. To support those behaviors, the indexing process creates the necessary data structures. For example, for a field of type `Edm.String`, "searchable" invokes [full-text search](search-lucene-query-architecture.md), which scans inverted indexes for the tokenized term. In contrast, a "filterable" or "sortable" attribute supports iteration over unmodified strings. The example in the next section shows variations in index size based on the selected attributes.
+Field attributes determine behaviors. To support those behaviors, the indexing process creates the necessary data structures. For example, for a field of type `Edm.String`, "searchable" invokes [full-text search](search-lucene-query-architecture.md), which scans inverted indexes for the tokenized term. In contrast, a "filterable" or "sortable" attribute supports iteration over unmodified strings. 
 
 [**Suggesters**](index-add-suggesters.md) are constructs that support type-ahead or autocomplete queries. When you include a suggester, the indexing process creates the data structures necessary for verbatim character matches. Suggesters are implemented at the field level, so choose only those fields that are reasonable for type-ahead.
-
-### Example demonstrating the storage implications of attributes and suggesters
-
-The following screenshot illustrates index storage patterns resulting from various combinations of attributes. The index is based on the **real estate sample index**, which you can create easily using the Import data wizard and built-in sample data. Although the index schemas aren't shown, you can infer the attributes based on the index name. For example, *realestate-searchable* index has the "searchable" attribute selected and nothing else, *realestate-retrievable* index has the "retrievable" attribute selected and nothing else, and so forth.
-
-![Index size based on attribute selection](./media/search-what-is-an-index/realestate-index-size.png "Index size based on attribute selection")
-
-Although these index variants are somewhat artificial, we can refer to them for broad comparisons of how attributes affect storage:
-
-+ "retrievable" has no effect on index size.
-+ "filterable", "sortable", "facetable" consume more storage.
-+ **suggester** has a large potential for increasing index size, but not as much as the screenshot would indicate (all fields that could be made suggester-aware were selected, which isn't a likely scenario in most indexes).
-
-Also not reflected in the previous table is the effect of [analyzers](search-analyzers.md). If you use the edgeNgram tokenizer to store verbatim sequences of characters (`a, ab, abc, abcd`), the index is larger than if you use the standard analyzer.
 
 ## Basic operations and interaction
 
