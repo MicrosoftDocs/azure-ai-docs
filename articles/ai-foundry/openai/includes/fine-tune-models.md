@@ -16,7 +16,7 @@ ms.custom:
 > [!NOTE]
 > The supported regions for fine-tuning might vary if you use Azure OpenAI models in a Microsoft Foundry project versus outside a project.
 
-|  Model ID  | Standard tier regions | Global tier | Developer tier | Max request (tokens) | Training data (up to) | Modality |
+|  Model ID  | Standard regions | Global | Developer | Max request (tokens) | Training data (up to) | Modality |
 |  --- | --- | :---: | :---: | :---: | --- |
 | `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text to text |
 | `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text and vision to text |
@@ -28,7 +28,7 @@ ms.custom:
 | `Qwen-32B` (preview) | Not supported | ✅ | ❌ | Input: 8,000 <br> Output: 32,000 <br> Training example context length: 8192 | July 2024 | Text to text |
 
 > [!NOTE]
-> Global training provides [more affordable](https://aka.ms/aoai-pricing) training per token, but doesn't offer [data residency](https://aka.ms/data-residency). It's currently available to Azure OpenAI resources in the following regions:
+> Global training provides [more affordable](https://aka.ms/aoai-pricing) training per token, but doesn't offer [data residency](https://aka.ms/data-residency). It's currently available to Foundry resources in the following regions:
 >
 >- Australia East
 >- Brazil South
