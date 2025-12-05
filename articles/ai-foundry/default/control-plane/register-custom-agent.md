@@ -224,7 +224,7 @@ You can view traces and logs sent to Foundry. To view them:
     > [!TIP]
     > In this example, you can see how clients use the new agent's endpoint to communicate with the agent. The example shows an agent served with the Agent Protocol from LangChain. Clients use the route `/runs/stream`.
 
-1. Notice in this example that no further details besides the HTTP post are present in the trace. This is because no further instrumentation was added to the the agent's code. See the next section to learn how to instrument your code and gain further details like tool calls, LLM calls, etc.
+1. Notice in this example that no further details besides the HTTP post are present in the trace. This is because no further instrumentation was added to the agent's code. See the next section to learn how to instrument your code and gain further details like tool calls, LLM calls, etc.
 
 ### Instrument custom code agents
 
