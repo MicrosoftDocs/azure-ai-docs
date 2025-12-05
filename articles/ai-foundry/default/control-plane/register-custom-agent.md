@@ -219,7 +219,7 @@ You can view traces and logs sent to Foundry. To view them:
 
 1. To see the details, select an entry: 
 
-    :::image type="content" source="media/register-custom-agent/register-custom-agent-trace.png" alt-text="Screenshot of a call to the agent's endpoint under the route 'runs/stream'." lightbox="media/register-custom-agent/register-custom-agent-trace.png":::
+    :::image type="content" source="media/register-custom-agent/custom-agent-trace.png" alt-text="Screenshot of a call to the agent's endpoint under the route 'runs/stream'." lightbox="media/register-custom-agent/custom-agent-trace.png":::
 
     > [!TIP]
     > In this example, you can see how clients use the new agent's endpoint to communicate with the agent. The example shows an agent served with the Agent Protocol from LangChain. Clients use the route `/runs/stream`.
