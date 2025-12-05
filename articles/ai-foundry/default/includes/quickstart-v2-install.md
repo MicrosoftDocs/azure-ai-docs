@@ -25,7 +25,7 @@ ms.custom: include
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/python/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/quickstart)
 
 # [C#](#tab/csharp2)
 
@@ -44,7 +44,7 @@ Follow along below or get the code:
 
 > Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/csharp/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 
 
 <!-- # [TypeScript](#tab/typescript)
@@ -58,7 +58,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/typescript/quickstart)
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart)
 
 # [Java](#tab/java)
 
@@ -66,7 +66,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples-v2/microsoft/java/quickstart) -->
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart) -->
 
 # [REST API](#tab/rest2)
 
