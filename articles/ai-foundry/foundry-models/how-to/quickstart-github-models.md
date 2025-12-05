@@ -66,7 +66,7 @@ To get the key and endpoint:
 
     1. You might land in the Foundry (new) experience. Notice the **New Foundry** toggle is on in the upper-right navigation.
     
-        :::image type="icon" source="../../media/version-banner/new-foundry.png" border="false":::
+        :::image type="icon" source="../../default/media/version-banner/new-foundry.png" border="false":::
 
     1.  Alternatively, you might land in the Foundry (classic) experience. Notice the **New Foundry** toggle is off in the upper-right navigation. 
     
