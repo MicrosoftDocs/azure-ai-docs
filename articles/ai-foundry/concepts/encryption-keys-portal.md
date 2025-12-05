@@ -63,12 +63,12 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 
     - You need an existing Azure Key Vault to store your keys.
     - You must deploy the Key Vault and the Microsoft Foundry resource in the same Azure region.
-    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure Portal](/azure/key-vault/general/quick-create-portal).
+    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure portal](/azure/key-vault/general/quick-create-portal).
 
 1.  **Managed Identity Configuration**:
 
     - **System-assigned managed identity**: Ensure your Microsoft Foundry resource has enabled a system-assigned managed identity.
-    - **User-assigned managed identity**: **Support for UAI is currently available only via Bicep templates.** Refer to the Bicep template example: [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
+    - **User-assigned managed identity**: **Support for UAI is currently available only via Bicep templates.** Refer to the Bicep template example: [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
 
 1.  **Key Vault Permissions**:
 
@@ -139,7 +139,7 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 **User-assigned managed identity**
 
 > [!NOTE]  
-> Refer to the [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
+> Refer to the [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
 
 1. Use the provided Bicep templates to deploy a user-assigned identity and configure Key Vault permissions.
 
@@ -180,5 +180,5 @@ To maintain optimal security and compliance, implement the following practices:
 ## Related content
 
 - [Azure Key Vault Documentation](/azure/key-vault/)
-- [GitHub Bicep Example: Customer-Managed Keys with UAI](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity)
+- [GitHub Bicep Example: Customer-Managed Keys with UAI](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
 - [Azure Managed Identities Overview](/azure/active-directory/managed-identities-azure-resources/overview)

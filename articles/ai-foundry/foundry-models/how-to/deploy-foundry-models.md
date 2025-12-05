@@ -42,7 +42,9 @@ To complete this article, you need:
 
 Deploy a model by following these steps in the Foundry portal:
 
-1. Go to the **Model catalog** section in the [Microsoft Foundry portal](https://ai.azure.com/explore/models?cid=learnDocs).
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+
+1. Go to the **Model catalog** section in the Foundry portal.
 
 1. Select a model and review its details in the model card. This article uses `Llama-3.2-90B-Vision-Instruct` for illustration.
 
@@ -72,7 +74,9 @@ Deploy a model by following these steps in the Foundry portal:
 
 Deploy a model by following these steps in the Foundry portal:
 
-1. From the [Foundry portal](https://aka.ms/nextgen-canary/explore/models?cid=learnDocs) homepage, select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+
+1. From the Foundry portal homepage, select **Discover** in the upper-right navigation, then **Models** in the left pane.
 
 1. Select a model and review its details in the model card. This article uses `Llama-3.2-90B-Vision-Instruct` for illustration.
 

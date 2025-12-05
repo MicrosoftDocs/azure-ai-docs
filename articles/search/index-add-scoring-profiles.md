@@ -233,9 +233,9 @@ For more examples, see [XML Schema: Datatypes (W3.org web site)](https://www.w3.
 
 ## Example: boosting by freshness or distance
 
-When using the freshness function, if you want the boost to have a more dramatic effect on more recent dates, and taper off for older dates, choose a quadratic interpolation. Quadratic amplifies the effect of near recent dates. This same logic applies to distance boosting, where farther locations yield larger magnitudes.
+The shape of the boost curve (constant, linear, logarithmic, quadratic) affects how aggressively scores change across the range. 
 
-The shape of the boost curve (constant, linear, logarithmic, quadratic) affects how aggressively scores change across the range. A quadratic curve tapers off more slowly for older dates, while a logarithmic curve shifts more sharply at the far end.
+When using the freshness function, if you want the boost to have a more dramatic effect on more recent dates, choose a quadratic interpolation. Quadratic amplifies the effect of near recent dates and closer locations and tapers off more slowly at the far end of the range. In contrast, a logarithmic curve shifts more sharply at the far end.
 
 Here's an example scoring profile that demonstrates how to boost by freshness.
 
@@ -361,7 +361,7 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
 }  
 ```
 
-## Example: function aggregation 
+## Example: function aggregation
 
 > [!NOTE]
 > This capability is currently in preview, available through the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and in Azure SDK preview packages that provide the feature.

@@ -26,14 +26,14 @@ This article describes the SDKs and endpoints you can use with your Foundry reso
 The Microsoft Foundry SDK simplifies AI application development on Azure. It lets developers:
 
 - Access models from various providers through one interface
-- Combine models, data, and AI services to build AI-powered applications
+- Combine models, data, and Foundry Tools to build AI-powered applications
 - Evaluate, debug, and improve application quality and safety in development, testing, and production
 
 The Microsoft Foundry SDK integrates with other client libraries and services that work together. 
 
 ## Foundry SDK
 
-Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized AI services. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
+Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized Foundry Tools. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
 
 The Foundry API Endpoint grants users access to Agents, Evaluations, and deployed models for inference and more.
 
@@ -443,3 +443,84 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 ::: moniker-end
 
 ::: zone-end
+
+After you create a client, use it to access models, run evaluations, and connect to other Foundry Tools.
+
+* Using the project endpoint, you can:
+    - [Use Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
+    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
+    - [Run evaluations in the cloud](cloud-evaluation.md)
+    - [Enable tracing for your app](../../concepts/trace.md) 
+    - [Fine tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
+    - Retrieve endpoints and keys for external resource connections, such as Foundry Tools, local orchestration, and more.
+    
+ The next section lists the Foundry Tools client libraries and shows how to use them.
+
+## Foundry Tools SDKs
+
+To use Foundry Tools, you can use the following SDKs with the endpoints listed.
+
+### Which endpoint should you use?
+
+Choose an endpoint based on your needs:
+
+Use the Azure AI Services endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
+
+Azure AI Services endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
+
+For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
+
+#### Speech Endpoints
+
+| Foundry Tool | Endpoint |
+| --- | --- |
+|Speech to Text (Standard)|`https://<YOUR-RESOURCE-REGION>.stt.speech.microsoft.com`|
+|Text to Speech (Neural)|`https://<YOUR-RESOURCE-REGION>.tts.speech.microsoft.com`|
+|Custom Voice|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
+
+#### Translation Endpoints
+
+| Foundry Tool | Endpoint |
+| --- | --- |
+|Text Translation|`https://api.cognitive.microsofttranslator.com/`|
+|Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
+
+The following sections include quickstart links for the Foundry Tools SDKs and reference information.
+
+<!-- ::: zone pivot="programming-language-cpp"
+[!INCLUDE [C++ include](../../includes/sdk/cpp.md)]
+::: zone-end -->
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [C# include](../../includes/sdk/csharp.md)]
+::: zone-end
+
+<!-- ::: zone pivot="programming-language-go"
+[!INCLUDE [Go include](../../includes/sdk/go.md)]
+::: zone-end -->
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](../../includes/sdk/java.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](../../includes/sdk/javascript.md)]
+::: zone-end
+
+<!-- ::: zone pivot="programming-language-objectivec"
+[!INCLUDE [ObjectiveC include](../../includes/sdk/objective-c.md)]
+::: zone-end -->
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./../../includes/sdk/python.md)]
+::: zone-end
+
+<!-- ::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](../../includes/sdk/swift.md)]
+::: zone-end -->
+
+## Using the Agent Framework for local orchestration
+
+Microsoft Agent Framework is an open-source development kit for building AI agents and multi-agent workflows for .NET and Python. It provides a way to build and manage AI agents that can interact with users and other services. It can orchestrate agents in Foundry, or have local agents that use Foundry models. 
+
+For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)

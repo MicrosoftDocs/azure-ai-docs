@@ -6,25 +6,19 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 12/01/2025
 ms.author: lajanuar
 ---
 
 # Translate (2025-10-01-preview)
+
+The Text translation API enables you to translate your source language text into a specified target language text.
 
 > [!IMPORTANT]
 >
 > * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
-The Text translation API enables you to translate your source language text into a specified target language text.
-
->[!IMPORTANT]
-> * Azure Translator in Foundry Tools REST API `2025-10-01-preview` is new version of the Translator REST API **with breaking changes**.
-> * It's essential to thoroughly test your code against the new release before migrating any production applications from Translator v3.0.
-> * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
-
 
 ## Request URL
 
@@ -128,6 +122,8 @@ curl -X POST 'https://<your-resource-name>.cognitiveservices.azure.com/translato
 ### Private endpoint
 
 For more information on Translator selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
+> [!NOTE]
+> LLM based translation is not available when the Translator resource is configured with a private endpoint.
 
 ## Request headers
 
@@ -223,16 +219,7 @@ A successful response is a JSON array named `value` with one result for each str
 
   * `language`: A string representing the language code of the target language.
 
-  * `transliteration`: An object giving the translated text in the script specified by the `toScript` parameter.
-
-    * `script`: A string specifying the target script.
-
-    * `text`: A string giving the translated text in the target script.
-
-    The `transliteration` object isn't included if transliteration doesn't take place.
-
-
-* `sourceText`: An object with a single string property named `text`, which gives the input text in the default script of the source language. `sourceText` property is present only when the input is expressed in a script that's not the usual script for the language. For example, if the input were Arabic written in Latin script, then `sourceText.text` would be the same Arabic text converted into Arab script`.`
+  * `script`: A string specifying the target script.
 
 Examples of JSON responses are provided in the [examples](#examples) section.
 

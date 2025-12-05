@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 12/04/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -16,6 +16,8 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 # Create a new network-secured environment with user-managed identity
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
@@ -38,7 +40,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media/private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- **Subnet IP address limitation**: both subnets must have IP ranges under `10.0.0.0/16`, `172.16.0.0/12` or `192.168.0.0/16`, which are class A, B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/README.md).
+- **Subnet IP address limitation**: both subnets must have IP ranges under `10.0.0.0/8`, `172.16.0.0/12` or `192.168.0.0/16`, which are class A, B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup/README.md).
 - **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Microsoft Foundry resources. Each Foundry resource must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environment`. For more on the subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 - **Agent subnet egress firewall allowlisting**: If you are integrating an Azure Firewall with your private network secured standard agent, please allowlist the Fully Qualified Domain Names (FQDNs) listed under __Managed Identity__ in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag __AzureActiveDirectory__.
@@ -126,7 +128,7 @@ You can deploy and customize the Standard Setup with Private Networking using ei
  
 Select one of the available deployment methods:
 
-- **Bicep templates**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
+- **Bicep templates**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 
 - **Terraform configuration**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform/15b-private-network-standard-agent-setup-byovnet).
 

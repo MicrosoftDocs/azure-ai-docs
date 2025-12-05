@@ -18,7 +18,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [gpt-oss](../concepts/models.md#gpt-oss) | open-weight reasoning models |
 | [codex-mini](../concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
 | [GPT-4.1 series](../concepts/models.md#gpt-41-series) | gpt-4.1, gpt-4.1-mini, gpt-4.1-nano |
-| [model-router](../concepts/models.md#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [computer-use-preview](../concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
 | [o-series models](../concepts/models.md#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
 | [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../concepts/models.md#gpt-4o-and-gpt-4-turbo) | Capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
