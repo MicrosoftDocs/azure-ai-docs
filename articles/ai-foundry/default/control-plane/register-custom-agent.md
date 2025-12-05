@@ -38,7 +38,9 @@ Before getting started, make sure you have:
 
 You can register a custom agent in the Control Plane. Develop the agent in the technology of your choice, both platform and infrastructure solutions. 
 
-When you register a custom agent, Foundry acts as a proxy for communications to your agent, so it can control access and monitor activity. The following diagram shows the resulting architecture once a custom agent is registered and configured.
+When you register a custom agent, Foundry uses Azure API Management to act as a proxy for communications to your agent, so it can control access and monitor activity. 
+
+When you register a custom agent the resulting architecture is as follows:
 
 :::image type="content" source="media/register-custom-agent/custom-agent-architecture.png" alt-text="A diagram showing the resulting architecture once a custom agent is registered and configured." lightbox="media/register-custom-agent/custom-agent-architecture.png":::
 
@@ -51,10 +53,11 @@ Verify that your agent meets the requirements for registration:
 > * The network where you deploy the Foundry resource can reach the agent's endpoint.
 > * The agent communicates by using one of the supported protocols: either general HTTP or specifically A2A.
 > * Your agent emits telemetry by using the OpenTelemetry semantic conventions for GenAI solutions (or you don't need this capability).
+> * You can configure the endpoint that end users use to communicate with the agent. Once an agent is registered in Control Plane, a new URL is generated. **Clients and end users must use this URL to communicate with the agent**.
 
 ### Prepare your Foundry project
 
-Custom agents are added to Foundry projects. Before registering the agent, let's make sure you configured the project where the agent is registered correctly.
+Custom agents are added to Foundry projects. Before registering the agent, let's make sure you configured the project correctly.
 
 1. [!INCLUDE [foundry-sign-in](../../default/includes/foundry-sign-in.md)]
 
@@ -94,8 +97,6 @@ Custom agents are added to Foundry projects. Before registering the agent, let's
 
 To register the agent, follow these steps:
 
-1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
-
 1. Select **Operate** from the upper-right navigation.
 
 1. Select the **Overview** pane.
@@ -121,8 +122,6 @@ To register the agent, follow these steps:
     | **Project** | The project where you register the agent. Foundry uses the AI Gateway configured in the resource where the project lives to configure the inbound endpoint to the agent. You can only select projects with AI Gateway enabled in their resources. If you don't see any, [configure AI Gateway in your Foundry resource](../configuration/enable-ai-api-management-gateway-portal.md#create-an-ai-gateway). It's also advisable to configure Azure Application Insights in the selected project. Foundry uses the project's Azure Application Insights resource to sink traces and logs. | Yes |
     | **Agent name** | The name of the agent as you want it to appear in Foundry. The system might also use this name to find relevant traces and logs in Azure Application Insights if you don't specify a different value in the field **OpenTelemetry Agent ID**. | Yes |
     | **Description** | A clear description about this agent. | No |
-
-1. Once you fill in all the properties, the field **new agent URL** displays the new URL for clients.
 
 1. Save the changes.
 
@@ -174,8 +173,6 @@ For custom agents, Foundry doesn't have access to the underlying infrastructure 
 
 To block incoming requests to your agent:
 
-1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
-
 1. Select **Operate** from the upper-right navigation.
 
 1. Select **Assets** in the left pane.
@@ -210,19 +207,24 @@ To get the best level of fidelity, Foundry expects custom agents to comply with 
 
 You can view traces and logs sent to Foundry. To view them:
 
-1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
-
 1. Select **Operate** from the upper-right navigation.
 
 1. Select **Assets** in the left pane.
 
-1. Select the agent and select **Monitor in build**.
+1. Select the agent.
 
-1. The monitoring sections show up.
+1. **Traces** sections show up.
 
-1. Select **Traces** in the top navigation.
+1. You see one entry for each HTTP call made to the agent's endpoint.
 
-1. Your traces show in the portal.
+1. Select an entry to see the details: 
+
+    :::image type="content" source="media/register-custom-agent/register-custom-agent-trace.png" alt-text="Screenshot of a call to the agent's endpoint under the route 'runs/stream'." lightbox="media/register-custom-agent/register-custom-agent-trace.png":::
+
+    > [!TIP]
+    > In this example, you can see how clients use the new agent's endpoint to communicate with the agent. The example is using a LangChain agent deployed with the Agent Protocol from LangChain. Clients use the route `/runs/stream`.
+
+1. Notice in this example that no further details besides the HTTP post are present in the trace. This is because no further instrumentation has been added to the code that the agent is running. See the next section to learn how to instrument your code and gain access to further details like tool calls, LLMs calls, etc.
 
 ### Instrument custom code agents
 
@@ -232,7 +234,7 @@ Send traces to the Azure Application Insights resource of your project by using 
 
 In this example, you configure an agent developed with LangGraph to emit traces in the OpenTelemetry standard. The tracer captures all agent operations, including tool calls and model interactions, and sends them to Azure Application Insights for monitoring. 
 
-This code uses [langchain-azure-ai](http://pypi.org/project/langchain-azure-ai) package.
+This code uses [langchain-azure-ai](http://pypi.org/project/langchain-azure-ai) package. Learn how to instrument specific solutions with OpenTelemetry depending on the programming language and the framework used in your solution at [Language APIs & SDKs.](https://opentelemetry.io/docs/languages/).
 
 ```bash
 pip install -U langchain-azure-ai[opentelemetry]
@@ -268,8 +270,6 @@ agent = create_agent(
 
 > [!TIP]
 > You can pass the connection string to Azure Application Insights by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`. 
-
-Learn how to instrument specific solutions with OpenTelemetry depending on the programming language and the framework used in your solution at [Language APIs & SDKs.](https://opentelemetry.io/docs/languages/).
 
 ### Instrumenting platform solutions
 
