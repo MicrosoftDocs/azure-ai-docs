@@ -55,7 +55,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 ## Step 1: Get the sample code
 
-<!-- Instead of navigating a large repository tree, use one of these approaches:
+Instead of navigating a large repository tree, use one of these approaches:
 
 #### Option A (clone entire samples repo)
 
@@ -80,7 +80,6 @@ cd samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 Repeat the path for `csharp` or `java` variants as needed.
 
 #### Option C (Download ZIP of repository)
--->
 
 Download the repository ZIP, extract it to your local environment, and go to the tutorial folder.
 
