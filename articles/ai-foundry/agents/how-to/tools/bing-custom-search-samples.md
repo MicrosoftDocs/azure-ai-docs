@@ -2,8 +2,8 @@
 title: "How to use the Custom Bing Search with Foundry Agent Service tool"
 titleSuffix: Azure OpenAI
 description: Find samples to ground Microsoft Foundry Agents using Custom Bing Search results.
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 11/20/2025
 ms.service: azure-ai-foundry
