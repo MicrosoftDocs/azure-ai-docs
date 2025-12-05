@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 12/02/2025
+ms.date: 12/08/2025
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -47,18 +47,17 @@ Foundry consolidated these endpoints to simplify user experience. Fewer endpoint
 
 ### Using OpenAI from Foundry SDK / API
 
-For some operations, the Foundry SDK & API reuses the OpenAI SDK and API. This enables easy transition from OpenAI to Foundry, with expanded capabilities. A Project client provides the best entry point into automatically configured use of the OpenAI SDK for OpenAI operations such as using Responses, fine tuning, or running an agent.
+For some operations, the Foundry SDK & API reuses the OpenAI SDK and API. This enables easy transition from OpenAI to Foundry, with expanded capabilities. A Project client provides the best entry point into automatically configured use of the OpenAI SDK for OpenAI operations such as using the Responses API, fine tuning, or running an agent.
 
 ## OpenAI SDK
 
 The OpenAI SDK lets you interact with the Azure OpenAI service. It offers a simple interface for making API calls and managing authentication. The OpenAI SDK directly calls the Azure OpenAI endpoint. To use OpenAI models with full OpenAI support, then use the v1 endpoint: `https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/` and OpenAI SDK directly.
 
-
 ### Which endpoint should you use when working with OpenAI?
 
-- **Getting started with Foundry Agents Service?** Use the Foundry Project endpoint with the Foundry SDK. Get your OpenAI client from the Project using Microsoft Entra ID for authentication.
+- **Getting started with Foundry Agents Service?** Use the Foundry Project endpoint with the Foundry SDK. Get your OpenAI client from the Project using Microsoft Entra ID for authentication. 
     - This includes using models with agents, running evaluations for agents, fine tuning models for agents, and other related operations.
-    - If you use non-OpenAI models with the responses API, you'd use the OpenAI client from the Foundry SDK as well.
+    - For non-OpenAI models with the responses API, use the OpenAI client from the Foundry SDK.
 - **Cross-targeting other OpenAI code?** Use the Azure OpenAI endpoint with the OpenAI SDK with Microsoft Entra ID as the preferred authentication method. 
     - This provides full access to all Azure OpenAI features, including operations like standalone audio transcription and image generation.
     - Many extended features from Foundry Agents Service are available; some may require additional configuration.
@@ -86,7 +85,10 @@ Choose an endpoint based on your needs:
 
 Use the Azure AI Services endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
 
-Azure AI Services endpoint: `https://<YOUR-RESOURCE-NAME>.services.ai.azure.com/`
+Azure AI Services endpoint: `https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`
+
+> [!NOTE]
+> Endpoints may use either your resource name or a custom subdomain. If your organization has configured a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
 
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 
