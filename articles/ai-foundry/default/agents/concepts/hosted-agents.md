@@ -266,6 +266,22 @@ Before creating the agent, give your project's managed identity access to pull f
 
 2. **Grant pull permissions**: Assign the `Container Registry Repository Reader` role to your project's managed identity on the container registry. For detailed steps, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
 
+### Create account-level Capability Host
+
+Updating capability hosts is not supported. If you have existing capability host for your Foundry account, you  must delete the existing one and recreate it with the property "enablePublicHostingEnvironment" set to true. 
+
+```bash
+curl --request PUT \
+  --url 'https://management.azure.com/subscriptions/96aede12-2f73-41cb-b983-6d11a904839b/resourceGroups/arthfa-ncus/providers/Microsoft.CognitiveServices/accounts/arthfa-ncus/capabilityHosts/accountcaphost?api-version=2025-10-01-preview' \
+  --header 'content-type: application/json' \
+  --data '{
+  "properties": {
+    "capabilityHostKind": "Agents",
+    "enablePublicHostingEnvironment": true
+  }
+}'
+```
+
 ### Create the hosted agent version 
 
 Use the Azure AI Projects SDK to create and register your agent:
