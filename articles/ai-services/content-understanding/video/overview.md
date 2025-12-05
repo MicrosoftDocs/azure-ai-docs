@@ -172,7 +172,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 > [!NOTE]
 >
->  This feature is limited access; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition).
+>  This feature is limited access; customers need to request to disable face blur for Azure OpenAI models with an Azure support request. Learn more [Manage an Azure support request](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/how-to-manage-azure-support-request).
 
 The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the video. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
 
