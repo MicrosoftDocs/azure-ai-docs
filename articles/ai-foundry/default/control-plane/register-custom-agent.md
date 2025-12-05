@@ -24,7 +24,7 @@ This article shows you how to register a custom agent in the Foundry Control Pla
 
 Before getting started, make sure you have:
 
-- [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../../../includes/azure-subscription.md)]
 
 - A Foundry project. If you don't have one, [create a project](../../how-to/create-projects.md).
 
@@ -226,7 +226,7 @@ You can view traces and logs sent to Foundry. To view them:
 
 ### Instrument custom code agents
 
-If you build your agent with custom code, you need to instrument your solution to emit traces according to the OpenTelemetry standard and sink them to Azure Application Insights. Instrumentation allow Foundry to have access to higher level of detail about what your agent is doing.
+If you build your agent with custom code, you need to instrument your solution to emit traces according to the OpenTelemetry standard and sink them to Azure Application Insights. Instrumentation allows Foundry to have access to higher level of detail about what your agent is doing.
 
 Send traces to the Azure Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Enable tracing in your project](../../how-to/develop/trace-application.md#enable-tracing-in-your-project).
 
