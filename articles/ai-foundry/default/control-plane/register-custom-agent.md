@@ -73,7 +73,7 @@ Custom agents are added to Foundry projects. Before registering the agent, let's
 
     1. If the Foundry resource you want to use doesn't have an AI Gateway configured (it's not listed), add one using the option **Add AI Gateway**. AI Gateway is free to set up and unlocks powerful governance features like security, telemetry, and rate limits for your agents, tools, and models.
 
-    1. For more details about how to configure AI Gateway see [Create an AI Gateway](../configuration/enable-ai-api-management-gateway-portal.md#create-an-ai-gateway).
+    1. For more details about how to configure AI Gateway, see [Create an AI Gateway](../configuration/enable-ai-api-management-gateway-portal.md#create-an-ai-gateway).
 
 1. Ensure you have observability configured in the project. Control Plane uses the Azure Application Insights resource associated with your selected project for emitting telemetry to help you diagnose your agent:
     
