@@ -203,7 +203,7 @@ Foundry uses the OpenTelemetry open standard to understand what agents are doing
 
 To get the best level of fidelity, Foundry expects custom agents to comply with the [semantic conventions for Generative AI solution in the OpenTelemetry standard](https://opentelemetry.io/docs/specs/semconv/gen-ai/). 
 
-## View runs and traces
+### View runs and traces
 
 You can view traces and logs sent to Foundry. To view them:
 
@@ -279,11 +279,11 @@ Configure the Collector with the Azure Monitor exporter to forward data to Appli
 
 ### Troubleshooting traces
 
-If you don't see traces, check the following checklist:
+If you don't see traces, check the following:
 
 > [!div class="checklist"]
-> * The project where you register your agent has Azure Application Insights configured.
-> * You configure the agent (running on its infrastructure) to send traces to Azure Application Insights.
+> * The project where you register your agent has Azure Application Insights configured. If you configured Azure Application Insights **after** you registered the custom agent, you need to **unregister** the agent and register it again. Azure Application Insights configuration is not automatically updated after registration if changed.
+> * You configure the agent (running on its infrastructure) to send traces to Azure Application Insights and you are using **the same** Azure Application Insights resource than your project.
 > * Instrumentation complies with OpenTelemetry semantic conventions for Generative AI.
 > * Traces include spans with attributes `operation="create_agent"`, and `gen_ai.agents.id="<agent-id>"` or `gen_ai.agents.name="<agent-id>"`; where `"<agent-id>"` is the **OpenTelemetry Agent ID** you configure during registration.
 
