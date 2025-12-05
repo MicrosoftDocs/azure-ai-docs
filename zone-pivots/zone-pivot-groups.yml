@@ -1744,15 +1744,6 @@ groups:
     title: Foundry portal
   - id: bicep
     title: Bicep
-# Owner: haileytapia
-- id: azure-portal-wizards
-  title: Azure portal wizards
-  prompt: Choose a wizard
-  pivots:
-  - id: import-data-new
-    title: Import data (new)
-  - id: import-data
-    title: Import data
 # Owner: johalexander / ms-johnalex
 - id: ai-foundry-vsc-extension-languages
   title: Programming languages

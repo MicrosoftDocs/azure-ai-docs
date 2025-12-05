@@ -18,7 +18,7 @@ ms.custom:
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
+- Fine-tuning access requires **Azure AI User** role.
 - If you don't already have access to view quota, and deploy models in Microsoft Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -236,7 +236,7 @@ Once the model is copied from region A to region B, you can continually fine-tun
 **Permissions configuration**
 
 1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
-2. Give Cognitive Services OpenAI contributor role to your user-assigned managed identity on your destination resource/account.
+2. Give Azure AI User role to your user-assigned managed identity on your destination resource/account.
 3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
 
 **Copy model**

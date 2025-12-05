@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 12/05/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -195,4 +195,14 @@ Both provisioned throughput and serverless modes are supported.
 
 ## See also
 
+:::moniker range="foundry-classic"
+
 * Learn about the different [tools](tools\overview.md) agents can use. 
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+* Learn about the different [tools](../../default/agents/concepts/tool-catalog.md) agents can use. 
+
+:::moniker-end
