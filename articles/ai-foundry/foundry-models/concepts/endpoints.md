@@ -19,7 +19,9 @@ ai-usage: ai-assisted
 
 Microsoft Foundry Models enables you to access the most powerful models from leading model providers through a single endpoint and set of credentials. This capability lets you switch between models and use them in your application without changing any code.
 
-This article explains how the Foundry services (formerly known as Azure AI Services) organize models and how to use the inference endpoint to access them.
+This article explains how the Foundry services organize models and how to use the inference endpoint to access them.
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ## Deployments
 

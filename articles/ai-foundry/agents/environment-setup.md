@@ -9,12 +9,14 @@ ms.reviewer: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/04/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Set up your environment
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Creating your first agent with Foundry Agent Service is a two-step process: 
 1. Set up your agent environment.

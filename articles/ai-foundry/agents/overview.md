@@ -16,6 +16,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # What is Foundry Agent Service?
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 
 Large language models (LLMs) introduced a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, businesses can have difficulty moving beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are hard to trust in real business workflows.

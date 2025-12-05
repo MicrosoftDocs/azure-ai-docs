@@ -827,9 +827,11 @@ Data can be deleted by deleting the associated Azure OpenAI resource. If you wis
 
 You can store a maximum 10 GB of data.
 
-### Can I prevent stored completions from ever being enabled on a subscription?
+### Can I prevent stored completions in my project?
 
-You'll need to open a case with customer support to disable stored completions at the subscription level.
+Users of Azure OpenAI resources can disabled within the Azure portal by using the controls within the Stored Completions panel in the Resource Management view on the Azure OpenAI resource.
+
+Users of Foundry resources must open a case with customer support to disable Stored Completions at the Azure subscription level.
 
 ### TypeError: Completions.create() got an unexpected argument 'store'
 

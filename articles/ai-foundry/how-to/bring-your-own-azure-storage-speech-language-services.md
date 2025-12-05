@@ -157,7 +157,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
 ### Sample repository
 
-See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/02-storage-speech-language).
+See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/02-storage-speech-language).
 
 ## Speech integration details
 
