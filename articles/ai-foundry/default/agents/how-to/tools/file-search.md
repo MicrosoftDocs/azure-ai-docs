@@ -40,6 +40,8 @@ File search augments agents with knowledge from outside its model, such as propr
 
 :::zone pivot="python"
 
+The following code sample shows how to create an agent with the file search tool enabled. You'll need to upload files and create a vector store before running this code. See the sections below for details.
+
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -58,7 +60,8 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 ```
 
-## Creating vector stores and adding files 
+## Creating vector stores and adding files
+
 Adding files to vector stores is an asynchronous operation. To ensure the operation completes, use the 'create and poll' helpers in our official SDKs. If you don't use the SDKs, you can retrieve the `vector_store` object and monitor its `file_counts` property to see the result of the file ingestion operation.
 
 You can also add files to a vector store after you create it by creating vector store files.
