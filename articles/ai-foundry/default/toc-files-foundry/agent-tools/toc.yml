@@ -1,4 +1,17 @@
 items:
+
+# Tool Catalog and Management
+- name: Overview of agent tools
+  items:
+  - name: Tool catalog (preview)
+    href: ../../agents/concepts/tool-catalog.md
+  - name: Create a private tool catalog (preview)
+    href: ../../agents/how-to/private-tool-catalog.md
+  - name: Tool best practices
+    href: ../../agents/concepts/tool-best-practice.md
+  - name: Tool governance
+    href: ../../agents/how-to/tools/governance.md
+
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
 - name: Browser automation (preview)
@@ -72,18 +85,5 @@ items:
 
 - name: Memory (preview)
   href: ../../agents/concepts/agent-memory.md
-
-# Tool Catalog and Management
-- name: Tool catalog (preview)
-  href: ../../agents/concepts/tool-catalog.md
-- name: Create a private tool catalog (preview)
-  href: ../../agents/how-to/private-tool-catalog.md
-- name: Tool best practices
-  href: ../../agents/concepts/tool-best-practice.md
-- name: Tool governance
-  href: ../../agents/how-to/tools/governance.md
-
-# Infrastructure and Gateways
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
-
