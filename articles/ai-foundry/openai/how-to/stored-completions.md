@@ -815,7 +815,7 @@ Stored completions access is controlled via two DataActions:
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/read`
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/action`
 
-By default `Cognitive Services OpenAI Contributor` has access to both these permissions:
+By default `Azure AI User` role has access to both these permissions:
 
 :::image type="content" source="../media/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/stored-completions/permissions.png":::
 
