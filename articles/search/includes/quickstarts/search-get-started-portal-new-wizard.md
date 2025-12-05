@@ -40,13 +40,15 @@ This quickstart uses a JSON document that contains metadata for 50 fictitious ho
 
 To prepare the sample data for this quickstart:
 
+1. Download the [sample JSON document](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureBlobs.json).
+
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
 
 1. From the left pane, select **Data storage** > **Containers**.
 
 1. Create a container named **hotels-sample**.
 
-1. Upload the [sample JSON document](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureBlobs.json) to the container.
+1. Upload the HotelsData_toAzureBlobs.json file to the container.
 
 ## Start the wizard
 
@@ -120,19 +122,19 @@ To configure the index:
 
 At a minimum, the index requires a name and a collection of fields. The wizard scans for unique string fields and marks one as the document key, which uniquely identifies each document in the index.
 
-Each field has a name, data type, and attributes that control how the field is used in the index. You can enable or disable the following attributes:
+Each field has a name, [data type](/rest/api/searchservice/supported-data-types), and attributes that control how the field is used in the index. You can enable or disable the following attributes:
 
 | Attribute | Description | Applicable data types |
 |-----------|-------------|------------------------|
 | Retrievable | Fields returned in a query response. | Strings and integers |
-| Filterable | Fields that accept a filter expression. | Integers |
-| Sortable | Fields that accept an orderby expression. | Integers |
-| Facetable | Fields used in a faceted navigation structure. | Integers |
+| Filterable | Fields that accept a filter expression. | Strings and integers |
+| Sortable | Fields that accept an orderby expression. | Strings and integers |
+| Facetable | Fields used in a faceted navigation structure. | Strings and integers |
 | Searchable | Fields used in full-text search. Strings are searchable, but numeric and Boolean fields are often marked as not searchable. | Strings |
 
-Attributes affect storage in different ways. For example, filterable fields consume extra storage, while retrievable fields don't. 
+Attributes affect storage in different ways. For example, filterable fields consume extra storage, while retrievable fields don't. For more information about attributes and data types, see [Configure field definitions](/azure/search/search-how-to-create-search-index#configure-field-definitions).
 
-If you want autocomplete or suggested queries, specify language **Analyzers** or **Suggesters**.
+If you want autocomplete or suggested queries, specify **Suggesters**.
 
 ### Skip advanced settings
 
