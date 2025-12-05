@@ -40,7 +40,7 @@ Use a search client that supports preview APIs on the query request. You can use
 
 ## Spell correction with simple search
 
-The following example uses the built-in hotels-sample index to demonstrate spell correction on a simple text query. Without spell correction, the query returns zero results. With correction, the query returns one result for Johnson's family-oriented resort.
+The following example uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate spell correction on a simple text query. Without spell correction, the query returns zero results. With correction, the query returns one result for Johnson's family-oriented resort.
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview

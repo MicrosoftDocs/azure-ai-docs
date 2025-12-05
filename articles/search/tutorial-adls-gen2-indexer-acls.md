@@ -204,4 +204,4 @@ Content-Type: application/json
 
 ## Related content
 
-+ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL)
++ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)
