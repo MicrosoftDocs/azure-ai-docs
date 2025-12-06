@@ -1,5 +1,5 @@
 ---
-title: "Customize a Microsoft Foundry model with the OpenAI Python SDK"
+title: "Customize a Microsoft Foundry Model with the OpenAI Python SDK"
 titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the OpenAI Python SDK.
 author: mrbullwinkle
@@ -15,19 +15,19 @@ ms.custom:
 
 ## Prerequisites
 
-- Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- The following Python libraries: `os`, `json`, `requests`, `openai`.
-- The OpenAI Python library.
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
+- Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
+- You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- You need the following Python libraries: `os`, `json`, `requests`, `openai`.
+- You need the OpenAI Python library.
+- Fine-tuning access requires the Cognitive Services OpenAI Contributor role.
+- If you don't already have access to view quotas and deploy models in the Microsoft Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
 
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
+To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md#fine-tuning-models).
 
-Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
 ## Review the workflow for the Python SDK
 
@@ -42,13 +42,15 @@ Take a moment to review the fine-tuning workflow for using the Python SDK with A
 1. Use your customized model.
 1. Optionally, analyze your customized model for performance and fit.
 
-### Prepare your training and validation data
+## Prepare your training and validation data
 
-Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
+Your training data and validation datasets consist of input and output examples for how you want the model to perform.
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../how-to/chatgpt.md) API uses.
 
-If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024-07-18` please refer to the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md)
+In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). Each file must be less than 512 MB in size.
+
+If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, see the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md).
 
 ### Example file format
 
@@ -65,9 +67,9 @@ If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the distance from Earth to the Sun?"}, {"role": "assistant", "content": "About 93 million miles. Just a quick drive, really."}]}
 ```
 
-### Multi-turn chat file format
+### Multiple-turn chat file format
 
-Multiple turns of a conversation in a single line of your jsonl training file is also supported. To skip fine-tuning on specific assistant messages add the optional `weight` key value pair. Currently `weight` can be set to 0 or 1.  
+Multiple turns of a conversation in a single line of your JSONL training file are also supported. To skip fine-tuning on specific assistant messages, add the optional `weight` key/value pair. Currently, `weight` can be set to `0` or `1`.  
 
 ```json
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
@@ -81,27 +83,22 @@ Multiple turns of a conversation in a single line of your jsonl training file is
 {"messages": [{"role": "user", "content": [{"type": "text", "text": "What's in this image?"}, {"type": "image_url", "image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}, {"role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape."}]}
 ```
 
-In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
+## Create your training and validation datasets
 
-### Create your training and validation datasets
+The more training examples you have, the better. Fine-tuning jobs won't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. A best practice for successful fine-tuning is to provide hundreds, if not thousands, of training examples.
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
-
-In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
+In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind that low-quality examples can negatively affect performance. If you train the model on a large amount of internal data without first pruning the dataset for only the highest-quality examples, your model might perform worse than expected.
 
 ## Upload your training data
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. After you prepare your training data, you can upload your files to the service. There are two ways to upload training data:
 
 - [From a local file](/rest/api/azureopenai/files/upload)
-- [Import from an Azure Blob store or other web location](/rest/api/azureopenai/files/import)
+- [From Azure Blob Storage or a web location (import)](/rest/api/azureopenai/files/import)
 
-For large data files, we recommend that you import from an Azure Blob  store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob storage, see [What is Azure Blob storage?](/azure/storage/blobs/storage-blobs-overview)
+For large data files, we recommend that you import from Azure Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
 
-> [!NOTE]
-> Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
-
-The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs.
+The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs:
 
 ```python
 import os
@@ -130,42 +127,42 @@ print("Validation file ID:", validation_file_id)
 
 After you upload your training and validation files, you're ready to start the fine-tuning job.
 
-The following Python code shows an example of how to create a new fine-tune job with the Python SDK:
+The following Python code shows an example of how to create a new fine-tuning job by using the Python SDK:
 
 ```python
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
-    model="gpt-4.1-2025-04-14", # Enter base model name.
-    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Microsoft Foundry the model cannot contain dot/period characters.
-    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
-    extra_body={ "trainingType": "GlobalStandard" } # Change this to your preferred training type. Other options are `Standard` and `Developer`.
+    model="gpt-4.1-2025-04-14", # Enter the base model name.
+    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Microsoft Foundry, the model can't contain dot/period characters.
+    seed=105, # Seed parameter controls reproducibility of the fine-tuning job. If no seed is specified, one is generated automatically.
+    extra_body={ "trainingType": "GlobalStandard" } # Change this value to your preferred training type. Other options are `Standard` and `Developer`.
 )
 
 job_id = response.id
 
 # You can use the job ID to monitor the status of the fine-tuning job.
-# The fine-tuning job will take some time to start and complete.
+# The fine-tuning job will take some time to start and finish.
 
 print("Job ID:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
 > [!NOTE]
-> We recommend using Global Standard tier for the training type, as it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and leverages global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md#fine-tuning-models) that supports Standard tier training.
+> We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md#fine-tuning-models) that supports Standard-tier training.
 
-You can also pass additional optional parameters like hyperparameters to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters. 
+You can also pass additional optional parameters, like hyperparameters, to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
-The current supported hyperparameters for Supervised Fine-Tuning are:
+The current supported hyperparameters for supervised fine-tuning are:
 
-|**Name**| **Type**| **Description**|
+|Name| Type| Description|
 |---|---|---|
-|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
+|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
-|`seed` | integer |	The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
+|`seed` | integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
 
-To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of the `method`:
+To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of `method`:
 
 ```python
 client.fine_tuning.jobs.create(
@@ -174,7 +171,7 @@ client.fine_tuning.jobs.create(
   suffix="my-model",
   seed=105,
   method={
-    "type": "supervised", # In this case, the job will be using Supervised Fine Tuning.
+    "type": "supervised", # In this case, the job is using supervised fine tuning.
     "supervised": {
       "hyperparameters": {
         "n_epochs": 2
@@ -185,18 +182,17 @@ client.fine_tuning.jobs.create(
 )
 ```
 
-> [!NOTE]
-> See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
+To learn about supported hyperparameters for the other customization methods, see the [guide for direct preference optimization](../how-to/fine-tuning-direct-preference-optimization.md) and the [guide for reinforcement fine-tuning](../how-to/reinforcement-fine-tuning.md).
 
 ### Training type
 
-Select the training tier based on your use case and budget.
+Select the training tier based on your use case and budget:
 
-- **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+- **Standard**: Training occurs in the current Foundry resource's region and provides guarantees for data residency. Ideal for workloads where data must remain in a specific region.
 
-- **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+- **Global**: Provides more affordable pricing compared to Standard by using capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
-- **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+- **Developer (preview)**: Provides significant cost savings by using idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier might be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
 ```python
 import openai
@@ -226,8 +222,7 @@ except openai.APIStatusError as e:
     print(e.status_code)
     print(e.response)
     print(e.body)
-``` 
-
+```
 
 ## Check fine-tuning job status
 
@@ -238,6 +233,7 @@ print("Job ID:", response.id)
 print("Status:", response.status)
 print(response.model_dump_json(indent=2))
 ```
+
 ---
 
 ### List fine-tuning events
@@ -291,9 +287,9 @@ The result file is a CSV file that contains a header row and a row for each trai
 | --- | --- |
 | `step` | The number of the training step. A training step represents a single pass, forward and backward, on a batch of training data. |
 | `train_loss` | The loss for the training batch. |
-| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `valid_loss` | The loss for the validation batch. |
-| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
@@ -356,7 +352,7 @@ print(r.json())
 
 ```
 
-Learn more about cross region deployment and use the deployed model [here](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
+To learn more about cross region deployment and how to use the deployed model, see [Use your deployed fine-tuned model](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
 
 If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
 
@@ -388,7 +384,7 @@ If you are unsure of the ID of your existing fine-tuned model this information c
 
 ## Clean up your deployments, customized models, and training files
 
-When you're done with your customized model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if needed. 
+When you're done with your customized model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if necessary.
 
 ### Delete your model deployment
 
