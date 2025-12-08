@@ -6,12 +6,22 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 11/18/2025
+ms.date: 12/08/2025
 ms.author: lajanuar
 ---
 # What's new in Azure Language in Foundry Tools?
 
 Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## December 2025
+
+* **Azure Language .NET SDK preview release**. New `.NET` SDK packages with support for the 2025-11-15-preview API are now available:
+
+  * [Azure.AI.Language.Text 1.0.0-beta.4](https://www.nuget.org/packages/Azure.AI.Language.Text/1.0.0-beta.4)
+
+  * [Azure.AI.Language.Conversation.Authoring 2.0.0-beta.5](https://www.nuget.org/packages/Azure.AI.Language.Conversations/2.0.0-beta.5)
+
+* **Language Studio deprecation**. Azure Language Studio is scheduled for deprecation in the near future. All existing features, along with upcoming enhancements, will be accessible through Microsoft Foundry. If you need guidance on exporting your projects from Language Studio, *see* [Export project](question-answering/how-to/migrate-knowledge-base.md#export-a-project). 
 
 ## November 2025
 
