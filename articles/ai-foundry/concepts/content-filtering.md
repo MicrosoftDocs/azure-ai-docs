@@ -1,4 +1,4 @@
-﻿---
+---
 title: Microsoft Foundry content filtering
 titleSuffix: Microsoft Foundry
 description: Learn about the content filtering capabilities of Azure OpenAI in Microsoft Foundry portal.

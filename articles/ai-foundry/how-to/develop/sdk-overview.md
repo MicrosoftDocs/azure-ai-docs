@@ -26,14 +26,14 @@ This article describes the SDKs and endpoints you can use with your Foundry reso
 The Microsoft Foundry SDK simplifies AI application development on Azure. It lets developers:
 
 - Access models from various providers through one interface
-- Combine models, data, and AI services to build AI-powered applications
+- Combine models, data, and Foundry Tools to build AI-powered applications
 - Evaluate, debug, and improve application quality and safety in development, testing, and production
 
 The Microsoft Foundry SDK integrates with other client libraries and services that work together. 
 
 ## Foundry SDK
 
-Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized AI services. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
+Developers working with Microsoft Foundry need flexibility to integrate multiple AI capabilities into unified workflows. These SDKs provide the building blocks for provisioning resources, orchestrating agents, and connecting to specialized Foundry Tools. By choosing the right library, you can streamline development, reduce complexity, and ensure your solutions scale across Foundry projects and external endpoints.
 
 ::: moniker range="foundry-classic"
 
@@ -355,7 +355,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ::: zone-end
 
-After you create a client, use it to access models, run evaluations, and connect to other AI services.
+After you create a client, use it to access models, run evaluations, and connect to other Foundry Tools.
 
 * Using the project endpoint, you can:
     - [Use Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI

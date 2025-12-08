@@ -33,7 +33,7 @@ Microsoft's **Read** OCR engine uses multiple advanced machine-learning models t
 
 ## How is OCR related to Intelligent Document Processing (IDP)?
 
-Intelligent Document Processing (IDP) uses OCR as its foundational technology to extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you're extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../document-intelligence/prebuilt/read.md).
+Intelligent Document Processing (IDP) uses OCR as its foundational technology to extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service  like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you're extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../document-intelligence/prebuilt/read.md).
 
 ## How to use OCR
 

@@ -104,7 +104,7 @@ Running the AI Red Teaming Agent in the cloud currently only supports the follow
 
 - Foundry project deployments
 - Azure OpenAI model deployments
-- Foundry Agents (prompt and container agents) in your Azure AI Foundry project as a target.
+- Foundry Agents (prompt and container agents) in your Microsoft Foundry project as a target.
 
 ::: moniker-end
 
@@ -124,9 +124,9 @@ model_api_key = os.environ["MODEL_API_KEY"]
 model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mini
 ```
 
-### Option 2: Azure OpenAI/AI Services deployments
+### Option 2: Azure OpenAI/Foundry Tools deployments
 
-If you want to use deployments from your Azure OpenAI or AI Services accounts, you first need to connect these resources to your Foundry project through connections.
+If you want to use deployments from your Azure OpenAI or Foundry Tools accounts, you first need to connect these resources to your Foundry project through connections.
 
 1. **Create a connection**: Follow the instructions in [Configure project connections](../../foundry-models/how-to/configure-project-connection.md?pivots=ai-foundry-portal#add-a-connection) to connect your Azure OpenAI or AI Services resource to your Foundry project.
 
@@ -193,7 +193,7 @@ curl --request POST \  --url https://{{account}}.services.ai.azure.com/api/proje
 - Replace `{{account}}`, `{{project}}` with Foundry Project account name and project name.
 - Replace `{{ai_token}}` with Bearer token with audience "<https://ai.azure.com>"
 - For Option 1 (Foundry project deployments): Replace `"{{connectionName}}/{{deploymentName}}"` with just `"{{deploymentName}}"` (your model deployment name).
-- For Option 2 (Azure OpenAI/AI Services deployments): Replace `"{{connectionName}}"` with the Azure OpenAI model connection name connected to the Foundry project account, and replace `"{{deploymentName}}"` with the Azure OpenAI deployment name of the Azure OpenAI connection account.
+- For Option 2 (Azure OpenAI/Foundry Tools deployments): Replace `"{{connectionName}}"` with the Azure OpenAI model connection name connected to the Foundry project account, and replace `"{{deploymentName}}"` with the Azure OpenAI deployment name of the Azure OpenAI connection account.
 
 ---
 

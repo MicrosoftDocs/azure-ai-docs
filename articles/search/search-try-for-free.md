@@ -49,7 +49,7 @@ For a next step evaluation of [RAG scenarios](retrieval-augmented-generation-ove
 
 - Storing data
 - Deploying embedding and chat models (**Azure OpenAI**)
-- Applying AI services for creating AI-generated content during indexing (optional)
+- Applying Foundry Tools for creating AI-generated content during indexing (optional)
 - Adding information retrieval (**Azure AI Search**)
 - Adding a frontend app (optional)
 

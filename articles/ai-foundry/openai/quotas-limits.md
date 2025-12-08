@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/13/2025
+ms.date: 12/04/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: article
@@ -84,6 +84,7 @@ The following section provides you with a quick guide to the default quotas and 
 | `gpt-5.1-chat`       | GlobalStandard          | 10,000        | 1,000,000     | 50,000						          | 5,000,000                  |
 | `gpt-5.1-codex`      | GlobalStandard          | 1,000         | 1,000,000     | 10,000					            | 10,000,000                 |
 | `gpt-5.1-codex-mini` | GlobalStandard          | 1,000         | 1,000,000     | 10,000						          | 10,000,000                 |
+| `gpt-5.1-codex-max`  | GlobalStandard          | 10,000        | 1,000,000     | 100,000                    | 10,000,000                 |
 
 ## GPT-5 series
 

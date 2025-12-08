@@ -8,8 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 11/19/2025
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 # How to use Foundry Agent Service with OpenAPI Specified Tools
@@ -124,7 +124,7 @@ To set up authenticating with Managed Identity:
 
     1. Select **Managed identity** and then click **select members**.
 
-    1. In the managed identity dropdown menu, search for **Foundry Tools** and then select the AI Service of your agent.
+    1. In the managed identity dropdown menu, search for **Foundry Tools** and then select the Foundry Tool of your agent.
 
     1. Click **Finish**.
 

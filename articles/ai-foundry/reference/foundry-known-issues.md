@@ -37,7 +37,7 @@ Issue ID|Category|Title|Description|Workaround|Issues publish date|
 
 No current active known issues
 
-## AI Services
+## Foundry Tools
 
 ### AI Content Safety
 

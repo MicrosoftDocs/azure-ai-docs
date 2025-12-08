@@ -4,7 +4,7 @@ description: Learn how to deploy and manage containerized AI agents with zero in
 titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
-ms.date: 12/02/2025
+ms.date: 12/05/2025
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -271,6 +271,22 @@ Before you create the agent, give your project's managed identity access to pull
 1. Under **System assigned**, copy the **Object (principal) ID** value. This value is the managed identity that you'll assign the Azure Container Instances role to.
 
 1. Grant pull permissions by assigning the Container Registry Repository Reader role to your project's managed identity on the container registry. For detailed steps, see [Azure Container Registry roles and permissions](/azure/container-registry/container-registry-roles).
+
+### Create account-level Capability Host
+
+Updating capability hosts is not supported. If you have an existing capability host for your Microsoft Foundry account, you must delete the existing one and recreate it with the property `enablePublicHostingEnvironment` set to `true`. 
+
+```bash
+curl --request PUT \
+  --url 'https://management.azure.com/subscriptions/[SUBSCRIPTIONID]/resourceGroups/[RESOURCEGROUPNAME]/providers/Microsoft.CognitiveServices/accounts/[ACCOUNTNAME]/capabilityHosts/accountcaphost?api-version=2025-10-01-preview' \
+  --header 'content-type: application/json' \
+  --data '{
+  "properties": {
+    "capabilityHostKind": "Agents",
+    "enablePublicHostingEnvironment": true
+  }
+```
+
 
 ### Create the hosted agent version
 
@@ -766,7 +782,7 @@ Currently, hosted agents are supported in North Central US only.
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
 - [Agent runtime components](./runtime-components.md)
-- [Discover tools in Microsoft Foundry Tools](./tool-catalog.md)
+- [Discover tools in Foundry Tools](./tool-catalog.md)
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
 - [Azure Container Registry documentation](/azure/container-registry/)
 - [Create a project for Microsoft Foundry](../../../how-to/create-projects.md)

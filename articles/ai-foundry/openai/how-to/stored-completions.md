@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 09/15/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -815,7 +815,7 @@ Stored completions access is controlled via two DataActions:
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/read`
 - `Microsoft.CognitiveServices/accounts/OpenAI/stored-completions/action`
 
-By default `Cognitive Services OpenAI Contributor` has access to both these permissions:
+By default `Azure AI User` role has access to both these permissions:
 
 :::image type="content" source="../media/stored-completions/permissions.png" alt-text="Screenshot of stored completions permissions." lightbox="../media/stored-completions/permissions.png":::
 
@@ -827,9 +827,11 @@ Data can be deleted by deleting the associated Azure OpenAI resource. If you wis
 
 You can store a maximum 10 GB of data.
 
-### Can I prevent stored completions from ever being enabled on a subscription?
+### Can I prevent stored completions in my project?
 
-You'll need to open a case with customer support to disable stored completions at the subscription level.
+Users of Azure OpenAI resources can disabled within the Azure portal by using the controls within the Stored Completions panel in the Resource Management view on the Azure OpenAI resource.
+
+Users of Foundry resources must open a case with customer support to disable Stored Completions at the Azure subscription level.
 
 ### TypeError: Completions.create() got an unexpected argument 'store'
 

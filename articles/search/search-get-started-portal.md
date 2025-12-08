@@ -7,23 +7,27 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 09/16/2025
+ms.date: 12/05/2025
 ms.custom:
   - mode-ui
   - ignite-2023
   - ignite-2024
-zone_pivot_groups: azure-portal-wizards
 ---
 
 # Quickstart: Create a search index in the Azure portal
 
-::: zone pivot="import-data-new"
+[!INCLUDE [Import data (new) instructions](includes/quickstarts/search-get-started-portal-new-wizard.md)]
+
+<!-- Removed this from metadata. Remove the the zone pivot entry on next PR
+zone_pivot_groups: azure-portal-wizards -->
+
+<!-- ::: zone pivot="import-data-new"
 [!INCLUDE [Import data (new) instructions](includes/quickstarts/search-get-started-portal-new-wizard.md)]
 ::: zone-end
 
 ::: zone pivot="import-data"
 [!INCLUDE [Import data instructions](includes/quickstarts/search-get-started-portal-old-wizard.md)]
-::: zone-end
+::: zone-end -->
 
 ## Monitor indexer progress
 
@@ -63,7 +67,7 @@ Review the index definition options to understand what you can and can't edit du
 
 ## Query with Search explorer
 
-You now have a search index that can be queried using [**Search explorer**](search-explorer.md), which sends REST calls that conform to [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true). This tool supports [simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and [full Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search).
+You now have a search index that can be queried using [**Search explorer**](search-explorer.md), which sends REST calls that conform to [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This tool supports [simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and [full Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for keyword search.
 
 To query your search index:
 
@@ -81,7 +85,7 @@ To query your search index:
 
 ## Example queries for hotels-sample index
 
-The following examples assume the JSON view and 2024-05-01-preview REST API version.
+The following examples assume the JSON view and the latest preview REST API version.
 
 > [!TIP]
 > The JSON view supports intellisense for parameter name completion. Place your cursor inside the JSON view and enter a space character to see a list of all query parameters. You can also enter a letter, like `s`, to see only the query parameters that begin with that letter.
@@ -154,7 +158,7 @@ In the Azure portal, you can find and manage resources by selecting **All resour
 
 ## Next step
 
-Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use one of the built-in sample datasets for a richer search experience.
+Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use [sample data](https://github.com/Azure-Samples/azure-search-sample-data) for a richer search experience.
 
 > [!div class="nextstepaction"]
 > [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)
