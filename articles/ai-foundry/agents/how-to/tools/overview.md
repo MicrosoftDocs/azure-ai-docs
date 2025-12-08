@@ -108,7 +108,7 @@ The following tools are authored by third-party partners. Use the links below to
 | [LexisNexis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/LexisNexis) | Seamless access to LexisNexis content. |
 | [MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/MiHCM) | seamless integration with MiHCM's HR functionalities |
 | [Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date investment research and data such as analyst research, expert commentary, and essential Morningstar data. |
-| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Trademo_Global_trade) | Provide latest duties and past shipment data for trade between multiple countries |
+| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Trademo_Global_trade) | Provide latest duties and past shipment data for trade between multiple countries/regions |
 | [Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
 
 ## Best Practices
