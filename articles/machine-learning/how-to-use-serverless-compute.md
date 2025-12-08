@@ -217,7 +217,6 @@ Here's an example:
 # [Python SDK](#tab/python)
 
 ```python
-from azure.ai.ml import command
 from azure.ai.ml import command 
 from azure.ai.ml import MLClient # Handle to the workspace.
 from azure.identity import DefaultAzureCredential # Authentication package.
