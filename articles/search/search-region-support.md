@@ -120,7 +120,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Korea South​​ |  |  | ✅ |  | ✅ |  |
 | Malaysia West |  | ✅ |  |  |  |  |
 | New Zealand North |  | ✅ |  |  |  |  |
-| South India <sup>1</sup>|  | ✅ |  |  |  |  |
+| South India <sup>2</sup>|  | ✅ |  |  |  |  |
 | Southeast Asia​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
