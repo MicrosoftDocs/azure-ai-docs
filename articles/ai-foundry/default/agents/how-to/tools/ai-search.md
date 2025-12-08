@@ -11,6 +11,7 @@ ms.date: 12/08/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
+zone_pivot_groups: selection-ai-search-tool
 ---
 
 # Azure AI Search tool for agents 
