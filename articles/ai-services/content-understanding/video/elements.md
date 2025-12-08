@@ -170,7 +170,7 @@ A `cameraShotTimesMs` element identifies points in the video where camera shots 
 - `cameraShotTimesMs` stores the timestamps of cuts between camera shots
 - The array values indicate the starting time of all camera shots, excluding the first shot (which always starts at 0 ms)
 - The output is deterministic and consistent across multiple runs
-- This model may transitions that are visually gradual
+- This model may miss transitions that are visually gradual
 
 **JSON example:**
 ```json
