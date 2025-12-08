@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 09/15/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
