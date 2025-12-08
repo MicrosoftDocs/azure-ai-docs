@@ -391,7 +391,7 @@ Here are two more examples of using serverless compute for training:
   
 ## AutoML job
 
-You don't need to specify compute for AutoML jobs. Resources can optionally be specified. If an instance count isn't specified, it's defaulted based on the `max_concurrent_trials` and `max_nodes` parameters. If you submit an AutoML image classification or NLP task without specifying an instance type, the GPU VM size is automatically selected. You can submit AutoML jobs by using CLIs, the Python SDK, or studio. To submit AutoML jobs by using serverless compute in studio, first enable the [submit a training job in studio (preview)](how-to-train-with-ui.md) feature in the preview panel.
+You don't need to specify compute for AutoML jobs. Resources can optionally be specified. If an instance count isn't specified, it's defaulted based on the `max_concurrent_trials` and `max_nodes` parameters. If you submit an AutoML image classification or NLP task without specifying an instance type, the GPU VM size is automatically selected. You can submit AutoML jobs by using CLIs, the Python SDK, or studio. 
 
 # [Python SDK](#tab/python)
 
