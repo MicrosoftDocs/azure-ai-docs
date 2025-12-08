@@ -166,5 +166,4 @@ The following tables list the timelines for models that are on track for retirem
 ## Related content
 
 - [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md)
-- [Explore Foundry Models](foundry-models-overview.md)
 - [Data, privacy, and security for use of models through the model catalog in Foundry portal](../how-to/concept-data-privacy.md)

@@ -1,5 +1,5 @@
 ---
-title: "Customize a model with Azure OpenAI in Microsoft Foundry Models and the REST API"
+title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
 author: mrbullwinkle
@@ -18,7 +18,7 @@ ms.custom:
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
+- Fine-tuning access requires **Azure AI User** role.
 - If you don't already have access to view quota, and deploy models in Microsoft Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -81,7 +81,6 @@ Multiple turns of a conversation in a single line of your jsonl training file is
 ```
 
 In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
-
 
 ### Create your training and validation datasets
 
@@ -165,16 +164,15 @@ The current supported hyperparameters for Supervised Fine-Tuning are:
 > [!NOTE]
 > See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
-
 ## Training type
 
 Select the training tier based on your use case and budget.
 
-* **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+- **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
 
-* **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+- **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
 
-* **Developer** (preview): Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+- **Developer** (preview): Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
 
 ```curl
 curl -X POST "https://<ACCOUNT-NAME>.openai.azure.com/openai/fine_tuning/jobs?api-version=2025-04-01-preview" -H "Content-Type: application/json" -H "api-key: <API-KEY>" -d "{"model": "gpt-4.1", "training_file": "<FILE_ID>", "hyperparameters": {"prompt_loss_weight": 0.1}, "trainingType": "developerTier"}"
@@ -227,19 +225,19 @@ Once the model is copied from region A to region B, you can continually fine-tun
 > [!NOTE]
 > Deletion of the model checkpoint in the source region will not cause the model to be deleted in the destination region. To delete the model in both regions once it has been copied, the model must be deleted separately in each region.
 
-**Pre-requisites**
+### Prerequisites
 
 - Destination resource/account should have at least one fine-tuning job.
 - Destination resource/account should not disable public network access. (At least while sending copying request).
 - You can only copy to the destination account, if the account initiating the copy has sufficient permissions to access the destination account.
 
-**Permissions configuration**
+### Permissions configuration
 
 1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
-2. Give Cognitive Services OpenAI contributor role to your user-assigned managed identity on your destination resource/account.
+2. Give Azure AI User role to your user-assigned managed identity on your destination resource/account.
 3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
 
-**Copy model**
+### Copy model
 
 ```bash
 curl --request POST \
@@ -255,7 +253,7 @@ curl --request POST \
 
 Since this is a long running operation, check the status of the Fine-tuned model copy by providing the checkpoint ID of the source account used in the POST call.
 
-**Check copy status**
+## Check copy status
 
 ```bash
 curl --request GET \
@@ -282,7 +280,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_
 
 ## Analyze your customized model
 
-Azure OpenAI attaches a result file named _results.csv_ to each fine-tune job after it completes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model, and you can use the REST API to retrieve the file ID and download the result file for analysis.
+Azure OpenAI attaches a result file named `results.csv` to each fine-tune job after it completes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model, and you can use the REST API to retrieve the file ID and download the result file for analysis.
 
 The following Python example uses the REST API to retrieve the file ID of the first result file attached to the fine-tuning job for your customized model, and then downloads the file to your working directory for analysis.
 
@@ -302,17 +300,15 @@ The result file is a CSV file that contains a header row and a row for each trai
 | --- | --- |
 | `step` | The number of the training step. A training step represents a single pass, forward and backward, on a batch of training data. |
 | `train_loss` | The loss for the training batch. |
-| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `valid_loss` | The loss for the validation batch. |
-| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
 You can also view the data in your results.csv file as plots in Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that may indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
-
-
 
 ## Deploy a fine-tuned model
 
@@ -348,7 +344,6 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 ```
 
 Learn more about cross region deployment and use the deployed model [here](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
-
 
 ## Continuous fine-tuning
 

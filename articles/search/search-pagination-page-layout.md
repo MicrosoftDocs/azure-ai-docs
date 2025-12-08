@@ -44,7 +44,7 @@ Results are mostly tabular, composed of fields of either all `retrievable` field
 
 You can choose which fields are in search results. While a search document might have a large number of fields, typically only a few are needed to represent each document in results. On a query request, append `select=<field list>` to specify which `retrievable` fields should appear in the response.
 
-Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a clickthrough response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the built-in hotels-sample index, it might be the "select" fields in the following example:
+Pick fields that offer contrast and differentiation among documents, providing sufficient information to invite a clickthrough response on the part of the user. On an e-commerce site, it might be a product name, description, brand, color, size, price, and rating. For the [hotels-sample index](search-get-started-portal.md), it might be the "select" fields in the following example:
 
 ```http
 POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01 

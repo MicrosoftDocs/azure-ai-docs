@@ -1,27 +1,25 @@
 items:
-# Tool Catalog and Management
-- name: Tool catalog (preview)
-  href: ../../agents/concepts/tool-catalog.md
-- name: Create a private tool catalog (preview)
-  href: ../../agents/how-to/private-tool-catalog.md
-- name: Tool best practices
-  href: ../../agents/concepts/tool-best-practice.md
-- name: Tool governance
-  href: ../../agents/how-to/tools/governance.md
 
-# Core Tools and Features
-- name: Core tools
+# Tool Catalog and Management
+- name: Overview of agent tools
   items:
-  - name: Function calling
-    href: ../../agents/how-to/tools/function-calling.md
-  - name: Code interpreter
-    href: ../../agents/how-to/tools/code-interpreter.md
-  - name: Memory (preview)
-    href: ../../agents/concepts/agent-memory.md
-  - name: Browser automation (preview)
-    href: ../../agents/how-to/tools/browser-automation.md
-  - name: Computer Use (preview)
-    href: ../../agents/how-to/tools/computer-use.md
+  - name: Tool catalog (preview)
+    href: ../../agents/concepts/tool-catalog.md
+  - name: Create a private tool catalog (preview)
+    href: ../../agents/how-to/private-tool-catalog.md
+  - name: Tool best practices
+    href: ../../agents/concepts/tool-best-practice.md
+  - name: Tool governance
+    href: ../../agents/how-to/tools/governance.md
+
+- name: Code interpreter
+  href: ../../agents/how-to/tools/code-interpreter.md
+- name: Browser automation (preview)
+  href: ../../agents/how-to/tools/browser-automation.md
+- name: Computer Use (preview)
+  href: ../../agents/how-to/tools/computer-use.md
+- name: Image generation (preview)
+  href: ../../agents/how-to/tools/image-generation.md
 
 # Search and Retrieval Tools
 - name: Search and retrieval
@@ -42,6 +40,8 @@ items:
     href: ../../agents/how-to/tools/web-search.md
   - name: Grounding with Bing tools
     href: ../../agents/how-to/tools/bing-tools.md
+  - name: Fabric data agent (preview)
+    href: ../../agents/how-to/tools/fabric.md
 
 # Azure AI Services Integration
 - name: Foundry Tools
@@ -65,26 +65,8 @@ items:
     - name: Azure document translation
       href: /azure/ai-services/translator/document-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
 
-# Data and Enterprise Tools
-- name: Data and enterprise
-  items:
-  - name: Fabric data agent (preview)
-    href: ../../agents/how-to/tools/fabric.md
-  - name: Agent2Agent (A2A) tool (preview)
-    href: ../../agents/how-to/tools/agent-to-agent.md
-  - name: Agent2Agent (A2A) authentication (preview)
-    href: ../../agents/concepts/agent-to-agent-authentication.md
-
-# Content Generation and APIs
-- name: Content generation and APIs
-  items:
-  - name: Image generation (preview)
-    href: ../../agents/how-to/tools/image-generation.md
-  - name: OpenAPI tool
-    href: ../../agents/how-to/tools/openapi.md
-
-# Model Context Protocol (MCP)
-- name: Model Context Protocol (MCP)
+# Protocols
+- name: Protocols
   items:
   - name: Model Context Protocol (MCP)
     href: ../../agents/how-to/tools/model-context-protocol.md
@@ -92,8 +74,16 @@ items:
     href: ../../agents/how-to/mcp-authentication.md
   - name: Build your own MCP server
     href: ../../mcp/build-your-own-mcp-server.md
+  - name: Agent2Agent (A2A) tool (preview)
+    href: ../../agents/how-to/tools/agent-to-agent.md
+  - name: Agent2Agent (A2A) authentication (preview)
+    href: ../../agents/concepts/agent-to-agent-authentication.md
+  - name: OpenAPI tool
+    href: ../../agents/how-to/tools/openapi.md
+  - name: Function calling
+    href: ../../agents/how-to/tools/function-calling.md
 
-# Infrastructure and Gateways
+- name: Memory (preview)
+  href: ../../agents/concepts/agent-memory.md
 - name: Enable token limits with API gateways
   href: ../../configuration/enable-ai-api-management-gateway-portal.md
-

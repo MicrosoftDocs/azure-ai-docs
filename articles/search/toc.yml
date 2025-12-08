@@ -80,11 +80,11 @@ items:
     items:
     - name: Create an agentic search pipeline
       href: get-started-portal-agentic-retrieval.md
-    - name: Create a search index
+    - name: Create an index for keyword search
       href: search-get-started-portal.md
-    - name: Create a vector index
+    - name: Create an index for vector search
       href: search-get-started-portal-import-vectors.md
-    - name: Create a multimodal index
+    - name: Create an index for multimodal search
       href: search-get-started-portal-image-search.md
     - name: Create a demo app
       href: search-create-app-portal.md

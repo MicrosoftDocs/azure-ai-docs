@@ -14,7 +14,7 @@ Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-
 
 ## Prepare your data
 
-Your training data and validation datasets consist of input and output examples for how you want the model to perform.
+Your training and validation datasets consist of input and output examples for how you want the model to perform.
 
 The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../openai/how-to/chatgpt.md) API uses.
 
@@ -41,7 +41,7 @@ If you don't have an existing dataset prepared, you can use the [data generation
 
 ### Multiple-turn chat file format
 
-Multiple turns of a conversation in a single line of your JSONL training file are also supported. To skip fine-tuning on specific assistant messages, add the optional `weight` key/value pair. Currently, `weight` can be set to `0` or `1`.  
+Multiple turns of a conversation in a single line of your JSONL training file are also supported. To skip fine-tuning on specific assistant messages, add the optional `weight` key/value pair. Currently, `weight` can be set to `0` or `1`.
 
 ```json
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the biggest city in France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
@@ -151,7 +151,7 @@ You can monitor the following metrics by going to the **Monitor** pivot:
   For example, if the batch size is set to `3` and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to `0.83` (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`.
 - `full_valid_mean_token_accuracy`: The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase.
 
-Look for your loss to decrease over time, and your accuracy to increase. If your training and validation data diverge, you might be overfitting. Try training with fewer epochs or a smaller learning rate multiplier.
+Look for your loss to decrease over time, and your accuracy to increase. If your training and validation data diverge, you might be overfitting. Try training with fewer epochs or a smaller learning-rate multiplier.
 
 ### Checkpoints
 

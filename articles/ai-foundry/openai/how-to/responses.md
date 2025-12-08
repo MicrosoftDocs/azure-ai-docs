@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/10/2025
+ms.date: 12/04/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
@@ -57,6 +57,7 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.1-codex-max` (Version: `2025-12-04`)
 - `gpt-5.1` (Version: `2025-11-13`)
 - `gpt-5.1-chat` (Version: `2025-11-13`)
 - `gpt-5.1-codex` (Version: `2025-11-13`)
@@ -86,9 +87,9 @@ Not every model is available in the regions supported by the responses API. Chec
 
 > [!NOTE]
 > Not currently supported:
-> - The web search tool
-> - Image generation using multi-turn editing and streaming - coming soon
-> - Images can't be uploaded as a file and then referenced as input. Coming soon.
+> - Compaction with `/responses/compact` 
+> - Image generation using multi-turn editing and streaming.
+> - Images can't be uploaded as a file and then referenced as input.
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
@@ -1337,4 +1338,4 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](./computer-use.md#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/computer-use#playwright-integration)

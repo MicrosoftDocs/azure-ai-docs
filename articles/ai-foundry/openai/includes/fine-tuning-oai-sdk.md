@@ -20,8 +20,8 @@ ms.custom:
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
-- Fine-tuning access requires the Cognitive Services OpenAI Contributor role.
-- If you don't already have access to view quotas and deploy models in the Microsoft Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
+- Fine-tuning access requires the Azure AI User role.
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
 
@@ -44,7 +44,7 @@ Take a moment to review the fine-tuning workflow for using the Python SDK with A
 
 ## Prepare your training and validation data
 
-Your training data and validation datasets consist of input and output examples for how you want the model to perform.
+Your training and validation datasets consist of input and output examples for how you want the model to perform.
 
 The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../how-to/chatgpt.md) API uses.
 
@@ -91,7 +91,7 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 ## Upload your training data
 
-The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. After you prepare your training data, you can upload your files to the service. There are two ways to upload training data:
+The next step is to either choose existing prepared training data or upload new prepared training data to use when you're customizing your model. After you prepare your training data, you can upload your files to the service. There are two ways to upload training data:
 
 - [From a local file](/rest/api/azureopenai/files/upload)
 - [From Azure Blob Storage or a web location (import)](/rest/api/azureopenai/files/import)
@@ -142,7 +142,7 @@ response = client.fine_tuning.jobs.create(
 job_id = response.id
 
 # You can use the job ID to monitor the status of the fine-tuning job.
-# The fine-tuning job will take some time to start and finish.
+# The fine-tuning job takes some time to start and finish.
 
 print("Job ID:", response.id)
 print(response.model_dump_json(indent=2))
@@ -157,9 +157,9 @@ The current supported hyperparameters for supervised fine-tuning are:
 
 |Name| Type| Description|
 |---|---|---|
-|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
-|`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+|`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+| `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
+|`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 |`seed` | integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
 
 To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of `method`:
@@ -171,7 +171,7 @@ client.fine_tuning.jobs.create(
   suffix="my-model",
   seed=105,
   method={
-    "type": "supervised", # In this case, the job is using supervised fine tuning.
+    "type": "supervised", # In this case, the job is using supervised fine-tuning.
     "supervised": {
       "hyperparameters": {
         "n_epochs": 2
@@ -214,7 +214,7 @@ try:
     )
 except openai.APIConnectionError as e:
     print("The server could not be reached")
-    print(e.__cause__) # an underlying Exception, likely raised within httpx.
+    print(e.__cause__) # An underlying exception, likely raised within httpx.
 except openai.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
 except openai.APIStatusError as e:
@@ -236,20 +236,22 @@ print(response.model_dump_json(indent=2))
 
 ---
 
-### List fine-tuning events
+## List fine-tuning events
 
-To examine the individual fine-tuning events that were generated during training, you might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
+To examine the individual fine-tuning events that were generated during training, run the following command. Before you run the command, you might need to upgrade your OpenAI client library to the latest version by using `pip install openai --upgrade`.
 
 ```python
 response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)
 print(response.model_dump_json(indent=2))
 ```
 
-## Checkpoints
+## List checkpoints
 
-When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. The final epoch will be represented by your fine-tuned model, the previous two epochs will be available as checkpoints.
+The completion of each training epoch generates a checkpoint. A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting.
 
-You can run the list checkpoints command to retrieve the list of checkpoints associated with an individual fine-tuning job. You might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
+When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy. Your fine-tuned model represents the final epoch. The previous two epochs are available as checkpoints.
+
+You can run the following command to retrieve the list of checkpoints associated with an individual fine-tuning job. Before you run the command, you might need to upgrade your OpenAI client library to the latest version by using `pip install openai --upgrade`.
 
 ```python
 response = client.fine_tuning.jobs.checkpoints.list(job_id)
@@ -260,9 +262,9 @@ print(response.model_dump_json(indent=2))
 
 ## Analyze your customized model
 
-Azure OpenAI attaches a result file named _results.csv_ to each fine-tune job after it completes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model, and you can use the Python SDK to retrieve the file ID and download the result file for analysis.
+Azure OpenAI attaches a result file named `results.csv` to each fine-tune job after it finishes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model. You can use the Python SDK to retrieve the file ID and download the result file for analysis.
 
-The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model, and then uses the Python SDK to download the file to your current working directory for analysis.
+The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model. It then uses the Python SDK to download the file to your current working directory for analysis.
 
 ```python
 # Retrieve the file ID of the first result file from the fine-tuning job
@@ -281,38 +283,38 @@ with open(retrieve.filename, "wb") as file:
     file.write(result)
 ```
 
-The result file is a CSV file that contains a header row and a row for each training step performed by the fine-tuning job. The result file contains the following columns:
+The result file is a CSV file that contains a header row and a row for each training step that the fine-tuning job performs. The result file contains the following columns:
 
 | Column name | Description |
 | --- | --- |
 | `step` | The number of the training step. A training step represents a single pass, forward and backward, on a batch of training data. |
 | `train_loss` | The loss for the training batch. |
-| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `train_mean_token_accuracy` | The percentage of tokens in the training batch that the model correctly predicted.<br><br>For example, if the batch size is set to `3` and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to `0.83` (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `valid_loss` | The loss for the validation batch. |
-| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch that the model correctly predicted.<br><br>For example, if the batch size is set to `3` and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to `0.83` (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Microsoft Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your `results.csv` file as plots in the Microsoft Foundry portal. When you select the link for your trained model, three charts appear: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets appear on the same plot.
 
-Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that can indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
+Look for your loss to decrease over time, and your accuracy to increase. If your training and validation data diverge, you might be overfitting. Try training with fewer epochs or a smaller learning-rate multiplier.
 
 ## Deploy a fine-tuned model
 
-Once you're satisfied with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
+When you're satisfied with the metrics from your fine-tuning job, or you just want to move on to inference, you must deploy the model.
 
-If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=python) using a Developer deployment.
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=python) by using a Developer deployment.
 
-Unlike the previous SDK commands, deployment must be done using the control plane API which requires separate authorization, a different API path, and a different API version.
+Unlike with the previous SDK commands, you must use the control plane API for the deployment. This task requires separate authorization, a different API path, and a different API version.
 
-|variable      | Definition|
+|Variable      | Definition|
 |--------------|-----------|
-| token        | There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
-| subscription | The subscription ID for the associated Azure OpenAI resource. |
-| resource_group | The resource group name for your Azure OpenAI resource. |
-| resource_name | The Azure OpenAI resource name. |
-| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| `token`        | An authorization token. There are multiple ways to generate an authorization token. The easiest method for initial testing is to open Azure Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this token in a new environment variable. |
+| `subscription` | The subscription ID for the associated Azure OpenAI resource. |
+| `resource_group` | The resource group name for your Azure OpenAI resource. |
+| `resource_name` | The Azure OpenAI resource name. |
+| `model_deployment_name` | The custom name for your new fine-tuned model deployment. This name is referenced in your code during chat completion calls. |
+| `fine_tuned_model` | Your fine-tuned model. Retrieve this value from your fine-tuning job results in the previous step. It looks like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You need to add the value to the `deploy_data` JSON. Alternatively, you can deploy a checkpoint by passing the checkpoint ID, which appears in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d`. |
 
 ```python
 import json
@@ -323,9 +325,9 @@ token= os.getenv("<TOKEN>")
 subscription = "<YOUR_SUBSCRIPTION_ID>"  
 resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name ="gpt-41-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name ="gpt-41-ft" # Custom deployment name that you use to reference the model when making inference calls.
 
-deploy_params = {'api-version': "2024-10-01"} # control plane API version rather than dataplane API for this call 
+deploy_params = {'api-version': "2024-10-01"} # Control plane API version rather than the data plane API for this call 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
 
 deploy_data = {
@@ -333,7 +335,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": <"fine_tuned_model">, # Retrieve this value from the previous call; it looks like gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
             "version": "1"
         }
     }
@@ -352,15 +354,15 @@ print(r.json())
 
 ```
 
-To learn more about cross region deployment and how to use the deployed model, see [Use your deployed fine-tuned model](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
+To learn about cross-region deployment and how to use the deployed model, see [Use your deployed fine-tuned model](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
 
-If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
+If you're ready to deploy for production or you have particular data residency needs, follow the [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
 
 ## Continuous fine-tuning
 
-Once you have created a fine-tuned model you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
+After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
+To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a customized model](#create-a-customized-model). But instead of specifying the name of a generic base model, you specify your fine-tuned model's ID. The fine-tuned model's ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`.
 
 ```python
 response = client.fine_tuning.jobs.create(
@@ -371,46 +373,44 @@ response = client.fine_tuning.jobs.create(
 job_id = response.id
 
 # You can use the job ID to monitor the status of the fine-tuning job.
-# The fine-tuning job will take some time to start and complete.
+# The fine-tuning job takes some time to start and finish.
 
 print("Job ID:", response.id)
 print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
+We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. With the OpenAI Python API, you can add a string of up to 18 characters to the name of your fine-tuned model.
 
-If you are unsure of the ID of your existing fine-tuned model this information can be found in the **Models** page of Microsoft Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
+If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for an Azure OpenAI resource by using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
-When you're done with your customized model, you can delete the deployment and model. You can also delete the training and validation files you uploaded to the service, if necessary.
+When you no longer need your customized model, you can delete the deployment and model. You can also delete the training and validation files that you uploaded to the service, if necessary.
 
 ### Delete your model deployment
 
 [!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
-You can use various methods to delete the deployment for your customized model:
+You can use either of these methods to delete the deployment for your customized model:
 
 - [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
-- The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
+- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
-Similarly, you can use various methods to delete your customized model:
-
-- [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
+You can delete your customized model by using [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model).
 
 > [!NOTE]
-> You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
+> You can't delete a customized model if it has an existing deployment. You must [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
 
 ### Delete your training files
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
 - [Microsoft Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
-- The [REST APIs](/rest/api/azureopenai/files/delete)
-- The Python SDK
+- [REST APIs](/rest/api/azureopenai/files/delete)
+- Python SDK
 
 The following Python example uses the Python SDK to delete the training, validation, and result files for your customized model:
 
@@ -418,19 +418,19 @@ The following Python example uses the Python SDK to delete the training, validat
 print('Checking for existing uploaded files.')
 results = []
 
-# Get the complete list of uploaded files in our subscription.
+# Get the complete list of uploaded files in your subscription.
 files = openai.File.list().data
 print(f'Found {len(files)} total uploaded files in the subscription.')
 
-# Enumerate all uploaded files, extracting the file IDs for the
+# Enumerate all uploaded files. Extract the IDs for the
 # files with file names that match your training dataset file and
-# validation dataset file names.
+# validation dataset file.
 for item in files:
     if item["filename"] in [training_file_name, validation_file_name, result_file_name]:
         results.append(item["id"])
 print(f'Found {len(results)} already uploaded files that match our files')
 
-# Enumerate the file IDs for our files and delete each file.
+# Enumerate the file IDs for your files and delete each file.
 print(f'Deleting already uploaded files.')
 for id in results:
     openai.File.delete(sid = id)

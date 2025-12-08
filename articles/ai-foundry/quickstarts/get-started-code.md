@@ -102,7 +102,7 @@ Follow along below or get the code:
 
 1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
 
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/.env.example":::
 
     > [!TIP]
     > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
@@ -121,7 +121,7 @@ Follow along below or get the code:
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples-classic/typescript/quickstart/.env.template":::
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -204,25 +204,25 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 Substitute your endpoint for the `endpoint` in this code:
 
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/quickstart.py" id="chat_completion":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+:::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="chat_completion":::
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="chat_completion":::
 
 # [Java (preview)](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+:::code language="java" source="~/foundry-samples-main/samples-classic/java/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+:::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="chat_completion":::
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
@@ -255,25 +255,25 @@ Create an agent and chat with it.
 
 Substitute your endpoint for the `endpoint` in this code:
 
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/quickstart.py" id="create_and_run_agent":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+:::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="create_and_run_agent" :::
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="create_and_run_agent" :::
 
 # [Java (preview)](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+:::code language="java" source="~/foundry-samples-main/samples-classic/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
+:::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="create_and_run_agent":::
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
@@ -309,25 +309,25 @@ Agents have powerful capabilities through the use of tools. Let's add a file sea
 
 Substitute your endpoint for the `endpoint` in this code:
 
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/quickstart.py" id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
+:::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="create_filesearch_agent":::
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="create_filesearch_agent":::
 
 # [Java (preview)](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+:::code language="java" source="~/foundry-samples-main/samples-classic/java/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
+:::code language="console" source="~/foundry-samples-main/samples-classic/REST/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
