@@ -17,6 +17,8 @@ reviewer: haakar
 
 # Microsoft Foundry Models quotas and limits
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 This article provides a quick reference and detailed description of the quotas and limits for Microsoft Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference

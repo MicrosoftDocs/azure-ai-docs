@@ -158,7 +158,7 @@ In the Azure portal, you can find and manage resources by selecting **All resour
 
 ## Next step
 
-Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use one of the built-in sample datasets for a richer search experience.
+Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use [sample data](https://github.com/Azure-Samples/azure-search-sample-data) for a richer search experience.
 
 > [!div class="nextstepaction"]
 > [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)

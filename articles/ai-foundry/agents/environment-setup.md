@@ -102,7 +102,19 @@ By default, the deployment template is configured with the following values:
 | modelLocation    | eastus         |
 
 ### What's next?
+
+:::moniker range="foundry-classic"
+
 * [Create your first agent](quickstart.md)
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+* [Create your first agent](../quickstarts/get-started-code.md)
+
+:::moniker-end
+
 * Explore more:
     * [Use your existing resources](how-to\use-your-own-resources.md)
     * [Network secured agent setup](how-to\virtual-networks.md)

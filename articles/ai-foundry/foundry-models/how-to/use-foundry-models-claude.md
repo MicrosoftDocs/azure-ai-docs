@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # Deploy and use Claude models in Microsoft Foundry (preview)
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 This article explains how to deploy and use the latest Claude models in Foundry, including Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, and Claude Opus 4.1. Anthropic's flagship product is Claude, a frontier AI model useful for complex tasks such as coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
 
 ## Available Claude models
@@ -468,9 +470,21 @@ To optimize your usage and avoid rate limiting:
 
 When using Claude models in Foundry, consider these responsible AI practices:
 
+::: moniker range="foundry-classic"
+
 - Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time. To learn how to create and use content filters, see [Configure content filtering for Foundry Models](configure-content-filters.md).
 
 - Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- Configure AI content safety during model inference, as Foundry doesn't provide built-in content filtering for Claude models at deployment time.
+
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), and [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf).
+
+::: moniker-end
 
 ## Best practices
 
@@ -503,6 +517,5 @@ Choose the appropriate Claude model based on your specific requirements:
 
 - [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
-- [Configure key-less authentication with Microsoft Entra ID](configure-entra-id.md)
 - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)
 - [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
