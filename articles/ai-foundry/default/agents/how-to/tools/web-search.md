@@ -26,6 +26,8 @@ Web search enables models to retrieve and ground responses with real-time inform
 > - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > - See the [management section](#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
 
+## Code examples
+
 :::zone pivot="python"
 > [!NOTE]
 > See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
@@ -120,7 +122,6 @@ curl --request POST \
 }'
 ```
 :::zone-end
-
 
 ## Options for using web search
 
