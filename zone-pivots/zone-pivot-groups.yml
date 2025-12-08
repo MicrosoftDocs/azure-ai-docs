@@ -1287,13 +1287,15 @@ groups:
     title: Python
   - id: csharp
     title: C#
-# owner: aahi
+# owner: aashcraft
 - id: selection-web-search
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: python
-    title: Python 
+    title: Python
+  - id: csharp
+    title: C#
   - id: rest-api
     title: REST API
 # owner: aahi
