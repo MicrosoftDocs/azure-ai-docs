@@ -8,8 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 11/20/2025
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: references_regions
 ---
 

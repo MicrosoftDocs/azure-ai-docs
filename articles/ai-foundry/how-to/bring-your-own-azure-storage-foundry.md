@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/05/2025
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
@@ -164,7 +164,7 @@ After creating your Foundry project:
 
 1. Configure the capability host to enable agents functionality.
 
-1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup#41-standard-agent-setup).
+1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/41-standard-agent-setup).
 
 Your agents standard setup now uses your own storage account instead of Microsoft-managed storage.
 

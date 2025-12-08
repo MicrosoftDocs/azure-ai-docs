@@ -5,7 +5,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: article
 ms.date: 11/03/2025
 manager: nitinme
 author: msakande #ChrisHMSFT
@@ -20,8 +20,12 @@ recommendations: false
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
+::: moniker range="foundry-classic"
+
 > [!TIP]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.
+
+::: moniker-end
 
 The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. You can use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Foundry Models.
 
@@ -36,13 +40,6 @@ Provisioned throughput provides:
 > [!TIP]
 > * You can take advantage of more cost savings when you buy [Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
 > * Provisioned throughput is available as the following deployment types: [global provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned), [data zone provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) and [regional provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned).
-
-
-<!--
-Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy, and provides different amounts of throughput per PTU. 
-
-An Azure OpenAI deployment is a unit of management for a specific OpenAI Model. A deployment provides customer access to a model for inference and using features, such as [content moderation](content-filter.md). 
--->
 
 
 ## When to use provisioned throughput

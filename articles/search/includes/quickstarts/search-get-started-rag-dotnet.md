@@ -54,7 +54,7 @@ It can take several minutes for permissions to take effect.
 
 ## Create an index
 
-A search index provides grounding data for the chat model. We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
+A search index provides grounding data for the chat model. We recommend the hotels-sample-index, which you can create by running the [**Import data (new)**](../../search-import-data-portal.md) wizard and following the instructions to create the index.
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 

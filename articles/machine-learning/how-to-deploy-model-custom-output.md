@@ -10,7 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.date: 03/18/2024
 ms.reviewer: cacrest
-ms.custom: devplatv2, update-code
+ms.custom: devplatv2, update-code2
 ---
 
 # Customize outputs in batch deployments

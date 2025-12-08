@@ -2,8 +2,8 @@
 title: "OpenAPI spec code samples"
 titleSuffix: Microsoft Foundry
 description: Find code samples to use OpenAPI tools with agents.
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 11/20/2025
 ms.service: azure-ai-foundry
