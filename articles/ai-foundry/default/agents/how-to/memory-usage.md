@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 12/08/2025
 ai-usage: ai-assisted
 ---
 
@@ -105,7 +105,7 @@ Customize what information the agent stores to keep memory efficient, relevant, 
 
 For example, set `user_profile_details` to prioritize "flight carrier preference and dietary restrictions" for a travel agent. This focused approach helps the memory system know which details to extract, summarize, and commit to long-term memory.
 
-You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials.
+You can also use this parameter to exclude certain types of data, keeping memory lean and compliant with privacy requirements. For example, set `user_profile_details` to "avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials."
 
 ## Add memories to a memory store
 
@@ -199,8 +199,6 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow the search.
 
-The presence of a user message determines the retrieval pattern. Excluding a message returns stored user preferences for the given scope, while including a message returns memories most relevant to the current context. Choose based on whether you need pure stored data or contextual, query-informed results.
-
 # [Python](#tab/python)
 
 ```python
@@ -252,6 +250,16 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-vers
 ```
 
 ---
+
+### Retrieve static or contextual memories
+
+- To retrieve static memories, call `search_memories` with a `scope` but without `items` or `previous_search_id`. This returns user profile memories associated with the scope.
+
+- To retrieve contextual memories, call `search_memories` with `items` set to the latest messages. Contextual searches can return both user profile and chat summary memories most relevant to the given items.
+
+Often, user profile memories can't be retrieved based on semantic similarity to a user's message, so we recommend that you inject static memories into the beginning of each conversation and use contextual memories to generate each agent response.
+
+For more information about user profile and chat summary memories, see [Memory types](../concepts/what-is-memory.md#memory-types).
 
 ## Update a memory store
 
@@ -321,7 +329,7 @@ curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
 > [!WARNING]
 > Before you delete a memory store, consider the impact on dependent agents. Agents with attached memory stores might lose access to historical context.
 
-Memories are organized by scope within a memory store. You can delete memories for a specific scope to remove user-specific data, or delete the entire memory store to remove all memories across all scopes.
+Memories are organized by scope within a memory store. You can delete memories for a specific scope to remove user-specific data, or you can delete the entire memory store to remove all memories across all scopes.
 
 ### Delete memories by scope
 
