@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models
+title: Azure OpenAI in Microsoft Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
@@ -12,18 +12,51 @@ ms.topic: include
 > Foundry Models sold directly by Azure also include select models from the following top model providers:
 > 
 > - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - Cohere: `Cohere-command-a`, `embed-v-4-0`
 > - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
-> - Microsoft: `MAI-DS-R1`
-> - Mistral: `mistral-document-ai-2505`
+> - Microsoft: `MAI-DS-R1`, `model-router`
+> - Mistral: `mistral-document-ai-2505`, `Mistral-Large-3`
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`
 > 
 > To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
 
 
-## Azure OpenAI in Azure AI Foundry models
+## Azure OpenAI in Microsoft Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
+
+## GPT-5.1
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `gpt-5.1` | East US2 & Sweden Central (Global Standard & DataZone Standard)  |
+| `gpt-5.1-chat` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.1-codex` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.1-codex-mini` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.1-codex-max` | East US2 & Sweden Central (Global Standard) | 
+
+
+- **[Registration is required for access to gpt-5.1, gpt-5.1-codex, and gpt-5.1-codex-max](https://aka.ms/oai/gpt5access).**
+
+Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.1` (2025-11-13) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024  |
+| `gpt-5.1-chat` (2025-11-13) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | September 30, 2024 |
+| `gpt-5.1-codex` (2025-11-13) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.  <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
+| `gpt-5.1-codex-mini` (2025-11-13) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
+| `gpt-5.1-codex-max` (2025-12-04) |  - [Responses API](../how-to/responses.md) only. <br> - Text and image processing  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | September 30, 2024 |
+
+> [!IMPORTANT]
+> - `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur.
+>
+> - `gpt-5.1-chat` adds built-in reasoning capabilities. Like other [reasoning models](../how-to/reasoning.md) it does not support parameters like `temperature`. If you upgrade from using `gpt-5-chat` (which is not a reasoning model) to `gpt-5.1-chat` make sure you remove any custom parameters like `temperature` from your code which are not supported by reasoning models.
+>
+> - `gpt-5.1-codex-max` adds support for setting `reasoning_effort` to `xhigh`. Reasoning effort `none` is not supported with `gpt-5.1-codex-max`. 
 
 ## GPT-5
 
@@ -57,7 +90,7 @@ ms.topic: include
 | `gpt-5-pro` (2025-10-06) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024 |
 
 > [!NOTE]
-> <sup>1</sup> `gpt-5-chat` version `2025-10-03` introduces a significant enhancement focused on emotional intelligence and mental health capabilities. This upgrade integrates specialized datasets and refined response strategies to improve the model’s ability to:
+> <sup>1</sup> `gpt-5-chat` version `2025-10-03` introduces a significant enhancement focused on emotional intelligence and mental health capabilities. This upgrade integrates specialized datasets and refined response strategies to improve the model's ability to:
 > - **Understand and interpret emotional context** more accurately, enabling nuanced and empathetic interactions.
 > - **Provide supportive, responsible responses** in conversations related to mental health, ensuring sensitivity and adherence to best practices.
 >
@@ -78,7 +111,7 @@ ms.topic: include
 | `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
 | `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../how-to/deploy-models-managed.md) and [Foundry Local](../../foundry-local/get-started.md#run-the-latest-openai-open-source-model) | 131,072 | 131,072 | May 31, 2024 |
 
-<sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires an [Azure AI Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
+<sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires a [Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
 
 ### Deploy with code
 
@@ -127,28 +160,6 @@ az cognitiveservices account deployment create \
 | `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
 | `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
 | `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
-
-## model-router
-
-A model that intelligently selects from a set of underlying chat models to respond to a given prompt.
-
-### Region availability
-
-| Model | Region |
-|---|---|
-| `model-router` (2025-08-07) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
-| `model-router` (2025-05-19) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
-
-*Billing for Data Zone Standard model router deployments will begin no earlier than November 1, 2025.*
-
-### Capabilities
-
-|  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
-|  --- |  :--- |:--- |:---|:---: |
-| `model-router` (2025-08-07) | A model that intelligently selects from a set of underlying  models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`)</br> 128,000 (`gpt-5 reasoning models`) </br> 16,384 (`gpt-5-chat`) | - |
-| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000 | 32,768 (`GPT-4.1 series`)</br> 100,000 (`o4-mini`) | May 31, 2024 |
-
-Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
 
 ## computer-use-preview
 
@@ -209,27 +220,6 @@ To learn more about advanced o-series models, see [Getting started with reasonin
 ## GPT-4o and GPT-4 Turbo
 
 GPT-4o integrates text and images in a single model, which enables it to handle multiple data types simultaneously. This multimodal approach enhances accuracy and responsiveness in human-computer interactions. GPT-4o matches GPT-4 Turbo in English text and coding tasks while offering superior performance in non-English language tasks and vision tasks, setting new benchmarks for AI capabilities.
-
-### How do I access the GPT-4o and GPT-4o mini models?
-
-GPT-4o and GPT-4o mini are available for Standard and Global Standard model deployment.
-
-You need to [create](../how-to/create-resource.md) or use an existing resource in a [supported Standard](#gpt-4-and-gpt-4-turbo-model-availability) or [Global Standard](#global-standard-model-availability) region where the model is available.
-
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o models. If you're performing a programmatic deployment, the model names are:
-
-- `gpt-4o` *version* `2024-11-20`
-- `gpt-4o` *version* `2024-08-06`
-- `gpt-4o` *version* `2024-05-13`
-- `gpt-4o-mini` *version* `2024-07-18`
-
-### GPT-4 Turbo
-
-GPT-4 Turbo is a large multimodal model (accepting text or image inputs and generating text) that can solve difficult problems with greater accuracy than any of OpenAI's previous models. Like GPT-3.5 Turbo, and older GPT-4 models, GPT-4 Turbo is optimized for chat and works well for traditional completions tasks.
-
-## GPT-4
-
-GPT-4 is the predecessor to GPT-4 Turbo. Both the GPT-4 and GPT-4 Turbo models have a base model name of `gpt-4`. You can distinguish between the GPT-4 and Turbo models by examining the model version.
 
 ## GPT-4 and GPT-4 Turbo models
 
@@ -292,8 +282,8 @@ To request access, go to [`gpt-image-1` limited access model application](https:
 | Model | Region |
 |---|---|
 |`dall-e-3` | East US<br>Australia East<br>Sweden Central|
-|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)|
-|`gpt-image-1-mini` | EastUS (Global Standard) <br> NorthCentralUS (Global Standard) |
+|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
+|`gpt-image-1-mini` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard) |
 
 
 ## Video generation models
@@ -382,7 +372,7 @@ All deployments can perform the exact same inference operations, but the billing
 [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
 > [!NOTE]
-> `o3-deep-research` is currently only available with Azure AI Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
+> `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
 
 # [Global Provisioned managed](#tab/global-ptum-aoai)
 
@@ -458,10 +448,6 @@ This table doesn't include fine-tuning regional availability information. Consul
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
-### GPT-4 and GPT-4 Turbo model availability
-
-### GPT-3.5 models
-
 To learn about how Azure OpenAI handles model version upgrades, see [Model versions](../concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments, see [Working with models](../how-to/working-with-models.md).
 
 # [Embeddings](#tab/standard-embeddings)
@@ -529,7 +515,7 @@ These models can be used only with Embedding API requests.
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
 
 | Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|

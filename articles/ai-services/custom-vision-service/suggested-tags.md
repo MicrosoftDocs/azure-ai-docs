@@ -1,6 +1,6 @@
 ---
 title: "Tag images faster with Smart Labeler"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Smart Labeler to generate suggested tags for images, allowing you to label a large number of images more quickly when training a Custom Vision model.
 author: PatrickFarley
 manager: nitinme

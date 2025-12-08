@@ -1,4 +1,4 @@
-﻿---
+---
 title: Include file
 description: Include file
 author: mrbullwinkle
@@ -15,13 +15,13 @@ ms.custom:
 ## Prerequisites
 
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A [Foundry project](../../../ai-foundry/how-to/create-projects.md) in Microsoft Foundry portal.
 - An [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-foundry/openai/concepts/models#fine-tuning-models).
     > [!NOTE]
-    > The supported regions might vary if you use Azure OpenAI models in an Azure AI Foundry project versus outside a project.
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor** role on the Azure OpenAI resource.
-- If you don't already have access to view quota and deploy models in Azure AI Foundry portal you need [more permissions](../how-to/role-based-access-control.md).
+    > The supported regions might vary if you use Azure OpenAI models in a Foundry project versus outside a project.
+- Fine-tuning access requires **Azure AI User** role on the Azure OpenAI resource.
+- If you don't already have access to view quota and deploy models in Foundry portal you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
@@ -29,12 +29,12 @@ Consult the [models page](../concepts/models.md#fine-tuning-models) to check whi
 
 Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
 
-## Review the workflow for Azure AI Foundry
+## Review the workflow for Foundry
 
-Take a moment to review the fine-tuning workflow for using Azure AI Foundry:
+Take a moment to review the fine-tuning workflow for using Foundry:
 
 1. Prepare your training and validation data.
-1. Use the **Create a fine-tuned model** wizard in Azure AI Foundry portal to train your custom model.
+1. Use the **Create a fine-tuned model** wizard in Foundry portal to train your custom model.
     1. Select a training method.
     1. Select a base model.
     1. [Choose your training data](#choose-your-training-data).
@@ -96,9 +96,11 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 ## Create your fine-tuned model
 
-To fine-tune an Azure OpenAI model in an existing Azure AI Foundry project, follow these steps:
+To fine-tune an Azure OpenAI model in an existing Foundry project, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
+[!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+
+Select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
 
 1. From the collapsible left menu, select **Fine-tuning** > **+ Fine-tune model**.
 
@@ -119,9 +121,9 @@ If you have more than one Azure OpenAI connection enabled for fine-tuning, then 
 ### Choose your training data
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png" alt-text="Screenshot of the Training data pane for the Fine-tune model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png":::
+:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png" alt-text="Screenshot of the Training data pane for the Fine-tune model wizard in Foundry portal." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png":::
 
-- If your training data is already in your project, select **Data in Azure AI Foundry**.
+- If your training data is already in your project, select **Data in Foundry**.
 
    - Select the file from the list shown in the **Training data** pane.
 
@@ -167,7 +169,7 @@ Review your choices and select **Submit** to start training your new fine-tuned 
 
 ## Check the status of your fine-tuned model
 
-After you submit your fine-tuning job, you see a page with details about your fine-tuned model. You can find the status and more information about your fine-tuned model on the **Fine-tuning** page in Azure AI Foundry portal.
+After you submit your fine-tuning job, you see a page with details about your fine-tuned model. You can find the status and more information about your fine-tuned model on the **Fine-tuning** page in Foundry portal.
 
 Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
 
@@ -179,7 +181,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 
 ## Pause and resume
 
-You can track progress in both fine-tuning views of the AI Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+You can track progress in both fine-tuning views of the Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
 
 You can also review the results files while training runs, to get a peak at the progress and whether your training is proceeding as expected.
 
@@ -204,7 +206,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Azure AI Foundry portal under the **Monitoring** tab of your fine-tuned model. Select the link for your trained model, and you will see two charts: loss, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Foundry portal under the **Monitoring** tab of your fine-tuned model. Select the link for your trained model, and you will see two charts: loss, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 :::image type="content" source="../media/fine-tuning/metrics.png" alt-text="Screenshot of metrics UI." lightbox="../media/fine-tuning/metrics.png":::
 
@@ -215,15 +217,15 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 Once your model is fine-tuned, you can deploy the model and can use it in your own application.
 
-When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Azure AI Foundry portal at no cost until you're ready to use them.
+When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Foundry portal at no cost until you're ready to use them.
 
 [!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
-You can monitor the progress of your deployment on the **Deployments** page in Azure AI Foundry portal.
+You can monitor the progress of your deployment on the **Deployments** page in Foundry portal.
 
 ### Use a deployed fine-tuned model
 
-After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
+After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 
 > [!NOTE]
 > For chat models, the [system message that you use to guide your fine-tuned model](../concepts/system-message.md) (whether it's deployed or available for testing in the playground) must be the same as the system message you used for training. If you use a different system message, the model might not perform as expected.
@@ -236,11 +238,11 @@ When you're done with your fine-tuned model, you can delete the deployment and m
 
 [!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
-You can delete the deployment for your fine-tuned model on the **Deployments** page in Azure AI Foundry portal. Select the deployment to delete, and then select **Delete** to delete the deployment.
+You can delete the deployment for your fine-tuned model on the **Deployments** page in Foundry portal. Select the deployment to delete, and then select **Delete** to delete the deployment.
 
 ### Delete your fine-tuned model
 
-You can delete a fine-tuned model on the **Fine-tuning** page in Azure AI Foundry portal. Select the fine-tuned model to delete and then select **Delete** to delete the fine-tuned model.
+You can delete a fine-tuned model on the **Fine-tuning** page in Foundry portal. Select the fine-tuned model to delete and then select **Delete** to delete the fine-tuned model.
 
 > [!NOTE]
 > You can't delete a fine-tuned model if it has an existing deployment. You must first [delete your model deployment](#delete-your-fine-tuned-model-deployment) before you can delete your fine-tuned model.

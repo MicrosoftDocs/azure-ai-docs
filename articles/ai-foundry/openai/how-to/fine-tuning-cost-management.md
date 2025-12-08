@@ -6,10 +6,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 show_latex: true
+ms.custom: ignite2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Cost management for fine-tuning
@@ -21,7 +23,9 @@ Fine-tuning can be intimidating: unlike base models, where you're just paying fo
 
 ## Upfront investment - training your model
 
-This is the one-time, fixed cost associated with teaching a base model your specific requirements using your training data.
+This is the one-time, fixed cost associated with teaching a base model your specific requirements using your training data. Below, we explain how training costs can be calculated.
+
+For all training jobs, you have the option to use **global standard** (10-30% discount from regional standard training) or **developer** (50% discount from global). Neither Global nor Developer training guarantee data residency; developer training will run on pre-emptible spot capacity so may take longer to complete. Developer tier jobs may be paused by the system but will automatically resume; users do not incur charges for jobs in paused states.
 
 ### The calculation formula
 

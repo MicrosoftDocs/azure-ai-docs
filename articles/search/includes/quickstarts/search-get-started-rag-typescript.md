@@ -14,7 +14,7 @@ ms.date: 06/05/2025
 
 - An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
-  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
+  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Microsoft Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 - An [Azure AI Search resource](../../search-create-service-portal.md).
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
@@ -62,17 +62,11 @@ It can take several minutes for permissions to take effect.
 
 ## Create an index
 
-A search index provides grounding data for the chat model. We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
+A search index provides grounding data for the chat model. We recommend the **hotels-sample-index**.
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, select [**Import data**](../../search-get-started-portal.md) to start the wizard.
-
-1. On the **Connect to your data** page, select **Samples** from the dropdown list.
-
-1. Choose the **hotels-sample**.
-
-1. Select **Next** through the remaining pages, accepting the default values.
+1. Follow the instructions in [this quickstart](../../search-import-data-portal.md) to create the index.
 
 1. Once the index is created, select **Search management** > **Indexes** from the left menu to open the index.
 

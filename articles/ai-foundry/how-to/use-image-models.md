@@ -1,7 +1,7 @@
-﻿---
+---
 title: How to use image-to-text models in the model catalog
-titleSuffix: Azure AI Foundry
-description: Learn how to use image-to-text models from the AI Foundry model catalog.
+titleSuffix: Microsoft Foundry
+description: Learn how to use image-to-text models from the Foundry model catalog.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -16,7 +16,9 @@ ms.custom: references_regions, tool_generated
 
 # How to use image-to-text models in the model catalog
 
-This article explains how to use _image-to-text_ models in the AI Foundry model catalog. 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+This article explains how to use _image-to-text_ models in the Foundry model catalog. 
 
 Image-to-text models are designed to analyze images and generate descriptive text based on what they see. Think of them as a combination of a camera and a writer. You provide an image as an input to the model, and the model looks at the image and identifies different elements within it, like objects, people, scenes, and even text. Based on its analysis, the model then generates a written description of the image, summarizing what it sees.
 
@@ -28,9 +30,9 @@ To use image models in your application, you need:
  
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](create-projects.md).
+- A [Microsoft Foundry project](create-projects.md).
 
-- An image model deployment on Azure AI Foundry. 
+- An image model deployment on Foundry. 
 
   - This article uses a __Mistral OCR__ model deployment.
 
@@ -63,7 +65,7 @@ To use image models in your application, you need:
     ```http
     curl --request POST \
       --url https://<your_serverless_endpoint>/v1/ocr \
-      --header 'Authorization: Bearer <api_key>' \
+      --header 'Authorization: Bearer <your-api-key>' \
       --header 'Content-Type: application/json' \
       --data '{
       "model": "mistral-ocr-2503",

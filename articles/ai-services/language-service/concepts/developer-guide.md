@@ -1,28 +1,27 @@
 ---
-title: Use the Language SDK and REST API
-titleSuffix: Azure AI services
-description: Learn about how to integrate the Language service SDK and REST API into your applications.
+title: Use Azure Language SDK and REST API
+titleSuffix: Foundry Tools
+description: Learn about how to integrate Azure Language service SDK and REST API into your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
+# SDK and REST developer guide for Azure Language
 
-# SDK and REST developer guide for the Language service
-
-Use this article to find information on integrating the Language service SDK and REST API into your applications. 
+Use this article to find information on integrating Azure Language SDK and REST API into your applications. 
 
 ## Development options
 
-The Language service provides support through a REST API, and client libraries in several languages.
+The Language provides support through a REST API, and client libraries in several languages.
 
 # [Client library (Azure SDK)](#tab/language-studio)
 
 ## Client libraries (Azure SDK)
 
-The Language service provides three namespaces for using the available features. Depending on which features and programming language you're using, you need to download one or more of the following packages, and have the following framework/language version support:
+The Language provides three namespaces for using the available features. Depending on which features and programming language you're using, you need to download one or more of the following packages, and have the following framework/language version support:
 
 |Framework/Language  | Minimum supported version  |
 |---------|---------|
@@ -100,7 +99,7 @@ As you use these features in your application, use the following documentation a
 
 ## REST API
 
-The Language service provides multiple API endpoints depending on which feature you wish to use.
+The Language provides multiple API endpoints depending on which feature you wish to use.
 
 ### Conversation analysis authoring API
 
@@ -165,4 +164,4 @@ For more information, *see* the following reference documentation:
 
 ## See also 
 
-[Azure AI Language overview](../overview.md)
+[Azure Language in Foundry Tools overview](../overview.md)

@@ -1,12 +1,12 @@
 ---
 title: "How-to: Analyze documents, Label forms, train a model, and analyze forms with Document Intelligence "
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: How to use the Document Intelligence sample tool to analyze documents, invoices, receipts etc. Label and create a custom model to extract text, tables, selection marks, structure, and key-value pairs from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 ms.custom: sfi-image-nochange

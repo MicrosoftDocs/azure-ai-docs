@@ -1,5 +1,5 @@
 ---
-title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the REST API"
+title: "Customize a model with Azure OpenAI in Microsoft Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
 author: mrbullwinkle
@@ -16,10 +16,10 @@ ms.custom:
 ## Prerequisites
 
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you don't already have access to view quota, and deploy models in Azure AI Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
+- Fine-tuning access requires **Azure AI User** role.
+- If you don't already have access to view quota, and deploy models in Microsoft Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
 
@@ -165,6 +165,21 @@ The current supported hyperparameters for Supervised Fine-Tuning are:
 > [!NOTE]
 > See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
+
+## Training type
+
+Select the training tier based on your use case and budget.
+
+* **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+
+* **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+
+* **Developer** (preview): Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+
+```curl
+curl -X POST "https://<ACCOUNT-NAME>.openai.azure.com/openai/fine_tuning/jobs?api-version=2025-04-01-preview" -H "Content-Type: application/json" -H "api-key: <API-KEY>" -d "{"model": "gpt-4.1", "training_file": "<FILE_ID>", "hyperparameters": {"prompt_loss_weight": 0.1}, "trainingType": "developerTier"}"
+```
+
 ## Check the status of your customized model
 
 After you start a fine-tune job, it can take some time to complete. Your job might be queued behind other jobs in the system. Training your model can take minutes or hours depending on the model and dataset size. The following example uses the REST API to check the status of your fine-tuning job. The example retrieves information about your job by using the job ID returned from the previous example:
@@ -204,7 +219,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
-### Copy model (preview)
+## Copy model (preview)
 
 You can now copy a fine-tuned checkpointed model from one region to another, across different subscriptions but within the same tenant. The process uses dedicated APIs to ensure efficient and secure transfers. This feature is currently available only with the API and not through the Foundry portal.
 Once the model is copied from region A to region B, you can continually fine-tune the model in region B and deploy the model from this location.
@@ -221,7 +236,7 @@ Once the model is copied from region A to region B, you can continually fine-tun
 **Permissions configuration**
 
 1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
-2. Give Cognitive Services OpenAI contributor role to your user-assigned managed identity on your destination resource/account.
+2. Give Azure AI User role to your user-assigned managed identity on your destination resource/account.
 3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
 
 **Copy model**
@@ -250,6 +265,8 @@ curl --request GET \
   --header 'aoai-copy-ft-checkpoints: preview' 
 ```
 
+> [!NOTE]
+> When you copy a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure that you use this exact same name for fine-tuning, deployment, or for any other operation in the destination account. This checkpoint doesn't appear in the UI or in the `list checkpoints` API.
 
 ## Checkpoints
 
@@ -291,7 +308,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Azure AI Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data that may indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
@@ -353,7 +370,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 
 We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. The suffix can contain up to 40 characters (a-z, A-Z, 0-9,- and _) that will be added to your fine-tuned model name.
 
-If you're unsure of the ID of your fine-tuned model this information can be found in the **Models** page of Azure AI Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
+If you're unsure of the ID of your fine-tuned model this information can be found in the **Models** page of Foundry, or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for a given Azure OpenAI resource using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -363,14 +380,14 @@ When you're done with your customized model, you can delete the deployment and m
 
 You can use various methods to delete the deployment for your customized model:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)
+- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)
 - The [Azure CLI](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true#az-cognitiveservices-account-deployment-delete)
 
 ### Delete your customized model
 
 Similarly, you can use various methods to delete your customized model:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
+- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-customized-model)
 
 > [!NOTE]
 > You can't delete a customized model if it has an existing deployment. You must first [delete your model deployment](#delete-your-model-deployment) before you can delete your customized model.
@@ -379,4 +396,4 @@ Similarly, you can use various methods to delete your customized model:
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, from your Azure OpenAI subscription. You can use the following methods to delete your training, validation, and result files:
 
-- [Azure AI Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)
+- [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-training-files)

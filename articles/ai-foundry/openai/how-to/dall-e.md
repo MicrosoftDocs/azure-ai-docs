@@ -1,20 +1,25 @@
 ---
 title: How to Use Image Generation Models from OpenAI
-titleSuffix: Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/02/2025
+ms.date: 11/21/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # How to use Azure OpenAI image generation models
+
 
 OpenAI's image generation models create images from user-provided text prompts and optional images. This article explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
@@ -22,26 +27,40 @@ OpenAI's image generation models create images from user-provided text prompts a
 ## Prerequisites
 
 
-- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `dall-e-3` or `gpt-image-1` series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
+- Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
 ## Overview
 
 - Use image generation via [image generation API](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
 - Experiment with image generation in the [image playground](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
-- Explore [content filtering](https://int.ai.azure.com/doc/azure/ai-foundry/openai/concepts/content-filter?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) and apply to opt out [here]([url](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu): 
 - Learn about [image generation tokens ](https://int.ai.azure.com/doc/azure/ai-foundry/openai/overview?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
 
-| Aspect | GPT-Image-1 | DALL·E 3 |
-|--------|-------------|----------|
-| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text (primary)** input; limited image editing inputs (with mask). Outputs as **URL or base64**. |
-| **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1792, 1792×1024 |
-| **Quality Options** | `low`, `medium`, `high` (default = high) | `standard`, `hd`; style options: `natural`, `vivid` |
-| **Number of Images per Request** | 1–10 images per request (`n` parameter) | Only **1 image** per request (`n` must be 1) |
-| **Editing (inpainting / variations)** | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations |
-| **Strengths** | Better **prompt fidelity**, realism, multimodal context use, strong in **editing instruction-following** | Strong at **prompt adherence**, natural text rendering, stylistic variety, coherent image generation |
+| Aspect | GPT-Image-1 | GPT-Image-1-Mini | DALL·E 3 |
+|--------|--------------|------------------|-----------|
+| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text (primary)** input; limited image editing inputs (with mask). Outputs as **URL or base64**. |
+| **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1792, 1792×1024 |
+| **Quality Options** | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) | `standard`, `hd`; style options: `natural`, `vivid` |
+| **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | Only **1 image** per request (`n` must be 1) |
+| **Editing (inpainting / variations)** | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations |
+| **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery | ❌ No dedicated face preservation |
+| **Performance & Cost** | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation | Balanced performance; higher latency on complex prompts |
+| **Strengths** | Best for **realism**, **instruction following**, and **multimodal context** | Best for **fast prototyping**, **bulk generation**, or **cost-sensitive** use cases | Strong **prompt adherence**, **natural text rendering**, and **stylistic diversity** |
+
+## Responsible AI and Image Generation 
+Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+
+In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+
+Customers can learn more about these safeguards and how to customize them here:
+- Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
+- Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
+
+### Special considerations for generating images of minors
+
+Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
 
 
 ## Call the image generation API
@@ -276,7 +295,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 > [!NOTE]
-> WEBP images aren't supported in the Azure OpenAI in Azure AI Foundry Models.
+> WEBP images aren't supported in the Azure OpenAI in Microsoft Foundry Models.
 
 #### Compression
 
@@ -286,6 +305,9 @@ Use the *output_compression* parameter to specify the compression level for the 
 
 Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they're generated. This feature provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
 
+#### Transparency
+
+Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 #### [DALL-E 3](#tab/dalle-3)
 
@@ -337,8 +359,6 @@ The Image Edit API enables you to modify existing images based on text prompts y
 > [!IMPORTANT]
 > The input image must be less than 50 MB in size and must be a PNG or JPG file.
 
-> [!IMPORTANT]
-> `gpt-image-1-mini` does not currently support image edits.
 
 Send a POST request to:
 
@@ -413,6 +433,10 @@ The *mask* parameter uses the same type as the main *image* input parameter. It 
 #### Streaming 
 
 Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they're generated. This feature provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
+
+#### Transparency
+
+Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 #### [DALL-E 3](#tab/dalle-3)
 

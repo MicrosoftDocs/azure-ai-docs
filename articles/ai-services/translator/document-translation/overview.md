@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 06/03/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions
 recommendations: false
@@ -18,17 +18,39 @@ recommendations: false
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
 
-# What is Document translation?
+# What is Azure Translator in Foundry Tools document translation?
 
-Document translation is a cloud-based machine translation feature of the [Azure AI Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
+Document translation is a cloud-based machine translation feature of [Azure Translator](../overview.md). You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 
 * [Asynchronous batch translation](#asynchronous-batch-translation) supports the processing of multiple documents and large files. The batch translation process requires an Azure Blob storage account with storage containers for your source and translated documents.
 
 * [Synchronous single file](#synchronous-translation) supports the processing of single file translations. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client.
 
+## Document translation development options
+
+Add document translation to your projects and applications using the following resources:
+
+##### Asynchronous translation
+
+|Development option|Description|
+|---|---|
+|**REST API**|The [REST API](reference/rest-api-guide.md) is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.|
+|**Client libraries (SDKs)**|The [client-library (SDKs)](quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [C#/.NET](/dotnet/api/azure.ai.translation.document?view=azure-dotnet&preserve-view=true) and [Python](https://azuresdkdocs.z19.web.core.windows.net/python/azure-ai-translation-document/latest/azure.ai.translation.document.html).|
+
+##### Synchronous translation
+
+Utilize synchronous document translation to convert textual content in real time from one language to another, preserving original structure and formatting.
+
+|Development option|Description|
+|---|---|
+|**Microsoft Foundry**| &bullet; [**Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types. <br><br>&bullet;[**Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**. |
+|**REST API**|Integrate synchronous document translation into your applications using the [REST API](reference/translate-document.md).|
+|**Client libraries (SDKs)**|Get started integrating translation capabilities into your applications our [Python SDK](quickstarts/client-library-sdks.md).|
+| **Docker container** | &bullet; To use the Translator container, you must complete and submit the [**Foundry Tools application for Gated Services**](https://aka.ms/csgate-translator) online request form for approval for access to the container.<br>&bullet; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, *see* [Container: Translate Documents](../containers/translate-document-parameters.md).|
+
 ## Asynchronous batch translation
 
-Use asynchronous document processing to translate multiple documents and large files.
+Utilize asynchronous workflows to parallelize translation of multiple documents and large files, maximizing efficiency.
 
 ### Batch key features
 
@@ -38,18 +60,20 @@ Use asynchronous document processing to translate multiple documents and large f
   |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
   |[**Translate text embedded within images in documents** 🆕](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-).| This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.|
   |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
+  |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
   |**Apply custom glossaries**|Translate documents using custom glossaries.|
   |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
   |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
 
 ### Batch development options
 
-You can add Document translation to your applications using the REST API or a client-library SDK:
+You can add Document translation to your applications using the following resources:
 
-* The [**REST API**](reference/rest-api-guide.md). is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.
-
-* The [**client-library SDKs**](./quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/).
+|Development option  |Description  |
+|---------|---------|
+|[**Foundry (new)**](https://ai.azure.com/) portal| Foundry (new) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through Foundry projects.|
+|[**Foundry (classic)**](https://ai.azure.com/) portal| Foundry (classic) is a cloud-based platform that supports hub-based projects and other resource types.|
+|**REST API or Client library (Azure SDK)**| Integrate translation into your applications using the [**REST API**](reference/rest-api-guide.md), or the [**client-library SDKs**](./quickstarts/client-library-sdks.md). Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/) |
 
 ### Batch supported document formats
 
@@ -104,7 +128,7 @@ Document translation supports the following glossary file types:
 | ---------| -------------|
 |**Translate single-page files**| The synchronous request accepts only a single document as input.|
 |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
-|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
+|**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-translator-in-foundry-tools-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
 |**Single language translation**|Translate to and from one [supported language](../language-support.md).|
 |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
@@ -137,7 +161,7 @@ Document translation supports the following glossary file types:
 
 ## Document translation Request limits
 
-For detailed information regarding Azure AI Translator Service request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
+For detailed information regarding Azure Translator request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
 
 ## Document translation data residency
 
@@ -156,7 +180,7 @@ Document translation data residency depends on the Azure region where your Trans
 
 ## Next steps
 
-In our quickstart, you learn how to rapidly get started using Document translation. To begin, you need an active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/free).
+In our quickstart, you learn how to rapidly get started using Document translation. To begin, you need an active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 > [!div class="nextstepaction"]
 > [Get Started with Asynchronous batch translation](./how-to-guides/use-rest-api-programmatically.md) [Get started with synchronous translation](how-to-guides/use-rest-api-programmatically.md)

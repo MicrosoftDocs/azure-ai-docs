@@ -1,7 +1,7 @@
 ---
 title: Disable Preview Features with Role-Based Access
-description: Learn how to disable preview features in Azure AI Foundry using role-based access control (RBAC). Create custom roles to manage feature access effectively.
-#customer intent: As an IT admin, I want to disable preview features in Azure AI Foundry through role-based access control so that my organization complies with enterprise policies.
+description: Learn how to disable preview features in Microsoft Foundry using role-based access control (RBAC). Create custom roles to manage feature access effectively.
+#customer intent: As an IT admin, I want to disable preview features in Microsoft Foundry through role-based access control so that my organization complies with enterprise policies.
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
@@ -11,9 +11,11 @@ ms.service: azure-ai-foundry
 ai.usage: ai-assisted
 ---
 
-# Disable preview features in Azure AI Foundry with role-based access control
+# Disable preview features in Microsoft Foundry with role-based access control
 
-In Azure AI Foundry projects, some features are in preview. Administrators can bock access to them by denying specific data actions to a custom role, and granting their users role memberships to enable/disable specific features as required. This article lists the data actions for each preview feature so you can disable them on an individual basis. However, since you can't modify built-in roles in Azure AI Foundry projects, you need to create a custom role. For steps to create a custom role, see [Create or update Azure custom roles using the Azure portal - Azure RBAC](/azure/role-based-access-control/custom-roles-portal).
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+In Microsoft Foundry projects, some features are in preview. Administrators can bock access to them by denying specific data actions to a custom role, and granting their users role memberships to enable/disable specific features as required. This article lists the data actions for each preview feature so you can disable them on an individual basis. However, since you can't modify built-in roles in Foundry projects, you need to create a custom role. For steps to create a custom role, see [Create or update Azure custom roles using the Azure portal - Azure RBAC](/azure/role-based-access-control/custom-roles-portal).
 
 ## Agents service data actions
 
@@ -42,12 +44,8 @@ definition are the following:
 The associated data actions to allow or disallow in your custom role
 definition are the following:
 
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/\*` (include
-  _read_, _write_, and _delete_ and all child resources)
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/files/\*`
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/threads/\*`
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/threads/messages/\*`
-- `Microsoft.CognitiveServices/accounts/OpenAI/assistants/vector_stores/\*`
+- `Microsoft.CognitiveServices/accounts/OpenAI/fine-tunes/*`, includes `/files/*`, `/uploads/*`, `/stored-completions/*`, `/evals/*`, `/models/*`
+- (optional, if you run RLHF jobs) `Microsoft.CognitiveServices/accounts/OpenAI/1p-jobs/*`
 
 ## Tracing
 
@@ -83,4 +81,4 @@ definition are the following
 
 ## Related content
 
-[Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md)
+[Role-based access control for Foundry](rbac-azure-ai-foundry.md)

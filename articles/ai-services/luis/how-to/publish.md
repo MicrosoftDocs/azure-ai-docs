@@ -49,7 +49,7 @@ For example, if you add 2 prediction resources to an application in two regions,
 After you select the slot, configure the publish settings for:
 
 * Sentiment analysis: 
-Sentiment analysis allows LUIS to integrate with the Language service to provide sentiment and key phrase analysis. You do not have to provide a Language service key and there is no billing charge for this service to your Azure account. See [Sentiment analysis](../luis-reference-prebuilt-sentiment.md) for more information about the sentiment analysis JSON endpoint response.
+Sentiment analysis allows LUIS to integrate with Azure Language service to provide sentiment and key phrase analysis. You do not have to provide a Language service key and there is no billing charge for this service to your Azure account. See [Sentiment analysis](../luis-reference-prebuilt-sentiment.md) for more information about the sentiment analysis JSON endpoint response.
 
 * Speech priming:
 Speech priming is the process of sending the LUIS model output to the Speech service prior to converting the text to speech. This allows the speech service to provide speech conversion more accurately for your model. This allows for Speech and LUIS requests and responses in one call by making one speech call and getting back a LUIS response. It provides less latency overall.

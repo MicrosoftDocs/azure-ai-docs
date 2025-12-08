@@ -1,25 +1,29 @@
 ---
 title: 'How to use the Computer Use Tool'
-titleSuffix: Azure AI Foundry
-description: Find code samples and instructions for using the Computer Use model in the Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Find code samples and instructions for using the Computer Use model in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/22/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 ---
 
 # How to use the Computer Use Tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
 
 Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.
 
 ## Prerequisites
 
 * The requirements in the [Computer Use Tool overview](./deep-research.md).
-* Your Azure AI Foundry Project endpoint.
+* Your Microsoft Foundry Project endpoint.
 
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
@@ -28,7 +32,7 @@ Use this article to learn how to use the Computer Use tool with the Azure AI Pro
 
 * The deployment name of your Computer Use model. You can find it in **Models + Endpoints** in the left navigation menu.
 
-   :::image type="content" source="../../media/tools/computer-use-model-deployment.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/computer-use-model-deployment.png":::
+   :::image type="content" source="../../media/tools/computer-use-model-deployment.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/computer-use-model-deployment.png":::
     
     Save the name of your model's deployment name as an environment variable named `COMPUTER_USE_MODEL_DEPLOYMENT_NAME`.
 

@@ -1,20 +1,22 @@
 ---
 title: include file
 description: include file
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 6/13/2025
+ms.date: 10/21/2025
 ms.custom: references_regions
 ---
 
 The video translation REST API facilitates seamless video translation integration into your applications. It supports uploading, managing, and refining video translations, with multiple iterations for continuous improvement. In this article, you learn how to utilize video translation through the REST API. 
 
-## Pre-requisites
+## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- an AI Foundry resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- a Foundry resource for Speech [in a supported region](../../../regions.md?tabs=speech-translation). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
 - An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
 - You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
@@ -526,7 +528,7 @@ The WebVTT file with JSON properties contains metadata about the translation pro
 - `translatedText`: This property contains the translated text in the target language. It represents the text that will be synthesized in the translated video. If you only make changes to `translatedText`, the system will use the updated translatedText for synthesis.
 
 
-## Step 4: Create additional iterations (Optional)
+## Step 4: Create additional iterations (optional)
 
 You can create additional iterations to improve the translation quality. The process is similar to creating the first iteration. 
 

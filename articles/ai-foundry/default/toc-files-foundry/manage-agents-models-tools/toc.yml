@@ -1,0 +1,20 @@
+items:
+# Control Plane Overview
+- name: What is the Foundry control plane?
+  href: ../../control-plane/overview.md
+
+# Agent Management
+- name: Register and manage custom agents
+  href: ../../control-plane/register-custom-agent.md
+
+# Monitoring and Performance
+- name: Monitor fleet health and performance
+  href: ../../control-plane/monitoring-across-fleet.md
+- name: Optimize cost and performance
+  href: ../../control-plane/how-to-optimize-cost-performance.md
+
+# Security and Governance
+- name: Quickstart - create a guardrail policy
+  href: ../../control-plane/quickstart-create-guardrail-policy.md
+- name: Manage compliance and security
+  href: ../../control-plane/how-to-manage-compliance-security.md

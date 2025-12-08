@@ -1,11 +1,13 @@
 items:
-- name: What's new in Azure AI Foundry?
+- name: What's new in Microsoft Foundry?
   href: ../../whats-new-azure-ai-foundry.md
 - name: Azure AI FAQ
   href: ../../faq.yml
+- name: Foundry known issues
+  href: ../../reference/foundry-known-issues.md  
 - name: Support & help options
-  href: ../../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
-- name: Use Azure AI Foundry with a screen reader
+  href: ../../../ai-services/cognitive-services-support-options.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Use Microsoft Foundry with a screen reader
   href: ../../tutorials/screen-reader.md
 - name: Feature availability
   href: ../../reference/region-support.md

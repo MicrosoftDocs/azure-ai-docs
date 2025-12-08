@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 Add models to the Foundry Models endpoint by following these steps:
 
-1. Go to the **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models).
+1. Go to the **Model catalog** section in [Microsoft Foundry portal](https://ai.azure.com/explore/models).
 
 1. Select the model you want. This article uses Mistral-Large-2411 for illustration.
 
@@ -33,12 +33,12 @@ Add models to the Foundry Models endpoint by following these steps:
    > [!TIP]
    > Each model supports different deployment types, providing different data residency or throughput guarantees. See [deployment types](../../concepts/deployment-types.md) for more details.
 
-1. The portal automatically selects an Azure AI Foundry connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Serverless API** deployment type, the models need to be available in the region of the Azure AI Foundry resource.
+1. The portal automatically selects a Foundry connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Serverless API** deployment type, the models need to be available in the region of the Foundry resource.
    
    :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
 
    > [!TIP]
-   > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Azure AI Foundry Models in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry portal.
+   > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Foundry Models in my project](../../how-to/configure-project-connection.md) in Foundry portal.
 
 1. Select **Deploy**.
 
@@ -46,18 +46,18 @@ Add models to the Foundry Models endpoint by following these steps:
 
 ## Manage models
 
-You can manage the existing model deployments in the resource by using the Azure AI Foundry portal.
+You can manage the existing model deployments in the resource by using the Foundry portal.
 
-1. Go to the **Models + Endpoints** section in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to the **Models + Endpoints** section in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. The portal groups and displays model deployments per connection. Select the **Mistral-Large-2411** model deployment from the section for your Azure AI Foundry resource. This action opens the model's deployment page.
+1. The portal groups and displays model deployments per connection. Select the **Mistral-Large-2411** model deployment from the section for your Foundry resource. This action opens the model's deployment page.
 
    :::image type="content" source="../../media/add-model-deployments/endpoints-foundry-resource-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/add-model-deployments/endpoints-foundry-resource-connection.png":::
 
 
 ## Test the deployment in the playground
 
-You can interact with the new model in Azure AI Foundry portal by using the playground:
+You can interact with the new model in Foundry portal by using the playground:
 
 1. From the model's deployment page, select **Open in playground**. This action opens the chat playground with the name of your deployment already selected.
 

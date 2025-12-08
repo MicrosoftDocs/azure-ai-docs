@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI GPT-4 Turbo with Vision tool in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Azure AI Foundry portal.
+title: Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -16,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Azure OpenAI GPT-4 Turbo with Vision tool in Azure AI Foundry portal
+# Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -26,17 +26,17 @@ The prompt flow Azure OpenAI GPT-4 Turbo with Vision tool enables you to use you
 
 [!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">You can create one for free</a>.
-- An [Azure AI Foundry hub](../../how-to/create-azure-ai-resource.md) with a GPT-4 Turbo with Vision model deployed in [one of the regions that support GPT-4 Turbo with Vision](../../../ai-services/openai/concepts/models.md#model-summary-table-and-region-availability). When you deploy from your project's **Deployments** page, select `gpt-4` as the model name and `vision-preview` as the model version.
+- An Azure subscription. [You can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A [Microsoft Foundry hub](../../how-to/create-azure-ai-resource.md) with a GPT-4 Turbo with Vision model deployed in [one of the regions that support GPT-4 Turbo with Vision](../../../ai-services/openai/concepts/models.md#model-summary-table-and-region-availability). When you deploy from your project's **Deployments** page, select `gpt-4` as the model name and `vision-preview` as the model version.
 
 ## Build with the Azure OpenAI GPT-4 Turbo with Vision tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Azure OpenAI GPT-4 Turbo with Vision** to add the Azure OpenAI GPT-4 Turbo with Vision tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png" alt-text="Screenshot that shows the Azure OpenAI GPT-4 Turbo with Vision tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png" alt-text="Screenshot that shows the Azure OpenAI GPT-4 Turbo with Vision tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png":::
 
-1. Select the connection to your Azure OpenAI in Azure AI Foundry Models. For example, you can select the **Default_AzureOpenAI** connection. For more information, see [Prerequisites](#prerequisites).
+1. Select the connection to your Azure OpenAI in Foundry Models. For example, you can select the **Default_AzureOpenAI** connection. For more information, see [Prerequisites](#prerequisites).
 1. Enter values for the Azure OpenAI GPT-4 Turbo with Vision tool input parameters described in the [Inputs table](#inputs). For example, you can use this example prompt:
 
     ```jinja

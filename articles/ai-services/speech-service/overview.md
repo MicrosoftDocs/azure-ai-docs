@@ -1,6 +1,6 @@
 ---
 title: What is the Speech service?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech service provides speech to text, text to speech, and speech translation capabilities with an Azure resource. Add speech to your applications, tools, and devices with the Speech SDK, Speech Studio, or REST APIs.
 author: PatrickFarley
 manager: nitinme
@@ -40,40 +40,10 @@ These sections summarize Speech features with links for more information.
 
 ### Speech to text
 
-Use [speech to text](speech-to-text.md) to transcribe audio into text, either in [real-time](#real-time-speech-to-text) or asynchronously with [batch transcription](#batch-transcription). 
-
-> [!TIP]
-> You can try real-time speech to text in [Speech Studio](https://aka.ms/speechstudio/speechtotexttool) without signing up or writing any code.
-
-Convert audio to text from a range of sources, including microphones, audio files, and blob storage. Use speaker diarization to determine who said what and when. Get readable transcripts with automatic formatting and punctuation. 
+Use [speech to text](speech-to-text.md) to convert audio into text - whether through [real-time transcription](get-started-speech-to-text.md) for streaming audio, [fast transcription](fast-transcription-create.md) for pre-recorded audio files, or [batch transcription](batch-transcription.md) for processing large volumes of audio asynchronously.
 
 The base model might not be sufficient if the audio contains ambient noise or includes numerous industry and domain-specific jargon. In these cases, you can create and train [custom speech models](custom-speech-overview.md) with acoustic, language, and pronunciation data. Custom speech models are private and can offer a competitive advantage. 
 
-### Real-time speech to text
-
-With [real-time speech to text](get-started-speech-to-text.md), the audio is transcribed as speech is recognized from a microphone or file. Use real-time speech to text for applications that need to transcribe audio in real-time such as:
-- Transcriptions, captions, or subtitles for live meetings
-- [Diarization](get-started-stt-diarization.md)
-- [Pronunciation assessment](how-to-pronunciation-assessment.md)
-- Contact center agents assist
-- Dictation
-- Voice agents
-
-## Fast transcription API
-
-Fast transcription API is used to transcribe audio files with returning results synchronously and much faster than real-time audio. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
-
-- Quick audio or video transcription, subtitles, and edit. 
-- Video translation 
-
-To get started with fast transcription, see [use the fast transcription API](fast-transcription-create.md).
-
-### Batch transcription
-
-[Batch transcription](batch-transcription.md) is used to transcribe a large amount of audio in storage. You can point to audio files with a shared access signature (SAS) URI and asynchronously receive transcription results. Use batch transcription for applications that need to transcribe audio in bulk such as:
-- Transcriptions, captions, or subtitles for prerecorded audio
-- Contact center post-call analytics
-- Diarization
 
 ### Text to speech
 
@@ -86,6 +56,14 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 [Speech translation](speech-translation.md) enables real-time, multilingual translation of speech to your applications, tools, and devices. Use this feature for speech to speech and speech to text translation.
 
+### LLM speech (preview)
+
+[LLM speech](llm-speech.md) currently supports the following speech tasks:
+- `transcribe`: Convert pre-recorded audio into text.
+- `translate`: Convert pre-recorded audio into text in a specified target language.
+  
+LLM speech uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It shares the same ultra-fast inference performance as fast transcription, making it ideal for use cases such as generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+
 ### Language identification
 
 [Language identification](language-identification.md) is used to identify languages spoken in audio when compared against a list of [supported languages](language-support.md). Use language identification by itself, with speech to text recognition, or with speech translation.
@@ -97,7 +75,7 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 ## Delivery and presence
 
-You can deploy Azure AI Speech features in the cloud or on-premises.
+You can deploy Azure Speech in Foundry Tools features in the cloud or on-premises.
 
 With [containers](speech-container-howto.md), you can bring the service closer to your data for compliance, security, or other operational reasons. 
 
@@ -107,7 +85,7 @@ Speech service deployment in sovereign clouds is available for some government e
 
 ## Use Speech in your application
 
-The [Speech Studio](speech-studio-overview.md) is a set of UI-based tools for building and integrating features from Azure AI Speech service in your applications. You create projects in Speech Studio by using a no-code approach, and then reference those assets in your applications by using the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), or the REST APIs.
+The [Speech Studio](speech-studio-overview.md) is a set of UI-based tools for building and integrating features from Azure Speech service in your applications. You create projects in Speech Studio by using a no-code approach, and then reference those assets in your applications by using the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), or the REST APIs.
 
 The [Speech CLI](spx-overview.md) is a command-line tool for using Speech service without having to write any code. Most features in the Speech SDK are available in the Speech CLI, and some advanced features and customizations are simplified in the Speech CLI. 
 

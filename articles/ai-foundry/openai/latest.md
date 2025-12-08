@@ -1,20 +1,20 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models v1 REST API reference
+title: Azure OpenAI in Microsoft Foundry Models v1 REST API reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's v1 REST API. 
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 08/26/2025
+ms.date: 11/26/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
 ms.custom:
-
+monikerRange: foundry-classic || foundry
 ---
 
-# Azure OpenAI in Azure AI Foundry Models v1 REST API reference
+# Azure OpenAI in Microsoft Foundry Models v1 REST API reference
 
 Only a subset of operations are currently supported with the v1 API. To learn more, see the [API version lifecycle guide](./api-version-lifecycle.md).
 
@@ -33,7 +33,7 @@ Creates a chat completion.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Microsoft Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -170,7 +170,7 @@ Creates an embedding vector representing the input text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -349,7 +349,7 @@ List evaluations for a project.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | after | query | No | string | Identifier for the last eval from the previous pagination request. |
 | limit | query | No | integer | A limit on the number of evals to be returned in a single pagination response. |
@@ -397,8 +397,6 @@ An evaluation is a set of testing criteria and a datasource. After
 creating an evaluation, you can run it on different models and model
 parameters. We support several types of graders and datasources.
 
-For more information, see the [Evals guide](./how-to/evaluations.md).
-
 > [!NOTE]
 > This Azure OpenAI operation is in preview and subject to change.
 ### Parameters
@@ -406,7 +404,7 @@ For more information, see the [Evals guide](./how-to/evaluations.md).
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 
 ### Request Header
@@ -464,7 +462,7 @@ Retrieves an evaluation by its ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -511,7 +509,7 @@ Update select, mutable properties of a specified evaluation.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -566,7 +564,7 @@ Delete a specified evaluation.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -613,7 +611,7 @@ Retrieve a list of runs for a specified evaluation.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | after | query | No | string |  |
@@ -664,7 +662,7 @@ Create a new evaluation run, beginning the grading process.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 
@@ -721,7 +719,7 @@ Retrieve a specific evaluation run by its ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -769,7 +767,7 @@ Cancel a specific evaluation run by its ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -817,7 +815,7 @@ Delete a specific evaluation run by its ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -865,7 +863,7 @@ Get a list of output items for a specified evaluation run.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -917,7 +915,7 @@ Retrieve a specific output item from an evaluation run by its ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-evals | header | Yes | string<br>Possible values: `preview` | Enables access to AOAI Evals, a preview feature.<br>This feature requires the 'aoai-evals' header to be set to 'preview'. |
 | eval_id | path | Yes | string |  |
 | run_id | path | Yes | string |  |
@@ -961,7 +959,7 @@ POST {endpoint}/openai/v1/files
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1025,7 +1023,7 @@ GET {endpoint}/openai/v1/files
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | purpose | query | No | string |  |
 
 ### Request Header
@@ -1068,7 +1066,7 @@ GET {endpoint}/openai/v1/files/{file_id}
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | file_id | path | Yes | string | The ID of the file to use for this request. |
 
 ### Request Header
@@ -1111,7 +1109,7 @@ DELETE {endpoint}/openai/v1/files/{file_id}
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | file_id | path | Yes | string | The ID of the file to use for this request. |
 
 ### Request Header
@@ -1154,7 +1152,7 @@ GET {endpoint}/openai/v1/files/{file_id}/content
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | file_id | path | Yes | string | The ID of the file to use for this request. |
 
 ### Request Header
@@ -1197,7 +1195,7 @@ Run a grader.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1261,7 +1259,7 @@ Validate a grader.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1327,7 +1325,7 @@ Response includes details of the enqueued job including job status and the name 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1387,7 +1385,7 @@ List your organization's fine-tuning jobs
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | after | query | No | string | Identifier for the last job from the previous pagination request. |
 | limit | query | No | integer | Number of fine-tuning jobs to retrieve. |
 
@@ -1433,7 +1431,7 @@ Get info about a fine-tuning job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job. |
 
 ### Request Header
@@ -1476,7 +1474,7 @@ Immediately cancel a fine-tune job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to cancel. |
 
 ### Request Header
@@ -1519,7 +1517,7 @@ List the checkpoints for a fine-tuning job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to get checkpoints for. |
 | after | query | No | string | Identifier for the last checkpoint ID from the previous pagination request. |
 | limit | query | No | integer | Number of checkpoints to retrieve. |
@@ -1567,7 +1565,7 @@ Creates a copy of a fine-tuning checkpoint at the given destination account and 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-copy-ft-checkpoints | header | Yes | string<br>Possible values: `preview` | Enables access to checkpoint copy operations for models, an AOAI preview feature.<br>This feature requires the 'aoai-copy-ft-checkpoints' header to be set to 'preview'. |
 | accept | header | Yes | string<br>Possible values: `application/json` |  |
 | fine_tuning_job_id | path | Yes | string |  |
@@ -1625,7 +1623,7 @@ Gets the status of a fine-tuning checkpoint copy.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | aoai-copy-ft-checkpoints | header | Yes | string<br>Possible values: `preview` | Enables access to checkpoint copy operations for models, an AOAI preview feature.<br>This feature requires the 'aoai-copy-ft-checkpoints' header to be set to 'preview'. |
 | accept | header | Yes | string<br>Possible values: `application/json` |  |
 | fine_tuning_job_id | path | Yes | string |  |
@@ -1671,7 +1669,7 @@ Get status updates for a fine-tuning job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to get events for. |
 | after | query | No | string | Identifier for the last event from the previous pagination request. |
 | limit | query | No | integer | Number of events to retrieve. |
@@ -1716,7 +1714,7 @@ Pause a fine-tune job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to pause. |
 
 ### Request Header
@@ -1759,7 +1757,7 @@ Resume a paused fine-tune job.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | fine_tuning_job_id | path | Yes | string | The ID of the fine-tuning job to resume. |
 
 ### Request Header
@@ -1803,7 +1801,7 @@ owner and availability.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1846,7 +1844,7 @@ permissioning.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | model | path | Yes | string | The ID of the model to use for this request. |
 
 ### Request Header
@@ -1889,7 +1887,7 @@ Creates a model response.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -1979,7 +1977,7 @@ Retrieves a model response with the given ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | include_obfuscation | query | No | boolean | When true, stream obfuscation will be enabled. Stream obfuscation adds random characters to an `obfuscation` field on streaming delta events to normalize payload sizes as a mitigation to certain side-channel attacks. These obfuscation fields are included by default, but add a small amount of overhead to the data stream. You can set `include_obfuscation` to false to optimize for bandwidth if you trust the network links between your application and the OpenAI API. |
 | include[] | query | No | array |  |
@@ -2024,7 +2022,7 @@ Deletes a response by ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 
 ### Request Header
@@ -2067,7 +2065,7 @@ Returns a list of input items for a given response.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the<br>default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc`<br>for descending order. |
@@ -2114,7 +2112,7 @@ Returns a list of vector stores.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the<br>default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc`<br>for descending order. |
 | after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your<br>subsequent call can include after=obj_foo in order to fetch the next page of the list. |
@@ -2160,7 +2158,7 @@ Creates a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 
 ### Request Header
 
@@ -2219,7 +2217,7 @@ Retrieves a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store to retrieve. |
 
 ### Request Header
@@ -2262,7 +2260,7 @@ Modifies a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store to modify. |
 
 ### Request Header
@@ -2316,7 +2314,7 @@ Delete a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store to delete. |
 
 ### Request Header
@@ -2359,7 +2357,7 @@ Create a vector store file batch.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store for which to create a file batch. |
 
 ### Request Header
@@ -2411,7 +2409,7 @@ Retrieves a vector store file batch.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
 | batch_id | path | Yes | string | The ID of the file batch being retrieved. |
 
@@ -2455,7 +2453,7 @@ Cancel a vector store file batch. This attempts to cancel the processing of file
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
 | batch_id | path | Yes | string | The ID of the file batch to cancel. |
 
@@ -2499,7 +2497,7 @@ Returns a list of vector store files in a batch.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file batch belongs to. |
 | batch_id | path | Yes | string | The ID of the file batch that the files belong to. |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the<br>default is 20. |
@@ -2548,7 +2546,7 @@ Returns a list of vector store files.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the files belong to. |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the<br>default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc`<br>for descending order. |
@@ -2596,7 +2594,7 @@ Create a vector store file by attaching a File to a vector store.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store for which to create a File. |
 
 ### Request Header
@@ -2648,7 +2646,7 @@ Retrieves a vector store file.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file belongs to. |
 | file_id | path | Yes | string | The ID of the file being retrieved. |
 
@@ -2692,7 +2690,7 @@ POST {endpoint}/openai/v1/vector_stores/{vector_store_id}/files/{file_id}
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string |  |
 | file_id | path | Yes | string |  |
 
@@ -2743,7 +2741,7 @@ Delete a vector store file. This will remove the file from the vector store but 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
+| api-version | query | No |  | The explicit Foundry Models API version to use for this request.<br>`v1` if not otherwise specified. |
 | vector_store_id | path | Yes | string | The ID of the vector store that the file belongs to. |
 | file_id | path | Yes | string | The ID of the file to delete. |
 

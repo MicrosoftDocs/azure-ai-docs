@@ -1,5 +1,5 @@
 ---
-title: 'How to use JSON mode with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use JSON mode with Azure OpenAI in Microsoft Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your chat completions with Azure OpenAI JSON mode
 services: cognitive-services
@@ -7,10 +7,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 
 ---
 
@@ -19,10 +20,10 @@ recommendations: false
 JSON mode allows you to set the models response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
 
 > [!NOTE]
-> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generates valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
+> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generate valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
 
 >[!NOTE]
-> Currently Structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
+> Currently Structured outputs are not supported on [bring your own data](../concepts/use-your-data.md) scenario.
 
 ## JSON mode support
 

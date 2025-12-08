@@ -1,26 +1,29 @@
 ---
-title: How to use the Browser Automation tool with the Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
+title: How to use the Browser Automation tool with the Foundry Agent Service
+titleSuffix: Microsoft Foundry
 description: Learn how to automate browser use and interact with websites using AI Agents.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/14/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
 # How to use the Browser Automation tool (preview)
 
-Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Azure AI Foundry Agent Service.
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+
+Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service.
 
 ## Prerequisites
 
 * The requirements in the [Browser Automation overview](./browser-automation.md#setup).
-* Your Azure AI Foundry Project endpoint.
+* Your Microsoft Foundry Project endpoint.
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
@@ -33,8 +36,8 @@ Use this article to find step-by-step instructions and code samples for using th
     pip install azure-ai-projects
     pip install azure-identity
     ```
-* The **contributor** role assigned to your AI Foundry project from within your Playwright workplace. 
-* Your Playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
+* The **contributor** role assigned to your Foundry project from within your Playwright workplace. 
+* Your Playwright connection ID. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
     
     <!--
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::

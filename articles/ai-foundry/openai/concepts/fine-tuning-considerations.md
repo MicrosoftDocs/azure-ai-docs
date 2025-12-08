@@ -1,18 +1,19 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
-description: Learn more about what you should take into consideration before fine-tuning with Azure OpenAI 
+title: Microsoft Foundry fine-tuning considerations
+description: Learn more about what you should take into consideration before fine-tuning with Microsoft Foundry
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-ms.custom:
+ms.custom: ignite2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
+# Microsoft Foundry fine-tuning considerations
 
 Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
 
@@ -46,7 +47,7 @@ Fine-tuning is suited for times when you have a small amount of data and want to
 
 * **Generating outputs in specific formats or schemas**: Models can be fine-tuned to produce outputs in specific formats or schemas, making them ideal for structured data generation, reports, or formatted responses.
 
-* **Enhancing tool usage**: While the chat completions API supports tool calling, listing many tools increases token usage and may lead to hallucinations. Fine-tuning with tool examples enhances accuracy and consistency, even without full tool definitions.
+* **Enhancing tool usage**: While the chat completions API supports tool calling, listing many tools increases token usage and may lead to incorrect information. Fine-tuning with tool examples enhances accuracy and consistency, even without full tool definitions.
 
 * **Enhancing retrieval-based performance**: Combining fine-tuning with retrieval methods improves a model’s ability to integrate external knowledge, perform complex tasks, and provide more accurate, context-aware responses. Fine-tuning trains the model to effectively use retrieved data while filtering out irrelevant information.
 
@@ -56,7 +57,7 @@ Fine-tuning is suited for times when you have a small amount of data and want to
 
 ## Types of fine-tuning
 
-Azure AI Foundry offers multiple types of fine -tuning techniques:
+Microsoft Foundry offers multiple types of fine -tuning techniques:
 
 * **Supervised fine-tuning**: This allows you to provide custom data (prompt/completion or conversational chat, depending on the model) to teach the base model new skills. This process involves further training the model on a high-quality labeled dataset, where each data point is associated with the correct output or answer. The goal is to enhance the model's performance on a particular task by adjusting its parameters based on the labeled data. This technique works best when there are finite ways of solving a problem and you want to teach the model a particular task and improve its accuracy and conciseness.
 
@@ -68,7 +69,7 @@ You can also stack techniques: first using SFT to create a customized model – 
 
 ## Challenges and limitations of fine-tuning
 
-Fine-tuning large language models scan be a powerful technique to adapt them to specific domains and tasks. However, fine-tuning also comes with some challenges and disadvantages that need to be considered before applying it to a real-world problem. Below are a few of these challenges and disadvantages. 
+Fine-tuning large language models can be a powerful technique to adapt them to specific domains and tasks. However, fine-tuning also comes with some challenges and disadvantages that need to be considered before applying it to a real-world problem. Below are a few of these challenges and disadvantages. 
 
 - Fine-tuning requires high-quality, sufficiently large, and representative training data matching the target domain and task. Quality data is relevant, accurate, consistent, and diverse enough to cover the possible scenarios and variations the model will encounter in the real world. Poor-quality or unrepresentative data leads to over-fitting, under-fitting, or bias in the fine-tuned model, which harms its generalization and robustness.
 - Fine-tuning large language models means extra costs associated with training and hosting the custom model.
@@ -79,5 +80,5 @@ Fine-tuning large language models scan be a powerful technique to adapt them to 
 ## Next steps
 
 - Watch the [Azure AI Show episode: "To fine-tune or not to fine-tune, that is the question"](https://www.youtube.com/watch?v=0Jo-z-MFxJs)
-- Learn more about [Azure OpenAI fine-tuning](../how-to/fine-tuning.md)
+- Learn more about [Foundry fine-tuning](../how-to/fine-tuning.md)
 - Explore our [fine-tuning tutorial](../tutorials/fine-tune.md)

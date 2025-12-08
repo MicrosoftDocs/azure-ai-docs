@@ -1,13 +1,15 @@
 ---
 title: Voice live API language support
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the languages supported by Voice live API and how to configure them.
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
+reviewer: patrickfarley
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/26/2025
+ms.date: 10/31/2025
 ms.custom: languages
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice live API and how to configure them.
 ---
@@ -20,7 +22,7 @@ The Voice live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-4o-mini-realtime-preview`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
 ### Azure speech to text supported languages
 
@@ -76,11 +78,11 @@ To configure a single or multiple languages not supported by the multimodal mode
 }
 ```
 
-### gpt-realtime and gpt-4o-mini-realtime-preview supported languages
+### gpt-realtime and gpt-realtime-mini supported languages
 
 While the underlying model was trained on 98 languages, OpenAI only lists the languages that exceeded <50% word error rate (WER) which is an industry standard benchmark for speech to text model accuracy. The model returns results for languages not listed but the quality will be low.
 
-The following languages are supported by `gpt-realtime` and `gpt-4o-mini-realtime-preview`:
+The following languages are supported by `gpt-realtime` and `gpt-realtime-mini`:
 - Afrikaans
 - Arabic
 - Armenian
@@ -166,14 +168,14 @@ The following languages are supported by `phi4-mm-realtime`:
 - Portuguese
 - Spanish
 
-Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription for `phi4-mm-realtime` you need to use the same configuration as for all non-mulitmodal model configuration where `azure-speech` is used for transcription as described.
+Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription for `phi4-mm-realtime` you need to use the same configuration as for all non-multimodal model configuration where `azure-speech` is used for transcription as described.
 
 > [!NOTE]
 > Multimodal phi models only support the following transcription models: `azure-speech`.
 
 ## [Speech output](#tab/speechoutput)
 
-Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-4o-mini-realtime-preview` or by `azure text to speech` voices.
+Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
 
 ### Azure text to speech supported languages
 

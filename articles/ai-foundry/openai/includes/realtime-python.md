@@ -10,7 +10,7 @@ ms.date: 3/20/2025
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
 - Then, you need to deploy a `gpt-realtime` or `gpt-realtime-mini` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
@@ -19,7 +19,7 @@ ms.date: 3/20/2025
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
-- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+- Assign the `Cognitive Services OpenAI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Deploy a model for real-time audio
 
@@ -27,17 +27,17 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `realtime-audio-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder `realtime-audio-quickstart-py` and go to the quickstart folder with the following command:
 
-    ```shell
-    mkdir realtime-audio-quickstart && cd realtime-audio-quickstart
+    ```bash
+    mkdir realtime-audio-quickstart-py && cd realtime-audio-quickstart-py
     ```
     
 1. Create a virtual environment. If you already have Python 3.10 or higher installed, you can create a virtual environment using the following commands:
     
     # [Windows](#tab/windows)
     
-    ```bash
+    ```shell
     py -3 -m venv .venv
     .venv\scripts\activate
     ```
@@ -66,7 +66,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. Install the OpenAI Python client library with:
 
-    ```console
+    ```shell
     pip install openai[realtime]
     ```
     
@@ -75,7 +75,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `azure-identity` package with:
 
-    ```console
+    ```shell
     pip install azure-identity
     ```
 
@@ -96,8 +96,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     import os
     import base64
     import asyncio
-    from openai import AsyncAzureOpenAI
-    from azure.identity.aio import DefaultAzureCredential, get_bearer_token_provider
+    from openai import AsyncOpenAI
+    from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
     async def main() -> None:
         """
@@ -106,19 +106,70 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         """
     
         credential = DefaultAzureCredential()
-        token_provider=get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
-        client = AsyncAzureOpenAI(
-            azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-            azure_ad_token_provider=token_provider,
-            api_version="2025-08-28",
+        token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
+        token = token_provider()
+    
+        # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
+        # environment variable.
+        # You can find it in the Microsoft Foundry portal in the Overview page of your Azure OpenAI resource.
+        # Example: https://{your-resource}.openai.azure.com
+        endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
+    
+        # The deployment name of the model you want to use is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
+        # environment variable.
+        # You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        # Example: gpt-realtime
+        deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
+    
+        base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
+    
+        # The APIs are compatible with the OpenAI client library.
+        # You can use the OpenAI client library to access the Azure OpenAI APIs.
+        # Make sure to set the baseURL and apiKey to use the Azure OpenAI endpoint and token.
+        client = AsyncOpenAI(
+            websocket_base_url=base_url,
+            api_key=token
         )
-        async with client.beta.realtime.connect(
-            model="gpt-realtime",  # name of your deployment
+        async with client.realtime.connect(
+            model=deployment_name,
         ) as connection:
-            await connection.session.update(session={"output_modalities": ["text", "audio"]})  
+            # after the connection is created, configure the session.
+            await connection.session.update(session={
+                "type": "realtime",
+                "instructions": "You are a helpful assistant. You respond by voice and text.",
+                "output_modalities": ["audio"],
+                "audio": {
+                    "input": {
+                        "transcription": {
+                            "model": "whisper-1",
+                        },
+                        "format": {
+                            "type": "audio/pcm",
+                            "rate": 24000,
+                        },
+                        "turn_detection": {
+                            "type": "server_vad",
+                            "threshold": 0.5,
+                            "prefix_padding_ms": 300,
+                            "silence_duration_ms": 200,
+                            "create_response": True,
+                        }
+                    },
+                    "output": {
+                        "voice": "alloy",
+                        "format": {
+                            "type": "audio/pcm",
+                            "rate": 24000,
+                        }
+                    }
+                }
+            })
+    
+            # After the session is configured, data can be sent to the session.
             while True:
                 user_input = input("Enter a message: ")
                 if user_input == "q":
+                    print("Stopping the conversation.")
                     break
     
                 await connection.conversation.item.create(
@@ -132,18 +183,25 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 async for event in connection:
                     if event.type == "response.output_text.delta":
                         print(event.delta, flush=True, end="")
+                    elif event.type == "session.created":
+                        print(f"Session ID: {event.session.id}")
                     elif event.type == "response.output_audio.delta":
-                        
                         audio_data = base64.b64decode(event.delta)
                         print(f"Received {len(audio_data)} bytes of audio data.")
                     elif event.type == "response.output_audio_transcript.delta":
                         print(f"Received text delta: {event.delta}")
                     elif event.type == "response.output_text.done":
                         print()
+                    elif event.type == "error":
+                        print("Received an error event.")
+                        print(f"Error code: {event.error.code}")
+                        print(f"Error Event ID: {event.error.event_id}")
+                        print(f"Error message: {event.error.message}")
                     elif event.type == "response.done":
                         break
     
-        await credential.close()
+        print("Conversation ended.")
+        credential.close()
     
     asyncio.run(main())
     ```
@@ -170,8 +228,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     import os
     import base64
     import asyncio
-    from openai import AsyncAzureOpenAI
-    from azure.identity.aio import DefaultAzureCredential, get_bearer_token_provider
+    from openai import AsyncOpenAI
     
     async def main() -> None:
         """
@@ -179,18 +236,71 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         Enter "q" to quit the conversation.
         """
     
-        client = AsyncAzureOpenAI(
-            azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-            api_key=os.environ["AZURE_OPENAI_API_KEY"],
-            api_version="2025-08-28",
+        # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT
+        # environment variable.
+        # You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
+        # Example: https://{your-resource}.openai.azure.com
+        endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]
+        base_url = endpoint.replace("https://", "wss://").rstrip("/") + "/openai/v1"
+    
+        # The deployment name of the model you want to use is required. You can set it in the AZURE_OPENAI_DEPLOYMENT_NAME
+        # environment variable.
+        # You can find it in the Foundry portal in the "Models + endpoints" page of your Azure OpenAI resource.
+        # Example: gpt-realtime
+        deployment_name = os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"]
+        
+        # API Key of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_API_KEY
+        # environment variable.
+        # You can find it in the Foundry portal in the Overview page of your Azure OpenAI resource.
+        token=os.environ["AZURE_OPENAI_API_KEY"]
+    
+        # The APIs are compatible with the OpenAI client library.
+        # You can use the OpenAI client library to access the Azure OpenAI APIs.
+        # Make sure to set the baseURL and apiKey to use the Azure OpenAI endpoint and token.
+        client = AsyncOpenAI(
+            websocket_base_url=base_url,
+            api_key=token
         )
-        async with client.beta.realtime.connect(
-            model="gpt-realtime",  # deployment name of your model
+        async with client.realtime.connect(
+            model=deployment_name,
         ) as connection:
-            await connection.session.update(session={"output_modalities": ["text", "audio"]})  
+            # after the connection is created, configure the session.
+            await connection.session.update(session={
+                "type": "realtime",
+                "instructions": "You are a helpful assistant. You respond by voice and text.",
+                "output_modalities": ["audio"],
+                "audio": {
+                    "input": {
+                        "transcription": {
+                            "model": "whisper-1",
+                        },
+                        "format": {
+                            "type": "audio/pcm",
+                            "rate": 24000,
+                        },
+                        "turn_detection": {
+                            "type": "server_vad",
+                            "threshold": 0.5,
+                            "prefix_padding_ms": 300,
+                            "silence_duration_ms": 200,
+                            "create_response": True,
+                        }
+                    },
+                    "output": {
+                        "voice": "alloy",
+                        "format": {
+                            "type": "audio/pcm",
+                            "rate": 24000,
+                        }
+                    }
+                }
+            })
+    
+            # After the session is configured, data can be sent to the session.
             while True:
                 user_input = input("Enter a message: ")
                 if user_input == "q":
+                    print("Stopping the conversation.")
                     break
     
                 await connection.conversation.item.create(
@@ -204,17 +314,25 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 async for event in connection:
                     if event.type == "response.output_text.delta":
                         print(event.delta, flush=True, end="")
+                    elif event.type == "session.created":
+                        print(f"Session ID: {event.session.id}")
                     elif event.type == "response.output_audio.delta":
-                        
                         audio_data = base64.b64decode(event.delta)
                         print(f"Received {len(audio_data)} bytes of audio data.")
                     elif event.type == "response.output_audio_transcript.delta":
                         print(f"Received text delta: {event.delta}")
                     elif event.type == "response.output_text.done":
                         print()
+                    elif event.type == "error":
+                        print("Received an error event.")
+                        print(f"Error code: {event.error.code}")
+                        print(f"Error Event ID: {event.error.event_id}")
+                        print(f"Error message: {event.error.message}")
                     elif event.type == "response.done":
                         break
-        
+    
+        print("Conversation ended.")
+    
     asyncio.run(main())
     ```
 
@@ -236,24 +354,48 @@ The script gets a response from the model and prints the transcript and audio da
 The output looks similar to the following:
 
 ```console
-Enter a message: Please assist the user
-Received text delta: Of
-Received text delta:  course
-Received text delta: !
-Received text delta:  How
+Enter a message: How are you today?
+Session ID: sess_CgAuonaqdlSNNDTdqBagI
+Received text delta: I'm
+Received text delta:  doing
+Received text delta:  well
+Received text delta: ,
 Received 4800 bytes of audio data.
 Received 7200 bytes of audio data.
 Received 12000 bytes of audio data.
-Received text delta:  can
-Received text delta:  I
-Received text delta:  assist
-Received 12000 bytes of audio data.
-Received 12000 bytes of audio data.
+Received text delta:  thank
 Received text delta:  you
+Received text delta:  for
+Received text delta:  asking
+Received text delta: !
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received text delta:  How
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received text delta:  about
+Received text delta:  you
+Received text delta: —
+Received text delta: how
+Received text delta:  are
+Received text delta:  you
+Received text delta:  feeling
 Received text delta:  today
 Received text delta: ?
 Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
+Received 12000 bytes of audio data.
 Received 24000 bytes of audio data.
-Received 36000 bytes of audio data.
 Enter a message: q
+Stopping the conversation.
+Conversation ended.
 ```

@@ -2,7 +2,7 @@
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 05/25/2025
+ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs

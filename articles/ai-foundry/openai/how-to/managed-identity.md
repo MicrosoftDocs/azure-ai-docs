@@ -1,18 +1,20 @@
 ---
-title: How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication
+title: How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication
 titleSuffix: Azure OpenAI
 description: Provides guidance on how to set managed identity with Microsoft Entra ID
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to 
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom: devx-track-azurecli
 ---
 
-# How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication
+# How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 More complex security scenarios require Azure role-based access control (Azure RBAC). This document covers how to authenticate to your Azure OpenAI resource using Microsoft Entra ID.
 
@@ -20,7 +22,7 @@ In the following sections, you'll use the Azure CLI to sign in, and obtain a bea
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 - [Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.](
 ../../../ai-services/cognitive-services-custom-subdomains.md)

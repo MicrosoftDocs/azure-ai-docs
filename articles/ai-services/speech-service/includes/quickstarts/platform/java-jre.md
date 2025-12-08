@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Speech SDK for Java (Windows, Linux, macOS) platform setup - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for using Java (Windows, Linux, macOS) with the Speech SDK.
 author: markamos
 manager: nitinme

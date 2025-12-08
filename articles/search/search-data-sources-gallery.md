@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 09/28/2025
+ms.date: 10/21/2025
 ---
 
 # Data sources gallery
@@ -141,7 +141,7 @@ Connect to a OneLake lakehouse to extract supported files content from a hierarc
 
 ## Logic app connectors
 
-Pull in content [using logic app workflows](search-how-to-index-logic-apps.md) and the following supported data sources.
+Pull in content [using logic app workflows](search-how-to-index-logic-apps.md) and the following supported data sources. Note that the Logic Apps artifacts mentioned below, they have a pre-built workflow, however, you can use [any connectors listed under Logic Apps](/connectors/connector-reference/connector-reference-logicapps-connectors) that pull data from sources and create your own indexing pipeline workflow that pushes data to [Azure AI Search via a Logic App connector](/azure/logic-apps/connectors/azure-ai#azure-ai-search).
 
 :::row:::
 :::column span="":::
@@ -152,7 +152,7 @@ Pull in content [using logic app workflows](search-how-to-index-logic-apps.md) a
 
 By [Logic Apps](/connectors/sharepointonline)
 
-SharePoint helps organizations share and collaborate with colleagues, partners, and customers. You can connect to SharePoint Online or to an on-premises SharePoint 2016 or 2019 farm using the On-Premises Data Gateway to manage documents and list items.
+SharePoint helps organizations share and collaborate with colleagues, partners, and customers. You can connect to SharePoint in Microsoft 365 or to an on-premises SharePoint 2016 or 2019 farm using the On-Premises Data Gateway to manage documents and list items.
 
 [More details](search-how-to-index-logic-apps.md#supported-connectors)
 

@@ -1,12 +1,12 @@
 ---
-title: "Quickstart: Use the Language Detection client library"
-titleSuffix: Azure AI services
+title: "Quickstart: Use Azure Language Detection client library"
+titleSuffix: Foundry Tools
 description: Use this quickstart to start using Language Detection.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -14,8 +14,7 @@ ms.custom: language-service-language-detection, mode-api, devx-track-extended-ja
 keywords: text mining, language detection
 zone_pivot_groups: programming-languages-text-analytics
 ---
-
-# Quickstart: using the Language Detection client library and REST API
+# Quickstart: using Azure Language Detection client library and REST API
 
 ::: zone pivot="programming-language-csharp"
 
@@ -49,7 +48,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

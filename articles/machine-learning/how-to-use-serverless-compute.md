@@ -80,6 +80,8 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
 
 * **User credential passthrough**: Serverless compute fully supports user credential passthrough. The user token of the user submitting the job is used for storage access. These credentials are from Microsoft Entra ID.
 
+  Serverless compute doesn't support system-assigned identity.
+
     # [Python SDK](#tab/python)
 
     ```python
@@ -434,8 +436,8 @@ def my_pipeline():
     train_job = train_component(
         training_data=Input(type="uri_folder", path="./data")
     )
-    # Set managed identity for the job.
-    train_job.identity = {"type": "user_identity"}
+    # Set managed identity for the job
+    train_job.identity = {"type": "managed"}
     return {"train_output": train_job.outputs}
 
 pipeline_job = my_pipeline()
@@ -459,12 +461,12 @@ inputs:
      type: uri_folder 
       path: ./data   
  identity:
-   type: user_identity
+   type: managed
 ```
 
 ---
 ## Related content
 
-More examples of using serverless compute for training:
-* [First look at Azure Machine Learning](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
-* [Train a model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)
+View more examples of training with serverless compute:
+* [Quick Start](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
+* [Train Model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)

@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/06/2025
+ms.date: 10/23/2025
 ms.update-cycle: 365-days
 ---
 
@@ -19,10 +19,20 @@ Occasionally, indexers run into problems that don't produce errors or that occur
 > [!NOTE]
 > If you have an Azure AI Search error to investigate, see [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md) instead.
 
-## Best practice: indexers are designed to run on a schedule
-> For reliable indexing, configure your indexers to run on a [regular schedule](search-howto-schedule-indexers.md). Scheduled runs automatically pick up any documents missed in previous runs due to transient errors, network interruptions, or temporary service issues. This approach helps maintain data consistency and minimizes the need for manual intervention.  
->  
-> For [large data sources](search-how-to-large-index.md), the initial enumeration and indexing can take hours or even days. Running your indexer on a schedule allows that progress continues and errors are retried automatically. Avoid relying solely on manual or on-demand indexer runs, as these do not provide the same reliability or transient error recovery.  
+## Best practices
+
+These are some best practices and recommendations when working with indexers:
+
+### Indexers are designed to run on a schedule
+
+- For reliable indexing, configure your indexers to run on a [regular schedule](search-howto-schedule-indexers.md). Scheduled runs automatically pick up any documents missed in previous runs due to transient errors, network interruptions, or temporary service issues. This approach helps maintain data consistency and minimizes the need for manual intervention.  
+- For [large data sources](search-how-to-large-index.md), the initial enumeration and indexing can take hours or even days. Running your indexer on a schedule allows that progress continues and errors are retried automatically. Avoid relying solely on manual or on-demand indexer runs, as these do not provide the same reliability or transient error recovery.
+
+### Indexers provide best-effort indexing over time
+
+- Built-in indexers are designed to process all documents without permanent errors over time, if not in the current run, then in subsequent scheduled runs. They offer a convenient, low/no-code way to index data for common scenarios, enabling faster development and easier maintenance. However, if they have AI enrichment capabilities, they are not optimized for very large-scale workloads. For guidance on handling large datasets, see [how to index large data sets](search-how-to-large-index.md).
+- If your solution requires strict control over indexing timelines, use the Push APIs instead, such as the [Documents Index REST API](/rest/api/searchservice/documents) or the [IndexDocuments method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocuments). These options give you full control of the indexing pipeline.
+- Indexers can occasionally fall out of schedule. While this is uncommon and auto-recovery mechanisms exist, recovery may take time. This behavior is expected.
 
 <a name="connection-errors"></a>
 
@@ -30,19 +40,19 @@ Occasionally, indexers run into problems that don't produce errors or that occur
 
 For data sources under Azure network security, indexers are limited in how they make the connection. Currently, indexers can access restricted data sources [behind an IP firewall](search-indexer-howto-access-ip-restricted.md) or on a virtual network through a [private endpoint](search-indexer-howto-access-private.md) using a shared private link.
 
-### Error connecting to Azure AI services on a private connection
+### Error connecting to a Microsoft Foundry resource on a private connection
 
 If you get an error code 403 with the following message, you might have a problem with how the resource endpoint is specified in a skillset:
 
 * `"A Virtual Network is configured for this resource. Please use the correct endpoint for making requests. Check https://aka.ms/cogsvc-vnet for more details."`
 
-This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI services multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
+This error occurs if you've [configured a shared private link](search-indexer-howto-access-private.md) for connections to an Azure Foundry resource and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.services.ai.azure.com`). A custom domain might be missing if you created the resource in the Foundry portal instead of the Azure portal.
 
-If the Azure AI services multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
+If the Foundry resource isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) to attach the resource.
 
 ### Firewall rules
 
-Azure Storage, Azure Cosmos DB and Azure SQL provide a configurable firewall. There's no specific error message when the firewall blocks the request. Typically, firewall errors are generic. Some common errors include:
+Azure Storage, Azure Cosmos DB, and Azure SQL provide a configurable firewall. There's no specific error message when the firewall blocks the request. Typically, firewall errors are generic. Some common errors include:
 
 * `The remote server returned an error: (403) Forbidden`
 * `This request is not authorized to perform this operation`
@@ -95,7 +105,7 @@ If the database is paused, the first sign in from your search service is expecte
 
 ## Microsoft Entra Conditional Access policies
 
-When you create a SharePoint Online indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](/azure/active-directory/conditional-access/overview) policy.
+When you create a SharePoint indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](/azure/active-directory/conditional-access/overview) policy.
 
 To update the policy and allow indexer access to the document library:
 
@@ -103,7 +113,7 @@ To update the policy and allow indexer access to the document library:
 
 1. Select **Policies** on the left menu. If you don't have access to view this page, you need to either find someone who has access or get access.
 
-1. Determine which policy is blocking the SharePoint Online indexer from accessing the document library. The policy that might be blocking the indexer includes the user account that you used to authenticate during the indexer creation step in the **Users and groups** section. The policy also might have **Conditions** that:
+1. Determine which policy is blocking the SharePoint indexer from accessing the document library. The policy that might be blocking the indexer includes the user account that you used to authenticate during the indexer creation step in the **Users and groups** section. The policy also might have **Conditions** that:
 
     * Restrict **Windows** platforms.
     * Restrict **Mobile apps and desktop clients**.

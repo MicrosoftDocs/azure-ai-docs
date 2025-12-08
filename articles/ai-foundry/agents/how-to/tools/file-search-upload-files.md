@@ -1,20 +1,23 @@
 ---
 title: 'How to upload files using the file search tool'
-titleSuffix: Azure AI Foundry
-description: Find code samples and instructions for uploading files to Azure AI Foundry Agent Service.
+titleSuffix: Microsoft Foundry
+description: Find code samples and instructions for uploading files to Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/07/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code
 ---
 
 # How to upload files using the file search tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 
@@ -28,15 +31,15 @@ Use this article to find step-by-step instructions and code samples for uploadin
 
 ::: zone pivot="portal"
 
-## Add file search to an agent using the Azure AI Foundry portal
+## Add file search to an agent using the Microsoft Foundry portal
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+1. Go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **Files** and follow the prompts to add the tool. 
 
-    :::image type="content" source="../../media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools-list.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Foundry portal." lightbox="../../media\tools\knowledge-tools-list.png":::
 
     :::image type="content" source="../../media\tools\file-upload.png" alt-text="A screenshot showing the file upload page." lightbox="../../media\tools\file-upload.png":::
 

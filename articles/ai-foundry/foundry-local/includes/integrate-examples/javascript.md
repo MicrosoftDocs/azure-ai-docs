@@ -10,6 +10,11 @@ author: jonburchel
 ms.reviewer: maanavd
 ---
 
+## Prerequisites
+
+- Foundry Local installed and running. For installation instructions, see [Get started with Foundry Local](../../get-started.md).
+- [Node.js](https://nodejs.org/en/download/) version 18 or later installed.
+
 ## Install Node.js packages
 
 You need to install the following Node.js packages:

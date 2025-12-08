@@ -1,19 +1,22 @@
 ---
 title: 'How to use Azure AI Agents file search'
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: Learn how to use Agents file search.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/24/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions
 ---
 
-# Azure AI Foundry Agent Service file search tool
+# Foundry Agent Service file search tool
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 

@@ -181,7 +181,7 @@ Configure the MLflow tracking URI to point exclusively to Azure Machine Learning
 
    1. Open the [Azure Machine Learning studio portal](https://ml.azure.com) and sign in using your credentials.
    1. Select the name of your workspace to show the **Directory + Subscription + Workspace** page.
-   1. Select **View all properties in Azure Portal**.
+   1. Select **View all properties in Azure portal**.
    1. On the **Essentials** section, find the property **MLflow tracking URI**.
 
    # [Manually](#tab/manual)

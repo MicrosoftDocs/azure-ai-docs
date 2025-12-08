@@ -13,7 +13,7 @@ ms.date: 08/27/2025
 
 - An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
-  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
+  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Microsoft Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 - An [Azure AI Search resource](../../search-create-service-portal.md).
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
@@ -89,7 +89,7 @@ In this quickstart, you use a REST client and the [Azure AI Search REST APIs](/r
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for this quickstart.
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-rag) to start with a finished project or follow these steps to create your own. 
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-rag) to start with a finished project or follow these steps to create your own. 
 
 1. Start Visual Studio Code and open the [quickstart-rag.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-RAG/rag.rest) file or create a new file.
 
@@ -104,11 +104,11 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
    ```http
    ### List existing indexes by name (verify the connection)
-    GET  {{searchUrl}}/indexes?api-version=2025-08-01-preview&$select=name  HTTP/1.1
+    GET  {{searchUrl}}/indexes?api-version=2025-11-01-preview&$select=name  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
    ```
 
-1. Select **Sent request**.
+1. Select **Send Request**.
 
    :::image type="content" source="../../media/search-get-started-semantic/visual-studio-code-send-request.png" alt-text="Screenshot of the REST client send request link.":::
 

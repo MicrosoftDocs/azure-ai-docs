@@ -4,7 +4,7 @@ ms.author: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 09/08/2025
+ms.date: 11/20/2025
 ai-usage: ai-assisted
 ---
 
@@ -22,13 +22,11 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
     - The `Search Index Data Contributor` role assigned at the scope of the service.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
-    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
+    - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must have [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 - [Java 21 (LTS)](/java/openjdk/install).
 
 - [Maven](https://maven.apache.org/download.cgi).
-
----
 
 ## Get service endpoints
 

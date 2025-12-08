@@ -12,7 +12,7 @@ ms.custom: include
 In this article, you learn how to fine-tune a professional voice through the Speech Studio portal.
 
 > [!IMPORTANT]
-> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to an AI Foundry resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to a Foundry resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
 Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
@@ -177,6 +177,9 @@ The following table summarizes the different preset styles according to differen
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-hd-voice.png" alt-text="Screenshot that shows how to select neural HD voice training.":::
 
+   > [!NOTE]
+   > HD voices are only available in regions that support *High performance* type. For information about regions where the *High performance* endpoint type is supported, see the *Custom voice high performance endpoint* column in the *Text to speech* tab of the [regions](../../../../regions.md#regions) table.
+
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
    You can select only successfully processed datasets for training. Check your data processing status if you don't see your training set in the list.
@@ -247,7 +250,7 @@ If you want to upload your own test scripts to further test your model, select *
 
 :::image type="content" source="../../../../media/custom-voice/cnv-model-add-testscripts.png" alt-text="Screenshot of adding model test scripts.":::
 
-Before you upload test script, check the [Test script requirements](#test-script-requirements). You're charged for the extra testing with the batch synthesis based on the number of billable characters. See [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+Before you upload test script, check the [Test script requirements](#test-script-requirements). You're charged for the extra testing with the batch synthesis based on the number of billable characters. See [Azure Speech in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 Under **Add test scripts**, select **Browse for a file** to select your own script, then select **Add** to upload it.
 

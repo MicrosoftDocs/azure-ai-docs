@@ -19,7 +19,7 @@ This article shows how to add users to your data labeling project so that they c
   
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * An Azure Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md).
 
 You need certain permission levels to follow the steps in this article. If you can't follow one of the steps because of a permissions issue, contact your administrator to request the appropriate permissions.
@@ -40,7 +40,7 @@ The following custom roles give other levels of access for a data labeling proje
 
 1. Access the resource group for your workspace in the Azure portal. 
     1. Open your workspace in [Azure Machine Learning studio](https://ml.azure.com).
-    1. Open the menu on the top right, and select **View all properties in Azure Portal**. You use the Azure portal for the remaining steps in this section.
+    1. Open the menu on the top right, and select **View all properties in Azure portal**. You use the Azure portal for the remaining steps in this section.
     1. Select the **Resource group** link in the middle of the page.
 1. Add a custom role
     1. On the left, select **Access control (IAM)**.
@@ -107,7 +107,7 @@ To add users to your workspace, you must be an owner of the workspace.
 
 1. Access your workspace in the Azure portal. 
     1. Open your workspace in [Azure Machine Learning studio](https://ml.azure.com).
-    1. Open the menu on the top right, and select **View all properties in Azure Portal**. You use the Azure portal for the remaining steps in this section.
+    1. Open the menu on the top right, and select **View all properties in Azure portal**. You use the Azure portal for the remaining steps in this section.
 1. On the left, select **Access control (IAM)**.
 1. At the top, select **+ Add > Add role assignment**.
 

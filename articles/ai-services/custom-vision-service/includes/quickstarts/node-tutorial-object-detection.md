@@ -121,7 +121,7 @@ To add the sample images to the project, insert the following code after the tag
 
 
 > [!IMPORTANT]
-> You need to change the path to the images (`sampleDataRoot`) based on where you downloaded the Azure AI services Python SDK Samples repo.
+> You need to change the path to the images (`sampleDataRoot`) based on where you downloaded the Foundry Tools Python SDK Samples repo.
 
 > [!NOTE]
 > If you don't have a click-and-drag utility to mark the coordinates of regions, you can use the web UI at [Customvision.ai](https://www.customvision.ai/). In this example, the coordinates are already provided.

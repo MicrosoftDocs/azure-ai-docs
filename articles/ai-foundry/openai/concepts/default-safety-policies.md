@@ -5,22 +5,37 @@ description: Learn about the default Guidelines & controls policies that Azure O
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 11/06/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Default Guidelines & controls policies
 
+::: moniker range="foundry"
 
-Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
+Azure OpenAI in Microsoft Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
+
+Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about guardrail and controls, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
+
+All safety policies are configurable. To learn more about configurability, see the documentation on [configuring guardrails](/azure/ai-foundry/openai/how-to/content-filters).
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
+Azure OpenAI in Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
 
 Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
 All safety policies are configurable. To learn more about configurability, see the documentation on [configuring content filtering](/azure/ai-foundry/openai/how-to/content-filters).
+
+::: moniker-end
 
 ## Text models
 
@@ -86,4 +101,39 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 In addition to the above safety configurations, DALL-E 3 also comes with [prompt transformation](./prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
 
 ---
+
+
+## Audio Models
+
+| Risk Category                          | Prompt/Completion | Severity Threshold |
+|----------------------------------------|--------------------|---------------------|
+| Hate and Fairness                      | Prompts and Completions | Medium |
+| Violence                               | Prompts and Completions | Medium |
+| Sexual                                 | Prompts and Completions | Medium |
+| Self-Harm                              | Prompts and Completions | Medium |
+| User prompt injection attack (Jailbreak) | Prompts           | N/A   |
+| Protected Material - Text              | Completions        | N/A    |
+| Protected Material - Code              | Completions        | N/A    |
+
+::: moniker range="foundry"
+
+## Severity levels
+
+
+<!--
+Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.
+-->
+
+Guardrails and controls ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides guardrail capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in guardrail system.
+
+
+> [!NOTE]
+> The text content filtering models for the hate, sexual, violence, and self-harm categories are specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+
+
+[!INCLUDE [severity-levels text, four-level](../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
+
+[!INCLUDE [severity-levels image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
+
+::: moniker-end
 

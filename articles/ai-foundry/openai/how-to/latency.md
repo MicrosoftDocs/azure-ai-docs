@@ -1,16 +1,17 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models performance & latency
+title: Azure OpenAI in Microsoft Foundry Models performance & latency
 titleSuffix: Azure OpenAI
 description: Learn about performance and latency with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/21/2025
+ms.date: 11/26/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
 ms.custom:
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Performance and latency
@@ -23,7 +24,7 @@ There are two key concepts to think about when sizing an application: (1) System
 ### System level throughput
 This looks at the overall capacity of your deployment – how many requests per minute and total tokens that can be processed.
 
-For a standard deployment, the quota assigned to your deployment partially determines the amount of throughput you can achieve. However, quota only determines the admission logic for calls to the deployment and isn't directly enforcing throughput. Due to per-call latency variations, you might not be able to achieve throughput as high as your quota. [Learn more on managing quota](./quota.md).
+For a standard deployment, the quota assigned to your deployment partially determines the amount of throughput you can achieve. However, quota only determines the admission logic for calls to the deployment and isn't directly enforcing throughput. Due to per-call latency variations, you might not be able to achieve throughput as high as your quota. 
 
 In a provisioned deployment, a set amount of model processing capacity is allocated to your endpoint. The amount of throughput that you can achieve on the endpoint is a factor of the workload shape including input token amount, output amount, call rate and cache match rate. The number of concurrent calls and total tokens processed can vary based on these values. 
 
@@ -41,7 +42,7 @@ When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Compl
 
 ##### Estimating TPM from request data
 
-A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI in Azure AI Foundry Models chat completions request.
+A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI in Microsoft Foundry Models chat completions request.
 
 ```json
 {
@@ -122,13 +123,13 @@ There are many use cases where you're performing some bulk task where you only c
 
 ### Content filtering
 
-Azure OpenAI includes a [content filtering system](./content-filters.md) that works alongside the core models. This system works by running both the prompt and completion through an ensemble of classification models aimed at detecting and preventing the output of harmful content.
+Azure OpenAI includes a [content filtering system](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/content-filters) that works alongside the core models. This system works by running both the prompt and completion through an ensemble of classification models aimed at detecting and preventing the output of harmful content.
 
 The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The addition of content filtering comes with an increase in safety, but also latency. There are many applications where this tradeoff in performance is necessary, however there are certain lower risk use cases where disabling the content filters to improve performance might be worth exploring.
 
-Learn more about requesting modifications to the default, [content filtering policies](./content-filters.md).
+Learn more about requesting modifications to the default, [content filtering policies](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/content-filters).
 
 
 ### Separation of workloads
@@ -145,12 +146,12 @@ We recommend measuring your overall throughput on a deployment with two measures
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
 -	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
 
-You can learn more about [Monitoring the Azure OpenAI](./monitor-openai.md).
+You can learn more about [Monitoring Azure OpenAI](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/monitor-openai).
 
 ## How to measure per-call latency
 The time it takes for each call depends on how long it takes to read the model, generate the output, and apply content filters. The way you measure the time will vary if you're using streaming or not. We suggest a different set of measures for each case. 
 
-You can learn more about [Monitoring the Azure OpenAI](./monitor-openai.md).
+You can learn more about [Monitoring Azure OpenAI](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/monitor-openai).
 
 ### Non-Streaming:
 -	 End-to-end Request Time: The total time taken to generate the entire response for non-streaming requests, as measured by the API gateway. This number increases as prompt and generation size increases.
@@ -172,4 +173,4 @@ Time from the first token to the last token, divided by the number of generated 
 
 * **Streaming**: Enabling streaming can be useful in managing user expectations in certain situations by allowing the user to see the model response as it is being generated rather than having to wait until the last token is ready.
 
-* **Content Filtering** improves safety, but it also impacts latency. Evaluate if any of your workloads would benefit from [modified content filtering policies](./content-filters.md).
+* **Content Filtering** improves safety, but it also impacts latency. Evaluate if any of your workloads would benefit from [modified content filtering policies](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/content-filters).

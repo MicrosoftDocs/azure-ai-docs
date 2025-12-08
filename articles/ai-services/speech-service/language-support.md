@@ -1,6 +1,6 @@
 ---
 title: Language support - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech service supports numerous languages for speech to text and text to speech conversion, along with speech translation. This article provides a comprehensive list of language support by service feature.
 author: PatrickFarley
 manager: nitinme
@@ -33,12 +33,12 @@ Language support varies by Speech service functionality.
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for [real-time speech to text](speech-to-text.md#real-time-speech-to-text), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription-api) transcription.
+The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription) transcription.
 
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/stt.md)]
 
@@ -59,9 +59,15 @@ More remarks for text to speech locales are included in the [voice styles and ro
 > Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 [!INCLUDE [Language support include](includes/language-support/tts.md)]
+
+### DragonHD voices
+
+These are LLM-based neural high definition (HD) voices. The HD voices are multilingual, can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real time to match the sentiment. HD voices maintain a consistent voice persona with their neural (and non-HD) counterparts, and deliver more value through enhanced features.
+
+[!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
 
 ### Multilingual voices
 
@@ -141,7 +147,7 @@ The table in this section summarizes the 33 locales supported for pronunciation 
 # [Speech translation](#tab/speech-translation)
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 ### Real-time speech translation
 

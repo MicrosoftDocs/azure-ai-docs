@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Create a project using Bicep"
-titleSuffix: Azure AI Foundry
-description: Learn how to use a Bicep file (template) to create an Azure AI Foundry project in your Azure subscription.
+titleSuffix: Microsoft Foundry
+description: Learn how to use a Bicep file (template) to create a Microsoft Foundry project in your Azure subscription.
 ms.author: sgilley
 author: sdgilley
 reviewer: andyaviles
@@ -13,9 +13,11 @@ ms.date: 09/15/2025
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
-# Quickstart: Create an Azure AI Foundry project using a Bicep file
+# Quickstart: Create a Microsoft Foundry project using a Bicep file
 
-Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) project. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
+Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) project. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
 ## Prerequisites
 
@@ -43,7 +45,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 ## Review the Bicep file
 
-The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/00-basic).
+The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
 
 This template creates the following resources:
 
@@ -78,7 +80,7 @@ When the deployment finishes, you should see a message indicating the deployment
 
 ## Review deployed resources
 
-Use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to view the created resources. You can also use the Azure CLI or Azure PowerShell to list the resources.
+Use the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to view the created resources. You can also use the Azure CLI or Azure PowerShell to list the resources.
 
 # [Azure CLI](#tab/cli)
 

@@ -13,7 +13,8 @@
           "**/obj/**",
           "**/*.graffle",
           "machine-learning/**",
-          "machine-learning/v1/**"
+          "machine-learning/v1/**",
+          "ai-foundry/**"
         ],
         "src": "articles",
         "dest": "."
@@ -75,6 +76,37 @@
           "**/includes/**",
           "**/obj/**"
         ]
+      },
+      {
+        "group": "grp-foundry-classic",
+        "src": "articles/ai-foundry",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "default/**",
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
+      },
+
+      {
+        "group": "grp-foundry-default",
+        "src": "articles/ai-foundry/default",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ],
+        "monikerRange": "foundry"
       },
       {
         "files": [
@@ -175,6 +207,41 @@
           "**/_themes/**",
           "**/obj/**"
         ]
+      },
+            {
+        "group": "grp-foundry-classic",
+        "src": "articles/ai-foundry",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "default/**",
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
+      },
+      {
+        "group": "grp-foundry-default",
+        "src": "articles/ai-foundry/default",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
       }
     ],
     "groups": {
@@ -189,6 +256,14 @@
       "grp-machine-learningv1": {
         "moniker_range": "azureml-api-1",
         "dest": "destmachinelearningv1"
+      },
+        "grp-foundry-classic": {
+        "moniker_range": "foundry-classic || foundry",
+        "dest": "destfoundryclassic"
+      },
+      "grp-foundry-default": {
+        "moniker_range": "foundry",
+        "dest": "destfoundrydefault"
       }
     },
     "globalMetadata": {
@@ -371,11 +446,11 @@
         "articles/ai-services/computer-vision/**/*.md": "pafarley",
         "articles/ai-services/content-moderator/**/*.md": "pafarley",
         "articles/ai-services/custom-vision-service/**/*.md": "pafarley",
-        "articles/ai-services/document-intelligence/**/*.md": "lajanuar",
+        "articles/ai-services/document-intelligence/**/*.md": "pafarley",
         "articles/ai-services/luis/**/*.md": "lajanuar",
         "articles/ai-services/metrics-advisor/**/*.md": "mbullwin",
         "articles/ai-services/personalizer/**/*.md": "jacodel",
-        "articles/ai-services/qnamaker/**/*.md": "jboback",
+        "articles/ai-services/qnamaker/**/*.md": "lajanuar",
         "articles/ai-services/openai/**/*.md": "mbullwin",
         "articles/ai-services/speech-service/**/*.md": "pafarley",
         "articles/ai-services/language-service/**/*.md": "lajanuar",
@@ -389,38 +464,38 @@
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
         "articles/ai-services/**/*.md": "ce-skilling-ai-copilot",
         "articles/ai-services/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/ai-services/openai/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-services/openai/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-services/agents/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-services/agents/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-services/content-understanding/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-services/content-understanding/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-services/anomaly-detector/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/anomaly-detector/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/content-moderator/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/content-moderator/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/custom-vision-service/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/custom-vision-service/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/openai/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/openai/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/agents/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/agents/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/content-understanding/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/content-understanding/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/anomaly-detector/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/anomaly-detector/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/content-moderator/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/content-moderator/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/custom-vision-service/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/custom-vision-service/**/*.yml": "ce-skilling-ai-copilot",
         "articles/ai-services/computer-vision/**/*.md": "ce-skilling-ai-copilot",
         "articles/ai-services/computer-vision/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/ai-services/metrics-advisor/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/metrics-advisor/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/personalizer/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/personalizer/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/document-intelligence/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/document-intelligence/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/luis/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/luis/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/qnamaker/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/qnamaker/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/immersive-reader/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/ai-services/immersive-reader/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/metrics-advisor/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/metrics-advisor/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/personalizer/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/personalizer/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/document-intelligence/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/document-intelligence/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/luis/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/luis/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/qnamaker/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/qnamaker/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/immersive-reader/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/immersive-reader/**/*.yml": "ce-skilling-ai-copilot",
         "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
-        "articles/ai-foundry/responsible-ai/**/*.md": "rai-skilling-ai-copilot, ce-skilling-fresh-tier2",
-        "articles/ai-foundry/responsible-ai/**/*.yml": "rai-skilling-ai-copilot, ce-skilling-fresh-tier2",
+        "articles/ai-foundry/responsible-ai/**/*.md": "rai-skilling-ai-copilot",
+        "articles/ai-foundry/responsible-ai/**/*.yml": "rai-skilling-ai-copilot",
         "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/component-reference/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/component-reference/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
@@ -448,6 +523,8 @@
         "articles/ai-services/computer-vision/**/*.yml": "365-days",
         "articles/ai-services/*.md": "365-days",
         "articles/ai-services/*.yml": "365-days",
+        "articles/ai-services/reference/*.md": "365-days",
+        "articles/ai-services/encryption/*.md": "365-days",
         "articles/ai-services/containers/**/*.md": "365-days",
         "articles/ai-services/containers/**/*.yml": "365-days",
         "articles/ai-services/anomaly-detector/**/*.md": "1095-days",
@@ -500,7 +577,12 @@
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/**/*.md": "azureml-api-2",
-        "articles/machine-learning/v1/**/*.md": "azureml-api-1"
+        "articles/machine-learning/v1/**/*.md": "azureml-api-1",
+        "articles/ai-foundry/toc.yml": "foundry-classic",
+        "articles/ai-foundry/context/**/*.*": "foundry-classic",
+        "articles/ai-foundry/breadcrumb/**/*.*": "foundry-classic",
+        "articles/ai-foundry/**/*.*": "foundry-classic",
+        "articles/ai-foundry/default/**/*.*": "foundry"
       },
       "open_to_public_contributors": {
         "articles/ai-foundry/responsible-ai/**.*": false
@@ -509,9 +591,9 @@
         "articles/ai-services/translator/**/*.md": false
       },
       "titleSuffix": {
-        "articles/ai-studio/**/*.md": "Azure AI Foundry",
-        "articles/ai-services/openai/**/*.md": "Azure AI Foundry",
-        "articles/ai-services/**/*.md": "Azure AI services",
+        "articles/ai-studio/**/*.md": "Microsoft Foundry",
+        "articles/ai-foundry/**/*.md": "Microsoft Foundry",
+        "articles/ai-services/**/*.md": "Foundry Tools",
         "articles/ai-services/LUIS/*.md": "Azure",
         "articles/ai-services/LUIS/*.yml": "Azure",
         "articles/machine-learning/*.md": "Azure Machine Learning",

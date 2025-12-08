@@ -1,15 +1,17 @@
 ---
-title:  Prompt engineering techniques | Azure OpenAI in Azure AI Foundry Models
+title:  Prompt engineering techniques | Microsoft Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to use prompt engineering to optimize your work with Azure OpenAI.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
+
 recommendations: false
 ---
 
@@ -28,7 +30,7 @@ Text prompts are how users interact with GPT models. As with all generative lang
 | Prompt                             |Completion |
 |------------------------------------|-----------|
 | Four score and seven years ago our | fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal. […]|
-| "Call me Ishmael."                 | "Some years ago—never mind how long precisely—having little o no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world." […]|
+| "Call me Ishmael."                 | "Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world." […]|
 
 As you develop more complex prompts, it's helpful to keep this fundamental behavior in mind. Regardless of the prompt that is provided, the model is simply responding with what it determines is most likely (given its training data and training targets). If you ask a question in your prompt, the model isn't following a separate “Q&A” code path, but rather it appears to answer the question because an answer is the most likely sort of response for the given question as input.
 
@@ -123,10 +125,4 @@ While the input size increases with each new generation of GPT models, there wil
 
 Given this limited space, it's important to use it as efficiently as possible.
 - Tables – As shown in the examples in the previous section, GPT models can understand tabular formatted data quite easily. This can be a space efficient way to include data, rather than preceding every field with name (such as with JSON). 
-- White Space – Consecutive whitespaces are treated as separate tokens, which can be an easy way to waste space. Spaces preceding a word, on the other hand, are typically treated as part of the same token as the word. Carefully watch your usage of whitespace and don’t use punctuation when a space alone will do. 
-
-## Related content 
-
-* [Learn more about Azure OpenAI](../overview.md).
-* Get started with the ChatGPT model with [the ChatGPT quickstart](../chatgpt-quickstart.md).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples)
+- White Space – Consecutive whitespaces are treated as separate tokens, which can be an easy way to waste space. Spaces preceding a word, on the other hand, are typically treated as part of the same token as the word. Carefully watch your usage of whitespace and don’t use punctuation when a space alone will do.

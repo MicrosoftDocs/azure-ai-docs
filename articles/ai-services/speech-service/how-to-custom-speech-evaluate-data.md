@@ -1,6 +1,6 @@
 ---
 title: Test accuracy of a custom speech model - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this article, you learn how to quantitatively measure and improve the quality of our speech to text model or your custom model.
 author: PatrickFarley
 manager: nitinme
@@ -23,7 +23,7 @@ In this article, you learn how to quantitatively measure and improve the accurac
 ## Create a test
 
 > [!TIP]
-> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). In Microsoft Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
 
 You can test the accuracy of your custom model by creating a test. A test requires a collection of audio files and their corresponding transcriptions. You can compare a custom model's accuracy with a speech to text base model or another custom model. After you [get](#get-test-results) the test results, [evaluate the word error rate (WER)](#evaluate-word-error-rate-wer) compared to speech recognition results.
 
@@ -33,7 +33,7 @@ After you [upload training and testing datasets](how-to-custom-speech-upload-dat
 
 To test your fine-tuned custom speech model, follow these steps:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
 1. Select **Test models** > **+ Create test**. 
@@ -81,12 +81,12 @@ Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) ins
 
 To create a test, use the `spx csr evaluation create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `model1` property to the ID of a model that you want to test.
 - Set the required `model2` property to the ID of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
 - Set the required `dataset` property to the ID of a dataset that you want to use for the test.
 - Set the `language` property, otherwise the Speech CLI sets "en-US" by default. This parameter should be the locale of the dataset contents. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Set the required `name` property. This parameter is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a test:
 
@@ -167,13 +167,13 @@ spx help csr evaluation
 
 To create a test, use the [Evaluations_Create](/rest/api/speechtotext/evaluations/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
-- Set the `testingKind` property to `Evaluation` within `customProperties`. If you don't specify `Evaluation`, the test is treated as a quality inspection test. Whether the `testingKind` property is set to `Evaluation` or `Inspection`, or not set, you can access the accuracy scores via the API, but not in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the `testingKind` property to `Evaluation` within `customProperties`. If you don't specify `Evaluation`, the test is treated as a quality inspection test. Whether the `testingKind` property is set to `Evaluation` or `Inspection`, or not set, you can access the accuracy scores via the API, but not in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 - Set the required `model1` property to the URI of a model that you want to test.
 - Set the required `model2` property to the URI of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
 - Set the required `dataset` property to the URI of a dataset that you want to use for the test.
 - Set the required `locale` property. This property should be the locale of the dataset contents. The locale can't be changed later.
-- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+- Set the required `displayName` property. This property is the name that is displayed in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
@@ -559,7 +559,7 @@ Incorrectly identified words fall into three categories:
 * Deletion (D): Words that are undetected in the hypothesis transcript
 * Substitution (S): Words that were substituted between reference and hypothesis
 
-In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and [Speech Studio](https://speech.microsoft.com), the quotient is multiplied by 100 and shown as a percentage. The Speech CLI and REST API results aren't multiplied by 100.
+In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and [Speech Studio](https://speech.microsoft.com), the quotient is multiplied by 100 and shown as a percentage. The Speech CLI and REST API results aren't multiplied by 100.
 
 $$
 WER = {{I+D+S}\over N} \times 100
