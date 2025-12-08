@@ -136,10 +136,10 @@ Timing information provides the overall temporal bounds of the audiovisual conte
 
 A `keyFrameTimesMs` element represents the timestamps for the visual frames extracted from the video at key moments. Timestamps are represented in milliseconds from the beginning of the video. These frames are intelligently selected based on signals like shot detection. These frames are used as input to generate custom fields.
 
-**Key frame sampling behavior:**
+**Keyframe sampling behavior:**
 
 - Keyframes are uniformly selected from each camera shot
-- Each shot includes at least one sampled keyframe, even for short shots (less than 1 second duration)
+- Each shot includes at least one sampled keyframe, even for short shots (less than one second)
 - The number of keyframes is consistent across multiple runs
 - Timestamp values can have minor numerical differences between runs, but these differences are minimal and shouldn't significantly affect the content of the selected frames
 
