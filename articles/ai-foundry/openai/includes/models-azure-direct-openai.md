@@ -9,11 +9,12 @@ ms.topic: include
 ---
 
 > [!NOTE]
-> Foundry Models sold directly by Azure also include select models from the following top model providers:
+> Foundry Models sold directly by Azure also include select models from top model providers, such as:
 > 
 > - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`
 > - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
+> - Moonshot AI: `Kimi-K2-Thinking`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
 > - Microsoft: `MAI-DS-R1`, `model-router`
 > - Mistral: `mistral-document-ai-2505`, `Mistral-Large-3`
