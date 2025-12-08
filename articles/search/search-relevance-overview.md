@@ -1,17 +1,42 @@
 ---
 title: Relevance
 titleSuffix: Azure AI Search
-description: Describes how the scoring and ranking algorithms work in Azure AI Search and how to use them together.
+description: Describe strategies for producing relevant results  in Azure AI Search and explain how the scoring and ranking algorithms work and how to use them together.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 12/04/2025
+ms.date: 12/08/2025
 ms.update-cycle: 180-days
 ---
 
 # Relevance in Azure AI Search
+
+The true measure of relevance is *how well* a retrieved set of results meets your customer and user information needs. In this article, learn about:
+
++ The main strategies for producing relevant results in Azure AI Search
++ The mechanics of how relevance is measured
++ The actions you can take to improve relevance
+
+## Strategies for highly relevant results
+
+In Azure AI Search, two main strategies have emerged as the best approaches for producing highly relevant results.
+
++ Hybrid search with semantic reranker
++ Agentic retrieval (preview) with LLM-assisted query planning and answer formulation
+
+[Hybrid search](hybrid-search-overview.md) delivers on relevance by combining the precision of keyword search and the semantic similarity of vector search in a search request targeting a single index. Keyword search operates over a verbatim query. Vector search gets a vectorized version of the same query. The queries run in parallel, looking for precise and semantically similar matches. Results are merged, ranked, and then rescored using a semantic ranker that promotes the most relevant matches. Using keyword and vector search *together* offsets the weaknesses of each approach as a standalone solution. Semantic reranker is an extra component that contributes to a better outcome.
+
+[Agentic retrieval](agentic-retrieval-overview.md) delivers on relevance through smart integration with LLMs and a knowledge base that defines a search domain and returns output that's designed for LLM consumption. The LLM can analyze and transform queries. It can decompose complex questions into targeted subqueries, refine vague requests, or generalize narrow ones for broader scope. In most agentic retrieval workloads, the LLM answers the question using context from chat history, retrieval instructions, and a response that includes retrieved content, citations, and an activity log. This combination of LLM-assisted query planning, multi-source knowledge base search, and LLM-ready response formatting is how agentic retrieval returns highly relevant results.
+
+<!-- The introduction of chat models has fundamentally changed user expectations of relevance, even for questions that are incomplete, vague, or complex. Whether the input is half-formed thought or a complex action, users increasingly expect an answer that fills their information needs.
+
+To mimic the experience of AI chat models over your enterprise data, you probably need to LLM reasoning to your information stack, and Azure AI Search can do that in several ways.
+
+Producing highly relevant results is the primary objective of every information retrieval system, with precision and speed balancing out the concerns. -->
+
+## How relevance is measured
 
 In a query operation, the relevance of any given result is determined by a ranking algorithm that evaluates the strength of a match based on how closely the query corresponds to content in the search corpus. When a match is found, an algorithm assigns a score, and results are ranked by that score and the topmost results are returned in the response. 
 
@@ -104,7 +129,7 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
 }
 ```
 
-A response for the above query includes the original RRF `@search.core` and the `@search.rerankerScore`.
+A response for the previous query includes the original RRF `@search.core` and the `@search.rerankerScore`.
 
 ```json
   "value": [
