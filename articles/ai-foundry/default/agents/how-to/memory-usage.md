@@ -26,10 +26,22 @@ This article explains how to create, manage, and use memory stores. For conceptu
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../../how-to/create-projects.md). Ensure your project's managed identity has the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke your model deployments for memory operations.
+- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [access configured](#configure-access).
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python) or REST API access.
+
+### Configure access
+
+Your project's managed identity must have the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke your model deployments for memory operations.
+
+To configure access:
+
+1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. Select the resource that contains your project.
+1. From the left pane, select **Access control (IAM)**.
+1. Select **Add** > **Add role assignment**.
+1. Assign **Azure AI User** to the managed identity of your project.
 
 ## Understand scope
 
