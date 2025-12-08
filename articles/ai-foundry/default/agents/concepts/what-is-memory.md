@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 12/08/2025
 ---
 
-# What is memory in Foundry Agent Service? (preview)
+# Memory in Foundry Agent Service (preview)
 
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -27,9 +27,7 @@ Memory is persistent knowledge retained by an agent across sessions. Generally, 
 
 - **Long-term memory** retains distilled knowledge across sessions. The model can recall and build on previous user interactions over time. Long-term memory requires a persistent system that extracts, consolidates, and manages knowledge.
 
-Memory in Foundry Agent Service is designed for long-term memory and automates persistence as part of its extraction and consolidation pipeline. You don't need to explicitly call an update operation to persist extracted memories, which are consolidated and written to the managed memory store.
-
-As a result, if an app unexpectedly shuts down before it can call an update, memories from a conversation aren't lost. This automatic persistence is a key differentiator that improves reliability and reduces developer burden.
+Memory in Foundry Agent Service is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions.
 
 ## How memory works
 
@@ -56,10 +54,8 @@ Memory in Foundry Agent Service extracts and stores two types of long-term memor
 
 | Type | Description | Configuration |
 |--|--|--|
-| User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
-| Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. | Enable `chat_summaries` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
-
-Both memory types are consolidated during extraction so that the memory store maintains a canonical, conflict-resolved representation of the user's long-term information.
+| User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. We recommend that you retrieve user profile memories only once at the beginning of each conversation. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
+| Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. We recommend that you retrieve chat summary memories dynamically based on the current conversation to surface relevant threads. | Enable `chat_summaries` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
 
 ## Use cases
 
@@ -87,7 +83,7 @@ The following examples illustrate how memory can enhance various types of agents
 
 - **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
 
-- **Map scope to an authenticated user:** Set `scope={{$userId}}` to map to the user from the authentication token (`tid_oid`). This ensures that memory searches automatically target the correct user and avoids requiring per-user keys in the agent itself.
+- **Map scope to an authenticated user:** When you specify scope in the Microsoft Foundry (new) portal, set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user. Currently, you can't map scope via the REST APIs.
 
 - **Seed and inject memories:** Add static memories at the start of each conversation. The agent should always search for relevant contextual memories and inject them into the response-generation prompt. At the end of the session (period of inactivity defined by `update_delay`), the agent should update the memory store with memories from the conversation.
 
