@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 10/07/2025
+ms.date: 12/08/2025
 ms.author: mopeakande
 author: msakande
 monikerRange: 'foundry-classic || foundry'
