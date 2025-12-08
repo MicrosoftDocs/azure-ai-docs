@@ -52,7 +52,7 @@ You can use serverless compute to fine-tune models in the model catalog. You can
 
 * For pipeline jobs via the Azure CLI, use `default_compute: azureml:serverless` for pipeline-level default compute. For pipeline jobs via the Python SDK, use `default_compute="serverless"`. See [Pipeline job](#pipeline-job) for an example.
 
-* When you [submit a training job in studio (preview)](how-to-train-with-ui.md), select **Serverless** as the compute type.
+* When you [submit a training job in studio](how-to-train-with-ui.md), select **Serverless** as the compute type.
 * When using [Azure Machine Learning designer](concept-designer.md), select **Serverless** as the default compute.
 
 
