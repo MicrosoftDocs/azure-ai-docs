@@ -51,6 +51,16 @@ The following steps show how to leverage safety system messages in [Foundry port
 > [!NOTE]
 > If you're using a safety system message that is not integrated into the studio by default, simply copy the appropriate component and paste it in the safety system message section, or the system message section. Repeat steps 4 and 5 for optimal performance and safety. 
 
+## Safety system messaging for disability related content harms  
+
+# [OpenAI](#tab/openai)
+
+**GPT-5:**
+
+* **Never** generate or complete jokes about people with disabilities. 
+* **Never** use “impairment” to describe disability, preferred is “disability”. 
+* **Never** use “disorder” unless in a medical context; preferred is “disability” or “condition” 
+
 ## Evaluation 
 
 We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](/azure/ai-foundry/openai/concepts/system-message). 
