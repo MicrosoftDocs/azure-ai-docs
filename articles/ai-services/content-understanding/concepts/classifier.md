@@ -14,7 +14,7 @@ ms.custom:
 
 # Content Understanding classification/segmentation
 
-Content Understanding allows customers to implement classification and splitting as part of the analyzer operation request. You can perform content classification and content extraction as part of a single call. 
+Content Understanding allows customers to implement classification and splitting as part of the analyzer operation request. You can perform content classification and content extraction as part of a single API call. 
 
 The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data you process within your application. This analyzer feature can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. 
 
