@@ -23,12 +23,12 @@ Microsoft Foundry is updated regularly and we're continually improving and enhan
 
 :::moniker range="foundry"
 
-## General Foundry known issues and limitations
+## General Foundry known issues 
 
 Issue ID|Category|Title|Description|Workaround|Issues publish date|
 |--------|--------|----|-----------|----------|-------------------|
-| 0001   | Limitation |Network isolation in new Foundry  | End-to-end network isolation is not supported in the new Foundry portal experience. | When you have configured network isolation (disabled public network access, enabled private endpoints, and virtual network-injected Agents), you must use the classic Foundry portal experience, the SDK, or CLI to securely access your Foundry projects.  |December 5, 2025 |
-| 0002   | Limitation | Multiple projects per Foundry resource  | The new Foundry portal experience does not support multiple projects per Foundry resource. Each Foundry resource supports only 1 default project. | None  | December 5, 2025 |
+| 0001   | Foundry Portal |Network isolation in new Foundry  | End-to-end network isolation is not supported in the new Foundry portal experience. | When you have configured network isolation (disabled public network access, enabled private endpoints, and virtual network-injected Agents), you must use the classic Foundry portal experience, the SDK, or CLI to securely access your Foundry projects.  |December 5, 2025 |
+| 0002   | Foundry Portal | Multiple projects per Foundry resource  | The new Foundry portal experience does not support multiple projects per Foundry resource. Each Foundry resource supports only 1 default project. | None  | December 5, 2025 |
 
 :::moniker-end
 
