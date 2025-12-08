@@ -222,6 +222,6 @@ with project_client:
 
 ## Next steps
 
-* [Python agent samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents)
+* [Python agent samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents)
 * [Azure OpenAI Computer Use example Playwright integration](../../../openai/how-to/computer-use.md#playwright-integration)
     * The Azure OpenAI API has implementation differences compared to the Agent Service, and these examples may need to be adapted to work with agents.
