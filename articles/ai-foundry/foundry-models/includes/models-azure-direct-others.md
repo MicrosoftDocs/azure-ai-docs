@@ -62,7 +62,7 @@ The Cohere family of models includes various models optimized for different use 
 
 ::: moniker-end
 
-See [the Cohere model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
+See [the Cohere model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
 
 ## DeepSeek models sold directly by Azure
 
@@ -90,7 +90,7 @@ The DeepSeek family of models includes DeepSeek-R1, which excels at reasoning ta
 
 ::: moniker-end
 
-See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek/?cid=learnDocs).
+See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek/?cid=learnDocs).
 
 ## Meta models sold directly by Azure
 
@@ -118,11 +118,11 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 ::: moniker-end
 
-See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available [from partners and community](../concepts/models-from-partners.md#meta).
+See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available [from partners and community](../concepts/models-from-partners.md#meta).
 
 ## Microsoft models sold directly by Azure
 
-Microsoft models include various model groups such as Model Router, MAI models, Phi models, healthcare AI models, and more. See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
+Microsoft models include various model groups such as Model Router, MAI models, Phi models, healthcare AI models, and more. See [the Microsoft model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
 
 ::: moniker range="foundry-classic"
 
@@ -170,7 +170,7 @@ Microsoft models include various model groups such as Model Router, MAI models, 
 
 ::: moniker-end
 
-See [the Mistral model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs).  You can also find several Mistral models available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
+See [the Mistral model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs).  You can also find several Mistral models available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 
 ## Moonshot AI models sold directly by Azure
 
@@ -199,7 +199,7 @@ Key capabilities of Kimi K2 Thinking include:
 
 ::: moniker-end
 
-See [this model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Moonshot+ai/?cid=learnDocs).
+See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Moonshot+ai/?cid=learnDocs).
 
 
 ## xAI models sold directly by Azure
@@ -245,7 +245,7 @@ benchmarks. [Registration is required for access to the grok-4 model](https://ak
 
 ::: moniker-end
 
-See [the xAI model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI/?cid=learnDocs).
+See [the xAI model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI/?cid=learnDocs).
 
 ## Model region availability by deployment type
 
