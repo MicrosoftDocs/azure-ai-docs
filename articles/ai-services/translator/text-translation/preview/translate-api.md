@@ -219,7 +219,7 @@ A successful response is a JSON array named `value` with one result for each str
 
   * `language`: A string representing the language code of the target language.
 
-  * `script`: A string specifying the target script.
+  * `script`: A string indicating the target script, provided the target script was specified in the request.
 
 Examples of JSON responses are provided in the [examples](#examples) section.
 

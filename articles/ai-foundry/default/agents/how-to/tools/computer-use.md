@@ -7,10 +7,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/24/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/04/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: references_regions
+zone_pivot_groups: selection-computer-use
 ---
 
 # Computer use tool for agents (Preview)
@@ -18,19 +19,16 @@ ms.custom: references_regions
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> The computer use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> The computer use tool comes with significant security and privacy risks, including prompt injection attacks. For more information about intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-Use this article to learn how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
+This article explains how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model to perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that handles complex tasks and makes decisions by interpreting visual elements and taking action based on on-screen content. 
 
 ## Features 
 
-* Autonomous navigation: For example, computer use can open applications, click buttons, fill out forms, and navigate multi-page workflows. 
-
-* Dynamic adaptation: Interpreting UI changes and adjusting actions accordingly. 
-
-* Cross-application task execution: Can operate across web-based and desktop applications. 
-
-* Natural language interface: Users can describe a task in plain language, and the Computer Use model determines which UI interactions to execute. 
+- Autonomous navigation: For example, computer use can open applications, click buttons, fill out forms, and navigate multistep workflows. 
+- Dynamic adaptation: Interprets UI changes and adjusts actions accordingly. 
+- Cross-application task execution: Operates across web-based and desktop applications. 
+- Natural language interface: Users can describe a task in plain language, and the Computer Use model determines which UI interactions to execute. 
 
 ## Prerequisites
 
@@ -39,20 +37,23 @@ Use this article to learn how to work with the computer use tool in Foundry Agen
 
 ## Request access 
 
-For access to the `computer-use-preview` model, registration is required and access will be granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models will still need to request access for this model. 
+To access the `computer-use-preview` model, you need to register. Microsoft grants access based on eligibility criteria. If you have access to other limited access models, you still need to request access for this model. 
 
 To request access, see the [application form](https://aka.ms/oai/cuaaccess).
 
-Once access has been granted, you will need to create a deployment for the model. 
+After Microsoft grants access, you need to create a deployment for the model. 
 
 
-## Code Samples
+## Code samples
+
 > [!WARNING] 
-> We strongly recommend using the computer use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-To run this code you will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+To run this code, you need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
+:::zone pivot="python"
 ### Start with a screenshot to represent the computer use tool execution
+
 ```python
 import os
 from dotenv import load_dotenv
@@ -82,7 +83,9 @@ except FileNotFoundError:
     print("Failed to load required screenshot assets. Please ensure the asset files exist in ../assets/")
     exit(1)
 ```
+
 ### Create an agent version with the tool
+
 ```python
 project_client = AIProjectClient(
     endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
@@ -107,7 +110,9 @@ with project_client:
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
+
 ### One iteration for the tool to process the screenshot and take the next step
+
 ```python
     openai_client = project_client.get_openai_client()
 
@@ -136,8 +141,11 @@ with project_client:
 
     print(f"Initial response received (ID: {response.id})")
 ```
+
 ### Perform multiple iterations
-Make sure you have reviewed each iteration and action. The following code sample shows a basic API request. Once the initial API request is sent, you would perform a loop where the specified action is performed in your application code, sending a screenshot with each turn so the model can evaluate the updated state of the environment. You can see an example integration for a similar API in the [Azure OpenAI documentation](../../../../openai/how-to/computer-use.md#playwright-integration).
+
+Make sure you review each iteration and action. The following code sample shows a basic API request. After you send the initial API request, perform a loop where your application code carries out the specified action. Send a screenshot with each turn so the model can evaluate the updated state of the environment. For an example integration for a similar API, see the [Azure OpenAI documentation](../../../../openai/how-to/computer-use.md#playwright-integration).
+
 ```python
 
 max_iterations = 10  # Allow enough iterations for completion
@@ -191,9 +199,17 @@ while True:
 ```
 
 ### Clean up
+
 ```python project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 print("Agent deleted")
 ```
+:::zone-end
+
+:::zone pivot="csharp"
+
+For C# usage, see the [Sample for use of an Agent with Computer Use tool in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
 
 ## Differences between browser automation and computer use
 
@@ -205,56 +221,52 @@ The following table lists some of the differences between the computer use tool 
 | Can I visualize what's happening?     | No                          | Yes                        |
 | How it understands the screen  | Parses the HTML or XML pages into DOM documents | Raw pixel data from screenshots |
 | How it acts                    | A list of actions provided by the model | Virtual keyboard and mouse |
-| Is it multi-step?                    | Yes                         | Yes                        |
+| Is it multistep?                    | Yes                         | Yes                        |
 | Interfaces                     | Browser                     | Computer and browser       |
 | Do I need to bring my own resource?    | Your own Playwright resource with the keys stored as a connection. | No additional resource required but we highly recommend running this tool in a sandboxed environment.          |
 
 ## Regional support 
 
-In order to use the computer use tool, you need to have a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions: 
+To use the computer use tool, you need a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions: 
 * `eastus2` 
 * `swedencentral` 
 * `southindia` 
 
 ## Understanding the computer use integration 
 
-When working with the computer use tool, you typically would perform the following to integrate it into your application. 
+When working with the computer use tool, integrate it into your application by performing the following steps: 
 
-1. Send a request to the model that includes a call to the computer use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
-
-1. Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be screenshot so the model can assess the current state with an updated screenshot, or click with X/Y coordinates indicating where the mouse should be moved. 
-
-1. Execute the action using your application code on your computer or browser environment. 
-
+1. Send a request to the model that includes a call to the computer use tool, the display size, and the environment. You can also include a screenshot of the initial state of the environment in the first API request. 
+1. Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be `screenshot` so the model can assess the current state with an updated screenshot, or `click` with X/Y coordinates indicating where the mouse should be moved. 
+1. Execute the action by using your application code on your computer or browser environment. 
 1. After executing the action, capture the updated state of the environment as a screenshot. 
-
 1. Send a new request with the updated state as a `tool_call_output`, and repeat this loop until the model stops requesting actions or you decide to stop. 
 
-    > [!NOTE]
-    > Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
+   > [!NOTE]
+   > Before using the tool, set up an environment that can capture screenshots and execute the recommended actions by the agent. Use a sandboxed environment, such as Playwright, for safety reasons.
 
 ## Handling conversation history 
 
-You can use the `tool_call_id` parameter to link the current request to the previous response. Using this parameter is recommended if you don't want to manage the conversation history. 
+Use the `tool_call_id` parameter to link the current request to the previous response. Use this parameter if you don't want to manage the conversation history. 
 
-If you don't use this parameter, you should make sure to include all the items returned in the response output of the previous request in your inputs array. This includes reasoning items if present. 
+If you don't use this parameter, make sure to include all the items returned in the response output of the previous request in your inputs array. This requirement includes reasoning items if present. 
 
 ## Safety checks 
 
 > [!WARNING] 
-> Computer use carries substantial security and privacy risks and user responsibility. Computer use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
+> Computer use carries substantial security and privacy risks and user responsibility. Computer use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments that the AI encounters might cause it to execute commands you or others don't intend. These risks could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
 > 
-> We strongly recommend using the computer use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
 The API has safety checks to help protect against prompt injection and model mistakes. These checks include: 
 
 **Malicious instruction detection**: The system evaluates the screenshot image and checks if it contains adversarial content that might change the model's behavior. 
 
-**Irrelevant domain detection**: The system evaluates the `current_url` parameter (if provided) and checks if the current domain is considered relevant given the conversation history. 
+**Irrelevant domain detection**: The system evaluates the `current_url` parameter (if provided) and checks if the current domain is relevant given the conversation history. 
 
 **Sensitive domain detection**: The system checks the `current_url` parameter (if provided) and raises a warning when it detects the user is on a sensitive domain. 
 
-If one or more of the above checks is triggered, a safety check is raised when the model returns the next `computer_call` with the `pending_safety_checks` parameter. 
+If one or more of the preceding checks is triggered, the model raises a safety check when it returns the next `computer_call` with the `pending_safety_checks` parameter. 
 
 ```json
 "output": [ 
@@ -290,7 +302,7 @@ If one or more of the above checks is triggered, a safety check is raised when t
 ]
 ```
 
-You need to pass the safety checks back as `acknowledged_safety_checks` in the next request in order to proceed. 
+You need to pass the safety checks back as `acknowledged_safety_checks` in the next request to proceed. 
 
 ```json
 "input":[ 
@@ -314,8 +326,8 @@ You need to pass the safety checks back as `acknowledged_safety_checks` in the n
 
 ## Safety check handling 
 
-In all cases where `pending_safety_checks` are returned, actions should be handed over to the end user to confirm proper model behavior and accuracy. 
+In all cases where `pending_safety_checks` are returned, hand over actions to the end user to confirm proper model behavior and accuracy. 
 
-`malicious_instructions` and `irrelevant_domain`: end users should review model actions and confirm that the model is behaving as intended. 
+`malicious_instructions` and `irrelevant_domain`: End users should review model actions and confirm that the model behaves as intended. 
 
-`sensitive_domain`: ensure an end user is actively monitoring the model actions on these sites. Exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there is active end user engagement with the application. 
+`sensitive_domain`: Ensure an end user actively monitors the model actions on these sites. The exact implementation of this "watch mode" can vary by application, but a potential example could be collecting user impression data on the site to make sure there's active end user engagement with the application. 
