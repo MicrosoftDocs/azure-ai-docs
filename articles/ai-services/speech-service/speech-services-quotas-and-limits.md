@@ -374,7 +374,7 @@ Follow the steps described in [create and submit a quota increase request](#crea
 To get the resource information needed for the quota increase request follow these steps:
 
 1. Go to the [Azure portal](https://portal.azure.com/).
-1. Select the Speech service resource for which you would like to increase the concurrency request limit.
+1. Select the resource for which you would like to increase the concurrency request limit.
 1. From the **Resource Management** group, select **Properties**.
 1. Copy and save the values of the following fields:
    - **Subscription ID**
