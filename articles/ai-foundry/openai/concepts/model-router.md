@@ -64,9 +64,13 @@ With the `2025-11-18` version, Model Router adds nine new models including Anthr
 
 |Model router version|Underlying models| Underlying model version
 |:---:|:---|:----:|
-|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` <br> `gpt-5-nano` <br> `gpt-5-mini` <br> `gpt-5` <br> `gpt-5-chat` <br> `Deepseek-v3.1` <br> `gpt-oss-120b` <br> `llama4-maverick-instruct` <br> `grok-4` <br> `grok-4-fast` <br> `gpt-4o` <br> `gpt-4o-mini` <br> `claude-haiku-4-5` <br> `claude-opus-4-1` <br> `claude-sonnet-4-5` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> `2024-11-20` <br> `2024-07-18` <br> `2025-10-01` <br> `2025-08-05` <br> `2025-09-29` |
-|`2025-08-07`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` </br> `gpt-5` <br> `gpt-5-mini` <br> `gpt-5-nano` <br> `gpt-5-chat` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
+|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` <br> `gpt-5-nano` <br> `gpt-5-mini` <br> `gpt-5`* <br> `gpt-5-chat` <br> `Deepseek-v3.1`** <br> `gpt-oss-120b`** <br> `llama4-maverick-instruct`** <br> `grok-4`** <br> `grok-4-fast`** <br> `claude-haiku-4-5`*** <br> `claude-opus-4-1`*** <br> `claude-sonnet-4-5`*** | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> `2024-11-20` <br> `2024-07-18` <br> `2025-10-01` <br> `2025-08-05` <br> `2025-09-29` |
+|`2025-08-07`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` </br> `gpt-5`* <br> `gpt-5-mini` <br> `gpt-5-nano` <br> `gpt-5-chat` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
 |`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
+
+- *Requires registration.
+- **Model router support is in preview.
+- ***Model router support is in preview. Requires deployment of model for use with Model router.
 
 ::: moniker range="foundry"
 
