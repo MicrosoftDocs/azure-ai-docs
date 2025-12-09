@@ -22,9 +22,9 @@ ms.custom:
 | `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text and vision to text |
 | `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text and vision to text |
 | `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ |Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to text |
+| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to text |
 | `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | ✅ | ❌ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to text |
-| `Ministral-3B` (preview) <br> (2411) | Not supported | ✅ | ❌ |Input: 128,000 <br> Output: Unknown <br> Training example context length: Unknown | Unknown | Text to text |
+| `Ministral-3B` (preview) <br> (2411) | Not supported | ✅ | ❌ | Input: 128,000 <br> Output: Unknown <br> Training example context length: Unknown | Unknown | Text to text |
 | `Qwen-32B` (preview) | Not supported | ✅ | ❌ | Input: 8,000 <br> Output: 32,000 <br> Training example context length: 8192 | July 2024 | Text to text |
 
 > [!NOTE]
