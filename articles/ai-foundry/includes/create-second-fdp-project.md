@@ -65,12 +65,12 @@ While not all Foundry capabilities support organizing work in projects yet, your
 
  The Foundry (new) portal displays only the **default** project for each Foundry resource.  You cannot create multiple projects, or view any of the non-default projects in the Foundry (new) portal.
     
-    <!-- 1. Select **Operate** in the upper-right navigation.
-    1. Select **Admin** in the left pane.
-    1. Select the Parent resource you want to add a project to.
-    1. Select **Add project**. -->
+  <!-- 1. Select **Operate** in the upper-right navigation.
+  1. Select **Admin** in the left pane.
+  1. Select the Parent resource you want to add a project to.
+  1. Select **Add project**. -->
     
-    ::: moniker-end
+  ::: moniker-end
     
     # [Python SDK](#tab/python)
 
