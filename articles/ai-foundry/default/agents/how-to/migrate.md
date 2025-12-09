@@ -406,6 +406,6 @@ with project_client.get_openai_client() as openai_client:
     response = openai_client.responses.create( 
         conversation=conversation.id,
         extra_body={"agent": {"type": "agent_reference", "name": agent.name, "version": agent.version}},
-        input = "Please address the user as Jane Doe. The user has a premium account"
+        input="Please address the user as Jane Doe. The user has a premium account"
     ) 
 ```
