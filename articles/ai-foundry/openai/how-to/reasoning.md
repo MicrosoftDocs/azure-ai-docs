@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1,
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: include
+ms.topic: how-to
 ms.date: 12/04/2025
 author: mrbullwinkle    
 ms.author: mbullwin
