@@ -33,6 +33,9 @@ A Foundry resource can organize the work for multiple use cases, and is [typical
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Foundry resource containing multiple projects, each with deployments and connections.":::
 
+> [!NOTE]
+> Only the default project is available in the Foundry (new) portal. Use the Foundry (classic) portal to interact with all other projects on a Foundry resource.
+
 Looking to configure Foundry with advanced security settings? See [advanced Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
 ## Create your first resource
