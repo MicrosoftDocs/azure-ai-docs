@@ -156,6 +156,11 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
 1. Submit your approval to the agent with `response_id` by setting `approve` to `true`.
 
+## Common questions and errors
+1. "invalid tool schema"
+
+    Invalid tool schema usually happens if you have `anyOf` `allOf` or a parameter can take multiple types of values in your MCP server definition. Please update your MCP server definition and try again.
+
 ## Host a local MCP server
 
 The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Consider the following factors when hosting local MCP servers in the cloud:
