@@ -250,7 +250,7 @@ The following examples show how to use the Azure AI Search tool in [Azure.AI.Pro
 
 ### Use agents with Azure AI Search tool for streaming scenarios
 
-1. Read the environment variables for the next steps.
+1. Read the environment variables to be used in the next steps.
 
     ```csharp
     var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
@@ -303,7 +303,7 @@ The following examples show how to use the Azure AI Search tool in [Azure.AI.Pro
         options: new(agentDefinition));
     ```
 
-1. Use an index containing "embedding", "token", "category", "title", and "url" fields. The last two fields are needed to get citation title and URL, retrieved by the agent. To get the reference, parse the output items. Use the helper method `GetFormattedAnnotation`.
+1. Use an index containing `embedding`, `token`, `category`, `title`, and `url` fields. The last two fields are needed to get citation title and URL, retrieved by the agent. To get the reference, parse the output items. Use the helper method `GetFormattedAnnotation`.
 
     ```csharp
     private static string GetFormattedAnnotation(ResponseItem item)
@@ -325,7 +325,7 @@ The following examples show how to use the Azure AI Search tool in [Azure.AI.Pro
     }
     ```
 
-1. Stream the response.
+1. Stream the response and parse it.
 
     Synchronous sample:
 
@@ -400,7 +400,7 @@ The following examples show how to use the Azure AI Search tool in [Azure.AI.Pro
     ```
 
 
-1. Finally, delete all the resources you created in this sample.
+1. Finally, delete all the resources that were created in this sample.
 
     Synchronous sample:
     
