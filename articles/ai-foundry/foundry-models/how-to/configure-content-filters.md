@@ -5,7 +5,7 @@ description: Learn to use and configure the content filters that come with Micro
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 12/08/2025
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
