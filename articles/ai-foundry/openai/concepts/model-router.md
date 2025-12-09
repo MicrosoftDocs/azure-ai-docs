@@ -59,8 +59,11 @@ Each version of model router is associated with a specific set of underlying mod
 If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
 
 
-## Underlying models
+## Supported underlying models
 With the `2025-11-18` version, Model Router adds nine new models including Anthropic's Claude, DeepSeek, Llama, Grok models to support a total of 18 models available for routing your prompts.
+
+> [!NOTE]
+> You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if they're selected for routing.
 
 |Model router version|Underlying models| Underlying model version
 |:---:|:---|:----:|
