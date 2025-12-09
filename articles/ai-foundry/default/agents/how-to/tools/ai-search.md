@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/08/2025
+ms.date: 12/09/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
@@ -129,13 +129,328 @@ with project_client:
 
 :::zone pivot="csharp"
 
-For C# usage, see the [Sample using Agents with Azure AI Search tool in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample14_Azure_AI_Search.md) and [Sample using Agents with Azure AI Search tool in Azure.AI.Projects.OpenAI for streaming scenarios](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample15_Azure_AI_Search_Streaming.md) examples in the Azure SDK for .NET repository on GitHub.
+The following examples show how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index.
 
+### Use agents with Azure AI Search tool
+
+1. Read the environment variables for the next steps.
+
+   ```csharp
+   var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+   var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+   var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AI_SEARCH_CONNECTION_NAME");
+   AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+   ```
+
+1. Create an agent with `AzureAISearchAgentTool`. The `AzureAISearchAgentTool` constructor requires `AzureAISearchToolOptions`, which contain one or more `AzureAISearchToolIndex` objects. `AzureAISearchToolIndex` defines the index and the search parameters. The `aiSearchConnectionName` variable is the name of the Azure AI Search connection ID as found in the "Connections" tab in your Microsoft Foundry project. In the agent's instructions, explicitly ask it to return the citation.
+
+   Synchronous sample:
+
+   ```csharp
+   AzureAISearchToolIndex index = new()
+   {
+       ProjectConnectionId = aiSearchConnectionName,
+       IndexName = "sample_index",
+       TopK = 5,
+       Filter = "category eq 'sleeping bag'",
+       QueryType = AzureAISearchQueryType.Simple
+   };
+   PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+   {
+       Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+       Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+   };
+   AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+       agentName: "myAgent",
+       options: new(agentDefinition));
+   ```
+
+   Asynchronous sample:
+
+   ```csharp
+   AzureAISearchToolIndex index = new()
+   {
+       ProjectConnectionId = aiSearchConnectionName,
+       IndexName = "sample_index",
+       TopK = 5,
+       Filter = "category eq 'sleeping bag'",
+       QueryType = AzureAISearchQueryType.Simple
+   };
+   PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+   {
+       Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+       Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+   };
+   AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+       agentName: "myAgent",
+       options: new(agentDefinition));
+   ```
+
+1. Create an `OpenAIResponse` object with the `ProjectResponsesClient` object.
+
+   Synchronous sample:
+
+   ```csharp
+   ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+   OpenAIResponse response = responseClient.CreateResponse("What is the temperature rating of the cozynights sleeping bag?");
+   ```
+
+   Asynchronous sample:
+
+   ```csharp
+   ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+   OpenAIResponse response = await responseClient.CreateResponseAsync("What is the temperature rating of the cozynights sleeping bag?");
+   ```
+
+1. In the search, an index containing `embedding`, `token`, `category`, `title`, and `url` fields is used. The last two fields are needed to get citation title and URL, which the agent retrieves. To get the reference, you need to parse the output items. You can do it in the helper method `GetFormattedAnnotation`.
+
+   ```csharp
+   private static string GetFormattedAnnotation(OpenAIResponse response)
+   {
+       foreach (ResponseItem item in response.OutputItems)
+       {
+           if (item is MessageResponseItem messageItem)
+           {
+               foreach (ResponseContentPart content in messageItem.Content)
+               {
+                   foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                   {
+                       if (annotation is UriCitationMessageAnnotation uriAnnotation)
+                       {
+                           return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                       }
+                   }
+               }
+           }
+       }
+       return "";
+   }
+   ```
+
+1. Use the helper method to output the result.
+
+   ```csharp
+   Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+   Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+   ```
+
+1. Finally, delete all the resources you created in this sample.
+
+   Synchronous sample:
+
+   ```csharp
+   projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+   ```
+
+   Asynchronous sample:
+
+   ```csharp
+   await projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+   ```
+
+### Use agents with Azure AI Search tool for streaming scenarios
+
+1. Read the environment variables for the next steps.
+
+    ```csharp
+    var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+    var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+    var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AI_SEARCH_CONNECTION_NAME");
+    AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+    ```
+
+1. Create an agent with `AzureAISearchAgentTool`. The `AzureAISearchAgentTool` constructor requires `AzureAISearchToolOptions`, which contain one or more `AzureAISearchToolIndex` objects. `AzureAISearchToolIndex` defines the index and the search parameters. The `aiSearchConnectionName` variable is the name of the Azure AI Search connection ID as found in the "Connections" tab in your Microsoft Foundry project. In the agent's instructions, explicitly ask it to return the citation.
+
+    Synchronous sample:
+    
+    ```csharp
+    AzureAISearchToolIndex index = new()
+    {
+        ProjectConnectionId = aiSearchConnectionName,
+        IndexName = "sample_index",
+        TopK = 5,
+        Filter = "category eq 'sleeping bag'",
+        QueryType = AzureAISearchQueryType.Simple
+    };
+    PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+    {
+        Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+        Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+    };
+    AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        agentName: "myAgent",
+        options: new(agentDefinition));
+    ```
+
+    Asynchronous sample:
+
+    ```csharp
+    AzureAISearchToolIndex index = new()
+    {
+        ProjectConnectionId = aiSearchConnectionName,
+        IndexName = "sample_index",
+        TopK = 5,
+        Filter = "category eq 'sleeping bag'",
+        QueryType = AzureAISearchQueryType.Simple
+    };
+    PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+    {
+        Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
+        Tools = { new AzureAISearchAgentTool(new AzureAISearchToolOptions(indexes: [index])) }
+    };
+    AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+        agentName: "myAgent",
+        options: new(agentDefinition));
+    ```
+
+1. Use an index containing "embedding", "token", "category", "title", and "url" fields as shown in the image. ![Sample index](images/sample_index.png) The last two fields are needed to get citation title and URL, retrieved by the agent. To get the reference, parse the output items. Use the helper method `GetFormattedAnnotation`.
+
+    ```csharp
+    private static string GetFormattedAnnotation(ResponseItem item)
+    {
+        if (item is MessageResponseItem messageItem)
+        {
+            foreach (ResponseContentPart content in messageItem.Content)
+            {
+                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                {
+                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
+                    {
+                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                    }
+                }
+            }
+        }
+        return "";
+    }
+    ```
+
+1. Stream the response.
+
+    Synchronous sample:
+
+    ```csharp
+    ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+    
+    string annotation = "";
+    string text = "";
+    foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreaming("What is the temperature rating of the cozynights sleeping bag?"))
+    {
+        if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+        {
+            Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+        }
+        else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+        {
+            Console.WriteLine($"Delta: {textDelta.Delta}");
+        }
+        else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+        {
+            text = textDoneUpdate.Text;
+        }
+        else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+        {
+            if (annotation.Length == 0)
+            {
+                annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+            }
+        }
+        else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+        {
+            throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+        }
+    }
+    Console.WriteLine($"{text}{annotation}");
+    ```
+    
+    Asynchronous sample:
+    
+    ```csharp
+    ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+    
+    string annotation = "";
+    string text = "";
+    await foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreamingAsync("What is the temperature rating of the cozynights sleeping bag?"))
+    {
+        if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+        {
+            Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+        }
+        else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+        {
+            Console.WriteLine($"Delta: {textDelta.Delta}");
+        }
+        else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+        {
+            text = textDoneUpdate.Text;
+        }
+        else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+        {
+            if (annotation.Length == 0)
+            {
+                annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+            }
+        }
+        else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+        {
+            throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+        }
+    }
+    Console.WriteLine($"{text}{annotation}");
+    ```
+
+
+1. Finally, delete all the resources you created in this sample.
+
+    Synchronous sample:
+    
+    ```csharp
+    projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    ```
+    
+    Asynchronous sample:
+    
+    ```csharp
+    await projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    ```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+The following example shows how to use the Azure AI Search tool with the REST API to query an index. The example uses cURL, but you can use any HTTP client.
+
+```bash
+curl --request POST \
+  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --H "Authorization: Bearer $AGENT_TOKEN" \
+  --H "Content-Type: application/json" \
+  --d '{
+"model": "{{model}}",
+"input": "Tell me about the mental health services available from Premera",
+"tools": [
+  {
+   "type": "azure_ai_search",
+   "azure_ai_search": {
+        "indexes": [
+              {
+                  "project_connection_id": "/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP}/providers/Microsoft.MachineLearningServices/workspaces/${PROJECT_NAME}/connections/${AI_SEARCH_PROJECT_CONNECTION_ID}",
+                  "index_name": "${AI_SEARCH_INDEX_NAME}",
+                  "query_type": "semantic",
+                  "top_k": 5,
+                  "filter": ""                                    
+              }
+          ]
+        }
+}
+]
+}'
+```
 :::zone-end
 
 ## Limitations
 
-+ To use the Azure AI Search tool in the Microsoft Foundry portal behind a virtual network, you must create an agent by using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
++ To use the Azure AI Search tool in the Microsoft Foundry portal behind a virtual network, you must create an agent by using the SDK or REST API. After you create the agent programmatically, you can use it in the portal. 
 
 + The Azure AI Search tool can only target one index.
   
