@@ -63,7 +63,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
   ::: moniker range="foundry"
 
-  Adding a second project is not currently supported in Foundry (new).  
+ The Foundry (new) portal displays only the **default** project for each Foundry resource.  You cannot create multiple projects, or view any of the non-default projects in the Foundry (new) portal.
     
     <!-- 1. Select **Operate** in the upper-right navigation.
     1. Select **Admin** in the left pane.
@@ -73,6 +73,10 @@ While not all Foundry capabilities support organizing work in projects yet, your
     ::: moniker-end
     
     # [Python SDK](#tab/python)
+
+    ::: moniker range="foundry"
+    While this code can add additional projects to a resource, you will not be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.
+    ::: moniker-end
     
     Add this code to your script to create a new project on your existing resource:
 
@@ -80,7 +84,11 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     
     # [Azure CLI](#tab/azurecli)
-    
+
+    ::: moniker range="foundry"
+    While this code can add additional projects to a resource, you will not be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.
+    ::: moniker-end
+
     Use your existing values for {foundry_resource_name} to add another project to the resource:
     
     ```azurecli
