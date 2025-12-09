@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 12/08/2025
+ms.date: 12/09/2025
 ms.author: mopeakande
 author: msakande
 monikerRange: 'foundry-classic || foundry'
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 ## Black Forest Labs models sold directly by Azure
 
-The Black Forest Labs (BFL) collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation.  
+The Black Forest Labs (BFL) collection of image generation models includes FLUX.2 [pro], FLUX.1 Kontext [pro] for in-context generation and editing, and FLUX1.1 [pro] for text-to-image generation.  
 
 You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
 
@@ -24,6 +24,7 @@ You can run these models through the BFL service provider API and through the [i
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | Project type | 
 | ------ | ------------------ | ------------ | ------------------------------------- | ------------ |
+| [FLUX.2-pro](https://ai.azure.com/explore/models/FLUX.2-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_2_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text (32,000 tokens and up to 10 images)  <br /> - **Output:**  <br />  - **Tool calling:** No <br /> - **Response formats:**  <br /> - **Key features:** Multi-reference support for up to 10 images, more grounded in real-world knowledge, greater output flexibility, enhanced performance <br /> - **Additional parameters:**  | - Global standard (Canada East, WestCentralUS) | Foundry, Hub-based |
 | [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) | Foundry, Hub-based |
 | [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) | Foundry, Hub-based |
 
@@ -33,6 +34,7 @@ You can run these models through the BFL service provider API and through the [i
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | 
 | ------ | ------------------ | ------------ | ------------------------------------- |
+| `FLUX.2-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_2_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text (32,000 tokens and up to 10 images)  <br /> - **Output:**  <br />  - **Tool calling:** No <br /> - **Response formats:**  <br /> - **Key features:** Multi-reference support for up to 10 images, more grounded in real-world knowledge, greater output flexibility, enhanced performance <br /> - **Additional parameters:**  | - Global standard (Canada East, WestCentralUS) |
 | `FLUX.1-Kontext-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) |
 | `FLUX-1.1-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) |
 
