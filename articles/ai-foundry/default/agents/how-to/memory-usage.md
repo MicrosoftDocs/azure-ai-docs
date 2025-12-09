@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/08/2025
+ms.date: 12/09/2025
 ai-usage: ai-assisted
 ---
 
@@ -26,22 +26,25 @@ This article explains how to create, manage, and use memory stores. For conceptu
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [access configured](#configure-access).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions).
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python) or REST API access.
 
-### Configure access
+### Authorization and permissions
 
-Your project's managed identity must have the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke your model deployments for memory operations.
+We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
-To configure access:
+To configure role-based access:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
-1. Select the resource that contains your project.
-1. From the left pane, select **Access control (IAM)**.
-1. Select **Add** > **Add role assignment**.
-1. Assign **Azure AI User** to the managed identity of your project.
+1. On your project:
+    1. From the left pane, select **Resource Management** > **Identity**.
+    1. Use the toggle to enable a system-assigned managed identity.
+1. On the resource that contains your project:
+    1. From the left pane, select **Access control (IAM)**.
+    1. Select **Add** > **Add role assignment**.
+    1. Assign **Azure AI User** to the managed identity of your project.
 
 ## Understand scope
 
@@ -203,6 +206,90 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:update_memories?api-vers
 UPDATE_ID=<your_update_id>
 curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+---
+
+## Add the memory search tool to an agent
+
+After you create a memory store, use the memory search tool to attach it to an agent. This tool enables the agent to read from and write to the memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
+
+# [Python](#tab/python)
+
+```python
+# Set scope to associate the memories with
+# You can also use "{{$userId}}" to take the oid of the request authentication header
+scope = "user_123"
+
+# Create memory search tool
+tool = MemorySearchTool(
+    memory_store_name=memory_store.name,
+    scope=scope,
+    update_delay=1,  # Wait 1 second of inactivity before updating memories
+    # In a real application, set this to a higher value like 300 (5 minutes, default)
+)
+
+# Create a prompt agent with memory search tool
+agent = project_client.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        instructions="You are a helpful assistant that answers general questions",
+        tools=[tool],
+    )
+)
+
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+# [REST API](#tab/rest)
+
+```bash
+
+```
+
+---
+
+### Create a conversation
+
+# [Python](#tab/python)
+
+```python
+# Create a conversation with the agent with memory tool enabled
+conversation = openai_client.conversations.create()
+print(f"Created conversation (id: {conversation.id})")
+
+# Create an agent response to initial user message
+response = openai_client.responses.create(
+    input="I prefer dark roast coffee",
+    conversation=conversation.id,
+    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+
+print(f"Response output: {response.output_text}")
+
+# After an inactivity in the conversation, memories will be extracted from the conversation and stored
+print("Waiting for memories to be stored...")
+time.sleep(60)
+
+# Create a new conversation
+new_conversation = openai_client.conversations.create()
+print(f"Created new conversation (id: {new_conversation.id})")
+
+# Create an agent response with stored memories
+new_response = openai_client.responses.create(
+    input="Please order my usual coffee",
+    conversation=new_conversation.id,
+    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+)
+
+print(f"Response output: {new_response.output_text}")
+```
+
+# [REST API](#tab/rest)
+
+```bash
+
 ```
 
 ---
@@ -409,3 +496,36 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
+
+## Add the tool to an agent
+
+Before an agent can use memory, attach the memory store to the agent configuration so the agent can read and write memories during conversations. If you haven't configured your project identity and permissions, see the `Authorization and permissions` section above or `environment-setup.md`.
+
+### Attach memory to an agent (Python)
+
+```python
+# Example: attach a memory store to an existing agent definition
+from azure.ai.projects.models import AgentUpdateParameters
+
+agent_update = AgentUpdateParameters(
+    memory_store_name="my_memory_store"
+)
+
+updated_agent = client.agents.update(
+    name="my_agent",
+    parameters=agent_update
+)
+
+print(f"Attached memory store to agent: {updated_agent.name}")
+```
+
+### Attach memory to an agent (REST)
+
+```bash
+curl -X PATCH "${ENDPOINT}/agents/my_agent?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{"memory_store_name": "my_memory_store"}'
+```
+
+After attaching the memory store, restart or redeploy the agent if required by your deployment method. Test the integration by invoking the agent and verifying that memory search and update operations return expected results.

@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 12/08/2025
+ms.date: 12/09/2025
 ---
 
 # Memory in Foundry Agent Service (preview)
@@ -83,7 +83,7 @@ The following examples illustrate how memory can enhance various types of agents
 
 - **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
 
-- **Map scope to an authenticated user:** When you specify scope in the Microsoft Foundry (new) portal, set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user. Currently, you can't map scope via the REST APIs.
+- **Map scope to an authenticated user:** When you specify scope in the memory search tool, set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user.
 
 - **Seed and inject memories:** Add static memories at the start of each conversation. The agent should always search for relevant contextual memories and inject them into the response-generation prompt. At the end of the session (period of inactivity defined by `update_delay`), the agent should update the memory store with memories from the conversation.
 
