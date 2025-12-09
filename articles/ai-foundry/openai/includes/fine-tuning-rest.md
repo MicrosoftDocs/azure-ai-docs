@@ -15,22 +15,21 @@ ms.custom:
 
 ## Prerequisites
 
-- Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires **Azure AI User** role.
-- If you don't already have access to view quota, and deploy models in Microsoft Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
+- Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
+- You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Fine-tuning access requires Azure AI User role.
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
 
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
+To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md#fine-tuning-models).
 
-Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
-
+Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
 ## Review the workflow for the REST API
 
-Take a moment to review the fine-tuning workflow for using the REST APIS and Python with Azure OpenAI:
+Take a moment to review the fine-tuning workflow for using the REST API and Python with Azure OpenAI:
 
 1. Prepare your training and validation data.
 1. Select a base model.
@@ -43,11 +42,13 @@ Take a moment to review the fine-tuning workflow for using the REST APIS and Pyt
 
 ## Prepare your training and validation data
 
-Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
+Your training and validation datasets consist of input and output examples for how you want the model to perform.
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../openai/how-to/chatgpt.md) API uses.
 
-If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024-07-18` please refer to the [Azure OpenAI fine-tuning tutorial.](../tutorials/fine-tune.md)
+In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). Each file must be less than 512 MB in size.
+
+If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, see the [Azure OpenAI fine-tuning tutorial.](../tutorials/fine-tune.md).
 
 ### Example file format
 
@@ -64,9 +65,9 @@ If you would like a step-by-step walk-through of fine-tuning a `gpt-4o-mini-2024
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the distance from Earth to the Sun?"}, {"role": "assistant", "content": "About 93 million miles. Just a quick drive, really."}]}
 ```
 
-### Multi-turn chat file format
+### Multiple-turn chat file format
 
-Multiple turns of a conversation in a single line of your jsonl training file is also supported. To skip fine-tuning on specific assistant messages add the optional `weight` key value pair. Currently `weight` can be set to 0 or 1.  
+Multiple turns of a conversation in a single line of your JSONL training file are also supported. To skip fine-tuning on specific assistant messages, add the optional `weight` key/value pair. Currently, `weight` can be set to `0` or `1`.
 
 ```json
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
@@ -80,22 +81,20 @@ Multiple turns of a conversation in a single line of your jsonl training file is
 {"messages": [{"role": "user", "content": [{"type": "text", "text": "What's in this image?"}, {"type": "image_url", "image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}, {"role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape."}]}
 ```
 
-In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
+## Create your training and validation datasets
 
-### Create your training and validation datasets
+The more training examples you have, the better. Fine-tuning jobs won't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. A best practice for successful fine-tuning is to provide hundreds, if not thousands, of training examples.
 
-The more training examples you have, the better. Fine tuning jobs will not proceed without at least 10 training examples, but such a small number is not enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful.
+In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind that low-quality examples can negatively affect performance. If you train the model on a large amount of internal data without first pruning the dataset for only the highest-quality examples, your model might perform worse than expected.
 
-In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data without first pruning the dataset for only the highest quality examples, you could end up with a model that performs much worse than expected.
+## Upload your training data
 
-### Upload your training data
+The next step is to either choose existing prepared training data or upload new prepared training data to use when you're customizing your model. After you prepare your training data, you can upload your files to the service. There are two ways to upload training data:
 
-The next step is to either choose existing prepared training data or upload new prepared training data to use when fine-tuning your model. After you prepare your training data, you can upload your files to the service. There are two ways to upload training data:
+- [From a local file](/rest/api/azureopenai/files/upload)
+- [From Azure Blob Storage or a web location (import)](/rest/api/azureopenai/files/import)
 
-For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob storage, see [What is Azure Blob storage?](/azure/storage/blobs/storage-blobs-overview)
-
-> [!NOTE]
-> Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
+For large data files, we recommend that you import from Azure Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
 
 ### Upload training data
 
@@ -119,9 +118,9 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/files \
 
 ## Create a customized model
 
-After you uploaded your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP&preserve-view=true) with the REST API.
+After you upload your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP&preserve-view=true) by using the REST API.
 
-In this example we are also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed is not specified, one will be generated for you.
+This example includes passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you.
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
@@ -135,7 +134,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 }'
 ```
 
-If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
+If you're fine-tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-01-preview \
