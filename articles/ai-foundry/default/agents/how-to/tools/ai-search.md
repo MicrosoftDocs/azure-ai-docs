@@ -303,7 +303,7 @@ The following examples show how to use the Azure AI Search tool in [Azure.AI.Pro
         options: new(agentDefinition));
     ```
 
-1. Use an index containing "embedding", "token", "category", "title", and "url" fields as shown in the image. ![Sample index](images/sample_index.png) The last two fields are needed to get citation title and URL, retrieved by the agent. To get the reference, parse the output items. Use the helper method `GetFormattedAnnotation`.
+1. Use an index containing "embedding", "token", "category", "title", and "url" fields. The last two fields are needed to get citation title and URL, retrieved by the agent. To get the reference, parse the output items. Use the helper method `GetFormattedAnnotation`.
 
     ```csharp
     private static string GetFormattedAnnotation(ResponseItem item)
