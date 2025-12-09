@@ -159,7 +159,7 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 ## Common questions and errors
 1. "invalid tool schema"
 
-    Invalid tool schema usually happens if you have `anyOf` `allOf` or a parameter can take multiple types of values in your MCP server definition. Please update your MCP server definition and try again.
+    Invalid tool schema usually happens if you have `anyOf` or `allOf` in your MCP server definition, or if a parameter can take multiple types of values. Update your MCP server definition and try again.
 
 ## Host a local MCP server
 
