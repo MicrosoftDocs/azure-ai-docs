@@ -8,7 +8,7 @@ manager: nitinme
 ms.date: 12/04/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: include
+ms.topic: how-to
 ms.custom:
   - references_regions
   - build-2025
