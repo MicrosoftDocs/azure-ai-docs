@@ -117,16 +117,19 @@ Dragon HD Omni is Azure Speech's unified next-generation model that combines pre
 
 Dragon HD Omni supports a comprehensive set of 100+ speaking styles. Use the `style` attribute within `<mstts:express-as>` to apply any of these styles:
 
-`adventurous` `agreeing` `amazed` `angry` `anxious` `appreciative` `bored` `bostonian cop` `british butler` `calm` `cautious` `cheerleader` `cheerful` `chill surfer` `confident` `confused` `contemptuous` `cow` `cowboy` `curious` `defeated` `defiant` `determined` `disappointed` `disgusted` `dog` `donkey` `doubtful` `dragon` `ecstatic` `embarrassed` `emo teenager` `empathetic` `encouraging` `excited` `fearful` `fitness instructor` `fortune teller` `friendly` `game show host` `ghost` `goblin` `grateful` `happy` `hesitant` `hopeful` `hurt` `intrigued` `joking` `joyful` `knight` `laughing` `mad scientist` `meditative` `mouse` `mummy` `narration` `neutral` `new yorker` `news` `ogre` `optimistic` `owl` `pained` `panting` `parrot` `pirate` `pleading` `pop diva` `princess` `proud` `quiet` `reassuring` `reflective` `regretful` `relieved` `remorseful` `resigned` `robot` `sad` `santa` `satisfied` `scared` `scottish innkeeper` `secretive` `serious` `shakespearean` `shouting` `shy` `sick` `sincere` `skeleton` `slow` `soft voice` `sports` `sportscaster` `struggling` `surprised` `suspicious` `sympathetic` `terrified` `troll` `unfriendly` `upset` `vampire` `whispering` `whiz kid` `witch`
+`angry`, `chill surfer`, `confused`, `curious`, `determined`, `disgusted`, `embarrassed`, `emo teenager`, `empathetic`, `encouraging`, `excited`, `fearful`, `friendly`, `grateful`, `joyful`, `mad scientist`, `meditative`, `narration`, `neutral`, `new yorker`, `news`, `reflective`, `regretful`, `relieved`, `sad`, `santa`, `shy`, `soft voice`, `surprised`
 
 > [!NOTE]
 > Styles are available on `en-US-Ava` and `en-US-Andrew` for this version, style results are strongly relevant to the input content. The model adapts style application based on the semantic meaning of the text.
 
 #### Dragon HD Omni Voice Naming Convention
 
-Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`
+Dragon HD Omni voices follow the naming pattern: `languagelocale-voicename:DragonHDOmniLatestNeural`, you can use this voice name format by adding the suffix `:DragonHDOmniLatestNeural` to find the Omni version quickly:
 
-Example: `en-us-ava:DragonHDOmniLatestNeural`
+Example:
+| Previous neural voice | Omni version voice name                |
+|------------------------|----------------------------------------|
+| de-DE-ConradNeural     | de-DE-Conrad:DragonHDOmniLatestNeural  |
 
 ## How to use Azure Speech HD voices
 
