@@ -33,11 +33,11 @@ This section describes Voice live quotas and limits per Speech resource. Unless 
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Tokens per minute | N/A | <= 120,000 |
+| New connections per minute | N/A | 30  |
 | Maximum connection length | N/A | <= 60 minutes per session |
-| Maximum requests per minute | N/A | 30  |
+| Tokens per minute | N/A | <= 120,000 |
 
-Avatars used in Voice live follows the quota and limits described in [Real-time text to speech avatar](#real-time-text-to-speech-avatar).
+Avatars used in Voice live follows the quota and limits described in [real-time text to speech avatar](#real-time-text-to-speech-avatar).
 
 ### LLM Speech (Preview) quotas and limits per resource
 
@@ -187,7 +187,7 @@ Some of the Speech service quotas are adjustable. This section provides more exp
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
-- Voice Live API [tokens per minute](#voice-live-quotas-and-limits-per-resource)
+- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource)
 - Speech to text [concurrent request limit](#real-time-speech-to-text-and-speech-translation) for base model endpoint and custom endpoint
 - Fast Transcription [maximum number of requests per minute](#fast-transcription)
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
@@ -225,6 +225,20 @@ Here's a general example of a good approach to take. It's meant only as a templa
 Suppose that a Speech service resource has the concurrent request limit set to 300. Start the workload from 20 concurrent connections, and increase the load by 20 concurrent connections every 90-120 seconds. Control the service responses, and implement the logic that falls back (reduces the load) if you get too many requests (response code 429). Then, retry the load increase in one minute, and if it still doesn't work, try again in two minutes. Use a pattern of 1-2-4-4 minutes for the intervals.
 
 Generally, it's a good idea to test the workload and the workload patterns before going to production.
+
+### Voice live: increase real-time speech to text concurrent request limit
+
+#### Prepare the required information
+
+Instructions on how to get the general resource information required is described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request).
+
+> [!NOTE]
+> The token per minute (TPM) limit is dependent on the new connections per minute (NCPM) limit. It will always be automatically increased with an increase of the new connections per minute.
+> The formula is: TPM = NCPM * 4000 tokens. Example: 30 NCPM * 4000 tokens = 120,000 TPM.
+
+#### Create the quota increase request
+
+Follow the steps described in [create and submit a quota increase request](#create-and-submit-a-quota-increase-request) with the information collected to create the request.
 
 ### Speech to text: increase real-time speech to text concurrent request limit
 
