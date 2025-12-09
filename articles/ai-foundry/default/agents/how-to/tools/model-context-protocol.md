@@ -157,7 +157,10 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 1. Submit your approval to the agent with `response_id` by setting `approve` to `true`.
 
 ## Common questions and errors
-1. "invalid tool schema"
+
+The following are common issues that you might encounter when using MCP tools with Foundry Agent Service:
+
+- "Invalid tool schema":
 
     Invalid tool schema usually happens if you have `anyOf` or `allOf` in your MCP server definition, or if a parameter can take multiple types of values. Update your MCP server definition and try again.
 
