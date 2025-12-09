@@ -30,6 +30,8 @@ In Azure AI Search, two main strategies have emerged as the best approaches for 
 
 [Agentic retrieval (preview)](agentic-retrieval-overview.md) delivers on relevance through smart integration with LLMs and a knowledge base that defines a search domain and returns output that's designed for LLM consumption. The LLM can analyze and transform queries. It can decompose complex questions into targeted subqueries, refine vague requests, or generalize narrow ones for broader scope. In most agentic retrieval workloads, the LLM answers the question using context from chat history, retrieval instructions, and a response that includes retrieved content, citations, and an activity log. This combination of LLM-assisted query planning, multi-source knowledge base search, and LLM-ready response formatting is how agentic retrieval returns highly relevant results.
 
+Relevance also depends on having grounding data of sufficient quantity and quality. In agentic retrieval, you can list multiple knowledge sources to expand the scope of what's searchable.
+
 ## How relevance is measured
 
 Regardless of how content is retrieved, the relevance of any given result is determined by a ranking algorithm that evaluates the strength of a match based on how closely the query corresponds to content in the search corpus. When a match is found, an algorithm assigns a score, and results are ranked by that score and the topmost results are returned in the response. 
