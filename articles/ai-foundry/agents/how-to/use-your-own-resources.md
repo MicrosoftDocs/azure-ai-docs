@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/04/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -16,6 +16,8 @@ monikerRange: 'foundry-classic || foundry'
 ---
 
 # Use your own resources
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Use this article if you want to set up your Foundry project with your own resources.
 
@@ -82,7 +84,7 @@ If you want to continue using your hub-based project and connection string, you 
 
 ## Choose basic or standard agent setup
 
-To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization).
+To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization).
    
 **Basic Setup**
 
@@ -94,7 +96,7 @@ Includes everything in the basic setup and fine-grained control over your data b
 
 ## Basic agent setup: Use an existing Azure OpenAI resource 
 
-Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
+Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
 
 1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your Foundry Tools account:
        
@@ -110,7 +112,7 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
 
     The value returned is the `existingAoaiResourceId` you need to use in the template.
 
-3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
+3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
     
     ```console
     existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
@@ -118,7 +120,7 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
 
 ## Standard agent setup: Use existing service resources and storage accounts 
 
-Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization/main.bicep).
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
 
 ### Use an existing Azure OpenAI resource
 

@@ -8,12 +8,14 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 11/20/2025
+ms.date: 12/04/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Foundry Agent Service quotas and limits
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 This article describes the quotas and limits for Microsoft Foundry Agent Service.
 
