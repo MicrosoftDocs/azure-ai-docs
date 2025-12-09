@@ -87,7 +87,7 @@ Different customization methods may be supported based on the selected model:
 - **Reinforcement (RFT)**: Uses reward signals from model graders to optimize complex behaviors. 
 
 > [!NOTE]
-> This rest of this document covers steps for supervised fine-tuning method. For instructions specific to other customization methods, see articles for [DPO](../openai/how-to/fine-tuning-direct-preference-optimization.md) or [RFT](../openai/how-to/reinforcement-fine-tuning.md).
+> The rest of this document covers steps for supervised fine-tuning method. For instructions specific to other customization methods, see articles for [DPO](../openai/how-to/fine-tuning-direct-preference-optimization.md) or [RFT](../openai/how-to/reinforcement-fine-tuning.md).
 
 
 ### Training type
@@ -139,7 +139,7 @@ The following hyperparameters are available:
 To save time, you can enable auto-deployment for your resulting model. If training finishes successfully, the model is deployed by using the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix you might have provided earlier.
 
 > [!NOTE]
-> Auto-deployment is only supported for Open AI models.
+> Auto-deployment is only supported for OpenAI models.
 
 ## Monitor and analyze the results
 
@@ -165,7 +165,7 @@ When each training epoch completes a checkpoint is generated. Checkpoints can be
 A checkpoint is a fully functional version of a model, which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes, you will have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through REST API.
 
 > [!NOTE]
-> During the training you can view the metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel the model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state. Pausing is only supported for Open AI models.
+> During the training you can view the metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel the model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state. Pausing is only supported for OpenAI models.
 
 ## Deploy the fine-tuned model
 
@@ -187,7 +187,7 @@ Once you have created a fine-tuned model, you may wish to continue to refine the
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [creating a fine-tuned model](#creating-a-fine-tuned-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
 
 > [!NOTE]
-> Continuous fine-tuning is only supported for Open AI models.
+> Continuous fine-tuning is only supported for OpenAI models.
 
 ## Clean up your resources
 
