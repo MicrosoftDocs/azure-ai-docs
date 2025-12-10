@@ -198,7 +198,7 @@ The following quotas are adjustable for Standard (S0) resources. The Free (F0) r
 Before requesting a quota increase (where applicable), check your current TPS (transactions per second) or TPM (tokens per minute) and ensure that you need to increase the quota.
 
 > [!NOTE]
-> Batch transcription and Batch synthesis are asynchronous processes, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance) or [Batch synthesis latency and best practices](./batch-synthesis#batch-synthesis-latency-and-best-practices).
+> Batch transcription and Batch synthesis are asynchronous processes, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance) or [Batch synthesis latency and best practices](./batch-synthesis.md#batch-synthesis-latency-and-best-practices).
 
 Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
 
@@ -336,7 +336,7 @@ To create an increase request for standard voice, you need to provide the follow
 
 - **Voice names you are requesting the increase for**
 
-You can find a list of all voice names here: [Text to speech languages](./language-support?tabs=tts)
+You can find a list of all voice names here: [Text to speech languages](./language-support.md?tabs=tts)
 
 To create an increase request for custom voice, you need to provide the following additional information: 
 
