@@ -1,5 +1,5 @@
 ---
-title: "Customize a model with Azure OpenAI in Microsoft Foundry Models and Microsoft Foundry portal"
+title: "Customize a Model with Azure OpenAI in Microsoft Foundry Models and the Microsoft Foundry Portal"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own custom model with Azure OpenAI by using the Microsoft Foundry portal.
 author: mrbullwinkle
@@ -15,27 +15,27 @@ ms.custom:
 
 ## Prerequisites
 
-- Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. Check the [Model summary table and region availability](../concepts/models.md#fine-tuning-models) for the list of available models by region and supported functionality. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
-- Fine-tuning access requires **Azure AI User** role.
-- If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
+- Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
+- You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the [model summary table and region availability](../concepts/models.md#fine-tuning-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Fine-tuning access requires the Azure AI User role.
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
+To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md#fine-tuning-models).
 
-Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
+Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
-## Review the workflow for Foundry portal
+## Review the workflow for the Foundry portal
 
-Take a moment to review the fine-tuning workflow for using Foundry portal:
+Take a moment to review the fine-tuning workflow for using the Foundry portal:
 
 1. Prepare your training and validation data.
 1. Use the **Create a fine-tuned model** dialog in Foundry portal to train your custom model.
     1. Select a training method.
     1. Select a base model.
-    1. [Choose your training type](#choose-your-training-type)
+    1. [Choose your training type](#choose-your-training-type).
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data-optional).
     1. Optionally, [configure task parameters](#configure-training-parameters-optional) for your fine-tuning job.
@@ -48,12 +48,13 @@ Take a moment to review the fine-tuning workflow for using Foundry portal:
 
 ## Prepare your training and validation data
 
-Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
+Your training and validation datasets consist of input and output examples for how you want the model to perform.
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+The training and validation data that you use *must* be formatted as a JSON Lines (JSONL) document. It must also be formatted in the conversational format that the [Chat Completions](../how-to/chatgpt.md) API uses.
 
-It's generally recommended to use the instructions and prompts that you found worked best in every training example. This will help you get the best results, especially if you have fewer than a hundred examples.
+In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). Each file must be less than 512 MB in size.
 
+We generally recommend that you use the instructions and prompts that you found worked best in every training example. This approach helps you get the best results, especially if you have fewer than a hundred examples.
 
 ### Example file format
 
@@ -70,9 +71,9 @@ It's generally recommended to use the instructions and prompts that you found wo
 {"messages": [{"role": "system", "content": "Clippy is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What is the distance from Earth to the Sun?"}, {"role": "assistant", "content": "About 93 million miles. Just a quick drive, really."}]}
 ```
 
-### Multi-turn chat file format Azure OpenAI 
+### Multiple-turn chat file format for Azure OpenAI
 
-Multiple turns of a conversation in a single line of your jsonl training file is also supported. To skip fine-tuning on specific assistant messages add the optional `weight` key value pair. Currently `weight` can be set to 0 or 1.  
+Multiple turns of a conversation in a single line of your JSONL training file are also supported. To skip fine-tuning on specific assistant messages, add the optional `weight` key/value pair. Currently, `weight` can be set to `0` or `1`.
 
 ```json
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
@@ -86,31 +87,29 @@ Multiple turns of a conversation in a single line of your jsonl training file is
 {"messages": [{"role": "user", "content": [{"type": "text", "text": "What's in this image?"}, {"type": "image_url", "image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}, {"role": "assistant", "content": "The image appears to be a watercolor painting of a city skyline, featuring tall buildings and a recognizable structure often associated with Seattle, like the Space Needle. The artwork uses soft colors and brushstrokes to create a somewhat abstract and artistic representation of the cityscape."}]}
 ```
 
-In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). The file must be less than 512 MB in size.
+### Dataset size considerations
 
-### Datasets size consideration
+The more training examples you have, the better. Fine-tuning jobs won't proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. A best practice for successful fine-tuning is to provide hundreds, if not thousands, of training examples. We recommend that you start with 50 well-crafted examples.
 
-The more training examples you have, the better. Fine-tuning jobs will not proceed without at least 10 training examples, but such a small number isn't enough to noticeably influence model responses. It is best practice to provide hundreds, if not thousands, of training examples to be successful. It's recommended to start with 50 well-crafted training data.
+In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind that low-quality examples can negatively affect performance. If you train the model on a large amount of internal data without first pruning the dataset for only the highest-quality examples, your model might perform worse than expected.
 
-In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
+## Create a fine-tuned model
 
-## Creating a fine-tuned model
+The Foundry portal provides the **Create a fine-tuned model** dialog, so you can create and train a fine-tuned model for your Azure resource in one place.
 
-Foundry portal provides the **Create a fine-tuned model** dialog, so in one place you can easily create and train a fine-tuned model for your Azure resource.
+1. Go to the [Foundry portal](https://ai.azure.com/) and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-1. Go to the Foundry portal at <a href="https://ai.azure.com/" target="_blank">https://ai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+1. Go to **Tools** > **Fine-tuning**, and then select **Fine-tune model**.
 
-1. In Foundry portal, browse to the **Tools > Fine-tuning** pane, and select **Fine-tune model**.
+   :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows selections for creating a custom model in the Foundry portal." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
 
-   :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Foundry portal." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
+1. Select a model to fine-tune, and then select **Next**.
 
-1. Select a model to fine-tune, and then select **Next** to continue.
+   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of model selection in the Foundry portal.":::
 
-   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of the model selection dialog in Foundry portal.":::
+   The **Create a fine-tuned model** dialog appears.
 
-You should now see the **Create a fine-tuned model** dialog.
-
-:::image type="content" source="../media/fine-tuning/studio-create-fine-tuned-model.png" alt-text="Screenshot of the Create a fine-tuned model dialog." lightbox="../media/fine-tuning/studio-create-fine-tuned-model.png":::
+   :::image type="content" source="../media/fine-tuning/studio-create-fine-tuned-model.png" alt-text="Screenshot of the dialog for creating a fine-tuned model." lightbox="../media/fine-tuning/studio-create-fine-tuned-model.png":::
 
 ### Choose your training method
 
@@ -124,13 +123,14 @@ When selecting the model, you may also select a [previously fine-tuned model](#c
 
 ### Choose your training type
 
+Foundry offers three training tiers designed to meet different customer needs.
 
-Foundry offers three training tiers designed to meet different customer needs:
+#### Standard training tier
 
-#### Standard Training Tier
 Provides dedicated capacity for fine-tuning with predictable performance and SLAs. Ideal for production workloads requiring guaranteed throughput.
 
-#### Global Standard Training Tier
+#### Global Standard training tier
+
 Global Training expands the reach of model customization with the [more affordable](https://aka.ms/aoai-pricing) pricing of our other Global offerings. Does not offer [data residency](https://aka.ms/data-residency). If you require data residency, consult regions listed on the [model availability](../concepts/models.md#fine-tuning-models) for your chosen model.
 
 Your training data and the resulting model weights may be copied to another Azure region.
@@ -138,7 +138,8 @@ Your training data and the resulting model weights may be copied to another Azur
 - Train the latest OpenAI models from over a dozen Azure OpenAI regions.  
 - Benefit from lower per-token training rates compared to the Standard tier.
 
-#### Developer Training Tier
+#### Developer training tier
+
 A cost-effective option that uses idle capacity for non-urgent or exploratory workloads.  
 Jobs in this tier may be preempted and resumed later, making it ideal for experimentation and cost-sensitive use cases.  
 
@@ -150,37 +151,31 @@ The **Training data** dialog displays any existing, previously uploaded datasets
 
 :::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Foundry portal.":::
 
-- If your training data is already uploaded to the service, select **Files from Connected AI resource**.
-   - Select the file from the dropdown list shown.
+- If your training data is already uploaded to the service, select **Files from Connected AI resource**. Select the file from the dropdown list.
 
 - To upload new training data, use one of the following options:
-   - Select **Upload files** to upload training data from a local file.
-   - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
+
+  - Select **Upload files** to upload training data from a local file.
+  - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob Storage, see [What is Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview)?
-
-> [!NOTE]
-> Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
 ### Choose your validation data (optional)
 
 If you have a validation dataset, select **Add training data**. You can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
-The **Validation data** dialog displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
+The **Validation data** dialog displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
 :::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Foundry portal.":::
 
-- If your validation data is already uploaded to the service, select **Choose dataset**.
-   - Select the file from the list shown in the **Validation data** pane.
+- If your validation data is already uploaded to the service, select **Choose dataset**. Select the file from the list shown in the **Validation data** pane.
 
 - To upload new validation data, use one of the following options:
-   - Select **Local file** to upload validation data from a local file.
-   - Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
+
+  - Select **Local file** to upload validation data from a local file.
+  - Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed.
-
-> [!NOTE]
-> Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
 ### Make your model identifiable (optional)
 
@@ -221,7 +216,7 @@ After you submit your fine-tuning job, you will see a page with details about yo
 
 Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
 
-## Checkpoints
+## Generate checkpoints
 
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through REST API.
 
@@ -238,7 +233,7 @@ You can also review the results files while training runs, to get a peak at the 
 
 ## Analyze your custom model
 
-Azure OpenAI attaches a result file named _results.csv_ to each fine-tuning job after it completes. You can use the result file to analyze the training and validation performance of your custom model. The file ID for the result file is listed for each custom model in the **Result file Id** column on the **Models** pane for Foundry portal. You can use the file ID to identify and download the result file from the **Data files** pane of Foundry portal.
+Azure OpenAI attaches a result file named `results.csv` to each fine-tuning job after it completes. You can use the result file to analyze the training and validation performance of your custom model. The file ID for the result file is listed for each custom model in the **Result file Id** column on the **Models** pane for Foundry portal. You can use the file ID to identify and download the result file from the **Data files** pane of Foundry portal.
 
 The result file is a CSV file that contains a header row and a row for each training step performed by the fine-tuning job. The result file contains the following columns:
 
@@ -246,15 +241,15 @@ The result file is a CSV file that contains a header row and a row for each trai
 | --- | --- |
 | `step` | The number of the training step. A training step represents a single pass, forward and backward, on a batch of training data. |
 | `train_loss` | The loss for the training batch. |
-| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `train_mean_token_accuracy` | The percentage of tokens in the training batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `valid_loss` | The loss for the validation batch. |
-| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
+| `validation_mean_token_accuracy` | The percentage of tokens in the validation batch correctly predicted by the model.<br><br>For example, if the batch size is set to 3 and your data contains completions `[[1, 2], [0, 5], [4, 2]]`, this value is set to 0.83 (5 of 6) if the model predicted `[[1, 1], [0, 5], [4, 2]]`. |
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
 You can also view the data in your results.csv file as plots in Foundry portal. Select the link for your trained model, and you will see three charts: loss, mean token accuracy, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
-Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data, that may indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier. 
+Look for your loss to decrease over time, and your accuracy to increase. If you see a divergence between your training and validation data, that may indicate that you are overfitting. Try training with fewer epochs, or a smaller learning rate multiplier.
 
 ## Deploy a fine-tuned model
 
@@ -264,14 +259,14 @@ If you're deploying for further validation, consider deploying for [testing](../
 
 If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=portal).
 
-### Use a deployed fine-tuned model
+## Use a deployed fine-tuned model
 
 After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 
 > [!NOTE]
 > For chat models, the [system message that you use to guide your fine-tuned model](../concepts/system-message.md) (whether it's deployed or available for testing in the playground) must be the same as the system message you used for training. If you use a different system message, the model might not perform as expected.
 
-## Continuous fine-tuning
+## Perform continuous fine-tuning
 
 Once you have created a fine-tuned model you may wish to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
@@ -299,4 +294,3 @@ You can delete a custom model on the **Models** pane in Foundry portal. Select t
 ### Delete your training files
 
 You can optionally delete training and validation files that you uploaded for training, and result files generated during training, on the **Management** > **Data + indexes** pane in Foundry portal. Select the file to delete, and then select **Delete** to delete the file.
-

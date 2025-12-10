@@ -222,7 +222,7 @@ print(response.model_dump_json(indent=2))
 
 ## Analyze your customized model
 
-Microsoft Foundry attaches a result file named `results.csv` to each fine-tune job after it finishes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model. You can use the Python SDK to retrieve the file ID and download the result file for analysis.
+Microsoft Foundry attaches a result file named `results.csv` to each fine-tuning job after it finishes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model. You can use the Python SDK to retrieve the file ID and download the result file for analysis.
 
 The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model. It then uses the Python SDK to download the file to your current working directory for analysis.
 
@@ -316,9 +316,9 @@ print(r.json())
 
 To learn about cross-region deployment and how to use the deployed model, see [Use your deployed fine-tuned model](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
 
-If you're ready to deploy for production or you have particular data residency needs, follow the [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
+If you're ready to deploy for production or you have particular data-residency needs, follow the [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
 
-## Continuous fine-tuning
+## Perform continuous fine-tuning
 
 After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
