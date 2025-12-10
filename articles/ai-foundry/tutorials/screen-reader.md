@@ -28,7 +28,7 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ::: moniker range="foundry-classic"
 
-Most [!INCLUDE [classic-link](../includes/classic-link.md)] pages have the following landmark structure: 
+Most [!INCLUDE [classic-link](../includes/classic-link.md)] (classic) pages have the following landmark structure: 
 
 - Banner (has Foundry app title, settings, and profile information)
     - Sometimes has a breadcrumb navigation element 
@@ -40,7 +40,7 @@ Most [!INCLUDE [classic-link](../includes/classic-link.md)] pages have the follo
 
 ::: moniker range="foundry"
 
-Most [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] pages have the following landmark structure: 
+Most [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] (new) pages have the following landmark structure: 
 
 - Banner has 
     - Foundry application title
