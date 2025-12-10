@@ -282,7 +282,7 @@ Updating capability hosts is not supported. If you have an existing capability h
 TOKEN=$(az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv)
 ```
 
-#### Create Capability Host
+#### Create capability host
 
 ```bash
 curl --request PUT \
