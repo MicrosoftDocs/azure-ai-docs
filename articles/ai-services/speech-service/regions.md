@@ -2,12 +2,12 @@
 title: Regions - Speech service
 titleSuffix: Foundry Tools
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
-author: goergenj
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 11/09/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---

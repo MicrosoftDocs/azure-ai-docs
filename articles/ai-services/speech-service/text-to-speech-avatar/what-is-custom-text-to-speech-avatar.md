@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 10/21/2025
-ms.author: jagoerge
-author: goergenj
+ms.author: pafarley
+author: PatrickFarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.custom: references_regions
