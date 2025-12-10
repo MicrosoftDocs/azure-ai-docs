@@ -284,11 +284,18 @@ curl --request PUT \
   "properties": {
     "capabilityHostKind": "Agents",
     "enablePublicHostingEnvironment": true
-  }
+    }
+ }
 ```
 
 
 ### Create the hosted agent version
+
+Install the version 2.0.0b2 of the Azure AI Projects SDK
+
+```
+pip install --pre azure-ai-projects>=2.0.0b2
+```
 
 Use the Azure AI Projects SDK to create and register your agent:
 
@@ -399,8 +406,10 @@ The arguments for this code include:
 | `--agent-version` | ✅ | Foundry Tools hosted agent version |
 | `--name -n` | ✅ | Foundry Tools hosted agent name |
 | `--project-name` | ✅ | AI project name |
-| `--min-replicas` | ✅ | Minimum number of replicas for horizontal scaling |
-| `--max-replicas` | ✅ | Maximum number of replicas for horizontal scaling |
+| `--min-replicas` | ❌ | Minimum number of replicas for horizontal scaling |
+| `--max-replicas` | ❌ | Maximum number of replicas for horizontal scaling |
+
+If no max and min replicas are specified during agent start operation, default value used is 1 for both these parameters. 
 
 Here's an example:
 
@@ -779,6 +788,7 @@ Currently, hosted agents are supported in North Central US only.
 
 ## Related content
 
+- [Python code samples](https://github.com/azure-ai-foundry/foundry-samples/tree/hosted-agents/pyaf-samples/samples/microsoft/python/getting-started-agents/hosted-agents)
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Agent identity concepts in Microsoft Foundry](./agent-identity.md)
 - [Agent runtime components](./runtime-components.md)
