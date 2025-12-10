@@ -5,10 +5,11 @@ description: Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: article
 ms.date: 09/15/2025
 monikerRange: 'foundry-classic || foundry'
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # GPT-5 vs GPT-4.1: choosing the right model for your use case

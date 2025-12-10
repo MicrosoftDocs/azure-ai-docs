@@ -5,10 +5,11 @@ description: This document details issues for data, privacy, and security for Az
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: article
 monikerRange: 'foundry-classic || foundry'
 ms.date: 10/01/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Data, privacy, and security for Azure Direct Models in Microsoft Foundry 
