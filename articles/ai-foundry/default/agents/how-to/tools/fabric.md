@@ -49,6 +49,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 > - To run this code you will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
+:::zone pivot="python"
 ```python
 import os
 from dotenv import load_dotenv
@@ -99,6 +100,35 @@ with project_client:
 
     print(f"Response output: {response.output_text}")
 ```
+:::zone-end
+
+:::zone pivot="rest"
+The following is an example of how to call the Foundry Agent REST API with the Fabric data agent tool enabled.
+
+```bash
+curl --request POST \
+  --url 'https://{{foundry_account_name}}.services.ai.azure.com/api/projects/{{project_name}}/openai/responses?api-version=2025-05-15-preview' \
+  --header 'Authorization: Bearer {{token against https://ai.azure.com}}' \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/11.6.1' \
+  --data '{
+"model": "{{model_name}}",
+"input": "{{input}}",
+"tools": [
+  {
+   "type": "fabric_dataagent_preview",
+   "fabric_dataagent_preview": {
+        "project_connections": [
+                    {
+                        "project_connection_id": "/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>"
+                    }
+                ]
+        }
+}
+]
+}'
+```
+:::zone-end
 
 > [!NOTE]
 > * Make sure you have **published** the [data agent](https://go.microsoft.com/fwlink/?linkid=2312910) in Fabric.
