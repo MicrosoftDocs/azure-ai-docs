@@ -16,7 +16,7 @@ ms.update-cycle: 180-days
 
 For indexes containing chunked documents, an *index projection* specifies how parent-child content is mapped to fields in a search index for one-to-many indexing. Through an index projection, you can send content to:
 
-- A single index, where the parent fields repeat for each chunk, but the grain of the index is at the chunk level. The [RAG tutorial](tutorial-rag-build-solution-index-schema.md) is an example of this approach.
+- A single index, where the parent fields repeat for each chunk, but the grain of the index is at the chunk level. The [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) shows this approach.
 
 - Two or more indexes, where the parent index has fields related to the parent document, and the child index is organized around chunks. The child index is the primary search corpus, but the parent index could be used for [lookup queries](/rest/api/searchservice/documents/get) when you want to retrieve the parent fields of a particular chunk, or for independent queries.
 
@@ -92,7 +92,7 @@ You can use the Azure portal, REST APIs, or an Azure SDK to [create an index](se
 
 #### [**Python**](#tab/python-create-index)
 
-This example is similar to the [RAG tutorial](tutorial-rag-build-solution-index-schema.md). It's an index schema designed for chunked content extracted from a parent document and combines all parent-child fields in the same index.
+This example is similar to the [classic RAG example](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md). It's an index schema designed for chunked content extracted from a parent document and combines all parent-child fields in the same index.
 
 ```python
  # Create a search index  
@@ -406,7 +406,7 @@ The indexer definition specifies the components of the pipeline. In the indexer 
 
 ## Next step
 
-Data chunking and one-to-many indexing are part of the RAG pattern in Azure AI Search. Continue on to the following tutorial and code sample to learn more about it.
+Data chunking and one-to-many indexing are part of the classic RAG pattern in Azure AI Search. Continue on to the following tutorial and code sample to learn more about it.
 
 > [!div class="nextstepaction"]
-> [How to build a RAG solution using Azure AI Search](tutorial-rag-build-solution.md)
+> [How to build a classic RAG solution using Azure AI Search](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md)
