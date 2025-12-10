@@ -167,7 +167,7 @@ There are many ways to get started, including code-first solutions and demos.
 
 + [Try this agentic retrieval quickstart](search-get-started-agentic-retrieval.md) to walk through the new and recommended approach for RAG.
 
-+ [Try this tutorial](agentic-retrieval-how-to-create-pipeline) for a more comprehensive approach that includes an agent.
++ [Try this tutorial](agentic-retrieval-how-to-create-pipeline.md) for a more comprehensive approach that includes an agent.
 
 + [Review indexing concepts and strategies](search-what-is-an-index.md) to determine how you want to ingest and refresh data. Decide whether to use vector search, keyword search, or hybrid search. The kind of content you need to search over, and the type of queries you want to run, determines index design.
 
