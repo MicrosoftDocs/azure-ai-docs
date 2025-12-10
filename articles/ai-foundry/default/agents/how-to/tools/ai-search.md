@@ -131,7 +131,7 @@ with project_client:
 
 The following examples show how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index.
 
-### Use agents with Azure AI Search tool
+## Use agents with Azure AI Search tool
 
 1. Read the environment variables for the next steps.
 
@@ -248,7 +248,7 @@ The following examples show how to use the Azure AI Search tool in [Azure.AI.Pro
    await projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
    ```
 
-### Use agents with Azure AI Search tool for streaming scenarios
+## Use agents with Azure AI Search tool for streaming scenarios
 
 1. Read the environment variables to be used in the next steps.
 
