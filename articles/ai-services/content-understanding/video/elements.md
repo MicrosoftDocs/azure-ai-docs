@@ -136,6 +136,13 @@ Timing information provides the overall temporal bounds of the audiovisual conte
 
 A `keyFrameTimesMs` element represents the timestamps for the visual frames extracted from the video at key moments. Timestamps are represented in milliseconds from the beginning of the video. These frames are intelligently selected based on signals like shot detection. These frames are used as input to generate custom fields.
 
+**Keyframe sampling behavior:**
+
+- Keyframes are uniformly selected from each camera shot
+- Each shot includes at least one sampled keyframe, even for short shots (less than one second)
+- The number of keyframes is consistent across multiple runs
+- Timestamp values can have minor numerical differences between runs, but these differences are minimal and shouldn't significantly affect the content of the selected frames
+
 **JSON example:**
 ```json
 {
@@ -157,6 +164,13 @@ A `keyFrameTimesMs` element represents the timestamps for the visual frames extr
 #### Camera shots
 
 A `cameraShotTimesMs` element identifies points in the video where camera shots change, indicating cuts, transitions, or significant changes in camera angle or perspective. This helps in understanding the video's editing structure. The values are timestamps in milliseconds from the beginning of the video. This output is included when the user sets  `"returnDetails": true` in the analyzer definition.
+
+**Camera shot detection behavior:**
+
+- `cameraShotTimesMs` stores the timestamps of cuts between camera shots
+- The array values indicate the starting time of all camera shots, excluding the first shot (which always starts at 0 ms)
+- The output is deterministic and consistent across multiple runs
+- This model may miss transitions that are visually gradual
 
 **JSON example:**
 ```json
