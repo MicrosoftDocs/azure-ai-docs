@@ -62,14 +62,14 @@ Connections provide:
 
 - **Authentication patterns**:
   - **API Key**: Standard subscription key authentication
-  - **Azure Active Directory**: Enterprise identity integration
+  - **Microsoft Entra ID**: Enterprise identity integration is coming soon. 
 
 ## Model gateway connection  
 
 Model gateway connections provide a unified interface for connecting to various AI model providers through the Azure Machine Learning workspace connection framework. These connections support both static model configuration (predefined models) and dynamic model discovery (runtime model detection). Model gateway connections provide:
 
 - **Unified API**: Single connection interface for multiple AI providers (Azure AI, OpenAI, MuleSoft, etc.)
-- **Authentication**: Support for API key authentication with workspace credential management
+- **Authentication**: Support for API key authentication with workspace credential management or OAuth2
 - **Discovery Patterns**: Choose between static model lists or dynamic discovery endpoints
 - **Provider Abstraction**: Consistent model format regardless of underlying provider
 - **Enterprise Integration**: Support for enterprise gateways like MuleSoft for multi-provider scenarios
@@ -91,9 +91,9 @@ All ModelGateway connections use `"category": "ModelGateway"` to ensure proper r
   - Provider-managed model catalogs
   - Development and testing scenarios
 
-## Authentication
+## Authentication Types 
 
-All examples use `"authType": "ApiKey"` with workspace-managed credentials. The actual API keys are stored securely and referenced through the credential system.
+The supported authentication types are API key or OAuth 2.0, depending on the connection type. For API Keys, the actual API keys are stored securely and referenced through the credential system. 
 
 ## Create a model gateway connection
 
