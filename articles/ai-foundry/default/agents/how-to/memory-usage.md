@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/09/2025
+ms.date: 12/10/2025
 ai-usage: ai-assisted
 ---
 
@@ -26,14 +26,14 @@ This article explains how to create, manage, and use memory stores. For conceptu
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python) or REST API access.
 
 ### Authorization and permissions
 
-We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend [role-based access control](../../../concepts/rbac-azure-ai-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 To configure role-based access:
 
@@ -66,7 +66,7 @@ from azure.identity import DefaultAzureCredential
 
 # Initialize the client
 client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    endpoint="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}",
     credential=DefaultAzureCredential()
 )
 
@@ -212,7 +212,7 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 ## Add the memory search tool to an agent
 
-After you create a memory store, use the memory search tool to attach it to an agent. This tool enables the agent to read from and write to the memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
+After you create a memory store, attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
 
 # [Python](#tab/python)
 
@@ -233,7 +233,7 @@ tool = MemorySearchTool(
 agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        model="gpt-4.1",
         instructions="You are a helpful assistant that answers general questions",
         tools=[tool],
     )
@@ -245,7 +245,29 @@ print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.versi
 # [REST API](#tab/rest)
 
 ```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
 
+curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "definition": {
+        "kind": "prompt",
+        "model": "gpt-4.1",
+        "instructions": "You are a helpful assistant that answers general questions",
+        "tools": [
+            {
+                "type": "memory_search",
+                "memory_store_name": "my_memory_store",
+                "scope": "user_123",
+                "update_delay": 1
+            }
+        ]
+    }
+}'
 ```
 
 ---
@@ -289,7 +311,29 @@ print(f"Response output: {new_response.output_text}")
 # [REST API](#tab/rest)
 
 ```bash
+# Configuration
+ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="your-access-token-here"
 
+curl -X POST "${ENDPOINT}/openai/conversations?api-version=${API_VERSION}" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{}'
+
+# Use the "id" from previous response
+CONVERSATION_ID="your-conversation-id"
+curl -X POST "${ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "input": "I prefer dark roast coffee",
+        "conversation": "${CONVERSATION_ID}",
+        "agent": {
+            "name": "MyAgent",
+            "type": "agent_reference"
+        }
+    }'
 ```
 
 ---
@@ -496,36 +540,3 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
 - [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
-
-## Add the tool to an agent
-
-Before an agent can use memory, attach the memory store to the agent configuration so the agent can read and write memories during conversations. If you haven't configured your project identity and permissions, see the `Authorization and permissions` section above or `environment-setup.md`.
-
-### Attach memory to an agent (Python)
-
-```python
-# Example: attach a memory store to an existing agent definition
-from azure.ai.projects.models import AgentUpdateParameters
-
-agent_update = AgentUpdateParameters(
-    memory_store_name="my_memory_store"
-)
-
-updated_agent = client.agents.update(
-    name="my_agent",
-    parameters=agent_update
-)
-
-print(f"Attached memory store to agent: {updated_agent.name}")
-```
-
-### Attach memory to an agent (REST)
-
-```bash
-curl -X PATCH "${ENDPOINT}/agents/my_agent?api-version=${API_VERSION}" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{"memory_store_name": "my_memory_store"}'
-```
-
-After attaching the memory store, restart or redeploy the agent if required by your deployment method. Test the integration by invoking the agent and verifying that memory search and update operations return expected results.
