@@ -5,8 +5,9 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.date: 11/21/2025
 ms.topic: conceptual
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 monikerRange: 'foundry-classic || foundry'
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Personally identifiable information (PII) filter
