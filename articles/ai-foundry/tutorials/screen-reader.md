@@ -24,6 +24,8 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ## Get oriented in Foundry portal 
 
+
+
 ::: moniker range="foundry-classic"
 
 Most [!INCLUDE [classic-link](../includes/classic-link.md)] pages have the following landmark structure: 
@@ -54,6 +56,36 @@ Most [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] pages have t
 ::: moniker-end
 
 For efficient navigation, you can use landmarks to move between these sections on the page.
+
+## Switch between portal experiences
+
+You can switch between the classic and new Foundry portal experiences using the **New Foundry** toggle in the top banner.
+
+::: moniker range="foundry-classic"
+
+To switch to the new Foundry experience:
+1. In the top banner, press <kbd>Tab</kbd> until you hear "New Foundry toggle button, not pressed".
+1. Select the toggle to switch to the new Foundry experience.
+1. The page reloads with the new portal interface.
+
+> [!NOTE]
+> The toggle attempts to preserve your current context, such as the project you're working in, when switching between experiences. If the resource or project you are editing is not available in the new experience, you'll be prompted to first select an available project.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+To switch back to the classic experience:
+1. In the top banner, press <kbd>Tab</kbd> until you hear "New Foundry toggle button, pressed".
+1. Select the toggle to switch to the classic experience.
+1. The page reloads with the classic portal interface.
+
+> [!NOTE]
+> The toggle preserves your current context, such as the project you're working in, when switching between experiences.
+
+::: moniker-end
+
+
 
 :::moniker range="foundry"
 ## Projects 
