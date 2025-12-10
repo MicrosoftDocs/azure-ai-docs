@@ -53,19 +53,19 @@ items:
   - name: Azure Language in Foundry Tools
     items:
     - name: Azure Language tools and agents
-      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/ai-foundry/context/context
     - name: Try CLU multi-turn conversations
-      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?context=/azure/ai-foundry/context/context
     - name: Detect Personally Identifiable Information (PII)
-      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?context=/azure/ai-foundry/context/context
     - name: Try Azure Language detection
-      href: /azure/ai-services/language-service/language-detection/quickstart?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/language-service/language-detection/quickstart?context=/azure/ai-foundry/context/context
   - name: Azure Translator in Foundry Tools
     items:
     - name: Azure text translation
-      href: /azure/ai-services/translator/text-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/translator/text-translation/overview?context=/azure/ai-foundry/context/context
     - name: Azure document translation
-      href: /azure/ai-services/translator/document-translation/overview?toc=/azure/ai-foundry/default/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json
+      href: /azure/ai-services/translator/document-translation/overview?context=/azure/ai-foundry/context/context
 
 # Protocols
 - name: Protocols
