@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Agent identity concepts in Microsoft Foundry
 
-An *agent identity* is a specialized identity type in [Microsoft Entra ID](entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
+An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
 
 Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
 
