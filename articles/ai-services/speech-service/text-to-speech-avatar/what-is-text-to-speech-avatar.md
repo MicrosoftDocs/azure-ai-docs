@@ -30,10 +30,11 @@ Text to speech avatar capabilities include:
 -  Provides a collection of standard avatars, see [Standard avatars](./standard-avatars.md) for a full list of supported standard avatars.
 - Azure AI text to speech generates the voice of the avatar. For more information, see [Avatar voice and language](#avatar-voice-and-language).
 - Synthesizes text to speech avatar video asynchronously with the [batch synthesis API](./batch-synthesis-avatar.md) or in [real-time](./real-time-synthesis-avatar.md).
-- Provides a [content creation tool](https://speech.microsoft.com/portal/talkingavatar) in Speech Studio for creating video content without coding.
+- Use Text to speech avatar tool in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) or in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar) for creating video content without coding.
 - Enables real-time avatar conversations through the [live chat avatar tool](https://speech.microsoft.com/portal/livechat) in Speech Studio.
+- Create voice agent with avatar in [Voice live](../voice-live.md) 
 
-With text to speech avatar's advanced neural network models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
+With text to speech avatar's advanced neural network models and Photo avatar's VASA-1 models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
 
 ## Avatar voice and language
 
@@ -43,7 +44,7 @@ The voice in the synthetic video could be an Azure Speech in Foundry Tools stand
 
 ## Avatar type
 - Video Avatar: The avatar is generated using a fine tuned model with a video recording for fine tuning. It supports half-body and full-body representations.
-- Photo Avatar: The avatar is created from a single input image as prompt and is limited to a head-only representation.
+- Photo Avatar (preview): The avatar is created from a single input image as prompt and is limited to a head-only representation.
 
 
 ## Avatar video output
@@ -60,7 +61,7 @@ Video Avatar
 | **Codec**        | h264/hevc/vp9/av1 | h264                 |
 
 
-Photo Avatar
+Photo Avatar (preview)
 
 |                  | Batch synthesis   | Real-time synthesis |
 |------------------|-------------------|----------------------|
@@ -87,7 +88,7 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 * [Real-time synthesis (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
 * [Live chat with Azure OpenAI in behind (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample)
 * To create a live chat APP with Azure OpenAI [On Your Data](/azure/ai-foundry/openai/concepts/use-your-data), you can refer to [this sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "On Your Data")
-* [Use avatar in Voice live API](../voice-live-how-to.md#azure-text-to-speech-avatar)
+* [Use avatar in Voice live API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node/web/voice-live-avatar)
 
 ## Pricing
 
