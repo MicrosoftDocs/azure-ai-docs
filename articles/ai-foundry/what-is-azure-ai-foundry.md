@@ -83,7 +83,7 @@ In the Foundry (new) portal, the project you're working with appears in the uppe
 
 ## Find other resources
 
-The Foundry (new) portal displays only Foundry projects, not other resources or hub-based projects you might have created in Foundry (classic).
+The Foundry (new) portal displays only the **default** project for each Foundry resource, not other resources or hub-based projects you might have created in Foundry (classic). If you created multiple projects under the same Foundry resource, you can identify which project is the default by checking the Microsoft Foundry (classic) portal. The default project is marked with (default) next to its name.
 
 To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources in the Foundry (classic) portal.
 

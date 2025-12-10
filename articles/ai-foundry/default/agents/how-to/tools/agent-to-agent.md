@@ -7,14 +7,15 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/17/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/04/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-agent-to-agent
 ---
 
 # Agent2Agent (A2A) tool (preview)
+
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
@@ -24,9 +25,8 @@ You can extend the capabilities of your Microsoft Foundry agent by connecting it
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 
-- **Using the A2A tool**: When Agent A calls Agent B via A2A tool, Agent B's answer is passed back to Agent A, which then summarizes the answer and generates a response to the user. Agent A retains control and continues to handle future user input.
-- **Using a multi-agent workflow**: When Agent A calls Agent B via a workflow or other multi-agent orchestration, the responsibility of answering the user is completely transferred to Agent B. Agent A is effectively out of the loop. All subsequent user input will be answered by Agent B.
-
+- **Using the A2A tool**: When Agent A calls Agent B through the A2A tool, Agent B's answer goes back to Agent A. Agent A then summarizes the answer and generates a response for the user. Agent A keeps control and continues to handle future user input.
+- **Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input.
 
 ## Usage support
 
@@ -34,10 +34,10 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 |---------|---------|---------|---------|---------|---------|---------|---------|
 | ✔️  | ✔️ | - | - | - |  ✔️ | ✔️ | ✔️ | 
 
-
 :::zone pivot="python"
 > [!NOTE]
-> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+
 ```python
 import os
 from dotenv import load_dotenv
@@ -103,6 +103,12 @@ with (
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+For C# usage, see the [Azure OpenAI agents samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples) in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
+
 :::zone pivot="rest-api"
 ## Create the remote A2A Foundry connection 
 
@@ -138,8 +144,11 @@ curl --request PUT \
   }
 }'
 ```
+
 ### Managed OAuth Identity Passthrough
-These are only supported if you can "managed oauth" option in Foundry Tool Catalog.
+
+These options are only supported if you select the "managed oauth" option in Foundry Tool Catalog.
+
 ```bash
 curl --request PUT \
   --url 'https://{{region}}.management.azure.com/subscriptions/{{subscription_id}}//resourcegroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
@@ -168,9 +177,10 @@ curl --request PUT \
   }
 }'
 ```
+
 ### Custom OAuth Identity Passthrough
 
-Custom OAuth doesn't support update operation. Create a new one if you want to update certain values. 
+Custom OAuth doesn't support the update operation. Create a new one if you want to update certain values. 
 
 ```bash
 curl --request PUT \
@@ -206,7 +216,9 @@ curl --request PUT \
   }
 }'
 ```
+
 ### Foundry Project Managed Identity
+
 ```bash
 curl --request PUT \
   --url 'https://{{region}}.management.azure.com:443/subscriptions/{{subscription_id}}//resourcegroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
@@ -234,7 +246,9 @@ curl --request PUT \
   }
 }'
 ```
+
 ### Agent Identity
+
 ```bash
 curl --request PUT \
   --url 'https://{{region}}.management.azure.com:443/subscriptions/{{subscription_id}}//resourcegroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
@@ -262,7 +276,9 @@ curl --request PUT \
   }
 }'
 ```
+
 ## Adding A2A tool to Foundry Agent Service
+
 ### Create an agent version with the A2A tool
 
 ```bash
@@ -292,8 +308,8 @@ curl --request POST \
 
 Your use of connected non-Microsoft services and servers ("non-Microsoft services") is subject to the terms between you and the service provider. Non-Microsoft services are non-Microsoft Products under your agreement governing use of Microsoft Online services. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft services, or your application might receive data from the non-Microsoft services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use. 
 
-The non-Microsoft services, including A2A agent endpoints, that you decide to use with the A2A tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these A2A agent endpoints. Microsoft has no responsibility to you or others in relation to your use of any non-Microsoft Services.  
+The non-Microsoft services, including A2A agent endpoints, that you decide to use with the A2A tool described in this article are created by third parties, not Microsoft. Microsoft didn't test or verify these A2A agent endpoints. Microsoft has no responsibility to you or others in relation to your use of any non-Microsoft services.  
 
-We recommend that you carefully review and track the A2A agent endpoints you add to Foundry Agent Service. We also recommend that you rely on endpoints hosted by trusted service providers themselves rather than proxies. 
+Carefully review and track the A2A agent endpoints you add to Foundry Agent Service. Rely on endpoints hosted by trusted service providers themselves rather than proxies. 
 
-The A2A tool allows you to pass custom headers, such as authentication keys or schemas, that an A2A agent endpoint might need. We recommend that you review all data that's shared with non-Microsoft services, including A2A agent endpoints, and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data. 
+The A2A tool allows you to pass custom headers, such as authentication keys or schemas, that an A2A agent endpoint might need. Review all data that's shared with non-Microsoft services, including A2A agent endpoints, and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data. 

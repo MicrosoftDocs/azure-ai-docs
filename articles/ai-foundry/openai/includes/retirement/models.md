@@ -84,7 +84,7 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version      | Lifecycle<br>Status | Retirement date                  | Replacement model                    |
 | -------------------------------|--------------|---------------------|----------------------------------|--------------------------------------|
-| `dalle-3`                      | 3            | Generally Available | No earlier than January 31, 2026 |                                      |
+| `dalle-3`                      | 3            | Generally Available | February 18, 2026                | `gpt-image-1-mini`                   |
 | `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than January 31, 2026 |                                      |
 | `gpt-image-1-mini`             | 2025-10-06   | Generally Available | No earlier than October 6, 2026  |                                      |
 | `sora`                         | 2025-05-02   | Preview             | No earlier than February 15, 2026|                                      |

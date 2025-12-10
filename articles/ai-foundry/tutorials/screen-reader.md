@@ -5,7 +5,7 @@ description: This quickstart guides you in how to get oriented and navigate Micr
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
-ms.date: 10/08/2025
+ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 monikerRange: 'foundry-classic || foundry'
