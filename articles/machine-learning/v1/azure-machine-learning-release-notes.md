@@ -78,7 +78,7 @@ AutoML supports scikit-learn version 1.5.1
   + **azureml-mlflow**
     + feat: Add `AZUREML_BLOB_MAX_SINGLE_PUT_SIZE` to control the size in bytes of upload chunks. Lowering this from the default (`64*1024*1024` that is 64MB) can remedy issues where write operations fail due to time outs.
     + Support for uploading and downloading models from Azure Machine Learning registries is currently experimental
-    + Adding support for users that want to download or upload model from AML registries
+    + Adding support for users that want to download or upload model from Azure Machine Learning registries
 
 ## 2023-08-21
 
@@ -648,7 +648,7 @@ This breaking change comes from the June release of `azureml-inference-server-ht
 + **Bug fixes and improvements**
   + **azureml-core**
     + Improved documentation for platform property on Environment class
-    + Changed default AML Compute node scale down time from 120 seconds to 1800 seconds
+    + Changed default Azure Machine Learning Compute node scale down time from 120 seconds to 1800 seconds
     + Updated default troubleshooting link displayed on the portal for troubleshooting failed runs to: https://aka.ms/azureml-run-troubleshooting
   + **azureml-automl-runtime**
     + Data Cleaning: Samples with target values in [None, "", "nan", np.nan] is dropped prior to featurization and/or model training
@@ -2702,7 +2702,7 @@ The Experiment tab in the [new workspace portal](https://ml.azure.com) has been 
   + **[azureml-pipeline-core](/python/api/azureml-pipeline-core/azureml.pipeline.core)**
     + Added a [notebook](https://aka.ms/pl-modulestep) to describe [Module](/python/api/azureml-pipeline-core/azureml.pipeline.core.module%28class%29), [ModuleVersion, and [ModuleStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.modulestep).
   + **[azureml-pipeline-steps](/python/api/azureml-pipeline-steps/azureml.pipeline.steps)**
-    + Added [RScriptStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.rscriptstep) to support R script run via AML pipeline.
+    + Added [RScriptStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.rscriptstep) to support R script run via Azure Machine Learning pipeline.
     + Fixed metadata parameters parsing in [AzureBatchStep that was causing the error message "assignment for parameter SubscriptionId isn't specified".
   + **[azureml-train-automl](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime)**
     + Supported training_data, validation_data, label_column_name, weight_column_name as data input format.
