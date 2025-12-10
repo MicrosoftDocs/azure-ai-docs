@@ -250,17 +250,16 @@ Now that you've seen several patterns for one-to-many indexings, lets compare ke
 
 - To avoid creating parent search documents and ensuring the index contains only child documents of a uniform grain, set the `targetIndexName` for both the indexer definition and the selector to the same index, but add an extra `parameters` object after `selectors`, with a `projectionMode` key set to `skipIndexingParentDocuments`, as shown here:
 
-    ```json
-    "indexProjections": {
-        "selectors": [
-            "<example 1>",
-            "<example 2>"
-        ],
-        "parameters": {
-            "projectionMode": "skipIndexingParentDocuments"
-        }
-    }
-    ```
+   ```json
+   "indexProjections": {
+       "selectors": [
+           ...
+       ],
+       "parameters": {
+           "projectionMode": "skipIndexingParentDocuments"
+       }
+   }
+   ```
 
 ## Review field mappings
 
