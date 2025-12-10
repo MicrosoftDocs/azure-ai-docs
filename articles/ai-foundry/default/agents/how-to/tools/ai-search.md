@@ -140,6 +140,8 @@ This example shows how to use the Azure AI Search tool with agents to query an i
 var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
 var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AI_SEARCH_CONNECTION_NAME");
+
+// Create an AIProjectClient object that will be used to create the agent and query the index.
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
@@ -210,6 +212,8 @@ This example shows how to use the Azure AI Search tool with agents to query an i
 var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
 var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AI_SEARCH_CONNECTION_NAME");
+
+// Create an AIProjectClient object that will be used to create the agent and query the index.
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
@@ -293,11 +297,9 @@ Console.WriteLine($"{text}{annotation}");
 // Finally, delete all the resources that were created in this sample.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
-    
 :::zone-end
 
 :::zone pivot="rest"
-
 The following example shows how to use the Azure AI Search tool with the REST API to query an index. The example uses cURL, but you can use any HTTP client.
 
 ```bash
