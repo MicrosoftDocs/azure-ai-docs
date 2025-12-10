@@ -276,10 +276,19 @@ Before you create the agent, give your project's managed identity access to pull
 
 Updating capability hosts is not supported. If you have an existing capability host for your Microsoft Foundry account, you must delete the existing one and recreate it with the property `enablePublicHostingEnvironment` set to `true`. 
 
+#### Get access token
+
+```bash
+TOKEN=$(az account get-access-token --resource https://management.azure.com/ --query accessToken -o tsv)
+```
+
+#### Create Capability Host
+
 ```bash
 curl --request PUT \
   --url 'https://management.azure.com/subscriptions/[SUBSCRIPTIONID]/resourceGroups/[RESOURCEGROUPNAME]/providers/Microsoft.CognitiveServices/accounts/[ACCOUNTNAME]/capabilityHosts/accountcaphost?api-version=2025-10-01-preview' \
   --header 'content-type: application/json' \
+  --header "authorization: Bearer $TOKEN"\
   --data '{
   "properties": {
     "capabilityHostKind": "Agents",
@@ -294,7 +303,7 @@ curl --request PUT \
 Install the version 2.0.0b2 of the Azure AI Projects SDK
 
 ```
-pip install --pre azure-ai-projects>=2.0.0b2
+pip install --pre azure-ai-projects==2.0.0b2
 ```
 
 Use the Azure AI Projects SDK to create and register your agent:
