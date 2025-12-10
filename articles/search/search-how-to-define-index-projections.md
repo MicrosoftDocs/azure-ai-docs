@@ -253,6 +253,8 @@ Now that you've seen several patterns for one-to-many indexings, lets compare ke
     ```json
     "indexProjections": {
         "selectors": [
+            "<example 1>",
+            "<example 2>"
         ],
         "parameters": {
             "projectionMode": "skipIndexingParentDocuments"
