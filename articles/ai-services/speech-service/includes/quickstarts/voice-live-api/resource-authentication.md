@@ -4,9 +4,10 @@ author: goergenj
 ms.author: jagoerge
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 10/31/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
 Create a new file named `.env` in the folder where you want to run the code. 

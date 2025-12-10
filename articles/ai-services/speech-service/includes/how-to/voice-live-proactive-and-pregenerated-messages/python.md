@@ -4,9 +4,10 @@ description: Learn how to invoke a proactive greeting or generate pregenerated m
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 11/09/2025
+ms.subservice: azure-ai-foundry-openai
 ---
 
 [!INCLUDE [Header](../../common/voice-live-python.md)]
