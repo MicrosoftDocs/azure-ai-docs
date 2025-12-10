@@ -29,7 +29,7 @@ For information about adjustable quotas for Standard (S0) Speech resources, see 
 
 ### Voice live quotas and limits per resource
 
-This section describes Voice live quotas and limits per Speech resource. Unless otherwise specified, the limits aren't adjustable.
+This section describes Voice live quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
@@ -41,17 +41,17 @@ Avatars used in Voice live follows the quota and limits described in [real-time 
 
 ### LLM Speech (Preview) quotas and limits per resource
 
-This section describes speech to text quotas and limits per Speech resource. Unless otherwise specified, the limits aren't adjustable.
+This section describes speech to text quotas and limits per Speech resource. At this time, these limits aren't adjustable.
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Maximum audio input file size | N/A | < 300MB |
+| Maximum audio input file size | N/A | < 300 MB |
 | Maximum audio length | N/A | < 120 minutes per file  |
 | Maximum requests per minute | N/A | 600  |
 
 ### Speech to text quotas and limits per resource
 
-This section describes speech to text quotas and limits per Speech resource. Unless otherwise specified, the limits aren't adjustable.
+This section describes speech to text quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
 
 #### Real-time speech to text and speech translation
 
@@ -100,7 +100,7 @@ The limits in this table apply per Speech resource when you create a custom spee
 
 ### Text to speech quotas and limits per resource
 
-This section describes text to speech quotas and limits per Speech resource. 
+This section describes text to speech quotas and limits per Speech resource. For information about adjustable quotas, see [Detailed description, quota adjustment, and best practices](#detailed-description-quota-adjustment-and-best-practices).
 
 #### Real-time text to speech
 
@@ -172,7 +172,7 @@ The limits in this table apply per Speech resource when you create a personal vo
 | Quota | Free (F0)| Standard (S0) |
 |-----|-----|-----|
 | File size (plain text in SSML)<sup>1</sup>  | 3,000 characters per file | 20,000 characters per file |
-| File size (lexicon file)<sup>2</sup> | 30KB per file | 100KB per file|
+| File size (lexicon file)<sup>2</sup> | 30 KB per file | 100 KB per file|
 | Billable characters in SSML| 15,000 characters per file | 100,000 characters per file |
 | Export to audio library | 1 concurrent task | N/A |
 
@@ -183,11 +183,11 @@ The limits in this table apply per Speech resource when you create a personal vo
 
 ## Detailed description, quota adjustment, and best practices
 
-Some of the Speech service quotas are adjustable. This section provides more explanations, best practices, and adjustment instructions. 
+Some Speech service quotas are adjustable. This section provides more explanations, best practices, and adjustment instructions. 
 
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
-- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource)
+- Voice live API [new connections per minute](#voice-live-quotas-and-limits-per-resource). Adjusting new connections will also adjusts the token limit.
 - Speech to text [concurrent request limit](#real-time-speech-to-text-and-speech-translation) for base model endpoint and custom endpoint
 - Fast Transcription [maximum number of requests per minute](#fast-transcription)
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
@@ -252,7 +252,7 @@ Increasing the limit of concurrent requests doesn't directly affect your costs. 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
 > [!NOTE]
->[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they are hosted on. Speech containers do, however, have their own capacity limitations that should be taken into account. For more information, see the [Speech containers FAQ](./speech-container-howto.md).
+>[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they're hosted on. Speech containers do, however, have their own capacity limitations that should be taken into account. For more information, see the [Speech containers FAQ](./speech-container-howto.md).
 
 #### Prepare the required information
 
@@ -285,7 +285,7 @@ To create an increase request for fast transcription, you need to provide the fo
 
 - **Average Audio Length per API request**
 
-The average audio length of each request sent to the API. Example: `5 minutes/request`. Please provide an estimate based on the workload you are aiming to process.
+The average audio length of each request sent to the API. Example: `5 minutes/request`. Provide an estimate based on the workload you're aiming to process.
 
 #### Create the quota increase request
 
@@ -402,7 +402,7 @@ Initiate the increase of the limit for concurrent requests for your resource, or
     1. New Quota Limit requested (limit value you're requesting as integer only, for example, 300, 500, 1000, etc.)
     1. Justification (business justification for the limit increase)
 1. Select the Foundry Tools service **Azure Speech** and click `Next`
-1. On the next page select the **Azure Speech** feature you are requesting the increase for. Options are:
+1. On the next page, select the **Azure Speech** feature you're requesting the increase for. Options are:
     - Speech to text concurrent request limit base model endpoint
     - Speech to text concurrent request limit custom endpoint
     - Fast transcription maximum requests per minute
