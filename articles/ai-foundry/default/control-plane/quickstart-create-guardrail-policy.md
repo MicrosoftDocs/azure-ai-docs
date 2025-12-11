@@ -4,7 +4,7 @@ description: These instructions guide you in creating a guardrail policy for you
 author: gregharen
 ms.author: scottpolly
 ms.reviewer: gregharen
-ms.date: 11/05/2025
+ms.date: 12/11/2025
 ms.topic: quickstart
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
