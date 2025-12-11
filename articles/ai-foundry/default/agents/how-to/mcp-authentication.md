@@ -86,7 +86,7 @@ There are usually two tokens involved in OAuth flow: refresh token and access to
 Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**. With managed OAuth, the OAuth App is managed by Microsoft or the MCP server publisher. With custom OAuth, you bring your own OAuth App. The OAuth App is a client application that registers with an OAuth provider (such as Microsoft or GitHub) and uses the flow above to get the necessary OAuth token. The benefit of custom OAuth is that you can customize the consent link content for your organization and application. For example, with custom OAuth, Contoso can ask users of its agent to give permission to Contoso to pass the user’s credentials to the MCP server. If you want to use custom OAuth, you will need to provide all required information, including a client ID, client secret, authorization URL, token URL, refresh URL, and suggested scopes.  
 
 > [!NOTE]
-> If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.]
+> If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.
 
 When you set up **custom OAuth**, the following information is needed:
 
