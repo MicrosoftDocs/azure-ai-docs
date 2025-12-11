@@ -301,7 +301,7 @@ curl --request PUT \
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b2 of the [Azure AI Projects SDK](https://learn.microsoft.com/en-us/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
+Install version>=2.0.0b2 of the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
 
 ```bash
 pip install --pre azure-ai-projects==2.0.0b2
