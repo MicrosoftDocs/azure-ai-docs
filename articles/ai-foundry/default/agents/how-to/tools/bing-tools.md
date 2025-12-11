@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: article
-ms.date: 12/04/2025
+ms.date: 12/11/2025
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -16,7 +16,7 @@ zone_pivot_groups: selection-bing-grounding-new
 
 # Grounding with Bing Search tools for agents
 
-Traditional language models operate with a knowledge cutoff. They can't access new information beyond a fixed point in time. Grounding with Bing Search and Grounding with Bing Custom Search (preview) enables your agents to incorporate real-time public web data when generating responses. With these tools, you can ask questions such as "what is the top AI news today".
+Traditional language models operate with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
 
@@ -43,10 +43,12 @@ The grounding process involves several key steps:
 
 ## Code examples
 
-:::zone pivot="python"
 > [!NOTE]
 > - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+
+:::zone pivot="python"
+The following examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries.
 
 # [Grounding with Bing Search](#tab/grounding-with-bing)
 
@@ -206,8 +208,444 @@ with project_client:
 :::zone-end
 
 :::zone pivot="csharp"
+The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples).
 
-For C# usage, see the [Sample for use of Agents with Bing grounding](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample16_Bing_Grounding.md) and [Sample for use of Agents with Bing grounding in streaming scenarios](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample17_Bing_Grounding_Streaming.md) Azure.AI.Projects.OpenAI project examples in the Azure SDK for .NET repository on GitHub.
+To enable your Agent to use Bing search API, use `BingGroundingAgentTool`.
+
+## Grounding with Bing Search
+
+This example demonstrates how to create an agent with Grounding with Bing Search tool.
+
+```csharp
+// Read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var connectionName = System.Environment.GetEnvironmentVariable("BING_CONNECTION_NAME");
+
+// Create an instance of AIProjectClient.
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Get the Bing connection and create the agent version with Bing grounding tool
+AIProjectConnection bingConnectionName = projectClient.Connections.GetConnection(connectionName: connectionName);
+BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
+    searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnectionName.Id)]
+    )
+);
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful agent.",
+    Tools = { bingGroundingAgentTool, }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: "myAgent",
+    options: new(agentDefinition));
+
+// Output the agent version info
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+OpenAIResponse response = responseClient.CreateResponse("How does wikipedia explain Euler's Identity?");
+
+// Helper method to extract and format URL citation annotations
+private static string GetFormattedAnnotation(OpenAIResponse response)
+{
+    foreach (ResponseItem item in response.OutputItems)
+    {
+        if (item is MessageResponseItem messageItem)
+        {
+            foreach (ResponseContentPart content in messageItem.Content)
+            {
+                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                {
+                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
+                    {
+                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                    }
+                }
+            }
+        }
+    }
+    return "";
+}
+
+// Validate and print the response
+Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+
+// Clean up resources by deleting the agent version
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+## Grounding with Bing in streaming scenarios
+
+This example demonstrates how to create an agent with Grounding with Bing Search tool and stream the response.
+
+```csharp
+// Read the environment variables, which will be used in the next steps
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var connectionName = System.Environment.GetEnvironmentVariable("BING_CONNECTION_NAME");
+
+// Create an instance of AIProjectClient
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Get the Bing connection and create the agent version with Bing grounding tool
+AIProjectConnection bingConnectionName = projectClient.Connections.GetConnection(connectionName: connectionName);
+BingGroundingAgentTool bingGroundingAgentTool = new(new BingGroundingSearchToolOptions(
+    searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnectionName.Id)]
+    )
+);
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful agent.",
+    Tools = { bingGroundingAgentTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: "myAgent",
+    options: new(agentDefinition));
+
+// Helper method to extract and format URL citation annotations
+private static string GetFormattedAnnotation(ResponseItem item)
+{
+    if (item is MessageResponseItem messageItem)
+    {
+        foreach (ResponseContentPart content in messageItem.Content)
+        {
+            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+            {
+                if (annotation is UriCitationMessageAnnotation uriAnnotation)
+                {
+                    return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                }
+            }
+        }
+    }
+    return "";
+}
+
+// Stream the response from the agent version
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+string annotation = "";
+string text = "";
+
+// Parse the streaming response and output the results
+foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreaming("How does wikipedia explain Euler's Identity?"))
+{
+    if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+    {
+        Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+    }
+    else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.WriteLine($"Delta: {textDelta.Delta}");
+    }
+    else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+    {
+        text = textDoneUpdate.Text;
+    }
+    else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+    {
+        if (annotation.Length == 0)
+        {
+            annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+        }
+    }
+    else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+    {
+        throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+    }
+}
+Console.WriteLine($"{text}{annotation}");
+
+// Clean up resources by deleting the agent version
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+The following REST API examples demonstrate how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to respond to user queries.
+
+# [Grounding with Bing Search](#tab/grounding-with-bing)
+
+```bash
+curl --request POST \
+  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --H "Authorization: Bearer $AGENT_TOKEN" \
+  --H "Content-Type: application/json" \
+  --H "User-Agent: insomnia/11.6.1" \
+  --d '{
+"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
+"input": "How does wikipedia explain Euler's Identity?",
+"tools": [
+  {
+   "type": "bing_grounding",
+   "bing_grounding": {
+    "search_configurations": [
+            {
+                "project_connection_id": "$BING__SEARCH_PROJECT_CONNECTION_ID",
+                "count": 7, 
+                "market": "en-US", 
+                "set_lang": "en", 
+                "freshness": "7d",
+            }
+        ]
+    }
+    ]
+}'
+```
+
+
+# [Grounding with Bing Custom Search (preview)](#tab/grounding-with-bing-custom)
+
+```bash
+curl --request POST \
+  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --H "Authorization: Bearer $AGENT_TOKEN" \
+  --H "Content-Type: application/json" \
+  --H "User-Agent: insomnia/11.6.1" \
+  --d '{
+"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
+"input": "How does wikipedia explain Euler's Identity?",
+"tools": [
+  {
+   "type": "bing_custom_search_preview",
+   "bing_custom_search_preview": {
+        "search_configurations": [
+            {
+                "project_connection_id": "$BING__SEARCH_PROJECT_CONNECTION_ID",
+                "instance_name": "$BING_CUSTOM_SEARCH_INSTANCE_NAME",                         
+                "count": 7, 
+                "market": "en-US", 
+                "set_lang": "en", 
+                "freshness": "7d",
+            }
+        ]
+    }
+    ]
+}'
+```
+
+
+---
+
+:::zone-end
+
+:::zone pivot="typescript"
+The following TypeScript examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries. For JavaScript examples, see the [agent tools JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools) in the Azure SDK for JavaScript repository on GitHub.
+
+# [Grounding with Bing Search](#tab/grounding-with-bing)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const bingProjectConnectionId =
+  process.env["BING_PROJECT_CONNECTION_ID"] || "<bing project connection id>";
+
+export async function main(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  console.log("Creating agent with Bing grounding tool...");
+
+  const agent = await project.agents.createVersion("MyBingGroundingAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "You are a helpful assistant.",
+    tools: [
+      {
+        type: "bing_grounding",
+        bing_grounding: {
+          search_configurations: [
+            {
+              project_connection_id: bingProjectConnectionId,
+            },
+          ],
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Send request that requires current information from the web
+  console.log("\nSending request to Bing grounding agent with streaming...");
+  const streamResponse = await openAIClient.responses.create(
+    {
+      input: "What is today's date and weather in Seattle?",
+      stream: true,
+    },
+    {
+      body: {
+        agent: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+
+  // Process the streaming response
+  for await (const event of streamResponse) {
+    if (event.type === "response.created") {
+      console.log(`Follow-up response created with ID: ${event.response.id}`);
+    } else if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_text.done") {
+      console.log("\n\nFollow-up response done!");
+    } else if (event.type === "response.output_item.done") {
+      if (event.item.type === "message") {
+        const item = event.item;
+        if (item.content && item.content.length > 0) {
+          const lastContent = item.content[item.content.length - 1];
+          if (lastContent.type === "output_text" && lastContent.annotations) {
+            for (const annotation of lastContent.annotations) {
+              if (annotation.type === "url_citation") {
+                console.log(
+                  `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+                );
+              }
+            }
+          }
+        }
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\nFollow-up completed!");
+    }
+  }
+
+  // Clean up resources by deleting the agent version
+  // This prevents accumulation of unused resources in your project
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nBing grounding agent sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+# [Grounding with Bing Custom Search (preview)](#tab/grounding-with-bing-custom)
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as readline from "readline";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const bingCustomSearchProjectConnectionId =
+  process.env["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"] ||
+  "<bing custom search project connection id>";
+const bingCustomSearchInstanceName =
+  process.env["BING_CUSTOM_SEARCH_INSTANCE_NAME"] || "<bing custom search instance name>";
+
+export async function main(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  console.log("Creating agent with Bing Custom Search tool...");
+
+  const agent = await project.agents.createVersion("MyAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions:
+      "You are a helpful agent that can use Bing Custom Search tools to assist users. Use the available Bing Custom Search tools to answer questions and perform tasks.",
+    tools: [
+      {
+        type: "bing_custom_search_preview",
+        bing_custom_search_preview: {
+          search_configurations: [
+            {
+              project_connection_id: bingCustomSearchProjectConnectionId,
+              instance_name: bingCustomSearchInstanceName,
+            },
+          ],
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Prompt user for input
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const userInput = await new Promise<string>((resolve) => {
+    rl.question(
+      "Enter your question for the Bing Custom Search agent (e.g., 'Tell me more about foundry agent service'): \n",
+      (answer) => {
+        rl.close();
+        resolve(answer);
+      },
+    );
+  });
+
+  // Send initial request that will trigger the Bing Custom Search tool
+  console.log("\nSending request to Bing Custom Search agent with streaming...");
+  const streamResponse = await openAIClient.responses.create(
+    {
+      input: userInput,
+      stream: true,
+    },
+    {
+      body: {
+        agent: { name: agent.name, type: "agent_reference" },
+      },
+    },
+  );
+
+  // Process the streaming response
+  for await (const event of streamResponse) {
+    if (event.type === "response.created") {
+      console.log(`Follow-up response created with ID: ${event.response.id}`);
+    } else if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_text.done") {
+      console.log("\n\nFollow-up response done!");
+    } else if (event.type === "response.output_item.done") {
+      if (event.item.type === "message") {
+        const item = event.item;
+        if (item.content && item.content.length > 0) {
+          const lastContent = item.content[item.content.length - 1];
+          if (lastContent.type === "output_text" && lastContent.annotations) {
+            for (const annotation of lastContent.annotations) {
+              if (annotation.type === "url_citation") {
+                console.log(
+                  `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+                );
+              }
+            }
+          }
+        }
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\nFollow-up completed!");
+    }
+  }
+
+  // Clean up resources by deleting the agent version
+  // This prevents accumulation of unused resources in your project
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nBing Custom Search agent sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+---
 
 :::zone-end
 
@@ -221,7 +659,7 @@ Grounding with Bing returns relevant search results to the customer's model depl
 > [!NOTE]
 > When you use Grounding with Bing Search or Grounding with Bing Custom Search, the only information sent to Bing is the Bing search query, tool parameters, and your resource key. The service doesn't send any end user-specific information. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
-The authorization happens between the Grounding with Bing Search or Grounding with Bing Custom Search service and Foundry Agent Service. Any Bing search query that the service generates and sends to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and doesn't have the same compliance standards and certifications as the Agent Service, as described in the [Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise). It's your responsibility to assess whether the use of Grounding with Bing Search or Grounding with Bing Custom Search in your agent meets your needs and requirements.
+Authorization happens between the Grounding with Bing Search or Grounding with Bing Custom Search service and Foundry Agent Service. Any Bing search query that the service generates and sends to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and doesn't have the same compliance standards and certifications as the Agent Service, as described in the [Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise). It's your responsibility to assess whether the use of Grounding with Bing Search or Grounding with Bing Custom Search in your agent meets your needs and requirements.
 
 Transactions with your Grounding with Bing resource are counted by the number of tool calls per run. You can see how many tool calls are made from the run step.
 
@@ -237,7 +675,7 @@ According to Grounding with Bing's [terms of use and use and display requirement
 
 Grounding with Bing Custom Search is a powerful tool that you can use to select a subspace of the web to limit your Agent’s grounding knowledge. Here are a few tips to help you take full advantage of this capability: 
 
-- If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
+- If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
 - You need at least the contributor role for the Bing Custom Search resource to create a configuration.
 - You can only block certain domains and perform a search against the rest of the web (a competitor's site, for example). 
 - Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing. 
@@ -264,7 +702,7 @@ Admins can use RBAC role assignments to enable or disable the use of Grounding w
 
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 
-1. The Admin needs to have "Owner" or "Contributor" role in your subscription.
-1. The Admin can then delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resources in the subscription.
-1. The Admin should then unregister the `Microsoft.Bing` resource provider in your subscription (you can't unregister before deleting all resources).  See the [Azure Resource Manager documentation](/azure/azure-resource-manager/management/resource-providers-and-types) for more information about unregistering. 
-1. Next, the Admin should create an Azure Policy to disallow creation of Grounding with Bing Search and/or Grounding with Bing Custom Search resources in their subscription, following the sample [here](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
+1. The admin needs to have the **Owner** or **Contributor** role in your subscription.
+1. The admin can then delete all Grounding with Bing Search and Grounding with Bing Custom Search resources in the subscription.
+1. The admin should then unregister the `Microsoft.Bing` resource provider in your subscription (you can't unregister before deleting all resources). For more information, see the [Azure Resource Manager documentation](/azure/azure-resource-manager/management/resource-providers-and-types). 
+1. Next, the admin should create an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the sample [here](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
