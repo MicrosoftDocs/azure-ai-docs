@@ -13,6 +13,8 @@ ms.topic: quickstart
 ms.date: 12/11/2025
 ---
 
+# Quickstart: Create a skillset in the Azure portal
+
 > [!IMPORTANT]
 > The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](search-import-data-portal.md).
 
