@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> Code uses **Agents v2 API (preview)** and is incompatible with Agents v1.
+> Code uses **Foundry project (new) API (preview)** and is incompatible with the Foundry project (classic) API.

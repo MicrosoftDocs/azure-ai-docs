@@ -3,8 +3,8 @@ title: How to use the Voice live API
 titleSuffix: Foundry Tools
 description: Learn how to use the Voice live API for real-time voice agents.
 manager: nitinme
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
@@ -50,7 +50,7 @@ The Voice live API supports two authentication methods:
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
-- Assign the `Cognitive Services User` role to your user account or a managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+- Assign the `Cognitive Services User` and `Azure AI User` role to your user account or a managed identity. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 - Generate a token using the Azure CLI or Azure SDKs. The token must be generated with the `https://ai.azure.com/.default` scope, or the legacy `https://cognitiveservices.azure.com/.default` scope.
 - Use the token in the `Authorization` header of the WebSocket connection request, with the format `Bearer <token>`.
 

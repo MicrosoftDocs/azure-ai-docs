@@ -39,11 +39,11 @@ This article describes how to create a Foundry project in [Microsoft Foundry](ht
     * Evaluations
     * Fine-tuning
     * OpenAI SDK and API including Batch and Stored Completions
-    * AI Services
+    * Foundry Tools
 
 * Do you need access to open-source models or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
 
-* See [Types of projects](../what-is-azure-ai-foundry.md#project-types) for more information on the different project types.
+* See [Types of projects](../what-is-azure-ai-foundry.md#types-of-projects) for more information on the different project types.
 
 ::: moniker-end
 
@@ -59,7 +59,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 :::moniker range="foundry-classic"
-- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create a Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create a Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource) to create your project.
 :::moniker-end
 
 :::moniker range="foundry"
@@ -80,7 +80,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
     1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
     1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
     
-        :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_client":::
+        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
 
     1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
             
@@ -104,7 +104,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
     1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
     1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
     
-        :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_client":::
+        :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
 
     1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
             
@@ -182,7 +182,7 @@ To create a Foundry project:
 
 - Add this code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
-    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_resource_project":::
+    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
 
 
 # [Azure CLI](#tab/azurecli)
@@ -222,7 +222,7 @@ To create a Foundry project:
     ```
 ---
 
-## <a name="create-multiple"></a> Create multiple projects on the same resource
+## Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
 
@@ -248,7 +248,7 @@ On the **Home** page, you see the project endpoint and API key for the project. 
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="show_project":::
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="show_project":::
 
 # [Azure CLI](#tab/azurecli)
 

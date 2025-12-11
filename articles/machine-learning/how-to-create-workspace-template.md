@@ -10,7 +10,7 @@ ms.custom: devx-track-azurepowershell, devx-track-arm-template, devx-track-azure
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: deeikele
-ms.date: 10/22/2025
+ms.date: 11/26/2025
 #Customer intent: As a DevOps deployment manager, I want to automate or customize the creation of Azure Machine Learning by using templates.
 ---
 
@@ -202,7 +202,7 @@ To get the values for the `cmk_keyvault` (the ID of the key vault) and the `reso
     # [Azure PowerShell](#tab/azpowershell)    
     
     ```azurepowershell    
-    Get-AzureRMKeyVault -VaultName '<keyvault-name>'    
+    Get-AzKeyVault -VaultName '<keyvault-name>'    
     ```    
     ---    
 

@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 10/25/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
@@ -48,7 +48,7 @@ token = os.getenv("<TOKEN>")
 subscription = "<YOUR_SUBSCRIPTION_ID>"  
 resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name = "gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-21"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -58,7 +58,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
             "version": "1"
         }
     }
@@ -84,7 +84,7 @@ print(r.json())
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 ### Cross region deployment
 
@@ -112,7 +112,7 @@ source_resource = "<SOURCE_RESOURCE>"
 
 source = f'/subscriptions/{source_subscription}/resourceGroups/{source_resource_group}/providers/Microsoft.CognitiveServices/accounts/{source_resource}'
 
-model_deployment_name = "gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name = "gpt-4.1-mini-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-21"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -124,7 +124,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-35-turbo-0125.ft-0ab3f80e4f2242929258fff45b56a9ce 
+            "name": <"FINE_TUNED_MODEL_NAME">, # This value will look like gpt-4.1-mini-2025-04-14.ft-0ab3f80e4f2242929258fff45b56a9ce
             "version": "1",
             "source": source
         }
@@ -222,7 +222,7 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 
 ### Cross region deployment
@@ -327,7 +327,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo-ft", # model = "Custom deployment name you chose for your fine-tuning model"
+    model="gpt-4.1-mini-ft", # model = "Custom deployment name you chose for your fine-tuning model"
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
@@ -366,16 +366,14 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 [Standard deployments](../../foundry-models/concepts/deployment-types.md) provide a pay-per-token billing model with data residency confined to the deployed region.
 
-| Models             | East US2 | North Central US | Sweden Central | Switzerland West |
-|--------------------|:--------:|:----------------:|:--------------:|:----------------:|
-|o4-mini             | ✅       |                  | ✅             |                  |
-|GPT-4.1             |          | ✅               | ✅             |                  |
-|GPT-4.1-mini        |          | ✅               | ✅             |                  |
-|GPT-4.1-nano        |          | ✅               | ✅             |                  |
-|GPT-4o              | ✅       |                  | ✅             |                  |
-|GPT-4o-mini         |          | ✅               | ✅             |                  |
-|GPT-35-Turbo (1106) | ✅       | ✅               | ✅             | ✅               |
-|GPT-35-Turbo (0125) | ✅       | ✅               | ✅             | ✅               |
+| Models             | East US2 | North Central US | Sweden Central |
+|--------------------|:--------:|:----------------:|:--------------:|
+|o4-mini             | ✅       |                  | ✅             |
+|GPT-4.1             |          | ✅               | ✅             |
+|GPT-4.1-mini        |          | ✅               | ✅             |
+|GPT-4.1-nano        |          | ✅               | ✅             |
+|GPT-4o              | ✅       |                  | ✅             |
+|GPT-4o-mini         |          | ✅               | ✅             |
 
 ### Global Standard
 
@@ -401,6 +399,7 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 * GPT-4.1
 * GPT-4.1-mini
 * GPT-4.1-nano
+* o4-mini
 
 
 ### Provisioned Throughput
@@ -434,5 +433,4 @@ You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azur
 
 ## Next steps
 
-- [Azure OpenAI Quotas & limits](./quota.md)
 - [Azure OpenAI deployment types](../../foundry-models/concepts/deployment-types.md)

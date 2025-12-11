@@ -126,7 +126,7 @@ These represent the limits when Prebuilt API is used to *Generate response* or c
 > Support for unstructured file/content and is available only in question answering.
 
 ## Alterations limits
-[Alterations](/rest/api/qnamaker/alterations/replace) do not allow these special characters: ',', '?', ':', ';', '\"', '\'', '(', ')', '{', '}', '[', ']', '-', '+', '.', '/', '!', '*', '-', '_', '@', '#'
+[Alterations](/azure/ai-services/language-service/question-answering/how-to/migrate-qnamaker-to-question-answering) do not allow these special characters: ',', '?', ':', ';', '\"', '\'', '(', ')', '{', '}', '[', ']', '-', '+', '.', '/', '!', '*', '-', '_', '@', '#'
 
 ## Next steps
 

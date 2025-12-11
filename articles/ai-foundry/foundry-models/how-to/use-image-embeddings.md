@@ -5,7 +5,7 @@ description: Learn how to generate image embeddings with Microsoft Foundry Model
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: malpande
@@ -15,6 +15,8 @@ zone_pivot_groups: azure-ai-inference-samples
 ---
 
 # How to generate image embeddings with Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 
 ::: zone pivot="programming-language-python"

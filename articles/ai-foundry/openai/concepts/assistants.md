@@ -14,6 +14,8 @@ recommendations: false
 
 # Azure OpenAI Assistants API (Preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
 Assistants, a feature of Azure OpenAI in Microsoft Foundry Models, is designed to make it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.

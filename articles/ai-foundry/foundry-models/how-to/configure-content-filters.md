@@ -20,6 +20,10 @@ ai-usage: ai-assisted
 
 # How to configure content filters for models in Microsoft Foundry
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-content-filters/portal.md)]
 ::: zone-end

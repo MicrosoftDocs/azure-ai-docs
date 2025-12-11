@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/06/2025
+ms.date: 11/19/2025
 ---
 
 # Semantic ranking in Azure AI Search
@@ -150,9 +150,9 @@ Charges for semantic ranker are levied when query requests include `queryType=se
 
 1. [Check regional availability](search-region-support.md).
 
-1. [Sign in to Azure portal](https://portal.azure.com) to verify your search service is Basic or higher.
+1. [Sign in to Azure portal](https://portal.azure.com).
 
-1. [Configure semantic ranker for the search service, choosing a pricing plan](semantic-how-to-enable-disable.md).
+1. [Configure semantic ranker for the search service, choosing a pricing plan](semantic-how-to-enable-disable.md). The free plan is the default.
 
 1. [Configure semantic ranker in a search index](semantic-how-to-configure.md).
 

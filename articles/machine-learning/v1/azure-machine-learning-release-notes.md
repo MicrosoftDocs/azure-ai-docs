@@ -19,6 +19,15 @@ In this article, learn about Azure Machine Learning Python SDK releases. For the
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes%22&locale=en-us`
 
+## 2025-11-26
+### Azure Machine Learning SDK for Python v1.61.0
+  + **azureml-core**
+    + python 3.10 is the minimum supported version now for all automl packages
+    + Customers will see a clear and more granuler error detail when they try creating a file with length more than 255 chars.
+    + The fileNameTooLong error would be logged as well as classified as a User error after this change.
+    + The fileNameTooLong error would be logged as well as classified as a User error after this change.
+    + Added retry to internal dataset flow
+
 ## 2025-04-15
 ### Azure Machine Learning SDK for Python v1.60.0
 Lightgbm, onnxmltools were upgraded to fix security vulnerabilities.

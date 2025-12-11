@@ -8,7 +8,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 11/20/2025
 ai-usage: ai-assisted
 ---
 
@@ -75,9 +75,9 @@ You can also use this parameter to exclude certain types of data, keeping memory
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md). Ensure your project's managed identity has the **Azure AI User** role on its parent resource, which allows the memory runtime to invoke your model deployments for memory-related operations.
 - [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - Python 3.8 or later with [configured environment](../../../quickstarts/get-started-code.md?tabs=python), or access to the REST API.

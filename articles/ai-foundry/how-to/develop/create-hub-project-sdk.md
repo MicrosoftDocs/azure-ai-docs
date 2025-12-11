@@ -13,14 +13,16 @@ author: sdgilley
 
 # Create a hub using the Azure Machine Learning SDK and CLI
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to create the following [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
 - A Foundry hub
-- A Foundry Tools connection
+- A Microsoft Foundry connection
 
 > [!NOTE]
-> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#types-of-projects).
 
 ## Prerequisites
 
@@ -48,7 +50,7 @@ Use the following tabs to select whether you're using the Python SDK or Azure CL
 
 ---
 
-## Create the Foundry hub and AI Services connection
+## Create the Foundry hub and Microsoft Foundry connection
 
 Use the following examples to create a new hub. Replace example string values with your own values:
 
@@ -94,12 +96,12 @@ After creating your own [Foundry resource](../../../ai-services/multi-service-re
 
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-2. Use `ml_client` to create the connection to your AI Services.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For a Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the Url for the endpoint.
+2. Use `ml_client` to create the connection to your Foundry Tools.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For a Foundry resource, use the **Foundry Tools** endpoint. For Azure AI Search, use the Url for the endpoint.
 
     ```python
     from azure.ai.ml.entities import AzureAIServicesConnection
 
-    # construct an AI Services connection
+    # construct a Foundry connection
     my_connection_name = "myaiservivce" # any name you want
     aiservices_resource_name = <resource_name> # copy from Azure portal
     my_endpoint = "<endpoint>" # copy from Azure portal
@@ -121,14 +123,14 @@ After creating your own [Foundry resource](../../../ai-services/multi-service-re
 az ml connection create --file {connection.yml} --resource-group {my_resource_group} --workspace-name {my_hub_name}
 ```
 
-You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [AI Services connection YAML schema](/azure/machine-learning/reference-yaml-connection-ai-services):
+You can use either an API key or credential-less YAML configuration file. For more information on the YAML configuration file, see the [Foundry Tools connection YAML schema](/azure/machine-learning/reference-yaml-connection-ai-services):
 
 - API Key example:
 
     ```yml
     name: myazai_ei
     type: azure_ai_services
-    endpoint: <endpoint for your AI Services>
+    endpoint: <endpoint for your Foundry Tools>
     api_key: XXXXXXXXXXXXXXX
     ai_services_resource_id: <fully_qualified_resource_id>
     ```
@@ -138,7 +140,7 @@ You can use either an API key or credential-less YAML configuration file. For mo
     ```yml    
     name: myazai_apk
     type: azure_ai_services
-    endpoint: <endpoint for your AI Services>
+    endpoint: <endpoint for your Foundry Tools>
     ai_services_resource_id: <fully_qualified_resource_id>
     ```
 

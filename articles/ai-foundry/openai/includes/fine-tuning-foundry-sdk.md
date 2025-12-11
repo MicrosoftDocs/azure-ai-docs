@@ -15,9 +15,9 @@ ms.custom:
 
 ## Prerequisites
 
-- Read the [When to use AI Foundry fine-tuning guide](../concepts/fine-tuning-considerations.md).
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An AI Foundry project resource. Sign in to the [AI Foundry portal](https://ai.azure.com) to create one.
+- Read the [When to use Foundry fine-tuning guide](../concepts/fine-tuning-considerations.md).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A Foundry project resource. Sign in to the [Foundry portal](https://ai.azure.com) to create one.
 - The following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
 - Fine-tuning access requires the **Azure AI User** role.
 - If you don't already have access to view quota and deploy models in Microsoft Foundry portal, you require [more permissions](../how-to/role-based-access-control.md).
@@ -371,6 +371,9 @@ If you're ready to deploy for production or have particular data residency needs
 ## Continuous fine-tuning
 
 Once you have created a fine-tuned model you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
+
+> [!NOTE]
+> Continuous fine-tuning is only supported for OpenAI models.
 
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 

@@ -12,6 +12,8 @@ ms.service: azure-ai-foundry
 
 # Migrate from hub-based to Foundry projects
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
 Microsoft Foundry is transitioning to a unified platform-as-a-service, replacing the previous resource model that required management of multiple Azure services. As we see AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
@@ -25,7 +27,7 @@ Microsoft Foundry is transitioning to a unified platform-as-a-service, replacing
 > [!IMPORTANT]
 > New generative AI and model-centric features are available only through the Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.  For a comparison of capabilities, see [What type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
-## <a name="overview"></a> New Foundry projects overview
+## New Foundry projects overview
 
 Foundry projects are designed to unify and simplify the composition of developer workflows, and the management of core building blocks of AI applications:
 
@@ -72,20 +74,20 @@ Limitations:
 
 In the following sections, we walk through how you can move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s:
 
-1. [Locate your existing Foundry resource](#locate)
-1. [Create a new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](#create-project) on the AI resource.
+1. [Locate your existing Foundry resource](#1-locate-your-existing-foundry-resource)
+1. [Create a new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](#2-create-your-new-project) on the AI resource.
 
 Once you have your new project, you might want to:
 
-- (Optional) [Recreate connections](#recreate-connections)
-- (Optional) [Migrate agents](#migrate-agents)
+- (Optional) [Recreate connections](#optional-recreate-connections)
+- (Optional) [Migrate agents](#optional-migrate-code-agents)
 
-## <a name="locate"></a> 1. Locate your existing Foundry resource
+## 1. Locate your existing Foundry resource
 
 Most Foundry users already have an 'Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
 
 > [!NOTE]
-> If you don't have an existing Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#create-project) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
+> If you don't have an existing Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#2-create-your-new-project) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
@@ -103,7 +105,7 @@ Most Foundry users already have an 'Foundry' (formerly called 'AI Services') res
 # [Azure portal](#tab/azure)
 
 1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
-1.  Locate your resource with 'Foundry' resource type. (This resource type used to be shown as 'AI Services.')
+1.  Locate your resource with 'Foundry' resource type. (This resource type used to be shown as 'Foundry Tools.')
 
     :::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Foundry resource in Azure portal.":::
 
@@ -117,7 +119,7 @@ Most Foundry users already have an 'Foundry' (formerly called 'AI Services') res
 
 --- 
 
-## <a name="create-project"></a> 2. Create your new project
+## 2. Create your new project
 
 New capabilities, including Agent service, are only accessible via projects, which organize your development work as a folder for each use case. You can create multiple of them, to organize the work for use cases with similar setup and connectivity requirements.
 
@@ -152,11 +154,11 @@ You can create a new project in one of two ways:
 
 # [Bicep](#tab/bicep)
 
-1. In your template, a project is declared as a child resource under your Foundry resource as shown in [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization).
+1. In your template, a project is declared as a child resource under your Foundry resource as shown in [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/42-basic-agent-setup-with-customization).
 
 1. By default, in the basic configuration, Agent service uses deployments and storage capabilities that come with your Foundry resource.
 
-1. Optionally, Agent service supports the ability to use existing Azure OpenAI resources for model deployments, and to bring your own storage resources for storing threads, messages, and files. This is also referred as 'Standard' setup. See [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization) for reference Bicep templates.
+1. Optionally, Agent service supports the ability to use existing Azure OpenAI resources for model deployments, and to bring your own storage resources for storing threads, messages, and files. This is also referred as 'Standard' setup. See [this example](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization) for reference Bicep templates.
 
 ---
 
@@ -164,7 +166,7 @@ You're now ready to start building agents in general availability and with the l
 
 :::image type="content" source="../media/migrate-project/agent-playground.png" alt-text="Screenshot of agent building interface.":::
 
-## <a name="recreate-connections"></a> (Optional) Recreate connections
+## (Optional) Recreate connections
 
 If your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] used connections to access tools, data sources, or models, you can recreate those connections on your Foundry resource, without the use of a hub.
 
@@ -178,13 +180,13 @@ You can't add connections in the Azure portal.  Use either the Foundry portal or
 
 # [Bicep](#tab/bicep)
 
-If you prefer using Bicep templates, see [this repository with examples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections).
+If you prefer using Bicep templates, see [this repository with examples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections).
 
 Connections are now defined as instances of type *CognitiveServices/account/connections,* and *CognitiveServices/account/project/connections.* Choose account-level connections for shared access across projects.
 
 ---
 
-## <a name="migrate-agents"></a> (Optional) Migrate code agents
+## (Optional) Migrate code agents
 
 Any code agents build using the preview of Agent service require the following upgrades as you move to Agent service in general availability on Foundry projects:
 
@@ -233,7 +235,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Select **Delete** to delete the hub and all its associated projects.
 
 > [!CAUTION]
-> Make sure you don't delete the Foundry (AI Services) resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
+> Make sure you don't delete the Foundry (Foundry Tools) resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
 
 # [Bicep](#tab/bicep)
 
@@ -251,8 +253,8 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 
 - [Foundry rollout across my organization](/azure/ai-foundry/concepts/planning)
 
-- [Sample Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+- [Sample Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections)
 
-- [Sample Terraform templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform)
+- [Sample Terraform templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform/)
 
 - [SDK Migration guide](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/AGENTS_MIGRATION_GUIDE.md)

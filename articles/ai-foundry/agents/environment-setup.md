@@ -9,12 +9,14 @@ ms.reviewer: fosteramanda
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 06/18/2025
+ms.date: 12/04/2025
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
 ---
 
 # Set up your environment
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Creating your first agent with Foundry Agent Service is a two-step process: 
 1. Set up your agent environment.
@@ -100,7 +102,19 @@ By default, the deployment template is configured with the following values:
 | modelLocation    | eastus         |
 
 ### What's next?
+
+:::moniker range="foundry-classic"
+
 * [Create your first agent](quickstart.md)
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+* [Create your first agent](../quickstarts/get-started-code.md)
+
+:::moniker-end
+
 * Explore more:
     * [Use your existing resources](how-to\use-your-own-resources.md)
     * [Network secured agent setup](how-to\virtual-networks.md)

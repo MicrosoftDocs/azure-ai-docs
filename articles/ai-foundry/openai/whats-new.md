@@ -4,7 +4,7 @@ description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
-ms.date: 09/10/2025
+ms.date: 11/10/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: whats-new
@@ -16,6 +16,8 @@ ms.custom:
 ---
 
 # What's new in Azure OpenAI in Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 

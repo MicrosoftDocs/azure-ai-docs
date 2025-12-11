@@ -16,6 +16,8 @@ author: msakande
 
 # Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing 
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Microsoft Foundry Models include a comprehensive catalog of models organized into two categories—models sold directly by Azure, and [models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
 
 
@@ -127,7 +129,7 @@ The following sections list the supported models for managed compute deployment 
 | [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | Embeddings |
 | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
 
-### Mercury
+### Inception Labs
 
 | Model | Task |
 |--|--|

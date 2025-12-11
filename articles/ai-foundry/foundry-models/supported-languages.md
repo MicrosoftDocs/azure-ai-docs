@@ -7,16 +7,18 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
-ms.date: 08/29/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.reviewer: achand
+reviewer: achandmsft
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer building AI applications with Microsoft Foundry Models, I want to know which programming languages and SDKs are supported for Microsoft Foundry Models so that I can choose the right tools for my application development.
 ---
 
 # Supported programming languages for Azure AI Inference SDK
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
 

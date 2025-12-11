@@ -16,26 +16,26 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [Python](#tab/python2)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-chat-with-agent.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-chat-with-agent.py":::
 
 # [C#](#tab/csharp2)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-chat-with-agent.cs":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-chat-with-agent.cs":::
 
 <!-- # [TypeScript](#tab/typescript) -->
 
-<!-- :::code language="typescript" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/typescript/quickstart/src/quickstart.ts"::: -->
+<!-- :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart.ts"::: -->
 
 <!-- # [Java](#tab/java) -->
 
-<!-- :::code language="java" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" ::: -->
+<!-- :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" ::: -->
 
 
 # [REST API](#tab/rest2)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-chat-with-agent.sh":::
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-chat-with-agent.sh":::
 
 # [Microsoft Foundry portal](#tab/portal)
 

@@ -11,12 +11,12 @@ ms.devlang: csharp
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 07/10/2025
+ms.date: 12/05/2025
 ---
 
 # Create a search app in ASP.NET Core
 
-In this tutorial, you create a basic ASP.NET Core (Model-View-Controller) app that runs in localhost and connects to the hotels-sample-index on your search service. You learn how to:
+In this tutorial, you create a basic ASP.NET Core (Model-View-Controller) app that runs in localhost and connects to the [hotels-sample-index](search-get-started-portal.md) on your search service. You learn how to:
 
 > [!div class="checklist"]
 > + Create a basic search page

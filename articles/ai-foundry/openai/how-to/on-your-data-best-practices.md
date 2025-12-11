@@ -15,6 +15,8 @@ recommendations: false
 
 # Troubleshooting and best practices for Azure OpenAI On Your Data
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 This article can help guide you through common problems in developing a solution by using Azure OpenAI in Microsoft Foundry Models On Your Data, a feature that allows you to use the power of OpenAI models with your own data. By following the best practices and tips in this article, you can optimize your output with Azure OpenAI On Your Data and achieve the best AI quality possible.
 
 ## Azure OpenAI On Your Data: Workflow

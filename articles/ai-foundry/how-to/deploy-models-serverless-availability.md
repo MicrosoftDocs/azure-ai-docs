@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Learn about the regions where each model is available for deployment in serverless APIs via Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 11/24/2025
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
@@ -17,6 +17,8 @@ ms.custom:
 ---
 
 # Region availability for models in serverless APIs
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 In this article, you learn about which regions are available for each of the models supporting serverless API deployments.
 

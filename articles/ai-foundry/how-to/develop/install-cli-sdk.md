@@ -74,7 +74,7 @@ Install [Node.js](https://nodejs.org/)
 
 ::: zone-end
 
-<a name="installs"></a>
+
 
 ##  Install the Azure CLI and sign in 
 

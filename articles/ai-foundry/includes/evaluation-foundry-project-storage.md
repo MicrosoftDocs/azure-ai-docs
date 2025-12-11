@@ -11,7 +11,7 @@ ms.custom: include file
 
 If this is your first time running evaluations and logging it to your Microsoft Foundry project, you might need to do a few additional steps:
 
-1. Create and connect your storage account to your Foundry project at the resource level. There are two ways you can do this. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
+1. Create and connect your storage account to your Foundry project at the resource level. There are two ways you can do this. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
     ::: moniker range="foundry-classic"
     You can also [manually create and provision access](../how-to/evaluations-storage-account.md) to your storage account in the Azure portal.
     ::: moniker-end

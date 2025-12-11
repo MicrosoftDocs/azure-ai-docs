@@ -16,6 +16,8 @@ recommendations: false
 
 # Azure OpenAI Assistants function calling
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
 The Assistants API supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments.

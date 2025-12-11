@@ -18,7 +18,7 @@ Use AI Gateway in Microsoft Foundry to enforce tokens-per-minute (TPM) rate limi
 
 ## Prerequisites
 
-- Azure subscription ([create one for free](https://azure.microsoft.com/free)) with permission to create or reuse an Azure API Management (APIM) instance.
+- Azure subscription ([create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)) with permission to create or reuse an Azure API Management (APIM) instance.
 - Access to the Foundry portal (**Admin console**) for the target Foundry resource.
 - Reference material for [AI Gateway capabilities in APIM](/azure/api-management/genai-gateway-capabilities).
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.

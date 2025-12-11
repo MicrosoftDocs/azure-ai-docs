@@ -28,6 +28,8 @@ This part two shows you how to enhance a basic chat application by adding [retri
 
 This tutorial is part two of a three-part tutorial.
 
+[!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
+
 ## Prerequisites
 
 [!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
@@ -45,7 +47,7 @@ This tutorial is part two of a three-part tutorial.
 
 The goal with this RAG-based application is to ground the model responses in your custom data. You use an Azure AI Search index that stores vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question.
 
-If you already have a search index with data, you can skip to [Get product documents](#get-documents). Otherwise, you can create a simple example data set to use in your chat app.  
+If you already have a search index with data, you can skip to [Get product documents](#get-product-documents). Otherwise, you can create a simple example data set to use in your chat app.  
 
 Create an **assets** directory and add this example data to a **products.csv** file:
 
@@ -85,7 +87,7 @@ The search index is used to store vectorized data from the embeddings model. The
     python create_search_index.py
     ```
 
-## <a name="get-documents"></a> Get product documents
+## Get product documents
 
 Next, you create a script to get product documents from the search index. The script queries the search index for documents that match a user's question.
 
@@ -123,7 +125,7 @@ Now that you have both the script and template, run the script to test out what 
 python get_product_documents.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-## <a name="develop-code"></a> Develop custom knowledge retrieval (RAG) code
+## Develop custom knowledge retrieval (RAG) code
 
 Next you create custom code to add retrieval augmented generation (RAG) capabilities to a basic chat application.
 
@@ -158,7 +160,7 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
-### <a name="logging"></a> Add telemetry logging
+### Add telemetry logging
 
 To enable logging of telemetry to your project:
 

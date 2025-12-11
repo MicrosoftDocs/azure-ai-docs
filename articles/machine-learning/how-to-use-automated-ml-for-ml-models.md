@@ -126,7 +126,7 @@ When the data asset is ready, Machine Learning studio returns to the **Task type
 
 Follow these steps to complete the job configuration:
 
-1. Expand the **Select task type** dropdown menu, and choose the training model to use for the experiment. The options include classification, regression, time series forecasting, natural language processing (NLP), or computer vision. For more information about these options, see the descriptions of the [supported task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision--nlp).
+1. Expand the **Select task type** dropdown menu, and choose the training model to use for the experiment. The options include classification, regression, time series forecasting, natural language processing (NLP), or computer vision. For more information about these options, see the descriptions of the [supported task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision-and-nlp).
 
 1. After you specify the training model, select your dataset from the list.
 

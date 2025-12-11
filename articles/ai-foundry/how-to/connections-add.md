@@ -31,7 +31,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections). Read the table descriptions below to learn more. 
+Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more. 
 
 ## Prerequisites
 
@@ -49,7 +49,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 | Azure Cosmos DB               | ✅       | Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple geographical regions. Required for Standard Agent deployment. Connection creation only supported through code.              |
 | Azure OpenAI                  |     | Azure OpenAI is a service that provides access to OpenAI's models including the GPT-5, GPT-4o, DALLE-3, and Embeddings model series with the security and enterprise capabilities of Azure. |
 | Application Insights          |     | Azure Application Insights is a service that enables developers to automatically detect performance anomalies, diagnose issues, and gain deep insights into application usage and behavior. |
-| Azure Key Vault|  | Azure service for securely storing and accessing secrets. (See [limitations](#limits)) |
+| Azure Key Vault|  | Azure service for securely storing and accessing secrets. (See limitations below) |
 | Foundry |       | Connect to other Foundry resources.|
 | OpenAI |       | Connect to your OpenAI  models. |
 | Serp |       | Serp connects to Search Engine Results Pages (SERP) for real-time data access. Supports scenarios that need the latest search results.|
@@ -74,7 +74,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 | Azure Cosmos DB               | ✅       | Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple geographical regions. Required for Standard Agent deployment. Connection creation not supported in Foundry Management center.               |
 | Azure OpenAI                  |     | Azure OpenAI is a service that provides access to OpenAI's models including the GPT-5, GPT-4o, DALLE-3, and Embeddings model series with the security and enterprise capabilities of Azure. |
 | Application Insights          |    | Azure Application Insights is a service that enables developers to automatically detect performance anomalies, diagnose issues, and gain deep insights into application usage and behavior. |
-| Azure Key Vault|  | Azure service for securely storing and accessing secrets. (See [limitations](#limits)) |
+| Azure Key Vault|  | Azure service for securely storing and accessing secrets. (See limitations below) |
 | Foundry |      | Connect to other Foundry resources.|
 | OpenAI |       | Connect to your OpenAI  models. |
 | Serp |       | Serp connects to Search Engine Results Pages (SERP) for real-time data access. Supports scenarios that need the latest search results.|
@@ -89,7 +89,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ::: moniker-end
 
-<a name="limits"></a>
+
 
 ### Azure Key Vault limitations
 
@@ -105,9 +105,13 @@ Foundry stores connections details in a managed Azure Key Vault if no Key Vault 
 
 It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in Foundry Playground is currently not supported.
 
-## <a name="create-a-new-connection"></a> Create a new connection in Foundry portal
+## Create a new connection 
 
-Follow these steps to create a new connection that's only available for the current project.
+Use the portal or a Bicep template to add a connection.
+
+# [Foundry portal](#tab/foundry-portal)
+
+Follow these steps to create a new connection that's available for the current project.
 
 ::: moniker range="foundry-classic"
 
@@ -150,6 +154,12 @@ Follow these steps to create a new connection that's only available for the curr
 
 ::: moniker-end
 
+# [Bicep](#tab/bicep)
+
+See [Connection templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) for examples of common connection templates.
+
+---
+
 ## Network isolation
 
 For end-to-end [network isolation](configure-private-link.md) with Foundry, you need private endpoints to connect to your connected resource. For example, if your Azure Storage account is set to public network access as __Disabled__, then a private endpoint should be deployed in your virtual network to access in Foundry. 
@@ -170,4 +180,6 @@ For more on how to set private endpoints to your connected resources, see the fo
 ## Related content
 
 - [How to create vector indexes](../how-to/index-add.md)
+:::moniker range="foundry-classic"
 - [How to configure a managed network](configure-managed-network.md)
+:::moniker-end

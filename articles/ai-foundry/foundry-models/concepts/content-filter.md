@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 
 # Content filtering for Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 
 > [!IMPORTANT]
 > The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).

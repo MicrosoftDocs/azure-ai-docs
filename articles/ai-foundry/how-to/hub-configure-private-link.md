@@ -22,6 +22,8 @@ ai-usage: ai-assisted
 
 # How to configure a private link for Microsoft Foundry
 
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
 > [!TIP]
 > An alternate Foundry project-focused version is available: [How to configure a private link for Microsoft Foundry projects](configure-private-link.md).
 
