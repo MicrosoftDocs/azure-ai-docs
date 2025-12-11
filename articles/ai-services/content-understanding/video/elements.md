@@ -2,8 +2,8 @@
 title: "AudioVisual analysis: extracting structured content with Azure Content Understanding in Foundry Tools"
 titleSuffix: Foundry Tools
 description: Learn about Azure Content Understanding in Foundry Tools's audiovisual analysis and content extraction capabilities for both audio and video inputs
-author: laujan
-ms.author: paulhsu
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding

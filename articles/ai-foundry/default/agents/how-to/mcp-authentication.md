@@ -90,6 +90,9 @@ Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom
 
 #### Bring your own Microsoft Entra app registration
 
+> [!NOTE]
+> Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
+
 To use with Microsoft services and identity passthrough, you can bring your own [Microsoft Entra app registration](/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you can control what permissions you give to your Entra app. Let's use the Agents 365 MCP server as an example:
 1. Follow the [app registration guide](/entra/identity-platform/quickstart-register-app) to create a Microsoft Entra app and get the client ID and client secret. 
 

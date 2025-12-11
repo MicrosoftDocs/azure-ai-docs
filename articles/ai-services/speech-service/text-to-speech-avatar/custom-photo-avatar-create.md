@@ -7,8 +7,8 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 11/24/2025
-ms.author: melindam
-author: melindam
+ms.author: pafarley
+author: PatrickFarley
 zone_pivot_groups: foundry-speech-studio
 ---
 

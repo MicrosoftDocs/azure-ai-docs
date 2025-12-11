@@ -2,13 +2,13 @@
 title: The Whisper model from OpenAI
 titleSuffix: Foundry Tools
 description: In this article, you learn about the Whisper model from OpenAI that you can use for speech to text and speech translation.
-author: goergenj
+author: PatrickFarley
 reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 10/21/2025
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 #Customer intent: As a developer, I want to learn about the Whisper model from OpenAI that I can use for speech to text and speech translation.
 ---
