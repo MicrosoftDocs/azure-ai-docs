@@ -54,7 +54,3 @@ In this quickstart, you send queries to a chat completion model for a conversati
 [!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-rag-typescript.md)]
 
 ::: zone-end
-
-## Related content
-
-- [Tutorial: Build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md)

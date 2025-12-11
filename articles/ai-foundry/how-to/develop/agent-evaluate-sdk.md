@@ -75,7 +75,7 @@ pip install azure-ai-evaluation
 Install the package from the Azure AI evaluation SDK:
 
 ```python
-    pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
+pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
 ```
 
 Set these environment variables with your values in a `.env` file:
@@ -1251,7 +1251,7 @@ Try a sample for each of these evaluators:
 
 ::: moniker range="foundry"
 
-Try a sample for each of these evaluators in the [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/).
+Try a sample for each of these evaluators in the [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators).
 
 ::: moniker-end
 
