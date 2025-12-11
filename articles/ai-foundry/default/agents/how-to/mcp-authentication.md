@@ -90,11 +90,11 @@ Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom
 
 When you set up **custom OAuth**, the following information is needed:
 
-- client id: required, you can find this from your OAuth app
-- client secret: optional depending if this is required by your OAuth app or not
-- auth url: required, auth url is used for users to log in. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same auth url for all MCP servers and others provide custom auth url for different MCP servers; please review the documentation to make sure you use the proper one. 
-- refresh url: required, refresh url is used to get a refresh token. You can find this from your OAuth app or your MCP server provider documentation. If you don't find a specific refresh url, you can provide the token url. Some providers provide the same refresh url for all MCP servers and others provide custom refresh url for different MCP servers; please review the documentation to make sure you use the proper one. 
-- token url: required, token url is used to get a token. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same token url for all MCP servers and others provide custom token url for different MCP servers; please review the documentation to make sure you use the proper one. 
+- client ID: required, you can find this in your OAuth app
+- client secret: optional depending on if this is required by your OAuth app
+- auth URL: required, the auth URL is used for users to log in. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same auth URL for all MCP servers and others provide a custom auth URL for different MCP servers. Review the documentation to make sure you use the proper one. 
+- refresh URL: required, the refresh URL is used to get a refresh token. You can find this from your OAuth app or your MCP server provider documentation. If you don't find a specific refresh URL, you can provide the token URL. Some providers provide the same refresh URL for all MCP servers and others provide custom refresh URL for different MCP servers. Review the documentation to make sure you use the proper one. 
+- token URL: required, the token URL is used to get a token. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same token URL for all MCP servers and others provide custom token URL for different MCP servers; please review the documentation to make sure you use the proper one. 
 - scopes: optional, scopes specify which permission/scope you want the user to have access to, make sure the scopes use the correct naming from the OAuth app. 
 
 #### Bring your own Microsoft Entra app registration
