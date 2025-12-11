@@ -95,7 +95,7 @@ The [Get supported document formats method](reference/get-supported-document-for
 |Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
-|Image (2025-12-01-preview)|`.jpeg`, `.png`, `.bmp`, `.webp`|Files that stores digital image data.|
+|Image (2025-12-01-preview)|`.jpeg`, `.png`, `.bmp`, `.webp`|Files that store digital image data.|
 |OpenDocument Presentation|`odp`|An open-source presentation file.|
 |OpenDocument Spreadsheet|`ods`|An open-source spreadsheet file.|
 |OpenDocument Text|`odt`|An open-source text document file.|
