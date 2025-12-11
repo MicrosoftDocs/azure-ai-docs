@@ -4,7 +4,7 @@ author: heidisteen
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 08/27/2025
+ms.date: 11/20/2025
 ---
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
@@ -16,7 +16,7 @@ In this quickstart, you use a REST client and the [Azure AI Search REST APIs](/r
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for this quickstart.
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) to start with a finished project or follow these steps to create your own. 
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) to start with a finished project or follow these steps to create your own.
 
 1. Start Visual Studio Code and open the [semantic-search-index-update.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-search/semantic-search-index-update.rest) file or create a new file.
 
@@ -30,11 +30,11 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
    ```http
    ### List existing indexes by name (verify the connection)
-    GET  {{searchUrl}}/indexes?api-version=2025-11-01-preview&$select=name  HTTP/1.1
+    GET  {{searchUrl}}/indexes?api-version=2025-09-01&$select=name  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
    ```
 
-1. Select **Sent request**.
+1. Select **Send Request**.
 
    :::image type="content" source="../../media/search-get-started-semantic/visual-studio-code-send-request.png" alt-text="Screenshot of the REST client send request link.":::
 
@@ -49,7 +49,6 @@ To update an index using the REST API, you must provide the entire schema, plus 
    "configurations": [
    {
       "name": "semantic-config",
-      "flightingOptIn": false,
       "rankingOrder": "BoostedRerankerScore",
       "prioritizedFields": {
          "titleField": { "fieldName": "HotelName" },
@@ -61,10 +60,10 @@ To update an index using the REST API, you must provide the entire schema, plus 
 }
 ```
 
-1. Formulate a POST request specifying the index name, operation, and full JSON schema. All required elements of the schema must be present. This request includes the full schema for hotels-sample-index plus the semantic configuration.
+1. Formulate a PUT request specifying the index name, operation, and full JSON schema. All required elements of the schema must be present. This request includes the full schema for hotels-sample-index plus the semantic configuration.
 
     ```http
-    POST  {{searchUrl}}/indexes?api-version=2025-11-01-preview  HTTP/1.1
+    PUT {{searchUrl}}/indexes/hotels-sample-index?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -112,7 +111,6 @@ To update an index using the REST API, you must provide the entire schema, plus 
         "configurations": [
           {
             "name": "semantic-config",
-            "flightingOptIn": false,
             "rankingOrder": "BoostedRerankerScore",
             "prioritizedFields": {
               "titleField": {
@@ -135,9 +133,9 @@ To update an index using the REST API, you must provide the entire schema, plus 
     }
     ```
 
-1. Select **Sent request**.
+1. Select **Send Request**.
 
-1. Output for this POST request is an HTTP 200 Success status message.
+1. Output for this POST request is an `HTTP 200 Success` status message.
 
 ## Run semantic queries
 
@@ -154,14 +152,14 @@ Required semantic parameters include `query_type` and `semantic_configuration_na
 1. Test the connection with a GET request that returns the hotels-sample-index.
 
     ```http
-    GET  {{searchUrl}}/indexes/hotels-sample-index?api-version=2025-11-01-preview  HTTP/1.1
+    GET {{searchUrl}}/indexes/hotels-sample-index?api-version=2025-09-01  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
     ```
 
 1. Send a query that includes the semantic query type and configuration name.
 
    ```http
-    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
+    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -241,7 +239,7 @@ Optionally, you can add captions to extract portions of the text and apply hit h
 1. Add the `captions` parameter and send the request.
 
     ```http
-    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
+    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -284,7 +282,7 @@ To produce a semantic answer, the question and answer must be closely aligned, a
 1. Formulate the request using a search string that asks a question.
 
     ```http
-    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
+    POST {{searchUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
     
@@ -302,7 +300,7 @@ To produce a semantic answer, the question and answer must be closely aligned, a
 
    Recall that answers are *verbatim content* pulled from your index and might be missing phrases that a user would expect to see. To get *composed answers* as generated by a chat completion model, considering using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
-   In this example, the answer is considered as a strong fit for the question. 
+   In this example, the answer is considered as a strong fit for the question.
 
     ```json
     {

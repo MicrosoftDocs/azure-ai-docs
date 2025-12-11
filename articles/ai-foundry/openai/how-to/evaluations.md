@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: openai-fine-tuning
@@ -15,6 +15,8 @@ recommendations: false
 ---
 
 # Azure OpenAI Evaluation (Preview)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 The evaluation of large language models is a critical step in measuring their performance across various tasks and dimensions. This is especially important for fine-tuned models, where assessing the performance gains (or losses) from training is crucial. Thorough evaluations can help your understanding of how different versions of the model may impact your application or scenario.
 

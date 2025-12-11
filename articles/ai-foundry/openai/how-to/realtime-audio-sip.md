@@ -15,6 +15,8 @@ recommendations: false
 
 # Use the GPT Realtime API via SIP
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via SIP.
@@ -33,7 +35,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 
 Before you can use GPT real-time audio, you need:
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
 - You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Microsoft Foundry portal. 
 

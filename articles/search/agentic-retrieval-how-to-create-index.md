@@ -18,7 +18,7 @@ In Azure AI Search, agentic retrieval uses context and user questions to generat
 
 + An *existing index* containing searchable content. You can make an existing index available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
 
-+ A *generated index* created from an indexed [knowledge source](agentic-knowledge-source-overview.md). Indexed knowledge sources create a copy of an external data source inside a search index using a full indexer pipeline (data source, skillset, indexer, and index) for agentic retrieval. Indexed knowledge sources create a copy of an external data source inside a search index using a full indexer pipeline (data source, skillset, indexer, and index) for agentic retrievalMultiple knowledge sources can generate an indexer pipeline that results in a searchable index. These include:
++ A *generated index* created from an indexed [knowledge source](agentic-knowledge-source-overview.md). Indexed knowledge sources create a copy of an external data source inside a search index using a full indexer pipeline (data source, skillset, indexer, and index) for agentic retrieval. Multiple knowledge sources can generate an indexer pipeline that results in a searchable index. These include:
 
   + [Azure blobs](agentic-knowledge-source-how-to-blob.md)
   + [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md)

@@ -158,7 +158,7 @@ From **Operate → Manage**, administrators and power users can:
 - Gain visibility into all projects across their subscription or tenant, including active, inactive, and archived workspaces.
 - View detailed project information such as owners, region, connected services, and compliance posture.
 - Add or remove users directly from a project, defining granular access levels aligned with organizational roles.
-- Attach or manage connected resources, such as storage accounts, compute clusters, and AI services, ensuring projects remain properly provisioned.
+- Attach or manage connected resources, such as storage accounts, compute clusters, and Foundry Tools, ensuring projects remain properly provisioned.
 - Assign access at parent scope (subscription or resource group) to apply consistent governance and permissions inheritance across multiple projects.
 
 Together, these capabilities make **Manage** the Control Plane's administrative backbone. It's a centralized console to ensure every Foundry project remains properly configured, compliant, and connected to the right people and infrastructure.

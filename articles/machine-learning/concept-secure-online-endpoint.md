@@ -15,6 +15,7 @@ ms.custom:
   - moe-wsvnet
   - ignite-2024
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Network isolation with managed online endpoints
@@ -47,9 +48,26 @@ Set the endpoint's `public_network_access` flag to `disabled`:
 
 # [Azure CLI](#tab/cli)
 
+Before you run the Azure CLI command:
+
+- Make sure you have an `endpoint.yml` file in your current working directory (either locally or in Azure Cloud Shell).
+- If you use Azure Cloud Shell, upload `endpoint.yml` or clone a repository that contains it into your Cloud Shell home directory.
+- If your default Azure Machine Learning workspace and resource group are not set, add the `--resource-group` and `--workspace-name` parameters.
+
 ```azurecli
-az ml online-endpoint create -f endpoint.yml --set public_network_access=disabled
+az ml online-endpoint create \
+  --file endpoint.yml \
+  --set public_network_access=disabled
+
+# Optionally specify the workspace and resource group explicitly
+az ml online-endpoint create \
+  --file endpoint.yml \
+  --resource-group <resource-group-name> \
+  --workspace-name <workspace-name> \
+  --set public_network_access=disabled
 ```
+
+If you see a `No such file or directory: endpoint.yml` error, confirm that `endpoint.yml` exists in your current directory and that you run the command from that directory.
 
 # [Python](#tab/python)
 
@@ -67,12 +85,14 @@ endpoint = ManagedOnlineEndpoint(name='my-online-endpoint',
 
 # [Studio](#tab/azure-studio)
 
+Before you start, make sure you have a model asset or model location that you can use to create the first deployment.
+
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
 1. Select the **Workspaces** page from the left pane.
 1. Enter a workspace by selecting its name.
 1. Select the **Endpoints** page from the left pane.
 1. Select **+ Create** to open the **Create deployment** setup wizard.
-1. Disable the **Public network access** flag at the **Create endpoint** step.
+1. At the **Create endpoint** step, set **Public network access** to **Disabled** before you create the endpoint so that it is not publicly accessible at any time.
 
     :::image type="content" source="media/how-to-secure-online-endpoint/endpoint-disable-public-network-access.png" alt-text="A screenshot of how to disable public network access for an endpoint." lightbox="media/how-to-secure-online-endpoint/endpoint-disable-public-network-access.png":::
 

@@ -21,7 +21,7 @@ By default, Azure Translator utilizes neural Machine Translation (NMT) technolog
 
 The following table provides an overview of the resource solutions for Translator within the Azure AI ecosystem:
 
-|AI Service|Scope|Use cases|
+|Foundry Tool|Scope|Use cases|
 |---------|------------|---------|
 | [Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is the recommended resource for building, deploying, and managing generative AI applications and agents in Foundry. |The Foundry resource is suitable for scenarios requiring orchestration of multiple AI models, custom AI agent development, and advanced AI application lifecycle management. |
 |[Foundry Tools resource](../../../ai-services/what-are-ai-services.md)|This multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like translation, language understanding, speech recognition, and computer vision.|A Foundry Tools resource allows you to integrate advanced features such as text translation, speech transcription,  and image recognition into your applications. You can also enhance models within the Foundry portal using prebuilt AI capabilities.|

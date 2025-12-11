@@ -7,11 +7,9 @@ author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
 ms.custom: ignite-2024, github-universe-2024
-ms.reviewer: fasantia
-reviewer: santiagxf
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer using Microsoft Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.
@@ -19,9 +17,13 @@ ai-usage: ai-assisted
 
 # Endpoints for Microsoft Foundry Models
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 Microsoft Foundry Models enables you to access the most powerful models from leading model providers through a single endpoint and set of credentials. This capability lets you switch between models and use them in your application without changing any code.
 
-This article explains how the Foundry services (formerly known as Azure AI Services) organize models and how to use the inference endpoint to access them.
+This article explains how the Foundry services organize models and how to use the inference endpoint to access them.
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ## Deployments
 
@@ -104,7 +106,7 @@ To use keyless authentication, [configure your resource and grant access to user
 ::: moniker range="foundry-classic"
 ## Limitations
 
-* You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
+* You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../openai/how-to/batch.md).
 * Real-time API isn't supported in the inference endpoint. Use the dedicated deployment URL.
 
 ::: moniker-end

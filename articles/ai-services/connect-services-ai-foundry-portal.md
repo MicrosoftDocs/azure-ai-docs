@@ -23,7 +23,7 @@ This article describes how to use new or existing Foundry Tools resources in a F
 
 ## Usage scenarios
 
-Depending on the AI service and model you want to use, you can use them in Foundry portal via:
+Depending on the Foundry Tool and model you want to use, you can use them in Foundry portal via:
 - [Bring your existing Foundry Tools resources](#connect-foundry-tools-after-you-create-a-project) into a project. You can use your existing Foundry Tools resources in a Foundry project by creating a connection to the resource.
 - The [model catalog](#discover-foundry-models-in-the-model-catalog). You don't need a project to browse and discover Foundry Models. Some of the Foundry Tools are available for you to try via the model catalog without a project. Some Foundry Tools require a project to use them in the playgrounds.
 - The [project-level playgrounds](#try-foundry-tools-in-the-project-level-playgrounds).
@@ -42,9 +42,9 @@ You can connect Foundry Tools resources to a Foundry project after you create a 
 
     :::image type="content" source="./media/ai-foundry/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="./media/ai-foundry/connections-add.png":::
 
-1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Foundry Models, Azure Content Safety, Azure Speech, Azure Language, and other AI services.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Foundry Models, Azure Content Safety, Azure Speech, Azure Language, and other Foundry Tools.
 
-    :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of AI service that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
+    :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of Foundry Tool that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
 
 1. On the next page in the wizard, browse or search to find the resource you want to connect. Then select **Add connection**.  
 

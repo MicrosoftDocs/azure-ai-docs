@@ -6,12 +6,14 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - hub-only
+  - dev-focus
 ms.topic: how-to
-ms.date: 08/27/2025
+#CustomerIntent: As a developer, I want to diagnose private endpoint connection issues so that I can securely access my Foundry project.
+ms.date: 11/20/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
-ai.usage: ai-assisted
+ai-usage: ai-assisted
 ---
 
 # Troubleshoot connection to a project with a private endpoint
@@ -22,12 +24,20 @@ When you create a project in [Microsoft Foundry](https://ai.azure.com/?cid=learn
 
 When you connect to a [Foundry](https://ai.azure.com/?cid=learnDocs) project that's set up with a private endpoint, you might see an HTTP 403 error or a message that says access is forbidden. Use this article to check for common configuration issues that cause this error.
 
+## Prerequisites
+
+- **Azure role-based access control (RBAC)**: You need appropriate RBAC roles to troubleshoot and resolve private endpoint issues:
+  - **Reader** role at the subscription level to view Azure Search services and verify DNS configuration
+  - **Storage Blob Data Reader** or **Storage Blob Data Contributor** role for the storage account associated with your hub (depending on whether you need read-only or read-write access)
+  - **Storage File Data Privileged Reader** or **Storage File Data Privileged Contributor** role for the storage account
+- **Network access**: Connection to the virtual network via Azure VPN Gateway, ExpressRoute, or Azure Bastion
+
 ## Error loading Foundry hub or project
 
 If you get an error when loading your Foundry hub or project, check these two settings.
 
-1. Your hub has public network access set to __Disabled__.
-1. Your hub has public network access set to __Enable from selected IPs__.
+- Your hub has public network access set to __Disabled__.
+- Your hub has public network access set to __Enable from selected IPs__.
 
 Depending on the public network access setting for your Foundry hub or project, take the matching action:
 
@@ -50,26 +60,28 @@ To connect to a hub or project secured by a virtual network, use one of these me
 
 ## DNS configuration
 
+Proper DNS configuration is essential for resolving private endpoint addresses. The following steps help you identify whether your virtual network uses Azure DNS or a custom DNS solution, then guide you through the appropriate troubleshooting process.
+
 Troubleshooting steps differ based on whether you use Azure DNS or a custom DNS. Follow these steps to see which one you're using:
 
-1. In the [Azure portal](https://portal.azure.com), select the private endpoint resource for your Foundry. If you don't remember the name, select your Foundry resource, __Networking__, __Private endpoint connections__, and then select the __Private endpoint__ link.
+1. In the [Azure portal](https://portal.azure.com), select the private endpoint resource for your Foundry. If you don't remember the name, select your Foundry resource, **Networking**, **Private endpoint connections**, and then select the **Private endpoint** link.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-connections.png" alt-text="Screenshot of the private endpoint connections for the resource." lightbox="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-connections.png":::
 
-1. From the __Overview__ page, select the __Network Interface__ link.
+1. From the **Overview** page, select the **Network Interface** link.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-overview.png" alt-text="Screenshot of the private endpoint overview with network interface link highlighted." lightbox="../media/how-to/troubleshoot-secure-connection-project/private-endpoint-overview.png":::
 
-1. Under __Settings__, select __IP Configurations__ and then select the __Virtual network__ link.
+1. Under **Settings**, select **IP Configurations** and then select the **Virtual network** link.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/network-interface-ip-configurations.png" alt-text="Screenshot of the IP configuration with virtual network link highlighted." lightbox="../media/how-to/troubleshoot-secure-connection-project/network-interface-ip-configurations.png":::
 
-1. In __Settings__, select __DNS servers__.
+1. In **Settings**, select **DNS servers**.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/dns-servers.png" alt-text="Screenshot of the DNS servers configuration." lightbox="../media/how-to/troubleshoot-secure-connection-project/dns-servers.png":::
 
-    * If this value is __Default (Azure-provided)__, then the virtual network is using Azure DNS. Skip to the [Azure DNS troubleshooting](#azure-dns-troubleshooting) section.
-    * If there's a different IP address listed, then the virtual network is using a custom DNS solution. Skip to the [Custom DNS troubleshooting](#custom-dns-troubleshooting) section.
+    * If this value is **Default (Azure-provided)**, then the virtual network is using Azure DNS. Go to the [Azure DNS troubleshooting](#azure-dns-troubleshooting) section.
+    * If there's a different IP address listed, then the virtual network is using a custom DNS solution. Go to the [Custom DNS troubleshooting](#custom-dns-troubleshooting) section.
 
 ### Custom DNS troubleshooting
 
@@ -89,25 +101,25 @@ Follow these steps to check whether your custom DNS solution resolves names to I
 
 1. Open a command prompt, PowerShell, or other command line and run the following command for each FQDN returned from the previous step. Each time you run the command, verify that the IP address returned matches the IP address listed in the portal for the FQDN: 
 
-    In the following command, replace the placeholder text *`<fqdn>`* with an FQDN from your list.
+   In the following command, replace the placeholder text *`<fqdn>`* with an FQDN from your list.
 
-    `nslookup <fqdn>`
+   `nslookup <fqdn>`
 
-For example:
+   For example:
 
-```powershell
-nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
-```
+   ```powershell
+   nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
+   ```
 
-Example output:
+   Example output:
 
-```text
-Server: yourdnsserver
-Address: yourdnsserver-IP-address
-
-Name:   df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
-Address: 10.0.0.4
-```
+   ```text
+   Server: yourdnsserver
+   Address: yourdnsserver-IP-address
+  
+   Name:   df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
+   Address: 10.0.0.4
+   ```
 
 1. If the `nslookup` command returns an error or a different IP address than the portal shows, your custom DNS solution isn't configured correctly.
 
@@ -115,14 +127,14 @@ Address: 10.0.0.4
 
 When you use Azure DNS for name resolution, follow these steps to check that Private DNS integration is configured correctly:
 
-1. On the private endpoint, select __DNS configuration__.
+1. On the private endpoint, select **DNS configuration**.
 
     :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/dns-zone-group.png" alt-text="Screenshot of the DNS configuration with Private DNS zone and group highlighted." lightbox="../media/how-to/troubleshoot-secure-connection-project/dns-zone-group.png":::
 
-    * If there's a Private DNS zone entry, but __no DNS zone group entry__, delete and recreate the Private Endpoint. When recreating the private endpoint, __enable Private DNS zone integration__.
-    * If __DNS zone group__ isn't empty, select the link for the __Private DNS zone__ entry.
+    * If there's a Private DNS zone entry, but **no DNS zone group entry**, delete and recreate the private endpoint. When recreating the private endpoint, **enable Private DNS zone integration**.
+    * If **DNS zone group** isn't empty, select the link for the **Private DNS zone** entry.
     
-        From the Private DNS zone, select __Virtual network links__. There should be a link to the virtual network. If there isn't one, then delete and recreate the private endpoint. When recreating it, select a Private DNS zone linked to the virtual network, or create a new one and link it.
+        From the Private DNS zone, select **Virtual network links**. There should be a link to the virtual network. If there isn't one, then delete and recreate the private endpoint. When recreating it, select a Private DNS zone linked to the virtual network, or create a new one and link it.
 
         :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/virtual-network-links.png" alt-text="Screenshot of the virtual network links for the Private DNS zone." lightbox="../media/how-to/troubleshoot-secure-connection-project/virtual-network-links.png":::
 
@@ -130,32 +142,38 @@ When you use Azure DNS for name resolution, follow these steps to check that Pri
 
 ## Browser configuration (DNS over HTTPS)
 
+Browser DNS settings can interfere with private endpoint resolution. If DNS over HTTPS is enabled, your browser bypasses the network DNS configuration and might fail to resolve private endpoint addresses.
+
 Check if DNS over HTTPS is enabled in your web browser. DNS over HTTPS can prevent Azure DNS from responding with the IP address of the private endpoint.
 
 * Mozilla Firefox: More about [Disable DNS over HTTPS in Firefox](https://support.mozilla.org/en-US/kb/firefox-dns-over-https).
 * Microsoft Edge:
-    1. In Microsoft Edge, select __...__ and then select __Settings__.
+    1. In Microsoft Edge, select **...** and then select **Settings**.
     1. In **Settings**, search for *DNS* and then disable **Use secure DNS to specify how to look up the network address for websites**.
     
         :::image type="content" source="../media/how-to/troubleshoot-secure-connection-project/disable-dns-over-http.png" alt-text="Screenshot of the Use secure DNS setting in Microsoft Edge." lightbox="../media/how-to/troubleshoot-secure-connection-project/disable-dns-over-http.png":::
 
 ## Proxy configuration
 
+Proxy servers can interfere with private endpoint connectivity by blocking or modifying network traffic. The following options help you determine if proxy settings are causing connection issues.
+
 If you're using a proxy, it might block access to a secured project. To test, try one of these options:
 
-* Temporarily disable the proxy setting, and then try to connect.
+* Temporarily disable the proxy setting, then try to connect.
 * Create a [Proxy auto-config (PAC)](https://wikipedia.org/wiki/Proxy_auto-config) file that allows direct access to the fully qualified domain names (FQDNs) listed on the private endpoint, and to the FQDN for any compute instances.
 * Set up your proxy server to forward DNS requests to Azure DNS.
 * Make sure the proxy lets connections to Azure Machine Learning (AML) APIs, such as `*.<region>.api.azureml.ms` and `*.instances.azureml.ms`.
 
 ## Troubleshoot storage connection issues
 
-When you create a project, Azure Storage creates several connections for data upload and artifact storage, including prompt flow. If your hub's associated Azure Storage account has public network access set to **Disabled**, these storage connections can take longer to create. 
+Storage connectivity is critical for Foundry projects. When you disable public network access on the storage account, you need proper private endpoint configuration and managed identity permissions.
+
+When you create a project, Azure Storage creates several connections for data upload and artifact storage, including prompt flow. If you set the public network access on your hub's associated Azure Storage account to **Disabled**, these storage connections can take longer to create. 
 
 Try these steps to troubleshoot:
 1. In the Azure portal, check the network settings of the storage account that's associated with your hub.
-  * If public network access is set to __Enabled from selected virtual networks and IP addresses__, make sure the correct IP address ranges are added to allow access to your storage account.
-  * If public network access is set to __Disabled__, make sure a private endpoint from your Azure virtual network to your storage account is configured with Target sub-resource set to blob. Also, grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
-1. In the Azure portal, go to your Foundry hub. Make sure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. Learn more in [How to configure a managed network for Foundry hubs](configure-managed-network.md).
+   * If you set public network access to __Enabled from selected virtual networks and IP addresses__, make sure you add the correct IP address ranges to allow access to your storage account.
+   * If you set public network access to __Disabled__, make sure you configure a private endpoint from your Azure virtual network to your storage account with Target sub-resource set to blob. Also, grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
+1. In the Azure portal, go to your Foundry hub. Make sure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. For more information, see [How to configure a managed network for Foundry hubs](configure-managed-network.md).
 1. Go to Foundry > your project > project settings.
 1. Refresh the page. Several connections appear, including `workspaceblobstore`.

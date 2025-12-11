@@ -16,6 +16,8 @@ author: msakande
 
 # How to use MedImageParse healthcare AI models for segmentation of medical images
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
 In this article, you learn how to deploy prompt-based image segmentation models, MedImageParse and MedImageParse 3D, as online endpoints for real-time inference. You also see how to issue basic calls to the API. The steps you take are:

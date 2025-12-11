@@ -4,10 +4,10 @@ titleSuffix: Azure Machine Learning
 description: Learn the best practices for performing distributed training with Azure Machine Learning SDK (v1) supported frameworks, such as MPI, Horovod, DeepSpeed, PyTorch, PyTorch Lightning, Hugging Face Transformers, TensorFlow, and InfiniBand.
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: ratanase
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: concept-article
+ms.topic: how-to
 ms.date: 10/21/2021
 ms.custom: UpdateFrequency5, sdkv1
 ---

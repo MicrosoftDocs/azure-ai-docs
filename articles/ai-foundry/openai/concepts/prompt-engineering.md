@@ -5,7 +5,7 @@ description: Learn how to use prompt engineering to optimize your work with Azur
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/30/2025
+ms.date: 12/6/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle

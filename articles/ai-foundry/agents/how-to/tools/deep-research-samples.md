@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/10/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: references_regions
 zone_pivot_groups: selection-deep-research
 ---
@@ -17,8 +17,8 @@ zone_pivot_groups: selection-deep-research
 # How to use the Deep Research tool
 
 > [!NOTE]
-> * The `o3-deep-research` model is available for use **only with the Deep Research tool**. It is **not** available in the Azure OpenAI Chat Completions and Responses APIs.
 > * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
+> * This tool is only available in `2025-05-15-preview` API. We highly recommend that you migrate to use the `2025-11-15-preview` API. This enables you to use the `o3-deep-research` model with [web search](../../../default/agents/how-to/tools/web-search.md) or MCP tool.
 
 Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
 
@@ -507,68 +507,72 @@ deep_research_tool = DeepResearchTool(
 )
 
 # Create Agent with the Deep Research tool and process Agent run
-with project_client:
+agents_client = AgentsClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential()
+)
 
-    with project_client.agents as agents_client:
+# Create a new agent that has the Deep Research tool attached.
+# NOTE: To add Deep Research to an existing agent, fetch it with `get_agent(agent_id)` and then,
+# update the agent with the Deep Research tool.
+agent = agents_client.create_agent(
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],
+    name="my-agent",
+    instructions="You are a helpful Agent that assists in researching scientific topics.",
+    tools=deep_research_tool.definitions,
+)
 
-        # Create a new agent that has the Deep Research tool attached.
-        # NOTE: To add Deep Research to an existing agent, fetch it with `get_agent(agent_id)` and then,
-        # update the agent with the Deep Research tool.
-        agent = agents_client.create_agent(
-            model=os.environ["MODEL_DEPLOYMENT_NAME"],
-            name="my-agent",
-            instructions="You are a helpful Agent that assists in researching scientific topics.",
-            tools=deep_research_tool.definitions,
-        )
+# agent = agent_poller.result()  # Wait for completion
 
-        # [END create_agent_with_deep_research_tool]
-        print(f"Created agent, ID: {agent.id}")
 
-        # Create thread for communication
-        thread = agents_client.threads.create()
-        print(f"Created thread, ID: {thread.id}")
+# [END create_agent_with_deep_research_tool]
+print(f"Created agent, ID: {agent.id}")
 
-        # Create message to thread
-        message = agents_client.messages.create(
-            thread_id=thread.id,
-            role="user",
-            content=(
-                "Give me the latest research into quantum computing over the last year."
-            ),
-        )
-        print(f"Created message, ID: {message.id}")
+# Create thread for communication
+thread = agents_client.threads.create()
+print(f"Created thread, ID: {thread.id}")
 
-        print(f"Start processing the message... this may take a few minutes to finish. Be patient!")
-        # Poll the run as long as run status is queued or in progress
-        run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
-        last_message_id = None
-        while run.status in ("queued", "in_progress"):
-            time.sleep(1)
-            run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+# Create message to thread
+message = agents_client.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content=(
+        "Assess the UK outlook for 2026 - economic growth and inflation, based on IMF sources and provide a detailed report."
+    ),
+)
+print(f"Created message, ID: {message.id}")
 
-            last_message_id = fetch_and_print_new_agent_response(
-                thread_id=thread.id,
-                agents_client=agents_client,
-                last_message_id=last_message_id,
-            )
-            print(f"Run status: {run.status}")
+print(f"Start processing the message... this may take a few minutes to finish. Be patient!")
+# Poll the run as long as run status is queued or in progress
+run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
+last_message_id = None
+while run.status in ("queued", "in_progress"):
+    time.sleep(1)
+    run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
 
-        print(f"Run finished with status: {run.status}, ID: {run.id}")
+    last_message_id = fetch_and_print_new_agent_response(
+        thread_id=thread.id,
+        agents_client=agents_client,
+        last_message_id=last_message_id,
+    )
+    print(f"Run status: {run.status}")
 
-        if run.status == "failed":
-            print(f"Run failed: {run.last_error}")
+print(f"Run finished with status: {run.status}, ID: {run.id}")
 
-        # Fetch the final message from the agent in the thread and create a research summary
-        final_message = agents_client.messages.get_last_message_by_role(
-            thread_id=thread.id, role=MessageRole.AGENT
-        )
-        if final_message:
-            create_research_summary(final_message)
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
 
-        # Clean-up and delete the agent once the run is finished.
-        # NOTE: Comment out this line if you plan to reuse the agent later.
-        agents_client.delete_agent(agent.id)
-        print("Deleted agent")
+# Fetch the final message from the agent in the thread and create a research summary
+final_message = agents_client.messages.get_last_message_by_role(
+    thread_id=thread.id, role=MessageRole.AGENT
+)
+if final_message:
+    create_research_summary(final_message)
+
+# Clean-up and delete the agent once the run is finished.
+# NOTE: Comment out this line if you plan to reuse the agent later.
+agents_client.delete_agent(agent.id)
+print("Deleted agent")
 ```
 
 :::zone-end 

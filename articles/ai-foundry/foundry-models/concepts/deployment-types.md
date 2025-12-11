@@ -8,11 +8,10 @@ author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/15/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
 ms.custom: ignite-2024, github-universe-2024
-ms.reviewer: fasantia
-reviewer: santiagxf
+
 ---
 
 # Deployment types for Microsoft Foundry Models
@@ -44,7 +43,7 @@ Our global deployments are the first location for all new models and features. D
 
 ### Data Zone deployments
 
-For any [deployment type](/azure/ai-foundry/openai/how-to/deployment-types) labeled **Global**, prompts and responses might be processed in any geography where the relevant Foundry model is deployed. Learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+For any deployment type labeled **Global**, prompts and responses might be processed in any geography where the relevant Foundry model is deployed. Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md#foundry-models-sold-directly-by-azure).
 
 For any deployment type labeled as **DataZone**, prompts and responses might be processed in any geography within the specified data zone, as defined by Microsoft. If you create a **DataZone** deployment in a Foundry resource located in the United States, prompts and responses might be processed anywhere within the United States. If you create a **DataZone** deployment in a Foundry resource located in a European Union member nation, prompts and responses might be processed in that or any other European Union member nation.
 
@@ -62,7 +61,7 @@ For both **Global** and **DataZone** deployment types, any data stored at rest, 
 
 Global deployments are available in the same Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../../model-inference/quotas-limits.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
 Global standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
@@ -103,7 +102,7 @@ Key use cases include:
 
 Data Zone Standard deployments are available in the same Foundry resource as all other Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
 
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](/azure/ai-foundry/openai/quotas-limits#usage-tiers). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
 
 Data zone standard deployment supports use of priority processing for reliable, high-speed performance with the flexibility to pay-as-you-go. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
@@ -137,11 +136,11 @@ Standard deployments are optimized for low-to-medium volume workloads with high 
 
 - SKU name in code: `ProvisionedManaged`
 
-Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units, which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of provisioned throughput units to deploy, and provides different amounts of throughput per provisioned throughput unit. Learn more in the [article about provisioned throughput concepts](/azure/ai-foundry/openai/concepts/provisioned-throughput).
+Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units, which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of provisioned throughput units to deploy, and provides different amounts of throughput per provisioned throughput unit. Learn more in the [article about provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 ### Disable access to global deployments in your subscription
 
-Azure Policy helps to enforce organizational standards and to assess compliance at scale. Through its compliance dashboard, it provides an aggregated view to evaluate the overall state of the environment, with the ability to drill down to per-resource, per-policy granularity. It also helps to bring your resources to compliance through bulk remediation for existing resources and automatic remediation for new resources. [Learn more about Azure Policy and specific built-in controls for AI services](/azure/ai-services/security-controls-policy).
+Azure Policy helps to enforce organizational standards and to assess compliance at scale. Through its compliance dashboard, it provides an aggregated view to evaluate the overall state of the environment, with the ability to drill down to per-resource, per-policy granularity. It also helps to bring your resources to compliance through bulk remediation for existing resources and automatic remediation for new resources. [Learn more about Azure Policy and specific built-in controls for Foundry Tools](../../../ai-services/security-controls-policy.md).
 
 You can use the following policy to disable access to any Foundry deployment type. To disable access to a specific deployment type, replace `GlobalStandard` with the SKU name for the deployment type that you want to disable access to.
 
@@ -182,5 +181,5 @@ To learn about creating resources and deploying models, refer to the [Resource c
 
 ## Related content
 
-- [Quotas & limits](../../model-inference/quotas-limits.md)
+- [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Data privacy, and security for Foundry Models](../../how-to/concept-data-privacy.md)

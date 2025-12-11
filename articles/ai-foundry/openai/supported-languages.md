@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
 ms.topic: conceptual
-ms.date: 08/31/2025
+ms.date: 11/26/2025
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -48,6 +48,4 @@ zone_pivot_groups: openai-supported-languages
 
 ::: zone-end
 
-## Next steps
 
-- To see what models are currently supported, check out the [Azure OpenAI models page](./concepts/models.md)

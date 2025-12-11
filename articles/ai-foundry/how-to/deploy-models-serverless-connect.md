@@ -18,6 +18,8 @@ ms.custom:
 
 # Consume serverless APIs from a different Microsoft Foundry project or hub
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In this article, you learn how to configure an existing serverless APIs in a different project or hub than the one that was used to create the deployment.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
@@ -33,7 +35,7 @@ The need to consume a serverless APIs endpoint in a different project or hub tha
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- A [Microsoft Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+- A [Microsoft Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-azure-ai-foundry.md#types-of-projects).
 
 - If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
 

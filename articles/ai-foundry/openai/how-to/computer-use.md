@@ -6,12 +6,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/26/2025
 author: aahill
 ms.author: aahi
 ---
 
 # Computer Use (preview) in Azure OpenAI
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Use this article to learn how to work with Computer Use in Azure OpenAI. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their UIs. With Computer Use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
 

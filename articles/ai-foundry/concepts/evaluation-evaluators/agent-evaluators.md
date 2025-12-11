@@ -38,7 +38,7 @@ In addition to `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`, whic
 - **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, and `Fluency`
 - **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, and `ProtectedMaterials`
 
-This article includes examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents).
+This article includes examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-microsoft-foundry-agents).
 
 ## Model configuration for AI-assisted evaluators
 
@@ -338,10 +338,10 @@ Specifically, for textual outputs from agents, you can also apply RAG quality ev
 
 Examples:
 
-- [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_task_completion.py)
-- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_task_adherence.py)
-- [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_task_navigation_efficiency.py)
-- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_intent_resolution.py)
+- [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
+- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
+- [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
+- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
 
@@ -355,11 +355,11 @@ Process evaluation examines the quality and efficiency of each step in your agen
 
 Examples:
 
-- [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_call_accuracy.py)
-- [Tool selection (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_selection.py)
-- [Tool input accuracy (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_input_accuracy.py)
-- [Tool output utilization (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_output_utilization.py)
-- [Tool call success (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/sample_tool_success.py)
+- [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_accuracy.py)
+- [Tool selection (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_selection.py)
+- [Tool input accuracy (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
+- [Tool output utilization (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
+- [Tool call success (preview) sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
 ## Evaluator model support for AI-assisted evaluators
 
@@ -920,7 +920,7 @@ with DefaultAzureCredential() as credential:
 
 ::: moniker range="foundry"
 
-- [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators)
+- [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
 - [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

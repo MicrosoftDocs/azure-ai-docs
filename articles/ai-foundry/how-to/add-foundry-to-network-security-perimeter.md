@@ -31,14 +31,14 @@ This article gives only the Foundry-specific pointers you need. All procedural d
 - NSP governs data plane traffic. Control plane (management) operations may still succeed unless separately restricted.
 - Use a managed identity (system or user‑assigned) with appropriate role assignments for any data source access (for example Azure Blob Storage used for batch inputs/outputs).
 - Co-locate dependent services (Azure OpenAI, Azure Storage, Azure AI Search, etc.) in the same NSP when you need mutual access with minimal outbound allow rules.
-- Foundry Agent Service: Supported; Secured Standard Agents with full network isolation rely on Private Link and do not require or support NSP.
+- Foundry Agent Service is supported. Secured Standard Agents with full network isolation rely on Private Link and do not require or support NSP.
 - Private Link takes precedence over NSP evaluation when both are configured; traffic resolves through Private Link first.
 
 For more information, see [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts).
 
 ## Prerequisites
 
-Create an existing Foundry resource (or plan to create one) and required managed identity assignments.
+An existing Foundry resource (or plan to create one) and required managed identity assignments.
 
 If any prerequisite behavior is unclear or changes, consult the latest Azure OpenAI + NSP article for parity details in [Azure OpenAI NSP guidance](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
@@ -49,7 +49,7 @@ Portal (summary):
 2. Select **Associated resources** (or **Resources** depending on UI iteration) > **Add / Associate**.
 3. Choose the target profile, pick your Foundry resource, set access mode (start with Learning), and confirm.
 
-CLI (for automation) and full creation steps: see the NSP quickstarts (CLI or PowerShell):
+For CLI (for automation) and full creation steps, see the NSP quickstarts (CLI or PowerShell):
 - [Create a network security perimeter (CLI)](/azure/private-link/create-network-security-perimeter-cli)
 - [Create a network security perimeter (PowerShell)](/azure/private-link/create-network-security-perimeter-powershell)
 
@@ -58,7 +58,7 @@ After association, traffic evaluation begins per the selected access mode.
 
 ## Access modes (Learning vs Enforced)
 
-Start in Learning to observe would‑be denies. Switch to Enforced once required inbound/outbound rules are defined. Reference [NSP access modes](/azure/private-link/network-security-perimeter-concepts#access-modes) for more details.
+Start in Learning to observe would‑be denies. Switch to Enforced once required inbound/outbound rules are defined. Reference [NSP access modes](/azure/private-link/network-security-perimeter-concepts) for more details.
 
 ## Interaction with `publicNetworkAccess`
 

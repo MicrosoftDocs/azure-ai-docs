@@ -5,7 +5,7 @@ description: Get reference documentation for Speech to text REST API.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 10/28/2025
+ms.date: 11/21/2025
 author: PatrickFarley
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn about the Speech to text REST API.
@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # Speech to text REST API
 
-Speech to text REST API is used for [fast transcription](fast-transcription-create.md), [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
+The speech to text REST API is used for [fast transcription](fast-transcription-create.md), [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
 
 > [!IMPORTANT]
 > Speech to text REST API version `2025-10-15` is the latest version that's generally available. 
@@ -25,7 +25,7 @@ Speech to text REST API is used for [fast transcription](fast-transcription-crea
 > [!div class="nextstepaction"]
 > [See the Speech to text REST API 2025-10-15 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-2025-10-15&preserve-view=true)
 
-Use Speech to text REST API to:
+Use Speech to text REST API to do the following:
 
 - [Fast transcription](fast-transcription-create.md): Transcribe audio files with returning results synchronously and much faster than real-time audio. Use the fast transcription API ([/speechtotext/transcriptions:transcribe](/rest/api/speechtotext/transcriptions/transcribe)) in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as quick audio or video transcription or video translation.
 - [Batch transcription](batch-transcription.md): Transcribe audio files as a batch from multiple URLs or an Azure container. Use the batch transcription API ([/speechtotext/transcriptions:submit](/rest/api/speechtotext/transcriptions/submit)) in the scenarios that you need to transcribe a large amount of audio in storage, such as a large number of files or a long audio file. 

@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Manage projects and resources
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
 - Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s

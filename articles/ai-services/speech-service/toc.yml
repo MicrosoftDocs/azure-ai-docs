@@ -206,9 +206,11 @@ items:
         - name: How to record video samples
           href: text-to-speech-avatar/custom-avatar-record-video-samples.md
           displayName: custom-tts-avatar
-        - name: Create a custom text to speech avatar
+        - name: Create a custom video avatar
           href: text-to-speech-avatar/custom-avatar-create.md
           displayName: avatar
+        - name: Create a custom photo avatar
+          href: text-to-speech-avatar/custom-photo-avatar-create.md
     - name: Audio content creation
       href: how-to-audio-content-creation.md
       displayName: acc
@@ -283,8 +285,10 @@ items:
             href: /python/api/overview/azure/ai-voicelive-readme
           - name: Java (Preview)
             displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
-            href: /java/api/overview/azure/ai-voicelive-readme?view=azure-java-preview
-
+            href: /java/api/overview/azure/ai-voicelive-readme
+          - name: JavaScript (Preview)
+            displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/overview/azure/ai-voicelive-readme
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview

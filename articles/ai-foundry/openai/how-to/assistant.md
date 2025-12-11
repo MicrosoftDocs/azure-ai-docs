@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 08/15/2025
+ms.date: 11/20/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -17,8 +17,10 @@ recommendations: false
 
 # Getting started with Azure OpenAI Assistants (Preview)
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!NOTE]
-> The [Foundry Agent Service](../../agents/overview.md) is now Generally Available and includes additional tools and capabilities that extend beyond what Assistants provides. 
+> The [Microsoft Foundry Agent Service](../../agents/overview.md) is now Generally Available and includes additional tools and capabilities that extend beyond what Assistants provides. 
 
 Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions. In this article, we provide an in-depth walkthrough of getting started with the Assistants API.
 

@@ -16,6 +16,8 @@ author: msakande
 
 # Foundation models for healthcare AI
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
 This article introduces the Microsoft multimodal healthcare foundation model catalog. Microsoft Research, strategic partners, and leading healthcare institutions jointly developed these models for healthcare organizations. Healthcare organizations can use the models to rapidly build and deploy AI solutions tailored to their specific needs while minimizing the extensive compute and data requirements typically associated with building multimodal models from scratch. The intention isn't for these models to serve as standalone products. Instead, they're designed for developers to use as a foundation to build upon. With these healthcare AI models, professionals have the tools they need to harness the full potential of AI to enhance biomedical research, clinical workflows, and ultimately care delivery.
