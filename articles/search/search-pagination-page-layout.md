@@ -383,6 +383,4 @@ To quickly generate a search page for your client, consider these options:
 
 + [Create demo app](search-create-app-portal.md), in the Azure portal, creates an HTML page with a search bar, faceted navigation, and a thumbnail area if you have images.
 
-+ [Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) is a tutorial and code sample that builds a functional client.
-
 + [Add search to web apps](tutorial-csharp-overview.md) is a C# tutorial and code sample that uses the React JavaScript libraries for the user experience. The app is deployed using Azure Static Web Apps and it implements pagination.
