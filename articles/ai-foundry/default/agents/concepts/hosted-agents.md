@@ -817,9 +817,9 @@ Billing for managed hosting runtime will be enabled no earlier than February 1, 
 
 Currently, hosted agents are supported in North Central US only.
 
-### Private Networking Support
+### Private networking support
 
-Currently, hosted agents can not be created with the [Standard Setup](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks?view=foundry) within network isolated Foundry resources. 
+Currently, hosted agents can not be created with the [standard setup](/azure/ai-foundry/agents/how-to/virtual-networks) within network isolated Foundry resources. 
 
 ## Related content
 
