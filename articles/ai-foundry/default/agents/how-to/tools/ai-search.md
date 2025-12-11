@@ -308,7 +308,7 @@ curl --request POST \
   --H "Authorization: Bearer $AGENT_TOKEN" \
   --H "Content-Type: application/json" \
   --d '{
-"model": "{{model}}",
+"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
 "input": "Tell me about the mental health services available from Premera",
 "tools": [
   {
