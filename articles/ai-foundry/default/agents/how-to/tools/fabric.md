@@ -105,7 +105,7 @@ The following example shows how to call the Foundry Agent REST API by using the 
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=2025-05-15-preview" \
+  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
   --H "Authorization: Bearer $AGENT_TOKEN" \
   --H "Content-Type: application/json" \
   --H "User-Agent: insomnia/11.6.1" \
