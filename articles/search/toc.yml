@@ -4,9 +4,9 @@ items:
 
 - name: Overview
   items:
-  - name: What is Azure AI Search?
+  - name: What's Azure AI Search?
     href: search-what-is-azure-search.md
-  - name: New in Azure AI Search
+  - name: What's new
     href: whats-new.md
   - name: Features
     href: search-features-list.md
@@ -15,6 +15,41 @@ items:
   - name: Try for free
     href: search-try-for-free.md
   expanded: true
+
+- name: Quickstart
+  items:
+  - name: Classic search
+    items:
+    - name: Full-text search
+      items:
+      - name: Portal
+        href: search-get-started-portal.md
+      - name: Programmatic
+        href: search-get-started-text.md
+    - name: Vector search
+      items:
+      - name: Portal
+        href: search-get-started-portal-import-vectors.md
+      - name: Programmatic
+        href: search-get-started-vector.md
+    - name: Multimodal search
+      items:
+      - name: Portal
+        href: search-get-started-portal-image-search.md
+    - name: Skillsets (AI enrichment)
+      items:
+      - name: Portal
+        href: search-get-started-skillset.md
+    - name: Semantic ranking
+      items:
+      - name: Programmatic
+        href: search-get-started-semantic.md
+  - name: Agentic retrieval (RAG)
+    items:
+    - name: Portal
+      href: get-started-portal-agentic-retrieval.md
+    - name: Programmatic
+      href: search-get-started-agentic-retrieval.md
 
 - name: Setup and management
   items:
@@ -71,13 +106,13 @@ items:
     items:
     - name: What is a search index?
       href: search-what-is-an-index.md
-    - name: Create a search index
-      href: search-how-to-create-search-index.md
     - name: What is a vector index?
       href: vector-store.md
+    - name: Create a search index
+      href: search-how-to-create-search-index.md
     - name: Create a vector index
       href: vector-search-how-to-create-index.md
-    - name: Load and manage an index
+    - name: Load and manage
       items:
       - name: What is data import?
         href: search-what-is-data-import.md
@@ -131,7 +166,7 @@ items:
           href: vector-search-how-to-configure-compression-storage.md
         - name: Compress using binary or scalar quantization
           href: vector-search-how-to-quantization.md
-        - name: Index binary data for vector search
+        - name: Index binary data
           href: vector-search-how-to-index-binary-data.md
         - name: Assign narrow data types
           href: vector-search-how-to-assign-narrow-data-types.md
@@ -147,14 +182,16 @@ items:
       items:
       - name: What is an indexer?
         href: search-indexer-overview.md
-      - name: Create an indexer
-        href: search-howto-create-indexers.md
-      - name: Schedule an indexer
-        href: search-howto-schedule-indexers.md
-      - name: Run or reset an indexer
-        href: search-howto-run-reset-indexers.md
-      - name: Define field mappings
-        href: search-indexer-field-mappings.md
+      - name: Create and manage
+        items:
+        - name: Create an indexer
+          href: search-howto-create-indexers.md
+        - name: Schedule an indexer
+          href: search-howto-schedule-indexers.md
+        - name: Run or reset an indexer
+          href: search-howto-run-reset-indexers.md
+        - name: Define field mappings
+          href: search-indexer-field-mappings.md
       - name: Index from data sources
         items:
         - name: Supported data sources
@@ -243,20 +280,22 @@ items:
       href: vector-search-integrated-vectorization.md
     - name: What is a skillset?
       href: cognitive-search-working-with-skillsets.md
-    - name: Create a skillset (how-to guide)
-      href: cognitive-search-defining-skillset.md
-    - name: Create a skillset (portal quickstart)
-      href: search-get-started-skillset.md
-    - name: Create a skillset (tutorial)
-      href: tutorial-skillset.md
-    - name: Attach a billable resource
-      href: cognitive-search-attach-cognitive-services.md
-    - name: Define an index projection
-      href: search-how-to-define-index-projections.md
-    - name: Reference a skill output
-      href: cognitive-search-concept-annotations-syntax.md
-    - name: Map to index fields
-      href: cognitive-search-output-field-mapping.md
+    - name: Create and manage
+      items:
+      - name: Create a skillset (how-to guide)
+        href: cognitive-search-defining-skillset.md
+      - name: Create a skillset (tutorial)
+        href: tutorial-skillset.md
+      - name: Attach a billable resource
+        href: cognitive-search-attach-cognitive-services.md
+    - name: Define projections and mappings
+      items:
+      - name: Define an index projection
+        href: search-how-to-define-index-projections.md
+      - name: Reference a skill output
+        href: cognitive-search-concept-annotations-syntax.md
+      - name: Map to index fields
+        href: cognitive-search-output-field-mapping.md
     - name: Process image files
       href: cognitive-search-concept-image-scenarios.md
     - name: Design tips
@@ -275,6 +314,26 @@ items:
         href: enrichment-cache-how-to-configure.md
       - name: Manage an enrichment cache
         href: enrichment-cache-how-to-manage.md
+    - name: Knowledge stores
+      items:
+      - name: What is a knowledge store?
+        href: knowledge-store-concept-intro.md
+      - name: Create a knowledge store
+        href: knowledge-store-create-rest.md
+      - name: Create a knowledge store (portal)
+        href: knowledge-store-create-portal.md
+      - name: Connect with Power BI
+        href: knowledge-store-connect-power-bi.md
+      - name: Projections
+        items:
+        - name: What is a projection?
+          href: knowledge-store-projection-overview.md
+        - name: Shape data for projection
+          href: knowledge-store-projection-shape.md
+        - name: Define a projection
+          href: knowledge-store-projections-examples.md
+        - name: Sample shapes and projections
+          href: knowledge-store-projection-example-long.md
     - name: Generative AI skills
       items:
       - name: Add AI-generated content (GenAI Prompt skill)
@@ -291,24 +350,6 @@ items:
         href: cognitive-search-create-custom-skill-example.md
       - name: Azure AI Search Power Skills
         href: https://github.com/Azure-Samples/azure-search-power-skills
-    - name: Knowledge stores
-      items:
-      - name: What is a knowledge store?
-        href: knowledge-store-concept-intro.md
-      - name: What is a knowledge store projection?
-        href: knowledge-store-projection-overview.md
-      - name: Create a knowledge store
-        href: knowledge-store-create-rest.md
-      - name: Create a knowledge store (portal)
-        href: knowledge-store-create-portal.md
-      - name: Shape data for projection
-        href: knowledge-store-projection-shape.md
-      - name: Define a projection
-        href: knowledge-store-projections-examples.md
-      - name: Sample shapes and projections
-        href: knowledge-store-projection-example-long.md
-      - name: Connect with Power BI
-        href: knowledge-store-connect-power-bi.md
   - name: Retrieval
     items:
     - name: Query with Search Explorer
@@ -317,12 +358,6 @@ items:
       items:
       - name: What is full-text search?
         href: search-lucene-query-architecture.md
-      - name: Quickstarts
-        items:
-        - name: Programmatic
-          href: search-get-started-text.md
-        - name: Portal
-          href: search-get-started-portal.md
       - name: Create a full-text query
         href: search-query-create.md
       - name: Add autocomplete and suggestions
@@ -363,12 +398,6 @@ items:
       items:
       - name: What is vector search?
         href: vector-search-overview.md
-      - name: Quickstarts
-        items:
-        - name: Programmatic
-          href: search-get-started-vector.md
-        - name: Portal
-          href: search-get-started-portal-import-vectors.md
       - name: Create a vector query
         href: vector-search-how-to-query.md
       - name: Filter a vector query
@@ -387,10 +416,6 @@ items:
       items:
       - name: What is multimodal search?
         href: multimodal-search-overview.md
-      - name: Quickstarts
-        items:
-        - name: Portal
-          href: search-get-started-portal-image-search.md
       - name: Tutorials
         items:
         - name: Vectorize images and text
@@ -407,26 +432,22 @@ items:
     items:
     - name: What is relevance?
       href: search-relevance-overview.md
-    - name: BM25 ranking
-      items:
-      - name: What is BM25 ranking?
-        href: index-similarity-and-scoring.md
-      - name: Configure BM25 ranking
-        href: index-ranking-similarity.md
     - name: What is vector ranking?
       href: vector-search-ranking.md
     - name: What is hybrid ranking (RRF)?
       href: hybrid-search-ranking.md
     - name: Add a scoring profile
       href: index-add-scoring-profiles.md
+    - name: BM25 ranking
+      items:
+      - name: What is BM25 ranking?
+        href: index-similarity-and-scoring.md
+      - name: Configure BM25 ranking
+        href: index-ranking-similarity.md
     - name: Semantic ranking
       items:
       - name: What is semantic ranking?
         href: semantic-search-overview.md
-      - name: Quickstarts
-        items:
-        - name: Programmatic
-          href: search-get-started-semantic.md
       - name: Enable or disable semantic ranker
         href: semantic-how-to-enable-disable.md
       - name: Configure semantic ranker
@@ -435,10 +456,10 @@ items:
         href: semantic-how-to-query-request.md
       - name: Rewrite queries with semantic ranker
         href: semantic-how-to-query-rewrite.md
-      - name: Migrate semantic ranking code
-        href: semantic-code-migration.md
       - name: Enable scoring profiles in semantic ranker
         href: semantic-how-to-enable-scoring-profiles.md
+      - name: Migrate semantic ranking code
+        href: semantic-code-migration.md
 
 - name: Agentic retrieval (RAG)
   items:
@@ -446,23 +467,13 @@ items:
     href: agentic-retrieval-overview.md
   - name: What is retrieval-augmented generation (RAG)?
     href: retrieval-augmented-generation-overview.md
-  - name: Quickstarts
-    items:
-    - name: Programmatic
-      href: search-get-started-agentic-retrieval.md
-    - name: Portal
-      href: get-started-portal-agentic-retrieval.md
-  - name: Tutorials
-    items:
-    - name: Build an agentic retrieval solution
-      href: agentic-retrieval-how-to-create-pipeline.md
-  - name: Create an index for agentic retrieval
-    href: agentic-retrieval-how-to-create-index.md
-  - name: Create a knowledge source
+  - name: Knowledge sources
     items:
     - name: What is a knowledge source?
       href: agentic-knowledge-source-overview.md
-    - name: Indexed knowledge sources
+    - name: Create an index for agentic retrieval
+      href: agentic-retrieval-how-to-create-index.md
+    - name: Create an indexed source
       items:
       - name: Search index
         href: agentic-knowledge-source-how-to-search-index.md
@@ -472,7 +483,7 @@ items:
         href: agentic-knowledge-source-how-to-onelake.md
       - name: SharePoint
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
-    - name: Remote knowledge sources
+    - name: Create a remote source
       items:
       - name: SharePoint
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
@@ -480,14 +491,18 @@ items:
         href: agentic-knowledge-source-how-to-web.md
       - name: Manage web access
         href: agentic-knowledge-source-how-to-web-manage.md
-  - name: Create a knowledge base
-    href: agentic-retrieval-how-to-create-knowledge-base.md
-  - name: Enable answer synthesis
-    href: agentic-retrieval-how-to-answer-synthesis.md
-  - name: Set retrieval reasoning effort
-    href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
-  - name: Retrieve data
-    href: agentic-retrieval-how-to-retrieve.md
+  - name: Knowledge bases and retrieval
+    items:
+    - name: Create a knowledge base
+      href: agentic-retrieval-how-to-create-knowledge-base.md
+    - name: Enable answer synthesis
+      href: agentic-retrieval-how-to-answer-synthesis.md
+    - name: Set retrieval reasoning effort
+      href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
+    - name: Retrieve data
+      href: agentic-retrieval-how-to-retrieve.md
+    - name: Build an end-to-end retrieval solution
+      href: agentic-retrieval-how-to-create-pipeline.md
   - name: Migrate agentic retrieval code
     href: agentic-retrieval-how-to-migrate.md
 
@@ -533,21 +548,21 @@ items:
         href: search-how-to-index-sql-managed-instance-with-managed-identity.md
       - name: Connect to an Azure function
         href: search-howto-managed-identities-azure-functions.md
-      - name: Connect through a firewall
-        href: search-indexer-howto-access-ip-restricted.md
-      - name: Connect through a shared private link
-        href: search-indexer-howto-access-private.md
-      - name: Connect as a trusted service
-        href: search-indexer-howto-access-trusted-service-exception.md
-      - name: Connect to a SQL managed instance private endpoint
-        href: search-indexer-how-to-access-private-sql.md
+    - name: Connect through a firewall
+      href: search-indexer-howto-access-ip-restricted.md
+    - name: Connect through a shared private link
+      href: search-indexer-howto-access-private.md
+    - name: Connect as a trusted service
+      href: search-indexer-howto-access-trusted-service-exception.md
+    - name: Connect to a SQL managed instance private endpoint
+      href: search-indexer-how-to-access-private-sql.md
   - name: Document-level access
     items:
     - name: What is document-level security?
       href: search-document-level-access-overview.md
     - name: Use security filters
       href: search-security-trimming-for-azure-search.md
-    - name: Use ACLs or RBAC scopes
+    - name: ACLs or RBAC scopes
       items:
       - name: Push document-level permissions to an index
         href: search-index-access-control-lists-and-rbac-push-api.md
@@ -561,7 +576,7 @@ items:
         href: tutorial-adls-gen2-indexer-acls.md
       - name: Query with permission filters
         href: search-query-access-control-rbac-enforcement.md
-    - name: Preserve sensitivity labels
+    - name: Sensitivity labels
       items:
       - name: Pull Purview sensitivity labels into an index
         href: search-indexer-sensitivity-labels.md
@@ -575,10 +590,8 @@ items:
       href: search-security-managed-encryption-cross-tenant.md
     - name: Find encrypted objects
       href: search-security-get-encryption-keys.md
-    - name: Tutorials
-      items:
-      - name: Index encrypted blobs
-        href: search-how-to-index-azure-blob-encrypted.md
+    - name: Index encrypted blobs
+      href: search-how-to-index-azure-blob-encrypted.md
 
 - name: Development
   items:
@@ -586,7 +599,11 @@ items:
     href: search-api-versions.md
   - name: Preview features
     href: search-api-preview.md
-  - name: Migrate code
+  - name: Develop in .NET
+    href: search-how-to-dotnet-sdk.md
+  - name: Handle concurrent updates
+    href: search-howto-concurrency.md
+  - name: Migration
     items:
     - name: Upgrade the REST API
       href: search-api-migration.md
@@ -594,22 +611,20 @@ items:
       href: search-dotnet-sdk-migration-version-11.md
     - name: Upgrade .NET management libraries
       href: search-dotnet-mgmt-sdk-migration.md
-  - name: Develop in .NET
-    href: search-how-to-dotnet-sdk.md
-  - name: Handle concurrent updates
-    href: search-howto-concurrency.md
-  - name: Create a demo app
-    href: search-create-app-portal.md
-  - name: Add search to a static web app
+  - name: Demo apps
     items:
-    - name: Overview
-      href: tutorial-csharp-overview.md
-    - name: Create a search index
-      href: tutorial-csharp-create-load-index.md
-    - name: Deploy static web app
-      href: tutorial-csharp-deploy-static-web-app.md
-    - name: Explore the code
-      href: tutorial-csharp-search-query-integration.md
+    - name: Create a demo app
+      href: search-create-app-portal.md
+    - name: Add search to a static web app
+      items:
+      - name: Overview
+        href: tutorial-csharp-overview.md
+      - name: Create a search index
+        href: tutorial-csharp-create-load-index.md
+      - name: Deploy static web app
+        href: tutorial-csharp-deploy-static-web-app.md
+      - name: Explore the code
+        href: tutorial-csharp-search-query-integration.md
 
 - name: Monitoring and performance
   items:
@@ -650,13 +665,13 @@ items:
 
 - name: References
   items:
-  - name: REST API reference
+  - name: REST APIs
     items:
     - name: Search Service REST API
       href: /rest/api/searchservice
     - name: Search Management REST API
       href: /rest/api/searchmanagement
-  - name: Azure SDK reference
+  - name: Azure SDKs
     items:
     - name: .NET
       items:
@@ -682,7 +697,20 @@ items:
         href: /python/api/overview/azure/search-documents-readme
       - name: azure-mgmt-search
         href: /python/api/azure-mgmt-search/
-  - name: Data reference
+  - name: Resource management
+    items:
+    - name: Azure CLI
+      href: /cli/azure/search
+    - name: Azure PowerShell
+      href: /powershell/module/az.search
+    - name: Azure Resource Manager template
+      href: /azure/templates/microsoft.search/searchservices
+    - name: Azure Policy built-ins
+      displayName: samples, policies, definitions
+      href: ./policy-reference.md
+    - name: Monitoring data reference
+      href: monitor-azure-cognitive-search-data-reference.md
+  - name: Data
     items:
     - name: Data types
       href: /rest/api/searchservice/supported-data-types
@@ -690,7 +718,7 @@ items:
       href: /rest/api/searchservice/data-type-map-for-indexers-in-azure-search
     - name: Stopwords
       href: reference-stopwords.md
-  - name: Query reference
+  - name: Query
     items:
     - name: Simple query syntax
       href: query-simple-syntax.md
@@ -698,7 +726,7 @@ items:
       href: query-lucene-syntax.md
     - name: moreLikeThis
       href: search-more-like-this.md
-    - name: OData language reference
+    - name: OData language
       items:
       - name: Overview
         href: query-odata-filter-orderby-syntax.md
@@ -724,27 +752,7 @@ items:
         href: search-query-odata-search-score-function.md
       - name: OData Language Grammar
         href: search-query-odata-syntax-reference.md
-  - name: Resource management
-    items:
-    - name: Azure CLI
-      href: /cli/azure/search
-    - name: Azure PowerShell
-      href: /powershell/module/az.search
-    - name: Azure Resource Manager template
-      href: /azure/templates/microsoft.search/searchservices
-    - name: Azure Policy built-ins
-      displayName: samples, policies, definitions
-      href: ./policy-reference.md
-    - name: Monitoring data reference
-      href: monitor-azure-cognitive-search-data-reference.md
-  - name: Security reference
-    items:
-    - name: Security controls by Azure Policy
-      displayName: regulatory, compliance, standards, domains
-      href: ./security-controls-policy.md
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
-  - name: Skills reference
+  - name: Skills
     items:
     - name: Overview
       href: cognitive-search-predefined-skills.md
@@ -813,7 +821,7 @@ items:
         href: cognitive-search-skill-entity-recognition.md
       - name: Sentiment (v2)
         href: cognitive-search-skill-sentiment.md
-  - name: Vectorizers reference
+  - name: Vectorizers
     items:
     - name: Microsoft Foundry model catalog
       href: vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md
@@ -823,6 +831,13 @@ items:
       href: vector-search-vectorizer-ai-services-vision.md
     - name: Custom Web API
       href: vector-search-vectorizer-custom-web-api.md
+  - name: Security
+    items:
+    - name: Security controls by Azure Policy
+      displayName: regulatory, compliance, standards, domains
+      href: ./security-controls-policy.md
+    - name: Security baseline
+      href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
 
 - name: Resources
   items:
