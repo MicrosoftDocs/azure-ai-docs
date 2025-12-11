@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 Publishing promotes an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. This article shows you how to publish an agent, configure its authentication and permissions, update published versions, and consume the agent through its stable endpoint. 
 
-When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Entra agent identity blueprint and Entra agent identity. A deployment is created under the application that references your agent version and registers it in the [Entra Agent Registry](/entra/identity/app-provisioning/what-is-provisioning#what-is-app-provisioning) for discovery and governance. 
+When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Entra agent identity blueprint and Entra agent identity. A deployment is created under the application that references your agent version and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discovery and governance. 
 
 Publishing enables you to share agents with teammates, your organization, or customers without granting access to your Foundry project or source code. The stable endpoint remains consistent as you iterate and deploy new agent versions. 
 
@@ -27,7 +27,7 @@ Publishing enables you to share agents with teammates, your organization, or cus
 - [Azure AI User role](../../../concepts/rbac-azure-ai-foundry.md) on the Agent Application scope to chat with a published agent
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
-- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
+- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md)
 
 [!INCLUDE [code-preview](../../includes/code-preview.md)]
 
