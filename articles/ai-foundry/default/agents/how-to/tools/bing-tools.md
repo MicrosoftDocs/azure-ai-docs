@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: article
-ms.date: 12/04/2025
+ms.date: 12/11/2025
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
