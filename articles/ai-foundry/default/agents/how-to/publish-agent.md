@@ -316,24 +316,6 @@ print(f"Response output: {response.output_text}")
 ```
 This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
 
-## Configure end-user isolation
-
-Agent Applications provide user data isolation by default, ensuring that inputs and interactions from one user aren't available to other users. However, for production scenarios requiring additional security controls such as rate limiting, token management, and centralized policy enforcement, consider using [Azure API Management (APIM) as an AI gateway](ai-gateway.md).
-
-APIM AI Gateway provides:
-
-- **Rate limiting**: Control usage per user or application to prevent abuse
-- **Token management**: Centralized management of API keys and credentials
-- **Policy enforcement**: Apply organizational security and compliance policies
-- **Monitoring and analytics**: Track usage patterns and detect anomalies
-- **Multi-region support**: Deploy across regions for high availability
-
-For detailed guidance on implementing APIM AI Gateway with Agent Applications, see:
-- [Bring your own AI gateway to Azure AI Agent Service](ai-gateway.md)
-- [AI gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
-
-For code samples demonstrating APIM integration with Agent Applications, refer to the [APIM and model gateway integration guide](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md) on GitHub. 
-
 ## Related content
 
 - Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
