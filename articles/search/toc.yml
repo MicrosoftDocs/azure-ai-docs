@@ -387,7 +387,7 @@ items:
       items:
       - name: What is multimodal search?
         href: multimodal-search-overview.md
-      - Quickstarts
+      - name: Quickstarts
         items:
         - name: Portal
           href: search-get-started-portal-image-search.md
