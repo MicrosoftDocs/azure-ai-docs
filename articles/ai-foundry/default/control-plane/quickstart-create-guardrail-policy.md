@@ -38,7 +38,7 @@ In this quickstart, you create an Azure Policy in Microsoft Foundry to govern th
 
 1. Select **Compliance** in the left pane.
 
-1. Select **Create new policy**.
+1. Select **Create policy**.
 
      :::image type="content" source="media/quickstart-create-a-guardrail-policy/compliance-tab.png" alt-text="Screenshot of the Compliance pane of the Foundry Control Plane." lightbox="media/quickstart-create-a-guardrail-policy/compliance-tab.png":::
 
