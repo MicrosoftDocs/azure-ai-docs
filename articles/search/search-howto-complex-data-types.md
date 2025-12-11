@@ -365,7 +365,7 @@ var combinedCountryCategoryFilter = "(" + countryFilter + " and " + catgFilter +
 
 ```
 
-If you implement the workaround, be sure to test extentively.
+If you implement the workaround, be sure to test extensively.
 
 ## Next steps
 
