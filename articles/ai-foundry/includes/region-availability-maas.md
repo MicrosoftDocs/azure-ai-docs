@@ -16,12 +16,12 @@ ms.custom:
 
 ### Anthropic models
 
-| Model             | Hub/Project Region for Deployment  |  Lifecycle Status            |
-|-------------------|------------------------------------|------------------------------|
-| Claude Haiku 4.5  | East US 2 <br> Sweden Central      | Preview                      |
-| Claude Opus 4.1   | East US 2 <br> Sweden Central      | Preview                      |
-| Claude Sonnet 4.5 | East US 2 <br> Sweden Central      | Preview                      |
-| Claude Opus 4.5   | East US 2 <br> Sweden Central      | Preview                      |
+| Model             | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|-------------------|---------|-------------------------------------|---------|
+| Claude Haiku 4.5 (preview)  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central      | Not available |
+| Claude Opus 4.1 (preview)  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central      | Not available |
+| Claude Sonnet 4.5 (preview) | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central      | Not available |
+| Claude Opus 4.5 (preview)  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)—**except** *Belarus* and *Russia* | East US 2 <br> Sweden Central      | Not available |
 
 ### Cohere models
 

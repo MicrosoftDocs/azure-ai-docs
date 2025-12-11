@@ -8,8 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 11/20/2025
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 ---
 
 # How to use the Computer Use Tool
@@ -222,6 +222,6 @@ with project_client:
 
 ## Next steps
 
-* [Python agent samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents)
+* [Python agent samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples-classic/python/getting-started-agents)
 * [Azure OpenAI Computer Use example Playwright integration](../../../openai/how-to/computer-use.md#playwright-integration)
     * The Azure OpenAI API has implementation differences compared to the Agent Service, and these examples may need to be adapted to work with agents.

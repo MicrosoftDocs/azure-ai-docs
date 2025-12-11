@@ -24,7 +24,7 @@ ai-usage: ai-assisted
 When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
 
 > [!NOTE]
-> End-to-end network isolation is not supported in the new Foundry portal experience. Please use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation, PNA disabled Foundry with a private endpoint and virutal network injected Agents, is enabled. 
+> End-to-end network isolation is not supported in the new Foundry portal experience. Please use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. 
 
 
 ## Prerequisites
@@ -179,4 +179,3 @@ You can grant networking access to trusted Azure services by creating a network 
 
 - [Create a Foundry project](create-projects.md)
 - [Learn more about Foundry](../what-is-azure-ai-foundry.md)
-- [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

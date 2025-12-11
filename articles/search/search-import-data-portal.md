@@ -5,7 +5,7 @@ description: Learn about the Azure portal wizards that create and load an index 
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 12/05/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -39,13 +39,15 @@ Despite their differences, the wizards follow similar workflows for content inge
 | Index creation | ✅ | ✅ |
 | Indexer pipeline creation | ✅ | ✅ |
 | Azure Logic Apps connectors | ❌ | ✅ |
-| Sample data | ✅ | ❌ |
+| Built-in sample data | ❌ | ❌ |
 | Skills-based enrichment | ✅ | ✅ |
 | Vector and multimodal support | ❌ | ✅ |
 | Semantic ranking support | ❌ | ✅ |
 | Knowledge store support | ✅ | ❌ |
 
-This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions using sample data, see [Try the wizards](#try-the-wizards).
+Built-in sample data for the hotels sample index is no longer provided, but you can create an identical index by following the [Quickstart: Create an index for keyword search](search-get-started-portal.md).
+
+This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions, see [Try the wizards](#try-the-wizards).
 
 ## Supported data sources and scenarios
 
@@ -77,15 +79,6 @@ The wizards support the following data sources, most of which use [built-in inde
 <sup>1</sup> This data source uses an [Azure Logic Apps connector (preview)](search-how-to-index-logic-apps.md#supported-connectors) instead of a built-in indexer.
 
 <sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint](search-how-to-index-sharepoint-online.md).
-
-### Sample data
-
-Microsoft hosts the following sample data so that you can skip the wizard step for data source configuration.
-
-| Sample data | Import data wizard | Import data (new) wizard |
-|--|--|--|
-| Hotels      | ✅ | ❌ |
-| Real estate | ✅ | ❌ |
 
 ### Skills
 
@@ -182,10 +175,6 @@ The wizards use the Azure portal controller and public endpoints to make outboun
 
 You can use the wizards over restricted public connections, but not all functionality is available.
 
-+ On a search service, importing the built-in sample data requires a public endpoint and no firewall rules.
-
-  Microsoft hosts the sample data on specific Azure resources. The Azure portal controller connects to these resources over a public endpoint. If your search service is behind a firewall, you get the following error when you attempt to retrieve the sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
-
 + On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place.
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
@@ -227,10 +216,6 @@ To start the wizards:
     :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the import wizard options." border="true":::
 
     The wizards open fully expanded in the browser window, giving you more room to work.
-
-1. If you selected **Import data**, you can select **Samples** to index a Microsoft-hosted dataset from a supported data source.
-
-    :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
 
 1. Follow the remaining steps to create the index, indexer, and other applicable objects.
 
