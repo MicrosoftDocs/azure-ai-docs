@@ -108,8 +108,6 @@ items:
   items:
   - name: Dev tutorials
     items:
-    - name: Add search to ASP.NET Core (MVC)
-      href: tutorial-csharp-create-mvc-app.md
     - name: Add search to static web apps
       items:
       - name: Overview
@@ -120,8 +118,6 @@ items:
         href: tutorial-csharp-deploy-static-web-app.md
       - name: Explore the code
         href: tutorial-csharp-search-query-integration.md
-    - name: Query from Power Apps
-      href: search-howto-powerapps.md
   - name: Indexing tutorials
     items:
     - name: Index any data
