@@ -11,6 +11,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
+  - references_regions
 ---
 
 > [!NOTE]
