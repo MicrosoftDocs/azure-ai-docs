@@ -630,7 +630,8 @@
             "source_path_from_root": "/articles/search/tutorial-rag-build-solution-minimize-storage.md",
             "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
             "redirect_document_id": false
-        },          
+        },
+        {
             "source_path_from_root": "/articles/search/search-howto-powerapps.md",
             "redirect_url": "/azure/search/search-what-is-azure-search",
             "redirect_document_id": false
