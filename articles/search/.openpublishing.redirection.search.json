@@ -599,12 +599,12 @@
         {
             "source_path_from_root": "/articles/search/search-howto-powerapps.md",
             "redirect_url": "/azure/search/search-what-is-azure-search",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/tutorial-csharp-create-mvc-app.md",
-            "redirect_url": "/azure/search/search-what-is-azure-search",
-            "redirect_document_id": true
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
+            "redirect_document_id": false
         }
     ]
   }
