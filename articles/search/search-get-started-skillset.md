@@ -13,15 +13,6 @@ ms.topic: quickstart
 ms.date: 12/11/2025
 ---
 
----
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
-ms.service: azure-ai-search
-ms.topic: include
-ms.date: 09/16/2025
----
-
 > [!IMPORTANT]
 > The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](search-import-data-portal.md).
 
@@ -138,7 +129,7 @@ For this quickstart, the wizard sets reasonable defaults:
 
 + Default fields are based on metadata properties of existing blobs and new fields for the enrichment output, such as `persons`, `locations`, and `organizations`. Data types are inferred from metadata and by data sampling.
 
-  :::image type="content" source=".media/search-get-started-skillset/index-fields-new-wizard.png" alt-text="Screenshot of the index definition page." border="true" lightbox="media/search-get-started-skillset/index-fields-new-wizard.png":::
+  :::image type="content" source="media/search-get-started-skillset/index-fields-new-wizard.png" alt-text="Screenshot of the index definition page." border="true" lightbox="media/search-get-started-skillset/index-fields-new-wizard.png":::
 
 + Default document key is `metadata_storage_path`, which is selected because the field contains unique values.
 
