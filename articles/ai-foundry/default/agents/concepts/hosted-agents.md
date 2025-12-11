@@ -588,7 +588,7 @@ To learn how to create the `RemoteMCPTool` connection, see [Connect to Model Con
 
 Reference the Foundry tool connection ID for Remote MCP servers within your agent code using an environment variable and wrap it with the Hosting adapter for testing locally. Build and push your Docker image to Azure Container Registry (ACR), configure image pull permissions on the ACR, [create a capability host](#create-a-hosted-agent-by-using-the-foundry-sdk) and proceed to registering your agent on Foundry.
 
-Create Hosted Agents Version with tools definition using the Foundry SDK:
+Create a hosted agents version with tools definition using the Foundry SDK:
 
 ```python
 from azure.ai.projects import AIProjectClient
