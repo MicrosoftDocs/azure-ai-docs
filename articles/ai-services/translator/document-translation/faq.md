@@ -5,7 +5,7 @@ description: Get answers to Azure Translator in Foundry Tools Document translati
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: faq
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---

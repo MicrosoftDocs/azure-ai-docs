@@ -5,7 +5,7 @@ description: This article lists service limits for the Translator text and docum
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
