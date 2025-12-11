@@ -595,6 +595,16 @@
             "source_path_from_root": "/articles/search/search-how-to-index-logic-apps-indexers.md",
             "redirect_url": "/azure/search/search-how-to-index-logic-apps",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-powerapps.md",
+            "redirect_url": "/azure/search/search-what-is-azure-search",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-csharp-create-mvc-app.md",
+            "redirect_url": "/azure/search/search-what-is-azure-search",
+            "redirect_document_id": true
         }
     ]
   }
