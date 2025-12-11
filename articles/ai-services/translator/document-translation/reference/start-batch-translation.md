@@ -156,7 +156,7 @@ The following are examples of batch requests.
 > [!NOTE]
 > In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
-##### Translate all documents in a container
+### Translate all documents in a container
 
 ```json
 {
@@ -176,7 +176,7 @@ The following are examples of batch requests.
 }
 ```
 
-##### Translate a specific document in a container
+### Translate a specific document in a container
 
 * Specify "storageType": `File`.
 * Create source URL & SAS token for the specific blob/document.
@@ -218,7 +218,7 @@ This sample request shows a single document translated into two target languages
 
 * You can also use a [get-translations-status](../reference/get-translations-status.md) request to retrieve a list of translation jobs and their `id`s.
 
-##### Translate all documents in a container applying glossaries
+### Translate all documents in a container applying glossaries
 
 ```json
 {
@@ -246,7 +246,7 @@ This sample request shows a single document translated into two target languages
 }
 ```
 
-##### Translate a specific folder in a container
+### Translate a specific folder in a container
 
 Make sure you specify the folder name (case sensitive) as prefix in filter.
 
