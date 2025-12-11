@@ -10,7 +10,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/23/2025
+ms.date: 12/10/2025
 ---
 
 # C# samples for Azure AI Search
@@ -60,14 +60,6 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 | [DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) | [Use the .NET client library](search-howto-dotnet-sdk.md) | Create and manage multiple search objects while learning about the APIs. |
 | [DotNetToIndexers](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToIndexers) | [Tutorial: Index Azure SQL data](search-indexer-tutorial.md) | Configure an Azure SQL indexer with a schedule, field mappings, and parameters. |
 | [DotNetHowToEncryptionUsingCMK](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToEncryptionUsingCMK) | [Configure customer-managed keys for data encryption](search-security-manage-encryption-keys.md) | Create objects that are encrypted with a customer-managed key. |
-
-## Accelerators
-
-An accelerator is an end-to-end solution that includes code and documentation you can adapt for your own implementation of a specific scenario.
-
-| Sample | Description |
-|--|--|
-| [search-qna-maker-accelerator](https://github.com/Azure-Samples/search-qna-maker-accelerator) | [Solution](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/qna-with-azure-cognitive-search/2081381) that combines Azure AI Search and QnA Maker. See the live [demo site](https://aka.ms/qnaWithAzureSearchDemo). |
 
 ## Demos
 
