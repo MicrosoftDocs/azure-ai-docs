@@ -264,18 +264,8 @@ For network isolation purposes you can bring your own virtual network for evalua
 
 ### Virtual network region support
 
-| Geography | Supported Azure region|
-|--|--|
-| US | westus, westus3, eastus, eastus2 |
-| Australia | australiaeast |
-| France | francecentral
-| India | southindia |
-| Japan | japaneast |
-| Norway | norwayeast |
-| Sweden | swedencentral |
-| Switzerland | switzerlandnorth |
-| UAE | uaenorth |
-| UK | uksouth |
+Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia,
+North Europe and Qatar Central.
 
 ## Region support
 
