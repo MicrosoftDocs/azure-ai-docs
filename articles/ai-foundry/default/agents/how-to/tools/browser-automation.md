@@ -43,8 +43,8 @@ Before you begin, make sure you have:
 
 For the SDK examples, set these environment variables:
 
-- `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
 - `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`: The connection resource ID for the Playwright workspace connection.
 
 Your connection ID should be in the following format: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
@@ -95,7 +95,7 @@ from azure.ai.projects.models import (
 load_dotenv()
 
 project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
@@ -113,7 +113,7 @@ with project_client:
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are an Agent helping with browser automation tasks. 
             You can answer questions, provide information, and assist with various tasks 
             related to web browsing using the Browser Automation tool available to you.""",
@@ -164,7 +164,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
 
 ### Expected output
 
@@ -298,30 +298,40 @@ The following cURL sample demonstrates how to create an agent with Browser Autom
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  --H "Authorization: Bearer $AGENT_TOKEN" \
-  --H "Content-Type: application/json" \
-  --H "User-Agent: insomnia/11.6.1" \
-  --d '{
-"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
-"input": """
-            Your goal is to report the percent of Microsoft year-to-date stock price change.
-            To do that, go to the website finance.yahoo.com.
-            At the top of the page, you will find a search bar.
-            Enter the value 'MSFT', to get information about the Microsoft stock price.
-            At the top of the resulting page you will see a default chart of Microsoft stock price.
-            Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.""",
-"tools": [
-   {
-   "type": "browser_automation_preview",
-   "browser_automation_preview":
+  --url "${FOUNDRY_PROJECT_ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
+  --header "Authorization: Bearer ${AGENT_TOKEN}" \
+  --header "Content-Type: application/json" \
+  --header "User-Agent: insomnia/11.6.1" \
+  --data @- <<JSON
+{
+  "model": "${FOUNDRY_MODEL_DEPLOYMENT_NAME}",
+  "input": [
+    {
+      "role": "user",
+      "content": [
         {
-            "connection": {
-            "project_connection_id": "$BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"
+          "type": "input_text",
+          "text": "Your goal is to report the percent of Microsoft year-to-date stock price change."
+        },
+        {
+          "type": "input_text",
+          "text": "Go to finance.yahoo.com, search for MSFT, select YTD on the chart, and report the percent value shown."
         }
+      ]
     }
-    ]
-}'
+  ],
+  "tools": [
+    {
+      "type": "browser_automation_preview",
+      "browser_automation_preview": {
+        "connection": {
+          "project_connection_id": "${BROWSER_AUTOMATION_PROJECT_CONNECTION_ID}"
+        }
+      }
+    }
+  ]
+}
+JSON
 ```
 :::zone-end
 
@@ -335,7 +345,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const browserAutomationProjectConnectionId =
   process.env["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"] ||
@@ -447,7 +457,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
 
 ### Expected output
 
