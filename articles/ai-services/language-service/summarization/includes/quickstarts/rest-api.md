@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.author: lajanuar
 ---
 # [Text summarization](#tab/text-summarization)
@@ -16,7 +16,7 @@ ms.author: lajanuar
 
 Use this quickstart to send text summarization requests using the [REST API](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP). In the following example, you will use cURL to summarize documents or text-based customer service conversations.
 
-[!INCLUDE [Use Language Studio](../use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 

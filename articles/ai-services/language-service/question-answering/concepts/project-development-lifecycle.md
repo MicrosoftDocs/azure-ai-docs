@@ -4,8 +4,8 @@ description: Custom question answering learns best in an iterative cycle of mode
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: conceptual
-ms.date: 11/18/2025
+ms.topic: lifecycle
+ms.date: 12/15/2025
 ---
 # Custom question answering project lifecycle
 
@@ -23,7 +23,7 @@ Learn how to [create a project](../how-to/create-test-deploy.md).
 
 ## Testing and updating your project
 
-The project is ready for testing once it is populated with content, either editorially or through automatic extraction. Interactive testing can be done in Language Studio, in the custom question answering menu through the **Test** panel. You enter common user queries. Then you verify that the responses returned with both the correct response and a sufficient confidence score.
+The project is ready for testing once it is populated with content, either editorially or through automatic extraction. Then you verify that the responses returned with both the correct response and a sufficient confidence score.
 
 * **To fix low confidence scores**: add alternate questions.
 * **When a query incorrectly returns the [default response](../How-to/change-default-answer.md)**: add new answers to the correct question.
@@ -46,7 +46,7 @@ Based on what you learn from your analytics, make appropriate updates to your pr
 
 ## Version control for data in your project
 
-Version control for data is provided through the import/export features on the project page in the custom question answering section of Language Studio.
+Version control for data is provided through the import/export features on your project page.
 
 You can back up a project by exporting the project, in either `.tsv` or `.xls` format. Once exported, include this file as part of your regular source control check.
 
@@ -58,9 +58,6 @@ A project is the repository of questions and answer sets created, maintained, an
 
 A project has two states: *test* and *published*.
 
-### Test project
-
-The *test project* is the version currently edited and saved. The test version has been tested for accuracy, and for completeness of responses. Changes made to the test project don't affect the end user of your application or chat bot. The test project is known as `test` in the HTTP request. The `test` knowledge is available with Language Studio's interactive **Test** pane.
 
 ### Production project
 

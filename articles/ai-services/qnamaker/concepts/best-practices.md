@@ -6,8 +6,8 @@ manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
-ms.topic: conceptual
-ms.date: 06/12/2025
+ms.topic: article
+ms.date: 12/15/2025
 ---
 
 # Best practices of a QnA Maker knowledge base
