@@ -43,8 +43,6 @@ Before you begin, make sure you have:
 - A Foundry project with a configured endpoint.
 - An AI model deployed in your project.
 - A Playwright workspace resource.
-- Azure RBAC role: Contributor or Owner on the Foundry project. [TO VERIFY]
-- Azure RBAC role: Contributor on the Playwright workspace resource (or an equivalent custom role).
 - A project connection set up for your Playwright workspace.
 
 For the SDK examples, set these environment variables:
@@ -208,9 +206,9 @@ The following C# example demonstrates how to create an AI agent with Browser Aut
 // Create the Agent client and read the required environment variables.
 // Note that Browser automation operations can take longer than usual
 // and require the request timeout to be at least 5 minutes.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var playwrightConnectionName = System.Environment.GetEnvironmentVariable("PLAYWRIGHT_CONNECTION_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+var playwrightConnectionName = System.Environment.GetEnvironmentVariable("BROWSER_AUTOMATION_PROJECT_CONNECTION_ID");
 AIProjectClientOptions options = new()
 {
     NetworkTimeout = TimeSpan.FromMinutes(5)
@@ -286,7 +284,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `PLAYWRIGHT_CONNECTION_NAME`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
 - A Playwright connection created in your Foundry project.
 
 ### Expected output
@@ -347,7 +345,7 @@ import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const browserAutomationProjectConnectionId =
   process.env["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"] ||
   "<browser automation project connection id>";
@@ -458,7 +456,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
 
 ### Expected output
 
