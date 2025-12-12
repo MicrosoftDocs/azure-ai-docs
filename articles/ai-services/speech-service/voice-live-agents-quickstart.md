@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.date: 11/10/2025
-author: goergenj
+author: PatrickFarley
 reviewer: PatrickFarley
-ms.author: jagoerge
+ms.author: pafarley
 ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false

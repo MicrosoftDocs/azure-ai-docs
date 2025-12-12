@@ -108,8 +108,6 @@ items:
   items:
   - name: Dev tutorials
     items:
-    - name: Add search to ASP.NET Core (MVC)
-      href: tutorial-csharp-create-mvc-app.md
     - name: Add search to static web apps
       items:
       - name: Overview
@@ -120,8 +118,6 @@ items:
         href: tutorial-csharp-deploy-static-web-app.md
       - name: Explore the code
         href: tutorial-csharp-search-query-integration.md
-    - name: Query from Power Apps
-      href: search-howto-powerapps.md
   - name: Indexing tutorials
     items:
     - name: Index any data
@@ -156,22 +152,6 @@ items:
       href: tutorial-document-layout-image-verbalization.md
   - name: Agentic retrieval tutorial
     href: agentic-retrieval-how-to-create-pipeline.md
-  - name: Classic RAG tutorials
-    items:
-    - name: Build a classic RAG solution
-      href: tutorial-rag-build-solution.md
-    - name: Choose models
-      href: tutorial-rag-build-solution-models.md
-    - name: Design an index
-      href: tutorial-rag-build-solution-index-schema.md
-    - name: Build an indexing pipeline
-      href: tutorial-rag-build-solution-pipeline.md
-    - name: Search and generate answers
-      href: tutorial-rag-build-solution-query.md
-    - name: Maximize relevance
-      href: tutorial-rag-build-solution-maximize-relevance.md
-    - name: Minimize storage and costs
-      href: tutorial-rag-build-solution-minimize-storage.md
   - name: Skills tutorials
     items:
     - name: Create a skillset
