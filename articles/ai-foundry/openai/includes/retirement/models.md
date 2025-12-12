@@ -50,7 +50,8 @@ ms.custom: references_regions, build-2025
 | `gpt-5.1-codex`           | 2025-11-13        | Generally Available   | No earlier than November 14, 2026  |                                      |
 | `gpt-5.1-codex-mini`      | 2025-11-13        | Generally Available   | No earlier than November 14, 2026  |                                      |
 | `model-router`            | 2025-11-18        | Generally Available   | No earlier than December 31, 2026  |                                      |
-
+| `gpt-5.2`                 | 2025-12-11        | Generally Available   | No earlier than December 11, 2026  |                                      |
+| `gpt-5.2-chat`            | 2025-12-11        | Preview               | No earlier than December 11, 2026  |                                      |
 
 # [Audio](#tab/audio)
 
