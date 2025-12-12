@@ -4,9 +4,10 @@ description: Learn how to plan your custom question answering app. Understand ho
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: conceptual
-ms.date: 11/18/2025
+ms.topic: get-started
+ms.date: 12/15/2025
 ---
+
 # Plan your custom question answering app
 
 To plan your custom question answering app, you need to understand how custom question answering works and interacts with other Azure services. You should also have a solid grasp of project concepts.
@@ -60,7 +61,7 @@ Custom question answering also supports unstructured content. You can upload a f
 
 Currently we do not support URLs for unstructured content.
 
-The ingestion process converts supported content types to markdown. All further editing of the *answer* is done with markdown. After you create a project, you can edit QnA pairs in Language Studio with rich text authoring.
+The ingestion process converts supported content types to markdown. All further editing of the *answer* is done with markdown. After you create a project, you can edit QnA pairs with rich text authoring.
 
 ### Data format considerations
 

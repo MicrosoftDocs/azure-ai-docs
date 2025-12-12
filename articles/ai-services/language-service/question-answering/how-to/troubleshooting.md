@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: troubleshooting
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ---
 # Troubleshooting for custom question answering
 
@@ -28,7 +28,7 @@ Learn more about [pricing tiers](../Concepts/azure-resources.md).
 <summary><b>Why is my URL(s)/file(s) not extracting question-answer pairs?</b></summary>
 
 **Answer**:
-It's possible that custom question answering can't auto-extract some question-and-answer (QnA) content from valid FAQ URLs. In such cases, you can paste the QnA content in a .txt file and see if the tool can ingest it. Alternately, you can editorially add content to your project through the [Language Studio portal](https://language.azure.com).
+It's possible that custom question answering can't auto-extract some question-and-answer (QnA) content from valid FAQ URLs. In such cases, you can paste the QnA content in a .txt file and see if the tool can ingest it.
 
 </details>
 

@@ -6,7 +6,7 @@ ms.author: lajanuar
 author: laujan
 ms.manager: nitinme
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.custom: language-service-question-answering
 ---
 # Migrate from QnA Maker to Custom question answering 
@@ -28,7 +28,7 @@ ms.custom: language-service-question-answering
 >  - Automatic RBAC to Language project (not resource)
 >  - Automatic enabling of analytics.
 
-You'll also need to [re-enable analytics](analytics.md) for the language resource.
+You also need to reenable analytics for your language resource.
 
 ## Comparison of features
 
@@ -63,7 +63,7 @@ When you're looking at migrating to custom question answering, consider the foll
 |Azure Search cost              |✔️      |✔️                |Applicable for both QnA Maker and custom question answering.                                                    |
 |App Service cost               |✔️      |➖                |Only applicable for QnA Maker. This is the biggest cost savings for users moving to custom question answering.  |
 
-- Users may select a higher tier with higher capacity, which will impact overall price they pay. It doesn’t impact the price on language component of custom question answering.
+- Users may select a higher tier with higher capacity, which will impact overall price they pay. It doesn't impact the price on language component of custom question answering.
 
 - "Text Records" in custom question answering features refers to the query submitted by the user to the runtime, and it's a concept common to all features within Language. Sometimes a query may have more text records when the query length is higher. 
 
@@ -99,11 +99,6 @@ Following are the broad migration phases to consider:
 
 ![A chart showing the phases of a successful migration](../media/migrate-qnamaker-to-question-answering/migration-phases.png)
 
-More links that can help:
-- [Authoring portal](https://language.cognitive.azure.com/home)
-- [API](authoring.md)
-- [SDK](/dotnet/api/microsoft.azure.cognitiveservices.knowledge.qnamaker)
-- Bot SDK: For bots to use custom question answering, use the [Bot.Builder.AI.QnA](https://www.nuget.org/packages/Microsoft.Bot.Builder.AI.QnA/) SDK – We recommend customers to continue to use this for their Bot integrations. Here are some sample usages of the same in the bot’s code: [Sample 1](https://github.com/microsoft/BotBuilder-Samples/tree/main/samples/csharp_dotnetcore/48.customQABot-all-features) [Sample 2](https://github.com/microsoft/BotBuilder-Samples/tree/main/samples/csharp_dotnetcore/12.customQABot)
 
 ## Common migration scenarios
 
@@ -113,7 +108,7 @@ This topic compares two hypothetical scenarios when migrating from QnA Maker to 
 > An attempt has been made to ensure these scenarios are representative of real customer migrations, however, individual customer scenarios differ. Also, this article doesn't include pricing details. Visit the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/) page for more information.
 
 > [!IMPORTANT] 
-> Each Custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration. You'll also need to [re-enable analytics](analytics.md) for the language resource.
+> Each Custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration. You also need to reenable analytics for the language resource.
 
 ### Migration scenario 1: No custom authoring portal
 
@@ -165,7 +160,7 @@ Here you can find some code samples: [Sample 1](https://github.com/microsoft/Bot
 
 Here are [detailed steps on migration scenario 2](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Language.QuestionAnswering_1.1.0-beta.1/sdk/cognitivelanguage/Azure.AI.Language.QuestionAnswering/MigrationGuide.md)
 
-Learn more about the [prebuilt API](../../../QnAMaker/How-To/using-prebuilt-api.md)
+Learn more about the [prebuilt API](../how-to/using-prebuilt-api.md)
 
 Learn more about the [custom question answering Get Answers REST API](/rest/api/questionanswering/question-answering/get-answers)
 

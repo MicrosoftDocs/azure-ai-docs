@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ---
 # Use smart URL refresh with a project
 
@@ -27,11 +27,7 @@ If you have a project with a URL source that has changed, you can trigger a smar
 > [!IMPORTANT]
 > Because smart URL refresh can involve deleting old content from your project, you might want to [create a backup](./export-import-refresh.md) of your project before you do any refresh operations.
 
-You can trigger a URL refresh in Language Studio by opening your project, selecting the source in the **Manage sources** list, and selecting **Refresh URL**.
-
-:::image type="content" source="../media/question-answering/refresh-url.png" alt-text="screenshot of language studio with refresh URL button highlighted.":::
-
-You can also trigger a refresh programmatically using the REST API. See the **[Update Sources](/rest/api/questionanswering/question-answering-projects/update-sources)** reference documentation for parameters and a sample request.
+You can trigger a refresh programmatically using the REST API. See the **[Update Sources](/rest/api/questionanswering/question-answering-projects/update-sources)** reference documentation for parameters and a sample request.
 
 ## Smart refresh behavior
 

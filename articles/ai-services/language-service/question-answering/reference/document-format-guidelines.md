@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ---
 # Format guidelines for custom question answering
 
@@ -153,9 +153,7 @@ Custom question answering can process semi-structured support web pages, such as
 
 ## Import and export project
 
-**TSV and XLS files**, from exported projects, can only be used by importing the files from the **Settings** page in Language Studio. They cannot be used as data sources during project creation or from the **+ Add file** or **+ Add URL** feature on the **Settings** page.
-
-When you import the project through these **TSV and XLS files**, the question answer pairs get added to the editorial source and not the sources from which the question and answers were extracted in the exported project.
+To migrate your Azure Language Studio project to your Microsoft Foundry project, link your existing Azure Language resource as a **`Connected Resource`** within your Foundry project's **`Management Center`**. For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-services/connect-services-ai-foundry-portal#connect-foundry-tools-after-you-create-a-project)
 
 ## Next steps
 
