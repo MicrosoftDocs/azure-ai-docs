@@ -42,16 +42,14 @@ You can run these models through the BFL service provider API and through the [i
 
 <sup>i,ii</sup> Support for **multiple reference images (up to eight)** is available for FLUX.2[pro] by using the API, but *not* in the playground. See the following [Code samples for FLUX.2[pro]](#code-samples-for-flux2pro).
 
-### Code samples for FLUX.2[pro] 
-
-Input reference images are bit-64 encoded.
+#### Code samples for FLUX.2[pro] 
 
 **Image generation**: 
 
 - input: Text 
 - Output: One image 
 
-```rest
+```sh
 curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \ 
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
@@ -71,7 +69,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
 - input: Up to eight bit-64 encoded images
 - Output: One image 
 
-```rest
+```sh
 curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
