@@ -10,6 +10,8 @@ ms.topic: how-to
 ms.date: 12/12/2025
 author: alvinashcraft
 ms.author: aashcraft
+ms.custom: dev-focus
+ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
 
@@ -27,16 +29,56 @@ OpenAPI tools improve your agent's function calling capabilities by providing st
 
 ## Prerequisites
 
-1. Check the OpenAPI spec for the following requirements:
-   1. Although the OpenAPI spec doesn't require it, you need an `operationId` for each function to use with the OpenAPI tool.
-   1. `operationId` should only contain letters, `-`, and `_`. You can modify it to meet the requirement. Use a descriptive name to help models efficiently decide which function to use.
+Before you begin, ensure you have:
+
+- An Azure subscription with appropriate permissions
+- Azure RBAC role: Contributor or Owner on the Foundry project
+- A Foundry project created with an endpoint configured
+- An AI model deployed in your project
+- SDK installed for your preferred language:
+  - Python: `azure-ai-projects` (latest prerelease version)
+  - C#: `Azure.AI.Projects.OpenAI`
+  - TypeScript/JavaScript: `@azure/ai-projects`
+- Environment variables configured:
+  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
+  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name
+- OpenAPI 3.0 specification file that meets these requirements:
+  - Each function must have an `operationId` (required for the OpenAPI tool)
+  - `operationId` should only contain letters, `-`, and `_`
+  - Use descriptive names to help models efficiently decide which function to use
+- For managed identity authentication: Reader role or higher on target service resources
+- For API key authentication: A project connection configured with your API key
 
 ## Code example
 
-:::zone pivot="python"
 > [!NOTE]
 > - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+
+:::zone pivot="python"
+### Quick verification
+
+First, verify your environment is configured correctly:
+
+```python
+# Verify authentication and project connection
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+
+with DefaultAzureCredential() as credential, \
+     AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
+    print(f"Successfully connected to project")
+```
+
+If this runs without errors, you're ready to create an agent with OpenAPI tools.
+
+### Complete example
 
 ```python
 # Import required libraries
@@ -138,6 +180,11 @@ This example creates an agent with an OpenAPI tool that calls the wttr.in weathe
 1. The agent uses the OpenAPI tool to call the weather API and returns formatted results.
 1. Cleans up by deleting the agent version.
 
+### Required inputs
+
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- Local file: `weather_openapi.json` (OpenAPI specification)
+
 ### Expected output
 
 ```console
@@ -147,6 +194,13 @@ Response created: The weather in Seattle is currently cloudy with a temperature 
 Cleaning up...
 Agent deleted
 ```
+
+### Common errors
+
+- `FileNotFoundError`: OpenAPI specification file not found at specified path
+- `KeyError`: Missing required environment variables
+- `AuthenticationError`: Invalid credentials or insufficient permissions
+- Invalid `operationId` format in OpenAPI spec causes tool registration failure
 
 :::zone-end
 
@@ -209,11 +263,22 @@ This C# example creates an agent with an OpenAPI tool that retrieves weather inf
 1. The agent calls the weather API and returns the results.
 1. Cleans up by deleting the agent.
 
+### Required inputs
+
+- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Local file: `Assets/weather_openapi.json` (OpenAPI specification)
+
 ### Expected output
 
 ```console
 The weather in Seattle, WA today is cloudy with temperatures around 52°F...
 ```
+
+### Common errors
+
+- `FileNotFoundException`: OpenAPI specification file not found in Assets folder
+- `ArgumentNullException`: Missing required environment variables
+- `UnauthorizedAccessException`: Invalid credentials or insufficient RBAC permissions
 
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 
@@ -289,6 +354,12 @@ This C# example demonstrates using an OpenAPI tool with API key authentication t
 1. The agent calls the TripAdvisor API using your stored API key and returns results
 1. Cleans up by deleting the agent
 
+### Required inputs
+
+- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Local file: `Assets/tripadvisor_openapi.json`
+- Project connection: `tripadvisor` with valid API key configured
+
 ### Expected output
 
 ```console
@@ -297,6 +368,12 @@ Here are 5 top hotels in Paris, France:
 2. Hotel Name - Rating: 4.4/5, Location: ...
 ...
 ```
+
+### Common errors
+
+- `ConnectionNotFoundException`: No project connection named `tripadvisor` found
+- `AuthenticationException`: Invalid API key in project connection
+- Tool not used: Verify `ToolChoice = ResponseToolChoice.CreateRequiredChoice()` forces tool usage
 
 :::zone-end
 
@@ -406,7 +483,13 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 1. Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives
 1. The agent uses the tool to call the weather API and returns formatted results
 
-### Expected response
+### Required inputs
+
+- Environment variables: `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`
+- Inline OpenAPI specification in request body
+
+### Expected output
 
 ```json
 {
@@ -425,6 +508,12 @@ This REST API example shows how to call an OpenAPI tool with different authentic
   ]
 }
 ```
+
+### Common errors
+
+- `401 Unauthorized`: Invalid or missing `AGENT_TOKEN`
+- `404 Not Found`: Incorrect endpoint or model deployment name
+- `400 Bad Request`: Malformed OpenAPI specification or invalid auth configuration
 :::zone-end
 
 :::zone pivot="typescript"
@@ -564,6 +653,11 @@ This TypeScript example creates an agent with an OpenAPI tool for weather data u
 1. Forces tool usage with `tool_choice: "required"` to ensure the API is called.
 1. Cleans up by deleting the agent
 
+## Required inputs
+
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Local file: `../assets/weather_openapi.json` (OpenAPI specification)
+
 ### Expected output
 
 ```console
@@ -583,6 +677,12 @@ Agent deleted
 
 OpenAPI agent sample completed!
 ```
+
+### Common errors
+
+- `Error: OpenAPI specification not found`: File path incorrect or file missing
+- Missing environment variables causes initialization failure
+- `AuthenticationError`: Invalid Azure credentials
 
 ## Create an agent that uses OpenAPI tools authenticated with a project connection
 
@@ -729,6 +829,12 @@ This TypeScript example demonstrates using an OpenAPI tool with API key authenti
 1. It processes and displays the streaming response.
 1. It cleans up by deleting the agent.
 
+### Required inputs
+
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `TRIPADVISOR_PROJECT_CONNECTION_ID`
+- Local file: `../assets/tripadvisor_openapi.json`
+- Project connection configured with TripAdvisor API key
+
 ### Expected output
 
 ```console
@@ -749,6 +855,11 @@ Agent deleted
 TripAdvisor OpenAPI agent sample completed!
 ```
 
+### Common errors
+
+- `Error: OpenAPI specification not found`: Check file path
+- Connection not found: Verify `TRIPADVISOR_PROJECT_CONNECTION_ID` is correct and connection exists
+- `AuthenticationException`: Invalid API key in project connection
 :::zone-end
 
 ## Authenticate with API key
@@ -781,7 +892,7 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 
 1. Remove any parameter in the OpenAPI spec that needs API key, because API key is stored and passed through a connection, as described later in this article.
 1. Create a connection to store your API key.
-   1. Go to the [Microsoft Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and select the AI Project. Go to build -> agents. 
+   1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and select the AI Project. Go to build -> agents. 
    1. Select **OpenAPI** in tools -> custom. 
 
         >[!NOTE]

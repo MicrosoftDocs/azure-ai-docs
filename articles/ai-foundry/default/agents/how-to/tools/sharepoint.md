@@ -1,6 +1,6 @@
 ---
 title: Use SharePoint content with agent API
-titleSuffix: Azure OpenAI
+titleSuffix: Microsoft Foundry
 description: Learn to ground Azure AI Agents with SharePoint content using the agent API. Connect to SharePoint sites, retrieve documents with managed identity, and maintain enterprise security. Get started now.
 services: cognitive-services
 manager: nitinme
@@ -10,7 +10,8 @@ ms.topic: how-to
 ms.date: 12/12/2025
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, dev-focus
+ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-sharepoint-new
 ---
 
@@ -22,7 +23,7 @@ zone_pivot_groups: selection-agent-sharepoint-new
 > - This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/).
 > - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
-Integrate your agents with **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies`, to ground your Agents with that data. When a user sends a query, the agent determines if it should use SharePoint. If so, it sends a query by using the SharePoint tool. The tool checks if the user has a Microsoft 365 Copilot license and uses managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent generates responses based on retrieved information. By using identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
+Integrate your agents with **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies`, to ground your Agents with that data. When a user sends a query, the agent determines if it should use SharePoint. If so, it sends a query by using the SharePoint tool. The tool checks if the user has a Microsoft 365 Copilot license and uses managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent generates responses based on retrieved information. By using identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. For details on the underlying Microsoft 365 Copilot API integration, see the [How it works](#how-it-works) section. 
 
 ### Usage support
 
@@ -33,15 +34,19 @@ Integrate your agents with **Microsoft SharePoint** to chat with your private do
 ## Prerequisites
 
 - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- Developers and end users have at least `Azure AI User` RBAC role. 
+- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 - Developers and end users have at least `READ` access to the SharePoint site.
-- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+- The latest prerelease package installed:
+  - **Python**: `pip install azure-ai-projects --pre`
+  - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+  - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
+- Environment variables configured:
+  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
+  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
+  - `SHAREPOINT_PROJECT_CONNECTION_ID`: Your SharePoint connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
+- See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for additional authentication setup details.
 
 ## Code example
-
-> [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-> - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
 :::zone pivot="python"
 ## Sample for use of an Agent with SharePoint
@@ -467,14 +472,6 @@ SharePoint agent sample completed!
 
 :::zone-end
 
-## How it works
-
-The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint. This capability is empowered by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, enter the sites or folders to connect with. The SharePoint tool leverages [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance the search and retrieval experience, including intelligent indexing, query processing, and content chunking.
-
-Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
-
-Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, the Foundry Agent service uses the end user’s identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users. 
-
 ## Setup  
 
 > [!NOTE]
@@ -492,6 +489,14 @@ Customers rely on data security in SharePoint to access, create, and share docum
        > - Your `site_url` needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it doesn't work.
     
    1. Add the connection. Make sure you select the **is secret** option.
+
+## How it works
+
+The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint. This capability is empowered by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, enter the sites or folders to connect with. The SharePoint tool leverages [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance the search and retrieval experience, including intelligent indexing, query processing, and content chunking.
+
+Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
+
+Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, the Foundry Agent service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users.
 
 ## Next steps
 
