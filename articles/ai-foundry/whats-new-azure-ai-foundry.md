@@ -45,7 +45,7 @@ Available in both Foundry (new) and Foundry (classic):
 - [Use the LLM-speech API](../ai-services/speech-service/llm-speech.md)
 - [Priority processing](openai/concepts/priority-processing.md)
 - [Classification in Content Understanding Studio](../ai-services/content-understanding/how-to/classification-content-understanding-studio.md)
-- [Concept playgrounds](concepts/concept-playgrounds.md)
+- [Foundry playgrounds](concepts/concept-playgrounds.md)
 - [Use Foundry Models Claude](foundry-models/how-to/use-foundry-models-claude.md)
 
 
