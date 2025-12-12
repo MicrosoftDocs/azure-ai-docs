@@ -12,11 +12,12 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
