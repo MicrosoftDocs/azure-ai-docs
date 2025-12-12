@@ -16,6 +16,7 @@ recommendations: false
 
 # Create and deploy an Azure OpenAI in Microsoft Foundry Models resource
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303211)
 
