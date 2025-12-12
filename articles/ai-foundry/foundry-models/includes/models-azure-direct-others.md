@@ -24,7 +24,7 @@ You can run these models through the BFL service provider API and through the [i
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | Project type | 
 | ------ | ------------------ | ------------ | ------------------------------------- | ------------ |
-| [FLUX.2-pro](https://ai.azure.com/explore/models/FLUX.2-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text and image (32,000 tokens and up to 8 images)  <br /> - **Output:** One Image   <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters. | - Global standard (all regions) | Foundry, Hub-based |
+| [FLUX.2-pro](https://ai.azure.com/explore/models/FLUX.2-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text and image (32,000 tokens and up to 8 images<sup>i</sup>)  <br /> - **Output:** One Image   <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images<sup>ii</sup>; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters. | - Global standard (all regions) | Foundry, Hub-based |
 | [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) | Foundry, Hub-based |
 | [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) | Foundry, Hub-based |
 
@@ -34,11 +34,58 @@ You can run these models through the BFL service provider API and through the [i
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | 
 | ------ | ------------------ | ------------ | ------------------------------------- |
-| `FLUX.2-pro` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text (32,000 tokens and up to 8 images)  <br /> - **Output:**  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters.  | - Global standard (all regions) |
+| `FLUX.2-pro` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text (32,000 tokens and up to 8 images<sup>i</sup>)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images<sup>ii</sup>; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters.  | - Global standard (all regions) |
 | `FLUX.1-Kontext-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) |
 | `FLUX-1.1-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) |
 
 ::: moniker-end
+
+<sup>i,ii</sup> Support for **multiple reference images (up to eight)** is available for FLUX.2[pro] by using the API, but *not* in the playground. See the following [Code samples for FLUX.2[pro]](#code-samples-for-flux2pro).
+
+### Code samples for FLUX.2[pro] 
+
+Input reference images are bit-64 encoded.
+
+**Image generation**: 
+
+- input: Text 
+- Output: One image 
+
+```rest
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \ 
+  -H "Content-Type: application/json" \ 
+  -H "Authorization: Bearer {API_KEY}" \ 
+  -d '{ 
+      "model": "FLUX.2-pro" 
+      "prompt": "A photograph of a red fox in an autumn forest", 
+      "width": 1024, 
+      "height": 1024, 
+      "seed": 42, 
+      "safety_tolerance": 2, 
+      "output_format": "jpeg", 
+    }' 
+```
+
+**Image editing**:
+
+- input: Up to eight bit-64 encoded images
+- Output: One image 
+
+```rest
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \
+  -H "Content-Type: application/json" \ 
+  -H "Authorization: Bearer {API_KEY}" \ 
+  -d '{ 
+      "model": "FLUX.2-pro", 
+      "prompt": "Apply a cinematic, moody lighting effect to all photos. Make them look like scenes from a sci-fi noir film", 
+      "output_format": "jpeg", 
+      "input_image" : "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDA.......", 
+      "input_image_2" : "iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf........" 
+    }' 
+```
+
+
+
 
 See [this model collection in Microsoft Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs).
 
