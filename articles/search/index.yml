@@ -84,7 +84,7 @@ landingContent:
             url: agentic-retrieval-how-to-retrieve.md
 
   # Card
-  - title: Resources
+  - title: Samples
     linkLists:
       - linkListType: sample
         links:
@@ -100,6 +100,10 @@ landingContent:
             url: samples-rest.md
           - text: Vector samples
             url: https://github.com/Azure/azure-search-vector-samples
+
+  # Card
+  - title: References
+    linkLists:
       - linkListType: reference
         links:
           - text: Azure SDK for .NET
