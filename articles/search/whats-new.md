@@ -24,7 +24,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 | Item | Description |
 |--|--|
-| [2025-11-01-preview portal migration for agentic retrieval](get-started-portal-agentic-retrieval.md) | The Azure portal now uses the 2025-11-01-preview version of the REST APIs for creating and managing knowledge bases and knowledge sources. However, portal-supported knowledge sources are unchanged; you can use the portal to create a search index or blob knowledge source only. Other knowledge sources must be created programmatically. |
+| [2025-11-01-preview portal migration for agentic retrieval](get-started-portal-agentic-retrieval.md) | [Knowledge bases](agentic-retrieval-how-to-create-knowledge-base.md) and [knowledge sources](agentic-knowledge-source-overview.md) in the Azure portal have been updated to use the 2025-11-01-preview REST APIs instead of the 2025-08-01-preview. Portal-created knowledge bases now support the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md), and query-time properties (maximum runtime and maximum output size) have been removed from the UI. The portal continues to support search index and blob knowledge sources only; other knowledge source types must be created programmatically. |
 
 ## November 2025
 

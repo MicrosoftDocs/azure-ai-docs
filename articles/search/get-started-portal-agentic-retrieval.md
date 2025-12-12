@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 11/07/2025
+ms.date: 12/12/2025
 ---
 
 # Quickstart: Use agentic retrieval in the Azure portal
@@ -124,21 +124,21 @@ To create the knowledge source for this quickstart:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
-1. From the left pane, select **Knowledge retrieval** > **Knowledge sources**.
+1. From the left pane, select **Agentic retrieval** > **Knowledge sources**.
 
 1. Select **Add knowledge source** > **Add knowledge source**.
 
-1. Enter **earth-at-night-ks** for the name.
+1. Select **Azure blob**.
 
-1. Select **Azure blob**, and then select your subscription, storage account, and container with the sample data.
+1. Enter **earth-at-night-ks** for the name, and then select your subscription, storage account, and container with the sample data.
 
 1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
 
 1. Select **Add vectorizer**.
 
-1. Select **Microsoft Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
+1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
-1. Select **System managed identity** for the authentication type.
+1. Select **System assigned identity** for the authentication type.
 
 1. Create the knowledge source.
 
@@ -152,15 +152,15 @@ The output mode determines how the knowledge base formulates answers. You can ei
 
 To create the knowledge base for this quickstart:
 
-1. From the left pane, select **Knowledge retrieval** > **Knowledge bases**.
+1. From the left pane, select **Agentic retrieval** > **Knowledge bases**.
 
 1. Select **Add knowledge base** > **Add knowledge base**.
 
 1. Enter **earth-at-night-kb** for the name.
 
-1. Under **Model deployment**, select **Add model deployment**.
+1. Under **Chat completion model**, select **Add model deployment**.
 
-1. Select **Foundry** for the kind, and then select your subscription, project, and LLM deployment.
+1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and LLM deployment.
 
 1. Select **System assigned identity** for the authentication type.
 
@@ -187,55 +187,69 @@ To query the knowledge base:
 1. Review the synthesized, citation-backed answer, which should be similar to the following example.
 
     ```
-    The suburban belts exhibit larger December brightening compared to urban cores due to the increased use of decorative and festive lighting in residential areas, which are more prevalent in suburban regions. In contrast, urban cores, despite having higher absolute light levels, experience less seasonal variation in lighting. The Phoenix nighttime street grid is sharply visible from space because of its regular grid layout and the extensive use of street lighting, which creates a consistent and bright pattern. Conversely, large stretches of interstate highways between Midwestern cities are less illuminated, as they primarily serve as transit routes with minimal lighting infrastructure, resulting in comparatively dim visibility from space.
+    Suburban belts show larger December brightening in satellite nighttime lights than urban cores mainly because of relative (percentage) change effects and differences in how light is used and distributed. Areas with lower baseline light (suburbs, residential streets) can increase lighting use or reflect more light in winter and so show a bigger percent change, while bright urban cores are already near sensor saturation so their relative increase is small. The retrieved material explains that brightest lights are generally the most urbanized but not necessarily the most populated, and that poor or low‑light areas can have large populations but low availability or use of electric lights; thus lower‑light suburbs can exhibit larger relative changes when seasonal lighting rises.
     ```
 
-1. Select the debug icon to review the activity log, which should be similar to the following example.
+1. Select the debug icon to review the activity log, which should be similar to the following JSON.
 
-    ```
+    ```JSON
     [
       {
         "type": "modelQueryPlanning",
         "id": 0,
-        "inputTokens": 2081,
-        "outputTokens": 128,
-        "elapsedMs": 1577
+        "inputTokens": 1518,
+        "outputTokens": 284,
+        "elapsedMs": 3001
       },
       {
         "type": "azureBlob",
         "id": 1,
         "knowledgeSourceName": "earth-at-night-ks",
-        "queryTime": "2025-11-03T15:09:28.172Z",
-        "count": 0,
-        "elapsedMs": 731,
+        "queryTime": "2025-12-12T18:54:28.792Z",
+        "count": 1,
+        "elapsedMs": 456,
         "azureBlobArguments": {
-          "search": "Why do suburban belts display larger December brightening than urban cores despite higher downtown light levels?"
+          "search": "causes of December brightening in satellite nighttime lights suburban vs urban cores"
         }
       },
       {
         "type": "azureBlob",
         "id": 2,
         "knowledgeSourceName": "earth-at-night-ks",
-        "queryTime": "2025-11-03T15:09:28.669Z",
+        "queryTime": "2025-12-12T18:54:29.389Z",
         "count": 3,
-        "elapsedMs": 497,
+        "elapsedMs": 596,
         "azureBlobArguments": {
-          "search": "Why is the Phoenix nighttime street grid sharply visible from space compared to dim interstates in the Midwest?"
+          "search": "factors affecting seasonal variation in nighttime lights December winter brightening suburban belts urban cores"
         }
       },
       {
-        "type": "semanticReranker",
+        "type": "azureBlob",
         "id": 3,
-        "inputTokens": 0
+        "knowledgeSourceName": "earth-at-night-ks",
+        "queryTime": "2025-12-12T18:54:29.862Z",
+        "count": 6,
+        "elapsedMs": 472,
+        "azureBlobArguments": {
+          "search": "why is Phoenix street grid highly visible at night from space compared to dim interstates in the Midwest reasons lighting patterns road lighting urban form"
+        }
+      },
+      {
+        "type": "agenticReasoning",
+        "id": 4,
+        "retrievalReasoningEffort": {
+          "kind": "low"
+        },
+        "reasoningTokens": 111243
       },
       {
         "type": "modelAnswerSynthesis",
-        "id": 4,
-        "inputTokens": 3938,
-        "outputTokens": 136,
-        "elapsedMs": 1963
+        "id": 5,
+        "inputTokens": 7514,
+        "outputTokens": 1058,
+        "elapsedMs": 12334
       }
-    ]   
+    ]
     ```
 
    The activity log offers insight into the steps taken during retrieval, including query planning and execution, semantic ranking, and answer synthesis. For more information, see [Review the activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array).
