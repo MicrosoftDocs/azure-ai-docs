@@ -1,5 +1,5 @@
 items:
-- name: Azure AI Search Documentation
+- name: Azure AI Search documentation
   href: index.yml
 
 - name: Overview
@@ -628,7 +628,7 @@ items:
       - name: Explore the code
         href: tutorial-csharp-search-query-integration.md
 
-- name: Monitoring and performance
+- name: Monitoring
   items:
   - name: Enable diagnostic logging
     href: search-monitor-enable-logging.md
