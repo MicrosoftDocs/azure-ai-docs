@@ -39,7 +39,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-realtime-mini` (version `2025-10-06`)
 
 :::moniker range="foundry"
-For more information, see the [models and versions documentation](/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
+For more information, see the [models and versions documentation](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
 :::moniker-end
 
 :::moniker range="foundry-classic"
