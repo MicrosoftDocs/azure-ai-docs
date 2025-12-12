@@ -6,8 +6,6 @@ items:
       - name: What is Azure Machine Learning?
         href: overview-what-is-azure-machine-learning.md
         displayName: AML, services, overview, introduction
-      - name: "Microsoft Foundry or Azure Machine Learning studio: Which should I choose?"
-        href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
       - name: Azure Machine Learning CLI and Python SDK
         href: concept-v2.md
       - name: Azure Machine Learning SDK & CLI v1
