@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 12/04/2025
 ---
 
 # Retrieve data using a knowledge base in Azure AI Search
@@ -23,6 +23,8 @@ This article explains how to set up a retrieve action. It also covers the three 
 + *query activity*
 
 A retrieve request can include instructions for query processing that override the default instructions set on the knowledge base. A retrieve action has core parameters that are supported on any request, plus parameters that are specific to a knowledge source.
+
+You can also use optional [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) to bring LLM answer formulation into the query pipeline, returning a concise or formatted answer to an agent or app.
 
 ## Prerequisites
 

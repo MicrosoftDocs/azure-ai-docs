@@ -1,6 +1,6 @@
 ### YamlMime:FAQ
 metadata:
-  title: Microsoft Foundry Agent Service frequently asked questions
+  title: Microsoft Foundry Agent Service Frequently Asked Questions
   titleSuffix: Microsoft Foundry
   description: Get answers to the most popular questions about Microsoft Foundry Agent Service
   #services: cognitive-services
@@ -15,34 +15,34 @@ metadata:
   monikerRange: 'foundry-classic || foundry'
 title: Microsoft Foundry Agent Service frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Foundry Tools support options guide](../../ai-services/cognitive-services-support-options.md). Microsoft Foundry Agent Service is part of Foundry Tools.
+  If you can't find answers to your questions in this article and you still need help, see [Foundry Tools support and help options](../../ai-services/cognitive-services-support-options.md). Microsoft Foundry Agent Service is part of Foundry Tools.
 sections:
   - name: General
     questions:
       - question: |
           Do you store any data used in the Foundry Agent Service API? 
         answer: |
-          Yes. Foundry Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the Foundry Agent Service API: 
-          * Stateful entities: Conversations and responses created during usage. 
-          * Files and Vector stores: Uploaded during Foundry Agent Service setup or as part of a response generation.  
+          Yes. Foundry Agent Service is a stateful API, which means that it retains data. Two types of data are stored in the Foundry Agent Service API: 
+          * **Stateful entities**: Conversations and responses created during usage. 
+          * **Files and vector stores**: Data uploaded during Foundry Agent Service setup or as part of a response generation.  
       - question: |
           Where is this data stored?
         answer: |
-          Basic Setup: Data is stored in a secure, Microsoft-managed storage account that is logically separated.  
-          Standard Setup: Data is stored in your own Azure resources, giving you full ownership and control.
+          * **Basic setup**: Data is stored in a secure, Microsoft-managed storage account that's logically separated.  
+          * **Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control.
       - question: |
           How long is this data stored?
         answer: |
-          All used data persists in this system unless you explicitly delete this data. Use the delete function with the conversation ID of the conversation you want to delete. Use the delete function with the Response ID of the generated response you want to delete. 
+          All used data persists in this system unless you explicitly delete it. Use the delete function with the conversation ID of the conversation that you want to delete. Or use the delete function with the response ID of the generated response that you want to delete. 
       - question: | 
-          Does Foundry Agent Service support customer-managed key encryption (CMK)?
+          Does Foundry Agent Service support CMK encryption?
         answer: |
-          Basic Setup: Supports Microsoft managed keys only.  
-          Standard Setup: Supports CMK.
+          * Basic setup supports Microsoft-managed keys only.  
+          * Standard setup supports customer-managed keys (CMKs).
       - question: |
-          Is my data used by Microsoft for training models? 
+          Does Microsoft use my data for training models? 
         answer: |
-          No. Data isn't used by Microsoft for training models. See the [Responsible AI documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information.
+          No, Microsoft doesn't use your data for training models. For more information, see the [Responsible AI documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy).
       - question: |
           Where is data stored geographically?
         answer: |
@@ -50,9 +50,11 @@ sections:
       - question: |
           How am I charged for Foundry Agent Service?
         answer: |
-          * Inference cost (input and output) of the base model you're using for each Agent (for example gpt-4-0125). If you've created multiple agents, you'll be charged for the base model attached to each Agent.
-          * If you've enabled the Code Interpreter tool - for example your agent calls Code Interpreter simultaneously in two different threads, this would create two Code Interpreter sessions, each of which would be charged. Each session is active by default for one hour, which means that you would only pay this fee once if your user keeps giving instructions to Code Interpreter in the same thread for up to one hour.
-          * File search is billed based on the vector storage used. 
+          * You're charged for inference cost (input and output) of the base model that you're using for each agent (for example, gpt-4-0125). If you created multiple agents, you're charged for the base model attached to each agent.
+          * If you enabled the Code Interpreter tool, you're charged for its use per session. For example, if your agent calls Code Interpreter simultaneously in two threads, this activity creates two Code Interpreter sessions. Each of those sessions is charged.
+          
+            By default, each session is active for one hour. If your user keeps giving instructions to Code Interpreter in the same thread for up to one hour, you pay this fee only once.
+          * File search is billed based on the vector storage that you use. 
 
           For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
       - question: |
@@ -62,52 +64,54 @@ sections:
   - name: Virtual networking
     questions:
       - question: |
-          What does 'bring your own virtual network' mean? 
+          What is virtual network isolation? 
         answer: |
-          Virtual networks secure the inbound and outbound access of your Azure resources, preventing bad actors from accessing your resources. Network isolation is achieved through virtual network integrations in Azure. This is a fundamental requirement for security in enterprises. To learn more about virtual network isolation, see [Virtual network integration of Azure services for network isolation](/azure/virtual-network/vnet-integration-for-azure-services) and [What is Azure Virtual Network?](/azure/virtual-network/virtual-networks-overview)
+          Virtual networks help secure the inbound and outbound access of your Azure resources to prevent bad actors from accessing your resources. You achieve network isolation through virtual network integrations in Azure. This is a fundamental requirement for security in enterprises. To learn more about virtual network isolation, see [Integrate Azure services with virtual networks for network isolation](/azure/virtual-network/vnet-integration-for-azure-services) and [What is Azure Virtual Network?](/azure/virtual-network/virtual-networks-overview).
       - question: |
-          Why is subnet delegation needed? 
+          Why do I need subnet delegation? 
         answer: |
-          Both the Agent client and compute run on Azure Container Apps (ACA). When you run the Agent client and the associated compute on Azure Container Apps (ACA) inside an existing virtual network, you must supply a dedicated subnet delegated to `Microsoft.App/environments`.
-          1. Delegation pins them to the right subnet. It tells Azure exactly where to “inject” the Agent client so ACA can create network interfaces there.   
-          2. ACA then applies the needed plumbing - IP addresses, routing, NSGs, and service-managed identity wiring, is configured automatically.   
-          3. Without the delegation, ACA refuses to deploy, so neither the Agent client nor the compute layer could join your Virtual Network, breaking isolation, and compliance requirements.   
-          In short, delegating the subnet is the prerequisite that lets ACA, and therefore your Agent runtime, live inside your private network with the correct security and routing policies in place and in your control. 
+          The agent client and compute both run on Azure Container Apps. When you run the agent client and the associated compute on Container Apps inside an existing virtual network, you must supply a dedicated subnet delegated to `Microsoft.App/environments`.
+          
+          Delegation pins the client and compute to the right subnet. It tells Azure exactly where to "inject" the agent client so that Container Apps can create network interfaces there. Container Apps then applies the IP addresses, routing, NSGs, and service-managed identity, which are configured automatically.   
+          
+          Without the delegation, Container Apps refuses to deploy. In that case, neither the agent client nor the compute layer can join your virtual network. This situation breaks isolation and compliance requirements.   
+          
+          In short, delegating the subnet is the prerequisite that lets Container Apps and your agent runtime reside in your private network with the correct security and routing policies in place and in your control. 
       - question: |
-          What regions are supported for class A? 
+          What regions are supported for Class A? 
         answer: | 
-          Supported regions: West US, East US, East US 2, Japan East, France Central, UAE North, South Central US, Italy North, Germany West Central, Brazil South, South Africa North, Australia East, Sweden Central, Canada East, West Europe, Spain Central, UK South 
+          Supported regions are: West US, East US, East US 2, Japan East, France Central, UAE North, South Central US, Italy North, Germany West Central, Brazil South, South Africa North, Australia East, Sweden Central, Canada East, West Europe, Spain Central, and UK South. 
       - question: |
-          What class range is supported for public or private Class A, B, C subnets? 
+          What class range is supported for public or private Class A, B, and C subnets? 
         answer: |
-          Only private class A, B, and C ranges are supported. No public class ranges are supported.  
+          Only private Class A, B, and C ranges are supported. No public class ranges are supported.  
       - question: |
-          What is the minimum size for the agent subnet and how many IPs should be used?
+          What is the minimum size for the agent subnet, and how many IPs should I use?
         answer: |
-          The recommended subnet size is /24 (256 address) and is what we default to in our templates. The minimum subnet size is /27 (32 addresses). The reason why /24 is recommended is because of the runtime impact in the event of a container update, listed in the ACA documentation. For more information, see [Configuring virtual networks Azure Container Apps environments](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet). 
+          The recommended subnet size is /24 (256 address) and is what we default to in our templates. The minimum subnet size is /27 (32 address). We recommend /24 because of the runtime impact in the event of a container update, as listed in the Container Apps documentation. For more information, see [Virtual network configuration](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet). 
 
-          We set an IP range per Microsoft Foundry account. Each project gets an IP from the range. There isn't IP address set per Agent, but per project. This means there's no limit to the number of agents to create within your project. The user isn't limited by the minimum address space of the subnet to create any number of agents. 
+          However, the IP allocation works differently. IPs in the subnet are consumed per node of the underlying infrastructure, not per agent. Each node can host 10 apps or Foundry projects. When you create projects in Foundry, they run on an isolated cluster provisioned for your account capability host. This cluster securely proxies data to the agent infrastructure without leaving Azure’s backbone. Azure reserves 5 addresses by default when you create any subnet. For example, a /24 subnet starts with 256 IPs and drops to 251 after reservation. Every additional node (triggered after 10 Foundry projects created) consumes one more IP. So, if you create 11 projects, you’ll see the available IP count decrease by 1 more (to 250). There’s no hard limit on the number of agents per project, but the number of projects indirectly affects IP consumption because of node provisioning.
       - question: |
-          What is the minimum and recommended virtual network address range for the Agent service? 
+          What is the minimum and recommended address range for virtual networks in Foundry Agent Service? 
         answer: |
-          As long as there's address space for Agent subnet and private endpoints, then virtual network address range can be anything. 
+          As long as the agent subnet and private endpoints have address space, the address range for virtual networks can be anything. 
       - question: |
-          Can I use peered Virtual Networks? Can I have resources in different virtual networks?  
+          Can I use peered virtual networks? Can I have resources in different virtual networks?  
         answer: |
-          Yes this is feasibly possible since the virtual network is in your subscription, and you  should be able to peer with any virtual network. But data transfer is quite costly so it isn't recommended to do this. The requirement is all resources must be in the same region as the Foundry resource.  
+          Yes. The virtual network is in your subscription, and you should be able to peer with any virtual network. But data transfer is costly, so we don't recommend it. The requirement is that all resources must be in the same region as the Foundry resource.  
       - question: |
-          Do I need to allowlist any FQDNs if I'm using an Azure firewall? 
+          Do I need to add any FQDNs to an allow list if I'm using an Azure firewall? 
         answer: |
-          Yes, allowlist the Fully Qualified Domain Names (FQDNs) listed **Managed Identity in the [Use Azure Firewall with Azure Container Apps](/azure/container-apps/use-azure-firewall) article or add the service tag `AzureActiveDirectory`. Verify no TLS inspection happens in the firewall that could be adding a self-signed certificate. During failures, inspect if there's any traffic landing on the firewall and what traffic is being blocked by the firewall.  
+          Yes. Add to an allow list the fully qualified domain names (FQDNs) listed for a managed identity in the [Use Azure Firewall with Azure Container Apps](/azure/container-apps/use-azure-firewall) article, or add the service tag `AzureActiveDirectory`. Verify that no Transport Layer Security (TLS) inspection happens in the firewall that might add a self-signed certificate. During failures, inspect if there's any traffic landing on the firewall and what traffic the firewall is blocking.  
       - question: 
-          Can the virtual network be reused by multiple Microsoft Foundry resources? 
+          Can multiple Microsoft Foundry resources reuse the virtual network? 
         answer: |
-          Yes, a virtual network can be reused by multiple Foundry resources, but the Agent runtime subnet is per Foundry account.
+          Yes, multiple Foundry resources can reuse a virtual network. But the agent runtime subnet is per Foundry account.
       - question: |
           Does the virtual network need to be in the same resource group as Foundry?
         answer: |
-          No, the same resource group isn't needed, but the same region is required.
+          They don't need to be in the same resource group, but they do need to be in the same region.
       - question: |
-          What additional configuration is needed if I want to add tools to my agents? 
+          What additional configuration do I need if I want to add tools to my agents? 
         answer: |
-          The template provides support for the built-in tools: Code Interpreter, File Search, Azure AI Search, Cosmos DB (all tools that use the Bring-Your-Own (BYO) resource connections). To configure tools that require the creation of a new connection, you must create a private endpoint from your `peSubnet`` and create a private link from the Azure Resource. 
+          The template provides support for the built-in tools: Code Interpreter, File Search, Azure AI Search, Azure Cosmos DB. All these tools use bring-your-own resource connections. To configure tools that require the creation of a new connection, you must create a private endpoint from `peSubnet` and create a private link from the Azure resource. 

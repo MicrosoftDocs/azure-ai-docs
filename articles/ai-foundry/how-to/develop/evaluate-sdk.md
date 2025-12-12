@@ -382,7 +382,7 @@ After you spot-check your built-in or custom evaluators on a single row of data,
 
 If this session is your first time running evaluations and logging it to your Foundry project, you might need to do the following setup steps:
 
-1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
+1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep) to your Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account with Microsoft Entra ID, make sure to give Microsoft Identity permissions for **Storage Blob Data Owner** to both your account and Foundry project resource in Azure portal.
 

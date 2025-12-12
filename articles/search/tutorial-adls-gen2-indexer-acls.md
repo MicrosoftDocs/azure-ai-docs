@@ -7,7 +7,7 @@ ms.update-cycle: 180-days
 ms.topic: tutorial  
 ms.date: 08/27/2025
 author: wlifuture
-ms.author: wli
+ms.author: haileytapia
 ---  
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
@@ -204,4 +204,4 @@ Content-Type: application/json
 
 ## Related content
 
-+ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL)
++ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/acl)

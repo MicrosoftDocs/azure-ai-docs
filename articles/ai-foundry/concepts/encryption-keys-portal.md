@@ -63,16 +63,16 @@ To configure CMK for Microsoft Foundry, ensure the following prerequisites are m
 
     - You need an existing Azure Key Vault to store your keys.
     - You must deploy the Key Vault and the Microsoft Foundry resource in the same Azure region.
-    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure Portal](/azure/key-vault/general/quick-create-portal).
+    - Follow this guide to create a Key Vault: [Quickstart: Create a Key Vault using Azure portal](/azure/key-vault/general/quick-create-portal).
 
 1.  **Managed Identity Configuration**:
 
     - **System-assigned managed identity**: Ensure your Microsoft Foundry resource has enabled a system-assigned managed identity.
-    - **User-assigned managed identity**: **Support for UAI is currently available only via Bicep templates.** Refer to the Bicep template example: [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
+    - **User-assigned managed identity**: **Support for UAI is currently available only via Bicep templates.** Refer to the Bicep template example: [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
 
 1.  **Key Vault Permissions**:
 
-    - If you're using **Azure RBAC**, assign roles like Key Vault Crypto Officer or Key Vault Contributor to the managed identity.
+    - If you're using **Azure RBAC**, assign Key Vault Crypto User role to the managed identity.
     - If you're using **Vault Access Policies**, grant key-specific permissions to the managed identity, such as **unwrap key** and **wrap key**.
 
 ## Regional availability note (UAI for CMK)
@@ -134,12 +134,12 @@ Configure appropriate permissions for the **system-assigned** or **user-assigned
 1. Go to the Key Vault in the Azure portal.
 1. Select **Access Control (IAM)**.
 1. Select **+ Add role assignment**.
-1. Assign the Key Vault Crypto Officer, Key Vault Contributor, or a similar role to the **system-assigned managed identity** of the Microsoft Foundry resource.
+1. Assign the Key Vault Crypto User role to the **system-assigned managed identity** of the Microsoft Foundry resource.
 
 **User-assigned managed identity**
 
 > [!NOTE]  
-> Refer to the [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity).
+> Refer to the [GitHub Repository: Customer-Managed Keys with User-Assigned Identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity).
 
 1. Use the provided Bicep templates to deploy a user-assigned identity and configure Key Vault permissions.
 
@@ -160,7 +160,7 @@ Azure Key Vault supports two models for managing access permissions:
 1.  **Azure RBAC (Recommended)**:
     - Provides centralized access control using Azure AD roles.
     - Simplifies permission management for resources across Azure.
-    - Recommended roles include Key Vault Crypto Officer or Key Vault Contributor.
+    - Use Key Vault Crypto User role.
 1.  **Vault Access Policies**:
     - Allows granular access control specific to Key Vault resources.
     - Suitable for configurations where legacy or isolated permission settings are necessary.
@@ -180,5 +180,5 @@ To maintain optimal security and compliance, implement the following practices:
 ## Related content
 
 - [Azure Key Vault Documentation](/azure/key-vault/)
-- [GitHub Bicep Example: Customer-Managed Keys with UAI](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/32-customer-managed-keys-user-assigned-identity)
+- [GitHub Bicep Example: Customer-Managed Keys with UAI](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
 - [Azure Managed Identities Overview](/azure/active-directory/managed-identities-azure-resources/overview)

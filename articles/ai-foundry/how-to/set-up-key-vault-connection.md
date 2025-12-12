@@ -71,7 +71,7 @@ Create a connection to Azure Key Vault in the Foundry (classic) portal.
 
 Use this template:
 
-:::code language="bicep" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/01-connections/connection-key-vault.bicep"
+:::code language="bicep" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/01-connections/connection-key-vault.bicep"
 
 <!-- ::: zone-end -->
 

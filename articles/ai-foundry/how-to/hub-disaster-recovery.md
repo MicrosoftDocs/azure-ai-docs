@@ -143,7 +143,7 @@ Decide the level of business continuity you need. The level can differ between c
 
 Foundry is a regional service and stores data both on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. However, you can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata (tags, asset names, descriptions). Data in your storage account is typically not metadata, like uploaded data.
 
-For connections, create two separate resources in two distinct regions, and then create two connections for the hub. For example, if AI Services is critical for business continuity, create two AI Services resources and two hub connections. With this configuration, if one region goes down, the other region stays operational.
+For connections, create two separate resources in two distinct regions, and then create two connections for the hub. For example, if Foundry Tools is critical for business continuity, create two AI Services resources and two hub connections. With this configuration, if one region goes down, the other region stays operational.
 
 For any hubs that are essential to business continuity, deploy resources in two regions.
 

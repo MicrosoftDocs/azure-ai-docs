@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/18/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/04/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions
 zone_pivot_groups: selection-file-search-upload-new
 ---
@@ -19,25 +19,28 @@ zone_pivot_groups: selection-file-search-upload-new
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
 > [!NOTE]
-> Using the standard agent setup, the improved file search tool ensures your files remain in your own storage, and your Azure AI Search resource is used to ingest them, ensuring you maintain complete control over your data.   
+> Using the standard agent setup, the improved file search tool ensures your files remain in your own storage, and your Azure AI Search resource is used to ingest them, so you maintain complete control over your data.
 
 <!-- 
 > [!IMPORTANT]
 > * File search has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for model usage.
 -->
+
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
-- Ensure that you have the role **Storage Blob Data Contributor** on your project's storage account.
-- Ensure that you have the role **Azure AI Developer** on your project.
-
+- The **Storage Blob Data Contributor** role on your project's storage account.
+- The **Azure AI Developer** role on your project.
 
 ## Code example
+
 > [!NOTE]
-> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 :::zone pivot="python"
+
+The following code sample shows how to create an agent with the file search tool enabled. You'll need to upload files and create a vector store before running this code. See the sections below for details.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -57,10 +60,11 @@ project_client = AIProjectClient(
 openai_client = project_client.get_openai_client()
 ```
 
-## Creating vector stores and adding files 
-Adding files to vector stores is an async operation. To ensure the operation is complete, we recommend that you use the 'create and poll' helpers in our official SDKs. If you're not using the SDKs, you can retrieve the `vector_store` object and monitor its `file_counts` property to see the result of the file ingestion operation.
+## Creating vector stores and adding files
 
-Files can also be added to a vector store after it's created by creating vector store files.
+Adding files to vector stores is an asynchronous operation. To ensure the operation completes, use the 'create and poll' helpers in our official SDKs. If you don't use the SDKs, you can retrieve the `vector_store` object and monitor its `file_counts` property to see the result of the file ingestion operation.
+
+You can also add files to a vector store after you create it by creating vector store files.
 
 ```python
 
@@ -109,13 +113,13 @@ with project_client:
 ```
 
 ### Basic agent setup: Deleting files from vector stores
-Files can be removed from a vector store by either:
 
-* Deleting the vector store file object or,
-* Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and conversations in your organization
+You can remove files from a vector store by either:
 
-The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+* Deleting the vector store file object, or
+* Deleting the underlying file object, which removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization
 
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens (computed automatically when you attach a file).
 
 ### Clean up
 
@@ -126,11 +130,11 @@ openai_client.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
 ```
 
-## Managing costs with expiration policies
+## Manage costs with expiration policies
 
-For basic agent setup, the `file_search` tool uses the `vector_stores`  object as its resource and you're billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
+For basic agent setup, the `file_search` tool uses the `vector_stores` object as its resource. You pay based on the size of the vector store objects you create. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
 
-To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
+To help you manage the costs associated with these vector store objects, we added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
 
 ```python
 vector_store = openai_client.vector_stores.create_and_poll(
@@ -145,10 +149,16 @@ vector_store = openai_client.vector_stores.create_and_poll(
 
 ::: zone-end
 
+:::zone pivot="csharp"
+
+For C# usage, see the [Sample file search with agent in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample8_FileSearch.md) and [Sample file search with Agent in Azure.AI.Projects.OpenAI in streaming scenarios](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample11_FileSearch_Streaming.md) examples in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
+
 :::zone pivot="rest"
 ## Upload files and add them to a vector store
 
-To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
 ### Upload a file
 
@@ -172,7 +182,6 @@ curl --request POST \
     "file_ids": ["{{filesUpload.id}}"]
   }'
 ```
-
 
 ## Create an agent version and enable file search
 
@@ -198,7 +207,7 @@ curl --request POST \
 }'
 ```
 
-## Create Response with File Search
+## Create response with file search
 
 ```bash
 curl --request POST \
@@ -228,8 +237,11 @@ curl --request POST \
   "stream": true
 }'
 ```
-### clean up
-delete the agent version
+
+### Clean up
+
+Delete the agent version.
+
 ```bash
 curl --request DELETE \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions/$AGENTVERSION_VERSION?api-version=$API_VERSION \
@@ -237,7 +249,9 @@ curl --request DELETE \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
-delete the vector store
+
+Delete the vector store.
+
 ```bash
 curl --request DELETE \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores/$VECTORSTORE_ID?api-version=$API_VERSION \
@@ -245,7 +259,9 @@ curl --request DELETE \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
-delete the file
+
+Delete the file.
+
 ```bash
 curl --request DELETE \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/files/$FILE_ID?api-version=$API_VERSION \
@@ -255,73 +271,78 @@ curl --request DELETE \
 ```
 ::: zone-end
 
-### File sources  
+### File sources
+
 - Upload local files (Basic and Standard agent setup) 
 - Azure Blob Storage (Standard setup only)
 
 ## Dependency on agent setup
 
 ### Basic agent setup
-The file search tool has the same functionality as Azure OpenAI Responses API. Microsoft managed search and storage resources are used. 
+
+The file search tool has the same functionality as Azure OpenAI Responses API. The tool uses Microsoft managed search and storage resources. 
+
 - Uploaded files get stored in Microsoft managed storage 
-- A vector store is created using a Microsoft managed search resource 
+- A vector store is created by using a Microsoft managed search resource 
 
 ### Standard agent setup
-The file search tool uses the Azure AI Search and Azure Blob Storage resources you connected during agent setup. 
-- Uploaded files get stored in your connected Azure Blob Storage account 
-- Vector stores get created using your connected Azure AI Search resource 
+
+The file search tool uses the Azure AI Search and Azure Blob Storage resources you connect during agent setup. 
+
+- Uploaded files get stored in your connected Azure Blob Storage account. 
+- Vector stores get created by using your connected Azure AI Search resource. 
 
 For both agent setups, the service handles the entire ingestion process, which includes:
-- Automatically parsing and chunking documents
-- Generating and storing embeddings
+
+- Automatically parsing and chunking documents.
+- Generating and storing embeddings.
 - Utilizing both vector and keyword searches to retrieve relevant content for user queries. 
 
-There is no difference in the code between the two setups; the only variation is in where your files and created vector stores are stored. 
+There's no difference in the code between the two setups. The only variation is in where your files and created vector stores are stored. 
 
 ## How it works
+
 The file search tool implements several retrieval best practices out of the box to help you extract the right data from your files and augment the model’s responses. The file search tool:
 
-* Rewrites user queries to optimize them for search.
-* Breaks down complex user queries into multiple searches it can run in parallel.
-* Runs both keyword and semantic searches across both agent and conversation vector stores.
-* Reranks search results to pick the most relevant ones before generating the final response.
-* By default, the file search tool uses the following settings:
-    * Chunk size: 800 tokens
-    * Chunk overlap: 400 tokens
-    * Embedding model: text-embedding-3-large at 256 dimensions
-    * Maximum number of chunks added to context: 20
+- Rewrites user queries to optimize them for search.
+- Breaks down complex user queries into multiple searches it can run in parallel.
+- Runs both keyword and semantic searches across both agent and conversation vector stores.
+- Reranks search results to pick the most relevant ones before generating the final response.
+- By default, the file search tool uses the following settings:
+  - Chunk size: 800 tokens
+  - Chunk overlap: 400 tokens
+  - Embedding model: text-embedding-3-large at 256 dimensions
+  - Maximum number of chunks added to context: 20
 
 ## Vector stores
 
-Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and conversations. Currently you can attach at most one vector store to an agent and at most one vector store to a conversation.
+Vector store objects give the file search tool the ability to search your files. When you add a file to a vector store, the process automatically parses, chunks, embeds, and stores the file in a vector database that supports both keyword and semantic search. Each vector store can hold up to 10,000 files. You can attach vector stores to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation.
 
+You can remove files from a vector store by either:
 
-Similarly, these files can be removed from a vector store by either:
+- Deleting the vector store file object, or
+- Deleting the underlying file object, which removes the file from all `vector_store` and `code_interpreter` configurations across all agents and conversations in your organization.
 
-* Deleting the vector store file object or,
-* By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and conversations in your organization
-
-The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
-
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens (computed automatically when you attach a file).
 
 ## Ensuring vector store readiness before creating runs
 
-We highly recommend that you ensure all files in a vector_store are fully processed before you create a run. This ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the vector store object to ensure the status is completed.
+Ensure all files in a vector store are fully processed before you create a run. This step ensures that all the data in your vector store is searchable. You can check for vector store readiness by using the polling helpers in the SDKs, or by manually polling the vector store object to ensure the status is completed.
 
-As a fallback, there's a 60-second maximum wait in the run object when the conversation's vector store contains files that are still being processed. This is to ensure that any files your users upload in a conversation are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
+As a fallback, the run object includes a 60-second maximum wait when the conversation's vector store contains files that are still being processed. This wait ensures that any files your users upload in a conversation are fully searchable before the run proceeds. This fallback wait doesn't apply to the agent's vector store.
 
 ### Conversation vector stores have default expiration policies
 
-Vector stores created using conversation helpers (like `tool_resources.file_search.vector_stores` in conversations or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
+Vector stores that you create by using conversation helpers (like `tool_resources.file_search.vector_stores` in conversations or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
-When a vector store expires, the runs on that conversation fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the conversation.
+When a vector store expires, the runs on that conversation fail. To fix this issue, recreate a new vector store with the same files and reattach it to the conversation.
 
 ## Supported file types
 
 > [!NOTE]
 > For text/ MIME types, the encoding must be either utf-8, utf-16, or ASCII.
 
-|File format|MIME Type|
+| File format | MIME Type |
 |---|---|
 | `.c` | `text/x-c` |
 | `.cs` | `text/x-csharp` |

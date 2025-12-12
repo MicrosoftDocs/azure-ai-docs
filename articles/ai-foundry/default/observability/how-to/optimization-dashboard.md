@@ -33,9 +33,10 @@ Before you begin:
 You can start a chat with Ask AI from any page in the Foundry portal.
 
 1. Select the **Ask AI** icon at the top of the page.
-1. Select one of the predefined prompts from the *Ask AI* banner under *Build/Model/Monitor* or *Build/Agent/Monitor* page.
+1. Select one of the predefined prompts from the *Ask AI* banner under *Build/Model/Monitor*, *Build/Agent/Monitor*, or overview page.
+
     :::image type="content" source="../../media/observability/monitor-dashboard.png" alt-text="Screenshot of the monitor dashboard with the Ask AI banner at the top." lightbox="../../media/observability/monitor-dashboard.png":::
-1. Select one of the predefined prompts from the *Ask AI* banner under the *Overview* page.
+
     :::image type="content" source="../../media/observability/monitor-dashboard-overview.png" alt-text="Screenshot of the monitor dashboard overview page." lightbox="../../media/observability/monitor-dashboard-overview.png":::
 
 ## Get a summary or insight of your dashboard
@@ -55,11 +56,11 @@ Ask AI provides highlights and abnormal behavior insights on your dashboard for 
 
 Ask any free-form questions related to your dashboard to get recommended next steps. Suggested action items include:
 
-- Investigate the cause of the latency increase on [the abnormal date] to ensure it isn't a recurring or growing issue.
-- Monitor whether future requests show similar latency patterns when usage increases.
-- Consider load testing or profiling to identify potential bottlenecks causing slower response times.
-- Optimize prompt and completion token usage to reduce load and costs as usage scales.
-- Monitor token consumption and request frequency trends for early signs of performance degradation.
+- "Investigate the cause of the latency increase on [the abnormal date] to ensure it isn't a recurring or growing issue."
+- "Monitor whether future requests show similar latency patterns when usage increases."
+- "Consider load testing or profiling to identify potential bottlenecks causing slower response times."
+- "Optimize prompt and completion token usage to reduce load and costs as usage scales."
+- "Monitor token consumption and request frequency trends for early signs of performance degradation."
 
 ## Related content
 

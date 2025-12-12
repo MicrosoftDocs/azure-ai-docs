@@ -20,7 +20,7 @@ ms.custom:
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
 - The OpenAI Python library.
-- Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
+- Fine-tuning access requires **Azure AI User** role.
 - If you do not already have access to view quota, and deploy models in Microsoft Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models
@@ -188,6 +188,46 @@ client.fine_tuning.jobs.create(
 > [!NOTE]
 > See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
+### Training type
+
+Select the training tier based on your use case and budget.
+
+- **Standard**: Training occurs in the current Foundry resource's region, providing data residency guarantees. Ideal for workloads where data must remain in a specific region.
+
+- **Global**: Provides more affordable pricing compared to Standard by leveraging capacity beyond your current region. Data and weights are copied to the region where training occurs. Ideal if data residency is not a restriction and you want faster queue times.
+
+- **Developer (preview)**: Provides significant cost savings by leveraging idle capacity for training. There are no latency or SLA guarantees, so jobs in this tier may be automatically preempted and resumed later. There are no data residency guarantees either. Ideal for experimentation and price-sensitive workloads.
+
+```python
+import openai
+from openai import AzureOpenAI
+
+base_uri = "https://<ACCOUNT-NAME>.services.ai.azure.com"
+api_key = "<API-KEY>"
+api_version = "2025-04-01-preview"
+client = AzureOpenAI(
+azure_endpoint=base_uri,
+api_key=api_key,
+api_version=api_version
+)
+try:
+    client.fine_tuning.jobs.create(
+    model="gpt-4.1-mini",
+    training_file="<FILE-ID>",
+    extra_body={"trainingType": "developerTier"}
+    )
+except openai.APIConnectionError as e:
+    print("The server could not be reached")
+    print(e.__cause__) # an underlying Exception, likely raised within httpx.
+except openai.RateLimitError as e:
+    print("A 429 status code was received; we should back off a bit.")
+except openai.APIStatusError as e:
+    print("Another non-200-range status code was received")
+    print(e.status_code)
+    print(e.response)
+    print(e.body)
+``` 
+
 
 ## Check fine-tuning job status
 
@@ -323,6 +363,9 @@ If you're ready to deploy for production or have particular data residency needs
 ## Continuous fine-tuning
 
 Once you have created a fine-tuned model you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
+
+> [!NOTE]
+> Continuous fine-tuning is only supported for OpenAI models.
 
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 

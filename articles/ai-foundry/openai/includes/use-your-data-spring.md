@@ -208,7 +208,7 @@ ai-custom-data-demo/
        @Override
        public void run(String... args) throws Exception
        {
-           System.out.println(String.format("Sending custom data prompt to AI service. One moment please...\r\n"));
+           System.out.println(String.format("Sending custom data prompt to Foundry Tool. One moment please...\r\n"));
 
            final var store = vectorStore(embeddingClient);
 
@@ -384,7 +384,7 @@ ai-custom-data-demo/
 
 2023-11-07T14:40:45.250-06:00  INFO 18557 --- [           main] c.e.a.AiCustomDataApplication            : No active profile set, falling back to 1 default profile: "default"
 2023-11-07T14:40:46.035-06:00  INFO 18557 --- [           main] c.e.a.AiCustomDataApplication            : Started AiCustomDataApplication in 1.095 seconds (process running for 1.397)
-Sending custom data prompt to AI service. One moment please...
+Sending custom data prompt to Foundry Tool. One moment please...
 
 Prompt created 1 generated response(s).
 Generated response from "assistant": The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.

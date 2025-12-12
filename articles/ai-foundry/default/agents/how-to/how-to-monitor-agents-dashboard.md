@@ -38,7 +38,7 @@ To allow your Azure Foundry project to authenticate and interact with Azure AI r
     1. Select the system-assigned managed identity for your Foundry project from the list.
 1. Review and Assign.
 
-Once assigned, the project’s managed identity will have the necessary permissions to access and use Azure AI services by default.
+Once assigned, the project’s managed identity will have the necessary permissions to access and use Foundry Tools by default.
 
 ## View agent metrics in the portal
 

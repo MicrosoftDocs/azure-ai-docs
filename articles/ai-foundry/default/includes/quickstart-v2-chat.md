@@ -17,11 +17,11 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 # [Python](#tab/python2)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/python/quickstart/quickstart-responses.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-responses.py":::
 
  # [C#](#tab/csharp2)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/csharp/quickstart/quickstart-responses.cs":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-responses.cs":::
 
 <!-- # [TypeScript](#tab/typescript)
 
@@ -35,7 +35,7 @@ Not yet available -->
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples-nov25-updates/samples-v2/microsoft/REST/quickstart/quickstart-responses.sh":::
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
 
 # [Microsoft Foundry portal](#tab/portal)
 

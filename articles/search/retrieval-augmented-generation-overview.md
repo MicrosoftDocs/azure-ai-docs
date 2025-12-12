@@ -5,9 +5,9 @@ description: Learn how generative AI and retrieval augmented generation (RAG) pa
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 10/14/2025
+ms.date: 12/10/2025
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - ignite-2023
   - ignite-2024
@@ -153,70 +153,6 @@ Here are some tips for maximizing relevance and recall:
 
 In comparison and benchmark testing, hybrid queries with text and vector fields, supplemented with semantic ranking, produce the most relevant results.
 
-<!-- ### Example code for a classic RAG workflow
-
-The following Python code demonstrates the essential components of a basic RAG workflow in Azure AI Search. You need to set up the clients, define a system prompt, and provide a query. The prompt tells the LLM to use just the results from the query, and how to return the results. For more steps based on this example, see this [RAG quickstart](search-get-started-rag.md).
-
-> [!NOTE]
-> For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
-
-```python
-# Set up the query for generating responses
-from azure.identity import DefaultAzureCredential
-from azure.identity import get_bearer_token_provider
-from azure.search.documents import SearchClient
-from openai import AzureOpenAI
-
-credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
-openai_client = AzureOpenAI(
-    api_version="2024-06-01",
-    azure_endpoint=AZURE_OPENAI_ACCOUNT,
-    azure_ad_token_provider=token_provider
-)
-
-search_client = SearchClient(
-    endpoint=AZURE_SEARCH_SERVICE,
-    index_name="hotels-sample-index",
-    credential=credential
-)
-
-# This prompt provides instructions to the model. 
-# The prompt includes the query and the source, which are specified further down in the code.
-GROUNDED_PROMPT="""
-You are a friendly assistant that recommends hotels based on activities and amenities.
-Answer the query using only the sources provided below in a friendly and concise bulleted manner.
-Answer ONLY with the facts listed in the list of sources below.
-If there isn't enough information below, say you don't know.
-Do not generate answers that don't use the sources below.
-Query: {query}
-Sources:\n{sources}
-"""
-
-# The query is sent to the search engine, but it's also passed in the prompt
-query="Can you recommend a few hotels near the ocean with beach access and good views"
-
-# Retrieve the selected fields from the search index related to the question
-search_results = search_client.search(
-    search_text=query,
-    top=5,
-    select="Description,HotelName,Tags"
-)
-sources_formatted = "\n".join([f'{document["HotelName"]}:{document["Description"]}:{document["Tags"]}' for document in search_results])
-
-response = openai_client.chat.completions.create(
-    messages=[
-        {
-            "role": "user",
-            "content": GROUNDED_PROMPT.format(query=query, sources=sources_formatted)
-        }
-    ],
-    model="gpt-4.1-mini"
-)
-
-print(response.choices[0].message.content)
-``` -->
-
 ## Integration code and LLMs
 
 A RAG solution that includes Azure AI Search can leverage [built-in data chunking and vectorization capabilities](vector-search-integrated-vectorization.md), or you can build your own using platforms like Semantic Kernel, LangChain, or LlamaIndex.
@@ -227,13 +163,11 @@ We recommend the [Azure OpenAI demo](https://github.com/Azure-Samples/azure-sear
 
 There are many ways to get started, including code-first solutions and demos.
 
-For help with choosing between agentic retrieval and classic RAG, try a few quickstarts using your own data to understand the development effort and compare outcomes.
-
 ### [**Docs**](#tab/docs)
 
-+ [Try this agentic retrieval quickstart](search-get-started-rag.md) to walk through the new and recommended approach for RAG.
++ [Try this agentic retrieval quickstart](search-get-started-agentic-retrieval.md) to walk through the new and recommended approach for RAG.
 
-+ [Try this classic RAG quickstart](search-get-started-rag.md) for a demonstration of query integration with chat models over a search index.
++ [Try this tutorial](agentic-retrieval-how-to-create-pipeline.md) for a more comprehensive approach that includes an agent.
 
 + [Review indexing concepts and strategies](search-what-is-an-index.md) to determine how you want to ingest and refresh data. Decide whether to use vector search, keyword search, or hybrid search. The kind of content you need to search over, and the type of queries you want to run, determines index design.
 
@@ -246,7 +180,11 @@ For help with choosing between agentic retrieval and classic RAG, try a few quic
 
 Check out the following GitHub repositories for code, documentation, and video demonstrations where applicable.
 
-+ [RAG Time Journeys](https://github.com/microsoft/rag-time)
++ [RAG chat app with Azure OpenAI and Azure AI Search (Python)](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md)
+
++ [Classic RAG Time Journeys](https://github.com/microsoft/rag-time)
+
++ [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md)
 
 + [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples)
 
@@ -279,8 +217,4 @@ Check out the following GitHub repositories for code, documentation, and video d
 
 ## See also
 
-+ [RAG Experiment Accelerator](https://github.com/microsoft/rag-experiment-accelerator)
-
-+ [Retrieval Augmented Generation: Streamlining the creation of intelligent natural language processing models](https://ai.meta.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/)
-
-+ [Azure Cognitive Search and LangChain: A Seamless Integration for Enhanced Vector Search Capabilities](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-and-langchain-a-seamless-integration-for/ba-p/3901448)
++ [Retrieval augmented generation and indexes (Foundry)](/azure/ai-foundry/concepts/retrieval-augmented-generation)

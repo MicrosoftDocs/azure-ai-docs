@@ -32,11 +32,11 @@ View the diagram to understand the potential flows from the Agent service to you
 - An Azure subscription with access to Microsoft Foundry. Create a Foundry resource in your subscription. 
 - Installed **Azure CLI** and **Agent SDK**.
 - Access credentials for your enterprise AI gateway (for example API Management or another non-Azure AI model gateway).
-- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 
 ## Connections for AI gateway
 
-Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections)
+Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 
 ## API Management (APIM) connection 
 APIM connections are specialized model gateway connections designed for Azure API management scenarios. These connections provide intelligent defaults and follow APIM standard conventions while integrating with the broader model gateway ecosystem.
@@ -62,14 +62,14 @@ Connections provide:
 
 - **Authentication patterns**:
   - **API Key**: Standard subscription key authentication
-  - **Azure Active Directory**: Enterprise identity integration
+  - **Microsoft Entra ID**: Enterprise identity integration is coming soon. 
 
 ## Model gateway connection  
 
 Model gateway connections provide a unified interface for connecting to various AI model providers through the Azure Machine Learning workspace connection framework. These connections support both static model configuration (predefined models) and dynamic model discovery (runtime model detection). Model gateway connections provide:
 
 - **Unified API**: Single connection interface for multiple AI providers (Azure AI, OpenAI, MuleSoft, etc.)
-- **Authentication**: Support for API key authentication with workspace credential management
+- **Authentication**: Support for API key authentication with workspace credential management or OAuth2
 - **Discovery Patterns**: Choose between static model lists or dynamic discovery endpoints
 - **Provider Abstraction**: Consistent model format regardless of underlying provider
 - **Enterprise Integration**: Support for enterprise gateways like MuleSoft for multi-provider scenarios
@@ -91,15 +91,15 @@ All ModelGateway connections use `"category": "ModelGateway"` to ensure proper r
   - Provider-managed model catalogs
   - Development and testing scenarios
 
-## Authentication
+## Authentication Types 
 
-All examples use `"authType": "ApiKey"` with workspace-managed credentials. The actual API keys are stored securely and referenced through the credential system.
+The supported authentication types are API key or OAuth 2.0, depending on the connection type. For API Keys, the actual API keys are stored securely and referenced through the credential system. 
 
 ## Create a model gateway connection
 
 You’ll use the Azure CLI to create a connection of type **model gateway**.
 
-1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.
+1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.
 
 1. Run the `az deployment group create` command to create the connection. For example:
     
@@ -114,7 +114,7 @@ You’ll use the Azure CLI to create a connection of type **model gateway**.
 
 After creating the connection, deploy a prompt agent that uses the model gateway connection. 
 
-1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/sample_agents_basics.py) to run a sample agent with the BYO AI gateway feature. 
+1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents) to run a sample agent with the BYO AI gateway feature. 
 
 1. Use the Agent SDK to deploy the agent. Update the env variable so that the model name is `[connection-name]/[model-name]`. For example: `AZURE_AI_MODEL_DEPLOYMENT_NAME=my-apim-deployment-api-v2/gpt-4o `
  
@@ -128,6 +128,6 @@ After creating the connection, deploy a prompt agent that uses the model gateway
 - This feature is in public preview.
 - You can only use this feature using the Azure CLI and SDK.
 - Supported by Prompt Agents in the Agent SDK.
-- Public networking is supported for either APIM or other self-hosted gateways. For a full network isolation set up, setup Foundry with Standard Secured Agents set-up with virtual network injection. If you are using APIM as your AI gateway and want full network isolation, deploy Foundry and APIM following [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/16-private-network-standard-agent-apim-setup-preview). If you're using your self-hosted gateway as your AI gateway and want full network isolation, ensure that your gateway's endpoints are accessible inside the virtual network injection used by the Agent service. 
+- Public networking is supported for either APIM or other self-hosted gateways. For a full network isolation set up, set up Foundry with Standard Secured Agents set-up with virtual network injection. If you are using APIM as your AI gateway and want full network isolation, deploy Foundry and APIM following [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview). If you're using your self-hosted gateway as your AI gateway and want full network isolation, ensure that your gateway's endpoints are accessible inside the virtual network injection used by the Agent service. 
 - The Agent tools supported with this feature are CodeInterpreter, Functions, File Search, OpenAPI, Foundry IQ, Sharepoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
 - This feature is different from the AI Gateway in Foundry feature where a new, unique APIM instance is deployed with your Foundry resource. For more on this feature, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
