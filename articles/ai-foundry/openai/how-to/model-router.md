@@ -30,21 +30,7 @@ Use model router through the Chat Completions API like you'd use a single base m
 > The [Microsoft Foundry (new)](../../what-is-azure-ai-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
-## Supported underlying models
-With the `2025-11-18` version, Model Router adds nine new models including Anthropic's Claude, DeepSeek, Llama, Grok models to support a total of 18 models available for routing your prompts.
-
-> [!NOTE]
-> You do not need to separately deploy the supported LLMs for use with model router, with the exception of the Claude models. To use model router with your Claude models, first deploy them from the model catalog. The deployments will get invoked by Model router if they're selected for routing.
-
-|Model router version|Underlying models| Underlying model version
-|:---:|:---|:----:|
-|`2025-11-18`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` <br> `gpt-5-nano` <br> `gpt-5-mini` <br> `gpt-5`* <br> `gpt-5-chat` <br> `Deepseek-v3.1`** <br> `gpt-oss-120b`** <br> `llama4-maverick-instruct`** <br> `grok-4`** <br> `grok-4-fast`** <br> `claude-haiku-4-5`*** <br> `claude-opus-4-1`*** <br> `claude-sonnet-4-5`*** | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> N/A <br> N/A <br> N/A <br> N/A <br> N/A <br> `2024-11-20` <br> `2024-07-18` <br> `2025-10-01` <br> `2025-08-05` <br> `2025-09-29` |
-|`2025-08-07`| `gpt-4.1` </br> `gpt-4.1-mini` </br> `gpt-4.1-nano` </br> `o4-mini` </br> `gpt-5`* <br> `gpt-5-mini` <br> `gpt-5-nano` <br> `gpt-5-chat` | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
-|`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
-
-- *Requires registration.
-- **Model router support is in preview.
-- ***Model router support is in preview. Requires deployment of model for use with Model router.
+[!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
 
 ## Deploy a model router model
 
