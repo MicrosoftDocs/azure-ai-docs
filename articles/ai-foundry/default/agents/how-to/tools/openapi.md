@@ -250,13 +250,13 @@ The following is an example of using the REST API to call an OpenAPI specified t
 
 ```bash
 curl --request POST \
-  --url 'https://{{foundry_account_name}}.services.ai.azure.com/api/projects/{{project_name}}/openai/responses?api-version=2025-05-15-preview' \
-  --header 'Authorization: Bearer {{token against https://ai.azure.com}}' \
-  --header 'Content-Type: application/json' \
-  --header 'User-Agent: insomnia/11.6.1' \
-  --data '{
-"model": "{{model_name}}",
-"input": "{{input}}",
+  --url "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --H "Authorization: Bearer $AGENT_TOKEN" \
+  --H "Content-Type: application/json" \
+  --H "User-Agent: insomnia/11.6.1" \
+  --d '{
+"model": "$AZURE_AI_MODEL_DEPLOYMENT_NAME",
+"input": "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today.",
 "tools": [{
         "type": "openapi",
         "openapi": {
@@ -268,7 +268,7 @@ curl --request POST \
         // "auth": {
               "type": "project_connection",
               "security_scheme": {
-                  "project_connection_id": ""              
+                  "project_connection_id": "$WEATHER_APP_PROJECT_CONNECTION_ID"              
               }              
             },
          // "auth": {
