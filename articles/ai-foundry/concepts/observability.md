@@ -264,8 +264,7 @@ For network isolation purposes you can bring your own virtual network for evalua
 
 ### Virtual network region support
 
-Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia,
-North Europe and Qatar Central.
+Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia, North Europe and Qatar Central.
 
 ## Region support
 
