@@ -18,6 +18,8 @@ items:
 
 - name: Quickstart
   items:
+  - name: Connect to a search service
+    href: search-get-started-rbac.md
   - name: Classic search
     items:
     - name: Full-text search
@@ -65,8 +67,6 @@ items:
       href: search-get-started-terraform.md
   - name: Configure a search service
     href: search-manage.md
-  - name: Connect to a search service
-    href: search-get-started-rbac.md
   - name: Quotas, limits, and planning
     items:
     - name: Supported regions
@@ -89,12 +89,14 @@ items:
       href: search-modeling-multitenant-saas-applications.md
   - name: Advanced management
     items:
-    - name: Manage using REST
-      href: search-manage-rest.md
-    - name: Manage using PowerShell
-      href: search-manage-powershell.md
-    - name: Manage using Azure CLI
-      href: search-manage-azure-cli.md
+    - name: Manage a service
+      items:
+      - name: REST
+        href: search-manage-rest.md
+      - name: PowerShell
+        href: search-manage-powershell.md
+      - name: Azure CLI
+        href: search-manage-azure-cli.md
     - name: Upgrade a service
       href: search-how-to-upgrade.md
     - name: Move a service across regions
@@ -288,6 +290,10 @@ items:
         href: tutorial-skillset.md
       - name: Attach a billable resource
         href: cognitive-search-attach-cognitive-services.md
+      - name: Process image files
+        href: cognitive-search-concept-image-scenarios.md
+      - name: Design tips
+        href: cognitive-search-concept-troubleshooting.md
     - name: Define projections and mappings
       items:
       - name: Define an index projection
@@ -296,15 +302,11 @@ items:
         href: cognitive-search-concept-annotations-syntax.md
       - name: Map to index fields
         href: cognitive-search-output-field-mapping.md
-    - name: Process image files
-      href: cognitive-search-concept-image-scenarios.md
-    - name: Design tips
-      href: cognitive-search-concept-troubleshooting.md
     - name: Debug sessions
       items:
       - name: What is a debug session?
         href: cognitive-search-debug-session.md
-      - name: Debug a skillset
+      - name: Debug a skillset (portal)
         href: cognitive-search-how-to-debug-skillset.md
       - name: Debug a skillset (tutorial)
         href: cognitive-search-tutorial-debug-sessions.md
@@ -318,7 +320,7 @@ items:
       items:
       - name: What is a knowledge store?
         href: knowledge-store-concept-intro.md
-      - name: Create a knowledge store
+      - name: Create a knowledge store (REST)
         href: knowledge-store-create-rest.md
       - name: Create a knowledge store (portal)
         href: knowledge-store-create-portal.md
@@ -326,7 +328,7 @@ items:
         href: knowledge-store-connect-power-bi.md
       - name: Projections
         items:
-        - name: What is a projection?
+        - name: What is a knowledge store projection?
           href: knowledge-store-projection-overview.md
         - name: Shape data for projection
           href: knowledge-store-projection-shape.md
@@ -665,13 +667,13 @@ items:
 
 - name: References
   items:
-  - name: REST APIs
+  - name: REST API
     items:
     - name: Search Service REST API
       href: /rest/api/searchservice
     - name: Search Management REST API
       href: /rest/api/searchmanagement
-  - name: Azure SDKs
+  - name: Azure SDK
     items:
     - name: .NET
       items:
