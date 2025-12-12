@@ -212,6 +212,10 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [TypeScript](#tab/typescript)
 
+Start with these imports:
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="imports":::
+
+Create an Azure OpenAI Client, then use chat completion to chat with the model:
 :::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="chat_completion":::
 
 # [Java (preview)](#tab/java)
@@ -262,6 +266,11 @@ Substitute your endpoint for the `endpoint` in this code:
 :::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
 
 # [TypeScript](#tab/typescript)
+
+Start with these imports:
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="imports":::
+
+Create your agent and cht with it:
 
 :::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="create_and_run_agent" :::
 
@@ -316,6 +325,11 @@ Substitute your endpoint for the `endpoint` in this code:
 :::code language="csharp" source="~/foundry-samples-main/samples-classic/csharp/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 # [TypeScript](#tab/typescript)
+
+Start with these imports:
+:::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="imports":::
+
+Upload a file, then create an agent with a file search tool:
 
 :::code language="typescript" source="~/foundry-samples-main/samples-classic/typescript/quickstart/src/quickstart.ts" id="create_filesearch_agent":::
 
