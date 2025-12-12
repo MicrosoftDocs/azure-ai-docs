@@ -58,20 +58,15 @@ Your connection ID should be in the following format: `/subscriptions/{{subscrip
 ## Set up Browser Automation
 
 1. Create a [Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces) resource.
-
   1. [Generate an access token](https://aka.ms/pww/docs/manage-access-tokens) for the Playwright workspace resource.
   1. Copy the workspace region endpoint from the **Workspace Details** page.
   1. Give the project identity a Contributor role on the Playwright workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access).
-
 1. Create a serverless connection in your Foundry project using the Playwright workspace region endpoint and Playwright workspace access token.
-
   1. Go to the [Foundry portal](https://ai.azure.com/) and select your project.
   1. Select **Management center**, then select **Connected resources**.
   1. Create a new **Serverless Model** connection.
   1. Set **Target URI** to the Playwright workspace region endpoint. It starts with `wss://`.
-
-    For more information, see the Playwright documentation for [configuring the service endpoint](https://aka.ms/pww/docs/configure-service-endpoint).
-
+     - For more information, see the Playwright documentation for [configuring the service endpoint](https://aka.ms/pww/docs/configure-service-endpoint).
   1. Set **Key** to your Playwright access token.
 
 ## Code example
@@ -472,7 +467,7 @@ You see an "Agent created ..." message, streaming text output, and (optionally) 
 
 ## How it works
 
-The interaction starts when the user sends a query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following URL <url>."* When the agent receives the request, Foundry Agent Service creates an isolated browser session using your provisioned Playwright workspace. Each session is sandboxed for privacy and security.
+The interaction starts when the user sends a query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following URL \<url\>."* When the agent receives the request, Foundry Agent Service creates an isolated browser session using your provisioned Playwright workspace. Each session is sandboxed for privacy and security.
 
 The browser performs Playwright-driven actions, such as navigating to relevant pages and applying filters or parameters based on user preferences (such as time, location, and instructor). By combining the model with Playwright, the model can parse HTML or XML into DOM documents, make decisions, and perform actions like selecting UI elements, typing, and navigating websites. Exercise caution when using this tool.
 

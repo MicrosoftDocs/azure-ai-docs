@@ -60,8 +60,6 @@ Before you begin, make sure you have:
 - A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project.
 - Normal network access (Bing grounding tools don't work with VPN or Private Endpoints).
 
-See [Terms and compliance](#terms-and-compliance) for usage requirements and costs.
-
 ## Available tools
 
 |Tool  |Description  |Use-case  |
