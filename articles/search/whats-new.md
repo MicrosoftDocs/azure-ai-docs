@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 11/18/2025
+ms.date: 12/18/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## December 2025
+
+| Item | Description |
+|--|--|
+| [2025-11-01-preview portal migration for agentic retrieval](get-started-portal-agentic-retrieval.md) | The Azure portal now uses the 2025-11-01-preview version of the REST APIs for creating and managing knowledge bases and knowledge sources. However, portal-supported knowledge sources are unchanged; you can use the portal to create a search index or blob knowledge source only. Other knowledge sources must be created programmatically. |
 
 ## November 2025
 

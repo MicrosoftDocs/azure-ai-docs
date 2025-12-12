@@ -34,9 +34,6 @@ You can enable answer synthesis in two ways:
 
 + [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a prerelease package of an Azure SDK that provides the knowledge base REST APIs.
 
-> [!NOTE]
-> Although you can use the Azure portal to configure answer synthesis, the portal uses the 2025-08-01-preview, which uses the previous "knowledge agent" terminology and doesn't support all 2025-11-01-preview features. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ## Enable answer synthesis on a knowledge base
 
 This section explains how to enable answer synthesis on an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.

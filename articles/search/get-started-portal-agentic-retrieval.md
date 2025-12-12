@@ -26,9 +26,6 @@ The portal guides you through the process of creating the following objects:
 
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
-> [!IMPORTANT]
-> Because the portal uses the 2025-08-01-preview REST API version for agentic retrieval, the knowledge source and knowledge base created in this quickstart aren't compatible with the latest 2025-11-01-preview. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
-
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -148,9 +145,6 @@ To create the knowledge source for this quickstart:
    :::image type="content" source="media/get-started-portal-agentic-retrieval/create-knowledge-source.png" alt-text="Screenshot of the knowledge source configuration for this quickstart." lightbox="media/get-started-portal-agentic-retrieval/create-knowledge-source.png" :::
 
 ## Create a knowledge base
-
-> [!NOTE]
-> The portal uses the 2025-08-01-preview, which refers to "knowledge bases" as "knowledge agents." Although the portal UI uses the latest terminology, the underlying REST API objects and JSON payloads still use "knowledge agents."
 
 A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, the LLM generates subqueries that are sent simultaneously to your knowledge source. Azure AI Search then semantically ranks the results for relevance and combines the best results into a single, unified response.
 
