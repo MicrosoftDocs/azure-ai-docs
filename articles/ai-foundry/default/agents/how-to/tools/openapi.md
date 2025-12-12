@@ -21,9 +21,9 @@ OpenAPI Specified tool improves your function calling experience by providing st
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | 	Java SDK |REST API | Basic agent setup | Standard agent setup |
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-|   ✔️   | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -132,9 +132,475 @@ with (
 :::zone-end
 
 :::zone pivot="csharp"
+## Sample of using Agents with OpenAPI tool
 
-For C# usage, see the [Sample of using Agents with OpenAPI tool in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample20_OpenAPI.md) and [Sample of using Agents with OpenAPI tool in Azure.AI.Projects.OpenAI on Web service, requiring authentication](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI_Connection.md) examples in the Azure SDK for .NET repository on GitHub.
+This example demonstrates the ability to use services with an [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the Agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. FOr an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
+```csharp
+// Utility method to get the OpenAPI specification file from the Assets folder.
+private static string GetFile([CallerFilePath] string pth = "")
+{
+    var dirName = Path.GetDirectoryName(pth) ?? "";
+    return Path.Combine(dirName, "Assets", "weather_openapi.json");
+}
+
+// First, create an agent client and read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Create an Agent with `OpenAPIAgentTool` and anonymous authentication.
+string filePath = GetFile();
+OpenAPIFunctionDefinition toolDefinition = new(
+    name: "get_weather",
+    spec: BinaryData.FromBytes(BinaryData.FromBytes(File.ReadAllBytes(filePath))),
+    auth: new OpenAPIAnonymousAuthenticationDetails()
+);
+toolDefinition.Description = "Retrieve weather information for a location.";
+OpenAPIAgentTool openapiTool = new(toolDefinition);
+
+// Create the agent definition and the agent version.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful assistant.",
+    Tools = { openapiTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: "myAgent",
+    options: new(agentDefinition));
+
+// Create a response object and ask the question about the weather in Seattle, WA.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+OpenAIResponse response = responseClient.CreateResponse(
+        userInputText: "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today."
+    );
+Console.WriteLine(response.GetOutputText());
+
+// Finally, delete all the resources created in this sample.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
+
+In this example we will demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the Agent in the scenario, requiring authentication. We will use the TripAdvisor specification.
+
+Note that the TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**, and, finally, create new connection of **Custom keys** type; name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
+
+```csharp
+// Utility method to get the OpenAPI specification file from the Assets folder.
+private static string GetFile([CallerFilePath] string pth = "")
+{
+    var dirName = Path.GetDirectoryName(pth) ?? "";
+    return Path.Combine(dirName, "Assets", "tripadvisor_openapi.json");
+}
+
+// First, we need to create agent client and read the environment variables, which will be used in the next steps.
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Create an Agent with `OpenAPIAgentTool` and authentication by project connection security scheme.
+string filePath = GetFile();
+AIProjectConnection tripadvisorConnection = projectClient.Connections.GetConnection("tripadvisor");
+OpenAPIFunctionDefinition toolDefinition = new(
+    name: "tripadvisor",
+    spec: BinaryData.FromBytes(BinaryData.FromBytes(File.ReadAllBytes(filePath))),
+    auth: new OpenAPIProjectConnectionAuthenticationDetails(new OpenAPIProjectConnectionSecurityScheme(
+        projectConnectionId: tripadvisorConnection.Id
+    ))
+);
+toolDefinition.Description = "Trip Advisor API to get travel information.";
+OpenAPIAgentTool openapiTool = new(toolDefinition);
+
+// Create the agent definition and the agent version.
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful assistant.",
+    Tools = { openapiTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: "myAgent",
+    options: new(agentDefinition));
+
+// Create a response object and ask the question about the hotels in France.
+// Test the Web service access before you run production scenarios.
+// It can be done by setting:
+// ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
+// in the ResponseCreationOptions. This setting will
+// force Agent to use tool and will trigger the error if it is not accessible.
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ResponseCreationOptions responseOptions = new()
+{
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+};
+OpenAIResponse response = responseClient.CreateResponse(
+    userInputText: "Recommend me 5 top hotels in paris, France.",
+    options: responseOptions
+);
+Console.WriteLine(response.GetOutputText());
+
+// Finally, delete all the resources we have created in this sample.
+projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+The following is an example of using the REST API to call an OpenAPI specified tool with different authentication methods.
+
+```bash
+curl --request POST \
+  --url 'https://{{foundry_account_name}}.services.ai.azure.com/api/projects/{{project_name}}/openai/responses?api-version=2025-05-15-preview' \
+  --header 'Authorization: Bearer {{token against https://ai.azure.com}}' \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/11.6.1' \
+  --data '{
+"model": "{{model_name}}",
+"input": "{{input}}",
+"tools": [{
+        "type": "openapi",
+        "openapi": {
+          "name": "weatherapp",
+          "description": "Tool to get weather data",
+          "auth": {
+            "type": "anonymous"
+          },
+        // "auth": {
+              "type": "project_connection",
+              "security_scheme": {
+                  "project_connection_id": ""              
+              }              
+            },
+         // "auth": {
+              "type": "managed_identity",
+              "security_scheme": {
+                  "audience": ""              
+              }              
+            },                                        
+          "spec": {
+            "openapi": "3.1.0",
+            "info": {
+                "title": "get weather data",
+                "description": "Retrieves current weather data for a location.",
+                "version": "v1.0.0"
+            },
+            "servers": [{
+                "url": "https://wttr.in"
+            }],
+            "auth": [],
+            "paths": {
+                "/{location}": {
+                    "get": {
+                        "description": "Get weather information for a specific location",
+                        "operationId": "GetCurrentWeather",
+                        "parameters": [
+                        {
+                            "name": "location",
+                            "in": "path",
+                            "description": "City or location to retrieve the weather for",
+                            "required": true,
+                            "schema": {
+                            "type": "string"
+                            }
+                        },
+                        {
+                            "name": "format",
+                            "in": "query",
+                            "description": "Format in which to return data. Always use 3.",
+                            "required": true,
+                            "schema": {
+                            "type": "integer",
+                            "default": 3
+                            }
+                        }
+                        ],
+                        "responses": {
+                        "200": {
+                            "description": "Successful response",
+                            "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                            }
+                        },
+                        "404": {
+                            "description": "Location not found"
+                        }
+                        },
+                        "deprecated": false
+                    }
+                }
+            },
+            "components": {
+                "schemes": { }
+            }
+            }
+        }
+    }]
+    }''
+```
+:::zone-end
+
+:::zone pivot="typescript"
+
+## Create an agent with OpenAPI tool capabilities
+
+The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities using the `OpenApiAgentTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import {
+  AIProjectClient,
+  OpenApiAgentTool,
+  OpenApiFunctionDefinition,
+  OpenApiAnonymousAuthDetails,
+} from "@azure/ai-projects";
+import * as fs from "fs";
+import * as path from "path";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const weatherSpecPath = path.resolve(__dirname, "../assets", "weather_openapi.json");
+
+function loadOpenApiSpec(specPath: string): unknown {
+  if (!fs.existsSync(specPath)) {
+    throw new Error(`OpenAPI specification not found at: ${specPath}`);
+  }
+
+  try {
+    const data = fs.readFileSync(specPath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    throw new Error(`Failed to read or parse OpenAPI specification at ${specPath}: ${error}`);
+  }
+}
+
+function createWeatherTool(spec: unknown): OpenApiAgentTool {
+  const auth: OpenApiAnonymousAuthDetails = { type: "anonymous" };
+  const definition: OpenApiFunctionDefinition = {
+    name: "get_weather",
+    description: "Retrieve weather information for a location using wttr.in",
+    spec,
+    auth,
+  };
+
+  return {
+    type: "openapi",
+    openapi: definition,
+  };
+}
+
+export async function main(): Promise<void> {
+  console.log("Loading OpenAPI specifications from assets directory...");
+  const weatherSpec = loadOpenApiSpec(weatherSpecPath);
+
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  console.log("Creating agent with OpenAPI tool...");
+
+  const agent = await project.agents.createVersion("MyOpenApiAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions:
+      "You are a helpful assistant that can call external APIs defined by OpenAPI specs to answer user questions.",
+    tools: [createWeatherTool(weatherSpec)],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  console.log("\nSending request to OpenAPI-enabled agent with streaming...");
+  const streamResponse = await openAIClient.responses.create(
+    {
+      input:
+        "What's the weather in Seattle and how should I plan my outfit for the day based on the forecast?",
+      stream: true,
+    },
+    {
+      body: {
+        agent: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+
+  // Process the streaming response
+  for await (const event of streamResponse) {
+    if (event.type === "response.created") {
+      console.log(`Follow-up response created with ID: ${event.response.id}`);
+    } else if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_text.done") {
+      console.log("\n\nFollow-up response done!");
+    } else if (event.type === "response.output_item.done") {
+      const item = event.item as any;
+      if (item.type === "message") {
+        const content = item.content?.[item.content.length - 1];
+        if (content?.type === "output_text" && content.annotations) {
+          for (const annotation of content.annotations) {
+            if (annotation.type === "url_citation") {
+              console.log(
+                `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+              );
+            }
+          }
+        }
+      } else if (item.type === "tool_call") {
+        console.log(`Tool call completed: ${item.name ?? "unknown"}`);
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\nFollow-up completed!");
+    }
+  }
+
+  // Clean up resources by deleting the agent version
+  // This prevents accumulation of unused resources in your project
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nOpenAPI agent sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+## Create an agent that uses OpenAPI tools authenticated with a project connection
+
+The following TypeScript code example demonstrates how to create an AI agent that uses OpenAPI tools authenticated via a project connection. The agent loads the TripAdvisor OpenAPI specification from local assets and can invoke the API through the configured project connection. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApiConnectionAuth.js) in the Azure SDK for JavaScript repository on GitHub.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import {
+  AIProjectClient,
+  OpenApiAgentTool,
+  OpenApiFunctionDefinition,
+  OpenApiProjectConnectionAuthDetails,
+} from "@azure/ai-projects";
+import * as fs from "fs";
+import * as path from "path";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const tripAdvisorProjectConnectionId =
+  process.env["TRIPADVISOR_PROJECT_CONNECTION_ID"] || "<tripadvisor project connection id>";
+const tripAdvisorSpecPath = path.resolve(__dirname, "../assets", "tripadvisor_openapi.json");
+
+function loadOpenApiSpec(specPath: string): unknown {
+  if (!fs.existsSync(specPath)) {
+    throw new Error(`OpenAPI specification not found at: ${specPath}`);
+  }
+
+  try {
+    const data = fs.readFileSync(specPath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    throw new Error(`Failed to read or parse OpenAPI specification at ${specPath}: ${error}`);
+  }
+}
+
+function createTripAdvisorTool(spec: unknown): OpenApiAgentTool {
+  const auth: OpenApiProjectConnectionAuthDetails = {
+    type: "project_connection",
+    security_scheme: {
+      project_connection_id: tripAdvisorProjectConnectionId,
+    },
+  };
+
+  const definition: OpenApiFunctionDefinition = {
+    name: "get_tripadvisor_location_details",
+    description:
+      "Fetch TripAdvisor location details, reviews, or photos using the Content API via project connection auth.",
+    spec,
+    auth,
+  };
+
+  return {
+    type: "openapi",
+    openapi: definition,
+  };
+}
+
+export async function main(): Promise<void> {
+  console.log("Loading TripAdvisor OpenAPI specification from assets directory...");
+  const tripAdvisorSpec = loadOpenApiSpec(tripAdvisorSpecPath);
+
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  console.log("Creating agent with OpenAPI project-connection tool...");
+
+  const agent = await project.agents.createVersion("MyOpenApiConnectionAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions:
+      "You are a travel assistant that consults the TripAdvisor Content API via project connection to answer user questions about locations.",
+    tools: [createTripAdvisorTool(tripAdvisorSpec)],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  console.log("\nSending request to TripAdvisor OpenAPI agent with streaming...");
+  const streamResponse = await openAIClient.responses.create(
+    {
+      input:
+        "Provide a quick overview of the TripAdvisor location 293919 including its name, rating, and review count.",
+      stream: true,
+    },
+    {
+      body: {
+        agent: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+
+  // Process the streaming response
+  for await (const event of streamResponse) {
+    if (event.type === "response.created") {
+      console.log(`Follow-up response created with ID: ${event.response.id}`);
+    } else if (event.type === "response.output_text.delta") {
+      process.stdout.write(event.delta);
+    } else if (event.type === "response.output_text.done") {
+      console.log("\n\nFollow-up response done!");
+    } else if (event.type === "response.output_item.done") {
+      const item = event.item as any;
+      if (item.type === "message") {
+        const content = item.content?.[item.content.length - 1];
+        if (content?.type === "output_text" && content.annotations) {
+          for (const annotation of content.annotations) {
+            if (annotation.type === "url_citation") {
+              console.log(
+                `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
+              );
+            }
+          }
+        }
+      } else if (item.type === "tool_call") {
+        console.log(`Tool call completed: ${item.name ?? "unknown"}`);
+      }
+    } else if (event.type === "response.completed") {
+      console.log("\nFollow-up completed!");
+    }
+  }
+
+  // Clean up resources by deleting the agent version
+  // This prevents accumulation of unused resources in your project
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nTripAdvisor OpenAPI agent sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
 :::zone-end
 
 ## Authenticating with API key
