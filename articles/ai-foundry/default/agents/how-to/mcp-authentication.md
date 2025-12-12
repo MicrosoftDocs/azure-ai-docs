@@ -88,7 +88,19 @@ Foundry Agent Service supports two OAuth options: **managed OAuth** and **custom
 > [!NOTE]
 > If you decide to use custom OAuth and provide all information above, you will then get a redirect URL. Make sure to add this redirect URL to your OAuth app, as it will delegate the handling of the access token to enable use of your connection.
 
+When you set up **custom OAuth**, the following information is needed:
+
+- client ID: required, you can find this in your OAuth app
+- client secret: optional depending on if this is required by your OAuth app
+- auth URL: required, the auth URL is used for users to log in. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same auth URL for all MCP servers and others provide a custom auth URL for different MCP servers. Review the documentation to make sure you use the proper one. 
+- refresh URL: required, the refresh URL is used to get a refresh token. You can find this from your OAuth app or your MCP server provider documentation. If you don't find a specific refresh URL, you can provide the token URL. Some providers provide the same refresh URL for all MCP servers and others provide custom refresh URL for different MCP servers. Review the documentation to make sure you use the proper one. 
+- token URL: required, the token URL is used to get a token. You can find this from your OAuth app or your MCP server provider documentation. Some providers provide the same token URL for all MCP servers and others provide custom token URL for different MCP servers; please review the documentation to make sure you use the proper one. 
+- scopes: optional, scopes specify which permission/scope you want the user to have access to, make sure the scopes use the correct naming from the OAuth app. 
+
 #### Bring your own Microsoft Entra app registration
+
+> [!NOTE]
+> Agent 365 MCP servers are only available to [Frontier tenants](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
 
 To use with Microsoft services and identity passthrough, you can bring your own [Microsoft Entra app registration](/entra/identity-platform/quickstart-register-app). By bringing your own Microsoft Entra app registration, you can control what permissions you give to your Entra app. Let's use the Agents 365 MCP server as an example:
 1. Follow the [app registration guide](/entra/identity-platform/quickstart-register-app) to create a Microsoft Entra app and get the client ID and client secret. 

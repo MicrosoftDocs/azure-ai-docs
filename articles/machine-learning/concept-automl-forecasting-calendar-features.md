@@ -79,7 +79,7 @@ from azure.ai.ml import automl
 
 # create a forcasting job
 forecasting_job = automl.forecasting(
-    compute='test_cluster',   # Name of single or multinode AML compute infrastructure created by user
+    compute='test_cluster',   # Name of single or multinode Azure Machine Learning compute infrastructure created by user
     experiment_name=exp_name, # name of experiment 
     training_data=sample_data,  
     target_column_name='demand',
