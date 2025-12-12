@@ -128,7 +128,7 @@ with (
     print("Agent deleted")
 ```
 
-**What this code does:**
+### What this code does
 
 This example creates an agent with an OpenAPI tool that calls the wttr.in weather API using anonymous authentication. When you run the code:
 
@@ -138,7 +138,7 @@ This example creates an agent with an OpenAPI tool that calls the wttr.in weathe
 1. The agent uses the OpenAPI tool to call the weather API and returns formatted results.
 1. Cleans up by deleting the agent version.
 
-**Expected output:**
+### Expected output
 
 ```console
 Agent created (id: asst_abc123, name: MyAgent23, version: 1)
@@ -199,7 +199,7 @@ Console.WriteLine(response.GetOutputText());
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
-**What this code does:**
+### What this code does
 
 This C# example creates an agent with an OpenAPI tool that retrieves weather information from wttr.in by using anonymous authentication. When you run the code:
 
@@ -209,7 +209,7 @@ This C# example creates an agent with an OpenAPI tool that retrieves weather inf
 1. The agent calls the weather API and returns the results.
 1. Cleans up by deleting the agent.
 
-**Expected output:**
+### Expected output
 
 ```console
 The weather in Seattle, WA today is cloudy with temperatures around 52°F...
@@ -278,7 +278,7 @@ Console.WriteLine(response.GetOutputText());
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
-**What this code does:**
+### What this code does
 
 This C# example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
 
@@ -289,7 +289,7 @@ This C# example demonstrates using an OpenAPI tool with API key authentication t
 1. The agent calls the TripAdvisor API using your stored API key and returns results
 1. Cleans up by deleting the agent
 
-**Expected output:**
+### Expected output
 
 ```console
 Here are 5 top hotels in Paris, France:
@@ -396,7 +396,8 @@ curl --request POST \
     }]
     }''
 ```
-**What this code does:**
+
+### What this code does
 
 This REST API example shows how to call an OpenAPI tool with different authentication methods. The request:
 
@@ -405,7 +406,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 1. Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives
 1. The agent uses the tool to call the weather API and returns formatted results
 
-**Expected response:**
+### Expected response
 
 ```json
 {
@@ -552,7 +553,7 @@ main().catch((err) => {
 });
 ```
 
-**What this code does:**
+### What this code does
 
 This TypeScript example creates an agent with an OpenAPI tool for weather data using anonymous authentication. When you run the code:
 
@@ -563,7 +564,7 @@ This TypeScript example creates an agent with an OpenAPI tool for weather data u
 1. Forces tool usage with `tool_choice: "required"` to ensure the API is called.
 1. Cleans up by deleting the agent
 
-**Expected output:**
+### Expected output
 
 ```console
 Loading OpenAPI specifications from assets directory...
@@ -716,7 +717,7 @@ main().catch((err) => {
 });
 ```
 
-**What this code does:**
+### What this code does
 
 This TypeScript example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
 
@@ -728,7 +729,7 @@ This TypeScript example demonstrates using an OpenAPI tool with API key authenti
 1. It processes and displays the streaming response.
 1. It cleans up by deleting the agent.
 
-**Expected output:**
+### Expected output
 
 ```console
 Loading TripAdvisor OpenAPI specification from assets directory...
