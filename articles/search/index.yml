@@ -29,7 +29,7 @@ landingContent:
           - text: Features
             url: search-features-list.md
           - text: FAQ
-            url: search-faq-frequently-asked-questions.md
+            url: search-faq-frequently-asked-questions.yml
       - linkListType: how-to-guide
         links:
           - text: Create a search service
@@ -84,7 +84,7 @@ landingContent:
             url: agentic-retrieval-how-to-retrieve.md
 
   # Card
-  - title: Samples
+  - title: Code samples
     linkLists:
       - linkListType: sample
         links:
