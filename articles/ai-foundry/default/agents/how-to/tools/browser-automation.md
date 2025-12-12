@@ -29,6 +29,12 @@ In Microsoft Foundry, the Browser Automation tool enables you to perform real-wo
 
 By using [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), you can automate browser-based workflows such as searching, navigating, filling forms, and booking.
 
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
 ## Prerequisites
 
 Before you begin, make sure you have:
