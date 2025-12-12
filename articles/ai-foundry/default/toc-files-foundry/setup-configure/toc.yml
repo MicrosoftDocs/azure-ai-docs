@@ -38,4 +38,6 @@ items:
     href: ../../../how-to/quota.md
   - name: Foundry Models quotas and limits
     href: ../../../foundry-models/quotas-limits.md
+  - name: Azure OpenAI quotas and limits
+    href: ../../../openai/quotas-limits.md
   
