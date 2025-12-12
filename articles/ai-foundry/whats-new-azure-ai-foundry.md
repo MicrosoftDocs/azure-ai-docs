@@ -30,7 +30,7 @@ Available in Foundry (new) only:
 - [Cluster analysis](default/observability/how-to/cluster-analysis.md)
 - [Optimization dashboard](default/observability/how-to/optimization-dashboard.md)
 - [Human evaluation](default/observability/how-to/human-evaluation.md)
-- 
+
 Available in both Foundry (new) and Foundry (classic):
 - [Install CLI SDK](how-to/develop/install-cli-sdk.md)
 - [SDK overview](how-to/develop/sdk-overview.md)
@@ -39,10 +39,10 @@ Available in both Foundry (new) and Foundry (classic):
 - [Agent service operator disaster recovery](how-to/agent-service-operator-disaster-recovery.md)
 - [Agent service platform disaster recovery](how-to/agent-service-platform-disaster-recovery.md)
 - [Integrate with other apps](how-to/integrate-with-other-apps.md)
-- [Create a custom photo avatar](../ai-services/speech-service/how-to-create-custom-photo-avatar.md)
+- [Create a custom photo avatar](../ai-services/speech-service/text-to-speech-avatar/custom-photo-avatar-create.md)
 - [Customize voice live](../ai-services/speech-service/voice-live-how-to-customize.md)
 - [Bring your own model](../ai-services/speech-service/how-to-bring-your-own-model.md)
-- [Use the LLM-speech API](../ai-services/speech-service/llm-speech-api.md)
+- [Use the LLM-speech API](../ai-services/speech-service/llm-speech.md)
 - [Priority processing](openai/concepts/priority-processing.md)
 - [Classification in Content Understanding Studio](../ai-services/content-understanding/how-to/classification-content-understanding-studio.md)
 - [Concept playgrounds](concepts/concept-playgrounds.md)
