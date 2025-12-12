@@ -1,13 +1,13 @@
 ---
-title: How to use Microsoft Foundry Agent Service with OpenAPI Specified Tools
+title: Connect OpenAPI tools to Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Learn how to connect OpenAPI tools to Microsoft Foundry agents using authentication methods like API keys and managed identities. Integrate your APIs with AI agents.
+description: Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication. Integrate external APIs with your AI agents today.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 12/12/2025
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-openapi-function-new
@@ -15,9 +15,9 @@ zone_pivot_groups: selection-openapi-function-new
 
 # Connect to OpenAPI Specification
 
-You can now connect your Microsoft Foundry Agent Service to an external API by using an OpenAPI 3.0 specified tool. This connection enables scalable interoperability with various applications. You can enable your custom tools to authenticate access and connections with managed identities (Microsoft Entra ID) for added security. This feature is ideal for integrating with existing infrastructure or web services.
+Connect your Microsoft Foundry Agent Service to external APIs by using OpenAPI 3.0 tools with support for anonymous, API key, and managed identity authentication. This integration enables scalable interoperability with existing infrastructure and web services.
 
-OpenAPI Specified tool improves your function calling experience by providing standardized, automated, and scalable API integrations that enhance the capabilities and efficiency of your agent. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for describing HTTP APIs. This standard allows people to understand how an API works, how a sequence of APIs works together, generate client code, create tests, apply design standards, and more. Currently, we support three authentication types with the OpenAPI 3.0 specified tools: `anonymous`, `API key`, `managed identity`.
+OpenAPI tools improve your agent's function calling capabilities by providing standardized, automated API integrations. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) provide a formal standard for describing HTTP APIs, so you can understand how APIs work together, generate client code, create tests, and apply design standards. Microsoft Foundry supports three authentication types with OpenAPI 3.0 tools: `anonymous`, `API key`, and `managed identity`.
 
 ### Usage support
 
@@ -39,15 +39,13 @@ OpenAPI Specified tool improves your function calling experience by providing st
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
 
 ```python
+# Import required libraries
 import os
 import jsonref
 from dotenv import load_dotenv
-
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import (
-    PromptAgentDefinition,
-)
+from azure.ai.projects.models import PromptAgentDefinition
 
 load_dotenv()
 
@@ -129,12 +127,33 @@ with (
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
 ```
+
+**What this code does:**
+
+This example creates an agent with an OpenAPI tool that calls the wttr.in weather API using anonymous authentication. When you run the code:
+
+1. It loads the weather OpenAPI specification from a local JSON file.
+1. Creates an agent with the weather tool configured for anonymous access.
+1. Sends a query asking about Seattle's weather.
+1. The agent uses the OpenAPI tool to call the weather API and returns formatted results.
+1. Cleans up by deleting the agent version.
+
+**Expected output:**
+
+```console
+Agent created (id: asst_abc123, name: MyAgent23, version: 1)
+Response created: The weather in Seattle is currently cloudy with a temperature of 52°F (11°C)...
+
+Cleaning up...
+Agent deleted
+```
+
 :::zone-end
 
 :::zone pivot="csharp"
 ## Sample of using Agents with OpenAPI tool
 
-This example demonstrates the ability to use services with an [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the Agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. FOr an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
+This example demonstrates how to use services with an [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) by using the Agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 // Utility method to get the OpenAPI specification file from the Assets folder.
@@ -180,11 +199,27 @@ Console.WriteLine(response.GetOutputText());
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
+**What this code does:**
+
+This C# example creates an agent with an OpenAPI tool that retrieves weather information from wttr.in by using anonymous authentication. When you run the code:
+
+1. It reads the weather OpenAPI specification from a local JSON file.
+1. Creates an agent with the weather tool configured.
+1. Sends a request asking about Seattle's weather using the OpenAPI tool.
+1. The agent calls the weather API and returns the results.
+1. Cleans up by deleting the agent.
+
+**Expected output:**
+
+```console
+The weather in Seattle, WA today is cloudy with temperatures around 52°F...
+```
+
 ## Sample of using Agents with OpenAPI tool on Web service, requiring authentication
 
-In this example we will demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the Agent in the scenario, requiring authentication. We will use the TripAdvisor specification.
+In this example, you use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) by using the Agent in a scenario that requires authentication. You use the TripAdvisor specification.
 
-Note that the TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**, and, finally, create new connection of **Custom keys** type; name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
+The TripAdvisor service requires key-based authentication. To create a connection in the Azure portal, open Microsoft Foundry and, at the left panel select **Management center** and then select **Connected resources**. Finally, create new connection of **Custom keys** type. Name it `tripadvisor` and add a key value pair. Add key named `key` and enter a value with your TripAdvisor key.
 
 ```csharp
 // Utility method to get the OpenAPI specification file from the Assets folder.
@@ -241,6 +276,26 @@ Console.WriteLine(response.GetOutputText());
 
 // Finally, delete all the resources we have created in this sample.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+**What this code does:**
+
+This C# example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
+
+1. It loads the TripAdvisor OpenAPI specification from a local file.
+1. Retrieves the `tripadvisor` project connection containing your API key
+1. Creates an agent with the TripAdvisor tool configured to use the connection for authentication
+1. Sends a request for hotel recommendations in Paris
+1. The agent calls the TripAdvisor API using your stored API key and returns results
+1. Cleans up by deleting the agent
+
+**Expected output:**
+
+```console
+Here are 5 top hotels in Paris, France:
+1. Hotel Name - Rating: 4.5/5, Location: ...
+2. Hotel Name - Rating: 4.4/5, Location: ...
+...
 ```
 
 :::zone-end
@@ -341,13 +396,41 @@ curl --request POST \
     }]
     }''
 ```
+**What this code does:**
+
+This REST API example shows how to call an OpenAPI tool with different authentication methods. The request:
+
+1. Sends a query to the agent asking about Seattle's weather
+1. Includes the OpenAPI tool definition inline with the weather API specification
+1. Shows three authentication options (anonymous, API key via project connection, managed identity) as commented alternatives
+1. The agent uses the tool to call the weather API and returns formatted results
+
+**Expected response:**
+
+```json
+{
+  "id": "resp_abc123",
+  "object": "response",
+  "output": [
+    {
+      "type": "message",
+      "content": [
+        {
+          "type": "text",
+          "text": "The weather in Seattle, WA today is cloudy with a temperature of 52°F (11°C)..."
+        }
+      ]
+    }
+  ]
+}
+```
 :::zone-end
 
 :::zone pivot="typescript"
 
 ## Create an agent with OpenAPI tool capabilities
 
-The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities using the `OpenApiAgentTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiAgentTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -469,9 +552,40 @@ main().catch((err) => {
 });
 ```
 
+**What this code does:**
+
+This TypeScript example creates an agent with an OpenAPI tool for weather data using anonymous authentication. When you run the code:
+
+1. It loads the weather OpenAPI specification from a local JSON file.
+1. Creates an agent with the weather tool configured.
+1. Sends a streaming request asking about Seattle's weather and outfit planning.
+1. Processes the streaming response and displays deltas as they arrive.
+1. Forces tool usage with `tool_choice: "required"` to ensure the API is called.
+1. Cleans up by deleting the agent
+
+**Expected output:**
+
+```console
+Loading OpenAPI specifications from assets directory...
+Creating agent with OpenAPI tool...
+Agent created (id: asst_abc123, name: MyOpenApiAgent, version: 1)
+
+Sending request to OpenAPI-enabled agent with streaming...
+Follow-up response created with ID: resp_xyz789
+The weather in Seattle is currently...
+Tool call completed: get_weather
+
+Follow-up completed!
+
+Cleaning up resources...
+Agent deleted
+
+OpenAPI agent sample completed!
+```
+
 ## Create an agent that uses OpenAPI tools authenticated with a project connection
 
-The following TypeScript code example demonstrates how to create an AI agent that uses OpenAPI tools authenticated via a project connection. The agent loads the TripAdvisor OpenAPI specification from local assets and can invoke the API through the configured project connection. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApiConnectionAuth.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript code example demonstrates how to create an AI agent that uses OpenAPI tools authenticated through a project connection. The agent loads the TripAdvisor OpenAPI specification from local assets and can invoke the API through the configured project connection. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApiConnectionAuth.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -601,11 +715,44 @@ main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
+
+**What this code does:**
+
+This TypeScript example demonstrates using an OpenAPI tool with API key authentication through a project connection. When you run the code:
+
+1. It loads the TripAdvisor OpenAPI specification from a local file.
+1. It configures authentication by using the `TRIPADVISOR_PROJECT_CONNECTION_ID` environment variable.
+1. It creates an agent with the TripAdvisor tool that uses the project connection for API key authentication.
+1. It sends a streaming request for TripAdvisor location details.
+1. Forces tool usage with `tool_choice: "required"` to ensure the API is called.
+1. It processes and displays the streaming response.
+1. It cleans up by deleting the agent.
+
+**Expected output:**
+
+```console
+Loading TripAdvisor OpenAPI specification from assets directory...
+Creating agent with OpenAPI project-connection tool...
+Agent created (id: asst_abc123, name: MyOpenApiConnectionAgent, version: 1)
+
+Sending request to TripAdvisor OpenAPI agent with streaming...
+Follow-up response created with ID: resp_xyz789
+Location 293919 is the Eiffel Tower in Paris, France. It has a rating of 4.5 stars with over 140,000 reviews...
+Tool call completed: get_tripadvisor_location_details
+
+Follow-up completed!
+
+Cleaning up resources...
+Agent deleted
+
+TripAdvisor OpenAPI agent sample completed!
+```
+
 :::zone-end
 
-## Authenticating with API key
+## Authenticate with API key
 
-With API key authentication, you can authenticate your OpenAPI spec by using various methods such as an API key or Bearer token. You can only use one API key security schema per OpenAPI spec. If you need multiple security schemas, create multiple OpenAPI spec tools.
+By using API key authentication, you can authenticate your OpenAPI spec by using various methods such as an API key or Bearer token. You can use only one API key security schema per OpenAPI spec. If you need multiple security schemas, create multiple OpenAPI spec tools.
 
 1. Update your OpenAPI spec security schemas. It has a `securitySchemes` section and one scheme of type `apiKey`. For example:
 
@@ -653,13 +800,13 @@ With API key authentication, you can authenticate your OpenAPI spec by using var
         ```
 
       - value: YOUR_API_KEY
-1. Once you create a connection, you can use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
+1. After you create a connection, you can use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
 
-## Authenticating with managed identity (Microsoft Entra ID)
+## Authenticate by using managed identity (Microsoft Entra ID)
 
-[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. Microsoft Entra ID allows you to authenticate your APIs with extra security without the need to pass in API keys. When you set up managed identity authentication, it authenticates through the Foundry Tool your agent uses. 
+[Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry Tool it uses. 
 
-To set up authentication with Managed Identity:
+To set up authentication by using Managed Identity:
 
 1. Make sure your Foundry resource has system assigned managed identity enabled.
 
