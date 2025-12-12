@@ -130,6 +130,92 @@ curl --request POST \
 ```
 :::zone-end
 
+:::zone pivot="typescript"
+The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities using the `MicrosoftFabricAgentTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as readline from "readline";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const fabricProjectConnectionId =
+  process.env["FABRIC_PROJECT_CONNECTION_ID"] || "<fabric project connection id>";
+
+export async function main(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  console.log("Creating agent with Microsoft Fabric tool...");
+
+  // Define Microsoft Fabric tool that connects to Fabric data sources
+  const agent = await project.agents.createVersion("MyFabricAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "You are a helpful assistant.",
+    tools: [
+      {
+        type: "fabric_dataagent_preview",
+        fabric_dataagent_preview: {
+          project_connections: [
+            {
+              project_connection_id: fabricProjectConnectionId,
+            },
+          ],
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Prompt user for input
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const userInput = await new Promise<string>((resolve) => {
+    rl.question(
+      "Enter your question for Fabric (e.g., 'Tell me about sales records'): \n",
+      (answer) => {
+        rl.close();
+        resolve(answer);
+      },
+    );
+  });
+
+  console.log("\nSending request to Fabric agent...");
+  const response = await openAIClient.responses.create(
+    {
+      input: userInput,
+    },
+    {
+      body: {
+        agent: { name: agent.name, type: "agent_reference" },
+        tool_choice: "required",
+      },
+    },
+  );
+
+  console.log(`\nResponse output: ${response.output_text}`);
+
+  // Clean up resources by deleting the agent version
+  // This prevents accumulation of unused resources in your project
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nMicrosoft Fabric agent sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+:::zone-end
+
 > [!NOTE]
 > - Make sure you **publish** the [data agent](https://go.microsoft.com/fwlink/?linkid=2312910) in Fabric.
 > - The model you select in Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model the Fabric data agent uses for NL2SQL operation.
