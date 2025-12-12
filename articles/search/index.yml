@@ -38,6 +38,24 @@ landingContent:
             url: search-manage.md
 
   # Card
+  - title: Agentic retrieval (RAG)
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Agentic retrieval
+            url: agentic-retrieval-overview.md
+      - linkListType: quickstart
+        links:
+          - text: Use agentic retrieval
+            url: search-get-started-agentic-retrieval.md
+      - linkListType: how-to-guide
+        links:
+          - text: Create a knowledge base
+            url: agentic-retrieval-how-to-create-knowledge-base.md
+          - text: Retrieve from a knowledge base
+            url: agentic-retrieval-how-to-retrieve.md
+
+  # Card
   - title: Classic search
     linkLists:
       - linkListType: concept
@@ -64,24 +82,6 @@ landingContent:
             url: vector-search-how-to-create-index.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
-
-  # Card
-  - title: Agentic retrieval (RAG)
-    linkLists:
-      - linkListType: concept
-        links:
-          - text: Agentic retrieval
-            url: agentic-retrieval-overview.md
-      - linkListType: quickstart
-        links:
-          - text: Use agentic retrieval
-            url: search-get-started-agentic-retrieval.md
-      - linkListType: how-to-guide
-        links:
-          - text: Create a knowledge base
-            url: agentic-retrieval-how-to-create-knowledge-base.md
-          - text: Retrieve from a knowledge base
-            url: agentic-retrieval-how-to-retrieve.md
 
   # Card
   - title: Code samples
