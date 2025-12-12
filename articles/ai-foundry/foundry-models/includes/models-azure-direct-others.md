@@ -44,9 +44,9 @@ You can run these models through the BFL service provider API and through the [i
 
 #### Code samples for FLUX.2[pro] 
 
-**Image generation**: 
+**Image generation** 
 
-- input: Text 
+- Input: Text 
 - Output: One image 
 
 ```sh
@@ -64,9 +64,9 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
     }' 
 ```
 
-**Image editing**:
+**Image editing**
 
-- input: Up to eight bit-64 encoded images
+- Input: Up to eight bit-64 encoded images
 - Output: One image 
 
 ```sh
@@ -81,8 +81,6 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
       "input_image_2" : "iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf........" 
     }' 
 ```
-
-
 
 
 See [this model collection in Microsoft Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs).
