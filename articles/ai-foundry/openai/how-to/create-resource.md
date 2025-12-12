@@ -12,7 +12,6 @@ zone_pivot_groups: openai-create-resource
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Create and deploy an Azure OpenAI in Microsoft Foundry Models resource
