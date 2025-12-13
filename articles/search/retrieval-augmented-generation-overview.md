@@ -28,7 +28,7 @@ RAG implementations typically include an information retrieval component. The de
 
 Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It provides indexing and query capabilities, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a full stack RAG architecture that includes all of the elements for generative AI over your proprietary content.
 
-You can choose between two approaches for RAG workloads: agentic retrieval, or the original query architecture for classic RAG.
+You can choose between two approaches for RAG workloads: new agentic retrieval for modern RAG, or the original query architecture for classic RAG.
 
 ## Modern RAG with agentic retrieval
 
@@ -145,7 +145,7 @@ Rows are matches to the query, ranked by relevance, similarity, or both. By defa
 
 When you're working with complex processes, a large amount of data, and expectations for millisecond responses, it's critical that each step adds value and improves the quality of the end result. On the information retrieval side, *relevance tuning* is an activity that improves the quality of the results sent to the LLM. Only the most relevant or the most similar matching documents should be included in results.
 
-Here are some tips for maximizing relevance and recall:
+Whether you use agentic retrieval or classic RAG, here are some tips for maximizing relevance and recall:
 
 + [Hybrid queries](hybrid-search-how-to-query.md) that combine keyword (nonvector) search and vector search give you maximum recall when the inputs are the same. In a hybrid query, if you double down on the same input, a text string and its vector equivalent generate parallel queries for keywords and similarity search, returning the most relevant matches from each query type in a unified result set.
 
@@ -194,7 +194,7 @@ There are many ways to get started, including code-first solutions and demos.
 > [!NOTE]
 > Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip features like autocomplete and suggestions. Other features like facets and orderby might be useful, but would be uncommon in a RAG scenario.
 
-### [**Demos and code**](#tab/demos)
+### [**Code**](#tab/demos)
 
 Check out the following GitHub repositories for code, documentation, and video demonstrations where applicable.
 
