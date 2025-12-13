@@ -26,9 +26,9 @@ RAG implementations typically include an information retrieval component. The de
 
 + Ease of integration with agents and chat apps, and other models and processes that are part of your application.
 
-+ If you're consolidating searchable data into separate physical data structures, such as the search indexes on Azure AI Search, you might also want indexing capabilities that allow you to modify content for search purposes. You might want to verbalize, recognize or analyze images to get text-equivalent information in your index. More likely, you might want to chunk content so that it can be easily consumed, and vectorize content if you want similarity search.
++ It's common to consolidate searchable data into separate physical data structures that are optimized for search. The search indexes on Azure AI Search are an example. If you're using indexes, you might want to verbalize, recognize or analyze images to get text-equivalent information in your index. More likely, you might want to chunk verbose source content so that it can be easily consumed, and vectorize that content if you want similarity search.
 
-Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It provides indexing and query capabilities, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a full stack RAG architecture that includes all of the elements for generative AI over your proprietary content.
+Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It provides indexing and query capabilities that meet common criteria, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a full stack RAG architecture that includes all of the elements for generative AI over your proprietary content.
 
 You can choose between two approaches for RAG workloads: new **agentic retrieval** for modern RAG (currently in preview), or the original query architecture for **classic RAG**. If you're required to use only generally available features, you should consider classic RAG.
 
@@ -80,6 +80,8 @@ The LLM receives the original prompt, plus the results from Azure AI Search. The
 
 ## Comparison of agentic retrieval and classic RAG
 
+You can choose between two approaches for RAG workloads: new **agentic retrieval** for modern RAG (currently in preview), or the original query architecture for **classic RAG**. The following table highlights the key differences to help you choose.
+
 | Characteristic | Agentic retrieval | Classic RAG |
 |----------------|-------------------|-------------|
 | Search corpus  | [A knowledge base](/rest/api/searchservice/knowledge-bases/create-or-update) that defines an entire search domain. It can include one or more search indexes (indexed content) and remote content from Bing and SharePoint.| [A search index](/rest/api/searchservice/indexes/create-or-update). |
@@ -91,11 +93,11 @@ The LLM receives the original prompt, plus the results from Azure AI Search. The
 
 How queries execute is a primary differentiator between agentic retrieval and classic RAG. 
 
-In a non-RAG pattern for regular search, queries make a round trip from a search client. The query is submitted, it executes on a search engine, and the response returned to the client application. The response, or search results, consist exclusively of the verbatim content found in your index. 
++ In a non-RAG pattern for regular search, queries make a round trip from a search client. The query is submitted, it executes on a search engine, and the response returned to the client application. The response, or search results, consist exclusively of the verbatim content found in your index. 
 
-In a classic RAG pattern, queries and responses are coordinated between the search engine and the LLM. A user's question or query is forwarded to both the search engine and to the LLM as a prompt. The search results come back from the search engine and are redirected to an LLM. The response that makes it back to the user is generative AI, either a summation or answer from the LLM.
++ In a classic RAG pattern, queries and responses are coordinated between the search engine and the LLM. A user's question or query is forwarded to both the search engine and to the LLM as a prompt. The search results come back from the search engine and are redirected to an LLM. The response that makes it back to the user is generative AI, either a summation or answer from the LLM.
 
-In a modern agentic retrieval RAG pattern, queries and responses integrate with LLMs for help with query planning and optional answer formulation. Query inputs can be richer, with chat history as well as the user's question. The LLM determines how to set up subqueries for the best coverage over your indexed content and it follows any retrieval instructions you've provided that guide which knowledge sources to use. The response includes not just search results, but the query execution details and source documents. You can optionally include answer formulation, which in other patterns occurs outside of the query pipeline.
++ In a modern agentic retrieval RAG pattern, queries and responses integrate with LLMs for help with query planning and optional answer formulation. Query inputs can be richer, with chat history as well as the user's question. The LLM determines how to set up subqueries for the best coverage over your indexed content and it follows any retrieval instructions you've provided that guide which knowledge sources to use. The response includes not just search results, but the query execution details and source documents. You can optionally include answer formulation, which in other patterns occurs outside of the query pipeline.
 
 ## Searchable content in Azure AI Search
 
@@ -111,14 +113,14 @@ Since you probably know what kind of content you want to search over, consider t
 
 | Content type | Indexed as | Features |
 |--------------|------------|----------|
-| text | tokens, unaltered text | [Indexers](search-indexer-overview.md) and [knowledge sources](agentic-knowledge-source-overview.md) can pull plain text from other Azure resources like Azure Storage and Cosmos DB. You can also [push any JSON content](search-what-is-data-import.md) to an index. To modify text in flight, use [analyzers](search-analyzers.md) and [normalizers](search-normalizers.md) to add lexical processing during indexing. [Synonym maps](search-synonyms.md) are useful if source documents are missing terminology that might be used in a query. |
-| text | vectors <sup>1</sup> | Text can be chunked and vectorized in an indexer pipeline, or handled externally and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. |
-| images | tokens, unaltered text <sup>2</sup> | [Skills](cognitive-search-working-with-skillsets.md) for image verbalization and image analysis can process images for text recognition or image characteristics. Skills have an indexer requirement. |
-| multimodal (text and images)| vectors <sup>1</sup> | Images can be vectorized in an indexer pipeline, or handled externally for a mathematical representation of image content and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. You can use [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or an open source model like [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) to vectorize text and images in the same embedding space.|
+| Plain text | Tokens, raw text | [Indexers](search-indexer-overview.md) and [knowledge sources](agentic-knowledge-source-overview.md). Also, [analyzers](search-analyzers.md) and [normalizers](search-normalizers.md) to modify text in flight. [Synonym maps](search-synonyms.md) for query expansion. |
+| Text (vectorized)<sup>1</sup> | [Vectors](vector-search-how-to-create-index.md) | Chunking and vectorization via indexers  or external tools |
+| Images<sup>2</sup | Tokens, raw text | OCR and Image Analysis [skills](cognitive-search-working-with-skillsets.md) (indexer required) |
+| Multimodal | Vectors | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) for unified embedding space. |
 
  <sup>1</sup> Azure AI Search provides [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), but you must take a dependency on indexers and skillsets. For code samples, see [azure-search-vectors-sample repo](https://github.com/Azure/azure-search-vector-samples).
 
-<sup>2</sup> Image descriptions are converted to searchable text and added to the index. The images themselves are not stored in the index. [Skills](cognitive-search-working-with-skillsets.md) are built-in support for [applied AI](cognitive-search-concept-intro.md). For image descriptions and verbalizations, the indexing pipeline makes an internal call to Azure OpenAI or Azure Vision. These skills pass an extracted image for processing, and receive the output as text that's indexed by Azure AI Search. Skills are also used for integrated data chunking and embedding. 
+<sup>2</sup> Through skills, image descriptions are converted to searchable text and added to the index. The images themselves are not stored in the index. Skills are also used for integrated data chunking and embedding. 
 
 Vectors provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematic representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries.
 
@@ -128,7 +130,7 @@ When you're working with complex processes, a large amount of data, and expectat
 
 Whether you use agentic retrieval or classic RAG, here's how you maximize relevance and recall:
 
-+ [Hybrid queries](hybrid-search-how-to-query.md) that combine keyword (nonvector) search and vector search give you maximum recall when the inputs are the same. In a hybrid query, if you double down on the same input, a text string and its vector equivalent generate parallel queries for keywords and similarity search, returning the most relevant matches from each query type in a unified result set.
++ [Hybrid queries](hybrid-search-overview.md) that combine keyword (nonvector) search and vector search give you maximum recall when the inputs are the same. In a hybrid query, if you double down on the same input, a text string and its vector equivalent generate parallel queries for keywords and similarity search, returning the most relevant matches from each query type in a unified result set.
 
 + Hybrid queries are expansive. You can run similarity search over chunked vector content, and keyword search over names, all in the same request.
 
@@ -142,7 +144,21 @@ Whether you use agentic retrieval or classic RAG, here's how you maximize releva
 
 In comparison and benchmark testing, hybrid queries with text and vector fields, supplemented with semantic ranking, produce the most relevant results.
 
-## Integration code
+## Choosing between agentic retrieval and classic RAG
+
+**Use agentic retrieval when:**
+
++ You need the highest possible relevance and accuracy
++ Your queries are complex or conversational
++ You want structured responses with citations and query details
++ You're building new RAG implementations
+
+**Use classic RAG when:**
+
++ You need generally available (GA) features only
++ Simplicity and speed are priorities over advanced relevance
++ You have existing orchestration code you want to preserve
++ You need fine-grained control over the query pipeline
 
 A RAG solution that includes agents and Azure AI Search can benefit from [Foundry IQ](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812), as an agent's single endpoint to a knowledge layer that provides grounding data.
 
