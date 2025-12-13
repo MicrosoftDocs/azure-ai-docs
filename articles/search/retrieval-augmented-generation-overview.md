@@ -141,7 +141,7 @@ Fields appear in search results when the attribute is "retrievable". A field def
 
 Rows are matches to the query, ranked by relevance, similarity, or both. By default, results are capped at the top 50 matches for full text search or k-nearest-neighbor matches for vector search. You can change the defaults to increase or decrease the limit up to the maximum of 1,000 documents. You can also use top and skip paging parameters to retrieve results as a series of paged results. -->
 
-### Maximize relevance and recall
+## Maximize relevance and recall
 
 When you're working with complex processes, a large amount of data, and expectations for millisecond responses, it's critical that each step adds value and improves the quality of the end result. On the information retrieval side, *relevance tuning* is an activity that improves the quality of the results sent to the LLM. Only the most relevant or the most similar matching documents should be included in results.
 
@@ -170,6 +170,12 @@ We recommend the [Azure OpenAI demo](https://github.com/Azure-Samples/azure-sear
 ## How to get started
 
 There are many ways to get started, including code-first solutions and demos.
+
+### [**Videos**](#tab/videos)
+
++ [Build agents with knowledge, agentic RAG and Azure AI Search](https://www.youtube.com/watch?v=lW47o2ss3Yg) 
+
++ [Foundry IQ: the future of RAG with knowledge retrieval and AI Search](https://www.youtube.com/watch?v=slDdNIQCJBQ)
 
 ### [**Docs**](#tab/docs)
 
