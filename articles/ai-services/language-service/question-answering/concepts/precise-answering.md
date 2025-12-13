@@ -2,12 +2,13 @@
 title: Precise answering using answer span detection - custom question answering
 description: Understand Precise answering feature available in custom question answering.
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: feature-guide
 author: laujan
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.custom: language-service-question-answering
 ---
+
 # Precise answering
 
 The precise answering feature introduced, allows you to get the precise short answer from the best candidate answer passage present in the project for any user query. This feature uses a deep learning model at runtime, which understands the intent of the user query and detects the precise short answer from the answer passage, if there is a short answer present as a fact in the answer passage.
@@ -16,7 +17,7 @@ This feature is beneficial for both content developers as well as end users. Now
 
 ## Precise answering via the portal
 
-In the [Language Studio portal](https://aka.ms/languageStudio), when you open the test pane, you can see an option to **Include short answer response** on the top above show advanced options.
+When you open the test pane, you can see an option to **Include short answer response** on the top above show advanced options.
 
 When you enter a query in the test pane, you can see a short-answer along with the answer passage, if there is a short answer present in the answer passage.
 

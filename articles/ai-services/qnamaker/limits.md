@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: reference
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # QnA Maker knowledge base limits and boundaries
