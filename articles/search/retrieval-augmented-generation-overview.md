@@ -58,11 +58,13 @@ For detailed information about implementing classic RAG, see the [azure-search-c
 
 Your searchable content is the cornerstone of a RAG solution. This section takes a closer look at what constitutes searchable content in Azure AI Search.
 
-Searchable content is either a single search index (classic RAG) or a knowledge base that has multiple knowledge sources backed by multiple search indexes or remote data providers. Within an index, you have plain text content and vectorized content.
+Searchable content is either a [single search index](search-what-is-an-index.md) (classic RAG) or a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that has multiple knowledge sources backed by multiple search indexes or remote data providers. Within an index, you have plain text content and vectorized content.
 
-Plain text content (tokenized) is essential because its used for LLM inputs, scoring profiles, and semantic ranking.
++ Plain text content (tokenized) is essential because its used for LLM inputs, scoring profiles, and semantic ranking.
 
-Vectors (embeddings) provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematical representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries.
++ Vectors (embeddings) provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematical representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries. 
+
+But you don't have to choose between vectors and plain text, because [hybrid search](hybrid-search-overview.md) lets you combine them. You can specify hybrid queries in classic RAG. Agentic retrieval creates them automatically if your index has both content types.
 
 Azure AI Search indexes support multiple content types optimized for RAG:
 
@@ -79,7 +81,9 @@ For implementation details, see [integrated vectorization](vector-search-integra
 
 ## Maximize relevance and recall
 
-To ensure the best results for your RAG implementation:
+How do you provide the best grounding data for LLM answer formulation? It's a combination of having appropriate content, smart queries, and query capabilities that can identify the best chunks.
+
+On the query side, to ensure the most relevant results for your RAG implementation:
 
 + [Use hybrid queries](hybrid-search-overview.md) that combine keyword (nonvector) and vector search for maximum recall. In a hybrid query, if you double down on the same input, a text string and its vector equivalent generate parallel queries for keywords and similarity search, returning the most relevant matches from each query type in a unified result set.
 
