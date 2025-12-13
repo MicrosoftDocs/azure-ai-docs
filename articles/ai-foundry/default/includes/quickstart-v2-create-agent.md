@@ -24,11 +24,11 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-create-agent.cs":::
 
-<!-- # [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript)
 
-Not yet available
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-create-agent.ts":::
 
-# [Java](#tab/java)
+<!-- # [Java](#tab/java)
 
 Not yet available -->
 
