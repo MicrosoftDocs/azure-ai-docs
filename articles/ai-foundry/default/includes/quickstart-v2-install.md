@@ -52,7 +52,7 @@ Follow along below or get the code:
 1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
 
     ```bash
-    npm install @azure/ai-projects@2.0.0-beta.2 @azure/identity dotenv
+    npm install @azure/ai-projects@beta @azure/identity dotenv
     ```
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
