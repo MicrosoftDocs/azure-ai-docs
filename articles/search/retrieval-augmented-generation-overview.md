@@ -34,7 +34,7 @@ You can choose between two approaches for RAG workloads: new **agentic retrieval
 
 ## Modern RAG with agentic retrieval
 
-Azure AI Search now provides agentic retrieval, a specialized pipeline designed specifically for RAG patterns. This approach uses LLMs to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
+Azure AI Search now provides [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval), a specialized pipeline designed specifically for RAG patterns. This approach uses LLMs to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
 
 Agentic retrieval represents the evolution from traditional single-query RAG patterns to multi-query intelligent retrieval, providing:
 
@@ -50,22 +50,9 @@ For new RAG implementations, we recommend starting with [agentic retrieval](agen
 
 ## Classic RAG pattern for Azure AI Search
 
-Classic RAG uses the original query execution architecture where your application sends a single query to Azure AI Search and orchestrates the handoff to an LLM separately. This approach is simpler with fewer components, and faster because there's no LLM involvement in query planning.
+Classic RAG uses the [original query execution architecture](search-what-is-azure-search.md#what-is-classic-search) where your application sends a single query to Azure AI Search and orchestrates the handoff to an LLM separately. This approach is simpler with fewer components, and faster because there's no LLM involvement in query planning.
 
 For detailed information about implementing classic RAG, see the [azure-search-classic-rag repository](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md).
-
-## Comparison of agentic retrieval and classic RAG
-
-You can choose between two approaches for RAG workloads: new **agentic retrieval** for modern RAG (currently in preview), or the original query architecture for **classic RAG**. The following table highlights the key differences to help you choose.
-
-| Characteristic | Agentic retrieval | Classic RAG |
-|----------------|-------------------|-------------|
-| Search corpus  | [A knowledge base](/rest/api/searchservice/knowledge-bases/create-or-update) that defines an entire search domain. It can include one or more search indexes (indexed content) and remote content from Bing and SharePoint.| [A single search index](/rest/api/searchservice/indexes/create-or-update). |
-| Query mechanism  | [Retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) | [Search Documents](/rest/api/searchservice/documents/search-post) |
-| Query composition | Multiple subqueries, as many as needed, composed by an LLM. | A single-shot query. |
-| Query execution | Keyword, vector, hybrid in subqueries. <br>Optionally, call an LLM to return a formulated answer in the response. | Keyword, vector, hybrid in a single shot. |
-| Query response | A long unified string in a multi-part format, consisting of a query activity plan, results, citations, source data. | Flattened rowset based on fields in the index. |
-| LLM integration at query time | Query planning, embedded answer synthesis. | None. Application code sends results to an LLM. |
 
 ## Searchable content in Azure AI Search
 
@@ -100,7 +87,7 @@ To ensure the best results for your RAG implementation:
 
 Learn more about [hybrid search](hybrid-search-overview.md) and [semantic ranking](semantic-ranking.md).
 
-## Choosing between agentic retrieval and classic RAG
+## Choose between agentic retrieval and classic RAG
 
 **Use agentic retrieval when:**
 
@@ -117,6 +104,8 @@ Learn more about [hybrid search](hybrid-search-overview.md) and [semantic rankin
 + You need fine-grained control over the query pipeline
 
 A RAG solution that includes agents and Azure AI Search can benefit from [Foundry IQ](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812), as an agent's single endpoint to a knowledge layer that provides grounding data.
+
+Learn more about [classic search](search-what-is-azure-search.md#what-is-classic-search), [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval), and [how they compare](search-what-is-azure-search.md#how-they-compare).
 
 Review the resources in the next section for more options and next steps.
 
