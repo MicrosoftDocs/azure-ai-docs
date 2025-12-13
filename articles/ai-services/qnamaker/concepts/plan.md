@@ -29,7 +29,7 @@ Each [Azure resource](azure-resources.md#resource-purposes) created with QnA Mak
 
 ### Resource planning
 
-The free tier, `F0`, of each resource works and can provide both the authoring and query prediction experience. You can use this tier to learn authoring and query prediction. When you move to a production or live scenario, reevaluate your resource selection.
+The free tier, `F0`, of each resource works and can provide both the authoring and query prediction experience. You can use this tier for authoring and query prediction. When you move to a production or live scenario, reevaluate your resource selection.
 
 ### Knowledge base size and throughput
 
@@ -45,7 +45,7 @@ The knowledge base query prediction request is controlled by the web app plan an
 
 If you already have some of these resources in use, you may consider sharing resources. See which resources [can be shared](azure-resources.md#share-services-with-qna-maker) with the understanding that resource sharing is an advanced scenario.
 
-All knowledge bases created in the same QnA Maker resource share the same **test** query prediction endpoint.
+All knowledge bases created in the same QnA Maker resources share the same **test** query prediction endpoint.
 
 ### Understand the impact of resource selection
 
