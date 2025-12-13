@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ---
 # Authoring API
 
@@ -26,8 +26,8 @@ To create a project programmatically:
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/`. If the prior example was your endpoint in the following code sample, you would only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively, you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/`. If the prior example was your endpoint in the following code sample, you would only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `NEW-PROJECT-NAME` | The name for your new custom question answering project.|
 
 You can also adjust more values, such as the project language. Another option is to set the default answer that is provided when no response meets or exceeds the confidence threshold. In addition, you can specify whether this language resource supports multiple languages.
@@ -74,8 +74,8 @@ To delete a project programmatically:
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/`. If the prior example was your endpoint in the following code sample, you would only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/`. If the prior example was your endpoint in the following code sample, you would only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to delete.|
 
 ### Example query
@@ -122,8 +122,8 @@ To check on the status of your delete project request:
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to check on the deployment status for.|
 | `JOB-ID` | When you delete a project programmatically, a `JOB-ID` is generated as part of the `operation-location` response header to the deletion request. The `JOB-ID` is the guid at the end of the `operation-location`. For example: `operation-location: https://southcentralus.cognitiveservices.azure.com:443/language/query-knowledgebases/projects/sample-proj1/deletion-jobs/{THIS GUID IS YOUR JOB ID}` |
 
@@ -151,8 +151,8 @@ To retrieve information about a given project, update the following values in th
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to retrieve information about.|
 
 ### Example query
@@ -189,8 +189,8 @@ To retrieve question answer pairs and related information for a given project, u
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to retrieve all the question answer pairs for.|
 
 ### Example query
@@ -259,8 +259,8 @@ To retrieve the sources and related information for a given project, update the 
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to retrieve all the source information for.|
 
 ### Example query
@@ -302,8 +302,8 @@ To retrieve synonyms and related information for a given project, update the fol
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to retrieve synonym information for.|
 
 ### Example query
@@ -345,8 +345,8 @@ To deploy a project to production, update the following values in the query:
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to deploy to production.|
 
 ### Example query
@@ -374,8 +374,8 @@ date: Tue, 23 Nov 2021 20:35:00 GMT
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to check on the deployment status for.|
 | `JOB-ID` | When you deploy a project programmatically, a `JOB-ID` is generated as part of the `operation-location` response header to the deployment request. The `JOB-ID` is the guid at the end of the `operation-location`. For example: `operation-location: https://southcentralus.cognitiveservices.azure.com:443/language/query-knowledgebases/projects/sample-proj1/deployments/production/jobs/{THIS GUID IS YOUR JOB ID}` |
 
@@ -407,8 +407,8 @@ curl -X GET -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applicat
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to export.|
 
 ### Example query
@@ -434,8 +434,8 @@ date: Tue, 23 Nov 2021 21:24:03 GMT
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to check on the export status for.|
 | `JOB-ID` | When you export a project programmatically, a `JOB-ID` is generated as part of the `operation-location` response header to the export request. The `JOB-ID` is the guid at the end of the `operation-location`. For example: `operation-location: https://southcentralus.cognitiveservices.azure.com/language/query-knowledgebases/projects/sample-proj1/export/jobs/{THIS GUID IS YOUR JOB ID}` |
 
@@ -464,8 +464,8 @@ If you try to access the resultUrl directly, you get a 404 error. You must appen
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you would only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you would only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to be the destination for the import.|
 | `FILE-URI-PATH` | When you export a project programmatically, and then check the status the export a `resultUrl` is generated as part of the response. For example: `"resultUrl": "https://southcentralus.cognitiveservices.azure.com:443/language/query-knowledgebases/projects/sample-proj1/export/jobs/{JOB-ID_GUID}/result"` you can use the resultUrl with the API version appended as a source file to import a project from: `https://southcentralus.cognitiveservices.azure.com:443/language/query-knowledgebases/projects/sample-proj1/export/jobs/{JOB-ID_GUID}/result?api-version=2021-10-01`.|
 
@@ -496,8 +496,8 @@ date: Wed, 24 Nov 2021 00:35:11 GMT
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to be the destination for the import.|
 | `JOB-ID` | When you import a project programmatically, a `JOB-ID` is generated as part of the `operation-location` response header to the export request. The `JOB-ID` is the GUID at the end of the `operation-location`. For example: `operation-location: https://southcentralus.cognitiveservices.azure.com/language/query-knowledgebases/projects/sample-proj1/import/jobs/{THIS GUID IS YOUR JOB ID}` |
 
@@ -524,8 +524,8 @@ curl -X GET -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applicat
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to generate a deployment list for.|
 
 ### Example query
@@ -551,8 +551,8 @@ Retrieve a list of all question answering projects your account has access to.
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 
 ### Example query
 
@@ -587,8 +587,8 @@ In this example, we add a new source to an existing project. You can also replac
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project where you would like to update sources.|
 |`METHOD`| PATCH |
 
@@ -627,8 +627,8 @@ date: Wed, 24 Nov 2021 02:47:53 GMT
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to be the destination for the import.|
 | `JOB-ID` | When you update a source programmatically, a `JOB-ID` is generated as part of the `operation-location` response header to the update source request. The `JOB-ID` is the GUID at the end of the `operation-location`. For example: `operation-location: https://southcentralus.cognitiveservices.azure.com/language/query-knowledgebases/projects/sample-proj1/sources/jobs/{THIS GUID IS YOUR JOB ID}` |
 
@@ -658,8 +658,8 @@ In this example, we add a question answer pair to an existing source. You can al
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to be the destination for the import.|
 
 ```bash
@@ -702,8 +702,8 @@ date: Wed, 24 Nov 2021 03:16:01 GMT
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to be the destination for the question answer pairs updates.|
 | `JOB-ID` | When you update a question answer pair programmatically, a `JOB-ID` is generated as part of the `operation-location` response header to the update request. The `JOB-ID` is the GUID at the end of the `operation-location`. For example: `operation-location: https://southcentralus.cognitiveservices.azure.com/language/query-knowledgebases/projects/sample-proj1/qnas/jobs/{THIS GUID IS YOUR JOB ID}` |
 
@@ -728,8 +728,8 @@ curl -X GET -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applicat
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to add synonyms.|
 
 ### Example query
@@ -774,8 +774,8 @@ date: Wed, 24 Nov 2021 03:59:09 GMT
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
-| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region specific portion of `southcentral`. The rest of the endpoint path is already present.|
+| `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project you would like to be the destination for the active learning feedback updates.|
 
 ### Example query

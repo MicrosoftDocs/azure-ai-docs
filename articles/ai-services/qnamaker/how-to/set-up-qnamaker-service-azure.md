@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 # Manage QnA Maker resources
 
@@ -22,7 +22,7 @@ A solid understanding of the following concepts is helpful before creating your 
 
 ## Create a new QnA Maker service
 
-This procedure creates the Azure resources needed to manage the knowledge base content. After you complete these steps, you'll find the _subscription_ keys on the **Keys** page for the resource in the Azure portal.
+This procedure creates the Azure resources needed to manage the knowledge base content. After you complete these steps, you find the _subscription_ keys on the **Keys** page for the resource in the Azure portal.
 
 1. Sign in to the Azure portal and [create a QnA Maker](https://portal.azure.com/#create/Microsoft.CognitiveServicesQnAMaker) resource.
 
@@ -39,7 +39,7 @@ This procedure creates the Azure resources needed to manage the knowledge base c
     * Select the **Pricing tier** for the QnA Maker management services (portal and management APIs). See [more details about SKU pricing](https://aka.ms/qnamaker-pricing).
     * Create a new **Resource group** (recommended) or use an existing one in which to deploy this QnA Maker resource. QnA Maker creates several Azure resources. When you create a resource group to hold these resources, you can easily find, manage, and delete these resources by the resource group name.
     * Select a **Resource group location**.
-    * Choose the **Search pricing tier** of the Azure AI Search service. If the Free tier option is unavailable (appears dimmed), it means you already have a free service deployed through your subscription. In that case, you'll need to start with the Basic tier. See [Azure AI Search pricing details](https://azure.microsoft.com/pricing/details/search/).
+    * Choose the **Search pricing tier** of the Azure AI Search service. If the Free tier option is unavailable (appears dimmed), it means you already have a free service deployed through your subscription. In that case, you need to start with the Basic tier. See [Azure AI Search pricing details](https://azure.microsoft.com/pricing/details/search/).
     * Choose the **Search location** where you want Azure AI Search indexes to be deployed. Restrictions on where customer data must be stored will help determine the location you choose for Azure AI Search.
     * In the **App name** field, enter a name for your Azure App Service instance.
     * By default, App Service defaults to the standard (S1) tier. You can change the plan after creation. Learn more about [App Service pricing](https://azure.microsoft.com/pricing/details/app-service/).
@@ -54,7 +54,7 @@ This procedure creates the Azure resources needed to manage the knowledge base c
 
 1. After all the fields are validated, select **Create**. The process can take a few minutes to complete.
 
-1. After deployment is completed, you'll see the following resources created in your subscription:
+1. After deployment is completed, you see the following resources created in your subscription:
 
    ![Resource created a new QnA Maker service](../media/qnamaker-how-to-setup-service/resources-created.png)
 
