@@ -80,13 +80,12 @@ The LLM receives the original prompt, plus the results from Azure AI Search. The
 
 | Characteristic | Agentic retrieval | Classic RAG |
 |----------------|-------------------|-------------|
-| Search corpus  | A knowledge base that defines an entire search domain. It can include one or more search indexes (indexed content) and remote content from Bing and SharePoint.| A search index |
-| Query mechanism  | Retrieve action | Search Documents |
-| Query composition | Multiple subqueries, as many as needed | A single-shot query |
-| Query execution | Keyword, vector, hybrid. Can optionally call an LLM to return a formulated answer in the response. | Keyword, vector, hybrid |
+| Search corpus  | [A knowledge base](/rest/api/searchservice/knowledge-bases/create-or-update) that defines an entire search domain. It can include one or more search indexes (indexed content) and remote content from Bing and SharePoint.| [A search index](/rest/api/searchservice/indexes/create-or-update) |
+| Query mechanism  | [Retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve) | [Search Documents](/rest/api/searchservice/documents/search-post) |
+| Query composition | Multiple subqueries, as many as needed, composed by an LLM | A single-shot query |
+| Query execution | Keyword, vector, hybrid. <br>Optionally, call an LLM to return a formulated answer in the response. | Keyword, vector, hybrid |
 | Query response | A long unified string in a multi-part format, consisting of a query activity plan, results, citations, source data. | Flattened rowset based on fields in the index |
 | LLM integration at query time | Query planning, embedded answer synthesis | None. Application code sends results to an LLM |
-
 
 <!--
 ## Searchable content in Azure AI Search
@@ -161,11 +160,11 @@ Whether you use agentic retrieval or classic RAG, here are some tips for maximiz
 
 In comparison and benchmark testing, hybrid queries with text and vector fields, supplemented with semantic ranking, produce the most relevant results.
 
-## Integration code and LLMs
+## Integration code
 
-A RAG solution that includes Azure AI Search can leverage [built-in data chunking and vectorization capabilities](vector-search-integrated-vectorization.md), or you can build your own using platforms like Semantic Kernel, LangChain, or LlamaIndex.
+A RAG solution that includes agents and Azure AI Search can benefit from [Foundry IQ](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-unlocking-ubiquitous-knowledge-for-agents/4470812), as an agent's single endpoint to a knowledge layer that provides grounding data.
 
-We recommend the [Azure OpenAI demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) for an example of a full stack RAG chat app with Azure OpenAI and Azure AI Search.
+Review the resources in the next section for more options.
 
 ## How to get started
 
@@ -195,8 +194,6 @@ There are many ways to get started, including code-first solutions and demos.
 > Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip features like autocomplete and suggestions. Other features like facets and orderby might be useful, but would be uncommon in a RAG scenario.
 
 ### [**Code**](#tab/demos)
-
-Check out the following GitHub repositories for code, documentation, and video demonstrations where applicable.
 
 + [RAG chat app with Azure OpenAI and Azure AI Search (Python)](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md), updated for agentic retrieval.
 
