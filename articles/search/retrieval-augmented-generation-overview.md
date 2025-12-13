@@ -179,9 +179,13 @@ There are many ways to get started, including code-first solutions and demos.
 
 ### [**Docs**](#tab/docs)
 
++ [Retrieval augmented generation and indexes (Foundry)](/azure/ai-foundry/concepts/retrieval-augmented-generation)
+
 + [Try this agentic retrieval quickstart](search-get-started-agentic-retrieval.md) to walk through the new and recommended approach for RAG.
 
-+ [Try this tutorial](agentic-retrieval-how-to-create-pipeline.md) for a more comprehensive approach that includes an agent.
++ [Try this agentic retrieval tutorial](agentic-retrieval-how-to-create-pipeline.md) for a more comprehensive approach that includes an agent.
+
++ Interested in classic RAG? The [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) repository has quickstarts and a tutorial.
 
 + [Review indexing concepts and strategies](search-what-is-an-index.md) to determine how you want to ingest and refresh data. Decide whether to use vector search, keyword search, or hybrid search. The kind of content you need to search over, and the type of queries you want to run, determines index design.
 
@@ -196,7 +200,7 @@ Check out the following GitHub repositories for code, documentation, and video d
 
 + [RAG chat app with Azure OpenAI and Azure AI Search (Python)](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md), updated for agentic retrieval.
 
-+ [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) quickstarts and tutorial.
++ [azure-search-classic-rag](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md) in REST, Python, Java, .NET, JavaScript, and TypeScript.
 
 + [Classic RAG Time Journeys](https://github.com/microsoft/rag-time)
 
@@ -228,7 +232,3 @@ Check out the following GitHub repositories for code, documentation, and video d
   + [Generic copilot](https://github.com/microsoft/Generic-Build-your-own-copilot-Solution-Accelerator)
 
 ---
-
-## See also
-
-+ [Retrieval augmented generation and indexes (Foundry)](/azure/ai-foundry/concepts/retrieval-augmented-generation)
