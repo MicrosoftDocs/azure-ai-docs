@@ -69,18 +69,20 @@ You can choose between two approaches for RAG workloads: new **agentic retrieval
 
 ## Searchable content in Azure AI Search
 
+Plain text content (tokenized) is essential because its used for LLM inputs, scoring profiles, and semantic ranking.
+
+Vectors (embeddings) provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematical representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries.
+
 Azure AI Search indexes support multiple content types optimized for RAG:
 
 | Content type | How it's indexed | Key features |
 |--------------|------------------|--------------|
 | Plain text | Tokens, raw text | [Indexers](search-indexer-overview.md) and [knowledge sources](agentic-knowledge-source-overview.md). Also, [analyzers](search-analyzers.md) and [normalizers](search-normalizers.md) to modify text in flight. [Synonym maps](search-synonyms.md) for query expansion. |
-| Vectorized text <sup>1</sup> | [Embeddings](vector-search-how-to-create-index.md) | [Chunking and vectorization](vector-search-integrated-vectorization.md) via indexers  or external tools |
-| Images<sup>2</sup | Tokens via OCR and AI | OCR and Image Analysis [skills](cognitive-search-working-with-skillsets.md) (indexer required) |
+| Vectorized text | [Embeddings](vector-search-how-to-create-index.md) | [Chunking and vectorization](vector-search-integrated-vectorization.md) via indexers  or external tools |
+| Images | Tokens via OCR and AI | OCR and Image Analysis [skills](cognitive-search-working-with-skillsets.md) (indexer required) |
 | Multimodal | Unified embeddings | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) for unified embedding space. |
 
 For agentic retrieval, you can also access remote sources (Bing, SharePoint) without indexing.
-
-Vectors provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematical representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries.
 
 For implementation details, see [integrated vectorization](vector-search-integrated-vectorization.md) and [skillsets](cognitive-search-working-with-skillsets.md).
 
