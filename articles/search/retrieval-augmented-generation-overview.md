@@ -81,7 +81,7 @@ For implementation details, see [integrated vectorization](vector-search-integra
 
 ## Maximize relevance and recall
 
-How do you provide the best grounding data for LLM answer formulation? It's a combination of having appropriate content, smart queries, and query capabilities that can identify the best chunks.
+How do you provide the best grounding data for LLM answer formulation? It's a combination of having appropriate content, smart queries, and query logic that can identify the best chunks for answering a question.
 
 On the query side, to ensure the most relevant results for your RAG implementation:
 
