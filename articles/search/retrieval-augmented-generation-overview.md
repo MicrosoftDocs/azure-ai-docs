@@ -60,7 +60,7 @@ Your searchable content is the cornerstone of a RAG solution. This section takes
 
 Searchable content is either a [single search index](search-what-is-an-index.md) (classic RAG) or a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that has multiple knowledge sources backed by multiple search indexes or remote data providers. Within an index, you have plain text content and vectorized content.
 
-+ Plain text content (tokenized) is essential because its used for LLM inputs, scoring profiles, and semantic ranking.
++ Plain text content (tokenized) is essential because it's used for LLM inputs, scoring profiles, and semantic ranking.
 
 + Vectors (embeddings) provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematical representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries. 
 
