@@ -20,27 +20,15 @@ Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities 
 
 ## The challenges of RAG
 
-**Challenge 1: Query understanding**
+| Challenge | Description |
+|-----------|-------------|
+| **Query understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words. |
+| **Multi-source data access** | Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential. |
+| **Token constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps. |
+| **Response time expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with
+| **Security and governance** | Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content. |
 
-Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words.
-
-**Challenge 2: Multi-source data access**
-
-Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential.
-
-**Challenge 3: Token constraints**
-
-LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps.
-
-**Challenge 4: Response time expectations**
-
-Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with speed.
-
-**Challenge 5: Security and governance**
-
-Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content.
-
-## How Azure AI Search addresses RAG challenges
+## How Azure AI Search meets RAG challenges
 
 Azure AI Search provides two approaches designed specifically for these RAG challenges:
 
@@ -248,6 +236,8 @@ For implementation details, see [integrated vectorization](vector-search-integra
 
 How do you provide the best grounding data for LLM answer formulation? It's a combination of having appropriate content, smart queries, and query logic that can identify the best chunks for answering a question.
 
+On the content, use chunking to subdivide large documents so that portions can be matched on independently. Use vectorization to create embeddings used for vector queries.
+
 On the query side, to ensure the most relevant results for your RAG implementation:
 
 + [Use hybrid queries](hybrid-search-overview.md) that combine keyword (nonvector) and vector search for maximum recall. In a hybrid query, if you double down on the same input, a text string and its vector equivalent generate parallel queries for keywords and similarity search, returning the most relevant matches from each query type in a unified result set.
@@ -286,9 +276,9 @@ There are many ways to get started, including code-first solutions and demos.
 
 ### [**Videos**](#tab/videos)
 
-+ [Build agents with knowledge, agentic RAG and Azure AI Search](https://www.youtube.com/watch?v=lW47o2ss3Yg) 
-
 + [Foundry IQ: the future of RAG with knowledge retrieval and AI Search](https://www.youtube.com/watch?v=slDdNIQCJBQ)
+
++ [Build agents with knowledge, agentic RAG and Azure AI Search](https://www.youtube.com/watch?v=lW47o2ss3Yg) 
 
 + [(Classic RAG) Vector search and state of the art retrieval for Generative AI apps](https://www.youtube.com/watch?v=lSzc1MJktAo)
 
