@@ -12,7 +12,7 @@ items:
     displayName: custom dns
     href: ../../../how-to/configure-private-link.md
   - name: Managed virtual network
-    href: ../../configuration/managed-virtual-network.md
+    href: ../../../how-to/managed-virtual-network.md
   - name: Network security perimeter
     href: ../../../how-to/add-foundry-to-network-security-perimeter.md    
 
