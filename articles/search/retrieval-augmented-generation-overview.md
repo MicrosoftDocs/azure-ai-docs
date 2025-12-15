@@ -20,7 +20,7 @@ Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the
 
 + The first challenge: rising expectations for reasonable answers regardless of the quality of the question. The modern query consists of complex or convoluted questions, possibly vague or incomplete, with the assumption of context from the current chat. These become the inputs to the information retrieval system, against which the system must understand so that it can find relevant matches for LLM answer formulation.
 
-+ The second challenge: The search domain consists of multiple data sources and platforms. Content might be in various locations and in heterogenous content types. Solving for data extraction and access across disparate systems is a critical challenge for RAG workloads. You need to be able to access each data source directly, or easily consolidate content into a search corpus without disrupting data operations.
++ The second challenge: The search domain consists of multiple data sources and platforms. Content might be in various locations and in heterogenous content types. Solving for data extraction and access across disparate systems is a key objective for RAG workloads. You need to be able to either access each data source directly, or easily consolidate content into a search corpus without disrupting data operations.
 
 + The third challenge: LLMs are constrained by the number of token inputs they can accept. The information retrieval system must be efficient in how it provides inputs to the LLM. The response must be designed for the constraints under which LLMs operate.
 
@@ -28,9 +28,11 @@ Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the
 
 + The fifth challenge: Data security and governance. When you open up private content to information retrieval workloads, users and LLMs must only have access to authorized content.
 
-Azure AI Search can meet all of these challenges with the new agentic retrieval pipeline currently in preview. It can meet *most* of these challenges with the classic search engine that accepts single-shot queries against a single search index. Classic search is generally available, and it supports a hybrid search capability with semantic ranking that produces high quality responses that help LLMs deliver their best answers using your content.
+Azure AI Search can meet *all* of these challenges with the new agentic retrieval pipeline currently in preview. It's designed for the entire problem space, connecting your agent and application code to the right data at the right time, and returning the most useful content to the LLM.
 
-This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems. 
+It can meet *most* of these challenges with the classic search engine that accepts single-shot queries against a single search index. Classic search is generally available, and it supports a hybrid search capability with semantic ranking that produces high quality responses that help LLMs deliver their best answers using your content.
+
+This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems with each RAG pattern.
 
 <!-- Retrieval-augmented Generation (RAG) is a design pattern that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. 
 
