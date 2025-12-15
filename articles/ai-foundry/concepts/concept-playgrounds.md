@@ -207,13 +207,13 @@ To try the transcription capability, follow these steps:
 
 ## Language playground
 
-The [Language playground](https://ai.azure.com/build/playground/language) is an interactive environment where developers can test and validate Azure AI Language capabilities without writing code. It supports natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
+The [Language playground](https://ai.azure.com/build/playground/language) provides a code-free environment for testing and validating Azure AI Language capabilities. Use it to experiment with natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
 
 The Language playground consists of four primary sections:
 
 - **Top banner**: Select from the available Language capabilities including language detection, entity recognition, sentiment analysis, PII detection, summarization, and conversational language understanding.
 - **Left pane**: Configure service options such as API version, model version, and capability-specific parameters.
-- **Center pane**: Enter or upload text for processing. Results are displayed here after executing the operation.
+- **Center pane**: Enter or upload text for processing. Results display here after you execute the operation.
 - **Right pane**: View detailed operation results including entity categories, confidence scores, offsets, and JSON-formatted responses.
 
 To use the Language playground:
@@ -241,15 +241,15 @@ To use the Language playground:
 
 1. Select the appropriate action button (for example, **Detect**, **Extract**, **Analyze**, or **Summarize**) to process the text.
 
-1. Review the results displayed in the center pane and examine detailed output information in the **Details** section on the right pane, including confidence scores, entity categories, character offsets, and lengths.
+1. Review the results that display in the center pane and examine detailed output information in the **Details** section on the right pane, including confidence scores, entity categories, character offsets, and lengths.
 
 1. Select **View code** to access multilingual code samples in Python, C#, JavaScript, and other languages for integration into your applications.
 
-The Language playground accelerates development workflows by enabling rapid prototyping and validation of NLP capabilities before implementing them in production code. For custom NER models, the playground provides training, deployment, testing, and fine-tuning capabilities with real-time debugging support.
+The Language playground accelerates development and enables rapid prototyping and validation of NLP capabilities before production implementation. It also supports training, deployment, testing, and fine-tuning of custom named entity recognition (NER) models with real-time debugging.
 
 ## Translator playground
 
-The [Translator playground](https://ai.azure.com/build/playground/translator) delivers a zero-code environment for testing and validating Azure Translator capabilities. The playground supports both text translation and document translation workflows, enabling developers to experiment with neural machine translation (NMT) and large language model (LLM)-based translation using GPT-4o and GPT-4o-mini.
+The [Translator playground](https://ai.azure.com/build/playground/translator) provides a code-free environment for testing and validating Azure Translator capabilities. It supports both text translation and document translation workflows and enables developers to experiment with neural machine translation (NMT) and large language model (LLM)-based translation using GPT-4o and GPT-4o-mini.
 
 To use the Translator playground:
 
@@ -283,13 +283,13 @@ To use the Translator playground:
 
    1. (Optional) Apply custom translation models or custom glossaries to maintain domain-specific terminology consistency.
 
-   1. Select **Translate** to process the document while preserving the original layout and formatting.
+   1. Select **Translate** to process the document. This preserves the original layout and formatting.
 
    1. Download the translated document to your local computer.
 
 1. Select **View code** to access REST API examples and SDK code samples in multiple programming languages for integrating Translator capabilities into your applications.
 
-The Translator playground supports real-time translation validation, allowing developers to test prompt structures, evaluate translation quality across different models, and validate custom glossary effectiveness before committing to production implementations. The playground provides immediate feedback on translation accuracy, helping optimize model selection and configuration for specific use cases.
+The Translator playground enables real-time validation of translation quality, prompt structures, and custom glossary effectiveness before production implementation. Use it to compare model outputs and optimize translation configurations for your specific use cases.
 
 ::: moniker-end
 
