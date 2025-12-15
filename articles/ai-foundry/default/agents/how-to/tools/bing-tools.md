@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 12/11/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus
