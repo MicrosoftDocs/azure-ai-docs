@@ -1540,6 +1540,8 @@ groups:
     title: C#
   - id: rest-api
     title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
