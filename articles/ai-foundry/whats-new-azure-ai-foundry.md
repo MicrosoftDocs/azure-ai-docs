@@ -44,11 +44,11 @@ Available in both Foundry (new) and Foundry (classic):
 - [Customize voice live](../ai-services/speech-service/voice-live-how-to-customize.md)
 - [Bring your own model](../ai-services/speech-service/how-to-bring-your-own-model.md)
 - [Use the LLM-speech API](../ai-services/speech-service/llm-speech.md)
-- [Priority processing](openai/concepts/priority-processing.md)
+- [Priority processing for Foundry Models](openai/concepts/priority-processing.md)
 - [Classification in Content Understanding Studio](../ai-services/content-understanding/how-to/classification-content-understanding-studio.md)
 - [Foundry playgrounds](concepts/concept-playgrounds.md)
-- [Use Foundry Models Claude](foundry-models/how-to/use-foundry-models-claude.md)
-
+- [Use Claude in Foundry Models](foundry-models/how-to/use-foundry-models-claude.md)
+- [Monitor and manage agents with Foundry control plane](default/control-plane/overview.md)  
 
 ### Updated articles
 
