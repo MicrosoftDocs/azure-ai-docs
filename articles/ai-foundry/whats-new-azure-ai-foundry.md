@@ -30,7 +30,8 @@ Available in Foundry (new) only:
 - [Cluster analysis](default/observability/how-to/cluster-analysis.md)
 - [Optimization dashboard](default/observability/how-to/optimization-dashboard.md)
 - [Human evaluation](default/observability/how-to/human-evaluation.md)
-
+- [Azure Language tools and agents](../ai-services/language-service/concepts/foundry-tools-agents.md)
+- [Azure Language CLU Multi-turn conversations](../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md)
 Available in both Foundry (new) and Foundry (classic):
 - [Install CLI SDK](how-to/develop/install-cli-sdk.md)
 - [SDK overview](how-to/develop/sdk-overview.md)
