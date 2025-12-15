@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/10/2025
+ms.date: 12/15/2025
 ai-usage: ai-assisted
 ---
 
@@ -70,11 +70,18 @@ client = AIProjectClient(
     credential=DefaultAzureCredential()
 )
 
+# Specify memory store options
+options = MemoryStoreDefaultOptions(
+    chat_summary_enabled=True,
+    user_profile_enabled=True,
+    user_profile_details="Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials"
+)
+
 # Create memory store
 definition = MemoryStoreDefaultDefinition(
     chat_model="gpt-4.1",  # Your chat model deployment name
     embedding_model="text-embedding-3-small",  # Your embedding model deployment name
-    options=MemoryStoreDefaultOptions(user_profile_enabled=True, chat_summary_enabled=True)
+    options=options
 )
 
 memory_store = client.memory_stores.create(
@@ -105,8 +112,9 @@ curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
       "chat_model": "gpt-4.1",
       "embedding_model": "text-embedding-3-small",
       "options": {
+        "chat_summary_enabled": true,
         "user_profile_enabled": true,
-        "chat_summary_enabled": true
+        "user_profile_details": "Avoid irrelevant or sensitive data, such as age, financials, precise location, and credentials"
       }
     }
   }'
@@ -212,7 +220,9 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 ## Add the memory search tool to an agent
 
-After you create a memory store, attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
+After you create a memory store, you can attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
+
+Alternatively, you can use the memory store directly through [search](#search-for-memories-in-a-memory-store), [update](#update-a-memory-store), [list](#list-memory-stores), and [delete](#delete-memories) operations.
 
 # [Python](#tab/python)
 
@@ -273,6 +283,10 @@ curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
 ---
 
 ### Create a conversation
+
+You can now create conversations and request agent responses. At the start of each conversation, static memories are injected so the agent has immediate, persistent context. Contextual memories are retrieved per turn based on the latest messages to inform each response.
+
+After each agent response, the service calls `update_memories`, but actual writes to long‑term memory are controlled by the `update_delay` setting. The update is scheduled and only completes after the configured period of inactivity.
 
 # [Python](#tab/python)
 

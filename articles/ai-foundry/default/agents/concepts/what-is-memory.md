@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 12/09/2025
+ms.date: 12/15/2025
 ---
 
 # Memory in Foundry Agent Service (preview)
@@ -32,14 +32,13 @@ Memory in Foundry Agent Service is designed for long-term memory. It extracts me
 ## How memory works
 
 Behind the scenes, memories are stored as "facts" in a managed memory store. The system applies retention, consolidation, and conflict‑resolution logic to ensure that memories remain accurate and useful over time. It also uses hybrid search techniques (both keyword and vector) to efficiently retrieve relevant memories.
-
 Memory operates in the following phases:
 
-1. **Extraction:** When a user interacts with an agent, the system actively extracts key information from the conversation, such as user preferences, facts, and relevant context. For example, preferences like "allergic to dairy" and facts about recent activities are identified and stored.
+1. **Extraction:** When a user interacts with an agent, the system actively extracts key information from the conversation, such as user preferences, facts, and relevant context. For example, preferences like "allergic to dairy" and summaries of recent activities are identified and stored.
 
 1. **Consolidation:** Extracted memories are consolidated to keep the memory store efficient and relevant. The system uses LLMs to merge similar or duplicate topics so that the agent doesn't store redundant information. Conflicting facts, such as a new allergy, are resolved to maintain an accurate memory.
 
-1. **Retrieval:** When the agent needs to recall information, it uses hybrid search techniques to find the most relevant memories. This allows the agent to quickly surface the right context, making conversations feel natural and informed. Core memories, such as allergies, favorite products, and recurring requests, are retrieved at the beginning of a conversation so that the agent is immediately aware of the user's core needs.
+1. **Retrieval:** When the agent needs to recall information, it uses hybrid search techniques to find the most relevant memories. This allows the agent to quickly surface the right context, making conversations feel natural and informed. Core memories, such as user profile and preferences, are retrieved at the beginning of a conversation so that the agent is immediately aware of the user's core needs.
 
 Here's an example of how memory can improve and personalize interactions between a recipe agent and a user who previously expressed a food allergy:
 
@@ -83,7 +82,7 @@ The following examples illustrate how memory can enhance various types of agents
 
 - **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
 
-- **Map scope to an authenticated user:** When you specify scope in the memory search tool, set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user.
+- **Map scope to an authenticated user:** When you specify scope in the [memory search tool](../how-to/memory-usage.md#add-the-memory-search-tool-to-an-agent), set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user.
 
 - **Seed and inject memories:** Add static memories at the start of each conversation. The agent should always search for relevant contextual memories and inject them into the response-generation prompt. At the end of the session (period of inactivity defined by `update_delay`), the agent should update the memory store with memories from the conversation.
 
