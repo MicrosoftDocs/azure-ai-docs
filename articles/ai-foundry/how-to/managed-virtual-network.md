@@ -1,28 +1,28 @@
 ---
-title: Configure managed virtual network for Azure AI Foundry projects (preview)
+title: Configure managed virtual network for Microsoft Foundry projects (preview)
 ms.service: azure-ai-foundry
 ms.date: 11/05/2025
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
-description: Secure your Azure AI Foundry projects with managed virtual networks. Learn to enable outbound isolation and private endpoints for enhanced data protection.
-#customer intent: As an IT admin, I want to configure a managed virtual network for Azure AI Foundry projects so that I can control outbound traffic securely.
+description: Secure your Microsoft Foundry projects with managed virtual networks. Learn to enable outbound isolation and private endpoints for enhanced data protection.
+#customer intent: As an IT admin, I want to configure a managed virtual network for Microsoft Foundry projects so that I can control outbound traffic securely.
 ms.topic: how-to
 ai-usage: ai-assisted
 ---
 
-# Configure managed virtual network for Azure AI Foundry projects
+# Configure managed virtual network for Microsoft Foundry projects
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-This article shows you how to configure a managed virtual network for an Azure AI Foundry project to control outbound traffic from Agents and Evaluations. This feature is currently in preview. After you enable managed virtual network isolation, you can't disable it. Use this configuration to apply outbound isolation modes, private endpoints, and optional Azure Firewall rules.
+This article shows you how to configure a managed virtual network for a Microsoft Foundry project to control outbound traffic from Agents and Evaluations. This feature is currently in preview. After you enable managed virtual network isolation, you can't disable it. Use this configuration to apply outbound isolation modes, private endpoints, and optional Azure Firewall rules.
 
 
 ## Prerequisites
 
 1. Azure subscription with required permissions to deploy Bicep templates and create network resources (Owner or Contributor + User Access Administrator) [TO VERIFY].
-1. Existing Azure AI Foundry hub and project or plan to create them during the template deployment.
-1. CLI environment with Azure CLI installed and signed in (`az login`). Install required extensions for AI Foundry if applicable [TO VERIFY].
+1. Existing Foundry hub and project or plan to create them during the template deployment.
+1. CLI environment with Azure CLI installed and signed in (`az login`). Install required extensions for Foundry if applicable [TO VERIFY].
 1. Access to the Bicep template: `18-managed-virtual-network-preview` in the `foundry-samples` GitHub repository [TO VERIFY: repository URL].
 1. Resource group chosen for the managed virtual network deployment.
 1. Confirm required IP address space availability for subnets (minimum /24 for Agent subnet).
@@ -50,7 +50,7 @@ The managed virtual network is pre-configured with required default rules. Priva
 1. FQDN outbound rules support only ports 80 and 443.
 1. Can't disable managed virtual network isolation after enabling.
 1. Private endpoint required; can't mix private endpoint and service endpoint on the same resource.
-1. Deleting Azure AI Foundry deletes the managed virtual network.
+1. Deleting Foundry deletes the managed virtual network.
 1. No upgrade path from BYO virtual network to managed virtual network; redeploy required.
 1. End-to-end network isolation for Agent MCP tools not fully supported.
 1. Scenarios with MCP tools and certain third-party service integrations not yet supported.
@@ -156,7 +156,7 @@ Don't remove required default rules. They enable core platform communication.
 
 You can configure private endpoints for these Azure services:
 
-- Azure AI services
+- Foundry Tools
 - Azure API Management (Classic without VNet injection; Standard V2 with VNet integration)
 - Azure Container Registry
 - Azure Cosmos DB (all subresource types)
@@ -224,7 +224,7 @@ See Azure pricing:
 
 If you need to remove the configuration:
 
-1. Delete the Azure AI Foundry resource (this action deletes the managed virtual network).
+1. Delete the Foundry resource (this action deletes the managed virtual network).
 1. Confirm private endpoints are removed.
 1. Remove any orphaned firewall resources if you provisioned the SKU.
 1. Release IP space for reuse.
