@@ -21,27 +21,32 @@ Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities 
 ## The challenges of RAG
 
 **Challenge 1: Query understanding**
+
 Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words.
 
 **Challenge 2: Multi-source data access**
+
 Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential.
 
 **Challenge 3: Token constraints**
+
 LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps.
 
 **Challenge 4: Response time expectations**
+
 Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with speed.
 
 **Challenge 5: Security and governance**
+
 Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content.
 
 ## How Azure AI Search addresses RAG challenges
 
 Azure AI Search provides two approaches designed specifically for these RAG challenges:
 
-+ **[Agentic retrieval](agentic-retrieval-overview.md) (preview)**: A complete RAG pipeline with LLM-assisted query planning, multi-source access, and structured responses optimized for agent consumption.
++ **[Agentic retrieval](#modern-rag-with-agentic-retrieval) (preview)**: A complete RAG pipeline with LLM-assisted query planning, multi-source access, and structured responses optimized for agent consumption.
 
-+ **[Classic RAG pattern](#classic-rag-pattern)**: The proven approach using hybrid search and semantic ranking, ideal for simpler requirements or when generally available (GA) features are required.
++ **[Classic RAG pattern](#classic-rag-pattern-for-azure-ai-search)**: The proven approach using hybrid search and semantic ranking, ideal for simpler requirements or when generally available (GA) features are required.
 
 The following sections explain how each approach solves specific RAG challenges.
 
