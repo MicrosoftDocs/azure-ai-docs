@@ -1944,17 +1944,17 @@ POST {endpoint}/openai/v1/images/edits?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | image | string or array |  | Yes |  |
 | mask | string |  | No |  |
 | model | string | The model deployment to use for the image edit operation. | Yes |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`-series models. | Yes |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`-series models. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1`-series models will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### Responses
@@ -2004,16 +2004,16 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
-| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
+| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`-series models. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
-| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
 | style | enum | The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.<br>Possible values: `vivid`, `natural` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
@@ -4133,33 +4133,33 @@ This model adds Responsible AI content filter annotations for prompt input.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | image | string or array |  | Yes |  |
 | mask | string |  | No |  |
 | model | string | The model deployment to use for the image edit operation. | Yes |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>The default value is `png`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`-series models. | Yes |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`-series models. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1`-series models will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### AzureCreateImageRequest
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s).<br>This parameter is only supported for `gpt-image-1`-series models. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
-| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
+| moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`-series models. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
-| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1` with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
-| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
-| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
+| output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
+| output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
 | style | enum | The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.<br>Possible values: `vivid`, `natural` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
@@ -4316,11 +4316,11 @@ The configuration information for an audio transcription request.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| b64_json | string | The base64-encoded JSON of the generated image. Default value for `gpt-image-1`, and only present if `response_format` is set to `b64_json` for `dall-e-2` and `dall-e-3`. | No |  |
+| b64_json | string | The base64-encoded JSON of the generated image. Default value for `gpt-image-1`-series models, and only present if `response_format` is set to `b64_json` for `dall-e-2` and `dall-e-3`. | No |  |
 | content_filter_results | [AzureContentFilterImageResponseResults](#azurecontentfilterimageresponseresults) | A content filter result for an image generation operation's output response content. | Yes |  |
 | prompt_filter_results | [AzureContentFilterImagePromptResults](#azurecontentfilterimagepromptresults) | A content filter result for an image generation operation's input request content. | Yes |  |
 | revised_prompt | string | For `dall-e-3` only, the revised prompt that was used to generate the image. | No |  |
-| url | string | When using `dall-e-2` or `dall-e-3`, the URL of the generated image if `response_format` is set to `url` (default value). Unsupported for `gpt-image-1`. | No |  |
+| url | string | When using `dall-e-2` or `dall-e-3`, the URL of the generated image if `response_format` is set to `url` (default value). Unsupported for `gpt-image-1`-series models. | No |  |
 
 ### AzureImagesResponse
 
@@ -4332,7 +4332,7 @@ The configuration information for an audio transcription request.
 | output_format | enum | The output format of the image generation. Either `png`, `webp`, or `jpeg`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
 | quality | enum | The quality of the image generated. Either `low`, `medium`, or `high`.<br>Possible values: `low`, `medium`, `high` | No |  |
 | size | enum | The size of the image generated. Either `1024x1024`, `1024x1536`, or `1536x1024`.<br>Possible values: `1024x1024`, `1024x1536`, `1536x1024` | No |  |
-| usage | object | For `gpt-image-1` only, the token usage information for the image generation. | No |  |
+| usage | object | For `gpt-image-1`-series models only, the token usage information for the image generation. | No |  |
 | └─ input_tokens | integer | The number of tokens (images and text) in the input prompt. | No |  |
 | └─ input_tokens_details | object | The input tokens detailed information for the image generation. | No |  |
 |   └─ image_tokens | integer | The number of image tokens in the input prompt. | No |  |
@@ -6552,7 +6552,7 @@ A TextSimilarityGrader object which grades text based on similarity metrics.
 
 ### OpenAI.ImageGenTool
 
-A tool that generates images using a model like `gpt-image-1`.
+A tool that generates images using a model like `gpt-image-1.5`.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -6560,7 +6560,7 @@ A tool that generates images using a model like `gpt-image-1`.
 | input_image_mask | object | Optional mask for inpainting. Contains `image_url` (string, optional) and `file_id` (string, optional). | No |  |
 | └─ file_id | string | File ID for the mask image. | No |  |
 | └─ image_url | string | Base64-encoded mask image. | No |  |
-| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1` | No |  |
+| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1`, `gpt-image-1.5` | No |  |
 | moderation | enum | Moderation level for the generated image. Default: `auto`.<br>Possible values: `auto`, `low` | No |  |
 | output_compression | integer | Compression level for the output image. Default: 100. | No | 100 |
 | output_format | enum | The output format of the generated image. One of `png`, `webp`, or `jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |

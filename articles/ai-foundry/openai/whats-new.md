@@ -19,6 +19,22 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## December 2025
+
+### GPT-image-1.5 model is now available
+
+GPT-image-1.5 is OpenAI's latest cutting-edge image generation model. It features improved performance, quality, editing controls, and face preservation.     
+
+In editing mode, the model supports high *input_fidelity* and adding/removing one aspect of the input image while retaining others.  
+
+Key model capabilities:
+- Includes all capabilities of GPT-image-1:
+    - Text to image generation  
+    - Image to image generation (editing)
+- Inpainting  
+- High quality image generations, up to 1024x1536 and 1536x1024 pixels 
+- Face preservation  
+
 ## October 2025
 
 
@@ -245,7 +261,7 @@ For more information about available models, see the [models and versions docume
 
 The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
 
-The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
+The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
 > [!NOTE]
 > The [Realtime API](./realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.

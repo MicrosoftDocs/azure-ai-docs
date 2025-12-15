@@ -37,7 +37,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Azure OpenAI resources per region, per Azure subscription | 30. |
 | Default DALL-E 2 quota limits | 2 concurrent requests. |
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
-| Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute). |
+| Default GPT-image-1 series quota limits | 2 capacity units (6 requests per minute). |
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
@@ -264,7 +264,7 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-realtime-mini` | Default | 100K | 30 |
 
 
-## GPT-image-1 rate limits
+## GPT-image-1 series rate limits
 
 ### GPT-image-1 Global Standard
 
@@ -275,6 +275,9 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-image-1-mini`|Low | N/A | 36 |
 |`gpt-image-1-mini` |Medium | N/A | 108 |
 |`gpt-image-1-mini` |High | N/A | 360 |
+|`gpt-image-1.5`|Enterprise and MCA-E | N/A | 60 |
+|`gpt-image-1.5` |Default | N/A | 18 |
+
 
 ## Usage tiers
 

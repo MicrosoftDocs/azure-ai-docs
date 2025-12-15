@@ -52,7 +52,7 @@ Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-reso
 
 ## Comparing Azure OpenAI and OpenAI
 
-Azure OpenAI gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+Azure OpenAI gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 series (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 
 With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. Azure OpenAI offers private networking, regional availability, and responsible AI content filtering.  
 
@@ -111,7 +111,7 @@ Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o-mini, and GPT-4
 
 #### Image generation tokens 
 
-GPT-image-1 generates images by first producing specialized image tokens. Both latency and eventual cost are proportional to the number of tokens required to render an image. The number of tokens generated depends on image dimensions and quality:
+GPT-image-1 series models generate images by first producing specialized image tokens. Both latency and eventual cost are proportional to the number of tokens required to render an image. The number of tokens generated depends on image dimensions and quality:
 
 | Quality | Square (1024×1024) | Portrait (1024×1536) | landscape (1536×1024) |
 | ----------- | ---------------------- | ------------------------ | ------------------------- |
