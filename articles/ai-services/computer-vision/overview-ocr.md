@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 11/21/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
@@ -15,7 +15,7 @@ ms.custom: devx-track-csharp
 # OCR - Optical Character Recognition
 
 > [!WARNING]
-> We don't recommend using this service, including the Azure Vision in Foundry Tools legacy [OCR API in v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2&preserve-view=true) and [RecognizeText API in v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1&preserve-view=true).
+> We don't recommend using this service, including the Azure Vision in Foundry Tools [legacy OCR API v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2&preserve-view=true) and [RecognizeText API v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1&preserve-view=true).
 
 [!INCLUDE [read-editions](includes/read-editions.md)]
 
@@ -33,7 +33,7 @@ Microsoft's **Read** OCR engine uses multiple advanced machine-learning models t
 
 ## How is OCR related to Intelligent Document Processing (IDP)?
 
-Intelligent Document Processing (IDP) uses OCR as its foundational technology to extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you're extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../document-intelligence/prebuilt/read.md).
+Intelligent Document Processing (IDP) uses OCR as its foundational technology to extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service  like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you're extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../document-intelligence/prebuilt/read.md).
 
 ## How to use OCR
 

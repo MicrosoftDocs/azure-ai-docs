@@ -7,19 +7,15 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 11/19/2025
 zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
 
-<!--
 ::: zone pivot="csharp"
-[!INCLUDE [C#](includes/how-tos/file-name.md)]
+[!INCLUDE [C#](includes/how-tos/agentic-knowledge-source-how-to-blob-csharp.md)]
 ::: zone-end
-
-Add C# to agentic-retrieval-pivots in zone-pivot-groups.yml, and then uncomment this section.
--->
 
 ::: zone pivot="python"
 [!INCLUDE [Python](includes/how-tos/agentic-knowledge-source-how-to-blob-python.md)]

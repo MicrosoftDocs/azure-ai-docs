@@ -19,6 +19,8 @@ ai-usage: ai-assisted
 ---
 # Manage and increase quotas for hub resources
 
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
 > [!TIP]
 > An alternate Foundry project-focused quota article is available: [Manage and increase quotas for resources with Microsoft Foundry](quota.md).
 

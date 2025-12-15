@@ -13,6 +13,8 @@ ai.usage: ai-assisted
 
 # Disable preview features in Microsoft Foundry with role-based access control
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 In Microsoft Foundry projects, some features are in preview. Administrators can bock access to them by denying specific data actions to a custom role, and granting their users role memberships to enable/disable specific features as required. This article lists the data actions for each preview feature so you can disable them on an individual basis. However, since you can't modify built-in roles in Foundry projects, you need to create a custom role. For steps to create a custom role, see [Create or update Azure custom roles using the Azure portal - Azure RBAC](/azure/role-based-access-control/custom-roles-portal).
 
 ## Agents service data actions

@@ -7,14 +7,17 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/11/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 zone_pivot_groups: selection-function-calling
 ms.custom: azure-ai-agents
 ---
 
 # Azure AI Agents function calling
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 

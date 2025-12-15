@@ -38,12 +38,22 @@ The GPT real-time models are available for global deployments.
 - `gpt-realtime` (version `2025-08-28`)
 - `gpt-realtime-mini` (version `2025-10-06`)
 
+:::moniker range="foundry"
+For more information, see the [models and versions documentation](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
+:::moniker-end
+
+:::moniker range="foundry-classic"
+
 For more information, see the [models and versions documentation](./concepts/models.md#audio-models).
+:::moniker-end
+
 
 ## API support
 
 Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-08-28` to access the latest Realtime API features. We recommend you select the generally available API version (without '-preview' suffix) when possible.
 
+> [!CAUTION]
+> You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](how-to/realtime-audio-websockets.md#connection-and-authentication). 
 
 
 ::: zone pivot="programming-language-javascript"

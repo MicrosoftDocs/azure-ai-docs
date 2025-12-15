@@ -26,13 +26,15 @@ This approach enables you to securely integrate internal APIs and services into 
 - For local development and debugging:
   - [Visual Studio Code](https://code.visualstudio.com/)
   - [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Visual Studio Code
-- An Azure API Center resource (optional, required only for organizational tool catalog registration).
+- An [Azure API Center resource](/azure/api-center/overview) (optional, required only for organizational tool catalog registration).
 
 ## Build an MCP server by using Azure Functions
 
 Azure Functions is a serverless compute service that provides scale-to-zero capability, burst scaling, and enterprise features including identity-based access and virtual networking. The lightweight programming model makes it straightforward to build MCP servers so you can focus on implementing your business logic rather than infrastructure management.
 
-1. Run the `azd init` command in your target folder to initialize the project from [this sample MCP server template](https://github.com/Azure-Samples/remote-mcp-functions-python):
+1. Open a terminal or command prompt and navigate to the folder where you want to create your project.
+
+1. Run the `azd init` command to initialize the project from [this sample MCP server template](https://github.com/Azure-Samples/remote-mcp-functions-python):
 
    ```bash
    azd init --template remote-mcp-functions-python -e mcpserver-python
@@ -154,6 +156,14 @@ If you don't register your MCP server in the organizational catalog, add it dire
 For detailed configuration steps, see [Connect to a Model Context Protocol server endpoint in Agent Service](../../agents/how-to/tools/model-context-protocol.md).
 
 After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server. Test the connection by creating an agent and verifying it can successfully invoke your MCP server's capabilities.
+
+## Troubleshooting
+
+Here are some common issues you might encounter when building and connecting your MCP server:
+
+- **MCP server connection fails**: Ensure that your Azure Function is running and accessible. Check the function logs in the Azure portal for any errors.
+- **Authentication errors**: Verify that you're using the correct system key or API key. If using API Key authentication, ensure the key is correctly configured in the Foundry connection settings.
+- **Tool not found**: If you registered your MCP server in the organizational catalog, make sure you've added it to your agent. If using a custom tool, verify the endpoint URL and tool name.
 
 ## Related content
 

@@ -7,28 +7,29 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/12/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/05/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-function-calling-new
 ---
 
 # Function calling for agents
 
-Microsoft Foundry agents support function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
+Microsoft Foundry agents support function calling. With function calling, you can describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
-> * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
-> * Although function calling isn't supported in the Microsoft Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
+> - Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
+> - Although function calling isn't supported in the Microsoft Foundry portal, agents appear in the portal after creation. Agents that run in the portal don't perform function calling.
 
 ## Example agent code
+
 > [!NOTE]
-> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 :::zone pivot="python"
 
-Use the following code sample to create an agent and call the function. You'll need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ```python
 import os
@@ -121,15 +122,21 @@ with project_client:
 ```
 :::zone-end
 
+:::zone pivot="csharp"
+
+For C# usage, see the [Sample using Agents with functions in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
+
 :::zone pivot="rest"
 There are two ways to use function calling in Foundry Agent Service.
-1. You can create just `response` and when you need the agent to call this function again, you can create another `response`
-1. You can create on `conversation` and within this conversation, you can create multiple `conversation items`. Each conversation item will correspond to one `response`. You will be able to organize your responses and function calling more consistently.
+
+1. You can create just `response` and when you need the agent to call this function again, you can create another `response`.
+1. You can create on `conversation` and within this conversation, you can create multiple `conversation items`. Each conversation item corresponds to one `response`. You can organize your responses and function calling more consistently.
 
 ## Define a function for your agent to call
 
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. See the other SDK languages for example functions.
-
+Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure and any required parameters in a docstring. For example functions, see the other SDK languages.
 
 ## Create an agent version
 
@@ -163,7 +170,6 @@ curl --request POST \
     }
   }'
 ```
-
 
 ## Create a conversation
 
@@ -214,5 +220,4 @@ curl --request POST \
   }
 '
 ```
-
 ::: zone-end

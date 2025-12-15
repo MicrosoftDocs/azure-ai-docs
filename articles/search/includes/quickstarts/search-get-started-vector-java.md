@@ -4,7 +4,7 @@ ms.author: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 09/08/2025
+ms.date: 11/20/2025
 ai-usage: ai-assisted
 ---
 
@@ -27,8 +27,6 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 - [Java 21 (LTS)](/java/openjdk/install).
 
 - [Maven](https://maven.apache.org/download.cgi).
-
----
 
 ## Get service endpoints
 

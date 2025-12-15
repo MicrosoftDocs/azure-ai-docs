@@ -5,7 +5,7 @@ description: Learn how to prompt Microsoft Foundry Models to generate text, usin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/17/2025
+ms.date: 12/04/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
@@ -17,7 +17,9 @@ ai-usage: ai-assisted
 
 # How to generate text responses with Microsoft Foundry Models
 
-This article explains how to generate text responses for Foundry Models sold directly by Azure, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
+This article explains how to generate text responses for Foundry Models, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. For a full list of the Foundry Models that support use of the Responses API, see [Supported Foundry Models](#supported-foundry-models). 
 
 ## Prerequisites
 
@@ -33,7 +35,7 @@ To use the Responses API with deployed models in your application, you need:
 
 ## Use the Responses API to generate text
 
-Use the code in this section to make Responses API calls for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as Microsoft AI, DeepSeek, and Grok models. In the code samples, you create the client to consume the model and then send it a basic request. 
+Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
 
 > [!NOTE]
 > Use keyless authentication with **Microsoft Entra ID**. To learn more about keyless authentication, see [What is Microsoft Entra authentication?](/entra/identity/authentication/overview-authentication) and [DefaultAzureCredential](/azure/developer/python/sdk/authentication/overview#defaultazurecredential).
@@ -41,10 +43,12 @@ Use the code in this section to make Responses API calls for [Foundry Models sol
 
 # [Python](#tab/python)
 
-1. Install the Azure Identity client library:
+1. Install libraries, including the Azure Identity client library:
 
     ```bash
     pip install azure-identity
+    pip install openai
+    pip install --pre azure-ai-projects>=2.0.0b1 
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses. 
@@ -179,6 +183,7 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
             Response response = responsesClient.getResponseService().create(responseRequest);
         }
     }
+   ```
 
 
 # [REST](#tab/rest)
@@ -196,13 +201,26 @@ curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_
 
 ---
 
+## Supported Foundry Models
+
+A selection of Foundry Models are supported for use with the Responses API.
+
+#### View supported models in the Foundry portal
+
+[!INCLUDE [agent-service-view-models-in-portal](../../agents/includes/agent-service-view-models-in-portal.md)]
+
+#### List of supported models
+
+This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
+
+[!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
+
 ## Related content
 
 - [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 - [Generate chat completions with Foundry Models, using the OpenAI v1 chat completions API ](../../openai/api-version-lifecycle.md#model-support)
-- [Use reasoning models](use-chat-reasoning.md)
 
 
 

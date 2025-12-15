@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Use cURL & REST to manage knowledge base - QnA Maker"
 description: This quickstart shows you how to create, publish, and query your knowledge base using the REST APIs.
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ms.topic: include
 ---
 
@@ -26,7 +26,7 @@ To create a knowledge base with the REST APIs and cURL, you need to have the fol
 |--|--|--|
 |QnA Maker resource name|URL|used to construct URL|
 |QnA Maker resource key|`-h` param for `Ocp-Apim-Subscription-Key` header|Authenticate to QnA Maker service|
-|JSON describing knowledge base|`-d` param|[Examples](/rest/api/qnamaker/knowledgebase/create) of JSON|
+|JSON describing knowledge base|`-d` param|Examples of JSON|
 |Size of the JSON in bytes|`-h` param for `Content-Size` header||
 
 The cURL command is executed from a BASH shell. Edit this command with your own resource name, resource key, and JSON values and size of JSON.
@@ -151,7 +151,7 @@ Getting an answer from the knowledge is done from a separate runtime than managi
 |QnA Maker resource name|URL|used to construct URL|
 |QnA Maker runtime key|`-h` param for `Authorization` header|The key is part of a string that includes the word `Endpointkey `. Authenticate to QnA Maker service|
 |Knowledge base Id|URL route|`/knowledgebases/REPLACE-WITH-YOUR-KNOWLEDGE-BASE-ID`|
-|JSON describing query|`-d` param|[Request body parameters](/rest/api/qnamaker/runtime/generate-answer#request-body) and [examples](/rest/api/qnamaker/runtime/generate-answer#examples) of JSON|
+|JSON describing query|`-d` param|Request body parameters and examples of JSON|
 |Size of the JSON in bytes|`-h` param for `Content-Size` header||
 
 The cURL command is executed from a BASH shell. Edit this command with your own resource name, resource key, and knowledge base ID.
@@ -188,8 +188,6 @@ curl https://REPLACE-WITH-YOUR-RESOURCE-NAME.cognitiveservices.azure.com/qnamake
 
 The response status is 204 with no results. Use the `-v` command-line parameter to see verbose output for the cURL command. This will include the HTTP status.
 
-## Additional resources
+## Additional resource
 
-* [Authoring](/rest/api/qnamaker/knowledgebase) Reference documentation
-* [Runtime](/rest/api/qnamaker/runtime) Reference documentation
 * [Sample BASH scripts using cURL](https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/curl/QnAMaker)

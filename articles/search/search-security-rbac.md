@@ -5,7 +5,7 @@ description: Use Azure role-based access control for granular permissions on ser
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 03/31/2025
+ms.date: 11/21/2025
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -26,7 +26,7 @@ In Azure AI Search, you can assign Azure roles for:
 + [Read-only access for queries](#assign-roles-for-read-only-queries)
 + [Scoped access to a single index](#grant-access-to-a-single-index)
 
-Per-user access over search results (sometimes referred to as *row-level security* or *document-level security*) isn't supported through role assignments. As a workaround, [create security filters](search-security-trimming-for-azure-search.md) that trim results by user identity, removing documents for which the requester shouldn't have access. See this [Enterprise chat sample using RAG](/azure/developer/python/get-started-app-chat-template) for a demonstration.
+Per-user access over search results (sometimes referred to as *row-level security* or *document-level access*) is supported through permission inheritance for Azure Data Lake Storage (ADLS) Gen2 and Azure blob indexes and through security filters for all other platforms (see [Document-level access control](search-document-level-access-overview.md)).
 
 Role assignments are cumulative and pervasive across all tools and client libraries. You can assign roles using any of the [supported approaches](/azure/role-based-access-control/role-assignments-steps) described in Azure role-based access control documentation.
 
@@ -110,8 +110,6 @@ Combine these roles to get sufficient permissions for your use case.
 
 Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 
-<!-- Owners and Contributors can create, read, update, and delete objects in the Azure portal *if API keys are enabled*. the Azure portal uses keys on internal calls to data plane APIs. In you subsequently configure Azure AI Search to use "roles only", then Owner and Contributor won't be able to manage objects in the Azure portal using just those role assignments. The solution is to assign more roles, such as Search Index Data Reader, Search Index Data Contributor, and Search Service Contributor. -->
-
 ## Assign roles
 
 In this section, assign roles for:
@@ -119,28 +117,6 @@ In this section, assign roles for:
 + Service administration
 + Development or write-access to a search service
 + Read-only access for queries
-
-<!-- + [Service administration](#assign-roles-for-service-administration)
-
-    | Role | ID|
-    | --- | --- |
-    |`Owner`|8e3af657-a8ff-443c-a75c-2fe8c4bcb635|
-    |`Contributor`|b24988ac-6180-42a0-ab88-20f7382dd24c|
-    |`Reader`|acdd72a7-3385-48ef-bd42-f606fba81ae7|
-
-+ [Development or write-access to a search service](#assign-roles-for-development)
-
-    | Task | Role | ID|
-    | --- | --- | --- |
-    | CRUD operations | `Search Service Contributor`|7ca78c08-252a-4471-8644-bb5ff32d4ba0|
-    | Load documents, run indexing jobs | `Search Index Data Contributor`|8ebe5a00-799e-43f5-93ac-243d3dce84a7|
-    | Query an index | `Search Index Data Reader`|1407120a-92aa-4202-b7e9-c0e197c71c8f|
-
-+ [Read-only access for queries](#assign-roles-for-read-only-queries)
-
-    | Role | ID|
-    | --- | --- |
-    | `Search Index Data Reader` [with PowerShell](search-security-rbac.md?tabs=roles-portal-admin%2Croles-portal%2Croles-portal-query%2Ctest-portal%2Ccustom-role-portal#grant-access-to-a-single-index)|1407120a-92aa-4202-b7e9-c0e197c71c8f| -->
 
 ### Assign roles for service administration
 
@@ -297,7 +273,7 @@ Use a client to test role assignments. Remember that roles are cumulative and in
 
 ### [**REST API**](#tab/test-rest)
 
-This approach assumes Visual Studio Code with a REST client extension.
+This approach assumes Visual Studio Code with a [REST client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 1. Open a command shell for Azure CLI and sign in to your Azure subscription.
 
@@ -406,7 +382,7 @@ For more information on how to acquire a token for a specific environment, see [
 
 ## Test as current user
 
-If you're already a Contributor or Owner of your search service, you can present a bearer token for your user identity for authentication to Azure AI Search. 
+If you're already a Contributor or Owner of your search service, you can present a bearer token for your user identity for authentication to Azure AI Search.
 
 1. Get a bearer token for the current user using the Azure CLI:
 
@@ -450,7 +426,7 @@ If you're already a Contributor or Owner of your search service, you can present
 
 In some scenarios, you might want to limit an application's access to a single resource, such as an index.
 
-the Azure portal doesn't currently support role assignments at this level of granularity, but it can be done with [PowerShell](/azure/role-based-access-control/role-assignments-powershell) or the [Azure CLI](/azure/role-based-access-control/role-assignments-cli).
+The Azure portal doesn't currently support role assignments at this level of granularity, but it can be done with [PowerShell](/azure/role-based-access-control/role-assignments-powershell) or the [Azure CLI](/azure/role-based-access-control/role-assignments-cli).
 
 In PowerShell, use [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment), providing the Azure user or group name, and the scope of the assignment.
 

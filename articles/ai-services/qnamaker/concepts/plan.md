@@ -6,8 +6,8 @@ manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
-ms.topic: conceptual
-ms.date: 06/12/2025
+ms.topic: article
+ms.date: 12/15/2025
 ---
 
 # Plan your QnA Maker app
@@ -29,7 +29,7 @@ Each [Azure resource](azure-resources.md#resource-purposes) created with QnA Mak
 
 ### Resource planning
 
-The free tier, `F0`, of each resource works and can provide both the authoring and query prediction experience. You can use this tier to learn authoring and query prediction. When you move to a production or live scenario, reevaluate your resource selection.
+The free tier, `F0`, of each resource works and can provide both the authoring and query prediction experience. You can use this tier for authoring and query prediction. When you move to a production or live scenario, reevaluate your resource selection.
 
 ### Knowledge base size and throughput
 
@@ -45,7 +45,7 @@ The knowledge base query prediction request is controlled by the web app plan an
 
 If you already have some of these resources in use, you may consider sharing resources. See which resources [can be shared](azure-resources.md#share-services-with-qna-maker) with the understanding that resource sharing is an advanced scenario.
 
-All knowledge bases created in the same QnA Maker resource share the same **test** query prediction endpoint.
+All knowledge bases created in the same QnA Maker resources share the same **test** query prediction endpoint.
 
 ### Understand the impact of resource selection
 
@@ -125,7 +125,7 @@ QnA Maker uses _active learning_ to improve your knowledge base by suggesting al
 
 ### Providing a default answer
 
-If your knowledge base doesn't find an answer, it returns the _default answer_. This answer is configurable on the **Settings** page in the QnA Maker portal or in the [APIs](/rest/api/qnamaker/knowledgebase/update#request-body).
+If your knowledge base doesn't find an answer, it returns the _default answer_. This answer is configurable on the **Settings** page in the QnA Maker portal or in the [APIs](/azure/ai-services/language-service/question-answering/how-to/authoring).
 
 This default answer is different from the Azure bot default answer. You configure the default answer for your Azure bot in the Azure portal as part of configuration settings. It's returned when the score threshold isn't met.
 

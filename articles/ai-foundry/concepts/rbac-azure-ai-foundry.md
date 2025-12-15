@@ -34,7 +34,7 @@ In this article, you learn how to manage access to your [!INCLUDE [foundry-link]
 
 ::: moniker-end
 
-If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
+If the built-in **Azure AI User** role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
 
 > [!WARNING]
 > Applying some roles might limit UI functionality in the Foundry portal for other users. For example, if a user's role doesn't have permission to create a compute instance, the option to create one isn't available in the portal. This behavior is expected and prevents the user from starting actions that return an access denied error.
@@ -500,7 +500,7 @@ Complete the following steps to use Entra ID groups with Foundry:
 1. Navigate to the resource that requires a role assignment.
    
    1. **Example:** To build Agents, run traces, and more in Foundry, the minimum privilege ‘Azure AI User’ role must be assigned to your user principle. Assign the ‘Azure AI User’ role to your new Microsoft Entra group so all users in your enterprise can build in Foundry.
-   1. **Example:** To use Tracing and Monitoring features in Azure AI Foundry, a ‘Reader’ role assignment on the connected Application Insights resource is required. Assign the ‘Reader’ role to your new Microsoft Entra group so all users in your enterprise can use the Tracing and Monitoring feature.
+   1. **Example:** To use Tracing and Monitoring features in Microsoft Foundry, a ‘Reader’ role assignment on the connected Application Insights resource is required. Assign the ‘Reader’ role to your new Microsoft Entra group so all users in your enterprise can use the Tracing and Monitoring feature.
 
 
 1. Navigate to Access Control (IAM).

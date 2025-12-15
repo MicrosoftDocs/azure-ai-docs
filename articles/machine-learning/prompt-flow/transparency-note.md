@@ -7,7 +7,7 @@ ms.author: prakharg
 manager: omkarm
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.date: 10/20/2023
+ms.date: 11/24/2025
 ms.topic: concept-article
 ms.update-cycle: 365-days
 ---

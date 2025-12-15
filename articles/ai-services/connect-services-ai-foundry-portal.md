@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 12/11/2025
 ms.reviewer: lajanuar
 ms.author: lajanuar
 author: laujan
@@ -23,14 +23,14 @@ This article describes how to use new or existing Foundry Tools resources in a F
 
 ## Usage scenarios
 
-Depending on the AI service and model you want to use, you can use them in Foundry portal via:
+Depending on the Foundry Tool and model you want to use, you can use them in Foundry portal via:
 - [Bring your existing Foundry Tools resources](#connect-foundry-tools-after-you-create-a-project) into a project. You can use your existing Foundry Tools resources in a Foundry project by creating a connection to the resource.
 - The [model catalog](#discover-foundry-models-in-the-model-catalog). You don't need a project to browse and discover Foundry Models. Some of the Foundry Tools are available for you to try via the model catalog without a project. Some Foundry Tools require a project to use them in the playgrounds.
 - The [project-level playgrounds](#try-foundry-tools-in-the-project-level-playgrounds).
 - [Fine-tune](#fine-tune-foundry-tools) models. You can fine-tune a subset of Foundry Tools models in Foundry portal.
 - [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Foundry Tools models are already deployed and ready to use.
-- 
-- ### Connect Foundry Tools after you create a project
+
+### Connect Foundry Tools after you create a project
 
 You can connect Foundry Tools resources to a Foundry project after you create a project. To use your existing Foundry Tools resources (such as Azure Speech in Foundry Tools) in a Foundry project, you need to create a connection to the resource.
 
@@ -42,9 +42,9 @@ You can connect Foundry Tools resources to a Foundry project after you create a 
 
     :::image type="content" source="./media/ai-foundry/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="./media/ai-foundry/connections-add.png":::
 
-1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Foundry Models, Azure Content Safety, Azure Speech, Azure Language, and other AI services.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Foundry Models, Azure Content Safety, Azure Speech, Azure Language, and other Foundry Tools.
 
-    :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of AI service that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
+    :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of Foundry Tool that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
 
 1. On the next page in the wizard, browse or search to find the resource you want to connect. Then select **Add connection**.  
 

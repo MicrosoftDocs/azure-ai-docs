@@ -5,12 +5,12 @@ description: Learn how Azure Machine Learning's AutoML uses deep learning to for
 services: machine-learning
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: erwright
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv2
-ms.date: 10/31/2025
+ms.date: 11/14/2025
 show_latex: true
 ---
 
@@ -105,7 +105,7 @@ The following table lists and describes input settings and parameters for TCNFor
 |Training input|Description|Value|
 |--|--|--|
 |Validation data|A portion of data that the system holds out from training to guide the network optimization and mitigate overfitting.| [Provided by the user](./how-to-auto-train-forecast.md#prepare-training-and-validation-data) or automatically created from training data if not provided.|
-|Primary metric|Metric computed from median-value forecasts on the validation data at the end of each training epoch; used for early stopping and model selection.|[Chosen by the user](./how-to-auto-train-forecast.md#configure-experiment); normalized root mean squared error or normalized mean absolute error.|
+|Primary metric|Metric computed from median-value forecasts on the validation data at the end of each training epoch; used for early stopping and model selection.|[Chosen by the user](./how-to-auto-train-forecast.md#configure-the-experiment); normalized root mean squared error or normalized mean absolute error.|
 |Training epochs|Maximum number of epochs to run for network weight optimization.|100; automated early stopping logic might terminate training at a smaller number of epochs. 
 |Early stopping patience|Number of epochs to wait for primary metric improvement before training is stopped.|20|
 |Loss function|The objective function for network weight optimization.|[Quantile loss](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_pinball_loss.html) averaged over 10th, 25th, 50th, 75th, and 90th percentile forecasts.|
@@ -135,7 +135,7 @@ The model search has two phases:
 1. AutoML performs a search over 12 "landmark" models. The landmark models are static and chosen to reasonably span the hyperparameter space.
 1. AutoML continues searching through the hyperparameter space by using a random search.
   
-The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-experiment). Some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
+The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-the-experiment). Some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
  
 ## Next steps
 

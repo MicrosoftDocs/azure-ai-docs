@@ -14,6 +14,8 @@ ms.custom: azure-ai-agents
 
 # Threads, runs, and messages in Foundry Agent Service
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 Foundry Agent Service supports persistent threads, runs, and messages, which are essential components for managing conversation states and interactions with users.
 
 ## Agent components

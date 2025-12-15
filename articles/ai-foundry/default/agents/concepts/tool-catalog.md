@@ -1,19 +1,19 @@
 ---
-title: "Discover tools in the Microsoft Foundry Tools"
+title: "Discover tools in the Foundry Tools"
 description: "Learn about the Foundry Tools in Microsoft Foundry to extend your AI agents and workflows."
 author: aahill
 ms.author: aahi
-ms.date: 11/18/2025
+ms.date: 12/04/2025
 ms.manager: nitinme
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Discover tools in the Microsoft Foundry Tools (preview)
+# Discover tools in the Foundry Tools (preview)
 
-The Microsoft Foundry Tools is a central hub for discovering tools to extend your AI agents
+The Foundry Tools is a central hub for discovering tools to extend your AI agents
 
 The Foundry Tools enables you to: 
 
@@ -82,6 +82,7 @@ Foundry Tools contains three sections:
     |[Azure AI Search](../how-to/tools/ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
     |[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
     |[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+    |[Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md)     | Use a custom code interpreter MCP server to customize the resources, available Python packages, and Container Apps environment that the agent uses to run the Python code it writes.         |
     |[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces         |
     |[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
     | [Grounding with Bing tools](../how-to/tools/bing-tools.md) | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |

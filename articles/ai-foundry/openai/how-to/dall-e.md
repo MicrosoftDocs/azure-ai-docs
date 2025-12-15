@@ -5,7 +5,7 @@ description: Learn how to generate and edit images using Azure OpenAI image gene
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/02/2025
+ms.date: 11/21/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -27,7 +27,7 @@ OpenAI's image generation models create images from user-provided text prompts a
 ## Prerequisites
 
 
-- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 - Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 series models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
@@ -305,6 +305,9 @@ Use the *output_compression* parameter to specify the compression level for the 
 
 Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they're generated. This feature provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
 
+#### Transparency
+
+Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 #### [DALL-E 3](#tab/dalle-3)
 
@@ -430,6 +433,10 @@ The *mask* parameter uses the same type as the main *image* input parameter. It 
 #### Streaming 
 
 Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they're generated. This feature provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
+
+#### Transparency
+
+Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 #### [DALL-E 3](#tab/dalle-3)
 

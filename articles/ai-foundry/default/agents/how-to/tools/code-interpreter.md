@@ -7,19 +7,20 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/13/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/04/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions
+zone_pivot_groups: selection-code-interpreter-new
 ---
 # Code Interpreter tool for agents
 
 Use this article to learn how to use the Code Interpreter tool for agents.
 
-Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
+Code Interpreter enables agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your agent writes code that doesn't run, it can modify and run different code until the code execution succeeds.
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Agent calls Code Interpreter simultaneously in two different conversations, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
 
 ## Prerequisites
 
@@ -27,13 +28,14 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 > [!NOTE]
-> The code interpreter tool is not available in [some regions](#regional-restrictions).
+> The code interpreter tool isn't available in [some regions](#regional-restrictions).
 
 ## Code samples
 
 > [!NOTE]
-> You will need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
+:::zone pivot="python"
 ```python
 import os
 import httpx
@@ -119,10 +121,17 @@ with project_client:
     #project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     #print("Agent deleted")
 ```
+:::zone-end
+
+:::zone pivot="csharp"
+
+For C# usage, see the [Sample of using Agent with code interpreter and file attachment in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample7_CodeInterpreter.md) example in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
 
 ## Regional restrictions
 
-The code interpreter tool for the agents v2 API is not available in the following regions:
+The code interpreter tool for the Foundry projects (new) API isn't available in the following regions:
 
 * Canada central
 * Central US

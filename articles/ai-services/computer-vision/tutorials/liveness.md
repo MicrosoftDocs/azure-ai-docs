@@ -7,28 +7,28 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 09/26/2025
+ms.date: 11/21/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Tutorial: Detect liveness in faces
 
-Learn how to integrate face liveness detection into your workflow using server-side logic and companion frontend client applications.
+Learn how to integrate face liveness detection into your workflow by using server-side logic and companion frontend client applications.
 
 > [!TIP]
 > For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
-In this tutorial, you’ll learn how to run a frontend application with an app server to perform liveness detection, optionally adding [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
+In this tutorial, you learn how to run a frontend application with an app server to perform liveness detection. You can also add [face verification](#perform-liveness-detection-with-face-verification) across various platforms and languages.
 
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
 
 ## Prerequisites
 
 - Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-- Your Azure account must have a **Cognitive Services Contributor** role assigned in order for you to agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
+- Your Azure account must have a **Cognitive Services Contributor** role assigned so you can agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
-- Access to the gated artifacts required for Azure Vision in Foundry Tools Face Client SDK for Mobile (IOS and Android) and Web. 
+- Access to the gated artifacts required for Azure Vision in Foundry Tools Face Client SDK for Mobile (iOS and Android) and Web. 
     - To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
@@ -42,10 +42,10 @@ In this tutorial, you’ll learn how to run a frontend application with an app s
 
 ## Prepare the frontend application
 
-We provide SDKs in multiple languages to simplify integration with your frontend application. Refer to the README for your chosen SDK below to integrate both the UI and required code.
+We provide SDKs in multiple languages to simplify integration with your frontend application. Refer to the README for your chosen SDK in the following sections to integrate both the UI and required code.
 
 > [!IMPORTANT]
-> Each frontend SDK requires access to a gated asset to successfully compile. Instructions on how to set this up are mentioned below.
+> Each frontend SDK requires access to a gated asset to successfully compile. See the following instructions to set up this access.
 
 For Swift iOS:
 - Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
@@ -63,19 +63,19 @@ For JavaScript Web:
 - Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 - Framework Support: Works with popular frameworks such as React (including Next.js), Vue.js, and Angular.
 
-Once integrated into your frontend application, the SDK will start the camera, guide the user to adjust their position, compose the liveness payload, and send it to the Azure AI Face service for processing.
+Once integrated into your frontend application, the SDK starts the camera, guides the user to adjust their position, composes the liveness payload, and sends it to the Azure AI Face service for processing.
 
-Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—e.g., GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos).
+Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—such as GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos).
 
 ## Perform liveness detection
 
-The high-level steps involved in liveness orchestration are illustrated below:  
+The following steps describe the liveness orchestration process:  
 
 :::image type="content" source="../media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure AI Face." lightbox="../media/liveness/liveness-diagram.jpg":::
 
 1. The frontend application starts the liveness check and notifies the app server. 
 
-1. The app server creates a new liveness session with Azure AI Face Service. The service creates a liveness-session and responds back with a session-authorization-token. More information regarding each request parameter involved in creating a liveness session is referenced in [Liveness Create Session Operation](https://aka.ms/face-api-reference-createlivenesssession).
+1. The app server creates a new liveness session with Azure AI Face Service. The service creates a liveness session and responds with a session authorization token. For more information about each request parameter involved in creating a liveness session, see [Liveness Create Session Operation](https://aka.ms/face-api-reference-createlivenesssession).
 
     #### [C#](#tab/csharp)
     ```csharp
@@ -239,9 +239,9 @@ The high-level steps involved in liveness orchestration are illustrated below:
     }
     ```
 
-1. The app server provides the session-authorization-token back to the frontend application. 
+1. The app server provides the session authorization token back to the frontend application. 
 
-1. The frontend application uses the session-authorization-token to start the face-liveness-detector which will kick off the liveness flow.
+1. The frontend application uses the session authorization token to start the face liveness detector, which kicks off the liveness flow.
 
     #### [Android](#tab/mobile-kotlin)
     ```kotlin
@@ -286,13 +286,13 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     ---
 
-1. The SDK then starts the camera, guides the user to position correctly, and then prepares the payload to call the liveness detection service endpoint. 
+1. The SDK starts the camera, guides the user to position correctly, and then prepares the payload to call the liveness detection service endpoint. 
  
-1. The SDK calls Azure Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed. Note: the service response will not contain the liveness decision, and this will need to be queried from the app server.
+1. The SDK calls Azure Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check is complete. Note: The service response doesn't contain the liveness decision. You need to query this information from the app server.
 
 1. The frontend application relays the liveness check completion to the app server. 
 
-1. The app server can now query for the liveness detection result from Azure Vision Face service. 
+1. The app server queries for the liveness detection result from Azure Vision Face service. 
 
     #### [C#](#tab/csharp)
     ```csharp
@@ -476,7 +476,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     }
     ```
 
-1. The app server can delete the session once all session-results have been queried.
+1. The app server deletes the session after it queries all session results.
 
     #### [C#](#tab/csharp)
     ```csharp
@@ -533,18 +533,18 @@ Combining face verification with liveness detection enables biometric verificati
 
 :::image type="content" source="../media/liveness/liveness-verify-diagram.jpg" alt-text="Diagram of the liveness-with-face-verification workflow of Azure AI Face." lightbox="../media/liveness/liveness-verify-diagram.jpg":::
 
-There are two parts to integrating liveness with verification:
+Integrating liveness detection with verification involves two parts:
 
 ### Step 1 - Select a reference image
 
-Follow the tips listed in the [composition requirements for ID verification scenarios](../overview-identity.md#input-requirements) to ensure that your input images give the most accurate recognition results.
+To get the most accurate recognition results, follow the tips listed in the [composition requirements for ID verification scenarios](../overview-identity.md#input-requirements).
 
 
-### Step 2 - Set up the orchestration of liveness with verification.
+### Step 2 - Set up the orchestration of liveness with verification
 
-The high-level steps involved in liveness with verification orchestration are illustrated below:
-1. Providing the verification reference image by either of the following two methods:
-    - The app server provides the reference image when creating the liveness session. More information regarding each request parameter involved in creating a liveness session with verification is referenced in [Liveness With Verify Create Session Operation](https://aka.ms/face-api-reference-createlivenesswithverifysession).
+The following high-level steps show how to orchestrate liveness with verification:
+1. Provide the verification reference image by using one of the following two methods:
+    - The app server provides the reference image when creating the liveness session. For more information about each request parameter involved in creating a liveness session with verification, see [Liveness With Verify Create Session Operation](https://aka.ms/face-api-reference-createlivenesswithverifysession).
 
         #### [C#](#tab/csharp)
         ```csharp
@@ -754,7 +754,7 @@ The high-level steps involved in liveness with verification orchestration are il
         }
         ```
 
-    - The frontend application provides the reference image when initializing the mobile SDKs. This scenario is not supported in the web solution.
+    - The frontend application provides the reference image when initializing the mobile SDKs. This scenario isn't supported in the web solution.
 
         #### [Android](#tab/mobile-kotlin)
         ```kotlin
@@ -1059,10 +1059,10 @@ The high-level steps involved in liveness with verification orchestration are il
 
 ## Perform other face operations after liveness detection
 
-Optionally, you can do further face operations after the liveness check, such as face analysis (to get face attributes, for example) and/or face identity operations.
-1. To enable this, you'll need to set the "enableSessionImage" parameter to "true" during the [Session-Creation step](#perform-liveness-detection).  
-1. After the session completes, you can extract the "sessionImageId" from the [Session-Get-Result step](#perform-liveness-detection).
-1. You can now either download the session-image (referenced in [Liveness Get Session Image Operation API](/rest/api/face/liveness-session-operations/get-session-image)), or provide the "sessionImageId" in the [Detect from Session Image ID API](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue to perform other face analysis or face identity operations. 
+Optionally, you can perform additional face operations after the liveness check, such as face analysis (to get face attributes) and face identity operations.
+1. Set the `enableSessionImage` parameter to `true` during the [Session-Creation step](#perform-liveness-detection).  
+1. Extract the `sessionImageId` from the [Session-Get-Result step](#perform-liveness-detection).
+1. Download the session image (referenced in [Liveness Get Session Image Operation API](/rest/api/face/liveness-session-operations/get-session-image)), or provide the `sessionImageId` in the [Detect from Session Image ID API](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue with other face analysis or face identity operations. 
 For more information on these operations, see [Face detection concepts](../concept-face-detection.md) and [Face Recognition concepts](../concept-face-recognition.md). 
 
 ## Support options

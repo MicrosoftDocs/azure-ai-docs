@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: tutorial
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Tutorial: Create a FAQ bot with Azure AI Bot Service
@@ -26,7 +26,7 @@ In this tutorial, you learn how to:
 
 ## Create and publish a knowledge base
 
-Follow the [quickstart](../quickstarts/create-publish-knowledge-base.md) to create a knowledge base. Once the knowledge base has been successfully published, you will reach the below page.
+Follow the [quickstart](../quickstarts/create-publish-knowledge-base.md) to create a knowledge base.
 
 > [!div class="mx-imgBorder"]
 > ![Screenshot of successful publishing](../media/qnamaker-create-publish-knowledge-base/publish-knowledge-base-to-endpoint.png)
@@ -41,7 +41,7 @@ After publishing, you can create a bot from the **Publish** page:
 
 When you make changes to the knowledge base and republish, you don't need to take further action with the bot. It's already configured to work with the knowledge base, and works with all future changes to the knowledge base. Every time you publish a knowledge base, all the bots connected to it are automatically updated.
 
-1. In the QnA Maker portal, on the **Publish** page, select **Create bot**. This button appears only after you've published the knowledge base.
+1. In the QnA Maker portal, on the **Publish** page, select **Create bot**. This button appears only after you'v published the knowledge base.
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of creating a bot](../media/qnamaker-create-publish-knowledge-base/create-bot-from-published-knowledge-base-page.png)

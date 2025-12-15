@@ -6,12 +6,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 11/26/2025
 ms.author: mbullwin
 recommendations: false
 ---
 
 # Role-based access control for Azure OpenAI in Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Azure OpenAI supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions based on their needs for a given project. For more information, see the [Azure RBAC documentation](/azure/role-based-access-control/).
 

@@ -2,8 +2,8 @@
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/24/2025
-author: goergenj
-ms.author: jagoerge
+author: PatrickFarley
+ms.author: pafarley
 reviewer: PatrickFarley
 ms.reviewer: pafarley
 ---

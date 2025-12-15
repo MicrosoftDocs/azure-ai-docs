@@ -83,7 +83,7 @@ In the Foundry (new) portal, the project you're working with appears in the uppe
 
 ## Find other resources
 
-The Foundry (new) portal displays only Foundry projects, not other resources or hub-based projects you might have created in Foundry (classic).
+The Foundry (new) portal displays only the **default** project for each Foundry resource, not other resources or hub-based projects you might have created in Foundry (classic). If you created multiple projects under the same Foundry resource, you can identify which project is the default by checking the Microsoft Foundry (classic) portal. The default project is marked with (default) next to its name.
 
 To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources in the Foundry (classic) portal.
 
@@ -112,7 +112,7 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ::: moniker range="foundry-classic"
 
-## <a name="project-types"></a> Types of projects
+## Types of projects
 
 Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
@@ -120,7 +120,7 @@ Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](
 
 - [!INCLUDE [hub-description](includes/hub-description.md)]
 
-- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
+- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#new-foundry-projects-overview).
 
 
 ### Which type of project do I need?
@@ -156,7 +156,7 @@ This table summarizes features available in the two project types:
 
 *New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
 
-### <a name="how-do-i-know"></a> How do I know which type of project I have?
+### How do I know which type of project I have?
 
 Here are some of the ways to identify your project type:
 
@@ -188,7 +188,7 @@ The left pane is organized around your goals. Generally, as you develop with Azu
 
 If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
  
-## <a name="left-pane"></a> Customize the left pane
+## Customize the left pane
 
 The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
 
@@ -216,7 +216,7 @@ Microsoft Foundry is monetized through individual products customer access and c
 
 The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./how-to/costs-plan-manage.md).
+Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
 
 ## Region availability
 
@@ -228,13 +228,13 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 You can [explore Foundry portal (classic) (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
 
-But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account). 
+But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 
 :::moniker-end
 
 :::moniker range="foundry"
 
-You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
+You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
 
 :::moniker-end
 

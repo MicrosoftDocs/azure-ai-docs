@@ -5,7 +5,7 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 3/19/2024
+ms.date: 11/21/2025
 ---
 
 ## Prerequisites
@@ -15,7 +15,7 @@ ms.date: 3/19/2024
 - [Python 3.8 or later](https://www.python.org)
 - The `os` Python library.
 
-## Set up
+## Setup
 
 ### Retrieve key and endpoint
 
@@ -67,13 +67,14 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
 ```
 ---
 
-## Passwordless authentication is recommended
-
-For passwordless authentication, you need to:
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+> [!IMPORTANT]
+> **Passwordless authentication is recommended**
+>
+> For passwordless authentication, you need to:
+> 
+> 1. Use the `@azure/identity` package.
+> 1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+> 1. Sign in with the Azure CLI such as `az login`.
 
 
 ## Create a Python environment

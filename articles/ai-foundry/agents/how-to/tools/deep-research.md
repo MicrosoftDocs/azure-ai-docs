@@ -2,8 +2,8 @@
 title: "Deep research tool"
 titleSuffix: Microsoft Foundry
 description: Learn how to use the deep research tool with agents.
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 manager: nitinme
 ms.date: 11/19/2025
 ms.service: azure-ai-foundry

@@ -7,7 +7,7 @@ ms.custom:
   - build-2024
   - code01
 ms.topic: concept-article
-ms.date: 07/14/2025
+ms.date: 12/03/2025
 ms.reviewer: keli19
 ms.author: ssalgado
 manager: nitinme
@@ -16,6 +16,8 @@ author: ssalgadodev
 ---
 
 # Fine-tune models with Microsoft Foundry
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 Fine-tuning customizes a pretrained AI model with additional training on a specific task or dataset to improve performance, add new skills, or enhance accuracy. The result is a new, optimized GenAI model based on the provided examples. This article walks you through key concepts and decisions to make before you fine-tune, including the type of fine-tuning that's right for your use case, and model selection criteria based on training techniques use-cases for fine-tuning and how it helps you in your GenAI journey.
 

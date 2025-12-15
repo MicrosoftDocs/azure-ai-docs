@@ -12,6 +12,8 @@ ms.subservice: azure-ai-foundry-agent-service
 
 # Foundry Agent Service monitoring data reference
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
 See [Monitor Foundry Agent Service](../how-to/metrics.md) for details on the data you can collect on your agents.

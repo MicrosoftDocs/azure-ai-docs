@@ -5,7 +5,7 @@ summary: Learn about the QnA Maker service and how this service's knowledge base
 
 metadata:
   ms.topic: landing-page
-  ms.date: 07/16/2025
+  ms.date: 12/15/2025
   ms.author: lajanuar
   author: laujan
   ms.service: azure-ai-language
@@ -107,9 +107,9 @@ landingContent:
           - text: Limits of knowledge base
             url: limits.md
           - text: Authoring APIs
-            url: /rest/api/qnamaker/knowledgebase
+            url: /azure/ai-services/language-service/question-answering/how-to/authoring
           - text: Generate Answer APIs
-            url: /rest/api/qnamaker/runtime
+            url: /azure/ai-services/language-service/concepts/developer-guide
           - text: .NET SDK reference documentation
             url: /dotnet/api/microsoft.azure.cognitiveservices.knowledge.qnamaker
           - text: Azure PowerShell

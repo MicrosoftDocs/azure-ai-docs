@@ -6,13 +6,15 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 11/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ---
 
 # Configure Azure OpenAI networking
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 In this article, learn how to create and connect to a secure Azure OpenAI resource. The steps in this article use an Azure Virtual Network to create a security boundary for your Azure OpenAI resource.
 

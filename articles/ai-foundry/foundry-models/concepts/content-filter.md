@@ -9,7 +9,7 @@ reviewer: ychang-msft
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 11/10/2025
+ms.date: 12/08/2025
 ms.custom: ignite-2024, github-universe-2024
 ai-usage: ai-assisted
 
@@ -18,6 +18,8 @@ ai-usage: ai-assisted
 
 
 # Content filtering for Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 
 > [!IMPORTANT]

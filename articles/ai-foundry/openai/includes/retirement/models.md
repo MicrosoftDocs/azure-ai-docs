@@ -41,9 +41,17 @@ ms.custom: references_regions, build-2025
 | `codex-mini`              | 2025-05-16        | Generally Available   | No earlier than June 19, 2026      |                                      |
 | `o3-deep-research`        | 2025-06-26        | Generally Available   | No earlier than June 26, 2026      |                                      |
 | `o1`                      | 2024-12-17		| Generally Available   | No earlier than July 15, 2026      |                                      |
-| `gpt-5`                   | 2025-08-07		| Generally Available   | No earlier than August 7, 2026     |                                      |
+| `gpt-5`                   | 2025-08-07		| Generally Available   | No earlier than August 8, 2026     |                                      |
 | `gpt-5-mini`              | 2025-08-07		| Generally Available   | No earlier than August 7, 2026     |                                      |
 | `gpt-5-nano`              | 2025-08-07		| Generally Available   | No earlier than August 7, 2026     |                                      |
+| `gpt-5-codex`             | 2025-09-15        | Generally Available   | No earlier than September 15, 2026 |                                      |
+| `gpt-5-pro`               | 2025-10-06        | Generally Available   | No earlier than October 06, 2026   |                                      |
+| `gpt-5.1`                 | 2025-11-13        | Generally Available   | No earlier than November 11, 2026  |                                      |
+| `gpt-5.1-codex`           | 2025-11-13        | Generally Available   | No earlier than November 14, 2026  |                                      |
+| `gpt-5.1-codex-mini`      | 2025-11-13        | Generally Available   | No earlier than November 14, 2026  |                                      |
+| `model-router`            | 2025-11-18        | Generally Available   | No earlier than December 31, 2026  |                                      |
+| `gpt-5.2`                 | 2025-12-11        | Generally Available   | No earlier than December 11, 2026  |                                      |
+| `gpt-5.2-chat`            | 2025-12-11        | Preview               | No earlier than December 11, 2026  |                                      |
 
 # [Audio](#tab/audio)
 
@@ -58,10 +66,18 @@ ms.custom: references_regions, build-2025
 | `gpt-4o-mini-realtime-preview` | 2024-12-17   | Preview             | February 2, 2026                         |                                      |
 | `gpt-4o-realtime-preview`      | 2024-12-17   | Preview             | February 2, 2026                         |                                      |
 | `gpt-4o-audio-preview`         | 2024-12-17   | Preview             | February 2, 2026                         |                                      |
-| `gpt-4o-mini-transcribe-diarize`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
+| `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `tts`                          | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `tts-hd`                       | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `whisper`                      | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
+| `gpt-audio`                    | 2025-08-28   | Generally Available | No earlier than September 1, 2026        |                                      |  
+| `gpt-realtime`                 | 2025-08-28   | Generally Available | No earlier than September 1, 2026        |                                      |
+| `gpt-audio-mini`               | 2025-10-06   | Generally Available | No earlier than October 6, 2026          |                                      |
+| `gpt-realtime-mini`            | 2025-10-06   | Generally Available | No earlier than October 6, 2026          |                                      |
+| `gpt-4o-transcribe-diarize`    | 2025-10-15   | Generally Available | No earlier than October 15, 2026         |                                      |
+
+
+
 
 # [Image and video](#tab/image)
 
@@ -69,11 +85,12 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version      | Lifecycle<br>Status | Retirement date                  | Replacement model                    |
 | -------------------------------|--------------|---------------------|----------------------------------|--------------------------------------|
-| `dalle-3`                      | 3            | Generally Available | No earlier than January 31, 2026 |                                      |
+| `dalle-3`                      | 3            | Generally Available | February 18, 2026                | `gpt-image-1-mini`                   |
 | `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than January 31, 2026 |                                      |
-| `gpt-image-1-mini`                  | 2025-10-06   | GA             | No earlier than October 6, 2026 |                                      |
+| `gpt-image-1-mini`             | 2025-10-06   | Generally Available | No earlier than October 6, 2026  |                                      |
 | `sora`                         | 2025-05-02   | Preview             | No earlier than February 15, 2026|                                      |
 | `gpt-image-1.5`                  | 2025-12-16   | Preview             | No earlier than December 16, 2026 |                                      |
+
 
 
 # [Embedding](#tab/embedding)
@@ -82,10 +99,10 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version      | Lifecycle<br>Status | Retirement date                    | Replacement model                                    |
 | -------------------------------|--------------|---------------------|------------------------------------|------------------------------------------------------|
-| `text-embedding-ada-002`       | 2            | Generally Available | No earlier than April 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-ada-002`       | 1            | Generally Available | No earlier than April 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-3-small`       | 1            | Generally Available | No earlier than April 30, 2026     |                                                      |
-| `text-embedding-3-large`       | 1            | Generally Available | No earlier than April 30, 2026     |                                                      |
+| `text-embedding-ada-002`       | 2            | Generally Available | No earlier than October 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
+| `text-embedding-ada-002`       | 1            | Generally Available | No earlier than October 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
+| `text-embedding-3-small`       | 1            | Generally Available | No earlier than October 30, 2026     |                                                      |
+| `text-embedding-3-large`       | 1            | Generally Available | No earlier than October 30, 2026     |                                                      |
 
 ---
 

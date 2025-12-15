@@ -16,6 +16,8 @@ author: ssalgadodev
 
 # Explore Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
 
 With Foundry Models, you can: 
@@ -36,7 +38,7 @@ Our catalog is organized into two main categories:
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
 
 > [!NOTE]
-> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Microsoft AI Services complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
+> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models Sold Directly by Azure 
  
@@ -56,9 +58,9 @@ Some of these Models also have the benefit of fungible Provisioned Throughput, m
 
 These models constitute the vast majority of the Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations. Examples of models from Partners and community are the family of large language models developed by **Anthropic** and **Open models from the Hugging Face hub**. 
 
-Anthropic includes Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Claude Support](https://claude.com/solutions/customer-support) and use [Anthropic privacy policy](https://www.anthropic.com/legal/privacy) to know more about privacy. Learn how to deploy Anthropic models in [Deploy and use Anthropic Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
+Anthropic includes Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To know more about privacy, use [Anthropic privacy policy](https://aka.ms/anthropic_privacy), and for terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
-Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
+Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Microsoft Foundry](../how-to/deploy-models-managed.md).
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 

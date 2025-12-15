@@ -1,19 +1,22 @@
 ---
-title: 'Use Azure Functions with Azure AI Foundry Agent Service'
-titleSuffix: Azure AI Foundry
-description: Learn how to build custom tools with code hosted in Azure Functions and integrate them with Azure AI Foundry agents.
+title: 'Use Azure Functions with Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to build custom tools with code hosted in Azure Functions and integrate them with Microsoft Foundry agents.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/04/2025
-author: aahill
-ms.author: aahi
+ms.date: 11/20/2025
+author: alvinashcraft
+ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# Use Azure Functions with Azure AI Foundry Agent Service
+# Use Azure Functions with Foundry Agent Service
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 [Azure Functions](/azure/azure-functions/functions-overview) is a serverless compute service that you can use to extend your Foundry Agent Service agents with custom tools built using code. This approach is especially useful when you need your agent to integrate with systems within your enterprise.
 
@@ -36,7 +39,7 @@ While [function calling](function-calling.md) allows you to define tools that ru
 
 ## Integration options
 
-Azure AI Foundry Agent Service provides two primary ways for your agents to access Azure Functions-hosted tools:
+Foundry Agent Service provides two primary ways for your agents to access Azure Functions-hosted tools:
 
 | Feature | Model Context Protocol (MCP) servers | Azure Queue storage-based tools  |
 |---------|------|------|
@@ -118,7 +121,7 @@ When prompted, provide these required deployment parameters:
 The `main.bicep` deployment file is then read by `azd` and used to create these resources in Azure:
 
 + Flex Consumption plan and function app
-+ Agent platform in AI Foundry, including:
++ Agent platform in Foundry, including:
   + Services account
   + Model deployment
   + Project
@@ -129,7 +132,7 @@ The `main.bicep` deployment file is then read by `azd` and used to create these 
 + Access policies and roles for your accounts
 + Service-to-service connections using managed identities (instead of stored connection strings)
 
-You can also use these integrated Azure resources in the article [How to use queue-based Azure Functions with Azure AI Foundry agents](azure-functions-samples.md).
+You can also use these integrated Azure resources in the article [How to use queue-based Azure Functions with Microsoft Foundry agents](azure-functions-samples.md).
 
 Post-provision scripts also create a `local.settings.json` file, which Functions requires to run locally. The generated file should look like this:
 

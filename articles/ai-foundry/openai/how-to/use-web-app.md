@@ -15,6 +15,8 @@ recommendations: false
 
 # Use the Azure OpenAI web app
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 > [!NOTE]
 > The web app and its [source code](https://github.com/microsoft/sample-app-aoai-chatGPT) are provided "as is" and as a sample only. Customers are responsible for all customization and implementation of their web apps. See the support section for the web app on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/SUPPORT.md) for more information.
 

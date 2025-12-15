@@ -302,12 +302,12 @@
     },
     {
       "source_path": "articles/ai-foundry/openai/concepts/models.md",
-      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai",
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
       "redirect_document_id": false
     },
     {
       "source_path": "articles/ai-foundry/foundry-models/concepts/models.md",
-      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-direct-others",
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
       "redirect_document_id": false
     },
     {

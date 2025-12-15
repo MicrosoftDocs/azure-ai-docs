@@ -15,7 +15,7 @@ Use this guide to get started generating images with Azure OpenAI in your browse
 
 ## Prerequisites
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 
@@ -46,5 +46,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).
+* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
 * See the [API reference](../reference.md#image-generation)

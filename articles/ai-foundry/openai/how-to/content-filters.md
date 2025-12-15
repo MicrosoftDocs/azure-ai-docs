@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 10/29/2025
+ms.date: 12/03/2025
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -15,6 +15,8 @@ ms.custom: FY25Q1-Linter
 ---
 
 # Configure content filters
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 The content filtering system integrated into Microsoft Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 

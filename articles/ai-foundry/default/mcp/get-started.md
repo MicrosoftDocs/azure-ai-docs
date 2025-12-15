@@ -2,8 +2,9 @@
 title: Get started using Foundry MCP Server with Visual Studio Code
 description: Learn how to connect to and consume Foundry MCP Server operations with Visual Studio Code
 keywords: azure developer cli, azd
-author: alexwolfmsft
-ms.author: alexwolf
+author: sdgilley
+ms.author: sgilley
+ms.reviewer: sehan
 ms.date: 11/04/2025
 ms.topic: get-started
 ms.service: azure-ai-foundry

@@ -29,8 +29,10 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > [!IMPORTANT]
 > Foundry itself doesn't provide automatic failover or disaster recovery.
 
+:::moniker-range="foundry-classic"
 > [!NOTE]
 > The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Foundry hubs](hub-disaster-recovery.md).
+:::moniker-end
 
 ## Service model and shared responsibility
 
@@ -52,11 +54,11 @@ None of these optional resources (for example Key Vault, Storage, ACR, Applicati
 | ------------- | ---------------- | ---------- | --------------------- |
 | Platform infrastructure | Foundry control plane, project metadata | Microsoft | Regional; no customer action for zone configuration. |
 | State stores (Standard agent mode) | Azure Cosmos DB, Azure AI Search, Azure Storage | You | Configure redundancy, backup, replication. |
-| Security & secrets | Azure Key Vault | You | Zone redundant automatically when supported; configure RBAC & purge protection. |
+| Security & secrets | Azure Key Vault | You | Automatic zone redundancy when supported; configure RBAC & purge protection. |
 | Monitoring | Application Insights | You | Consider multi-region instances or failover strategy. |
 | Image & artifact registry | Azure Container Registry | You | Use geo-replication as needed. |
 | Integration / workflow | Logic Apps, Functions, Event Grid | You | Align region + DR strategy with agent dependencies. |
-| Compliance / data mapping | Microsoft Purview (connected) | You | Enables continuity for eDiscovery scenarios. |
+| Compliance / data mapping | Microsoft Purview (connected) | You | Enable continuity for eDiscovery scenarios. |
 | Other knowledge/tool sources | SharePoint, custom APIs | You | Configure per service HA. |
 
 The rest of this article explains how to make each component highly available.
@@ -70,6 +72,8 @@ Learn more: [Design for resiliency](/azure/well-architected/reliability/principl
 ### Prevent resource deletion
 
 To prevent most accidental deletions, apply delete [resource locks](/azure/azure-resource-manager/management/lock-resources) to critical resources. Locks protect against resource-level deletion but not data plane operations. Apply delete locks to these resources.
+
+Here are the protections provided and limitations for each resource:
 
 | Resource                 | Protection provided | Limitations |
 | :----------------------- | :------------------ | :---------- |
@@ -86,7 +90,7 @@ Use Azure role-based access control (RBAC) to limit access to control and data p
 
 In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-Data can also be destroyed through Agent Service REST APIs. For example, see [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) can delete operational data using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+Data can also be destroyed through Agent Service REST APIs. For example, see [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](../concepts/rbac-azure-ai-foundry.md#azure-ai-user) can delete operational data using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](../concepts/rbac-azure-ai-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
 
 ### Implement the single responsibility principle
 
@@ -197,7 +201,7 @@ Decide what level of business continuity you need. The level can differ between 
 
 Foundry is a regional service that stores data on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. You can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata like tags, asset names, and descriptions. Data in your storage account typically isn't metadata, like uploaded data.
 
-For connections, create two separate resources in two different regions, and then create two connections for the project. For example, if AI Services is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
+For connections, create two separate resources in two different regions, and then create two connections for the project. For example, if Foundry Tools is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
 
 For any projects that are essential to business continuity, deploy resources in two regions.
 

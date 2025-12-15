@@ -1,17 +1,17 @@
 ---
 title: Introduction to Kubernetes compute target
 titleSuffix: Azure Machine Learning
-description: Learn how Azure Machine Learning Kubernetes compute target enables Machine Learning across different infrastructures in the cloud and on-premises.
+description: Learn how to use Kubernetes compute targets in Azure Machine Learning to train and deploy models across cloud, on-premises, and hybrid infrastructures.
+#customer intent: As a machine learning professional, I want to understand how to set up a Kubernetes compute target so that I can train and deploy models efficiently.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: concept-article
+ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: bozhlin
+ms.reviewer: jturuk
 ms.custom: devplatv2
 ms.date: 10/04/2024
-#Customer intent: As an machine learning professional focusing on machine learning infrastructure setup with a self-managed compute, I want to understand what Kubernetes compute target is used for and the benefits.
 ---
 
 # Introduction to Kubernetes compute target in Azure Machine Learning

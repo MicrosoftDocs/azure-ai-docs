@@ -221,7 +221,7 @@ For more details on installing applications with Helm in Azure Kubernetes Servic
 > [Azure AI containers][cog-svcs-containers]
 
 <!-- LINKS - external -->
-[free-azure-account]: https://azure.microsoft.com/free
+[free-azure-account]: https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn
 [git-download]: https://git-scm.com/downloads
 [azure-cli]: /cli/azure/install-azure-cli
 [docker-engine]: https://www.docker.com/products/docker-engine
