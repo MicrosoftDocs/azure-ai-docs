@@ -5,7 +5,7 @@ description: Learn how generative AI and retrieval augmented generation (RAG) pa
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 12/12/2025
+ms.date: 12/15/2025
 ms.service: azure-ai-search
 ms.topic: article
 ms.custom:
@@ -16,7 +16,133 @@ ms.custom:
 
 # Retrieval-augmented Generation (RAG) in Azure AI Search
 
-Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. To get that content, you typically need an information retrieval component. Azure AI Search is an information retrieval solution that's designed to solve the challenges of RAG implementations.
+Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities by grounding responses in your proprietary content. While conceptually simple, RAG implementations face significant challenges.
+
+## The challenges of RAG
+
+**Challenge 1: Query understanding**
+Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words.
+
+**Challenge 2: Multi-source data access**
+Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential.
+
+**Challenge 3: Token constraints**
+LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps.
+
+**Challenge 4: Response time expectations**
+Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with speed.
+
+**Challenge 5: Security and governance**
+Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content.
+
+## How Azure AI Search addresses RAG challenges
+
+Azure AI Search provides two approaches designed specifically for these RAG challenges:
+
++ **[Agentic retrieval](agentic-retrieval-overview.md) (preview)**: A complete RAG pipeline with LLM-assisted query planning, multi-source access, and structured responses optimized for agent consumption.
+
++ **[Classic RAG pattern](#classic-rag-pattern)**: The proven approach using hybrid search and semantic ranking, ideal for simpler requirements or when generally available (GA) features are required.
+
+The following sections explain how each approach solves specific RAG challenges.
+
+### Solving query understanding challenges
+
+**The problem:** Users ask "What's our PTO policy for remote workers hired after 2023?" but documents say "time off," "telecommute," and "recent hires."
+
+**Agentic retrieval solution:**
+
++ LLM analyzes the question and generates multiple targeted subqueries
++ Decomposes complex questions into focused searches
++ Uses conversation history to understand context
++ Parallel execution across knowledge sources
+
+**Classic RAG solution:**
+
++ Hybrid queries combine keyword and vector search for better recall
++ Semantic ranking re-scores results based on meaning, not just keywords
++ Vector similarity search matches concepts, not exact terms
+
+[Learn more about query planning](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md).
+
+### Solving multi-source data challenges
+
+**The problem:** HR policies in SharePoint, benefits in databases, company news on web pages—creating copies disrupts governance and routine data operations.
+
+**Agentic retrieval solution:**
+
++ Knowledge bases unify multiple knowledge sources
++ Direct query against remote SharePoint and Bing (no indexing needed)
++ Automatic indexing pipeline generation for Azure Blob, OneLake, ingested SharePoint content, ingested other external content
++ Single query interface and query plan across all sources
+
+**Classic RAG solution:**
+
++ Indexers pull from over 10 Azure data sources
++ Skills pipeline for chunking, vectorization, image verbalization and analysis
++ Incremental indexing keeps content fresh
++ You control what's indexed and how
+
+[Learn more about knowledge sources](agentic-knowledge-source-overview.md).
+
+### Solving token constraint challenges
+
+**The problem:** GPT-4 accepts ~128k tokens, but you have 10,000 pages of documentation. Sending everything wastes tokens and degrades quality.
+
+**Agentic retrieval solution:**
+
++ Returns a structured response with only the most relevant chunks
++ Built-in citation tracking shows provenance
++ Query activity log explains what was searched
++ Optional answer synthesis reduces token usage further
+
+**Classic RAG solution:**
+
++ Semantic ranking identifies top 50 most relevant results
++ Configurable result limits (top-k for vectors, top-n for text) and minimum thresholds
++ Scoring profiles boost critical content
++ Select statement controls which fields are returned
+
+[Learn more about relevance tuning](#maximize-relevance-and-recall).
+
+### Solving response time challenges
+
+**The problem:** Users expect answers in 3-5 seconds, but you're querying multiple sources with complex processing.
+
+**Agentic retrieval solution:**
+
++ Parallel subquery execution (not sequential)
++ Adjustable reasoning effort (minimal/low/medium)
++ Pre-built semantic ranking (no extra orchestration)
+
+**Classic RAG solution:**
+
++ Millisecond query response times
++ Single-shot queries reduce complexity
++ You control timeout and retry logic
++ Simpler architecture with fewer failure points
+
+### Solving security challenges
+
+**The problem:** Finance data should only be accessible to finance team, even when an executive asks the chatbot.
+
+**Agentic retrieval solution:**
+
++ Knowledge source-level access control
++ Inherits SharePoint permissions for queries against remote SharePoint
++ Inherits Microsoft Entra ID permission metadata for indexed content from Azure Storage
++ Filter-based security at query time for other data sources
++ Network isolation via private endpoints
+
+**Classic RAG solution:**
+
++ Document-level security trimming
++ Inherits Microsoft Entra ID permission metadata for indexed content from Azure Storage
++ Filter-based security at query time for other data sources
++ Network isolation via private endpoints
+
+[Learn more about security](search-security-overview.md).
+
+<!-- Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. To get that content, you typically need an information retrieval component. Azure AI Search is an information retrieval solution that's designed to solve the challenges of RAG implementations.
 
 + The first challenge: rising expectations for reasonable answers regardless of the quality of the question. The modern query consists of complex or convoluted questions, possibly vague or incomplete, with the assumption of context from the current chat. These become the inputs to the information retrieval system, against which the system must understand so that it can find relevant matches for LLM answer formulation.
 
@@ -32,7 +158,7 @@ Azure AI Search can meet *all* of these challenges with the new agentic retrieva
 
 It can meet *most* of these challenges with the classic search engine that accepts single-shot queries against a single search index. Classic search is generally available, and it supports a hybrid search capability with semantic ranking that produces high quality responses that help LLMs deliver their best answers using your content.
 
-This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems with each RAG pattern.
+This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems with each RAG pattern. -->
 
 <!-- Retrieval-augmented Generation (RAG) is a design pattern that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. 
 
@@ -72,7 +198,23 @@ Classic RAG uses the [original query execution architecture](search-what-is-azur
 
 For detailed information about implementing classic RAG, see the [azure-search-classic-rag repository](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md).
 
-## Searchable content in Azure AI Search
+## Content preparation for RAG
+
+RAG quality depends on how you prepare content for retrieval. Azure AI Search supports:
+
+| Content challenge | How Azure AI Search helps |
+|-------------------|---------------------------|
+| **Large documents** | Automatic chunking (built-in or via skills) |
+| **Multiple languages** | 50+ language analyzers for text, multilingual vectors |
+| **Images and PDFs** | OCR, image analysis, document extraction skills |
+| **Need for similarity search** | Integrated vectorization (Azure OpenAI, Azure AI Vision, custom) |
+| **Terminology mismatches** | Synonym maps, semantic ranking |
+
+**For agentic retrieval:** Use [knowledge sources](agentic-knowledge-source-overview.md) that auto-generate chunking and vectorization pipelines.
+
+**For classic RAG:** Use [indexers and skillsets](search-indexer-overview.md) to build custom pipelines, or push pre-processed content via the [push API](search-what-is-data-import.md).
+
+<!-- ## Searchable content in Azure AI Search
 
 Your searchable content is the cornerstone of a RAG solution. This section takes a closer look at what constitutes searchable content in Azure AI Search.
 
@@ -95,7 +237,7 @@ Azure AI Search indexes support multiple content types optimized for RAG:
 
 For agentic retrieval, you can also access remote sources (Bing, SharePoint) without indexing.
 
-For implementation details, see [integrated vectorization](vector-search-integrated-vectorization.md) and [skillsets](cognitive-search-working-with-skillsets.md).
+For implementation details, see [integrated vectorization](vector-search-integrated-vectorization.md) and [skillsets](cognitive-search-working-with-skillsets.md). -->
 
 ## Maximize relevance and recall
 
