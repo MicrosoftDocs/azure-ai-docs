@@ -9,6 +9,7 @@ description: Learn how to authenticate and authorize access in Microsoft Foundry
 #customer intent: As an IT admin, I want to understand how to configure authentication and authorization in Microsoft Foundry so that I can secure access to resources and operations.
 ms.topic: concept-article
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Authentication and authorization in Microsoft Foundry
