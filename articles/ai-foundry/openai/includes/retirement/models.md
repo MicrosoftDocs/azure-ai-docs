@@ -15,7 +15,7 @@ ms.custom: references_regions, build-2025
 
 ### Text generation
 
-| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+| Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
 | `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-02-27 | `gpt-4.1` |
 | `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-02-27 | `gpt-4.1` |
@@ -50,7 +50,7 @@ ms.custom: references_regions, build-2025
 
 ### Audio
 
-| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+| Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
 | `gpt-4o-audio-preview` | 2024-12-17 | Preview | n/a | 2026-02-02 | `gpt-audio` |
 | `gpt-4o-realtime-preview` | 2024-12-17 | Preview | n/a | 2026-02-02 | `gpt-realtime` |
@@ -72,7 +72,7 @@ ms.custom: references_regions, build-2025
 
 ### Image and video
 
-| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+| Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
 | `dall-e-3` | 3 | Generally Available | 2026-01-31 | 2026-02-18 | `gpt-image-1-mini` |
 | `gpt-image-1` | 2025-04-15 | Preview | n/a | No earlier than 2026-03-31 | `gpt-image-1-mini` |
@@ -84,13 +84,15 @@ ms.custom: references_regions, build-2025
 
 ### Embedding
 
-| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+| Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
 | `text-embedding-3-large` | 3-large | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 | `text-embedding-3-small` | 3-small | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 | `text-embedding-ada-002` | 002     | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 
 ---
+
+<sup>1</sup> For some models, the launch date is the value of the model version.
 
 We notify all customers with these preview deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule that details the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
 
