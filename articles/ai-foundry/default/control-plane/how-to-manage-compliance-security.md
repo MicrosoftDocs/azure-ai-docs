@@ -180,7 +180,7 @@ This capability helps your organization manage and monitor AI-generated data in 
 > [!NOTE]
 > 1. Purview Data Security Policies for Foundry Services interactions are supported for those API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [Gain end-user context for Azure AI API calls][AzureUserSecurityContext](../../openai/latest.md#azureusersecuritycontext) . For all other authentication scenarios, user interactions captured in Purview show up only in Purview Audit and AI Interactions with classifications within DSPM for AI Activity Explorer.
 >
-> 1. Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.compricing/details/purview/) meters.
+> 1. Purview Audit is included as part of Microsoft Purview license for Foundry services. For data security policies setup in Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 >
 > 1. Integration with Purview for the above features in Microsoft Foundry doesn't yet support Network Isolation.
 
