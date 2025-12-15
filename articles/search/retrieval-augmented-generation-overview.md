@@ -25,7 +25,7 @@ Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities 
 | **Query&nbsp;understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words. |
 | **Multi-source&nbsp;data&nbsp;access** | Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential. |
 | **Token&nbsp;constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps. |
-| **Response&nbsp;time&nbsp;expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with
+| **Response&nbsp;time&nbsp;expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with speed.
 | **Security&nbsp;and&nbsp;governance** | Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content. |
 
 ## How Azure AI Search meets RAG challenges
@@ -135,7 +135,8 @@ The following sections explain how each approach solves specific RAG challenges.
 
 [Learn more about security](search-security-overview.md).
 
-<!-- Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. To get that content, you typically need an information retrieval component. Azure AI Search is an information retrieval solution that's designed to solve the challenges of RAG implementations.
+<!-- OLD INTRO #2
+Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. To get that content, you typically need an information retrieval component. Azure AI Search is an information retrieval solution that's designed to solve the challenges of RAG implementations.
 
 + The first challenge: rising expectations for reasonable answers regardless of the quality of the question. The modern query consists of complex or convoluted questions, possibly vague or incomplete, with the assumption of context from the current chat. These become the inputs to the information retrieval system, against which the system must understand so that it can find relevant matches for LLM answer formulation.
 
@@ -153,7 +154,8 @@ It can meet *most* of these challenges with the classic search engine that accep
 
 This article explores modern RAG and classic RAG experiences that you can get with Azure AI Search. It speaks to the challenges of RAG implementations and how Azure AI Search solves for specific problems with each RAG pattern. -->
 
-<!-- Retrieval-augmented Generation (RAG) is a design pattern that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. 
+<!-- OLD INTRO #1
+Retrieval-augmented Generation (RAG) is a design pattern that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. 
 
 RAG implementations typically include an information retrieval component. The decision about which information retrieval system to use is critical because LLMs are constrained by the number of token inputs they can accept, so you want the grounding data to be as relevant as possible. Criteria to consider include:
 
@@ -206,31 +208,6 @@ RAG quality depends on how you prepare content for retrieval. Azure AI Search su
 **For agentic retrieval:** Use [knowledge sources](agentic-knowledge-source-overview.md) that auto-generate chunking and vectorization pipelines.
 
 **For classic RAG:** Use [indexers and skillsets](search-indexer-overview.md) to build custom pipelines, or push pre-processed content via the [push API](search-what-is-data-import.md).
-
-<!-- ## Searchable content in Azure AI Search
-
-Your searchable content is the cornerstone of a RAG solution. This section takes a closer look at what constitutes searchable content in Azure AI Search.
-
-Searchable content is either a [single search index](search-what-is-an-index.md) (classic RAG) or a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that has multiple knowledge sources backed by multiple search indexes or remote data providers. Within an index, you have plain text content and vectorized content.
-
-+ Plain text content (tokenized) is essential because it's used for LLM inputs, scoring profiles, and semantic ranking.
-
-+ Vectors (embeddings) provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematical representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries. 
-
-But you don't have to choose between vectors and plain text, because [hybrid search](hybrid-search-overview.md) lets you combine them. You can specify hybrid queries in classic RAG. Agentic retrieval creates them automatically if your index has both content types.
-
-Azure AI Search indexes support multiple content types optimized for RAG:
-
-| Content type | How it's indexed | Key features |
-|--------------|------------------|--------------|
-| Plain text | Tokens, raw text | [Indexers](search-indexer-overview.md) and [knowledge sources](agentic-knowledge-source-overview.md). Also, [analyzers](search-analyzers.md) and [normalizers](search-normalizers.md) to modify text in flight. [Synonym maps](search-synonyms.md) for query expansion. |
-| Vectorized text | [Embeddings](vector-search-how-to-create-index.md) | [Chunking and vectorization](vector-search-integrated-vectorization.md) via indexers  or external tools |
-| Images | Tokens via OCR and AI | OCR and Image Analysis [skills](cognitive-search-working-with-skillsets.md) (indexer required) |
-| Multimodal | Unified embeddings | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) for unified embedding space. |
-
-For agentic retrieval, you can also access remote sources (Bing, SharePoint) without indexing.
-
-For implementation details, see [integrated vectorization](vector-search-integrated-vectorization.md) and [skillsets](cognitive-search-working-with-skillsets.md). -->
 
 ### Maximize relevance and recall
 
