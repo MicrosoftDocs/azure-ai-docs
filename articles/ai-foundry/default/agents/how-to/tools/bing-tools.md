@@ -6,8 +6,9 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: article
-ms.date: 12/11/2025
+ms.custom: dev-focus
+ms.topic: how-to
+ms.date: 12/15/2025
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -30,6 +31,12 @@ The grounding process involves several key steps:
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When you use Grounding with Bing Search and/or Grounding with Bing Custom Search, your data flows outside the Azure compliance and Geo boundary. This also means use of Grounding with Bing Search and/or Grounding with Bing Custom Search waives all elevated Government Community Cloud security and compliance commitments, to include data sovereignty and screened/citizenship-based support, as applicable.  
 > - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for [details](https://www.microsoft.com/en-us/bing/apis/grounding-pricing). 
 > - See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
+
+## Usage support
+
+| Microsoft Foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️  | ✔️ | ✔️ | ✔️ | - |  ✔️ | ✔️ | ✔️ | 
 
 ## Available tools
 
@@ -122,6 +129,10 @@ with project_client:
             print(f"Full response: {event.response.output_text}")
 ```
 
+### Expected output
+
+The agent searches Bing for current information about the date and weather in Seattle, processes the search results, and streams the response to the console. URL citations from the search results are displayed, showing which websites were used to generate the answer.
+
 # [Grounding with Bing Custom Search (preview)](#tab/grounding-with-bing-custom)
 
 ```python
@@ -204,6 +215,10 @@ with project_client:
             print(f"Full response: {event.response.output_text}")
 ```
 
+### Expected output
+
+The agent searches within your configured custom domains for information related to your query. The response is streamed to the console with URL citations showing which pages from your custom search configuration were used. The citations include start and end index positions within the response text.
+
 ---
 :::zone-end
 
@@ -274,6 +289,10 @@ Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}
 // Clean up resources by deleting the agent version
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
+
+### Expected output
+
+The agent creates a Bing search query based on your input, retrieves information from Wikipedia about Euler's Identity, and returns a formatted response with citations. The response includes clickable links to the source websites used for grounding.
 
 ## Grounding with Bing in streaming scenarios
 
@@ -361,6 +380,10 @@ Console.WriteLine($"{text}{annotation}");
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
+### Expected output
+
+The agent streams the response in real-time as it generates the answer. Each text delta is printed immediately, providing a responsive user experience. When complete, the full text with URL citations is displayed, showing which websites were consulted.
+
 :::zone-end
 
 :::zone pivot="rest"
@@ -395,6 +418,10 @@ curl --request POST \
 }'
 ```
 
+### Expected output
+
+The API executes a Bing search based on your query and returns a JSON response containing the generated text with embedded citations. The response includes metadata about the search parameters used (count, market, language, freshness) and links to the sources.
+
 
 # [Grounding with Bing Custom Search (preview)](#tab/grounding-with-bing-custom)
 
@@ -425,6 +452,10 @@ curl --request POST \
     ]
 }'
 ```
+
+### Expected output
+
+The API searches within your custom-configured domains and returns a JSON response with the answer and citations. Only results from your specified domains and subdomains are included in the search results, ensuring focused and relevant information.
 
 
 ---
@@ -528,6 +559,10 @@ main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
+
+### Expected output
+
+The agent searches Bing for real-time information about the date and weather in Seattle. The response streams to the console as it's generated, with each text delta printed immediately. URL citations are displayed showing which websites provided the information, including the specific character positions where each citation applies.
 
 # [Grounding with Bing Custom Search (preview)](#tab/grounding-with-bing-custom)
 
@@ -644,6 +679,10 @@ main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
+
+### Expected output
+
+After you enter your question, the agent searches within your custom-configured domains for relevant information. The response streams to the console in real-time, showing text deltas as they're generated. URL citations are displayed with their exact positions in the response text, showing which pages from your custom search configuration were used to answer the question.
 
 ---
 
