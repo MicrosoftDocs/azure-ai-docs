@@ -44,33 +44,24 @@ Custom NER supports two methods for data splitting:
 
 * **Use a manual split of training and testing data**: This method enables users to define which labeled documents should belong to which set. This step is only enabled if you added documents to your testing set during [data labeling](tag-data.md).
 
-## Train model
+## Train model (REST API)
 
-# [Language studio](#tab/Language-studio)
-
-[!INCLUDE [Train model](../includes/language-studio/train-model.md)]
-
-# [REST APIs](#tab/REST-APIs)
+Once you have labeled your data and configured your data split settings, you can start training your custom NER model using the REST API. The training process involves submitting a training job request and monitoring its progress until completion. This section provides the API calls needed to initiate training and check the status of your training job.
 
 ### Start training job
 
 [!INCLUDE [train model](../includes/rest-api/train-model.md)]
 
-### Get training job status
+### Get training job status (REST API)
 
 Training can take some time, depending on the size of your training data and complexity of your schema. You can use the following request to keep polling the status of the training job until successful completion.
 
  [!INCLUDE [get training model status](../includes/rest-api/get-training-status.md)]
 
----
 
-### Cancel training job
+### Cancel training job (REST API)
 
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Cancel training](../includes/language-studio/cancel-training.md)]
-
-# [REST APIs](#tab/rest-api)
+If you need to stop a training job that's currently in progress, you can cancel it using the REST API. Canceling a training job is useful when you discover an issue with your data or configuration and want to make corrections before restarting the training process.
 
 [!INCLUDE [Cancel training](../includes/rest-api/cancel-training.md)]
 

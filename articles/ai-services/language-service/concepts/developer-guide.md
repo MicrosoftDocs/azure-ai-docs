@@ -40,7 +40,7 @@ The Language provides three namespaces for using the available features. Dependi
 The `Azure.AI.TextAnalytics` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Custom named entity recognition](../custom-named-entity-recognition/how-to/call-api.md?tabs=client)
-* [Custom text classification](../custom-text-classification/how-to/call-api.md?tabs=client-libraries#send-a-text-classification-request-to-your-model)
+* [Custom text classification](../custom-text-classification/how-to/call-api.md#send-a-text-classification-request-to-your-model-rest-api)
 * [Document summarization](../summarization/quickstart.md)
 * [Entity linking](../entity-linking/quickstart.md)
 * [Key phrase extraction](../key-phrase-extraction/quickstart.md)

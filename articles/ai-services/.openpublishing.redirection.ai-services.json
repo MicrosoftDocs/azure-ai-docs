@@ -2973,7 +2973,7 @@
     {
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/power-virtual-agents.md",
       "redirect_url": "/microsoft-copilot-studio/fundamentals-get-started",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/multiple-languages.md",

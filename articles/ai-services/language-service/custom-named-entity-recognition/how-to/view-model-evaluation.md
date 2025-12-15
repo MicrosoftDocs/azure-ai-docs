@@ -28,42 +28,20 @@ Before viewing model evaluation, you need:
 
 See the [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
 
-## Model details
-
-### [Language studio](#tab/language-studio)
-
-[!INCLUDE [View model evaluation using Language Studio](../includes/language-studio/model-evaluation.md)]
-
-### [REST APIs](#tab/rest-api)
+## Model details (REST API)
 
 [!INCLUDE [Model evaluation](../includes/rest-api/model-evaluation.md)]
 
----
 
-## Load or export model data
+## Load or export model data (REST API)
 
-### [Language studio](#tab/Language-studio)
-
-[!INCLUDE [Load export model](../../conversational-language-understanding/includes/language-studio/load-export-model.md)]
-
-
-### [REST APIs](#tab/REST-APIs)
 
 [!INCLUDE [Load export model](../../custom-text-classification/includes/rest-api/load-export-model.md)]
 
----
 
-## Delete model
-
-### [Language studio](#tab/language-studio)
-
-[!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
-
-### [REST APIs](#tab/rest-api)
+## Delete model (REST API)
 
 [!INCLUDE [Delete model](../includes/rest-api/delete-model.md)]
-
----
 
 ## Next steps
 

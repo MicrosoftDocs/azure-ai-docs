@@ -6,7 +6,7 @@ description: Learn about which languages are supported by custom text classifica
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/15/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
