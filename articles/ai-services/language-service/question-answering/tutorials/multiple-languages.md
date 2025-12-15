@@ -26,9 +26,9 @@ To be able to create a project in more than one language, the multiple language 
 > [!div class="mx-imgBorder"]
 > [![Screenshot of UI for create project with I want to select the language when I create a project in this resource selected.](../media/multiple-languages/multiple-languages.png)](../media/multiple-languages/multiple-languages.png#lightbox)
 
-1. From the [Language Studio](https://aka.ms/languageStudio) home page, select open custom question answering. Select **Create new project** > **I want to select the language when I create a project in this resource** > **Next**.
+1. From the [Microsoft Foundry](https://ai.azure.com/) home page, navigate to **Playgrounds** from the left pane and select **Try Azure Language Playground**. Select **Custom question answering** from the top banner. Then select the **Fine-tune** button
 
-2. Fill out enter basic information page and select **Next** > **Create project**.
+1. Fill out enter basic information page and select **Next** > **Create project**.
 
     |Setting| Value|
     |---|----|
@@ -40,7 +40,7 @@ To be able to create a project in more than one language, the multiple language 
     > [!div class="mx-imgBorder"]
     > [![Screenshot of UI for create project with the German language selected.](../media/multiple-languages/choose-german.png)](../media/multiple-languages/choose-german.png#lightbox)
 
-3. **Add source** > **URLs** > **Add url** > **Add all**.
+1. **Add source** > **URLs** > **Add url** > **Add all**.
 
     |Setting| Value |
     |----|------|
@@ -57,7 +57,7 @@ To be able to create a project in more than one language, the multiple language 
 
 We now repeat the above steps from before but this time we select English and an English URL as a source.
 
-1. From the [Language Studio](https://aka.ms/languageStudio), open the custom question answering page > **Create new project**.
+1. From [Microsoft Foundry](https://ai.azure.com/), navigate to **Playgrounds** from the left pane, select **Try Azure Language Playground**, and choose **Custom question answering** from the top banner > **Create new project**.
 
 1. Fill out enter basic information page and select **Next** > **Create project**.
 

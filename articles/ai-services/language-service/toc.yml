@@ -226,22 +226,12 @@ items:
         href: conversational-language-understanding/concepts/app-architecture.md
     - name: Tutorials
       items:
-      - name: Create an FAQ Bot
-        href: question-answering/tutorials/bot-service.md
-        displayName: bot framework, chatbot
-      - name: Guided conversations
-        href: question-answering/tutorials/guided-conversations.md
       - name: Active learning
         href: question-answering/tutorials/active-learning.md
       - name: Adding synonyms
         href: question-answering/tutorials/adding-synonyms.md
-      - name: Multiple languages
-        href: question-answering/tutorials/multiple-languages.md
       - name: Multiple domains
         href: question-answering/tutorials/multiple-domains.md
-      - name: Add your custom question answering project to Microsoft Copilot Studios
-        href: question-answering/tutorials/power-virtual-agents.md
-        displayName: power virtual agents, pva integration, chatbot, virtual assistant
     - name: Reference
       items:
       - name: General
@@ -290,9 +280,6 @@ items:
       - name: Label data
         href: custom-text-classification/how-to/tag-data.md
         displayName: tag data, annotate text, training data
-      - name: Auto label your data (preview)
-        href: custom-text-classification/how-to/use-autolabeling.md
-        displayName: automatic annotation, smart labeling, ai assisted labeling
       - name: Label data with Azure Machine Learning
         href: custom/azure-machine-learning-labeling.md
         displayName: azure ml labeling, aml annotation

@@ -56,8 +56,6 @@ As a prerequisite for creating a custom text classification project, your traini
 
 You can only use `.txt`. documents for custom text. If your data is in other format, you can use [CLUtils parse command](https://github.com/microsoft/CognitiveServicesLanguageUtilities/blob/main/CustomTextAnalytics.CLUtils/Solution/CogSLanguageUtilities.ViewLayer.CliCommands/Commands/ParseCommand/README.md) to change your file format.
 
- You can upload an annotated dataset, or you can upload an unannotated one and [label your data](../how-to/tag-data.md) in Language studio. 
-
 ## Test set
 
 When defining the testing set, make sure to include example documents that are not present in the training set. Defining the testing set is an important step to calculate the [model performance](view-model-evaluation.md#model-details). Also, make sure that the testing set include documents that represent all classes used in your project.

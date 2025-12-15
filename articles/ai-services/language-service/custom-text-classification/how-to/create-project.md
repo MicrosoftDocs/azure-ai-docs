@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 12/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
@@ -41,10 +41,6 @@ You also need an Azure storage account where to upload your `.txt` documents tha
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 
-### [Using Language Studio](#tab/language-studio)
-
-[!INCLUDE [create a new resource from Language Studio](../includes/language-studio/resource-creation-language-studio.md)]
-
 ### [Using Azure PowerShell](#tab/azure-powershell)
 
 [!INCLUDE [create a new resource with Azure PowerShell](../includes/resource-creation-powershell.md)]
@@ -60,58 +56,29 @@ You also need an Azure storage account where to upload your `.txt` documents tha
 [!INCLUDE [use an existing resource](../includes/use-pre-existing-resource.md)]
 
 
-## Create a custom text classification project
+## Create a custom text classification project (REST API)
 
 Once your resource and storage container are configured, create a new custom text classification project. A project is a work area for building your custom AI models based on your data. Your project is only accessible by you and others who have access to the Azure resource being used. If you labeled data, you can [import it](#import-a-custom-text-classification-project) to get started.
 
-### [Language Studio](#tab/studio)
-
-[!INCLUDE [Language Studio project creation](../includes/language-studio/create-project.md)]
-
-
-### [REST APIs](#tab/apis)
 
 [!INCLUDE [REST APIs project creation](../includes/rest-api/create-project.md)]
 
----
 
-## Import a custom text classification project
+## Import a custom text classification project (REST API)
 
 If you already labeled data, you can use it to get started with the service. Make sure that your labeled data follows the [accepted data formats](../concepts/data-formats.md).
 
-### [Language Studio](#tab/studio)
-
-[!INCLUDE [Import project](../includes/language-studio/import-project.md)]
-
-### [REST APIs](#tab/apis)
-
 [!INCLUDE [Import project](../includes/rest-api/import-project.md)]
 
----
-
-## Get project details
-
-### [Language Studio](#tab/studio)
-
-[!INCLUDE [Language Studio project details](../includes/language-studio/project-details.md)]
-
-### [REST APIs](#tab/apis)
+## Get project details (REST API)
 
 [!INCLUDE [REST API project details](../includes/rest-api/project-details.md)]
 
----
+## Delete project (REST API)
 
-## Delete project
-
-### [Language Studio](#tab/studio)
-
-[!INCLUDE [Delete project using Language Studio](../includes/language-studio/delete-project.md)]
-
-### [REST APIs](#tab/apis)
 
 [!INCLUDE [Delete project using the REST API](../includes/rest-api/delete-project.md)]
 
----
 
 ## Next steps
 
