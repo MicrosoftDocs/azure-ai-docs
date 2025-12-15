@@ -202,7 +202,7 @@ For example, if you set the `egress_public_network_access` flag to `disabled` fo
 > - Azure Storage associated with the Registry
 > - Azure Container Registry associated with the Registry
 > 
-> More on [Network isolation with Azure Machine Learning registries](https://learn.microsoft.com/azure/machine-learning/how-to-registry-network-isolation?view=azureml-api-2&tabs=existing) 
+> More on [Network isolation with Azure Machine Learning registries](https://learn.microsoft.com/azure/machine-learning/how-to-registry-network-isolation) 
 
 The following diagram shows incoming scoring requests from a client's virtual network flowing through the workspace's private endpoint to the managed online endpoint. The diagram also shows two online deployments, each in its own Azure Machine Learning managed virtual network. Each deployment's virtual network has three private endpoints for outbound communication with the Azure Machine Learning workspace, the Azure Storage blob associated with the workspace, and the Azure Container Registry for the workspace.
 
