@@ -14,6 +14,8 @@ items:
   - name: Configure private link
     displayName: custom dns
     href: ../../how-to/configure-private-link.md
+  - name: Managed virtual network
+    href: ../../how-to/managed-virtual-network.md
   - name: Network security perimeter
     href: ../../how-to/add-foundry-to-network-security-perimeter.md
 - name: Use customer-managed encryption keys

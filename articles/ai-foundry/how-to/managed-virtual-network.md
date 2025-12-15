@@ -9,6 +9,7 @@ description: Secure your Microsoft Foundry projects with managed virtual network
 #customer intent: As an IT admin, I want to configure a managed virtual network for Microsoft Foundry projects so that I can control outbound traffic securely.
 ms.topic: how-to
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Configure managed virtual network for Microsoft Foundry projects
