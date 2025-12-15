@@ -30,6 +30,9 @@ The markdown format differs based on input type:
 - **Audio inputs**: Focus on transcript content, timing, and speaker information
 - **Video inputs**: Include all audio elements plus key frames
 
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
+
+
 ## Document structure and metadata
 
 ### Header information
