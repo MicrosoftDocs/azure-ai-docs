@@ -3,7 +3,7 @@ title: Model Retirement Table
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Model retirement table for Azure OpenAI in Microsoft Foundry Models.
 manager: nitinme
-ms.date: 09/08/2025
+ms.date: 12/15/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
@@ -15,92 +15,80 @@ ms.custom: references_regions, build-2025
 
 ### Text generation
 
-| Model                     | Version			| Lifecycle<br>Status	| Retirement date                    | Replacement model                    |
-| --------------------------|-------------------|:----------------------|------------------------------------|--------------------------------------|
-| `gpt-3.5-turbo-instruct`  | 0914				| Generally Available   | November 11, 2025                  |                                      |
-| `gpt-35-turbo`            | 1106				| Generally Available   | November 14, 2025                  | `gpt-4.1-mini`                       |
-| `gpt-35-turbo`            | 0125				| Generally Available   | November 14, 2025                  | `gpt-4.1-mini`                       |
-| `gpt-4`                   | turbo-2024-04-09	| Generally Available   | November 14, 2025                  | `gpt-4.1`                            |
-| `o1-mini`                 | 2024-09-12		| Generally Available   | November 17, 2025                  | `o4-mini` or `gpt-5-mini`            |
-| `computer-use-preview`    | 2025-03-11		| Preview               | No earlier than January 14, 2026   |                                      |
-| `gpt-5-chat`              | 2025-08-07		| Preview               | No earlier than January 29, 2026   |                                      |
-| `gpt-5-chat`              | 2025-10-03        | Preview               | No earlier than January 29, 2026   |
-| `o3-mini`                 | 2025-01-31		| Generally Available   | No earlier than February 1, 2026   | `o4-mini`                            |
-| `gpt-4o`                  | 2024-05-13		| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1`                            |
-| `gpt-4o-mini`             | 2024-07-18		| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1-mini`                       |
-| `gpt-4o`                  | 2024-08-06		| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1`                            |
-| `gpt-4o`                  | 2024-11-20		| Generally Available   | No earlier than March 1, 2026      | `gpt-4.1`                            |
-| `model-router`            | 2025-05-19		| Preview               | No earlier than March 31, 2026     |                                      |
-| `model-router`            | 2025-08-07        | Preview               | No earlier than March 31, 2026     |                                      |
-| `gpt-4.1`                 | 2025-04-14		| Generally Available   | No earlier than April 11, 2026     |                                      |
-| `gpt-4.1-mini`            | 2025-04-14		| Generally Available   | No earlier than April 11, 2026     |                                      |
-| `gpt-4.1-nano`            | 2025-04-14		| Generally Available   | No earlier than April 11, 2026     |                                      |
-| `o4-mini`                 | 2025-04-16		| Generally Available   | No earlier than April 11, 2026     |                                      |
-| `o3`                      | 2025-04-16		| Generally Available   | No earlier than April 11, 2026     |                                      |
-| `o3-pro`                  | 2025-06-10        | Generally Available   | No earlier than June 18, 2026      |                                      |
-| `codex-mini`              | 2025-05-16        | Generally Available   | No earlier than June 19, 2026      |                                      |
-| `o3-deep-research`        | 2025-06-26        | Generally Available   | No earlier than June 26, 2026      |                                      |
-| `o1`                      | 2024-12-17		| Generally Available   | No earlier than July 15, 2026      |                                      |
-| `gpt-5`                   | 2025-08-07		| Generally Available   | No earlier than August 8, 2026     |                                      |
-| `gpt-5-mini`              | 2025-08-07		| Generally Available   | No earlier than August 7, 2026     |                                      |
-| `gpt-5-nano`              | 2025-08-07		| Generally Available   | No earlier than August 7, 2026     |                                      |
-| `gpt-5-codex`             | 2025-09-15        | Generally Available   | No earlier than September 15, 2026 |                                      |
-| `gpt-5-pro`               | 2025-10-06        | Generally Available   | No earlier than October 06, 2026   |                                      |
-| `gpt-5.1`                 | 2025-11-13        | Generally Available   | No earlier than November 11, 2026  |                                      |
-| `gpt-5.1-codex`           | 2025-11-13        | Generally Available   | No earlier than November 14, 2026  |                                      |
-| `gpt-5.1-codex-mini`      | 2025-11-13        | Generally Available   | No earlier than November 14, 2026  |                                      |
-| `model-router`            | 2025-11-18        | Generally Available   | No earlier than December 31, 2026  |                                      |
-| `gpt-5.2`                 | 2025-12-11        | Generally Available   | No earlier than December 11, 2026  |                                      |
-| `gpt-5.2-chat`            | 2025-12-11        | Preview               | No earlier than December 11, 2026  |                                      |
+| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+|:--|:--|:--|:--|:--|:--|
+| `gpt-4o` | 2024-05-13 | Generally Available | 2025-05-13 | 2026-02-27 | `gpt-4.1` |
+| `gpt-4o` | 2024-08-06 | Generally Available | 2025-08-06 | 2026-02-27 | `gpt-4.1` |
+| `gpt-4o` | 2024-11-20 | Generally Available | 2025-11-20 | 2026-05-22 | `gpt-4.1` |
+| `gpt-4o-mini` | 2024-07-18 | Generally Available | 2025-07-18 | 2026-02-27 | `gpt-4.1-mini` |
+| `gpt-4.1` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5` |
+| `gpt-4.1-mini` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-mini` |
+| `gpt-4.1-nano` | 2025-04-14 | Generally Available | 2026-04-14 | 2026-10-14 | `gpt-5-nano` |
+| `computer-use-preview` | 2025-02-11 | Preview | 2026-02-11 | 2026-04-14 |  |
+| `computer-use-preview` | 2025-03-11 | Preview | 2026-03-11 | 2026-04-14 |  |
+| `o1` | 2024-12-17 | Generally Available | 2025-12-17 | 2026-06-18 | `o3` |
+| `o1-pro` | 2025-03-19 | Generally Available | 2026-03-19 | 2026-09-18 | `o3-pro` |
+| `o3-mini` | 2025-01-31 | Generally Available | 2026-01-31 | 2026-08-02 | `o4-mini` |
+| `o3` | 2025-04-16 | Generally Available | 2026-04-16 | 2026-10-16 |  |
+| `o3-pro` | 2025-06-10 | Generally Available | 2026-06-10 | 2026-12-10 |  |
+| `o3-deep-research` | 2025-06-26 | Generally Available | 2026-06-26 | 2026-12-26 |  |
+| `o4-mini` | 2025-04-16 | Generally Available | 2026-04-16 | 2026-10-16 |  |
+| `codex-mini` | 2025-05-16 | Generally Available | 2026-05-16 | 2026-11-15 |  |
+| `model-router` | 2025-05-19 | Preview | 2026-05-19 | 2026-11-18 |  |
+| `model-router` | 2025-11-18 | Generally Available | 2026-11-18 | 2027-05-20 |  |
+| `gpt-5-mini` | 2025-08-07 | Generally Available | 2026-08-07 | 2027-02-06 |  |
+| `gpt-5-nano` | 2025-08-07 | Generally Available | 2026-08-07 | 2027-02-06 |  |
+| `gpt-5-codex` | 2025-09-15 | Generally Available | 2026-09-15 | 2027-03-17 |  |
+| `gpt-5-pro` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
+| `gpt-5.1-chat` | 2025-11-13 | Preview | 2026-11-13 | 2027-05-15 |  |
+| `gpt-5.1-codex` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
+| `gpt-5.1-codex-mini` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
+| `gpt-5.1` | 2025-11-13 | Generally Available | 2026-11-13 | 2027-05-15 |  |
+
 
 # [Audio](#tab/audio)
 
 ### Audio
 
-| Model                          | Version      | Lifecycle<br>Status | Retirement date                          | Replacement model                    |
-| -------------------------------|--------------|---------------------|------------------------------------------|--------------------------------------|
-| `gpt-4o-realtime-preview`      | 2025-06-03   | Preview             | November 17, 2025                        |                                      |
-| `gpt-4o-transcribe`            | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
-| `gpt-4o-mini-tts`              | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
-| `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
-| `gpt-4o-mini-realtime-preview` | 2024-12-17   | Preview             | February 2, 2026                         |                                      |
-| `gpt-4o-realtime-preview`      | 2024-12-17   | Preview             | February 2, 2026                         |                                      |
-| `gpt-4o-audio-preview`         | 2024-12-17   | Preview             | February 2, 2026                         |                                      |
-| `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
-| `tts`                          | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
-| `tts-hd`                       | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
-| `whisper`                      | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
-| `gpt-audio`                    | 2025-08-28   | Generally Available | No earlier than September 1, 2026        |                                      |  
-| `gpt-realtime`                 | 2025-08-28   | Generally Available | No earlier than September 1, 2026        |                                      |
-| `gpt-audio-mini`               | 2025-10-06   | Generally Available | No earlier than October 6, 2026          |                                      |
-| `gpt-realtime-mini`            | 2025-10-06   | Generally Available | No earlier than October 6, 2026          |                                      |
-| `gpt-4o-transcribe-diarize`    | 2025-10-15   | Generally Available | No earlier than October 15, 2026         |                                      |
-
-
+| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+|:--|:--|:--|:--|:--|:--|
+| `gpt-4o-audio-preview` | 2024-12-17 | Preview | n/a | 2026-02-02 | `gpt-audio` |
+| `gpt-4o-realtime-preview` | 2024-12-17 | Preview | n/a | 2026-02-02 | `gpt-realtime` |
+| `gpt-4o-mini-audio-preview` | 2024-12-17 | Preview | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-mini-realtime-preview` | 2024-12-17 | Preview | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-transcribe` | 2025-03-20 | Preview | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-mini-tts` | 2025-03-20 | Preview | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-mini-transcribe` | 2025-03-20 | Preview | n/a | 2No earlier than February 28, 2026 |  |
+| `gpt-4o-transcribe-diarize` | 2025-10-15 | Generally Available | 2026-10-15 | 2027-04-16 |  |
+| `gpt-audio` | 2025-08-28 | Generally Available | 2026-08-28 | 2027-02-28 |  |
+| `gpt-realtime` | 2025-08-28 | Generally Available | 2026-08-28 | 2027-02-28 |  |
+| `gpt-audio-mini` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
+| `tts` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
+| `tts-hd` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
+| `whisper` | 001 | Generally Available | No earlier than February 28, 2026 |  |  |
 
 
 # [Image and video](#tab/image)
 
 ### Image and video
 
-| Model                          | Version      | Lifecycle<br>Status | Retirement date                  | Replacement model                    |
-| -------------------------------|--------------|---------------------|----------------------------------|--------------------------------------|
-| `dalle-3`                      | 3            | Generally Available | February 18, 2026                | `gpt-image-1-mini`                   |
-| `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than January 31, 2026 |                                      |
-| `gpt-image-1-mini`             | 2025-10-06   | Generally Available | No earlier than October 6, 2026  |                                      |
-| `sora`                         | 2025-05-02   | Preview             | No earlier than February 15, 2026|                                      |
+| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+|:--|:--|:--|:--|:--|:--|
+| `dall-e-3` | 3 | Generally Available | 2026-01-31 | 2026-02-18 | `gpt-image-1-mini` |
+| `gpt-image-1` | 2025-04-15 | Preview | n/a | No earlier than 2026-03-31 | `gpt-image-1-mini` |
+| `gpt-image-1-mini` | 2025-10-06 | Generally Available | 2026-10-06 | 2027-04-07 |  |
+| `sora` | 2025-05-02 | Preview | 2026-05-02 | No earlier than 2026-02-15 | `sora-2` |
 
 
 # [Embedding](#tab/embedding)
 
 ### Embedding
 
-| Model                          | Version      | Lifecycle<br>Status | Retirement date                    | Replacement model                                    |
-| -------------------------------|--------------|---------------------|------------------------------------|------------------------------------------------------|
-| `text-embedding-ada-002`       | 2            | Generally Available | No earlier than October 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-ada-002`       | 1            | Generally Available | No earlier than October 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-3-small`       | 1            | Generally Available | No earlier than October 30, 2026     |                                                      |
-| `text-embedding-3-large`       | 1            | Generally Available | No earlier than October 30, 2026     |                                                      |
+| Model Name | Model Version / Launch date | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
+|:--|:--|:--|:--|:--|:--|
+| `text-embedding-3-large` | 3-large | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-3-small` | 3-small | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
+| `text-embedding-ada-002` | 002     | Generally Available | n/a | No earlier than 2026-10-30 | n/a |
 
 ---
 
