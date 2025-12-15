@@ -1,7 +1,7 @@
 ---
 title: Configure managed virtual network for Microsoft Foundry projects (preview)
 ms.service: azure-ai-foundry
-ms.date: 11/05/2025
+ms.date: 12/15/2025
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # Configure managed virtual network for Microsoft Foundry projects
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This article shows you how to configure a managed virtual network for a Microsoft Foundry project to control outbound traffic from Agents and Evaluations. This feature is currently in preview. After you enable managed virtual network isolation, you can't disable it. Use this configuration to apply outbound isolation modes, private endpoints, and optional Azure Firewall rules.
 
