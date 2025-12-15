@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 12/12/2025
+ms.date: 12/18/2025
 ---
 
 # Quickstart: Use agentic retrieval in the Azure portal
@@ -25,6 +25,9 @@ The portal guides you through the process of creating the following objects:
 + A *knowledge base* that uses agentic retrieval to infer the underlying information need, plan and execute subqueries, and formulate a natural-language answer using the optional answer synthesis output mode.
 
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
+
+> [!IMPORTANT]
+> The portal now uses the 2025-11-01-preview REST APIs for knowledge sources and knowledge bases. If you previously created agentic retrieval objects in the portal, those objects use the 2025-08-01-preview and are subject to breaking changes. We recommend that you [migrate existing objects and code](agentic-retrieval-how-to-migrate-knowledge-bases.md) as soon as possible.
 
 ## Prerequisites
 
