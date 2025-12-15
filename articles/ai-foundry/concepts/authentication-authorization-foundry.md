@@ -1,31 +1,31 @@
 ---
-title: Authentication and authorization in Azure AI Foundry
+title: Authentication and authorization in Microsoft Foundry
 ms.service: azure-ai-foundry
 ms.date: 11/05/2025
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
-description: Learn how to authenticate and authorize access in Azure AI Foundry using Microsoft Entra ID and API keys. Explore RBAC, identity types, and best practices.
-#customer intent: As an IT admin, I want to understand how to configure authentication and authorization in Azure AI Foundry so that I can secure access to resources and operations.
+description: Learn how to authenticate and authorize access in Microsoft Foundry using Microsoft Entra ID and API keys. Explore RBAC, identity types, and best practices.
+#customer intent: As an IT admin, I want to understand how to configure authentication and authorization in Microsoft Foundry so that I can secure access to resources and operations.
 ms.topic: concept-article
 ai-usage: ai-assisted
 ---
 
-# Authentication and authorization in Azure AI Foundry
+# Authentication and authorization in Microsoft Foundry
 
-Authentication and authorization in Azure AI Foundry define how principals prove identity and gain permission to perform control plane and data plane operations. Azure AI Foundry supports API key and Microsoft Entra ID token-based authentication. Microsoft Entra ID enables conditional access, managed identities, granular role-based access control (RBAC) actions, and least privilege scenarios. API keys remain available for rapid prototyping and legacy integration but lack per-user traceability.
+Authentication and authorization in Microsoft Foundry define how principals prove identity and gain permission to perform control plane and data plane operations. Foundry supports API key and Microsoft Entra ID token-based authentication. Microsoft Entra ID enables conditional access, managed identities, granular role-based access control (RBAC) actions, and least privilege scenarios. API keys remain available for rapid prototyping and legacy integration but lack per-user traceability.
 
 > [!IMPORTANT]
 > Use Microsoft Entra ID for production workloads to enable conditional access, managed identities, and least privilege RBAC. API keys are convenient for quick evaluation but provide coarse-grained access.
 
 ## Control plane and data plane
 
-Azure separates resource management (control plane) from operational runtime (data plane). In Azure AI Foundry, the control plane covers resource configuration and management tasks. The data plane covers execution tasks like model inference, agent interactions, and evaluations.
+Azure separates resource management (control plane) from operational runtime (data plane). In Foundry, the control plane covers resource configuration and management tasks. The data plane covers execution tasks like model inference, agent interactions, and evaluations.
 
-| Plane | Scope in Azure AI Foundry | Typical operations | Example tools | Authorization surface |
+| Plane | Scope in Foundry | Typical operations | Example tools | Authorization surface |
 | --- | --- | --- | --- | --- |
 | Control plane | Resource, projects, networking, encryption, connections | Create or delete resources, assign roles, rotate keys, set up Private Link | Azure portal, Azure CLI, ARM templates, Bicep, Terraform | Azure RBAC actions |
-| Data plane | Model inference, agent interactions, evaluation jobs, content safety calls | Chat completions, embeddings, fine-tune jobs, agent messages, analyzer and classifier operations | SDKs, REST APIs, Azure AI Foundry portal playground | Azure RBAC dataActions |
+| Data plane | Model inference, agent interactions, evaluation jobs, content safety calls | Chat completions, embeddings, fine-tune jobs, agent messages, analyzer and classifier operations | SDKs, REST APIs, Foundry portal playground | Azure RBAC dataActions |
 
 Control plane actions include resource and project creation, capability host setup, model deployment, and connection creation. Data plane actions include building agents, running evaluations, tracing, monitoring, and fine-tuning workloads.
 
@@ -33,7 +33,7 @@ Control plane actions include resource and project creation, capability host set
 
 ## Authentication methods
 
-Azure AI Foundry supports Microsoft Entra ID (token-based, keyless) and API keys.
+Foundry supports Microsoft Entra ID (token-based, keyless) and API keys.
 
 ### Microsoft Entra ID
 
@@ -50,7 +50,7 @@ Limitations: Higher initial setup complexity. [TO VERIFY: link to Foundry RBAC d
 
 ### API keys
 
-API keys are static secrets scoped to an Azure AI Foundry resource.
+API keys are static secrets scoped to a Foundry resource.
 
 Use Microsoft Entra ID for:
 - Rapid prototyping.
@@ -97,7 +97,7 @@ Reference: [TO VERIFY: link to Entra ID identity types]
 
 ## Built-in roles overview
 
-Azure AI Foundry provides built-in roles that separate control and data plane permissions. Enterprises can choose narrow or combined roles based on operational models.
+Foundry provides built-in roles that separate control and data plane permissions. Enterprises can choose narrow or combined roles based on operational models.
 
 | Scenario | Typical built-in roles | Notes |
 | --- | --- | --- |
@@ -107,7 +107,7 @@ Azure AI Foundry provides built-in roles that separate control and data plane pe
 | Manage resource, manage deployments, build agents | Azure AI Full Access | Combine with Azure Monitor Reader if observability required. |
 | Observability, tracing, monitoring | Azure AI User (minimum) | Add Azure Monitor Reader on Application Insights. |
 
-:::image type="content" source="media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Azure AI Foundry." lightbox="media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png":::
+:::image type="content" source="media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Foundry." lightbox="media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png":::
 
 > [!TIP]
 > Create a custom role if a built-in role grants excess permissions. [TO VERIFY: link to custom roles section]
@@ -191,11 +191,11 @@ Scenario: Configure authentication for external app components.
 
 ## Auto role assignments
 
-When you create your first Azure AI Foundry resource and project in the Azure AI Foundry portal or Azure portal (not via Bicep or CLI), the Azure AI User role can be auto-assigned to the creating user principal if the principal has role assignment permission (exact action [TO VERIFY]). This process streamlines initial data plane access.
+When you create your first Foundry resource and project in the Foundry portal or Azure portal (not via Bicep or CLI), the Azure AI User role can be auto-assigned to the creating user principal if the principal has role assignment permission (exact action [TO VERIFY]). This process streamlines initial data plane access.
 
 ## Related content
 
-- Role-based access control for Azure AI Foundry (link in same directory) [TO VERIFY]
+- Role-based access control for Foundry (link in same directory) [TO VERIFY]
 - [Configure key-less authentication with Microsoft Entra ID](../../foundry-models/how-to/configure-entra-id.md)
 - [Rotate API access keys](../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
