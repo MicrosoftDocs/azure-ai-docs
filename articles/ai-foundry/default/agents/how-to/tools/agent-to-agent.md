@@ -134,13 +134,13 @@ In the following scenario, you have an application endpoint that complies with A
 
 ### Create a connection to A2A agent
 
-Create the specialized A2A connection. If you use the Agent2agent connection, you don't need to provide the endpoint because it already contains it.
+Create the specialized A2A connection. If you use the Agent2Agent connection, you don't need to provide the endpoint because it already contains it.
 
 1. Select **New foundry** at the top of the Microsoft Foundry UI.
 1. Select **Tools** in the left panel.
 1. Select **Connect tool** in the upper right corner.
 1. In the open window, select the **Custom** tab.
-1. Select **Agent2agent(A2A)** and select **Create**.
+1. Select **Agent2Agent (A2A)** and select **Create**.
 1. Enter a **Name** and **A2A Agent Endpoint**. Don't change **Authentication** from "Key-based".
 1. In the **Credential** section, set the key "x-api-key" with your secret key.
 
