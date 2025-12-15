@@ -49,7 +49,7 @@ items:
 - name: Foundry Tools
   items:
   - name: Azure Speech in Foundry Tools
-    href: ../../../agents/how-to/tools-classic/azure-ai-speech.md
+    href: ../../agents/how-to/tools/azure-ai-speech.md
   - name: Azure Language in Foundry Tools
     items:
     - name: Azure Language tools and agents
