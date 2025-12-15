@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 ms.author: lajanuar
 author: laujan
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.custom: language-service-question-answering
 ---
 # Migrate from QnA Maker knowledge bases to custom question answering
@@ -18,7 +18,7 @@ To successfully migrate knowledge bases, **the account performing the migration 
 - Synonyms and default answer from the QnA Maker resource.
 - Knowledge base name is copied to project description field.
 
-Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration. You'll also need to [re-enable analytics](analytics.md) for the language resource.
+Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration. You also need to reenable analytics for the language resource.
 
 ## Steps to migrate SDKs
 
@@ -28,7 +28,7 @@ This [SDK Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/Azure
 
 You can follow the steps below to migrate knowledge bases:
 
-1. Create a [language resource](https://aka.ms/create-language-resource) with custom question answering enabled in advance. When you create the language resource in the Azure portal, you'll see the option to enable custom question answering. When you select that option and proceed, you'll be asked for Azure Search details to save the knowledge bases.
+1. Create a [language resource](https://aka.ms/create-language-resource) with custom question answering enabled in advance. When you create the language resource in the Azure portal, you see the option to enable custom question answering. When you select that option and proceed, you be asked for Azure Search details to save the knowledge bases.
 
 2. If you want to add knowledge bases in multiple languages to your language resource, visit [Language Studio](https://language.azure.com/) to create your first custom question answering project and select the first option as shown below. Language settings for the language resource can be specified only when creating a project. If you want to migrate existing knowledge bases in a single language to the language resource, you can skip this step.
 
@@ -49,7 +49,7 @@ You can follow the steps below to migrate knowledge bases:
    > [!div class="mx-imgBorder"]
    > ![Migrate QnAMaker with red selection box around the QnAMaker resource selection option](../media/migrate-qnamaker/select-resource.png)
 
-6. Select the language resource to which you want to migrate the knowledge bases. You'll only be able to see those language resources that have custom question answering enabled. The language setting for the language resource is displayed in the options. You won’t be able to migrate knowledge bases in multiple languages from QnA Maker resources to a language resource if its language setting isn't specified.
+6. Select the language resource to which you want to migrate the knowledge bases. You only be able to see those language resources that have custom question answering enabled. The language setting for the language resource is displayed in the options. You won't be able to migrate knowledge bases in multiple languages from QnA Maker resources to a language resource if its language setting isn't specified.
 
    > [!div class="mx-imgBorder"]
    > ![Migrate QnAMaker with red selection box around the language resource option currently selected resource contains the information that language is unspecified](../media/migrate-qnamaker/language-setting.png)
@@ -83,7 +83,7 @@ You can follow the steps below to migrate knowledge bases:
     
     - Your source and target resources are invalid.
     - You're trying to migrate an empty knowledge base (KB).
-    - You've reached the limit for an Azure Search instance linked to your target resources.
+    - You reach the limit for an Azure Search instance linked to your target resources.
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of a failed migration with an example error.](../media/migrate-qnamaker/migration-errors.png)
@@ -92,6 +92,3 @@ You can follow the steps below to migrate knowledge bases:
 
 11. The migration will only copy the test instances of your knowledge bases. Once your migration is complete, you need to manually deploy the knowledge bases to copy the test index to the production index.
 
-## Next steps
-
-- Learn how to re-enable analytics with [Azure Monitor diagnostic logs](analytics.md).

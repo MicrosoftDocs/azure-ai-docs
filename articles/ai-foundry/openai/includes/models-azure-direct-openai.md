@@ -12,8 +12,8 @@ ms.topic: include
 > Foundry Models sold directly by Azure also include select models from top model providers, such as:
 > 
 > - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
-> - Cohere: `Cohere-command-a`, `embed-v-4-0`
-> - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
+> - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
+> - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Moonshot AI: `Kimi-K2-Thinking`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
 > - Microsoft: `MAI-DS-R1`, `model-router`
@@ -26,6 +26,34 @@ ms.topic: include
 ## Azure OpenAI in Microsoft Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
+
+## GPT-5.2
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `gpt-5.2` | East US2 & Sweden Central (Global Standard)  |
+| `gpt-5.2-chat` | East US2 & Sweden Central (Global Standard) |
+
+
+- **[Registration is required for access to gpt-5.2](https://aka.ms/oai/gpt5access).**
+
+Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.2` (2025-12-11) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | October 2024 |
+| `gpt-5.2-chat` (2025-12-11)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | October 2024 |
+
+
+<!-- > [!IMPORTANT]
+> - `gpt-5.1` `reasoning_effort` defaults to `none`. When upgrading from previous reasoning models to `gpt-5.1`, keep in mind that you may need to update your code to explicitly pass a `reasoning_effort` level if you want reasoning to occur.
+>
+> - `gpt-5.1-chat` adds built-in reasoning capabilities. Like other [reasoning models](../how-to/reasoning.md) it does not support parameters like `temperature`. If you upgrade from using `gpt-5-chat` (which is not a reasoning model) to `gpt-5.1-chat` make sure you remove any custom parameters like `temperature` from your code which are not supported by reasoning models.
+>
+> - `gpt-5.1-codex-max` adds support for setting `reasoning_effort` to `xhigh`. Reasoning effort `none` is not supported with `gpt-5.1-codex-max`.  -->
+
 
 ## GPT-5.1
 

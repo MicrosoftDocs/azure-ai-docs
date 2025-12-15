@@ -89,6 +89,8 @@ items:
     href: ../../../openai/gpt-v-quickstart.md
   - name: Image prompt engineering techniques
     href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+  - name: Image prompt transformation
+    href: ../../../openai/concepts/prompt-transformation.md
   - name: Video generation (preview)
     href: ../../../openai/concepts/video-generation.md
   - name: Video translation (preview)

@@ -30,7 +30,7 @@
             "redirect_url": "/azure/search/search-get-started-skillset",
             "redirect_document_id": true
         },
-                {
+        {
             "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob.md",
             "redirect_url": "/azure/search/tutorial-skillset",
             "redirect_document_id": true
@@ -595,6 +595,56 @@
             "source_path_from_root": "/articles/search/search-how-to-index-logic-apps-indexers.md",
             "redirect_url": "/azure/search/search-how-to-index-logic-apps",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-models.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-index-schema.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-pipeline.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-query.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-maximize-relevance.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-minimize-storage.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-powerapps.md",
+            "redirect_url": "/azure/search/search-what-is-azure-search",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-csharp-create-mvc-app.md",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-rag.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts",
+            "redirect_document_id": false
         }
     ]
   }

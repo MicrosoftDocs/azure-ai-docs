@@ -8,7 +8,7 @@ author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Add Chit-chat to a knowledge base
@@ -60,7 +60,7 @@ Select your KB, and navigate to the **Settings** page. There is a link to all th
 ![Add chit-chat to existing KB](../media/qnamaker-how-to-chit-chat/add-chit-chat-dataset.png)
 
 ## Edit your chit-chat questions and answers
-When you edit your KB, you will see a new source for chit-chat, based on the personality you selected. You can now add altered questions or edit the responses, just like with any other source.
+When you edit your KB, you see a new source for chit-chat, based on the personality you selected. You can now add altered questions or edit the responses, just like with any other source.
 
 ![Edit chit-chat QnAs](../media/qnamaker-how-to-chit-chat/edit-chit-chat.png)
 
