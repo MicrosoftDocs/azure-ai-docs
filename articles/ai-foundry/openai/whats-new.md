@@ -25,6 +25,8 @@ This article provides a summary of the latest releases and major documentation u
 We’ve put out major updates across our audio AI stack. These improvements deliver gains in accuracy, naturalness, and real-time performance, while introducing powerful new capabilities like voice cloning for trusted customers.
 
 ### Automatic speech recognition (ASR) model update
+
+`gpt-4o-mini-transcribe-2025-12-15`
 - Improved transcription accuracy and robustness for real-time scenarios. ~50% lower word error rate (WER) than previous gpt-4o-transcribe-mini on English benchmarks
 - Improves multilingual performance across Japanese, Indic, and other languages. 
 - Reduced hallucinations on silence by up to 4×, making it a more reliable choice for noisy environments and real-world audio streams. 
@@ -32,12 +34,14 @@ We’ve put out major updates across our audio AI stack. These improvements deli
 
 ### Realtime-mini (speech-to-speech) model update
 
+`gpt-realtime-mini-2025-12-15`
 - Feature parity with full gpt-realtime model in instruction-following and function-calling.
 - Includes voice cloning/custom voice upload, enabling trusted customers to provide short samples for high-fidelity voice replication that maintains consistency across conversations. This capability is gated with strict consent and legal guardrails to ensure compliance.
 - Input and output are both audio, and is be API-only.  
 
 ### Text to speech model update
 
+`gpt-4o-mini-tts-2025-12-15`
 - New benchmark for multilingual speech synthesis, 
 - More natural, human-like speech with fewer artifacts and improved speaker similarity. 
 - Supports voice cloning/custom voice upload for trusted customers, ensuring brand voice fidelity and reducing "voice drift" across turns. 
