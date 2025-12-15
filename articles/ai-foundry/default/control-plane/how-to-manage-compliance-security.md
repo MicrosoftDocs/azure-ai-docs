@@ -181,7 +181,7 @@ This capability helps your organization manage and monitor AI-generated data in 
 
 To enable Purview in Foundry:
 1. Go to **Operate** > **Compliance**.
-1. Select the **Security** tab.
+1. Select the **Security posture** tab.
 1. Select the Azure subscription.
 1. Turn on the enablement toggle next to **Microsoft Purview**.
 :::image type="content" source="media/new-draft/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab.":::
