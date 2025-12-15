@@ -207,7 +207,7 @@ To try the transcription capability, follow these steps:
 
 ## Language playground
 
-The [Language playground](https://ai.azure.com/build/playground/language) provides an interactive environment for testing and experimenting with Azure AI Language capabilities. The playground enables developers to validate natural language processing (NLP) features including language detection, named entity recognition (NER), sentiment analysis, key phrase extraction, personally identifiable information (PII) detection, and text summarization without writing code.
+The [Language playground](https://ai.azure.com/build/playground/language) provides an interactive environment for testing and validating Azure AI Language capabilities. The playground enables developers to experiment with natural language processing (NLP) features—including key data extraction, information summarization, text classification, and custom model fine-tuning—through a code-free interface.
 
 The Language playground consists of four primary sections:
 
@@ -222,7 +222,7 @@ To use the Language playground:
 
 1. Select **Try Azure Language Playground**.
 
-1. Choose a Language capability from the top banner (for example, **Detect language**, **Extract entities**, **Analyze sentiment**, or **Extract PII from text**).
+1. Choose a Language capability from the top banner (for example, **Analyze sentiment**, **Conversational language understanding**, **Custom named entity recognition**, **Custom question answering**, **Detect language**, **Extract health information**, **Extract key phrases**, **Extract named entities**, **Extract PII from conversation**, **Extract PII from text**, **Summarize conversation**, **Summarize for call center**, or **Summarize text**).
 
 1. Select **Configure** to specify API version, model version, and capability-specific options such as language selection, entity types to include, or redaction policies for PII.
 
