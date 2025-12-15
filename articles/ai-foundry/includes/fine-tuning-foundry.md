@@ -102,9 +102,9 @@ Select the training tier based on your use case and budget:
 
 ### Training and validation data
 
-If you have existing datasets in the Foundry project, choose **Existing dataset** for **Data source**, and then select your dataset.
+If you have existing datasets in the Foundry project, select **Existing dataset** for **Data source**, and then select your dataset.
 
-To upload newly prepared datasets, choose **Upload new dataset** for **Data source**, and then upload your JSONL file.
+To upload newly prepared datasets, select **Upload new dataset** for **Data source**, and then upload your JSONL file.
 
 After you select or upload your data files, validation checks automatically occur to confirm that the files are formatted as JSONL, are encoded in UTF-8 with a BOM, and are less than 512 MB in size.
 
@@ -132,7 +132,9 @@ The following hyperparameters are available:
 
 #### Automatic deployment
 
-To save time, you can enable automatic deployment for your resulting model. If training finishes successfully, the model is deployed by using the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix that you might have provided earlier.
+To save time, you can enable automatic deployment for your resulting model. If training finishes successfully, the model is deployed according to the selected deployment type. The deployment name is based on the unique name generated for your custom model and the optional suffix that you might have provided earlier.
+
+Automatic deployment is supported only for OpenAI models.
 
 ## Monitor and analyze the results
 
@@ -160,7 +162,7 @@ When each training epoch finishes, a checkpoint is generated. You can view check
 A checkpoint is a fully functional version of a model that can be both deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting. When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through the REST API.
 
 > [!NOTE]
-> During the training, you can view the metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
+> During the training, you can view the metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint is available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state. Pausing is supported only for OpenAI models.
 
 ## Deploy the fine-tuned model
 
@@ -181,6 +183,8 @@ After you create a fine-tuned model, you might want to continue to refine the mo
 
 To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a fine-tuned model](#create-a-fine-tuned-model). But instead of specifying the name of a generic base model, you specify your already fine-tuned model. A custom fine-tuned model looks like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
 
+Continuous fine-tuning is supported only for OpenAI models.
+
 ## Clean up your resources
 
 When you no longer need your fine-tuned model, you can delete the deployment and model. You can also delete the training and validation files that you uploaded to the service, if necessary.
@@ -189,7 +193,7 @@ When you no longer need your fine-tuned model, you can delete the deployment and
 
 [!INCLUDE [Fine-tuning deletion](../openai/includes/fine-tune.md)]
 
-You can delete the deployment for your fine-tuned model on the **Build > Models** page in the Foundry portal.
+You can delete the deployment for your fine-tuned model on the **Build** > **Models** page in the Foundry portal.
 
 ### Delete your fine-tuned model
 

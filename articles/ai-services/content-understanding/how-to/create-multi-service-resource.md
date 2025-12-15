@@ -28,7 +28,7 @@ To get started, you need an active [**Azure account**](https://azure.microsoft.c
 
 ## Create a resource
 
-To use the Azure Content Understanding in Foundry Tools service, you must create an [**Microsoft Foundry resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create your resource in a supported region. The Content Understanding features are available in the following regions are documented here [Support Regions](../language-region-support.md#region-support)
+To use the Azure Content Understanding in Foundry Tools service, you must create an [**Microsoft Foundry resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create your resource in a supported region. The Content Understanding features are available in supported regions listed here [Support Regions](../language-region-support.md#region-support).
 
 1. Complete the **Foundry** resource fields with the following values:
 

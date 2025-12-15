@@ -320,7 +320,7 @@ If you're ready to deploy for production or you have particular data-residency n
 
 ## Perform continuous fine-tuning
 
-After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
+After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples. Continuous fine-tuning is supported only for OpenAI models.
 
 To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a customized model](#create-a-customized-model). But instead of specifying the name of a generic base model, you specify your fine-tuned model's ID. The fine-tuned model's ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`.
 
@@ -340,6 +340,6 @@ print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. You can add a string of up to 18 characters to the name of your fine-tuned model.
+We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. You can add a string of up to 18 characters to the name of your fine-tuned model.
 
 If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry.

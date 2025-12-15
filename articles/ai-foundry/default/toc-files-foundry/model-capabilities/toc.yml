@@ -75,13 +75,13 @@ items:
   - name: Audio generation
     href: ../../../openai/audio-completions-quickstart.md
   - name: Speech to text
-    href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
   - name: Text to speech
-    href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/speech-service/get-started-text-to-speech.md?context=/azure/ai-foundry/context/context
   - name: Text to speech avatar
-    href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?context=/azure/ai-foundry/context/context
   - name: Voice Live
-    href: ../../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/speech-service/voice-live-quickstart.md?context=/azure/ai-foundry/context/context
 
 - name: Vision and video
   items:
@@ -89,10 +89,12 @@ items:
     href: ../../../openai/gpt-v-quickstart.md
   - name: Image prompt engineering techniques
     href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+  - name: Image prompt transformation
+    href: ../../../openai/concepts/prompt-transformation.md
   - name: Video generation (preview)
     href: ../../../openai/concepts/video-generation.md
   - name: Video translation (preview)
-    href: ../../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
 
 # Development Tools
 - name: Development and integration

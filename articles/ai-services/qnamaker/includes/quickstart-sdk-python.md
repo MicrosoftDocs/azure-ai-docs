@@ -2,7 +2,7 @@
 title: "Quickstart: QnA Maker client library for Python"
 description: This quickstart shows how to get started with the QnA Maker client library for Python.
 ms.topic: include
-ms.date: 01/19/2024
+ms.date: 12/15/2025
 ---
 
 Use the QnA Maker client library for Python to:
@@ -28,7 +28,7 @@ Use the QnA Maker client library for Python to:
 * Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.x](https://www.python.org/)
 * Once you have your Azure subscription, create a [QnA Maker resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesQnAMaker) in the Azure portal to get your authoring key and endpoint. After it deploys, select **Go to resource**.
-    * You will need the key and endpoint from the resource you create to connect your application to the QnA Maker API. You'll paste your key and endpoint into the code below later in the quickstart.
+    * You need the key and endpoint from the resource you create to connect your application to the QnA Maker API. You paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 ## Setting up

@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 11/18/2025
+ms.date: 12/15/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -26,7 +26,7 @@ ms.custom:
 
 Use this quickstart to create a text summarization application with the client library for .NET. In the following example, you'll create a C# application that can summarize documents or text-based customer service conversations.
 
-[!INCLUDE [Use Language Studio](../use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 
@@ -225,21 +225,21 @@ namespace Example
                             {
                                 new
                                 {
-                                    text = "Hello, you’re chatting with Rene. How may I help you?",
+                                    text = "Hello, you're chatting with Rene. How may I help you?",
                                     id = "1",
                                     role = "Agent",
                                     participantId = "Agent",
                                 },
                                 new
                                 {
-                                    text = "Hi, I tried to set up wifi connection for Smart Brew 300 coffee machine, but it didn’t work.",
+                                    text = "Hi, I tried to set up wifi connection for Smart Brew 300 coffee machine, but it didn't work.",
                                     id = "2",
                                     role = "Customer",
                                     participantId = "Customer",
                                 },
                                 new
                                 {
-                                    text = "I’m sorry to hear that. Let’s see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
+                                    text = "I'm sorry to hear that. Let's see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
                                     id = "3",
                                     role = "Agent",
                                     participantId = "Agent",
@@ -267,7 +267,7 @@ namespace Example
                                 },
                                 new
                                 {
-                                    text = "I’m very sorry to hear that. Let me see if there’s another way to fix the issue. Please hold on for a minute.",
+                                    text = "I'm very sorry to hear that. Let me see if there's another way to fix the issue. Please hold on for a minute.",
                                     id = "7",
                                     role = "Agent",
                                     participantId = "Agent",

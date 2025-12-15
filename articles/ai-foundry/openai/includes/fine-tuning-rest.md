@@ -354,7 +354,7 @@ To learn about cross-region deployment and how to use the deployed model, see [U
 
 ## Perform continuous fine-tuning
 
-After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
+After you create a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples. Continuous fine-tuning is supported only for OpenAI models.
 
 To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a customized model](#create-a-customized-model). But instead of specifying the name of a generic base model, you specify your fine-tuned model's ID. The fine-tuned model's ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`.
 
@@ -370,7 +370,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
 }'
 ```
 
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. The suffix can contain up to 40 characters (`a` to `z`, `A` to `Z`, `0` to `9`, `-`, and `_`) that will be added to your fine-tuned model's name.
+We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. The suffix can contain up to 40 characters (`a` to `z`, `A` to `Z`, `0` to `9`, `-`, and `_`) that will be added to your fine-tuned model's name.
 
 If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) for an Azure OpenAI resource by using the REST API.
 
