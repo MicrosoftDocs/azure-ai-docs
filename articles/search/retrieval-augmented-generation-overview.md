@@ -22,11 +22,11 @@ Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities 
 
 | Challenge | Description |
 |-----------|-------------|
-| **Query understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words. |
-| **Multi-source data access** | Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential. |
-| **Token constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps. |
-| **Response time expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with
-| **Security and governance** | Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content. |
+| **Query&nbsp;understanding** | Modern users ask complex, conversational, or vague questions with assumed context. Traditional keyword search fails when queries don't match document terminology. Your information retrieval system must understand intent, not just match words. |
+| **Multi-source&nbsp;data&nbsp;access** | Enterprise content spans SharePoint, databases, blob storage, and other platforms. Creating a unified search corpus without disrupting data operations is essential. |
+| **Token&nbsp;constraints** | LLMs accept limited token inputs. Your retrieval system must return highly relevant, concise results—not exhaustive document dumps. |
+| **Response&nbsp;time&nbsp;expectations** | Users expect AI-powered answers in seconds, not minutes. The retrieval system must balance thoroughness with
+| **Security&nbsp;and&nbsp;governance** | Opening private content to LLMs requires granular access control. Users and agents must only retrieve authorized content. |
 
 ## How Azure AI Search meets RAG challenges
 
@@ -169,7 +169,7 @@ Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azur
 
 You can choose between two approaches for RAG workloads: new **agentic retrieval** for modern RAG (currently in preview), or the original query architecture for **classic RAG**. If you're required to use only generally available features, you should consider classic RAG. -->
 
-## Modern RAG with agentic retrieval
+### Modern RAG with agentic retrieval
 
 Azure AI Search is a [proven solution for RAG workloads](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md). It now provides [agentic retrieval](search-what-is-azure-search.md#what-is-agentic-retrieval), a specialized pipeline designed specifically for RAG patterns. This approach uses LLMs to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
 
@@ -185,7 +185,7 @@ You need new objects for this pipeline: one or more knowledge sources, a knowled
 
 For new RAG implementations, we recommend starting with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
 
-## Classic RAG pattern for Azure AI Search
+### Classic RAG pattern for Azure AI Search
 
 Classic RAG uses the [original query execution architecture](search-what-is-azure-search.md#what-is-classic-search) where your application sends a single query to Azure AI Search and orchestrates the handoff to an LLM separately. Your deployed LLM formulates an answer using the flattened result set from the query. This approach is simpler with fewer components, and faster because there's no LLM involvement in query planning.
 
@@ -232,7 +232,7 @@ For agentic retrieval, you can also access remote sources (Bing, SharePoint) wit
 
 For implementation details, see [integrated vectorization](vector-search-integrated-vectorization.md) and [skillsets](cognitive-search-working-with-skillsets.md). -->
 
-## Maximize relevance and recall
+### Maximize relevance and recall
 
 How do you provide the best grounding data for LLM answer formulation? It's a combination of having appropriate content, smart queries, and query logic that can identify the best chunks for answering a question.
 
