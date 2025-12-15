@@ -1,7 +1,7 @@
 ---
 title: Analytics on knowledgebase - QnA Maker
 titleSuffix: Azure AI services
-description: QnA Maker stores all chat logs and other telemetry, if you have enabled App Insights during the creation of your QnA Maker service. Run the sample queries to get your chat logs from App Insights.
+description: QnA Maker stores all chat logs and other telemetry, if you enabled App Insights during the creation of your QnA Maker service. Run the sample queries to get your chat logs from App Insights.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
@@ -9,12 +9,12 @@ displayName: chat history, history, chat logs, logs
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Get analytics on your knowledge base
 
-QnA Maker stores all chat logs and other telemetry, if you have enabled Application Insights during the [creation of your QnA Maker service](./set-up-qnamaker-service-azure.md). Run the sample queries to get your chat logs from Application Insights.
+QnA Maker stores all chat logs and other telemetry, if you enabled Application Insights during the [creation of your QnA Maker service](./set-up-qnamaker-service-azure.md). Run the sample queries to get your chat logs from Application Insights.
 
 [!INCLUDE [Custom question answering](../includes/new-version.md)]
 

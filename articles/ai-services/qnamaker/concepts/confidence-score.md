@@ -7,8 +7,8 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
-ms.topic: conceptual
-ms.date: 07/16/2025
+ms.topic: article
+ms.date: 12/15/2025
 ---
 
 # The confidence score of an answer
