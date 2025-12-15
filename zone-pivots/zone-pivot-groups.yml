@@ -1273,6 +1273,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest
     title: REST API
   - id: typescript
@@ -1283,6 +1285,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest
     title: REST API
   - id: typescript
