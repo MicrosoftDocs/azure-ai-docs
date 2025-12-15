@@ -47,20 +47,21 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 
 
-<!-- # [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript)
 
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
-1. Install packages:
+1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
 
     ```bash
-    npm install @azure/ai-projects@2.0.0-beta.1'
+    npm install @azure/ai-projects@beta @azure/identity dotenv
     ```
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart)
 
-# [Java](#tab/java)
+<!--# [Java](#tab/java)
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
