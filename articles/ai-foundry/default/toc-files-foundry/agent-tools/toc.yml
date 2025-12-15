@@ -13,7 +13,7 @@ items:
     href: ../../agents/how-to/tools/governance.md
 
 - name: Code interpreter
-  href: ../../agents/how-to/tools/code-interpreter.md
+  href: ../../../agents/how-to/tools-classic/code-interpreter.md
 - name: Custom code interpreter (preview)
   href: ../../agents/how-to/tools/custom-code-interpreter.md
 - name: Browser automation (preview)
