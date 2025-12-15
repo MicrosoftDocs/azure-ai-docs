@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: quickstart
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ms.custom: mode-other
 ---
 
@@ -71,7 +71,7 @@ When you are done creating the resource in the Azure portal, return to the QnA M
 
     The markdown symbol, `*`, is used for bullet points. The `\n` is used for a new line.
 
-    The **Edit** page shows the markdown. When you use the **Test** panel later, you will see the markdown displayed properly.
+    The **Edit** page shows the markdown. When you use the **Test** panel later, you see the markdown displayed properly.
 
 ## Save and train
 
@@ -111,7 +111,7 @@ After publishing, you can create a bot from the **Publish** page:
 
 When you make changes to the knowledge base and republish, you don't need to take further action with the bot. It's already configured to work with the knowledge base, and works with all future changes to the knowledge base. Every time you publish a knowledge base, all the bots connected to it are automatically updated.
 
-1. In the QnA Maker portal, on the **Publish** page, select **Create bot**. This button appears only after you've published the knowledge base.
+1. In the QnA Maker portal, on the **Publish** page, select **Create bot**. This button appears only after you'v publish the knowledge base.
 
     ![Screenshot of creating a bot](../media/qnamaker-create-publish-knowledge-base/create-bot-from-published-knowledge-base-page.png)
 

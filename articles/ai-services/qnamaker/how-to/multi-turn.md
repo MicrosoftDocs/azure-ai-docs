@@ -6,7 +6,7 @@ ms.subservice: azure-ai-qna-maker
 ms.author: lajanuar
 author: laujan
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Use follow-up prompts to create multiple turns of a conversation
@@ -40,7 +40,7 @@ When the user selects an option (#3), the next list of refining options (#4) is 
 
 ### Use multi-turn in a bot
 
-After publishing your KB, you can select the **Create Bot** button to deploy your QnA Maker bot to Azure AI Bot Service. The prompts will appear in the chat clients that you have enabled for your bot.
+After publishing your KB, you can select the **Create Bot** button to deploy your QnA Maker bot to Azure AI Bot Service. The prompts will appear in the chat clients that you enabled for your bot.
 
 ## Create a multi-turn conversation from a document's structure
 
@@ -117,7 +117,7 @@ Add a follow-up prompt to an existing question-and-answer pair that isn't curren
 
     ![The "Follow-up prompt" page](../media/conversational-context/search-follow-up-prompt-for-existing-answer.png)
 
-1. After you've added the follow-up prompt, select **Save and train** in the top navigation.
+1. After you add the follow-up prompt, select **Save and train** in the top navigation.
 
 ### Edit the display text
 
@@ -165,7 +165,7 @@ When you add a new question-and-answer pair to the knowledge base, each pair sho
 
     :::image type="content" source="../media/conversational-context/child-prompt-created.png" alt-text="Screenshot shows the Context column, for both questions, indicates a follow-up prompt relationship." lightbox="../media/conversational-context/child-prompt-created.png":::
 
-1. After you've added the follow-up prompt, select **Save and train** in the top navigation bar.
+1. After you'v added the follow-up prompt, select **Save and train** in the top navigation bar.
 
 <a name="enable-multi-turn-during-testing-of-follow-up-prompts"></a>
 

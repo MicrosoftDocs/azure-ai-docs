@@ -243,3 +243,4 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 - [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
+- [What's new in Microsoft Foundry documentation?](whats-new-azure-ai-foundry.md)

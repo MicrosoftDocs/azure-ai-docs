@@ -7,8 +7,9 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
+
 # Move a knowledge base using export-import
 
 You might want to create a copy of your knowledge base for several reasons:

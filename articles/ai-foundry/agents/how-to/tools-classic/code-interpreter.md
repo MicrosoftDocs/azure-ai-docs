@@ -235,7 +235,3 @@ We recommend using Agents with the latest models to take advantage of the new fe
 |`.xlsx`|`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`|
 |`.xml`|`application/xml` or `text/xml`|
 |`.zip`|`application/zip`|
-
-## See also
-
-* [How to use code interpreter](code-interpreter-samples.md).
