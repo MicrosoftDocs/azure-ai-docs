@@ -4,7 +4,7 @@ ms.author: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 12/15/2025
 ai-usage: ai-assisted
 ---
 
@@ -45,7 +45,7 @@ The quickstart assumes the following is available on your computer:
    mkdir -p src/main/resources
    ```
 
-1. Create `src/main/resources/application.properties` and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
+1. Create an `application.properties` file in the `src/main/resources` directory and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
 
     ```properties
     azure.search.endpoint=YOUR-SEARCH-SERVICE-ENDPOINT
@@ -59,7 +59,7 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 ## Create a common configuration class
 
-Create a file in `src/main/java/com/azure/search/quickstart` called `SearchConfig.java` to read the properties file and hold the configuration values and authentication credential.
+Create a `SearchConfig.java` file in the `src/main/java/com/azure/search/quickstart` directory to read the properties file and hold the configuration values and authentication credential.
 
 :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SearchConfig.java" :::
 
@@ -67,7 +67,7 @@ Create a file in `src/main/java/com/azure/search/quickstart` called `SearchConfi
 
 In this section, you get settings for the existing `hotels-sample-index` index on your search service.
 
-1. Create a file in `src/main/java/com/azure/search/quickstart` called `GetIndexSettings.java`.
+1. Create a `GetIndexSettings.java` file in the `src/main/java/com/azure/search/quickstart` directory.
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/GetIndexSettings.java" :::
 
@@ -81,11 +81,11 @@ In this section, you get settings for the existing `hotels-sample-index` index o
 
 ## Update the index with a semantic configuration
 
-1. Create a file in `src/main/java/com/azure/search/quickstart` called `UpdateIndexSettings.java` to add a semantic configuration to the existing `hotels-sample-index` index on your search service.
+1. Create an `UpdateIndexSettings.java` file in the `src/main/java/com/azure/search/quickstart` directory to add a semantic configuration to the existing `hotels-sample-index` index on your search service.
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/UpdateIndexSettings.java" :::
 
-1. Run the code.
+1. Compile and run the code.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.UpdateIndexSettings"
@@ -95,13 +95,13 @@ In this section, you get settings for the existing `hotels-sample-index` index o
 
 ## Run semantic queries
 
-Once the `hotels-sample-index` index has a semantic configuration, you can run queries that include semantic parameters.
+After the `hotels-sample-index` index has a semantic configuration, you can run queries that include semantic parameters.
 
-1. Create a file in `src/main/java/com/azure/search/quickstart` called `SemanticQuery.java` to create a semantic query of the index.
+1. Create a `SemanticQuery.java` file in the `src/main/java/com/azure/search/quickstart` directory to create a semantic query that targets the index.
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticQuery.java" :::
 
-1. Run the code.
+1. Compile and run the code.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.SemanticQuery"
@@ -113,11 +113,11 @@ Once the `hotels-sample-index` index has a semantic configuration, you can run q
 
 Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases.
 
-1. Create a file in `src/main/java/com/azure/search/quickstart` called `SemanticQueryWithCaptions.java`.
+1. Create a `SemanticQueryWithCaptions.java` file in the `src/main/java/com/azure/search/quickstart` directory.
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticQueryWithCaptions.java" :::
 
-1. Run the code.
+1. Compile and run the code.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.SemanticQueryWithCaptions"
@@ -142,11 +142,11 @@ Semantic ranker can produce an answer to a query string that has the characteris
 
 To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
 
-1. Create a file in `src/main/java/com/azure/search/quickstart` called `SemanticAnswer.java`.
+1. Create a `SemanticAnswer.java` file in the `src/main/java/com/azure/search/quickstart` directory.
 
    :::code language="java" source="~/azure-search-java-samples/semantic-ranking-quickstart/src/main/java/com/azure/search/quickstart/SemanticAnswer.java" :::
 
-1. Run the code.
+1. Compile and run the code.
 
     ```bash
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.SemanticAnswer"
