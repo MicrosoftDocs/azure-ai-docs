@@ -994,21 +994,21 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 **Problem**: Grounding with Bing Search requests time out or can't connect.
 
 **Solution**: Grounding with Bing Search and Grounding with Bing Custom Search don't work with VPN or Private Endpoints. Ensure:
-1. Your network has normal internet access.
-1. You're not using a VPN connection.
-1. Private Endpoints aren't configured for the agent service.
-1. Firewall rules allow outbound connections to Bing services.
+- Your network has normal internet access.
+- You're not using a VPN connection.
+- Private Endpoints aren't configured for the agent service.
+- Firewall rules allow outbound connections to Bing services.
 
 ### Custom search returns no results
 
 **Problem**: Bing Custom Search returns empty results or doesn't find expected content.
 
 **Solution**:
-1. Verify your custom search instance is properly configured with target domains.
-1. Ensure the domains you want to search are public and indexed by Bing.
-1. Check that the configured domains match your search query expectations.
-1. If your site isn't indexed, see [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for indexing instructions.
-1. Wait for Bing to crawl recently added or updated content (can take several days).
+- Verify your custom search instance is properly configured with target domains.
+- Ensure the domains you want to search are public and indexed by Bing.
+- Check that the configured domains match your search query expectations.
+- If your site isn't indexed, see [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for indexing instructions.
+- Wait for Bing to crawl recently added or updated content (can take several days).
 
 ### Missing or invalid environment variables
 
@@ -1028,10 +1028,10 @@ Create a `.env` file or set system environment variables with these values.
 **Problem**: Agent responds without calling the Bing grounding tool.
 
 **Solution**:
-1. Ensure your query requires current information that the model doesn't know.
-1. For explicit tool usage, set `tool_choice="required"` in your request (Python/TypeScript examples show this).
-1. Verify the tool is properly configured in the agent definition.
-1. Check agent instructions encourage using available tools for current information.
+- Ensure your query requires current information that the model doesn't know.
+- For explicit tool usage, set `tool_choice="required"` in your request (Python/TypeScript examples show this).
+- Verify the tool is properly configured in the agent definition.
+- Check agent instructions encourage using available tools for current information.
 
 ## Manage Grounding with Bing Search and Grounding with Bing Custom Search
 
