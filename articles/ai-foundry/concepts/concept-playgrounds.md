@@ -207,7 +207,7 @@ To try the transcription capability, follow these steps:
 
 ## Language playground
 
-The [Language playground](https://ai.azure.com/build/playground/language) provides an interactive environment for testing and validating Azure AI Language capabilities. The playground enables developers to experiment with natural language processing (NLP) features—including key data extraction, information summarization, text classification, and custom model fine-tuning—through a code-free interface.
+The [Language playground](https://ai.azure.com/build/playground/language) is an interactive environment where developers can test and validate Azure AI Language capabilities without writing code. It supports natural language processing (NLP) features such as **key data extraction**, **information summarization**, **text classification**, and **custom model fine-tuning**.
 
 The Language playground consists of four primary sections:
 
@@ -222,7 +222,18 @@ To use the Language playground:
 
 1. Select **Try Azure Language Playground**.
 
-1. Choose a Language capability from the top banner (for example, **Analyze sentiment**, **Conversational language understanding**, **Custom named entity recognition**, **Custom question answering**, **Detect language**, **Extract health information**, **Extract key phrases**, **Extract named entities**, **Extract PII from conversation**, **Extract PII from text**, **Summarize conversation**, **Summarize for call center**, or **Summarize text**).
+1. Choose a Language capability from the top banner, such as:
+
+   - [**Analyze sentiment**](/azure/ai-services/language-service/sentiment-opinion-mining/overview)
+   - [**Conversational language understanding**](/azure/ai-services/language-service/conversational-language-understanding/overview)
+   - [**Custom named entity recognition**](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
+   - [**Custom question answering**](/azure/ai-services/language-service/question-answering/overview)
+   - [**Detect language**](/azure/ai-services/language-service/language-detection/overview)
+   - [**Extract health information**](/azure/ai-services/language-service/text-analytics-for-health/overview)
+   - [**Extract key phrases**](/azure/ai-services/language-service/key-phrase-extraction/overview)
+   - [**Extract named entities**](/azure/ai-services/language-service/named-entity-recognition/overview)
+   - [**Extract PII from conversation or text**](/azure/ai-services/language-service/personally-identifiable-information/overview)
+   - [**Summarize conversation, call center transcripts, or text**](/azure/ai-services/language-service/summarization/overview)
 
 1. Select **Configure** to specify API version, model version, and capability-specific options such as language selection, entity types to include, or redaction policies for PII.
 
