@@ -29,7 +29,7 @@ Azure separates resource management (control plane) from operational runtime (da
 
 Control plane actions include resource and project creation, capability host setup, model deployment, and connection creation. Data plane actions include building agents, running evaluations, tracing, monitoring, and fine-tuning workloads.
 
-:::image type="content" source="media/authentication-authorization-ai-foundry/azure-ai-control-data-plane-diagram.png" alt-text="Diagram illustrating separation of control plane and data plane operations with associated RBAC surfaces." lightbox="media/authentication-authorization-ai-foundry/azure-ai-control-data-plane-diagram.png":::
+:::image type="content" source="../media/authentication-authorization-ai-foundry/azure-ai-control-data-plane-diagram.png" alt-text="Diagram illustrating separation of control plane and data plane operations with associated RBAC surfaces." lightbox="../media/authentication-authorization-ai-foundry/azure-ai-control-data-plane-diagram.png":::
 
 ## Authentication methods
 
@@ -107,7 +107,7 @@ Foundry provides built-in roles that separate control and data plane permissions
 | Manage resource, manage deployments, build agents | Azure AI Full Access | Combine with Azure Monitor Reader if observability required. |
 | Observability, tracing, monitoring | Azure AI User (minimum) | Add Azure Monitor Reader on Application Insights. |
 
-:::image type="content" source="media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Foundry." lightbox="media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png":::
+:::image type="content" source="../media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png" alt-text="Diagram mapping built-in roles to control plane actions and data plane actions in Foundry." lightbox="../media/authentication-authorization-ai-foundry/azure-ai-role-mapping-diagram.png":::
 
 > [!TIP]
 > Create a custom role if a built-in role grants excess permissions. [TO VERIFY: link to custom roles section]
@@ -158,7 +158,7 @@ The following example shows a custom role definition that restricts agent-relate
 
 Key setup elements include configuring a custom subdomain, assigning roles to user, service principal, or managed identity, and removing key-based authentication after migration. Service principals use client secrets or certificates; managed identities avoid credential management.
 
-:::image type="content" source="media/authentication-authorization-ai-foundry/microsoft-entra-rbac-diagram.png" alt-text="Diagram showing mixed workload using user principals, service principals, and managed identities with RBAC applied." lightbox="media/authentication-authorization-ai-foundry/microsoft-entra-rbac-diagram.png":::
+:::image type="content" source="../media/authentication-authorization-ai-foundry/microsoft-entra-rbac-diagram.png" alt-text="Diagram showing mixed workload using user principals, service principals, and managed identities with RBAC applied." lightbox="../media/authentication-authorization-ai-foundry/microsoft-entra-rbac-diagram.png":::
 
 Core considerations:
 - Assign only required built-in or custom roles at resource or project scope.
@@ -196,8 +196,8 @@ When you create your first Foundry resource and project in the Foundry portal or
 ## Related content
 
 - Role-based access control for Foundry (link in same directory) [TO VERIFY]
-- [Configure key-less authentication with Microsoft Entra ID](../../foundry-models/how-to/configure-entra-id.md)
-- [Rotate API access keys](../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
+- [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
+- [Rotate API access keys](../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
 - [Authentication vs. authorization (Microsoft Entra ID)](/entra/identity-platform/authentication-vs-authorization)
 - [Identity fundamentals](/entra/fundamentals/identity-fundamental-concepts)
