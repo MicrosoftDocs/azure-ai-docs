@@ -35,9 +35,9 @@ Use the compliance workspace tabs to reach the right surface quickly.
 
 - Appropriate permissions based on the tasks you want to perform:
   - To **view** compliance status and guardrail policies: No special permissions required beyond project access.
-  - To **create or edit** guardrail policies: You must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level. See [Overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
-  - To **enable Microsoft Defender for Cloud**: You need the Security Admin role or be a subscription Owner so you can turn on Defender plans and agentless protections.
-  - To **configure Purview integration**: The 'Cognitive Services Security Integration Administrator' and 'Azure AI Account Owner' roles are required.
+  - To **create or edit** guardrail policies: You must be an [**Owner**](/azure/role-based-access-control/built-in-roles#owner) or [**Resource Policy Contributor**](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level. See [Overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
+  - To **enable Microsoft Defender for Cloud**: You need the **Security Admin** role or be a subscription **Owner** so you can turn on Defender plans and agentless protections.
+  - To **configure Purview integration**: The **Cognitive Services Security Integration Administrator** and **Azure AI Account Owner** roles are required.
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
@@ -162,17 +162,11 @@ To review Defender security recommendations, follow these steps:
 By enabling Microsoft Purview on your Azure subscription, you can access, process, and store prompt and response data – including associated metadata – from Microsoft Foundry apps and agents. This integration supports key data security and compliance scenarios such as:
 
 - Microsoft Purview Audit
-
 - Sensitive information type (SIT) classification
-
 - Analytics and Reporting through Microsoft Purview DSPM for AI
-
 - Insider Risk Management
-
 - Communication Compliance
-
 - Data Lifecycle Management
-
 - eDiscovery
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements.
@@ -190,10 +184,11 @@ To enable Purview in Foundry:
 1. Select the **Security** tab.
 1. Select the Azure subscription.
 1. Turn on the enablement toggle next to **Microsoft Purview**.
+:::image type="content" source="media/new-draft/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab.":::
 
 Repeat the preceding steps for other Azure subscriptions, as appropriate.
 
-:::image type="content" source="media/new-draft/microsoft-purview-toggle.png" alt-text="Screenshot of the Microsoft Purview enablement toggle in the Compliance Security tab.":::
+
 
 ## Related content
 
