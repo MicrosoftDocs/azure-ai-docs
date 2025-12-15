@@ -47,7 +47,7 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 
 
-# [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript2)
 
 1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
 

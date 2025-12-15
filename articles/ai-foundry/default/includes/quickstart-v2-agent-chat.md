@@ -22,7 +22,7 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-chat-with-agent.cs":::
 
-# [TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript2)
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-chat-with-agent.ts":::
 
