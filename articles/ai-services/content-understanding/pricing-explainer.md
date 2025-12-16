@@ -5,7 +5,7 @@ description: Understand the pricing model for Azure Content Understanding in Fou
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-understanding
-ms.topic: conceptual
+ms.topic: article
 ms.date: 10/03/2025
 ms.custom:
   - build-2025
