@@ -18,7 +18,7 @@ ms.custom:
 # Used with ../how-to/create-projects
 ---
 
-Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
+Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a preconfigured environment.
 
 :::image type="content" source="../media/how-to/projects/projects-multi-setup.png" alt-text="Diagram shows how a team could share resource access with multiple projects on a Foundry resource.":::
 
@@ -59,28 +59,36 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
         :::image type="content" source="../media/how-to/projects/second-project.png" alt-text="Screenshot shows how to create a second project on an existing resource.":::
     
-  ::: moniker-end
-    
-  ::: moniker range="foundry"
+    ::: moniker-end
+  
+    ::: moniker range="foundry"
 
-  Adding a second project is not currently supported in Foundry (new).  
-    
+    The Foundry (new) portal displays only the **default** project for each Foundry resource. You can't create multiple projects, or view any of the nondefault projects in the Foundry (new) portal.
+        
     <!-- 1. Select **Operate** in the upper-right navigation.
     1. Select **Admin** in the left pane.
     1. Select the Parent resource you want to add a project to.
     1. Select **Add project**. -->
-    
+      
     ::: moniker-end
     
     # [Python SDK](#tab/python)
+
+    ::: moniker range="foundry"
+    While this code can add additional projects to a resource, you won't be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.
+    ::: moniker-end
     
     Add this code to your script to create a new project on your existing resource:
 
-    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_additional":::
+    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_additional":::
     
     
     # [Azure CLI](#tab/azurecli)
-    
+
+    ::: moniker range="foundry"
+    While this code can add additional projects to a resource, you won't be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.
+    ::: moniker-end
+
     Use your existing values for {foundry_resource_name} to add another project to the resource:
     
     ```azurecli

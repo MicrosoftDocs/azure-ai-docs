@@ -127,7 +127,7 @@ Transcribes audio into the input language.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response. `logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. `logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response. `logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. `logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
@@ -4225,7 +4225,7 @@ The configuration information for an audio transcription request.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response.<br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription.<br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response.<br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription.<br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
@@ -4684,11 +4684,11 @@ A citation for a web resource used to generate a model response.
 
 ### OpenAI.AudioResponseFormat
 
-The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`, the only supported format is `json`.
+The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. The only supported format is `json`.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe`, the only supported format is `json`. |
+| **Description** | The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. For `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, `gpt-4o-mini-transcribe`, and `gpt-4o-mini-transcribe-2025-12-15`. The only supported format is `json`. |
 | **Type** | string |
 | **Values** | `json`<br>`text`<br>`srt`<br>`verbose_json`<br>`vtt` |
 

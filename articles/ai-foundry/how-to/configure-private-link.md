@@ -179,4 +179,3 @@ You can grant networking access to trusted Azure services by creating a network 
 
 - [Create a Foundry project](create-projects.md)
 - [Learn more about Foundry](../what-is-azure-ai-foundry.md)
-- [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

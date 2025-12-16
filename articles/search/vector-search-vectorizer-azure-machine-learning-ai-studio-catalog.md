@@ -23,9 +23,9 @@ If you're using integrated vectorization to create the vector arrays, the skills
 
 ## Prerequisites
 
-+ A [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
++ A [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
 
-+ For hub-based projects only, a [serverless deployment](/azure/ai-foundry/how-to/deploy-models-serverless) of a [supported model](#vectorizer-parameters) from the Foundry model catalog.
++ For hub-based projects only, a serverless deployment of a [supported model](#vectorizer-parameters) from the Microsoft Foundry model catalog. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) to provision the serverless deployment.
 
 ## Vectorizer parameters
 
@@ -33,10 +33,10 @@ Parameters are case sensitive. The parameters you use depend on what [authentica
 
 | Parameter name | Description |
 |--------------------|-------------|
-| `uri` | (Required for [key authentication](#WhatParametersToUse)) The target URI of the serverless deployment from the Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. |
+| `uri` | (Required for [key authentication](#WhatParametersToUse)) The target URI of the serverless deployment from the Microsoft Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. |
 | `key` | (Required for [key authentication](#WhatParametersToUse)) The API key of the model provider. |
 | `resourceId` | (Required for [token authentication](#WhatParametersToUse)) The Azure Resource Manager resource ID of the model provider. For an AML online endpoint, use the `subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}` format. |
-| `modelName` | The name of the embedding model from the Foundry model catalog deployed at the specified `uri`. Supported models are:<p><ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
+| `modelName` | The name of the embedding model from the Microsoft Foundry model catalog deployed at the specified `uri`. Supported models (serverless deployments only) are:<p><ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
 | `region` | (Optional for [token authentication](#WhatParametersToUse)) The region in which the model provider is deployed. Required if the region is different from the region of the search service. |
 | `timeout` | (Optional) The timeout for the HTTP client making the API call. It must be formatted as an XSD "dayTimeDuration" value (a restricted subset of an [ISO 8601 duration](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) value). For example, `PT60S` for 60 seconds. If not set, a default value of 30 seconds is chosen. The timeout can be set to a maximum of 230 seconds and a minimum of 1 second. |
 

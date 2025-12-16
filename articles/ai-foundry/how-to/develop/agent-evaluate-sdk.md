@@ -54,7 +54,7 @@ You can also assess other quality and safety aspects of your agentic workflows, 
 
 If you're building Foundry Agents, you can [seamlessly evaluate them](#evaluate-microsoft-foundry-agents).
 
-If you build your agents outside of Foundry, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See details in [Evaluating other agents](#evaluating-other-agents).
+If you build your agents outside of Foundry, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the required data formats. See details in [Evaluating other agents](#evaluating-other-agents).
 
 ::: moniker-end
 
@@ -75,7 +75,7 @@ pip install azure-ai-evaluation
 Install the package from the Azure AI evaluation SDK:
 
 ```python
-    pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
+pip install "azure-ai-projects>=2.0.0b1" azure-identity python-dotenv
 ```
 
 Set these environment variables with your values in a `.env` file:
@@ -395,7 +395,7 @@ You can seamlessly evaluate Foundry agents by using evaluators in [Agent Evaluat
 
 > [!NOTE]
 > If you're building other agents that output a different schema, convert them into the general OpenAI-style [agent message schema](#agent-message-schema) and use the preceding evaluators.
-> More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also use all of our evaluators.
+> More generally, if you can parse the agent messages into the required data formats, you can also use all of our evaluators.
 
 ### Prerequisites
 
@@ -562,9 +562,9 @@ Use the Microsoft Foundry SDK Python client library to evaluate your Microsoft F
 
 If you use agents outside Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
 
-::: moniker-end
-
 Agents typically emit messages to interact with a user or other agents. Built-in evaluators accept simple data types such as strings in `query`, `response`, and `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, extracting these simple data types from agent messages can be challenging due to the complex interaction patterns of agents and framework differences. For example, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
+
+::: moniker-end
 
 ::: moniker range="foundry"
 
@@ -1251,7 +1251,7 @@ Try a sample for each of these evaluators:
 
 ::: moniker range="foundry"
 
-Try a sample for each of these evaluators in the [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluation/agentic_evaluators/).
+Try a sample for each of these evaluators in the [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators).
 
 ::: moniker-end
 

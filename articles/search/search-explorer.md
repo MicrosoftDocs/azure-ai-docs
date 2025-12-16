@@ -24,7 +24,7 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
-+ This quickstart uses the hotels-sample index.
++ This quickstart uses the hotels-sample index. Follow the instructions in [this quickstart](search-import-data-portal.md) to create the index.
 
 ## Start Search explorer
 

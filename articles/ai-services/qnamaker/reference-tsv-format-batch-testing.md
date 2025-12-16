@@ -8,7 +8,7 @@ author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: reference
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Batch testing TSV format

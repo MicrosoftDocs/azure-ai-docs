@@ -151,9 +151,9 @@ Use this tab to view, organize, and administer all projects, users, and connecte
 
 :::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin tab showing a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
 
-The **[Admin](../../concepts/management-center.md)** tab extends your operational view beyond a single project. While most work in Foundry takes place within a project context, **Manage** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
+The **[Admin](../../concepts/management-center.md)** tab extends your operational view beyond a single project. While most work in Foundry takes place within a project context, **Admin** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
 
-From **Operate → Manage**, administrators and power users can:
+From **Operate → Admin**, administrators and power users can:
 
 - Gain visibility into all projects across their subscription or tenant, including active, inactive, and archived workspaces.
 - View detailed project information such as owners, region, connected services, and compliance posture.
@@ -161,7 +161,7 @@ From **Operate → Manage**, administrators and power users can:
 - Attach or manage connected resources, such as storage accounts, compute clusters, and Foundry Tools, ensuring projects remain properly provisioned.
 - Assign access at parent scope (subscription or resource group) to apply consistent governance and permissions inheritance across multiple projects.
 
-Together, these capabilities make **Manage** the Control Plane's administrative backbone. It's a centralized console to ensure every Foundry project remains properly configured, compliant, and connected to the right people and infrastructure.
+Together, these capabilities make **Admin** the Control Plane's administrative backbone. It's a centralized console to ensure every Foundry project remains properly configured, compliant, and connected to the right people and infrastructure.
 
 ## Related content
 

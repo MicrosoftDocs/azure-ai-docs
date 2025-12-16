@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 12/15/2025
 ---
 
 # Recommended settings for network isolation
@@ -51,7 +51,7 @@ The App Service Environment (ASE) can be used to host the QnA Maker App Service 
 1. Create a [new Azure AI Search Resource](https://portal.azure.com/#create/Microsoft.Search).
 2. Create an external ASE with App Service.
     - Follow this [App Service quickstart](/azure/app-service/environment/create-external-ase#create-an-ase-and-an-app-service-plan-together) for instructions. This process can take up to 1-2 hours.
-    - Finally, you'll have an App Service endpoint that will appear similar to: `https://<app service name>.<ASE name>.p.azurewebsite.net` . 
+    - Finally, you have an App Service endpoint that will appear similar to: `https://<app service name>.<ASE name>.p.azurewebsite.net` . 
 	- Example: `https:// mywebsite.myase.p.azurewebsite.net`  
 3. Add the following App service configurations:
     

@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 09/17/2025
+ms.date: 12/05/2025
 ms.update-cycle: 180-days
 ms.custom:
   - mode-ui
@@ -28,7 +28,7 @@ A demo app can help you visualize how an index functions in a client app, but it
 
 + A [search index](search-what-is-an-index.md) to use as the basis of your generated application.
 
-  This quickstart uses the hotels-sample index. To create the index, run the [**Import data**](search-import-data-portal.md) wizard, select the built-in sample data, and step through the wizard using all the default values.
+  This quickstart uses the hotels-sample index. Follow the instructions in [this quickstart](search-import-data-portal.md) to create the index.
 
   :::image type="content" source="media/search-create-app-portal/import-data-hotels.png" alt-text="Screenshot of the data source page for sample data.":::
 
