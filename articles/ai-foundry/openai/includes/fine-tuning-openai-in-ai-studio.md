@@ -22,7 +22,7 @@ ms.custom:
   > [!NOTE]
   > The supported regions might vary if you use Azure OpenAI models in a Foundry project versus outside a project.
 - Fine-tuning access requires the Azure AI User role on the Azure OpenAI resource.
-- If you don't already have access to view quota and deploy models in Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
+- If you don't already have access to view quota and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).
 
 ### Supported models
 
@@ -102,7 +102,7 @@ To fine-tune an Azure OpenAI model in an existing Foundry project, follow these 
 
 1. Select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
 
-1. On the collapsible left menu, select **Fine-tuning** > **+ Fine-tune model**.
+1. On the collapsible left menu, select **Fine-tuning**. Then select **+ Fine-tune model**.
 
     :::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-new.png" alt-text="Screenshot of the option to start creating a new fine-tuned model." lightbox="../media/fine-tuning/ai-foundry/fine-tune-new.png":::
 
@@ -110,7 +110,7 @@ To fine-tune an Azure OpenAI model in an existing Foundry project, follow these 
 
 1. The gpt-35-turbo model has various versions available for fine-tuning. If you use that model, choose which version you want to fine-tune. The example in this article uses **0125**.
 
-1. We recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. With the OpenAI Python API, you can use a string of up to 18 characters that's added to your fine-tuned model name.
+1. We recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. With the OpenAI Python API, you can use a string of up to 18 characters that's added to your fine-tuned model's name.
 
    If you have more than one Azure OpenAI connection enabled for fine-tuning, choose which resource you want to use. Keep in mind that all users who have access to your Azure OpenAI resource can access this fine-tuned model.
 
@@ -134,7 +134,7 @@ Make sure that all your training examples follow the expected format for inferen
 
 For large data files, we recommend that you import from Azure Blob Storage. Large files can become unstable when you upload them through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview).
 
-After you upload files, you a preview of your training data appears. Select **Next** to continue.
+After you upload files, a preview of your training data appears. Select **Next** to continue.
 
 :::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png" alt-text="Screenshot of a training data preview." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png":::
 
@@ -150,11 +150,11 @@ Optionally, configure parameters for your fine-tuning job. The following paramet
 
 |Name| Type| Description|
 |---|---|---|
-|`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When the value is set to `-1`, batch_size is calculated as 0.2% of examples in training set. The maximum is 256. |
-| `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
+|`batch_size` |Integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we find that larger batch sizes tend to work better for larger datasets.<br><br> The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. When the value is set to `-1`, batch_size is calculated as 0.2% of examples in training set. The maximum is `256`. |
+| `learning_rate_multiplier` | Number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training, multiplied by this value.<br><br> Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range of `0.02` to `0.2` to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | Integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. If the value is set to `-1`, the number of epochs is determined dynamically based on the input data. |
-|`seed` | Integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
-| `Beta`| Integer | Temperature parameter for direct preference optimization (DPO) loss, typically in the range of `0.1` to `0.5`. This parameter controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model.  |
+|`seed` | Integer | The seed that controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is generated for you. |
+| `Beta`| Integer | The temperature parameter for direct preference optimization (DPO) loss, typically in the range of `0.1` to `0.5`. This parameter controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model.  |
 
 You can choose to leave the default configuration or customize the values to your preference. After you finish making your configurations, select **Next**.
 
@@ -182,7 +182,7 @@ You can track progress in both fine-tuning views of the Foundry portal. Your job
 
 You can also review the results files while training runs, to get a peek at the progress and whether your training is proceeding as expected.
 
-During the training, you can view the logs and metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
+During the training, you can view the logs and metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
 
 :::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
 
@@ -202,7 +202,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your `results.csv` file as plots in Foundry portal, on the **Monitoring** tab of your fine-tuned model. When you select the link for your trained model, two charts appear: loss and token accuracy. If you provided validation data, both datasets appear on the same plot.
+You can also view the data in your `results.csv` file as plots in the Foundry portal, on the **Monitoring** tab of your fine-tuned model. When you select the link for your trained model, two charts appear: loss and token accuracy. If you provided validation data, both datasets appear on the same plot.
 
 :::image type="content" source="../media/fine-tuning/metrics.png" alt-text="Screenshot of a metrics chart." lightbox="../media/fine-tuning/metrics.png":::
 
