@@ -243,7 +243,7 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample for use of an Agent with Computer Use tool
 
-To enable your Agent to Computer Use tool, you need to use `ComputerTool` while creating `PromptAgentDefinition`. The following example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your Agent to use the Computer Use tool, you need to use `ComputerTool` while creating `PromptAgentDefinition`. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 // Create project client and read the environment variables, which will be used in the next steps.
