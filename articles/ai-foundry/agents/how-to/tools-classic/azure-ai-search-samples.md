@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 12/15/2025
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: aahi
@@ -17,7 +17,11 @@ zone_pivot_groups: selection-azure-ai-search
 
 # How to use an existing index with the Azure AI Search tool
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+>
+> 🔍 [View the new Azure AI Search tool documentation](../../../default/agents/how-to/tools/ai-search.md).
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 

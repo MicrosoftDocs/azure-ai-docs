@@ -314,22 +314,6 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
-- id: programming-languages-ai-search-rag-qs
-  title: Programming languages
-  prompt: Choose a programming language
-  pivots:
-  - id: csharp
-    title: C#
-  - id: java
-    title: Java
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
-  - id: typescript
-    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -1281,12 +1265,16 @@ groups:
     title: C#
   - id: rest
     title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-fabric-tool
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest
     title: REST API
   - id: typescript
@@ -1297,6 +1285,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest
     title: REST API
   - id: typescript
@@ -1378,6 +1368,18 @@ groups:
     title: Python
   - id: rest
     title: REST API
+- id: selection-agent-sharepoint-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-file-search-upload
   title: Selections
   prompt: What would you like to see?
@@ -1494,6 +1496,10 @@ groups:
     title: Python 
   - id: csharp
     title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-azure-functions-samples
   title: Selections
   prompt: What would you like to see?
@@ -1540,6 +1546,8 @@ groups:
     title: C#
   - id: rest-api
     title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
