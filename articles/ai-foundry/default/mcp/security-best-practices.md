@@ -41,6 +41,17 @@ Examples of resource impact:
 
 Follow these practices to make sure write operations run as you intend:
 
+### Configure environment and endpoint targeting
+
+Before executing MCP operations, configure your MCP client to use the correct environment and endpoints:
+
+- **Set project endpoint**: Configure the MCP client to connect to your target Foundry project URL (for example, `https://[project-name].cognitiveservices.azure.com` or your custom endpoint).
+- **Specify resource group**: Ensure the MCP context targets the correct Azure resource group where your Foundry resources reside.
+- **Select subscription**: Verify you're authenticated to the correct Azure subscription.
+- **Configure authentication endpoint**: Use the appropriate Microsoft Entra token endpoint for your Azure cloud environment (for example, `https://login.microsoftonline.com` for public cloud).
+
+These settings are typically passed to the MCP server during initialization through your client configuration (for example, environment variables, configuration files, or client API parameters).
+
 ### Tool execution verification
 
 - **Verify tool selection**: Confirm the correct MCP tool and parameters match your intention before execution.
@@ -83,11 +94,11 @@ Tenant admins can use Azure Policy to grant or block access to Foundry MCP Serve
 
 1. Materialize the service principal for Foundry MCP Server (preview) application ID by running `az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`. The application ID used in this command represents Foundry MCP Server (preview).
 
-1. Find the enterprise application for Foundry MCP Server (preview) using the application ID.
+1. Find the enterprise application for Foundry MCP Server (preview) using the application ID. Open the [Azure portal Enterprise Applications page](https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview) and search for the application ID.
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
-1. Add a conditional access policy that targets Foundry MCP Server (preview) and specifies the users or workload identities.
+1. Add a conditional access policy that targets Foundry MCP Server (preview) and specifies the users or workload identities. Go to [Azure portal Conditional Access page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ConditionalAccessBlade) to create a new policy.
 
     :::image type="content" source="../media/mcp/foundry-new-access-policy.png" alt-text="Screenshot of creating a new conditional access policy for the app.":::
 
@@ -118,7 +129,7 @@ Check your permissions in Entra ID and confirm your access token is valid. Sign 
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see Role-based access control for Foundry.
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-azure-ai-foundry.md).
 
 ### Server connectivity issues
 
