@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
   - ai-learning-hub
-ms.topic: concept
+ms.topic: concept-article
 ms.date: 12/04/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
