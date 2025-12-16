@@ -280,9 +280,6 @@ items:
       - name: Label data
         href: custom-text-classification/how-to/tag-data.md
         displayName: tag data, annotate text, training data
-      - name: Label data with Azure Machine Learning
-        href: custom/azure-machine-learning-labeling.md
-        displayName: azure ml labeling, aml annotation
       - name: Train a model
         href: custom-text-classification/how-to/train-model.md
         displayName: training, classifier, build model

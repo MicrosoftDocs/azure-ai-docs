@@ -29,17 +29,18 @@ First you need to get your resource key and endpoint:
 [!INCLUDE [submit a text classification task using the REST API](../includes/rest-api/submit-task.md)]
 
 
-### Get task results
+### Get task results (Azure SDK)
 
 [!INCLUDE [get custom NER task results](../includes/rest-api/get-results.md)]
 
-# [Client libraries (Azure SDK)](#tab/client-libraries)
 
 First you need to get your resource key and endpoint:
 
+
+
 [!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
-3. Download and install the client library package for your language of choice:
+1. Download and install the client library package for your language of choice:
 
     |Language  |Package version  |
     |---------|---------|
@@ -48,7 +49,7 @@ First you need to get your resource key and endpoint:
     |JavaScript     |  [6.0.0-beta.1](https://www.npmjs.com/package/@azure/ai-text-analytics/v/6.0.0-beta.1)       |
     |Python     | [5.2.0b4](https://pypi.org/project/azure-ai-textanalytics/5.2.0b4/)         |
 
-4. After you install the client library, use the following samples on GitHub to start calling the API.
+1. After you install the client library, use the following samples on GitHub to start calling the API.
 
     Single label classification:
     * [C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/textanalytics/Azure.AI.TextAnalytics/samples/Sample9_SingleLabelClassify.md)
@@ -62,7 +63,7 @@ First you need to get your resource key and endpoint:
     * [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/%40azure/ai-text-analytics_6.0.0-beta.1/sdk/textanalytics/ai-text-analytics/samples/v5/javascript/customText.js)
     * [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/textanalytics/azure-ai-textanalytics/samples/sample_multi_label_classify.py)
 
-5. See the following reference documentation on the client, and return object:
+1. See the following reference documentation on the client, and return object:
 
     * [C#](/dotnet/api/azure.ai.textanalytics?view=azure-dotnet-preview&preserve-view=true)
     * [Java](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-preview&preserve-view=true)

@@ -12,7 +12,7 @@ ms.custom: language-service-custom-ner
 ---
 # View the custom NER model's evaluation and details
 
-After your model has finished training, you can view the model performance and see the extracted entities for the documents in the test set. 
+After your model finishes training, you can view the model performance and see the extracted entities for the documents in the test set. 
 
 > [!NOTE]
 > Using the **Automatically split the testing set from training data** option may result in different model evaluation result every time you [train a new model](train-model.md), as the test set is selected randomly from the data. To make sure that the evaluation is calculated on the same test set every time you train a model, make sure to use the **Use a manual split of training and testing data** option when starting a training job and define your **Test** documents when [labeling data](tag-data.md).
@@ -26,7 +26,7 @@ Before viewing model evaluation, you need:
 * [Labeled data](tag-data.md)
 * A [successfully trained model](train-model.md)
 
-See the [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+For more information, *see* the [project development lifecycle](../overview.md#project-development-lifecycle).
 
 ## Model details (REST API)
 
@@ -35,9 +35,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Load or export model data (REST API)
 
-
-[!INCLUDE [Load export model](../../custom-text-classification/includes/rest-api/load-export-model.md)]
-
+[!INCLUDE [Load export model](../includes/rest-api/load-export-model.md)]
 
 ## Delete model (REST API)
 

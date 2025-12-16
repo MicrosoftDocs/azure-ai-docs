@@ -65,8 +65,6 @@ If you need to stop a training job that's currently in progress, you can cancel 
 
 [!INCLUDE [Cancel training](../includes/rest-api/cancel-training.md)]
 
----
-
 ## Next steps
 
 After training is completed, you'll be able to view [model performance](view-model-evaluation.md) to optionally improve your model if needed. Once you're satisfied with your model, you can deploy it, making it available to use for [extracting entities](call-api.md) from text.
