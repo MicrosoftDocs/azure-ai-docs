@@ -13,11 +13,13 @@ ai-usage: ai-assisted
 ---
 
 | **Region**   | **dall-e-3**, **3.0**   | **gpt-image-1** | **gpt-image-1.5** | **gpt-image-1-mini** |
-|:-----------------|:---------------------:|:--------------:|:-------------:|--|
-| australiaeast    | ✅                  |                |               |   |
-| eastus           | ✅                  |                |               | ✅ |
-| northcentralus   |                      |                |               | ✅ |
-| swedencentral    | ✅                  |                |               |   |
-| westus3          |                      | ✅             |   ✅         |   |
-| uaenorth         |                      | ✅             |   ✅         |   |
+|:-----------------|:---------------------:|:--------------:|:---------------:|-----------------|
+| australiaeast    | ✅                  |                |               |                     |
+| eastus           | ✅                  |                |               |                  ✅ |
+| eastus2           |                     |                |    ✅         |                    |
+| northcentralus   |                      |                |                 |                ✅ |
+| swedencentral    | ✅                  |                |      ✅         |                   |
+| polandcentral    |                      |                |     ✅        |                  |
+| westus3          |                      | ✅             |   ✅         |                   |
+| uaenorth         |                      | ✅             |   ✅         |                   |
 
