@@ -26,7 +26,7 @@ items:
 - name: Speech tools
   items:
   - name: Speech MCP server
-    href: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry
+    href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
   - name: Speech CLI
     items:
       - name: Speech CLI overview
