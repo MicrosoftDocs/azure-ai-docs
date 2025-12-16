@@ -1265,12 +1265,16 @@ groups:
     title: C#
   - id: rest
     title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-fabric-tool
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest
     title: REST API
   - id: typescript
@@ -1281,6 +1285,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: rest
     title: REST API
   - id: typescript
@@ -1293,6 +1299,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
 # owner: aashcraft
 - id: selection-web-search
   title: Selections
@@ -1540,6 +1548,8 @@ groups:
     title: C#
   - id: rest-api
     title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages

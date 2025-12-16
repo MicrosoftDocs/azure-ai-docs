@@ -15,8 +15,10 @@ ms.custom: azure-ai-agents
 
 # How to use the Browser Automation tool (preview)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+>
+> 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md).
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service.
 
