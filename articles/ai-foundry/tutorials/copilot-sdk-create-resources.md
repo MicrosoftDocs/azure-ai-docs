@@ -7,7 +7,9 @@ ms.custom:
   - ignite-2024
   - update-code
   - hub-only
+  - dev-focus
 ms.topic: tutorial
+ai-usage: ai-assisted
 ms.date: 12/16/2025
 ms.reviewer: lebaro
 ms.author: sgilley
@@ -18,9 +20,7 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
-In this tutorial, you use the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
-
-This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
+In this tutorial, you set up the resources needed to build a custom knowledge retrieval (RAG) chat app with the Microsoft Foundry SDK. This is part one of a three-part tutorial series; you'll create the resources here, build the app in part two, and evaluate it in part three. In this part, you:
 
 > [!div class="checklist"]
 > - Create a project
@@ -32,13 +32,13 @@ This tutorial is part one of a three-part tutorial.  This part one gets you read
 
 If you've completed other tutorials or quickstarts, you might have already created some of the resources needed for this tutorial. If you have, feel free to skip those steps here.
 
-This tutorial is part one of a three-part tutorial.
-
 ## Prerequisites
 
 [!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
-* An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure account with an active subscription and **Owner** or **Contributor** role assigned. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* **Microsoft Foundry**: Owner or Contributor role to create a project.
+* **Azure AI Search**: Search Service Contributor and Search Index Data Contributor roles (required for creating search indexes). For more information, see [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 
 ## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
@@ -100,7 +100,8 @@ In the Foundry portal, check for an Azure AI Search connected resource.
 1. Use **API key** for **Authentication**.
 
     > [!IMPORTANT]
-    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+    > The **API key** option isn't recommended for production. The recommended approach is **Microsoft Entra ID** authentication, which requires the *Search Index Data Contributor* and *Search Service Contributor* roles (configured in Prerequisites). For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md).
+    > For this tutorial, **API key** is acceptable if you want to proceed quickly; switch to Entra ID before deploying to production.
 
 1. Select **Add connection**.  
 
@@ -119,17 +120,38 @@ Install required packages.
 
     :::code language="txt" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/requirements.txt":::
 
+References: [Azure AI Projects client library](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects), [azure-ai-inference](https://pypi.org/project/azure-ai-inference/), [python-dotenv](https://pypi.org/project/python-dotenv/).
+
 1. Install the required packages:
 
     ```bash
     pip install -r requirements.txt
     ```
 
+### Verify your setup
+
+Verify that your environment is set up correctly by running a quick test:
+
+```python
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# This will fail if credentials aren't set up, confirming auth is working
+client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+print("Setup successful! You're ready to build your RAG app.")
+```
+
+If you see `"Setup successful!"`, your Azure credentials and SDK are configured correctly.
+
+References: [Azure AI Projects client library](/python/api/azure-ai-projects), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential).
+
 ### Create helper script
 
-Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. Add the following code:
+Create a folder for your work. Create a file called **config.py** in this folder. This helper script is used in the next two parts of the tutorial series. The script loads your environment variables and initializes the Azure AI Projects client. Add the following code:
 
 :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/config.py":::
+
+References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [load_dotenv](https://pypi.org/project/python-dotenv/).
 
 > [!NOTE]
 > This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.

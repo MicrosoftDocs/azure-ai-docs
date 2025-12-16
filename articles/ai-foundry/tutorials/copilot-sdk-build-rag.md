@@ -12,6 +12,8 @@ ms.custom:
   - copilot-learning-hub
   - ignite-2024
   - hub-only
+  - dev-focus
+ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
@@ -26,7 +28,7 @@ This part two shows you how to enhance a basic chat application by adding [retri
 > - Create a search index of the data for the chat app to use
 > - Develop custom RAG code
 
-This tutorial is part two of a three-part tutorial.
+This tutorial builds on [Tutorial: Part 1 - Create resources for building a custom chat application with the Microsoft Foundry SDK](copilot-sdk-create-resources.md).
 
 [!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
 
@@ -34,14 +36,29 @@ This tutorial is part two of a three-part tutorial.
 
 [!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
-* Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI SDK](copilot-sdk-create-resources.md) to:
-
+* Complete [Tutorial: Part 1 - Create resources for building a custom chat application with the Microsoft Foundry SDK](copilot-sdk-create-resources.md) to:
     * Create a project with a connected Azure AI Search index
     * Install the Azure CLI, Python, and required packages
     * Configure your environment variables
+* Use the same **Microsoft Foundry** project you created in Part 1.
+* **Azure AI permissions**: Owner or Contributor role to create search indexes and deploy models; Cognitive Services Contributor or higher for AI Services resources. 
 
-* Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
+## Verify your setup
 
+Before building the RAG app, confirm that your environment is properly configured by running a quick connection test:
+
+```python
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Test that you can connect to your project
+client = AIProjectClient.from_config(credential=DefaultAzureCredential())
+print("✓ Setup verified! Ready to build your RAG app.")
+```
+
+If you see the success message, your Azure credentials and SDK are configured correctly. If you encounter authentication errors, verify your `FOUNDRY_*` environment variables are set correctly (see Part 1 prerequisites).
+
+References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential).
 
 ## Create example data for your chat app
 
@@ -53,6 +70,8 @@ Create an **assets** directory and add this example data to a **products.csv** f
 
 :::code language="csv" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/products.csv":::
 
+This CSV file contains product information that the search index will store and retrieve to ground the chat responses.
+
 ## Create a search index
 
 The search index is used to store vectorized data from the embeddings model. The search index is used to retrieve relevant documents based on the user's question. 
@@ -63,17 +82,27 @@ The search index is used to store vectorized data from the embeddings model. The
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="imports_and_config":::
 
+    The imports include `AIProjectClient` (to connect to your project), `SearchClient` (to manage the search index), and `EmbeddingsModel` (to vectorize documents).
+
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.search_client), [embed_query_text](/python/api/azure-ai-projects/azure.ai.projects.models.embedding_models).
+
 1. Now add the function to define a search index:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="create_search_index":::
+
+    References: [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.search_index), [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.search_index_client).
 
 1. Create the function to add a csv file to the index:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="add_csv_to_index":::
 
+    References: [embed_query_text](/python/api/azure-ai-projects/azure.ai.projects.models.embedding_models), [SearchClient.upload_documents](/python/api/azure-search-documents/azure.search.documents.search_client).
+
 1. Finally, run the functions to build the index and register it to the cloud project:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/create_search_index.py" id="test_create_index":::
+
+    References: [AIProjectClient.agents](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [SearchIndexClient.create_or_update_index](/python/api/azure-search-documents/azure.search.documents.indexes.search_index_client).
 
 1. From your console, log in to your Azure account and follow instructions for authenticating your account:
 
@@ -91,11 +120,9 @@ The search index is used to store vectorized data from the embeddings model. The
 
 ## Get product documents
 
-Next, you create a script to get product documents from the search index. The script queries the search index for documents that match a user's question.
+Next, create a script to query the search index and retrieve product documents that match user questions. When the chat app receives a query, it searches for relevant documents to ground the response in your data.
 
 ### Create script to get product documents
-
-When the chat gets a request, it searches through your data to find relevant information.  This script uses the Azure AI SDK to query the search index for documents that match a user's question.  It then returns the documents to the chat app.
 
 1. Create the **get_product_documents.py** file in your main directory. Copy and paste the following code into the file.
 
@@ -103,29 +130,41 @@ When the chat gets a request, it searches through your data to find relevant inf
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="imports_and_config":::
 
+    Key imports: `SearchClient` (to query the search index) and `PromptTemplate` (to construct search queries from user intent).
+
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [SearchClient](/python/api/azure-search-documents/azure.search.documents.search_client), [PromptTemplate](/python/api/promptflow/promptflow.entities.prompt_template).
+
 1. Add the function to get product documents:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="get_product_documents":::
+
+    References: [SearchClient.search](/python/api/azure-search-documents/azure.search.documents.search_client), [AIProjectClient.inference](/python/api/azure-ai-projects/azure.ai.projects.aiclient).
 
 1. Finally, add code to test the function when you run the script directly:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/get_product_documents.py" id="test_get_documents":::
 
+    References: [AIProjectClient.from_config](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [parse arguments](/python/library/argparse.md).
+
 ### Create prompt template for intent mapping
 
-The **get_product_documents.py** script uses a prompt template to convert the conversation to a search query. The template instructs how to extract the user's intent from the conversation.  
+The **get_product_documents.py** script uses a prompt template called **intent_mapping.prompty** to transform the user's question into an optimized search query. This helps the search index find the most relevant product documents.
 
 Before you run the script, create the prompt template. Add the file **intent_mapping.prompty** to your **assets** folder:
 
 :::code language="prompty" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/intent_mapping.prompty":::
 
+This template instructs the model to extract the user's intent and convert it into a concise search query.
+
 ### Test the product document retrieval script
 
-Now that you have both the script and template, run the script to test out what documents the search index returns from a query.  In a terminal window run:
+Now that you have both the script and template, run the script to test out what documents the search index returns from a query. In a terminal window run:
 
 ```bash
 python get_product_documents.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
+
+The script returns a list of product documents from your search index that match the query. You should see JSON output showing product names, descriptions, and prices relevant to a 4-person tent.
 
 ## Develop custom knowledge retrieval (RAG) code
 
@@ -138,21 +177,31 @@ Next you create custom code to add retrieval augmented generation (RAG) capabili
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="imports_and_config":::
 
+    Key imports: `AIProjectClient` (connects to your project), `chat` function (from prompt flow), and `get_product_documents` (your retrieval function).
+
+    References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiclient), [chat](/python/api/promptflow/promptflow.entities.chat_template), [PromptTemplate](/python/api/promptflow/promptflow.entities.prompt_template).
+
 1. Create the chat function that uses the RAG capabilities:
 
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="chat_function":::
+
+    References: [ChatCompletionClient](/python/api/azure-ai-projects/azure.ai.projects.models.chat_completion_client), [AIProjectClient.inference](/python/api/azure-ai-projects/azure.ai.projects.aiclient).
 
 1. Finally, add the code to run the chat function:
     
     :::code language="python" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/chat_with_products.py" id="test_function":::
 
+    References: [parse_args](/python/library/argparse.md), [AIProjectClient.from_config](/python/api/azure-ai-projects/azure.ai.projects.aiclient).
+
 ### Create a grounded chat prompt template
 
-The **chat_with_products.py** script calls a prompt template to generate a response to the user's question. The template instructs how to generate a response based on the user's question and the retrieved documents.  Create this template now.
+The **chat_with_products.py** script calls a prompt template called **grounded_chat.prompty** to generate responses. This template instructs the model to use the retrieved product documents to ground answers and stay on-topic for your retail business.
 
 In your **assets** folder, add the file **grounded_chat.prompty**:
 
 :::code language="prompty" source="~/azureai-samples-main/scenarios/rag/custom-rag-app/assets/grounded_chat.prompty":::
+
+This template ensures responses are based on your product data rather than general knowledge.
 
 ### Run the chat script with RAG capabilities
 
@@ -162,21 +211,25 @@ Now that you have both the script and the template, run the script to test your 
 python chat_with_products.py --query "I need a new tent for 4 people, what would you recommend?"
 ```
 
+The script returns a conversational response grounded in your product data. The response should reference specific products from your search index rather than generic advice.
+
 ### Add telemetry logging
 
-To enable logging of telemetry to your project:
+To enable logging of telemetry to your project so you can track and monitor chat interactions:
 
-1. Register the **Microsoft.OperationalInsights** and **microsoft.insights** resource providers in your subscription. For more information on registering a resource provider, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
+1. Register the **Microsoft.OperationalInsights** and **microsoft.insights** resource providers in your subscription. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
-1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
+1. Add an Application Insights resource to your project. Navigate to the **Tracing** tab in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
 
     :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png" alt-text="A screenshot of the tracing screen in the Foundry portal." lightbox="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png":::
 
-1. Install `azure-monitor-opentelemetry`:
+1. Install the telemetry SDK:
 
    ```bash
    pip install azure-monitor-opentelemetry
    ```
+
+   References: [azure-monitor-opentelemetry](https://pypi.org/project/azure-monitor-opentelemetry/), [OpenTelemetry](/python/api/azure-monitor-opentelemetry).
    
 1. Add the `--enable-telemetry` flag when you use the `chat_with_products.py` script:
 
