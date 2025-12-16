@@ -5,7 +5,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual 
+ms.topic: article
 ms.date: 11/03/2025
 manager: nitinme
 author: msakande 
@@ -143,14 +143,14 @@ For a deeper understanding on how different ratios of input and output tokens im
 > [!NOTE]
 > gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
-|Topic| **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** | 
-| --- | --- |  --- | --- |  --- |  --- | --- |  --- |
-|Global & data zone provisioned minimum deployment| 15 | 15  | 15|15| 15 | 15 | 15 |
-|Global & data zone provisioned scale increment| 5 | 5 | 5|5| 5 | 5 | 5 |
-|Regional provisioned minimum deployment| 50 | 25 | 50|25| 25 |50 |25|
-|Regional provisioned scale increment| 50 | 25 | 50|25| 25 | 50 | 25|
-|Input TPM per PTU| 4,750  | 23,750 | 3,000|14,900| 59,400 | 3,000 | 5,400 |
-|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
+|Topic| **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** | 
+| --- | --- | --- | --- |  --- | --- |  --- |  --- | --- |  --- |
+|Global & data zone provisioned minimum deployment| 15 | 15 | 15 | 15  | 15|15| 15 | 15 | 15 |
+|Global & data zone provisioned scale increment| 5 | 5 | 5 | 5 | 5|5| 5 | 5 | 5 |
+|Regional provisioned minimum deployment| 50 | 50 | 50 | 25 | 50|25| 25 |50 |25|
+|Regional provisioned scale increment| 50 | 50 | 50 | 25 | 50|25| 25 | 50 | 25|
+|Input TPM per PTU| 4,750 | 4,750 | 4,750  | 23,750 | 3,000|14,900| 59,400 | 3,000 | 5,400 |
+|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
 
 \* Calculated as p50 request latency on a per 5 minute basis.
 

@@ -83,7 +83,7 @@ In the Foundry (new) portal, the project you're working with appears in the uppe
 
 ## Find other resources
 
-The Foundry (new) portal displays only Foundry projects, not other resources or hub-based projects you might have created in Foundry (classic).
+The Foundry (new) portal displays only the **default** project for each Foundry resource, not other resources or hub-based projects you might have created in Foundry (classic). If you created multiple projects under the same Foundry resource, you can identify which project is the default by checking the Microsoft Foundry (classic) portal. The default project is marked with (default) next to its name.
 
 To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) to work with these other resources in the Foundry (classic) portal.
 
@@ -216,7 +216,7 @@ Microsoft Foundry is monetized through individual products customer access and c
 
 The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./how-to/costs-plan-manage.md).
+Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
 
 ## Region availability
 
@@ -243,3 +243,4 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 - [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
+- [What's new in Microsoft Foundry documentation?](whats-new-azure-ai-foundry.md)

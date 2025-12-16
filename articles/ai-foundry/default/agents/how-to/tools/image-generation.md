@@ -1,34 +1,33 @@
 ---
-title: 'How to use Foundry Agent Service with image generation'
+title: Use Foundry Agent Service with image generation
 titleSuffix: Microsoft Foundry
-description: Learn how to use Azure AI Agents with image generation.
+description: Learn to create and use Foundry Agents with image generation capabilities. Stream partial images, generate visuals from text prompts, and integrate with GPT models.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/12/2025
-author: aahill
-ms.author: aahi
+ms.date: 12/05/2025
+author: alvinashcraft
+ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
 ---
 
-
-
-# Image generation tool (preview) 
+# Use the image generation tool (preview)
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!IMPORTANT] 
-> - The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image).
-> - You also need to have a compatible Azure OpenAI model deployed in the same Foundry project that you are using, including `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.
+> - The Image Generation tool uses the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image).
+> - You also need to deploy a compatible Azure OpenAI model in the same Foundry project that you're using. Compatible models include `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.
 
-The Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
+The Foundry Agent Service enables image generation as part of conversations and multistep workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
 
 :::zone pivot="python"
 Before you start, make sure you have the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 ## Create an agent with the image generation tool
+
 ```python
 with project_client:
     agent = project_client.agents.create_version(
@@ -42,7 +41,9 @@ with project_client:
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
+
 ## Create a response 
+
 ```python
     response = openai_client.responses.create(
         input="Generate an image of Microsoft logo.",
@@ -55,6 +56,7 @@ with project_client:
 ```
 
 ## Save the image
+
 ```python
     # Save the image to a file
     image_data = [output.result for output in response.output if output.type == "image_generation_call"]
@@ -71,8 +73,15 @@ with project_client:
 ```
 :::zone-end
 
+:::zone pivot="csharp"
+
+For C# usage, see the [Sample for image generation in Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
+
+:::zone-end
+
 :::zone pivot="rest-api"
 ## Create an agent with the image generation tool
+
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
@@ -92,7 +101,9 @@ curl --request POST \
   }
 }'
 ```
+
 ## Create a response
+
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
@@ -136,23 +147,23 @@ Compared to Azure OpenAI's Image API, the image generation tool in Agent Service
 
 ## Optional parameters
 
-|Parameter  |Description  |
+| Parameter | Description |
 |---------|---------|
 |size     | Specifies the image dimensions, such as 1024x1024. The default value is "auto".        |
 |quality     | Specifies the rendering quality, such as low, medium, high. The default value is "auto".         |
-|format     | file output format, it supports "png", "WebP" and "jpeg".         |
-|compression     | the compression level for jpeg and webp format images, the value is in the range of 0 to 100 (%)        |
-|background     |  Either "transparent", "opaque" or "auto".       |
-|partial images     |  Supports streaming partial images. you can set the number to be in the range of 1 to 3.       |
+|format     | File output format. Supported formats are "png", "WebP", and "jpeg".         |
+|compression     | The compression level for jpeg and webp format images. The value is in the range of 0 to 100 (%).        |
+|background     |  Either "transparent", "opaque", or "auto".       |
+|partial images     |  Supports streaming partial images. You can set the number to be in the range of 1 to 3.       |
 
 Use the Responses API if you want to: 
 
-* Build conversational image experiences with GPT Image. 
-* Stream partial image results during generation for a smoother user experience. 
+- Build conversational image experiences with GPT Image. 
+- Stream partial image results during generation for a smoother user experience. 
 
 ## Best practices for writing text-to-image prompts  
 
-Your prompts should describe the content you want to see in the image, and the visual style of image. You can use terms like "draw" or "edit" in your prompt. 
+Your prompts should describe the content you want to see in the image, and the visual style of the image. You can use terms like "draw" or "edit" in your prompt. 
 
 When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filter](../../../../openai/concepts/content-filter.md). 
 

@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/13/2025
+ms.date: 12/04/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
@@ -31,7 +31,7 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 ## Deploy a model in Foundry
 
 1. Go to [Foundry](https://ai.azure.com) and create a new project.
-2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
+2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as `gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
 3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select **deploy model**.
 4. Copy the endpoint **URL** and the **API Key**.
 

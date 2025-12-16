@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 12/15/2025
 ms.custom: mode-ui
 ---
 

@@ -251,7 +251,7 @@ response = openai_client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-For the end-to-end example, see [Quickstart: Generative search (RAG) with grounding data from Azure AI Search](search-get-started-rag.md).
+For the end-to-end example, see [classic RAG in Azure AI Search](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md).
 
 ## Select complex fields
 
@@ -365,7 +365,7 @@ var combinedCountryCategoryFilter = "(" + countryFilter + " and " + catgFilter +
 
 ```
 
-If you implement the workaround, be sure to test extentively.
+If you implement the workaround, be sure to test extensively.
 
 ## Next steps
 

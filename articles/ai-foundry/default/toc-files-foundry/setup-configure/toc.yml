@@ -7,13 +7,13 @@ items:
 - name: Manage Foundry resources
   items:
   - name: Create your first resource
-    href: ../../../../ai-services/multi-service-resource.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
   - name: Create resources using Bicep template
     href: ../../../how-to/create-resource-template.md
   - name: Manage resources using Terraform
     href: ../../../how-to/create-resource-terraform.md
   - name: Recover or purge deleted resources
-    href: ../../../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry&preserve-view=true
+    href: ../../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
 
 # Project Management
 - name: Create and manage projects
@@ -38,4 +38,6 @@ items:
     href: ../../../how-to/quota.md
   - name: Foundry Models quotas and limits
     href: ../../../foundry-models/quotas-limits.md
+  - name: Azure OpenAI quotas and limits
+    href: ../../../openai/quotas-limits.md
   

@@ -165,9 +165,9 @@ ms.author: lajanuar
 |Yucatec Maya|`yua`|✔|✔| |✔| | | |
 |Zulu|`zu`|✔|✔| |✔| |✔| |
 
-## Document translation: scanned PDF support
+## Document translation: scanned PDF and image support
 
-|Language|Language Code|Supported as source language for scanned PDF?|Supported as target language for scanned PDF?|
+|Language|Language Code|Supported for source language?|Supported for target language?|
 |:----|:----:|:----:|:----:|
 |Afrikaans|`af`|Yes|Yes|
 |Albanian|`sq`|Yes|Yes|
