@@ -107,7 +107,7 @@ The conversation analysis authoring API enables you to author custom models and 
 * [Conversational language understanding](../conversational-language-understanding/quickstart.md?pivots=rest-api)
 * [Orchestration workflow](../orchestration-workflow/quickstart.md?pivots=rest-api)
 
-For more information, *see* the [reference documentation](/rest/api/language/2023-04-01/conversational-analysis-authoring).
+For more information, *see* the [reference documentation](/rest/api/language/).
 
 ### Conversation analysis runtime API
 
@@ -128,7 +128,7 @@ The text analysis authoring API enables you to author custom models and create/m
 * [Custom named entity recognition](../custom-named-entity-recognition/quickstart.md?pivots=rest-api)
 * [Custom text classification](../custom-text-classification/quickstart.md?pivots=rest-api)
 
-For more information, *see* the [reference documentation](/rest/api/language/2023-04-01/text-analysis-authoring).
+For more information, *see* the [reference documentation](/rest/api/language/).
 ### Text analysis runtime API
 
 The text analysis runtime API enables you to send requests to custom models you create for the following features:
