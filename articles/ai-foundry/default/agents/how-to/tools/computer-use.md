@@ -23,6 +23,12 @@ zone_pivot_groups: selection-computer-use
 
 This article explains how to work with the computer use tool in Foundry Agent Service. Computer use is a specialized AI tool that uses a specialized model to perform tasks by interacting with computer systems and applications through their user interfaces. With computer use, you can create an agent that handles complex tasks and makes decisions by interpreting visual elements and taking action based on on-screen content. 
 
+### Usage support
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | - | - | ✔️ | ✔️ |
+
 ## Features 
 
 - Autonomous navigation: For example, computer use can open applications, click buttons, fill out forms, and navigate multistep workflows. 
